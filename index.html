@@ -40,6 +40,13 @@
     details>summary::-webkit-details-marker{display:none}
     details[open] .chev{transform:rotate(180deg)}
     a,button{transition:all .18s ease}
+    /* 글(인사이트) 본문 마크다운 스타일 */
+    #postBody h2{font-family:'Noto Serif KR',serif;font-size:1.2rem;font-weight:700;margin-top:1.3em}
+    #postBody p{margin:.6em 0}
+    #postBody ul{list-style:disc;padding-left:1.2em;margin:.6em 0}
+    #postBody li{margin:.25em 0}
+    #postBody blockquote{border-left:3px solid #b8923f;padding-left:1em;color:#5a6275;font-style:italic;margin:.9em 0}
+    #postBody strong{font-weight:700;color:#15203a}
   </style>
 </head>
 
@@ -477,22 +484,26 @@
         </div>
         <a href="#" class="text-sm text-gold hover:underline">전체 보기 →</a>
       </div>
-      <div class="grid md:grid-cols-3 gap-6">
-        <article class="rounded-2xl border border-ink/8 overflow-hidden hover:shadow-card transition bg-paper">
-          <div class="h-40 bg-gradient-to-br from-navy to-ink"></div>
-          <div class="p-6"><span class="text-xs text-gold font-bold tracking-widest">자료실</span><h3 class="font-bold mt-2">중요성구 암송노트 미리보기</h3></div>
-        </article>
-        <article class="rounded-2xl border border-ink/8 overflow-hidden hover:shadow-card transition bg-paper">
-          <div class="h-40 bg-gradient-to-br from-gold/70 to-navy"></div>
-          <div class="p-6"><span class="text-xs text-gold font-bold tracking-widest">인사이트</span><h3 class="font-bold mt-2">양과 염소의 심판, 정말 ‘구제하라’는 말씀일까?</h3></div>
-        </article>
-        <article class="rounded-2xl border border-ink/8 overflow-hidden hover:shadow-card transition bg-paper">
-          <div class="h-40 bg-gradient-to-br from-ink to-gold/60"></div>
-          <div class="p-6"><span class="text-xs text-gold font-bold tracking-widest">인사이트</span><h3 class="font-bold mt-2">거룩한 가면의 시대, 무엇을 분별할 것인가</h3></div>
-        </article>
+      <!-- 글 목록: content/posts.json 에서 자동으로 그려집니다 -->
+      <div id="insightGrid" class="grid md:grid-cols-3 gap-6">
+        <p class="text-ink/40 text-sm">글을 불러오는 중…</p>
       </div>
     </div>
   </section>
+
+  <!-- 글 읽기 모달 -->
+  <div id="postModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+    <div class="absolute inset-0 bg-ink/60 backdrop-blur-sm" onclick="closePost()"></div>
+    <article class="relative bg-paper w-full max-w-2xl rounded-3xl shadow-2xl max-h-[90vh] overflow-auto">
+      <button onclick="closePost()" class="sticky top-0 float-right m-4 text-ink/40 hover:text-ink text-xl">✕</button>
+      <div class="p-8 md:p-10">
+        <p id="postCat" class="eyebrow text-gold text-xs font-semibold mb-3"></p>
+        <h2 id="postTitle" class="text-2xl md:text-3xl font-bold leading-snug"></h2>
+        <p id="postDate" class="text-sm text-ink/45 mt-2 mb-6"></p>
+        <div id="postBody" class="prose-sm leading-relaxed text-ink/80 space-y-4"></div>
+      </div>
+    </article>
+  </div>
 
   <!-- ===== FAQ ===== -->
   <section id="faq" class="py-24">
@@ -664,6 +675,9 @@
     </div>
   </div>
 
+  <!-- 마크다운 렌더러 (글 본문 표시용) -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
   <!-- ====================================================================== -->
   <!--  ▼▼▼ 메인 메뉴 관리 — 여기만 고치면 됩니다 ▼▼▼                          -->
   <!--                                                                        -->
@@ -715,6 +729,48 @@
       // 가격 섹션 이동은 유지하되, 상단 수강신청 버튼만 가입 유도하고 싶다면 아래 주석 해제
       // a.addEventListener('click', e => { e.preventDefault(); openAuth('signup'); });
     });
+
+    // ===== 인사이트 글 — content/posts.json 에서 자동으로 불러오기 =====
+    let POSTS = [];
+    const catColor = { '자료실':'from-navy to-ink', '인사이트':'from-gold/70 to-navy' };
+    fetch('content/posts.json')
+      .then(r => r.json())
+      .then(data => {
+        POSTS = data.posts || [];
+        const grid = document.getElementById('insightGrid');
+        if(!POSTS.length){ grid.innerHTML = '<p class="text-ink/40 text-sm">아직 등록된 글이 없습니다.</p>'; return; }
+        grid.innerHTML = POSTS.map(p => `
+          <article onclick="openPost('${p.id}')" class="rounded-2xl border border-ink/8 overflow-hidden hover:shadow-card hover:-translate-y-1 transition bg-paper cursor-pointer">
+            <div class="h-40 bg-gradient-to-br ${catColor[p.category]||'from-ink to-gold/60'}"
+                 ${p.image ? `style="background-image:url('${p.image}');background-size:cover;background-position:center"` : ''}></div>
+            <div class="p-6">
+              <span class="text-xs text-gold font-bold tracking-widest">${p.category||''}</span>
+              <h3 class="font-bold mt-2 leading-snug">${p.title||''}</h3>
+              <p class="text-sm text-ink/55 mt-2">${p.summary||''}</p>
+            </div>
+          </article>`).join('');
+      })
+      .catch(() => {
+        document.getElementById('insightGrid').innerHTML =
+          '<p class="text-ink/40 text-sm">글을 불러오지 못했습니다. (인터넷 주소에서는 정상 동작합니다)</p>';
+      });
+
+    const postModal = document.getElementById('postModal');
+    function openPost(id){
+      const p = POSTS.find(x => x.id === id); if(!p) return;
+      document.getElementById('postCat').textContent = p.category || '';
+      document.getElementById('postTitle').textContent = p.title || '';
+      document.getElementById('postDate').textContent = p.date || '';
+      document.getElementById('postBody').innerHTML =
+        window.marked ? marked.parse(p.body || '') : (p.body || '').replace(/\n/g, '<br>');
+      postModal.classList.remove('hidden'); postModal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+    function closePost(){
+      postModal.classList.add('hidden'); postModal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if(e.key === 'Escape') closePost(); });
   </script>
 
 </body>
