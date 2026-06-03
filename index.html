@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>오광일 인사이트 브리핑 — 성경으로 세상을 읽는 온라인 신학원</title>
+  <meta name="description" content="강단을 넘어 성경을 직접 읽는 눈. 종말론·세계관·자녀교육을 다루는 온라인 신학원. 천년왕국 세미나 시리즈와 단계별 클래스." />
+
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: {
+        ink:'#15203a', navy:'#1b2a4a', gold:'#b8923f', goldsoft:'#e7d6ac',
+        sand:'#efe7d6', paper:'#fcfaf6'
+      },
+      fontFamily: {
+        sans: ['Pretendard','system-ui','sans-serif'],
+        display: ['"Noto Serif KR"','Pretendard','serif']
+      },
+      boxShadow: {
+        card:'0 14px 40px -18px rgba(21,32,58,.22)',
+        soft:'0 2px 10px -4px rgba(21,32,58,.10)'
+      }
+    }}}
+  </script>
+  <style>
+    html{scroll-behavior:smooth}
+    body{ -webkit-font-smoothing:antialiased; letter-spacing:-0.005em; }
+    /* 세리프 디스플레이 — 히어로 h1 & 섹션 h2 에 격조를 부여 */
+    h1, section h2{ font-family:'Noto Serif KR', Pretendard, serif; letter-spacing:-0.01em; font-weight:700; }
+    .eyebrow{letter-spacing:.34em; text-transform:uppercase}
+    .blob{position:absolute;border-radius:9999px;filter:blur(90px);opacity:.22;z-index:0}
+    .star{width:14px;height:14px;display:inline-block;color:#cB9a4a;color:#c79a4a}
+    .hairline{height:1px;background:linear-gradient(90deg,transparent,rgba(184,146,63,.5),transparent)}
+    details>summary{list-style:none;cursor:pointer}
+    details>summary::-webkit-details-marker{display:none}
+    details[open] .chev{transform:rotate(180deg)}
+    a,button{transition:all .18s ease}
+  </style>
+</head>
+
+<body class="font-sans text-ink bg-paper antialiased">
+
+  <!-- ===== 상단 유틸바 ===== -->
+  <div class="bg-ink text-paper/70 text-xs">
+    <div class="max-w-6xl mx-auto px-5 h-9 flex items-center justify-end gap-5">
+      <span class="hidden sm:inline text-paper/50">강단을 넘어, 성경을 직접 읽는 눈</span>
+      <button onclick="openAuth('login')" class="hover:text-gold">로그인</button>
+      <button onclick="openAuth('signup')" class="hover:text-gold font-semibold text-gold">회원가입</button>
+    </div>
+  </div>
+
+  <!-- ===== 네비 ===== -->
+  <header class="sticky top-0 z-50 bg-paper/90 backdrop-blur-md border-b border-ink/8">
+    <nav class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between gap-6">
+      <a href="#top" class="font-bold tracking-tight text-[17px] shrink-0">
+        오광일 <span class="text-gold">인사이트 브리핑</span>
+      </a>
+      <!-- 메뉴는 페이지 맨 아래 MENU 목록에서 자동으로 그려집니다 -->
+      <div id="mainmenu" class="hidden lg:flex items-center gap-7 text-[15px] text-ink/70"></div>
+      <div class="hidden md:flex items-center gap-2 flex-1 max-w-xs ml-auto">
+        <div class="flex items-center w-full bg-white border border-ink/12 rounded-full px-4 py-2">
+          <svg class="w-4 h-4 text-ink/35" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input placeholder="강의 검색" class="bg-transparent text-sm outline-none ml-2 w-full placeholder:text-ink/35"/>
+        </div>
+      </div>
+      <a href="#pricing" class="bg-gold text-white font-semibold text-sm px-5 py-2.5 rounded-full hover:opacity-90 transition shrink-0">
+        수강 신청
+      </a>
+    </nav>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section id="top" class="relative overflow-hidden pt-16 pb-20">
+    <div class="blob bg-gold w-[460px] h-[460px] -top-24 -right-24"></div>
+    <div class="blob bg-navy w-[380px] h-[380px] top-44 -left-32 opacity-20"></div>
+
+    <div class="relative max-w-6xl mx-auto px-5 grid lg:grid-cols-2 gap-12 items-center z-10">
+      <!-- 좌: 카피 -->
+      <div>
+        <span class="inline-flex items-center gap-2 bg-gold/15 text-gold text-xs font-bold px-3 py-1.5 rounded-full">
+          🔥 BEST · 천년왕국 세미나 시리즈
+        </span>
+        <h1 class="mt-5 text-[34px] md:text-5xl font-bold leading-[1.18] tracking-tight">
+          강단을 넘어,<br/>성경을 <span class="text-gold">직접</span> 읽는 눈
+        </h1>
+        <p class="mt-5 text-ink/65 text-base md:text-lg leading-relaxed">
+          무엇이 진리이고 무엇이 ‘거룩한 가면’인지 흐려진 시대.
+          성경적 세계관으로 세상과 인간, 다가올 미래를 스스로 분별하는 힘을 기릅니다.
+        </p>
+
+        <!-- 사회적 증거 -->
+        <div class="mt-7 flex flex-wrap items-center gap-x-7 gap-y-3 text-sm">
+          <div class="flex items-center gap-1.5">
+            <span class="star">★</span><span class="font-bold">4.9</span>
+            <span class="text-ink/50">(수강 후기 128)</span>
+          </div>
+          <div class="text-ink/60"><b class="text-ink">312명</b> 수강 중</div>
+          <div class="text-ink/60">강의 <b class="text-ink">40+편</b> · 평생 소장</div>
+        </div>
+
+        <div class="mt-8 flex flex-col sm:flex-row gap-3">
+          <a href="#pricing" class="bg-ink text-paper font-semibold px-8 py-4 rounded-full hover:bg-navy transition shadow-card text-center">
+            수강 신청하기 →
+          </a>
+          <a href="#curriculum" class="border border-ink/15 px-8 py-4 rounded-full hover:bg-ink/5 transition text-center">
+            무료 1강 미리보기
+          </a>
+        </div>
+      </div>
+
+      <!-- 우: 강의 미리보기 카드 -->
+      <div class="relative">
+        <div class="bg-white rounded-3xl shadow-card border border-ink/8 overflow-hidden">
+          <div class="relative aspect-video bg-gradient-to-br from-navy to-ink flex items-center justify-center">
+            <div class="absolute inset-0 opacity-20" style="background-image:radial-gradient(circle at 70% 30%, #bf9b46 0, transparent 45%)"></div>
+            <button class="relative w-16 h-16 rounded-full bg-white/95 flex items-center justify-center shadow-lg hover:scale-105 transition">
+              <svg class="w-6 h-6 text-ink ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            <span class="absolute top-3 left-3 bg-gold text-white text-xs font-bold px-2.5 py-1 rounded">무료 공개</span>
+            <span class="absolute bottom-3 right-3 bg-black/60 text-white text-xs px-2 py-0.5 rounded">12:48</span>
+          </div>
+          <div class="p-6">
+            <p class="text-xs text-gold font-bold tracking-widest">중급 · 천년왕국 세미나</p>
+            <h3 class="font-bold text-lg mt-1.5">양과 염소의 심판, 정말 ‘구제하라’는 말씀일까?</h3>
+            <div class="mt-3 flex items-center gap-1.5 text-sm text-ink/55">
+              <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+              <span class="ml-1">4.9 · 수강생 312</span>
+            </div>
+            <div class="mt-5 flex items-end justify-between">
+              <div>
+                <span class="text-ink/40 line-through text-sm">₩69,000</span>
+                <div class="text-2xl font-bold">₩49,000<span class="text-sm text-gold font-semibold ml-1">29%↓</span></div>
+              </div>
+              <a href="#pricing" class="bg-gold text-white font-semibold text-sm px-5 py-3 rounded-full hover:opacity-90 transition">수강 신청</a>
+            </div>
+          </div>
+        </div>
+        <div class="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-card border border-ink/8 px-4 py-3 text-sm hidden md:block">
+          <p class="font-bold text-gold">M.B.S.</p><p class="text-ink/55 text-xs">미국 신학대학원 석사 강의</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 지표 띠 ===== -->
+  <div class="border-y border-ink/10 bg-white/60">
+    <div class="max-w-5xl mx-auto px-5 py-7 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div><span class="block text-gold text-2xl font-bold">312+</span><span class="text-sm text-ink/60">누적 수강생</span></div>
+      <div><span class="block text-gold text-2xl font-bold">4.9 / 5</span><span class="text-sm text-ink/60">수강 만족도</span></div>
+      <div><span class="block text-gold text-2xl font-bold">40+편</span><span class="text-sm text-ink/60">강의 영상</span></div>
+      <div><span class="block text-gold text-2xl font-bold">평생</span><span class="text-sm text-ink/60">무제한 소장</span></div>
+    </div>
+  </div>
+
+  <!-- ===== 이런 고민 (소구점) ===== -->
+  <section class="py-24">
+    <div class="max-w-5xl mx-auto px-5">
+      <div class="text-center mb-14">
+        <p class="eyebrow text-gold text-xs font-semibold mb-4">WHY</p>
+        <h2 class="text-2xl md:text-[32px] font-bold">이런 고민, 있으셨나요?</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-5">
+        <div class="bg-white rounded-2xl border border-ink/8 p-7 shadow-card">
+          <div class="w-11 h-11 rounded-full border border-gold/40 text-gold font-display text-lg flex items-center justify-center mb-4">01</div>
+          <p class="font-bold mb-2">강단을 믿기 어렵다</p>
+          <p class="text-sm text-ink/60 leading-relaxed">교회가 권력·정치에 휘둘리는 모습에 지쳐, 무엇이 진리인지 헷갈립니다.</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-ink/8 p-7 shadow-card">
+          <div class="w-11 h-11 rounded-full border border-gold/40 text-gold font-display text-lg flex items-center justify-center mb-4">02</div>
+          <p class="font-bold mb-2">성경을 ‘제대로’ 알고 싶다</p>
+          <p class="text-sm text-ink/60 leading-relaxed">종말·천년왕국 같은 주제를 누구에게 물어야 할지 몰라 늘 미뤄왔습니다.</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-ink/8 p-7 shadow-card">
+          <div class="w-11 h-11 rounded-full border border-gold/40 text-gold font-display text-lg flex items-center justify-center mb-4">03</div>
+          <p class="font-bold mb-2">자녀에게 무엇을 가르칠까</p>
+          <p class="text-sm text-ink/60 leading-relaxed">흔들리는 시대, 아이에게 물려줄 분별의 기준이 절실합니다.</p>
+        </div>
+      </div>
+      <p class="text-center text-ink/70 mt-10 text-lg">→ 강단에 기대지 않고, <b class="text-gold">성경을 스스로 읽는 눈</b>을 갖도록 돕습니다.</p>
+    </div>
+  </section>
+
+  <!-- ===== 강의 카탈로그 ===== -->
+  <section id="catalog" class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-5">
+      <div class="flex flex-wrap items-end justify-between gap-4 mb-12">
+        <div>
+          <p class="eyebrow text-gold text-xs font-semibold mb-3">ALL CLASSES</p>
+          <h2 class="text-2xl md:text-[32px] font-bold">단계별 전체 강의</h2>
+        </div>
+        <div class="flex gap-2 text-sm">
+          <button class="px-4 py-2 rounded-full bg-ink text-paper font-medium">전체</button>
+          <button class="px-4 py-2 rounded-full border border-ink/15 hover:bg-ink/5">기초</button>
+          <button class="px-4 py-2 rounded-full border border-ink/15 hover:bg-ink/5">초급</button>
+          <button class="px-4 py-2 rounded-full border border-ink/15 hover:bg-ink/5">중급</button>
+          <button class="px-4 py-2 rounded-full border border-ink/15 hover:bg-ink/5">고급</button>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- 카드 템플릿 -->
+        <a href="#pricing" class="group rounded-2xl border border-ink/8 overflow-hidden bg-paper hover:shadow-card hover:-translate-y-1 transition">
+          <div class="relative aspect-video bg-gradient-to-br from-navy to-ink">
+            <span class="absolute top-3 left-3 bg-white/90 text-ink text-xs font-bold px-2 py-1 rounded">기초</span>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold group-hover:text-gold transition">성경을 보는 눈 (입문)</h3>
+            <p class="text-sm text-ink/55 mt-1.5 leading-relaxed">성경을 처음 펴는 분을 위한 기본 틀.</p>
+            <div class="mt-3 text-xs text-ink/50 flex items-center gap-1"><span class="star">★</span>4.8 · 수강 86</div>
+            <div class="mt-3 font-bold">₩19,000<span class="text-ink/40 font-normal text-sm">부터</span></div>
+          </div>
+        </a>
+
+        <a href="#pricing" class="group rounded-2xl border border-ink/8 overflow-hidden bg-paper hover:shadow-card hover:-translate-y-1 transition">
+          <div class="relative aspect-video bg-gradient-to-br from-gold/70 to-navy">
+            <span class="absolute top-3 left-3 bg-white/90 text-ink text-xs font-bold px-2 py-1 rounded">초급</span>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold group-hover:text-gold transition">언약으로 읽는 성경</h3>
+            <p class="text-sm text-ink/55 mt-1.5 leading-relaxed">언약·구속·종말론의 기본기를 잡습니다.</p>
+            <div class="mt-3 text-xs text-ink/50 flex items-center gap-1"><span class="star">★</span>4.9 · 수강 54</div>
+            <div class="mt-3 font-bold">₩29,000<span class="text-ink/40 font-normal text-sm">부터</span></div>
+          </div>
+        </a>
+
+        <a href="#pricing" class="group rounded-2xl border-2 border-gold overflow-hidden bg-white hover:shadow-card hover:-translate-y-1 transition relative">
+          <span class="absolute top-3 right-3 z-10 bg-gold text-white text-xs font-bold px-2 py-1 rounded">BEST</span>
+          <div class="relative aspect-video bg-gradient-to-br from-navy via-ink to-navy flex items-center justify-center">
+            <span class="absolute top-3 left-3 bg-white/90 text-ink text-xs font-bold px-2 py-1 rounded">중급</span>
+            <svg class="w-12 h-12 text-white/80" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold group-hover:text-gold transition">천년왕국 세미나 (대표 시리즈)</h3>
+            <p class="text-sm text-ink/55 mt-1.5 leading-relaxed">첫째 부활·양과 염소의 심판·666의 실체.</p>
+            <div class="mt-3 text-xs text-ink/50 flex items-center gap-1"><span class="star">★</span>4.9 · 수강 198</div>
+            <div class="mt-3 font-bold">₩49,000<span class="text-ink/40 font-normal text-sm">부터</span></div>
+          </div>
+        </a>
+
+        <a href="#pricing" class="group rounded-2xl border border-ink/8 overflow-hidden bg-paper hover:shadow-card hover:-translate-y-1 transition">
+          <div class="relative aspect-video bg-gradient-to-br from-ink to-gold/60">
+            <span class="absolute top-3 left-3 bg-white/90 text-ink text-xs font-bold px-2 py-1 rounded">고급</span>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold group-hover:text-gold transition">세계관 · 시대 분별과 자녀교육</h3>
+            <p class="text-sm text-ink/55 mt-1.5 leading-relaxed">성경적 세계관을 삶과 양육에 적용합니다.</p>
+            <div class="mt-3 text-xs text-ink/50 flex items-center gap-1"><span class="star">★</span>5.0 · 수강 31</div>
+            <div class="mt-3 font-bold">₩59,000<span class="text-ink/40 font-normal text-sm">부터</span></div>
+          </div>
+        </a>
+
+        <a href="#pricing" class="group rounded-2xl border border-ink/8 overflow-hidden bg-paper hover:shadow-card hover:-translate-y-1 transition">
+          <div class="relative aspect-video bg-gradient-to-br from-navy to-gold/50">
+            <span class="absolute top-3 left-3 bg-white/90 text-ink text-xs font-bold px-2 py-1 rounded">중급</span>
+            <span class="absolute top-3 right-3 bg-ink text-white text-xs font-bold px-2 py-1 rounded">NEW</span>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold group-hover:text-gold transition">666의 실체</h3>
+            <p class="text-sm text-ink/55 mt-1.5 leading-relaxed">계시록의 짐승과 표를 본문으로 풀어냅니다.</p>
+            <div class="mt-3 text-xs text-ink/50 flex items-center gap-1"><span class="star">★</span>4.9 · 수강 77</div>
+            <div class="mt-3 font-bold">₩39,000<span class="text-ink/40 font-normal text-sm">부터</span></div>
+          </div>
+        </a>
+
+        <a href="#catalog" class="group rounded-2xl border border-dashed border-ink/20 flex flex-col items-center justify-center bg-paper hover:bg-ink/5 transition min-h-[260px] text-center p-5">
+          <div class="w-12 h-12 rounded-full bg-ink/5 flex items-center justify-center text-2xl mb-3">+</div>
+          <p class="font-semibold">강의가 계속 추가됩니다</p>
+          <p class="text-sm text-ink/50 mt-1">전체 강의 보기</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 커리큘럼 아코디언 ===== -->
+  <section id="curriculum" class="py-24">
+    <div class="max-w-3xl mx-auto px-5">
+      <div class="text-center mb-12">
+        <p class="eyebrow text-gold text-xs font-semibold mb-4">CURRICULUM</p>
+        <h2 class="text-2xl md:text-[32px] font-bold">천년왕국 세미나 커리큘럼</h2>
+        <p class="text-ink/60 mt-4">총 8강 · 약 6시간 · 평생 소장</p>
+      </div>
+
+      <div class="space-y-3">
+        <details open class="bg-white rounded-2xl border border-ink/8 shadow-card overflow-hidden">
+          <summary class="flex items-center justify-between px-6 py-4 font-semibold">
+            <span>PART 1. 종말과 부활의 큰 그림</span>
+            <svg class="chev w-5 h-5 text-ink/40 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <ul class="px-6 pb-5 text-sm divide-y divide-ink/5">
+            <li class="flex items-center justify-between py-3"><span class="flex items-center gap-2"><span class="text-gold">▶</span> 1강. 종말론, 왜 지금 공부해야 하나 <span class="text-gold text-xs font-bold ml-1">무료</span></span><span class="text-ink/40">14:20</span></li>
+            <li class="flex items-center justify-between py-3"><span class="flex items-center gap-2 text-ink/70"><span class="text-ink/30">🔒</span> 2강. 첫째 부활의 실체 (1)</span><span class="text-ink/40">38:10</span></li>
+            <li class="flex items-center justify-between py-3"><span class="flex items-center gap-2 text-ink/70"><span class="text-ink/30">🔒</span> 3강. 첫째 부활의 실체 (2)</span><span class="text-ink/40">41:55</span></li>
+          </ul>
+        </details>
+
+        <details class="bg-white rounded-2xl border border-ink/8 shadow-card overflow-hidden">
+          <summary class="flex items-center justify-between px-6 py-4 font-semibold">
+            <span>PART 2. 마지막 때의 심판</span>
+            <svg class="chev w-5 h-5 text-ink/40 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <ul class="px-6 pb-5 text-sm divide-y divide-ink/5">
+            <li class="flex items-center justify-between py-3"><span class="flex items-center gap-2 text-ink/70"><span class="text-ink/30">🔒</span> 4강. 양과 염소의 심판 (마 25장)</span><span class="text-ink/40">44:30</span></li>
+            <li class="flex items-center justify-between py-3"><span class="flex items-center gap-2 text-ink/70"><span class="text-ink/30">🔒</span> 5강. 백보좌 심판과의 관계</span><span class="text-ink/40">36:12</span></li>
+            <li class="flex items-center justify-between py-3"><span class="flex items-center gap-2 text-ink/70"><span class="text-ink/30">🔒</span> 6강. 666의 실체</span><span class="text-ink/40">39:48</span></li>
+          </ul>
+        </details>
+
+        <details class="bg-white rounded-2xl border border-ink/8 shadow-card overflow-hidden">
+          <summary class="flex items-center justify-between px-6 py-4 font-semibold">
+            <span>PART 3. 천년왕국과 구원</span>
+            <svg class="chev w-5 h-5 text-ink/40 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <ul class="px-6 pb-5 text-sm divide-y divide-ink/5">
+            <li class="flex items-center justify-between py-3"><span class="flex items-center gap-2 text-ink/70"><span class="text-ink/30">🔒</span> 7강. 천년왕국 두 종류의 사람</span><span class="text-ink/40">42:05</span></li>
+            <li class="flex items-center justify-between py-3"><span class="flex items-center gap-2 text-ink/70"><span class="text-ink/30">🔒</span> 8강. 천년왕국의 구원 문제</span><span class="text-ink/40">45:33</span></li>
+          </ul>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 강사 소개 ===== -->
+  <section id="instructor" class="py-24 bg-ink text-paper relative overflow-hidden">
+    <div class="blob bg-gold w-[360px] h-[360px] -top-20 right-10 opacity-25"></div>
+    <div class="relative max-w-5xl mx-auto px-5 grid md:grid-cols-5 gap-10 items-center z-10">
+      <div class="md:col-span-2">
+        <div class="aspect-[4/5] rounded-3xl bg-gradient-to-br from-navy to-ink border border-white/10 flex flex-col items-center justify-center gap-3 relative overflow-hidden">
+          <div class="absolute inset-0 opacity-15" style="background-image:radial-gradient(circle at 50% 30%, #b8923f 0, transparent 55%)"></div>
+          <span class="relative font-display text-5xl text-gold/80">吳</span>
+          <span class="relative text-paper/40 text-xs tracking-[0.3em]">OH KWANG-IL</span>
+          <span class="relative text-paper/25 text-[11px]">강사 사진이 들어갈 자리</span>
+        </div>
+      </div>
+      <div class="md:col-span-3">
+        <p class="eyebrow text-gold text-xs font-semibold mb-4">INSTRUCTOR · 오광일</p>
+        <h2 class="text-2xl md:text-[30px] font-bold leading-snug mb-6">
+          “옳은 말을 했는데,<br class="hidden sm:block"/> 왜 내가 쫓겨나야 했을까?”
+        </h2>
+
+        <div class="space-y-4 text-paper/75 leading-relaxed">
+          <p>
+            혹시 당신도 그런 적 있으신가요. 분명히 진리를 말했는데 외면당하고,
+            교회 안에서 오히려 더 외로워지던 밤. 무엇이 옳은지 알면서도
+            어디에 기대야 할지 몰라, 결국 성경책을 덮어버린 시간 말입니다.
+          </p>
+          <p>
+            저 <b class="text-paper">오광일</b>이 바로 그 자리에 있었습니다. 15년을 한 교회의 평신도로 바쳤지만,
+            권력에 결탁한 강단 앞에서 양심을 따라 말한 한마디로 — <b class="text-paper">카카오톡 한 줄</b>에
+            공동체에서 내쳐졌습니다. 두 딸의 아버지로서, 저는 그 광야에서 다시 성경 앞에 섰습니다.
+          </p>
+          <p>
+            그리고 깨달았습니다. 필요한 건 더 화려한 강단이 아니라,
+            <b class="text-gold">누구의 해석에도 휘둘리지 않고 성경을 스스로 읽어내는 눈</b>이라는 것을.
+            미국 신학대학원에서 배운 신학, 영문학으로 다듬은 언어, 교육학으로 검증한 방법으로
+            그 길을 한 단계씩 정리했습니다.
+          </p>
+          <p class="text-paper">
+            이 강의는 그 길을 <b class="text-gold">당신과 함께 걷기 위한 것</b>입니다.
+            이제 당신의 눈으로 성경을 읽고, 시대를 분별하고, 자녀에게 물려줄 기준을 갖게 됩니다.
+          </p>
+        </div>
+
+        <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2 text-sm text-paper/70 mt-7">
+          <li>· 미국 신학대학원 성경학 석사 (M.B.S.)</li>
+          <li>· 영문학 학사 — ‘읽히는’ 강의</li>
+          <li>· 성균관대 교육학 박사과정 수료(교육측정평가)</li>
+          <li>· 『가면의 시대』 저자 · 유튜브 채널 운영</li>
+        </ul>
+
+        <div class="mt-8 flex flex-col sm:flex-row gap-3">
+          <a href="#pricing" class="bg-gold text-white font-semibold px-7 py-3.5 rounded-full hover:opacity-90 transition text-center">
+            나도 이 길을 시작하기 →
+          </a>
+          <a href="#curriculum" class="border border-white/25 text-paper px-7 py-3.5 rounded-full hover:bg-white/10 transition text-center">
+            무료 1강 먼저 보기
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 수강 후기 ===== -->
+  <section id="reviews" class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-5">
+      <div class="text-center mb-14">
+        <p class="eyebrow text-gold text-xs font-semibold mb-4">REVIEWS</p>
+        <h2 class="text-2xl md:text-[32px] font-bold">수강생 후기</h2>
+        <div class="mt-4 flex items-center justify-center gap-2 text-lg"><span class="star">★</span><b>4.9</b><span class="text-ink/50 text-base">/ 5.0 · 128개</span></div>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-paper rounded-2xl border border-ink/8 p-6">
+          <div class="text-gold text-sm mb-3">★★★★★</div>
+          <p class="text-sm text-ink/75 leading-relaxed">“막연하게만 알던 천년왕국이 본문으로 또렷하게 정리됐어요. 강단에서 못 듣던 이야기.”</p>
+          <p class="text-xs text-ink/45 mt-4">— 김OO · 중급 수강</p>
+        </div>
+        <div class="bg-paper rounded-2xl border border-ink/8 p-6">
+          <div class="text-gold text-sm mb-3">★★★★★</div>
+          <p class="text-sm text-ink/75 leading-relaxed">“어렵지 않게, 그러나 깊이 있게 풀어주십니다. 암송노트가 특히 도움이 됐어요.”</p>
+          <p class="text-xs text-ink/45 mt-4">— 이OO · 스탠다드</p>
+        </div>
+        <div class="bg-paper rounded-2xl border border-ink/8 p-6">
+          <div class="text-gold text-sm mb-3">★★★★★</div>
+          <p class="text-sm text-ink/75 leading-relaxed">“교회에 상처받고 떠나 있었는데, 다시 성경을 펴게 됐습니다. 진심으로 감사합니다.”</p>
+          <p class="text-xs text-ink/45 mt-4">— 박OO · 프리미엄</p>
+        </div>
+      </div>
+      <p class="text-center text-ink/35 text-xs mt-6">※ 후기는 예시입니다. 실제 수강 후기로 교체됩니다.</p>
+    </div>
+  </section>
+
+  <!-- ===== 수강권 ===== -->
+  <section id="pricing" class="py-24">
+    <div class="max-w-6xl mx-auto px-5">
+      <div class="text-center mb-14">
+        <p class="eyebrow text-gold text-xs font-semibold mb-4">PASS</p>
+        <h2 class="text-2xl md:text-[32px] font-bold">수강권 선택</h2>
+        <p class="text-ink/60 mt-4">각 단계별로 아래 3가지 중 선택할 수 있습니다.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto items-stretch">
+        <div class="rounded-3xl border border-ink/12 bg-white p-8 flex flex-col">
+          <h3 class="text-lg font-bold">라이트</h3>
+          <p class="text-ink/55 text-sm mt-1 mb-6">강의만 듣고 싶은 분</p>
+          <div class="mb-7"><span class="text-3xl font-bold">₩ —</span><span class="text-ink/45 text-sm">/ 단계</span></div>
+          <ul class="space-y-3 text-sm text-ink/75 flex-1">
+            <li>✓ 강의 영상 (평생 시청)</li>
+            <li class="text-ink/30">· 전자책</li>
+            <li class="text-ink/30">· 암송노트</li>
+            <li class="text-ink/30">· 인쇄본 책</li>
+          </ul>
+          <a href="#contact" class="mt-8 text-center border border-ink/20 rounded-full py-3 hover:bg-ink/5 transition">선택하기</a>
+        </div>
+
+        <div class="rounded-3xl bg-ink text-paper p-8 flex flex-col shadow-2xl md:-translate-y-3 relative">
+          <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-white text-xs font-bold px-4 py-1 rounded-full">가장 인기 ★</span>
+          <h3 class="text-lg font-bold">스탠다드</h3>
+          <p class="text-paper/60 text-sm mt-1 mb-6">강의 + 평생 소장 자료</p>
+          <div class="mb-7"><span class="text-3xl font-bold">₩ —</span><span class="text-paper/50 text-sm">/ 단계</span></div>
+          <ul class="space-y-3 text-sm flex-1 font-medium">
+            <li class="text-gold">✓ 강의 영상 (평생 시청)</li>
+            <li class="text-gold">✓ 전자책 (PDF)</li>
+            <li class="text-gold">✓ 중요성구 암송노트</li>
+            <li class="text-paper/35">· 인쇄본 책</li>
+          </ul>
+          <a href="#contact" class="mt-8 text-center bg-gold text-white rounded-full py-3 font-semibold hover:opacity-90 transition">선택하기</a>
+        </div>
+
+        <div class="rounded-3xl border border-ink/12 bg-white p-8 flex flex-col">
+          <h3 class="text-lg font-bold">프리미엄</h3>
+          <p class="text-ink/55 text-sm mt-1 mb-6">실물 책까지 소장하고 싶은 분</p>
+          <div class="mb-7"><span class="text-3xl font-bold">₩ —</span><span class="text-ink/45 text-sm">/ 단계</span></div>
+          <ul class="space-y-3 text-sm text-ink/75 flex-1">
+            <li>✓ 강의 영상 (평생 시청)</li>
+            <li>✓ 전자책 (PDF)</li>
+            <li>✓ 중요성구 암송노트</li>
+            <li>✓ <b class="text-gold">인쇄본 책 + 배송</b></li>
+          </ul>
+          <a href="#contact" class="mt-8 text-center border border-gold text-gold rounded-full py-3 hover:bg-gold/10 transition">선택하기</a>
+        </div>
+      </div>
+      <p class="text-center text-ink/40 text-xs mt-9">※ 가격은 추후 확정됩니다. 결제 시스템 연동 단계에서 실제 금액과 결제 버튼이 들어갑니다.</p>
+    </div>
+  </section>
+
+  <!-- ===== 인사이트(글) ===== -->
+  <section id="insight" class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-5">
+      <div class="flex items-end justify-between mb-12">
+        <div>
+          <p class="eyebrow text-gold text-xs font-semibold mb-3">INSIGHT</p>
+          <h2 class="text-2xl md:text-[32px] font-bold">인사이트 · 자료실</h2>
+        </div>
+        <a href="#" class="text-sm text-gold hover:underline">전체 보기 →</a>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <article class="rounded-2xl border border-ink/8 overflow-hidden hover:shadow-card transition bg-paper">
+          <div class="h-40 bg-gradient-to-br from-navy to-ink"></div>
+          <div class="p-6"><span class="text-xs text-gold font-bold tracking-widest">자료실</span><h3 class="font-bold mt-2">중요성구 암송노트 미리보기</h3></div>
+        </article>
+        <article class="rounded-2xl border border-ink/8 overflow-hidden hover:shadow-card transition bg-paper">
+          <div class="h-40 bg-gradient-to-br from-gold/70 to-navy"></div>
+          <div class="p-6"><span class="text-xs text-gold font-bold tracking-widest">인사이트</span><h3 class="font-bold mt-2">양과 염소의 심판, 정말 ‘구제하라’는 말씀일까?</h3></div>
+        </article>
+        <article class="rounded-2xl border border-ink/8 overflow-hidden hover:shadow-card transition bg-paper">
+          <div class="h-40 bg-gradient-to-br from-ink to-gold/60"></div>
+          <div class="p-6"><span class="text-xs text-gold font-bold tracking-widest">인사이트</span><h3 class="font-bold mt-2">거룩한 가면의 시대, 무엇을 분별할 것인가</h3></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section id="faq" class="py-24">
+    <div class="max-w-3xl mx-auto px-5">
+      <div class="text-center mb-12">
+        <p class="eyebrow text-gold text-xs font-semibold mb-4">FAQ</p>
+        <h2 class="text-2xl md:text-[32px] font-bold">자주 묻는 질문</h2>
+      </div>
+      <div class="space-y-3">
+        <details class="bg-white rounded-2xl border border-ink/8 px-6 py-4">
+          <summary class="flex items-center justify-between font-semibold">수강 기간이 정해져 있나요?<svg class="chev w-5 h-5 text-ink/40 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p class="text-sm text-ink/65 mt-3 leading-relaxed">아니요. 한 번 수강 신청하시면 <b>평생 무제한</b>으로 다시 보실 수 있습니다.</p>
+        </details>
+        <details class="bg-white rounded-2xl border border-ink/8 px-6 py-4">
+          <summary class="flex items-center justify-between font-semibold">초보자도 들을 수 있나요?<svg class="chev w-5 h-5 text-ink/40 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p class="text-sm text-ink/65 mt-3 leading-relaxed">네. 기초·초급 단계부터 차근차근 설계되어 있어, 성경을 처음 펴는 분도 따라오실 수 있습니다.</p>
+        </details>
+        <details class="bg-white rounded-2xl border border-ink/8 px-6 py-4">
+          <summary class="flex items-center justify-between font-semibold">전자책·암송노트·인쇄본은 어떻게 받나요?<svg class="chev w-5 h-5 text-ink/40 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p class="text-sm text-ink/65 mt-3 leading-relaxed">전자책·암송노트는 결제 후 즉시 다운로드, 인쇄본(프리미엄)은 입력하신 주소로 배송됩니다.</p>
+        </details>
+        <details class="bg-white rounded-2xl border border-ink/8 px-6 py-4">
+          <summary class="flex items-center justify-between font-semibold">환불이 가능한가요?<svg class="chev w-5 h-5 text-ink/40 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p class="text-sm text-ink/65 mt-3 leading-relaxed">관련 법령에 따른 환불 규정을 따릅니다. (정책 확정 후 안내 예정)</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 후원 (간결) ===== -->
+  <section id="support" class="py-20 bg-ink text-paper">
+    <div class="max-w-3xl mx-auto px-5 text-center">
+      <p class="eyebrow text-gold text-xs font-semibold mb-4">SUPPORT</p>
+      <h2 class="text-xl md:text-2xl font-bold mb-3">이 사역을 후원해 주세요</h2>
+      <p class="text-paper/70 text-sm mb-8">자발적인 후원이 강의 제작과 자료 나눔에 큰 힘이 됩니다.</p>
+
+      <div class="max-w-md mx-auto space-y-3">
+        <!-- 원클릭 후원 버튼 -->
+        <!-- TODO: 토스 → href를 본인 toss.me 링크로 (예: https://toss.me/오광일아이디) -->
+        <a href="#" data-pending="toss" target="_blank" rel="noopener"
+           class="flex items-center justify-center gap-2 bg-[#3182f6] text-white font-semibold py-3.5 rounded-2xl hover:opacity-90 transition">
+          토스로 후원하기 <span class="text-white/70 text-sm font-normal">(원클릭)</span>
+        </a>
+        <a href="https://qr.kakaopay.com/FKQjD73PQ" target="_blank" rel="noopener"
+           class="flex items-center justify-center gap-2 bg-[#FEE500] text-[#3c1e1e] font-semibold py-3.5 rounded-2xl hover:opacity-90 transition">
+          카카오페이로 후원하기 <span class="text-[#3c1e1e]/60 text-sm font-normal">(원클릭)</span>
+        </a>
+        <a href="https://paypal.me/oki1611" target="_blank" rel="noopener"
+           class="flex items-center justify-center gap-2 bg-[#0070ba] text-white font-semibold py-3.5 rounded-2xl hover:opacity-90 transition">
+          PayPal로 후원하기 <span class="text-white/70 text-sm font-normal">(해외 후원)</span>
+        </a>
+
+        <!-- 계좌이체 (대체 수단) -->
+        <div class="bg-white/5 border border-white/12 rounded-2xl p-5 text-left mt-2">
+          <p class="text-paper/55 text-xs mb-1">계좌이체 · 우리은행</p>
+          <p class="text-base font-semibold tracking-tight">1006-301-266177 <span class="text-paper/50 text-xs font-normal">예금주 오광일</span></p>
+        </div>
+      </div>
+
+      <p class="text-paper/40 text-xs mt-6 leading-relaxed">
+        ※ 후원은 전적으로 자발적이며 어떤 대가도 따르지 않습니다. 기부금 영수증은 발행되지 않습니다.
+      </p>
+
+      <div class="mt-10 pt-8 border-t border-white/10">
+        <p class="eyebrow text-gold text-xs font-semibold mb-3">CONTACT</p>
+        <h3 class="font-bold mb-2">비즈니스 및 강연 문의</h3>
+        <a href="mailto:josephoh1611@gmail.com" class="inline-block text-paper/85 hover:text-gold transition">✉ josephoh1611@gmail.com</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 최종 CTA ===== -->
+  <section id="contact" class="py-20 bg-gold/15">
+    <div class="max-w-2xl mx-auto px-5 text-center">
+      <h2 class="text-2xl md:text-[32px] font-bold mb-5">지금, 성경을 직접 읽는 눈을 시작하세요</h2>
+      <p class="text-ink/70 mb-9">기초부터 차근차근. 먼저 무료 1강으로 만나보세요.</p>
+      <a href="#pricing" class="inline-block bg-ink text-paper font-semibold px-9 py-4 rounded-full hover:bg-navy transition shadow-card">수강 신청하기 →</a>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="bg-paper border-t border-ink/10 py-14">
+    <div class="max-w-6xl mx-auto px-5 flex flex-col md:flex-row justify-between gap-8">
+      <div>
+        <p class="font-bold text-lg">오광일 인사이트 브리핑</p>
+        <p class="text-sm mt-2 text-ink/60">강단을 넘어, 성경을 직접 읽는 눈.</p>
+        <p class="text-sm mt-3 text-ink/50">✉ josephoh1611@gmail.com</p>
+      </div>
+      <div class="text-sm space-y-2 text-ink/60">
+        <a href="#catalog" class="block hover:text-gold">전체 강의</a>
+        <a href="https://www.youtube.com/channel/UC82IOMnZud8NNt3BYzAxTMg" target="_blank" rel="noopener" class="block hover:text-gold">▶ 유튜브 채널</a>
+        <a href="#support" class="block hover:text-gold">♥ 후원 안내</a>
+        <a href="admin.html" class="block hover:text-gold text-ink/40">⚙ 관리자</a>
+      </div>
+    </div>
+    <p class="text-center text-ink/30 text-xs mt-12">© 2026 오광일 인사이트 브리핑. All rights reserved.</p>
+  </footer>
+
+  <!-- ====================================================================== -->
+  <!--  회원가입 / 로그인 모달                                                  -->
+  <!--  ※ 지금은 화면 데모입니다. 실제 구글/카카오 로그인과 회원정보 저장은       -->
+  <!--    호스팅 단계에서 Supabase(무료) 등을 연결하면 동작합니다.              -->
+  <!-- ====================================================================== -->
+  <div id="authModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+    <div class="absolute inset-0 bg-ink/60 backdrop-blur-sm" onclick="closeAuth()"></div>
+    <div class="relative bg-paper w-full max-w-md rounded-3xl shadow-2xl p-7 max-h-[92vh] overflow-auto">
+      <button onclick="closeAuth()" class="absolute top-4 right-4 text-ink/40 hover:text-ink text-xl">✕</button>
+
+      <div class="text-center mb-6">
+        <p class="font-bold text-lg">오광일 <span class="text-gold">인사이트 브리핑</span></p>
+        <h3 id="authTitle" class="text-xl font-bold mt-3">회원가입</h3>
+        <p class="text-sm text-ink/55 mt-1">구글 또는 카카오로 3초 만에 시작하세요</p>
+      </div>
+
+      <!-- 소셜 로그인 -->
+      <div class="space-y-2.5">
+        <button class="w-full flex items-center justify-center gap-3 border border-ink/15 bg-white rounded-xl py-3 font-medium hover:bg-ink/5 transition">
+          <svg class="w-5 h-5" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C39.9 36.5 44 31 44 24c0-1.3-.1-2.3-.4-3.5z"/></svg>
+          구글로 시작하기
+        </button>
+        <button class="w-full flex items-center justify-center gap-3 bg-[#FEE500] text-[#3c1e1e] rounded-xl py-3 font-medium hover:opacity-90 transition">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="#3c1e1e"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.7 6.7-.2.7-.7 2.6-.8 3-.1.5.2.5.4.4.2-.1 2.6-1.8 3.7-2.5.6.1 1.3.1 2 .1 5.5 0 10-3.6 10-8S17.5 3 12 3z"/></svg>
+          카카오로 시작하기
+        </button>
+      </div>
+
+      <div class="flex items-center gap-3 my-6">
+        <div class="h-px bg-ink/10 flex-1"></div>
+        <span class="text-xs text-ink/40">가입 정보 입력 (배송·연락용)</span>
+        <div class="h-px bg-ink/10 flex-1"></div>
+      </div>
+
+      <!-- 가입 정보 폼 -->
+      <form onsubmit="return submitSignup(event)" class="space-y-3">
+        <div>
+          <label class="text-sm font-medium">실명 <span class="text-gold">*</span></label>
+          <input required placeholder="홍길동" class="mt-1 w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold"/>
+        </div>
+        <div>
+          <label class="text-sm font-medium">휴대폰 번호 <span class="text-gold">*</span></label>
+          <input required type="tel" placeholder="010-1234-5678" class="mt-1 w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold"/>
+        </div>
+        <div>
+          <label class="text-sm font-medium">이메일 <span class="text-gold">*</span></label>
+          <input required type="email" placeholder="you@example.com" class="mt-1 w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold"/>
+        </div>
+        <div>
+          <label class="text-sm font-medium">주소 <span class="text-ink/40 font-normal">(인쇄본 배송 시 필요)</span></label>
+          <input placeholder="배송받을 주소" class="mt-1 w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold"/>
+        </div>
+
+        <!-- 동의 -->
+        <div class="space-y-2 pt-2">
+          <label class="flex items-start gap-2 text-sm text-ink/70">
+            <input required type="checkbox" class="mt-1 accent-gold"/>
+            <span><span class="text-gold font-medium">[필수]</span> 개인정보 수집·이용에 동의합니다. <a href="#" class="underline text-ink/50">자세히</a></span>
+          </label>
+          <label class="flex items-start gap-2 text-sm text-ink/70">
+            <input type="checkbox" class="mt-1 accent-gold"/>
+            <span><span class="text-ink/50">[선택]</span> 강의·소식 마케팅 정보 수신에 동의합니다.</span>
+          </label>
+        </div>
+
+        <button type="submit" class="w-full bg-ink text-paper font-semibold rounded-xl py-3.5 mt-2 hover:bg-navy transition">
+          가입 완료하기
+        </button>
+        <p class="text-center text-xs text-ink/35">🧪 데모 — 실제 가입·저장은 연동 후 동작합니다.</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ====================================================================== -->
+  <!--  ▼▼▼ 메인 메뉴 관리 — 여기만 고치면 됩니다 ▼▼▼                          -->
+  <!--                                                                        -->
+  <!--  · 추가 : 줄 하나 복사해서 { label:'이름', href:'#연결' }, 형태로 넣기    -->
+  <!--  · 삭제 : 그 줄을 지우기                                                -->
+  <!--  · 수정 : label(보이는 글자)이나 href(이동 위치)를 바꾸기                -->
+  <!--  · 순서 : 줄 순서를 바꾸면 메뉴 순서도 바뀜                              -->
+  <!-- ====================================================================== -->
+  <script>
+    const MENU = [
+      { label: '전체 강의', href: '#catalog'    },
+      { label: '커리큘럼',  href: '#curriculum' },
+      { label: '수강 후기', href: '#reviews'    },
+      { label: '인사이트',  href: '#insight'    },
+      { label: 'FAQ',       href: '#faq'        },
+      // 예시) 새 메뉴를 넣고 싶으면 아래 줄의 // 를 지우고 내용만 바꾸세요
+      // { label: '공지사항', href: '#notice' },
+    ];
+
+    // ↓↓↓ 아래는 메뉴를 화면에 그려주는 부분 — 건드리지 않아도 됩니다 ↓↓↓
+    const nav = document.getElementById('mainmenu');
+    nav.innerHTML = MENU.map(m =>
+      `<a href="${m.href}" class="hover:text-gold transition">${m.label}</a>`
+    ).join('');
+
+    // ===== 회원가입/로그인 모달 제어 =====
+    const authModal = document.getElementById('authModal');
+    function openAuth(mode){
+      document.getElementById('authTitle').textContent = (mode === 'login') ? '로그인' : '회원가입';
+      authModal.classList.remove('hidden');
+      authModal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeAuth(){
+      authModal.classList.add('hidden');
+      authModal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+    function submitSignup(e){
+      e.preventDefault();
+      alert('가입 정보가 접수되었습니다! (데모)\n\n실제 연동 후에는 이 정보가 관리자페이지의 회원 목록에 저장됩니다.');
+      closeAuth();
+      return false;
+    }
+    document.addEventListener('keydown', e => { if(e.key === 'Escape') closeAuth(); });
+
+    // "수강 신청" 버튼들도 회원가입으로 연결
+    document.querySelectorAll('a[href="#pricing"]').forEach(a => {
+      // 가격 섹션 이동은 유지하되, 상단 수강신청 버튼만 가입 유도하고 싶다면 아래 주석 해제
+      // a.addEventListener('click', e => { e.preventDefault(); openAuth('signup'); });
+    });
+  </script>
+
+</body>
+</html>

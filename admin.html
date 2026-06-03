@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>관리자 — 오광일 인사이트 브리핑</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink:'#16213e', navy:'#1b2a4a', gold:'#bf9b46', paper:'#f6f7fb' },
+      fontFamily: { sans: ['Pretendard','system-ui','sans-serif'] }
+    }}}
+  </script>
+</head>
+<body class="font-sans bg-paper text-ink antialiased">
+
+  <!-- 데모 안내 배너 -->
+  <div class="bg-gold/20 text-ink text-center text-sm py-2 border-b border-gold/30">
+    🧪 <b>데모 미리보기</b> — 실제 데이터 연동 전 디자인 목업입니다. 버튼은 아직 동작하지 않습니다.
+    <a href="index.html" class="underline ml-2">← 홈페이지로</a>
+  </div>
+
+  <div class="flex min-h-screen">
+    <!-- ===== 사이드바 ===== -->
+    <aside class="w-60 bg-ink text-paper/80 flex flex-col shrink-0">
+      <div class="px-6 py-6 border-b border-white/10">
+        <p class="font-bold text-paper">오광일 <span class="text-gold">관리자</span></p>
+        <p class="text-xs text-paper/50 mt-1">Admin Console</p>
+      </div>
+      <nav class="flex-1 px-3 py-4 space-y-1 text-sm">
+        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-white/10 text-paper font-medium" href="#">📊 대시보드</a>
+        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5" href="#">🎬 클래스 관리</a>
+        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5" href="#">🎟️ 수강권 · 가격</a>
+        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5" href="#">👥 회원 · 수강생</a>
+        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5" href="#">✍️ 인사이트(글)</a>
+        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5" href="#">📂 자료실</a>
+        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5" href="#">💳 결제 · 주문</a>
+        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5" href="#">📦 인쇄본 배송</a>
+        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5" href="#">♥ 후원 내역</a>
+        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5" href="#">⚙️ 설정</a>
+      </nav>
+      <div class="px-6 py-4 border-t border-white/10 text-xs text-paper/50">오광일 · 운영자</div>
+    </aside>
+
+    <!-- ===== 본문 ===== -->
+    <main class="flex-1 p-8 overflow-auto">
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <h1 class="text-2xl font-bold">대시보드</h1>
+          <p class="text-ink/50 text-sm mt-1">2026년 6월 · 한눈에 보는 사역 현황</p>
+        </div>
+        <button class="bg-ink text-paper text-sm font-semibold px-4 py-2.5 rounded-lg hover:bg-navy transition">+ 새 클래스 만들기</button>
+      </div>
+
+      <!-- 핵심 지표 카드 -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div class="bg-white rounded-2xl p-5 border border-ink/5 shadow-sm">
+          <p class="text-sm text-ink/50">이번 달 매출</p>
+          <p class="text-2xl font-bold mt-1">₩ 1,840,000</p>
+          <p class="text-xs text-green-600 mt-1">▲ 전월 대비 +23%</p>
+        </div>
+        <div class="bg-white rounded-2xl p-5 border border-ink/5 shadow-sm">
+          <p class="text-sm text-ink/50">총 수강생</p>
+          <p class="text-2xl font-bold mt-1">312명</p>
+          <p class="text-xs text-green-600 mt-1">▲ 신규 +28</p>
+        </div>
+        <div class="bg-white rounded-2xl p-5 border border-ink/5 shadow-sm">
+          <p class="text-sm text-ink/50">이번 달 후원</p>
+          <p class="text-2xl font-bold mt-1">₩ 420,000</p>
+          <p class="text-xs text-ink/40 mt-1">후원자 18명</p>
+        </div>
+        <div class="bg-white rounded-2xl p-5 border border-ink/5 shadow-sm">
+          <p class="text-sm text-ink/50">배송 대기</p>
+          <p class="text-2xl font-bold mt-1">7건</p>
+          <p class="text-xs text-amber-600 mt-1">● 인쇄본 발송 필요</p>
+        </div>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-6">
+        <!-- 클래스 관리 -->
+        <div class="lg:col-span-2 bg-white rounded-2xl border border-ink/5 shadow-sm">
+          <div class="flex items-center justify-between px-6 py-4 border-b border-ink/5">
+            <h2 class="font-bold">클래스 관리</h2>
+            <a href="#" class="text-sm text-gold hover:underline">전체 보기</a>
+          </div>
+          <table class="w-full text-sm">
+            <thead class="text-ink/45 text-left">
+              <tr class="border-b border-ink/5">
+                <th class="px-6 py-3 font-medium">클래스</th>
+                <th class="px-6 py-3 font-medium">단계</th>
+                <th class="px-6 py-3 font-medium">수강생</th>
+                <th class="px-6 py-3 font-medium">상태</th>
+                <th class="px-6 py-3 font-medium"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-ink/5">
+                <td class="px-6 py-4 font-medium">천년왕국 세미나</td>
+                <td class="px-6 py-4 text-ink/60">중급</td>
+                <td class="px-6 py-4 text-ink/60">198</td>
+                <td class="px-6 py-4"><span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">공개중</span></td>
+                <td class="px-6 py-4 text-right"><button class="text-ink/40 hover:text-gold">편집</button></td>
+              </tr>
+              <tr class="border-b border-ink/5">
+                <td class="px-6 py-4 font-medium">성경을 보는 눈 (입문)</td>
+                <td class="px-6 py-4 text-ink/60">기초</td>
+                <td class="px-6 py-4 text-ink/60">86</td>
+                <td class="px-6 py-4"><span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">공개중</span></td>
+                <td class="px-6 py-4 text-right"><button class="text-ink/40 hover:text-gold">편집</button></td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 font-medium">언약으로 읽는 성경</td>
+                <td class="px-6 py-4 text-ink/60">초급</td>
+                <td class="px-6 py-4 text-ink/60">28</td>
+                <td class="px-6 py-4"><span class="bg-amber-100 text-amber-700 text-xs px-2 py-1 rounded-full">준비중</span></td>
+                <td class="px-6 py-4 text-right"><button class="text-ink/40 hover:text-gold">편집</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 최근 주문 -->
+        <div class="bg-white rounded-2xl border border-ink/5 shadow-sm">
+          <div class="px-6 py-4 border-b border-ink/5"><h2 class="font-bold">최근 결제</h2></div>
+          <ul class="divide-y divide-ink/5 text-sm">
+            <li class="px-6 py-4 flex justify-between">
+              <div><p class="font-medium">김OO</p><p class="text-ink/45 text-xs">천년왕국·스탠다드</p></div>
+              <span class="font-semibold">₩49,000</span>
+            </li>
+            <li class="px-6 py-4 flex justify-between">
+              <div><p class="font-medium">이OO</p><p class="text-ink/45 text-xs">천년왕국·프리미엄</p></div>
+              <span class="font-semibold">₩79,000</span>
+            </li>
+            <li class="px-6 py-4 flex justify-between">
+              <div><p class="font-medium">박OO</p><p class="text-ink/45 text-xs">기초·라이트</p></div>
+              <span class="font-semibold">₩19,000</span>
+            </li>
+            <li class="px-6 py-4 flex justify-between">
+              <div><p class="font-medium">최OO</p><p class="text-ink/45 text-xs">후원</p></div>
+              <span class="font-semibold text-gold">₩30,000</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 글 관리 미리 -->
+      <div class="mt-6 bg-white rounded-2xl border border-ink/5 shadow-sm">
+        <div class="flex items-center justify-between px-6 py-4 border-b border-ink/5">
+          <h2 class="font-bold">인사이트(글) 관리</h2>
+          <button class="bg-gold text-white text-sm font-semibold px-3 py-1.5 rounded-lg">+ 새 글 작성</button>
+        </div>
+        <ul class="divide-y divide-ink/5 text-sm">
+          <li class="px-6 py-4 flex items-center justify-between">
+            <span>양과 염소의 심판, 정말 ‘구제하라’는 말씀일까?</span>
+            <span class="flex gap-2 text-ink/40"><button class="hover:text-gold">편집</button><button class="hover:text-red-500">삭제</button></span>
+          </li>
+          <li class="px-6 py-4 flex items-center justify-between">
+            <span>거룩한 가면의 시대, 무엇을 분별할 것인가</span>
+            <span class="flex gap-2 text-ink/40"><button class="hover:text-gold">편집</button><button class="hover:text-red-500">삭제</button></span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 회원 관리 -->
+      <div class="mt-6 bg-white rounded-2xl border border-ink/5 shadow-sm">
+        <div class="flex flex-wrap items-center justify-between gap-3 px-6 py-4 border-b border-ink/5">
+          <h2 class="font-bold">회원 · 수강생 관리</h2>
+          <div class="flex items-center gap-2">
+            <div class="flex items-center bg-paper border border-ink/10 rounded-lg px-3 py-1.5 text-sm">
+              <span class="text-ink/35">🔎</span>
+              <input placeholder="이름·이메일 검색" class="bg-transparent outline-none ml-2 w-40"/>
+            </div>
+            <button class="border border-ink/15 text-sm px-3 py-1.5 rounded-lg hover:bg-ink/5">엑셀 내보내기</button>
+          </div>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm whitespace-nowrap">
+            <thead class="text-ink/45 text-left">
+              <tr class="border-b border-ink/5">
+                <th class="px-6 py-3 font-medium">실명</th>
+                <th class="px-6 py-3 font-medium">휴대폰</th>
+                <th class="px-6 py-3 font-medium">이메일</th>
+                <th class="px-6 py-3 font-medium">배송 주소</th>
+                <th class="px-6 py-3 font-medium">가입경로</th>
+                <th class="px-6 py-3 font-medium">가입일</th>
+                <th class="px-6 py-3 font-medium">수강</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-ink/5">
+                <td class="px-6 py-4 font-medium">김성도</td>
+                <td class="px-6 py-4 text-ink/60">010-1234-5678</td>
+                <td class="px-6 py-4 text-ink/60">kim@example.com</td>
+                <td class="px-6 py-4 text-ink/60">서울시 강남구 …</td>
+                <td class="px-6 py-4"><span class="bg-[#FEE500]/40 text-[#3c1e1e] text-xs px-2 py-1 rounded-full">카카오</span></td>
+                <td class="px-6 py-4 text-ink/60">2026-06-01</td>
+                <td class="px-6 py-4 text-ink/60">천년왕국·프리미엄</td>
+              </tr>
+              <tr class="border-b border-ink/5">
+                <td class="px-6 py-4 font-medium">이믿음</td>
+                <td class="px-6 py-4 text-ink/60">010-2222-3333</td>
+                <td class="px-6 py-4 text-ink/60">lee@example.com</td>
+                <td class="px-6 py-4 text-ink/30">—</td>
+                <td class="px-6 py-4"><span class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded-full">구글</span></td>
+                <td class="px-6 py-4 text-ink/60">2026-05-29</td>
+                <td class="px-6 py-4 text-ink/60">천년왕국·스탠다드</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 font-medium">박소망</td>
+                <td class="px-6 py-4 text-ink/60">010-9876-5432</td>
+                <td class="px-6 py-4 text-ink/60">park@example.com</td>
+                <td class="px-6 py-4 text-ink/60">부산시 해운대구 …</td>
+                <td class="px-6 py-4"><span class="bg-[#FEE500]/40 text-[#3c1e1e] text-xs px-2 py-1 rounded-full">카카오</span></td>
+                <td class="px-6 py-4 text-ink/60">2026-05-27</td>
+                <td class="px-6 py-4 text-ink/60">기초·라이트</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="px-6 py-3 text-xs text-ink/35 border-t border-ink/5">총 312명 · 실명·휴대폰·이메일·주소가 가입 시 자동 저장되어 여기에 표시됩니다.</p>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
