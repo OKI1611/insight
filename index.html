@@ -739,8 +739,8 @@
         POSTS = data.posts || [];
         const grid = document.getElementById('insightGrid');
         if(!POSTS.length){ grid.innerHTML = '<p class="text-ink/40 text-sm">아직 등록된 글이 없습니다.</p>'; return; }
-        grid.innerHTML = POSTS.map(p => `
-          <article onclick="openPost('${p.id}')" class="rounded-2xl border border-ink/8 overflow-hidden hover:shadow-card hover:-translate-y-1 transition bg-paper cursor-pointer">
+        grid.innerHTML = POSTS.map((p, i) => `
+          <article onclick="openPost(${i})" class="rounded-2xl border border-ink/8 overflow-hidden hover:shadow-card hover:-translate-y-1 transition bg-paper cursor-pointer">
             <div class="h-40 bg-gradient-to-br ${catColor[p.category]||'from-ink to-gold/60'}"
                  ${p.image ? `style="background-image:url('${p.image}');background-size:cover;background-position:center"` : ''}></div>
             <div class="p-6">
@@ -756,8 +756,8 @@
       });
 
     const postModal = document.getElementById('postModal');
-    function openPost(id){
-      const p = POSTS.find(x => x.id === id); if(!p) return;
+    function openPost(i){
+      const p = POSTS[i]; if(!p) return;
       document.getElementById('postCat').textContent = p.category || '';
       document.getElementById('postTitle').textContent = p.title || '';
       document.getElementById('postDate').textContent = p.date || '';

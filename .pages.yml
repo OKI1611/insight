@@ -1,0 +1,39 @@
+media:
+  input: images
+  output: /images
+
+content:
+  - name: posts
+    label: 인사이트 글
+    type: file
+    path: content/posts.json
+    fields:
+      - name: posts
+        label: 글 목록
+        type: object
+        list: true
+        fields:
+          - name: title
+            label: 제목
+            type: string
+          - name: category
+            label: 분류
+            type: select
+            options:
+              values:
+                - 인사이트
+                - 자료실
+          - name: date
+            label: 날짜
+            type: date
+            options:
+              format: yyyy-MM-dd
+          - name: summary
+            label: 한 줄 요약 (목록 카드에 표시)
+            type: string
+          - name: image
+            label: 대표 이미지 (선택 — 없으면 기본 배경)
+            type: image
+          - name: body
+            label: 본문
+            type: rich-text
