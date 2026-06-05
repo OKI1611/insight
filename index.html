@@ -729,7 +729,8 @@
         const setHref = (id, url) => { const e = document.getElementById(id); if(e && url) e.href = url; };
         // 간편 송금 링크(link2.my 등): 링크가 있으면 버튼 표시, 없으면 숨김
         const sp = document.getElementById('simplepayLink');
-        if (sp && s.simplepay_url) { sp.href = s.simplepay_url; sp.style.display = 'flex'; }
+        const spUrl = s.simplepay_url || s.toss_url; // 옛/새 칸 이름 모두 지원
+        if (sp && spUrl) { sp.href = spUrl; sp.style.display = 'flex'; }
         setHref('kakaopayLink', s.kakaopay_url);
         setHref('paypalLink', s.paypal_url);
         if (s.bank_name) { const e = document.getElementById('bankLabel'); if(e) e.textContent = '계좌이체 · ' + s.bank_name; }
