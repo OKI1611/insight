@@ -38,6 +38,23 @@ content:
             label: 본문
             type: rich-text
 
+  - name: videos
+    label: 유튜브 영상
+    type: file
+    path: content/videos.json
+    fields:
+      - name: videos
+        label: 영상 목록
+        type: object
+        list: true
+        fields:
+          - name: title
+            label: 제목
+            type: string
+          - name: youtube
+            label: 유튜브 링크 (또는 영상 ID)
+            type: string
+
   - name: site
     label: 사이트 설정 (메뉴·가격·후원)
     type: file

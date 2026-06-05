@@ -282,6 +282,24 @@
     </div>
   </section>
 
+  <!-- ===== 유튜브 영상 ===== -->
+  <section id="videos" class="py-24 bg-paper">
+    <div class="max-w-6xl mx-auto px-5">
+      <div class="text-center mb-12">
+        <p class="eyebrow text-gold text-xs font-semibold mb-4">YOUTUBE</p>
+        <h2 class="text-2xl md:text-[32px] font-bold">무료 강의 영상</h2>
+        <p class="text-ink/60 mt-4">유튜브에서 먼저 만나보세요. 새 영상이 올라오면 여기에 추가됩니다.</p>
+      </div>
+      <div id="videoGrid" class="grid md:grid-cols-3 gap-6">
+        <p class="text-ink/40 text-sm col-span-full text-center">영상을 불러오는 중…</p>
+      </div>
+      <div class="text-center mt-10">
+        <a href="https://www.youtube.com/channel/UC82IOMnZud8NNt3BYzAxTMg" target="_blank" rel="noopener"
+           class="inline-block border border-ink/15 px-7 py-3.5 rounded-full hover:bg-ink/5 transition">유튜브 채널 전체 보기 →</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== 커리큘럼 아코디언 ===== -->
   <section id="curriculum" class="py-24">
     <div class="max-w-3xl mx-auto px-5">
@@ -424,8 +442,9 @@
     <div class="max-w-6xl mx-auto px-5">
       <div class="text-center mb-14">
         <p class="eyebrow text-gold text-xs font-semibold mb-4">PASS</p>
-        <h2 class="text-2xl md:text-[32px] font-bold">수강권 선택</h2>
-        <p class="text-ink/60 mt-4">각 단계별로 아래 3가지 중 선택할 수 있습니다.</p>
+        <h2 class="text-2xl md:text-[32px] font-bold">수강권 안내</h2>
+        <span class="inline-block mt-4 bg-gold/15 text-gold text-xs font-bold px-3 py-1.5 rounded-full">🔔 정식 오픈 준비 중</span>
+        <p class="text-ink/60 mt-3 max-w-xl mx-auto">정식 오픈 전, 미리 등록하시면 <b class="text-ink">출시 소식과 얼리버드 혜택</b>을 가장 먼저 받아보실 수 있어요.</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto items-stretch">
@@ -439,7 +458,7 @@
             <li class="text-ink/30">· 암송노트</li>
             <li class="text-ink/30">· 인쇄본 책</li>
           </ul>
-          <a href="#contact" class="mt-8 text-center border border-ink/20 rounded-full py-3 hover:bg-ink/5 transition">선택하기</a>
+          <a href="#contact" class="buyBtn mt-8 text-center border border-ink/20 rounded-full py-3 hover:bg-ink/5 transition">선택하기</a>
         </div>
 
         <div class="rounded-3xl bg-ink text-paper p-8 flex flex-col shadow-2xl md:-translate-y-3 relative">
@@ -453,7 +472,7 @@
             <li class="text-gold">✓ 중요성구 암송노트</li>
             <li class="text-paper/35">· 인쇄본 책</li>
           </ul>
-          <a href="#contact" class="mt-8 text-center bg-gold text-white rounded-full py-3 font-semibold hover:opacity-90 transition">선택하기</a>
+          <a href="#contact" class="buyBtn mt-8 text-center bg-gold text-white rounded-full py-3 font-semibold hover:opacity-90 transition">선택하기</a>
         </div>
 
         <div class="rounded-3xl border border-ink/12 bg-white p-8 flex flex-col">
@@ -466,10 +485,10 @@
             <li>✓ 중요성구 암송노트</li>
             <li>✓ <b class="text-gold">인쇄본 책 + 배송</b></li>
           </ul>
-          <a href="#contact" class="mt-8 text-center border border-gold text-gold rounded-full py-3 hover:bg-gold/10 transition">선택하기</a>
+          <a href="#contact" class="buyBtn mt-8 text-center border border-gold text-gold rounded-full py-3 hover:bg-gold/10 transition">선택하기</a>
         </div>
       </div>
-      <p class="text-center text-ink/40 text-xs mt-9">※ 가격은 추후 확정됩니다. 결제 시스템 연동 단계에서 실제 금액과 결제 버튼이 들어갑니다.</p>
+      <p class="text-center text-ink/40 text-xs mt-9">※ 정식 오픈 시 실제 가격과 결제가 열립니다. 지금은 사전 등록만 받고 있어요.</p>
     </div>
   </section>
 
@@ -701,6 +720,7 @@
     // 메뉴 기본값(인터넷 연결 전/오류 시 대비 — 평소엔 site.json 값 사용)
     const DEFAULT_MENU = [
       { label: '전체 강의', href: '#catalog'    },
+      { label: '무료 영상', href: '#videos'     },
       { label: '커리큘럼',  href: '#curriculum' },
       { label: '수강 후기', href: '#reviews'    },
       { label: '인사이트',  href: '#insight'    },
@@ -720,10 +740,22 @@
         if (site.menu && site.menu.length) renderMenu(site.menu);
 
         const p = site.pricing || {};
-        const setPrice = (id, v) => { const e = document.getElementById(id); if(e) e.textContent = v ? ('₩' + v) : '₩ —'; };
+        const preLaunch = !(p.light || p.standard || p.premium);   // 가격이 하나도 없으면 오픈 전(사전등록) 모드
+        const setPrice = (id, v) => {
+          const e = document.getElementById(id); if(!e) return;
+          e.innerHTML = v ? ('₩' + v) : '<span class="text-xl text-gold">오픈 예정</span>';
+          if (!v && e.nextElementSibling) e.nextElementSibling.style.display = 'none'; // "/ 단계" 숨김
+        };
         setPrice('priceLight', p.light);
         setPrice('priceStandard', p.standard);
         setPrice('pricePremium', p.premium);
+        if (preLaunch) {
+          document.querySelectorAll('.buyBtn').forEach(b => {
+            b.textContent = '출시 알림 받기';
+            b.setAttribute('href', '#');
+            b.onclick = (ev) => { ev.preventDefault(); openAuth('signup'); };
+          });
+        }
 
         const s = site.support || {};
         const setHref = (id, url) => { const e = document.getElementById(id); if(e && url) e.href = url; };
@@ -739,6 +771,29 @@
           ba.innerHTML = (s.bank_account || '') + ' <span class="text-paper/50 text-xs font-normal">예금주 ' + (s.bank_holder || '') + '</span>';
         const ce = document.getElementById('contactEmail');
         if (ce && s.contact_email) { ce.href = 'mailto:' + s.contact_email; ce.textContent = '✉ ' + s.contact_email; }
+      })
+      .catch(() => {});
+
+    // ===== 유튜브 영상 (content/videos.json) =====
+    function ytId(u){
+      if(!u) return '';
+      const m = String(u).match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/);
+      return m ? m[1] : (String(u).trim().length === 11 ? String(u).trim() : '');
+    }
+    fetch('content/videos.json')
+      .then(r => r.json())
+      .then(data => {
+        const vids = data.videos || [];
+        const grid = document.getElementById('videoGrid');
+        if(!grid) return;
+        if(!vids.length){ grid.innerHTML = '<p class="text-ink/40 text-sm col-span-full text-center">곧 영상이 추가됩니다.</p>'; return; }
+        grid.innerHTML = vids.map(v => {
+          const id = ytId(v.youtube);
+          return `<div class="rounded-2xl overflow-hidden border border-ink/8 bg-white shadow-soft">
+            <div class="aspect-video bg-ink">${ id ? `<iframe class="w-full h-full" src="https://www.youtube.com/embed/${id}" title="${(v.title||'').replace(/"/g,'&quot;')}" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>` : '' }</div>
+            <div class="p-4"><h3 class="font-bold text-sm leading-snug">${v.title || ''}</h3></div>
+          </div>`;
+        }).join('');
       })
       .catch(() => {});
 
