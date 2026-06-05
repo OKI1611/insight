@@ -541,9 +541,9 @@
 
       <div class="max-w-md mx-auto space-y-3">
         <!-- 원클릭 후원 버튼 (링크는 content/site.json 에서 관리) -->
-        <a id="tossLink" href="#" target="_blank" rel="noopener"
+        <a id="simplepayLink" href="#" target="_blank" rel="noopener" style="display:none"
            class="flex items-center justify-center gap-2 bg-[#3182f6] text-white font-semibold py-3.5 rounded-2xl hover:opacity-90 transition">
-          토스로 후원하기 <span class="text-white/70 text-sm font-normal">(원클릭)</span>
+          간편 송금하기 <span class="text-white/70 text-sm font-normal">(토스·계좌)</span>
         </a>
         <a id="kakaopayLink" href="https://qr.kakaopay.com/FKQjD73PQ" target="_blank" rel="noopener"
            class="flex items-center justify-center gap-2 bg-[#FEE500] text-[#3c1e1e] font-semibold py-3.5 rounded-2xl hover:opacity-90 transition">
@@ -727,7 +727,9 @@
 
         const s = site.support || {};
         const setHref = (id, url) => { const e = document.getElementById(id); if(e && url) e.href = url; };
-        setHref('tossLink', s.toss_url);
+        // 간편 송금 링크(link2.my 등): 링크가 있으면 버튼 표시, 없으면 숨김
+        const sp = document.getElementById('simplepayLink');
+        if (sp && s.simplepay_url) { sp.href = s.simplepay_url; sp.style.display = 'flex'; }
         setHref('kakaopayLink', s.kakaopay_url);
         setHref('paypalLink', s.paypal_url);
         if (s.bank_name) { const e = document.getElementById('bankLabel'); if(e) e.textContent = '계좌이체 · ' + s.bank_name; }

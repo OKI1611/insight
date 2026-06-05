@@ -80,8 +80,8 @@ content:
           - name: bank_holder
             label: 예금주
             type: string
-          - name: toss_url
-            label: 토스 송금 링크 (toss.me/…)
+          - name: simplepay_url
+            label: 간편 송금 링크 (link2.my 등 — 비우면 버튼 숨김)
             type: string
           - name: kakaopay_url
             label: 카카오페이 송금 링크
