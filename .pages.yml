@@ -84,6 +84,13 @@ content:
           - name: premium
             label: 프리미엄 가격
             type: string
+      - name: instructor
+        label: 강사 소개
+        type: object
+        fields:
+          - name: photo
+            label: 강사 사진
+            type: image
       - name: support
         label: 후원 · 연락처
         type: object

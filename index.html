@@ -353,7 +353,7 @@
     <div class="blob bg-gold w-[360px] h-[360px] -top-20 right-10 opacity-25"></div>
     <div class="relative max-w-5xl mx-auto px-5 grid md:grid-cols-5 gap-10 items-center z-10">
       <div class="md:col-span-2">
-        <div class="aspect-[4/5] rounded-3xl bg-gradient-to-br from-navy to-ink border border-white/10 flex flex-col items-center justify-center gap-3 relative overflow-hidden">
+        <div id="instructorPhoto" class="aspect-[4/5] rounded-3xl bg-gradient-to-br from-navy to-ink border border-white/10 flex flex-col items-center justify-center gap-3 relative overflow-hidden">
           <div class="absolute inset-0 opacity-15" style="background-image:radial-gradient(circle at 50% 30%, #b8923f 0, transparent 55%)"></div>
           <span class="relative font-display text-5xl text-gold/80">吳</span>
           <span class="relative text-paper/40 text-xs tracking-[0.3em]">OH KWANG-IL</span>
@@ -771,6 +771,11 @@
           ba.innerHTML = (s.bank_account || '') + ' <span class="text-paper/50 text-xs font-normal">예금주 ' + (s.bank_holder || '') + '</span>';
         const ce = document.getElementById('contactEmail');
         if (ce && s.contact_email) { ce.href = 'mailto:' + s.contact_email; ce.textContent = '✉ ' + s.contact_email; }
+
+        // 강사 사진
+        const photo = site.instructor && site.instructor.photo;
+        const ph = document.getElementById('instructorPhoto');
+        if (ph && photo) ph.innerHTML = `<img src="${photo}" alt="오광일 강사" class="w-full h-full object-cover">`;
       })
       .catch(() => {});
 
