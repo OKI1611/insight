@@ -744,9 +744,10 @@
     // 구글/카카오 로그인
     async function oauthLogin(provider){
       setMsg('authMsg','');
-      const { error } = await sb.auth.signInWithOAuth({
-        provider, options: { redirectTo: window.location.origin + window.location.pathname }
-      });
+      const opts = { redirectTo: window.location.origin + window.location.pathname };
+      // 카카오는 닉네임만 요청 (이메일·프로필사진은 권한 없음/사용 안 함이라 빼야 KOE205 방지)
+      if(provider === 'kakao') opts.scopes = 'openid profile_nickname';
+      const { error } = await sb.auth.signInWithOAuth({ provider, options: opts });
       if(error) setMsg('authMsg', '로그인 오류: ' + error.message);
     }
 
