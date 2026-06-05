@@ -37,3 +37,58 @@ content:
           - name: body
             label: 본문
             type: rich-text
+
+  - name: site
+    label: 사이트 설정 (메뉴·가격·후원)
+    type: file
+    path: content/site.json
+    fields:
+      - name: menu
+        label: 상단 메뉴
+        type: object
+        list: true
+        fields:
+          - name: label
+            label: 메뉴 이름
+            type: string
+          - name: href
+            label: 이동 위치 (예 #catalog)
+            type: string
+      - name: pricing
+        label: 수강권 가격 (숫자만, 비우면 ₩ — 로 표시)
+        type: object
+        fields:
+          - name: light
+            label: 라이트 가격
+            type: string
+          - name: standard
+            label: 스탠다드 가격
+            type: string
+          - name: premium
+            label: 프리미엄 가격
+            type: string
+      - name: support
+        label: 후원 · 연락처
+        type: object
+        fields:
+          - name: bank_name
+            label: 은행명
+            type: string
+          - name: bank_account
+            label: 계좌번호
+            type: string
+          - name: bank_holder
+            label: 예금주
+            type: string
+          - name: toss_url
+            label: 토스 송금 링크 (toss.me/…)
+            type: string
+          - name: kakaopay_url
+            label: 카카오페이 송금 링크
+            type: string
+          - name: paypal_url
+            label: PayPal 링크
+            type: string
+          - name: contact_email
+            label: 문의 이메일
+            type: string

@@ -432,7 +432,7 @@
         <div class="rounded-3xl border border-ink/12 bg-white p-8 flex flex-col">
           <h3 class="text-lg font-bold">라이트</h3>
           <p class="text-ink/55 text-sm mt-1 mb-6">강의만 듣고 싶은 분</p>
-          <div class="mb-7"><span class="text-3xl font-bold">₩ —</span><span class="text-ink/45 text-sm">/ 단계</span></div>
+          <div class="mb-7"><span id="priceLight" class="text-3xl font-bold">₩ —</span><span class="text-ink/45 text-sm">/ 단계</span></div>
           <ul class="space-y-3 text-sm text-ink/75 flex-1">
             <li>✓ 강의 영상 (평생 시청)</li>
             <li class="text-ink/30">· 전자책</li>
@@ -446,7 +446,7 @@
           <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-white text-xs font-bold px-4 py-1 rounded-full">가장 인기 ★</span>
           <h3 class="text-lg font-bold">스탠다드</h3>
           <p class="text-paper/60 text-sm mt-1 mb-6">강의 + 평생 소장 자료</p>
-          <div class="mb-7"><span class="text-3xl font-bold">₩ —</span><span class="text-paper/50 text-sm">/ 단계</span></div>
+          <div class="mb-7"><span id="priceStandard" class="text-3xl font-bold">₩ —</span><span class="text-paper/50 text-sm">/ 단계</span></div>
           <ul class="space-y-3 text-sm flex-1 font-medium">
             <li class="text-gold">✓ 강의 영상 (평생 시청)</li>
             <li class="text-gold">✓ 전자책 (PDF)</li>
@@ -459,7 +459,7 @@
         <div class="rounded-3xl border border-ink/12 bg-white p-8 flex flex-col">
           <h3 class="text-lg font-bold">프리미엄</h3>
           <p class="text-ink/55 text-sm mt-1 mb-6">실물 책까지 소장하고 싶은 분</p>
-          <div class="mb-7"><span class="text-3xl font-bold">₩ —</span><span class="text-ink/45 text-sm">/ 단계</span></div>
+          <div class="mb-7"><span id="pricePremium" class="text-3xl font-bold">₩ —</span><span class="text-ink/45 text-sm">/ 단계</span></div>
           <ul class="space-y-3 text-sm text-ink/75 flex-1">
             <li>✓ 강의 영상 (평생 시청)</li>
             <li>✓ 전자책 (PDF)</li>
@@ -540,25 +540,24 @@
       <p class="text-paper/70 text-sm mb-8">자발적인 후원이 강의 제작과 자료 나눔에 큰 힘이 됩니다.</p>
 
       <div class="max-w-md mx-auto space-y-3">
-        <!-- 원클릭 후원 버튼 -->
-        <!-- TODO: 토스 → href를 본인 toss.me 링크로 (예: https://toss.me/오광일아이디) -->
-        <a href="#" data-pending="toss" target="_blank" rel="noopener"
+        <!-- 원클릭 후원 버튼 (링크는 content/site.json 에서 관리) -->
+        <a id="tossLink" href="#" target="_blank" rel="noopener"
            class="flex items-center justify-center gap-2 bg-[#3182f6] text-white font-semibold py-3.5 rounded-2xl hover:opacity-90 transition">
           토스로 후원하기 <span class="text-white/70 text-sm font-normal">(원클릭)</span>
         </a>
-        <a href="https://qr.kakaopay.com/FKQjD73PQ" target="_blank" rel="noopener"
+        <a id="kakaopayLink" href="https://qr.kakaopay.com/FKQjD73PQ" target="_blank" rel="noopener"
            class="flex items-center justify-center gap-2 bg-[#FEE500] text-[#3c1e1e] font-semibold py-3.5 rounded-2xl hover:opacity-90 transition">
           카카오페이로 후원하기 <span class="text-[#3c1e1e]/60 text-sm font-normal">(원클릭)</span>
         </a>
-        <a href="https://paypal.me/oki1611" target="_blank" rel="noopener"
+        <a id="paypalLink" href="https://paypal.me/oki1611" target="_blank" rel="noopener"
            class="flex items-center justify-center gap-2 bg-[#0070ba] text-white font-semibold py-3.5 rounded-2xl hover:opacity-90 transition">
           PayPal로 후원하기 <span class="text-white/70 text-sm font-normal">(해외 후원)</span>
         </a>
 
         <!-- 계좌이체 (대체 수단) -->
         <div class="bg-white/5 border border-white/12 rounded-2xl p-5 text-left mt-2">
-          <p class="text-paper/55 text-xs mb-1">계좌이체 · 우리은행</p>
-          <p class="text-base font-semibold tracking-tight">1006-301-266177 <span class="text-paper/50 text-xs font-normal">예금주 오광일</span></p>
+          <p id="bankLabel" class="text-paper/55 text-xs mb-1">계좌이체 · 우리은행</p>
+          <p id="bankAccount" class="text-base font-semibold tracking-tight">1006-301-266177 <span class="text-paper/50 text-xs font-normal">예금주 오광일</span></p>
         </div>
       </div>
 
@@ -569,7 +568,7 @@
       <div class="mt-10 pt-8 border-t border-white/10">
         <p class="eyebrow text-gold text-xs font-semibold mb-3">CONTACT</p>
         <h3 class="font-bold mb-2">비즈니스 및 강연 문의</h3>
-        <a href="mailto:josephoh1611@gmail.com" class="inline-block text-paper/85 hover:text-gold transition">✉ josephoh1611@gmail.com</a>
+        <a id="contactEmail" href="mailto:josephoh1611@gmail.com" class="inline-block text-paper/85 hover:text-gold transition">✉ josephoh1611@gmail.com</a>
       </div>
     </div>
   </section>
@@ -695,29 +694,50 @@
   </script>
 
   <!-- ====================================================================== -->
-  <!--  ▼▼▼ 메인 메뉴 관리 — 여기만 고치면 됩니다 ▼▼▼                          -->
-  <!--                                                                        -->
-  <!--  · 추가 : 줄 하나 복사해서 { label:'이름', href:'#연결' }, 형태로 넣기    -->
-  <!--  · 삭제 : 그 줄을 지우기                                                -->
-  <!--  · 수정 : label(보이는 글자)이나 href(이동 위치)를 바꾸기                -->
-  <!--  · 순서 : 줄 순서를 바꾸면 메뉴 순서도 바뀜                              -->
+  <!--  사이트 설정(메뉴·가격·후원·연락처)은 content/site.json 에서 관리합니다.   -->
+  <!--  → Pages CMS의 '사이트 설정' 메뉴에서 클릭으로 편집하면 자동 반영됩니다.   -->
   <!-- ====================================================================== -->
   <script>
-    const MENU = [
+    // 메뉴 기본값(인터넷 연결 전/오류 시 대비 — 평소엔 site.json 값 사용)
+    const DEFAULT_MENU = [
       { label: '전체 강의', href: '#catalog'    },
       { label: '커리큘럼',  href: '#curriculum' },
       { label: '수강 후기', href: '#reviews'    },
       { label: '인사이트',  href: '#insight'    },
       { label: 'FAQ',       href: '#faq'        },
-      // 예시) 새 메뉴를 넣고 싶으면 아래 줄의 // 를 지우고 내용만 바꾸세요
-      // { label: '공지사항', href: '#notice' },
     ];
+    function renderMenu(menu){
+      document.getElementById('mainmenu').innerHTML = (menu || []).map(m =>
+        `<a href="${m.href}" class="hover:text-gold transition">${m.label}</a>`
+      ).join('');
+    }
+    renderMenu(DEFAULT_MENU);
 
-    // ↓↓↓ 아래는 메뉴를 화면에 그려주는 부분 — 건드리지 않아도 됩니다 ↓↓↓
-    const nav = document.getElementById('mainmenu');
-    nav.innerHTML = MENU.map(m =>
-      `<a href="${m.href}" class="hover:text-gold transition">${m.label}</a>`
-    ).join('');
+    // content/site.json 에서 메뉴·가격·후원 정보를 읽어 반영
+    fetch('content/site.json')
+      .then(r => r.json())
+      .then(site => {
+        if (site.menu && site.menu.length) renderMenu(site.menu);
+
+        const p = site.pricing || {};
+        const setPrice = (id, v) => { const e = document.getElementById(id); if(e) e.textContent = v ? ('₩' + v) : '₩ —'; };
+        setPrice('priceLight', p.light);
+        setPrice('priceStandard', p.standard);
+        setPrice('pricePremium', p.premium);
+
+        const s = site.support || {};
+        const setHref = (id, url) => { const e = document.getElementById(id); if(e && url) e.href = url; };
+        setHref('tossLink', s.toss_url);
+        setHref('kakaopayLink', s.kakaopay_url);
+        setHref('paypalLink', s.paypal_url);
+        if (s.bank_name) { const e = document.getElementById('bankLabel'); if(e) e.textContent = '계좌이체 · ' + s.bank_name; }
+        const ba = document.getElementById('bankAccount');
+        if (ba && (s.bank_account || s.bank_holder))
+          ba.innerHTML = (s.bank_account || '') + ' <span class="text-paper/50 text-xs font-normal">예금주 ' + (s.bank_holder || '') + '</span>';
+        const ce = document.getElementById('contactEmail');
+        if (ce && s.contact_email) { ce.href = 'mailto:' + s.contact_email; ce.textContent = '✉ ' + s.contact_email; }
+      })
+      .catch(() => {});
 
     // ===== Supabase 로그인 / 회원가입 =====
     const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
