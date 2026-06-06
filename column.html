@@ -40,17 +40,26 @@
     .article img{max-width:100%;height:auto;border-radius:.75rem;margin:1em 0}
     .article strong{font-weight:700;color:#15203a}
     .ql-container{font-family:'Pretendard',sans-serif;font-size:16px}
-    .ql-editor{min-height:340px}
+    .ql-editor{min-height:420px;font-size:16px;line-height:1.85}
+    .ql-toolbar.ql-snow{border-color:rgba(21,32,58,.12);border-radius:.75rem .75rem 0 0;background:#fff}
+    .ql-container.ql-snow{border-color:rgba(21,32,58,.12);border-radius:0 0 .75rem .75rem}
   </style>
 </head>
 <body class="font-sans bg-paper text-ink antialiased min-h-screen">
 
   <header class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-ink/8">
-    <div class="max-w-3xl mx-auto px-4 h-14 flex items-center justify-between">
-      <a href="index.html" class="font-bold text-[15px]">오광일 <span class="text-gold">인사이트 브리핑</span></a>
-      <div class="flex items-center gap-3 text-sm">
+    <div class="max-w-6xl mx-auto px-4 h-14 flex items-center gap-3">
+      <a href="index.html" class="font-bold text-[15px] shrink-0">오광일 <span class="text-gold">인사이트 브리핑</span></a>
+      <nav class="flex items-center gap-4 sm:gap-5 text-sm text-ink/70 overflow-x-auto whitespace-nowrap pl-1">
+        <a href="index.html#catalog" class="hover:text-gold">강의</a>
+        <a href="index.html#videos" class="hover:text-gold">무료영상</a>
+        <a href="column.html" class="text-gold font-semibold">칼럼</a>
+        <a href="resources.html" class="hover:text-gold">자료실</a>
+        <a href="community.html" class="hover:text-gold">커뮤니티</a>
+      </nav>
+      <div class="ml-auto flex items-center gap-3 text-sm shrink-0">
         <span id="navUser" class="text-ink/60"></span>
-        <a href="index.html" class="text-ink/50 hover:text-gold">← 홈</a>
+        <a href="index.html" class="text-ink/45 hover:text-gold">홈</a>
       </div>
     </div>
   </header>
@@ -176,8 +185,36 @@
       if(quill) return quill;
       quill = new Quill('#editor', {
         theme:'snow',
-        placeholder:'블로그처럼 자유롭게 작성하세요…',
-        modules:{ toolbar:[ [{header:[1,2,3,false]}], ['bold','italic','underline','strike'], [{list:'ordered'},{list:'bullet'}], ['blockquote'], [{align:[]}], ['link','image'], ['clean'] ] }
+        placeholder:'블로그처럼 자유롭게 작성하세요… (워드·한글 글 복붙 OK)',
+        modules:{ toolbar:[
+          [{ header:[1,2,3,false] }],
+          [{ size:['small', false, 'large', 'huge'] }],
+          ['bold','italic','underline','strike'],
+          [{ color:[] }, { background:[] }],
+          [{ align:[] }],
+          [{ list:'ordered' }, { list:'bullet' }],
+          ['blockquote'],
+          ['link','image'],
+          ['clean']
+        ] }
+      });
+      // 이미지는 저장공간(community 버킷)에 업로드 후 본문에 삽입 (base64 방지·블로그식)
+      quill.getModule('toolbar').addHandler('image', () => {
+        const input = document.createElement('input');
+        input.type = 'file'; input.accept = 'image/*';
+        input.onchange = async () => {
+          const file = input.files[0]; if(!file) return;
+          if(file.size > 5*1024*1024){ alert('이미지는 5MB 이하만 가능해요.'); return; }
+          const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
+          const path = `columns/${Date.now()}.${ext}`;
+          const { error } = await sb.storage.from('community').upload(path, file);
+          if(error){ alert('이미지 업로드 오류: ' + error.message); return; }
+          const url = sb.storage.from('community').getPublicUrl(path).data.publicUrl;
+          const range = quill.getSelection(true);
+          quill.insertEmbed(range.index, 'image', url);
+          quill.setSelection(range.index + 1);
+        };
+        input.click();
       });
       return quill;
     }

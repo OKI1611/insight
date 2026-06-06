@@ -26,10 +26,17 @@
 <body class="font-sans bg-paper text-ink antialiased min-h-screen">
 
   <!-- 상단바 -->
-  <header class="sticky top-0 z-40 bg-ink text-paper">
-    <div class="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
-      <a href="index.html" class="font-bold text-[15px]">오광일 <span class="text-gold">인사이트 브리핑</span></a>
-      <a href="index.html#catalog" class="text-sm text-paper/70 hover:text-gold">← 전체 강의</a>
+  <header class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-ink/8">
+    <div class="max-w-7xl mx-auto px-4 h-14 flex items-center gap-3">
+      <a href="index.html" class="font-bold text-[15px] shrink-0">오광일 <span class="text-gold">인사이트 브리핑</span></a>
+      <nav class="flex items-center gap-4 sm:gap-5 text-sm text-ink/70 overflow-x-auto whitespace-nowrap pl-1">
+        <a href="index.html#catalog" class="text-gold font-semibold">강의</a>
+        <a href="index.html#videos" class="hover:text-gold">무료영상</a>
+        <a href="column.html" class="hover:text-gold">칼럼</a>
+        <a href="resources.html" class="hover:text-gold">자료실</a>
+        <a href="community.html" class="hover:text-gold">커뮤니티</a>
+      </nav>
+      <a href="index.html" class="ml-auto text-sm text-ink/45 hover:text-gold shrink-0">홈</a>
     </div>
   </header>
 
