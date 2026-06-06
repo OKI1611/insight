@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>강의실 — 오광일 인사이트 브리핑</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink:'#15203a', navy:'#1b2a4a', gold:'#b8923f', sand:'#efe7d6', paper:'#fcfaf6' },
+      fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
+      boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)' }
+    }}}
+  </script>
+  <style>
+    h1{font-family:'Noto Serif KR',Pretendard,serif}
+    #lessonList::-webkit-scrollbar{width:6px}
+    #lessonList::-webkit-scrollbar-thumb{background:rgba(21,32,58,.18);border-radius:3px}
+  </style>
+</head>
+<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+
+  <!-- 상단바 -->
+  <header class="sticky top-0 z-40 bg-ink text-paper">
+    <div class="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
+      <a href="index.html" class="font-bold text-[15px]">오광일 <span class="text-gold">인사이트 브리핑</span></a>
+      <a href="index.html#catalog" class="text-sm text-paper/70 hover:text-gold">← 전체 강의</a>
+    </div>
+  </header>
+
+  <!-- 강의 헤더 -->
+  <div class="border-b border-ink/8 bg-white">
+    <div class="max-w-7xl mx-auto px-4 py-5">
+      <p class="text-gold text-xs font-bold tracking-widest mb-1">CLASS</p>
+      <h1 id="courseTitle" class="text-xl md:text-2xl font-bold">강의를 불러오는 중…</h1>
+      <p id="courseSub" class="text-ink/55 text-sm mt-1"></p>
+      <p id="courseMeta" class="text-ink/45 text-xs mt-2"></p>
+    </div>
+  </div>
+
+  <!-- 본문: 플레이어 + 목차 -->
+  <main class="max-w-7xl mx-auto px-4 py-6 grid lg:grid-cols-[1fr_360px] gap-6">
+
+    <!-- 플레이어 영역 -->
+    <section>
+      <div id="player" class="aspect-video bg-ink rounded-2xl overflow-hidden shadow-soft"></div>
+
+      <div class="mt-5 flex items-start justify-between gap-4">
+        <div>
+          <div id="lessonBadge" class="mb-2"></div>
+          <h2 id="lessonTitle" class="text-lg md:text-xl font-bold leading-snug"></h2>
+        </div>
+        <div class="flex gap-2 shrink-0">
+          <button id="prevBtn" onclick="prev()" class="border border-ink/15 rounded-full px-4 py-2 text-sm hover:bg-ink/5 disabled:opacity-30 disabled:cursor-not-allowed">← 이전</button>
+          <button id="nextBtn" onclick="next()" class="bg-ink text-paper rounded-full px-4 py-2 text-sm hover:bg-navy disabled:opacity-30 disabled:cursor-not-allowed">다음 →</button>
+        </div>
+      </div>
+
+      <div class="mt-5 bg-white rounded-2xl border border-ink/8 p-5 shadow-soft text-sm text-ink/70 leading-relaxed">
+        <p class="font-semibold text-ink mb-1">강의 안내</p>
+        무료 강의는 바로 시청하실 수 있습니다. 잠긴 강의는 <b class="text-ink">정식 오픈 후</b> 공개됩니다.
+        미리 등록하시면 출시 소식과 얼리버드 혜택을 가장 먼저 받아보실 수 있어요.
+        <a href="index.html#pricing" class="text-gold underline ml-1">출시 알림 받기</a>
+      </div>
+    </section>
+
+    <!-- 강의 목차 사이드바 -->
+    <aside class="lg:sticky lg:top-20 h-fit">
+      <div class="bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden">
+        <div class="px-5 py-4 border-b border-ink/8 flex items-center justify-between">
+          <h3 class="font-bold">강의 목차</h3>
+          <span id="listCount" class="text-xs text-ink/45"></span>
+        </div>
+        <ol id="lessonList" class="max-h-[60vh] overflow-auto divide-y divide-ink/5"></ol>
+      </div>
+    </aside>
+  </main>
+
+  <script>
+    let lessons = [], cur = 0;
+    function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    function ytId(u){
+      if(!u) return '';
+      const m = String(u).match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/);
+      return m ? m[1] : (String(u).trim().length === 11 ? String(u).trim() : '');
+    }
+
+    fetch('content/course.json')
+      .then(r => r.json())
+      .then(c => {
+        lessons = c.lessons || [];
+        document.getElementById('courseTitle').textContent = c.title || '강의';
+        document.getElementById('courseSub').textContent = c.subtitle || '';
+        const freeCnt = lessons.filter(l => l.free).length;
+        document.getElementById('courseMeta').textContent = `${c.instructor || ''} · 총 ${lessons.length}강 · 무료 ${freeCnt}강 공개`;
+        document.getElementById('listCount').textContent = `${lessons.length}강`;
+        renderList();
+        const firstFree = lessons.findIndex(l => l.free);
+        loadLesson(firstFree >= 0 ? firstFree : 0);
+      })
+      .catch(() => {
+        document.getElementById('courseTitle').textContent = '강의를 불러오지 못했습니다.';
+      });
+
+    function renderList(){
+      document.getElementById('lessonList').innerHTML = lessons.map((l, i) => `
+        <li id="lesson-${i}" onclick="loadLesson(${i})"
+            class="lesson flex gap-3 px-4 py-3.5 cursor-pointer border-l-2 border-transparent hover:bg-ink/[0.03] transition">
+          <span class="num text-sm text-ink/35 font-bold w-6 shrink-0 pt-0.5">${String(i+1).padStart(2,'0')}</span>
+          <div class="min-w-0">
+            <p class="title text-sm font-medium leading-snug">${esc(l.title || '')}</p>
+            <p class="text-xs text-ink/45 mt-1">⏱ ${esc(l.duration || '')} · ${ l.free ? '<span class="text-green-600 font-semibold">무료</span>' : '<span class="text-ink/40">🔒 오픈 예정</span>' }</p>
+          </div>
+        </li>`).join('');
+    }
+
+    function loadLesson(i){
+      if(i < 0 || i >= lessons.length) return;
+      cur = i;
+      const l = lessons[i];
+
+      document.querySelectorAll('.lesson').forEach(el => { el.classList.remove('bg-gold/10','border-gold'); });
+      const el = document.getElementById('lesson-' + i);
+      if(el){ el.classList.add('bg-gold/10','border-gold'); el.scrollIntoView({ block:'nearest' }); }
+
+      const player = document.getElementById('player');
+      const id = ytId(l.youtube);
+      if(l.free && id){
+        player.innerHTML = `<iframe class="w-full h-full" src="https://www.youtube.com/embed/${id}?rel=0" title="${esc(l.title)}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+      } else {
+        player.innerHTML = `<div class="w-full h-full flex flex-col items-center justify-center text-paper gap-3 text-center px-6">
+          <span class="text-4xl">🔒</span>
+          <p class="font-semibold">정식 오픈 후 시청하실 수 있어요</p>
+          <p class="text-paper/60 text-sm">미리 등록하면 출시 소식을 가장 먼저 받아보세요.</p>
+          <a href="index.html#pricing" class="mt-2 bg-gold text-white font-semibold px-6 py-2.5 rounded-full text-sm hover:opacity-90">출시 알림 받기</a>
+        </div>`;
+      }
+
+      document.getElementById('lessonTitle').textContent = l.title || '';
+      document.getElementById('lessonBadge').innerHTML = l.free
+        ? '<span class="bg-green-100 text-green-700 text-xs font-semibold px-2.5 py-1 rounded-full">무료 공개</span>'
+        : '<span class="bg-ink/10 text-ink/50 text-xs font-semibold px-2.5 py-1 rounded-full">🔒 오픈 예정</span>';
+
+      document.getElementById('prevBtn').disabled = i <= 0;
+      document.getElementById('nextBtn').disabled = i >= lessons.length - 1;
+    }
+    function prev(){ loadLesson(cur - 1); }
+    function next(){ loadLesson(cur + 1); }
+  </script>
+</body>
+</html>
