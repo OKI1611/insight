@@ -77,6 +77,21 @@ content:
               - name: summary
                 label: 강의 소개글 · 요약 (강의실에 표시)
                 type: text
+              - name: tags
+                label: 키워드 칩 (예 휴거, 요한계시록)
+                type: string
+                list: true
+              - name: chapters
+                label: 강의 목차 · 타임스탬프
+                type: object
+                list: true
+                fields:
+                  - name: t
+                    label: 시간 (예 03:20 · 비우면 클릭 이동 없음)
+                    type: string
+                  - name: label
+                    label: 목차 제목
+                    type: string
               - name: duration
                 label: 시간 (예 약 40분)
                 type: string
