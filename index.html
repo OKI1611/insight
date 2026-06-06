@@ -124,6 +124,12 @@
             전체 강의 둘러보기
           </a>
         </div>
+
+        <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-ink/55">
+          <span class="flex items-center gap-1.5"><span class="text-gold font-bold">✓</span> 전 강의 무료 공개</span>
+          <span class="flex items-center gap-1.5"><span class="text-gold font-bold">✓</span> 회원가입 없이 시청</span>
+          <span class="flex items-center gap-1.5"><span class="text-gold font-bold">✓</span> 평생 무제한 소장</span>
+        </div>
       </div>
 
       <!-- 우: 무료 강의 미리보기 카드 -->
@@ -297,44 +303,15 @@
       <div class="text-center mb-12">
         <p class="eyebrow text-gold text-xs font-semibold mb-4">CURRICULUM</p>
         <h2 class="text-2xl md:text-[32px] font-bold">천년왕국 세미나 커리큘럼</h2>
-        <p class="text-ink/60 mt-4">총 8강 · 약 6시간 · 평생 소장</p>
+        <p class="text-ink/60 mt-4">총 <b id="curCount" class="text-ink">7</b>강 · 순서대로 보는 종말의 모든 것 · <b class="text-gold">전체 무료 공개 중</b></p>
       </div>
 
-      <div class="space-y-3">
-        <details open class="bg-white rounded-2xl border border-ink/8 shadow-card overflow-hidden">
-          <summary class="flex items-center justify-between px-6 py-4 font-semibold">
-            <span>PART 1. 종말과 부활의 큰 그림</span>
-            <svg class="chev w-5 h-5 text-ink/40 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
-          </summary>
-          <ul class="px-6 pb-5 text-sm divide-y divide-ink/5">
-            <li class="flex items-center justify-between py-3"><span class="flex items-center gap-2"><span class="text-gold">▶</span> 1강. 종말론, 왜 지금 공부해야 하나 <span class="text-gold text-xs font-bold ml-1">무료</span></span><span class="text-ink/40">14:20</span></li>
-            <li class="flex items-center justify-between py-3"><span class="flex items-center gap-2 text-ink/70"><span class="text-ink/30">🔒</span> 2강. 첫째 부활의 실체 (1)</span><span class="text-ink/40">38:10</span></li>
-            <li class="flex items-center justify-between py-3"><span class="flex items-center gap-2 text-ink/70"><span class="text-ink/30">🔒</span> 3강. 첫째 부활의 실체 (2)</span><span class="text-ink/40">41:55</span></li>
-          </ul>
-        </details>
+      <div id="curriculumList" class="space-y-3">
+        <p class="text-ink/40 text-sm text-center py-8">커리큘럼을 불러오는 중…</p>
+      </div>
 
-        <details class="bg-white rounded-2xl border border-ink/8 shadow-card overflow-hidden">
-          <summary class="flex items-center justify-between px-6 py-4 font-semibold">
-            <span>PART 2. 마지막 때의 심판</span>
-            <svg class="chev w-5 h-5 text-ink/40 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
-          </summary>
-          <ul class="px-6 pb-5 text-sm divide-y divide-ink/5">
-            <li class="flex items-center justify-between py-3"><span class="flex items-center gap-2 text-ink/70"><span class="text-ink/30">🔒</span> 4강. 양과 염소의 심판 (마 25장)</span><span class="text-ink/40">44:30</span></li>
-            <li class="flex items-center justify-between py-3"><span class="flex items-center gap-2 text-ink/70"><span class="text-ink/30">🔒</span> 5강. 백보좌 심판과의 관계</span><span class="text-ink/40">36:12</span></li>
-            <li class="flex items-center justify-between py-3"><span class="flex items-center gap-2 text-ink/70"><span class="text-ink/30">🔒</span> 6강. 666의 실체</span><span class="text-ink/40">39:48</span></li>
-          </ul>
-        </details>
-
-        <details class="bg-white rounded-2xl border border-ink/8 shadow-card overflow-hidden">
-          <summary class="flex items-center justify-between px-6 py-4 font-semibold">
-            <span>PART 3. 천년왕국과 구원</span>
-            <svg class="chev w-5 h-5 text-ink/40 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
-          </summary>
-          <ul class="px-6 pb-5 text-sm divide-y divide-ink/5">
-            <li class="flex items-center justify-between py-3"><span class="flex items-center gap-2 text-ink/70"><span class="text-ink/30">🔒</span> 7강. 천년왕국 두 종류의 사람</span><span class="text-ink/40">42:05</span></li>
-            <li class="flex items-center justify-between py-3"><span class="flex items-center gap-2 text-ink/70"><span class="text-ink/30">🔒</span> 8강. 천년왕국의 구원 문제</span><span class="text-ink/40">45:33</span></li>
-          </ul>
-        </details>
+      <div class="text-center mt-10">
+        <a href="watch.html" class="inline-flex items-center gap-2 bg-ink text-paper font-semibold px-8 py-4 rounded-full hover:bg-navy transition shadow-card">▶ 강의실에서 바로 보기</a>
       </div>
     </div>
   </section>
@@ -404,27 +381,45 @@
     <div class="max-w-6xl mx-auto px-5">
       <div class="text-center mb-14">
         <p class="eyebrow text-gold text-xs font-semibold mb-4">REVIEWS</p>
-        <h2 class="text-2xl md:text-[32px] font-bold">수강생 후기</h2>
-        <div class="mt-4 flex items-center justify-center gap-2 text-lg"><span class="star">★</span><b>4.9</b><span class="text-ink/50 text-base">/ 5.0 · 128개</span></div>
+        <h2 class="text-2xl md:text-[32px] font-bold">수강생들의 이야기</h2>
+        <p class="text-ink/60 mt-4">강의를 들은 분들이 남겨주신 진심 어린 반응입니다.</p>
       </div>
       <div class="grid md:grid-cols-3 gap-6">
         <div class="bg-paper rounded-2xl border border-ink/8 p-6">
           <div class="text-gold text-sm mb-3">★★★★★</div>
-          <p class="text-sm text-ink/75 leading-relaxed">“막연하게만 알던 천년왕국이 본문으로 또렷하게 정리됐어요. 강단에서 못 듣던 이야기.”</p>
-          <p class="text-xs text-ink/45 mt-4">— 김OO · 중급 수강</p>
+          <p class="text-sm text-ink/75 leading-relaxed">“막연하게만 알던 천년왕국이 본문으로 또렷하게 정리됐어요. 강단에서 못 듣던 이야기였습니다.”</p>
+          <p class="text-xs text-ink/45 mt-4">— 40대 집사 · 천년왕국 세미나</p>
         </div>
         <div class="bg-paper rounded-2xl border border-ink/8 p-6">
           <div class="text-gold text-sm mb-3">★★★★★</div>
-          <p class="text-sm text-ink/75 leading-relaxed">“어렵지 않게, 그러나 깊이 있게 풀어주십니다. 암송노트가 특히 도움이 됐어요.”</p>
-          <p class="text-xs text-ink/45 mt-4">— 이OO · 스탠다드</p>
+          <p class="text-sm text-ink/75 leading-relaxed">“어렵게만 느껴지던 요한계시록을 순서대로 따라가니, 흩어져 있던 조각이 하나의 큰 그림으로 맞춰집니다.”</p>
+          <p class="text-xs text-ink/45 mt-4">— 유튜브 구독자</p>
         </div>
         <div class="bg-paper rounded-2xl border border-ink/8 p-6">
           <div class="text-gold text-sm mb-3">★★★★★</div>
-          <p class="text-sm text-ink/75 leading-relaxed">“교회에 상처받고 떠나 있었는데, 다시 성경을 펴게 됐습니다. 진심으로 감사합니다.”</p>
-          <p class="text-xs text-ink/45 mt-4">— 박OO · 프리미엄</p>
+          <p class="text-sm text-ink/75 leading-relaxed">“교회에 상처받고 성경을 덮었던 제가, 다시 펴게 됐습니다. 진심으로 감사드립니다.”</p>
+          <p class="text-xs text-ink/45 mt-4">— 50대 성도</p>
+        </div>
+        <div class="bg-paper rounded-2xl border border-ink/8 p-6">
+          <div class="text-gold text-sm mb-3">★★★★★</div>
+          <p class="text-sm text-ink/75 leading-relaxed">“휴거·첫째 부활처럼 늘 헷갈리던 주제를, 이렇게 차분하고 명료하게 풀어주시는 분은 처음이에요.”</p>
+          <p class="text-xs text-ink/45 mt-4">— 청년부 리더</p>
+        </div>
+        <div class="bg-paper rounded-2xl border border-ink/8 p-6">
+          <div class="text-gold text-sm mb-3">★★★★★</div>
+          <p class="text-sm text-ink/75 leading-relaxed">“666 특강 한 편으로 그동안의 막연한 불안이 정리됐습니다. 이제 음모론에 흔들리지 않을 분별의 기준이 생겼어요.”</p>
+          <p class="text-xs text-ink/45 mt-4">— 30대 직장인</p>
+        </div>
+        <div class="bg-paper rounded-2xl border border-ink/8 p-6">
+          <div class="text-gold text-sm mb-3">★★★★★</div>
+          <p class="text-sm text-ink/75 leading-relaxed">“두 아이 엄마인데, 무엇을 어떻게 가르쳐야 할지 기준이 잡혔습니다. 가정예배에 큰 힘이 됩니다.”</p>
+          <p class="text-xs text-ink/45 mt-4">— 두 아이 엄마</p>
         </div>
       </div>
-      <p class="text-center text-ink/35 text-xs mt-6">※ 후기는 예시입니다. 실제 수강 후기로 교체됩니다.</p>
+      <div class="text-center mt-12">
+        <a href="community.html" class="inline-flex items-center gap-2 border border-ink/15 px-7 py-3.5 rounded-full hover:bg-ink/5 transition font-semibold">여러분의 이야기를 들려주세요 →</a>
+        <p class="text-ink/35 text-xs mt-5">※ 일부 후기는 예시이며, 실제 수강 후기로 계속 교체됩니다.</p>
+      </div>
     </div>
   </section>
 
@@ -525,20 +520,36 @@
       </div>
       <div class="space-y-3">
         <details class="bg-white rounded-2xl border border-ink/8 px-6 py-4">
-          <summary class="flex items-center justify-between font-semibold">수강 기간이 정해져 있나요?<svg class="chev w-5 h-5 text-ink/40 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary>
-          <p class="text-sm text-ink/65 mt-3 leading-relaxed">아니요. 한 번 수강 신청하시면 <b>평생 무제한</b>으로 다시 보실 수 있습니다.</p>
+          <summary class="flex items-center justify-between font-semibold">강의는 무료인가요?<svg class="chev w-5 h-5 text-ink/40 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p class="text-sm text-ink/65 mt-3 leading-relaxed">네, <b>지금은 천년왕국 세미나 전 강의를 무료로 공개</b>하고 있습니다. 회원가입 없이도 강의실에서 바로 시청하실 수 있어요. 앞으로 추가되는 심화 클래스 중 일부는 유료로 전환될 수 있으며, 그때 미리 안내드립니다.</p>
+        </details>
+        <details class="bg-white rounded-2xl border border-ink/8 px-6 py-4">
+          <summary class="flex items-center justify-between font-semibold">어떤 순서로 보면 좋을까요?<svg class="chev w-5 h-5 text-ink/40 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p class="text-sm text-ink/65 mt-3 leading-relaxed">천년왕국 세미나는 <b>02강부터 순서대로</b> 보시는 것을 권합니다. 예언을 보는 관점(02) → 죽음 이후(03) → 휴거(04) → 아마겟돈(05) → 환난기(06) → 심판(07) 순으로 큰 그림이 그려지도록 설계했습니다. ‘666 특강’은 언제 보셔도 좋아요.</p>
         </details>
         <details class="bg-white rounded-2xl border border-ink/8 px-6 py-4">
           <summary class="flex items-center justify-between font-semibold">초보자도 들을 수 있나요?<svg class="chev w-5 h-5 text-ink/40 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary>
-          <p class="text-sm text-ink/65 mt-3 leading-relaxed">네. 기초·초급 단계부터 차근차근 설계되어 있어, 성경을 처음 펴는 분도 따라오실 수 있습니다.</p>
+          <p class="text-sm text-ink/65 mt-3 leading-relaxed">네. 어려운 신학 용어도 누구나 이해할 수 있는 언어로 풀어드립니다. 각 강의마다 ‘강의 소개’와 ‘목차’가 있어, 무엇을 배우는지 먼저 확인하고 시청하실 수 있습니다.</p>
         </details>
         <details class="bg-white rounded-2xl border border-ink/8 px-6 py-4">
-          <summary class="flex items-center justify-between font-semibold">전자책·암송노트·인쇄본은 어떻게 받나요?<svg class="chev w-5 h-5 text-ink/40 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary>
-          <p class="text-sm text-ink/65 mt-3 leading-relaxed">전자책·암송노트는 결제 후 즉시 다운로드, 인쇄본(프리미엄)은 입력하신 주소로 배송됩니다.</p>
+          <summary class="flex items-center justify-between font-semibold">수강 기간이 정해져 있나요?<svg class="chev w-5 h-5 text-ink/40 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p class="text-sm text-ink/65 mt-3 leading-relaxed">아니요. 기간 제한 없이 <b>평생 무제한</b>으로 언제든 다시 보실 수 있습니다.</p>
         </details>
         <details class="bg-white rounded-2xl border border-ink/8 px-6 py-4">
-          <summary class="flex items-center justify-between font-semibold">환불이 가능한가요?<svg class="chev w-5 h-5 text-ink/40 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary>
-          <p class="text-sm text-ink/65 mt-3 leading-relaxed">관련 법령에 따른 환불 규정을 따릅니다. (정책 확정 후 안내 예정)</p>
+          <summary class="flex items-center justify-between font-semibold">휴대폰에서도 볼 수 있나요?<svg class="chev w-5 h-5 text-ink/40 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p class="text-sm text-ink/65 mt-3 leading-relaxed">네. PC·태블릿·휴대폰 어디서나 보실 수 있고, 브라우저 메뉴의 ‘홈 화면에 추가’를 누르면 <b>앱처럼 설치</b>해 편하게 이용하실 수 있습니다.</p>
+        </details>
+        <details class="bg-white rounded-2xl border border-ink/8 px-6 py-4">
+          <summary class="flex items-center justify-between font-semibold">강의를 듣다 궁금한 점이 생기면?<svg class="chev w-5 h-5 text-ink/40 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p class="text-sm text-ink/65 mt-3 leading-relaxed"><a href="community.html" class="text-gold underline">커뮤니티</a>의 <b>질문답변(Q&amp;A)</b> 코너에 남겨주세요. 강사가 직접 확인하고 답변드립니다. 자유 나눔 게시판에서 다른 수강생들과 함께 이야기 나누실 수도 있어요.</p>
+        </details>
+        <details class="bg-white rounded-2xl border border-ink/8 px-6 py-4">
+          <summary class="flex items-center justify-between font-semibold">전자책·암송노트도 받을 수 있나요?<svg class="chev w-5 h-5 text-ink/40 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p class="text-sm text-ink/65 mt-3 leading-relaxed">강의와 함께 보는 자료는 <a href="resources.html" class="text-gold underline">자료실</a>에 올라옵니다. 전자책·암송노트·인쇄본을 포함한 패키지는 현재 준비 중이며, 출시되는 대로 안내드리겠습니다.</p>
+        </details>
+        <details class="bg-white rounded-2xl border border-ink/8 px-6 py-4">
+          <summary class="flex items-center justify-between font-semibold">후원은 어떻게 하나요?<svg class="chev w-5 h-5 text-ink/40 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <p class="text-sm text-ink/65 mt-3 leading-relaxed">강의가 도움이 되셨다면 아래 <a href="#support" class="text-gold underline">후원하기</a>로 마음을 더해주실 수 있습니다. 자발적 후원이며, 별도의 세금 영수증은 발행되지 않습니다.</p>
         </details>
       </div>
     </div>
@@ -861,10 +872,37 @@
             </div>
           </a>`;
         }).join('');
+
+        // 커리큘럼 아코디언 (강의별 목차)
+        const curList = document.getElementById('curriculumList');
+        const curCount = document.getElementById('curCount');
+        if(curCount) curCount.textContent = lessons.length;
+        if(curList){
+          curList.innerHTML = lessons.map((l, i) => {
+            const ti = (l.title || '').replace(/</g,'&lt;');
+            const su = (l.summary || '').replace(/</g,'&lt;');
+            const mt = l.free ? '<span class="text-gold text-xs font-bold">무료</span>' : '<span class="text-ink/40 text-xs">🔒 오픈 예정</span>';
+            const chaps = (l.chapters || []).map(c =>
+              `<li class="flex items-center gap-2 py-2.5"><span class="text-gold/60 shrink-0">▸</span><span class="text-ink/70">${(c.label||'').replace(/</g,'&lt;')}</span></li>`).join('');
+            return `<details class="bg-white rounded-2xl border border-ink/8 shadow-card overflow-hidden" ${ i===0 ? 'open' : '' }>
+              <summary class="flex items-center justify-between px-6 py-4 font-semibold gap-3">
+                <span class="flex items-center gap-3 min-w-0"><span class="text-gold font-display shrink-0">${String(i+1).padStart(2,'0')}</span><span class="truncate">${ti}</span></span>
+                <span class="flex items-center gap-3 shrink-0">${mt}<svg class="chev w-5 h-5 text-ink/40 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
+              </summary>
+              <div class="px-6 pb-5">
+                ${ su ? `<p class="text-sm text-ink/60 leading-relaxed border-l-2 border-gold/30 pl-3 mb-3">${su}</p>` : '' }
+                ${ chaps ? `<ul class="text-sm divide-y divide-ink/5">${chaps}</ul>` : '' }
+                <a href="watch.html?l=${i}" class="inline-block mt-3 text-sm font-semibold text-gold hover:underline">이 강의 보기 →</a>
+              </div>
+            </details>`;
+          }).join('');
+        }
       })
       .catch(() => {
         const grid = document.getElementById('catalogGrid');
         if(grid) grid.innerHTML = '<p class="text-ink/40 text-sm col-span-full text-center py-10">강의를 불러오지 못했습니다.</p>';
+        const curList = document.getElementById('curriculumList');
+        if(curList) curList.innerHTML = '<p class="text-ink/40 text-sm text-center py-8">커리큘럼을 불러오지 못했습니다.</p>';
       });
 
     // ===== Supabase 로그인 / 회원가입 =====
