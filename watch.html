@@ -111,7 +111,7 @@
           <span class="num text-sm text-ink/35 font-bold w-6 shrink-0 pt-0.5">${String(i+1).padStart(2,'0')}</span>
           <div class="min-w-0">
             <p class="title text-sm font-medium leading-snug">${esc(l.title || '')}</p>
-            <p class="text-xs text-ink/45 mt-1">⏱ ${esc(l.duration || '')} · ${ l.free ? '<span class="text-green-600 font-semibold">무료</span>' : '<span class="text-ink/40">🔒 오픈 예정</span>' }</p>
+            <p class="text-xs text-ink/45 mt-1">${ l.duration ? '⏱ ' + esc(l.duration) + ' · ' : '' }${ l.free ? '<span class="text-green-600 font-semibold">무료</span>' : '<span class="text-ink/40">🔒 오픈 예정</span>' }</p>
           </div>
         </li>`).join('');
     }
