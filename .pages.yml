@@ -74,6 +74,9 @@ content:
               - name: youtube
                 label: 유튜브 링크 (또는 영상 ID)
                 type: string
+              - name: summary
+                label: 강의 소개글 · 요약 (강의실에 표시)
+                type: text
               - name: duration
                 label: 시간 (예 약 40분)
                 type: string

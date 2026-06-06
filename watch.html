@@ -68,7 +68,9 @@
         </div>
       </div>
 
-      <div class="mt-5 bg-white rounded-2xl border border-ink/8 p-5 shadow-soft text-sm text-ink/70 leading-relaxed">
+      <div id="lessonDesc" class="mt-5 bg-white rounded-2xl border border-ink/8 p-5 shadow-soft text-[15px] text-ink/75 leading-relaxed" style="display:none"></div>
+
+      <div class="mt-4 bg-white rounded-2xl border border-ink/8 p-5 shadow-soft text-sm text-ink/70 leading-relaxed">
         <p class="font-semibold text-ink mb-1">강의 안내</p>
         무료 강의는 바로 시청하실 수 있습니다. 잠긴 강의는 <b class="text-ink">정식 오픈 후</b> 공개됩니다.
         미리 등록하시면 출시 소식과 얼리버드 혜택을 가장 먼저 받아보실 수 있어요.
@@ -164,6 +166,11 @@
       }
 
       document.getElementById('lessonTitle').textContent = l.title || '';
+      const desc = document.getElementById('lessonDesc');
+      if(l.summary){
+        desc.style.display = '';
+        desc.innerHTML = '<p class="font-semibold text-ink mb-2">📖 강의 소개</p>' + esc(l.summary).replace(/\n/g,'<br>');
+      } else { desc.style.display = 'none'; }
       document.getElementById('lessonBadge').innerHTML = l.free
         ? '<span class="bg-green-100 text-green-700 text-xs font-semibold px-2.5 py-1 rounded-full">무료 공개</span>'
         : '<span class="bg-ink/10 text-ink/50 text-xs font-semibold px-2.5 py-1 rounded-full">🔒 오픈 예정</span>';
