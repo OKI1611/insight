@@ -14,8 +14,14 @@
     tailwind.config = { theme: { extend: {
       colors: { ink:'#15203a', navy:'#1b2a4a', gold:'#b8923f', sand:'#efe7d6', paper:'#fcfaf6' },
       fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
-      boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)' }
+      boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
     }}}
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
+    const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+    const ADMIN_EMAIL = 'josephoh1611@gmail.com';
   </script>
   <style>h1{font-family:'Noto Serif KR',Pretendard,serif}</style>
 </head>
@@ -31,55 +37,126 @@
         <a href="resources.html" class="text-gold font-semibold">자료실</a>
         <a href="community.html" class="hover:text-gold">커뮤니티</a>
       </nav>
-      <a href="index.html" class="ml-auto text-sm text-ink/45 hover:text-gold shrink-0">홈</a>
+      <div class="ml-auto flex items-center gap-3 text-sm shrink-0">
+        <span id="navUser" class="text-ink/60"></span>
+        <a href="index.html" class="text-ink/45 hover:text-gold">홈</a>
+      </div>
     </div>
   </header>
 
-  <main class="max-w-5xl mx-auto px-4 py-10">
-    <div class="text-center mb-10">
-      <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">LIBRARY</p>
-      <h1 class="text-2xl md:text-3xl font-bold">자료실</h1>
-      <p class="text-ink/55 text-sm mt-3">강의와 함께 보는 자료 — 암송노트·강의노트·도표를 받아보세요.</p>
+  <main class="max-w-4xl mx-auto px-4 py-10">
+    <div class="flex items-end justify-between mb-8">
+      <div>
+        <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">LIBRARY</p>
+        <h1 class="text-2xl md:text-3xl font-bold">자료실</h1>
+        <p class="text-ink/55 text-sm mt-2">강의와 함께 보는 자료 — 암송노트·강의노트·도표를 받아보세요.</p>
+      </div>
+      <button id="writeBtn" onclick="openForm()" class="hidden bg-ink text-paper text-sm font-semibold px-4 py-2.5 rounded-full hover:bg-navy transition shrink-0">＋ 자료 올리기</button>
     </div>
 
-    <div id="resList" class="grid md:grid-cols-2 gap-5">
-      <p class="text-ink/40 text-sm col-span-full text-center py-8">자료를 불러오는 중…</p>
+    <!-- 작성 폼 (관리자) -->
+    <div id="formView" class="hidden bg-white rounded-2xl border border-ink/10 shadow-soft p-5 mb-6">
+      <h2 class="font-bold mb-4">자료 올리기</h2>
+      <input id="fTitle" placeholder="자료 제목" class="w-full border border-ink/15 rounded-lg px-3 py-2.5 mb-2 outline-none focus:border-gold"/>
+      <input id="fCategory" placeholder="분류 (예: 암송노트·강의노트·도표)" class="w-full border border-ink/15 rounded-lg px-3 py-2.5 mb-2 outline-none focus:border-gold"/>
+      <textarea id="fDesc" rows="2" placeholder="설명" class="w-full border border-ink/15 rounded-lg px-3 py-2.5 mb-3 outline-none focus:border-gold resize-none"></textarea>
+      <div class="grid sm:grid-cols-2 gap-3 mb-3">
+        <label class="border border-dashed border-ink/20 rounded-lg px-3 py-2.5 text-sm text-ink/60 cursor-pointer hover:bg-ink/5 text-center">
+          📎 파일 첨부 (PDF 등)
+          <input id="fFile" type="file" class="hidden" onchange="document.getElementById('fFileName').textContent=this.files[0]?this.files[0].name:''"/>
+          <span id="fFileName" class="block text-xs text-gold mt-1"></span>
+        </label>
+        <input id="fLink" placeholder="또는 링크 주소 (구글드라이브 등)" class="border border-ink/15 rounded-lg px-3 py-2.5 text-sm outline-none focus:border-gold"/>
+      </div>
+      <div class="flex gap-2 justify-end">
+        <button onclick="closeForm()" class="border border-ink/15 rounded-full px-5 py-2 text-sm hover:bg-ink/5">취소</button>
+        <button id="saveBtn" onclick="saveResource()" class="bg-gold text-white font-semibold rounded-full px-6 py-2 text-sm hover:opacity-90">올리기</button>
+      </div>
+      <p id="fMsg" class="text-red-500 text-xs mt-2 text-right min-h-[14px]"></p>
     </div>
 
-    <p class="text-center text-ink/40 text-xs mt-10">※ 일부 자료는 정식 오픈 후 또는 수강생에게 제공됩니다.</p>
+    <!-- 자료 리스트 -->
+    <div id="resList" class="bg-white rounded-2xl border border-ink/8 shadow-soft divide-y divide-ink/5 overflow-hidden">
+      <p class="text-ink/40 text-sm text-center py-10">자료를 불러오는 중…</p>
+    </div>
   </main>
 
   <script>
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+    let isAdmin = false;
     function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-    function escAttr(s){ return esc(s).replace(/"/g,'&quot;'); }
-    async function shareItem(title, url){
-      const shareUrl = url || location.href;
-      if(navigator.share){ try{ await navigator.share({ title: title || document.title, url: shareUrl }); }catch(e){} }
-      else { try{ await navigator.clipboard.writeText(shareUrl); alert('🔗 링크가 복사되었어요!\n원하는 곳(카톡·블로그·SNS)에 붙여넣어 공유하세요.'); } catch(e){ prompt('아래 링크를 복사해 공유하세요', shareUrl); } }
+    function fmtDate(iso){ return new Date(iso).toLocaleDateString('ko-KR'); }
+
+    sb.auth.getSession().then(({data:{session}})=>setUser(session));
+    sb.auth.onAuthStateChange((_e,session)=>setUser(session));
+    function setUser(session){
+      isAdmin = !!(session && session.user && session.user.email === ADMIN_EMAIL);
+      document.getElementById('writeBtn').classList.toggle('hidden', !isAdmin);
+      document.getElementById('navUser').innerHTML = isAdmin ? '<span class="text-gold font-semibold">관리자</span>' : '';
+      loadList();
     }
-    function shareRes(el){ shareItem(el.dataset.title, el.dataset.url); }
-    fetch('content/resources.json?t=' + Date.now())
-      .then(r => r.json())
-      .then(data => {
-        const items = data.resources || [];
-        const wrap = document.getElementById('resList');
-        if(!items.length){ wrap.innerHTML = '<p class="text-ink/40 text-sm col-span-full text-center py-8">곧 자료가 추가됩니다.</p>'; return; }
-        wrap.innerHTML = items.map(it => {
-          const has = it.link && it.link.trim();
-          return `<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-6 flex flex-col">
-            ${ it.category ? `<span class="text-xs text-gold font-bold tracking-widest mb-2">${esc(it.category)}</span>` : '' }
-            <h3 class="font-bold leading-snug">${esc(it.title || '')}</h3>
-            <p class="text-sm text-ink/60 mt-2 flex-1 leading-relaxed">${esc(it.desc || '')}</p>
-            ${ has
-              ? `<a href="${encodeURI(it.link)}" target="_blank" rel="noopener" class="mt-4 inline-block text-center bg-ink text-paper text-sm font-semibold rounded-full py-2.5 hover:bg-navy transition">자료 받기 / 보기</a>`
-              : `<span class="mt-4 inline-block text-center border border-ink/15 text-ink/45 text-sm rounded-full py-2.5">준비 중</span>` }
-            <button onclick="shareRes(this)" data-title="${escAttr(it.title || '')}" data-url="${escAttr(has ? it.link : location.href)}" class="mt-2 self-end text-xs text-ink/40 hover:text-gold">↗ 공유</button>
-          </div>`;
-        }).join('');
-      })
-      .catch(() => {
-        document.getElementById('resList').innerHTML = '<p class="text-ink/40 text-sm col-span-full text-center py-8">자료를 불러오지 못했습니다.</p>';
-      });
+
+    function openForm(){ document.getElementById('formView').classList.remove('hidden'); }
+    function closeForm(){
+      document.getElementById('formView').classList.add('hidden');
+      ['fTitle','fCategory','fDesc','fLink'].forEach(id=>document.getElementById(id).value='');
+      document.getElementById('fFile').value=''; document.getElementById('fFileName').textContent=''; document.getElementById('fMsg').textContent='';
+    }
+
+    async function loadList(){
+      const wrap = document.getElementById('resList');
+      const { data, error } = await sb.from('resources').select('*').order('created_at',{ascending:false});
+      if(error){ wrap.innerHTML = `<p class="text-ink/40 text-sm text-center py-8">불러오기 오류: ${esc(error.message)}</p>`; return; }
+      if(!data.length){ wrap.innerHTML = '<p class="text-ink/40 text-sm text-center py-10">아직 자료가 없습니다.'+(isAdmin?' 첫 자료를 올려보세요!':'')+'</p>'; return; }
+      wrap.innerHTML = data.map(r => {
+        const url = (r.file_url || r.link || '').trim();
+        return `<div class="flex items-center gap-4 px-5 py-4 hover:bg-ink/[0.015]">
+          <div class="w-10 h-10 rounded-lg bg-gold/15 text-gold flex items-center justify-center shrink-0">📄</div>
+          <div class="min-w-0 flex-1">
+            ${ r.category ? `<span class="text-[11px] text-gold font-bold tracking-wide">${esc(r.category)}</span>` : '' }
+            <p class="font-semibold leading-snug truncate">${esc(r.title||'')}</p>
+            ${ r.description ? `<p class="text-sm text-ink/55 truncate">${esc(r.description)}</p>` : '' }
+            <p class="text-xs text-ink/35 mt-0.5">${fmtDate(r.created_at)}</p>
+          </div>
+          ${ url ? `<a href="${encodeURI(url)}" target="_blank" rel="noopener" class="shrink-0 bg-ink text-paper text-sm font-semibold px-4 py-2 rounded-full hover:bg-navy">받기</a>`
+                 : `<span class="shrink-0 text-ink/35 text-xs">준비 중</span>` }
+          ${ isAdmin ? `<button onclick="delResource('${r.id}')" class="shrink-0 text-ink/30 hover:text-red-500 text-sm">삭제</button>` : '' }
+        </div>`;
+      }).join('');
+    }
+
+    async function saveResource(){
+      const title = document.getElementById('fTitle').value.trim();
+      const category = document.getElementById('fCategory').value.trim();
+      const description = document.getElementById('fDesc').value.trim();
+      let link = document.getElementById('fLink').value.trim();
+      const file = document.getElementById('fFile').files[0];
+      const msg = document.getElementById('fMsg'); const btn = document.getElementById('saveBtn');
+      if(!title){ msg.textContent='제목을 입력하세요.'; return; }
+      btn.disabled = true; btn.textContent = '올리는 중…'; msg.textContent = '';
+      let file_url = null;
+      try {
+        if(file){
+          if(file.size > 20*1024*1024) throw new Error('파일은 20MB 이하만 가능해요.');
+          const ext = (file.name.split('.').pop() || 'file');
+          const path = `resources/${Date.now()}.${ext}`;
+          const { error: upErr } = await sb.storage.from('community').upload(path, file);
+          if(upErr) throw upErr;
+          file_url = sb.storage.from('community').getPublicUrl(path).data.publicUrl;
+        }
+        const { error } = await sb.from('resources').insert({ title, category: category||null, description: description||null, file_url, link: link||null });
+        if(error) throw error;
+        closeForm(); loadList();
+      } catch(e){ msg.textContent = '오류: ' + (e.message || e); }
+      finally { btn.disabled = false; btn.textContent = '올리기'; }
+    }
+
+    async function delResource(id){
+      if(!confirm('이 자료를 삭제할까요?')) return;
+      const { error } = await sb.from('resources').delete().eq('id', id);
+      if(error){ alert('삭제 오류: ' + error.message); return; }
+      loadList();
+    }
   </script>
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
 </body>
