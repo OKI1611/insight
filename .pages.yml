@@ -146,6 +146,16 @@ content:
           - name: photo
             label: 강사 사진
             type: image
+      - name: leadmagnet
+        label: 가입 선물 (리드 마그넷)
+        type: object
+        fields:
+          - name: title
+            label: 선물 이름 (가입창에 표시)
+            type: string
+          - name: file
+            label: 선물 파일/링크 (PDF 주소 — 가입 완료 시 열림)
+            type: string
       - name: support
         label: 후원 · 연락처
         type: object

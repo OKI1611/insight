@@ -293,9 +293,18 @@
       <div id="videoGrid" class="grid md:grid-cols-3 gap-6">
         <p class="text-ink/40 text-sm col-span-full text-center">영상을 불러오는 중…</p>
       </div>
-      <div class="text-center mt-10">
-        <a href="https://www.youtube.com/channel/UC82IOMnZud8NNt3BYzAxTMg" target="_blank" rel="noopener"
-           class="inline-block border border-ink/15 px-7 py-3.5 rounded-full hover:bg-ink/5 transition">유튜브 채널 전체 보기 →</a>
+      <div class="mt-12 text-center bg-white rounded-3xl border border-ink/8 shadow-soft py-9 px-6">
+        <p class="font-bold text-lg">📺 새 강의를 가장 먼저 받아보세요</p>
+        <p class="text-ink/55 text-sm mt-1.5">구독하시면 새 영상이 올라올 때 알림을 받을 수 있어요.</p>
+        <div class="mt-5 flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="https://www.youtube.com/channel/UC82IOMnZud8NNt3BYzAxTMg?sub_confirmation=1" target="_blank" rel="noopener"
+             class="inline-flex items-center justify-center gap-2 bg-[#FF0000] text-white font-semibold px-7 py-3.5 rounded-full hover:opacity-90 transition">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.5 15.5v-7l6.3 3.5-6.3 3.5z"/></svg>
+            유튜브 구독하기
+          </a>
+          <a href="https://www.youtube.com/channel/UC82IOMnZud8NNt3BYzAxTMg" target="_blank" rel="noopener"
+             class="inline-block border border-ink/15 px-7 py-3.5 rounded-full hover:bg-ink/5 transition">채널 전체 보기 →</a>
+        </div>
       </div>
     </div>
   </section>
@@ -519,6 +528,7 @@
         <h2 id="postTitle" class="text-2xl md:text-3xl font-bold leading-snug"></h2>
         <p id="postDate" class="text-sm text-ink/45 mt-2 mb-6"></p>
         <div id="postBody" class="prose-sm leading-relaxed text-ink/80 space-y-4"></div>
+        <div id="postShare" class="mt-8 pt-6 border-t border-ink/10 flex items-center gap-3"></div>
       </div>
     </article>
   </div>
@@ -633,6 +643,7 @@
         <p class="font-bold text-lg">오광일 <span class="text-gold">인사이트 브리핑</span></p>
         <h3 id="authTitle" class="text-xl font-bold mt-3">회원가입</h3>
         <p class="text-sm text-ink/55 mt-1">구글 또는 카카오로 3초 만에 시작하세요</p>
+        <div id="giftBanner" class="hidden mt-4 bg-gold/12 text-ink text-sm rounded-xl px-4 py-2.5"></div>
       </div>
 
       <!-- STEP 1: 로그인/가입 방법 -->
@@ -777,8 +788,32 @@
         const photo = site.instructor && site.instructor.photo;
         const ph = document.getElementById('instructorPhoto');
         if (ph && photo) ph.innerHTML = `<img src="${photo}" alt="오광일 강사" class="w-full h-full object-cover">`;
+
+        // 가입 선물(리드 마그넷)
+        window.LEADMAGNET = site.leadmagnet || null;
+        const gb = document.getElementById('giftBanner');
+        if (gb && site.leadmagnet && site.leadmagnet.title) {
+          gb.innerHTML = `🎁 무료 가입 시 <b>«${escAttr(site.leadmagnet.title)}»</b> 드려요`;
+          gb.classList.remove('hidden');
+        }
       })
       .catch(() => {});
+
+    // ===== 공유 기능 (모바일=카톡 등 모든 SNS / PC=링크 복사) =====
+    function escAttr(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+    async function shareItem(title, url){
+      const shareUrl = url || location.href;
+      if(navigator.share){
+        try{ await navigator.share({ title: title || document.title, url: shareUrl }); }catch(e){}
+      } else {
+        try{ await navigator.clipboard.writeText(shareUrl); alert('🔗 링크가 복사되었어요!\n원하는 곳(카톡·블로그·SNS)에 붙여넣어 공유하세요.'); }
+        catch(e){ prompt('아래 링크를 복사해 공유하세요', shareUrl); }
+      }
+    }
+    function shareThis(el){ shareItem(el.dataset.title, el.dataset.url); }
+    function shareBtn(title, url){
+      return `<button onclick="event.preventDefault();event.stopPropagation();shareThis(this)" data-title="${escAttr(title)}" data-url="${escAttr(url)}" class="shrink-0 text-ink/40 hover:text-gold text-xs inline-flex items-center gap-1" title="공유하기">↗ 공유</button>`;
+    }
 
     // ===== 유튜브 영상 (content/videos.json) =====
     function ytId(u){
@@ -797,7 +832,10 @@
           const id = ytId(v.youtube);
           return `<div class="rounded-2xl overflow-hidden border border-ink/8 bg-white shadow-soft">
             <div class="aspect-video bg-ink">${ id ? `<iframe class="w-full h-full" src="https://www.youtube.com/embed/${id}" title="${(v.title||'').replace(/"/g,'&quot;')}" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>` : '' }</div>
-            <div class="p-4"><h3 class="font-bold text-sm leading-snug">${v.title || ''}</h3></div>
+            <div class="p-4 flex items-start justify-between gap-2">
+              <h3 class="font-bold text-sm leading-snug">${v.title || ''}</h3>
+              ${ shareBtn(v.title || '', id ? 'https://youtu.be/' + id : 'https://www.youtube.com/channel/UC82IOMnZud8NNt3BYzAxTMg') }
+            </div>
           </div>`;
         }).join('');
       })
@@ -884,7 +922,9 @@
         provider: (user.app_metadata && user.app_metadata.provider) || 'email'
       });
       if(error){ setMsg('profMsg','저장 오류: ' + error.message); return false; }
-      alert('가입이 완료되었습니다! 환영합니다 🙌');
+      const gift = window.LEADMAGNET;
+      if (gift && gift.file) { try { window.open(gift.file, '_blank'); } catch(e){} }
+      alert('가입이 완료되었습니다! 환영합니다 🙌' + (gift && gift.file ? '\n\n🎁 가입 선물을 새 창에서 열었어요.' : ''));
       closeAuth(); refreshNav();
       return false;
     }
@@ -934,6 +974,8 @@
               <p class="text-sm text-ink/55 mt-2">${p.summary||''}</p>
             </div>
           </article>`).join('');
+        const hm = location.hash.match(/^#post-(\d+)$/);
+        if(hm) openPost(parseInt(hm[1], 10));
       })
       .catch(() => {
         document.getElementById('insightGrid').innerHTML =
@@ -948,12 +990,18 @@
       document.getElementById('postDate').textContent = p.date || '';
       document.getElementById('postBody').innerHTML =
         window.marked ? marked.parse(p.body || '') : (p.body || '').replace(/\n/g, '<br>');
+      const url = location.origin + location.pathname + '#post-' + i;
+      history.replaceState(null, '', '#post-' + i);
+      document.getElementById('postShare').innerHTML =
+        `<span class="text-sm text-ink/50">이 칼럼이 좋았다면 공유해 주세요</span>` +
+        `<button onclick="shareThis(this)" data-title="${escAttr(p.title || '')}" data-url="${escAttr(url)}" class="ml-auto bg-ink text-paper text-sm font-semibold px-4 py-2 rounded-full hover:bg-navy transition">↗ 공유하기</button>`;
       postModal.classList.remove('hidden'); postModal.classList.add('flex');
       document.body.style.overflow = 'hidden';
     }
     function closePost(){
       postModal.classList.add('hidden'); postModal.classList.remove('flex');
       document.body.style.overflow = '';
+      if(location.hash.startsWith('#post-')) history.replaceState(null, '', location.pathname);
     }
     document.addEventListener('keydown', e => { if(e.key === 'Escape') closePost(); });
   </script>
