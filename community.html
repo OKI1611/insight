@@ -64,9 +64,14 @@
 
     <!-- 게시판 (로그인 시) -->
     <div id="boardView" class="hidden">
+      <!-- 탭: 자유 나눔 / Q&A 질문답변 -->
+      <div class="flex gap-2 mb-5">
+        <button id="tab-free" onclick="switchBoard('free')" class="flex-1 py-2.5 rounded-full text-sm font-semibold border transition">📷 자유 나눔</button>
+        <button id="tab-qna" onclick="switchBoard('qna')" class="flex-1 py-2.5 rounded-full text-sm font-semibold border transition">🙋 질문답변 (Q&A)</button>
+      </div>
       <!-- 글쓰기 -->
       <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 mb-6">
-        <textarea id="postContent" rows="3" placeholder="오늘의 나눔, 질문, 은혜를 적어보세요…" class="w-full resize-none outline-none text-[15px] placeholder:text-ink/35"></textarea>
+        <textarea id="postContent" rows="3" placeholder="오늘의 나눔, 은혜, 사진을 나눠보세요…" class="w-full resize-none outline-none text-[15px] placeholder:text-ink/35"></textarea>
         <div class="flex items-center justify-between mt-3 pt-3 border-t border-ink/8">
           <label class="cursor-pointer text-sm text-ink/55 hover:text-gold flex items-center gap-1.5">
             <span>🖼️ 사진</span>
@@ -86,7 +91,21 @@
   <script>
     const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
     const ADMIN_EMAIL = 'josephoh1611@gmail.com';   // 관리자: 모든 글 삭제 가능
-    let currentUser = null, currentName = '회원', isAdmin = false;
+    let currentUser = null, currentName = '회원', isAdmin = false, currentBoard = 'free';
+
+    // 탭 전환 (자유 나눔 / Q&A 질문답변)
+    function switchBoard(b){
+      currentBoard = b;
+      const on = 'bg-ink text-paper border-ink', off = 'bg-white text-ink/55 border-ink/15 hover:bg-ink/5';
+      const base = 'flex-1 py-2.5 rounded-full text-sm font-semibold border transition ';
+      document.getElementById('tab-free').className = base + (b === 'free' ? on : off);
+      document.getElementById('tab-qna').className = base + (b === 'qna' ? on : off);
+      document.getElementById('postContent').placeholder = (b === 'qna')
+        ? '궁금한 점을 질문해 보세요. 멤버와 관리자가 답해드려요…'
+        : '오늘의 나눔, 은혜, 사진을 나눠보세요…';
+      document.getElementById('postBtn').textContent = (b === 'qna') ? '질문 올리기' : '글 올리기';
+      loadPosts();
+    }
 
     sb.auth.onAuthStateChange((_e, session) => setAuthUI(session));
     sb.auth.getSession().then(({ data:{ session } }) => setAuthUI(session));
@@ -101,7 +120,7 @@
         document.getElementById('boardView').classList.remove('hidden');
         document.getElementById('navUser').innerHTML =
           `${esc(currentName)}님${isAdmin ? ' <span class="text-gold font-semibold">· 관리자</span>' : ''} · <button onclick="logout()" class="hover:text-gold">로그아웃</button>`;
-        loadPosts();
+        switchBoard(currentBoard);
       } else {
         currentUser = null; isAdmin = false;
         document.getElementById('loginView').classList.remove('hidden');
@@ -195,9 +214,9 @@
     async function loadPosts(){
       const feed = document.getElementById('feed');
       feed.innerHTML = '<p class="text-ink/40 text-sm text-center py-8">불러오는 중…</p>';
-      const { data, error } = await sb.from('community_posts').select('*').order('created_at', { ascending:false }).limit(100);
+      const { data, error } = await sb.from('community_posts').select('*').eq('board', currentBoard).order('created_at', { ascending:false }).limit(100);
       if(error){ feed.innerHTML = `<p class="text-red-500 text-sm text-center py-8">불러오기 오류: ${esc(error.message)}</p>`; return; }
-      if(!data.length){ feed.innerHTML = '<p class="text-ink/40 text-sm text-center py-10">첫 글의 주인공이 되어보세요! ✍️</p>'; return; }
+      if(!data.length){ feed.innerHTML = `<p class="text-ink/40 text-sm text-center py-10">${ currentBoard === 'qna' ? '첫 질문을 남겨보세요! 🙋' : '첫 글의 주인공이 되어보세요! ✍️' }</p>`; return; }
       feed.innerHTML = data.map(renderPost).join('');
       // 댓글 불러오기
       const ids = data.map(p => p.id);
@@ -223,7 +242,7 @@
           if(upErr) throw upErr;
           image_url = sb.storage.from('community').getPublicUrl(path).data.publicUrl;
         }
-        const { error } = await sb.from('community_posts').insert({ author_id: currentUser.id, author_name: currentName, content, image_url });
+        const { error } = await sb.from('community_posts').insert({ author_id: currentUser.id, author_name: currentName, content, image_url, board: currentBoard });
         if(error) throw error;
         ta.value = ''; fileInput.value = ''; document.getElementById('imgName').textContent = '';
         loadPosts();
