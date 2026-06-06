@@ -33,7 +33,8 @@
     }}}
   </script>
   <style>
-    html{scroll-behavior:smooth}
+    html{scroll-behavior:smooth; scroll-padding-top:84px}
+    section[id]{scroll-margin-top:84px}
     body{ -webkit-font-smoothing:antialiased; letter-spacing:-0.005em; }
     /* 세리프 디스플레이 — 히어로 h1 & 섹션 h2 에 격조를 부여 */
     h1, section h2{ font-family:'Noto Serif KR', Pretendard, serif; letter-spacing:-0.01em; font-weight:700; }
@@ -515,6 +516,7 @@
           <h2 class="text-2xl md:text-[32px] font-bold">오광일 칼럼</h2>
           <p class="text-ink/55 text-sm mt-2">유튜브에서 다 못한 이야기, 시대를 읽는 묵상을 글로 나눕니다.</p>
         </div>
+        <a href="column.html" class="text-sm text-gold hover:underline shrink-0">전체 칼럼 보기 →</a>
       </div>
       <!-- 글 목록: content/posts.json 에서 자동으로 그려집니다 -->
       <div id="insightGrid" class="grid md:grid-cols-3 gap-6">
@@ -737,7 +739,7 @@
     const DEFAULT_MENU = [
       { label: '강의',     href: '#catalog'      },
       { label: '무료영상', href: '#videos'       },
-      { label: '칼럼',     href: '#insight'      },
+      { label: '칼럼',     href: 'column.html'   },
       { label: '자료실',   href: 'resources.html' },
       { label: '커뮤니티', href: 'community.html' },
       { label: '후기',     href: '#reviews'      },
@@ -963,28 +965,19 @@
     // ===== 인사이트 글 — content/posts.json 에서 자동으로 불러오기 =====
     let POSTS = [];
     const catColor = { '자료실':'from-navy to-ink', '인사이트':'from-gold/70 to-navy' };
-    fetch('content/posts.json?t=' + Date.now())
-      .then(r => r.json())
-      .then(data => {
-        POSTS = data.posts || [];
+    sb.from('columns').select('id,title,excerpt,cover_url,created_at').order('created_at', { ascending:false }).limit(3)
+      .then(({ data }) => {
         const grid = document.getElementById('insightGrid');
-        if(!POSTS.length){ grid.innerHTML = '<p class="text-ink/40 text-sm">아직 등록된 글이 없습니다.</p>'; return; }
-        grid.innerHTML = POSTS.map((p, i) => `
-          <article onclick="openPost(${i})" class="rounded-2xl border border-ink/8 overflow-hidden hover:shadow-card hover:-translate-y-1 transition bg-paper cursor-pointer">
-            <div class="h-40 bg-gradient-to-br ${catColor[p.category]||'from-ink to-gold/60'}"
-                 ${p.image ? `style="background-image:url('${p.image}');background-size:cover;background-position:center"` : ''}></div>
+        if(!data || !data.length){ grid.innerHTML = '<p class="text-ink/40 text-sm col-span-full text-center py-6">곧 칼럼이 올라옵니다.</p>'; return; }
+        grid.innerHTML = data.map(c => `
+          <a href="column.html#col-${c.id}" class="block rounded-2xl border border-ink/8 overflow-hidden hover:shadow-card hover:-translate-y-1 transition bg-paper">
+            <div class="h-40 bg-gradient-to-br from-navy to-ink" ${c.cover_url ? `style="background-image:url('${encodeURI(c.cover_url)}');background-size:cover;background-position:center"` : ''}></div>
             <div class="p-6">
-              <span class="text-xs text-gold font-bold tracking-widest">${p.category||''}</span>
-              <h3 class="font-bold mt-2 leading-snug">${p.title||''}</h3>
-              <p class="text-sm text-ink/55 mt-2">${p.summary||''}</p>
+              <span class="text-xs text-gold font-bold tracking-widest">칼럼</span>
+              <h3 class="font-bold mt-2 leading-snug">${(c.title||'').replace(/</g,'&lt;')}</h3>
+              <p class="text-sm text-ink/55 mt-2">${(c.excerpt||'').replace(/</g,'&lt;')}</p>
             </div>
-          </article>`).join('');
-        const hm = location.hash.match(/^#post-(\d+)$/);
-        if(hm) openPost(parseInt(hm[1], 10));
-      })
-      .catch(() => {
-        document.getElementById('insightGrid').innerHTML =
-          '<p class="text-ink/40 text-sm">글을 불러오지 못했습니다. (인터넷 주소에서는 정상 동작합니다)</p>';
+          </a>`).join('');
       });
 
     const postModal = document.getElementById('postModal');

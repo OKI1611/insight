@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>오광일 칼럼 — 인사이트 브리핑</title>
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#15203a" />
+  <link rel="apple-touch-icon" href="/images/icon-192.png" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink:'#15203a', navy:'#1b2a4a', gold:'#b8923f', sand:'#efe7d6', paper:'#fcfaf6' },
+      fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
+      boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
+    }}}
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+  <script>
+    const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
+    const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+    const ADMIN_EMAIL = 'josephoh1611@gmail.com';
+  </script>
+  <style>
+    h1,h2,.serif{font-family:'Noto Serif KR',Pretendard,serif}
+    /* 칼럼 본문(블로그) 스타일 */
+    .article h1{font-size:1.6rem;font-weight:700;margin:1em 0 .4em}
+    .article h2{font-size:1.35rem;font-weight:700;margin:1em 0 .4em}
+    .article h3{font-size:1.15rem;font-weight:700;margin:.9em 0 .3em}
+    .article p{margin:.7em 0;line-height:1.85}
+    .article ul{list-style:disc;padding-left:1.3em;margin:.7em 0}
+    .article ol{list-style:decimal;padding-left:1.3em;margin:.7em 0}
+    .article li{margin:.25em 0;line-height:1.8}
+    .article blockquote{border-left:3px solid #b8923f;padding:.2em 1em;color:#5a6275;font-style:italic;margin:1em 0;background:#b8923f0d}
+    .article a{color:#b8923f;text-decoration:underline}
+    .article img{max-width:100%;height:auto;border-radius:.75rem;margin:1em 0}
+    .article strong{font-weight:700;color:#15203a}
+    .ql-container{font-family:'Pretendard',sans-serif;font-size:16px}
+    .ql-editor{min-height:340px}
+  </style>
+</head>
+<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+
+  <header class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-ink/8">
+    <div class="max-w-3xl mx-auto px-4 h-14 flex items-center justify-between">
+      <a href="index.html" class="font-bold text-[15px]">오광일 <span class="text-gold">인사이트 브리핑</span></a>
+      <div class="flex items-center gap-3 text-sm">
+        <span id="navUser" class="text-ink/60"></span>
+        <a href="index.html" class="text-ink/50 hover:text-gold">← 홈</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-3xl mx-auto px-4 py-10">
+
+    <!-- 목록 화면 -->
+    <div id="listView">
+      <div class="flex items-end justify-between mb-8">
+        <div>
+          <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">COLUMN</p>
+          <h1 class="text-2xl md:text-3xl font-bold">오광일 칼럼</h1>
+          <p class="text-ink/55 text-sm mt-2">유튜브에서 다 못한 이야기, 시대를 읽는 묵상을 글로 나눕니다.</p>
+        </div>
+        <button id="writeBtn" onclick="openEditor()" class="hidden bg-ink text-paper text-sm font-semibold px-4 py-2.5 rounded-full hover:bg-navy transition shrink-0">✏️ 새 글 쓰기</button>
+      </div>
+      <div id="colList" class="space-y-4"><p class="text-ink/40 text-sm text-center py-10">칼럼을 불러오는 중…</p></div>
+    </div>
+
+    <!-- 읽기 화면 -->
+    <article id="readView" class="hidden">
+      <button onclick="showList()" class="text-sm text-ink/50 hover:text-gold mb-6">← 목록으로</button>
+      <p id="rDate" class="text-gold text-xs font-bold tracking-widest mb-2"></p>
+      <h1 id="rTitle" class="text-2xl md:text-[28px] font-bold leading-snug"></h1>
+      <p id="rMeta" class="text-ink/45 text-sm mt-2 mb-6 pb-6 border-b border-ink/10"></p>
+      <div id="rBody" class="article text-ink/85"></div>
+      <div class="mt-10 pt-6 border-t border-ink/10 flex items-center gap-3">
+        <span class="text-sm text-ink/50">이 칼럼이 좋았다면 공유해 주세요</span>
+        <button id="rShare" class="ml-auto bg-ink text-paper text-sm font-semibold px-4 py-2 rounded-full hover:bg-navy transition">↗ 공유하기</button>
+        <span id="rAdmin" class="hidden gap-2 text-sm">
+          <button onclick="editCurrent()" class="text-ink/50 hover:text-gold">수정</button>
+          <button onclick="deleteCurrent()" class="text-ink/40 hover:text-red-500">삭제</button>
+        </span>
+      </div>
+    </article>
+
+    <!-- 글쓰기 화면 -->
+    <div id="editView" class="hidden">
+      <button onclick="showList()" class="text-sm text-ink/50 hover:text-gold mb-6">← 취소</button>
+      <h1 class="text-xl font-bold mb-4">칼럼 작성</h1>
+      <input id="eTitle" placeholder="제목을 입력하세요" class="w-full text-xl font-bold border-b border-ink/15 pb-3 mb-3 outline-none focus:border-gold bg-transparent"/>
+      <input id="eCover" placeholder="대표 이미지 URL (선택)" class="w-full text-sm border border-ink/12 rounded-lg px-3 py-2 mb-4 outline-none focus:border-gold"/>
+      <div class="bg-white rounded-xl border border-ink/12 overflow-hidden">
+        <div id="editor"></div>
+      </div>
+      <p class="text-xs text-ink/40 mt-2">💡 워드·한글 글을 복사해 붙여넣어도 깔끔하게 정리됩니다.</p>
+      <div class="mt-5 flex gap-2 justify-end">
+        <button onclick="showList()" class="border border-ink/15 rounded-full px-5 py-2.5 text-sm hover:bg-ink/5">취소</button>
+        <button id="saveBtn" onclick="saveColumn()" class="bg-gold text-white font-semibold rounded-full px-6 py-2.5 text-sm hover:opacity-90">발행하기</button>
+      </div>
+      <p id="eMsg" class="text-red-500 text-xs mt-2 text-right min-h-[14px]"></p>
+    </div>
+  </main>
+
+  <script>
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+    let isAdmin = false, COLS = [], current = null, editingId = null, quill = null;
+
+    function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    function plain(html){ const d=document.createElement('div'); d.innerHTML=html||''; return (d.textContent||'').trim(); }
+    function sanitize(html){
+      const d=document.createElement('div'); d.innerHTML=html||'';
+      d.querySelectorAll('script,style,iframe,object,embed').forEach(n=>n.remove());
+      d.querySelectorAll('*').forEach(el=>{ [...el.attributes].forEach(a=>{ if(/^on/i.test(a.name) || (a.name==='href'&&/^javascript:/i.test(a.value))) el.removeAttribute(a.name); }); });
+      return d.innerHTML;
+    }
+    function timeAgo(iso){
+      const diff=Date.now()-new Date(iso).getTime(); const day=Math.floor(diff/86400000);
+      if(day<1) return '오늘'; if(day<7) return day+'일 전';
+      return new Date(iso).toLocaleDateString('ko-KR');
+    }
+    async function shareItem(title,url){
+      const u=url||location.href;
+      if(navigator.share){ try{ await navigator.share({title:title||document.title,url:u}); }catch(e){} }
+      else { try{ await navigator.clipboard.writeText(u); alert('🔗 링크가 복사되었어요! 원하는 곳에 붙여넣어 공유하세요.'); }catch(e){ prompt('링크 복사', u); } }
+    }
+
+    sb.auth.getSession().then(({data:{session}})=>setUser(session));
+    sb.auth.onAuthStateChange((_e,session)=>setUser(session));
+    function setUser(session){
+      isAdmin = !!(session && session.user && session.user.email === ADMIN_EMAIL);
+      document.getElementById('writeBtn').classList.toggle('hidden', !isAdmin);
+      document.getElementById('navUser').innerHTML = isAdmin ? '<span class="text-gold font-semibold">관리자</span>' : '';
+    }
+
+    function showList(){ ['readView','editView'].forEach(id=>document.getElementById(id).classList.add('hidden')); document.getElementById('listView').classList.remove('hidden'); if(location.hash) history.replaceState(null,'',location.pathname); }
+    function show(id){ ['listView','readView','editView'].forEach(x=>document.getElementById(x).classList.add('hidden')); document.getElementById(id).classList.remove('hidden'); }
+
+    async function loadList(){
+      const wrap=document.getElementById('colList');
+      const { data, error } = await sb.from('columns').select('id,title,excerpt,cover_url,created_at,author_name').order('created_at',{ascending:false});
+      if(error){ wrap.innerHTML=`<p class="text-ink/40 text-sm text-center py-8">불러오기 오류: ${esc(error.message)}</p>`; return; }
+      COLS = data||[];
+      if(!COLS.length){ wrap.innerHTML='<p class="text-ink/40 text-sm text-center py-12">아직 칼럼이 없습니다.'+(isAdmin?' 첫 글을 써보세요!':'')+'</p>'; return; }
+      wrap.innerHTML = COLS.map(c=>`
+        <div onclick="openColumn('${c.id}')" class="group bg-white rounded-2xl border border-ink/8 shadow-soft p-5 sm:flex gap-4 cursor-pointer hover:shadow-card transition">
+          ${c.cover_url?`<div class="sm:w-40 h-28 rounded-xl bg-cover bg-center shrink-0 mb-3 sm:mb-0" style="background-image:url('${encodeURI(c.cover_url)}')"></div>`:''}
+          <div class="min-w-0">
+            <h3 class="font-bold text-lg leading-snug group-hover:text-gold transition">${esc(c.title||'')}</h3>
+            <p class="text-sm text-ink/55 mt-1.5 line-clamp-2">${esc(c.excerpt||'')}</p>
+            <p class="text-xs text-ink/40 mt-2">${esc(c.author_name||'오광일')} · ${timeAgo(c.created_at)}</p>
+          </div>
+        </div>`).join('');
+    }
+
+    async function openColumn(id){
+      const { data, error } = await sb.from('columns').select('*').eq('id', id).single();
+      if(error || !data){ alert('글을 불러오지 못했습니다.'); return; }
+      current = data;
+      history.replaceState(null,'','#col-'+id);
+      document.getElementById('rTitle').textContent = data.title||'';
+      document.getElementById('rDate').textContent = 'COLUMN';
+      document.getElementById('rMeta').textContent = (data.author_name||'오광일') + ' · ' + new Date(data.created_at).toLocaleDateString('ko-KR');
+      document.getElementById('rBody').innerHTML = sanitize(data.body_html||'');
+      const url = location.origin + location.pathname + '#col-' + id;
+      document.getElementById('rShare').onclick = ()=>shareItem(data.title, url);
+      document.getElementById('rAdmin').classList.toggle('hidden', !isAdmin);
+      document.getElementById('rAdmin').classList.toggle('flex', isAdmin);
+      show('readView'); window.scrollTo(0,0);
+    }
+
+    function ensureQuill(){
+      if(quill) return quill;
+      quill = new Quill('#editor', {
+        theme:'snow',
+        placeholder:'블로그처럼 자유롭게 작성하세요…',
+        modules:{ toolbar:[ [{header:[1,2,3,false]}], ['bold','italic','underline','strike'], [{list:'ordered'},{list:'bullet'}], ['blockquote'], [{align:[]}], ['link','image'], ['clean'] ] }
+      });
+      return quill;
+    }
+    function openEditor(){
+      editingId=null; document.getElementById('eTitle').value=''; document.getElementById('eCover').value=''; document.getElementById('eMsg').textContent='';
+      show('editView'); ensureQuill(); quill.setText(''); window.scrollTo(0,0);
+    }
+    function editCurrent(){
+      if(!current) return;
+      editingId=current.id; document.getElementById('eTitle').value=current.title||''; document.getElementById('eCover').value=current.cover_url||''; document.getElementById('eMsg').textContent='';
+      show('editView'); ensureQuill(); quill.root.innerHTML = sanitize(current.body_html||''); window.scrollTo(0,0);
+    }
+    async function saveColumn(){
+      const title=document.getElementById('eTitle').value.trim();
+      const cover=document.getElementById('eCover').value.trim();
+      const body=sanitize(quill.root.innerHTML);
+      const msg=document.getElementById('eMsg'); const btn=document.getElementById('saveBtn');
+      if(!title){ msg.textContent='제목을 입력하세요.'; return; }
+      if(plain(body).length<1){ msg.textContent='내용을 입력하세요.'; return; }
+      btn.disabled=true; btn.textContent='저장 중…'; msg.textContent='';
+      const row={ title, body_html:body, excerpt:plain(body).slice(0,100), cover_url:cover||null };
+      let res;
+      if(editingId) res=await sb.from('columns').update(row).eq('id',editingId);
+      else res=await sb.from('columns').insert(row);
+      btn.disabled=false; btn.textContent='발행하기';
+      if(res.error){ msg.textContent='저장 오류: '+res.error.message; return; }
+      await loadList(); showList();
+    }
+    async function deleteCurrent(){
+      if(!current || !confirm('이 칼럼을 삭제할까요?')) return;
+      const { error } = await sb.from('columns').delete().eq('id', current.id);
+      if(error){ alert('삭제 오류: '+error.message); return; }
+      await loadList(); showList();
+    }
+
+    (async()=>{
+      await loadList();
+      const m = location.hash.match(/^#col-(.+)$/);
+      if(m) openColumn(m[1]);
+    })();
+  </script>
+  <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+</body>
+</html>
