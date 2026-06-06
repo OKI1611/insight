@@ -141,7 +141,52 @@
         </div>
         <p class="text-ink/80 whitespace-pre-wrap leading-relaxed text-[15px]">${esc(p.content)}</p>
         ${p.image_url ? `<img src="${p.image_url}" class="mt-3 rounded-xl max-h-96 w-auto border border-ink/5" loading="lazy">` : ''}
+        <div class="mt-4 pt-4 border-t border-ink/5">
+          <div id="comments-${p.id}" class="space-y-2.5 mb-3"></div>
+          <div class="flex gap-2">
+            <input id="ci-${p.id}" onkeydown="if(event.key==='Enter')addComment('${p.id}')" placeholder="댓글로 답변·토론하기…"
+                   class="flex-1 border border-ink/12 rounded-full px-4 py-2 text-sm outline-none focus:border-gold"/>
+            <button onclick="addComment('${p.id}')" class="bg-ink text-paper text-sm font-semibold px-4 py-2 rounded-full hover:bg-navy transition shrink-0">등록</button>
+          </div>
+        </div>
       </article>`;
+    }
+
+    function renderComments(postId, comments){
+      const box = document.getElementById('comments-' + postId);
+      if(!box) return;
+      if(!comments.length){ box.innerHTML = '<p class="text-ink/35 text-xs">첫 댓글을 남겨보세요.</p>'; return; }
+      box.innerHTML = comments.map(c => {
+        const mine = currentUser && c.author_id === currentUser.id;
+        const canDel = mine || isAdmin;
+        const adminBadge = c.is_admin ? ' <span class="text-[10px] bg-gold/15 text-gold px-1.5 py-0.5 rounded align-middle">관리자</span>' : '';
+        return `<div class="flex items-start gap-2 text-sm">
+          <span class="font-semibold ${c.is_admin ? 'text-gold' : ''} shrink-0">${esc(c.author_name || '회원')}${adminBadge}</span>
+          <span class="text-ink/75 flex-1 break-words">${esc(c.content)}</span>
+          <span class="text-ink/30 text-xs shrink-0">${timeAgo(c.created_at)}</span>
+          ${canDel ? `<button onclick="delComment('${c.id}')" class="text-ink/30 hover:text-red-500 text-xs shrink-0" title="삭제">×</button>` : ''}
+        </div>`;
+      }).join('');
+    }
+
+    async function addComment(postId){
+      if(!currentUser){ alert('로그인이 필요해요.'); return; }
+      const input = document.getElementById('ci-' + postId);
+      const content = (input.value || '').trim();
+      if(!content) return;
+      input.disabled = true;
+      const { error } = await sb.from('community_comments').insert({ post_id: postId, author_id: currentUser.id, author_name: currentName, content });
+      input.disabled = false;
+      if(error){ alert('댓글 오류: ' + error.message); return; }
+      input.value = '';
+      loadPosts();
+    }
+
+    async function delComment(id){
+      if(!confirm('댓글을 삭제할까요?')) return;
+      const { error } = await sb.from('community_comments').delete().eq('id', id);
+      if(error){ alert('삭제 오류: ' + error.message); return; }
+      loadPosts();
     }
 
     async function loadPosts(){
@@ -151,6 +196,12 @@
       if(error){ feed.innerHTML = `<p class="text-red-500 text-sm text-center py-8">불러오기 오류: ${esc(error.message)}</p>`; return; }
       if(!data.length){ feed.innerHTML = '<p class="text-ink/40 text-sm text-center py-10">첫 글의 주인공이 되어보세요! ✍️</p>'; return; }
       feed.innerHTML = data.map(renderPost).join('');
+      // 댓글 불러오기
+      const ids = data.map(p => p.id);
+      const { data: comments } = await sb.from('community_comments').select('*').in('post_id', ids).order('created_at', { ascending:true });
+      const byPost = {};
+      (comments || []).forEach(c => { (byPost[c.post_id] = byPost[c.post_id] || []).push(c); });
+      data.forEach(p => renderComments(p.id, byPost[p.id] || []));
     }
 
     async function submitPost(){
