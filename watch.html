@@ -87,7 +87,7 @@
       return m ? m[1] : (String(u).trim().length === 11 ? String(u).trim() : '');
     }
 
-    fetch('content/course.json')
+    fetch('content/course.json?t=' + Date.now())
       .then(r => r.json())
       .then(c => {
         lessons = c.lessons || [];

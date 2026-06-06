@@ -70,6 +70,29 @@ content:
             label: 무료 공개 (체크=무료, 해제=오픈 예정)
             type: boolean
 
+  - name: resources
+    label: 자료실
+    type: file
+    path: content/resources.json
+    fields:
+      - name: resources
+        label: 자료 목록
+        type: object
+        list: true
+        fields:
+          - name: title
+            label: 자료 제목
+            type: string
+          - name: category
+            label: 분류 (예 암송노트·강의노트·도표)
+            type: string
+          - name: desc
+            label: 설명
+            type: text
+          - name: link
+            label: 다운로드/보기 링크 (비우면 '준비 중')
+            type: string
+
   - name: videos
     label: 유튜브 영상
     type: file

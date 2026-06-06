@@ -497,10 +497,10 @@
     <div class="max-w-6xl mx-auto px-5">
       <div class="flex items-end justify-between mb-12">
         <div>
-          <p class="eyebrow text-gold text-xs font-semibold mb-3">INSIGHT</p>
-          <h2 class="text-2xl md:text-[32px] font-bold">인사이트 · 자료실</h2>
+          <p class="eyebrow text-gold text-xs font-semibold mb-3">COLUMN</p>
+          <h2 class="text-2xl md:text-[32px] font-bold">오광일 칼럼</h2>
+          <p class="text-ink/55 text-sm mt-2">유튜브에서 다 못한 이야기, 시대를 읽는 묵상을 글로 나눕니다.</p>
         </div>
-        <a href="#" class="text-sm text-gold hover:underline">전체 보기 →</a>
       </div>
       <!-- 글 목록: content/posts.json 에서 자동으로 그려집니다 -->
       <div id="insightGrid" class="grid md:grid-cols-3 gap-6">
@@ -719,13 +719,13 @@
   <script>
     // 메뉴 기본값(인터넷 연결 전/오류 시 대비 — 평소엔 site.json 값 사용)
     const DEFAULT_MENU = [
-      { label: '전체 강의', href: '#catalog'    },
-      { label: '무료 영상', href: '#videos'     },
-      { label: '커리큘럼',  href: '#curriculum' },
-      { label: '수강 후기', href: '#reviews'    },
-      { label: '인사이트',  href: '#insight'    },
-      { label: '커뮤니티',  href: 'community.html' },
-      { label: 'FAQ',       href: '#faq'        },
+      { label: '강의',     href: '#catalog'      },
+      { label: '무료영상', href: '#videos'       },
+      { label: '칼럼',     href: '#insight'      },
+      { label: '자료실',   href: 'resources.html' },
+      { label: '커뮤니티', href: 'community.html' },
+      { label: '후기',     href: '#reviews'      },
+      { label: 'FAQ',      href: '#faq'          },
     ];
     function renderMenu(menu){
       document.getElementById('mainmenu').innerHTML = (menu || []).map(m =>
@@ -735,7 +735,7 @@
     renderMenu(DEFAULT_MENU);
 
     // content/site.json 에서 메뉴·가격·후원 정보를 읽어 반영
-    fetch('content/site.json')
+    fetch('content/site.json?t=' + Date.now())
       .then(r => r.json())
       .then(site => {
         if (site.menu && site.menu.length) renderMenu(site.menu);
@@ -786,7 +786,7 @@
       const m = String(u).match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/);
       return m ? m[1] : (String(u).trim().length === 11 ? String(u).trim() : '');
     }
-    fetch('content/videos.json')
+    fetch('content/videos.json?t=' + Date.now())
       .then(r => r.json())
       .then(data => {
         const vids = data.videos || [];
@@ -918,7 +918,7 @@
     // ===== 인사이트 글 — content/posts.json 에서 자동으로 불러오기 =====
     let POSTS = [];
     const catColor = { '자료실':'from-navy to-ink', '인사이트':'from-gold/70 to-navy' };
-    fetch('content/posts.json')
+    fetch('content/posts.json?t=' + Date.now())
       .then(r => r.json())
       .then(data => {
         POSTS = data.posts || [];

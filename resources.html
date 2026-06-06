@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>자료실 — 오광일 인사이트 브리핑</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink:'#15203a', navy:'#1b2a4a', gold:'#b8923f', sand:'#efe7d6', paper:'#fcfaf6' },
+      fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
+      boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)' }
+    }}}
+  </script>
+  <style>h1{font-family:'Noto Serif KR',Pretendard,serif}</style>
+</head>
+<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+
+  <header class="sticky top-0 z-40 bg-ink text-paper">
+    <div class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
+      <a href="index.html" class="font-bold text-[15px]">오광일 <span class="text-gold">인사이트 브리핑</span></a>
+      <a href="index.html" class="text-sm text-paper/70 hover:text-gold">← 홈</a>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 py-10">
+    <div class="text-center mb-10">
+      <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">LIBRARY</p>
+      <h1 class="text-2xl md:text-3xl font-bold">자료실</h1>
+      <p class="text-ink/55 text-sm mt-3">강의와 함께 보는 자료 — 암송노트·강의노트·도표를 받아보세요.</p>
+    </div>
+
+    <div id="resList" class="grid md:grid-cols-2 gap-5">
+      <p class="text-ink/40 text-sm col-span-full text-center py-8">자료를 불러오는 중…</p>
+    </div>
+
+    <p class="text-center text-ink/40 text-xs mt-10">※ 일부 자료는 정식 오픈 후 또는 수강생에게 제공됩니다.</p>
+  </main>
+
+  <script>
+    function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    fetch('content/resources.json?t=' + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        const items = data.resources || [];
+        const wrap = document.getElementById('resList');
+        if(!items.length){ wrap.innerHTML = '<p class="text-ink/40 text-sm col-span-full text-center py-8">곧 자료가 추가됩니다.</p>'; return; }
+        wrap.innerHTML = items.map(it => {
+          const has = it.link && it.link.trim();
+          return `<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-6 flex flex-col">
+            ${ it.category ? `<span class="text-xs text-gold font-bold tracking-widest mb-2">${esc(it.category)}</span>` : '' }
+            <h3 class="font-bold leading-snug">${esc(it.title || '')}</h3>
+            <p class="text-sm text-ink/60 mt-2 flex-1 leading-relaxed">${esc(it.desc || '')}</p>
+            ${ has
+              ? `<a href="${encodeURI(it.link)}" target="_blank" rel="noopener" class="mt-4 inline-block text-center bg-ink text-paper text-sm font-semibold rounded-full py-2.5 hover:bg-navy transition">자료 받기 / 보기</a>`
+              : `<span class="mt-4 inline-block text-center border border-ink/15 text-ink/45 text-sm rounded-full py-2.5">준비 중</span>` }
+          </div>`;
+        }).join('');
+      })
+      .catch(() => {
+        document.getElementById('resList').innerHTML = '<p class="text-ink/40 text-sm col-span-full text-center py-8">자료를 불러오지 못했습니다.</p>';
+      });
+  </script>
+</body>
+</html>

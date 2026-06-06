@@ -1,33 +1,12 @@
 {
   "menu": [
-    {
-      "label": "전체 강의",
-      "href": "#catalog"
-    },
-    {
-      "label": "무료 영상",
-      "href": "#videos"
-    },
-    {
-      "label": "커리큘럼",
-      "href": "#curriculum"
-    },
-    {
-      "label": "수강 후기",
-      "href": "#reviews"
-    },
-    {
-      "label": "인사이트",
-      "href": "#insight"
-    },
-    {
-      "label": "커뮤니티",
-      "href": "community.html"
-    },
-    {
-      "label": "FAQ",
-      "href": "#faq"
-    }
+    { "label": "강의", "href": "#catalog" },
+    { "label": "무료영상", "href": "#videos" },
+    { "label": "칼럼", "href": "#insight" },
+    { "label": "자료실", "href": "resources.html" },
+    { "label": "커뮤니티", "href": "community.html" },
+    { "label": "후기", "href": "#reviews" },
+    { "label": "FAQ", "href": "#faq" }
   ],
   "instructor": {
     "photo": "/images/프로필사진.jpg"
