@@ -97,10 +97,15 @@
       return m ? m[1] : (String(u).trim().length === 11 ? String(u).trim() : '');
     }
 
+    let LEVELS = [];
     fetch('content/course.json?t=' + Date.now())
       .then(r => r.json())
       .then(c => {
-        lessons = c.lessons || [];
+        // 단계(levels) 구조 우선, 없으면 기존 lessons 평면 구조 호환
+        LEVELS = (c.levels && c.levels.length) ? c.levels.map(lv => ({ name: lv.name || '', desc: lv.desc || '', lessons: lv.lessons || [] }))
+                                              : [{ name: '', desc: '', lessons: c.lessons || [] }];
+        lessons = [];
+        LEVELS.forEach(lv => lv.lessons.forEach(ls => lessons.push(ls)));
         document.getElementById('courseTitle').textContent = c.title || '강의';
         document.getElementById('courseSub').textContent = c.subtitle || '';
         const freeCnt = lessons.filter(l => l.free).length;
@@ -114,16 +119,26 @@
         document.getElementById('courseTitle').textContent = '강의를 불러오지 못했습니다.';
       });
 
-    function renderList(){
-      document.getElementById('lessonList').innerHTML = lessons.map((l, i) => `
-        <li id="lesson-${i}" onclick="loadLesson(${i})"
+    function lessonRow(l, i){
+      return `<li id="lesson-${i}" onclick="loadLesson(${i})"
             class="lesson flex gap-3 px-4 py-3.5 cursor-pointer border-l-2 border-transparent hover:bg-ink/[0.03] transition">
           <span class="num text-sm text-ink/35 font-bold w-6 shrink-0 pt-0.5">${String(i+1).padStart(2,'0')}</span>
           <div class="min-w-0">
             <p class="title text-sm font-medium leading-snug">${esc(l.title || '')}</p>
             <p class="text-xs text-ink/45 mt-1">${ l.duration ? '⏱ ' + esc(l.duration) + ' · ' : '' }${ l.free ? '<span class="text-green-600 font-semibold">무료</span>' : '<span class="text-ink/40">🔒 오픈 예정</span>' }</p>
           </div>
-        </li>`).join('');
+        </li>`;
+    }
+    function renderList(){
+      let html = '', gi = 0;
+      LEVELS.forEach(lv => {
+        if(lv.name) html += `<li class="px-4 py-2.5 bg-ink/[0.04] flex items-baseline gap-2">
+            <span class="text-xs font-bold text-gold tracking-wide">${esc(lv.name)}</span>
+            ${ lv.desc ? `<span class="text-[11px] text-ink/45">· ${esc(lv.desc)}</span>` : '' }
+          </li>`;
+        lv.lessons.forEach(l => { html += lessonRow(l, gi++); });
+      });
+      document.getElementById('lessonList').innerHTML = html;
     }
 
     function loadLesson(i){
