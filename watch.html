@@ -10,6 +10,7 @@
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script>
     tailwind.config = { theme: { extend: {
       colors: { ink:'#15203a', navy:'#1b2a4a', gold:'#b8923f', sand:'#efe7d6', paper:'#fcfaf6' },
@@ -72,6 +73,18 @@
       <div id="lessonDesc" class="mt-5 bg-white rounded-2xl border border-ink/8 p-5 shadow-soft text-[15px] text-ink/75 leading-relaxed" style="display:none"></div>
 
       <div id="lessonChapters" class="mt-4 bg-white rounded-2xl border border-ink/8 p-5 shadow-soft" style="display:none"></div>
+
+      <!-- 학습 도구: 요약 노트 / PDF / 공유 -->
+      <div class="mt-4 flex flex-wrap gap-2">
+        <button onclick="toggleNote()" id="noteToggleBtn" class="inline-flex items-center gap-1.5 bg-gold/10 text-gold font-semibold text-sm px-4 py-2.5 rounded-full hover:bg-gold/20 transition">📝 요약 노트 보기</button>
+        <button onclick="downloadNotePDF()" class="inline-flex items-center gap-1.5 border border-ink/15 text-ink/80 font-semibold text-sm px-4 py-2.5 rounded-full hover:bg-ink/5 transition">⬇️ PDF로 저장</button>
+        <button onclick="shareLesson()" class="inline-flex items-center gap-1.5 border border-ink/15 text-ink/80 font-semibold text-sm px-4 py-2.5 rounded-full hover:bg-ink/5 transition">🔗 공유</button>
+      </div>
+
+      <!-- 요약 노트 (PDF 출력 영역) -->
+      <div id="noteCard" class="mt-4" style="display:none">
+        <div id="noteSheet" style="background:#ffffff;border:1px solid #e7e2d4;border-radius:16px;padding:30px 28px;color:#15203a"></div>
+      </div>
 
       <div class="mt-4 bg-white rounded-2xl border border-ink/8 p-5 shadow-soft text-sm text-ink/70 leading-relaxed">
         <p class="font-semibold text-ink mb-1">강의 안내</p>
@@ -174,6 +187,59 @@
       if(i !== cur) loadLesson(i);
       if(sec != null) seekTo(sec);
     }
+
+    // ===== 요약 노트 / PDF / 공유 =====
+    function renderNote(l){
+      const sheet = document.getElementById('noteSheet');
+      if(!sheet) return;
+      const tags = (l.tags || []).map(t => `<span style="display:inline-block;background:#f4eedd;color:#8a6d2f;font-size:12px;font-weight:600;padding:3px 11px;border-radius:999px;margin:3px 5px 3px 0">#${esc(t)}</span>`).join('');
+      const chaps = (l.chapters || []).map(c => `<li style="margin:7px 0;color:#2b3550;line-height:1.5">${ c.t ? `<b style="color:#b8923f">${esc(c.t)}</b>&nbsp;&nbsp;` : '' }${esc(c.label)}</li>`).join('');
+      sheet.innerHTML =
+        `<div style="border-bottom:2px solid #b8923f;padding-bottom:10px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:baseline;gap:8px">
+           <span style="font-weight:700;color:#15203a;font-size:14px">오광일의 인사이트 브리핑 · 강의 요약 노트</span>
+           <span style="font-size:12px;color:#a7adba">바이블 인사이트 스쿨</span>
+         </div>
+         <h2 style="font-size:21px;font-weight:700;color:#15203a;margin:0 0 6px;line-height:1.35">${esc(l.title || '')}</h2>
+         <p style="color:#6b7280;font-size:13px;margin:0 0 18px">강사 오광일${ l.duration ? ' · ' + esc(l.duration) : '' }</p>
+         ${ l.summary ? `<div style="margin-bottom:18px"><p style="font-weight:700;color:#15203a;margin:0 0 7px">📖 강의 소개</p><p style="color:#44506a;line-height:1.75;margin:0">${esc(l.summary)}</p></div>` : '' }
+         ${ chaps ? `<div style="margin-bottom:18px"><p style="font-weight:700;color:#15203a;margin:0 0 7px">📋 핵심 내용</p><ol style="margin:0;padding-left:20px">${chaps}</ol></div>` : '' }
+         ${ tags ? `<div style="margin-bottom:6px"><p style="font-weight:700;color:#15203a;margin:0 0 7px">🔑 키워드</p>${tags}</div>` : '' }
+         <div style="border-top:1px solid #ececec;margin-top:20px;padding-top:10px;font-size:11px;color:#aab1bd">insight.josephoh1611.workers.dev · 오광일의 인사이트 브리핑</div>`;
+    }
+    function toggleNote(){
+      const card = document.getElementById('noteCard');
+      const btn = document.getElementById('noteToggleBtn');
+      const show = card.style.display === 'none';
+      card.style.display = show ? '' : 'none';
+      if(btn) btn.textContent = show ? '📝 요약 노트 닫기' : '📝 요약 노트 보기';
+      if(show) card.scrollIntoView({ behavior:'smooth', block:'nearest' });
+    }
+    async function downloadNotePDF(){
+      const card = document.getElementById('noteCard');
+      const wasHidden = card.style.display === 'none';
+      card.style.display = '';
+      const l = lessons[cur] || {};
+      const fname = ((l.title || '강의').replace(/[\\/:*?"<>|]/g, ' ').trim()) + ' 요약노트.pdf';
+      const opt = {
+        margin: [10, 10, 12, 10], filename: fname,
+        image: { type: 'jpeg', quality: 0.97 },
+        html2canvas: { scale: 2, backgroundColor: '#ffffff', useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak: { mode: ['css', 'legacy'] }
+      };
+      try { await html2pdf().set(opt).from(document.getElementById('noteSheet')).save(); }
+      catch(e){ alert('PDF 생성 중 문제가 발생했어요. 다시 시도해 주세요.'); }
+      if(wasHidden){ card.style.display = 'none'; }
+    }
+    async function shareLesson(){
+      const l = lessons[cur] || {};
+      const url = location.origin + location.pathname + '?l=' + cur;
+      const data = { title: l.title || '오광일의 인사이트 브리핑', text: (l.summary || l.title || ''), url };
+      try {
+        if(navigator.share){ await navigator.share(data); }
+        else { await navigator.clipboard.writeText(url); alert('강의 링크가 복사됐어요! 원하는 곳에 붙여넣어 공유하세요.'); }
+      } catch(e){ /* 사용자가 취소 */ }
+    }
     function renderList(){
       let html = '', gi = 0;
       LEVELS.forEach(lv => {
@@ -247,6 +313,12 @@
       document.getElementById('lessonBadge').innerHTML = l.free
         ? '<span class="bg-green-100 text-green-700 text-xs font-semibold px-2.5 py-1 rounded-full">무료 공개</span>'
         : '<span class="bg-ink/10 text-ink/50 text-xs font-semibold px-2.5 py-1 rounded-full">🔒 오픈 예정</span>';
+
+      renderNote(l);
+      const noteCard = document.getElementById('noteCard');
+      const noteBtn = document.getElementById('noteToggleBtn');
+      if(noteCard){ noteCard.style.display = 'none'; }
+      if(noteBtn){ noteBtn.textContent = '📝 요약 노트 보기'; }
 
       document.getElementById('prevBtn').disabled = i <= 0;
       document.getElementById('nextBtn').disabled = i >= lessons.length - 1;
