@@ -156,8 +156,8 @@
       <input id="wEmail" type="email" placeholder="이메일" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold mb-2"/>
       <input id="wPw" type="password" placeholder="비밀번호" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold mb-2"/>
       <button onclick="emailLoginW()" class="w-full bg-ink text-paper font-semibold rounded-xl py-3 hover:bg-navy transition">이메일로 로그인</button>
-      <p id="wLoginMsg" class="text-red-500 text-xs mt-2 text-center min-h-[16px]"></p>
-      <p class="text-ink/45 text-xs text-center mt-3">아직 회원이 아니신가요? <a href="index.html" class="text-gold underline">홈에서 가입하기</a></p>
+      <button onclick="emailSignupW()" class="w-full mt-2 border border-gold text-gold font-semibold rounded-xl py-2.5 hover:bg-gold/10 transition text-sm">처음이세요? 이메일로 바로 회원가입</button>
+      <p id="wLoginMsg" class="text-xs mt-2 text-center min-h-[16px]"></p>
     </div>
   </div>
 
@@ -559,7 +559,7 @@
         try { const { data: prof } = await lsb.from('profiles').select('full_name').eq('id', LUSER.id).maybeSingle(); QNAME = (prof && prof.full_name) || LUSER.email || '회원'; } catch(e){ QNAME = LUSER.email || '회원'; }
       }
       const aState = document.getElementById('authState');
-      if(aState){ aState.innerHTML = LUSER ? `${escQ(QNAME)}님 · <button onclick="lLogout()" class="hover:text-gold">로그아웃</button>` : `<button onclick="openLogin()" class="text-gold font-semibold hover:underline">로그인</button>`; }
+      if(aState){ aState.innerHTML = LUSER ? `${escQ(QNAME)}님 · <button onclick="lLogout()" class="hover:text-gold">로그아웃</button>` : `<button onclick="openLogin()" class="bg-gold text-white font-semibold px-4 py-1.5 rounded-full hover:opacity-90 transition">로그인</button>`; }
       refreshLearningUI();
       renderQaComposer();
       loadQuestions();
@@ -616,9 +616,20 @@
       const email = (document.getElementById('wEmail').value || '').trim(); const pw = document.getElementById('wPw').value || '';
       const msg = document.getElementById('wLoginMsg');
       if(!email || !pw){ msg.textContent = '이메일과 비밀번호를 입력하세요.'; return; }
+      msg.style.color = '#dc2626';
       const { error } = await lsb.auth.signInWithPassword({ email, password: pw });
-      if(error){ msg.textContent = error.message; return; }
+      if(error){ msg.textContent = /invalid login/i.test(error.message) ? '이메일 또는 비밀번호가 맞지 않아요. 처음이시면 아래 회원가입을 눌러주세요.' : error.message; return; }
       closeLogin();
+    }
+    async function emailSignupW(){
+      const email = (document.getElementById('wEmail').value || '').trim(); const pw = document.getElementById('wPw').value || '';
+      const msg = document.getElementById('wLoginMsg');
+      if(!email || !pw){ msg.style.color='#dc2626'; msg.textContent = '이메일과 비밀번호(6자 이상)를 입력하세요.'; return; }
+      if(pw.length < 6){ msg.style.color='#dc2626'; msg.textContent = '비밀번호는 6자 이상이어야 해요.'; return; }
+      const { data, error } = await lsb.auth.signUp({ email, password: pw });
+      if(error){ msg.style.color='#dc2626'; msg.textContent = error.message; return; }
+      if(data && data.session){ closeLogin(); }
+      else { msg.style.color='#15803d'; msg.textContent = '가입 완료! 메일함에서 인증 후 로그인해 주세요.'; }
     }
     async function lLogout(){ await lsb.auth.signOut(); }
     async function enrollTrack(){
