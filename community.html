@@ -81,7 +81,8 @@
       <!-- 탭: 자유 나눔 / Q&A 질문답변 -->
       <div class="flex gap-2 mb-5">
         <button id="tab-free" onclick="switchBoard('free')" class="flex-1 py-2.5 rounded-full text-sm font-semibold border transition">📷 자유 나눔</button>
-        <button id="tab-qna" onclick="switchBoard('qna')" class="flex-1 py-2.5 rounded-full text-sm font-semibold border transition">🙋 질문답변 (Q&A)</button>
+        <button id="tab-qna" onclick="switchBoard('qna')" class="flex-1 py-2.5 rounded-full text-sm font-semibold border transition">🙋 질의응답</button>
+        <button id="tab-prayer" onclick="switchBoard('prayer')" class="flex-1 py-2.5 rounded-full text-sm font-semibold border transition">🙏 기도 요청</button>
       </div>
       <!-- 글쓰기 -->
       <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 mb-6">
@@ -109,21 +110,22 @@
 
     // 강의실에서 '강사에게 질문하기'로 넘어온 경우: Q&A 탭 + 질문 프리필
     const _qp = new URLSearchParams(location.search);
-    if(_qp.get('board') === 'qna') currentBoard = 'qna';
+    if(['qna','prayer','free'].includes(_qp.get('board'))) currentBoard = _qp.get('board');
     const ASK_REF = _qp.get('ask');
     let askApplied = false;
 
     // 탭 전환 (자유 나눔 / Q&A 질문답변)
+    function boardLabel(b){ return b === 'qna' ? '질문 올리기' : b === 'prayer' ? '기도 요청하기' : '글 올리기'; }
     function switchBoard(b){
       currentBoard = b;
       const on = 'bg-ink text-paper border-ink', off = 'bg-white text-ink/55 border-ink/15 hover:bg-ink/5';
       const base = 'flex-1 py-2.5 rounded-full text-sm font-semibold border transition ';
-      document.getElementById('tab-free').className = base + (b === 'free' ? on : off);
-      document.getElementById('tab-qna').className = base + (b === 'qna' ? on : off);
-      document.getElementById('postContent').placeholder = (b === 'qna')
-        ? '강의 내용이든 신앙 고민이든, 무엇이든 자유롭게 질문해 보세요. 강사와 멤버가 댓글로 답해드려요…'
+      ['free','qna','prayer'].forEach(x => { const el = document.getElementById('tab-' + x); if(el) el.className = base + (b === x ? on : off); });
+      document.getElementById('postContent').placeholder =
+          b === 'qna' ? '강의 내용이든 신앙 고민이든, 무엇이든 자유롭게 질문해 보세요. 강사와 멤버가 댓글로 답해드려요…'
+        : b === 'prayer' ? '함께 기도할 제목을 나눠 주세요. 멤버들이 함께 기도하고, 댓글로 마음을 더해드려요…'
         : '오늘의 나눔, 은혜, 사진을 나눠보세요…';
-      document.getElementById('postBtn').textContent = (b === 'qna') ? '질문 올리기' : '글 올리기';
+      document.getElementById('postBtn').textContent = boardLabel(b);
       loadPosts();
     }
 
@@ -243,7 +245,7 @@
       feed.innerHTML = '<p class="text-ink/40 text-sm text-center py-8">불러오는 중…</p>';
       const { data, error } = await sb.from('community_posts').select('*').eq('board', currentBoard).order('created_at', { ascending:false }).limit(100);
       if(error){ feed.innerHTML = `<p class="text-red-500 text-sm text-center py-8">불러오기 오류: ${esc(error.message)}</p>`; return; }
-      if(!data.length){ feed.innerHTML = `<p class="text-ink/40 text-sm text-center py-10">${ currentBoard === 'qna' ? '첫 질문을 남겨보세요! 🙋' : '첫 글의 주인공이 되어보세요! ✍️' }</p>`; return; }
+      if(!data.length){ feed.innerHTML = `<p class="text-ink/40 text-sm text-center py-10">${ currentBoard === 'qna' ? '첫 질문을 남겨보세요! 🙋' : currentBoard === 'prayer' ? '첫 기도 제목을 나눠보세요! 🙏' : '첫 글의 주인공이 되어보세요! ✍️' }</p>`; return; }
       feed.innerHTML = data.map(renderPost).join('');
       // 댓글 불러오기
       const ids = data.map(p => p.id);
@@ -274,7 +276,7 @@
         ta.value = ''; fileInput.value = ''; document.getElementById('imgName').textContent = '';
         loadPosts();
       }catch(e){ msg.textContent = '오류: ' + (e.message || e); }
-      finally{ btn.disabled = false; btn.textContent = '글 올리기'; }
+      finally{ btn.disabled = false; btn.textContent = boardLabel(currentBoard); }
     }
 
     async function del(id, asAdmin){
