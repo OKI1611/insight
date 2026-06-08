@@ -30,7 +30,7 @@
   <header class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-ink/8">
     <div class="max-w-6xl mx-auto px-4 h-14 flex items-center gap-3">
       <a href="index.html" class="font-bold text-[15px] shrink-0">오광일의 <span class="text-gold">인사이트 브리핑</span></a>
-      <nav class="flex items-center gap-4 sm:gap-5 text-sm text-ink/70 overflow-x-auto whitespace-nowrap pl-1">
+      <nav id="navmenu" class="flex items-center gap-4 sm:gap-5 text-sm text-ink/70 overflow-x-auto whitespace-nowrap pl-1">
         <a href="about.html" class="hover:text-gold">소개</a>
         <a href="index.html#catalog" class="hover:text-gold">강의</a>
         <a href="index.html#curriculum" class="hover:text-gold">커리큘럼</a>
@@ -164,6 +164,18 @@
       if(error){ alert('삭제 오류: ' + error.message); return; }
       loadList();
     }
+  </script>
+  <script>
+    fetch('content/site.json?t=' + Date.now()).then(r => r.json()).then(s => {
+      const nav = document.getElementById('navmenu'); if(!nav || !s.menu) return;
+      const cur = (location.pathname.split('/').pop() || 'index.html');
+      nav.innerHTML = s.menu.map(m => {
+        const hash = m.href.startsWith('#');
+        const href = hash ? ('index.html' + m.href) : m.href;
+        const active = !hash && (href.split('?')[0] === cur);
+        return '<a href="' + href + '" class="' + (active ? 'text-gold font-semibold' : 'hover:text-gold') + '">' + m.label + '</a>';
+      }).join('');
+    }).catch(() => {});
   </script>
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
 </body>

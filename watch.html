@@ -37,7 +37,7 @@
   <header class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-ink/8">
     <div class="max-w-7xl mx-auto px-4 h-14 flex items-center gap-3">
       <a href="index.html" class="font-bold text-[15px] shrink-0">오광일의 <span class="text-gold">인사이트 브리핑</span></a>
-      <nav class="flex items-center gap-4 sm:gap-5 text-sm text-ink/70 overflow-x-auto whitespace-nowrap pl-1">
+      <nav id="navmenu" class="flex items-center gap-4 sm:gap-5 text-sm text-ink/70 overflow-x-auto whitespace-nowrap pl-1">
         <a href="about.html" class="hover:text-gold">소개</a>
         <a href="index.html#catalog" class="text-gold font-semibold">강의</a>
         <a href="index.html#curriculum" class="hover:text-gold">커리큘럼</a>
@@ -498,18 +498,25 @@
 
     // ===== 수강신청 / 학습 진도 =====
     const lsb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
-    let LUSER = null, ENROLLED = new Set(), DONE = new Set();
+    let LUSER = null, ENROLLED = new Set(), DONE = new Set(), TABLES_READY = true;
     function curTrack(){ return LESSON_TRACK[cur] || ''; }
     function curId(){ return ytId((lessons[cur] || {}).youtube); }
+    function tableErr(e){ return e && (e.code === '42P01' || /relation|does not exist|schema cache|find the table/i.test(e.message || '')); }
+    function learnToast(msg, ok){
+      const m = document.getElementById('learnMsg'); if(!m) return;
+      m.style.display = ''; m.style.color = ok ? '#15803d' : '#dc2626';
+      m.textContent = msg;
+    }
 
     lsb.auth.onAuthStateChange((_e, s) => lAuth(s));
     lsb.auth.getSession().then(({ data:{ session } }) => lAuth(session));
     async function lAuth(session){
       LUSER = (session && session.user) || null;
-      ENROLLED = new Set(); DONE = new Set();
+      ENROLLED = new Set(); DONE = new Set(); TABLES_READY = true;
       if(LUSER){
-        try { const { data } = await lsb.from('enrollments').select('track').eq('user_id', LUSER.id); (data||[]).forEach(e => ENROLLED.add(e.track)); } catch(e){}
-        try { const { data } = await lsb.from('lesson_progress').select('lesson_id').eq('user_id', LUSER.id).eq('completed', true); (data||[]).forEach(p => DONE.add(p.lesson_id)); } catch(e){}
+        const { data, error } = await lsb.from('enrollments').select('track').eq('user_id', LUSER.id);
+        if(error){ TABLES_READY = false; } else { (data||[]).forEach(e => ENROLLED.add(e.track)); }
+        try { const { data: p } = await lsb.from('lesson_progress').select('lesson_id').eq('user_id', LUSER.id).eq('completed', true); (p||[]).forEach(x => DONE.add(x.lesson_id)); } catch(e){}
       }
       refreshLearningUI();
     }
@@ -517,46 +524,70 @@
       const bar = document.getElementById('learnBar');
       if(!bar || !lessons.length) return;
       const myClass = '<a href="mylearning.html" class="inline-flex items-center gap-1.5 border border-ink/15 text-ink/70 font-semibold px-4 py-2 rounded-full hover:bg-ink/5 transition">📚 내 강의실</a>';
+      const msgEl = '<p id="learnMsg" class="basis-full w-full text-sm font-semibold mt-1" style="display:none"></p>';
       if(!LUSER){
         bar.innerHTML = '<span class="text-ink/55">로그인하면 수강신청과 학습 체크를 이용할 수 있어요.</span>'
-          + '<button onclick="lLogin()" class="inline-flex items-center gap-1.5 border border-ink/15 font-semibold px-4 py-2 rounded-full hover:bg-ink/5 transition">구글로 로그인</button>' + myClass;
+          + '<button onclick="lLogin()" class="inline-flex items-center gap-1.5 border border-ink/15 font-semibold px-4 py-2 rounded-full hover:bg-ink/5 transition">구글로 로그인</button>' + myClass + msgEl;
+        return;
+      }
+      if(!TABLES_READY){
+        bar.innerHTML = '<span class="text-amber-600 font-medium">⚠️ 수강신청·학습 체크 기능을 준비 중이에요. (관리자: Supabase 테이블 생성이 필요합니다)</span>' + myClass + msgEl;
         return;
       }
       const enrolled = ENROLLED.has(curTrack());
       const done = DONE.has(curId());
       const enrollBtn = enrolled
-        ? `<span class="inline-flex items-center gap-1.5 bg-green-50 text-green-700 font-semibold px-4 py-2 rounded-full">✓ 수강 중 · ${esc(curTrack())}</span>`
+        ? `<span class="inline-flex items-center gap-1.5 bg-green-600 text-white font-semibold px-4 py-2 rounded-full">✓ 수강 중 · ${esc(curTrack())}</span>`
         : `<button onclick="enrollTrack()" class="inline-flex items-center gap-1.5 bg-gold text-white font-semibold px-4 py-2 rounded-full hover:opacity-90 transition">＋ 이 과정 수강신청</button>`;
       const doneBtn = done
         ? `<button onclick="toggleComplete()" class="inline-flex items-center gap-1.5 bg-green-600 text-white font-semibold px-4 py-2 rounded-full hover:opacity-90 transition">✅ 학습 완료됨</button>`
         : `<button onclick="toggleComplete()" class="inline-flex items-center gap-1.5 border border-ink/20 text-ink/80 font-semibold px-4 py-2 rounded-full hover:bg-ink/5 transition">⬜ 학습 완료 체크</button>`;
-      bar.innerHTML = enrollBtn + doneBtn + myClass;
+      bar.innerHTML = enrollBtn + doneBtn + myClass + msgEl;
     }
     async function lLogin(){ await lsb.auth.signInWithOAuth({ provider:'google', options:{ redirectTo: location.href } }); }
     async function enrollTrack(){
       if(!LUSER){ lLogin(); return; }
       const t = curTrack(); if(!t) return;
       const { error } = await lsb.from('enrollments').insert({ user_id: LUSER.id, track: t });
-      if(error && error.code !== '23505'){ alert('수강신청 오류: ' + error.message); return; }
+      if(error && error.code !== '23505'){
+        if(tableErr(error)){ TABLES_READY = false; refreshLearningUI(); learnToast('수강신청 기능이 아직 켜지지 않았어요. 관리자 설정(테이블 생성)이 필요합니다.', false); }
+        else { learnToast('수강신청 오류: ' + error.message, false); }
+        return;
+      }
       ENROLLED.add(t); refreshLearningUI();
-      alert('수강신청 완료! 📚 내 강의실에서 학습 현황을 확인할 수 있어요.');
+      learnToast('✓ 「' + t + '」 수강신청 완료! 📚 내 강의실에서 학습 현황을 볼 수 있어요.', true);
     }
     async function toggleComplete(){
       if(!LUSER){ lLogin(); return; }
       const id = curId(); if(!id) return;
       if(DONE.has(id)){
         const { error } = await lsb.from('lesson_progress').delete().eq('user_id', LUSER.id).eq('lesson_id', id);
-        if(error){ alert('오류: ' + error.message); return; }
-        DONE.delete(id);
+        if(error){ learnToast('오류: ' + error.message, false); return; }
+        DONE.delete(id); refreshLearningUI(); learnToast('학습 완료 표시를 해제했어요.', true);
       } else {
         const { error } = await lsb.from('lesson_progress').upsert({ user_id: LUSER.id, lesson_id: id, track: curTrack(), completed: true }, { onConflict: 'user_id,lesson_id' });
-        if(error){ alert('오류: ' + error.message); return; }
+        if(error){
+          if(tableErr(error)){ TABLES_READY = false; refreshLearningUI(); learnToast('학습 체크 기능이 아직 켜지지 않았어요. 관리자 설정이 필요합니다.', false); }
+          else { learnToast('오류: ' + error.message, false); }
+          return;
+        }
         DONE.add(id);
-        // 수강신청 안 했다면 자동으로 이 과정 등록
         if(!ENROLLED.has(curTrack())){ try { await lsb.from('enrollments').insert({ user_id: LUSER.id, track: curTrack() }); ENROLLED.add(curTrack()); } catch(e){} }
+        refreshLearningUI(); learnToast('✅ 이 강의를 학습 완료로 표시했어요! 📚 내 강의실에서 확인하세요.', true);
       }
-      refreshLearningUI();
     }
+  </script>
+  <script>
+    fetch('content/site.json?t=' + Date.now()).then(r => r.json()).then(s => {
+      const nav = document.getElementById('navmenu'); if(!nav || !s.menu) return;
+      const cur = (location.pathname.split('/').pop() || 'index.html');
+      nav.innerHTML = s.menu.map(m => {
+        const hash = m.href.startsWith('#');
+        const href = hash ? ('index.html' + m.href) : m.href;
+        const active = !hash && (href.split('?')[0] === cur);
+        return '<a href="' + href + '" class="' + (active ? 'text-gold font-semibold' : 'hover:text-gold') + '">' + m.label + '</a>';
+      }).join('');
+    }).catch(() => {});
   </script>
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
 </body>
