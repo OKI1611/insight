@@ -231,6 +231,10 @@
         ( tags ? `<div style="margin-bottom:6px"><p style="font-weight:700;color:#15203a;margin:0 0 7px">🔑 키워드</p>${tags}</div>` : '' ) +
         noteFooter();
     }
+    // 여러 문단 렌더(\n 기준 분리)
+    function noteParas(t){
+      return String(t || '').split(/\n+/).filter(x => x.trim()).map(p => `<p style="color:#44506a;line-height:1.85;margin:0 0 9px">${esc(p)}</p>`).join('');
+    }
     // 풍성한 노트 — content/notes/<id>.json
     function richNoteHTML(l, n){
       let h = noteHeader() + titleBlock(l);
@@ -240,17 +244,20 @@
           <p style="color:#2b3550;font-size:15px;font-weight:600;line-height:1.6;margin:0">${esc(n.thesis)}</p></div>`;
       }
       if(n.overview){
-        h += `<div style="margin-bottom:22px"><p style="font-weight:700;color:#15203a;margin:0 0 8px;font-size:15px">📘 강의 개요</p>
-          <p style="color:#44506a;line-height:1.8;margin:0">${esc(n.overview)}</p></div>`;
+        h += `<div style="margin-bottom:22px"><p style="font-weight:700;color:#15203a;margin:0 0 8px;font-size:15px">📘 강의 개요</p>${noteParas(n.overview)}</div>`;
+      }
+      if(n.background){
+        h += `<div style="margin-bottom:22px;background:#f7f9fc;border:1px solid #e8edf4;border-radius:12px;padding:15px 17px">
+          <p style="font-weight:700;color:#15203a;margin:0 0 8px;font-size:14.5px">📜 배경 — 역사적·신학적 맥락</p>${noteParas(n.background)}</div>`;
       }
       if(n.sections && n.sections.length){
         h += `<p style="font-weight:700;color:#15203a;margin:0 0 10px;font-size:15px">📑 핵심 내용 정리</p>`;
         n.sections.forEach((s, i) => {
           const pts = (s.points || []).map(p => `<li style="margin:5px 0;color:#44506a;line-height:1.6">${esc(p)}</li>`).join('');
           h += `<div style="margin:0 0 16px;padding:0 0 0 2px">
-            <p style="margin:0 0 5px;color:#15203a;font-weight:700;font-size:14.5px">${ s.t ? `<span style="display:inline-block;background:#15203a;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;margin-right:8px">${esc(s.t)}</span>` : '' }${esc(s.heading || '')}</p>
-            ${ s.body ? `<p style="margin:0 0 6px;color:#44506a;line-height:1.8">${esc(s.body)}</p>` : '' }
-            ${ pts ? `<ul style="margin:4px 0 0;padding-left:20px">${pts}</ul>` : '' }
+            <p style="margin:0 0 6px;color:#15203a;font-weight:700;font-size:14.5px">${ s.t ? `<span style="display:inline-block;background:#15203a;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;margin-right:8px">${esc(s.t)}</span>` : '' }${esc(s.heading || '')}</p>
+            ${ s.body ? noteParas(s.body) : '' }
+            ${ pts ? `<ul style="margin:4px 0 2px;padding-left:20px">${pts}</ul>` : '' }
           </div>`;
         });
       }
@@ -263,14 +270,29 @@
         h += `<div style="margin:20px 0"><p style="font-weight:700;color:#15203a;margin:0 0 8px;font-size:14.5px">📚 핵심 용어</p>` +
           n.terms.map(t => `<p style="margin:6px 0;color:#44506a;line-height:1.6"><b style="color:#8a6d2f">${esc(t.term)}</b> · ${esc(t.def)}</p>`).join('') + `</div>`;
       }
+      if(n.misconceptions && n.misconceptions.length){
+        h += `<div style="margin:20px 0"><p style="font-weight:700;color:#15203a;margin:0 0 8px;font-size:14.5px">⚠️ 흔한 오해 vs 바른 이해</p>` +
+          n.misconceptions.map(m => `<div style="border:1px solid #eee;border-radius:10px;padding:10px 13px;margin:0 0 8px">
+            <p style="margin:0 0 4px;color:#b4453a;line-height:1.6"><b>❌ 오해</b> · ${esc(m.wrong)}</p>
+            <p style="margin:0;color:#2f7d4f;line-height:1.6"><b>✅ 바른 이해</b> · ${esc(m.right)}</p>
+          </div>`).join('') + `</div>`;
+      }
       if(n.takeaways && n.takeaways.length){
         h += `<div style="margin:20px 0;background:#faf6ea;border-radius:12px;padding:14px 16px">
           <p style="font-weight:700;color:#15203a;margin:0 0 8px;font-size:14.5px">✅ 한눈에 정리</p>
           <ul style="margin:0;padding-left:20px">` + n.takeaways.map(t => `<li style="margin:5px 0;color:#2b3550;line-height:1.65">${esc(t)}</li>`).join('') + `</ul></div>`;
       }
+      if(n.application && n.application.length){
+        h += `<div style="margin:20px 0"><p style="font-weight:700;color:#15203a;margin:0 0 8px;font-size:14.5px">🌱 삶으로 가져가기</p>
+          <ul style="margin:0;padding-left:20px">` + n.application.map(a => `<li style="margin:5px 0;color:#44506a;line-height:1.7">${esc(a)}</li>`).join('') + `</ul></div>`;
+      }
       if(n.questions && n.questions.length){
         h += `<div style="margin:20px 0"><p style="font-weight:700;color:#15203a;margin:0 0 8px;font-size:14.5px">💬 묵상·토론 질문</p>
           <ol style="margin:0;padding-left:20px">` + n.questions.map(q => `<li style="margin:6px 0;color:#44506a;line-height:1.65">${esc(q)}</li>`).join('') + `</ol></div>`;
+      }
+      if(n.furtherStudy && n.furtherStudy.length){
+        h += `<div style="margin:20px 0;background:#faf6ea;border-radius:12px;padding:14px 16px"><p style="font-weight:700;color:#15203a;margin:0 0 8px;font-size:14.5px">📚 더 깊이 공부하려면</p>
+          <ul style="margin:0;padding-left:20px">` + n.furtherStudy.map(f => `<li style="margin:5px 0;color:#44506a;line-height:1.65">${esc(f)}</li>`).join('') + `</ul></div>`;
       }
       const tags = (l.tags || []).map(t => `<span style="display:inline-block;background:#f4eedd;color:#8a6d2f;font-size:12px;font-weight:600;padding:3px 11px;border-radius:999px;margin:3px 5px 3px 0">#${esc(t)}</span>`).join('');
       if(tags){ h += `<div style="margin:18px 0 4px"><p style="font-weight:700;color:#15203a;margin:0 0 7px;font-size:14px">🔑 키워드</p>${tags}</div>`; }
