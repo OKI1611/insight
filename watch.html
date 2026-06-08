@@ -549,20 +549,25 @@
     lsb.auth.onAuthStateChange((_e, s) => lAuth(s));
     lsb.auth.getSession().then(({ data:{ session } }) => lAuth(session));
     function rlsErr(e){ return e && (e.code === '42501' || /row-level security|violates row-level/i.test(e.message || '')); }
+    function withTimeout(p, ms){ return Promise.race([ Promise.resolve(p), new Promise((_, rej) => setTimeout(() => rej(new Error('TIMEOUT')), ms)) ]); }
+    function setAuthState(){
+      const aState = document.getElementById('authState'); if(!aState) return;
+      aState.innerHTML = LUSER ? `${escQ(QNAME)}님 · <button onclick="lLogout()" class="hover:text-gold">로그아웃</button>` : `<button onclick="openLogin()" class="bg-gold text-white font-semibold px-4 py-1.5 rounded-full hover:opacity-90 transition">로그인</button>`;
+    }
     async function lAuth(session){
       LUSER = (session && session.user) || null;
       ENROLLED = new Set(); DONE = new Set(); TABLES_READY = true;
+      QNAME = LUSER ? (LUSER.email || '회원') : '회원';
+      // ① UI를 먼저 그린다 — 데이터 로딩이 지연돼도 화면이 멈추지 않게
+      setAuthState(); refreshLearningUI(); renderQaComposer(); loadQuestions();
+      // ② 데이터는 타임아웃 보호로 best-effort 로딩
       if(LUSER){
-        const { data, error } = await lsb.from('enrollments').select('track').eq('user_id', LUSER.id);
-        if(error){ TABLES_READY = false; } else { (data||[]).forEach(e => ENROLLED.add(e.track)); }
-        try { const { data: p } = await lsb.from('lesson_progress').select('lesson_id').eq('user_id', LUSER.id).eq('completed', true); (p||[]).forEach(x => DONE.add(x.lesson_id)); } catch(e){}
-        try { const { data: prof } = await lsb.from('profiles').select('full_name').eq('id', LUSER.id).maybeSingle(); QNAME = (prof && prof.full_name) || LUSER.email || '회원'; } catch(e){ QNAME = LUSER.email || '회원'; }
+        try { const { data, error } = await withTimeout(lsb.from('enrollments').select('track').eq('user_id', LUSER.id), 8000); if(error){ TABLES_READY = false; } else { (data||[]).forEach(e => ENROLLED.add(e.track)); } } catch(e){}
+        try { const { data: p } = await withTimeout(lsb.from('lesson_progress').select('lesson_id').eq('user_id', LUSER.id).eq('completed', true), 8000); (p||[]).forEach(x => DONE.add(x.lesson_id)); } catch(e){}
+        try { const { data: prof } = await withTimeout(lsb.from('profiles').select('full_name').eq('id', LUSER.id).maybeSingle(), 8000); if(prof && prof.full_name) QNAME = prof.full_name; } catch(e){}
+        setAuthState();
       }
-      const aState = document.getElementById('authState');
-      if(aState){ aState.innerHTML = LUSER ? `${escQ(QNAME)}님 · <button onclick="lLogout()" class="hover:text-gold">로그아웃</button>` : `<button onclick="openLogin()" class="bg-gold text-white font-semibold px-4 py-1.5 rounded-full hover:opacity-90 transition">로그인</button>`; }
       refreshLearningUI();
-      renderQaComposer();
-      loadQuestions();
       // 로그인 직후 보류 중이던 수강신청 자동 완료
       if(LUSER && TABLES_READY){
         let pend = null; try { pend = sessionStorage.getItem('pendingEnroll'); } catch(e){}
@@ -636,8 +641,11 @@
       const t = curTrack(); if(!t){ learnToast('강의 정보를 불러오는 중이에요. 잠시 후 다시 눌러주세요.', false); return; }
       if(!LUSER){ try { sessionStorage.setItem('pendingEnroll', t); } catch(e){} learnToast('로그인하면 자동으로 수강신청됩니다…', true); openLogin(); return; }
       learnToast('수강신청 중…', true);
-      const { error } = await lsb.from('enrollments').insert({ user_id: LUSER.id, track: t });
+      let error;
+      try { const res = await withTimeout(lsb.from('enrollments').insert({ user_id: LUSER.id, track: t }), 9000); error = res.error; }
+      catch(e){ error = e; }
       if(error && error.code !== '23505'){
+        if(error.message === 'TIMEOUT'){ learnToast('⏳ 응답이 지연돼요. 이 사이트의 다른 탭을 모두 닫고 새로고침(Ctrl+F5) 후 다시 시도하거나, 로그아웃 후 다시 로그인해 주세요.', false); return; }
         if(tableErr(error)){ TABLES_READY = false; refreshLearningUI(); learnToast('수강신청 기능이 아직 켜지지 않았어요. (관리자: 테이블 생성 필요)', false); }
         else if(rlsErr(error)){ learnToast('수강신청 권한 설정이 필요해요. (관리자: enrollments INSERT 정책 확인 — 아래 SQL 재실행)', false); }
         else { learnToast('수강신청 오류: ' + (error.message || error.code || '알 수 없음'), false); }
@@ -728,9 +736,15 @@
         openLogin(); return;
       }
       btn.disabled = true; btn.textContent = '등록 중…'; msg.textContent = '';
-      const { error } = await lsb.from('lecture_questions').insert({ lesson_id: curId(), user_id: LUSER.id, author_name: QNAME, content, is_private });
+      let error;
+      try { const res = await withTimeout(lsb.from('lecture_questions').insert({ lesson_id: curId(), user_id: LUSER.id, author_name: QNAME, content, is_private }), 9000); error = res.error; }
+      catch(e){ error = e; }
       btn.disabled = false; btn.textContent = '질문 등록';
-      if(error){ msg.textContent = /relation|does not exist|schema cache|find the table/i.test(error.message||'') ? '질의응답 기능 준비 중 (관리자 설정 필요)' : ('오류: ' + error.message); return; }
+      if(error){
+        msg.textContent = error.message === 'TIMEOUT' ? '⏳ 응답 지연 — 다른 탭을 모두 닫고 새로고침 후 다시 시도해 주세요.'
+          : /relation|does not exist|schema cache|find the table/i.test(error.message||'') ? '질의응답 기능 준비 중 (관리자 설정 필요)' : ('오류: ' + error.message);
+        return;
+      }
       ta.value = ''; loadQuestions();
     }
     async function answerQ(id){
