@@ -139,6 +139,19 @@
     </aside>
   </main>
 
+  <!-- ===== 수강생 질의응답 (강의별 · 공개/비밀) ===== -->
+  <section id="qaSection" class="max-w-7xl mx-auto px-4 pb-14">
+    <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 lg:p-7">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="font-bold text-lg">💬 수강생 질의응답</h3>
+        <span id="qaCount" class="text-sm text-ink/45"></span>
+      </div>
+      <p class="text-sm text-ink/55 mb-4"><b class="text-ink">공개 질문</b>은 다른 수강생도 함께 보고 배웁니다. <b class="text-ink">비밀 질문</b>은 강사만 볼 수 있어요.</p>
+      <div id="qaComposer"></div>
+      <div id="qaList" class="mt-6 space-y-4"></div>
+    </div>
+  </section>
+
   <script>
     let lessons = [], cur = 0, LESSON_TRACK = [];
     function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
@@ -403,11 +416,11 @@
         else { copyLink(url, 'copy'); }
       } catch(e){ /* 사용자가 취소 */ }
     }
-    // 강사에게 질문하기 — 커뮤니티 Q&A에 강의 정보가 채워진 채로 이동
+    // 강사에게 질문하기 — 이 페이지 하단의 질의응답으로 이동·포커스
     function askInstructor(){
-      const l = lessons[cur] || {};
-      const ref = (l.title || '강의') + '\n🔗 ' + lessonShareUrl();
-      window.open('community.html?board=qna&ask=' + encodeURIComponent(ref), '_blank');
+      const sec = document.getElementById('qaSection');
+      if(sec) sec.scrollIntoView({ behavior:'smooth', block:'start' });
+      setTimeout(() => { const inp = document.getElementById('qaInput'); if(inp) inp.focus(); else if(!LUSER){ renderQaComposer(); } }, 450);
     }
     function renderList(){
       let html = '', gi = 0;
@@ -485,6 +498,7 @@
 
       renderNote(l);
       refreshLearningUI();
+      loadQuestions();
       const noteCard = document.getElementById('noteCard');
       const noteBtn = document.getElementById('noteToggleBtn');
       if(noteCard){ noteCard.style.display = 'none'; }
@@ -498,7 +512,9 @@
 
     // ===== 수강신청 / 학습 진도 =====
     const lsb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
-    let LUSER = null, ENROLLED = new Set(), DONE = new Set(), TABLES_READY = true;
+    let LUSER = null, ENROLLED = new Set(), DONE = new Set(), TABLES_READY = true, QNAME = '회원';
+    const ADMIN_EMAIL_W = 'josephoh1611@gmail.com';
+    function isAdminW(){ return LUSER && LUSER.email === ADMIN_EMAIL_W; }
     function curTrack(){ return LESSON_TRACK[cur] || ''; }
     function curId(){ return ytId((lessons[cur] || {}).youtube); }
     function tableErr(e){ return e && (e.code === '42P01' || /relation|does not exist|schema cache|find the table/i.test(e.message || '')); }
@@ -510,6 +526,7 @@
 
     lsb.auth.onAuthStateChange((_e, s) => lAuth(s));
     lsb.auth.getSession().then(({ data:{ session } }) => lAuth(session));
+    function rlsErr(e){ return e && (e.code === '42501' || /row-level security|violates row-level/i.test(e.message || '')); }
     async function lAuth(session){
       LUSER = (session && session.user) || null;
       ENROLLED = new Set(); DONE = new Set(); TABLES_READY = true;
@@ -517,8 +534,22 @@
         const { data, error } = await lsb.from('enrollments').select('track').eq('user_id', LUSER.id);
         if(error){ TABLES_READY = false; } else { (data||[]).forEach(e => ENROLLED.add(e.track)); }
         try { const { data: p } = await lsb.from('lesson_progress').select('lesson_id').eq('user_id', LUSER.id).eq('completed', true); (p||[]).forEach(x => DONE.add(x.lesson_id)); } catch(e){}
+        try { const { data: prof } = await lsb.from('profiles').select('full_name').eq('id', LUSER.id).maybeSingle(); QNAME = (prof && prof.full_name) || LUSER.email || '회원'; } catch(e){ QNAME = LUSER.email || '회원'; }
       }
       refreshLearningUI();
+      renderQaComposer();
+      loadQuestions();
+      // 로그인 직후 보류 중이던 수강신청 자동 완료
+      if(LUSER && TABLES_READY){
+        let pend = null; try { pend = sessionStorage.getItem('pendingEnroll'); } catch(e){}
+        if(pend){
+          try { sessionStorage.removeItem('pendingEnroll'); } catch(e){}
+          if(!ENROLLED.has(pend)){
+            const { error } = await lsb.from('enrollments').insert({ user_id: LUSER.id, track: pend });
+            if(!error || error.code === '23505'){ ENROLLED.add(pend); refreshLearningUI(); learnToast('✓ 「' + pend + '」 수강신청 완료!', true); }
+          }
+        }
+      }
     }
     function refreshLearningUI(){
       const bar = document.getElementById('learnBar');
@@ -546,16 +577,19 @@
     }
     async function lLogin(){ await lsb.auth.signInWithOAuth({ provider:'google', options:{ redirectTo: location.href } }); }
     async function enrollTrack(){
-      if(!LUSER){ lLogin(); return; }
-      const t = curTrack(); if(!t) return;
+      const t = curTrack(); if(!t){ learnToast('강의 정보를 불러오는 중이에요. 잠시 후 다시 눌러주세요.', false); return; }
+      const { data:{ session } } = await lsb.auth.getSession();
+      if(!session){ try { sessionStorage.setItem('pendingEnroll', t); } catch(e){} learnToast('로그인하면 자동으로 수강신청됩니다…', true); await lLogin(); return; }
+      LUSER = session.user;
       const { error } = await lsb.from('enrollments').insert({ user_id: LUSER.id, track: t });
       if(error && error.code !== '23505'){
-        if(tableErr(error)){ TABLES_READY = false; refreshLearningUI(); learnToast('수강신청 기능이 아직 켜지지 않았어요. 관리자 설정(테이블 생성)이 필요합니다.', false); }
-        else { learnToast('수강신청 오류: ' + error.message, false); }
+        if(tableErr(error)){ TABLES_READY = false; refreshLearningUI(); learnToast('수강신청 기능이 아직 켜지지 않았어요. (관리자: 테이블 생성 필요)', false); }
+        else if(rlsErr(error)){ learnToast('수강신청 권한 설정이 필요해요. (관리자: enrollments INSERT 정책 확인 — 아래 SQL 재실행)', false); }
+        else { learnToast('수강신청 오류: ' + (error.message || error.code || '알 수 없음'), false); }
         return;
       }
       ENROLLED.add(t); refreshLearningUI();
-      learnToast('✓ 「' + t + '」 수강신청 완료! 📚 내 강의실에서 학습 현황을 볼 수 있어요.', true);
+      learnToast('✓ 「' + t + '」 수강신청 완료! 📚 내 강의실에서 확인하세요.', true);
     }
     async function toggleComplete(){
       if(!LUSER){ lLogin(); return; }
@@ -575,6 +609,86 @@
         if(!ENROLLED.has(curTrack())){ try { await lsb.from('enrollments').insert({ user_id: LUSER.id, track: curTrack() }); ENROLLED.add(curTrack()); } catch(e){} }
         refreshLearningUI(); learnToast('✅ 이 강의를 학습 완료로 표시했어요! 📚 내 강의실에서 확인하세요.', true);
       }
+    }
+
+    // ===== 수강생 질의응답 (강의별, 공개/비밀) =====
+    function escQ(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    function renderQaComposer(){
+      const el = document.getElementById('qaComposer'); if(!el) return;
+      if(!LUSER){
+        el.innerHTML = `<div class="bg-paper border border-ink/10 rounded-xl p-4 text-center text-sm text-ink/60">로그인하면 질문을 남길 수 있어요. <button onclick="lLogin()" class="ml-1 text-gold font-semibold underline">구글로 로그인</button></div>`;
+        return;
+      }
+      el.innerHTML = `
+        <div class="border border-ink/12 rounded-xl p-3">
+          <textarea id="qaInput" rows="3" placeholder="이 강의에 대해 궁금한 점을 질문해 보세요…" class="w-full resize-none outline-none text-[15px] placeholder:text-ink/35"></textarea>
+          <div class="flex flex-wrap items-center justify-between gap-2 mt-2 pt-2 border-t border-ink/8">
+            <div class="flex items-center gap-3 text-sm text-ink/70">
+              <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="qaVis" value="public" checked class="accent-gold"> 🌐 공개 질문</label>
+              <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="qaVis" value="private" class="accent-gold"> 🔒 비밀 질문</label>
+            </div>
+            <button onclick="submitQuestion()" id="qaBtn" class="bg-gold text-white font-semibold text-sm px-5 py-2 rounded-full hover:opacity-90 transition shrink-0">질문 등록</button>
+          </div>
+          <p id="qaMsg" class="text-red-500 text-xs mt-2 min-h-[14px]"></p>
+        </div>`;
+    }
+    function renderQ(q){
+      const mine = LUSER && q.user_id === LUSER.id;
+      const canDel = mine || isAdminW();
+      const badge = q.is_private
+        ? '<span class="text-[11px] bg-ink/8 text-ink/55 px-2 py-0.5 rounded-full">🔒 비밀</span>'
+        : '<span class="text-[11px] bg-gold/15 text-gold px-2 py-0.5 rounded-full">🌐 공개</span>';
+      const ans = q.answer
+        ? `<div class="mt-3 ml-3 pl-3 border-l-2 border-gold bg-gold/[0.05] rounded-r-lg p-3"><p class="text-xs font-bold text-gold mb-1">🎓 강사 답변</p><p class="text-sm text-ink/80 whitespace-pre-wrap leading-relaxed">${escQ(q.answer)}</p></div>`
+        : '';
+      const adminAns = isAdminW()
+        ? `<div class="mt-2 flex gap-2"><input id="ans-${q.id}" value="${q.answer ? escQ(q.answer).replace(/"/g,'&quot;') : ''}" placeholder="강사 답변 달기…" class="flex-1 border border-ink/12 rounded-full px-3 py-1.5 text-sm outline-none focus:border-gold"/><button onclick="answerQ('${q.id}')" class="bg-ink text-paper text-xs font-semibold px-3 py-1.5 rounded-full shrink-0">${q.answer ? '수정' : '답변'}</button></div>`
+        : '';
+      return `<div class="bg-paper rounded-xl border border-ink/8 p-4">
+        <div class="flex items-center justify-between mb-1.5">
+          <div class="flex items-center gap-2"><span class="font-semibold text-sm">${escQ(q.author_name || '회원')}</span>${badge}<span class="text-ink/35 text-xs">${ q.created_at ? new Date(q.created_at).toLocaleDateString('ko-KR') : '' }</span></div>
+          ${canDel ? `<button onclick="delQ('${q.id}')" class="text-ink/30 hover:text-red-500 text-xs">삭제</button>` : ''}
+        </div>
+        <p class="text-ink/80 text-[15px] whitespace-pre-wrap leading-relaxed">${escQ(q.content)}</p>
+        ${ans}${adminAns}
+      </div>`;
+    }
+    async function loadQuestions(){
+      const list = document.getElementById('qaList'); if(!list) return;
+      const id = curId(); const cnt = document.getElementById('qaCount');
+      if(!id){ list.innerHTML = ''; if(cnt) cnt.textContent = ''; return; }
+      const { data, error } = await lsb.from('lecture_questions').select('*').eq('lesson_id', id).order('created_at', { ascending: false });
+      if(error){
+        list.innerHTML = `<p class="text-ink/40 text-sm text-center py-6">${ /relation|does not exist|schema cache|find the table/i.test(error.message||'') ? '질의응답 기능을 준비 중이에요. (관리자: lecture_questions 테이블 생성 필요)' : '불러오기 오류: ' + escQ(error.message) }</p>`;
+        if(cnt) cnt.textContent = ''; return;
+      }
+      if(cnt) cnt.textContent = data.length ? data.length + '개의 질문' : '';
+      list.innerHTML = data.length ? data.map(renderQ).join('') : `<p class="text-ink/40 text-sm text-center py-6">아직 질문이 없어요. 첫 질문을 남겨보세요! 🙋</p>`;
+    }
+    async function submitQuestion(){
+      if(!LUSER){ lLogin(); return; }
+      const ta = document.getElementById('qaInput'); const content = (ta.value || '').trim();
+      const msg = document.getElementById('qaMsg'); const btn = document.getElementById('qaBtn');
+      if(!content){ msg.textContent = '질문 내용을 입력하세요.'; return; }
+      const vis = document.querySelector('input[name="qaVis"]:checked');
+      const is_private = !!(vis && vis.value === 'private');
+      btn.disabled = true; btn.textContent = '등록 중…'; msg.textContent = '';
+      const { error } = await lsb.from('lecture_questions').insert({ lesson_id: curId(), user_id: LUSER.id, author_name: QNAME, content, is_private });
+      btn.disabled = false; btn.textContent = '질문 등록';
+      if(error){ msg.textContent = /relation|does not exist|schema cache|find the table/i.test(error.message||'') ? '질의응답 기능 준비 중 (관리자 설정 필요)' : ('오류: ' + error.message); return; }
+      ta.value = ''; loadQuestions();
+    }
+    async function answerQ(id){
+      const inp = document.getElementById('ans-' + id); const answer = (inp.value || '').trim(); if(!answer) return;
+      const { error } = await lsb.from('lecture_questions').update({ answer, answered_at: new Date().toISOString() }).eq('id', id);
+      if(error){ alert('답변 오류: ' + error.message); return; }
+      loadQuestions();
+    }
+    async function delQ(id){
+      if(!confirm('이 질문을 삭제할까요?')) return;
+      const { error } = await lsb.from('lecture_questions').delete().eq('id', id);
+      if(error){ alert('삭제 오류: ' + error.message); return; }
+      loadQuestions();
     }
   </script>
   <script>
