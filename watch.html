@@ -134,14 +134,45 @@
       });
 
     function lessonRow(l, i){
-      return `<li id="lesson-${i}" onclick="loadLesson(${i})"
-            class="lesson flex gap-3 px-4 py-3.5 cursor-pointer border-l-2 border-transparent hover:bg-ink/[0.03] transition">
-          <span class="num text-sm text-ink/35 font-bold w-6 shrink-0 pt-0.5">${String(i+1).padStart(2,'0')}</span>
-          <div class="min-w-0">
-            <p class="title text-sm font-medium leading-snug">${esc(l.title || '')}</p>
-            <p class="text-xs text-ink/45 mt-1">${ l.duration ? '⏱ ' + esc(l.duration) + ' · ' : '' }${ l.free ? '<span class="text-green-600 font-semibold">무료</span>' : '<span class="text-ink/40">🔒 오픈 예정</span>' }</p>
+      const hasCh = l.chapters && l.chapters.length;
+      const chHtml = hasCh ? `<ul id="ch-list-${i}" class="hidden bg-ink/[0.015] border-t border-ink/5">` +
+        l.chapters.map(c => {
+          const sec = parseT(c.t);
+          if(sec != null && l.free){
+            return `<li onclick="playChapter(${i}, ${sec})" class="flex items-start gap-2 pl-12 pr-4 py-2 cursor-pointer hover:bg-gold/[0.08] transition">
+                <span class="text-[11px] font-semibold text-gold/80 shrink-0 w-9 pt-0.5">${esc(c.t)}</span>
+                <span class="text-xs text-ink/70 flex-1 leading-snug">${esc(c.label)}</span>
+              </li>`;
+          }
+          return `<li class="flex items-start gap-2 pl-12 pr-4 py-2"><span class="text-ink/30 shrink-0">▸</span><span class="text-xs text-ink/60 flex-1 leading-snug">${esc(c.label)}</span></li>`;
+        }).join('') + `</ul>` : '';
+
+      return `<li class="lessonItem">
+          <div id="lesson-${i}" onclick="loadLesson(${i})"
+              class="lesson flex items-center gap-3 px-4 py-3.5 cursor-pointer border-l-2 border-transparent hover:bg-ink/[0.03] transition">
+            <span class="num text-sm text-ink/35 font-bold w-6 shrink-0">${String(i+1).padStart(2,'0')}</span>
+            <div class="min-w-0 flex-1">
+              <p class="title text-sm font-medium leading-snug">${esc(l.title || '')}</p>
+              <p class="text-xs text-ink/45 mt-1">${ l.duration ? '⏱ ' + esc(l.duration) + ' · ' : '' }${ l.free ? '<span class="text-green-600 font-semibold">무료</span>' : '<span class="text-ink/40">🔒 오픈 예정</span>' }${ hasCh ? ` · <span class="text-ink/40">목차 ${l.chapters.length}</span>` : '' }</p>
+            </div>
+            ${ hasCh ? `<button onclick="toggleChapters(${i}, event)" class="chToggle shrink-0 w-7 h-7 flex items-center justify-center rounded-full hover:bg-ink/5 text-ink/40" aria-label="목차 펼치기">
+                <svg class="chevC w-4 h-4 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+              </button>` : '' }
           </div>
+          ${chHtml}
         </li>`;
+    }
+    function toggleChapters(i, ev){
+      if(ev) ev.stopPropagation();
+      const list = document.getElementById('ch-list-' + i);
+      if(!list) return;
+      const hidden = list.classList.toggle('hidden');
+      const btn = document.querySelector('#lesson-' + i + ' .chevC');
+      if(btn) btn.style.transform = hidden ? '' : 'rotate(180deg)';
+    }
+    function playChapter(i, sec){
+      if(i !== cur) loadLesson(i);
+      if(sec != null) seekTo(sec);
     }
     function renderList(){
       let html = '', gi = 0;
@@ -163,6 +194,15 @@
       document.querySelectorAll('.lesson').forEach(el => { el.classList.remove('bg-gold/10','border-gold'); });
       const el = document.getElementById('lesson-' + i);
       if(el){ el.classList.add('bg-gold/10','border-gold'); el.scrollIntoView({ block:'nearest' }); }
+
+      // 현재 강의 목차는 자동으로 펼치고, 나머지는 접기
+      document.querySelectorAll('[id^="ch-list-"]').forEach(ul => {
+        const idx = ul.id.replace('ch-list-', '');
+        const show = (String(i) === idx);
+        ul.classList.toggle('hidden', !show);
+        const btn = document.querySelector('#lesson-' + idx + ' .chevC');
+        if(btn) btn.style.transform = show ? 'rotate(180deg)' : '';
+      });
 
       const player = document.getElementById('player');
       const id = ytId(l.youtube);
