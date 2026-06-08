@@ -9,6 +9,8 @@
   <link rel="apple-touch-icon" href="/images/icon-192.png" />
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { theme: { extend: {
@@ -22,7 +24,22 @@
     const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
     const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
   </script>
-  <style>h1,h2{font-family:'Noto Serif KR',Pretendard,serif}</style>
+  <style>
+    h1,h2{font-family:'Noto Serif KR',Pretendard,serif}
+    .ql-toolbar.ql-snow{border-color:rgba(21,32,58,.12);border-radius:.75rem .75rem 0 0;background:#fff}
+    .ql-container.ql-snow{border-color:rgba(21,32,58,.12);border-radius:0 0 .75rem .75rem;font-family:'Pretendard',sans-serif}
+    .ql-editor{min-height:150px;font-size:15px;line-height:1.7}
+    .ql-editor.ql-blank::before{color:#9aa1ad;font-style:normal}
+    .post-body img{max-width:100%;border-radius:10px;margin:8px 0}
+    .post-body h1{font-size:1.4rem;font-weight:700;margin:.5em 0}
+    .post-body h2{font-size:1.2rem;font-weight:700;margin:.5em 0}
+    .post-body h3{font-size:1.05rem;font-weight:700;margin:.4em 0}
+    .post-body p{margin:.4em 0}
+    .post-body ul{list-style:disc;padding-left:1.3em;margin:.4em 0}
+    .post-body ol{list-style:decimal;padding-left:1.3em;margin:.4em 0}
+    .post-body blockquote{border-left:3px solid #b8923f;padding-left:.8em;color:#5a6275;margin:.6em 0;font-style:italic}
+    .post-body a{color:#b8923f;text-decoration:underline}
+  </style>
 </head>
 <body class="font-sans bg-paper text-ink antialiased min-h-screen">
 
@@ -84,16 +101,12 @@
         <button id="tab-qna" onclick="switchBoard('qna')" class="flex-1 py-2.5 rounded-full text-sm font-semibold border transition">🙋 질의응답</button>
         <button id="tab-prayer" onclick="switchBoard('prayer')" class="flex-1 py-2.5 rounded-full text-sm font-semibold border transition">🙏 기도 요청</button>
       </div>
-      <!-- 글쓰기 -->
-      <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 mb-6">
-        <textarea id="postContent" rows="3" placeholder="오늘의 나눔, 은혜, 사진을 나눠보세요…" class="w-full resize-none outline-none text-[15px] placeholder:text-ink/35"></textarea>
+      <!-- 글쓰기 (네이버 블로그식 에디터) -->
+      <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-4 mb-6">
+        <div id="postEditor"></div>
         <div class="flex items-center justify-between mt-3 pt-3 border-t border-ink/8">
-          <label class="cursor-pointer text-sm text-ink/55 hover:text-gold flex items-center gap-1.5">
-            <span>🖼️ 사진</span>
-            <input id="postImage" type="file" accept="image/*" class="hidden" onchange="document.getElementById('imgName').textContent=this.files[0]?this.files[0].name:''"/>
-            <span id="imgName" class="text-xs text-gold"></span>
-          </label>
-          <button id="postBtn" onclick="submitPost()" class="bg-gold text-white font-semibold text-sm px-5 py-2.5 rounded-full hover:opacity-90 transition">글 올리기</button>
+          <span class="text-xs text-ink/40">✍️ 글씨·색·사진·링크를 자유롭게 — 툴바를 활용하세요</span>
+          <button id="postBtn" onclick="submitPost()" class="bg-gold text-white font-semibold text-sm px-5 py-2.5 rounded-full hover:opacity-90 transition shrink-0">글 올리기</button>
         </div>
         <p id="postMsg" class="text-red-500 text-xs mt-2 min-h-[14px]"></p>
       </div>
@@ -114,17 +127,61 @@
     const ASK_REF = _qp.get('ask');
     let askApplied = false;
 
-    // 탭 전환 (자유 나눔 / Q&A 질문답변)
+    // 네이버 블로그식 에디터 (Quill)
+    let commQuill = null;
+    function sanitize(html){
+      const d = document.createElement('div'); d.innerHTML = html || '';
+      d.querySelectorAll('script,style,iframe,object,embed').forEach(n => n.remove());
+      d.querySelectorAll('*').forEach(el => { [...el.attributes].forEach(a => { if(/^on/i.test(a.name) || (a.name==='href' && /^javascript:/i.test(a.value))) el.removeAttribute(a.name); }); });
+      return d.innerHTML;
+    }
+    function ensureCommQuill(){
+      if(commQuill) return commQuill;
+      commQuill = new Quill('#postEditor', {
+        theme: 'snow',
+        placeholder: '오늘의 나눔, 은혜, 사진을 자유롭게 나눠보세요…',
+        modules: { toolbar: [
+          [{ header:[1,2,3,false] }],
+          ['bold','italic','underline','strike'],
+          [{ color:[] }, { background:[] }],
+          [{ list:'ordered' }, { list:'bullet' }],
+          ['blockquote'],
+          ['link','image'],
+          ['clean']
+        ] }
+      });
+      commQuill.getModule('toolbar').addHandler('image', () => {
+        const input = document.createElement('input');
+        input.type = 'file'; input.accept = 'image/*';
+        input.onchange = async () => {
+          const file = input.files[0]; if(!file) return;
+          if(!currentUser){ alert('로그인이 필요해요.'); return; }
+          if(file.size > 5*1024*1024){ alert('이미지는 5MB 이하만 가능해요.'); return; }
+          const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
+          const path = `${currentUser.id}/${Date.now()}.${ext}`;
+          const { error } = await sb.storage.from('community').upload(path, file);
+          if(error){ alert('이미지 업로드 오류: ' + error.message); return; }
+          const url = sb.storage.from('community').getPublicUrl(path).data.publicUrl;
+          const range = commQuill.getSelection(true);
+          commQuill.insertEmbed(range.index, 'image', url);
+          commQuill.setSelection(range.index + 1);
+        };
+        input.click();
+      });
+      return commQuill;
+    }
+
+    // 탭 전환 (자유 나눔 / Q&A 질문답변 / 기도 요청)
     function boardLabel(b){ return b === 'qna' ? '질문 올리기' : b === 'prayer' ? '기도 요청하기' : '글 올리기'; }
     function switchBoard(b){
       currentBoard = b;
       const on = 'bg-ink text-paper border-ink', off = 'bg-white text-ink/55 border-ink/15 hover:bg-ink/5';
       const base = 'flex-1 py-2.5 rounded-full text-sm font-semibold border transition ';
       ['free','qna','prayer'].forEach(x => { const el = document.getElementById('tab-' + x); if(el) el.className = base + (b === x ? on : off); });
-      document.getElementById('postContent').placeholder =
-          b === 'qna' ? '강의 내용이든 신앙 고민이든, 무엇이든 자유롭게 질문해 보세요. 강사와 멤버가 댓글로 답해드려요…'
-        : b === 'prayer' ? '함께 기도할 제목을 나눠 주세요. 멤버들이 함께 기도하고, 댓글로 마음을 더해드려요…'
-        : '오늘의 나눔, 은혜, 사진을 나눠보세요…';
+      const ph = b === 'qna' ? '강의 내용이든 신앙 고민이든, 무엇이든 자유롭게 질문해 보세요. 강사와 멤버가 댓글로 답해드려요…'
+               : b === 'prayer' ? '함께 기도할 제목을 나눠 주세요. 멤버들이 함께 기도하고, 댓글로 마음을 더해드려요…'
+               : '오늘의 나눔, 은혜, 사진을 자유롭게 나눠보세요…';
+      if(commQuill) commQuill.root.setAttribute('data-placeholder', ph);
       document.getElementById('postBtn').textContent = boardLabel(b);
       loadPosts();
     }
@@ -142,13 +199,13 @@
         document.getElementById('boardView').classList.remove('hidden');
         document.getElementById('navUser').innerHTML =
           `${esc(currentName)}님${isAdmin ? ' <span class="text-gold font-semibold">· 관리자</span>' : ''} · <button onclick="logout()" class="hover:text-gold">로그아웃</button>`;
+        ensureCommQuill();
         switchBoard(currentBoard);
         // 강의실에서 넘어온 질문 프리필 (한 번만)
         if(ASK_REF && !askApplied){
           askApplied = true;
-          const ta = document.getElementById('postContent');
-          ta.value = `[강의 질문] ${decodeURIComponent(ASK_REF)}\n\n질문: `;
-          setTimeout(() => { ta.scrollIntoView({ behavior:'smooth', block:'center' }); ta.focus(); ta.setSelectionRange(ta.value.length, ta.value.length); }, 350);
+          commQuill.setText(`[강의 질문] ${decodeURIComponent(ASK_REF)}\n\n질문: `);
+          setTimeout(() => { document.getElementById('postEditor').scrollIntoView({ behavior:'smooth', block:'center' }); commQuill.focus(); }, 350);
         }
       } else {
         currentUser = null; isAdmin = false;
@@ -190,7 +247,7 @@
           </div>
           ${canDel ? `<button onclick="del('${p.id}', ${mine ? 0 : 1})" class="text-ink/30 hover:text-red-500 text-xs">${delLabel}</button>` : ''}
         </div>
-        <p class="text-ink/80 whitespace-pre-wrap leading-relaxed text-[15px]">${esc(p.content)}</p>
+        <div class="post-body text-ink/80 leading-relaxed text-[15px]">${ /<[a-z][\s\S]*>/i.test(p.content||'') ? sanitize(p.content) : esc(p.content).replace(/\n/g,'<br>') }</div>
         ${p.image_url ? `<img src="${p.image_url}" class="mt-3 rounded-xl max-h-96 w-auto border border-ink/5" loading="lazy">` : ''}
         <div class="mt-4 pt-4 border-t border-ink/5">
           <div id="comments-${p.id}" class="space-y-2.5 mb-3"></div>
@@ -256,24 +313,18 @@
     }
 
     async function submitPost(){
-      const ta = document.getElementById('postContent'); const content = ta.value.trim();
-      const fileInput = document.getElementById('postImage'); const file = fileInput.files[0];
+      if(!currentUser){ alert('로그인이 필요해요.'); return; }
+      ensureCommQuill();
       const msg = document.getElementById('postMsg'); const btn = document.getElementById('postBtn');
-      if(!content && !file){ msg.textContent = '내용이나 사진을 입력하세요.'; return; }
+      const text = commQuill.getText().trim();
+      const html = sanitize(commQuill.root.innerHTML);
+      const hasImage = /<img\s/i.test(html);
+      if(!text && !hasImage){ msg.textContent = '내용을 입력하세요.'; return; }
       btn.disabled = true; btn.textContent = '올리는 중…'; msg.textContent = '';
-      let image_url = null;
       try{
-        if(file){
-          if(file.size > 5*1024*1024) throw new Error('사진은 5MB 이하만 가능해요.');
-          const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
-          const path = `${currentUser.id}/${Date.now()}.${ext}`;
-          const { error: upErr } = await sb.storage.from('community').upload(path, file);
-          if(upErr) throw upErr;
-          image_url = sb.storage.from('community').getPublicUrl(path).data.publicUrl;
-        }
-        const { error } = await sb.from('community_posts').insert({ author_id: currentUser.id, author_name: currentName, content, image_url, board: currentBoard });
+        const { error } = await sb.from('community_posts').insert({ author_id: currentUser.id, author_name: currentName, content: html, board: currentBoard });
         if(error) throw error;
-        ta.value = ''; fileInput.value = ''; document.getElementById('imgName').textContent = '';
+        commQuill.setText('');
         loadPosts();
       }catch(e){ msg.textContent = '오류: ' + (e.message || e); }
       finally{ btn.disabled = false; btn.textContent = boardLabel(currentBoard); }
