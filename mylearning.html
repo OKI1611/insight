@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>내 강의실 — 오광일의 인사이트 브리핑</title>
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#15203a" />
+  <link rel="apple-touch-icon" href="/images/icon-192.png" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink:'#15203a', navy:'#1b2a4a', gold:'#b8923f', sand:'#efe7d6', paper:'#fcfaf6' },
+      fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
+      boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
+    }}}
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
+    const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+  </script>
+  <style>h1,h2{font-family:'Noto Serif KR',Pretendard,serif}</style>
+</head>
+<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+
+  <header class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-ink/8">
+    <div class="max-w-6xl mx-auto px-4 h-14 flex items-center gap-3">
+      <a href="index.html" class="font-bold text-[15px] shrink-0">오광일의 <span class="text-gold">인사이트 브리핑</span></a>
+      <nav class="flex items-center gap-4 sm:gap-5 text-sm text-ink/70 overflow-x-auto whitespace-nowrap pl-1">
+        <a href="index.html#catalog" class="hover:text-gold">강의</a>
+        <a href="index.html#curriculum" class="hover:text-gold">커리큘럼</a>
+        <a href="mylearning.html" class="text-gold font-semibold">내 강의실</a>
+        <a href="index.html#videos" class="hover:text-gold">무료영상</a>
+        <a href="column.html" class="hover:text-gold">칼럼</a>
+        <a href="resources.html" class="hover:text-gold">자료실</a>
+        <a href="community.html" class="hover:text-gold">커뮤니티</a>
+        <a href="community.html?board=qna" class="hover:text-gold">질의응답</a>
+        <a href="index.html#support" class="hover:text-gold">후원</a>
+      </nav>
+      <div class="ml-auto flex items-center gap-3 text-sm shrink-0">
+        <span id="navUser" class="text-ink/60"></span>
+        <a href="index.html" class="text-ink/45 hover:text-gold">홈</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-3xl mx-auto px-4 py-8">
+    <div class="mb-8">
+      <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">MY CLASSROOM</p>
+      <h1 class="text-2xl font-bold">내 강의실</h1>
+      <p class="text-ink/55 text-sm mt-2">수강신청한 강의의 학습 현황을 한눈에 확인하세요.</p>
+    </div>
+
+    <!-- 비로그인 -->
+    <div id="loginView" class="hidden">
+      <div class="bg-white rounded-3xl border border-ink/8 shadow-card p-8 max-w-sm mx-auto text-center">
+        <p class="text-3xl mb-3">🎓</p>
+        <h2 class="text-lg font-bold mb-1">로그인하고 학습을 시작하세요</h2>
+        <p class="text-sm text-ink/55 mb-6">수강신청과 학습 현황은 로그인 후 이용할 수 있어요.</p>
+        <button onclick="googleLogin()" class="w-full flex items-center justify-center gap-3 border border-ink/15 bg-white rounded-xl py-3 font-medium hover:bg-ink/5 transition mb-3">
+          <svg class="w-5 h-5" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C39.9 36.5 44 31 44 24c0-1.3-.1-2.3-.4-3.5z"/></svg>
+          구글로 로그인
+        </button>
+        <input id="le" type="email" placeholder="이메일" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold mb-2"/>
+        <input id="lp" type="password" placeholder="비밀번호" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold mb-2"/>
+        <button onclick="emailLogin()" class="w-full bg-ink text-paper font-semibold rounded-xl py-3 hover:bg-navy transition">이메일로 로그인</button>
+        <p id="loginMsg" class="text-red-500 text-xs mt-2 min-h-[16px]"></p>
+      </div>
+    </div>
+
+    <!-- 로그인 -->
+    <div id="dashView" class="hidden">
+      <div id="summary" class="grid grid-cols-3 gap-3 mb-6"></div>
+      <div id="tracks" class="space-y-5"></div>
+    </div>
+  </main>
+
+  <script>
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+    let user = null, uname = '회원', COURSE = null;
+    function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    function ytId(u){ if(!u) return ''; const m = String(u).match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/); return m ? m[1] : (String(u).trim().length===11 ? String(u).trim() : ''); }
+
+    sb.auth.onAuthStateChange((_e, s) => onAuth(s));
+    sb.auth.getSession().then(({ data:{ session } }) => onAuth(session));
+
+    async function onAuth(session){
+      if(session && session.user){
+        user = session.user;
+        try { const { data: prof } = await sb.from('profiles').select('full_name').eq('id', user.id).maybeSingle(); uname = (prof && prof.full_name) || user.email || '회원'; }
+        catch(e){ uname = user.email || '회원'; }
+        document.getElementById('loginView').classList.add('hidden');
+        document.getElementById('dashView').classList.remove('hidden');
+        document.getElementById('navUser').innerHTML = `${esc(uname)}님 · <button onclick="logout()" class="hover:text-gold">로그아웃</button>`;
+        loadDashboard();
+      } else {
+        user = null;
+        document.getElementById('loginView').classList.remove('hidden');
+        document.getElementById('dashView').classList.add('hidden');
+        document.getElementById('navUser').innerHTML = '';
+      }
+    }
+    async function googleLogin(){ await sb.auth.signInWithOAuth({ provider:'google', options:{ redirectTo: location.href } }); }
+    async function emailLogin(){
+      const email = (document.getElementById('le').value||'').trim(), pw = document.getElementById('lp').value||'';
+      const msg = document.getElementById('loginMsg');
+      if(!email || !pw){ msg.textContent = '이메일과 비밀번호를 입력하세요.'; return; }
+      const { error } = await sb.auth.signInWithPassword({ email, password: pw });
+      if(error) msg.textContent = error.message;
+    }
+    async function logout(){ await sb.auth.signOut(); }
+
+    async function loadDashboard(){
+      const tracksEl = document.getElementById('tracks');
+      const sumEl = document.getElementById('summary');
+      tracksEl.innerHTML = '<p class="text-ink/40 text-sm text-center py-8">불러오는 중…</p>';
+      if(!COURSE){ try { COURSE = await (await fetch('content/course.json?t=' + Date.now())).json(); } catch(e){ tracksEl.innerHTML = '<p class="text-red-500 text-sm text-center py-8">강의 정보를 불러오지 못했습니다.</p>'; return; } }
+      const levels = COURSE.levels || [];
+      let acc = 0; const starts = []; levels.forEach(lv => { starts.push(acc); acc += (lv.lessons||[]).length; });
+
+      let enrolled = [], done = new Set(), tableMissing = false;
+      try { const { data, error } = await sb.from('enrollments').select('track').eq('user_id', user.id); if(error) throw error; enrolled = (data||[]).map(e => e.track); }
+      catch(e){ tableMissing = true; }
+      try { const { data } = await sb.from('lesson_progress').select('lesson_id').eq('user_id', user.id).eq('completed', true); (data||[]).forEach(p => done.add(p.lesson_id)); } catch(e){}
+
+      if(tableMissing){
+        tracksEl.innerHTML = '<div class="bg-white rounded-2xl border border-ink/8 p-6 text-center text-ink/55 text-sm">학습 기능을 준비 중입니다. (관리자: Supabase에 enrollments·lesson_progress 테이블을 생성해 주세요)</div>';
+        sumEl.innerHTML = ''; return;
+      }
+
+      const mine = levels.map((lv, ti) => ({ lv, ti })).filter(x => enrolled.includes(x.lv.name));
+      // 요약 카드
+      let totalLessons = 0, totalDone = 0;
+      mine.forEach(({ lv }) => { (lv.lessons||[]).forEach(l => { totalLessons++; if(done.has(ytId(l.youtube))) totalDone++; }); });
+      const overallPct = totalLessons ? Math.round(totalDone / totalLessons * 100) : 0;
+      sumEl.innerHTML = `
+        <div class="bg-white rounded-2xl border border-ink/8 p-4 text-center"><p class="text-2xl font-bold text-gold">${mine.length}</p><p class="text-xs text-ink/55 mt-1">수강 중인 과정</p></div>
+        <div class="bg-white rounded-2xl border border-ink/8 p-4 text-center"><p class="text-2xl font-bold text-gold">${totalDone}<span class="text-base text-ink/40">/${totalLessons}</span></p><p class="text-xs text-ink/55 mt-1">완료한 강의</p></div>
+        <div class="bg-white rounded-2xl border border-ink/8 p-4 text-center"><p class="text-2xl font-bold text-gold">${overallPct}%</p><p class="text-xs text-ink/55 mt-1">전체 진도율</p></div>`;
+
+      if(!mine.length){
+        tracksEl.innerHTML = `<div class="bg-white rounded-2xl border border-ink/8 p-8 text-center">
+          <p class="text-3xl mb-3">📚</p>
+          <p class="font-semibold mb-1">아직 수강신청한 강의가 없어요</p>
+          <p class="text-sm text-ink/55 mb-5">강의실에서 마음에 드는 과정을 수강신청해 보세요.</p>
+          <a href="index.html#catalog" class="inline-block bg-ink text-paper font-semibold px-6 py-3 rounded-full hover:bg-navy transition">강의 둘러보기 →</a>
+        </div>`;
+        return;
+      }
+
+      tracksEl.innerHTML = mine.map(({ lv, ti }) => {
+        const ls = lv.lessons || [];
+        const doneCnt = ls.filter(l => done.has(ytId(l.youtube))).length;
+        const pct = ls.length ? Math.round(doneCnt / ls.length * 100) : 0;
+        const fi = ls.findIndex(l => !done.has(ytId(l.youtube)));
+        const contIdx = starts[ti] + (fi < 0 ? 0 : fi);
+        const contLabel = (fi < 0) ? '🎉 완강! 다시 보기' : (doneCnt === 0 ? '▶ 학습 시작' : '▶ 이어보기');
+        const rows = ls.map((l, li) => {
+          const gi = starts[ti] + li; const ok = done.has(ytId(l.youtube));
+          return `<a href="watch.html?l=${gi}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-ink/[0.03] transition">
+            <span class="shrink-0 text-lg">${ ok ? '✅' : '⬜' }</span>
+            <span class="flex-1 text-sm ${ ok ? 'text-ink/45 line-through' : 'text-ink/80' } truncate">${esc(l.title)}</span>
+            <span class="shrink-0 text-xs text-ink/35">${ esc(l.duration||'') }</span>
+          </a>`;
+        }).join('');
+        return `<div class="bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden">
+          <div class="px-5 pt-5 pb-4 border-b border-ink/8">
+            <div class="flex items-center justify-between gap-3 mb-3">
+              <h3 class="font-bold">${esc(lv.name)}</h3>
+              <span class="text-sm font-semibold text-gold shrink-0">${pct}%</span>
+            </div>
+            <div class="h-2 rounded-full bg-ink/8 overflow-hidden"><div class="h-full bg-gold rounded-full" style="width:${pct}%"></div></div>
+            <div class="flex items-center justify-between mt-3">
+              <span class="text-xs text-ink/55">${doneCnt}/${ls.length}강 완료</span>
+              <a href="watch.html?l=${contIdx}" class="text-sm font-semibold text-ink hover:text-gold">${contLabel} →</a>
+            </div>
+          </div>
+          <div class="p-2">${rows}</div>
+        </div>`;
+      }).join('');
+    }
+  </script>
+  <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+</body>
+</html>

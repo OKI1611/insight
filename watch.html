@@ -11,6 +11,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
+    const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+  </script>
   <script>
     tailwind.config = { theme: { extend: {
       colors: { ink:'#15203a', navy:'#1b2a4a', gold:'#b8923f', sand:'#efe7d6', paper:'#fcfaf6' },
@@ -35,10 +40,12 @@
       <nav class="flex items-center gap-4 sm:gap-5 text-sm text-ink/70 overflow-x-auto whitespace-nowrap pl-1">
         <a href="index.html#catalog" class="text-gold font-semibold">강의</a>
         <a href="index.html#curriculum" class="hover:text-gold">커리큘럼</a>
+        <a href="mylearning.html" class="hover:text-gold">내 강의실</a>
         <a href="index.html#videos" class="hover:text-gold">무료영상</a>
         <a href="column.html" class="hover:text-gold">칼럼</a>
         <a href="resources.html" class="hover:text-gold">자료실</a>
         <a href="community.html" class="hover:text-gold">커뮤니티</a>
+        <a href="community.html?board=qna" class="hover:text-gold">질의응답</a>
         <a href="index.html#reviews" class="hover:text-gold">후기</a>
         <a href="index.html#faq" class="hover:text-gold">FAQ</a>
         <a href="index.html#support" class="hover:text-gold">후원</a>
@@ -103,6 +110,9 @@
         </div>
       </div>
 
+      <!-- 내 학습 (수강신청 / 진도 체크) -->
+      <div id="learnBar" class="mt-3 flex flex-wrap items-center gap-2 text-sm"></div>
+
       <!-- 요약 노트 (PDF 출력 영역) -->
       <div id="noteCard" class="mt-4" style="display:none">
         <div id="noteSheet" style="background:#ffffff;border:1px solid #e7e2d4;border-radius:16px;padding:30px 28px;color:#15203a"></div>
@@ -129,7 +139,7 @@
   </main>
 
   <script>
-    let lessons = [], cur = 0;
+    let lessons = [], cur = 0, LESSON_TRACK = [];
     function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
     function ytId(u){
       if(!u) return '';
@@ -151,8 +161,8 @@
         // 단계(levels) 구조 우선, 없으면 기존 lessons 평면 구조 호환
         LEVELS = (c.levels && c.levels.length) ? c.levels.map(lv => ({ name: lv.name || '', desc: lv.desc || '', lessons: lv.lessons || [] }))
                                               : [{ name: '', desc: '', lessons: c.lessons || [] }];
-        lessons = [];
-        LEVELS.forEach(lv => lv.lessons.forEach(ls => lessons.push(ls)));
+        lessons = []; LESSON_TRACK = [];
+        LEVELS.forEach(lv => lv.lessons.forEach(ls => { lessons.push(ls); LESSON_TRACK.push(lv.name || ''); }));
         document.getElementById('courseTitle').textContent = c.title || '강의';
         document.getElementById('courseSub').textContent = c.subtitle || '';
         const freeCnt = lessons.filter(l => l.free).length;
@@ -473,6 +483,7 @@
         : '<span class="bg-ink/10 text-ink/50 text-xs font-semibold px-2.5 py-1 rounded-full">🔒 오픈 예정</span>';
 
       renderNote(l);
+      refreshLearningUI();
       const noteCard = document.getElementById('noteCard');
       const noteBtn = document.getElementById('noteToggleBtn');
       if(noteCard){ noteCard.style.display = 'none'; }
@@ -483,6 +494,68 @@
     }
     function prev(){ loadLesson(cur - 1); }
     function next(){ loadLesson(cur + 1); }
+
+    // ===== 수강신청 / 학습 진도 =====
+    const lsb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+    let LUSER = null, ENROLLED = new Set(), DONE = new Set();
+    function curTrack(){ return LESSON_TRACK[cur] || ''; }
+    function curId(){ return ytId((lessons[cur] || {}).youtube); }
+
+    lsb.auth.onAuthStateChange((_e, s) => lAuth(s));
+    lsb.auth.getSession().then(({ data:{ session } }) => lAuth(session));
+    async function lAuth(session){
+      LUSER = (session && session.user) || null;
+      ENROLLED = new Set(); DONE = new Set();
+      if(LUSER){
+        try { const { data } = await lsb.from('enrollments').select('track').eq('user_id', LUSER.id); (data||[]).forEach(e => ENROLLED.add(e.track)); } catch(e){}
+        try { const { data } = await lsb.from('lesson_progress').select('lesson_id').eq('user_id', LUSER.id).eq('completed', true); (data||[]).forEach(p => DONE.add(p.lesson_id)); } catch(e){}
+      }
+      refreshLearningUI();
+    }
+    function refreshLearningUI(){
+      const bar = document.getElementById('learnBar');
+      if(!bar || !lessons.length) return;
+      const myClass = '<a href="mylearning.html" class="inline-flex items-center gap-1.5 border border-ink/15 text-ink/70 font-semibold px-4 py-2 rounded-full hover:bg-ink/5 transition">📚 내 강의실</a>';
+      if(!LUSER){
+        bar.innerHTML = '<span class="text-ink/55">로그인하면 수강신청과 학습 체크를 이용할 수 있어요.</span>'
+          + '<button onclick="lLogin()" class="inline-flex items-center gap-1.5 border border-ink/15 font-semibold px-4 py-2 rounded-full hover:bg-ink/5 transition">구글로 로그인</button>' + myClass;
+        return;
+      }
+      const enrolled = ENROLLED.has(curTrack());
+      const done = DONE.has(curId());
+      const enrollBtn = enrolled
+        ? `<span class="inline-flex items-center gap-1.5 bg-green-50 text-green-700 font-semibold px-4 py-2 rounded-full">✓ 수강 중 · ${esc(curTrack())}</span>`
+        : `<button onclick="enrollTrack()" class="inline-flex items-center gap-1.5 bg-gold text-white font-semibold px-4 py-2 rounded-full hover:opacity-90 transition">＋ 이 과정 수강신청</button>`;
+      const doneBtn = done
+        ? `<button onclick="toggleComplete()" class="inline-flex items-center gap-1.5 bg-green-600 text-white font-semibold px-4 py-2 rounded-full hover:opacity-90 transition">✅ 학습 완료됨</button>`
+        : `<button onclick="toggleComplete()" class="inline-flex items-center gap-1.5 border border-ink/20 text-ink/80 font-semibold px-4 py-2 rounded-full hover:bg-ink/5 transition">⬜ 학습 완료 체크</button>`;
+      bar.innerHTML = enrollBtn + doneBtn + myClass;
+    }
+    async function lLogin(){ await lsb.auth.signInWithOAuth({ provider:'google', options:{ redirectTo: location.href } }); }
+    async function enrollTrack(){
+      if(!LUSER){ lLogin(); return; }
+      const t = curTrack(); if(!t) return;
+      const { error } = await lsb.from('enrollments').insert({ user_id: LUSER.id, track: t });
+      if(error && error.code !== '23505'){ alert('수강신청 오류: ' + error.message); return; }
+      ENROLLED.add(t); refreshLearningUI();
+      alert('수강신청 완료! 📚 내 강의실에서 학습 현황을 확인할 수 있어요.');
+    }
+    async function toggleComplete(){
+      if(!LUSER){ lLogin(); return; }
+      const id = curId(); if(!id) return;
+      if(DONE.has(id)){
+        const { error } = await lsb.from('lesson_progress').delete().eq('user_id', LUSER.id).eq('lesson_id', id);
+        if(error){ alert('오류: ' + error.message); return; }
+        DONE.delete(id);
+      } else {
+        const { error } = await lsb.from('lesson_progress').upsert({ user_id: LUSER.id, lesson_id: id, track: curTrack(), completed: true }, { onConflict: 'user_id,lesson_id' });
+        if(error){ alert('오류: ' + error.message); return; }
+        DONE.add(id);
+        // 수강신청 안 했다면 자동으로 이 과정 등록
+        if(!ENROLLED.has(curTrack())){ try { await lsb.from('enrollments').insert({ user_id: LUSER.id, track: curTrack() }); ENROLLED.add(curTrack()); } catch(e){} }
+      }
+      refreshLearningUI();
+    }
   </script>
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
 </body>
