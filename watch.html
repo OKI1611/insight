@@ -22,6 +22,8 @@
     h1{font-family:'Noto Serif KR',Pretendard,serif}
     #lessonList::-webkit-scrollbar{width:6px}
     #lessonList::-webkit-scrollbar-thumb{background:rgba(21,32,58,.18);border-radius:3px}
+    .shareItem{display:flex;width:100%;align-items:center;gap:10px;padding:9px 11px;border-radius:10px;font-size:14px;color:#2b3550;text-align:left;background:none;border:none;cursor:pointer;transition:background .15s}
+    .shareItem:hover{background:rgba(21,32,58,.05)}
   </style>
 </head>
 <body class="font-sans bg-paper text-ink antialiased min-h-screen">
@@ -74,11 +76,27 @@
 
       <div id="lessonChapters" class="mt-4 bg-white rounded-2xl border border-ink/8 p-5 shadow-soft" style="display:none"></div>
 
-      <!-- 학습 도구: 요약 노트 / PDF / 공유 -->
+      <!-- 학습 도구: 질문하기 / 요약 노트 / PDF / 공유 -->
       <div class="mt-4 flex flex-wrap gap-2">
+        <button onclick="askInstructor()" class="inline-flex items-center gap-1.5 bg-ink text-paper font-semibold text-sm px-4 py-2.5 rounded-full hover:bg-navy transition">💬 강사에게 질문하기</button>
         <button onclick="toggleNote()" id="noteToggleBtn" class="inline-flex items-center gap-1.5 bg-gold/10 text-gold font-semibold text-sm px-4 py-2.5 rounded-full hover:bg-gold/20 transition">📝 요약 노트 보기</button>
         <button onclick="downloadNotePDF()" class="inline-flex items-center gap-1.5 border border-ink/15 text-ink/80 font-semibold text-sm px-4 py-2.5 rounded-full hover:bg-ink/5 transition">⬇️ PDF로 저장</button>
-        <button onclick="shareLesson()" class="inline-flex items-center gap-1.5 border border-ink/15 text-ink/80 font-semibold text-sm px-4 py-2.5 rounded-full hover:bg-ink/5 transition">🔗 공유</button>
+        <div class="relative inline-block">
+          <button onclick="toggleShareMenu(event)" class="inline-flex items-center gap-1.5 border border-ink/15 text-ink/80 font-semibold text-sm px-4 py-2.5 rounded-full hover:bg-ink/5 transition">🔗 공유 ▾</button>
+          <div id="shareMenu" class="hidden absolute right-0 sm:left-0 mt-2 w-56 bg-white rounded-2xl border border-ink/10 shadow-card p-2 z-30">
+            <button class="shareItem" onclick="shareTo('blog')">🟢 네이버 블로그</button>
+            <button class="shareItem" onclick="shareTo('band')">🔵 네이버 밴드</button>
+            <button class="shareItem" onclick="shareTo('cafe')">🍃 네이버 카페</button>
+            <button class="shareItem" onclick="shareTo('kakao')">💬 카카오톡</button>
+            <button class="shareItem" onclick="shareTo('threads')">🧵 쓰레드(Threads)</button>
+            <button class="shareItem" onclick="shareTo('insta')">📷 인스타그램</button>
+            <button class="shareItem" onclick="shareTo('x')">𝕏 &nbsp;X(트위터)</button>
+            <button class="shareItem" onclick="shareTo('facebook')">📘 페이스북</button>
+            <div class="border-t border-ink/8 my-1"></div>
+            <button class="shareItem" onclick="shareTo('copy')">🔗 링크 복사</button>
+            <button class="shareItem" onclick="shareNative()">⋯ 기타(앱으로 공유)</button>
+          </div>
+        </div>
       </div>
 
       <!-- 요약 노트 (PDF 출력 영역) -->
@@ -298,14 +316,61 @@
       catch(e){ alert('PDF 생성 중 문제가 발생했어요. 다시 시도해 주세요.'); }
       if(wasHidden){ card.style.display = 'none'; }
     }
-    async function shareLesson(){
+    function lessonShareUrl(){ return location.origin + location.pathname + '?l=' + cur; }
+    function toggleShareMenu(ev){
+      if(ev) ev.stopPropagation();
+      document.getElementById('shareMenu').classList.toggle('hidden');
+    }
+    document.addEventListener('click', (e) => {
+      const menu = document.getElementById('shareMenu');
+      if(menu && !menu.classList.contains('hidden') && !e.target.closest('#shareMenu') && !e.target.closest('[onclick^="toggleShareMenu"]')){
+        menu.classList.add('hidden');
+      }
+    });
+    function copyLink(url, kind){
+      const msg = kind === 'insta' ? '링크를 복사했어요! 📷 인스타그램 앱에서 프로필/스토리에 붙여넣어 공유하세요.'
+               : kind === 'cafe' ? '링크를 복사했어요! 🍃 원하는 네이버 카페 글쓰기에 붙여넣어 공유하세요.'
+               : kind === 'kakao' ? '링크를 복사했어요! 💬 카카오톡 대화창에 붙여넣어 공유하세요.'
+               : '강의 링크를 복사했어요!';
+      const done = () => alert(msg);
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(url).then(done).catch(()=>prompt('아래 링크를 복사하세요:', url)); }
+      else { prompt('아래 링크를 복사하세요:', url); }
+    }
+    function shareTo(platform){
       const l = lessons[cur] || {};
-      const url = location.origin + location.pathname + '?l=' + cur;
+      const url = lessonShareUrl();
+      const title = (l.title || '오광일의 인사이트 브리핑');
+      const eu = encodeURIComponent(url), et = encodeURIComponent(title), etxt = encodeURIComponent(title + ' ' + url);
+      document.getElementById('shareMenu').classList.add('hidden');
+      let target = '';
+      switch(platform){
+        case 'blog':     target = `https://blog.naver.com/openapi/share?url=${eu}&title=${et}`; break;
+        case 'band':     target = `https://www.band.us/plugin/share?body=${etxt}&route=${eu}`; break;
+        case 'threads':  target = `https://www.threads.net/intent/post?text=${etxt}`; break;
+        case 'x':        target = `https://twitter.com/intent/tweet?text=${et}&url=${eu}`; break;
+        case 'facebook': target = `https://www.facebook.com/sharer/sharer.php?u=${eu}`; break;
+        case 'cafe':
+        case 'insta':
+        case 'kakao':
+        case 'copy':     copyLink(url, platform); return;
+      }
+      window.open(target, '_blank', 'noopener,noreferrer,width=640,height=660');
+    }
+    async function shareNative(){
+      document.getElementById('shareMenu').classList.add('hidden');
+      const l = lessons[cur] || {};
+      const url = lessonShareUrl();
       const data = { title: l.title || '오광일의 인사이트 브리핑', text: (l.summary || l.title || ''), url };
       try {
         if(navigator.share){ await navigator.share(data); }
-        else { await navigator.clipboard.writeText(url); alert('강의 링크가 복사됐어요! 원하는 곳에 붙여넣어 공유하세요.'); }
+        else { copyLink(url, 'copy'); }
       } catch(e){ /* 사용자가 취소 */ }
+    }
+    // 강사에게 질문하기 — 커뮤니티 Q&A에 강의 정보가 채워진 채로 이동
+    function askInstructor(){
+      const l = lessons[cur] || {};
+      const ref = (l.title || '강의') + '\n🔗 ' + lessonShareUrl();
+      window.open('community.html?board=qna&ask=' + encodeURIComponent(ref), '_blank');
     }
     function renderList(){
       let html = '', gi = 0;

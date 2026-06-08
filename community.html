@@ -100,6 +100,12 @@
     const ADMIN_EMAIL = 'josephoh1611@gmail.com';   // 관리자: 모든 글 삭제 가능
     let currentUser = null, currentName = '회원', isAdmin = false, currentBoard = 'free';
 
+    // 강의실에서 '강사에게 질문하기'로 넘어온 경우: Q&A 탭 + 질문 프리필
+    const _qp = new URLSearchParams(location.search);
+    if(_qp.get('board') === 'qna') currentBoard = 'qna';
+    const ASK_REF = _qp.get('ask');
+    let askApplied = false;
+
     // 탭 전환 (자유 나눔 / Q&A 질문답변)
     function switchBoard(b){
       currentBoard = b;
@@ -128,6 +134,13 @@
         document.getElementById('navUser').innerHTML =
           `${esc(currentName)}님${isAdmin ? ' <span class="text-gold font-semibold">· 관리자</span>' : ''} · <button onclick="logout()" class="hover:text-gold">로그아웃</button>`;
         switchBoard(currentBoard);
+        // 강의실에서 넘어온 질문 프리필 (한 번만)
+        if(ASK_REF && !askApplied){
+          askApplied = true;
+          const ta = document.getElementById('postContent');
+          ta.value = `[강의 질문] ${decodeURIComponent(ASK_REF)}\n\n질문: `;
+          setTimeout(() => { ta.scrollIntoView({ behavior:'smooth', block:'center' }); ta.focus(); ta.setSelectionRange(ta.value.length, ta.value.length); }, 350);
+        }
       } else {
         currentUser = null; isAdmin = false;
         document.getElementById('loginView').classList.remove('hidden');
