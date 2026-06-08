@@ -247,18 +247,18 @@
     <div class="max-w-6xl mx-auto px-5">
       <div class="flex flex-wrap items-end justify-between gap-4 mb-3">
         <div>
-          <p class="eyebrow text-gold text-xs font-semibold mb-3">FLAGSHIP COURSE · 대표 강좌</p>
-          <h2 class="text-2xl md:text-[32px] font-bold">천년왕국 세미나</h2>
+          <p class="eyebrow text-gold text-xs font-semibold mb-3">CURRICULUM · 전체 강의</p>
+          <h2 class="text-2xl md:text-[32px] font-bold">강의 커리큘럼</h2>
         </div>
         <a href="watch.html" class="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-gold">강의실에서 보기 →</a>
       </div>
       <p class="text-ink/60 max-w-2xl leading-relaxed mb-7">
-        종말과 천년왕국 — 흩어져 있던 예언을 처음부터 끝까지 순서대로 풀어냅니다.
-        미국에서 신학을 공부하고 종말을 깊이 연구해 온 오광일의 대표 시리즈. <b class="text-ink">지금은 전 강의를 무료로 공개</b>하고 있어요.
+        천년왕국 세미나부터 구약·다니엘 예언, 종말과 국제정세까지 — <b class="text-ink">주제별 트랙</b>으로 차근차근 따라오세요.
+        지금은 <b class="text-ink">전 강의를 무료로 공개</b>하고 있어요.
       </p>
       <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink/60 mb-10 pb-7 border-b border-ink/8">
         <span class="flex items-center gap-1.5"><span>👤</span> 강사 <b class="text-ink">오광일</b></span>
-        <span class="flex items-center gap-1.5"><span>🎬</span> 총 <b class="text-ink" id="catCount">7</b>강</span>
+        <span class="flex items-center gap-1.5"><span>📚</span> <b class="text-ink" id="catTrackCount">4</b>개 트랙 · 총 <b class="text-ink" id="catCount">28</b>강</span>
         <span class="flex items-center gap-1.5"><span>🆓</span> 전체 무료 공개 중</span>
         <span class="flex items-center gap-1.5"><span>♾️</span> 평생 무제한 시청</span>
       </div>
@@ -266,7 +266,7 @@
       <div id="catalogGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <p class="text-ink/40 text-sm col-span-full text-center py-10">강의를 불러오는 중…</p>
       </div>
-      <p class="text-center text-ink/45 text-sm mt-10">기초 · 초급 · 중급 · 고급 단계별 클래스가 순차적으로 추가됩니다.</p>
+      <p class="text-center text-ink/45 text-sm mt-10">새로운 강의가 계속 추가됩니다. 각 트랙을 눌러 강의실에서 이어보세요.</p>
     </div>
   </section>
 
@@ -302,8 +302,8 @@
     <div class="max-w-3xl mx-auto px-5">
       <div class="text-center mb-12">
         <p class="eyebrow text-gold text-xs font-semibold mb-4">CURRICULUM</p>
-        <h2 class="text-2xl md:text-[32px] font-bold">천년왕국 세미나 커리큘럼</h2>
-        <p class="text-ink/60 mt-4">총 <b id="curCount" class="text-ink">7</b>강 · 순서대로 보는 종말의 모든 것 · <b class="text-gold">전체 무료 공개 중</b></p>
+        <h2 class="text-2xl md:text-[32px] font-bold">전체 커리큘럼</h2>
+        <p class="text-ink/60 mt-4">4개 트랙 · 총 <b id="curCount" class="text-ink">28</b>강 · 주제별로 골라 듣는 종말 강의 · <b class="text-gold">전체 무료 공개 중</b></p>
       </div>
 
       <div id="curriculumList" class="space-y-3">
@@ -753,6 +753,7 @@
     // 메뉴 기본값(인터넷 연결 전/오류 시 대비 — 평소엔 site.json 값 사용)
     const DEFAULT_MENU = [
       { label: '강의',     href: '#catalog'      },
+      { label: '커리큘럼', href: '#curriculum'   },
       { label: '무료영상', href: '#videos'       },
       { label: '칼럼',     href: 'column.html'   },
       { label: '자료실',   href: 'resources.html' },
@@ -872,61 +873,79 @@
       .then(r => r.json())
       .then(c => {
         const grid = document.getElementById('catalogGrid');
-        if(!grid) return;
-        const lessons = [];
-        (c.levels && c.levels.length ? c.levels : [{ lessons: c.lessons || [] }])
-          .forEach(lv => (lv.lessons || []).forEach(ls => lessons.push(ls)));
-        const cc = document.getElementById('catCount'); if(cc) cc.textContent = lessons.length;
-        if(!lessons.length){ grid.innerHTML = '<p class="text-ink/40 text-sm col-span-full text-center py-10">곧 강의가 추가됩니다.</p>'; return; }
+        const levels = (c.levels && c.levels.length) ? c.levels : [{ name:'', desc:'', lessons: c.lessons || [] }];
+        // 각 트랙의 flat 시작 인덱스 계산
+        let acc = 0; const starts = [];
+        levels.forEach(lv => { starts.push(acc); acc += (lv.lessons || []).length; });
+        const total = acc;
+        const cc = document.getElementById('catCount'); if(cc) cc.textContent = total;
+        const tc = document.getElementById('catTrackCount'); if(tc) tc.textContent = levels.length;
         const playSvg = '<svg class="w-5 h-5 text-ink ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
-        grid.innerHTML = lessons.map((l, i) => {
-          const id = ytId(l.youtube);
-          const thumb = id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : '';
-          const title = (l.title || '').replace(/</g,'&lt;');
-          const summary = (l.summary || '').replace(/</g,'&lt;');
-          const meta = l.duration ? '⏱ ' + l.duration.replace(/</g,'&lt;') : '강의 영상';
-          return `<a href="watch.html?l=${i}" class="group rounded-2xl border border-ink/8 overflow-hidden bg-paper hover:shadow-card hover:-translate-y-1 transition flex flex-col">
-            <div class="relative aspect-video bg-ink overflow-hidden">
-              ${ thumb ? `<img src="${thumb}" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-500"/>` : '' }
-              <span class="absolute top-3 left-3 bg-white/90 text-ink text-[11px] font-bold px-2 py-1 rounded">EP.${String(i+1).padStart(2,'0')}</span>
-              ${ l.free ? '<span class="absolute top-3 right-3 bg-gold text-white text-[11px] font-bold px-2 py-1 rounded">무료</span>' : '<span class="absolute top-3 right-3 bg-ink/80 text-white text-[11px] font-bold px-2 py-1 rounded">🔒 오픈 예정</span>' }
-              <span class="absolute inset-0 flex items-center justify-center bg-ink/0 group-hover:bg-ink/20 transition">
-                <span class="w-12 h-12 rounded-full bg-white/95 flex items-center justify-center opacity-0 group-hover:opacity-100 transition shadow-lg">${playSvg}</span>
-              </span>
-            </div>
-            <div class="p-5 flex flex-col flex-1">
-              <h3 class="font-bold leading-snug group-hover:text-gold transition line-clamp-2">${title}</h3>
-              <p class="text-sm text-ink/55 mt-2 leading-relaxed line-clamp-2 flex-1">${summary}</p>
-              <div class="mt-4 flex items-center justify-between">
-                <span class="text-xs text-ink/45">${meta}</span>
-                <span class="text-sm font-semibold text-gold">수강하기 →</span>
-              </div>
-            </div>
-          </a>`;
-        }).join('');
 
-        // 커리큘럼 아코디언 (강의별 목차)
+        // (1) 카탈로그: 트랙(시리즈) 카드
+        if(grid){
+          if(!total){ grid.innerHTML = '<p class="text-ink/40 text-sm col-span-full text-center py-10">곧 강의가 추가됩니다.</p>'; }
+          else { grid.innerHTML = levels.map((lv, ti) => {
+            const ls = lv.lessons || [];
+            const id = ytId((ls[0] || {}).youtube);
+            const thumb = id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : '';
+            const name = (lv.name || '강의').replace(/</g,'&lt;');
+            const desc = (lv.desc || '').replace(/</g,'&lt;');
+            return `<a href="watch.html?l=${starts[ti]}" class="group rounded-2xl border border-ink/8 overflow-hidden bg-paper hover:shadow-card hover:-translate-y-1 transition flex flex-col">
+              <div class="relative aspect-video bg-ink overflow-hidden">
+                ${ thumb ? `<img src="${thumb}" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-500"/>` : '' }
+                <span class="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/10 to-transparent"></span>
+                <span class="absolute top-3 left-3 bg-white/90 text-ink text-[11px] font-bold px-2 py-1 rounded">TRACK ${String(ti+1).padStart(2,'0')}</span>
+                <span class="absolute top-3 right-3 bg-gold text-white text-[11px] font-bold px-2 py-1 rounded">전체 무료</span>
+                <span class="absolute bottom-3 left-3 text-white text-sm font-bold drop-shadow">총 ${ls.length}강</span>
+                <span class="absolute inset-0 flex items-center justify-center bg-ink/0 group-hover:bg-ink/20 transition">
+                  <span class="w-12 h-12 rounded-full bg-white/95 flex items-center justify-center opacity-0 group-hover:opacity-100 transition shadow-lg">${playSvg}</span>
+                </span>
+              </div>
+              <div class="p-5 flex flex-col flex-1">
+                <h3 class="font-bold text-lg leading-snug group-hover:text-gold transition">${name}</h3>
+                <p class="text-sm text-ink/55 mt-2 leading-relaxed flex-1">${desc}</p>
+                <div class="mt-4 flex items-center justify-between">
+                  <span class="text-xs text-ink/45">${ls.length}개 강의</span>
+                  <span class="text-sm font-semibold text-gold">강의 보기 →</span>
+                </div>
+              </div>
+            </a>`;
+          }).join(''); }
+        }
+
+        // (2) 커리큘럼: 트랙별 그룹 + 강의 아코디언
         const curList = document.getElementById('curriculumList');
         const curCount = document.getElementById('curCount');
-        if(curCount) curCount.textContent = lessons.length;
+        if(curCount) curCount.textContent = total;
         if(curList){
-          curList.innerHTML = lessons.map((l, i) => {
-            const ti = (l.title || '').replace(/</g,'&lt;');
-            const su = (l.summary || '').replace(/</g,'&lt;');
-            const mt = l.free ? '<span class="text-gold text-xs font-bold">무료</span>' : '<span class="text-ink/40 text-xs">🔒 오픈 예정</span>';
-            const chaps = (l.chapters || []).map(c =>
-              `<li class="flex items-center gap-2 py-2.5"><span class="text-gold/60 shrink-0">▸</span><span class="text-ink/70">${(c.label||'').replace(/</g,'&lt;')}</span></li>`).join('');
-            return `<details class="bg-white rounded-2xl border border-ink/8 shadow-card overflow-hidden" ${ i===0 ? 'open' : '' }>
-              <summary class="flex items-center justify-between px-6 py-4 font-semibold gap-3">
-                <span class="flex items-center gap-3 min-w-0"><span class="text-gold font-display shrink-0">${String(i+1).padStart(2,'0')}</span><span class="truncate">${ti}</span></span>
-                <span class="flex items-center gap-3 shrink-0">${mt}<svg class="chev w-5 h-5 text-ink/40 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
-              </summary>
-              <div class="px-6 pb-5">
-                ${ su ? `<p class="text-sm text-ink/60 leading-relaxed border-l-2 border-gold/30 pl-3 mb-3">${su}</p>` : '' }
-                ${ chaps ? `<ul class="text-sm divide-y divide-ink/5">${chaps}</ul>` : '' }
-                <a href="watch.html?l=${i}" class="inline-block mt-3 text-sm font-semibold text-gold hover:underline">이 강의 보기 →</a>
-              </div>
-            </details>`;
+          curList.innerHTML = levels.map((lv, ti) => {
+            const ls = lv.lessons || [];
+            const head = `<div class="flex items-baseline flex-wrap gap-2 ${ ti===0 ? '' : 'mt-10' } mb-3">
+                <span class="text-gold font-bold text-sm">TRACK ${String(ti+1).padStart(2,'0')}</span>
+                <span class="font-bold">${(lv.name||'').replace(/</g,'&lt;')}</span>
+                <span class="text-ink/40 text-xs">· ${ls.length}강</span>
+              </div>`;
+            const items = ls.map((l, li) => {
+              const gi = starts[ti] + li;
+              const t2 = (l.title || '').replace(/</g,'&lt;');
+              const su = (l.summary || '').replace(/</g,'&lt;');
+              const dur = l.duration ? `<span class="text-ink/40 text-xs font-normal whitespace-nowrap">${l.duration.replace(/</g,'&lt;')}</span>` : '';
+              const chaps = (l.chapters || []).map(ch =>
+                `<li class="flex items-center gap-2 py-2.5"><span class="text-gold/60 shrink-0">▸</span><span class="text-ink/70">${(ch.label||'').replace(/</g,'&lt;')}</span></li>`).join('');
+              return `<details class="bg-white rounded-2xl border border-ink/8 shadow-card overflow-hidden mb-3" ${ (ti===0 && li===0) ? 'open' : '' }>
+                <summary class="flex items-center justify-between px-6 py-4 font-semibold gap-3">
+                  <span class="flex items-center gap-3 min-w-0"><span class="text-gold font-display shrink-0">${String(li+1).padStart(2,'0')}</span><span class="truncate">${t2}</span></span>
+                  <span class="flex items-center gap-3 shrink-0">${dur}<svg class="chev w-5 h-5 text-ink/40 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
+                </summary>
+                <div class="px-6 pb-5">
+                  ${ su ? `<p class="text-sm text-ink/60 leading-relaxed border-l-2 border-gold/30 pl-3 mb-3">${su}</p>` : '' }
+                  ${ chaps ? `<ul class="text-sm divide-y divide-ink/5">${chaps}</ul>` : '' }
+                  <a href="watch.html?l=${gi}" class="inline-block mt-3 text-sm font-semibold text-gold hover:underline">이 강의 보기 →</a>
+                </div>
+              </details>`;
+            }).join('');
+            return head + items;
           }).join('');
         }
       })
