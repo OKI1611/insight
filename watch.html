@@ -533,7 +533,7 @@
     function next(){ loadLesson(cur + 1); }
 
     // ===== 수강신청 / 학습 진도 =====
-    const lsb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+    const lsb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { lock: async (_n, _t, fn) => await fn() } });
     let LUSER = null, ENROLLED = new Set(), DONE = new Set(), TABLES_READY = true, QNAME = '회원';
     const ADMIN_EMAIL_W = 'josephoh1611@gmail.com';
     function isAdminW(){ return LUSER && LUSER.email === ADMIN_EMAIL_W; }
@@ -634,9 +634,8 @@
     async function lLogout(){ await lsb.auth.signOut(); }
     async function enrollTrack(){
       const t = curTrack(); if(!t){ learnToast('강의 정보를 불러오는 중이에요. 잠시 후 다시 눌러주세요.', false); return; }
-      const { data:{ session } } = await lsb.auth.getSession();
-      if(!session){ try { sessionStorage.setItem('pendingEnroll', t); } catch(e){} learnToast('로그인하면 자동으로 수강신청됩니다…', true); await lLogin(); return; }
-      LUSER = session.user;
+      if(!LUSER){ try { sessionStorage.setItem('pendingEnroll', t); } catch(e){} learnToast('로그인하면 자동으로 수강신청됩니다…', true); openLogin(); return; }
+      learnToast('수강신청 중…', true);
       const { error } = await lsb.from('enrollments').insert({ user_id: LUSER.id, track: t });
       if(error && error.code !== '23505'){
         if(tableErr(error)){ TABLES_READY = false; refreshLearningUI(); learnToast('수강신청 기능이 아직 켜지지 않았어요. (관리자: 테이블 생성 필요)', false); }

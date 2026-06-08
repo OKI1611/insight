@@ -971,7 +971,7 @@
       });
 
     // ===== Supabase 로그인 / 회원가입 =====
-    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { lock: async (_n, _t, fn) => await fn() } });
     const authModal = document.getElementById('authModal');
     const authNav = document.getElementById('authNav');
     const setMsg = (id, t) => { const e = document.getElementById(id); if(e) e.textContent = t || ''; };

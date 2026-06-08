@@ -80,13 +80,18 @@
   </main>
 
   <script>
-    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { lock: async (_n, _t, fn) => await fn() } });
     let user = null, uname = '회원', COURSE = null;
     function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
     function ytId(u){ if(!u) return ''; const m = String(u).match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/); return m ? m[1] : (String(u).trim().length===11 ? String(u).trim() : ''); }
 
     sb.auth.onAuthStateChange((_e, s) => onAuth(s));
-    sb.auth.getSession().then(({ data:{ session } }) => onAuth(session));
+    sb.auth.getSession().then(({ data:{ session } }) => onAuth(session)).catch(() => {});
+    // 인증 응답이 지연/실패해도 빈 화면이 되지 않도록 폴백
+    setTimeout(() => {
+      const lv = document.getElementById('loginView'), dv = document.getElementById('dashView');
+      if(lv && dv && lv.classList.contains('hidden') && dv.classList.contains('hidden')) lv.classList.remove('hidden');
+    }, 3500);
 
     async function onAuth(session){
       if(session && session.user){

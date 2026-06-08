@@ -1,7 +1,7 @@
 // 오광일 인사이트 브리핑 — 서비스 워커 (PWA)
-// 전략: 네트워크 우선, 실패 시 캐시(오프라인 대비). 콘텐츠는 항상 최신 유지.
-const CACHE = 'bibleinsight-v1';
-const SHELL = ['/', '/index.html', '/watch.html', '/community.html', '/resources.html', '/manifest.json'];
+// 전략: HTML은 항상 네트워크(최신 유지), 정적자원만 캐시. 오프라인 시 폴백.
+const CACHE = 'bibleinsight-v3';
+const SHELL = ['/manifest.json'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).catch(() => {}));
@@ -16,15 +16,20 @@ self.addEventListener('activate', (e) => {
 self.addEventListener('fetch', (e) => {
   const req = e.request;
   if (req.method !== 'GET') return;
-  // 외부(유튜브·Supabase·CDN)는 그대로 통과
-  if (new URL(req.url).origin !== location.origin) return;
+  const url = new URL(req.url);
+  if (url.origin !== location.origin) return; // 외부(유튜브·Supabase·CDN)는 통과
+
+  // HTML/문서: 항상 네트워크 최신 (캐시 저장 안 함, 오프라인만 폴백)
+  const isDoc = req.mode === 'navigate' || url.pathname === '/' || url.pathname.endsWith('.html');
+  if (isDoc) {
+    e.respondWith(fetch(req).catch(() => caches.match(req).then((r) => r || caches.match('/index.html'))));
+    return;
+  }
+
+  // 그 외 정적 자원: 네트워크 우선 + 캐시 갱신
   e.respondWith(
     fetch(req)
-      .then((res) => {
-        const copy = res.clone();
-        caches.open(CACHE).then((c) => c.put(req, copy)).catch(() => {});
-        return res;
-      })
-      .catch(() => caches.match(req).then((r) => r || caches.match('/index.html')))
+      .then((res) => { const copy = res.clone(); caches.open(CACHE).then((c) => c.put(req, copy)).catch(() => {}); return res; })
+      .catch(() => caches.match(req))
   );
 });
