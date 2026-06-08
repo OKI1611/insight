@@ -189,22 +189,89 @@
     }
 
     // ===== 요약 노트 / PDF / 공유 =====
+    let NOTE_CACHE = {};
+    function noteHeader(){
+      return `<div style="border-bottom:2px solid #b8923f;padding-bottom:10px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:baseline;gap:8px">
+        <span style="font-weight:700;color:#15203a;font-size:14px">오광일의 인사이트 브리핑 · 강의 노트</span>
+        <span style="font-size:12px;color:#a7adba">바이블 인사이트 스쿨</span>
+      </div>`;
+    }
+    function noteFooter(){
+      return `<div style="border-top:1px solid #ececec;margin-top:22px;padding-top:10px;font-size:11px;color:#aab1bd">insight.josephoh1611.workers.dev · 오광일의 인사이트 브리핑 — 본 노트는 강의 학습용으로 무료 제공됩니다.</div>`;
+    }
+    function titleBlock(l){
+      return `<h2 style="font-size:21px;font-weight:700;color:#15203a;margin:0 0 6px;line-height:1.35">${esc(l.title || '')}</h2>
+        <p style="color:#6b7280;font-size:13px;margin:0 0 18px">강사 오광일${ l.duration ? ' · ' + esc(l.duration) : '' }</p>`;
+    }
+    // 기본(자동) 노트 — 풍성한 노트 파일이 없을 때 폴백
+    function basicNoteHTML(l){
+      const tags = (l.tags || []).map(t => `<span style="display:inline-block;background:#f4eedd;color:#8a6d2f;font-size:12px;font-weight:600;padding:3px 11px;border-radius:999px;margin:3px 5px 3px 0">#${esc(t)}</span>`).join('');
+      const chaps = (l.chapters || []).map(c => `<li style="margin:7px 0;color:#2b3550;line-height:1.5">${ c.t ? `<b style="color:#b8923f">${esc(c.t)}</b>&nbsp;&nbsp;` : '' }${esc(c.label)}</li>`).join('');
+      return noteHeader() + titleBlock(l) +
+        ( l.summary ? `<div style="margin-bottom:18px"><p style="font-weight:700;color:#15203a;margin:0 0 7px">📖 강의 소개</p><p style="color:#44506a;line-height:1.75;margin:0">${esc(l.summary)}</p></div>` : '' ) +
+        ( chaps ? `<div style="margin-bottom:18px"><p style="font-weight:700;color:#15203a;margin:0 0 7px">📋 핵심 내용</p><ol style="margin:0;padding-left:20px">${chaps}</ol></div>` : '' ) +
+        ( tags ? `<div style="margin-bottom:6px"><p style="font-weight:700;color:#15203a;margin:0 0 7px">🔑 키워드</p>${tags}</div>` : '' ) +
+        noteFooter();
+    }
+    // 풍성한 노트 — content/notes/<id>.json
+    function richNoteHTML(l, n){
+      let h = noteHeader() + titleBlock(l);
+      if(n.thesis){
+        h += `<div style="background:#faf6ea;border-left:4px solid #b8923f;border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:20px">
+          <p style="font-size:11px;font-weight:700;letter-spacing:.06em;color:#b8923f;margin:0 0 4px">핵심 한 문장</p>
+          <p style="color:#2b3550;font-size:15px;font-weight:600;line-height:1.6;margin:0">${esc(n.thesis)}</p></div>`;
+      }
+      if(n.overview){
+        h += `<div style="margin-bottom:22px"><p style="font-weight:700;color:#15203a;margin:0 0 8px;font-size:15px">📘 강의 개요</p>
+          <p style="color:#44506a;line-height:1.8;margin:0">${esc(n.overview)}</p></div>`;
+      }
+      if(n.sections && n.sections.length){
+        h += `<p style="font-weight:700;color:#15203a;margin:0 0 10px;font-size:15px">📑 핵심 내용 정리</p>`;
+        n.sections.forEach((s, i) => {
+          const pts = (s.points || []).map(p => `<li style="margin:5px 0;color:#44506a;line-height:1.6">${esc(p)}</li>`).join('');
+          h += `<div style="margin:0 0 16px;padding:0 0 0 2px">
+            <p style="margin:0 0 5px;color:#15203a;font-weight:700;font-size:14.5px">${ s.t ? `<span style="display:inline-block;background:#15203a;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;margin-right:8px">${esc(s.t)}</span>` : '' }${esc(s.heading || '')}</p>
+            ${ s.body ? `<p style="margin:0 0 6px;color:#44506a;line-height:1.8">${esc(s.body)}</p>` : '' }
+            ${ pts ? `<ul style="margin:4px 0 0;padding-left:20px">${pts}</ul>` : '' }
+          </div>`;
+        });
+      }
+      if(n.scriptures && n.scriptures.length){
+        h += `<div style="margin:20px 0;background:#f7f9fc;border:1px solid #e8edf4;border-radius:12px;padding:14px 16px">
+          <p style="font-weight:700;color:#15203a;margin:0 0 8px;font-size:14.5px">📖 핵심 성구</p>` +
+          n.scriptures.map(s => `<p style="margin:7px 0;color:#44506a;line-height:1.6"><b style="color:#1b2a4a">${esc(s.ref)}</b>${ s.note ? ` — ${esc(s.note)}` : '' }</p>`).join('') + `</div>`;
+      }
+      if(n.terms && n.terms.length){
+        h += `<div style="margin:20px 0"><p style="font-weight:700;color:#15203a;margin:0 0 8px;font-size:14.5px">📚 핵심 용어</p>` +
+          n.terms.map(t => `<p style="margin:6px 0;color:#44506a;line-height:1.6"><b style="color:#8a6d2f">${esc(t.term)}</b> · ${esc(t.def)}</p>`).join('') + `</div>`;
+      }
+      if(n.takeaways && n.takeaways.length){
+        h += `<div style="margin:20px 0;background:#faf6ea;border-radius:12px;padding:14px 16px">
+          <p style="font-weight:700;color:#15203a;margin:0 0 8px;font-size:14.5px">✅ 한눈에 정리</p>
+          <ul style="margin:0;padding-left:20px">` + n.takeaways.map(t => `<li style="margin:5px 0;color:#2b3550;line-height:1.65">${esc(t)}</li>`).join('') + `</ul></div>`;
+      }
+      if(n.questions && n.questions.length){
+        h += `<div style="margin:20px 0"><p style="font-weight:700;color:#15203a;margin:0 0 8px;font-size:14.5px">💬 묵상·토론 질문</p>
+          <ol style="margin:0;padding-left:20px">` + n.questions.map(q => `<li style="margin:6px 0;color:#44506a;line-height:1.65">${esc(q)}</li>`).join('') + `</ol></div>`;
+      }
+      const tags = (l.tags || []).map(t => `<span style="display:inline-block;background:#f4eedd;color:#8a6d2f;font-size:12px;font-weight:600;padding:3px 11px;border-radius:999px;margin:3px 5px 3px 0">#${esc(t)}</span>`).join('');
+      if(tags){ h += `<div style="margin:18px 0 4px"><p style="font-weight:700;color:#15203a;margin:0 0 7px;font-size:14px">🔑 키워드</p>${tags}</div>`; }
+      return h + noteFooter();
+    }
     function renderNote(l){
       const sheet = document.getElementById('noteSheet');
       if(!sheet) return;
-      const tags = (l.tags || []).map(t => `<span style="display:inline-block;background:#f4eedd;color:#8a6d2f;font-size:12px;font-weight:600;padding:3px 11px;border-radius:999px;margin:3px 5px 3px 0">#${esc(t)}</span>`).join('');
-      const chaps = (l.chapters || []).map(c => `<li style="margin:7px 0;color:#2b3550;line-height:1.5">${ c.t ? `<b style="color:#b8923f">${esc(c.t)}</b>&nbsp;&nbsp;` : '' }${esc(c.label)}</li>`).join('');
-      sheet.innerHTML =
-        `<div style="border-bottom:2px solid #b8923f;padding-bottom:10px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:baseline;gap:8px">
-           <span style="font-weight:700;color:#15203a;font-size:14px">오광일의 인사이트 브리핑 · 강의 요약 노트</span>
-           <span style="font-size:12px;color:#a7adba">바이블 인사이트 스쿨</span>
-         </div>
-         <h2 style="font-size:21px;font-weight:700;color:#15203a;margin:0 0 6px;line-height:1.35">${esc(l.title || '')}</h2>
-         <p style="color:#6b7280;font-size:13px;margin:0 0 18px">강사 오광일${ l.duration ? ' · ' + esc(l.duration) : '' }</p>
-         ${ l.summary ? `<div style="margin-bottom:18px"><p style="font-weight:700;color:#15203a;margin:0 0 7px">📖 강의 소개</p><p style="color:#44506a;line-height:1.75;margin:0">${esc(l.summary)}</p></div>` : '' }
-         ${ chaps ? `<div style="margin-bottom:18px"><p style="font-weight:700;color:#15203a;margin:0 0 7px">📋 핵심 내용</p><ol style="margin:0;padding-left:20px">${chaps}</ol></div>` : '' }
-         ${ tags ? `<div style="margin-bottom:6px"><p style="font-weight:700;color:#15203a;margin:0 0 7px">🔑 키워드</p>${tags}</div>` : '' }
-         <div style="border-top:1px solid #ececec;margin-top:20px;padding-top:10px;font-size:11px;color:#aab1bd">insight.josephoh1611.workers.dev · 오광일의 인사이트 브리핑</div>`;
+      sheet.innerHTML = basicNoteHTML(l);           // 즉시 표시(폴백)
+      const id = ytId(l.youtube); const at = cur;
+      (async () => {
+        let rich = NOTE_CACHE[id];
+        if(rich === undefined){
+          try { const r = await fetch('content/notes/' + id + '.json?t=' + Date.now()); rich = r.ok ? await r.json() : null; }
+          catch(e){ rich = null; }
+          NOTE_CACHE[id] = rich;
+        }
+        if(rich && cur === at){ sheet.innerHTML = richNoteHTML(l, rich); }   // 풍성한 노트로 업그레이드
+      })();
     }
     function toggleNote(){
       const card = document.getElementById('noteCard');
