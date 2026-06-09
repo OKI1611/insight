@@ -617,6 +617,7 @@
            class="flex items-center justify-center gap-2 bg-[#0070ba] text-white font-semibold py-3.5 rounded-2xl hover:opacity-90 transition">
           PayPal로 후원하기 <span class="text-white/70 text-sm font-normal">(해외 후원)</span>
         </a>
+        <p id="kakaoHint" class="text-paper/40 text-xs" style="display:none">📱 카카오페이는 모바일에서 바로 열리고, PC에서는 QR코드가 떠요.</p>
 
         <!-- 계좌이체 (대체 수단) -->
         <div class="bg-white/5 border border-white/12 rounded-2xl p-5 text-left mt-2">
@@ -814,6 +815,16 @@
         if (sp && spUrl) { sp.href = spUrl; sp.style.display = 'flex'; }
         setHref('kakaopayLink', s.kakaopay_url);
         setHref('paypalLink', s.paypal_url);
+        // 카카오페이 송금 QR은 '모바일 앱 전용'이라 PC 브라우저에선 404가 난다.
+        // → 모바일: 탭하면 앱으로 바로 / PC: 클릭 시 QR코드 모달을 띄워 폰으로 스캔하게 한다.
+        const kpEl = document.getElementById('kakaopayLink');
+        if (kpEl && s.kakaopay_url) {
+          const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+          if (!isMobile) {
+            const hint = document.getElementById('kakaoHint'); if (hint) hint.style.display = 'block';
+            kpEl.addEventListener('click', (e) => { e.preventDefault(); openKakaoQR(s.kakaopay_url); });
+          }
+        }
         if (s.bank_name) { const e = document.getElementById('bankLabel'); if(e) e.textContent = '계좌이체 · ' + s.bank_name; }
         const ba = document.getElementById('bankAccount');
         if (ba && (s.bank_account || s.bank_holder))
@@ -1143,6 +1154,44 @@
       deferredPrompt = null; document.getElementById('installBtn').classList.add('hidden');
     }
     window.addEventListener('appinstalled', () => { const b=document.getElementById('installBtn'); if(b) b.classList.add('hidden'); });
+  </script>
+
+  <!-- 카카오페이 QR 모달 (PC 후원용) -->
+  <div id="kakaoQrModal" style="display:none" class="fixed inset-0 z-[100] items-center justify-center bg-black/60 p-4"
+       onclick="if(event.target===this)this.style.display='none'">
+    <div class="bg-white rounded-2xl p-6 max-w-xs w-full text-center shadow-2xl" style="color:#1a1a1a">
+      <div class="flex items-center justify-center gap-2 mb-1"><span class="text-2xl">💛</span><h3 class="font-bold text-lg">카카오페이로 후원</h3></div>
+      <p class="text-sm text-gray-500 mb-4">휴대폰 카메라 또는 카카오톡으로<br>아래 QR을 스캔해 주세요</p>
+      <div id="kakaoQrBox" class="flex items-center justify-center mx-auto" style="min-height:220px"></div>
+      <button onclick="document.getElementById('kakaoQrModal').style.display='none'"
+              class="mt-5 w-full py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 font-semibold text-sm">닫기</button>
+    </div>
+  </div>
+  <script>
+    function openKakaoQR(url){
+      const modal = document.getElementById('kakaoQrModal');
+      const box = document.getElementById('kakaoQrBox');
+      const render = () => {
+        try {
+          const qr = qrcode(0, 'M'); qr.addData(url); qr.make();
+          box.innerHTML = qr.createImgTag(6, 8);
+          const img = box.querySelector('img');
+          if (img) { img.style.width = '220px'; img.style.height = '220px'; img.style.imageRendering = 'pixelated'; }
+        } catch(e) {
+          box.innerHTML = '<a href="'+url+'" target="_blank" rel="noopener" class="text-blue-600 underline break-all text-sm">'+url+'</a>';
+        }
+        modal.style.display = 'flex';
+      };
+      if (window.qrcode) { render(); return; }
+      const sc = document.createElement('script');
+      sc.src = 'https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js';
+      sc.onload = render;
+      sc.onerror = () => {
+        box.innerHTML = '<p class="text-sm mb-2">모바일 카카오톡에서 아래 링크를 열어 주세요:</p><a href="'+url+'" target="_blank" rel="noopener" class="text-blue-600 underline break-all text-sm">'+url+'</a>';
+        modal.style.display = 'flex';
+      };
+      document.head.appendChild(sc);
+    }
   </script>
 
 </body>
