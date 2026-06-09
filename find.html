@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>나에게 맞는 강의 찾기 — 오광일의 인사이트 브리핑</title>
-  <meta name="description" content="3가지만 답하면, 지금 당신에게 가장 잘 맞는 강의를 찾아드립니다. 무엇부터 들을지 막막한 분을 위한 강의 추천 진단." />
+  <title>나에게 맞는 강의 찾기 — 인사이트 아카데미</title>
+  <meta name="description" content="6가지 질문에 답하면 신앙 배경·관심·목표를 분석해, 당신에게 최적화된 코스와 학습 순서를 추천해 드립니다. 인사이트 아카데미 수강 진단." />
   <link rel="manifest" href="/manifest.json" />
   <meta name="theme-color" content="#15203a" />
   <link rel="apple-touch-icon" href="/images/icon-192.png" />
@@ -26,27 +26,33 @@
 
   <header class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-ink/8">
     <div class="max-w-6xl mx-auto px-4 h-14 flex items-center gap-3">
-      <a href="index.html" class="font-bold text-[15px] shrink-0">오광일의 <span class="text-gold">인사이트 브리핑</span></a>
+      <a href="index.html" class="flex items-center gap-2 shrink-0"><span class="w-7 h-7 rounded-lg bg-ink text-gold flex items-center justify-center font-bold text-sm" style="font-family:'Noto Serif KR',serif">人</span><span class="font-bold text-[15px] tracking-tight">인사이트 <span class="text-gold">아카데미</span></span></a>
       <nav id="navmenu" class="flex items-center gap-4 sm:gap-5 text-sm text-ink/70 overflow-x-auto whitespace-nowrap pl-1"></nav>
       <a href="index.html" class="ml-auto text-sm text-ink/45 hover:text-gold shrink-0">홈</a>
     </div>
   </header>
 
   <main class="max-w-2xl mx-auto px-4 py-10">
-    <div class="text-center mb-9">
-      <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">FIND YOUR CLASS</p>
+    <div id="introHead" class="text-center mb-7">
+      <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">COURSE FINDER · 수강 진단</p>
       <h1 class="text-2xl md:text-3xl font-bold">나에게 맞는 강의 찾기</h1>
-      <p class="text-ink/55 text-sm mt-3">무엇부터 들을지 막막하신가요? <b class="text-ink">4가지만 답하면</b> 지금 당신에게 꼭 맞는 강의를 찾아드려요.</p>
+      <p class="text-ink/55 text-sm mt-3">6가지 질문에 답하면, 신앙 배경·관심·목표를 분석해 <b class="text-ink">당신에게 최적화된 코스와 학습 순서</b>를 추천해 드려요.</p>
     </div>
 
-    <!-- 진단 -->
-    <div id="quiz" class="space-y-6"></div>
-    <div id="quizFoot" class="mt-8 text-center">
-      <button id="resultBtn" onclick="showResult()" disabled
-        class="bg-ink text-paper font-semibold px-8 py-4 rounded-full hover:bg-navy transition shadow-card disabled:opacity-40 disabled:cursor-not-allowed">
-        결과 보기 →
-      </button>
-      <p id="quizHint" class="text-ink/45 text-xs mt-3">모든 질문에 답하면 결과를 볼 수 있어요.</p>
+    <!-- 진행 막대 -->
+    <div id="progressWrap" class="mb-5">
+      <div class="flex items-center justify-between text-xs text-ink/50 mb-1.5">
+        <span id="stepLabel">질문 1 / 6</span>
+        <span id="stepPct">17%</span>
+      </div>
+      <div class="h-2 rounded-full bg-ink/8 overflow-hidden"><div id="progressBar" class="h-full bg-gold rounded-full transition-all" style="width:17%"></div></div>
+    </div>
+
+    <!-- 진단 (스텝) -->
+    <div id="step" class="min-h-[260px]"></div>
+    <div id="stepNav" class="mt-6 flex items-center justify-between gap-3">
+      <button id="prevBtn" onclick="prevStep()" class="px-5 py-3 rounded-full border border-ink/15 text-ink/60 font-semibold text-sm hover:bg-ink/5 transition disabled:opacity-0">← 이전</button>
+      <button id="nextBtn" onclick="nextStep()" disabled class="flex-1 max-w-[280px] ml-auto bg-ink text-paper font-semibold px-8 py-3.5 rounded-full hover:bg-navy transition shadow-card disabled:opacity-40 disabled:cursor-not-allowed">다음 →</button>
     </div>
 
     <!-- 결과 -->
@@ -55,134 +61,226 @@
 
   <script>
     const TRACK = {
-      millennium:'천년왕국 세미나', prophecy:'예언의 기초 · 구약과 다니엘',
-      current:'종말과 국제정세 · 제3성전', essay:'신앙 에세이 · 분별',
-      preacher:'위대한 설교자', paul:'사도바울 — 은혜와 근성의 사람',
-      cult:'이단·사이비 분별', doctrine:'신학노트 · 핵심 교리'
+      millennium:'천년왕국 세미나',
+      prophecy:'예언의 기초 · 구약과 다니엘',
+      master:'성경예언 마스터 · 개념잡기',
+      revelation:'요한계시록 강해 · 짐승의 정체',
+      current:'종말과 국제정세 · 제3성전',
+      cult:'이단·사이비 분별',
+      doctrine:'신학노트 · 핵심 교리',
+      preacher:'위대한 설교자',
+      paul:'사도바울 — 은혜와 근성의 사람',
+      essay:'신앙 에세이 · 분별'
     };
-    const PRIORITY = ['millennium','prophecy','current','cult','doctrine','preacher','paul','essay'];
+    // 추천 순위 동점 시 기본 선호(앞쪽 우선) & 학습 순서(기초→심화)
+    const PRIORITY  = ['millennium','master','prophecy','revelation','current','cult','doctrine','preacher','paul','essay'];
+    const PATHORDER = ['prophecy','master','doctrine','millennium','revelation','cult','current','preacher','paul','essay'];
     const WHY = {
-      millennium:'종말과 천년왕국의 큰 그림을 처음부터 순서대로 잡고 싶은 당신에게.',
-      prophecy:'계시록의 열쇠가 되는 구약(스가랴·다니엘)부터 단단히 다지고 싶은 당신에게.',
-      current:'이스라엘·중동·국제정세를 성경 예언의 눈으로 읽고 싶은 당신에게.',
-      cult:'이단·사이비·음모론에 흔들리지 않는 분별력을 기르고 싶은 당신에게.',
-      doctrine:'하나님·죄·구원 같은 신앙의 기초 교리를 단단히 세우고 싶은 당신에게.',
-      preacher:'위대한 신앙 인물과 설교에서 깊은 도전을 받고 싶은 당신에게.',
-      paul:'사도 바울의 삶과 사역에서 동역과 인내를 배우고 싶은 당신에게.',
-      essay:'짧지만 깊은 신앙 에세이로 마음을 정돈하고 싶은 당신에게.'
+      millennium:'종말과 천년왕국의 큰 그림을 처음부터 순서대로 잡고 싶은 분께. 시리즈 9강으로 전체 흐름이 한 번에 잡혀요.',
+      prophecy:'계시록의 열쇠가 되는 구약(스가랴·다니엘 70이레)부터 단단히 다지고 싶은 분께.',
+      master:'종말 예언을 음모론 없이 개념·해석법부터 탄탄히 잡고 싶은 분께.',
+      revelation:'요한계시록 본문(짐승·적그리스도·666)을 한 절씩 깊이 읽고 싶은 분께.',
+      current:'이스라엘·중동·국제정세를 성경 예언의 눈으로 분별하며 읽고 싶은 분께.',
+      cult:'이단·사이비·음모론에 흔들리지 않는 분별력을 기르고 싶은 분께.',
+      doctrine:'하나님·죄·구원 등 신앙의 기초 교리를 단단히 세우고 싶은 분께.',
+      preacher:'스펄전·로이드존스 등 위대한 설교자에게서 깊은 도전을 받고 싶은 분께.',
+      paul:'사도 바울의 삶과 사역에서 동역과 인내를 배우고 싶은 분께.',
+      essay:'짧지만 깊은 신앙 에세이로 마음을 정돈하고 싶은 분께.'
     };
+    // multi: 복수 선택 허용 질문
     const QUESTIONS = [
-      { q:'성경 예언·종말 공부, 지금 어느 정도이신가요?', opts:[
-        { t:'거의 처음이에요', s:{millennium:2, prophecy:1} },
-        { t:'조금 들어봤어요', s:{millennium:1, current:1} },
-        { t:'꽤 공부했어요', s:{current:2, doctrine:1, paul:1} },
+      { q:'성경 예언·종말 공부, 지금 어느 단계이신가요?', sub:'배경에 맞춰 난이도를 조정해 드려요.', opts:[
+        { t:'이제 막 시작했어요 (성경 공부 입문)', s:{millennium:2, prophecy:1, doctrine:1} },
+        { t:'교회는 다니지만 종말론·예언은 낯설어요', s:{millennium:2, master:1} },
+        { t:'종말론을 어느 정도 공부해봤어요', s:{current:1, revelation:1, master:1} },
+        { t:'깊이 공부했고 더 전문적인 내용을 원해요', s:{current:2, revelation:1, doctrine:1, paul:1} },
       ]},
-      { q:'가장 마음이 끌리는 주제는?', opts:[
-        { t:'천년왕국·휴거·재림, 종말의 큰 그림', s:{millennium:3} },
+      { q:'어떤 주제에 마음이 끌리세요?', sub:'여러 개 골라도 좋아요 (복수 선택).', multi:true, opts:[
+        { t:'천년왕국·휴거·재림 — 종말의 큰 그림', s:{millennium:3} },
         { t:'이스라엘·중동·국제정세 속 예언', s:{current:3} },
-        { t:'스가랴·다니엘 같은 구약 예언의 기초', s:{prophecy:3} },
-        { t:'이단·사이비에 흔들리지 않는 분별', s:{cult:3} },
-        { t:'하나님·죄·구원, 신앙의 기초 교리', s:{doctrine:3} },
-        { t:'위대한 신앙 인물과 설교', s:{preacher:3} },
+        { t:'스가랴·다니엘 등 구약 예언의 기초', s:{prophecy:3} },
+        { t:'종말 예언의 개념·올바른 해석법', s:{master:3} },
+        { t:'요한계시록 본문 깊이 읽기(짐승·666)', s:{revelation:3} },
+        { t:'이단·사이비·음모론 분별', s:{cult:3} },
+        { t:'하나님·죄·구원 등 핵심 교리', s:{doctrine:3} },
+        { t:'위대한 설교자·신앙 인물', s:{preacher:3} },
         { t:'사도 바울의 삶과 사역', s:{paul:3} },
       ]},
-      { q:'지금 가장 큰 고민은?', opts:[
-        { t:'종말이 두렵고 혼란스러워요', s:{millennium:2} },
-        { t:'음모론·이단 정보에 자꾸 흔들려요', s:{cult:2, current:1} },
+      { q:'지금 가장 절실한 마음은 무엇인가요?', sub:'동기에 맞는 출발점을 찾아드려요.', opts:[
+        { t:'종말이 두렵고 혼란스러워요', s:{millennium:2, master:1} },
+        { t:'음모론·이단 정보에 자꾸 흔들려요', s:{cult:2, master:1} },
         { t:'성경을 어떻게 읽을지 막막해요', s:{prophecy:2, doctrine:1} },
-        { t:'신앙을 더 깊이 다지고 싶어요', s:{preacher:1, paul:1, doctrine:1} },
+        { t:'뉴스·시사가 예언과 연결되는지 궁금해요', s:{current:2, master:1} },
+        { t:'신앙의 기초 교리를 다지고 싶어요', s:{doctrine:2, preacher:1} },
+        { t:'전도·양육에 활용할 지식이 필요해요', s:{cult:1, doctrine:1, paul:1} },
       ]},
-      { q:'어떤 강의가 더 편하세요?', opts:[
-        { t:'짧고 핵심만 (10~20분)', s:{cult:1, essay:1, doctrine:1} },
-        { t:'길어도 깊이 있게 (30분 이상)', s:{millennium:1, current:1} },
+      { q:'성경 본문에 얼마나 익숙하신가요?', sub:'본문 친숙도에 맞춰 추천해요.', opts:[
+        { t:'성경 구조가 아직 낯설어요', s:{prophecy:1, doctrine:1, millennium:1} },
+        { t:'신약 위주로 압니다', s:{revelation:1, paul:1} },
+        { t:'구약·신약을 두루 읽었어요', s:{prophecy:1, current:1, master:1} },
+        { t:'원어·신학 개념도 어느 정도 압니다', s:{doctrine:1, revelation:1, current:1} },
+      ]},
+      { q:'한 강의에 들이기 좋은 시간은?', sub:'호흡에 맞는 강의를 우선 추천해요.', opts:[
+        { t:'짧게 핵심만 (10~20분)', s:{cult:1, essay:1, doctrine:1, master:1} },
+        { t:'보통 (20~40분)', s:{prophecy:1, revelation:1, preacher:1, paul:1} },
+        { t:'길어도 깊이 있게 (40분 이상·풀버전)', s:{millennium:1, current:1} },
+      ]},
+      { q:'이 공부로 가장 이루고 싶은 목표는?', sub:'목표에 맞는 코스를 매칭해요.', opts:[
+        { t:'스스로 분별하는 힘 기르기', s:{master:1, cult:1, millennium:1} },
+        { t:'가족·다음세대 신앙 교육', s:{doctrine:1, prophecy:1} },
+        { t:'전도·변증에 활용', s:{cult:1, doctrine:1, paul:1} },
+        { t:'개인 영성·묵상 깊이 더하기', s:{essay:1, preacher:1, paul:1} },
       ]},
     ];
-    const answers = new Array(QUESTIONS.length).fill(-1);
-    let COURSE = null;
 
-    function renderQuiz(){
-      document.getElementById('quiz').innerHTML = QUESTIONS.map((Q, qi) => `
-        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5">
-          <p class="font-bold mb-3"><span class="text-gold">Q${qi+1}.</span> ${Q.q}</p>
-          <div class="grid gap-2">
-            ${Q.opts.map((o, oi) => `<button class="opt text-left border border-ink/15 rounded-xl px-4 py-3 text-sm hover:border-gold transition" data-q="${qi}" data-o="${oi}" onclick="pick(${qi},${oi})">${o.t}</button>`).join('')}
+    const answers = QUESTIONS.map(Q => Q.multi ? [] : -1);
+    let stepIdx = 0, COURSE = null;
+    const N = QUESTIONS.length;
+
+    function answered(qi){ const Q = QUESTIONS[qi]; return Q.multi ? answers[qi].length > 0 : answers[qi] >= 0; }
+    function renderStep(){
+      const qi = stepIdx, Q = QUESTIONS[qi];
+      document.getElementById('stepLabel').textContent = `질문 ${qi+1} / ${N}`;
+      const pct = Math.round((qi) / N * 100) + Math.round(1/N*100*(answered(qi)?1:0));
+      const shown = Math.round((qi + (answered(qi)?1:0)) / N * 100);
+      document.getElementById('stepPct').textContent = shown + '%';
+      document.getElementById('progressBar').style.width = shown + '%';
+      document.getElementById('step').innerHTML = `
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 md:p-6">
+          <p class="font-bold text-lg leading-snug"><span class="text-gold">Q${qi+1}.</span> ${Q.q}</p>
+          ${ Q.sub ? `<p class="text-ink/50 text-sm mt-1.5">${Q.sub}</p>` : '' }
+          <div class="grid gap-2.5 mt-4">
+            ${Q.opts.map((o, oi) => {
+              const sel = Q.multi ? answers[qi].includes(oi) : answers[qi] === oi;
+              return `<button class="opt text-left border border-ink/15 rounded-xl px-4 py-3 text-sm hover:border-gold transition flex items-center gap-3 ${sel?'sel':''}" onclick="choose(${qi},${oi})">
+                <span class="shrink-0 w-5 h-5 rounded-${Q.multi?'md':'full'} border-2 ${sel?'border-gold bg-gold':'border-ink/25'} flex items-center justify-center text-white text-xs">${sel ? '✓' : ''}</span>
+                <span class="flex-1">${o.t}</span></button>`;
+            }).join('')}
           </div>
-        </div>`).join('');
+        </div>`;
+      document.getElementById('prevBtn').disabled = qi === 0;
+      const nb = document.getElementById('nextBtn');
+      nb.disabled = !answered(qi);
+      nb.textContent = (qi === N-1) ? '결과 보기 →' : '다음 →';
     }
-    function pick(qi, oi){
-      answers[qi] = oi;
-      document.querySelectorAll(`.opt[data-q="${qi}"]`).forEach(b => b.classList.toggle('sel', +b.dataset.o === oi));
-      const all = answers.every(a => a >= 0);
-      document.getElementById('resultBtn').disabled = !all;
-      if(all) document.getElementById('quizHint').textContent = '준비됐어요! 결과 보기를 눌러주세요.';
+    function choose(qi, oi){
+      const Q = QUESTIONS[qi];
+      if(Q.multi){
+        const arr = answers[qi]; const i = arr.indexOf(oi);
+        if(i >= 0) arr.splice(i,1); else arr.push(oi);
+        renderStep();   // 멀티는 머무르며 토글
+      } else {
+        answers[qi] = oi; renderStep();
+        // 단일 선택은 잠깐 보여주고 자동 진행
+        setTimeout(() => { if(stepIdx === qi && answers[qi] === oi) nextStep(); }, 260);
+      }
     }
+    function prevStep(){ if(stepIdx > 0){ stepIdx--; renderStep(); window.scrollTo({top:0,behavior:'smooth'}); } }
+    function nextStep(){
+      if(!answered(stepIdx)) return;
+      if(stepIdx < N-1){ stepIdx++; renderStep(); window.scrollTo({top:0,behavior:'smooth'}); }
+      else showResult();
+    }
+
     async function showResult(){
-      if(!answers.every(a => a >= 0)) return;
       const score = {}; Object.keys(TRACK).forEach(k => score[k] = 0);
-      answers.forEach((oi, qi) => { const s = QUESTIONS[qi].opts[oi].s; for(const k in s) score[k] += s[k]; });
+      answers.forEach((ans, qi) => {
+        const Q = QUESTIONS[qi];
+        const picks = Q.multi ? ans : [ans];
+        picks.forEach(oi => { const s = Q.opts[oi] && Q.opts[oi].s; if(s) for(const k in s) score[k] += s[k]; });
+      });
       const ranked = PRIORITY.slice().sort((a, b) => score[b] - score[a]);
-      const top = ranked[0], second = ranked[1];
+      const top = ranked[0];
+      const top3 = ranked.slice(0, 3);
+      const maxScore = score[top] || 1;
+      // 학습 순서: 상위 3개를 기초→심화 순서로 정렬
+      const path = top3.slice().sort((a,b) => PATHORDER.indexOf(a) - PATHORDER.indexOf(b));
 
       if(!COURSE){ try { COURSE = await (await fetch('content/course.json?t=' + Date.now())).json(); } catch(e){ COURSE = { levels: [] }; } }
       const levels = COURSE.levels || [];
       let acc = 0; const startOf = {};
       levels.forEach(lv => { startOf[lv.name] = acc; acc += (lv.lessons || []).length; });
       const lvlByName = n => levels.find(lv => lv.name === n) || null;
+      const fit = k => Math.max(35, Math.round(score[k] / maxScore * 100));
 
-      function card(key, primary){
-        const name = TRACK[key];
-        const lv = lvlByName(name);
+      function primaryCard(key){
+        const name = TRACK[key], lv = lvlByName(name);
         const start = (name in startOf) ? startOf[name] : 0;
         const first = lv && lv.lessons && lv.lessons[0] ? lv.lessons[0].title : '';
         const cnt = lv && lv.lessons ? lv.lessons.length : 0;
-        if(primary){
-          return `<div class="bg-white rounded-3xl border-2 border-gold shadow-card p-7 text-center">
-            <p class="text-gold text-xs font-bold tracking-[0.25em] mb-3">추천 강의</p>
-            <h2 class="text-2xl font-bold mb-2">${name}</h2>
-            <p class="text-ink/60 text-sm mb-4">${lv ? (lv.desc||'') : ''}</p>
-            <p class="text-ink/75 text-[15px] leading-relaxed mb-5">${WHY[key]}</p>
-            <div class="bg-paper rounded-xl border border-ink/8 p-4 mb-6 text-left">
-              <p class="text-xs text-ink/45 mb-1">첫 강의</p>
-              <p class="font-semibold text-sm">${first}</p>
-              <p class="text-xs text-ink/45 mt-1">총 ${cnt}강 · 무료 공개</p>
-            </div>
-            <a href="watch.html?l=${start}" class="inline-block bg-ink text-paper font-semibold px-8 py-4 rounded-full hover:bg-navy transition shadow-card">▶ 이 강의로 시작하기</a>
-          </div>`;
-        }
-        return `<a href="watch.html?l=${start}" class="block bg-white rounded-2xl border border-ink/8 shadow-soft p-5 hover:shadow-card transition">
-          <p class="text-xs text-gold font-bold mb-1">함께 추천</p>
-          <p class="font-bold">${name}</p>
-          <p class="text-sm text-ink/55 mt-1">${WHY[key]}</p>
+        return `<div class="bg-white rounded-3xl border-2 border-gold shadow-card p-6 md:p-7">
+          <div class="flex items-center justify-between mb-3">
+            <p class="text-gold text-xs font-bold tracking-[0.25em]">🎯 1순위 추천 코스</p>
+            <span class="text-xs font-bold text-gold">적합도 ${fit(key)}%</span>
+          </div>
+          <h2 class="text-2xl font-bold mb-2">${name}</h2>
+          <p class="text-ink/60 text-sm mb-4">${lv ? (lv.desc||'') : ''}</p>
+          <p class="text-ink/75 text-[15px] leading-relaxed mb-5">${WHY[key]}</p>
+          <div class="bg-paper rounded-xl border border-ink/8 p-4 mb-6">
+            <p class="text-xs text-ink/45 mb-1">첫 강의</p>
+            <p class="font-semibold text-sm">${first}</p>
+            <p class="text-xs text-ink/45 mt-1">총 ${cnt}강 · 무료 공개</p>
+          </div>
+          <a href="watch.html?l=${start}" class="block text-center bg-ink text-paper font-semibold px-8 py-4 rounded-full hover:bg-navy transition shadow-card">▶ 이 코스로 시작하기</a>
+        </div>`;
+      }
+      function pathStep(key, n){
+        const name = TRACK[key], start = (name in startOf) ? startOf[name] : 0;
+        return `<a href="watch.html?l=${start}" class="flex items-center gap-3 bg-white rounded-xl border border-ink/8 p-3 hover:border-gold transition">
+          <span class="w-7 h-7 rounded-full bg-gold/15 text-gold font-bold text-sm flex items-center justify-center shrink-0">${n}</span>
+          <span class="flex-1 text-sm font-semibold">${name}</span>
+          <span class="text-ink/30 text-xs shrink-0">적합도 ${fit(key)}%</span>
+        </a>`;
+      }
+      function secCard(key){
+        const name = TRACK[key], start = (name in startOf) ? startOf[name] : 0;
+        return `<a href="watch.html?l=${start}" class="block bg-white rounded-2xl border border-ink/8 shadow-soft p-4 hover:shadow-card transition">
+          <div class="flex items-center justify-between"><p class="font-bold text-sm">${name}</p><span class="text-xs text-gold font-semibold shrink-0">적합도 ${fit(key)}%</span></div>
+          <p class="text-sm text-ink/55 mt-1.5 leading-relaxed">${WHY[key]}</p>
         </a>`;
       }
 
-      document.getElementById('quiz').classList.add('hidden');
-      document.getElementById('quizFoot').classList.add('hidden');
+      document.getElementById('introHead').classList.add('hidden');
+      document.getElementById('progressWrap').classList.add('hidden');
+      document.getElementById('step').classList.add('hidden');
+      document.getElementById('stepNav').classList.add('hidden');
       const res = document.getElementById('result');
       res.classList.remove('hidden');
       res.innerHTML = `
         <div class="text-center mb-6">
-          <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">YOUR RESULT</p>
-          <h1 class="text-2xl font-bold">당신에게 맞는 강의를 찾았어요!</h1>
+          <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">YOUR RESULT · 진단 결과</p>
+          <h1 class="text-2xl font-bold">당신에게 맞는 코스를 찾았어요!</h1>
+          <p class="text-ink/55 text-sm mt-2">답변을 분석해 적합도 순으로 추천해 드려요.</p>
         </div>
-        ${card(top, true)}
-        <div class="mt-5">${card(second, false)}</div>
-        <div class="text-center mt-8">
-          <button onclick="resetQuiz()" class="text-sm text-ink/55 hover:text-gold underline">다시 진단하기</button>
+        ${primaryCard(top)}
+        <div class="mt-7">
+          <p class="font-bold mb-3 flex items-center gap-2">🗺️ 추천 학습 순서 <span class="text-ink/40 text-xs font-normal">기초 → 심화</span></p>
+          <div class="grid gap-2">
+            ${path.map((k, i) => pathStep(k, i+1)).join('<div class="text-center text-ink/25 text-xs leading-none">↓</div>')}
+          </div>
+        </div>
+        <div class="mt-7">
+          <p class="font-bold mb-3">📚 함께 들으면 좋은 코스</p>
+          <div class="grid gap-3">${ranked.slice(1,3).map(secCard).join('')}</div>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center mt-9">
+          <button onclick="resetQuiz()" class="px-6 py-3 rounded-full border border-ink/15 text-ink/60 font-semibold text-sm hover:bg-ink/5 transition">↺ 다시 진단하기</button>
+          <a href="index.html#curriculum" class="px-6 py-3 rounded-full border border-ink/15 text-ink/60 font-semibold text-sm hover:bg-ink/5 transition text-center">전체 커리큘럼 보기</a>
         </div>`;
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     function resetQuiz(){
-      for(let i=0;i<answers.length;i++) answers[i] = -1;
+      for(let i=0;i<QUESTIONS.length;i++) answers[i] = QUESTIONS[i].multi ? [] : -1;
+      stepIdx = 0;
       document.getElementById('result').classList.add('hidden');
-      document.getElementById('quiz').classList.remove('hidden');
-      document.getElementById('quizFoot').classList.remove('hidden');
-      document.getElementById('resultBtn').disabled = true;
-      document.getElementById('quizHint').textContent = '모든 질문에 답하면 결과를 볼 수 있어요.';
-      renderQuiz();
+      document.getElementById('introHead').classList.remove('hidden');
+      document.getElementById('progressWrap').classList.remove('hidden');
+      document.getElementById('step').classList.remove('hidden');
+      document.getElementById('stepNav').classList.remove('hidden');
+      renderStep();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-    renderQuiz();
+    renderStep();
   </script>
 
   <script>

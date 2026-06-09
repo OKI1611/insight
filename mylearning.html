@@ -28,7 +28,7 @@
 
   <header class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-ink/8">
     <div class="max-w-6xl mx-auto px-4 h-14 flex items-center gap-3">
-      <a href="index.html" class="font-bold text-[15px] shrink-0">오광일의 <span class="text-gold">인사이트 브리핑</span></a>
+      <a href="index.html" class="flex items-center gap-2 shrink-0"><span class="w-7 h-7 rounded-lg bg-ink text-gold flex items-center justify-center font-bold text-sm" style="font-family:'Noto Serif KR',serif">人</span><span class="font-bold text-[15px] tracking-tight">인사이트 <span class="text-gold">아카데미</span></span></a>
       <nav id="navmenu" class="flex items-center gap-4 sm:gap-5 text-sm text-ink/70 overflow-x-auto whitespace-nowrap pl-1">
         <a href="about.html" class="hover:text-gold">소개</a>
         <a href="index.html#catalog" class="hover:text-gold">강의</a>
@@ -181,36 +181,52 @@
         return;
       }
 
-      tracksEl.innerHTML = mine.map(({ lv, ti }) => {
+      tracksEl.innerHTML = mine.map(({ lv, ti }, idx) => {
         const ls = lv.lessons || [];
         const doneCnt = ls.filter(l => done.has(ytId(l.youtube))).length;
         const pct = ls.length ? Math.round(doneCnt / ls.length * 100) : 0;
         const fi = ls.findIndex(l => !done.has(ytId(l.youtube)));
         const contIdx = starts[ti] + (fi < 0 ? 0 : fi);
-        const contLabel = (fi < 0) ? '🎉 완강! 다시 보기' : (doneCnt === 0 ? '▶ 학습 시작' : '▶ 이어보기');
+        const contLabel = (fi < 0) ? '🎉 완강! 다시 보기' : (doneCnt === 0 ? '▶ 학습 시작하기' : '▶ 이어보기');
+        const open = idx === 0;   // 첫 과정은 펼친 상태로
         const rows = ls.map((l, li) => {
           const gi = starts[ti] + li; const ok = done.has(ytId(l.youtube));
-          return `<a href="watch.html?l=${gi}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-ink/[0.03] transition">
+          return `<a href="watch.html?l=${gi}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-ink/[0.04] transition">
             <span class="shrink-0 text-lg">${ ok ? '✅' : '⬜' }</span>
+            <span class="shrink-0 text-xs font-bold text-ink/30 w-6 text-center">${String(li+1).padStart(2,'0')}</span>
             <span class="flex-1 text-sm ${ ok ? 'text-ink/45 line-through' : 'text-ink/80' } truncate">${esc(l.title)}</span>
             <span class="shrink-0 text-xs text-ink/35">${ esc(l.duration||'') }</span>
           </a>`;
         }).join('');
         return `<div class="bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden">
-          <div class="px-5 pt-5 pb-4 border-b border-ink/8">
-            <div class="flex items-center justify-between gap-3 mb-3">
-              <h3 class="font-bold">${esc(lv.name)}</h3>
+          <div onclick="toggleFolder(${ti})" class="px-5 pt-5 pb-4 cursor-pointer hover:bg-ink/[0.015] transition select-none">
+            <div class="flex items-center gap-3 mb-3">
+              <span id="ficon-${ti}" class="text-2xl shrink-0">${ open ? '📂' : '📁' }</span>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-bold leading-snug truncate">${esc(lv.name)}</h3>
+                <p class="text-xs text-ink/45 mt-0.5">총 ${ls.length}강 · 클릭하면 강의 목록이 ${ open ? '닫혀요' : '열려요' }</p>
+              </div>
               <span class="text-sm font-semibold text-gold shrink-0">${pct}%</span>
+              <svg id="fchev-${ti}" class="w-5 h-5 text-ink/30 shrink-0 transition-transform" style="${ open ? 'transform:rotate(180deg)' : '' }" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
             </div>
             <div class="h-2 rounded-full bg-ink/8 overflow-hidden"><div class="h-full bg-gold rounded-full" style="width:${pct}%"></div></div>
-            <div class="flex items-center justify-between mt-3">
-              <span class="text-xs text-ink/55">${doneCnt}/${ls.length}강 완료</span>
-              <a href="watch.html?l=${contIdx}" class="text-sm font-semibold text-ink hover:text-gold">${contLabel} →</a>
-            </div>
+            <p class="text-xs text-ink/55 mt-2">${doneCnt}/${ls.length}강 완료</p>
           </div>
-          <div class="p-2">${rows}</div>
+          <div id="folder-${ti}" class="${ open ? '' : 'hidden' } border-t border-ink/8 p-2">
+            ${rows}
+            <a href="watch.html?l=${contIdx}" class="block text-center mt-1.5 mb-1 mx-1 bg-ink text-paper text-sm font-semibold py-2.5 rounded-xl hover:bg-navy transition">${contLabel}</a>
+          </div>
         </div>`;
       }).join('');
+    }
+    function toggleFolder(ti){
+      const body = document.getElementById('folder-' + ti);
+      const icon = document.getElementById('ficon-' + ti);
+      const chev = document.getElementById('fchev-' + ti);
+      if(!body) return;
+      const closed = body.classList.toggle('hidden');
+      if(icon) icon.textContent = closed ? '📁' : '📂';
+      if(chev) chev.style.transform = closed ? '' : 'rotate(180deg)';
     }
   </script>
   <script>
