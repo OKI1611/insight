@@ -1,15 +1,21 @@
 {
   "menu": [
-    { "label": "소개", "href": "about.html" },
-    { "label": "강의", "href": "#catalog" },
+    { "label": "전체 강의", "href": "#catalog" },
     { "label": "강의 찾기", "href": "find.html" },
     { "label": "커리큘럼", "href": "#curriculum" },
-    { "label": "내 강의실", "href": "mylearning.html" },
-    { "label": "자료실", "href": "resources.html" },
+    { "label": "질의응답", "href": "community.html?board=qna" },
     { "label": "커뮤니티", "href": "community.html" },
+    { "label": "자료실", "href": "resources.html" },
     { "label": "칼럼", "href": "column.html" },
+    { "label": "소개", "href": "about.html" },
     { "label": "후원", "href": "#support" }
   ],
+  "brand": {
+    "name": "인사이트 아카데미",
+    "en": "INSIGHT ACADEMY",
+    "tagline": "성경·종말론 전문 온라인 아카데미",
+    "instructor_label": "대표강사 오광일"
+  },
   "instructor": {
     "photo": "/images/프로필사진.jpg"
   },
