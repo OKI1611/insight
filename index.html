@@ -609,7 +609,7 @@
            class="flex items-center justify-center gap-2 bg-[#3182f6] text-white font-semibold py-3.5 rounded-2xl hover:opacity-90 transition">
           간편 송금하기 <span class="text-white/70 text-sm font-normal">(토스·계좌)</span>
         </a>
-        <a id="kakaopayLink" href="https://qr.kakaopay.com/FKQjD73PQ" target="_blank" rel="noopener"
+        <a id="kakaopayLink" href="#" target="_blank" rel="noopener" style="display:none"
            class="flex items-center justify-center gap-2 bg-[#FEE500] text-[#3c1e1e] font-semibold py-3.5 rounded-2xl hover:opacity-90 transition">
           카카오페이로 후원하기 <span class="text-[#3c1e1e]/60 text-sm font-normal">(원클릭)</span>
         </a>
@@ -807,7 +807,7 @@
         }
 
         const s = site.support || {};
-        const setHref = (id, url) => { const e = document.getElementById(id); if(e && url) e.href = url; };
+        const setHref = (id, url) => { const e = document.getElementById(id); if(!e) return; if(url){ e.href = url; e.style.display = 'flex'; } else { e.style.display = 'none'; } };
         // 간편 송금 링크(link2.my 등): 링크가 있으면 버튼 표시, 없으면 숨김
         const sp = document.getElementById('simplepayLink');
         const spUrl = s.simplepay_url || s.toss_url; // 옛/새 칸 이름 모두 지원
