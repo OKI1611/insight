@@ -534,15 +534,6 @@
 
     // ===== 수강신청 / 학습 진도 =====
     const lsb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { lock: async (_n, _t, fn) => await fn() } });
-    // 손상된 로그인 세션 자동 복구: getSession이 멈추면(만료/손상 토큰·다중탭 충돌) 토큰 정리 후 1회 새로고침
-    (async function healAuth(){
-      try {
-        await Promise.race([ lsb.auth.getSession(), new Promise((_, rej) => setTimeout(() => rej(new Error('STUCK')), 7000)) ]);
-      } catch(e) {
-        try { Object.keys(localStorage).forEach(k => { if(/-auth-token$/.test(k) || /^sb-.*-auth-token/.test(k)) localStorage.removeItem(k); }); } catch(_){}
-        if(!sessionStorage.getItem('authHealed')){ try { sessionStorage.setItem('authHealed', '1'); } catch(_){} location.reload(); }
-      }
-    })();
     let LUSER = null, ENROLLED = new Set(), DONE = new Set(), TABLES_READY = true, QNAME = '회원';
     const ADMIN_EMAIL_W = 'josephoh1611@gmail.com';
     function isAdminW(){ return LUSER && LUSER.email === ADMIN_EMAIL_W; }
@@ -555,8 +546,20 @@
       m.textContent = msg;
     }
 
+    // 저장된 세션을 직접 읽어 즉시 반영 (getSession()이 멈추는 환경 대비)
+    function readStoredSession(){
+      try {
+        for(const k of Object.keys(localStorage)){
+          if(!/auth-token/.test(k)) continue;
+          const v = JSON.parse(localStorage.getItem(k));
+          const s = (v && v.user) ? v : (v && v.currentSession) ? v.currentSession : null;
+          if(s && s.user){ if(s.expires_at && s.expires_at * 1000 < Date.now()) return null; return s; }
+        }
+      } catch(e){}
+      return null;
+    }
     lsb.auth.onAuthStateChange((_e, s) => lAuth(s));
-    lsb.auth.getSession().then(({ data:{ session } }) => lAuth(session));
+    lAuth(readStoredSession());
     function rlsErr(e){ return e && (e.code === '42501' || /row-level security|violates row-level/i.test(e.message || '')); }
     function withTimeout(p, ms){ return Promise.race([ Promise.resolve(p), new Promise((_, rej) => setTimeout(() => rej(new Error('TIMEOUT')), ms)) ]); }
     function healAndReload(){

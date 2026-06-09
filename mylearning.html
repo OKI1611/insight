@@ -81,36 +81,48 @@
 
   <script>
     const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { lock: async (_n, _t, fn) => await fn() } });
-    // 손상된 로그인 세션 자동 복구
-    (async function healAuth(){
-      try { await Promise.race([ sb.auth.getSession(), new Promise((_, rej) => setTimeout(() => rej(new Error('STUCK')), 7000)) ]); }
-      catch(e){
-        try { Object.keys(localStorage).forEach(k => { if(/-auth-token$/.test(k) || /^sb-.*-auth-token/.test(k)) localStorage.removeItem(k); }); } catch(_){}
-        if(!sessionStorage.getItem('authHealed')){ try { sessionStorage.setItem('authHealed', '1'); } catch(_){} location.reload(); }
-      }
-    })();
     let user = null, uname = '회원', COURSE = null;
     function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
     function ytId(u){ if(!u) return ''; const m = String(u).match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/); return m ? m[1] : (String(u).trim().length===11 ? String(u).trim() : ''); }
 
+    // 저장된 세션을 직접 읽어 즉시 반영 (getSession()이 멈추는 환경 대비)
+    function readStoredSession(){
+      try {
+        for(const k of Object.keys(localStorage)){
+          if(!/auth-token/.test(k)) continue;
+          const v = JSON.parse(localStorage.getItem(k));
+          const s = (v && v.user) ? v : (v && v.currentSession) ? v.currentSession : null;
+          if(s && s.user){ if(s.expires_at && s.expires_at * 1000 < Date.now()) return null; return s; }
+        }
+      } catch(e){}
+      return null;
+    }
     sb.auth.onAuthStateChange((_e, s) => onAuth(s));
-    sb.auth.getSession().then(({ data:{ session } }) => onAuth(session)).catch(() => {});
-    // 인증 응답이 지연/실패해도 빈 화면이 되지 않도록 폴백
+    onAuth(readStoredSession());
+    // 인증이 어떤 이유로도 안 잡히면 빈 화면 대신 로그인 화면 (폴백)
     setTimeout(() => {
       const lv = document.getElementById('loginView'), dv = document.getElementById('dashView');
       if(lv && dv && lv.classList.contains('hidden') && dv.classList.contains('hidden')) lv.classList.remove('hidden');
-    }, 3500);
+    }, 3000);
 
+    function withTimeout(p, ms){ return Promise.race([ Promise.resolve(p), new Promise((_, rej) => setTimeout(() => rej(new Error('TIMEOUT')), ms)) ]); }
+    function setNav(){ document.getElementById('navUser').innerHTML = `${esc(uname)}님 · <button onclick="logout()" class="hover:text-gold">로그아웃</button>`; }
+    let authShown = false;
     async function onAuth(session){
       if(session && session.user){
+        if(authShown && user && user.id === session.user.id) return; // 중복 호출 방지
+        authShown = true;
         user = session.user;
-        try { const { data: prof } = await sb.from('profiles').select('full_name').eq('id', user.id).maybeSingle(); uname = (prof && prof.full_name) || user.email || '회원'; }
-        catch(e){ uname = user.email || '회원'; }
+        uname = user.email || '회원';
+        // ① UI를 먼저 — 데이터 조회가 지연돼도 대시보드는 즉시 표시
         document.getElementById('loginView').classList.add('hidden');
         document.getElementById('dashView').classList.remove('hidden');
-        document.getElementById('navUser').innerHTML = `${esc(uname)}님 · <button onclick="logout()" class="hover:text-gold">로그아웃</button>`;
+        setNav();
         loadDashboard();
+        // ② 이름은 best-effort 업데이트
+        try { const { data: prof } = await withTimeout(sb.from('profiles').select('full_name').eq('id', user.id).maybeSingle(), 6000); if(prof && prof.full_name){ uname = prof.full_name; setNav(); } } catch(e){}
       } else {
+        if(authShown) return; // 이미 로그인 상태면 무시(잘못된 null 이벤트 방지)
         user = null;
         document.getElementById('loginView').classList.remove('hidden');
         document.getElementById('dashView').classList.add('hidden');
@@ -135,13 +147,17 @@
       const levels = COURSE.levels || [];
       let acc = 0; const starts = []; levels.forEach(lv => { starts.push(acc); acc += (lv.lessons||[]).length; });
 
-      let enrolled = [], done = new Set(), tableMissing = false;
-      try { const { data, error } = await sb.from('enrollments').select('track').eq('user_id', user.id); if(error) throw error; enrolled = (data||[]).map(e => e.track); }
-      catch(e){ tableMissing = true; }
-      try { const { data } = await sb.from('lesson_progress').select('lesson_id').eq('user_id', user.id).eq('completed', true); (data||[]).forEach(p => done.add(p.lesson_id)); } catch(e){}
+      let enrolled = [], done = new Set(), loadErr = false, timedOut = false;
+      try { const { data, error } = await withTimeout(sb.from('enrollments').select('track').eq('user_id', user.id), 9000); if(error) throw error; enrolled = (data||[]).map(e => e.track); }
+      catch(e){ if(e.message === 'TIMEOUT') timedOut = true; else loadErr = true; }
+      try { const { data } = await withTimeout(sb.from('lesson_progress').select('lesson_id').eq('user_id', user.id).eq('completed', true), 9000); (data||[]).forEach(p => done.add(p.lesson_id)); } catch(e){}
 
-      if(tableMissing){
-        tracksEl.innerHTML = '<div class="bg-white rounded-2xl border border-ink/8 p-6 text-center text-ink/55 text-sm">학습 기능을 준비 중입니다. (관리자: Supabase에 enrollments·lesson_progress 테이블을 생성해 주세요)</div>';
+      if(timedOut){
+        tracksEl.innerHTML = '<div class="bg-white rounded-2xl border border-ink/8 p-6 text-center text-ink/60 text-sm">⏳ 학습 정보를 불러오지 못했어요. 이 사이트의 다른 탭을 모두 닫고 <button onclick="location.reload()" class="text-gold font-semibold underline">새로고침</button> 해주세요.</div>';
+        sumEl.innerHTML = ''; return;
+      }
+      if(loadErr){
+        tracksEl.innerHTML = '<div class="bg-white rounded-2xl border border-ink/8 p-6 text-center text-ink/55 text-sm">학습 기능을 준비 중입니다. (관리자: Supabase 테이블 생성 필요)</div>';
         sumEl.innerHTML = ''; return;
       }
 
