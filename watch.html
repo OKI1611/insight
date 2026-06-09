@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>강의실 — 인사이트 아카데미</title>
+  <title>강의실 — BIBLY 바이블 인사이트</title>
   <link rel="manifest" href="/manifest.json" />
   <meta name="theme-color" content="#15203a" />
   <link rel="apple-touch-icon" href="/images/icon-192.png" />
@@ -36,7 +36,7 @@
   <!-- 상단바 -->
   <header class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-ink/8">
     <div class="max-w-7xl mx-auto px-4 h-14 flex items-center gap-3">
-      <a href="index.html" class="flex items-center gap-2 shrink-0"><span class="w-7 h-7 rounded-lg bg-ink text-gold flex items-center justify-center font-bold text-sm" style="font-family:'Noto Serif KR',serif">人</span><span class="font-bold text-[15px] tracking-tight">인사이트 <span class="text-gold">아카데미</span></span></a>
+      <a href="index.html" class="flex items-center gap-2 shrink-0"><span class="w-8 h-8 rounded-lg bg-ink flex items-center justify-center shrink-0"><span class="text-gold font-extrabold text-base leading-none">B</span></span><span class="leading-none"><span class="block font-extrabold text-[15px] tracking-tight">BIBLY<span class="text-gold">.</span></span><span class="block text-[9px] text-ink/45 tracking-wide mt-0.5">말씀으로 시대를 읽다</span></span></a>
       <nav id="navmenu" class="flex items-center gap-4 sm:gap-5 text-sm text-ink/70 overflow-x-auto whitespace-nowrap pl-1">
         <a href="about.html" class="hover:text-gold">소개</a>
         <a href="index.html#catalog" class="text-gold font-semibold">강의</a>
@@ -263,12 +263,12 @@
     let NOTE_CACHE = {};
     function noteHeader(){
       return `<div style="border-bottom:2px solid #b8923f;padding-bottom:10px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:baseline;gap:8px">
-        <span style="font-weight:700;color:#15203a;font-size:14px">인사이트 아카데미 · 강의 노트</span>
+        <span style="font-weight:700;color:#15203a;font-size:14px">BIBLY 바이블 인사이트 · 강의 노트</span>
         <span style="font-size:12px;color:#a7adba">바이블 인사이트 스쿨</span>
       </div>`;
     }
     function noteFooter(){
-      return `<div style="border-top:1px solid #ececec;margin-top:22px;padding-top:10px;font-size:11px;color:#aab1bd">insight.josephoh1611.workers.dev · 인사이트 아카데미 (대표강사 오광일) — 본 노트는 강의 학습용으로 무료 제공됩니다.</div>`;
+      return `<div style="border-top:1px solid #ececec;margin-top:22px;padding-top:10px;font-size:11px;color:#aab1bd">insight.josephoh1611.workers.dev · BIBLY 바이블 인사이트 (대표강사 오광일) — 본 노트는 강의 학습용으로 무료 제공됩니다.</div>`;
     }
     function titleBlock(l){
       return `<h2 style="font-size:21px;font-weight:700;color:#15203a;margin:0 0 6px;line-height:1.35">${esc(l.title || '')}</h2>
@@ -481,7 +481,7 @@
     function shareTo(platform){
       const l = lessons[cur] || {};
       const url = lessonShareUrl();
-      const title = (l.title || '인사이트 아카데미');
+      const title = (l.title || 'BIBLY 바이블 인사이트');
       const eu = encodeURIComponent(url), et = encodeURIComponent(title), etxt = encodeURIComponent(title + ' ' + url);
       document.getElementById('shareMenu').classList.add('hidden');
       let target = '';
@@ -502,7 +502,7 @@
       document.getElementById('shareMenu').classList.add('hidden');
       const l = lessons[cur] || {};
       const url = lessonShareUrl();
-      const data = { title: l.title || '인사이트 아카데미', text: (l.summary || l.title || ''), url };
+      const data = { title: l.title || 'BIBLY 바이블 인사이트', text: (l.summary || l.title || ''), url };
       try {
         if(navigator.share){ await navigator.share(data); }
         else { copyLink(url, 'copy'); }

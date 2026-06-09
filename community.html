@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>커뮤니티 — 인사이트 아카데미</title>
+  <title>커뮤니티 — BIBLY 바이블 인사이트</title>
   <link rel="manifest" href="/manifest.json" />
   <meta name="theme-color" content="#15203a" />
   <link rel="apple-touch-icon" href="/images/icon-192.png" />
@@ -46,7 +46,7 @@
   <!-- 헤더 -->
   <header class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-ink/8">
     <div class="max-w-6xl mx-auto px-4 h-14 flex items-center gap-3">
-      <a href="index.html" class="flex items-center gap-2 shrink-0"><span class="w-7 h-7 rounded-lg bg-ink text-gold flex items-center justify-center font-bold text-sm" style="font-family:'Noto Serif KR',serif">人</span><span class="font-bold text-[15px] tracking-tight">인사이트 <span class="text-gold">아카데미</span></span></a>
+      <a href="index.html" class="flex items-center gap-2 shrink-0"><span class="w-8 h-8 rounded-lg bg-ink flex items-center justify-center shrink-0"><span class="text-gold font-extrabold text-base leading-none">B</span></span><span class="leading-none"><span class="block font-extrabold text-[15px] tracking-tight">BIBLY<span class="text-gold">.</span></span><span class="block text-[9px] text-ink/45 tracking-wide mt-0.5">말씀으로 시대를 읽다</span></span></a>
       <nav id="navmenu" class="flex items-center gap-4 sm:gap-5 text-sm text-ink/70 overflow-x-auto whitespace-nowrap pl-1">
         <a href="about.html" class="hover:text-gold">소개</a>
         <a href="index.html#catalog" class="hover:text-gold">강의</a>
@@ -326,14 +326,14 @@
     function postExcerpt(p){
       const d = document.createElement('div'); d.innerHTML = p.content || '';
       const t = (d.textContent || '').replace(/\s+/g, ' ').trim();
-      return t.length > 80 ? t.slice(0, 80) + '…' : (t || '인사이트 아카데미 커뮤니티 글');
+      return t.length > 80 ? t.slice(0, 80) + '…' : (t || 'BIBLY 바이블 인사이트 커뮤니티 글');
     }
     function shareCommunityPost(postId){
       const p = POSTS_BY_ID[postId]; if(!p) return;
       const board = p.board || currentBoard;
       const url = location.origin + location.pathname + '?board=' + board + '#post-' + postId;
       const label = board === 'qna' ? '[질의응답]' : board === 'prayer' ? '[기도 요청]' : '[커뮤니티]';
-      SHARE_CTX = { url, text: `${label} ${postExcerpt(p)}\n— 인사이트 아카데미` };
+      SHARE_CTX = { url, text: `${label} ${postExcerpt(p)}\n— BIBLY 바이블 인사이트` };
       document.getElementById('shareSheet').classList.remove('hidden');
       document.getElementById('shareSheet').classList.add('flex');
     }
