@@ -81,6 +81,14 @@
 
   <script>
     const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { lock: async (_n, _t, fn) => await fn() } });
+    // 손상된 로그인 세션 자동 복구
+    (async function healAuth(){
+      try { await Promise.race([ sb.auth.getSession(), new Promise((_, rej) => setTimeout(() => rej(new Error('STUCK')), 7000)) ]); }
+      catch(e){
+        try { Object.keys(localStorage).forEach(k => { if(/-auth-token$/.test(k) || /^sb-.*-auth-token/.test(k)) localStorage.removeItem(k); }); } catch(_){}
+        if(!sessionStorage.getItem('authHealed')){ try { sessionStorage.setItem('authHealed', '1'); } catch(_){} location.reload(); }
+      }
+    })();
     let user = null, uname = '회원', COURSE = null;
     function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
     function ytId(u){ if(!u) return ''; const m = String(u).match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/); return m ? m[1] : (String(u).trim().length===11 ? String(u).trim() : ''); }

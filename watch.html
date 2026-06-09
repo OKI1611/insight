@@ -534,6 +534,15 @@
 
     // ===== 수강신청 / 학습 진도 =====
     const lsb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { lock: async (_n, _t, fn) => await fn() } });
+    // 손상된 로그인 세션 자동 복구: getSession이 멈추면(만료/손상 토큰·다중탭 충돌) 토큰 정리 후 1회 새로고침
+    (async function healAuth(){
+      try {
+        await Promise.race([ lsb.auth.getSession(), new Promise((_, rej) => setTimeout(() => rej(new Error('STUCK')), 7000)) ]);
+      } catch(e) {
+        try { Object.keys(localStorage).forEach(k => { if(/-auth-token$/.test(k) || /^sb-.*-auth-token/.test(k)) localStorage.removeItem(k); }); } catch(_){}
+        if(!sessionStorage.getItem('authHealed')){ try { sessionStorage.setItem('authHealed', '1'); } catch(_){} location.reload(); }
+      }
+    })();
     let LUSER = null, ENROLLED = new Set(), DONE = new Set(), TABLES_READY = true, QNAME = '회원';
     const ADMIN_EMAIL_W = 'josephoh1611@gmail.com';
     function isAdminW(){ return LUSER && LUSER.email === ADMIN_EMAIL_W; }
@@ -550,6 +559,11 @@
     lsb.auth.getSession().then(({ data:{ session } }) => lAuth(session));
     function rlsErr(e){ return e && (e.code === '42501' || /row-level security|violates row-level/i.test(e.message || '')); }
     function withTimeout(p, ms){ return Promise.race([ Promise.resolve(p), new Promise((_, rej) => setTimeout(() => rej(new Error('TIMEOUT')), ms)) ]); }
+    function healAndReload(){
+      try { Object.keys(localStorage).forEach(k => { if(/-auth-token/.test(k)) localStorage.removeItem(k); }); } catch(_){}
+      try { sessionStorage.removeItem('authHealed'); } catch(_){}
+      location.reload();
+    }
     function setAuthState(){
       const aState = document.getElementById('authState'); if(!aState) return;
       aState.innerHTML = LUSER ? `${escQ(QNAME)}님 · <button onclick="lLogout()" class="hover:text-gold">로그아웃</button>` : `<button onclick="openLogin()" class="bg-gold text-white font-semibold px-4 py-1.5 rounded-full hover:opacity-90 transition">로그인</button>`;
@@ -645,7 +659,7 @@
       try { const res = await withTimeout(lsb.from('enrollments').insert({ user_id: LUSER.id, track: t }), 9000); error = res.error; }
       catch(e){ error = e; }
       if(error && error.code !== '23505'){
-        if(error.message === 'TIMEOUT'){ learnToast('⏳ 응답이 지연돼요. 이 사이트의 다른 탭을 모두 닫고 새로고침(Ctrl+F5) 후 다시 시도하거나, 로그아웃 후 다시 로그인해 주세요.', false); return; }
+        if(error.message === 'TIMEOUT'){ const m = document.getElementById('learnMsg'); if(m){ m.style.display=''; m.style.color='#dc2626'; m.innerHTML='⏳ 응답이 지연돼요. <button onclick="healAndReload()" class="underline font-bold text-gold">🔄 로그인 새로고침</button> 후 다시 시도해 주세요. (이 사이트의 다른 탭은 닫아주세요)'; } return; }
         if(tableErr(error)){ TABLES_READY = false; refreshLearningUI(); learnToast('수강신청 기능이 아직 켜지지 않았어요. (관리자: 테이블 생성 필요)', false); }
         else if(rlsErr(error)){ learnToast('수강신청 권한 설정이 필요해요. (관리자: enrollments INSERT 정책 확인 — 아래 SQL 재실행)', false); }
         else { learnToast('수강신청 오류: ' + (error.message || error.code || '알 수 없음'), false); }
