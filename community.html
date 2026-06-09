@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>커뮤니티 — 오광일 인사이트 브리핑</title>
+  <title>커뮤니티 — 인사이트 아카데미</title>
   <link rel="manifest" href="/manifest.json" />
   <meta name="theme-color" content="#15203a" />
   <link rel="apple-touch-icon" href="/images/icon-192.png" />
@@ -326,14 +326,14 @@
     function postExcerpt(p){
       const d = document.createElement('div'); d.innerHTML = p.content || '';
       const t = (d.textContent || '').replace(/\s+/g, ' ').trim();
-      return t.length > 80 ? t.slice(0, 80) + '…' : (t || '오광일의 인사이트 브리핑 커뮤니티 글');
+      return t.length > 80 ? t.slice(0, 80) + '…' : (t || '인사이트 아카데미 커뮤니티 글');
     }
     function shareCommunityPost(postId){
       const p = POSTS_BY_ID[postId]; if(!p) return;
       const board = p.board || currentBoard;
       const url = location.origin + location.pathname + '?board=' + board + '#post-' + postId;
       const label = board === 'qna' ? '[질의응답]' : board === 'prayer' ? '[기도 요청]' : '[커뮤니티]';
-      SHARE_CTX = { url, text: `${label} ${postExcerpt(p)}\n— 오광일의 인사이트 브리핑` };
+      SHARE_CTX = { url, text: `${label} ${postExcerpt(p)}\n— 인사이트 아카데미` };
       document.getElementById('shareSheet').classList.remove('hidden');
       document.getElementById('shareSheet').classList.add('flex');
     }
