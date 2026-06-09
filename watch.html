@@ -168,10 +168,10 @@
   <section id="qaSection" class="max-w-7xl mx-auto px-4 pb-14">
     <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 lg:p-7">
       <div class="flex items-center justify-between mb-2">
-        <h3 class="font-bold text-lg">💬 수강생 질의응답</h3>
+        <h3 class="font-bold text-lg">💬 수강생 질의응답 · 토론</h3>
         <span id="qaCount" class="text-sm text-ink/45"></span>
       </div>
-      <p class="text-sm text-ink/55 mb-4"><b class="text-ink">공개 질문</b>은 다른 수강생도 함께 보고 배웁니다. <b class="text-ink">비밀 질문</b>은 강사만 볼 수 있어요.</p>
+      <p class="text-sm text-ink/55 mb-4"><b class="text-ink">공개 질문</b>에는 강사뿐 아니라 <b class="text-ink">수강생끼리도 댓글로 함께 토론</b>할 수 있어요. <b class="text-ink">비밀 질문</b>은 강사만 볼 수 있습니다.</p>
       <div id="qaComposer"></div>
       <div id="qaList" class="mt-6 space-y-4"></div>
     </div>
@@ -676,6 +676,15 @@
           if(!error && pq.lesson_id === curId()) loadQuestions();
         }
       }
+      // 로그인 직후 보류 중이던 댓글(토론) 자동 등록
+      if(LUSER){
+        let pr = null; try { pr = JSON.parse(sessionStorage.getItem('pendingReply') || 'null'); } catch(e){}
+        if(pr && pr.content && pr.qid){
+          try { sessionStorage.removeItem('pendingReply'); } catch(e){}
+          const { error } = await lsb.from('lecture_replies').insert({ question_id: pr.qid, user_id: LUSER.id, author_name: QNAME, content: pr.content, is_instructor: isAdminW() });
+          if(!error && pr.lesson_id === curId()) loadQuestions();
+        }
+      }
     }
     function refreshLearningUI(){
       const bar = document.getElementById('learnBar');
@@ -780,25 +789,59 @@
           ${ LUSER ? '' : '<p class="text-xs text-ink/45 mt-1">✍️ 작성 후 등록을 누르면 로그인 창이 떠요. 로그인하면 바로 등록됩니다.</p>' }
         </div>`;
     }
+    let REPLIES_BY_Q = {};
     function renderQ(q){
       const mine = LUSER && q.user_id === LUSER.id;
       const canDel = mine || isAdminW();
       const badge = q.is_private
         ? '<span class="text-[11px] bg-ink/8 text-ink/55 px-2 py-0.5 rounded-full">🔒 비밀</span>'
-        : '<span class="text-[11px] bg-gold/15 text-gold px-2 py-0.5 rounded-full">🌐 공개</span>';
+        : '<span class="text-[11px] bg-gold/15 text-gold px-2 py-0.5 rounded-full">🌐 공개 · 함께 토론</span>';
       const ans = q.answer
-        ? `<div class="mt-3 ml-3 pl-3 border-l-2 border-gold bg-gold/[0.05] rounded-r-lg p-3"><p class="text-xs font-bold text-gold mb-1">🎓 강사 답변</p><p class="text-sm text-ink/80 whitespace-pre-wrap leading-relaxed">${escQ(q.answer)}</p></div>`
+        ? `<div class="mt-3 pl-3 border-l-2 border-gold bg-gold/[0.05] rounded-r-lg p-3"><p class="text-xs font-bold text-gold mb-1">🎓 강사 공식 답변</p><p class="text-sm text-ink/80 whitespace-pre-wrap leading-relaxed">${escQ(q.answer)}</p></div>`
         : '';
       const adminAns = isAdminW()
-        ? `<div class="mt-2 flex gap-2"><input id="ans-${q.id}" value="${q.answer ? escQ(q.answer).replace(/"/g,'&quot;') : ''}" placeholder="강사 답변 달기…" class="flex-1 border border-ink/12 rounded-full px-3 py-1.5 text-sm outline-none focus:border-gold"/><button onclick="answerQ('${q.id}')" class="bg-ink text-paper text-xs font-semibold px-3 py-1.5 rounded-full shrink-0">${q.answer ? '수정' : '답변'}</button></div>`
+        ? `<div class="mt-2 flex gap-2"><input id="ans-${q.id}" value="${q.answer ? escQ(q.answer).replace(/"/g,'&quot;') : ''}" placeholder="강사 공식 답변(상단 고정)…" class="flex-1 border border-ink/12 rounded-full px-3 py-1.5 text-sm outline-none focus:border-gold"/><button onclick="answerQ('${q.id}')" class="bg-ink text-paper text-xs font-semibold px-3 py-1.5 rounded-full shrink-0">${q.answer ? '수정' : '답변'}</button></div>`
         : '';
-      return `<div class="bg-paper rounded-xl border border-ink/8 p-4">
+      // 비밀 질문은 본인·강사만 토론 가능
+      const canDiscuss = !q.is_private || mine || isAdminW();
+      const reps = REPLIES_BY_Q[q.id] || [];
+      const thread = reps.map(renderReply).join('');
+      const composer = canDiscuss
+        ? `<div class="mt-3 flex gap-2 items-start">
+            <textarea id="rep-${q.id}" rows="1" placeholder="${ LUSER ? '댓글로 생각을 나눠보세요…' : '로그인 후 댓글을 남길 수 있어요' }" class="flex-1 resize-none border border-ink/12 rounded-xl px-3 py-2 text-sm outline-none focus:border-gold leading-relaxed"></textarea>
+            <button onclick="submitReply('${q.id}')" class="bg-gold/90 text-white text-sm font-semibold px-4 py-2 rounded-xl hover:opacity-90 transition shrink-0">등록</button>
+          </div>`
+        : '';
+      const discussion = canDiscuss
+        ? `<div class="mt-3 pt-3 border-t border-ink/8">
+            <p class="text-xs font-semibold text-ink/50 mb-2">💬 토론${ reps.length ? ' · ' + reps.length + '개' : '' }</p>
+            <div class="space-y-2">${ thread || '<p class="text-xs text-ink/35">아직 댓글이 없어요. 강사와 수강생이 함께 생각을 나눠요!</p>' }</div>
+            ${composer}
+          </div>`
+        : '';
+      return `<article class="bg-paper rounded-xl border border-ink/8 p-4">
         <div class="flex items-center justify-between mb-1.5">
           <div class="flex items-center gap-2"><span class="font-semibold text-sm">${escQ(q.author_name || '회원')}</span>${badge}<span class="text-ink/35 text-xs">${ q.created_at ? new Date(q.created_at).toLocaleDateString('ko-KR') : '' }</span></div>
           ${canDel ? `<button onclick="delQ('${q.id}')" class="text-ink/30 hover:text-red-500 text-xs">삭제</button>` : ''}
         </div>
-        <p class="text-ink/80 text-[15px] whitespace-pre-wrap leading-relaxed">${escQ(q.content)}</p>
-        ${ans}${adminAns}
+        <p class="text-ink/90 text-[15px] whitespace-pre-wrap leading-relaxed">${escQ(q.content)}</p>
+        ${ans}${adminAns}${discussion}
+      </article>`;
+    }
+    function renderReply(r){
+      const mine = LUSER && r.user_id === LUSER.id;
+      const canDel = mine || isAdminW();
+      const instr = r.is_instructor;
+      return `<div class="flex gap-2 ${ instr ? 'bg-gold/[0.07] border border-gold/25' : 'bg-white border border-ink/6' } rounded-lg p-2.5">
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-1.5 mb-0.5">
+            <span class="font-semibold text-[13px]">${escQ(r.author_name || '회원')}</span>
+            ${ instr ? '<span class="text-[10px] bg-gold text-white px-1.5 py-0.5 rounded-full font-bold">🎓 강사</span>' : '' }
+            <span class="text-ink/35 text-[11px]">${ r.created_at ? new Date(r.created_at).toLocaleDateString('ko-KR') : '' }</span>
+          </div>
+          <p class="text-ink/80 text-sm whitespace-pre-wrap leading-relaxed">${escQ(r.content)}</p>
+        </div>
+        ${ canDel ? `<button onclick="delReply('${r.id}')" class="text-ink/25 hover:text-red-500 text-base leading-none shrink-0">×</button>` : '' }
       </div>`;
     }
     async function loadQuestions(){
@@ -810,8 +853,40 @@
         list.innerHTML = `<p class="text-ink/40 text-sm text-center py-6">${ /relation|does not exist|schema cache|find the table/i.test(error.message||'') ? '질의응답 기능을 준비 중이에요. (관리자: lecture_questions 테이블 생성 필요)' : '불러오기 오류: ' + escQ(error.message) }</p>`;
         if(cnt) cnt.textContent = ''; return;
       }
+      // 답글(토론) 불러오기 — 테이블 없으면 조용히 건너뜀
+      REPLIES_BY_Q = {};
+      if(data.length){
+        try {
+          const { data: rdata, error: rerr } = await lsb.from('lecture_replies').select('*').in('question_id', data.map(q => q.id)).order('created_at', { ascending: true });
+          if(!rerr && rdata){ rdata.forEach(r => { (REPLIES_BY_Q[r.question_id] = REPLIES_BY_Q[r.question_id] || []).push(r); }); }
+        } catch(e){}
+      }
       if(cnt) cnt.textContent = data.length ? data.length + '개의 질문' : '';
       list.innerHTML = data.length ? data.map(renderQ).join('') : `<p class="text-ink/40 text-sm text-center py-6">아직 질문이 없어요. 첫 질문을 남겨보세요! 🙋</p>`;
+    }
+    async function submitReply(qid){
+      const ta = document.getElementById('rep-' + qid); const content = (ta ? ta.value : '').trim();
+      if(!content) return;
+      if(!LUSER){
+        try { sessionStorage.setItem('pendingReply', JSON.stringify({ qid, content, lesson_id: curId() })); } catch(e){}
+        openLogin(); return;
+      }
+      let error;
+      try { const res = await withTimeout(lsb.from('lecture_replies').insert({ question_id: qid, user_id: LUSER.id, author_name: QNAME, content, is_instructor: isAdminW() }), 9000); error = res.error; }
+      catch(e){ error = e; }
+      if(error){
+        alert(error.message === 'TIMEOUT' ? '⏳ 응답 지연 — 새로고침 후 다시 시도해 주세요.'
+          : tableErr(error) ? '토론(댓글) 기능 준비 중이에요. (관리자: lecture_replies 테이블 생성 필요)' : ('오류: ' + error.message));
+        return;
+      }
+      if(ta) ta.value = '';
+      loadQuestions();
+    }
+    async function delReply(id){
+      if(!confirm('이 댓글을 삭제할까요?')) return;
+      const { error } = await lsb.from('lecture_replies').delete().eq('id', id);
+      if(error){ alert('삭제 오류: ' + error.message); return; }
+      loadQuestions();
     }
     async function submitQuestion(){
       const ta = document.getElementById('qaInput'); const content = (ta ? ta.value : '' || '').trim();
