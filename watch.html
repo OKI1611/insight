@@ -161,6 +161,9 @@
     </div>
   </div>
 
+  <!-- ===== 확인 학습 퀴즈 (강의별) ===== -->
+  <section id="quizSection" class="max-w-7xl mx-auto px-4 pb-2"><div id="quizCard"></div></section>
+
   <!-- ===== 수강생 질의응답 (강의별 · 공개/비밀) ===== -->
   <section id="qaSection" class="max-w-7xl mx-auto px-4 pb-14">
     <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 lg:p-7">
@@ -363,6 +366,73 @@
         if(rich && cur === at){ sheet.innerHTML = richNoteHTML(l, rich); }   // 풍성한 노트로 업그레이드
       })();
     }
+    // ===== 확인 학습 퀴즈 =====
+    let QUIZ_CACHE = {}, CURRENT_QUIZ = [], CURRENT_PICKS = [];
+    function renderQuiz(l){
+      const card = document.getElementById('quizCard'); if(!card) return;
+      card.style.display = 'none'; card.innerHTML = '';
+      const id = ytId(l.youtube), at = cur;
+      (async () => {
+        let quiz = QUIZ_CACHE[id];
+        if(quiz === undefined){
+          try { const r = await fetch('content/quiz/' + id + '.json?t=' + Date.now()); quiz = r.ok ? await r.json() : null; }
+          catch(e){ quiz = null; }
+          QUIZ_CACHE[id] = quiz;
+        }
+        if(!quiz || !quiz.length || cur !== at) return;
+        CURRENT_QUIZ = quiz; CURRENT_PICKS = new Array(quiz.length).fill(null);
+        card.innerHTML = quizHTML(quiz); card.style.display = '';
+      })();
+    }
+    function quizHTML(quiz){
+      let h = `<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 lg:p-7">
+        <div class="flex items-center justify-between mb-1">
+          <h3 class="font-bold text-lg">🧩 확인 학습 <span class="text-ink/40 text-sm font-normal">· ${quiz.length}문항</span></h3>
+          <span id="quizScore" class="text-sm font-semibold text-gold"></span>
+        </div>
+        <p class="text-sm text-ink/55 mb-5">강의를 잘 이해했는지 확인해 보세요. 보기를 누르면 정답과 해설이 나타나요.</p>`;
+      quiz.forEach((q, qi) => {
+        h += `<div id="quizQ-${qi}" class="mb-5 pb-5 ${ qi < quiz.length-1 ? 'border-b border-ink/6' : '' }">
+          <p class="font-semibold text-ink mb-3 leading-snug"><span class="text-gold">Q${qi+1}.</span> ${esc(q.q)}</p>
+          <div class="space-y-2">` +
+          q.options.map((o, oi) => `<button type="button" class="quizOpt w-full text-left px-4 py-2.5 rounded-xl border border-ink/12 hover:bg-gold/[0.07] transition text-[15px] flex gap-2.5 items-start" onclick="quizPick(${qi},${oi})"><span class="font-bold text-ink/40 shrink-0">${'ABCD'[oi]}</span><span class="flex-1">${esc(o)}</span></button>`).join('') +
+          `</div>
+          <div id="quizExp-${qi}" class="mt-3 text-sm bg-paper border border-ink/8 rounded-xl p-3 leading-relaxed text-ink/80" style="display:none"></div>
+        </div>`;
+      });
+      h += `<div id="quizDone" class="text-center mt-1" style="display:none"></div></div>`;
+      return h;
+    }
+    function quizPick(qi, oi){
+      if(CURRENT_PICKS[qi] !== null) return;   // 이미 푼 문항은 잠금
+      CURRENT_PICKS[qi] = oi;
+      const q = CURRENT_QUIZ[qi];
+      const opts = document.querySelectorAll('#quizQ-' + qi + ' .quizOpt');
+      opts.forEach((btn, idx) => {
+        btn.disabled = true; btn.classList.remove('hover:bg-gold/[0.07]'); btn.style.cursor = 'default';
+        if(idx === q.answer){ btn.classList.add('bg-green-50','border-green-400','text-green-800','font-semibold'); }
+        else if(idx === oi){ btn.classList.add('bg-red-50','border-red-300','text-red-700'); }
+        else { btn.classList.add('opacity-60'); }
+      });
+      const right = oi === q.answer;
+      const exp = document.getElementById('quizExp-' + qi);
+      if(exp){ exp.style.display = ''; exp.innerHTML = `<b style="color:${ right ? '#2f7d4f' : '#b4453a' }">${ right ? '✅ 정답!' : '❌ 오답' }</b> · ${esc(q.explanation)}`; }
+      updateQuizScore();
+    }
+    function updateQuizScore(){
+      const total = CURRENT_QUIZ.length;
+      const answered = CURRENT_PICKS.filter(p => p !== null).length;
+      const correct = CURRENT_PICKS.filter((p, i) => p !== null && p === CURRENT_QUIZ[i].answer).length;
+      const sc = document.getElementById('quizScore'); if(sc) sc.textContent = `${answered}/${total} 풀이 · ${correct}점`;
+      if(answered === total){
+        const done = document.getElementById('quizDone'); if(!done) return;
+        const pct = Math.round(correct / total * 100);
+        const msg = pct === 100 ? '🎉 만점! 완벽하게 이해하셨어요.' : pct >= 60 ? '👍 잘하셨어요! 틀린 문항의 해설을 다시 읽어보세요.' : '📖 노트를 한 번 더 보고 다시 도전해 보세요!';
+        done.style.display = '';
+        done.innerHTML = `<div class="inline-block bg-gold/10 rounded-2xl px-6 py-4"><p class="text-xl font-bold text-gold mb-1">최종 ${correct} / ${total}점</p><p class="text-sm text-ink/65">${msg}</p></div>`;
+        done.scrollIntoView({ behavior:'smooth', block:'nearest' });
+      }
+    }
     function toggleNote(){
       const card = document.getElementById('noteCard');
       const btn = document.getElementById('noteToggleBtn');
@@ -519,6 +589,7 @@
         : '<span class="bg-ink/10 text-ink/50 text-xs font-semibold px-2.5 py-1 rounded-full">🔒 오픈 예정</span>';
 
       renderNote(l);
+      renderQuiz(l);
       refreshLearningUI();
       loadQuestions();
       const noteCard = document.getElementById('noteCard');
