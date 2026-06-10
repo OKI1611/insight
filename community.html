@@ -69,18 +69,19 @@
   </header>
 
   <main class="max-w-2xl mx-auto px-4 py-8">
-    <div class="text-center mb-8">
-      <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">COMMUNITY</p>
-      <h1 class="text-2xl font-bold">멤버 커뮤니티</h1>
-      <p class="text-ink/55 text-sm mt-2">함께 공부하는 멤버들과 나누는 공간입니다.</p>
+    <div class="text-center mb-7">
+      <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">LOUNGE</p>
+      <h1 class="text-2xl font-bold">수강생 라운지</h1>
+      <p class="text-ink/55 text-sm mt-2">질문하고, 나누고, 함께 자라는 공간이에요.<br class="sm:hidden"/> 글은 누구나 볼 수 있고, 참여는 로그인 후에 할 수 있어요.</p>
     </div>
 
-    <!-- 로그인 안내 (비로그인 시) -->
-    <div id="loginView" class="hidden">
-      <div class="bg-white rounded-3xl border border-ink/8 shadow-card p-8 max-w-sm mx-auto text-center">
-        <p class="text-3xl mb-3">🔒</p>
-        <h2 class="text-lg font-bold mb-1">멤버 전용 공간이에요</h2>
-        <p class="text-sm text-ink/55 mb-6">로그인하면 글과 사진을 나눌 수 있어요.</p>
+    <!-- 로그인 모달 (참여하려 할 때만 표시) -->
+    <div id="loginView" class="hidden fixed inset-0 z-[70] bg-ink/50 backdrop-blur-sm items-center justify-center p-4" onclick="if(event.target===this)closeLoginModal()">
+      <div class="bg-white rounded-3xl border border-ink/8 shadow-card p-8 max-w-sm w-full text-center relative">
+        <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-ink/30 hover:text-ink text-2xl leading-none">×</button>
+        <p class="text-3xl mb-3">💬</p>
+        <h2 class="text-lg font-bold mb-1">로그인하고 함께해요</h2>
+        <p class="text-sm text-ink/55 mb-6">로그인하면 글·답글로 토론과 교제에 참여할 수 있어요.</p>
         <button onclick="googleLogin()" class="w-full flex items-center justify-center gap-3 border border-ink/15 bg-white rounded-xl py-3 font-medium hover:bg-ink/5 transition mb-3">
           <svg class="w-5 h-5" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C39.9 36.5 44 31 44 24c0-1.3-.1-2.3-.4-3.5z"/></svg>
           구글로 로그인
@@ -93,20 +94,20 @@
       </div>
     </div>
 
-    <!-- 게시판 (로그인 시) -->
-    <div id="boardView" class="hidden">
-      <!-- 탭: 자유 나눔 / Q&A 질문답변 -->
+    <!-- 라운지 피드 (누구나 열람 · 참여는 로그인) -->
+    <div id="boardView">
+      <!-- 주제 칩 -->
       <div class="flex gap-2 mb-5">
-        <button id="tab-free" onclick="switchBoard('free')" class="flex-1 py-2.5 rounded-full text-sm font-semibold border transition">📷 자유 나눔</button>
-        <button id="tab-qna" onclick="switchBoard('qna')" class="flex-1 py-2.5 rounded-full text-sm font-semibold border transition">🙋 질의응답</button>
+        <button id="tab-qna" onclick="switchBoard('qna')" class="flex-1 py-2.5 rounded-full text-sm font-semibold border transition">🙋 질문·토론</button>
+        <button id="tab-free" onclick="switchBoard('free')" class="flex-1 py-2.5 rounded-full text-sm font-semibold border transition">💬 자유 나눔</button>
         <button id="tab-prayer" onclick="switchBoard('prayer')" class="flex-1 py-2.5 rounded-full text-sm font-semibold border transition">🙏 기도 요청</button>
       </div>
-      <!-- 글쓰기 (네이버 블로그식 에디터) -->
+      <!-- 글쓰기 -->
       <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-4 mb-6">
         <div id="postEditor"></div>
         <div class="flex items-center justify-between mt-3 pt-3 border-t border-ink/8">
-          <span class="text-xs text-ink/40">✍️ 글씨·색·사진·링크를 자유롭게 — 툴바를 활용하세요</span>
-          <button id="postBtn" onclick="submitPost()" class="bg-gold text-white font-semibold text-sm px-5 py-2.5 rounded-full hover:opacity-90 transition shrink-0">글 올리기</button>
+          <span class="text-xs text-ink/40">✍️ 글·색·사진·링크 자유롭게 — 툴바를 활용하세요</span>
+          <button id="postBtn" onclick="submitPost()" class="bg-gold text-white font-semibold text-sm px-5 py-2.5 rounded-full hover:opacity-90 transition shrink-0">올리기</button>
         </div>
         <p id="postMsg" class="text-red-500 text-xs mt-2 min-h-[14px]"></p>
       </div>
@@ -155,7 +156,7 @@
         input.type = 'file'; input.accept = 'image/*';
         input.onchange = async () => {
           const file = input.files[0]; if(!file) return;
-          if(!currentUser){ alert('로그인이 필요해요.'); return; }
+          if(!currentUser){ requireLogin(); return; }
           if(file.size > 5*1024*1024){ alert('이미지는 5MB 이하만 가능해요.'); return; }
           const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
           const path = `${currentUser.id}/${Date.now()}.${ext}`;
@@ -188,30 +189,34 @@
 
     sb.auth.onAuthStateChange((_e, session) => setAuthUI(session));
     sb.auth.getSession().then(({ data:{ session } }) => setAuthUI(session));
+    // 피드는 로그인과 무관하게 즉시 표시 (누구나 열람)
+    ensureCommQuill();
+    switchBoard(currentBoard);
+
+    function openLoginModal(){ const m = document.getElementById('loginView'); m.classList.remove('hidden'); m.classList.add('flex'); }
+    function closeLoginModal(){ const m = document.getElementById('loginView'); m.classList.add('hidden'); m.classList.remove('flex'); }
+    function requireLogin(){ openLoginModal(); }
 
     async function setAuthUI(session){
       if (session && session.user){
         currentUser = session.user;
-        const { data: prof } = await sb.from('profiles').select('full_name').eq('id', currentUser.id).maybeSingle();
-        currentName = (prof && prof.full_name) || currentUser.email || '회원';
+        try { const { data: prof } = await sb.from('profiles').select('full_name').eq('id', currentUser.id).maybeSingle(); currentName = (prof && prof.full_name) || currentUser.email || '회원'; }
+        catch(e){ currentName = currentUser.email || '회원'; }
         isAdmin = (currentUser.email === ADMIN_EMAIL);
-        document.getElementById('loginView').classList.add('hidden');
-        document.getElementById('boardView').classList.remove('hidden');
         document.getElementById('navUser').innerHTML =
           `${esc(currentName)}님${isAdmin ? ' <span class="text-gold font-semibold">· 관리자</span>' : ''} · <button onclick="logout()" class="hover:text-gold">로그아웃</button>`;
-        ensureCommQuill();
-        switchBoard(currentBoard);
+        closeLoginModal();
+        loadPosts();   // 로그인 상태 반영(삭제 버튼 등)
         // 강의실에서 넘어온 질문 프리필 (한 번만)
         if(ASK_REF && !askApplied){
-          askApplied = true;
+          askApplied = true; ensureCommQuill();
           commQuill.setText(`[강의 질문] ${decodeURIComponent(ASK_REF)}\n\n질문: `);
           setTimeout(() => { document.getElementById('postEditor').scrollIntoView({ behavior:'smooth', block:'center' }); commQuill.focus(); }, 350);
         }
       } else {
         currentUser = null; isAdmin = false;
-        document.getElementById('loginView').classList.remove('hidden');
-        document.getElementById('boardView').classList.add('hidden');
-        document.getElementById('navUser').innerHTML = '';
+        document.getElementById('navUser').innerHTML =
+          `<button onclick="openLoginModal()" class="bg-gold text-white font-semibold px-3.5 py-1.5 rounded-full hover:opacity-90 transition">로그인</button>`;
       }
     }
 
@@ -255,9 +260,9 @@
         <div class="mt-4 pt-4 border-t border-ink/5">
           <div id="comments-${p.id}" class="space-y-2.5 mb-3"></div>
           <div class="flex gap-2">
-            <input id="ci-${p.id}" onkeydown="if(event.key==='Enter')addComment('${p.id}')" placeholder="댓글로 답변·토론하기…"
+            <input id="ci-${p.id}" onkeydown="if(event.key==='Enter')addComment('${p.id}')" placeholder="답글로 함께 토론·교제해요…"
                    class="flex-1 border border-ink/12 rounded-full px-4 py-2 text-sm outline-none focus:border-gold"/>
-            <button onclick="addComment('${p.id}')" class="bg-ink text-paper text-sm font-semibold px-4 py-2 rounded-full hover:bg-navy transition shrink-0">등록</button>
+            <button onclick="addComment('${p.id}')" class="bg-ink text-paper text-sm font-semibold px-4 py-2 rounded-full hover:bg-navy transition shrink-0">답글</button>
           </div>
         </div>
       </article>`;
@@ -266,22 +271,27 @@
     function renderComments(postId, comments){
       const box = document.getElementById('comments-' + postId);
       if(!box) return;
-      if(!comments.length){ box.innerHTML = '<p class="text-ink/35 text-xs">첫 댓글을 남겨보세요.</p>'; return; }
+      if(!comments.length){ box.innerHTML = '<p class="text-ink/35 text-xs pl-1">아직 답글이 없어요. 먼저 생각을 나눠보세요.</p>'; return; }
       box.innerHTML = comments.map(c => {
         const mine = currentUser && c.author_id === currentUser.id;
         const canDel = mine || isAdmin;
-        const adminBadge = c.is_admin ? ' <span class="text-[10px] bg-gold/15 text-gold px-1.5 py-0.5 rounded align-middle">관리자</span>' : '';
-        return `<div class="flex items-start gap-2 text-sm">
-          <span class="font-semibold ${c.is_admin ? 'text-gold' : ''} shrink-0">${esc(c.author_name || '회원')}${adminBadge}</span>
-          <span class="text-ink/75 flex-1 break-words">${esc(c.content)}</span>
-          <span class="text-ink/30 text-xs shrink-0">${timeAgo(c.created_at)}</span>
-          ${canDel ? `<button onclick="delComment('${c.id}')" class="text-ink/30 hover:text-red-500 text-xs shrink-0" title="삭제">×</button>` : ''}
+        const adminBadge = c.is_admin ? ' <span class="text-[10px] bg-gold/15 text-gold px-1.5 py-0.5 rounded align-middle font-bold">강사</span>' : '';
+        return `<div class="flex items-start gap-2.5">
+          <div class="w-7 h-7 rounded-full ${ c.is_admin ? 'bg-gold text-white' : 'bg-ink/10 text-ink/55' } flex items-center justify-center font-bold text-xs shrink-0">${esc((c.author_name||'?').slice(0,1))}</div>
+          <div class="flex-1 min-w-0 bg-paper rounded-2xl px-3.5 py-2">
+            <div class="flex items-center gap-1.5">
+              <span class="font-semibold text-[13px] ${ c.is_admin ? 'text-gold' : '' }">${esc(c.author_name || '회원')}${adminBadge}</span>
+              <span class="text-ink/35 text-[11px]">${timeAgo(c.created_at)}</span>
+              ${canDel ? `<button onclick="delComment('${c.id}')" class="ml-auto text-ink/25 hover:text-red-500 text-sm leading-none shrink-0" title="삭제">×</button>` : ''}
+            </div>
+            <p class="text-ink/80 text-sm mt-0.5 break-words whitespace-pre-wrap">${esc(c.content)}</p>
+          </div>
         </div>`;
       }).join('');
     }
 
     async function addComment(postId){
-      if(!currentUser){ alert('로그인이 필요해요.'); return; }
+      if(!currentUser){ requireLogin(); return; }
       const input = document.getElementById('ci-' + postId);
       const content = (input.value || '').trim();
       if(!content) return;
@@ -365,7 +375,7 @@
     }
 
     async function submitPost(){
-      if(!currentUser){ alert('로그인이 필요해요.'); return; }
+      if(!currentUser){ requireLogin(); return; }
       ensureCommQuill();
       const msg = document.getElementById('postMsg'); const btn = document.getElementById('postBtn');
       const text = commQuill.getText().trim();
