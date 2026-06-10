@@ -70,9 +70,8 @@
   <header class="sticky top-0 z-50 bg-paper/90 backdrop-blur-md border-b border-ink/8">
     <nav class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between gap-5">
       <a href="#top" class="flex items-center gap-2.5 shrink-0">
-        <span class="w-10 h-10 rounded-xl bg-ink flex items-center justify-center shadow-soft relative">
-          <span class="text-gold font-extrabold text-xl leading-none">B</span>
-          <span class="absolute bottom-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-gold"></span>
+        <span class="w-10 h-10 rounded-xl bg-ink flex items-center justify-center shadow-soft">
+          <svg class="w-[22px] h-[22px]" viewBox="0 0 24 24" fill="none" stroke="#b8923f" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.6C10.4 5.5 8.4 5 6 5C4.7 5 3.7 5.15 3 5.35V18.2C3.7 18 4.7 17.85 6 17.85C8.4 17.85 10.4 18.35 12 19.5"/><path d="M12 6.6C13.6 5.5 15.6 5 18 5C19.3 5 20.3 5.15 21 5.35V18.2C20.3 18 19.3 17.85 18 17.85C15.6 17.85 13.6 18.35 12 19.5"/><path d="M12 6.6V19.5"/></svg>
         </span>
         <span class="leading-none">
           <span class="block font-extrabold tracking-tight text-[20px]">BIBLY<span class="text-gold">.</span></span>
@@ -83,9 +82,20 @@
       <div id="mainmenu" class="hidden lg:flex items-center gap-6 text-[15px] text-ink/70"></div>
       <div class="flex items-center gap-2 ml-auto shrink-0">
         <a href="mylearning.html" class="hidden sm:inline-flex items-center gap-1.5 border border-gold/45 text-gold font-semibold text-sm px-4 py-2.5 rounded-full hover:bg-gold/10 transition">📚 내 강의실</a>
-        <a href="#catalog" class="bg-gold text-white font-semibold text-sm px-5 py-2.5 rounded-full hover:opacity-90 transition">수강 신청</a>
+        <a href="#catalog" class="hidden sm:inline-flex bg-gold text-white font-semibold text-sm px-5 py-2.5 rounded-full hover:opacity-90 transition">수강 신청</a>
+        <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="lg:hidden w-10 h-10 -mr-1.5 flex items-center justify-center text-ink" aria-label="메뉴 열기">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
       </div>
     </nav>
+    <!-- 모바일 메뉴 -->
+    <div id="mobileMenu" class="hidden lg:hidden border-t border-ink/8 bg-paper/98 backdrop-blur px-5 py-3">
+      <div id="mobilemenuLinks" class="flex flex-col"></div>
+      <div class="flex gap-2 mt-3 pt-3 border-t border-ink/8">
+        <a href="mylearning.html" class="flex-1 text-center border border-gold/45 text-gold font-semibold text-sm px-4 py-3 rounded-full">📚 내 강의실</a>
+        <a href="#catalog" onclick="closeMobileMenu()" class="flex-1 text-center bg-gold text-white font-semibold text-sm px-4 py-3 rounded-full">수강 신청</a>
+      </div>
+    </div>
   </header>
 
   <!-- ===== Hero ===== -->
@@ -242,6 +252,87 @@
         </div>
       </div>
       <p class="text-center text-ink/70 mt-10 text-lg">→ 강단에 기대지 않고, <b class="text-gold">성경을 스스로 읽는 눈</b>을 갖도록 돕습니다.</p>
+    </div>
+  </section>
+
+  <!-- ===== 왜 BIBLY인가 (구매 포인트·소구점) ===== -->
+  <section class="py-24 bg-white border-y border-ink/8">
+    <div class="max-w-6xl mx-auto px-5">
+      <div class="text-center mb-14">
+        <p class="eyebrow text-gold text-xs font-semibold mb-4">WHY BIBLY</p>
+        <h2 class="text-2xl md:text-[34px] font-bold leading-snug">유튜브 짜깁기·음모론은 그만.<br/><span class="text-gold">검증된 커리큘럼</span>으로 끝낸다</h2>
+        <p class="text-ink/60 mt-4 max-w-2xl mx-auto">BIBLY는 단순 영상 모음이 아닙니다. <b class="text-ink">미국 신학 석사 강사의 체계적 설계</b>로, 보고 끝나는 게 아니라 <b class="text-ink">내 것이 되게</b> 만듭니다.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="bg-paper rounded-2xl border border-ink/8 p-7 shadow-soft hover:shadow-card hover:-translate-y-0.5 transition">
+          <div class="text-3xl mb-3">🎓</div>
+          <p class="font-bold text-[17px] mb-1.5">검증된 정통 해석</p>
+          <p class="text-sm text-ink/60 leading-relaxed">미국 신학 석사(M.R.E)·교육학 박사과정의 본문 충실한 해석. 출처 불명의 짜깁기·음모론과는 다릅니다.</p>
+        </div>
+        <div class="bg-paper rounded-2xl border border-ink/8 p-7 shadow-soft hover:shadow-card hover:-translate-y-0.5 transition">
+          <div class="text-3xl mb-3">🪜</div>
+          <p class="font-bold text-[17px] mb-1.5">기초→고급 단계별 설계</p>
+          <p class="text-sm text-ink/60 leading-relaxed">무엇부터 볼지 막막함 없이 순서대로. 스가랴·다니엘부터 천년왕국·계시록까지 큰 그림이 한 번에 잡힙니다.</p>
+        </div>
+        <div class="bg-paper rounded-2xl border border-ink/8 p-7 shadow-soft hover:shadow-card hover:-translate-y-0.5 transition">
+          <div class="text-3xl mb-3">📝</div>
+          <p class="font-bold text-[17px] mb-1.5">대학원 수준 학습노트 + PDF</p>
+          <p class="text-sm text-ink/60 leading-relaxed">강의마다 핵심·성구·용어·흔한 오해까지 정리된 노트를 무료 제공. PDF로 저장해 두고두고 복습하세요.</p>
+        </div>
+        <div class="bg-paper rounded-2xl border border-ink/8 p-7 shadow-soft hover:shadow-card hover:-translate-y-0.5 transition">
+          <div class="text-3xl mb-3">🧩</div>
+          <p class="font-bold text-[17px] mb-1.5">확인학습 퀴즈로 체화</p>
+          <p class="text-sm text-ink/60 leading-relaxed">들은 내용을 문제로 점검하고 해설까지. '안다고 착각'이 아니라 진짜 설명할 수 있는 실력이 됩니다.</p>
+        </div>
+        <div class="bg-paper rounded-2xl border border-ink/8 p-7 shadow-soft hover:shadow-card hover:-translate-y-0.5 transition">
+          <div class="text-3xl mb-3">💬</div>
+          <p class="font-bold text-[17px] mb-1.5">강사·수강생과 함께 토론</p>
+          <p class="text-sm text-ink/60 leading-relaxed">혼자 보다 막히면 끝. 질의응답·커뮤니티에서 강사와 동료 수강생이 함께 답하고 나눕니다.</p>
+        </div>
+        <div class="bg-paper rounded-2xl border border-ink/8 p-7 shadow-soft hover:shadow-card hover:-translate-y-0.5 transition">
+          <div class="text-3xl mb-3">♾️</div>
+          <p class="font-bold text-[17px] mb-1.5">평생 무제한 소장</p>
+          <p class="text-sm text-ink/60 leading-relaxed">한 번 수강하면 기간 제한 없이 언제든 다시. 내 신앙의 평생 자산, 자녀에게도 물려줄 수 있어요.</p>
+        </div>
+      </div>
+
+      <!-- Before → After -->
+      <div class="mt-12 bg-ink text-paper rounded-3xl p-8 md:p-10 grid md:grid-cols-[1fr_auto_1fr] gap-6 md:gap-4 items-center">
+        <div>
+          <p class="text-paper/45 text-xs font-bold tracking-widest mb-3">BEFORE</p>
+          <ul class="space-y-2 text-paper/75 text-[15px]">
+            <li>· 종말 이야기만 들으면 막연히 불안하다</li>
+            <li>· 음모론·이단 정보에 자꾸 흔들린다</li>
+            <li>· 성경을 어디서부터 봐야 할지 막막하다</li>
+          </ul>
+        </div>
+        <div class="text-gold text-3xl text-center md:px-2">→</div>
+        <div>
+          <p class="text-gold text-xs font-bold tracking-widest mb-3">AFTER · BIBLY</p>
+          <ul class="space-y-2 text-paper text-[15px] font-medium">
+            <li>✓ 종말의 큰 그림을 스스로 설명한다</li>
+            <li>✓ 가짜를 분별하는 기준이 생긴다</li>
+            <li>✓ 성경을 직접 펴서 읽는 눈이 열린다</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 이런 분께 추천 -->
+      <div class="mt-12 text-center">
+        <p class="font-bold text-lg mb-4">이런 분께 추천합니다</p>
+        <div class="flex flex-wrap justify-center gap-2.5 max-w-3xl mx-auto">
+          <span class="bg-gold/10 text-ink/75 text-sm font-medium px-4 py-2 rounded-full border border-gold/20">강단을 더는 신뢰하기 어려운 분</span>
+          <span class="bg-gold/10 text-ink/75 text-sm font-medium px-4 py-2 rounded-full border border-gold/20">종말이 막연히 불안한 분</span>
+          <span class="bg-gold/10 text-ink/75 text-sm font-medium px-4 py-2 rounded-full border border-gold/20">이단·음모론에 흔들리는 분</span>
+          <span class="bg-gold/10 text-ink/75 text-sm font-medium px-4 py-2 rounded-full border border-gold/20">성경 공부를 제대로 시작하려는 분</span>
+          <span class="bg-gold/10 text-ink/75 text-sm font-medium px-4 py-2 rounded-full border border-gold/20">자녀에게 분별을 물려주고 싶은 부모</span>
+        </div>
+        <div class="mt-9 inline-flex flex-col sm:flex-row items-center gap-3 bg-paper border border-gold/30 rounded-2xl px-6 py-4">
+          <span class="text-sm text-ink/70">🎁 지금은 <b class="text-gold">전 강의 무료 공개 중</b> · 회원가입 없이 바로 시청</span>
+          <a href="watch.html" class="bg-ink text-paper font-semibold text-sm px-6 py-3 rounded-full hover:bg-navy transition shrink-0">▶ 무료로 시작하기</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -783,7 +874,13 @@
       document.getElementById('mainmenu').innerHTML = (menu || []).map(m =>
         `<a href="${m.href}" class="hover:text-gold transition">${m.label}</a>`
       ).join('');
+      const mob = document.getElementById('mobilemenuLinks');
+      if(mob) mob.innerHTML = (menu || []).map(m =>
+        `<a href="${m.href}" onclick="closeMobileMenu()" class="py-2.5 border-b border-ink/5 text-ink/80 font-medium hover:text-gold transition">${m.label}</a>`
+      ).join('');
     }
+    function toggleMobileMenu(){ const m = document.getElementById('mobileMenu'); if(m) m.classList.toggle('hidden'); }
+    function closeMobileMenu(){ const m = document.getElementById('mobileMenu'); if(m) m.classList.add('hidden'); }
     renderMenu(DEFAULT_MENU);
 
     // content/site.json 에서 메뉴·가격·후원 정보를 읽어 반영
