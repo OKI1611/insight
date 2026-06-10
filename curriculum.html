@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>커리큘럼 — BIBLY 바이블 인사이트</title>
+  <meta name="description" content="BIBLY 바이블 인사이트 전체 커리큘럼. 트랙을 골라 강의 구성·특장점·강의 목록과 목차를 한눈에 살펴보세요." />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#15203a" />
+  <link rel="apple-touch-icon" href="/images/icon-192.png" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink:'#15203a', navy:'#1b2a4a', gold:'#b8923f', sand:'#efe7d6', paper:'#fcfaf6' },
+      fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
+      boxShadow: { card:'0 14px 40px -18px rgba(21,32,58,.22)', soft:'0 2px 10px -4px rgba(21,32,58,.10)' }
+    }}}
+  </script>
+  <style>h1,h2{font-family:'Noto Serif KR',Pretendard,serif}
+    .trackBtn.active{background:#15203a;color:#fcfaf6}
+    .trackBtn.active .tbNum{color:#b8923f}
+    .trackBtn.active .tbCnt{color:rgba(252,250,246,.5)}
+    details>summary{list-style:none;cursor:pointer}
+    details>summary::-webkit-details-marker{display:none}
+    details[open] .chev{transform:rotate(180deg)}
+  </style>
+</head>
+<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+
+  <header class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-ink/8">
+    <div class="max-w-6xl mx-auto px-4 h-14 flex items-center gap-3">
+      <a href="index.html" class="flex items-center gap-2 shrink-0"><span class="w-8 h-8 rounded-lg bg-ink flex items-center justify-center shrink-0"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#b8923f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.6C10.4 5.5 8.4 5 6 5C4.7 5 3.7 5.15 3 5.35V18.2C3.7 18 4.7 17.85 6 17.85C8.4 17.85 10.4 18.35 12 19.5"/><path d="M12 6.6C13.6 5.5 15.6 5 18 5C19.3 5 20.3 5.15 21 5.35V18.2C20.3 18 19.3 17.85 18 17.85C15.6 17.85 13.6 18.35 12 19.5"/><path d="M12 6.6V19.5"/></svg></span><span class="leading-none"><span class="block font-extrabold text-[15px] tracking-tight">BIBLY<span class="text-gold">.</span></span><span class="block text-[9px] text-ink/45 tracking-wide mt-0.5">말씀으로 시대를 읽다</span></span></a>
+      <nav id="navmenu" class="flex items-center gap-4 sm:gap-5 text-sm text-ink/70 overflow-x-auto whitespace-nowrap pl-1"></nav>
+      <a href="index.html" class="ml-auto text-sm text-ink/45 hover:text-gold shrink-0">홈</a>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-9">
+    <div class="text-center mb-8">
+      <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">CURRICULUM</p>
+      <h1 class="text-2xl md:text-3xl font-bold">전체 커리큘럼</h1>
+      <p class="text-ink/55 text-sm mt-3" id="curSub">트랙을 선택하면 강의 구성·특장점·목차를 한눈에 볼 수 있어요.</p>
+    </div>
+
+    <!-- 모바일 트랙 선택 -->
+    <select id="trackSelect" onchange="selectTrack(+this.value)" class="lg:hidden w-full bg-white border border-ink/15 rounded-xl px-4 py-3 text-sm font-semibold mb-5 outline-none focus:border-gold"></select>
+
+    <div class="grid lg:grid-cols-[270px_1fr] gap-6">
+      <!-- 사이드바 -->
+      <aside class="hidden lg:block lg:sticky lg:top-20 h-fit">
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden">
+          <p class="px-4 py-3 text-xs font-bold text-ink/45 border-b border-ink/8">트랙 목록</p>
+          <div id="trackNav" class="max-h-[70vh] overflow-auto"></div>
+        </div>
+      </aside>
+      <!-- 상세 -->
+      <section id="trackDetail" class="min-h-[420px]">
+        <p class="text-ink/40 text-sm text-center py-20">커리큘럼을 불러오는 중…</p>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    let LEVELS = [], STARTS = [], CUR = 0;
+    function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    function ytId(u){ const m = String(u||'').match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/); return m ? m[1] : ''; }
+
+    fetch('content/course.json?t=' + Date.now()).then(r => r.json()).then(c => {
+      LEVELS = c.levels || [];
+      let acc = 0; STARTS = []; LEVELS.forEach(lv => { STARTS.push(acc); acc += (lv.lessons || []).length; });
+      const totalLessons = acc;
+      const sub = document.getElementById('curSub');
+      if(sub) sub.textContent = `${LEVELS.length}개 트랙 · 총 ${totalLessons}강 · 트랙을 선택해 강의 구성과 특장점을 살펴보세요.`;
+      renderNav();
+      // URL ?t=인덱스 또는 기본 0
+      const qp = parseInt(new URLSearchParams(location.search).get('track'), 10);
+      selectTrack((!isNaN(qp) && qp >= 0 && qp < LEVELS.length) ? qp : 0);
+    }).catch(() => {
+      document.getElementById('trackDetail').innerHTML = '<p class="text-red-500 text-sm text-center py-20">커리큘럼을 불러오지 못했습니다.</p>';
+    });
+
+    function renderNav(){
+      const nav = document.getElementById('trackNav');
+      nav.innerHTML = LEVELS.map((lv, ti) => `
+        <button onclick="selectTrack(${ti})" id="tb-${ti}" class="trackBtn w-full text-left px-4 py-3 border-b border-ink/5 hover:bg-ink/[0.03] transition flex items-center gap-3">
+          <span class="tbNum text-gold font-display font-bold text-sm w-6 shrink-0">${String(ti+1).padStart(2,'0')}</span>
+          <span class="flex-1 min-w-0">
+            <span class="block font-semibold text-sm leading-snug truncate">${esc(lv.name||'')}</span>
+            <span class="tbCnt block text-xs text-ink/40 mt-0.5">${(lv.lessons||[]).length}강</span>
+          </span>
+        </button>`).join('');
+      const sel = document.getElementById('trackSelect');
+      sel.innerHTML = LEVELS.map((lv, ti) => `<option value="${ti}">${String(ti+1).padStart(2,'0')}. ${esc(lv.name||'')} (${(lv.lessons||[]).length}강)</option>`).join('');
+    }
+
+    function selectTrack(ti){
+      CUR = ti;
+      LEVELS.forEach((_, i) => { const b = document.getElementById('tb-'+i); if(b) b.classList.toggle('active', i===ti); });
+      const sel = document.getElementById('trackSelect'); if(sel) sel.value = ti;
+      const lv = LEVELS[ti]; if(!lv) return;
+      const ls = lv.lessons || [];
+      const start = STARTS[ti];
+      const tagline = esc(lv.tagline || '');
+      const highlights = (lv.highlights || []).map(h =>
+        `<li class="flex gap-2 text-sm text-ink/70 leading-relaxed"><span class="text-gold font-bold shrink-0">✓</span><span>${esc(h)}</span></li>`).join('');
+      const lessons = ls.map((l, li) => {
+        const gi = start + li;
+        const dur = l.duration ? `<span class="text-xs text-ink/40 whitespace-nowrap shrink-0">⏱ ${esc(l.duration)}</span>` : '';
+        const chapters = (l.chapters || []);
+        const chHtml = chapters.length ? `
+          <details class="mt-2">
+            <summary class="inline-flex items-center gap-1 text-xs font-semibold text-ink/50 hover:text-gold">목차 ${chapters.length}개 <svg class="chev w-3.5 h-3.5 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary>
+            <ul class="mt-2 space-y-1.5 border-l-2 border-gold/20 pl-3">
+              ${chapters.map(ch => `<li class="text-xs text-ink/60 leading-snug">${ ch.t ? `<span class="text-gold/70 font-semibold mr-1">${esc(ch.t)}</span>` : '' }${esc(ch.label)}</li>`).join('')}
+            </ul>
+          </details>` : '';
+        return `<div class="bg-white rounded-xl border border-ink/8 p-4 hover:border-gold/40 transition">
+          <div class="flex items-start gap-3">
+            <span class="shrink-0 w-7 h-7 rounded-full bg-gold/12 text-gold font-bold text-xs flex items-center justify-center mt-0.5">${String(li+1).padStart(2,'0')}</span>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-start justify-between gap-2">
+                <p class="font-semibold leading-snug">${esc(l.title||'')}</p>
+                ${dur}
+              </div>
+              ${ l.summary ? `<p class="text-sm text-ink/55 leading-relaxed mt-1.5">${esc(l.summary)}</p>` : '' }
+              ${chHtml}
+              <a href="watch.html?l=${gi}" class="inline-block mt-2.5 text-sm font-semibold text-gold hover:underline">▶ 이 강의 보기</a>
+            </div>
+          </div>
+        </div>`;
+      }).join('');
+
+      document.getElementById('trackDetail').innerHTML = `
+        <div class="bg-ink text-paper rounded-2xl p-6 md:p-7 mb-5 relative overflow-hidden">
+          <p class="text-gold text-xs font-bold tracking-[0.25em] mb-2">TRACK ${String(ti+1).padStart(2,'0')} · 전체 무료</p>
+          <h2 class="text-2xl font-bold leading-snug">${esc(lv.name||'')}</h2>
+          ${ tagline ? `<p class="text-gold font-semibold mt-2">${tagline}</p>` : '' }
+          ${ lv.desc ? `<p class="text-paper/65 text-sm mt-2 leading-relaxed">${esc(lv.desc)}</p>` : '' }
+          <div class="flex flex-wrap items-center gap-x-5 gap-y-1 mt-4 text-sm text-paper/70">
+            <span>📚 총 ${ls.length}강</span><span>🆓 전체 무료 공개</span><span>♾️ 평생 무제한</span>
+          </div>
+          <a href="watch.html?l=${start}" class="inline-block mt-5 bg-gold text-white font-semibold px-6 py-3 rounded-full hover:opacity-90 transition shadow-card">▶ 이 코스 시작하기</a>
+        </div>
+        ${ highlights ? `<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 mb-5">
+          <p class="font-bold mb-3 flex items-center gap-2">⭐ 이 코스의 특장점</p>
+          <ul class="space-y-2">${highlights}</ul>
+        </div>` : '' }
+        <p class="font-bold mb-3 flex items-center gap-2">📑 강의 구성 <span class="text-ink/40 text-xs font-normal">· ${ls.length}강</span></p>
+        <div class="space-y-2.5">${lessons}</div>`;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+
+  <script>
+    fetch('content/site.json?t=' + Date.now()).then(r => r.json()).then(s => {
+      const nav = document.getElementById('navmenu'); if(!nav || !s.menu) return;
+      const cur = (location.pathname.split('/').pop() || 'index.html');
+      nav.innerHTML = s.menu.map(m => {
+        const hash = m.href.startsWith('#');
+        const href = hash ? ('index.html' + m.href) : m.href;
+        const active = !hash && (href.split('?')[0] === cur);
+        return '<a href="' + href + '" class="' + (active ? 'text-gold font-semibold' : 'hover:text-gold') + '">' + m.label + '</a>';
+      }).join('');
+    }).catch(() => {});
+  </script>
+  <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+</body>
+</html>
