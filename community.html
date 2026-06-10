@@ -187,8 +187,21 @@
       loadPosts();
     }
 
+    // 저장된 세션을 직접 읽어 즉시 로그인 반영 (getSession 지연/멈춤 대비)
+    function readStoredSession(){
+      try {
+        for(const k of Object.keys(localStorage)){
+          if(!/auth-token/.test(k)) continue;
+          const v = JSON.parse(localStorage.getItem(k));
+          const s = (v && v.user) ? v : (v && v.currentSession) ? v.currentSession : null;
+          if(s && s.user){ if(s.expires_at && s.expires_at * 1000 < Date.now()) return null; return s; }
+        }
+      } catch(e){}
+      return null;
+    }
     sb.auth.onAuthStateChange((_e, session) => setAuthUI(session));
-    sb.auth.getSession().then(({ data:{ session } }) => setAuthUI(session));
+    setAuthUI(readStoredSession());                                  // 즉시 반영
+    sb.auth.getSession().then(({ data:{ session } }) => { if(session) setAuthUI(session); }).catch(()=>{});
     // 피드는 로그인과 무관하게 즉시 표시 (누구나 열람)
     ensureCommQuill();
     switchBoard(currentBoard);
@@ -257,6 +270,11 @@
         </div>
         <div class="post-body text-ink/80 leading-relaxed text-[15px]">${ /<[a-z][\s\S]*>/i.test(p.content||'') ? sanitize(p.content) : esc(p.content).replace(/\n/g,'<br>') }</div>
         ${p.image_url ? `<img src="${p.image_url}" class="mt-3 rounded-xl max-h-96 w-auto border border-ink/5" loading="lazy">` : ''}
+        <div class="mt-3 flex items-center gap-2">
+          <button onclick="toggleReaction('${p.id}','love')" id="rxb-${p.id}-love" class="inline-flex items-center gap-1 text-sm border border-ink/12 rounded-full px-3 py-1 hover:border-gold transition">❤️ <span id="rxc-${p.id}-love" class="font-semibold text-ink/55">0</span></button>
+          <button onclick="toggleReaction('${p.id}','pray')" id="rxb-${p.id}-pray" class="inline-flex items-center gap-1 text-sm border border-ink/12 rounded-full px-3 py-1 hover:border-gold transition">🙏 <span id="rxc-${p.id}-pray" class="font-semibold text-ink/55">0</span></button>
+          <span class="ml-auto text-xs text-ink/35">💬 답글 <span id="cmtc-${p.id}">0</span></span>
+        </div>
         <div class="mt-4 pt-4 border-t border-ink/5">
           <div id="comments-${p.id}" class="space-y-2.5 mb-3"></div>
           <div class="flex gap-2">
@@ -268,7 +286,42 @@
       </article>`;
     }
 
+    // ===== 반응(❤️ 공감 / 🙏 기도) =====
+    let REACT_BY_POST = {};
+    const EMOJI = { love:'❤️', pray:'🙏' };
+    function blankRx(){ return { love:{count:0,mine:false}, pray:{count:0,mine:false} }; }
+    function updateReactionUI(postId){
+      const r = REACT_BY_POST[postId] || blankRx();
+      ['love','pray'].forEach(kind => {
+        const d = r[kind] || {count:0,mine:false};
+        const c = document.getElementById('rxc-'+postId+'-'+kind); if(c) c.textContent = d.count;
+        const b = document.getElementById('rxb-'+postId+'-'+kind);
+        if(b){ b.classList.toggle('bg-gold/10', d.mine); b.classList.toggle('border-gold', d.mine); b.classList.toggle('border-ink/12', !d.mine); }
+      });
+    }
+    function reactErr(error){
+      if(!error) return;
+      if(error.code==='PGRST205' || /community_reactions|does not exist|find the table|schema cache/i.test(error.message||''))
+        alert('반응 기능을 준비 중이에요. (관리자: db/community.sql 실행 필요)');
+    }
+    async function toggleReaction(postId, kind){
+      if(!currentUser){ requireLogin(); return; }
+      const emoji = EMOJI[kind];
+      const r = (REACT_BY_POST[postId] = REACT_BY_POST[postId] || blankRx());
+      const cur = r[kind];
+      if(cur.mine){
+        cur.mine = false; cur.count = Math.max(0, cur.count - 1); updateReactionUI(postId);
+        const { error } = await sb.from('community_reactions').delete().eq('post_id', postId).eq('user_id', currentUser.id).eq('emoji', emoji);
+        if(error){ cur.mine = true; cur.count++; updateReactionUI(postId); reactErr(error); }
+      } else {
+        cur.mine = true; cur.count++; updateReactionUI(postId);
+        const { error } = await sb.from('community_reactions').insert({ post_id: postId, user_id: currentUser.id, emoji });
+        if(error && error.code !== '23505'){ cur.mine = false; cur.count = Math.max(0, cur.count - 1); updateReactionUI(postId); reactErr(error); }
+      }
+    }
+
     function renderComments(postId, comments){
+      const cc = document.getElementById('cmtc-' + postId); if(cc) cc.textContent = comments.length;
       const box = document.getElementById('comments-' + postId);
       if(!box) return;
       if(!comments.length){ box.innerHTML = '<p class="text-ink/35 text-xs pl-1">아직 답글이 없어요. 먼저 생각을 나눠보세요.</p>'; return; }
@@ -324,6 +377,20 @@
       const byPost = {};
       (comments || []).forEach(c => { (byPost[c.post_id] = byPost[c.post_id] || []).push(c); });
       data.forEach(p => renderComments(p.id, byPost[p.id] || []));
+      // 반응 불러오기 (테이블 없으면 조용히 0)
+      REACT_BY_POST = {};
+      try {
+        const { data: rx, error: rxErr } = await sb.from('community_reactions').select('post_id,user_id,emoji').in('post_id', ids);
+        if(!rxErr && rx){
+          rx.forEach(x => {
+            const kind = x.emoji === '🙏' ? 'pray' : 'love';
+            const r = (REACT_BY_POST[x.post_id] = REACT_BY_POST[x.post_id] || blankRx());
+            r[kind].count++;
+            if(currentUser && x.user_id === currentUser.id) r[kind].mine = true;
+          });
+        }
+      } catch(e){}
+      data.forEach(p => updateReactionUI(p.id));
       // 공유 링크(#post-id)로 들어온 경우 해당 글로 스크롤·강조
       if(location.hash && location.hash.startsWith('#post-')){
         const el = document.getElementById(location.hash.slice(1));
@@ -388,7 +455,12 @@
         if(error) throw error;
         commQuill.setText('');
         loadPosts();
-      }catch(e){ msg.textContent = '오류: ' + (e.message || e); }
+      }catch(e){
+        const m = e.message || String(e);
+        msg.textContent = /row-level security|violates|policy/i.test(m) ? '⚠️ 글 등록 권한 설정이 필요해요. (관리자: db/community.sql 1회 실행)'
+          : /does not exist|find the table|schema cache/i.test(m) ? '⚠️ 게시판 기능 준비 중 (관리자: db/community.sql 실행 필요)'
+          : '오류: ' + m;
+      }
       finally{ btn.disabled = false; btn.textContent = boardLabel(currentBoard); }
     }
 
