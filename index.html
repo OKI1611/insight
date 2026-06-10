@@ -1224,20 +1224,42 @@
     async function logout(){ await sb.auth.signOut(); refreshNav(); }
 
     // 상단 메뉴(로그인 상태에 따라)
-    async function refreshNav(){
-      const { data:{ session } } = await sb.auth.getSession();
-      if(session && session.user){
-        let name = session.user.email || '회원';
-        const { data: prof } = await sb.from('profiles').select('full_name').eq('id', session.user.id).maybeSingle();
-        if(prof && prof.full_name) name = prof.full_name;
+    function readStoredSessionIdx(){
+      try {
+        for(const k of Object.keys(localStorage)){
+          if(!/auth-token/.test(k)) continue;
+          const v = JSON.parse(localStorage.getItem(k));
+          const s = (v && v.user) ? v : (v && v.currentSession) ? v.currentSession : null;
+          if(s && s.user){ if(s.expires_at && s.expires_at*1000 < Date.now()) return null; return s; }
+        }
+      } catch(e){}
+      return null;
+    }
+    function paintNav(user, name){
+      if(user){
         authNav.innerHTML =
-          `<span class="text-paper/70">${name}님</span>` +
+          `<span class="text-paper/70">${ (name || user.email || '회원') }님</span>` +
           `<a href="mylearning.html" class="inline-flex items-center gap-1 bg-gold text-white font-semibold px-3 py-1 rounded-full hover:opacity-90 transition">📚 내 강의실</a>` +
           `<button onclick="logout()" class="hover:text-gold">로그아웃</button>`;
       } else {
         authNav.innerHTML =
           `<button onclick="openAuth('login')" class="hover:text-gold">로그인</button>` +
           `<button onclick="openAuth('signup')" class="hover:text-gold font-semibold text-gold">회원가입</button>`;
+      }
+    }
+    async function refreshNav(){
+      // 저장된 세션을 즉시 반영(getSession 멈춤 대비) — 그 뒤 이름만 보강
+      const stored = readStoredSessionIdx();
+      const user = stored && stored.user;
+      paintNav(user, user && user.email);
+      if(user){
+        try {
+          const { data: prof } = await Promise.race([
+            sb.from('profiles').select('full_name').eq('id', user.id).maybeSingle(),
+            new Promise(r => setTimeout(() => r({ data:null }), 6000))
+          ]);
+          if(prof && prof.full_name) paintNav(user, prof.full_name);
+        } catch(e){}
       }
     }
 
