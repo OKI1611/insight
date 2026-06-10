@@ -41,7 +41,7 @@
         <a href="community.html?board=qna" class="hover:text-gold">질의응답</a>
         <a href="index.html#support" class="hover:text-gold">후원</a>
       </nav>
-      <a href="index.html" class="ml-auto text-sm text-ink/45 hover:text-gold shrink-0">홈</a>
+      <div class="ml-auto flex items-center gap-3 shrink-0"><span id="authArea" class="flex items-center gap-2"></span><a href="index.html" class="text-sm text-ink/45 hover:text-gold">홈</a></div>
     </div>
   </header>
 
@@ -242,5 +242,6 @@
     }).catch(() => {});
   </script>
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script src="auth-header.js"></script>
 </body>
 </html>

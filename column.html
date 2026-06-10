@@ -65,6 +65,7 @@
         <a href="index.html#support" class="hover:text-gold">후원</a>
       </nav>
       <div class="ml-auto flex items-center gap-3 text-sm shrink-0">
+        <span id="authArea" class="flex items-center gap-2"></span>
         <span id="navUser" class="text-ink/60"></span>
         <a href="index.html" class="text-ink/45 hover:text-gold">홈</a>
       </div>
@@ -276,5 +277,6 @@
     }).catch(() => {});
   </script>
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script src="auth-header.js"></script>
 </body>
 </html>
