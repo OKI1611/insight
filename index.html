@@ -739,6 +739,17 @@
         <span class="text-paper/75">✓ 평생 무료 공개 유지</span>
       </div>
 
+      <!-- 추천 후원 금액 (부담 없이) -->
+      <div class="max-w-md mx-auto mb-5">
+        <p class="text-paper/55 text-xs mb-2">💛 이만큼이면 충분해요 — 부담 없이</p>
+        <div class="grid grid-cols-3 gap-2">
+          <div class="bg-white/5 border border-white/12 rounded-xl py-3"><p class="font-bold text-sm">☕ 5,000원</p><p class="text-paper/45 text-[11px] mt-0.5">커피 한 잔</p></div>
+          <div class="bg-white/5 border border-white/12 rounded-xl py-3"><p class="font-bold text-sm">🍚 10,000원</p><p class="text-paper/45 text-[11px] mt-0.5">한 끼 식사</p></div>
+          <div class="bg-white/5 border border-white/12 rounded-xl py-3"><p class="font-bold text-sm">💪 30,000원</p><p class="text-paper/45 text-[11px] mt-0.5">든든한 응원</p></div>
+        </div>
+        <p class="text-paper/35 text-[11px] mt-2">※ 금액은 결제·송금 앱에서 자유롭게 정하시면 돼요. 한 번도, 매달도 좋습니다.</p>
+      </div>
+
       <div class="max-w-md mx-auto space-y-3">
         <!-- 원클릭 후원 버튼 (링크는 content/site.json 에서 관리) -->
         <a id="simplepayLink" href="#" target="_blank" rel="noopener" style="display:none"
@@ -756,9 +767,12 @@
         <p id="kakaoHint" class="text-paper/40 text-xs" style="display:none">📱 카카오페이는 모바일에서 바로 열리고, PC에서는 QR코드가 떠요.</p>
 
         <!-- 계좌이체 (대체 수단) -->
-        <div class="bg-white/5 border border-white/12 rounded-2xl p-5 text-left mt-2">
-          <p id="bankLabel" class="text-paper/55 text-xs mb-1">계좌이체 · 우리은행</p>
-          <p id="bankAccount" class="text-base font-semibold tracking-tight">1006-301-266177 <span class="text-paper/50 text-xs font-normal">예금주 오광일</span></p>
+        <div class="bg-white/5 border border-white/12 rounded-2xl p-5 text-left mt-2 flex items-center justify-between gap-3">
+          <div class="min-w-0">
+            <p id="bankLabel" class="text-paper/55 text-xs mb-1">계좌이체 · 우리은행</p>
+            <p id="bankAccount" class="text-base font-semibold tracking-tight">1006-301-266177 <span class="text-paper/50 text-xs font-normal">예금주 오광일</span></p>
+          </div>
+          <button onclick="copyBankAcct()" class="shrink-0 bg-white/10 hover:bg-white/20 text-paper text-xs font-semibold px-3.5 py-2 rounded-lg transition">📋 복사</button>
         </div>
       </div>
 
@@ -1341,6 +1355,14 @@
     </div>
   </div>
   <script>
+    function copyBankAcct(){
+      const el = document.getElementById('bankAccount');
+      const m = (el ? el.textContent : '').match(/[\d-]{8,}/);
+      const txt = m ? m[0] : '1006-301-266177';
+      const done = () => alert('계좌번호를 복사했어요! 📋\n' + txt + '  (우리은행 · 예금주 오광일)');
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done).catch(() => prompt('아래 계좌번호를 복사하세요:', txt)); }
+      else { prompt('아래 계좌번호를 복사하세요:', txt); }
+    }
     function openKakaoQR(url){
       const modal = document.getElementById('kakaoQrModal');
       const box = document.getElementById('kakaoQrBox');
