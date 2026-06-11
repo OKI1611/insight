@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>강의 요청·건의 — BIBLY 바이블 인사이트</title>
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#15203a" />
+  <link rel="apple-touch-icon" href="/images/icon-192.png" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink:'#15203a', navy:'#1b2a4a', gold:'#b8923f', sand:'#efe7d6', paper:'#fcfaf6' },
+      fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
+      boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
+    }}}
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
+    const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+  </script>
+  <style>h1,h2{font-family:'Noto Serif KR',Pretendard,serif}</style>
+</head>
+<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+
+  <!-- 헤더 -->
+  <header class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-ink/8">
+    <div class="max-w-6xl mx-auto px-4 h-14 flex items-center gap-3">
+      <a href="index.html" class="flex items-center gap-2 shrink-0"><span class="w-8 h-8 rounded-lg bg-ink flex items-center justify-center shrink-0"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#b8923f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.6C10.4 5.5 8.4 5 6 5C4.7 5 3.7 5.15 3 5.35V18.2C3.7 18 4.7 17.85 6 17.85C8.4 17.85 10.4 18.35 12 19.5"/><path d="M12 6.6C13.6 5.5 15.6 5 18 5C19.3 5 20.3 5.15 21 5.35V18.2C20.3 18 19.3 17.85 18 17.85C15.6 17.85 13.6 18.35 12 19.5"/><path d="M12 6.6V19.5"/></svg></span><span class="leading-none"><span class="block font-extrabold text-[15px] tracking-tight">BIBLY<span class="text-gold">.</span></span><span class="block text-[9px] text-ink/45 tracking-wide mt-0.5">말씀으로 시대를 읽다</span></span></a>
+      <nav id="navmenu" class="flex items-center gap-4 sm:gap-5 text-sm text-ink/70 overflow-x-auto whitespace-nowrap pl-1"></nav>
+      <div class="ml-auto flex items-center gap-3 text-sm shrink-0">
+        <span id="navUser" class="text-ink/60"></span>
+        <a href="index.html" class="text-ink/45 hover:text-gold">홈</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-2xl mx-auto px-4 py-8">
+    <div class="text-center mb-7">
+      <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">REQUEST · 건의함</p>
+      <h1 class="text-2xl font-bold">강의 요청 · 건의함</h1>
+      <p class="text-ink/55 text-sm mt-2">듣고 싶은 <b class="text-ink">강의 주제</b>를 신청하거나, 사이트·강의에 대한 <b class="text-ink">건의·피드백</b>을 남겨주세요.<br class="sm:hidden"/> 다른 분의 요청에 <b class="text-gold">추천 👍</b>을 누르면 우선순위가 올라가요.</p>
+    </div>
+
+    <!-- 로그인 모달 -->
+    <div id="loginView" class="hidden fixed inset-0 z-[70] bg-ink/50 backdrop-blur-sm items-center justify-center p-4" onclick="if(event.target===this)closeLoginModal()">
+      <div class="bg-white rounded-3xl border border-ink/8 shadow-card p-8 max-w-sm w-full text-center relative">
+        <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-ink/30 hover:text-ink text-2xl leading-none">×</button>
+        <p class="text-3xl mb-3">📮</p>
+        <h2 class="text-lg font-bold mb-1">로그인하고 요청하기</h2>
+        <p class="text-sm text-ink/55 mb-6">로그인하면 강의 요청·건의 작성과 추천에 참여할 수 있어요.</p>
+        <button onclick="googleLogin()" class="w-full flex items-center justify-center gap-3 border border-ink/15 bg-white rounded-xl py-3 font-medium hover:bg-ink/5 transition mb-3">
+          <svg class="w-5 h-5" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C39.9 36.5 44 31 44 24c0-1.3-.1-2.3-.4-3.5z"/></svg>
+          구글로 로그인
+        </button>
+        <input id="le" type="email" placeholder="이메일" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold mb-2"/>
+        <input id="lp" type="password" placeholder="비밀번호" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold mb-2"/>
+        <button onclick="emailLogin()" class="w-full bg-ink text-paper font-semibold rounded-xl py-3 hover:bg-navy transition">이메일로 로그인</button>
+        <p id="loginMsg" class="text-red-500 text-xs mt-2 min-h-[16px]"></p>
+        <p class="text-ink/45 text-xs mt-3">아직 회원이 아니신가요? <a href="index.html#pricing" class="text-gold underline">홈에서 가입</a></p>
+      </div>
+    </div>
+
+    <!-- 작성 폼 -->
+    <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 mb-6">
+      <div class="flex gap-2 mb-3">
+        <button id="type-request" onclick="setType('request')" class="flex-1 py-2.5 rounded-full text-sm font-semibold border transition">🎓 강의 요청</button>
+        <button id="type-feedback" onclick="setType('feedback')" class="flex-1 py-2.5 rounded-full text-sm font-semibold border transition">💡 건의 · 피드백</button>
+      </div>
+      <input id="rTitle" type="text" maxlength="80" placeholder="제목 (예: 다니엘서 70이레를 자세히 다뤄주세요)" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold mb-2"/>
+      <textarea id="rBody" rows="4" maxlength="1000" placeholder="자세한 내용을 적어주세요. 어떤 점이 궁금한지, 왜 필요한지 적어주시면 큰 도움이 됩니다." class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold resize-none"></textarea>
+      <div class="flex items-center justify-between mt-3 pt-3 border-t border-ink/8">
+        <span class="text-xs text-ink/40">✍️ 구체적으로 적을수록 강의로 만들어질 가능성이 높아요</span>
+        <button id="submitBtn" onclick="submitRequest()" class="bg-gold text-white font-semibold text-sm px-5 py-2.5 rounded-full hover:opacity-90 transition shrink-0">등록하기</button>
+      </div>
+      <p id="formMsg" class="text-red-500 text-xs mt-2 min-h-[14px]"></p>
+    </div>
+
+    <!-- 정렬 -->
+    <div class="flex items-center justify-between mb-4">
+      <div class="flex gap-2">
+        <button id="sort-votes" onclick="setSort('votes')" class="px-3.5 py-1.5 rounded-full text-xs font-semibold border transition">👍 추천순</button>
+        <button id="sort-recent" onclick="setSort('recent')" class="px-3.5 py-1.5 rounded-full text-xs font-semibold border transition">🕒 최신순</button>
+      </div>
+      <span id="reqCount" class="text-xs text-ink/45"></span>
+    </div>
+
+    <div id="list" class="space-y-4"></div>
+  </main>
+
+  <script>
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { lock: async (_n, _t, fn) => await fn() } });
+    const ADMIN_EMAIL = 'josephoh1611@gmail.com';
+    const STATUSES = ['접수','검토중','제작확정','완료'];
+    let currentUser = null, currentName = '회원', isAdmin = false;
+    let curType = 'request', curSort = 'votes', ROWS = [], VOTES = {}, MYVOTES = new Set();
+
+    function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+    function withTimeout(p, ms){ return Promise.race([ Promise.resolve(p), new Promise((_, rej) => setTimeout(() => rej(new Error('TIMEOUT')), ms)) ]); }
+    function tableMissing(e){ return e && (e.code === '42P01' || /relation|does not exist|schema cache|find the table/i.test(e.message || '')); }
+    function fmtDate(s){ const d = new Date(s); const p = n => String(n).padStart(2,'0'); return `${d.getFullYear()}.${p(d.getMonth()+1)}.${p(d.getDate())}`; }
+
+    // ===== 인증 =====
+    function readStoredSession(){
+      try {
+        for(const k of Object.keys(localStorage)){
+          if(!/auth-token/.test(k)) continue;
+          const v = JSON.parse(localStorage.getItem(k));
+          const s = (v && v.user) ? v : (v && v.currentSession) ? v.currentSession : null;
+          if(s && s.user){ if(s.expires_at && s.expires_at * 1000 < Date.now()) return null; return s; }
+        }
+      } catch(e){}
+      return null;
+    }
+    sb.auth.onAuthStateChange((_e, session) => setAuthUI(session));
+    setAuthUI(readStoredSession());
+    function openLoginModal(){ const m = document.getElementById('loginView'); m.classList.remove('hidden'); m.classList.add('flex'); }
+    function closeLoginModal(){ const m = document.getElementById('loginView'); m.classList.add('hidden'); m.classList.remove('flex'); }
+    function requireLogin(){ openLoginModal(); }
+    async function googleLogin(){ await sb.auth.signInWithOAuth({ provider:'google', options:{ redirectTo: location.href } }); }
+    async function emailLogin(){
+      const email = document.getElementById('le').value.trim(), password = document.getElementById('lp').value;
+      const msg = document.getElementById('loginMsg'); msg.textContent = '';
+      if(!email || !password){ msg.textContent = '이메일과 비밀번호를 입력해주세요.'; return; }
+      const { error } = await sb.auth.signInWithPassword({ email, password });
+      if(error){ msg.textContent = '로그인 실패: ' + error.message; }
+    }
+    async function logout(){ await sb.auth.signOut(); location.reload(); }
+    async function setAuthUI(session){
+      if(session && session.user){
+        currentUser = session.user;
+        try { const { data: prof } = await withTimeout(sb.from('profiles').select('full_name').eq('id', currentUser.id).maybeSingle(), 6000); currentName = (prof && prof.full_name) || currentUser.email || '회원'; }
+        catch(e){ currentName = currentUser.email || '회원'; }
+        isAdmin = (currentUser.email === ADMIN_EMAIL);
+        document.getElementById('navUser').innerHTML = `${esc(currentName)}님${isAdmin ? ' <span class="text-gold font-semibold">· 관리자</span>' : ''} · <button onclick="logout()" class="hover:text-gold">로그아웃</button>`;
+        closeLoginModal();
+        load();
+      } else {
+        currentUser = null; isAdmin = false;
+        document.getElementById('navUser').innerHTML = `<button onclick="openLoginModal()" class="bg-gold text-white font-semibold px-4 py-1.5 rounded-full hover:opacity-90 transition">로그인</button>`;
+      }
+    }
+
+    // ===== UI 상태 =====
+    function setType(t){
+      curType = t;
+      const on = 'bg-ink text-paper border-ink', off = 'bg-white text-ink/55 border-ink/15 hover:bg-ink/5';
+      const base = 'flex-1 py-2.5 rounded-full text-sm font-semibold border transition ';
+      document.getElementById('type-request').className = base + (t==='request'?on:off);
+      document.getElementById('type-feedback').className = base + (t==='feedback'?on:off);
+      const title = document.getElementById('rTitle');
+      title.placeholder = t==='request' ? '제목 (예: 다니엘서 70이레를 자세히 다뤄주세요)' : '제목 (예: 강의 자막을 키워주세요)';
+    }
+    function setSort(s){
+      curSort = s;
+      const on = 'bg-gold/15 text-gold border-gold', off = 'bg-white text-ink/50 border-ink/15 hover:bg-ink/5';
+      const base = 'px-3.5 py-1.5 rounded-full text-xs font-semibold border transition ';
+      document.getElementById('sort-votes').className = base + (s==='votes'?on:off);
+      document.getElementById('sort-recent').className = base + (s==='recent'?on:off);
+      render();
+    }
+
+    // ===== 데이터 =====
+    async function submitRequest(){
+      const msg = document.getElementById('formMsg'); msg.textContent = '';
+      if(!currentUser){ requireLogin(); return; }
+      const title = document.getElementById('rTitle').value.trim();
+      const body = document.getElementById('rBody').value.trim();
+      if(!title){ msg.textContent = '제목을 입력해주세요.'; return; }
+      const btn = document.getElementById('submitBtn'); btn.disabled = true; btn.textContent = '등록 중…';
+      let error;
+      try { const res = await withTimeout(sb.from('lecture_requests').insert({ type: curType, title, body, author_id: currentUser.id, author_name: currentName, status: '접수' }), 9000); error = res.error; }
+      catch(e){ error = e; }
+      btn.disabled = false; btn.textContent = '등록하기';
+      if(error){
+        if(tableMissing(error)){ msg.innerHTML = '아직 요청함이 준비 중이에요. 관리자에게 문의해 주세요.'; }
+        else { msg.textContent = '등록 실패: ' + (error.message || error); }
+        return;
+      }
+      document.getElementById('rTitle').value = ''; document.getElementById('rBody').value = '';
+      msg.style.color = '#15803d'; msg.textContent = '✅ 소중한 의견 감사합니다! 등록되었어요.';
+      setTimeout(() => { msg.textContent = ''; msg.style.color = ''; }, 2500);
+      load();
+    }
+
+    async function load(){
+      const list = document.getElementById('list');
+      let rows = [], rerr;
+      try { const res = await withTimeout(sb.from('lecture_requests').select('*').order('created_at', { ascending:false }).limit(200), 8000); rows = res.data || []; rerr = res.error; }
+      catch(e){ rerr = e; }
+      if(rerr){
+        if(tableMissing(rerr)){ list.innerHTML = setupNotice(); document.getElementById('reqCount').textContent = ''; return; }
+        list.innerHTML = `<p class="text-center text-ink/45 py-10 text-sm">목록을 불러오지 못했어요. 잠시 후 다시 시도해 주세요.</p>`; return;
+      }
+      ROWS = rows;
+      // 추천 집계
+      VOTES = {}; MYVOTES = new Set();
+      const ids = rows.map(r => r.id);
+      if(ids.length){
+        try {
+          const { data: vs } = await sb.from('lecture_request_votes').select('request_id,user_id').in('request_id', ids);
+          (vs || []).forEach(v => { VOTES[v.request_id] = (VOTES[v.request_id] || 0) + 1; if(currentUser && v.user_id === currentUser.id) MYVOTES.add(v.request_id); });
+        } catch(e){}
+      }
+      render();
+    }
+
+    function render(){
+      const list = document.getElementById('list');
+      let rows = ROWS.slice();
+      rows.sort((a,b) => curSort === 'votes'
+        ? ((VOTES[b.id]||0) - (VOTES[a.id]||0)) || (new Date(b.created_at) - new Date(a.created_at))
+        : (new Date(b.created_at) - new Date(a.created_at)));
+      document.getElementById('reqCount').textContent = `총 ${rows.length}건`;
+      if(!rows.length){ list.innerHTML = `<div class="text-center text-ink/45 py-12"><p class="text-3xl mb-2">📮</p><p class="text-sm">아직 등록된 요청이 없어요.<br>가장 먼저 듣고 싶은 주제를 신청해 보세요!</p></div>`; return; }
+      list.innerHTML = rows.map(cardHTML).join('');
+    }
+
+    function statusBadge(s){
+      const map = { '접수':'bg-ink/8 text-ink/55', '검토중':'bg-blue-100 text-blue-700', '제작확정':'bg-amber-100 text-amber-700', '완료':'bg-green-100 text-green-700' };
+      return `<span class="text-[11px] font-bold px-2 py-0.5 rounded-full ${map[s]||map['접수']}">${esc(s||'접수')}</span>`;
+    }
+    function cardHTML(r){
+      const votes = VOTES[r.id] || 0, voted = MYVOTES.has(r.id);
+      const typeBadge = r.type === 'feedback'
+        ? '<span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-gold/15 text-gold">💡 건의</span>'
+        : '<span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-ink text-paper">🎓 강의 요청</span>';
+      const canDelete = currentUser && (isAdmin || currentUser.id === r.author_id);
+      let adminCtl = '';
+      if(isAdmin){
+        adminCtl = `<div class="flex flex-wrap items-center gap-1.5 mt-3 pt-3 border-t border-ink/6">
+          <span class="text-[11px] text-ink/40 mr-1">상태변경:</span>
+          ${STATUSES.map(s => `<button onclick="setStatus('${r.id}','${s}')" class="text-[11px] px-2 py-1 rounded-full border ${ (r.status||'접수')===s ? 'border-gold text-gold font-semibold' : 'border-ink/15 text-ink/50 hover:bg-ink/5' }">${s}</button>`).join('')}
+          <button onclick="replyTo('${r.id}')" class="text-[11px] px-2 py-1 rounded-full border border-ink/15 text-ink/50 hover:bg-ink/5 ml-1">✍️ 답변</button>
+        </div>`;
+      }
+      const reply = r.admin_reply ? `<div class="mt-3 bg-gold/[0.07] border border-gold/25 rounded-xl p-3 text-sm"><p class="text-[11px] font-bold text-gold mb-1">👤 강사 답변</p><p class="text-ink/80 leading-relaxed whitespace-pre-wrap">${esc(r.admin_reply)}</p></div>` : '';
+      return `<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5">
+        <div class="flex gap-4">
+          <button onclick="toggleVote('${r.id}')" class="shrink-0 flex flex-col items-center justify-center w-14 rounded-xl border ${ voted ? 'border-gold bg-gold/10 text-gold' : 'border-ink/12 text-ink/50 hover:bg-ink/5' } py-2 transition" title="추천">
+            <span class="text-lg leading-none">👍</span>
+            <span class="font-bold text-sm mt-1">${votes}</span>
+          </button>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 flex-wrap mb-1.5">${typeBadge}${statusBadge(r.status)}</div>
+            <p class="font-bold text-[16px] leading-snug">${esc(r.title)}</p>
+            ${ r.body ? `<p class="text-sm text-ink/65 mt-1.5 leading-relaxed whitespace-pre-wrap">${esc(r.body)}</p>` : '' }
+            <div class="flex items-center gap-2 mt-2.5 text-xs text-ink/40">
+              <span>${esc(r.author_name || '회원')}</span><span>·</span><span>${fmtDate(r.created_at)}</span>
+              ${ canDelete ? `<span>·</span><button onclick="del('${r.id}')" class="hover:text-red-500">삭제</button>` : '' }
+            </div>
+            ${reply}
+            ${adminCtl}
+          </div>
+        </div>
+      </div>`;
+    }
+
+    async function toggleVote(id){
+      if(!currentUser){ requireLogin(); return; }
+      const voted = MYVOTES.has(id);
+      try {
+        if(voted){ await sb.from('lecture_request_votes').delete().eq('request_id', id).eq('user_id', currentUser.id); MYVOTES.delete(id); VOTES[id] = Math.max(0, (VOTES[id]||1) - 1); }
+        else { await sb.from('lecture_request_votes').insert({ request_id: id, user_id: currentUser.id }); MYVOTES.add(id); VOTES[id] = (VOTES[id]||0) + 1; }
+        render();
+      } catch(e){ alert('추천 처리 중 오류가 났어요. 잠시 후 다시 시도해 주세요.'); }
+    }
+    async function setStatus(id, s){
+      if(!isAdmin) return;
+      const { error } = await sb.from('lecture_requests').update({ status: s }).eq('id', id);
+      if(error){ alert('상태 변경 오류: ' + error.message); return; }
+      const row = ROWS.find(r => r.id === id); if(row) row.status = s; render();
+    }
+    async function replyTo(id){
+      if(!isAdmin) return;
+      const row = ROWS.find(r => r.id === id);
+      const txt = prompt('강사 답변을 입력하세요:', (row && row.admin_reply) || '');
+      if(txt === null) return;
+      const { error } = await sb.from('lecture_requests').update({ admin_reply: txt }).eq('id', id);
+      if(error){ alert('답변 저장 오류: ' + error.message); return; }
+      if(row) row.admin_reply = txt; render();
+    }
+    async function del(id){
+      if(!confirm('이 요청을 삭제할까요?')) return;
+      const { error } = await sb.from('lecture_requests').delete().eq('id', id);
+      if(error){ alert('삭제 오류: ' + error.message); return; }
+      ROWS = ROWS.filter(r => r.id !== id); render();
+    }
+
+    function setupNotice(){
+      return `<div class="bg-white rounded-2xl border border-gold/30 p-5 text-sm text-ink/70 leading-relaxed">
+        <p class="font-bold text-ink mb-1">📮 요청함을 준비하는 중이에요</p>
+        <p>관리자가 데이터베이스 설정을 마치면 바로 이용할 수 있어요. 잠시만 기다려 주세요.</p>
+      </div>`;
+    }
+
+    // 초기화
+    setType('request'); setSort('votes'); load();
+  </script>
+
+  <!-- 공통 메뉴 -->
+  <script>
+    fetch('content/site.json?t=' + Date.now()).then(r => r.json()).then(s => {
+      const nav = document.getElementById('navmenu'); if(!nav || !s.menu) return;
+      const cur = (location.pathname.split('/').pop() || 'index.html');
+      nav.innerHTML = s.menu.map(m => {
+        const hash = m.href.startsWith('#');
+        const href = hash ? ('index.html' + m.href) : m.href;
+        const active = !hash && (href.split('?')[0] === cur);
+        return '<a href="' + href + '" class="' + (active ? 'text-gold font-semibold' : 'hover:text-gold') + '">' + m.label + '</a>';
+      }).join('');
+    }).catch(() => {});
+  </script>
+  <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script src="auth-header.js"></script>
+</body>
+</html>
