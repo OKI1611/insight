@@ -127,8 +127,8 @@
 
       <div class="mt-4 bg-white rounded-2xl border border-ink/8 p-5 shadow-soft text-sm text-ink/70 leading-relaxed">
         <p class="font-semibold text-ink mb-1">강의 안내</p>
-        무료 강의는 바로 시청하실 수 있습니다. 잠긴 강의는 <b class="text-ink">정식 오픈 후</b> 공개됩니다.
-        미리 등록하시면 출시 소식과 얼리버드 혜택을 가장 먼저 받아보실 수 있어요.
+        강의 영상은 <b class="text-ink">로그인 없이 누구나 무료</b>로 시청하실 수 있어요. 🎯진단평가·📝요약노트·🧩확인학습 등 <b class="text-ink">학습 도구는 무료 회원(로그인)</b> 전용입니다 — 가입은 무료예요.
+        잠긴 강의는 <b class="text-ink">정식 오픈 후</b> 공개됩니다. 미리 등록하시면 출시 소식을 가장 먼저 받아보실 수 있어요.
         <a href="index.html#pricing" class="text-gold underline ml-1">출시 알림 받기</a>
       </div>
     </section>
@@ -369,6 +369,17 @@
         if(rich && cur === at){ sheet.innerHTML = richNoteHTML(l, rich); }   // 풍성한 노트로 업그레이드
       })();
     }
+    // ===== 학습 도구 로그인 게이트 (영상은 누구나, 학습도구는 무료 회원) =====
+    function refreshGatedTools(){ try { if(typeof lessons !== 'undefined' && lessons.length && lessons[cur]){ renderPreQuiz(lessons[cur]); renderQuiz(lessons[cur]); } } catch(e){} }
+    function lockCard(title, desc){
+      return `<div class="bg-white rounded-2xl border-2 border-dashed border-gold/45 shadow-soft p-6 text-center">
+        <p class="text-3xl mb-2">🔒</p>
+        <p class="font-bold text-ink text-[17px]">${title}</p>
+        <p class="text-sm text-ink/55 mt-1.5 mb-4 leading-relaxed">${desc}</p>
+        <button onclick="openLogin()" class="bg-gold text-white font-semibold px-7 py-3 rounded-full hover:opacity-90 transition">무료로 로그인하고 이용하기</button>
+        <p class="text-xs text-ink/40 mt-2.5">가입은 무료예요 · 영상은 로그인 없이도 시청할 수 있어요</p>
+      </div>`;
+    }
     // ===== 확인 학습 퀴즈 =====
     let QUIZ_CACHE = {}, CURRENT_QUIZ = [], CURRENT_PICKS = [];
     function renderQuiz(l){
@@ -383,6 +394,7 @@
           QUIZ_CACHE[id] = quiz;
         }
         if(!quiz || !quiz.length || cur !== at) return;
+        if(!LUSER){ card.innerHTML = lockCard('🧩 확인 학습 퀴즈', '강의를 잘 이해했는지 점검하는 퀴즈예요. 로그인(무료)하면 바로 풀 수 있어요.'); card.style.display = ''; return; }
         CURRENT_QUIZ = quiz; CURRENT_PICKS = new Array(quiz.length).fill(null);
         card.innerHTML = quizHTML(quiz); card.style.display = '';
       })();
@@ -462,6 +474,7 @@
           QUIZ_CACHE[id] = quiz;
         }
         if(!quiz || !quiz.length || cur !== at) return;
+        if(!LUSER){ card.innerHTML = lockCard('🎯 강의 전 진단평가', '강의 전 5문항으로 학습 동기를 높여요. 로그인(무료)하면 이용할 수 있어요.'); wrap.style.display = ''; return; }
         PRE_QUIZ = quiz.slice(0, 5); PRE_PICKS = new Array(PRE_QUIZ.length).fill(null);
         const prev = loadPre(id);
         card.innerHTML = prev ? preDoneBar(prev) : preHTML(PRE_QUIZ);
@@ -515,6 +528,7 @@
       done.scrollIntoView({ behavior:'smooth', block:'nearest' });
     }
     function toggleNote(){
+      if(!LUSER){ openLogin(); return; }   // 요약노트 열람은 무료 회원 전용
       const card = document.getElementById('noteCard');
       const btn = document.getElementById('noteToggleBtn');
       const show = card.style.display === 'none';
@@ -523,6 +537,7 @@
       if(show) card.scrollIntoView({ behavior:'smooth', block:'nearest' });
     }
     async function downloadNotePDF(){
+      if(!LUSER){ openLogin(); return; }   // PDF 저장은 회원 전용(추후 수료 과정 전용으로 전환 예정)
       const card = document.getElementById('noteCard');
       const wasHidden = card.style.display === 'none';
       card.style.display = '';
@@ -729,7 +744,7 @@
       ENROLLED = new Set(); DONE = new Set(); TABLES_READY = true;
       QNAME = LUSER ? (LUSER.email || '회원') : '회원';
       // ① UI를 먼저 그린다 — 데이터 로딩이 지연돼도 화면이 멈추지 않게
-      setAuthState(); refreshLearningUI(); renderQaComposer(); loadQuestions();
+      setAuthState(); refreshLearningUI(); renderQaComposer(); loadQuestions(); refreshGatedTools();
       // ② 데이터는 타임아웃 보호로 best-effort 로딩
       if(LUSER){
         try { const { data, error } = await withTimeout(lsb.from('enrollments').select('track').eq('user_id', LUSER.id), 8000); if(error){ TABLES_READY = false; } else { (data||[]).forEach(e => ENROLLED.add(e.track)); } } catch(e){}
