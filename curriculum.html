@@ -72,7 +72,7 @@
       let acc = 0; STARTS = []; LEVELS.forEach(lv => { STARTS.push(acc); acc += (lv.lessons || []).length; });
       const totalLessons = acc;
       const sub = document.getElementById('curSub');
-      if(sub) sub.textContent = `${LEVELS.length}개 트랙 · 총 ${totalLessons}강 · 트랙을 선택해 강의 구성과 특장점을 살펴보세요.`;
+      if(sub) sub.textContent = `7개 분야 · ${LEVELS.length}개 트랙 · 총 ${totalLessons}강 — 신앙의 기초부터 종말·예언 심화까지 단계별로.`;
       renderNav();
       // URL ?t=인덱스 또는 기본 0
       const qp = parseInt(new URLSearchParams(location.search).get('track'), 10);
@@ -83,16 +83,29 @@
 
     function renderNav(){
       const nav = document.getElementById('trackNav');
-      nav.innerHTML = LEVELS.map((lv, ti) => `
-        <button onclick="selectTrack(${ti})" id="tb-${ti}" class="trackBtn w-full text-left px-4 py-3 border-b border-ink/5 hover:bg-ink/[0.03] transition flex items-center gap-3">
-          <span class="tbNum text-gold font-display font-bold text-sm w-6 shrink-0">${String(ti+1).padStart(2,'0')}</span>
+      const GEMOJI = { '신앙의 기초':'📘', '성경으로 더 깊이':'📖', '세계관과 분별':'🧭', '종말과 예언':'🔮', '인물에게 배우다':'👤', '삶으로 살아내기':'🌱', '그 외':'🗂️' };
+      let html = '', lastG = null;
+      LEVELS.forEach((lv, ti) => {
+        const g = lv.group || '';
+        if(g !== lastG){ lastG = g; html += `<p class="px-4 ${ ti>0 ? 'pt-4 mt-1 border-t border-ink/8' : 'pt-3' } pb-1 text-[11px] font-bold text-gold/90 tracking-wide">${ GEMOJI[g]||'' } ${esc(g)}</p>`; }
+        html += `<button onclick="selectTrack(${ti})" id="tb-${ti}" class="trackBtn w-full text-left px-4 py-2.5 hover:bg-ink/[0.03] transition flex items-center gap-3">
           <span class="flex-1 min-w-0">
-            <span class="block font-semibold text-sm leading-snug truncate">${esc(lv.name||'')}</span>
+            <span class="block font-semibold text-[13.5px] leading-snug truncate">${esc(lv.name||'')}</span>
             <span class="tbCnt block text-xs text-ink/40 mt-0.5">${(lv.lessons||[]).length}강</span>
           </span>
-        </button>`).join('');
+        </button>`;
+      });
+      nav.innerHTML = html;
+      // 모바일 드롭다운 — 그룹(optgroup)
       const sel = document.getElementById('trackSelect');
-      sel.innerHTML = LEVELS.map((lv, ti) => `<option value="${ti}">${String(ti+1).padStart(2,'0')}. ${esc(lv.name||'')} (${(lv.lessons||[]).length}강)</option>`).join('');
+      let so = '', lg = null;
+      LEVELS.forEach((lv, ti) => {
+        const g = lv.group || '';
+        if(g !== lg){ if(lg !== null) so += '</optgroup>'; so += `<optgroup label="${esc((GEMOJI[g]||'') + ' ' + g)}">`; lg = g; }
+        so += `<option value="${ti}">${esc(lv.name||'')} (${(lv.lessons||[]).length}강)</option>`;
+      });
+      if(lg !== null) so += '</optgroup>';
+      sel.innerHTML = so;
     }
 
     function selectTrack(ti){
