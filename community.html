@@ -227,6 +227,16 @@
     ensureCommQuill();
     switchBoard(currentBoard);
 
+    // '함께 기도 나누기' 등에서 ?write=1 로 들어오면 글쓰기 칸으로 바로 안내
+    if(_qp.get('write') === '1'){
+      ensureCommQuill();
+      setTimeout(() => {
+        const ed = document.getElementById('postEditor');
+        if(ed){ ed.scrollIntoView({ behavior:'smooth', block:'center' }); }
+        try{ commQuill.focus(); }catch(e){}
+      }, 450);
+    }
+
     function openLoginModal(){ const m = document.getElementById('loginView'); m.classList.remove('hidden'); m.classList.add('flex'); }
     function closeLoginModal(){ const m = document.getElementById('loginView'); m.classList.add('hidden'); m.classList.remove('flex'); }
     function requireLogin(){ openLoginModal(); }
