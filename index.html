@@ -1391,5 +1391,13 @@
 
   <script src="auth-header.js"></script>
   <script src="/cms.js"></script>
+  <script>
+    // 후원 등 앵커로 들어왔을 때 콘텐츠 로드 후 확실히 스크롤
+    (function(){
+      function go(){ if(!location.hash) return; var el=document.querySelector(location.hash); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }
+      if(location.hash){ window.addEventListener('load', function(){ setTimeout(go, 250); }); }
+      window.addEventListener('hashchange', go);
+    })();
+  </script>
 </body>
 </html>

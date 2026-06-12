@@ -11,6 +11,10 @@
     }
   }catch(e){}
 
+  // 후원 링크 — 홈이면 #support(부드러운 스크롤), 다른 페이지면 index로 이동
+  var onHome = (location.pathname === '/' || /(^|\/)index\.html$/.test(location.pathname));
+  var SUP = onHome ? '#support' : 'index.html#support';
+
   // ===== 접근성·질문 플로팅 UI (모든 페이지) =====
   try{
     if(document.body && !document.getElementById('biblyFab')){
@@ -30,7 +34,7 @@
         + '<button onclick="__biblyFont(1)" aria-label="글자 크게" class="rounded-full hover:bg-ink/5 text-ink font-bold" style="width:34px;height:34px;font-size:18px">가&#43;</button>'
         + '</div>'
         + '<div style="position:fixed;right:14px;bottom:14px;z-index:55" class="flex flex-col items-end gap-2.5">'
-        + '<a href="index.html#support" aria-label="후원하기" class="inline-flex items-center gap-1.5 bg-rose-500 text-white font-bold rounded-full shadow-xl hover:bg-rose-600 transition" style="padding:11px 18px;font-size:15px"><span style="font-size:17px">♥</span> 후원하기</a>'
+        + '<a href="' + SUP + '" aria-label="후원하기" class="inline-flex items-center gap-1.5 bg-rose-500 text-white font-bold rounded-full shadow-xl hover:bg-rose-600 transition" style="padding:11px 18px;font-size:15px"><span style="font-size:17px">♥</span> 후원하기</a>'
         + '<a href="community.html?board=qna" aria-label="무엇이든 질문하기" class="inline-flex items-center gap-2 bg-gold text-white font-bold rounded-full shadow-xl hover:opacity-95 transition">'
         + '<span style="padding:13px 0 13px 18px;font-size:20px">💬</span>'
         + '<span class="hidden sm:inline" style="padding-right:20px;font-size:15px">무엇이든 물어보세요</span>'
@@ -61,7 +65,7 @@
   };
   function render(){
     var loggedIn = !!readStored();
-    var support = '<a href="index.html#support" aria-label="후원하기" title="후원하기" class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-rose-500/10 text-rose-500 border border-rose-300 hover:bg-rose-500 hover:text-white transition shrink-0" style="font-size:15px">♥</a>';
+    var support = '<a href="' + SUP + '" aria-label="후원하기" title="후원하기" class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-rose-500/10 text-rose-500 border border-rose-300 hover:bg-rose-500 hover:text-white transition shrink-0" style="font-size:15px">♥</a>';
     if(loggedIn){
       el.innerHTML =
         '<a href="mylearning.html" class="inline-flex items-center gap-1 bg-gold text-white font-semibold px-3 py-1.5 rounded-full hover:opacity-90 transition text-xs whitespace-nowrap">📚 내 강의실</a>'
