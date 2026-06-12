@@ -917,13 +917,12 @@
   <script>
     // 메뉴 기본값(인터넷 연결 전/오류 시 대비 — 평소엔 site.json 값 사용)
     const DEFAULT_MENU = [
-      { label: '전체 강의', href: 'curriculum.html' },
-      { label: '강의 찾기', href: 'find.html'     },
-      { label: '커뮤니티', href: 'community.html' },
-      { label: '자료실',   href: 'resources.html' },
-      { label: '칼럼',     href: 'column.html'   },
       { label: '소개',     href: 'about.html'    },
-      { label: '후원',     href: '#support'      },
+      { label: '강의 찾기', href: 'find.html'     },
+      { label: '강의',     href: 'curriculum.html' },
+      { label: '질문·나눔', href: 'community.html' },
+      { label: '자료실',   href: 'resources.html' },
+      { label: '성경 읽기', href: 'bible.html'    },
     ];
     function renderMenu(menu){
       document.getElementById('mainmenu').innerHTML = (menu || []).map(m =>
