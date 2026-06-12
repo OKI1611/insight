@@ -4,6 +4,8 @@
    반드시 페이지의 다른 스크립트보다 먼저(<head>) 로드되어야 함. */
 (function(){
   if(window.__biblyLoaderReady) return; window.__biblyLoaderReady = true;
+  // 접근성 — 저장된(또는 기본 17px) 글자 크기를 깜빡임 없이 즉시 적용
+  try{ var __fs = localStorage.getItem('biblyFont') || '17px'; document.documentElement.style.fontSize = __fs; }catch(e){}
   var SB = 'https://bmxkndkwefdgsomlznoo.supabase.co';
   var AK = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
   var orig = window.fetch ? window.fetch.bind(window) : null;

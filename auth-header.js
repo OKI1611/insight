@@ -11,6 +11,33 @@
     }
   }catch(e){}
 
+  // ===== 접근성·질문 플로팅 UI (모든 페이지) =====
+  try{
+    if(document.body && !document.getElementById('biblyFab')){
+      var SIZES = ['15px','17px','19px','21px'];
+      window.__biblyFont = function(d){
+        var cur = document.documentElement.style.fontSize || '17px';
+        var i = SIZES.indexOf(cur); if(i < 0) i = 1;
+        i = Math.max(0, Math.min(SIZES.length - 1, i + d));
+        document.documentElement.style.fontSize = SIZES[i];
+        try{ localStorage.setItem('biblyFont', SIZES[i]); }catch(e){}
+      };
+      var w = document.createElement('div'); w.id = 'biblyFab';
+      w.innerHTML =
+        '<div style="position:fixed;left:12px;bottom:12px;z-index:55" class="flex items-center gap-0.5 bg-white/95 backdrop-blur border border-ink/10 rounded-full shadow-lg px-1.5 py-1">'
+        + '<span style="font-size:11px" class="text-ink/45 px-1 select-none">글자</span>'
+        + '<button onclick="__biblyFont(-1)" aria-label="글자 작게" class="rounded-full hover:bg-ink/5 text-ink/60" style="width:34px;height:34px;font-size:13px">가&minus;</button>'
+        + '<button onclick="__biblyFont(1)" aria-label="글자 크게" class="rounded-full hover:bg-ink/5 text-ink font-bold" style="width:34px;height:34px;font-size:18px">가&#43;</button>'
+        + '</div>'
+        + '<a href="community.html?board=qna" aria-label="무엇이든 질문하기" style="position:fixed;right:14px;bottom:14px;z-index:55" class="inline-flex items-center gap-2 bg-gold text-white font-bold rounded-full shadow-xl hover:opacity-95 transition" >'
+        + '<span style="padding:13px 0 13px 18px;font-size:20px">💬</span>'
+        + '<span class="hidden sm:inline" style="padding-right:20px;font-size:15px">무엇이든 물어보세요</span>'
+        + '<span class="sm:hidden" style="padding-right:16px;font-size:14px">질문</span>'
+        + '</a>';
+      document.body.appendChild(w);
+    }
+  }catch(e){}
+
   var el = document.getElementById('authArea');
   if(!el) return;
   function readStored(){
