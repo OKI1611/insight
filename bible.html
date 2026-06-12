@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>성경 읽기 (KJV) — BIBLY 바이블 인사이트</title>
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#15203a" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink:'#15203a', navy:'#1b2a4a', gold:'#b8923f', sand:'#efe7d6', paper:'#fcfaf6' },
+      fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
+      boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
+    }}}
+  </script>
+  <style>h1,h2,.serif{font-family:'Noto Serif KR',Pretendard,serif} .verse-en{font-family:Georgia,'Times New Roman',serif}</style>
+</head>
+<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+
+  <header class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-ink/8">
+    <div class="max-w-6xl mx-auto px-4 h-14 flex items-center gap-3">
+      <a href="index.html" class="flex items-center gap-2 shrink-0"><span class="w-8 h-8 rounded-lg bg-ink flex items-center justify-center shrink-0"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#b8923f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.6C10.4 5.5 8.4 5 6 5C4.7 5 3.7 5.15 3 5.35V18.2C3.7 18 4.7 17.85 6 17.85C8.4 17.85 10.4 18.35 12 19.5"/><path d="M12 6.6C13.6 5.5 15.6 5 18 5C19.3 5 20.3 5.15 21 5.35V18.2C20.3 18 19.3 17.85 18 17.85C15.6 17.85 13.6 18.35 12 19.5"/><path d="M12 6.6V19.5"/></svg></span><span class="leading-none"><span class="block font-extrabold text-[15px] tracking-tight">BIBLY<span class="text-gold">.</span></span><span class="block text-[9px] text-ink/45 tracking-wide mt-0.5">말씀으로 시대를 읽다</span></span></a>
+      <nav id="navmenu" class="flex items-center gap-4 sm:gap-5 text-sm text-ink/70 overflow-x-auto whitespace-nowrap pl-1"></nav>
+      <a href="index.html" class="ml-auto text-ink/45 hover:text-gold text-sm shrink-0">홈</a>
+    </div>
+  </header>
+
+  <main class="max-w-3xl mx-auto px-4 py-6">
+    <div class="text-center mb-5">
+      <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">HOLY BIBLE · 성경 읽기</p>
+      <h1 class="text-2xl font-bold">King James Version <span class="text-ink/40 text-lg font-normal">킹제임스 성경</span></h1>
+      <p class="text-ink/50 text-sm mt-2">공유저작물(Public Domain) 영어 성경을 읽고, <b class="text-ink">한국어 번역</b>을 함께 봅니다.</p>
+    </div>
+
+    <!-- 컨트롤 -->
+    <div class="sticky top-14 z-30 bg-paper/95 backdrop-blur py-2 -mx-4 px-4 border-b border-ink/8">
+      <div class="flex items-center gap-2 flex-wrap">
+        <button onclick="togglePicker()" id="bookBtn" class="bg-ink text-paper font-semibold text-sm px-4 py-2 rounded-full hover:bg-navy transition">📖 책 선택</button>
+        <select id="chapSel" onchange="loadChapter(+this.value)" class="border border-ink/15 rounded-full px-3 py-2 text-sm bg-white"></select>
+        <label class="text-xs text-ink/60 flex items-center gap-1.5 ml-1"><input type="checkbox" id="parallel" checked onchange="renderChapter()"/>한·영 병행</label>
+        <div class="ml-auto flex gap-1.5">
+          <button onclick="nav(-1)" class="border border-ink/15 rounded-full px-3 py-2 text-sm hover:bg-ink/5">←</button>
+          <button onclick="nav(1)" class="border border-ink/15 rounded-full px-3 py-2 text-sm hover:bg-ink/5">→</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 책 선택 패널 -->
+    <div id="picker" class="hidden bg-white rounded-2xl border border-ink/8 shadow-card p-4 mt-3">
+      <p class="text-xs font-bold text-ink/45 mb-2">구약 (Old Testament)</p>
+      <div id="otGrid" class="grid grid-cols-3 sm:grid-cols-5 gap-1.5 mb-4"></div>
+      <p class="text-xs font-bold text-ink/45 mb-2">신약 (New Testament)</p>
+      <div id="ntGrid" class="grid grid-cols-3 sm:grid-cols-5 gap-1.5"></div>
+    </div>
+
+    <!-- 본문 -->
+    <article id="reader" class="mt-5 bg-white rounded-2xl border border-ink/8 shadow-soft p-5 lg:p-7 min-h-[300px]">
+      <p class="text-ink/40 text-center py-10">불러오는 중…</p>
+    </article>
+
+    <div class="flex justify-between mt-4">
+      <button onclick="nav(-1)" class="text-sm text-gold hover:underline">← 이전 장</button>
+      <button onclick="nav(1)" class="text-sm text-gold hover:underline">다음 장 →</button>
+    </div>
+
+    <p class="text-xs text-ink/40 mt-6 leading-relaxed bg-ink/[0.03] rounded-xl p-4">
+      ※ <b>영어 본문</b>은 King James Version(1611)으로 <b>공유저작물(Public Domain)</b>입니다.
+      <b>한국어</b>는 기존 번역본(개역·흠정역 등)을 옮기지 않고, <b>히브리어·헬라어 원어를 참고한 자체 번역</b>으로 순차적으로 추가됩니다.
+      아직 번역되지 않은 장은 영어만 표시됩니다.
+    </p>
+  </main>
+
+  <script>
+    let BOOKS=[], CUR=null, BOOK=null, CH=1, KR=null;
+    const $=id=>document.getElementById(id);
+
+    fetch('bible/books.json?t='+Date.now()).then(r=>r.json()).then(bs=>{
+      BOOKS=bs;
+      const cell=b=>`<button onclick="selectBook('${b.file}')" class="text-xs px-2 py-1.5 rounded-lg border border-ink/10 hover:bg-gold/10 hover:border-gold/40 transition truncate" title="${b.ko}">${b.ko}</button>`;
+      $('otGrid').innerHTML = bs.filter(b=>b.t==='ot').map(cell).join('');
+      $('ntGrid').innerHTML = bs.filter(b=>b.t==='nt').map(cell).join('');
+      const sp=new URLSearchParams(location.search);
+      const f=sp.get('b')||'John', c=+sp.get('c')||3;
+      selectBook(f, c);
+    });
+
+    function togglePicker(){ $('picker').classList.toggle('hidden'); }
+    async function selectBook(file, c){
+      CUR=BOOKS.find(b=>b.file===file)||BOOKS.find(b=>b.file==='John');
+      $('picker').classList.add('hidden');
+      $('bookBtn').textContent = '📖 '+CUR.ko;
+      try{ BOOK=await (await fetch('bible/kjv/'+CUR.file+'.json?t='+Date.now())).json(); }catch(e){ BOOK={}; }
+      $('chapSel').innerHTML = Array.from({length:CUR.ch},(_,i)=>`<option value="${i+1}">${i+1}장</option>`).join('');
+      loadChapter(c||1);
+    }
+    async function loadChapter(c){
+      CH=Math.min(Math.max(1,c),CUR.ch); $('chapSel').value=CH;
+      KR=null;
+      try{ const r=await fetch('bible/kr/'+CUR.file+'-'+CH+'.json?t='+Date.now()); if(r.ok) KR=await r.json(); }catch(e){}
+      history.replaceState(null,'','?b='+CUR.file+'&c='+CH);
+      renderChapter();
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+    function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    function renderChapter(){
+      const verses=(BOOK&&BOOK[CH])||[];
+      const par=$('parallel').checked && KR;
+      let h=`<div class="flex items-baseline justify-between mb-4 pb-3 border-b border-ink/8"><h2 class="text-xl font-bold">${CUR.ko} <span class="text-gold">${CH}장</span></h2><span class="text-xs text-ink/40">${CUR.en} ${CH} · KJV</span></div>`;
+      if(!verses.length){ h+='<p class="text-ink/40 text-center py-8">본문을 불러오지 못했습니다.</p>'; $('reader').innerHTML=h; return; }
+      h+='<div class="space-y-3.5">';
+      verses.forEach((en,i)=>{
+        const ko = (par && KR[i]) ? `<p class="serif text-[16px] text-ink leading-relaxed mt-0.5">${esc(KR[i])}</p>` : '';
+        h+=`<div class="flex gap-2.5"><span class="text-gold font-bold text-xs pt-1 w-5 shrink-0 text-right">${i+1}</span><div class="flex-1">${ko}<p class="verse-en text-[15px] ${par?'text-ink/55':'text-ink/85'} leading-relaxed">${esc(en)}</p></div></div>`;
+      });
+      h+='</div>';
+      if($('parallel').checked && !KR){ h+='<p class="text-xs text-gold/80 mt-5 bg-gold/[0.07] rounded-lg p-3">🕊️ 이 장의 한국어 번역은 아직 준비 중입니다. (원어 기반 자체 번역으로 순차 추가)</p>'; }
+      $('reader').innerHTML=h;
+    }
+    function nav(d){
+      let c=CH+d;
+      if(c<1){ const i=BOOKS.indexOf(CUR); if(i>0){ const p=BOOKS[i-1]; selectBook(p.file, p.ch); } return; }
+      if(c>CUR.ch){ const i=BOOKS.indexOf(CUR); if(i<BOOKS.length-1){ selectBook(BOOKS[i+1].file, 1); } return; }
+      loadChapter(c);
+    }
+  </script>
+
+  <script>
+    fetch('content/site.json?t='+Date.now()).then(r=>r.json()).then(s=>{
+      const nav=document.getElementById('navmenu'); if(!nav||!s.menu) return;
+      const cur=(location.pathname.split('/').pop()||'index.html');
+      nav.innerHTML=s.menu.map(m=>{ const hash=m.href.startsWith('#'); const href=hash?('index.html'+m.href):m.href; const active=!hash&&(href.split('?')[0]===cur); return '<a href="'+href+'" class="'+(active?'text-gold font-semibold':'hover:text-gold')+'">'+m.label+'</a>'; }).join('');
+    }).catch(()=>{});
+  </script>
+  <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script src="auth-header.js"></script>
+</body>
+</html>
