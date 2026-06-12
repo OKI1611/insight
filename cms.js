@@ -20,9 +20,11 @@
     .then(function(rows){ overrides=(rows[0]&&rows[0].data)||{}; ready(apply); })
     .catch(function(){});
 
-  // 관리자 편집 바
+  // 관리자 편집 바 — 관리자이면서 '편집 모드'(주소에 ?edit=1)일 때만 노출
+  // 일반 열람 시에는(관리자로 로그인돼 있어도) 보이지 않음
+  function editMode(){ return /[?&]edit=1\b/.test(location.search); }
   ready(function(){
-    if(!isAdmin()) return;
+    if(!isAdmin() || !editMode()) return;
     var bar=document.createElement('div');
     bar.style.cssText='position:fixed;top:8px;left:50%;transform:translateX(-50%);z-index:120;display:flex;gap:8px;align-items:center;background:#15203a;color:#fff;padding:7px 12px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.25);font-size:13px';
     bar.innerHTML='<span style="opacity:.65">관리자 ·</span>'
