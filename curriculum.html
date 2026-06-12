@@ -45,6 +45,10 @@
       <p class="text-ink/55 text-sm mt-3" id="curSub">트랙을 선택하면 강의 구성·특장점·목차를 한눈에 볼 수 있어요.</p>
     </div>
 
+    <!-- 단계(난이도) 필터 -->
+    <div id="levelTabs" class="flex flex-wrap justify-center gap-2 mb-3"></div>
+    <p id="levelDesc" class="text-center text-sm text-ink/50 mb-6"></p>
+
     <!-- 모바일 트랙 선택 -->
     <select id="trackSelect" onchange="selectTrack(+this.value)" class="lg:hidden w-full bg-white border border-ink/15 rounded-xl px-4 py-3 text-sm font-semibold mb-5 outline-none focus:border-gold"></select>
 
@@ -64,7 +68,15 @@
   </main>
 
   <script>
-    let LEVELS = [], STARTS = [], CUR = 0;
+    let LEVELS = [], STARTS = [], CUR = 0, FILTER = '전체';
+    const LV_ORDER = ['기초','초급','중급','고급','교양'];
+    const LV_INFO = {
+      '기초': { emoji:'🌱', desc:'신앙을 처음 시작하거나 기초를 다지는 단계' },
+      '초급': { emoji:'📗', desc:'성경을 스스로 읽고 삶에 적용하는 단계' },
+      '중급': { emoji:'📘', desc:'교리·세계관·예언의 기초를 세우는 단계' },
+      '고급': { emoji:'🎓', desc:'종말·예언을 깊이 파고드는 심화 단계' },
+      '교양': { emoji:'🎒', desc:'신앙 외 일반 교양·특강' },
+    };
     function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
     function ytId(u){ const m = String(u||'').match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/); return m ? m[1] : ''; }
 
@@ -73,7 +85,8 @@
       let acc = 0; STARTS = []; LEVELS.forEach(lv => { STARTS.push(acc); acc += (lv.lessons || []).length; });
       const totalLessons = acc;
       const sub = document.getElementById('curSub');
-      if(sub) sub.textContent = `7개 분야 · ${LEVELS.length}개 트랙 · 총 ${totalLessons}강 — 신앙의 기초부터 종말·예언 심화까지 단계별로.`;
+      if(sub) sub.textContent = `${LEVELS.length}개 트랙 · 총 ${totalLessons}강 — 기초부터 고급까지 단계별로 골라 들으세요.`;
+      renderTabs();
       renderNav();
       // URL ?t=인덱스 또는 기본 0
       const qp = parseInt(new URLSearchParams(location.search).get('track'), 10);
@@ -82,13 +95,38 @@
       document.getElementById('trackDetail').innerHTML = '<p class="text-red-500 text-sm text-center py-20">커리큘럼을 불러오지 못했습니다.</p>';
     });
 
+    // 단계 순서대로(필터 적용) 트랙 목록 반환 — 원래 인덱스(ti) 유지
+    function tracksByLevel(){
+      const out = [];
+      LV_ORDER.forEach(L => {
+        LEVELS.forEach((lv, ti) => {
+          if((lv.level || '초급') === L && (FILTER === '전체' || FILTER === L)) out.push({ ti, lv, L });
+        });
+      });
+      return out;
+    }
+    function renderTabs(){
+      const counts = {}; LEVELS.forEach(lv => { const L = lv.level || '초급'; counts[L] = (counts[L]||0)+1; });
+      const tabs = ['전체', ...LV_ORDER.filter(L => counts[L])];
+      document.getElementById('levelTabs').innerHTML = tabs.map(L => {
+        const on = FILTER === L;
+        const label = L === '전체' ? '전체' : `${LV_INFO[L].emoji} ${L}`;
+        const n = L === '전체' ? LEVELS.length : counts[L];
+        return `<button onclick="setFilter('${L}')" class="px-4 py-2 rounded-full text-sm font-semibold border transition ${ on ? 'bg-ink text-paper border-ink' : 'bg-white text-ink/60 border-ink/15 hover:bg-ink/5' }">${label} <span class="${ on ? 'text-paper/50' : 'text-ink/30' }">${n}</span></button>`;
+      }).join('');
+      const d = document.getElementById('levelDesc');
+      if(d) d.textContent = FILTER === '전체' ? '🌱 기초 → 📗 초급 → 📘 중급 → 🎓 고급 순서로 차근차근 올라가세요.' : (LV_INFO[FILTER]?.desc || '');
+    }
+    function setFilter(L){
+      FILTER = L; renderTabs(); renderNav();
+      const first = tracksByLevel()[0]; if(first) selectTrack(first.ti);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
     function renderNav(){
-      const nav = document.getElementById('trackNav');
-      const GEMOJI = { '신앙의 기초':'📘', '성경으로 더 깊이':'📖', '세계관과 분별':'🧭', '종말과 예언':'🔮', '인물에게 배우다':'👤', '삶으로 살아내기':'🌱', '교양 · 특강':'🎓', '그 외':'🗂️' };
-      let html = '', lastG = null;
-      LEVELS.forEach((lv, ti) => {
-        const g = lv.group || '';
-        if(g !== lastG){ lastG = g; html += `<p class="px-4 ${ ti>0 ? 'pt-4 mt-1 border-t border-ink/8' : 'pt-3' } pb-1 text-[11px] font-bold text-gold/90 tracking-wide">${ GEMOJI[g]||'' } ${esc(g)}</p>`; }
+      const items = tracksByLevel();
+      let html = '', lastL = null;
+      items.forEach(({ ti, lv, L }) => {
+        if(L !== lastL){ lastL = L; const inf = LV_INFO[L] || {}; html += `<p class="px-4 ${ html ? 'pt-4 mt-1 border-t border-ink/8' : 'pt-3' } pb-1 text-[11px] font-bold text-gold/90 tracking-wide">${ inf.emoji || '' } ${esc(L)} 단계</p>`; }
         html += `<button onclick="selectTrack(${ti})" id="tb-${ti}" class="trackBtn w-full text-left px-4 py-2.5 hover:bg-ink/[0.03] transition flex items-center gap-3">
           <span class="flex-1 min-w-0">
             <span class="block font-semibold text-[13.5px] leading-snug truncate">${esc(lv.name||'')}</span>
@@ -96,17 +134,15 @@
           </span>
         </button>`;
       });
-      nav.innerHTML = html;
-      // 모바일 드롭다운 — 그룹(optgroup)
-      const sel = document.getElementById('trackSelect');
+      document.getElementById('trackNav').innerHTML = html || '<p class="px-4 py-6 text-sm text-ink/40 text-center">해당 단계의 트랙이 없어요.</p>';
+      // 모바일 드롭다운 — 단계(optgroup)
       let so = '', lg = null;
-      LEVELS.forEach((lv, ti) => {
-        const g = lv.group || '';
-        if(g !== lg){ if(lg !== null) so += '</optgroup>'; so += `<optgroup label="${esc((GEMOJI[g]||'') + ' ' + g)}">`; lg = g; }
+      items.forEach(({ ti, lv, L }) => {
+        if(L !== lg){ if(lg !== null) so += '</optgroup>'; so += `<optgroup label="${esc((LV_INFO[L]?.emoji||'') + ' ' + L + ' 단계')}">`; lg = L; }
         so += `<option value="${ti}">${esc(lv.name||'')} (${(lv.lessons||[]).length}강)</option>`;
       });
       if(lg !== null) so += '</optgroup>';
-      sel.innerHTML = so;
+      document.getElementById('trackSelect').innerHTML = so;
     }
 
     function selectTrack(ti){

@@ -917,8 +917,8 @@
   <script>
     // 메뉴 기본값(인터넷 연결 전/오류 시 대비 — 평소엔 site.json 값 사용)
     const DEFAULT_MENU = [
-      { label: '소개',     href: 'about.html'    },
-      { label: '강의 찾기', href: 'find.html'     },
+      { label: '우리의 사명', href: 'about.html'    },
+      { label: '나에게 맞는 강의 찾기', href: 'find.html' },
       { label: '강의',     href: 'curriculum.html' },
       { label: '질문·나눔', href: 'community.html' },
       { label: '자료실',   href: 'resources.html' },
@@ -1325,7 +1325,7 @@
   </script>
 
   <!-- PWA: 앱 설치 버튼 + 서비스 워커 등록 -->
-  <button id="installBtn" onclick="pwaInstall()" class="hidden fixed bottom-5 right-5 z-[90] bg-ink text-paper text-sm font-semibold px-5 py-3 rounded-full shadow-card hover:bg-navy transition">📱 앱 설치</button>
+  <button id="installBtn" onclick="pwaInstall()" class="hidden fixed bottom-[72px] left-3 z-[90] bg-ink text-paper text-xs font-semibold px-4 py-2.5 rounded-full shadow-card hover:bg-navy transition">📱 앱 설치</button>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => {}));
