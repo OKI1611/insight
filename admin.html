@@ -296,19 +296,21 @@
     let MEMBERS=[];
     async function loadMem(){
       const wrap=document.getElementById('memWrap');
-      let profs,err; try{ const r=await withTimeout(sb.from('profiles').select('id,full_name').limit(2000),8000); profs=r.data; err=r.error; }catch(e){ err=e; }
+      let profs,err; try{ const r=await withTimeout(sb.from('profiles').select('*').limit(5000),8000); profs=r.data; err=r.error; }catch(e){ err=e; }
       if(err||!profs){ wrap.innerHTML='<p class="text-ink/50 text-sm">회원 목록을 불러오지 못했습니다. (profiles 테이블 권한 또는 부재)</p>'; return; }
       let enr={},don={}; try{ const {data}=await sb.from('enrollments').select('user_id,track'); (data||[]).forEach(e=>{(enr[e.user_id]=enr[e.user_id]||[]).push(e.track);}); }catch(e){}
       try{ const {data}=await sb.from('lesson_progress').select('user_id,completed'); (data||[]).forEach(p=>{ if(p.completed) don[p.user_id]=(don[p.user_id]||0)+1; }); }catch(e){}
-      MEMBERS=profs.map(p=>({name:p.full_name||'(이름없음)', id:p.id, enr:(enr[p.id]||[]).length, done:don[p.id]||0}));
-      if(!MEMBERS.length){ wrap.innerHTML='<p class="text-ink/50 text-sm">표시할 회원이 없습니다. (RLS 정책상 본인 정보만 조회될 수 있어요 — 전체 회원 조회가 필요하면 profiles에 관리자 SELECT 정책을 추가하세요.)</p>'; return; }
-      wrap.innerHTML = `<p class="text-sm text-ink/50 mb-3">총 ${MEMBERS.length}명</p>
+      MEMBERS=profs.map(p=>({name:p.full_name||'(이름없음)', id:p.id, created:p.created_at||p.inserted_at||p.updated_at||null, enr:(enr[p.id]||[]).length, done:don[p.id]||0}));
+      MEMBERS.sort((a,b)=> (b.created?new Date(b.created):0) - (a.created?new Date(a.created):0));
+      if(!MEMBERS.length){ wrap.innerHTML='<p class="text-ink/50 text-sm">표시할 회원이 없습니다. (RLS 정책상 본인 정보만 조회될 수 있어요 — 전체 회원 조회가 필요하면 <code class="bg-ink/5 px-1 rounded">supabase_admin_profiles.sql</code>을 실행하세요.)</p>'; return; }
+      const fdate=d=> d? new Date(d).toLocaleDateString('ko') : '—';
+      wrap.innerHTML = `<p class="text-sm text-ink/50 mb-3">총 <b class="text-ink">${MEMBERS.length}</b>명 · 최신 가입순</p>
         <div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">
-        <thead class="text-ink/45 text-left border-b border-ink/5"><tr><th class="px-5 py-3 font-medium">이름</th><th class="px-5 py-3 font-medium">수강 트랙</th><th class="px-5 py-3 font-medium">완료 강의</th></tr></thead>
-        <tbody>${MEMBERS.map(m=>`<tr class="border-b border-ink/5"><td class="px-5 py-3 font-medium">${esc(m.name)}</td><td class="px-5 py-3 text-ink/60">${m.enr}개</td><td class="px-5 py-3 text-ink/60">${m.done}강</td></tr>`).join('')}</tbody></table></div>
+        <thead class="text-ink/45 text-left border-b border-ink/5"><tr><th class="px-5 py-3 font-medium">이름</th><th class="px-5 py-3 font-medium">가입일</th><th class="px-5 py-3 font-medium">수강 트랙</th><th class="px-5 py-3 font-medium">완료 강의</th></tr></thead>
+        <tbody>${MEMBERS.map(m=>`<tr class="border-b border-ink/5"><td class="px-5 py-3 font-medium">${esc(m.name)}</td><td class="px-5 py-3 text-ink/55">${fdate(m.created)}</td><td class="px-5 py-3 text-ink/60">${m.enr}개</td><td class="px-5 py-3 text-ink/60">${m.done}강</td></tr>`).join('')}</tbody></table></div>
         <p class="text-xs text-ink/35 mt-2">※ 이메일·연락처는 보안(auth)상 이 화면에서 조회되지 않습니다.</p>`;
     }
-    function exportMembersCSV(){ if(!MEMBERS.length){ toast('회원 데이터 없음'); return; } const rows=[['이름','수강트랙수','완료강의수'],...MEMBERS.map(m=>[m.name,m.enr,m.done])]; const csv='﻿'+rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n'); const b=new Blob([csv],{type:'text/csv'}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='회원목록.csv'; a.click(); toast('CSV 내려받음'); }
+    function exportMembersCSV(){ if(!MEMBERS.length){ toast('회원 데이터 없음'); return; } const fd=d=>d?new Date(d).toLocaleDateString('ko'):''; const rows=[['이름','가입일','수강트랙수','완료강의수'],...MEMBERS.map(m=>[m.name,fd(m.created),m.enr,m.done])]; const csv='﻿'+rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n'); const b=new Blob([csv],{type:'text/csv'}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='회원목록.csv'; a.click(); toast('CSV 내려받음'); }
 
     // ===== 노트·퀴즈 현황 =====
     async function loadCont(){
