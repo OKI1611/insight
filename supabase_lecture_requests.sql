@@ -28,7 +28,11 @@ create table if not exists public.lecture_request_votes (
 alter table public.lecture_requests       enable row level security;
 alter table public.lecture_request_votes  enable row level security;
 
--- 4) 정책 — 요청·건의 글
+-- 4) 정책 — 요청·건의 글 (재실행 안전: 기존 정책 있으면 먼저 제거)
+drop policy if exists "requests_select_all"         on public.lecture_requests;
+drop policy if exists "requests_insert_own"         on public.lecture_requests;
+drop policy if exists "requests_delete_owner_admin" on public.lecture_requests;
+drop policy if exists "requests_update_admin"       on public.lecture_requests;
 create policy "requests_select_all"        on public.lecture_requests for select using (true);
 create policy "requests_insert_own"        on public.lecture_requests for insert with check (auth.uid() = author_id);
 create policy "requests_delete_owner_admin" on public.lecture_requests for delete
@@ -38,6 +42,9 @@ create policy "requests_update_admin"      on public.lecture_requests for update
   with check ((auth.jwt() ->> 'email') = 'josephoh1611@gmail.com');
 
 -- 5) 정책 — 추천(투표)
+drop policy if exists "votes_select_all"  on public.lecture_request_votes;
+drop policy if exists "votes_insert_own"  on public.lecture_request_votes;
+drop policy if exists "votes_delete_own"  on public.lecture_request_votes;
 create policy "votes_select_all"  on public.lecture_request_votes for select using (true);
 create policy "votes_insert_own"  on public.lecture_request_votes for insert with check (auth.uid() = user_id);
 create policy "votes_delete_own"  on public.lecture_request_votes for delete using (auth.uid() = user_id);
