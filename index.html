@@ -59,6 +59,49 @@
 
 <body class="font-sans text-ink bg-paper antialiased">
 
+  <!-- ===== 브랜드 인트로 (로딩 인트로) ===== -->
+  <style>
+    #bootScreen{position:fixed;inset:0;z-index:200;background:#15203a;color:#fcfaf6;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.1rem;
+      animation:bootOut .8s ease 2.2s forwards}
+    #bootScreen .bootLetters{display:flex;gap:.06em;font-family:'Noto Serif KR',serif;font-weight:700;line-height:1;font-size:clamp(52px,13vw,104px)}
+    #bootScreen .bl{display:inline-block;opacity:0;transform:translateY(.42em) scale(.92);animation:blRise .75s cubic-bezier(.2,.8,.25,1) forwards;animation-delay:var(--d)}
+    #bootScreen .bl.g{color:#cda14a}
+    #bootScreen .bootUnder{height:2px;width:0;background:linear-gradient(90deg,transparent,#b8923f,transparent);animation:underGrow .7s ease 1.05s forwards}
+    #bootScreen .bootTag{opacity:0;font-size:13px;letter-spacing:.04em;color:rgba(252,250,246,.6);animation:bootFade .8s ease 1.2s forwards}
+    #bootScreen .bootTag b{color:#cda14a;font-weight:700}
+    @keyframes blRise{to{opacity:1;transform:none}}
+    @keyframes underGrow{to{width:min(360px,72vw)}}
+    @keyframes bootFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    @keyframes bootOut{to{opacity:0;visibility:hidden;pointer-events:none}}
+    /* 히어로 BIBLY 띠 — 금빛 shimmer */
+    .biShine{background:linear-gradient(100deg,#b8923f 18%,#e7d6ac 40%,#b8923f 62%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:biShine 3.6s linear infinite}
+    @keyframes biShine{to{background-position:-220% center}}
+    @media (prefers-reduced-motion: reduce){
+      #bootScreen{animation-delay:.3s}
+      #bootScreen .bl,#bootScreen .bootTag,#bootScreen .bootUnder{animation:none;opacity:1;transform:none;width:min(360px,72vw)}
+      .biShine{animation:none}
+    }
+  </style>
+  <div id="bootScreen" aria-hidden="true">
+    <div class="bootLetters">
+      <span class="bl" style="--d:.15s">B</span>
+      <span class="bl g" style="--d:.30s">I</span>
+      <span class="bl" style="--d:.45s">B</span>
+      <span class="bl g" style="--d:.60s">L</span>
+      <span class="bl" style="--d:.75s">Y</span>
+    </div>
+    <div class="bootUnder"></div>
+    <p class="bootTag"><b>Bible</b> + <b>Daily</b> — 날마다 말씀 곁에, 스스로 읽는 삶</p>
+  </div>
+  <script>
+    (function(){
+      var b = document.getElementById('bootScreen'); if(!b) return;
+      try{ if(sessionStorage.getItem('biblyBooted')){ b.style.display='none'; return; } sessionStorage.setItem('biblyBooted','1'); }catch(e){}
+      setTimeout(function(){ if(b && b.parentNode) b.parentNode.removeChild(b); }, 3200);
+    })();
+  </script>
+
+
   <!-- ===== 상단 유틸바 ===== -->
   <div class="bg-ink text-paper/70 text-xs">
     <div class="max-w-6xl mx-auto px-5 h-9 flex items-center justify-end gap-5">
@@ -167,6 +210,24 @@
         </a>
         <div class="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-card border border-ink/8 px-4 py-3 text-sm hidden md:block">
           <p class="font-bold text-gold">M.R.E</p><p class="text-ink/55 text-xs">미국 신학 석사 · 교육학 박사</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- BIBLY 브랜드 약속 (히어로) -->
+    <div class="relative max-w-5xl mx-auto px-5 mt-16 z-10">
+      <div class="rounded-2xl border border-ink/10 bg-white/70 backdrop-blur shadow-soft px-5 py-5 flex flex-col sm:flex-row items-center justify-center gap-x-7 gap-y-4 text-center">
+        <p class="text-sm text-ink/60 shrink-0 leading-snug">
+          <b class="text-ink text-base">BIBLY</b> <span class="text-ink/35">=</span> Bible <span class="text-gold font-bold">+</span> Daily
+          <span class="block text-xs text-ink/45 mt-0.5">날마다 말씀 곁에, 스스로 읽는 삶</span>
+        </p>
+        <div class="hidden sm:block w-px self-stretch bg-ink/10"></div>
+        <div class="flex items-end gap-4 sm:gap-7">
+          <div><span class="biShine font-display text-2xl sm:text-[28px] font-bold leading-none">B</span><span class="block text-[10px] sm:text-[11px] text-ink/55 mt-1">Bible</span></div>
+          <div><span class="biShine font-display text-2xl sm:text-[28px] font-bold leading-none">I</span><span class="block text-[10px] sm:text-[11px] text-ink/55 mt-1">Insight</span></div>
+          <div><span class="biShine font-display text-2xl sm:text-[28px] font-bold leading-none">B</span><span class="block text-[10px] sm:text-[11px] text-ink/55 mt-1">Believe</span></div>
+          <div><span class="biShine font-display text-2xl sm:text-[28px] font-bold leading-none">L</span><span class="block text-[10px] sm:text-[11px] text-ink/55 mt-1">Light</span></div>
+          <div><span class="biShine font-display text-2xl sm:text-[28px] font-bold leading-none">Y</span><span class="block text-[10px] sm:text-[11px] text-ink/55 mt-1">Yourself</span></div>
         </div>
       </div>
     </div>
