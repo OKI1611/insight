@@ -29,11 +29,14 @@
         + '<button onclick="__biblyFont(-1)" aria-label="글자 작게" class="rounded-full hover:bg-ink/5 text-ink/60" style="width:34px;height:34px;font-size:13px">가&minus;</button>'
         + '<button onclick="__biblyFont(1)" aria-label="글자 크게" class="rounded-full hover:bg-ink/5 text-ink font-bold" style="width:34px;height:34px;font-size:18px">가&#43;</button>'
         + '</div>'
-        + '<a href="community.html?board=qna" aria-label="무엇이든 질문하기" style="position:fixed;right:14px;bottom:14px;z-index:55" class="inline-flex items-center gap-2 bg-gold text-white font-bold rounded-full shadow-xl hover:opacity-95 transition" >'
+        + '<div style="position:fixed;right:14px;bottom:14px;z-index:55" class="flex flex-col items-end gap-2.5">'
+        + '<a href="index.html#support" aria-label="후원하기" class="inline-flex items-center gap-1.5 bg-rose-500 text-white font-bold rounded-full shadow-xl hover:bg-rose-600 transition" style="padding:11px 18px;font-size:15px"><span style="font-size:17px">♥</span> 후원하기</a>'
+        + '<a href="community.html?board=qna" aria-label="무엇이든 질문하기" class="inline-flex items-center gap-2 bg-gold text-white font-bold rounded-full shadow-xl hover:opacity-95 transition">'
         + '<span style="padding:13px 0 13px 18px;font-size:20px">💬</span>'
         + '<span class="hidden sm:inline" style="padding-right:20px;font-size:15px">무엇이든 물어보세요</span>'
         + '<span class="sm:hidden" style="padding-right:16px;font-size:14px">질문</span>'
-        + '</a>';
+        + '</a>'
+        + '</div>';
       document.body.appendChild(w);
     }
   }catch(e){}
@@ -58,7 +61,7 @@
   };
   function render(){
     var loggedIn = !!readStored();
-    var support = '<a href="index.html#support" class="hidden sm:inline-flex items-center gap-1 text-ink/55 hover:text-gold font-semibold text-xs whitespace-nowrap" title="후원">♥ 후원</a>';
+    var support = '';  // 후원은 떠 있는 큰 버튼으로 대체
     if(loggedIn){
       el.innerHTML = support
       + '<a href="mylearning.html" class="inline-flex items-center gap-1 bg-gold text-white font-semibold px-3 py-1.5 rounded-full hover:opacity-90 transition text-xs whitespace-nowrap">📚 내 강의실</a>'
