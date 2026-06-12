@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <script src="/content-loader.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>후원 · BIBLY 바이블 인사이트</title>
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#15203a" />
+  <link rel="apple-touch-icon" href="/images/icon-192.png" />
+  <meta name="description" content="BIBLY 바이블 인사이트 후원 — 모든 강의는 무료입니다. 한 사람의 분별을 세우는 이 사역에 함께해 주세요." />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink:'#15203a', navy:'#1b2a4a', gold:'#b8923f', goldsoft:'#e7d6ac', sand:'#efe7d6', paper:'#fcfaf6' },
+      fontFamily: { sans: ['Pretendard','system-ui','sans-serif'], display: ['"Noto Serif KR"','Pretendard','serif'] },
+      boxShadow: { card:'0 14px 40px -18px rgba(21,32,58,.22)', soft:'0 2px 10px -4px rgba(21,32,58,.10)' }
+    }}}
+  </script>
+  <style>
+    html{scroll-behavior:smooth}
+    body{ -webkit-font-smoothing:antialiased; letter-spacing:-0.005em; }
+    h1,h2{ font-family:'Noto Serif KR', Pretendard, serif; letter-spacing:-0.01em; font-weight:700; }
+    .eyebrow{letter-spacing:.34em; text-transform:uppercase}
+    a,button{transition:all .18s ease}
+  </style>
+</head>
+
+<body class="font-sans text-ink bg-paper antialiased">
+  <!-- 헤더 (가볍게) -->
+  <header class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-ink/8">
+    <nav class="max-w-3xl mx-auto px-5 h-16 flex items-center gap-3">
+      <a href="index.html" class="flex items-center gap-2.5">
+        <span class="w-9 h-9 rounded-xl bg-ink text-gold flex items-center justify-center text-lg">📖</span>
+        <span class="leading-none">
+          <span class="block font-extrabold tracking-tight text-[18px]">BIBLY<span class="text-gold">.</span></span>
+          <span class="block text-[10px] text-ink/50 tracking-[0.04em] mt-0.5">말씀으로 시대를 읽다</span>
+        </span>
+      </a>
+      <a href="index.html" class="ml-auto text-sm text-ink/55 hover:text-gold whitespace-nowrap">← 홈으로</a>
+    </nav>
+  </header>
+
+  <!-- 후원 본문 -->
+  <main class="bg-ink text-paper">
+    <section class="py-16 md:py-20">
+      <div class="max-w-2xl mx-auto px-5 text-center">
+        <p class="eyebrow text-gold text-xs font-semibold mb-4">SUPPORT · 함께 밝히는 빛</p>
+        <h1 class="text-2xl md:text-[32px] font-bold mb-6 leading-snug">강단에서 내쳐진 한 사람의 외침이,<br class="hidden sm:block"/> 지금 누군가의 어둠을 밝히고 있습니다</h1>
+
+        <div class="text-left space-y-4 text-paper/75 leading-[1.95] text-[15px] mb-8">
+          <p>이곳의 모든 강의는 <b class="text-paper">무료</b>입니다. 광고도, 협찬도, 수강료도 없습니다. 종말의 두려움에 떨던 사람이 분별을 얻고, 교회에 상처받아 성경을 덮었던 이가 다시 말씀 앞에 앉습니다. 그 변화의 고백이 매일 메일함에 도착합니다.</p>
+          <p>“이 강의가 제 신앙을 살렸습니다.” — 이 한마디를 위해, 한 사람은 오늘도 새벽까지 본문을 파고들고, 자막을 달고, 노트를 씁니다. <b class="text-gold">이 사역은 오직, 그 가치를 알아본 당신의 후원으로 움직입니다.</b></p>
+          <p>커피 한 잔의 나눔이, 누군가에게는 <b class="text-paper">평생 흔들리지 않을 분별의 기준</b>이 됩니다. 당신의 작은 손길이 한 영혼의 어둠을 밝히고, 다음 세대에까지 진리를 흘려보냅니다.</p>
+          <p class="text-paper font-semibold text-base">이 빛을, 함께 이어가 주시겠어요?</p>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-paper/55 mb-8">
+          <span>💡 당신의 후원이 만드는 것</span>
+          <span class="text-paper/75">✓ 새 강의 제작</span>
+          <span class="text-paper/75">✓ 무료 자료·노트 제작</span>
+          <span class="text-paper/75">✓ 평생 무료 공개 유지</span>
+        </div>
+
+        <!-- 추천 후원 금액 -->
+        <div class="max-w-md mx-auto mb-5">
+          <p class="text-paper/55 text-xs mb-2">💛 이만큼이면 충분해요 — 부담 없이</p>
+          <div class="grid grid-cols-3 gap-2">
+            <div class="bg-white/5 border border-white/12 rounded-xl py-3"><p class="font-bold text-sm">☕ 5,000원</p><p class="text-paper/45 text-[11px] mt-0.5">커피 한 잔</p></div>
+            <div class="bg-white/5 border border-white/12 rounded-xl py-3"><p class="font-bold text-sm">🍚 10,000원</p><p class="text-paper/45 text-[11px] mt-0.5">한 끼 식사</p></div>
+            <div class="bg-white/5 border border-white/12 rounded-xl py-3"><p class="font-bold text-sm">💪 30,000원</p><p class="text-paper/45 text-[11px] mt-0.5">든든한 응원</p></div>
+          </div>
+          <p class="text-paper/35 text-[11px] mt-2">※ 금액은 결제·송금 앱에서 자유롭게 정하시면 돼요. 한 번도, 매달도 좋습니다.</p>
+        </div>
+
+        <!-- 후원 버튼 (content/site.json 에서 관리) -->
+        <div class="max-w-md mx-auto space-y-3">
+          <a id="simplepayLink" href="#" target="_blank" rel="noopener" style="display:none"
+             class="flex items-center justify-center gap-2 bg-[#3182f6] text-white font-semibold py-3.5 rounded-2xl hover:opacity-90 transition">
+            간편 송금하기 <span class="text-white/70 text-sm font-normal">(토스·계좌)</span>
+          </a>
+          <a id="kakaopayLink" href="#" target="_blank" rel="noopener" style="display:none"
+             class="flex items-center justify-center gap-2 bg-[#FEE500] text-[#3c1e1e] font-semibold py-3.5 rounded-2xl hover:opacity-90 transition">
+            카카오페이로 후원하기 <span class="text-[#3c1e1e]/60 text-sm font-normal">(원클릭)</span>
+          </a>
+          <a id="paypalLink" href="https://paypal.me/oki1611" target="_blank" rel="noopener"
+             class="flex items-center justify-center gap-2 bg-[#0070ba] text-white font-semibold py-3.5 rounded-2xl hover:opacity-90 transition">
+            PayPal로 후원하기 <span class="text-white/70 text-sm font-normal">(해외 후원)</span>
+          </a>
+          <p id="kakaoHint" class="text-paper/40 text-xs" style="display:none">📱 카카오페이는 모바일에서 바로 열리고, PC에서는 QR코드가 떠요.</p>
+
+          <!-- 계좌이체 -->
+          <div class="bg-white/5 border border-white/12 rounded-2xl p-5 text-left mt-2 flex items-center justify-between gap-3">
+            <div class="min-w-0">
+              <p id="bankLabel" class="text-paper/55 text-xs mb-1">계좌이체 · 우리은행</p>
+              <p id="bankAccount" class="text-base font-semibold tracking-tight">1006-301-266177 <span class="text-paper/50 text-xs font-normal">예금주 오광일</span></p>
+            </div>
+            <button onclick="copyBankAcct()" class="shrink-0 bg-white/10 hover:bg-white/20 text-paper text-xs font-semibold px-3.5 py-2 rounded-lg transition">📋 복사</button>
+          </div>
+        </div>
+
+        <p class="text-paper/40 text-xs mt-6 leading-relaxed">
+          ※ 후원은 전적으로 자발적이며 어떤 대가도 따르지 않습니다. 기부금 영수증은 발행되지 않습니다.
+        </p>
+
+        <!-- 기도 후원 대안 -->
+        <div class="mt-10 pt-8 border-t border-white/10">
+          <p class="text-paper/70 text-sm leading-relaxed mb-4">물질의 후원이 어려우셔도 괜찮습니다.<br/><b class="text-paper">당신의 기도가 이 사역의 가장 큰 힘</b>입니다.</p>
+          <a href="community.html?board=prayer&write=1" class="inline-flex items-center gap-1.5 border border-white/20 text-paper/85 font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-white/5 transition">🙏 기도로 함께하기</a>
+        </div>
+
+        <!-- 문의 -->
+        <div class="mt-10 pt-8 border-t border-white/10">
+          <p class="eyebrow text-gold text-xs font-semibold mb-3">CONTACT</p>
+          <h2 class="font-bold mb-2 text-base">비즈니스 및 강연 문의</h2>
+          <a id="contactEmail" href="mailto:josephoh1611@gmail.com" class="inline-block text-paper/85 hover:text-gold transition">✉ josephoh1611@gmail.com</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-8 text-center text-ink/45 text-xs bg-paper">
+    <p>© BIBLY · 바이블 인사이트 — 오광일의 인사이트 브리핑</p>
+    <p class="mt-1"><a href="index.html" class="hover:text-gold">홈으로 돌아가기 →</a></p>
+  </footer>
+
+  <!-- 카카오페이 QR 모달 (PC 후원용) -->
+  <div id="kakaoQrModal" style="display:none" class="fixed inset-0 z-[100] items-center justify-center bg-black/60 p-4"
+       onclick="if(event.target===this)this.style.display='none'">
+    <div class="bg-white rounded-2xl p-6 max-w-xs w-full text-center shadow-2xl" style="color:#1a1a1a">
+      <div class="flex items-center justify-center gap-2 mb-1"><span class="text-2xl">💛</span><h2 class="font-bold text-lg">카카오페이로 후원</h2></div>
+      <p class="text-sm text-gray-500 mb-4">휴대폰 카메라 또는 카카오톡으로<br>아래 QR을 스캔해 주세요</p>
+      <div id="kakaoQrBox" class="flex items-center justify-center mx-auto" style="min-height:220px"></div>
+      <button onclick="document.getElementById('kakaoQrModal').style.display='none'"
+              class="mt-5 w-full py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 font-semibold text-sm">닫기</button>
+    </div>
+  </div>
+
+  <script>
+    // 후원 정보 로드 (content/site.json — content-loader가 관리자 최신본으로 가로챔)
+    fetch('content/site.json?t=' + Date.now()).then(r => r.json()).then(site => {
+      const s = (site && site.support) || {};
+      const sp = document.getElementById('simplepayLink');
+      const spUrl = s.simplepay_url || s.toss_url;
+      if (sp && spUrl) { sp.href = spUrl; sp.style.display = 'flex'; }
+      const setHref = (id, url) => { const e = document.getElementById(id); if(!e) return; if(url){ e.href = url; e.style.display = 'flex'; } else { e.style.display = 'none'; } };
+      setHref('kakaopayLink', s.kakaopay_url);
+      setHref('paypalLink', s.paypal_url);
+      const kpEl = document.getElementById('kakaopayLink');
+      if (kpEl && s.kakaopay_url) {
+        const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        if (!isMobile) {
+          const hint = document.getElementById('kakaoHint'); if (hint) hint.style.display = 'block';
+          kpEl.addEventListener('click', (e) => { e.preventDefault(); openKakaoQR(s.kakaopay_url); });
+        }
+      }
+      if (s.bank_name) { const e = document.getElementById('bankLabel'); if(e) e.textContent = '계좌이체 · ' + s.bank_name; }
+      const ba = document.getElementById('bankAccount');
+      if (ba && (s.bank_account || s.bank_holder))
+        ba.innerHTML = (s.bank_account || '') + ' <span class="text-paper/50 text-xs font-normal">예금주 ' + (s.bank_holder || '') + '</span>';
+      const ce = document.getElementById('contactEmail');
+      if (ce && s.contact_email) { ce.href = 'mailto:' + s.contact_email; ce.textContent = '✉ ' + s.contact_email; }
+    }).catch(() => {});
+
+    function copyBankAcct(){
+      const el = document.getElementById('bankAccount');
+      const m = (el ? el.textContent : '').match(/[\d-]{8,}/);
+      const txt = m ? m[0] : '1006-301-266177';
+      const done = () => alert('계좌번호를 복사했어요! 📋\n' + txt + '  (우리은행 · 예금주 오광일)');
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done).catch(() => prompt('아래 계좌번호를 복사하세요:', txt)); }
+      else { prompt('아래 계좌번호를 복사하세요:', txt); }
+    }
+    function openKakaoQR(url){
+      const modal = document.getElementById('kakaoQrModal');
+      const box = document.getElementById('kakaoQrBox');
+      const render = () => {
+        try {
+          const qr = qrcode(0, 'M'); qr.addData(url); qr.make();
+          box.innerHTML = qr.createImgTag(6, 8);
+          const img = box.querySelector('img');
+          if (img) { img.style.width = '220px'; img.style.height = '220px'; img.style.imageRendering = 'pixelated'; }
+        } catch(e) {
+          box.innerHTML = '<a href="'+url+'" target="_blank" rel="noopener" class="text-blue-600 underline break-all text-sm">'+url+'</a>';
+        }
+        modal.style.display = 'flex';
+      };
+      if (window.qrcode) { render(); return; }
+      const sc = document.createElement('script');
+      sc.src = 'https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js';
+      sc.onload = render;
+      sc.onerror = () => {
+        box.innerHTML = '<p class="text-sm mb-2">모바일 카카오톡에서 아래 링크를 열어 주세요:</p><a href="'+url+'" target="_blank" rel="noopener" class="text-blue-600 underline break-all text-sm">'+url+'</a>';
+        modal.style.display = 'flex';
+      };
+      document.head.appendChild(sc);
+    }
+  </script>
+</body>
+</html>

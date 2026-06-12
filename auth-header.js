@@ -11,9 +11,8 @@
     }
   }catch(e){}
 
-  // 후원 링크 — 홈이면 #support(부드러운 스크롤), 다른 페이지면 index로 이동
-  var onHome = (location.pathname === '/' || /(^|\/)index\.html$/.test(location.pathname));
-  var SUP = onHome ? '#support' : 'index.html#support';
+  // 후원 링크 — 가볍고 빠른 전용 후원 페이지로
+  var SUP = 'support.html';
 
   // ===== 접근성·질문 플로팅 UI (모든 페이지) =====
   try{
