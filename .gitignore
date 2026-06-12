@@ -4,6 +4,9 @@
 *.hwp
 PLAN.md
 
+# 단, files/ 안의 PDF는 공개용(가입 선물 등)이므로 추적 허용
+!files/*.pdf
+
 # Netlify Drop용 임시 복사 폴더 (방법 B에서는 루트 파일이 원본)
 site/
 
