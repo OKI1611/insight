@@ -3,224 +3,359 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>관리자 — 오광일 인사이트 브리핑</title>
+  <title>관리자 콘솔 — BIBLY 바이블 인사이트</title>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { theme: { extend: {
-      colors: { ink:'#16213e', navy:'#1b2a4a', gold:'#bf9b46', paper:'#f6f7fb' },
+      colors: { ink:'#15203a', navy:'#1b2a4a', gold:'#b8923f', paper:'#f6f7fb', sand:'#efe7d6' },
       fontFamily: { sans: ['Pretendard','system-ui','sans-serif'] }
     }}}
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
+    const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+    const ADMIN_EMAIL = 'josephoh1611@gmail.com';
+  </script>
+  <style>input,select,textarea{outline:none}</style>
 </head>
 <body class="font-sans bg-paper text-ink antialiased">
 
-  <!-- 데모 안내 배너 -->
-  <div class="bg-gold/20 text-ink text-center text-sm py-2 border-b border-gold/30">
-    🧪 <b>데모 미리보기</b> — 실제 데이터 연동 전 디자인 목업입니다. 버튼은 아직 동작하지 않습니다.
-    <a href="index.html" class="underline ml-2">← 홈페이지로</a>
+  <!-- ===== 로그인 게이트 ===== -->
+  <div id="gate" class="fixed inset-0 z-50 bg-ink flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl shadow-2xl p-8 max-w-sm w-full text-center">
+      <p class="text-3xl mb-3">🔐</p>
+      <h1 class="text-lg font-bold mb-1">관리자 콘솔</h1>
+      <p id="gateMsg" class="text-sm text-ink/55 mb-6">관리자 계정으로 로그인하세요.</p>
+      <button onclick="googleLogin()" class="w-full flex items-center justify-center gap-3 border border-ink/15 rounded-xl py-3 font-medium hover:bg-ink/5 transition mb-3">
+        <svg class="w-5 h-5" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C39.9 36.5 44 31 44 24c0-1.3-.1-2.3-.4-3.5z"/></svg>
+        구글로 로그인
+      </button>
+      <input id="ge" type="email" placeholder="이메일" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm focus:border-gold mb-2"/>
+      <input id="gp" type="password" placeholder="비밀번호" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm focus:border-gold mb-2"/>
+      <button onclick="emailLogin()" class="w-full bg-ink text-paper font-semibold rounded-xl py-3 hover:bg-navy transition">이메일로 로그인</button>
+      <p id="gateErr" class="text-red-500 text-xs mt-2 min-h-[16px]"></p>
+      <a href="index.html" class="text-ink/40 text-xs hover:text-gold">← 홈페이지로</a>
+    </div>
   </div>
 
-  <div class="flex min-h-screen">
-    <!-- ===== 사이드바 ===== -->
-    <aside class="w-60 bg-ink text-paper/80 flex flex-col shrink-0">
-      <div class="px-6 py-6 border-b border-white/10">
-        <p class="font-bold text-paper">오광일 <span class="text-gold">관리자</span></p>
-        <p class="text-xs text-paper/50 mt-1">Admin Console</p>
+  <!-- ===== 콘솔 ===== -->
+  <div id="console" class="hidden flex min-h-screen">
+    <aside class="w-56 bg-ink text-paper/80 flex flex-col shrink-0 sticky top-0 h-screen">
+      <div class="px-5 py-5 border-b border-white/10">
+        <p class="font-bold text-paper">BIBLY <span class="text-gold">관리자</span></p>
+        <p id="adminWho" class="text-[11px] text-paper/45 mt-1"></p>
       </div>
-      <nav class="flex-1 px-3 py-4 space-y-1 text-sm">
-        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-white/10 text-paper font-medium" href="#">📊 대시보드</a>
-        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5" href="#">🎬 클래스 관리</a>
-        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5" href="#">🎟️ 수강권 · 가격</a>
-        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5" href="#">👥 회원 · 수강생</a>
-        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5" href="#">✍️ 인사이트(글)</a>
-        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5" href="#">📂 자료실</a>
-        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5" href="#">💳 결제 · 주문</a>
-        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5" href="#">📦 인쇄본 배송</a>
-        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5" href="#">♥ 후원 내역</a>
-        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5" href="#">⚙️ 설정</a>
+      <nav id="nav" class="flex-1 px-3 py-4 space-y-1 text-sm overflow-auto">
+        <button data-sec="dash"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">📊 대시보드</button>
+        <button data-sec="curr"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">🎬 커리큘럼 편집</button>
+        <button data-sec="reqs"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">📮 강의 요청·건의</button>
+        <button data-sec="comm"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">💬 커뮤니티</button>
+        <button data-sec="mem"    class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">👥 회원</button>
+        <button data-sec="cont"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">📝 노트·퀴즈 현황</button>
+        <button data-sec="site"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">⚙️ 사이트 설정</button>
       </nav>
-      <div class="px-6 py-4 border-t border-white/10 text-xs text-paper/50">오광일 · 운영자</div>
+      <div class="px-5 py-4 border-t border-white/10">
+        <button onclick="logout()" class="text-xs text-paper/55 hover:text-gold">로그아웃</button>
+        <a href="index.html" class="block text-xs text-paper/35 hover:text-gold mt-1">홈페이지 보기 →</a>
+      </div>
     </aside>
 
-    <!-- ===== 본문 ===== -->
-    <main class="flex-1 p-8 overflow-auto">
-      <div class="flex items-center justify-between mb-8">
-        <div>
-          <h1 class="text-2xl font-bold">대시보드</h1>
-          <p class="text-ink/50 text-sm mt-1">2026년 6월 · 한눈에 보는 사역 현황</p>
-        </div>
-        <button class="bg-ink text-paper text-sm font-semibold px-4 py-2.5 rounded-lg hover:bg-navy transition">+ 새 클래스 만들기</button>
-      </div>
+    <main class="flex-1 p-6 lg:p-8 overflow-auto">
 
-      <!-- 핵심 지표 카드 -->
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <div class="bg-white rounded-2xl p-5 border border-ink/5 shadow-sm">
-          <p class="text-sm text-ink/50">이번 달 매출</p>
-          <p class="text-2xl font-bold mt-1">₩ 1,840,000</p>
-          <p class="text-xs text-green-600 mt-1">▲ 전월 대비 +23%</p>
+      <!-- 대시보드 -->
+      <section id="sec-dash" class="secPanel">
+        <h1 class="text-2xl font-bold mb-1">대시보드</h1>
+        <p class="text-ink/50 text-sm mb-6">실시간 운영 현황</p>
+        <div id="statCards" class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6"></div>
+        <div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-5">
+          <h2 class="font-bold mb-3">콘텐츠 요약</h2>
+          <div id="contentSummary" class="text-sm text-ink/70 leading-relaxed">불러오는 중…</div>
         </div>
-        <div class="bg-white rounded-2xl p-5 border border-ink/5 shadow-sm">
-          <p class="text-sm text-ink/50">총 수강생</p>
-          <p class="text-2xl font-bold mt-1">312명</p>
-          <p class="text-xs text-green-600 mt-1">▲ 신규 +28</p>
-        </div>
-        <div class="bg-white rounded-2xl p-5 border border-ink/5 shadow-sm">
-          <p class="text-sm text-ink/50">이번 달 후원</p>
-          <p class="text-2xl font-bold mt-1">₩ 420,000</p>
-          <p class="text-xs text-ink/40 mt-1">후원자 18명</p>
-        </div>
-        <div class="bg-white rounded-2xl p-5 border border-ink/5 shadow-sm">
-          <p class="text-sm text-ink/50">배송 대기</p>
-          <p class="text-2xl font-bold mt-1">7건</p>
-          <p class="text-xs text-amber-600 mt-1">● 인쇄본 발송 필요</p>
-        </div>
-      </div>
+      </section>
 
-      <div class="grid lg:grid-cols-3 gap-6">
-        <!-- 클래스 관리 -->
-        <div class="lg:col-span-2 bg-white rounded-2xl border border-ink/5 shadow-sm">
-          <div class="flex items-center justify-between px-6 py-4 border-b border-ink/5">
-            <h2 class="font-bold">클래스 관리</h2>
-            <a href="#" class="text-sm text-gold hover:underline">전체 보기</a>
-          </div>
-          <table class="w-full text-sm">
-            <thead class="text-ink/45 text-left">
-              <tr class="border-b border-ink/5">
-                <th class="px-6 py-3 font-medium">클래스</th>
-                <th class="px-6 py-3 font-medium">단계</th>
-                <th class="px-6 py-3 font-medium">수강생</th>
-                <th class="px-6 py-3 font-medium">상태</th>
-                <th class="px-6 py-3 font-medium"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="border-b border-ink/5">
-                <td class="px-6 py-4 font-medium">천년왕국 세미나</td>
-                <td class="px-6 py-4 text-ink/60">중급</td>
-                <td class="px-6 py-4 text-ink/60">198</td>
-                <td class="px-6 py-4"><span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">공개중</span></td>
-                <td class="px-6 py-4 text-right"><button class="text-ink/40 hover:text-gold">편집</button></td>
-              </tr>
-              <tr class="border-b border-ink/5">
-                <td class="px-6 py-4 font-medium">성경을 보는 눈 (입문)</td>
-                <td class="px-6 py-4 text-ink/60">기초</td>
-                <td class="px-6 py-4 text-ink/60">86</td>
-                <td class="px-6 py-4"><span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">공개중</span></td>
-                <td class="px-6 py-4 text-right"><button class="text-ink/40 hover:text-gold">편집</button></td>
-              </tr>
-              <tr>
-                <td class="px-6 py-4 font-medium">언약으로 읽는 성경</td>
-                <td class="px-6 py-4 text-ink/60">초급</td>
-                <td class="px-6 py-4 text-ink/60">28</td>
-                <td class="px-6 py-4"><span class="bg-amber-100 text-amber-700 text-xs px-2 py-1 rounded-full">준비중</span></td>
-                <td class="px-6 py-4 text-right"><button class="text-ink/40 hover:text-gold">편집</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- 최근 주문 -->
-        <div class="bg-white rounded-2xl border border-ink/5 shadow-sm">
-          <div class="px-6 py-4 border-b border-ink/5"><h2 class="font-bold">최근 결제</h2></div>
-          <ul class="divide-y divide-ink/5 text-sm">
-            <li class="px-6 py-4 flex justify-between">
-              <div><p class="font-medium">김OO</p><p class="text-ink/45 text-xs">천년왕국·스탠다드</p></div>
-              <span class="font-semibold">₩49,000</span>
-            </li>
-            <li class="px-6 py-4 flex justify-between">
-              <div><p class="font-medium">이OO</p><p class="text-ink/45 text-xs">천년왕국·프리미엄</p></div>
-              <span class="font-semibold">₩79,000</span>
-            </li>
-            <li class="px-6 py-4 flex justify-between">
-              <div><p class="font-medium">박OO</p><p class="text-ink/45 text-xs">기초·라이트</p></div>
-              <span class="font-semibold">₩19,000</span>
-            </li>
-            <li class="px-6 py-4 flex justify-between">
-              <div><p class="font-medium">최OO</p><p class="text-ink/45 text-xs">후원</p></div>
-              <span class="font-semibold text-gold">₩30,000</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- 글 관리 미리 -->
-      <div class="mt-6 bg-white rounded-2xl border border-ink/5 shadow-sm">
-        <div class="flex items-center justify-between px-6 py-4 border-b border-ink/5">
-          <h2 class="font-bold">인사이트(글) 관리</h2>
-          <button class="bg-gold text-white text-sm font-semibold px-3 py-1.5 rounded-lg">+ 새 글 작성</button>
-        </div>
-        <ul class="divide-y divide-ink/5 text-sm">
-          <li class="px-6 py-4 flex items-center justify-between">
-            <span>양과 염소의 심판, 정말 ‘구제하라’는 말씀일까?</span>
-            <span class="flex gap-2 text-ink/40"><button class="hover:text-gold">편집</button><button class="hover:text-red-500">삭제</button></span>
-          </li>
-          <li class="px-6 py-4 flex items-center justify-between">
-            <span>거룩한 가면의 시대, 무엇을 분별할 것인가</span>
-            <span class="flex gap-2 text-ink/40"><button class="hover:text-gold">편집</button><button class="hover:text-red-500">삭제</button></span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- 회원 관리 -->
-      <div class="mt-6 bg-white rounded-2xl border border-ink/5 shadow-sm">
-        <div class="flex flex-wrap items-center justify-between gap-3 px-6 py-4 border-b border-ink/5">
-          <h2 class="font-bold">회원 · 수강생 관리</h2>
-          <div class="flex items-center gap-2">
-            <div class="flex items-center bg-paper border border-ink/10 rounded-lg px-3 py-1.5 text-sm">
-              <span class="text-ink/35">🔎</span>
-              <input placeholder="이름·이메일 검색" class="bg-transparent outline-none ml-2 w-40"/>
-            </div>
-            <button class="border border-ink/15 text-sm px-3 py-1.5 rounded-lg hover:bg-ink/5">엑셀 내보내기</button>
+      <!-- 커리큘럼 편집 -->
+      <section id="sec-curr" class="secPanel hidden">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-1">
+          <h1 class="text-2xl font-bold">커리큘럼 편집</h1>
+          <div class="flex gap-2">
+            <button onclick="addTrack()" class="border border-ink/15 text-sm px-3 py-2 rounded-lg hover:bg-ink/5">+ 트랙 추가</button>
+            <button onclick="copyCourse()" class="border border-ink/15 text-sm px-3 py-2 rounded-lg hover:bg-ink/5">📋 클립보드 복사</button>
+            <button onclick="exportCourse()" class="bg-ink text-paper text-sm font-semibold px-4 py-2 rounded-lg hover:bg-navy">💾 course.json 내보내기</button>
           </div>
         </div>
-        <div class="overflow-x-auto">
-          <table class="w-full text-sm whitespace-nowrap">
-            <thead class="text-ink/45 text-left">
-              <tr class="border-b border-ink/5">
-                <th class="px-6 py-3 font-medium">실명</th>
-                <th class="px-6 py-3 font-medium">휴대폰</th>
-                <th class="px-6 py-3 font-medium">이메일</th>
-                <th class="px-6 py-3 font-medium">배송 주소</th>
-                <th class="px-6 py-3 font-medium">가입경로</th>
-                <th class="px-6 py-3 font-medium">가입일</th>
-                <th class="px-6 py-3 font-medium">수강</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="border-b border-ink/5">
-                <td class="px-6 py-4 font-medium">김성도</td>
-                <td class="px-6 py-4 text-ink/60">010-1234-5678</td>
-                <td class="px-6 py-4 text-ink/60">kim@example.com</td>
-                <td class="px-6 py-4 text-ink/60">서울시 강남구 …</td>
-                <td class="px-6 py-4"><span class="bg-[#FEE500]/40 text-[#3c1e1e] text-xs px-2 py-1 rounded-full">카카오</span></td>
-                <td class="px-6 py-4 text-ink/60">2026-06-01</td>
-                <td class="px-6 py-4 text-ink/60">천년왕국·프리미엄</td>
-              </tr>
-              <tr class="border-b border-ink/5">
-                <td class="px-6 py-4 font-medium">이믿음</td>
-                <td class="px-6 py-4 text-ink/60">010-2222-3333</td>
-                <td class="px-6 py-4 text-ink/60">lee@example.com</td>
-                <td class="px-6 py-4 text-ink/30">—</td>
-                <td class="px-6 py-4"><span class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded-full">구글</span></td>
-                <td class="px-6 py-4 text-ink/60">2026-05-29</td>
-                <td class="px-6 py-4 text-ink/60">천년왕국·스탠다드</td>
-              </tr>
-              <tr>
-                <td class="px-6 py-4 font-medium">박소망</td>
-                <td class="px-6 py-4 text-ink/60">010-9876-5432</td>
-                <td class="px-6 py-4 text-ink/60">park@example.com</td>
-                <td class="px-6 py-4 text-ink/60">부산시 해운대구 …</td>
-                <td class="px-6 py-4"><span class="bg-[#FEE500]/40 text-[#3c1e1e] text-xs px-2 py-1 rounded-full">카카오</span></td>
-                <td class="px-6 py-4 text-ink/60">2026-05-27</td>
-                <td class="px-6 py-4 text-ink/60">기초·라이트</td>
-              </tr>
-            </tbody>
-          </table>
+        <p class="text-ink/50 text-sm mb-4">강의 제목·길이·태그·공개여부를 고치고 순서를 바꾼 뒤, <b class="text-ink">내보내기</b>로 받은 파일을 <code class="bg-ink/5 px-1 rounded">content/course.json</code>에 덮어쓰면 됩니다. (또는 복사해서 클로드에게 전달)</p>
+        <div id="currWrap" class="space-y-4">불러오는 중…</div>
+      </section>
+
+      <!-- 강의 요청 -->
+      <section id="sec-reqs" class="secPanel hidden">
+        <h1 class="text-2xl font-bold mb-1">강의 요청 · 건의 관리</h1>
+        <p class="text-ink/50 text-sm mb-6">수강생이 올린 요청을 관리합니다. (상태 변경·답변·삭제)</p>
+        <div id="reqWrap">불러오는 중…</div>
+      </section>
+
+      <!-- 커뮤니티 -->
+      <section id="sec-comm" class="secPanel hidden">
+        <h1 class="text-2xl font-bold mb-1">커뮤니티 관리</h1>
+        <p class="text-ink/50 text-sm mb-6">최근 글을 확인하고, 부적절한 글을 삭제합니다.</p>
+        <div id="commWrap">불러오는 중…</div>
+      </section>
+
+      <!-- 회원 -->
+      <section id="sec-mem" class="secPanel hidden">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-1">
+          <h1 class="text-2xl font-bold">회원</h1>
+          <button onclick="exportMembersCSV()" class="border border-ink/15 text-sm px-3 py-2 rounded-lg hover:bg-ink/5">엑셀(CSV) 내보내기</button>
         </div>
-        <p class="px-6 py-3 text-xs text-ink/35 border-t border-ink/5">총 312명 · 실명·휴대폰·이메일·주소가 가입 시 자동 저장되어 여기에 표시됩니다.</p>
-      </div>
+        <p class="text-ink/50 text-sm mb-6">가입 회원과 수강·진도 현황입니다.</p>
+        <div id="memWrap">불러오는 중…</div>
+      </section>
+
+      <!-- 노트·퀴즈 현황 -->
+      <section id="sec-cont" class="secPanel hidden">
+        <h1 class="text-2xl font-bold mb-1">노트 · 퀴즈 현황</h1>
+        <p class="text-ink/50 text-sm mb-6">강의별 요약노트·진단평가(퀴즈) 보유 여부입니다. 트랙을 펼치면 검사합니다.</p>
+        <div id="contWrap">불러오는 중…</div>
+      </section>
+
+      <!-- 사이트 설정 -->
+      <section id="sec-site" class="secPanel hidden">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-1">
+          <h1 class="text-2xl font-bold">사이트 설정</h1>
+          <div class="flex gap-2">
+            <button onclick="copySite()" class="border border-ink/15 text-sm px-3 py-2 rounded-lg hover:bg-ink/5">📋 복사</button>
+            <button onclick="exportSite()" class="bg-ink text-paper text-sm font-semibold px-4 py-2 rounded-lg hover:bg-navy">💾 site.json 내보내기</button>
+          </div>
+        </div>
+        <p class="text-ink/50 text-sm mb-4">브랜드·후원 계좌·가입 선물 등을 수정한 뒤 내보내 <code class="bg-ink/5 px-1 rounded">content/site.json</code>에 덮어쓰세요.</p>
+        <div id="siteWrap" class="max-w-2xl space-y-5">불러오는 중…</div>
+      </section>
+
     </main>
   </div>
+
+  <!-- 토스트 -->
+  <div id="toast" class="hidden fixed bottom-5 right-5 z-[60] bg-ink text-paper text-sm px-5 py-3 rounded-xl shadow-lg"></div>
+
+  <script>
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { lock: async (_n,_t,fn)=>await fn() } });
+    let USER = null;
+    function esc(s){ return (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+    function withTimeout(p,ms){ return Promise.race([Promise.resolve(p), new Promise((_,r)=>setTimeout(()=>r(new Error('TIMEOUT')),ms))]); }
+    function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.classList.remove('hidden'); setTimeout(()=>t.classList.add('hidden'),2200); }
+    function tableMissing(e){ return e && (e.code==='42P01' || /relation|does not exist|schema cache|find the table/i.test(e.message||'')); }
+
+    // ===== 인증 =====
+    function readStored(){ try{ for(const k of Object.keys(localStorage)){ if(!/auth-token/.test(k)) continue; const v=JSON.parse(localStorage.getItem(k)); const s=(v&&v.user)?v:(v&&v.currentSession)?v.currentSession:null; if(s&&s.user){ if(s.expires_at&&s.expires_at*1000<Date.now()) return null; return s; } } }catch(e){} return null; }
+    sb.auth.onAuthStateChange((_e,s)=>applyAuth(s));
+    applyAuth(readStored());
+    async function googleLogin(){ await sb.auth.signInWithOAuth({ provider:'google', options:{ redirectTo: location.href } }); }
+    async function emailLogin(){ const email=document.getElementById('ge').value.trim(), password=document.getElementById('gp').value; const m=document.getElementById('gateErr'); m.textContent=''; if(!email||!password){ m.textContent='이메일과 비밀번호를 입력하세요.'; return; } const {error}=await sb.auth.signInWithPassword({email,password}); if(error) m.textContent='로그인 실패: '+error.message; }
+    async function logout(){ await sb.auth.signOut(); location.reload(); }
+    function applyAuth(session){
+      USER = (session && session.user) || null;
+      const isAdmin = USER && USER.email === ADMIN_EMAIL;
+      if(isAdmin){
+        document.getElementById('gate').classList.add('hidden');
+        const c=document.getElementById('console'); c.classList.remove('hidden'); c.classList.add('flex');
+        document.getElementById('adminWho').textContent = USER.email;
+        initConsole();
+      } else {
+        document.getElementById('gate').classList.remove('hidden');
+        document.getElementById('console').classList.add('hidden');
+        if(USER) document.getElementById('gateMsg').innerHTML = '이 계정(<b>'+esc(USER.email)+'</b>)은 관리자가 아니에요.<br>관리자 계정으로 로그인하세요.';
+      }
+    }
+
+    // ===== 라우팅 =====
+    let started=false;
+    function initConsole(){ if(started) return; started=true;
+      document.querySelectorAll('.navItem').forEach(b=> b.addEventListener('click',()=>show(b.dataset.sec)));
+      show('dash');
+    }
+    const LOADED={};
+    function show(sec){
+      document.querySelectorAll('.secPanel').forEach(p=>p.classList.add('hidden'));
+      document.getElementById('sec-'+sec).classList.remove('hidden');
+      document.querySelectorAll('.navItem').forEach(b=> b.className='navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg '+(b.dataset.sec===sec?'bg-white/10 text-paper font-medium':'hover:bg-white/5'));
+      if(!LOADED[sec]){ LOADED[sec]=true; ({dash:loadDash,curr:loadCurr,reqs:loadReqs,comm:loadComm,mem:loadMem,cont:loadCont,site:loadSite}[sec]||(()=>{}))(); }
+    }
+
+    // ===== 대시보드 =====
+    let COURSE=null;
+    async function getCourse(){ if(COURSE) return COURSE; const r=await fetch('content/course.json?t='+Date.now()); COURSE=await r.json(); return COURSE; }
+    async function count(table){ try{ const {count,error}=await withTimeout(sb.from(table).select('*',{count:'exact',head:true}),7000); if(error) return tableMissing(error)?'—':'?'; return count; }catch(e){ return '?'; } }
+    async function loadDash(){
+      const c=await getCourse(); const tracks=c.levels.length, lessons=c.levels.reduce((s,l)=>s+(l.lessons||[]).length,0);
+      const [reqs,comm,votes]=await Promise.all([count('lecture_requests'),count('community_posts'),count('lecture_request_votes')]);
+      const cards=[
+        ['커리큘럼', tracks+'트랙 · '+lessons+'강','전체 강의'],
+        ['강의 요청·건의', reqs,'추천 '+votes+'표'],
+        ['커뮤니티 글', comm,'라운지 게시물'],
+        ['회원', '—','아래 회원 탭 참고'],
+      ];
+      document.getElementById('statCards').innerHTML = cards.map(([t,v,s])=>`<div class="bg-white rounded-2xl p-5 border border-ink/5 shadow-sm"><p class="text-sm text-ink/50">${t}</p><p class="text-2xl font-bold mt-1">${v}</p><p class="text-xs text-ink/40 mt-1">${s}</p></div>`).join('');
+      document.getElementById('contentSummary').innerHTML = `총 <b>${tracks}개 트랙 / ${lessons}개 강의</b>가 등록되어 있습니다. 각 강의의 노트·퀴즈 보유 현황은 <button onclick="show('cont')" class="text-gold underline">노트·퀴즈 현황</button> 탭에서 확인하세요. 강의를 추가·수정하려면 <button onclick="show('curr')" class="text-gold underline">커리큘럼 편집</button> 탭을 이용하세요.`;
+    }
+
+    // ===== 커리큘럼 편집 =====
+    function loadCurr(){ getCourse().then(renderCurr); }
+    function renderCurr(){
+      const wrap=document.getElementById('currWrap');
+      wrap.innerHTML = COURSE.levels.map((lv,ti)=>{
+        const lessons=(lv.lessons||[]).map((l,li)=>`
+          <div class="flex flex-wrap items-center gap-2 py-2 border-t border-ink/5">
+            <span class="text-ink/30 text-xs w-6 shrink-0">${li+1}</span>
+            <input value="${esc(l.title)}" onchange="setL(${ti},${li},'title',this.value)" class="flex-1 min-w-[200px] border border-ink/10 rounded-lg px-2.5 py-1.5 text-sm"/>
+            <input value="${esc(l.duration||'')}" onchange="setL(${ti},${li},'duration',this.value)" placeholder="약 N분" class="w-24 border border-ink/10 rounded-lg px-2.5 py-1.5 text-sm"/>
+            <input value="${esc((l.tags||[]).join(', '))}" onchange="setTags(${ti},${li},this.value)" placeholder="태그,태그" class="w-36 border border-ink/10 rounded-lg px-2.5 py-1.5 text-sm"/>
+            <label class="text-xs flex items-center gap-1 text-ink/60"><input type="checkbox" ${l.free!==false?'checked':''} onchange="setL(${ti},${li},'free',this.checked)"/>무료</label>
+            <span class="text-[11px] text-ink/30">${esc((l.youtube||'').split('/').pop())}</span>
+            <button onclick="moveL(${ti},${li},-1)" class="text-ink/40 hover:text-gold px-1">↑</button>
+            <button onclick="moveL(${ti},${li},1)" class="text-ink/40 hover:text-gold px-1">↓</button>
+            <button onclick="delL(${ti},${li})" class="text-ink/40 hover:text-red-500 px-1">🗑</button>
+          </div>`).join('');
+        return `<div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-5">
+          <div class="flex flex-wrap items-center gap-2 mb-2">
+            <input value="${esc(lv.name)}" onchange="setT(${ti},'name',this.value)" class="font-bold text-[15px] border border-ink/10 rounded-lg px-2.5 py-1.5 flex-1 min-w-[200px]"/>
+            <input value="${esc(lv.group||'')}" onchange="setT(${ti},'group',this.value)" placeholder="분야(group)" class="w-40 border border-ink/10 rounded-lg px-2.5 py-1.5 text-sm"/>
+            <button onclick="moveT(${ti},-1)" class="text-ink/40 hover:text-gold px-1">↑</button>
+            <button onclick="moveT(${ti},1)" class="text-ink/40 hover:text-gold px-1">↓</button>
+            <button onclick="delT(${ti})" class="text-ink/40 hover:text-red-500 px-1 text-sm">트랙삭제</button>
+          </div>
+          <input value="${esc(lv.tagline||'')}" onchange="setT(${ti},'tagline',this.value)" placeholder="한 줄 소개(tagline)" class="w-full border border-ink/10 rounded-lg px-2.5 py-1.5 text-sm mb-1"/>
+          <input value="${esc(lv.desc||'')}" onchange="setT(${ti},'desc',this.value)" placeholder="설명(desc)" class="w-full border border-ink/10 rounded-lg px-2.5 py-1.5 text-sm"/>
+          <div class="mt-1">${lessons}</div>
+          <button onclick="addL(${ti})" class="mt-3 text-sm text-gold hover:underline">+ 강의 추가</button>
+          <span class="text-xs text-ink/35 ml-2">${(lv.lessons||[]).length}강</span>
+        </div>`;
+      }).join('');
+    }
+    function setL(ti,li,k,v){ COURSE.levels[ti].lessons[li][k]= (k==='free')?!!v:v; }
+    function setTags(ti,li,v){ COURSE.levels[ti].lessons[li].tags = v.split(',').map(s=>s.trim()).filter(Boolean); }
+    function setT(ti,k,v){ COURSE.levels[ti][k]=v; }
+    function moveL(ti,li,d){ const a=COURSE.levels[ti].lessons; const j=li+d; if(j<0||j>=a.length) return; [a[li],a[j]]=[a[j],a[li]]; renderCurr(); }
+    function delL(ti,li){ if(!confirm('이 강의를 목록에서 삭제할까요?')) return; COURSE.levels[ti].lessons.splice(li,1); renderCurr(); }
+    function addL(ti){ const url=prompt('유튜브 주소 또는 영상ID를 입력하세요:'); if(!url) return; const m=String(url).match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/); const id=m?m[1]:(url.trim().length===11?url.trim():''); if(!id){ alert('영상ID를 인식하지 못했어요.'); return; } const title=prompt('강의 제목:','')||'(제목 없음)'; COURSE.levels[ti].lessons.push({title, youtube:'https://youtu.be/'+id, duration:'', free:true, tags:[]}); renderCurr(); }
+    function moveT(ti,d){ const a=COURSE.levels; const j=ti+d; if(j<0||j>=a.length) return; [a[ti],a[j]]=[a[j],a[ti]]; renderCurr(); }
+    function delT(ti){ if(!confirm('트랙 「'+COURSE.levels[ti].name+'」 전체를 삭제할까요?')) return; COURSE.levels.splice(ti,1); renderCurr(); }
+    function addTrack(){ const name=prompt('새 트랙 이름:'); if(!name) return; const group=prompt('분야(group) — 기존 분야명과 동일하게:','그 외')||'그 외'; COURSE.levels.push({name, group, desc:'', tagline:'', highlights:[], lessons:[]}); renderCurr(); show('curr'); window.scrollTo(0,document.body.scrollHeight); }
+    function exportCourse(){ dl('course.json', JSON.stringify(COURSE,null,2)); }
+    function copyCourse(){ navigator.clipboard.writeText(JSON.stringify(COURSE,null,2)).then(()=>toast('course.json 복사됨')); }
+    function dl(name,text){ const b=new Blob([text],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=name; a.click(); toast(name+' 내려받음'); }
+
+    // ===== 강의 요청 관리 =====
+    const STATUSES=['접수','검토중','제작확정','완료'];
+    async function loadReqs(){
+      const wrap=document.getElementById('reqWrap');
+      let rows,err; try{ const r=await withTimeout(sb.from('lecture_requests').select('*').order('created_at',{ascending:false}).limit(200),8000); rows=r.data; err=r.error; }catch(e){ err=e; }
+      if(err){ wrap.innerHTML = tableMissing(err)? '<p class="text-ink/50 text-sm">요청함 테이블이 아직 없습니다. (supabase_lecture_requests.sql 실행 필요)</p>':'<p class="text-red-500 text-sm">불러오기 오류</p>'; return; }
+      let votes={}; try{ const {data}=await sb.from('lecture_request_votes').select('request_id'); (data||[]).forEach(v=>votes[v.request_id]=(votes[v.request_id]||0)+1); }catch(e){}
+      if(!rows.length){ wrap.innerHTML='<p class="text-ink/50 text-sm">아직 등록된 요청이 없습니다.</p>'; return; }
+      wrap.innerHTML = rows.map(r=>`<div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-4 mb-3">
+        <div class="flex items-center gap-2 flex-wrap mb-1">
+          <span class="text-[11px] font-bold px-2 py-0.5 rounded-full ${r.type==='feedback'?'bg-gold/15 text-gold':'bg-ink text-paper'}">${r.type==='feedback'?'💡 건의':'🎓 요청'}</span>
+          <span class="text-[11px] text-ink/40">👍 ${votes[r.id]||0}</span>
+          <span class="text-[11px] text-ink/35">${new Date(r.created_at).toLocaleDateString('ko')}</span>
+          <span class="text-[11px] text-ink/40 ml-auto">${esc(r.author_name||'')}</span>
+        </div>
+        <p class="font-bold text-[15px]">${esc(r.title)}</p>
+        ${r.body?`<p class="text-sm text-ink/65 mt-1 whitespace-pre-wrap">${esc(r.body)}</p>`:''}
+        ${r.admin_reply?`<p class="text-sm bg-gold/[0.07] border border-gold/20 rounded-lg p-2 mt-2"><b class="text-gold text-xs">답변</b> ${esc(r.admin_reply)}</p>`:''}
+        <div class="flex flex-wrap items-center gap-1.5 mt-3 pt-2 border-t border-ink/5">
+          <span class="text-[11px] text-ink/40 mr-1">상태:</span>
+          ${STATUSES.map(s=>`<button onclick="setReqStatus('${r.id}','${s}')" class="text-[11px] px-2 py-1 rounded-full border ${(r.status||'접수')===s?'border-gold text-gold font-semibold':'border-ink/15 text-ink/50 hover:bg-ink/5'}">${s}</button>`).join('')}
+          <button onclick="replyReq('${r.id}')" class="text-[11px] px-2 py-1 rounded-full border border-ink/15 text-ink/50 hover:bg-ink/5 ml-1">✍️ 답변</button>
+          <button onclick="delReq('${r.id}')" class="text-[11px] px-2 py-1 rounded-full border border-ink/15 text-red-500 hover:bg-red-50 ml-auto">삭제</button>
+        </div>
+      </div>`).join('');
+      window._reqs=rows;
+    }
+    async function setReqStatus(id,s){ const {error}=await sb.from('lecture_requests').update({status:s}).eq('id',id); if(error){alert('오류: '+error.message);return;} toast('상태→'+s); loadReqs(); }
+    async function replyReq(id){ const row=(window._reqs||[]).find(r=>r.id===id); const t=prompt('강사 답변:',(row&&row.admin_reply)||''); if(t===null) return; const {error}=await sb.from('lecture_requests').update({admin_reply:t}).eq('id',id); if(error){alert('오류: '+error.message);return;} toast('답변 저장'); loadReqs(); }
+    async function delReq(id){ if(!confirm('삭제할까요?')) return; const {error}=await sb.from('lecture_requests').delete().eq('id',id); if(error){alert('오류: '+error.message);return;} loadReqs(); }
+
+    // ===== 커뮤니티 =====
+    async function loadComm(){
+      const wrap=document.getElementById('commWrap');
+      let rows,err; try{ const r=await withTimeout(sb.from('community_posts').select('*').order('created_at',{ascending:false}).limit(100),8000); rows=r.data; err=r.error; }catch(e){ err=e; }
+      if(err){ wrap.innerHTML='<p class="text-ink/50 text-sm">'+(tableMissing(err)?'커뮤니티 테이블이 없습니다.':'불러오기 오류')+'</p>'; return; }
+      if(!rows.length){ wrap.innerHTML='<p class="text-ink/50 text-sm">게시물이 없습니다.</p>'; return; }
+      const strip=h=>{const d=document.createElement('div');d.innerHTML=h||'';return (d.textContent||'').slice(0,120);};
+      wrap.innerHTML = '<p class="text-sm text-ink/50 mb-3">최근 '+rows.length+'개 · 전체 관리는 <a href="community.html" class="text-gold underline">커뮤니티 페이지</a>에서도 가능합니다.</p>'+
+        rows.map(p=>`<div class="bg-white rounded-xl border border-ink/5 shadow-sm p-4 mb-2 flex items-start justify-between gap-3">
+          <div class="min-w-0"><p class="text-[11px] text-ink/40 mb-0.5">${esc(p.author_name||'회원')} · ${esc(p.board||'')} · ${new Date(p.created_at).toLocaleDateString('ko')}</p><p class="text-sm text-ink/80 truncate">${esc(strip(p.content))}</p></div>
+          <button onclick="delPost('${p.id}')" class="text-xs text-red-500 hover:underline shrink-0">삭제</button>
+        </div>`).join('');
+    }
+    async function delPost(id){ if(!confirm('이 글을 삭제할까요?')) return; const {error}=await sb.from('community_posts').delete().eq('id',id); if(error){alert('오류: '+error.message);return;} loadComm(); }
+
+    // ===== 회원 =====
+    let MEMBERS=[];
+    async function loadMem(){
+      const wrap=document.getElementById('memWrap');
+      let profs,err; try{ const r=await withTimeout(sb.from('profiles').select('id,full_name').limit(2000),8000); profs=r.data; err=r.error; }catch(e){ err=e; }
+      if(err||!profs){ wrap.innerHTML='<p class="text-ink/50 text-sm">회원 목록을 불러오지 못했습니다. (profiles 테이블 권한 또는 부재)</p>'; return; }
+      let enr={},don={}; try{ const {data}=await sb.from('enrollments').select('user_id,track'); (data||[]).forEach(e=>{(enr[e.user_id]=enr[e.user_id]||[]).push(e.track);}); }catch(e){}
+      try{ const {data}=await sb.from('lesson_progress').select('user_id,completed'); (data||[]).forEach(p=>{ if(p.completed) don[p.user_id]=(don[p.user_id]||0)+1; }); }catch(e){}
+      MEMBERS=profs.map(p=>({name:p.full_name||'(이름없음)', id:p.id, enr:(enr[p.id]||[]).length, done:don[p.id]||0}));
+      if(!MEMBERS.length){ wrap.innerHTML='<p class="text-ink/50 text-sm">표시할 회원이 없습니다. (RLS 정책상 본인 정보만 조회될 수 있어요 — 전체 회원 조회가 필요하면 profiles에 관리자 SELECT 정책을 추가하세요.)</p>'; return; }
+      wrap.innerHTML = `<p class="text-sm text-ink/50 mb-3">총 ${MEMBERS.length}명</p>
+        <div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">
+        <thead class="text-ink/45 text-left border-b border-ink/5"><tr><th class="px-5 py-3 font-medium">이름</th><th class="px-5 py-3 font-medium">수강 트랙</th><th class="px-5 py-3 font-medium">완료 강의</th></tr></thead>
+        <tbody>${MEMBERS.map(m=>`<tr class="border-b border-ink/5"><td class="px-5 py-3 font-medium">${esc(m.name)}</td><td class="px-5 py-3 text-ink/60">${m.enr}개</td><td class="px-5 py-3 text-ink/60">${m.done}강</td></tr>`).join('')}</tbody></table></div>
+        <p class="text-xs text-ink/35 mt-2">※ 이메일·연락처는 보안(auth)상 이 화면에서 조회되지 않습니다.</p>`;
+    }
+    function exportMembersCSV(){ if(!MEMBERS.length){ toast('회원 데이터 없음'); return; } const rows=[['이름','수강트랙수','완료강의수'],...MEMBERS.map(m=>[m.name,m.enr,m.done])]; const csv='﻿'+rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n'); const b=new Blob([csv],{type:'text/csv'}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='회원목록.csv'; a.click(); toast('CSV 내려받음'); }
+
+    // ===== 노트·퀴즈 현황 =====
+    async function loadCont(){
+      const c=await getCourse(); const wrap=document.getElementById('contWrap');
+      wrap.innerHTML = c.levels.map((lv,ti)=>`<details class="bg-white rounded-xl border border-ink/5 shadow-sm mb-2" ontoggle="if(this.open)checkTrack(${ti},this)">
+        <summary class="px-5 py-3 font-semibold cursor-pointer flex items-center justify-between"><span>${esc(lv.name)}</span><span class="text-xs text-ink/40">${(lv.lessons||[]).length}강 <span class="trkstat"></span></span></summary>
+        <div class="px-5 pb-3 text-sm" id="cont-${ti}">펼치면 검사합니다…</div></details>`).join('');
+    }
+    async function checkTrack(ti,el){
+      const box=document.getElementById('cont-'+ti); if(box.dataset.done) return; box.dataset.done='1';
+      const ls=COURSE.levels[ti].lessons||[]; let n=0,q=0;
+      box.innerHTML='검사 중…';
+      const rows=await Promise.all(ls.map(async l=>{ const id=(l.youtube||'').split('/').pop();
+        const [hn,hq]=await Promise.all([ fetch('content/notes/'+id+'.json',{method:'HEAD'}).then(r=>r.ok).catch(()=>false), fetch('content/quiz/'+id+'.json',{method:'HEAD'}).then(r=>r.ok).catch(()=>false) ]);
+        if(hn)n++; if(hq)q++;
+        return `<div class="flex items-center gap-2 py-1 border-t border-ink/5"><span class="w-10 shrink-0">${hn?'📝':'<span class=\"text-ink/20\">·</span>'}${hq?'🧩':'<span class=\"text-ink/20\">·</span>'}</span><span class="flex-1 truncate text-ink/70">${esc(l.title)}</span><a href="watch.html?v=${id}" target="_blank" class="text-gold text-xs hover:underline shrink-0">보기</a></div>`;
+      }));
+      box.innerHTML = `<p class="text-xs text-ink/45 mb-1">노트 ${n}/${ls.length} · 퀴즈 ${q}/${ls.length}  (📝=노트, 🧩=퀴즈)</p>`+rows.join('');
+      const stat=el.querySelector('.trkstat'); if(stat) stat.textContent=`· 📝${n} 🧩${q}`;
+    }
+
+    // ===== 사이트 설정 =====
+    let SITE=null;
+    async function loadSite(){ const r=await fetch('content/site.json?t='+Date.now()); SITE=await r.json(); renderSite(); }
+    function field(label,val,path){ return `<div><label class="block text-xs font-semibold text-ink/50 mb-1">${label}</label><input value="${esc(val||'')}" onchange="setSite('${path}',this.value)" class="w-full border border-ink/12 rounded-lg px-3 py-2 text-sm"/></div>`; }
+    function renderSite(){
+      const b=SITE.brand||{}, sp=SITE.support||{}, lm=SITE.leadmagnet||{};
+      document.getElementById('siteWrap').innerHTML = `
+        <div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-5 space-y-3"><h2 class="font-bold">브랜드</h2>
+          ${field('이름(name)',b.name,'brand.name')}${field('서브(sub)',b.sub,'brand.sub')}${field('캐치프레이즈',b.catchphrase,'brand.catchphrase')}${field('대표강사 라벨',b.instructor_label,'brand.instructor_label')}</div>
+        <div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-5 space-y-3"><h2 class="font-bold">가입 선물(리드마그넷)</h2>
+          ${field('제목',lm.title,'leadmagnet.title')}${field('파일 경로',lm.file,'leadmagnet.file')}</div>
+        <div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-5 space-y-3"><h2 class="font-bold">후원 정보</h2>
+          ${field('은행',sp.bank_name,'support.bank_name')}${field('계좌번호',sp.bank_account,'support.bank_account')}${field('예금주',sp.bank_holder,'support.bank_holder')}${field('카카오페이 URL',sp.kakaopay_url,'support.kakaopay_url')}${field('연락 이메일',sp.contact_email,'support.contact_email')}</div>
+        <div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-5"><h2 class="font-bold mb-2">상단 메뉴</h2>
+          <div id="menuRows" class="space-y-2"></div>
+          <button onclick="addMenu()" class="mt-2 text-sm text-gold hover:underline">+ 메뉴 추가</button></div>`;
+      renderMenu();
+    }
+    function renderMenu(){ const box=document.getElementById('menuRows'); box.innerHTML=(SITE.menu||[]).map((m,i)=>`<div class="flex items-center gap-2">
+      <input value="${esc(m.label)}" onchange="SITE.menu[${i}].label=this.value" placeholder="이름" class="w-32 border border-ink/12 rounded-lg px-2.5 py-1.5 text-sm"/>
+      <input value="${esc(m.href)}" onchange="SITE.menu[${i}].href=this.value" placeholder="링크" class="flex-1 border border-ink/12 rounded-lg px-2.5 py-1.5 text-sm"/>
+      <button onclick="SITE.menu.splice(${i},1);renderMenu()" class="text-ink/40 hover:text-red-500 px-1">🗑</button></div>`).join(''); }
+    function addMenu(){ (SITE.menu=SITE.menu||[]).push({label:'',href:''}); renderMenu(); }
+    function setSite(path,val){ const [a,b]=path.split('.'); SITE[a]=SITE[a]||{}; SITE[a][b]=val; }
+    function exportSite(){ dl('site.json', JSON.stringify(SITE,null,2)); }
+    function copySite(){ navigator.clipboard.writeText(JSON.stringify(SITE,null,2)).then(()=>toast('site.json 복사됨')); }
+  </script>
 </body>
 </html>
