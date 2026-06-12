@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
+  <script src="/content-loader.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>관리자 콘솔 — BIBLY 바이블 인사이트</title>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
@@ -82,8 +83,9 @@
           <h1 class="text-2xl font-bold">커리큘럼 편집</h1>
           <div class="flex gap-2">
             <button onclick="addTrack()" class="border border-ink/15 text-sm px-3 py-2 rounded-lg hover:bg-ink/5">+ 트랙 추가</button>
-            <button onclick="copyCourse()" class="border border-ink/15 text-sm px-3 py-2 rounded-lg hover:bg-ink/5">📋 클립보드 복사</button>
-            <button onclick="exportCourse()" class="bg-ink text-paper text-sm font-semibold px-4 py-2 rounded-lg hover:bg-navy">💾 course.json 내보내기</button>
+            <button onclick="copyCourse()" class="border border-ink/15 text-sm px-3 py-2 rounded-lg hover:bg-ink/5">📋 복사</button>
+            <button onclick="exportCourse()" class="border border-ink/15 text-sm px-3 py-2 rounded-lg hover:bg-ink/5">💾 내보내기</button>
+            <button onclick="saveCourseLive()" class="bg-gold text-white text-sm font-semibold px-4 py-2 rounded-lg hover:opacity-90">⚡ 사이트에 저장(즉시 반영)</button>
           </div>
         </div>
         <p class="text-ink/50 text-sm mb-4">강의 제목·길이·태그·공개여부를 고치고 순서를 바꾼 뒤, <b class="text-ink">내보내기</b>로 받은 파일을 <code class="bg-ink/5 px-1 rounded">content/course.json</code>에 덮어쓰면 됩니다. (또는 복사해서 클로드에게 전달)</p>
@@ -127,7 +129,8 @@
           <h1 class="text-2xl font-bold">사이트 설정</h1>
           <div class="flex gap-2">
             <button onclick="copySite()" class="border border-ink/15 text-sm px-3 py-2 rounded-lg hover:bg-ink/5">📋 복사</button>
-            <button onclick="exportSite()" class="bg-ink text-paper text-sm font-semibold px-4 py-2 rounded-lg hover:bg-navy">💾 site.json 내보내기</button>
+            <button onclick="exportSite()" class="border border-ink/15 text-sm px-3 py-2 rounded-lg hover:bg-ink/5">💾 내보내기</button>
+            <button onclick="saveSiteLive()" class="bg-gold text-white text-sm font-semibold px-4 py-2 rounded-lg hover:opacity-90">⚡ 사이트에 저장(즉시 반영)</button>
           </div>
         </div>
         <p class="text-ink/50 text-sm mb-4">브랜드·후원 계좌·가입 선물 등을 수정한 뒤 내보내 <code class="bg-ink/5 px-1 rounded">content/site.json</code>에 덮어쓰세요.</p>
@@ -257,6 +260,14 @@
     function addTrack(){ const name=prompt('새 트랙 이름:'); if(!name) return; const group=prompt('분야(group) — 기존 분야명과 동일하게:','그 외')||'그 외'; COURSE.levels.push({name, group, desc:'', tagline:'', highlights:[], lessons:[]}); renderCurr(); show('curr'); window.scrollTo(0,document.body.scrollHeight); }
     function exportCourse(){ dl('course.json', JSON.stringify(COURSE,null,2)); }
     function copyCourse(){ navigator.clipboard.writeText(JSON.stringify(COURSE,null,2)).then(()=>toast('course.json 복사됨')); }
+    async function saveLive(key,data){
+      try{ const {error}=await sb.from('site_content').upsert({key,data,updated_at:new Date().toISOString()});
+        if(error){ alert(tableMissing(error)?'site_content 테이블이 없습니다.\nsupabase_site_content.sql 을 먼저 실행하세요.':'저장 오류: '+error.message); return false; }
+        return true;
+      }catch(e){ alert('저장 오류: '+e); return false; }
+    }
+    async function saveCourseLive(){ if(await saveLive('course',COURSE)) toast('⚡ 커리큘럼이 사이트에 즉시 반영되었습니다'); }
+    async function saveSiteLive(){ if(await saveLive('site',SITE)) toast('⚡ 설정이 사이트에 즉시 반영되었습니다'); }
     function dl(name,text){ const b=new Blob([text],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=name; a.click(); toast(name+' 내려받음'); }
 
     // ===== 강의 요청 관리 =====
