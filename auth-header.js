@@ -1,6 +1,16 @@
 /* 공통 헤더 인증 위젯 — #authArea 에 '내 강의실 + 로그인/로그아웃'을 렌더
    라이브러리 불필요(로컬 세션만 읽음). 모든 페이지 헤더에서 동일하게 표시 */
 (function(){
+  // 간단한 방문 통계 — 세션당 1회, 비로그인 포함 (Supabase REST, 비차단)
+  try{
+    if(!sessionStorage.getItem('_bv')){
+      sessionStorage.setItem('_bv','1');
+      var SB='https://bmxkndkwefdgsomlznoo.supabase.co';
+      var AK='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+      fetch(SB+'/rest/v1/site_visits',{method:'POST',headers:{apikey:AK,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify({path:location.pathname})}).catch(function(){});
+    }
+  }catch(e){}
+
   var el = document.getElementById('authArea');
   if(!el) return;
   function readStored(){

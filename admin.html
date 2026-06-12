@@ -69,6 +69,7 @@
         <h1 class="text-2xl font-bold mb-1">대시보드</h1>
         <p class="text-ink/50 text-sm mb-6">실시간 운영 현황</p>
         <div id="statCards" class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6"></div>
+        <div id="trendWrap"></div>
         <div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-5">
           <h2 class="font-bold mb-3">콘텐츠 요약</h2>
           <div id="contentSummary" class="text-sm text-ink/70 leading-relaxed">불러오는 중…</div>
@@ -187,17 +188,29 @@
     let COURSE=null;
     async function getCourse(){ if(COURSE) return COURSE; const r=await fetch('content/course.json?t='+Date.now()); COURSE=await r.json(); return COURSE; }
     async function count(table){ try{ const {count,error}=await withTimeout(sb.from(table).select('*',{count:'exact',head:true}),7000); if(error) return tableMissing(error)?'—':'?'; return count; }catch(e){ return '?'; } }
+    async function countSince(table,col,sinceISO){ try{ let q=sb.from(table).select('*',{count:'exact',head:true}); if(sinceISO) q=q.gte(col,sinceISO); const {count,error}=await withTimeout(q,7000); if(error) return tableMissing(error)?'—':'?'; return count; }catch(e){ return '?'; } }
+    function daysAgo(n){ const d=new Date(); d.setHours(0,0,0,0); d.setDate(d.getDate()-n); return d.toISOString(); }
     async function loadDash(){
       const c=await getCourse(); const tracks=c.levels.length, lessons=c.levels.reduce((s,l)=>s+(l.lessons||[]).length,0);
-      const [reqs,comm,votes]=await Promise.all([count('lecture_requests'),count('community_posts'),count('lecture_request_votes')]);
+      const [reqs,comm,votes,members]=await Promise.all([count('lecture_requests'),count('community_posts'),count('lecture_request_votes'),count('profiles')]);
       const cards=[
         ['커리큘럼', tracks+'트랙 · '+lessons+'강','전체 강의'],
+        ['회원', members,'가입 누적'],
         ['강의 요청·건의', reqs,'추천 '+votes+'표'],
         ['커뮤니티 글', comm,'라운지 게시물'],
-        ['회원', '—','아래 회원 탭 참고'],
       ];
       document.getElementById('statCards').innerHTML = cards.map(([t,v,s])=>`<div class="bg-white rounded-2xl p-5 border border-ink/5 shadow-sm"><p class="text-sm text-ink/50">${t}</p><p class="text-2xl font-bold mt-1">${v}</p><p class="text-xs text-ink/40 mt-1">${s}</p></div>`).join('');
-      document.getElementById('contentSummary').innerHTML = `총 <b>${tracks}개 트랙 / ${lessons}개 강의</b>가 등록되어 있습니다. 각 강의의 노트·퀴즈 보유 현황은 <button onclick="show('cont')" class="text-gold underline">노트·퀴즈 현황</button> 탭에서 확인하세요. 강의를 추가·수정하려면 <button onclick="show('curr')" class="text-gold underline">커리큘럼 편집</button> 탭을 이용하세요.`;
+      // 방문·가입 추이
+      const [vToday,v7,v30,vAll]=await Promise.all([countSince('site_visits','created_at',daysAgo(0)),countSince('site_visits','created_at',daysAgo(7)),countSince('site_visits','created_at',daysAgo(30)),count('site_visits')]);
+      const [sToday,s7,s30]=await Promise.all([countSince('profiles','created_at',daysAgo(0)),countSince('profiles','created_at',daysAgo(7)),countSince('profiles','created_at',daysAgo(30))]);
+      const trend=(label,emoji,a,b,c,d)=>`<div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-5 mb-4"><p class="font-bold mb-3">${emoji} ${label}</p><div class="grid grid-cols-4 gap-2 text-center">
+        <div><p class="text-xl font-bold">${a}</p><p class="text-xs text-ink/45 mt-0.5">오늘</p></div>
+        <div><p class="text-xl font-bold">${b}</p><p class="text-xs text-ink/45 mt-0.5">최근 7일</p></div>
+        <div><p class="text-xl font-bold">${c}</p><p class="text-xs text-ink/45 mt-0.5">최근 30일</p></div>
+        <div><p class="text-xl font-bold text-gold">${d}</p><p class="text-xs text-ink/45 mt-0.5">누적</p></div></div></div>`;
+      const vNote = (vAll==='—')?'<p class="text-xs text-ink/40 mb-4">방문 통계 테이블이 아직 없습니다 — <code class="bg-ink/5 px-1 rounded">supabase_site_visits.sql</code> 실행 후 집계됩니다.</p>':'';
+      document.getElementById('trendWrap').innerHTML = vNote + trend('방문','👣',vToday,v7,v30,vAll) + trend('가입','✍️',sToday,s7,s30,members);
+      document.getElementById('contentSummary').innerHTML = `총 <b>${tracks}개 트랙 / ${lessons}개 강의</b>가 등록되어 있습니다. 각 강의의 노트·퀴즈 보유 현황은 <button onclick="show('cont')" class="text-gold underline">노트·퀴즈 현황</button> 탭에서, 강의 추가·수정은 <button onclick="show('curr')" class="text-gold underline">커리큘럼 편집</button> 탭에서 하세요.`;
     }
 
     // ===== 커리큘럼 편집 =====
