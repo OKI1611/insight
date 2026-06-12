@@ -212,8 +212,12 @@
         document.getElementById('listCount').textContent = `${lessons.length}강`;
         renderList();
         const firstFree = lessons.findIndex(l => l.free);
-        const qp = parseInt(new URLSearchParams(location.search).get('l'), 10);
-        const start = (!isNaN(qp) && qp >= 0 && qp < lessons.length) ? qp : (firstFree >= 0 ? firstFree : 0);
+        const sp = new URLSearchParams(location.search);
+        const vid = (sp.get('v') || sp.get('id') || '').trim();   // 유튜브 영상ID로 바로 열기(안정 링크)
+        const qp = parseInt(sp.get('l'), 10);
+        let start = firstFree >= 0 ? firstFree : 0;
+        if(vid){ const vi = lessons.findIndex(l => ytId(l.youtube) === vid); if(vi >= 0) start = vi; }
+        else if(!isNaN(qp) && qp >= 0 && qp < lessons.length){ start = qp; }
         loadLesson(start);
       })
       .catch(() => {
@@ -554,7 +558,7 @@
       catch(e){ alert('PDF 생성 중 문제가 발생했어요. 다시 시도해 주세요.'); }
       if(wasHidden){ card.style.display = 'none'; }
     }
-    function lessonShareUrl(){ return location.origin + location.pathname + '?l=' + cur; }
+    function lessonShareUrl(){ const id = curId(); return location.origin + location.pathname + (id ? '?v=' + id : '?l=' + cur); }
     function toggleShareMenu(ev){
       if(ev) ev.stopPropagation();
       document.getElementById('shareMenu').classList.toggle('hidden');
