@@ -1633,7 +1633,7 @@
   </script>
 
   <!-- PWA: 앱 설치 (안드로이드 네이티브 프롬프트 + 아이폰/기타 안내) -->
-  <button id="installBtn" onclick="openInstall()" class="hidden fixed bottom-[72px] left-3 z-[90] bg-ink text-paper text-xs font-semibold px-4 py-2.5 rounded-full shadow-card hover:bg-navy transition">📱 앱 설치</button>
+  <button id="installBtn" onclick="openInstall()" class="hidden inline-flex items-center gap-1.5 bg-ink text-white font-bold rounded-full shadow-xl hover:bg-navy transition" style="padding:11px 18px;font-size:15px"><span style="font-size:18px">📱</span> 앱 설치</button>
   <div id="installModal" style="display:none" class="fixed inset-0 z-[120] items-center justify-center bg-black/60 p-4" onclick="if(event.target===this)this.style.display='none'">
     <div class="bg-white rounded-2xl p-6 max-w-sm w-full shadow-2xl" style="color:#1a1a1a">
       <div class="flex items-center gap-3 mb-4">
@@ -1665,9 +1665,25 @@
     var deferredPrompt = null;
     var biIsStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
     var biIsIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
-    function biShowBtn(){ if (biIsStandalone) return; var b=document.getElementById('installBtn'); if(b) b.classList.remove('hidden'); }
-    window.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); deferredPrompt = e; biShowBtn(); });
-    if (biIsIOS && !biIsStandalone) { window.addEventListener('load', biShowBtn); }   // iOS는 beforeinstallprompt 미발생
+    var biTries = 0;
+    // 우측 플로팅 클러스터(biblyFab)의 '후원하기' 바로 위에 끼워넣고 노출
+    function biReveal(){
+      if (biIsStandalone) return;
+      var btn = document.getElementById('installBtn'); if (!btn) return;
+      var fab = document.getElementById('biblyFab');
+      var col = fab && fab.children[1];   // [0]=글자크기, [1]=후원/질문 우측열
+      if (col) {
+        if (btn.parentNode !== col) col.insertBefore(btn, col.firstChild);  // 후원하기 위
+        btn.classList.remove('hidden');
+      } else if (biTries++ < 12) {
+        setTimeout(biReveal, 300);        // auth-header 주입 대기
+      } else {                            // 폴백: 우측 하단 고정
+        btn.style.position='fixed'; btn.style.right='14px'; btn.style.bottom='120px'; btn.style.zIndex='55';
+        btn.classList.remove('hidden');
+      }
+    }
+    window.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); deferredPrompt = e; biReveal(); });
+    if (biIsIOS && !biIsStandalone) { window.addEventListener('load', biReveal); }   // iOS는 beforeinstallprompt 미발생
     function openInstall(){
       document.getElementById('installAndroid').style.display = deferredPrompt ? 'block' : 'none';
       document.getElementById('installIOS').style.display = (biIsIOS && !deferredPrompt) ? 'block' : 'none';
