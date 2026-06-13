@@ -87,7 +87,7 @@
     let isAdmin = false;
     function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
     function fmtDate(iso){ return new Date(iso).toLocaleDateString('ko-KR'); }
-    function sanitize(html){ const d=document.createElement('div'); d.innerHTML=html||''; d.querySelectorAll('script,style,iframe,object,embed').forEach(n=>n.remove()); d.querySelectorAll('*').forEach(el=>{ [...el.attributes].forEach(a=>{ if(/^on/i.test(a.name)||(a.name==='href'&&/^javascript:/i.test(a.value))) el.removeAttribute(a.name); }); }); return d.innerHTML; }
+    function sanitize(html){ const d=document.createElement('div'); d.innerHTML=html||''; d.querySelectorAll('script,style,iframe,object,embed,link,meta,base,form,input,button,textarea,svg,math,frame,frameset,applet,noscript').forEach(n=>n.remove()); d.querySelectorAll('*').forEach(el=>{ [...el.attributes].forEach(a=>{ const name=a.name.toLowerCase(), val=a.value||''; if(/^on/i.test(name)){ el.removeAttribute(a.name); return; } if(/^(href|src|xlink:href|formaction|action|srcdoc|srcset|data|background|poster)$/.test(name)){ const v=val.replace(/\s+/g,'').toLowerCase(), okImg=(name==='src')&&/^data:image\//i.test(val.trim()); if(!okImg && /^(javascript:|data:|vbscript:)/.test(v)){ el.removeAttribute(a.name); return; } } if(name==='style' && /expression\(|javascript:|behavior:|@import|url\(/i.test(val)){ el.removeAttribute(a.name); } }); if(el.tagName==='A'){ el.setAttribute('rel','noopener noreferrer nofollow'); } }); return d.innerHTML; }
     function bodyHTML(b){ return /<[a-z][\s\S]*>/i.test(b||'') ? sanitize(b) : esc(b||'').replace(/\n/g,'<br>'); }
     // 블로그식 리치 에디터 (Quill)
     let resQuill = null;
