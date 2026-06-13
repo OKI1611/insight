@@ -9,7 +9,7 @@
   <title>BIBLY 바이블 인사이트 — 말씀으로 시대를 읽다 (오광일의 인사이트 브리핑 공식 강의)</title>
   <link rel="manifest" href="/manifest.json" />
   <meta name="theme-color" content="#15203a" />
-  <link rel="apple-touch-icon" href="/images/icon-192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="BIBLY" />
   <meta name="description" content="BIBLY 바이블 인사이트 — 말씀으로 시대를 읽다. 유튜브 「오광일의 인사이트 브리핑」 공식 강의 플랫폼. 천년왕국·종말론·성경적 세계관을 기초부터 고급까지 단계별 커리큘럼으로 무료로 배웁니다." />
@@ -1632,23 +1632,56 @@
     document.addEventListener('keydown', e => { if(e.key === 'Escape') closePost(); });
   </script>
 
-  <!-- PWA: 앱 설치 버튼 + 서비스 워커 등록 -->
-  <button id="installBtn" onclick="pwaInstall()" class="hidden fixed bottom-[72px] left-3 z-[90] bg-ink text-paper text-xs font-semibold px-4 py-2.5 rounded-full shadow-card hover:bg-navy transition">📱 앱 설치</button>
+  <!-- PWA: 앱 설치 (안드로이드 네이티브 프롬프트 + 아이폰/기타 안내) -->
+  <button id="installBtn" onclick="openInstall()" class="hidden fixed bottom-[72px] left-3 z-[90] bg-ink text-paper text-xs font-semibold px-4 py-2.5 rounded-full shadow-card hover:bg-navy transition">📱 앱 설치</button>
+  <div id="installModal" style="display:none" class="fixed inset-0 z-[120] items-center justify-center bg-black/60 p-4" onclick="if(event.target===this)this.style.display='none'">
+    <div class="bg-white rounded-2xl p-6 max-w-sm w-full shadow-2xl" style="color:#1a1a1a">
+      <div class="flex items-center gap-3 mb-4">
+        <img src="/images/icon-192.png" alt="BIBLY" style="width:46px;height:46px;border-radius:13px" />
+        <div><h3 class="font-bold text-lg leading-tight">BIBLY 앱으로 설치</h3><p class="text-xs text-gray-500 mt-0.5">홈 화면에 추가하면 앱처럼 전체화면으로 열려요</p></div>
+      </div>
+      <div id="installAndroid" style="display:none">
+        <p class="text-sm text-gray-600 mb-4">아래 버튼을 누르면 설치 창이 떠요. <b>‘설치’</b>를 선택하면 끝입니다!</p>
+        <button onclick="pwaInstall()" class="w-full py-3 rounded-xl bg-ink text-paper font-semibold text-sm hover:bg-navy transition" style="background:#15203a;color:#fcfaf6">지금 설치하기</button>
+      </div>
+      <div id="installIOS" style="display:none">
+        <ol class="text-sm text-gray-700 space-y-3">
+          <li class="flex gap-2"><span style="color:#15203a;font-weight:700">1.</span><span>화면 아래(또는 위)의 <b>공유 버튼</b>(네모 상자에서 위로 향한 <b>↑ 화살표</b> 모양)을 누르세요.</span></li>
+          <li class="flex gap-2"><span style="color:#15203a;font-weight:700">2.</span><span>메뉴를 아래로 내려 <b>‘홈 화면에 추가’</b>를 누르세요.</span></li>
+          <li class="flex gap-2"><span style="color:#15203a;font-weight:700">3.</span><span>오른쪽 위 <b>‘추가’</b>를 누르면 완료 — 홈 화면에 BIBLY 앱이 생겨요!</span></li>
+        </ol>
+        <p class="text-xs text-gray-400 mt-3">※ 아이폰은 반드시 <b>사파리(Safari)</b> 브라우저에서 진행해 주세요.</p>
+      </div>
+      <div id="installOther" style="display:none">
+        <p class="text-sm text-gray-600">브라우저 주소창의 <b>설치 아이콘(⊕)</b>을 누르거나, 메뉴에서 <b>‘앱 설치 / 페이지를 앱으로 설치’</b>를 선택하세요.</p>
+      </div>
+      <button onclick="document.getElementById('installModal').style.display='none'" class="mt-5 w-full py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 font-semibold text-sm">닫기</button>
+    </div>
+  </div>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => {}));
     }
-    let deferredPrompt = null;
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault(); deferredPrompt = e;
-      const b = document.getElementById('installBtn'); if (b) b.classList.remove('hidden');
-    });
+    var deferredPrompt = null;
+    var biIsStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+    var biIsIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
+    function biShowBtn(){ if (biIsStandalone) return; var b=document.getElementById('installBtn'); if(b) b.classList.remove('hidden'); }
+    window.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); deferredPrompt = e; biShowBtn(); });
+    if (biIsIOS && !biIsStandalone) { window.addEventListener('load', biShowBtn); }   // iOS는 beforeinstallprompt 미발생
+    function openInstall(){
+      document.getElementById('installAndroid').style.display = deferredPrompt ? 'block' : 'none';
+      document.getElementById('installIOS').style.display = (biIsIOS && !deferredPrompt) ? 'block' : 'none';
+      document.getElementById('installOther').style.display = (!deferredPrompt && !biIsIOS) ? 'block' : 'none';
+      document.getElementById('installModal').style.display = 'flex';
+    }
     async function pwaInstall(){
       if (!deferredPrompt) return;
+      document.getElementById('installModal').style.display = 'none';
       deferredPrompt.prompt(); await deferredPrompt.userChoice;
-      deferredPrompt = null; document.getElementById('installBtn').classList.add('hidden');
+      deferredPrompt = null;
+      var b=document.getElementById('installBtn'); if(b) b.classList.add('hidden');
     }
-    window.addEventListener('appinstalled', () => { const b=document.getElementById('installBtn'); if(b) b.classList.add('hidden'); });
+    window.addEventListener('appinstalled', function(){ var b=document.getElementById('installBtn'); if(b) b.classList.add('hidden'); var m=document.getElementById('installModal'); if(m) m.style.display='none'; });
   </script>
 
   <!-- 카카오페이 QR 모달 (PC 후원용) -->
