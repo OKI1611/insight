@@ -222,8 +222,37 @@
       </div>
     </div>
 
+    <!-- ===== 유튜브 채널 실적 신뢰 띠 (실제 수치) ===== -->
+    <div class="relative max-w-5xl mx-auto px-5 mt-14 z-10">
+      <div class="rounded-2xl border border-ink/10 bg-white/80 backdrop-blur shadow-soft px-6 py-6">
+        <p class="text-center text-[13px] text-ink/55 mb-5 leading-snug">
+          유튜브 <b class="text-ink">「오광일의 인사이트 브리핑」</b> 채널에서 이미 함께 배우고 있는 분들
+          <a id="ytChannelLink" href="https://www.youtube.com/channel/UC82IOMnZud8NNt3BYzAxTMg" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-gold font-semibold hover:underline ml-1 whitespace-nowrap">▶ 채널 보기</a>
+        </p>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-y-5 gap-x-3 text-center divide-ink/8 sm:divide-x">
+          <div class="px-2">
+            <p id="ytSubs" class="font-display text-[26px] sm:text-[32px] font-bold text-gold leading-none">7,300+</p>
+            <p class="text-xs text-ink/55 mt-1.5">구독자</p>
+          </div>
+          <div class="px-2">
+            <p id="ytViews" class="font-display text-[26px] sm:text-[32px] font-bold text-gold leading-none">142만+</p>
+            <p class="text-xs text-ink/55 mt-1.5">누적 조회수</p>
+          </div>
+          <div class="px-2">
+            <p id="ytVids" class="font-display text-[26px] sm:text-[32px] font-bold text-gold leading-none">540+</p>
+            <p class="text-xs text-ink/55 mt-1.5">업로드 영상</p>
+          </div>
+          <div class="px-2">
+            <p id="ytFree" class="font-display text-[26px] sm:text-[32px] font-bold text-gold leading-none">255편</p>
+            <p class="text-xs text-ink/55 mt-1.5">무료 강의</p>
+          </div>
+        </div>
+        <p class="text-center text-[11px] text-ink/35 mt-4">2012년 개설 · 실제 채널 통계 기준</p>
+      </div>
+    </div>
+
     <!-- BIBLY 브랜드 약속 (히어로) -->
-    <div class="relative max-w-5xl mx-auto px-5 mt-16 z-10">
+    <div class="relative max-w-5xl mx-auto px-5 mt-12 z-10">
       <div class="rounded-2xl border border-ink/10 bg-white/70 backdrop-blur shadow-soft px-5 py-5 flex flex-col sm:flex-row items-center justify-center gap-x-7 gap-y-4 text-center">
         <p class="text-sm text-ink/60 shrink-0 leading-snug">
           <b class="text-ink text-base">BIBLY</b> <span class="text-ink/35">=</span> Bible <span class="text-gold font-bold">+</span> Daily
@@ -1038,6 +1067,26 @@
       .then(r => r.json())
       .then(site => {
         if (site.menu && site.menu.length) renderMenu(site.menu);
+
+        // 유튜브 채널 실적 신뢰 띠 — 실제 수치(site.json 스냅샷). API 키가 있으면 실시간으로 자동 갱신.
+        (function(){
+          const yt = site.youtube || {};
+          const link = document.getElementById('ytChannelLink');
+          if (link && yt.channel_url) link.href = yt.channel_url;
+          const st = yt.stats || {};
+          const set = (id, v) => { const e = document.getElementById(id); if (e && v) e.textContent = v; };
+          set('ytSubs', st.subscribers); set('ytViews', st.views); set('ytVids', st.videos); set('ytFree', st.free_lectures);
+          if (yt.api_key && yt.channel_id) {
+            const fmtK = n => { n = +n || 0; return n >= 10000 ? Math.floor(n/10000).toLocaleString()+'만+' : n >= 1000 ? (Math.floor(n/100)*100).toLocaleString()+'+' : n.toLocaleString(); };
+            fetch('https://www.googleapis.com/youtube/v3/channels?part=statistics&id=' + encodeURIComponent(yt.channel_id) + '&key=' + encodeURIComponent(yt.api_key))
+              .then(r => r.json()).then(d => {
+                const x = d.items && d.items[0] && d.items[0].statistics; if (!x) return;
+                if (x.subscriberCount) set('ytSubs', fmtK(x.subscriberCount));
+                if (x.viewCount) set('ytViews', fmtK(x.viewCount));
+                if (x.videoCount) set('ytVids', (+x.videoCount).toLocaleString());
+              }).catch(()=>{});
+          }
+        })();
 
         const p = site.pricing || {};
         const preLaunch = !(p.light || p.standard || p.premium);   // 가격이 하나도 없으면 오픈 전(사전등록) 모드
