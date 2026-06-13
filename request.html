@@ -24,16 +24,22 @@
     const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
     const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
   </script>
-  <style>h1,h2{font-family:'Noto Serif KR',Pretendard,serif}</style>
+  <style>
+    h1,h2{font-family:'Noto Serif KR',Pretendard,serif}
+    .boardBtn{display:flex;align-items:center;gap:.5rem;width:100%;justify-content:center;padding:.6rem .75rem;border-radius:.75rem;font-size:.9rem;font-weight:600;color:rgba(21,32,58,.6);transition:all .15s}
+    @media(min-width:1024px){.boardBtn{justify-content:flex-start}}
+    .boardBtn:hover{background:rgba(21,32,58,.05)}
+    .boardBtn.on{background:#15203a;color:#fcfaf6}
+  </style>
 </head>
 <body class="font-sans bg-paper text-ink antialiased min-h-screen">
 
   <!-- 헤더 -->
   <div id="siteHeader" data-active="request.html"></div>
 
-  <main class="max-w-2xl mx-auto px-4 py-8">
+  <main class="max-w-5xl mx-auto px-4 py-8">
     <div class="text-center mb-7">
-      <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">REQUEST · 건의함</p>
+      <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">REQUEST · 강의 요청·건의함</p>
       <h1 class="text-2xl font-bold">강의 요청 · 건의함</h1>
       <p class="text-ink/55 text-sm mt-2">듣고 싶은 <b class="text-ink">강의 주제</b>를 신청하거나, 사이트·강의에 대한 <b class="text-ink">건의·피드백</b>을 남겨주세요.<br class="sm:hidden"/> 다른 분의 요청에 <b class="text-gold">추천 👍</b>을 누르면 우선순위가 올라가요.</p>
     </div>
@@ -57,12 +63,27 @@
       </div>
     </div>
 
+    <div class="grid lg:grid-cols-[210px_1fr] gap-6">
+      <!-- 좌측 메뉴 -->
+      <aside class="lg:sticky lg:top-20 h-fit">
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-2 grid grid-cols-3 lg:grid-cols-1 gap-1">
+          <button id="rtab-all" onclick="setFilter('all')" class="boardBtn"><span>📋</span><span>전체 보기</span></button>
+          <button id="rtab-request" onclick="setFilter('request')" class="boardBtn"><span>🎓</span><span>강의 요청</span></button>
+          <button id="rtab-feedback" onclick="setFilter('feedback')" class="boardBtn"><span>💡</span><span>건의·피드백</span></button>
+        </div>
+        <p class="hidden lg:block text-[11px] text-ink/40 leading-relaxed mt-3 px-1">듣고 싶은 강의를 신청하거나, 사이트·강의 개선 의견을 남겨주세요. 추천 👍이 많은 요청이 먼저 제작됩니다.</p>
+      </aside>
+
+      <!-- 우측 콘텐츠 -->
+      <div class="min-w-0">
+
     <!-- 작성 폼 -->
     <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 mb-6">
-      <div class="flex gap-2 mb-3">
+      <div id="typeToggleRow" class="flex gap-2 mb-3">
         <button id="type-request" onclick="setType('request')" class="flex-1 py-2.5 rounded-full text-sm font-semibold border transition">🎓 강의 요청</button>
         <button id="type-feedback" onclick="setType('feedback')" class="flex-1 py-2.5 rounded-full text-sm font-semibold border transition">💡 건의 · 피드백</button>
       </div>
+      <p id="typeHint" class="hidden text-xs text-ink/45 mb-3"></p>
       <input id="rTitle" type="text" maxlength="80" placeholder="제목 (예: 다니엘서 70이레를 자세히 다뤄주세요)" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold mb-2"/>
       <textarea id="rBody" rows="4" maxlength="1000" placeholder="자세한 내용을 적어주세요. 어떤 점이 궁금한지, 왜 필요한지 적어주시면 큰 도움이 됩니다." class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold resize-none"></textarea>
       <div class="flex items-center justify-between mt-3 pt-3 border-t border-ink/8">
@@ -82,6 +103,9 @@
     </div>
 
     <div id="list" class="space-y-4"></div>
+
+      </div><!-- /우측 콘텐츠 -->
+    </div><!-- /grid -->
   </main>
 
   <script>
@@ -89,7 +113,7 @@
     const ADMIN_EMAIL = 'josephoh1611@gmail.com';
     const STATUSES = ['접수','검토중','제작확정','완료'];
     let currentUser = null, currentName = '회원', isAdmin = false;
-    let curType = 'request', curSort = 'votes', ROWS = [], VOTES = {}, MYVOTES = new Set();
+    let curType = 'request', curSort = 'votes', curFilter = 'all', ROWS = [], VOTES = {}, MYVOTES = new Set();
 
     function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
     function withTimeout(p, ms){ return Promise.race([ Promise.resolve(p), new Promise((_, rej) => setTimeout(() => rej(new Error('TIMEOUT')), ms)) ]); }
@@ -156,6 +180,17 @@
       document.getElementById('sort-recent').className = base + (s==='recent'?on:off);
       render();
     }
+    // 좌측 사이드 메뉴: 목록 필터(+작성 폼 종류 동기화)
+    function setFilter(f){
+      curFilter = f;
+      ['all','request','feedback'].forEach(x => { const el = document.getElementById('rtab-' + x); if(el) el.className = 'boardBtn' + (f === x ? ' on' : ''); });
+      if(f === 'request' || f === 'feedback') setType(f);
+      // 사이드바로 종류가 정해지면 작성폼 토글 숨김(중복 방지), '전체'면 토글 노출
+      const tr = document.getElementById('typeToggleRow'), th = document.getElementById('typeHint');
+      if(tr) tr.style.display = (f === 'all') ? 'flex' : 'none';
+      if(th){ if(f === 'all'){ th.className = 'hidden'; } else { th.className = 'text-xs text-ink/45 mb-3'; th.innerHTML = (f === 'request' ? '🎓 <b class="text-ink/70">강의 요청</b> 작성 중' : '💡 <b class="text-ink/70">건의·피드백</b> 작성 중') + ' · <button onclick="setFilter(\'all\')" class="text-gold underline">종류 바꾸기</button>'; } }
+      render();
+    }
 
     // ===== 데이터 =====
     async function submitRequest(){
@@ -205,6 +240,7 @@
     function render(){
       const list = document.getElementById('list');
       let rows = ROWS.slice();
+      if(curFilter && curFilter !== 'all') rows = rows.filter(r => (r.type || 'request') === curFilter);
       rows.sort((a,b) => curSort === 'votes'
         ? ((VOTES[b.id]||0) - (VOTES[a.id]||0)) || (new Date(b.created_at) - new Date(a.created_at))
         : (new Date(b.created_at) - new Date(a.created_at)));
@@ -292,7 +328,7 @@
     }
 
     // 초기화
-    setType('request'); setSort('votes'); load();
+    setType('request'); setFilter('all'); setSort('votes'); load();
   </script>
 
   <!-- 공통 메뉴 -->
