@@ -144,7 +144,7 @@
   <div id="toast" class="hidden fixed bottom-5 right-5 z-[60] bg-ink text-paper text-sm px-5 py-3 rounded-xl shadow-lg"></div>
 
   <script>
-    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { lock: async (_n,_t,fn)=>await fn() } });
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType: 'implicit', lock: async (_n,_t,fn)=>await fn() } });
     let USER = null;
     function esc(s){ return (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
     function withTimeout(p,ms){ return Promise.race([Promise.resolve(p), new Promise((_,r)=>setTimeout(()=>r(new Error('TIMEOUT')),ms))]); }

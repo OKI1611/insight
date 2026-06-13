@@ -130,6 +130,7 @@
           <span id="listCount" class="text-xs text-ink/45"></span>
         </div>
         <ol id="lessonList" class="max-h-[60vh] overflow-auto divide-y divide-ink/5"></ol>
+        <a href="curriculum.html" class="block text-center text-xs text-gold/90 hover:text-gold font-semibold py-3 border-t border-ink/8">전체 커리큘럼 보기 (27트랙·255강) →</a>
       </div>
     </aside>
   </main>
@@ -614,16 +615,27 @@
       if(sec) sec.scrollIntoView({ behavior:'smooth', block:'start' });
       setTimeout(() => { const inp = document.getElementById('qaInput'); if(inp) inp.focus(); else if(!LUSER){ renderQaComposer(); } }, 450);
     }
+    // 현재 강의가 속한 트랙(레벨) 찾기
+    function currentLevelInfo(){
+      let gi = 0;
+      for(let li = 0; li < LEVELS.length; li++){
+        const n = LEVELS[li].lessons.length;
+        if(cur >= gi && cur < gi + n) return { lv: LEVELS[li], start: gi };
+        gi += n;
+      }
+      return { lv: LEVELS[0] || { name:'', lessons:[] }, start: 0 };
+    }
+    // 강의 목차: 현재 보고 있는 트랙의 강의만 표시(전체 255강은 '커리큘럼'으로)
     function renderList(){
-      let html = '', gi = 0;
-      LEVELS.forEach(lv => {
-        if(lv.name) html += `<li class="px-4 py-2.5 bg-ink/[0.04] flex items-baseline gap-2">
-            <span class="text-xs font-bold text-gold tracking-wide">${esc(lv.name)}</span>
-            ${ lv.desc ? `<span class="text-[11px] text-ink/45">· ${esc(lv.desc)}</span>` : '' }
-          </li>`;
-        lv.lessons.forEach(l => { html += lessonRow(l, gi++); });
-      });
+      const info = currentLevelInfo(), lv = info.lv, start = info.start;
+      let html = '';
+      if(lv.name) html += `<li class="px-4 py-2.5 bg-ink/[0.04] flex items-baseline gap-2">
+          <span class="text-xs font-bold text-gold tracking-wide">${esc(lv.name)}</span>
+          ${ lv.desc ? `<span class="text-[11px] text-ink/45">· ${esc(lv.desc)}</span>` : '' }
+        </li>`;
+      lv.lessons.forEach((l, k) => { html += lessonRow(l, start + k); });
       document.getElementById('lessonList').innerHTML = html;
+      const lc = document.getElementById('listCount'); if(lc) lc.textContent = `${lv.lessons.length}강`;
     }
 
     function loadLesson(i){
@@ -631,6 +643,7 @@
       cur = i;
       const l = lessons[i];
 
+      renderList();   // 현재 강의가 속한 트랙으로 목차 갱신(트랙 이동 시 따라감)
       document.querySelectorAll('.lesson').forEach(el => { el.classList.remove('bg-gold/10','border-gold'); });
       const el = document.getElementById('lesson-' + i);
       if(el){ el.classList.add('bg-gold/10','border-gold'); el.scrollIntoView({ block:'nearest' }); }
@@ -782,7 +795,7 @@
     }
 
     // ===== 수강신청 / 학습 진도 =====
-    const lsb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { lock: async (_n, _t, fn) => await fn() } });
+    const lsb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType: 'implicit', lock: async (_n, _t, fn) => await fn() } });
     let LUSER = null, ENROLLED = new Set(), DONE = new Set(), TABLES_READY = true, QNAME = '회원';
     const ADMIN_EMAIL_W = 'josephoh1611@gmail.com';
     function isAdminW(){ return LUSER && LUSER.email === ADMIN_EMAIL_W; }

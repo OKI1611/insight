@@ -54,6 +54,11 @@
           + '<div><h3 class="font-bold text-lg leading-tight">BIBLY 앱으로 설치</h3><p class="text-xs text-gray-500 mt-0.5">홈 화면에 추가하면 앱처럼 전체화면으로 열려요</p></div></div>'
           + '<div id="installAndroid" style="display:none"><p class="text-sm text-gray-600 mb-4">아래 버튼을 누르면 설치 창이 떠요. <b>‘설치’</b>를 선택하면 끝입니다!</p>'
           + '<button onclick="__biblyPwaInstall()" class="w-full py-3 rounded-xl font-semibold text-sm transition" style="background:#15203a;color:#fcfaf6">지금 설치하기</button></div>'
+          + '<div id="installAndroidManual" style="display:none"><ol class="text-sm text-gray-700 space-y-3">'
+          + '<li class="flex gap-2"><span style="color:#15203a;font-weight:700">1.</span><span>브라우저 오른쪽 위 <b>⋮ 메뉴</b>(점 3개)를 누르세요.</span></li>'
+          + '<li class="flex gap-2"><span style="color:#15203a;font-weight:700">2.</span><span><b>‘앱 설치’</b> 또는 <b>‘홈 화면에 추가’</b>를 누르세요.</span></li>'
+          + '<li class="flex gap-2"><span style="color:#15203a;font-weight:700">3.</span><span><b>‘설치’</b>를 누르면 완료 — 홈 화면에 BIBLY 앱이 생겨요!</span></li>'
+          + '</ol><p class="text-xs text-gray-400 mt-3">※ 삼성 인터넷·크롬에서 진행해 주세요.</p></div>'
           + '<div id="installIOS" style="display:none"><ol class="text-sm text-gray-700 space-y-3">'
           + '<li class="flex gap-2"><span style="color:#15203a;font-weight:700">1.</span><span>화면 아래(또는 위)의 <b>공유 버튼</b>(네모 상자에서 위로 향한 <b>↑ 화살표</b> 모양)을 누르세요.</span></li>'
           + '<li class="flex gap-2"><span style="color:#15203a;font-weight:700">2.</span><span>메뉴를 아래로 내려 <b>‘홈 화면에 추가’</b>를 누르세요.</span></li>'
@@ -68,13 +73,16 @@
         var biDP = null;
         var biStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
         var biIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
+        var biAndroid = /android/i.test(navigator.userAgent);
         var __biReveal = function(){ if(biStandalone) return; var b = document.getElementById('installBtn'); if(b) b.style.display = 'inline-flex'; };
         window.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); biDP = e; __biReveal(); });
-        if(biIOS && !biStandalone) __biReveal();   // iOS는 beforeinstallprompt 미발생
+        // 모바일(iOS·안드로이드)은 beforeinstallprompt 유무와 무관하게 항상 버튼 노출
+        if((biIOS || biAndroid) && !biStandalone) __biReveal();
         window.__biblyOpenInstall = function(){
           document.getElementById('installAndroid').style.display = biDP ? 'block' : 'none';
+          document.getElementById('installAndroidManual').style.display = (biAndroid && !biDP) ? 'block' : 'none';
           document.getElementById('installIOS').style.display = (biIOS && !biDP) ? 'block' : 'none';
-          document.getElementById('installOther').style.display = (!biDP && !biIOS) ? 'block' : 'none';
+          document.getElementById('installOther').style.display = (!biDP && !biIOS && !biAndroid) ? 'block' : 'none';
           document.getElementById('installModal').style.display = 'flex';
         };
         window.__biblyPwaInstall = function(){

@@ -11,6 +11,8 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { theme: { extend: {
@@ -25,7 +27,18 @@
     const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
     const ADMIN_EMAIL = 'josephoh1611@gmail.com';
   </script>
-  <style>h1{font-family:'Noto Serif KR',Pretendard,serif}</style>
+  <style>
+    h1{font-family:'Noto Serif KR',Pretendard,serif}
+    .ql-editor{min-height:150px;font-size:15px;line-height:1.7}
+    .ql-editor.ql-blank::before{color:#9aa1ad;font-style:normal}
+    .ql-toolbar.ql-snow,.ql-container.ql-snow{border-color:rgba(21,32,58,.15)}
+    .ql-toolbar.ql-snow{border-top-left-radius:.5rem;border-top-right-radius:.5rem}
+    .ql-container.ql-snow{border-bottom-left-radius:.5rem;border-bottom-right-radius:.5rem}
+    .resbody img{max-width:100%;border-radius:.5rem;margin:.4rem 0}
+    .resbody p{margin:.2rem 0}.resbody h2{font-size:1.05rem;font-weight:700;margin:.4rem 0}.resbody h3{font-weight:700;margin:.3rem 0}
+    .resbody blockquote{border-left:3px solid #d8c28a;padding-left:.7rem;color:rgba(21,32,58,.6);margin:.4rem 0}
+    .resbody a{color:#b8923f;text-decoration:underline}.resbody ul,.resbody ol{margin:.3rem 0 .3rem 1.2rem}.resbody li{list-style:disc}
+  </style>
 </head>
 <body class="font-sans bg-paper text-ink antialiased min-h-screen">
 
@@ -46,7 +59,8 @@
       <h2 class="font-bold mb-4">자료 올리기</h2>
       <input id="fTitle" placeholder="자료 제목" class="w-full border border-ink/15 rounded-lg px-3 py-2.5 mb-2 outline-none focus:border-gold"/>
       <input id="fCategory" placeholder="분류 (예: 암송노트·강의노트·도표)" class="w-full border border-ink/15 rounded-lg px-3 py-2.5 mb-2 outline-none focus:border-gold"/>
-      <textarea id="fDesc" rows="2" placeholder="설명" class="w-full border border-ink/15 rounded-lg px-3 py-2.5 mb-3 outline-none focus:border-gold resize-none"></textarea>
+      <label class="block text-xs font-semibold text-ink/50 mb-1">설명 · 본문 (블로그처럼 서식·사진 가능)</label>
+      <div id="fEditor" class="mb-3"></div>
       <div class="grid sm:grid-cols-2 gap-3 mb-3">
         <label class="border border-dashed border-ink/20 rounded-lg px-3 py-2.5 text-sm text-ink/60 cursor-pointer hover:bg-ink/5 text-center">
           📎 파일 첨부 (PDF 등)
@@ -69,10 +83,38 @@
   </main>
 
   <script>
-    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { lock: async (_n, _t, fn) => await fn() } });
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType: 'implicit', lock: async (_n, _t, fn) => await fn() } });
     let isAdmin = false;
     function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
     function fmtDate(iso){ return new Date(iso).toLocaleDateString('ko-KR'); }
+    function sanitize(html){ const d=document.createElement('div'); d.innerHTML=html||''; d.querySelectorAll('script,style,iframe,object,embed').forEach(n=>n.remove()); d.querySelectorAll('*').forEach(el=>{ [...el.attributes].forEach(a=>{ if(/^on/i.test(a.name)||(a.name==='href'&&/^javascript:/i.test(a.value))) el.removeAttribute(a.name); }); }); return d.innerHTML; }
+    function bodyHTML(b){ return /<[a-z][\s\S]*>/i.test(b||'') ? sanitize(b) : esc(b||'').replace(/\n/g,'<br>'); }
+    // 블로그식 리치 에디터 (Quill)
+    let resQuill = null;
+    function ensureResQuill(){
+      if(resQuill) return resQuill;
+      resQuill = new Quill('#fEditor', {
+        theme:'snow',
+        placeholder:'자료 설명·본문을 자유롭게 작성하세요. 서식·사진·링크를 넣을 수 있어요.',
+        modules:{ toolbar:[ [{ header:[2,3,false] }], ['bold','italic','underline'], [{ color:[] },{ background:[] }], [{ list:'ordered' },{ list:'bullet' }], ['blockquote','link','image'], ['clean'] ] }
+      });
+      resQuill.getModule('toolbar').addHandler('image', () => {
+        const input=document.createElement('input'); input.type='file'; input.accept='image/*';
+        input.onchange=async()=>{
+          const file=input.files[0]; if(!file) return;
+          if(file.size>5*1024*1024){ alert('이미지는 5MB 이하만 가능해요.'); return; }
+          const ext=(file.name.split('.').pop()||'jpg').toLowerCase();
+          const path=`resources/img/${Date.now()}.${ext}`;
+          const { error }=await sb.storage.from('community').upload(path,file);
+          if(error){ alert('이미지 업로드 오류: '+error.message); return; }
+          const url=sb.storage.from('community').getPublicUrl(path).data.publicUrl;
+          const range=resQuill.getSelection(true);
+          resQuill.insertEmbed(range.index,'image',url); resQuill.setSelection(range.index+1);
+        };
+        input.click();
+      });
+      return resQuill;
+    }
 
     sb.auth.getSession().then(({data:{session}})=>setUser(session));
     sb.auth.onAuthStateChange((_e,session)=>setUser(session));
@@ -83,10 +125,11 @@
       loadList();
     }
 
-    function openForm(){ document.getElementById('formView').classList.remove('hidden'); }
+    function openForm(){ document.getElementById('formView').classList.remove('hidden'); ensureResQuill(); }
     function closeForm(){
       document.getElementById('formView').classList.add('hidden');
-      ['fTitle','fCategory','fDesc','fLink'].forEach(id=>document.getElementById(id).value='');
+      ['fTitle','fCategory','fLink'].forEach(id=>document.getElementById(id).value='');
+      if(resQuill) resQuill.setText('');
       document.getElementById('fFile').value=''; document.getElementById('fFileName').textContent=''; document.getElementById('fMsg').textContent='';
     }
 
@@ -97,17 +140,19 @@
       if(!data.length){ wrap.innerHTML = '<p class="text-ink/40 text-sm text-center py-10">아직 자료가 없습니다.'+(isAdmin?' 첫 자료를 올려보세요!':'')+'</p>'; return; }
       wrap.innerHTML = data.map(r => {
         const url = (r.file_url || r.link || '').trim();
-        return `<div class="flex items-center gap-4 px-5 py-4 hover:bg-ink/[0.015]">
-          <div class="w-10 h-10 rounded-lg bg-gold/15 text-gold flex items-center justify-center shrink-0">📄</div>
-          <div class="min-w-0 flex-1">
-            ${ r.category ? `<span class="text-[11px] text-gold font-bold tracking-wide">${esc(r.category)}</span>` : '' }
-            <p class="font-semibold leading-snug truncate">${esc(r.title||'')}</p>
-            ${ r.description ? `<p class="text-sm text-ink/55 truncate">${esc(r.description)}</p>` : '' }
-            <p class="text-xs text-ink/35 mt-0.5">${fmtDate(r.created_at)}</p>
+        return `<div class="px-5 py-4 hover:bg-ink/[0.015]">
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg bg-gold/15 text-gold flex items-center justify-center shrink-0">📄</div>
+            <div class="min-w-0 flex-1">
+              ${ r.category ? `<span class="text-[11px] text-gold font-bold tracking-wide">${esc(r.category)}</span>` : '' }
+              <p class="font-semibold leading-snug">${esc(r.title||'')}</p>
+              <p class="text-xs text-ink/35 mt-0.5">${fmtDate(r.created_at)}</p>
+            </div>
+            ${ url ? `<a href="${encodeURI(url)}" target="_blank" rel="noopener" class="shrink-0 bg-ink text-paper text-sm font-semibold px-4 py-2 rounded-full hover:bg-navy">받기</a>`
+                   : `<span class="shrink-0 text-ink/35 text-xs">준비 중</span>` }
+            ${ isAdmin ? `<button onclick="delResource('${r.id}')" class="shrink-0 text-ink/30 hover:text-red-500 text-sm">삭제</button>` : '' }
           </div>
-          ${ url ? `<a href="${encodeURI(url)}" target="_blank" rel="noopener" class="shrink-0 bg-ink text-paper text-sm font-semibold px-4 py-2 rounded-full hover:bg-navy">받기</a>`
-                 : `<span class="shrink-0 text-ink/35 text-xs">준비 중</span>` }
-          ${ isAdmin ? `<button onclick="delResource('${r.id}')" class="shrink-0 text-ink/30 hover:text-red-500 text-sm">삭제</button>` : '' }
+          ${ r.description ? `<div class="resbody text-sm text-ink/65 mt-2 sm:pl-14 leading-relaxed">${bodyHTML(r.description)}</div>` : '' }
         </div>`;
       }).join('');
     }
@@ -115,7 +160,8 @@
     async function saveResource(){
       const title = document.getElementById('fTitle').value.trim();
       const category = document.getElementById('fCategory').value.trim();
-      const description = document.getElementById('fDesc').value.trim();
+      ensureResQuill();
+      const description = resQuill.getText().trim() ? sanitize(resQuill.root.innerHTML) : '';
       let link = document.getElementById('fLink').value.trim();
       const file = document.getElementById('fFile').files[0];
       const msg = document.getElementById('fMsg'); const btn = document.getElementById('saveBtn');

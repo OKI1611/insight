@@ -11,6 +11,8 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { theme: { extend: {
@@ -30,6 +32,14 @@
     @media(min-width:1024px){.boardBtn{justify-content:flex-start}}
     .boardBtn:hover{background:rgba(21,32,58,.05)}
     .boardBtn.on{background:#15203a;color:#fcfaf6}
+    .ql-editor{min-height:140px;font-size:15px;line-height:1.7}
+    .ql-editor.ql-blank::before{color:#9aa1ad;font-style:normal}
+    .ql-toolbar.ql-snow,.ql-container.ql-snow{border-color:rgba(21,32,58,.15)}
+    .ql-toolbar.ql-snow{border-top-left-radius:.75rem;border-top-right-radius:.75rem}
+    .ql-container.ql-snow{border-bottom-left-radius:.75rem;border-bottom-right-radius:.75rem}
+    .reqbody img{max-width:100%;border-radius:.5rem;margin:.4rem 0}
+    .reqbody p{margin:.2rem 0}.reqbody h2{font-size:1.05rem;font-weight:700;margin:.4rem 0}.reqbody h3{font-weight:700;margin:.3rem 0}
+    .reqbody blockquote{border-left:3px solid #d8c28a;padding-left:.7rem;color:rgba(21,32,58,.6);margin:.4rem 0}
   </style>
 </head>
 <body class="font-sans bg-paper text-ink antialiased min-h-screen">
@@ -85,7 +95,7 @@
       </div>
       <p id="typeHint" class="hidden text-xs text-ink/45 mb-3"></p>
       <input id="rTitle" type="text" maxlength="80" placeholder="제목 (예: 다니엘서 70이레를 자세히 다뤄주세요)" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold mb-2"/>
-      <textarea id="rBody" rows="4" maxlength="1000" placeholder="자세한 내용을 적어주세요. 어떤 점이 궁금한지, 왜 필요한지 적어주시면 큰 도움이 됩니다." class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold resize-none"></textarea>
+      <div id="rEditor"></div>
       <div class="flex items-center justify-between mt-3 pt-3 border-t border-ink/8">
         <span class="text-xs text-ink/40">✍️ 구체적으로 적을수록 강의로 만들어질 가능성이 높아요</span>
         <button id="submitBtn" onclick="submitRequest()" class="bg-gold text-white font-semibold text-sm px-5 py-2.5 rounded-full hover:opacity-90 transition shrink-0">등록하기</button>
@@ -109,13 +119,42 @@
   </main>
 
   <script>
-    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { lock: async (_n, _t, fn) => await fn() } });
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType: 'implicit', lock: async (_n, _t, fn) => await fn() } });
     const ADMIN_EMAIL = 'josephoh1611@gmail.com';
     const STATUSES = ['접수','검토중','제작확정','완료'];
     let currentUser = null, currentName = '회원', isAdmin = false;
     let curType = 'request', curSort = 'votes', curFilter = 'all', ROWS = [], VOTES = {}, MYVOTES = new Set();
 
     function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+    function sanitize(html){ const d=document.createElement('div'); d.innerHTML=html||''; d.querySelectorAll('script,style,iframe,object,embed').forEach(n=>n.remove()); d.querySelectorAll('*').forEach(el=>{ [...el.attributes].forEach(a=>{ if(/^on/i.test(a.name)||(a.name==='href'&&/^javascript:/i.test(a.value))) el.removeAttribute(a.name); }); }); return d.innerHTML; }
+    function bodyHTML(b){ return /<[a-z][\s\S]*>/i.test(b||'') ? sanitize(b) : esc(b||'').replace(/\n/g,'<br>'); }
+    // 블로그식 리치 에디터 (Quill)
+    let reqQuill = null;
+    function ensureReqQuill(){
+      if(reqQuill) return reqQuill;
+      reqQuill = new Quill('#rEditor', {
+        theme:'snow',
+        placeholder:'자세한 내용을 적어주세요. 어떤 점이 궁금한지, 왜 필요한지 적어주시면 큰 도움이 됩니다. (사진·서식도 넣을 수 있어요)',
+        modules:{ toolbar:[ [{ header:[2,3,false] }], ['bold','italic','underline'], [{ color:[] },{ background:[] }], [{ list:'ordered' },{ list:'bullet' }], ['blockquote','link','image'], ['clean'] ] }
+      });
+      reqQuill.getModule('toolbar').addHandler('image', () => {
+        const input=document.createElement('input'); input.type='file'; input.accept='image/*';
+        input.onchange=async()=>{
+          const file=input.files[0]; if(!file) return;
+          if(!currentUser){ requireLogin(); return; }
+          if(file.size>5*1024*1024){ alert('이미지는 5MB 이하만 가능해요.'); return; }
+          const ext=(file.name.split('.').pop()||'jpg').toLowerCase();
+          const path=`${currentUser.id}/${Date.now()}.${ext}`;
+          const { error }=await sb.storage.from('community').upload(path,file);
+          if(error){ alert('이미지 업로드 오류: '+error.message); return; }
+          const url=sb.storage.from('community').getPublicUrl(path).data.publicUrl;
+          const range=reqQuill.getSelection(true);
+          reqQuill.insertEmbed(range.index,'image',url); reqQuill.setSelection(range.index+1);
+        };
+        input.click();
+      });
+      return reqQuill;
+    }
     function withTimeout(p, ms){ return Promise.race([ Promise.resolve(p), new Promise((_, rej) => setTimeout(() => rej(new Error('TIMEOUT')), ms)) ]); }
     function tableMissing(e){ return e && (e.code === '42P01' || /relation|does not exist|schema cache|find the table/i.test(e.message || '')); }
     function fmtDate(s){ const d = new Date(s); const p = n => String(n).padStart(2,'0'); return `${d.getFullYear()}.${p(d.getMonth()+1)}.${p(d.getDate())}`; }
@@ -197,7 +236,8 @@
       const msg = document.getElementById('formMsg'); msg.textContent = '';
       if(!currentUser){ requireLogin(); return; }
       const title = document.getElementById('rTitle').value.trim();
-      const body = document.getElementById('rBody').value.trim();
+      ensureReqQuill();
+      const body = reqQuill.getText().trim() ? sanitize(reqQuill.root.innerHTML) : '';
       if(!title){ msg.textContent = '제목을 입력해주세요.'; return; }
       const btn = document.getElementById('submitBtn'); btn.disabled = true; btn.textContent = '등록 중…';
       let error;
@@ -209,7 +249,7 @@
         else { msg.textContent = '등록 실패: ' + (error.message || error); }
         return;
       }
-      document.getElementById('rTitle').value = ''; document.getElementById('rBody').value = '';
+      document.getElementById('rTitle').value = ''; reqQuill.setText('');
       msg.style.color = '#15803d'; msg.textContent = '✅ 소중한 의견 감사합니다! 등록되었어요.';
       setTimeout(() => { msg.textContent = ''; msg.style.color = ''; }, 2500);
       load();
@@ -277,7 +317,7 @@
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-2 flex-wrap mb-1.5">${typeBadge}${statusBadge(r.status)}</div>
             <p class="font-bold text-[16px] leading-snug">${esc(r.title)}</p>
-            ${ r.body ? `<p class="text-sm text-ink/65 mt-1.5 leading-relaxed whitespace-pre-wrap">${esc(r.body)}</p>` : '' }
+            ${ r.body ? `<div class="text-sm text-ink/65 mt-1.5 leading-relaxed reqbody">${bodyHTML(r.body)}</div>` : '' }
             <div class="flex items-center gap-2 mt-2.5 text-xs text-ink/40">
               <span>${esc(r.author_name || '회원')}</span><span>·</span><span>${fmtDate(r.created_at)}</span>
               ${ canDelete ? `<span>·</span><button onclick="del('${r.id}')" class="hover:text-red-500">삭제</button>` : '' }
@@ -328,7 +368,7 @@
     }
 
     // 초기화
-    setType('request'); setFilter('all'); setSort('votes'); load();
+    ensureReqQuill(); setType('request'); setFilter('all'); setSort('votes'); load();
   </script>
 
   <!-- 공통 메뉴 -->

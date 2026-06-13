@@ -1185,7 +1185,7 @@
     const DEFAULT_MENU = [
       { label: '우리의 사명', href: 'about.html'    },
       { label: '나에게 맞는 강의 찾기', href: 'find.html' },
-      { label: '강의',     href: 'curriculum.html' },
+      { label: '커리큘럼', href: 'curriculum.html' },
       { label: '질문·나눔·기도요청', href: 'community.html' },
       { label: '강의 요청·건의함', href: 'request.html' },
       { label: '자료실',   href: 'resources.html' },
@@ -1464,7 +1464,7 @@
       });
 
     // ===== Supabase 로그인 / 회원가입 =====
-    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { lock: async (_n, _t, fn) => await fn() } });
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType: 'implicit', lock: async (_n, _t, fn) => await fn() } });
     const authModal = document.getElementById('authModal');
     const authNav = document.getElementById('authNav');
     const setMsg = (id, t) => { const e = document.getElementById(id); if(e) e.textContent = t || ''; };

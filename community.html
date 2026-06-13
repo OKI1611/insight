@@ -115,7 +115,7 @@
   </main>
 
   <script>
-    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { lock: async (_n, _t, fn) => await fn() } });
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType: 'implicit', lock: async (_n, _t, fn) => await fn() } });
     const ADMIN_EMAIL = 'josephoh1611@gmail.com';   // 관리자: 모든 글 삭제 가능
     let currentUser = null, currentName = '회원', isAdmin = false, currentBoard = 'free';
 
