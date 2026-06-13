@@ -45,6 +45,8 @@
     .ql-editor{min-height:420px;font-size:16px;line-height:1.85}
     .ql-toolbar.ql-snow{border-color:rgba(21,32,58,.12);border-radius:.75rem .75rem 0 0;background:#fff}
     .ql-container.ql-snow{border-color:rgba(21,32,58,.12);border-radius:0 0 .75rem .75rem}
+    /* 한글 입력(조합) 중 안내문구 겹침 방지 — 포커스 시 placeholder 숨김 */
+    .ql-container:focus-within .ql-editor.ql-blank::before{content:''}
   </style>
 </head>
 <body class="font-sans bg-paper text-ink antialiased min-h-screen">

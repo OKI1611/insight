@@ -32,6 +32,8 @@
     .ql-container.ql-snow{border-color:rgba(21,32,58,.12);border-radius:0 0 .75rem .75rem;font-family:'Pretendard',sans-serif}
     .ql-editor{min-height:150px;font-size:15px;line-height:1.7}
     .ql-editor.ql-blank::before{color:#9aa1ad;font-style:normal}
+    /* 한글 입력(조합) 중 안내문구와 겹침 방지 — 포커스 시 placeholder 숨김 */
+    .ql-container:focus-within .ql-editor.ql-blank::before{content:''}
     .post-body img{max-width:100%;border-radius:10px;margin:8px 0}
     .post-body h1{font-size:1.4rem;font-weight:700;margin:.5em 0}
     .post-body h2{font-size:1.2rem;font-weight:700;margin:.5em 0}

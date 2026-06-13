@@ -65,7 +65,11 @@
       <!-- 강의 전 진단평가 (동기 유발 · 퀴즈 데이터 있는 강의만) -->
       <div id="prequizSection" class="mb-4" style="display:none"><div id="prequizCard"></div></div>
 
-      <div id="player" class="aspect-video bg-ink rounded-2xl overflow-hidden shadow-soft"></div>
+      <div id="playerWrap" class="relative select-none">
+        <div id="player" class="aspect-video bg-ink rounded-2xl overflow-hidden shadow-soft"></div>
+        <span id="wmark" class="pointer-events-none absolute top-2 right-3 text-[10px] font-semibold text-white/35 select-none" style="text-shadow:0 1px 3px rgba(0,0,0,.5)">오광일의 인사이트 브리핑</span>
+      </div>
+      <p class="text-[11px] text-ink/45 mt-2 flex items-center gap-1.5 leading-snug">🔒 본 강의 영상의 <b class="text-ink/60">무단 다운로드·화면 녹화·재배포를 금합니다.</b> © 오광일의 인사이트 브리핑</p>
 
       <div class="mt-5 flex items-start justify-between gap-4">
         <div>
@@ -1117,6 +1121,21 @@
   </script>
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <!-- 콘텐츠 보호(가벼운 억제책): 영상·이미지 우클릭/드래그 차단 -->
+  <script>
+    (function(){
+      var prot = document.getElementById('playerWrap');
+      function block(e){ e.preventDefault(); return false; }
+      if(prot){ prot.addEventListener('contextmenu', block); }
+      // 이미지 드래그 저장 억제
+      document.addEventListener('dragstart', function(e){ if(e.target && e.target.tagName === 'IMG') block(e); });
+      // 강의실 영상 영역 우클릭 억제(링크/입력은 정상)
+      document.addEventListener('contextmenu', function(e){
+        var t = e.target;
+        if(t && (t.closest && (t.closest('#playerWrap') || t.tagName === 'IMG'))) block(e);
+      });
+    })();
+  </script>
   <script src="auth-header.js"></script>
 </body>
 </html>
