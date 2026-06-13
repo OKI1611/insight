@@ -148,6 +148,17 @@
   <section id="quizSection" class="max-w-7xl mx-auto px-4 pb-2"><div id="quizCard"></div></section>
 
   <!-- ===== 수강생 질의응답 (강의별 · 공개/비밀) ===== -->
+  <section id="ytSection" class="max-w-7xl mx-auto px-4 pb-6">
+    <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 lg:p-7">
+      <div class="flex items-center justify-between mb-1 flex-wrap gap-2">
+        <h3 class="font-bold text-lg">💬 유튜브 댓글</h3>
+        <a id="ytWatchLink" href="https://www.youtube.com/@" target="_blank" rel="noopener" class="text-sm font-semibold text-gold hover:underline shrink-0">유튜브에서 댓글 보기·작성하기 ↗</a>
+      </div>
+      <p class="text-sm text-ink/55 mb-4">이 강의 영상에 달린 <b class="text-ink">유튜브 댓글</b>이에요. 댓글 작성·답글은 위 버튼을 눌러 <b class="text-ink">유튜브에서</b> 하실 수 있습니다.</p>
+      <div id="ytComments" class="space-y-1"></div>
+    </div>
+  </section>
+
   <section id="qaSection" class="max-w-7xl mx-auto px-4 pb-14">
     <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 lg:p-7">
       <div class="flex items-center justify-between mb-2">
@@ -673,6 +684,7 @@
       renderQuiz(l);
       refreshLearningUI();
       loadQuestions();
+      loadYouTubeComments(id);
       const noteCard = document.getElementById('noteCard');
       const noteBtn = document.getElementById('noteToggleBtn');
       if(noteCard){ noteCard.style.display = 'none'; }
@@ -683,6 +695,82 @@
     }
     function prev(){ loadLesson(cur - 1); }
     function next(){ loadLesson(cur + 1); }
+
+    // ===== 유튜브 댓글 (읽기 전용 표시) =====
+    // content/site.json 의 youtube.api_key 가 있으면 해당 영상 댓글을 불러와 표시.
+    // 키가 없거나 오류여도 '유튜브에서 보기' 링크는 항상 동작(graceful).
+    const YT_CHANNEL_ID = 'UC82IOMnZud8NNt3BYzAxTMg'; // 오광일의 인사이트 브리핑 (채널 답글 배지용)
+    let YT_API_KEY = '';
+    const YT_CACHE = {};
+    fetch('content/site.json?t=' + Date.now())
+      .then(r => r.json())
+      .then(s => { YT_API_KEY = (s && s.youtube && s.youtube.api_key) || ''; if(lessons[cur]) loadYouTubeComments(ytId(lessons[cur].youtube)); })
+      .catch(() => {});
+
+    function ytEsc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+    function ytComment(s){
+      const pic  = ytEsc(s.authorProfileImageUrl || '');
+      const name = ytEsc(s.authorDisplayName || '익명');
+      const url  = ytEsc(s.authorChannelUrl || '');
+      const text = ytEsc(s.textOriginal || s.textDisplay || '').replace(/\n/g, '<br>');
+      const likes = s.likeCount || 0;
+      const date = (s.publishedAt || '').slice(0, 10);
+      const isOwner = s.authorChannelId && s.authorChannelId.value === YT_CHANNEL_ID;
+      const nameHtml = url
+        ? `<a href="${url}" target="_blank" rel="noopener" class="font-semibold text-ink hover:text-gold">${name}</a>`
+        : `<span class="font-semibold text-ink">${name}</span>`;
+      const ownerBadge = isOwner ? ' <span class="text-[10px] font-bold text-white bg-gold rounded px-1.5 py-0.5 align-middle">채널</span>' : '';
+      return `<div class="flex gap-3">
+        <img src="${pic}" alt="" referrerpolicy="no-referrer" onerror="this.style.visibility='hidden'" class="w-8 h-8 rounded-full shrink-0 bg-ink/10 object-cover"/>
+        <div class="min-w-0 flex-1">
+          <p class="text-[13px] leading-tight">${nameHtml}${ownerBadge} <span class="text-ink/35">· ${date}</span></p>
+          <p class="text-sm text-ink/80 mt-1 break-words">${text}</p>
+          ${likes ? `<p class="text-xs text-ink/40 mt-1">👍 ${likes}</p>` : ''}
+        </div>
+      </div>`;
+    }
+    function ytThread(t, vid){
+      const top = t.snippet.topLevelComment.snippet;
+      const replies = (t.replies && t.replies.comments) || [];
+      const more = (t.snippet.totalReplyCount || 0) - replies.length;
+      return `<div class="border-b border-ink/5 py-4 last:border-0">
+        ${ytComment(top)}
+        ${replies.length ? '<div class="mt-3 ml-6 space-y-3 border-l-2 border-ink/8 pl-4">' + replies.map(c => ytComment(c.snippet)).join('') +
+          (more > 0 ? `<p class="text-xs text-ink/40">답글 ${more}개 더 — <a href="https://www.youtube.com/watch?v=${vid}&lc=${ytEsc(t.snippet.topLevelComment.id)}" target="_blank" rel="noopener" class="text-gold font-semibold">유튜브에서 보기</a></p>` : '') + '</div>' : ''}
+      </div>`;
+    }
+    async function loadYouTubeComments(id){
+      const box = document.getElementById('ytComments');
+      const link = document.getElementById('ytWatchLink');
+      if(link) link.href = id ? ('https://www.youtube.com/watch?v=' + id) : 'https://www.youtube.com/@';
+      if(!box) return;
+      if(!id){ box.innerHTML = '<p class="text-sm text-ink/45">영상 정보를 찾을 수 없어요.</p>'; return; }
+      if(!YT_API_KEY){
+        box.innerHTML = '<p class="text-sm text-ink/45">유튜브 댓글을 이 화면에 표시하려면 <b class="text-ink">관리자 설정(YouTube API 키)</b>이 필요해요. 지금은 위 <b class="text-ink">‘유튜브에서 댓글 보기’</b> 버튼으로 댓글을 보고 다실 수 있습니다.</p>';
+        return;
+      }
+      if(YT_CACHE[id]){ box.innerHTML = YT_CACHE[id]; return; }
+      box.innerHTML = '<p class="text-sm text-ink/40">유튜브 댓글을 불러오는 중…</p>';
+      try{
+        const url = 'https://www.googleapis.com/youtube/v3/commentThreads?part=snippet,replies&videoId=' + id +
+                    '&maxResults=20&order=relevance&textFormat=plainText&key=' + encodeURIComponent(YT_API_KEY);
+        const r = await fetch(url);
+        const d = await r.json();
+        if(d.error){
+          const reason = (d.error.errors && d.error.errors[0] && d.error.errors[0].reason) || '';
+          if(reason === 'commentsDisabled'){ box.innerHTML = '<p class="text-sm text-ink/45">이 영상은 댓글이 사용 중지되어 있어요.</p>'; return; }
+          box.innerHTML = '<p class="text-sm text-ink/45">유튜브 댓글을 불러오지 못했어요. <span class="text-ink/35">(관리자: API 키·할당량·HTTP 제한 설정을 확인해주세요' + (reason ? ' — ' + ytEsc(reason) : '') + ')</span></p>';
+          return;
+        }
+        const items = d.items || [];
+        if(!items.length){ box.innerHTML = '<p class="text-sm text-ink/45">아직 댓글이 없어요. 유튜브에서 첫 댓글을 남겨보세요!</p>'; return; }
+        const html = items.map(t => ytThread(t, id)).join('');
+        YT_CACHE[id] = html;
+        box.innerHTML = html;
+      }catch(e){
+        box.innerHTML = '<p class="text-sm text-ink/45">유튜브 댓글을 불러오지 못했어요. 잠시 후 다시 시도해주세요.</p>';
+      }
+    }
 
     // ===== 수강신청 / 학습 진도 =====
     const lsb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { lock: async (_n, _t, fn) => await fn() } });
