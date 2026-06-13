@@ -172,7 +172,7 @@ foot.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,-1),LGOLD),('BOX',(0,0),(-1,-1
                           ('LEFTPADDING',(0,0),(-1,-1),12),('RIGHTPADDING',(0,0),(-1,-1),12),
                           ('TOPPADDING',(0,0),(-1,-1),9),('BOTTOMPADDING',(0,0),(-1,-1),9)]))
 story += [foot, Spacer(1,8)]
-story += [P('© BIBLY 바이블 인사이트 · 대표강사 오광일   |   본 자료는 「천년왕국 세미나」의 관점을 따른 학습용 요약입니다.   |   insight.josephoh1611.workers.dev',
+story += [P('© BIBLY 바이블 인사이트 · 대표강사 오광일   |   본 자료는 「천년왕국 세미나」의 관점을 따른 학습용 요약입니다.   |   biblynote.com',
             size=7.8, color=GREY, align=TA_CENTER)]
 
 doc.build(story)
