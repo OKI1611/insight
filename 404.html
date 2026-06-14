@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>페이지를 찾을 수 없어요 — BIBLY 바이블 인사이트</title>
+  <meta name="robots" content="noindex" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#15203a" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink:'#15203a', navy:'#1b2a4a', gold:'#b8923f', sand:'#efe7d6', paper:'#fcfaf6' },
+      fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] }
+    }}}
+  </script>
+  <style>body{word-break:keep-all}h1{font-family:'Noto Serif KR',Pretendard,serif}</style>
+</head>
+<body class="font-sans bg-paper text-ink antialiased min-h-screen flex flex-col items-center justify-center px-6 py-16 text-center">
+
+  <a href="/" class="flex items-center gap-2.5 mb-10">
+    <span class="w-10 h-10 rounded-xl bg-ink flex items-center justify-center shadow">
+      <svg class="w-[22px] h-[22px]" viewBox="0 0 24 24" fill="none" stroke="#b8923f" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.6C10.4 5.5 8.4 5 6 5C4.7 5 3.7 5.15 3 5.35V18.2C3.7 18 4.7 17.85 6 17.85C8.4 17.85 10.4 18.35 12 19.5"/><path d="M12 6.6C13.6 5.5 15.6 5 18 5C19.3 5 20.3 5.15 21 5.35V18.2C20.3 18 19.3 17.85 18 17.85C15.6 17.85 13.6 18.35 12 19.5"/><path d="M12 6.6V19.5"/></svg>
+    </span>
+    <span class="leading-none text-left"><span class="block font-extrabold tracking-tight text-[20px]">BIBLY<span class="text-gold">.</span></span>
+    <span class="block text-[10px] text-ink/50 tracking-[0.04em] mt-1">말씀으로 시대를 읽다</span></span>
+  </a>
+
+  <p class="font-display text-[72px] md:text-[96px] font-bold text-gold/25 leading-none select-none">404</p>
+  <h1 class="text-2xl md:text-3xl font-bold mt-2">찾으시는 페이지가 없어요</h1>
+  <p class="text-ink/60 mt-4 max-w-md leading-relaxed">주소가 바뀌었거나 삭제된 페이지일 수 있어요.<br/>아래에서 원하시는 곳으로 이동해 주세요.</p>
+
+  <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
+    <a href="/" class="bg-ink text-paper font-semibold px-7 py-3.5 rounded-full hover:bg-navy transition shadow">홈으로 가기</a>
+    <a href="/curriculum" class="border border-ink/15 px-7 py-3.5 rounded-full font-semibold hover:bg-ink/5 transition">전체 커리큘럼</a>
+    <a href="/find" class="border border-ink/15 px-7 py-3.5 rounded-full font-semibold hover:bg-ink/5 transition">나에게 맞는 강의 찾기</a>
+  </div>
+
+  <p class="text-ink/35 text-xs mt-12">문의 ✉ josephoh1611@gmail.com</p>
+
+</body>
+</html>
