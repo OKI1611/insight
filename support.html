@@ -154,6 +154,20 @@
             </div>
             <button onclick="copyBankAcct()" class="shrink-0 bg-white/10 hover:bg-white/20 text-paper text-xs font-semibold px-3.5 py-2 rounded-lg transition">📋 복사</button>
           </div>
+
+          <!-- 해외에서 후원 (국제 송금) -->
+          <div id="foreignBox" style="display:none" class="bg-white/5 border border-white/12 rounded-2xl p-5 text-left mt-2">
+            <p class="text-paper/85 font-semibold text-sm mb-1 flex items-center gap-1.5">🌏 해외에서 후원하기 <span class="text-paper/40 font-normal text-xs">· International transfer</span></p>
+            <p class="text-paper/45 text-xs mb-3.5 leading-relaxed">From outside Korea, please send a bank (wire) transfer using the details below.</p>
+            <div class="space-y-2.5 text-sm">
+              <div class="flex items-center justify-between gap-2"><span class="text-paper/50 text-xs shrink-0">Bank</span><span id="fBank" class="font-medium text-right"></span></div>
+              <div class="flex items-center justify-between gap-2"><span class="text-paper/50 text-xs shrink-0">SWIFT / BIC</span><span class="flex items-center gap-1.5"><span id="fSwift" class="font-semibold tracking-wide"></span><button onclick="copyVal('fSwift')" class="bg-white/10 hover:bg-white/20 text-[11px] px-2 py-0.5 rounded">복사</button></span></div>
+              <div class="flex items-center justify-between gap-2"><span class="text-paper/50 text-xs shrink-0">Account No.</span><span class="flex items-center gap-1.5"><span id="fAcct" class="font-semibold"></span><button onclick="copyVal('fAcct')" class="bg-white/10 hover:bg-white/20 text-[11px] px-2 py-0.5 rounded">복사</button></span></div>
+              <div class="flex items-center justify-between gap-2"><span class="text-paper/50 text-xs shrink-0">Account holder</span><span id="fHolder" class="font-medium text-right"></span></div>
+              <div id="fAddrRow" class="flex items-center justify-between gap-2"><span class="text-paper/50 text-xs shrink-0">Bank address</span><span id="fAddr" class="text-right text-paper/70 text-xs"></span></div>
+            </div>
+            <p class="text-paper/35 text-[11px] mt-3.5 leading-relaxed">※ 보내는 분의 은행에 따라 중계은행(intermediary bank) 정보가 필요할 수 있어요. 송금 전 SWIFT 코드를 한 번 더 확인해 주세요.</p>
+          </div>
         </div>
 
         <p class="text-paper/40 text-xs mt-6 leading-relaxed">
@@ -222,7 +236,26 @@
       const ytm = document.getElementById('ytMembership');
       const memUrl = yt.membership_url || (yt.channel_url ? (yt.channel_url.replace(/\/$/, '') + '/join') : null);
       if (ytm && memUrl) ytm.href = memUrl;
+      // 해외 송금(국제 wire) 정보 — 외환계좌번호·영문 예금주가 채워졌을 때만 노출
+      const f = s.foreign;
+      if (f && f.account && f.holder_en) {
+        const setT = (id, v) => { const e = document.getElementById(id); if(e) e.textContent = v; };
+        setT('fBank', f.bank_name_en || 'Standard Chartered Bank Korea Limited');
+        setT('fSwift', f.swift || 'SCBLKRSEXXX');
+        setT('fAcct', f.account);
+        setT('fHolder', f.holder_en);
+        if (f.bank_address) setT('fAddr', f.bank_address);
+        else { const ar = document.getElementById('fAddrRow'); if(ar) ar.style.display = 'none'; }
+        const fb = document.getElementById('foreignBox'); if(fb) fb.style.display = 'block';
+      }
     }).catch(() => {});
+
+    function copyVal(id){
+      const el = document.getElementById(id); const txt = (el ? el.textContent : '').trim();
+      const done = () => alert('복사했어요 📋\n' + txt);
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done).catch(() => prompt('복사하세요:', txt)); }
+      else { prompt('복사하세요:', txt); }
+    }
 
     function copyBankAcct(){
       const el = document.getElementById('bankAccount');
