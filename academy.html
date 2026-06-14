@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <script src="/content-loader.js"></script>
+  <script src="/site-header.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>정규 심화 과정 — BIBLY 바이블 인사이트</title>
+  <meta name="theme-color" content="#15203a" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="canonical" href="https://biblynote.com/academy" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BIBLY 바이블 인사이트" />
+  <meta property="og:title" content="정규 심화 과정 — BIBLY 바이블 인사이트" />
+  <meta property="og:description" content="수료증·라이브 Q&A·기수제 코호트로 끝까지 함께 완주하는 BIBLY 정규 심화 과정. 1기 사전 신청 받습니다." />
+  <meta property="og:url" content="https://biblynote.com/academy" />
+  <meta property="og:image" content="https://biblynote.com/images/og-cover.png?v=2" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="정규 심화 과정 — BIBLY 바이블 인사이트" />
+  <meta name="twitter:description" content="수료증·라이브 Q&A·기수제 코호트로 끝까지 함께 완주하는 BIBLY 정규 심화 과정. 1기 사전 신청." />
+  <meta name="twitter:image" content="https://biblynote.com/images/og-cover.png?v=2" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink:'#15203a', navy:'#1b2a4a', gold:'#b8923f', sand:'#efe7d6', paper:'#fcfaf6' },
+      fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
+      boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
+    }}}
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
+    const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+  </script>
+  <style>h1,h2,h3{font-family:'Noto Serif KR',Pretendard,serif}html{scroll-behavior:smooth}</style>
+</head>
+<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+
+  <div id="siteHeader" data-active="academy.html"></div>
+
+  <!-- 히어로 -->
+  <section class="bg-ink text-paper">
+    <div class="max-w-3xl mx-auto px-5 py-16 md:py-20 text-center">
+      <p class="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-5">Premium Program · 정규 심화 과정</p>
+      <h1 class="text-2xl md:text-[34px] font-bold leading-[1.35]">혼자 보던 강의에서,<br/><span class="text-gold">끝까지 완주하는 과정</span>으로</h1>
+      <p class="text-paper/70 text-[15px] md:text-base mt-6 leading-relaxed max-w-xl mx-auto">
+        무료 강의는 그대로 자유롭게 보세요. 더 <b class="text-paper">깊이</b>, <b class="text-paper">체계적으로</b>, 무엇보다 <b class="text-paper">끝까지 함께</b> 완주하고 싶은 분을 위한 정규 과정입니다.
+      </p>
+      <div class="flex flex-wrap justify-center gap-2.5 mt-7 text-sm">
+        <span class="bg-white/8 border border-white/15 rounded-full px-4 py-1.5">🎓 수료증</span>
+        <span class="bg-white/8 border border-white/15 rounded-full px-4 py-1.5">🎙 월 라이브 Q&amp;A</span>
+        <span class="bg-white/8 border border-white/15 rounded-full px-4 py-1.5">👥 기수제 코호트</span>
+        <span class="bg-white/8 border border-white/15 rounded-full px-4 py-1.5">📓 워크북·과제</span>
+      </div>
+      <a href="#apply" class="inline-flex items-center gap-2 mt-9 bg-gold text-white font-bold text-base px-8 py-3.5 rounded-full hover:opacity-90 transition shadow-xl">1기 사전 신청하기 →</a>
+      <p class="text-paper/45 text-xs mt-4 leading-relaxed">지금은 <b class="text-paper/70">1기 사전 신청(대기 명단)</b>을 받고 있어요. 모집이 시작되면 가장 먼저 안내드립니다.<br/>신청은 무료이며, 결제·등록은 정식 오픈 시 별도로 진행됩니다.</p>
+    </div>
+  </section>
+
+  <main class="max-w-3xl mx-auto px-5">
+
+    <!-- 무료 vs 정규 비교 -->
+    <section class="py-14">
+      <div class="text-center mb-9">
+        <p class="text-gold text-xs font-bold tracking-[0.25em] uppercase mb-3">왜 정규 과정인가</p>
+        <h2 class="text-xl md:text-2xl font-bold">무료 강의는 그대로, 그 위에 ‘완주’를 더합니다</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-6">
+          <p class="font-bold text-ink/70 mb-3">📺 무료 강의</p>
+          <ul class="space-y-2.5 text-sm text-ink/60 leading-relaxed">
+            <li>· 누구나 무료로, 자유롭게 시청</li>
+            <li>· 순서·속도 자유 (스스로 찾아보기)</li>
+            <li>· 혼자 공부</li>
+            <li>· 질문은 커뮤니티로</li>
+          </ul>
+          <p class="text-xs text-ink/40 mt-4">— 앞으로도 <b class="text-ink/60">계속 무료</b>입니다</p>
+        </div>
+        <div class="bg-ink text-paper rounded-2xl shadow-card p-6 relative overflow-hidden">
+          <span class="absolute top-4 right-4 bg-gold text-white text-[11px] font-bold px-2.5 py-1 rounded-full">정규 과정</span>
+          <p class="font-bold text-gold mb-3">🎓 정규 심화 과정</p>
+          <ul class="space-y-2.5 text-sm text-paper/80 leading-relaxed">
+            <li>✓ 정해진 커리큘럼·순서로 체계적 완주</li>
+            <li>✓ 매주 진도 + 워크북·과제로 손에 남기기</li>
+            <li>✓ 월 라이브 Q&amp;A — 강사에게 직접</li>
+            <li>✓ 같은 기수 동료와 함께 (코호트)</li>
+            <li>✓ 완주 시 <b class="text-paper">수료증</b></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 과정이 주는 것 -->
+    <section class="py-8">
+      <div class="text-center mb-9">
+        <p class="text-gold text-xs font-bold tracking-[0.25em] uppercase mb-3">What you get</p>
+        <h2 class="text-xl md:text-2xl font-bold">정규 과정이 주는 것</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5"><p class="text-2xl mb-2">🗺️</p><p class="font-bold">체계적 커리큘럼</p><p class="text-sm text-ink/55 mt-1.5 leading-relaxed">입문부터 심화까지 정해진 순서로, 길을 잃지 않게.</p></div>
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5"><p class="text-2xl mb-2">🎙</p><p class="font-bold">월 라이브 Q&amp;A</p><p class="text-sm text-ink/55 mt-1.5 leading-relaxed">막히는 질문을 강사에게 직접 묻고 답을 듣습니다.</p></div>
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5"><p class="text-2xl mb-2">👥</p><p class="font-bold">기수제 동료</p><p class="text-sm text-ink/55 mt-1.5 leading-relaxed">같은 시즌에 함께 시작해 함께 완주하는 코호트.</p></div>
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5"><p class="text-2xl mb-2">📓</p><p class="font-bold">워크북·과제</p><p class="text-sm text-ink/55 mt-1.5 leading-relaxed">눈으로만 보지 않고, 손으로 정리하며 내 것으로.</p></div>
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5"><p class="text-2xl mb-2">✍️</p><p class="font-bold">강사 피드백</p><p class="text-sm text-ink/55 mt-1.5 leading-relaxed">제출한 과제·질문에 대한 직접 피드백.</p></div>
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5"><p class="text-2xl mb-2">🎓</p><p class="font-bold">수료증</p><p class="text-sm text-ink/55 mt-1.5 leading-relaxed">끝까지 완주한 분께 BIBLY 수료증을 드립니다.</p></div>
+      </div>
+    </section>
+
+    <!-- 이런 분께 -->
+    <section class="py-12">
+      <div class="bg-sand/40 border border-gold/20 rounded-2xl p-7">
+        <h2 class="text-lg md:text-xl font-bold text-center mb-5">이런 분께 권합니다</h2>
+        <div class="grid sm:grid-cols-2 gap-x-6 gap-y-3 text-sm text-ink/70 max-w-xl mx-auto">
+          <p class="flex gap-2"><span class="text-gold font-bold shrink-0">✓</span>혼자 보다가 중간에 멈춘 적이 있는 분</p>
+          <p class="flex gap-2"><span class="text-gold font-bold shrink-0">✓</span>처음부터 끝까지 체계적으로 배우고 싶은 분</p>
+          <p class="flex gap-2"><span class="text-gold font-bold shrink-0">✓</span>궁금한 걸 강사에게 직접 묻고 싶은 분</p>
+          <p class="flex gap-2"><span class="text-gold font-bold shrink-0">✓</span>함께 공부하며 끝까지 갈 동료가 필요한 분</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 신청 폼 -->
+    <section id="apply" class="py-10">
+      <div class="bg-white rounded-3xl border border-ink/10 shadow-card p-6 md:p-8 max-w-xl mx-auto">
+        <div class="text-center mb-6">
+          <p class="text-gold text-xs font-bold tracking-[0.25em] uppercase mb-2">Pre-register</p>
+          <h2 class="text-xl md:text-2xl font-bold">1기 사전 신청</h2>
+          <p class="text-ink/55 text-sm mt-2 leading-relaxed">먼저 신청해 두시면 <b class="text-ink">모집 시작 시 가장 먼저</b>, 그리고 <b class="text-gold">사전 신청자 혜택</b>과 함께 안내드려요. (지금 결제하지 않으셔도 됩니다)</p>
+        </div>
+
+        <div class="space-y-3">
+          <input id="aName" type="text" maxlength="40" placeholder="이름 (또는 닉네임)" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold" />
+          <input id="aEmail" type="email" maxlength="120" placeholder="이메일 *" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold" />
+          <input id="aPhone" type="tel" maxlength="30" placeholder="연락처 (선택)" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold" />
+          <select id="aInterest" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold text-ink/80 bg-white">
+            <option value="">관심 과정을 골라주세요 (선택)</option>
+            <option>천년왕국 세미나 심화</option>
+            <option>예언의 기초 · 다니엘</option>
+            <option>종말과 국제정세</option>
+            <option>성경 전체 체계 잡기</option>
+            <option>아직 정하지 못했어요</option>
+          </select>
+          <textarea id="aMotive" rows="3" maxlength="600" placeholder="신청 동기나 듣고 싶은 점이 있다면 적어주세요 (선택)" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold resize-none"></textarea>
+          <input id="aHp" type="text" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+          <button id="aSubmit" onclick="submitApp()" class="w-full bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition">사전 신청하기</button>
+          <p id="aMsg" class="text-center text-sm min-h-[18px]"></p>
+          <p class="text-center text-ink/40 text-xs leading-relaxed">신청 정보는 정규 과정 안내 목적으로만 사용되며, 원치 않으시면 언제든 삭제 요청하실 수 있어요.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-10 pb-16">
+      <h2 class="text-xl font-bold text-center mb-6">자주 묻는 질문</h2>
+      <div class="space-y-3 max-w-xl mx-auto">
+        <details class="bg-white rounded-xl border border-ink/8 p-4"><summary class="font-semibold cursor-pointer text-sm">무료 강의와 뭐가 다른가요?</summary><p class="text-sm text-ink/60 mt-2.5 leading-relaxed">무료 강의는 앞으로도 그대로 자유롭게 보실 수 있어요. 정규 과정은 거기에 ‘정해진 순서·라이브 Q&amp;A·동료·과제·수료증’을 더해 끝까지 완주하도록 돕는 가이드 과정입니다.</p></details>
+        <details class="bg-white rounded-xl border border-ink/8 p-4"><summary class="font-semibold cursor-pointer text-sm">수강료는 얼마인가요?</summary><p class="text-sm text-ink/60 mt-2.5 leading-relaxed">정식 오픈 시 공개됩니다. 사전 신청자에게는 가장 먼저, 그리고 사전 신청자 혜택과 함께 안내드려요. 지금 신청하셔도 결제 의무는 없습니다.</p></details>
+        <details class="bg-white rounded-xl border border-ink/8 p-4"><summary class="font-semibold cursor-pointer text-sm">언제 시작하나요?</summary><p class="text-sm text-ink/60 mt-2.5 leading-relaxed">1기 모집 인원이 모이면 일정을 확정해 안내드립니다. 사전 신청해 두시면 그 소식을 가장 먼저 받으실 수 있어요.</p></details>
+        <details class="bg-white rounded-xl border border-ink/8 p-4"><summary class="font-semibold cursor-pointer text-sm">신앙 단계가 낮아도 괜찮나요?</summary><p class="text-sm text-ink/60 mt-2.5 leading-relaxed">네. 기초 트랙부터 차근차근 함께 갑니다. 오히려 ‘혼자서는 어려웠던 분’께 더 맞는 과정이에요.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType: 'implicit', lock: async (_n, _t, fn) => await fn() } });
+    function tableMissing(e){ return e && (e.code === '42P01' || /relation|does not exist|schema cache|find the table/i.test(e.message || '')); }
+    function withTimeout(p, ms){ return Promise.race([ Promise.resolve(p), new Promise((_, rej) => setTimeout(() => rej(new Error('TIMEOUT')), ms)) ]); }
+    async function submitApp(){
+      const msg = document.getElementById('aMsg'); msg.style.color = '#dc2626'; msg.textContent = '';
+      if (document.getElementById('aHp').value) return;            // 봇 차단(허니팟)
+      const email = document.getElementById('aEmail').value.trim();
+      const name  = document.getElementById('aName').value.trim();
+      const phone = document.getElementById('aPhone').value.trim();
+      const interest = document.getElementById('aInterest').value;
+      const motivation = document.getElementById('aMotive').value.trim();
+      if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.textContent = '이메일을 정확히 입력해 주세요.'; return; }
+      const btn = document.getElementById('aSubmit'); btn.disabled = true; btn.textContent = '신청 중…';
+      let error;
+      try { const res = await withTimeout(sb.from('course_applications').insert({ name: name || null, email, phone: phone || null, interest: interest || null, motivation: motivation || null }), 9000); error = res.error; }
+      catch(e){ error = e; }
+      btn.disabled = false; btn.textContent = '사전 신청하기';
+      if (error) {
+        if (tableMissing(error)) { msg.innerHTML = '사전 신청을 준비 중이에요. 잠시 후 다시 시도하시거나 <a href="mailto:josephoh1611@gmail.com" class="underline">이메일</a>로 알려주세요.'; }
+        else { msg.textContent = '신청 중 오류가 났어요: ' + (error.message || error); }
+        return;
+      }
+      document.getElementById('apply').innerHTML = '<div class="bg-white rounded-3xl border border-gold/30 shadow-card p-8 md:p-10 max-w-xl mx-auto text-center"><p class="text-4xl mb-3">🎉</p><h2 class="text-xl md:text-2xl font-bold">사전 신청이 완료됐어요!</h2><p class="text-ink/60 text-sm mt-3 leading-relaxed">모집이 시작되면 <b class="text-ink">가장 먼저</b>, 사전 신청자 혜택과 함께 안내드릴게요.<br/>함께해 주셔서 감사합니다. 🙏</p><a href="index.html" class="inline-block mt-6 text-gold font-semibold hover:underline">홈으로 돌아가기 →</a></div>';
+      document.getElementById('apply').scrollIntoView({ behavior:'smooth', block:'center' });
+    }
+  </script>
+
+  <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script src="auth-header.js"></script>
+</body>
+</html>

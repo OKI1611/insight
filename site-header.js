@@ -130,10 +130,11 @@
       + '<p class="text-xs mt-3 text-ink/35 leading-relaxed">본 사이트 강의 영상의 무단 다운로드·녹화·재배포를 금합니다.</p>'
       + '</div>'
       + '<div class="grid grid-cols-2 gap-x-10 gap-y-2.5 text-sm text-ink/60 shrink-0">'
-      + lnk('curriculum.html', '커리큘럼') + lnk('about.html', '우리의 사명')
-      + lnk('community.html', '질문·나눔') + lnk('resources.html', '자료실')
-      + lnk('request.html', '강의 요청·건의') + lnk('mylearning.html', '내 강의실')
-      + lnk(YT, '▶ 유튜브 채널', '') + lnk('support.html', '♥ 후원 안내')
+      + lnk('curriculum.html', '커리큘럼') + lnk('academy.html', '정규 심화 과정')
+      + lnk('about.html', '우리의 사명') + lnk('community.html', '질문·나눔')
+      + lnk('resources.html', '자료실') + lnk('request.html', '강의 요청·건의')
+      + lnk('mylearning.html', '내 강의실') + lnk(YT, '▶ 유튜브 채널', '')
+      + lnk('support.html', '♥ 후원 안내')
       + '</div>'
       + '</div>'
       + '<p class="text-center text-ink/30 text-xs mt-10">© 2026 BIBLY · 바이블 인사이트 (오광일의 인사이트 브리핑). All rights reserved.</p>'

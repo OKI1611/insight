@@ -109,6 +109,24 @@ create policy lq_delete on public.lecture_questions for delete
 -- community_posts 가 이미 있다는 전제(커뮤니티 사용 중). 없으면 이 줄은 건너뛰세요.
 alter table public.community_posts add column if not exists board text not null default 'free';
 
+-- ── 5) 정규 심화 과정 사전 신청 (academy.html) ──────────────────
+create table if not exists public.course_applications (
+  id          uuid primary key default gen_random_uuid(),
+  name        text,
+  email       text not null,
+  phone       text,
+  interest    text,        -- 관심 과정/트랙
+  motivation  text,        -- 신청 동기·질문
+  created_at  timestamptz not null default now()
+);
+alter table public.course_applications enable row level security;
+drop policy if exists ca_insert on public.course_applications;
+create policy ca_insert on public.course_applications for insert with check (true);   -- 비로그인 사전신청 허용(대기명단)
+drop policy if exists ca_select on public.course_applications;
+create policy ca_select on public.course_applications for select using (public.is_admin());
+drop policy if exists ca_delete on public.course_applications;
+create policy ca_delete on public.course_applications for delete using (public.is_admin());
+
 -- ============================================================
--- 끝! 이제 강의요청·건의, 수강신청·내강의실, 강의 질의응답, 커뮤니티 탭이 작동합니다.
+-- 끝! 이제 강의요청·건의, 수강신청·내강의실, 강의 질의응답, 커뮤니티 탭, 정규과정 사전신청이 작동합니다.
 -- ============================================================
