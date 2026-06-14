@@ -639,7 +639,10 @@
       <div id="catalogGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <p class="text-ink/40 text-sm col-span-full text-center py-10">강의를 불러오는 중…</p>
       </div>
-      <p class="text-center text-ink/45 text-sm mt-10">새로운 강의가 계속 추가됩니다. 각 트랙을 눌러 강의실에서 이어보세요.</p>
+      <div class="text-center mt-10">
+        <a href="curriculum.html" class="inline-flex items-center gap-2 bg-ink text-paper font-semibold px-7 py-3.5 rounded-full hover:bg-navy transition shadow-card">전체 <span id="catTrackCount2">27</span>개 트랙 · <span id="catCount2">255</span>강 커리큘럼 보기 →</a>
+        <p class="text-ink/45 text-sm mt-4">새로운 강의가 계속 추가됩니다.</p>
+      </div>
     </div>
   </section>
 
@@ -675,8 +678,8 @@
     <div class="max-w-3xl mx-auto px-5">
       <div class="text-center mb-12">
         <p class="eyebrow text-gold text-xs font-semibold mb-4">CURRICULUM</p>
-        <h2 data-cms="home-sec9" class="text-2xl md:text-[32px] font-bold">전체 커리큘럼</h2>
-        <p class="text-ink/60 mt-4">4개 트랙 · 총 <b id="curCount" class="text-ink">28</b>강 · 주제별로 골라 듣는 종말 강의 · <b class="text-gold">전체 무료 공개 중</b></p>
+        <h2 data-cms="home-sec9" class="text-2xl md:text-[32px] font-bold">커리큘럼 미리보기</h2>
+        <p class="text-ink/60 mt-4">대표 트랙의 강의 구성을 살펴보세요. 전체 <b id="curTrackCount" class="text-ink">27</b>개 트랙·<b id="curCount" class="text-ink">255</b>강은 아래 ‘전체 보기’에서 — <b class="text-gold">전 강의 무료 공개 중</b></p>
       </div>
 
       <div id="curriculumList" class="space-y-3">
@@ -684,7 +687,7 @@
       </div>
 
       <div class="text-center mt-10">
-        <a href="watch.html" class="inline-flex items-center gap-2 bg-ink text-paper font-semibold px-8 py-4 rounded-full hover:bg-navy transition shadow-card">▶ 강의실에서 바로 보기</a>
+        <a href="curriculum.html" class="inline-flex items-center gap-2 bg-ink text-paper font-semibold px-8 py-4 rounded-full hover:bg-navy transition shadow-card">전체 <span id="curTrackCount2">27</span>개 트랙 · <span id="curCount2b">255</span>강 커리큘럼 보기 →</a>
       </div>
     </div>
   </section>
@@ -1375,14 +1378,17 @@
         let acc = 0; const starts = [];
         levels.forEach(lv => { starts.push(acc); acc += (lv.lessons || []).length; });
         const total = acc;
-        const cc = document.getElementById('catCount'); if(cc) cc.textContent = total;
-        const tc = document.getElementById('catTrackCount'); if(tc) tc.textContent = levels.length;
+        const setTxt = (id, v) => { const el = document.getElementById(id); if(el) el.textContent = v; };
+        setTxt('catCount', total); setTxt('catTrackCount', levels.length);
+        setTxt('catCount2', total); setTxt('catTrackCount2', levels.length);
+        setTxt('curCount', total); setTxt('curTrackCount', levels.length);
+        setTxt('curCount2b', total); setTxt('curTrackCount2', levels.length);
         const playSvg = '<svg class="w-5 h-5 text-ink ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
 
         // (1) 카탈로그: 트랙(시리즈) 카드
         if(grid){
           if(!total){ grid.innerHTML = '<p class="text-ink/40 text-sm col-span-full text-center py-10">곧 강의가 추가됩니다.</p>'; }
-          else { grid.innerHTML = levels.map((lv, ti) => {
+          else { grid.innerHTML = levels.slice(0, 6).map((lv, ti) => {
             const ls = lv.lessons || [];
             const id = ytId((ls[0] || {}).youtube);
             const thumb = id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : '';
@@ -1421,7 +1427,7 @@
         const curCount = document.getElementById('curCount');
         if(curCount) curCount.textContent = total;
         if(curList){
-          curList.innerHTML = levels.map((lv, ti) => {
+          curList.innerHTML = levels.slice(0, 2).map((lv, ti) => {
             const ls = lv.lessons || [];
             const tl = (lv.tagline || '').replace(/</g,'&lt;');
             const dsc = (lv.desc || '').replace(/</g,'&lt;');
