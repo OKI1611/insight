@@ -6,6 +6,12 @@
   if(window.__biblyLoaderReady) return; window.__biblyLoaderReady = true;
   // 접근성 — 저장된(또는 기본 17px) 글자 크기를 깜빡임 없이 즉시 적용
   try{ var __fs = localStorage.getItem('biblyFont') || '17px'; document.documentElement.style.fontSize = __fs; }catch(e){}
+  // 한글 줄바꿈을 어절 단위로(단어 중간에서 끊기지 않게) — 전 페이지 공통 타이포 개선
+  try{
+    var __ks = document.createElement('style');
+    __ks.textContent = 'body{word-break:keep-all;overflow-wrap:break-word}';
+    (document.head || document.documentElement).appendChild(__ks);
+  }catch(e){}
   var SB = 'https://bmxkndkwefdgsomlznoo.supabase.co';
   var AK = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
   var orig = window.fetch ? window.fetch.bind(window) : null;
