@@ -107,13 +107,16 @@
             c.style.pointerEvents = h ? 'none' : '';
           }
         }
+        function biNarrow(){ return window.innerWidth < 1024; }   // PC(넓은 화면)는 자동숨김 안 함, 항상 표시
         window.addEventListener('scroll', function(){
+          if(!biNarrow()){ if(hid) setHid(false); return; }
           var y = window.pageYOffset || 0;
           if(y < 140) setHid(false);
           else if(y > lastY + 6) setHid(true);
           else if(y < lastY - 6) setHid(false);
           lastY = y;
         }, { passive: true });
+        window.addEventListener('resize', function(){ if(!biNarrow() && hid) setHid(false); }, { passive: true });
       })();
     }
   }catch(e){}
