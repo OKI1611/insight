@@ -104,6 +104,21 @@
           </div>
         </div>
 
+        <!-- 정기 후원 · 멤버십 (매달) -->
+        <div class="max-w-md mx-auto mb-8 text-left">
+          <p class="text-gold text-xs font-semibold tracking-[0.2em] uppercase mb-3 text-center">매달 함께하기 · 멤버십</p>
+          <div class="bg-white/[0.06] border border-gold/30 rounded-2xl p-5">
+            <p class="font-bold text-paper text-base mb-1.5">유튜브 멤버십으로 매달 함께해요</p>
+            <p class="text-paper/60 text-sm leading-relaxed mb-4">한 달에 커피 한 잔으로 이 사역이 끊기지 않고 이어집니다. 멤버가 되시면 <b class="text-paper/85">멤버 전용 뱃지·소식·우선 소통</b> 등 감사의 마음을 준비해 드려요.</p>
+            <a id="ytMembership" href="https://www.youtube.com/channel/UC82IOMnZud8NNt3BYzAxTMg/join" target="_blank" rel="noopener"
+               class="flex items-center justify-center gap-2 bg-[#FF0000] text-white font-semibold py-3.5 rounded-2xl hover:opacity-90 transition">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.5 15.5v-7l6.3 3.5-6.3 3.5z"/></svg>
+              유튜브 멤버십 가입하기
+            </a>
+          </div>
+          <p class="text-center text-paper/35 text-xs mt-6 tracking-wide">— 또는 한 번만 후원하기 —</p>
+        </div>
+
         <!-- 추천 후원 금액 -->
         <div class="max-w-md mx-auto mb-5">
           <p class="text-paper/55 text-xs mb-2">💛 이만큼이면 충분해요 — 부담 없이</p>
@@ -202,6 +217,11 @@
         ba.innerHTML = (s.bank_account || '') + ' <span class="text-paper/50 text-xs font-normal">예금주 ' + (s.bank_holder || '') + '</span>';
       const ce = document.getElementById('contactEmail');
       if (ce && s.contact_email) { ce.href = 'mailto:' + s.contact_email; ce.textContent = '✉ ' + s.contact_email; }
+      // 유튜브 멤버십 링크 (site.json youtube.membership_url 우선, 없으면 channel_url + /join)
+      const yt = (site && site.youtube) || {};
+      const ytm = document.getElementById('ytMembership');
+      const memUrl = yt.membership_url || (yt.channel_url ? (yt.channel_url.replace(/\/$/, '') + '/join') : null);
+      if (ytm && memUrl) ytm.href = memUrl;
     }).catch(() => {});
 
     function copyBankAcct(){
