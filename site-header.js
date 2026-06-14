@@ -117,6 +117,29 @@
       }).catch(function(){});
   }
 
+  // 공통 푸터(하위 페이지) — 이미 footer가 있는 페이지는 건너뜀
+  var YT = 'https://www.youtube.com/channel/UC82IOMnZud8NNt3BYzAxTMg';
+  function footerHTML(){
+    function lnk(href, label, cls){ return '<a href="' + href + '" class="hover:text-gold transition ' + (cls||'') + '">' + label + '</a>'; }
+    return '<footer class="bibly-footer bg-paper border-t border-ink/10 py-12 mt-16">'
+      + '<div class="max-w-6xl mx-auto px-5 flex flex-col md:flex-row justify-between gap-8">'
+      + '<div class="max-w-md">'
+      + '<p class="font-bold text-lg">BIBLY<span class="text-gold">.</span> <span class="text-ink/50 text-sm font-normal">바이블 인사이트</span></p>'
+      + '<p class="text-sm mt-2 text-ink/60 leading-relaxed">말씀으로 시대를 읽다 · 유튜브 「오광일의 인사이트 브리핑」 공식 강의 플랫폼</p>'
+      + '<p class="text-sm mt-3 text-ink/50">✉ josephoh1611@gmail.com</p>'
+      + '<p class="text-xs mt-3 text-ink/35 leading-relaxed">본 사이트 강의 영상의 무단 다운로드·녹화·재배포를 금합니다.</p>'
+      + '</div>'
+      + '<div class="grid grid-cols-2 gap-x-10 gap-y-2.5 text-sm text-ink/60 shrink-0">'
+      + lnk('curriculum.html', '커리큘럼') + lnk('about.html', '우리의 사명')
+      + lnk('community.html', '질문·나눔') + lnk('resources.html', '자료실')
+      + lnk('request.html', '강의 요청·건의') + lnk('mylearning.html', '내 강의실')
+      + lnk(YT, '▶ 유튜브 채널', '') + lnk('support.html', '♥ 후원 안내')
+      + '</div>'
+      + '</div>'
+      + '<p class="text-center text-ink/30 text-xs mt-10">© 2026 BIBLY · 바이블 인사이트 (오광일의 인사이트 브리핑). All rights reserved.</p>'
+      + '</footer>';
+  }
+
   function build(){
     mount = document.getElementById('siteHeader');
     if(!mount) return;
@@ -132,6 +155,13 @@
     }).catch(function(){});
     // 3) 로그인 이름 보강
     refineName(readStored());
+    // 4) 공통 푸터(기존 footer 없을 때만)
+    try{
+      if(!document.querySelector('footer')){
+        var wrap = document.createElement('div'); wrap.innerHTML = footerHTML();
+        document.body.appendChild(wrap.firstChild);
+      }
+    }catch(e){}
   }
 
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
