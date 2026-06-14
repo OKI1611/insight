@@ -60,7 +60,7 @@
   }
 
   function authHTML(){
-    var mylearn = '<a href="mylearning.html" class="inline-flex items-center gap-1 border border-gold/45 text-gold font-semibold px-3 py-1.5 rounded-full hover:bg-gold/10 transition text-xs whitespace-nowrap">📚 내 강의실</a>';
+    var mylearn = '<a href="mylearning.html" class="hidden lg:inline-flex items-center gap-1 border border-gold/45 text-gold font-semibold px-3 py-1.5 rounded-full hover:bg-gold/10 transition text-xs whitespace-nowrap">📚 내 강의실</a>';
     var support = '<a href="support.html" aria-label="후원하기" title="후원하기" class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-rose-500/10 text-rose-500 border border-rose-300 hover:bg-rose-500 hover:text-white transition shrink-0" style="font-size:15px">♥</a>';
     var s = readStored(), authpart;
     if(s && s.user){
@@ -72,16 +72,35 @@
       authpart = '<button onclick="__biblyHeaderLoginClick()" class="bg-gold text-white font-semibold px-3.5 py-1.5 rounded-full hover:opacity-90 transition text-xs whitespace-nowrap">로그인</button>';
     }
     return mylearn + support + authpart
-      + '<a href="index.html" class="text-ink/45 hover:text-gold whitespace-nowrap text-sm">홈</a>';
+      + '<a href="index.html" class="hidden lg:inline text-ink/45 hover:text-gold whitespace-nowrap text-sm">홈</a>';
   }
+
+  // 모바일 드롭다운 메뉴(햄버거)
+  function mobileMenuHTML(menu){
+    var items = menu.map(function(m){
+      var hash = String(m.href).charAt(0) === '#';
+      var href = hash ? ('index.html' + m.href) : m.href;
+      var on = !hash && (href.split('?')[0] === active);
+      return '<a href="' + href + '" class="py-3 border-b border-ink/5 ' + (on ? 'text-gold font-semibold' : 'text-ink/75') + '">' + esc(m.label) + '</a>';
+    }).join('');
+    return '<div class="max-w-6xl mx-auto px-4 py-1 flex flex-col text-[15px]">' + items
+      + '<a href="mylearning.html" class="py-3 border-b border-ink/5 text-gold font-semibold">📚 내 강의실</a>'
+      + '<a href="index.html" class="py-3 text-ink/55">🏠 홈</a>'
+      + '</div>';
+  }
+  window.__biblyToggleMenu = function(){ var m = document.getElementById('biblyMobMenu'); if(m) m.classList.toggle('hidden'); };
 
   function headerHTML(menu){
     return '<header class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-ink/8">'
       + '<div class="max-w-6xl mx-auto px-4 h-14 flex items-center gap-3">'
       + LOGO
-      + '<nav id="navmenu" class="flex items-center gap-4 sm:gap-5 text-sm text-ink/70 overflow-x-auto whitespace-nowrap pl-1">' + menuHTML(menu) + '</nav>'
-      + '<div class="ml-auto flex items-center gap-2 sm:gap-3 text-sm shrink-0">' + authHTML() + '</div>'
-      + '</div></header>';
+      + '<nav id="navmenu" class="hidden lg:flex items-center gap-4 xl:gap-5 text-sm text-ink/70 whitespace-nowrap pl-1">' + menuHTML(menu) + '</nav>'
+      + '<div class="ml-auto flex items-center gap-2 sm:gap-3 text-sm shrink-0">' + authHTML()
+      + '<button id="biblyHamb" aria-label="메뉴 열기" onclick="__biblyToggleMenu()" class="lg:hidden w-9 h-9 -mr-1 flex items-center justify-center rounded-lg hover:bg-ink/5 text-ink/70"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>'
+      + '</div>'
+      + '</div>'
+      + '<div id="biblyMobMenu" class="lg:hidden hidden border-t border-ink/8 bg-paper/95 backdrop-blur shadow-sm">' + mobileMenuHTML(menu) + '</div>'
+      + '</header>';
   }
 
   // 로그인한 회원의 실제 이름(profiles.full_name)으로 보강 — 비차단
@@ -106,7 +125,10 @@
     mount.outerHTML = headerHTML(DEFAULT_MENU);
     // 2) site.json 으로 메뉴 보강
     fetch('content/site.json?t=' + Date.now()).then(function(r){ return r.json(); }).then(function(s){
-      if(s && s.menu){ var nav = document.getElementById('navmenu'); if(nav) nav.innerHTML = menuHTML(s.menu); }
+      if(s && s.menu){
+        var nav = document.getElementById('navmenu'); if(nav) nav.innerHTML = menuHTML(s.menu);
+        var mob = document.getElementById('biblyMobMenu'); if(mob) mob.innerHTML = mobileMenuHTML(s.menu);
+      }
     }).catch(function(){});
     // 3) 로그인 이름 보강
     refineName(readStored());
