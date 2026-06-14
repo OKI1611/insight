@@ -229,7 +229,8 @@
         document.getElementById('courseTitle').textContent = '강의를 불러오지 못했습니다.';
       });
 
-    function lessonRow(l, i){
+    function lessonRow(l, i, num){
+      const dispNum = (num == null ? i + 1 : num);   // 표시용 번호(트랙 내 순번), id/클릭은 전체 인덱스 i 사용
       const hasCh = l.chapters && l.chapters.length;
       const chHtml = hasCh ? `<ul id="ch-list-${i}" class="hidden bg-ink/[0.015] border-t border-ink/5">` +
         l.chapters.map(c => {
@@ -246,7 +247,7 @@
       return `<li class="lessonItem">
           <div id="lesson-${i}" onclick="loadLesson(${i})"
               class="lesson flex items-center gap-3 px-4 py-3.5 cursor-pointer border-l-2 border-transparent hover:bg-ink/[0.03] transition">
-            <span class="num text-sm text-ink/35 font-bold w-6 shrink-0">${String(i+1).padStart(2,'0')}</span>
+            <span class="num text-sm text-ink/35 font-bold w-6 shrink-0">${String(dispNum).padStart(2,'0')}</span>
             <div class="min-w-0 flex-1">
               <p class="title text-sm font-medium leading-snug">${esc(l.title || '')}</p>
               <p class="text-xs text-ink/45 mt-1">${ l.duration ? '⏱ ' + esc(l.duration) + ' · ' : '' }${ l.free ? '<span class="text-green-600 font-semibold">무료</span>' : '<span class="text-ink/40">🔒 오픈 예정</span>' }${ hasCh ? ` · <span class="text-ink/40">목차 ${l.chapters.length}</span>` : '' }</p>
@@ -637,7 +638,7 @@
           <span class="text-xs font-bold text-gold tracking-wide">${esc(lv.name)}</span>
           ${ lv.desc ? `<span class="text-[11px] text-ink/45">· ${esc(lv.desc)}</span>` : '' }
         </li>`;
-      lv.lessons.forEach((l, k) => { html += lessonRow(l, start + k); });
+      lv.lessons.forEach((l, k) => { html += lessonRow(l, start + k, k + 1); });
       document.getElementById('lessonList').innerHTML = html;
       const lc = document.getElementById('listCount'); if(lc) lc.textContent = `${lv.lessons.length}강`;
     }

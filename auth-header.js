@@ -92,6 +92,29 @@
         };
         window.addEventListener('appinstalled', function(){ var b = document.getElementById('installBtn'); if(b) b.style.display = 'none'; var m = document.getElementById('installModal'); if(m) m.style.display = 'none'; });
       }
+
+      // 스크롤 내릴 때 플로팅 버튼 숨김(콘텐츠 가림 방지), 올리거나 상단이면 표시
+      (function(){
+        var cols = w.children;   // [좌: 글자크기, 우: 설치/후원/질문]
+        var lastY = window.pageYOffset || 0, hid = null;
+        function setHid(h){
+          if(h === hid) return; hid = h;
+          for(var i = 0; i < cols.length; i++){
+            var c = cols[i];
+            c.style.transition = 'transform .28s ease, opacity .28s ease';
+            c.style.transform = h ? 'translateY(170%)' : '';
+            c.style.opacity = h ? '0' : '';
+            c.style.pointerEvents = h ? 'none' : '';
+          }
+        }
+        window.addEventListener('scroll', function(){
+          var y = window.pageYOffset || 0;
+          if(y < 140) setHid(false);
+          else if(y > lastY + 6) setHid(true);
+          else if(y < lastY - 6) setHid(false);
+          lastY = y;
+        }, { passive: true });
+      })();
     }
   }catch(e){}
 
