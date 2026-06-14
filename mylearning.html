@@ -38,7 +38,16 @@
     const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
     const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
   </script>
-  <style>h1,h2{font-family:'Noto Serif KR',Pretendard,serif}</style>
+  <style>
+    h1,h2{font-family:'Noto Serif KR',Pretendard,serif}
+    @media print{
+      body *{visibility:hidden!important}
+      #certModal,#certModal *{visibility:visible!important}
+      #certModal{position:absolute!important;inset:0!important;background:#fff!important;display:block!important;padding:0!important}
+      #certModal>div{box-shadow:none!important;max-width:100%!important;border-radius:0!important}
+      #certPrintActions{display:none!important}
+    }
+  </style>
 </head>
 <body class="font-sans bg-paper text-ink antialiased min-h-screen">
 
@@ -70,10 +79,26 @@
 
     <!-- 로그인 -->
     <div id="dashView" class="hidden">
-      <div id="summary" class="grid grid-cols-3 gap-3 mb-6"></div>
+      <div id="welcome" class="mb-6"></div>
+      <div id="summary" class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-7"></div>
+      <div id="tracksHead" class="hidden items-center justify-between mb-3">
+        <h2 class="font-bold text-lg">내 학습 과정</h2>
+        <a href="index.html#catalog" class="text-sm text-gold font-semibold hover:underline whitespace-nowrap">+ 과정 추가</a>
+      </div>
       <div id="tracks" class="space-y-5"></div>
     </div>
   </main>
+
+  <!-- 🎓 수료증 모달 -->
+  <div id="certModal" style="display:none" class="fixed inset-0 z-[120] items-center justify-center bg-black/60 p-4" onclick="if(event.target===this)closeCert()">
+    <div class="bg-paper rounded-2xl max-w-lg w-full shadow-2xl overflow-hidden">
+      <div id="certSheet"></div>
+      <div id="certPrintActions" class="flex gap-2 p-4 bg-white border-t border-ink/8">
+        <button onclick="printCert()" class="flex-1 bg-ink text-paper font-semibold py-2.5 rounded-xl hover:bg-navy transition">🖨 인쇄 · PDF 저장</button>
+        <button onclick="closeCert()" class="px-5 bg-ink/5 hover:bg-ink/10 font-semibold py-2.5 rounded-xl transition">닫기</button>
+      </div>
+    </div>
+  </div>
 
   <script>
     const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType: 'implicit', lock: async (_n, _t, fn) => await fn() } });
@@ -158,17 +183,54 @@
         sumEl.innerHTML = ''; return;
       }
 
+      const welEl = document.getElementById('welcome');
+      const headEl = document.getElementById('tracksHead');
       const mine = levels.map((lv, ti) => ({ lv, ti })).filter(x => enrolled.includes(x.lv.name));
-      // 요약 카드
-      let totalLessons = 0, totalDone = 0;
-      mine.forEach(({ lv }) => { (lv.lessons||[]).forEach(l => { totalLessons++; if(done.has(ytId(l.youtube))) totalDone++; }); });
+
+      // ── 트랙별 통계 계산 ──
+      const stats = mine.map(({ lv, ti }) => {
+        const ls = lv.lessons || [];
+        const doneCnt = ls.filter(l => done.has(ytId(l.youtube))).length;
+        const pct = ls.length ? Math.round(doneCnt / ls.length * 100) : 0;
+        const fi = ls.findIndex(l => !done.has(ytId(l.youtube)));
+        return { lv, ti, ls, doneCnt, pct, finished: (pct === 100 && ls.length > 0),
+                 nextIdx: starts[ti] + (fi < 0 ? 0 : fi), nextTitle: fi < 0 ? null : (ls[fi] && ls[fi].title) };
+      });
+      let totalLessons = 0, totalDone = 0, completedCnt = 0;
+      stats.forEach(s => { totalLessons += s.ls.length; totalDone += s.doneCnt; if(s.finished) completedCnt++; });
       const overallPct = totalLessons ? Math.round(totalDone / totalLessons * 100) : 0;
-      sumEl.innerHTML = `
-        <div class="bg-white rounded-2xl border border-ink/8 p-4 text-center"><p class="text-2xl font-bold text-gold">${mine.length}</p><p class="text-xs text-ink/55 mt-1">수강 중인 과정</p></div>
-        <div class="bg-white rounded-2xl border border-ink/8 p-4 text-center"><p class="text-2xl font-bold text-gold">${totalDone}<span class="text-base text-ink/40">/${totalLessons}</span></p><p class="text-xs text-ink/55 mt-1">완료한 강의</p></div>
-        <div class="bg-white rounded-2xl border border-ink/8 p-4 text-center"><p class="text-2xl font-bold text-gold">${overallPct}%</p><p class="text-xs text-ink/55 mt-1">전체 진도율</p></div>`;
+      window.__certNames = stats.map(s => s.lv.name);
+
+      // ── 환영 · 이어서 학습 히어로 ──
+      const resume = stats.find(s => !s.finished && s.nextTitle);
+      if(!mine.length){
+        welEl.innerHTML = '';
+      } else if(resume){
+        welEl.innerHTML = `<div class="bg-ink text-paper rounded-3xl p-6 md:p-7">
+          <p class="text-gold text-xs font-bold tracking-wide mb-3">${esc(uname)}님, 오늘도 환영합니다 👋</p>
+          <p class="text-paper/50 text-xs mb-1">이어서 학습할 강의</p>
+          <p class="font-bold text-lg leading-snug">${esc(resume.lv.name)}</p>
+          <p class="text-paper/75 text-sm mt-1 mb-5 truncate">▸ ${esc(resume.nextTitle)}</p>
+          <a href="watch.html?l=${resume.nextIdx}" class="inline-flex items-center gap-2 bg-gold text-white font-bold px-7 py-3 rounded-full hover:opacity-90 transition">▶ 이어서 학습하기</a>
+        </div>`;
+      } else {
+        welEl.innerHTML = `<div class="bg-ink text-paper rounded-3xl p-7 text-center">
+          <p class="text-4xl mb-2">🎉</p>
+          <p class="font-bold text-lg">${esc(uname)}님, 수강 중인 모든 과정을 완주하셨어요!</p>
+          <p class="text-paper/60 text-sm mt-1.5">각 과정의 <b class="text-gold">수료증</b>을 받아 학습을 기념해 보세요.</p>
+        </div>`;
+      }
+
+      // ── 요약 카드 (4) ──
+      const card = (val, label) => `<div class="bg-white rounded-2xl border border-ink/8 p-4 text-center"><p class="text-2xl font-bold text-gold">${val}</p><p class="text-xs text-ink/55 mt-1">${label}</p></div>`;
+      sumEl.innerHTML =
+        card(mine.length, '수강 과정') +
+        card(`${totalDone}<span class="text-base text-ink/40">/${totalLessons}</span>`, '완료 강의') +
+        card(completedCnt, '수료 과정') +
+        card(`${overallPct}%`, '전체 진도율');
 
       if(!mine.length){
+        if(headEl) headEl.classList.add('hidden');
         tracksEl.innerHTML = `<div class="bg-white rounded-2xl border border-ink/8 p-8 text-center">
           <p class="text-3xl mb-3">📚</p>
           <p class="font-semibold mb-1">아직 수강신청한 강의가 없어요</p>
@@ -177,15 +239,11 @@
         </div>`;
         return;
       }
+      if(headEl){ headEl.classList.remove('hidden'); headEl.classList.add('flex'); }
 
-      tracksEl.innerHTML = mine.map(({ lv, ti }, idx) => {
-        const ls = lv.lessons || [];
-        const doneCnt = ls.filter(l => done.has(ytId(l.youtube))).length;
-        const pct = ls.length ? Math.round(doneCnt / ls.length * 100) : 0;
-        const fi = ls.findIndex(l => !done.has(ytId(l.youtube)));
-        const contIdx = starts[ti] + (fi < 0 ? 0 : fi);
-        const contLabel = (fi < 0) ? '🎉 완강! 다시 보기' : (doneCnt === 0 ? '▶ 학습 시작하기' : '▶ 이어보기');
-        const open = idx === 0;   // 첫 과정은 펼친 상태로
+      tracksEl.innerHTML = stats.map((s, idx) => {
+        const { lv, ti, ls, doneCnt, pct } = s;
+        const open = (idx === 0 && !s.finished);   // 첫 미완료 과정만 펼침
         const rows = ls.map((l, li) => {
           const gi = starts[ti] + li; const ok = done.has(ytId(l.youtube));
           return `<a href="watch.html?l=${gi}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-ink/[0.04] transition">
@@ -195,15 +253,24 @@
             <span class="shrink-0 text-xs text-ink/35">${ esc(l.duration||'') }</span>
           </a>`;
         }).join('');
-        return `<div class="bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden">
+        const badge = s.finished
+          ? '<span class="shrink-0 bg-gold/15 text-gold text-[11px] font-bold px-2.5 py-1 rounded-full">🎓 수료</span>'
+          : `<span class="text-sm font-semibold text-gold shrink-0">${pct}%</span>`;
+        const bottom = s.finished
+          ? `<div class="flex gap-2 mt-1.5 mb-1 mx-1">
+               <button onclick="showCert(${idx})" class="flex-1 bg-gold text-white text-sm font-bold py-2.5 rounded-xl hover:opacity-90 transition">🎓 수료증 보기</button>
+               <a href="watch.html?l=${starts[ti]}" class="px-4 flex items-center bg-ink text-paper text-sm font-semibold rounded-xl hover:bg-navy transition">다시보기</a>
+             </div>`
+          : `<a href="watch.html?l=${s.nextIdx}" class="block text-center mt-1.5 mb-1 mx-1 bg-ink text-paper text-sm font-semibold py-2.5 rounded-xl hover:bg-navy transition">${ doneCnt === 0 ? '▶ 학습 시작하기' : '▶ 이어보기' }</a>`;
+        return `<div class="bg-white rounded-2xl border ${ s.finished ? 'border-gold/40' : 'border-ink/8' } shadow-soft overflow-hidden">
           <div onclick="toggleFolder(${ti})" class="px-5 pt-5 pb-4 cursor-pointer hover:bg-ink/[0.015] transition select-none">
             <div class="flex items-center gap-3 mb-3">
-              <span id="ficon-${ti}" class="text-2xl shrink-0">${ open ? '📂' : '📁' }</span>
+              <span id="ficon-${ti}" class="text-2xl shrink-0">${ s.finished ? '🎓' : (open ? '📂' : '📁') }</span>
               <div class="flex-1 min-w-0">
                 <h3 class="font-bold leading-snug truncate">${esc(lv.name)}</h3>
                 <p class="text-xs text-ink/45 mt-0.5">총 ${ls.length}강 · 클릭하면 강의 목록이 ${ open ? '닫혀요' : '열려요' }</p>
               </div>
-              <span class="text-sm font-semibold text-gold shrink-0">${pct}%</span>
+              ${badge}
               <svg id="fchev-${ti}" class="w-5 h-5 text-ink/30 shrink-0 transition-transform" style="${ open ? 'transform:rotate(180deg)' : '' }" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
             </div>
             <div class="h-2 rounded-full bg-ink/8 overflow-hidden"><div class="h-full bg-gold rounded-full" style="width:${pct}%"></div></div>
@@ -211,7 +278,7 @@
           </div>
           <div id="folder-${ti}" class="${ open ? '' : 'hidden' } border-t border-ink/8 p-2">
             ${rows}
-            <a href="watch.html?l=${contIdx}" class="block text-center mt-1.5 mb-1 mx-1 bg-ink text-paper text-sm font-semibold py-2.5 rounded-xl hover:bg-navy transition">${contLabel}</a>
+            ${bottom}
           </div>
         </div>`;
       }).join('');
@@ -225,6 +292,36 @@
       if(icon) icon.textContent = closed ? '📁' : '📂';
       if(chev) chev.style.transform = closed ? '' : 'rotate(180deg)';
     }
+
+    // ── 🎓 수료증 ──
+    function showCert(idx){
+      const name = (window.__certNames || [])[idx] || '';
+      const t = new Date();
+      const dateStr = `${t.getFullYear()}년 ${t.getMonth()+1}월 ${t.getDate()}일`;
+      const certNo = `BIBLY-${t.getFullYear()}${String(t.getMonth()+1).padStart(2,'0')}${String(t.getDate()).padStart(2,'0')}-${String(idx+1).padStart(2,'0')}`;
+      document.getElementById('certSheet').innerHTML = `
+        <div class="bg-ink text-paper px-7 py-8">
+          <div class="border-2 border-gold/40 rounded-2xl px-6 py-9 text-center">
+            <p class="text-gold tracking-[0.34em] text-[11px] font-bold mb-1">CERTIFICATE OF COMPLETION</p>
+            <p class="text-paper/45 text-xs tracking-[0.3em] mb-7">수　료　증</p>
+            <p class="text-paper/50 text-xs mb-1">학습자</p>
+            <p class="text-2xl font-bold mb-6" style="font-family:'Noto Serif KR',serif">${esc(uname)}</p>
+            <p class="text-paper/65 text-[13px] leading-relaxed mb-7">위 학습자는 BIBLY 바이블 인사이트의 아래 과정을<br/>성실히 이수하였기에 이 증서를 드립니다.</p>
+            <p class="text-paper/45 text-xs mb-1">이수 과정</p>
+            <p class="text-gold font-bold text-lg leading-snug mb-7 px-2">${esc(name)}</p>
+            <p class="text-paper/45 text-xs">${dateStr}</p>
+            <div class="mt-7 pt-5 border-t border-white/10">
+              <p class="font-bold tracking-tight">BIBLY<span class="text-gold">.</span> 바이블 인사이트</p>
+              <p class="text-paper/45 text-xs mt-0.5">대표강사　오광일</p>
+              <p class="text-paper/25 text-[10px] mt-3">증서번호 ${certNo}</p>
+            </div>
+          </div>
+        </div>`;
+      const m = document.getElementById('certModal');
+      m.style.display = 'flex';
+    }
+    function closeCert(){ document.getElementById('certModal').style.display = 'none'; }
+    function printCert(){ window.print(); }
   </script>
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
