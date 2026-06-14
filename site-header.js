@@ -55,12 +55,12 @@
       var hash = String(m.href).charAt(0) === '#';
       var href = hash ? ('index.html' + m.href) : m.href;
       var on = !hash && (href.split('?')[0] === active);
-      return '<a href="' + href + '" class="' + (on ? 'text-gold font-semibold' : 'hover:text-gold') + '">' + esc(m.label) + '</a>';
+      return '<a href="' + href + '" class="whitespace-nowrap ' + (on ? 'text-gold font-semibold' : 'hover:text-gold') + '">' + esc(m.label) + '</a>';
     }).join('');
   }
 
   function authHTML(){
-    var mylearn = '<a href="mylearning.html" class="hidden lg:inline-flex items-center gap-1 border border-gold/45 text-gold font-semibold px-3 py-1.5 rounded-full hover:bg-gold/10 transition text-xs whitespace-nowrap">📚 내 강의실</a>';
+    var mylearn = '<a href="mylearning.html" class="hidden xl:inline-flex items-center gap-1 border border-gold/45 text-gold font-semibold px-3 py-1.5 rounded-full hover:bg-gold/10 transition text-xs whitespace-nowrap">📚 내 강의실</a>';
     var support = '<a href="support.html" aria-label="후원하기" title="후원하기" class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-rose-500/10 text-rose-500 border border-rose-300 hover:bg-rose-500 hover:text-white transition shrink-0" style="font-size:15px">♥</a>';
     var s = readStored(), authpart;
     if(s && s.user){
@@ -72,7 +72,7 @@
       authpart = '<button onclick="__biblyHeaderLoginClick()" class="bg-gold text-white font-semibold px-3.5 py-1.5 rounded-full hover:opacity-90 transition text-xs whitespace-nowrap">로그인</button>';
     }
     return mylearn + support + authpart
-      + '<a href="index.html" class="hidden lg:inline text-ink/45 hover:text-gold whitespace-nowrap text-sm">홈</a>';
+      + '<a href="index.html" class="hidden xl:inline text-ink/45 hover:text-gold whitespace-nowrap text-sm">홈</a>';
   }
 
   // 모바일 드롭다운 메뉴(햄버거)
@@ -92,14 +92,14 @@
 
   function headerHTML(menu){
     return '<header class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-ink/8">'
-      + '<div class="max-w-6xl mx-auto px-4 h-14 flex items-center gap-3">'
+      + '<div class="max-w-7xl mx-auto px-4 h-14 flex items-center gap-3">'
       + LOGO
-      + '<nav id="navmenu" class="hidden lg:flex items-center gap-4 xl:gap-5 text-sm text-ink/70 whitespace-nowrap pl-1">' + menuHTML(menu) + '</nav>'
+      + '<nav id="navmenu" class="hidden xl:flex items-center gap-4 text-sm text-ink/70 whitespace-nowrap pl-1">' + menuHTML(menu) + '</nav>'
       + '<div class="ml-auto flex items-center gap-2 sm:gap-3 text-sm shrink-0">' + authHTML()
-      + '<button id="biblyHamb" aria-label="메뉴 열기" onclick="__biblyToggleMenu()" class="lg:hidden w-9 h-9 -mr-1 flex items-center justify-center rounded-lg hover:bg-ink/5 text-ink/70"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>'
+      + '<button id="biblyHamb" aria-label="메뉴 열기" onclick="__biblyToggleMenu()" class="xl:hidden w-9 h-9 -mr-1 flex items-center justify-center rounded-lg hover:bg-ink/5 text-ink/70"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>'
       + '</div>'
       + '</div>'
-      + '<div id="biblyMobMenu" class="lg:hidden hidden border-t border-ink/8 bg-paper/95 backdrop-blur shadow-sm">' + mobileMenuHTML(menu) + '</div>'
+      + '<div id="biblyMobMenu" class="xl:hidden hidden border-t border-ink/8 bg-paper/95 backdrop-blur shadow-sm">' + mobileMenuHTML(menu) + '</div>'
       + '</header>';
   }
 

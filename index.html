@@ -145,7 +145,7 @@
 
   <!-- ===== 네비 ===== -->
   <header class="sticky top-0 z-50 bg-paper/90 backdrop-blur-md border-b border-ink/8">
-    <nav class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between gap-5">
+    <nav class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between gap-5">
       <a href="#top" class="flex items-center gap-2.5 shrink-0">
         <span class="w-10 h-10 rounded-xl bg-ink flex items-center justify-center shadow-soft">
           <svg class="w-[22px] h-[22px]" viewBox="0 0 24 24" fill="none" stroke="#b8923f" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.6C10.4 5.5 8.4 5 6 5C4.7 5 3.7 5.15 3 5.35V18.2C3.7 18 4.7 17.85 6 17.85C8.4 17.85 10.4 18.35 12 19.5"/><path d="M12 6.6C13.6 5.5 15.6 5 18 5C19.3 5 20.3 5.15 21 5.35V18.2C20.3 18 19.3 17.85 18 17.85C15.6 17.85 13.6 18.35 12 19.5"/><path d="M12 6.6V19.5"/></svg>
@@ -156,18 +156,18 @@
         </span>
       </a>
       <!-- 메뉴는 페이지 맨 아래 MENU 목록에서 자동으로 그려집니다 -->
-      <div id="mainmenu" class="hidden lg:flex items-center gap-6 text-[15px] text-ink/70"></div>
+      <div id="mainmenu" class="hidden xl:flex items-center gap-4 text-[14px] text-ink/70"></div>
       <div class="flex items-center gap-2 ml-auto shrink-0">
         <a href="mylearning.html" class="hidden sm:inline-flex items-center gap-1.5 border border-gold/45 text-gold font-semibold text-sm px-4 py-2.5 rounded-full hover:bg-gold/10 transition">📚 내 강의실</a>
         <a href="support.html" aria-label="후원하기" title="후원하기" class="inline-flex items-center gap-1.5 rounded-full bg-rose-500/10 text-rose-500 border border-rose-300 font-semibold text-sm px-4 py-2.5 hover:bg-rose-500 hover:text-white transition shrink-0"><span style="font-size:15px">♥</span> 후원</a>
         <a href="#catalog" class="hidden sm:inline-flex bg-gold text-white font-semibold text-sm px-5 py-2.5 rounded-full hover:opacity-90 transition">수강 신청</a>
-        <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="lg:hidden w-10 h-10 -mr-1.5 flex items-center justify-center text-ink" aria-label="메뉴 열기">
+        <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="xl:hidden w-10 h-10 -mr-1.5 flex items-center justify-center text-ink" aria-label="메뉴 열기">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         </button>
       </div>
     </nav>
     <!-- 모바일 메뉴 -->
-    <div id="mobileMenu" class="hidden lg:hidden border-t border-ink/8 bg-paper/98 backdrop-blur px-5 py-3">
+    <div id="mobileMenu" class="hidden xl:hidden border-t border-ink/8 bg-paper/98 backdrop-blur px-5 py-3">
       <div id="mobilemenuLinks" class="flex flex-col"></div>
       <div class="flex gap-2 mt-3 pt-3 border-t border-ink/8">
         <a href="mylearning.html" class="flex-1 text-center border border-gold/45 text-gold font-semibold text-sm px-4 py-3 rounded-full">📚 내 강의실</a>
@@ -1196,7 +1196,7 @@
     ];
     function renderMenu(menu){
       document.getElementById('mainmenu').innerHTML = (menu || []).map(m =>
-        `<a href="${m.href}" class="hover:text-gold transition">${m.label}</a>`
+        `<a href="${m.href}" class="hover:text-gold transition whitespace-nowrap">${m.label}</a>`
       ).join('');
       const mob = document.getElementById('mobilemenuLinks');
       if(mob) mob.innerHTML = (menu || []).map(m =>
