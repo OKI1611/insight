@@ -81,12 +81,19 @@
     <div id="dashView" class="hidden">
       <div id="welcome" class="mb-6"></div>
       <div id="summary" class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-7"></div>
-      <div id="tracksHead" class="hidden items-center justify-between mb-3">
-        <h2 class="font-bold text-lg">내 학습 과정</h2>
-        <a href="index.html#catalog" class="text-sm text-gold font-semibold hover:underline whitespace-nowrap">+ 과정 추가</a>
+      <div id="tracksHead" class="hidden mb-3">
+        <div class="flex items-center justify-between gap-2">
+          <div class="flex items-center gap-2">
+            <span class="text-xl">📚</span>
+            <h2 class="font-bold text-lg">무료 수강 과정</h2>
+            <span class="text-[11px] font-bold text-ink/45 bg-ink/[0.06] px-2 py-0.5 rounded-full">자유 학습</span>
+          </div>
+          <a href="index.html#catalog" class="text-sm text-gold font-semibold hover:underline whitespace-nowrap">+ 과정 추가</a>
+        </div>
+        <p class="text-xs text-ink/45 mt-1.5">원하는 강의를 자유롭게 듣고 진도를 쌓는 과정이에요. 시험 없이 누구나 무료로.</p>
       </div>
       <div id="tracks" class="space-y-5"></div>
-      <div id="program" class="mt-9"></div>
+      <div id="program" class="mt-10"></div>
     </div>
   </main>
 
@@ -241,7 +248,7 @@
         </div>`;
         return;
       }
-      if(headEl){ headEl.classList.remove('hidden'); headEl.classList.add('flex'); }
+      if(headEl){ headEl.classList.remove('hidden'); }
 
       tracksEl.innerHTML = stats.map((s, idx) => {
         const { lv, ti, ls, doneCnt, pct } = s;
@@ -337,10 +344,20 @@
       }).join('');
 
       host.innerHTML = `
-        <h2 class="font-bold text-lg mb-3">🎓 ${esc(PROGRAM.title||'급수 인증')} · 학점</h2>
-        <p class="text-sm text-ink/55 mb-5 leading-relaxed">${esc(PROGRAM.intro||'')}</p>
-        ${ranksHtml}
-        <p class="text-xs text-ink/40 mt-1">통과 기준 ${ex.passScore||80}점 · 강의별 시험(${ex.perLesson||20}문제) 평균이 과목 학점이 됩니다.</p>`;
+        <div class="rounded-3xl border border-gold/35 bg-gold/[0.05] overflow-hidden shadow-soft">
+          <div class="bg-ink text-paper px-5 md:px-6 py-4">
+            <div class="flex items-center gap-2">
+              <span class="text-xl">🎓</span>
+              <h2 class="font-bold text-lg">${esc(PROGRAM.title||'급수 인증')}</h2>
+              <span class="ml-auto shrink-0 text-[11px] font-bold text-ink bg-gold px-2.5 py-1 rounded-full">인증 과정</span>
+            </div>
+            <p class="text-sm text-paper/70 mt-2 leading-relaxed">${esc(PROGRAM.intro||'')}</p>
+          </div>
+          <div class="p-4 md:p-6">
+            ${ranksHtml}
+            <p class="text-xs text-ink/45 mt-1">통과 기준 ${ex.passScore||80}점 · 강의별 시험(${ex.perLesson||20}문제) 평균이 과목 학점이 됩니다.</p>
+          </div>
+        </div>`;
     }
 
     function toggleFolder(ti){

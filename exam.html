@@ -38,9 +38,13 @@
   <style>
     h1,h2{font-family:'Noto Serif KR',Pretendard,serif}
     .opt{transition:all .12s ease}
-    .opt.sel{border-color:#b8923f;background:#b8923f12}
-    .opt.correct{border-color:#16a34a;background:#16a34a14}
-    .opt.wrong{border-color:#dc2626;background:#dc262610}
+    .opt.sel{border-color:#b8923f;background:#b8923f24;box-shadow:0 0 0 2px #b8923f}
+    .opt.sel>span:first-child{background:#b8923f;color:#fff;border-color:#b8923f}
+    .opt.sel>span:last-child{color:#15203a;font-weight:600}
+    .opt.correct{border-color:#16a34a;background:#16a34a1c}
+    .opt.correct>span:first-child{background:#16a34a;color:#fff;border-color:#16a34a}
+    .opt.wrong{border-color:#dc2626;background:#dc262614}
+    .opt.wrong>span:first-child{background:#dc2626;color:#fff;border-color:#dc2626}
   </style>
 </head>
 <body class="font-sans bg-paper text-ink antialiased min-h-screen">
