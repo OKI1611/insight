@@ -11,6 +11,59 @@
     }
   }catch(e){}
 
+  // ===== PWA 자동 업데이트 (모든 페이지) =====
+  // 설치형 앱이 새 배포를 자동 감지해 최신 상태로 갱신한다.
+  try{
+    if('serviceWorker' in navigator){
+      var __biHadCtrl = !!navigator.serviceWorker.controller;
+      var __biReloading = false;
+      var __biReload = function(){ if(__biReloading) return; __biReloading = true; location.reload(); };
+      // 1) 새 서비스워커가 활성화되면(=새 버전 배포) 자동 새로고침
+      navigator.serviceWorker.addEventListener('controllerchange', function(){ if(__biHadCtrl) __biReload(); });
+      // 2) 콘텐츠 변경 감지: 현재 문서의 ETag가 바뀌면 갱신
+      var __biTag = null;
+      var __biGetTag = function(cb){
+        try{
+          fetch(location.href, { cache:'no-store', method:'HEAD' }).then(function(r){
+            var t = r.headers.get('ETag') || r.headers.get('Last-Modified') || '';
+            if(t){ cb(t); }
+            else { fetch(location.href, { cache:'no-store' }).then(function(r2){ cb(r2.headers.get('ETag') || r2.headers.get('Last-Modified') || ''); }).catch(function(){}); }
+          }).catch(function(){});
+        }catch(e){}
+      };
+      var __biShowUpdate = function(){
+        if(document.getElementById('biblyUpdateBar')) return;
+        var a = document.activeElement;
+        var typing = a && (a.tagName === 'INPUT' || a.tagName === 'TEXTAREA' || a.isContentEditable);
+        if(!typing){ __biReload(); return; }   // 입력 중이 아니면 즉시 자동 새로고침
+        var bar = document.createElement('div');  // 입력 중이면 작성 내용 보호 위해 '탭하여 새로고침' 배너
+        bar.id = 'biblyUpdateBar';
+        bar.style.cssText = 'position:fixed;left:50%;transform:translateX(-50%);bottom:78px;z-index:2147483647;background:#15203a;color:#fcfaf6;padding:11px 18px;border-radius:9999px;box-shadow:0 10px 34px rgba(0,0,0,.32);font-size:14px;display:flex;gap:10px;align-items:center;cursor:pointer;font-family:Pretendard,system-ui,sans-serif';
+        bar.innerHTML = '<span>🔄 새로운 내용이 있어요</span><b style="color:#e7d6ac">새로고침</b>';
+        bar.onclick = __biReload;
+        if(document.body) document.body.appendChild(bar);
+      };
+      var __biCheck = function(){
+        __biGetTag(function(t){
+          if(!t) return;
+          if(__biTag === null){ __biTag = t; return; }   // 최초엔 기준값만 설정
+          if(t !== __biTag){ __biTag = t; __biShowUpdate(); }
+        });
+      };
+      window.addEventListener('load', function(){
+        navigator.serviceWorker.register('/sw.js').then(function(reg){ try{ reg.update(); }catch(e){} }).catch(function(){});
+        __biCheck();
+      });
+      // 앱을 다시 열거나 탭으로 돌아올 때마다 최신 여부 점검
+      document.addEventListener('visibilitychange', function(){
+        if(document.visibilityState === 'visible'){
+          __biCheck();
+          try{ navigator.serviceWorker.getRegistration().then(function(r){ if(r) r.update(); }).catch(function(){}); }catch(e){}
+        }
+      });
+    }
+  }catch(e){}
+
   // 후원 링크 — 가볍고 빠른 전용 후원 페이지로
   var SUP = 'support.html';
 

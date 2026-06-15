@@ -1,6 +1,6 @@
 // 오광일 인사이트 브리핑 — 서비스 워커 (PWA)
 // 전략: HTML은 항상 네트워크(최신 유지), 정적자원만 캐시. 오프라인 시 폴백.
-const CACHE = 'bibleinsight-v5';
+const CACHE = 'bibleinsight-v6';
 const SHELL = ['/manifest.json'];
 
 self.addEventListener('install', (e) => {
@@ -22,7 +22,8 @@ self.addEventListener('fetch', (e) => {
   // HTML/문서: 항상 네트워크 최신 (캐시 저장 안 함, 오프라인만 폴백)
   const isDoc = req.mode === 'navigate' || url.pathname === '/' || url.pathname.endsWith('.html');
   if (isDoc) {
-    e.respondWith(fetch(req).catch(() => caches.match(req).then((r) => r || caches.match('/index.html'))));
+    // HTTP 캐시까지 우회해 항상 최신 문서 — 오프라인이면 캐시 폴백
+    e.respondWith(fetch(req, { cache: 'no-store' }).catch(() => caches.match(req).then((r) => r || caches.match('/index.html'))));
     return;
   }
 
