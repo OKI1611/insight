@@ -57,6 +57,7 @@
         <button data-sec="reqs"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">📮 강의 요청·건의</button>
         <button data-sec="comm"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">💬 커뮤니티</button>
         <button data-sec="mem"    class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">👥 회원</button>
+        <button data-sec="cert"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">🎓 수강권(인증)</button>
         <button data-sec="cont"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">📝 노트·퀴즈 현황</button>
         <button data-sec="site"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">⚙️ 사이트 설정</button>
       </nav>
@@ -117,6 +118,28 @@
         </div>
         <p class="text-ink/50 text-sm mb-6">가입 회원과 수강·진도 현황입니다.</p>
         <div id="memWrap">불러오는 중…</div>
+      </section>
+
+      <!-- 수강권(인증) -->
+      <section id="sec-cert" class="secPanel hidden">
+        <h1 class="text-2xl font-bold mb-1">인증 과정 수강권</h1>
+        <p class="text-ink/50 text-sm mb-6">계좌이체 입금을 확인한 뒤, 수강생 이메일로 수강권을 부여하세요. (상위 등급은 하위 과정을 포함)</p>
+        <div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-5 mb-6 max-w-xl">
+          <h2 class="font-bold mb-3">수강권 부여 / 등급 변경</h2>
+          <input id="certEmail" type="email" placeholder="수강생 이메일" class="w-full border border-ink/12 rounded-lg px-3 py-2 text-sm mb-2"/>
+          <div class="flex gap-2">
+            <select id="certTier" class="flex-1 border border-ink/12 rounded-lg px-3 py-2 text-sm">
+              <option value="1">여명 (3급)</option>
+              <option value="2">통찰 (2급)</option>
+              <option value="3">파수 (1급)</option>
+            </select>
+            <button onclick="grantCert()" class="bg-gold text-white font-semibold px-5 py-2 rounded-lg hover:opacity-90 text-sm shrink-0">부여</button>
+          </div>
+          <p id="certMsg" class="text-xs mt-2 min-h-[16px]"></p>
+          <p class="text-[11px] text-ink/40 mt-1">※ 수강생이 먼저 사이트에 <b>가입(로그인)</b>한 뒤 이메일로 부여할 수 있어요.</p>
+        </div>
+        <h2 class="font-bold mb-3">현재 수강권 보유자</h2>
+        <div id="certList">불러오는 중…</div>
       </section>
 
       <!-- 노트·퀴즈 현황 -->
@@ -187,7 +210,7 @@
       document.querySelectorAll('.secPanel').forEach(p=>p.classList.add('hidden'));
       document.getElementById('sec-'+sec).classList.remove('hidden');
       document.querySelectorAll('.navItem').forEach(b=> b.className='navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg '+(b.dataset.sec===sec?'bg-white/10 text-paper font-medium':'hover:bg-white/5'));
-      if(!LOADED[sec]){ LOADED[sec]=true; ({dash:loadDash,curr:loadCurr,reqs:loadReqs,comm:loadComm,mem:loadMem,cont:loadCont,site:loadSite}[sec]||(()=>{}))(); }
+      if(!LOADED[sec]){ LOADED[sec]=true; ({dash:loadDash,curr:loadCurr,reqs:loadReqs,comm:loadComm,mem:loadMem,cert:loadCert,cont:loadCont,site:loadSite}[sec]||(()=>{}))(); }
     }
 
     // ===== 대시보드 =====
@@ -339,6 +362,36 @@
         <p class="text-xs text-ink/35 mt-2">※ 이메일·연락처는 보안(auth)상 이 화면에서 조회되지 않습니다.</p>`;
     }
     function exportMembersCSV(){ if(!MEMBERS.length){ toast('회원 데이터 없음'); return; } const fd=d=>d?new Date(d).toLocaleDateString('ko'):''; const rows=[['이름','가입일','수강트랙수','완료강의수'],...MEMBERS.map(m=>[m.name,fd(m.created),m.enr,m.done])]; const csv='﻿'+rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n'); const b=new Blob([csv],{type:'text/csv'}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='회원목록.csv'; a.click(); toast('CSV 내려받음'); }
+
+    // ===== 수강권(인증) =====
+    const CERT_TIERNAME={1:'여명 (3급)',2:'통찰 (2급)',3:'파수 (1급)'};
+    async function loadCert(){
+      const wrap=document.getElementById('certList');
+      try{
+        const {data,error}=await withTimeout(sb.rpc('list_cert'),8000);
+        if(error) throw error;
+        if(!data||!data.length){ wrap.innerHTML='<p class="text-ink/50 text-sm">아직 수강권 보유자가 없습니다.</p>'; return; }
+        wrap.innerHTML = `<div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">
+          <thead class="text-ink/45 text-left border-b border-ink/5"><tr><th class="px-5 py-3 font-medium">이메일</th><th class="px-5 py-3 font-medium">등급</th><th class="px-5 py-3 font-medium">부여일</th><th class="px-5 py-3"></th></tr></thead>
+          <tbody>${data.map(r=>`<tr class="border-b border-ink/5"><td class="px-5 py-3">${esc(r.email)}</td><td class="px-5 py-3 font-medium text-gold">${esc(CERT_TIERNAME[r.tier]||r.tier)}</td><td class="px-5 py-3 text-ink/55">${new Date(r.granted_at).toLocaleDateString('ko')}</td><td class="px-5 py-3 text-right"><button onclick="revokeCert(this.dataset.e)" data-e="${esc(r.email)}" class="text-xs text-red-500 hover:underline">회수</button></td></tr>`).join('')}</tbody></table></div>`;
+      }catch(e){ wrap.innerHTML='<p class="text-ink/50 text-sm">'+(tableMissing(e)||/function|does not exist|schema cache/i.test(e.message||'')?'수강권 기능을 준비 중입니다. (관리자: <code class="bg-ink/5 px-1 rounded">db/admin_grant.sql</code> 실행 필요)':'불러오기 오류: '+esc(e.message||e))+'</p>'; }
+    }
+    async function grantCert(){
+      const email=document.getElementById('certEmail').value.trim(); const tier=Number(document.getElementById('certTier').value); const m=document.getElementById('certMsg');
+      if(!email){ m.style.color='#dc2626'; m.textContent='이메일을 입력하세요.'; return; }
+      m.style.color='#6b7280'; m.textContent='처리 중…';
+      try{
+        const {data,error}=await withTimeout(sb.rpc('grant_cert',{p_email:email,p_tier:tier,p_package:(CERT_TIERNAME[tier]||'').split(' ')[0]}),9000);
+        if(error) throw error;
+        if(data==='NOT_FOUND'){ m.style.color='#dc2626'; m.textContent='해당 이메일의 회원을 찾지 못했어요. (수강생이 먼저 가입했는지 확인)'; return; }
+        m.style.color='#16a34a'; m.textContent='✅ 부여 완료'; document.getElementById('certEmail').value=''; loadCert();
+      }catch(e){ m.style.color='#dc2626'; m.textContent=(/function|does not exist|schema cache/i.test(e.message||'')?'db/admin_grant.sql 을 먼저 실행하세요.':'오류: '+(e.message||e)); }
+    }
+    async function revokeCert(email){
+      if(!confirm(email+' 님의 수강권을 회수할까요?')) return;
+      try{ const {data,error}=await withTimeout(sb.rpc('revoke_cert',{p_email:email}),9000); if(error) throw error; toast('수강권 회수됨'); loadCert(); }
+      catch(e){ alert('오류: '+(e.message||e)); }
+    }
 
     // ===== 노트·퀴즈 현황 =====
     async function loadCont(){
