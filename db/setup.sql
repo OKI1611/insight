@@ -149,7 +149,26 @@ create policy ex_update on public.exam_results for update using (auth.uid() = us
 drop policy if exists ex_delete on public.exam_results;
 create policy ex_delete on public.exam_results for delete using (auth.uid() = user_id);
 
+-- ── 7) BIBLY 아카데미 인증 과정 수강권 (잠금 해제) ──────────────
+-- 결제(계좌이체) 확인 후 관리자가 행을 넣어 수강권 부여. tier 1=여명·2=통찰·3=파수.
+create table if not exists public.cert_access (
+  user_id    uuid primary key references auth.users(id) on delete cascade,
+  tier       int not null default 0,
+  package    text,
+  note       text,
+  granted_at timestamptz not null default now()
+);
+alter table public.cert_access enable row level security;
+drop policy if exists cert_sel on public.cert_access;
+create policy cert_sel on public.cert_access for select using (auth.uid() = user_id or public.is_admin());
+drop policy if exists cert_ins on public.cert_access;
+create policy cert_ins on public.cert_access for insert with check (public.is_admin());
+drop policy if exists cert_upd on public.cert_access;
+create policy cert_upd on public.cert_access for update using (public.is_admin()) with check (public.is_admin());
+drop policy if exists cert_del on public.cert_access;
+create policy cert_del on public.cert_access for delete using (public.is_admin());
+
 -- ============================================================
 -- 끝! 이제 강의요청·건의, 수강신청·내강의실, 강의 질의응답, 커뮤니티 탭,
---     정규과정 사전신청, 수료 시험·학점이 작동합니다.
+--     정규과정 사전신청, 수료 시험·학점, 인증 과정 수강권이 작동합니다.
 -- ============================================================

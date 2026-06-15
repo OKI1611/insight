@@ -80,20 +80,36 @@
     <!-- 로그인 -->
     <div id="dashView" class="hidden">
       <div id="welcome" class="mb-6"></div>
-      <div id="summary" class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-7"></div>
-      <div id="tracksHead" class="hidden mb-3">
-        <div class="flex items-center justify-between gap-2">
+
+      <!-- 카테고리 개요 (진입 화면) -->
+      <div id="catView">
+        <p class="text-xs font-bold text-ink/40 tracking-[0.2em] mb-3">과정 선택</p>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div id="catFree"></div>
+          <div id="catCert"></div>
+        </div>
+      </div>
+
+      <!-- 자유 학습 상세 -->
+      <div id="freeView" class="hidden">
+        <button onclick="showCat('overview')" class="text-sm text-ink/50 hover:text-gold mb-3">← 과정 선택으로</button>
+        <div class="flex items-center justify-between gap-2 mb-1">
           <div class="flex items-center gap-2">
-            <span class="text-xl">📚</span>
-            <h2 class="font-bold text-lg">무료 수강 과정</h2>
-            <span class="text-[11px] font-bold text-ink/45 bg-ink/[0.06] px-2 py-0.5 rounded-full">자유 학습</span>
+            <span class="text-xl">📚</span><h2 class="font-bold text-lg">자유 학습 과정</h2>
+            <span class="text-[11px] font-bold text-ink/45 bg-ink/[0.06] px-2 py-0.5 rounded-full">시험 없이 무료</span>
           </div>
           <a href="index.html#catalog" class="text-sm text-gold font-semibold hover:underline whitespace-nowrap">+ 과정 추가</a>
         </div>
-        <p class="text-xs text-ink/45 mt-1.5">원하는 강의를 자유롭게 듣고 진도를 쌓는 과정이에요. 시험 없이 누구나 무료로.</p>
+        <p class="text-xs text-ink/45 mb-4">원하는 강의를 자유롭게 듣고 진도를 쌓는 과정이에요.</p>
+        <div id="summary" class="grid grid-cols-3 gap-3 mb-6"></div>
+        <div id="tracks" class="space-y-5"></div>
       </div>
-      <div id="tracks" class="space-y-5"></div>
-      <div id="program" class="mt-10"></div>
+
+      <!-- 인증 과정 상세 -->
+      <div id="certView" class="hidden">
+        <button onclick="showCat('overview')" class="text-sm text-ink/50 hover:text-gold mb-3">← 과정 선택으로</button>
+        <div id="program"></div>
+      </div>
     </div>
   </main>
 
@@ -170,6 +186,14 @@
     }
     async function logout(){ await sb.auth.signOut(); }
 
+    // 카테고리 개요 ↔ 상세 전환
+    function showCat(w){
+      ['catView','freeView','certView'].forEach(id => { var el = document.getElementById(id); if(el) el.classList.add('hidden'); });
+      var target = w === 'free' ? 'freeView' : w === 'cert' ? 'certView' : 'catView';
+      var el = document.getElementById(target); if(el) el.classList.remove('hidden');
+      window.scrollTo(0, 0);
+    }
+
     async function loadDashboard(){
       const tracksEl = document.getElementById('tracks');
       const sumEl = document.getElementById('summary');
@@ -183,17 +207,17 @@
       catch(e){ if(e.message === 'TIMEOUT') timedOut = true; else loadErr = true; }
       try { const { data } = await withTimeout(sb.from('lesson_progress').select('lesson_id').eq('user_id', user.id).eq('completed', true), 9000); (data||[]).forEach(p => done.add(p.lesson_id)); } catch(e){}
 
+      const cfErr = (msg) => { const cf = document.getElementById('catFree'); if(cf) cf.innerHTML = `<div class="bg-white rounded-3xl border border-ink/8 shadow-soft p-6 text-sm text-ink/55">📚 ${msg}</div>`; };
       if(timedOut){
         tracksEl.innerHTML = '<div class="bg-white rounded-2xl border border-ink/8 p-6 text-center text-ink/60 text-sm">⏳ 학습 정보를 불러오지 못했어요. 이 사이트의 다른 탭을 모두 닫고 <button onclick="location.reload()" class="text-gold font-semibold underline">새로고침</button> 해주세요.</div>';
-        sumEl.innerHTML = ''; return;
+        sumEl.innerHTML = ''; cfErr('자유 학습 정보를 불러오지 못했어요. <button onclick="location.reload()" class="text-gold font-semibold underline">새로고침</button>'); return;
       }
       if(loadErr){
         tracksEl.innerHTML = '<div class="bg-white rounded-2xl border border-ink/8 p-6 text-center text-ink/55 text-sm">학습 기능을 준비 중입니다. (관리자: Supabase 테이블 생성 필요)</div>';
-        sumEl.innerHTML = ''; return;
+        sumEl.innerHTML = ''; cfErr('학습 기능을 준비 중입니다.'); return;
       }
 
       const welEl = document.getElementById('welcome');
-      const headEl = document.getElementById('tracksHead');
       const mine = levels.map((lv, ti) => ({ lv, ti })).filter(x => enrolled.includes(x.lv.name));
 
       // ── 트랙별 통계 계산 ──
@@ -230,16 +254,31 @@
         </div>`;
       }
 
-      // ── 요약 카드 (4) ──
+      // ── 요약 카드 (3) ──
       const card = (val, label) => `<div class="bg-white rounded-2xl border border-ink/8 p-4 text-center"><p class="text-2xl font-bold text-gold">${val}</p><p class="text-xs text-ink/55 mt-1">${label}</p></div>`;
       sumEl.innerHTML =
         card(mine.length, '수강 과정') +
         card(`${totalDone}<span class="text-base text-ink/40">/${totalLessons}</span>`, '완료 강의') +
-        card(completedCnt, '수료 과정') +
         card(`${overallPct}%`, '전체 진도율');
 
+      // ── 개요: 자유 학습 카드 ──
+      const catFree = document.getElementById('catFree');
+      if(catFree){
+        catFree.innerHTML = `<button onclick="showCat('free')" class="w-full h-full text-left bg-white rounded-3xl border border-ink/8 shadow-soft p-6 hover:shadow-card hover:border-gold/30 transition flex flex-col">
+          <div class="flex items-center gap-2 mb-2"><span class="text-2xl">📚</span><h3 class="font-bold text-lg">자유 학습 과정</h3></div>
+          <p class="text-sm text-ink/50 mb-4">시험 없이 자유롭게 듣는 무료 과정</p>
+          ${ mine.length ? `<div class="flex items-end gap-5 mb-3">
+              <div><p class="text-2xl font-bold text-gold leading-none">${overallPct}%</p><p class="text-[11px] text-ink/45 mt-1">전체 진도</p></div>
+              <div><p class="text-2xl font-bold text-ink/80 leading-none">${mine.length}</p><p class="text-[11px] text-ink/45 mt-1">수강 과정</p></div>
+              <div><p class="text-2xl font-bold text-ink/80 leading-none">${totalDone}<span class="text-sm text-ink/40">/${totalLessons}</span></p><p class="text-[11px] text-ink/45 mt-1">완료 강의</p></div>
+            </div>
+            <div class="h-1.5 rounded-full bg-ink/8 overflow-hidden mb-3"><div class="h-full bg-gold rounded-full" style="width:${overallPct}%"></div></div>`
+          : `<p class="text-sm text-ink/55 mb-4 flex-1">아직 수강 중인 과정이 없어요.</p>` }
+          <p class="text-sm font-semibold text-gold mt-auto">${ mine.length ? '상세 보기' : '강의 둘러보기' } →</p>
+        </button>`;
+      }
+
       if(!mine.length){
-        if(headEl) headEl.classList.add('hidden');
         tracksEl.innerHTML = `<div class="bg-white rounded-2xl border border-ink/8 p-8 text-center">
           <p class="text-3xl mb-3">📚</p>
           <p class="font-semibold mb-1">아직 수강신청한 강의가 없어요</p>
@@ -248,7 +287,6 @@
         </div>`;
         return;
       }
-      if(headEl){ headEl.classList.remove('hidden'); }
 
       tracksEl.innerHTML = stats.map((s, idx) => {
         const { lv, ti, ls, doneCnt, pct } = s;
@@ -292,71 +330,144 @@
         </div>`;
       }).join('');
     }
-    // ── 급수 인증 · 학점 ──
+    // ── BIBLY 아카데미 인증 과정 · 학점 ──
+    function won(n){ return '₩' + (Number(n)||0).toLocaleString(); }
+    function packagesHTML(){
+      const cards = (PROGRAM.ranks||[]).map(rk => {
+        const main = rk.earlybird || rk.price || 0;
+        const perks = (rk.perks||[]).map(p=>`<li class="flex gap-1.5"><span class="text-gold shrink-0">✓</span><span>${esc(p)}</span></li>`).join('');
+        const rec = rk.tier === 1;
+        return `<div class="bg-white rounded-2xl border ${rec?'border-gold/50 shadow-soft':'border-ink/10'} p-5 flex flex-col">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="bg-ink text-paper text-xs font-bold px-2 py-0.5 rounded-full">${esc(rk.rank)}</span>
+            <h4 class="font-bold text-lg">${esc(rk.name)}</h4>
+            ${rec?'<span class="ml-auto text-[10px] font-bold text-gold bg-gold/12 px-2 py-0.5 rounded-full">입문 추천</span>':''}
+          </div>
+          <p class="text-xs text-ink/50 mb-3">${esc(rk.tagline||'')}</p>
+          <p class="mb-3"><span class="text-2xl font-bold">${won(main)}</span>${rk.earlybird?` <span class="text-sm text-ink/40 line-through">${won(rk.price)}</span> <span class="text-[11px] font-bold text-rose-500">얼리버드</span>`:''}</p>
+          <ul class="text-xs text-ink/65 space-y-1.5 mb-4 flex-1">${perks}</ul>
+          <a href="academy.html" class="block text-center bg-ink text-paper text-sm font-semibold py-2.5 rounded-xl hover:bg-navy transition">등록 신청 →</a>
+        </div>`;
+      }).join('');
+      return `<p class="text-sm text-ink/60 mb-4 leading-relaxed">아래 패키지를 등록하면 인증 과정이 열립니다. <b class="text-ink/80">계좌이체로 수강료를 입금</b>하시고 등록 신청하시면, 확인 후 수강권을 열어드려요.</p>
+        <div class="grid sm:grid-cols-3 gap-3 mb-3">${cards}</div>
+        <p class="text-xs text-ink/40">상위 등급은 하위 과정을 모두 포함합니다 · 결제·등록 문의는 ‘등록 신청’에서.</p>`;
+    }
     async function loadProgram(){
       const host = document.getElementById('program');
+      const catCert = document.getElementById('catCert');
       if(!host) return;
       try {
         if(!PROGRAM) PROGRAM = await (await fetch('content/program.json?t=' + Date.now())).json();
         if(!COURSE)  COURSE  = await (await fetch('content/course.json?t=' + Date.now())).json();
-      } catch(e){ host.innerHTML = ''; return; }
-      let exById = {};
+      } catch(e){ if(catCert) catCert.innerHTML = ''; host.innerHTML = ''; return; }
+
+      let exById = {}, examReady = true, userTier = 0;
       try {
         const { data, error } = await withTimeout(sb.from('exam_results').select('lesson_id, final_score, passed').eq('user_id', user.id), 9000);
-        if(error) throw error;
-        (data||[]).forEach(r => { exById[r.lesson_id] = r; });
-      } catch(e){ host.innerHTML = ''; return; }   // 테이블 미생성 등 — 섹션 숨김(graceful)
+        if(error) throw error; (data||[]).forEach(r => { exById[r.lesson_id] = r; });
+      } catch(e){ examReady = false; }
+      try { const { data } = await withTimeout(sb.from('cert_access').select('tier').eq('user_id', user.id).maybeSingle(), 8000); if(data && data.tier) userTier = Number(data.tier)||0; } catch(e){}
 
+      const brand = PROGRAM.brand || PROGRAM.title || '인증 과정';
       const levels = COURSE.levels || [];
       const byName = {}, startOf = {};
       let acc = 0; levels.forEach(lv => { byName[lv.name] = lv.lessons || []; startOf[lv.name] = acc; acc += (lv.lessons||[]).length; });
       const ex = PROGRAM.exam || {};
       const letterOf = (s) => { for(const g of (PROGRAM.gradeScale||[])) if(s >= g.min) return g.grade; return '미수료'; };
 
-      const ranksHtml = (PROGRAM.ranks||[]).map(rk => {
-        const tracks = (rk.tracks||[]).filter(t => byName[t]);
-        const trackCards = tracks.map(tname => {
-          const ls = byName[tname] || [];
-          let passed = 0, sum = 0;
-          ls.forEach(l => { const r = exById[ytId(l.youtube)]; if(r && r.passed){ passed++; sum += Number(r.final_score)||0; } });
-          const total = ls.length, pct = total ? Math.round(passed/total*100) : 0;
-          const done = (passed === total && total > 0), avg = passed ? Math.round(sum/passed) : 0;
-          return `<div class="bg-white rounded-2xl border ${done?'border-gold/45':'border-ink/8'} shadow-soft p-5">
-            <div class="flex items-center gap-3 mb-2">
-              <div class="flex-1 min-w-0"><h4 class="font-bold truncate">${esc(tname)}</h4>
-                <p class="text-xs text-ink/45 mt-0.5">시험 ${passed}/${total}강 통과</p></div>
-              ${done ? `<span class="shrink-0 bg-gold/15 text-gold text-sm font-bold px-3 py-1 rounded-full">학점 ${letterOf(avg)}</span>`
-                     : `<span class="shrink-0 text-sm font-semibold text-gold">${pct}%</span>`}
+      // 접근 가능한 과목 기준 진행 요약
+      let progPassed = 0, progTotal = 0, finishedCourses = 0;
+      (PROGRAM.ranks||[]).forEach(rk => {
+        if(userTier < (rk.tier||99)) return;
+        (rk.tracks||[]).filter(t=>byName[t]).forEach(tname => {
+          const ls = byName[tname]||[]; let p = 0;
+          ls.forEach(l=>{ const r=exById[ytId(l.youtube)]; if(r&&r.passed) p++; });
+          progPassed += p; progTotal += ls.length; if(p===ls.length && ls.length>0) finishedCourses++;
+        });
+      });
+      const progPct = progTotal ? Math.round(progPassed/progTotal*100) : 0;
+
+      // ── 개요 카드 (인증) ──
+      if(catCert){
+        if(userTier > 0){
+          catCert.innerHTML = `<button onclick="showCat('cert')" class="w-full h-full text-left bg-ink text-paper rounded-3xl border border-gold/40 shadow-soft p-6 hover:shadow-card transition flex flex-col">
+            <div class="flex items-center gap-2 mb-2"><span class="text-2xl">🎓</span><h3 class="font-bold text-lg">${esc(brand)}</h3><span class="ml-auto text-[10px] font-bold text-ink bg-gold px-2 py-0.5 rounded-full">인증</span></div>
+            <p class="text-sm text-paper/60 mb-4">시험으로 검증하고 학점을 쌓는 과정</p>
+            <div class="flex items-end gap-5 mb-3">
+              <div><p class="text-2xl font-bold text-gold leading-none">${progPct}%</p><p class="text-[11px] text-paper/45 mt-1">시험 통과율</p></div>
+              <div><p class="text-2xl font-bold leading-none">${finishedCourses}</p><p class="text-[11px] text-paper/45 mt-1">수료 과목</p></div>
             </div>
-            <div class="h-2 rounded-full bg-ink/8 overflow-hidden"><div class="h-full bg-gold rounded-full" style="width:${pct}%"></div></div>
-            ${done ? `<p class="text-xs text-ink/60 mt-2.5">🎓 과목 수료 · 평균 ${avg}점 (학점 ${letterOf(avg)})</p>`
+            <div class="h-1.5 rounded-full bg-white/15 overflow-hidden mb-3"><div class="h-full bg-gold rounded-full" style="width:${progPct}%"></div></div>
+            <p class="text-sm font-semibold text-gold mt-auto">상세 보기 →</p>
+          </button>`;
+        } else {
+          const fromP = (PROGRAM.ranks && PROGRAM.ranks[0] && (PROGRAM.ranks[0].earlybird||PROGRAM.ranks[0].price)) || 0;
+          catCert.innerHTML = `<button onclick="showCat('cert')" class="w-full h-full text-left bg-ink text-paper rounded-3xl border border-gold/40 shadow-soft p-6 hover:shadow-card transition flex flex-col">
+            <div class="flex items-center gap-2 mb-2"><span class="text-2xl">🎓</span><h3 class="font-bold text-lg">${esc(brand)}</h3><span class="ml-auto text-[10px] font-bold text-paper bg-white/15 px-2 py-0.5 rounded-full">🔒 유료</span></div>
+            <p class="text-sm text-paper/60 mb-4 flex-1">시험·요약노트·수료증·학점으로 분별력을 공인받는 인증 과정이에요.</p>
+            <p class="text-xs text-paper/50 mb-1">3급 입문 «여명»부터</p>
+            <p class="mb-3"><span class="text-2xl font-bold text-gold">${won(fromP)}</span><span class="text-xs text-paper/45"> 부터</span></p>
+            <p class="text-sm font-semibold text-gold mt-auto">패키지 보기 · 등록 →</p>
+          </button>`;
+        }
+      }
+
+      // ── 상세 (program) ──
+      let inner;
+      if(userTier > 0){
+        const ranksHtml = (PROGRAM.ranks||[]).map(rk => {
+          const unlocked = userTier >= (rk.tier||99);
+          const header = `<div class="flex items-baseline gap-2 mb-2.5">
+              <span class="bg-ink text-paper text-xs font-bold px-2.5 py-1 rounded-full">${esc(rk.rank)}</span>
+              <span class="font-bold">${esc(rk.name)}</span>
+              <span class="text-xs text-ink/45">${esc(rk.tagline||'')}</span>
+              ${unlocked ? '' : '<span class="ml-auto text-[11px] font-bold text-ink/45 bg-ink/[0.06] px-2 py-0.5 rounded-full">🔒 상위 패키지</span>'}
+            </div>`;
+          if(!unlocked){
+            return `<div class="mb-5">${header}<p class="text-xs text-ink/40 bg-white/60 rounded-xl border border-ink/8 px-4 py-3">«${esc(rk.name)}» 패키지를 등록하면 열려요. <a href="academy.html" class="text-gold font-semibold">패키지 보기 →</a></p></div>`;
+          }
+          const tracks = (rk.tracks||[]).filter(t => byName[t]);
+          const trackCards = tracks.map(tname => {
+            const ls = byName[tname] || [];
+            let passed = 0, sum = 0;
+            ls.forEach(l => { const r = exById[ytId(l.youtube)]; if(r && r.passed){ passed++; sum += Number(r.final_score)||0; } });
+            const total = ls.length, pct = total ? Math.round(passed/total*100) : 0;
+            const dn = (passed === total && total > 0), avg = passed ? Math.round(sum/passed) : 0;
+            return `<div class="bg-white rounded-2xl border ${dn?'border-gold/45':'border-ink/8'} shadow-soft p-5">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="flex-1 min-w-0"><h4 class="font-bold truncate">${esc(tname)}</h4>
+                  <p class="text-xs text-ink/45 mt-0.5">시험 ${passed}/${total}강 통과</p></div>
+                ${dn ? `<span class="shrink-0 bg-gold/15 text-gold text-sm font-bold px-3 py-1 rounded-full">학점 ${letterOf(avg)}</span>`
+                     : `<span class="shrink-0 text-sm font-semibold text-gold">${pct}%</span>`}
+              </div>
+              <div class="h-2 rounded-full bg-ink/8 overflow-hidden"><div class="h-full bg-gold rounded-full" style="width:${pct}%"></div></div>
+              ${dn ? `<p class="text-xs text-ink/60 mt-2.5">🎓 과목 수료 · 평균 ${avg}점 (학점 ${letterOf(avg)})</p>`
                    : `<a href="watch.html?l=${startOf[tname]||0}" class="inline-block text-xs text-gold font-semibold mt-2.5 hover:underline">시험 보러 가기 →</a>`}
-          </div>`;
+            </div>`;
+          }).join('');
+          const body = tracks.length ? `<div class="space-y-3">${trackCards}</div>`
+            : `<p class="text-xs text-ink/40 bg-white/60 rounded-xl border border-ink/8 px-4 py-3">과목 준비 중입니다.</p>`;
+          return `<div class="mb-5">${header}${body}</div>`;
         }).join('');
-        const body = tracks.length ? `<div class="space-y-3">${trackCards}</div>`
-          : `<p class="text-xs text-ink/40 bg-white/60 rounded-xl border border-ink/8 px-4 py-3">과목 준비 중입니다.</p>`;
-        return `<div class="mb-5">
-          <div class="flex items-baseline gap-2 mb-2.5">
-            <span class="bg-ink text-paper text-xs font-bold px-2.5 py-1 rounded-full">${esc(rk.rank)}</span>
-            <span class="font-bold">${esc(rk.name)}</span>
-            <span class="text-xs text-ink/45">${esc(rk.tagline||'')}</span>
-          </div>${body}</div>`;
-      }).join('');
+        const examNote = examReady ? `<p class="text-xs text-ink/45 mt-1">통과 기준 ${ex.passScore||80}점 · 강의별 시험(${ex.perLesson||20}문제) 평균이 과목 학점이 됩니다.</p>`
+          : `<p class="text-xs text-amber-600 mt-1">⚠️ 시험 기능을 준비 중입니다. (관리자: exam_results 테이블 생성 필요)</p>`;
+        inner = `${ranksHtml}${examNote}`;
+      } else {
+        inner = packagesHTML();
+      }
 
       host.innerHTML = `
         <div class="rounded-3xl border border-gold/35 bg-gold/[0.05] overflow-hidden shadow-soft">
           <div class="bg-ink text-paper px-5 md:px-6 py-4">
             <div class="flex items-center gap-2">
               <span class="text-xl">🎓</span>
-              <h2 class="font-bold text-lg">${esc(PROGRAM.title||'급수 인증')}</h2>
+              <h2 class="font-bold text-lg">${esc(brand)}</h2>
               <span class="ml-auto shrink-0 text-[11px] font-bold text-ink bg-gold px-2.5 py-1 rounded-full">인증 과정</span>
             </div>
             <p class="text-sm text-paper/70 mt-2 leading-relaxed">${esc(PROGRAM.intro||'')}</p>
           </div>
-          <div class="p-4 md:p-6">
-            ${ranksHtml}
-            <p class="text-xs text-ink/45 mt-1">통과 기준 ${ex.passScore||80}점 · 강의별 시험(${ex.perLesson||20}문제) 평균이 과목 학점이 됩니다.</p>
-          </div>
+          <div class="p-4 md:p-6">${inner}</div>
         </div>`;
     }
 
