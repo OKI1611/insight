@@ -58,8 +58,8 @@
         <span class="bg-white/8 border border-white/15 rounded-full px-4 py-1.5">👥 기수제 코호트</span>
         <span class="bg-white/8 border border-white/15 rounded-full px-4 py-1.5">📓 워크북·과제</span>
       </div>
-      <a href="#apply" class="inline-flex items-center gap-2 mt-9 bg-gold text-white font-bold text-base px-8 py-3.5 rounded-full hover:opacity-90 transition shadow-xl">1기 사전 신청하기 →</a>
-      <p class="text-paper/45 text-xs mt-4 leading-relaxed">지금은 <b class="text-paper/70">1기 사전 신청(대기 명단)</b>을 받고 있어요. 모집이 시작되면 가장 먼저 안내드립니다.<br/>신청은 무료이며, 결제·등록은 정식 오픈 시 별도로 진행됩니다.</p>
+      <a href="#packages" class="inline-flex items-center gap-2 mt-9 bg-gold text-white font-bold text-base px-8 py-3.5 rounded-full hover:opacity-90 transition shadow-xl">급수 패키지 보기 →</a>
+      <p class="text-paper/45 text-xs mt-4 leading-relaxed">원하는 <b class="text-paper/70">급수 패키지</b>를 선택해 신청하시면, 입금·등록 안내를 이메일로 보내드려요.<br/>무료 강의는 앞으로도 그대로 자유롭게 보실 수 있습니다.</p>
     </div>
   </section>
 
@@ -125,13 +125,24 @@
       </div>
     </section>
 
+    <!-- 급수 패키지 -->
+    <section id="packages" class="py-12">
+      <div class="text-center mb-9">
+        <p class="text-gold text-xs font-bold tracking-[0.25em] uppercase mb-3">Packages · 급수 패키지</p>
+        <h2 class="text-xl md:text-2xl font-bold">바이블 인사이트 급수제</h2>
+        <p class="text-ink/55 text-sm mt-2 leading-relaxed max-w-xl mx-auto">시험·요약노트·수료증·학점으로 분별력을 공인받는 인증 과정이에요. 상위 등급은 하위 과정을 모두 포함합니다.</p>
+      </div>
+      <div id="pkgGrid" class="grid sm:grid-cols-3 gap-4">불러오는 중…</div>
+      <p class="text-center text-ink/40 text-xs mt-5">결제는 <b class="text-ink/55">계좌이체</b>로 진행돼요 — 아래에서 신청하시면 입금 안내를 이메일로 보내드립니다.</p>
+    </section>
+
     <!-- 신청 폼 -->
     <section id="apply" class="py-10">
       <div class="bg-white rounded-3xl border border-ink/10 shadow-card p-6 md:p-8 max-w-xl mx-auto">
         <div class="text-center mb-6">
-          <p class="text-gold text-xs font-bold tracking-[0.25em] uppercase mb-2">Pre-register</p>
-          <h2 class="text-xl md:text-2xl font-bold">1기 사전 신청</h2>
-          <p class="text-ink/55 text-sm mt-2 leading-relaxed">먼저 신청해 두시면 <b class="text-ink">모집 시작 시 가장 먼저</b>, 그리고 <b class="text-gold">사전 신청자 혜택</b>과 함께 안내드려요. (지금 결제하지 않으셔도 됩니다)</p>
+          <p class="text-gold text-xs font-bold tracking-[0.25em] uppercase mb-2">Apply</p>
+          <h2 class="text-xl md:text-2xl font-bold">인증 과정 등록 신청</h2>
+          <p class="text-ink/55 text-sm mt-2 leading-relaxed">원하는 패키지를 선택해 신청하시면, <b class="text-ink">입금·등록 안내</b>를 이메일로 보내드려요. 입금이 확인되면 수강권을 열어 드립니다.</p>
         </div>
 
         <div class="space-y-3">
@@ -139,12 +150,7 @@
           <input id="aEmail" type="email" maxlength="120" placeholder="이메일 *" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold" />
           <input id="aPhone" type="tel" maxlength="30" placeholder="연락처 (선택)" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold" />
           <select id="aInterest" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold text-ink/80 bg-white">
-            <option value="">관심 과정을 골라주세요 (선택)</option>
-            <option>천년왕국 세미나 심화</option>
-            <option>예언의 기초 · 다니엘</option>
-            <option>종말과 국제정세</option>
-            <option>성경 전체 체계 잡기</option>
-            <option>아직 정하지 못했어요</option>
+            <option value="">신청할 패키지를 골라주세요 *</option>
           </select>
           <textarea id="aMotive" rows="3" maxlength="600" placeholder="신청 동기나 듣고 싶은 점이 있다면 적어주세요 (선택)" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold resize-none"></textarea>
           <input id="aHp" type="text" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
@@ -160,7 +166,7 @@
       <h2 class="text-xl font-bold text-center mb-6">자주 묻는 질문</h2>
       <div class="space-y-3 max-w-xl mx-auto">
         <details class="bg-white rounded-xl border border-ink/8 p-4"><summary class="font-semibold cursor-pointer text-sm">무료 강의와 뭐가 다른가요?</summary><p class="text-sm text-ink/60 mt-2.5 leading-relaxed">무료 강의는 앞으로도 그대로 자유롭게 보실 수 있어요. 정규 과정은 거기에 ‘정해진 순서·라이브 Q&amp;A·동료·과제·수료증’을 더해 끝까지 완주하도록 돕는 가이드 과정입니다.</p></details>
-        <details class="bg-white rounded-xl border border-ink/8 p-4"><summary class="font-semibold cursor-pointer text-sm">수강료는 얼마인가요?</summary><p class="text-sm text-ink/60 mt-2.5 leading-relaxed">정식 오픈 시 공개됩니다. 사전 신청자에게는 가장 먼저, 그리고 사전 신청자 혜택과 함께 안내드려요. 지금 신청하셔도 결제 의무는 없습니다.</p></details>
+        <details class="bg-white rounded-xl border border-ink/8 p-4"><summary class="font-semibold cursor-pointer text-sm">수강료와 결제 방법은?</summary><p class="text-sm text-ink/60 mt-2.5 leading-relaxed">급수 패키지별로 달라요 — 여명(3급) ₩49,000(얼리버드 ₩39,000) · 통찰(2급) ₩129,000 · 파수(1급) ₩290,000. 상위 등급은 하위 과정을 포함합니다. 위 ‘급수 패키지’에서 신청하시면 <b class="text-ink/70">계좌이체 입금 안내</b>를 이메일로 보내드리고, 입금이 확인되면 수강권을 열어 드립니다.</p></details>
         <details class="bg-white rounded-xl border border-ink/8 p-4"><summary class="font-semibold cursor-pointer text-sm">언제 시작하나요?</summary><p class="text-sm text-ink/60 mt-2.5 leading-relaxed">1기 모집 인원이 모이면 일정을 확정해 안내드립니다. 사전 신청해 두시면 그 소식을 가장 먼저 받으실 수 있어요.</p></details>
         <details class="bg-white rounded-xl border border-ink/8 p-4"><summary class="font-semibold cursor-pointer text-sm">신앙 단계가 낮아도 괜찮나요?</summary><p class="text-sm text-ink/60 mt-2.5 leading-relaxed">네. 기초 트랙부터 차근차근 함께 갑니다. 오히려 ‘혼자서는 어려웠던 분’께 더 맞는 과정이에요.</p></details>
       </div>
@@ -170,6 +176,28 @@
   <script>
     const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType: 'implicit', lock: async (_n, _t, fn) => await fn() } });
     function tableMissing(e){ return e && (e.code === '42P01' || /relation|does not exist|schema cache|find the table/i.test(e.message || '')); }
+
+    // 급수 패키지 — program.json에서 동적 렌더(단일 출처)
+    let PROG = null;
+    function won(n){ return '₩' + (Number(n)||0).toLocaleString(); }
+    (async () => { try { PROG = await (await fetch('content/program.json?t=' + Date.now())).json(); renderPkgs(); } catch(e){ const g=document.getElementById('pkgGrid'); if(g) g.innerHTML=''; } })();
+    function renderPkgs(){
+      const grid = document.getElementById('pkgGrid'), sel = document.getElementById('aInterest');
+      if(!PROG || !PROG.ranks){ if(grid) grid.innerHTML = ''; return; }
+      if(grid) grid.innerHTML = PROG.ranks.map(rk => {
+        const main = rk.earlybird || rk.price || 0, rec = rk.tier === 1;
+        const perks = (rk.perks||[]).map(p => `<li class="flex gap-1.5"><span class="text-gold shrink-0">✓</span><span>${p}</span></li>`).join('');
+        return `<div class="bg-white rounded-2xl border ${rec?'border-gold/50 shadow-card':'border-ink/10 shadow-soft'} p-6 flex flex-col">
+          <div class="flex items-center gap-2 mb-1"><span class="bg-ink text-paper text-xs font-bold px-2 py-0.5 rounded-full">${rk.rank}</span><h3 class="font-bold text-lg">${rk.name}</h3>${rec?'<span class="ml-auto text-[10px] font-bold text-gold bg-gold/12 px-2 py-0.5 rounded-full">입문 추천</span>':''}</div>
+          <p class="text-xs text-ink/50 mb-3">${rk.tagline||''}</p>
+          <p class="mb-4"><span class="text-2xl font-bold">${won(main)}</span>${rk.earlybird?` <span class="text-sm text-ink/40 line-through">${won(rk.price)}</span> <span class="text-[11px] font-bold text-rose-500">얼리버드</span>`:''}</p>
+          <ul class="text-sm text-ink/65 space-y-1.5 mb-5 flex-1">${perks}</ul>
+          <a href="#apply" onclick="pickPkg('${rk.name} (${rk.rank})')" class="block text-center ${rec?'bg-gold text-white':'bg-ink text-paper'} text-sm font-semibold py-2.5 rounded-xl hover:opacity-90 transition">이 패키지로 신청 →</a>
+        </div>`;
+      }).join('');
+      if(sel) sel.innerHTML = '<option value="">신청할 패키지를 골라주세요 *</option>' + PROG.ranks.map(rk => `<option>${rk.name} (${rk.rank})</option>`).join('');
+    }
+    function pickPkg(v){ const s = document.getElementById('aInterest'); if(s) s.value = v; }
     function withTimeout(p, ms){ return Promise.race([ Promise.resolve(p), new Promise((_, rej) => setTimeout(() => rej(new Error('TIMEOUT')), ms)) ]); }
     async function submitApp(){
       const msg = document.getElementById('aMsg'); msg.style.color = '#dc2626'; msg.textContent = '';
@@ -180,6 +208,7 @@
       const interest = document.getElementById('aInterest').value;
       const motivation = document.getElementById('aMotive').value.trim();
       if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.textContent = '이메일을 정확히 입력해 주세요.'; return; }
+      if (!interest) { msg.textContent = '신청할 패키지를 선택해 주세요.'; return; }
       const btn = document.getElementById('aSubmit'); btn.disabled = true; btn.textContent = '신청 중…';
       let error;
       try { const res = await withTimeout(sb.from('course_applications').insert({ name: name || null, email, phone: phone || null, interest: interest || null, motivation: motivation || null }), 9000); error = res.error; }
@@ -190,7 +219,7 @@
         else { msg.textContent = '신청 중 오류가 났어요: ' + (error.message || error); }
         return;
       }
-      document.getElementById('apply').innerHTML = '<div class="bg-white rounded-3xl border border-gold/30 shadow-card p-8 md:p-10 max-w-xl mx-auto text-center"><p class="text-4xl mb-3">🎉</p><h2 class="text-xl md:text-2xl font-bold">사전 신청이 완료됐어요!</h2><p class="text-ink/60 text-sm mt-3 leading-relaxed">모집이 시작되면 <b class="text-ink">가장 먼저</b>, 사전 신청자 혜택과 함께 안내드릴게요.<br/>함께해 주셔서 감사합니다. 🙏</p><a href="index.html" class="inline-block mt-6 text-gold font-semibold hover:underline">홈으로 돌아가기 →</a></div>';
+      document.getElementById('apply').innerHTML = '<div class="bg-white rounded-3xl border border-gold/30 shadow-card p-8 md:p-10 max-w-xl mx-auto text-center"><p class="text-4xl mb-3">🎉</p><h2 class="text-xl md:text-2xl font-bold">등록 신청이 접수됐어요!</h2><p class="text-ink/60 text-sm mt-3 leading-relaxed"><b class="text-ink">입금·등록 안내</b>를 입력하신 이메일로 보내드릴게요. 입금이 확인되면 수강권을 열어 드립니다.<br/>함께해 주셔서 감사합니다. 🙏</p><a href="index.html" class="inline-block mt-6 text-gold font-semibold hover:underline">홈으로 돌아가기 →</a></div>';
       document.getElementById('apply').scrollIntoView({ behavior:'smooth', block:'center' });
     }
   </script>
