@@ -201,16 +201,19 @@
 
     // ===== 라우팅 =====
     let started=false;
-    function initConsole(){ if(started) return; started=true;
-      document.querySelectorAll('.navItem').forEach(b=> b.addEventListener('click',()=>show(b.dataset.sec)));
-      show('dash');
+    var navBound=false;
+    function bindNav(){ if(navBound) return; navBound=true;
+      // 이벤트 위임 — 어떤 환경에서도(중복 호출·타이밍 무관) 탭 전환이 확실히 동작
+      var nav = document.getElementById('nav');
+      if(nav) nav.addEventListener('click', function(e){ var b = e.target.closest('.navItem'); if(b && b.dataset.sec) show(b.dataset.sec); });
     }
+    function initConsole(){ bindNav(); if(started) return; started=true; try{ show('dash'); }catch(e){} }
     const LOADED={};
     function show(sec){
       document.querySelectorAll('.secPanel').forEach(p=>p.classList.add('hidden'));
       document.getElementById('sec-'+sec).classList.remove('hidden');
       document.querySelectorAll('.navItem').forEach(b=> b.className='navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg '+(b.dataset.sec===sec?'bg-white/10 text-paper font-medium':'hover:bg-white/5'));
-      if(!LOADED[sec]){ LOADED[sec]=true; ({dash:loadDash,curr:loadCurr,reqs:loadReqs,comm:loadComm,mem:loadMem,cert:loadCert,cont:loadCont,site:loadSite}[sec]||(()=>{}))(); }
+      if(!LOADED[sec]){ LOADED[sec]=true; try{ ({dash:loadDash,curr:loadCurr,reqs:loadReqs,comm:loadComm,mem:loadMem,cert:loadCert,cont:loadCont,site:loadSite}[sec]||(()=>{}))(); }catch(e){} }
     }
 
     // ===== 대시보드 =====
