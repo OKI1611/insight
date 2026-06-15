@@ -57,6 +57,7 @@
         <button data-sec="reqs"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">📮 강의 요청·건의</button>
         <button data-sec="comm"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">💬 커뮤니티</button>
         <button data-sec="mem"    class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">👥 회원</button>
+        <button data-sec="apps"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">📩 등록 신청</button>
         <button data-sec="cert"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">🎓 수강권(인증)</button>
         <button data-sec="cont"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">📝 노트·퀴즈 현황</button>
         <button data-sec="site"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">⚙️ 사이트 설정</button>
@@ -118,6 +119,13 @@
         </div>
         <p class="text-ink/50 text-sm mb-6">가입 회원과 수강·진도 현황입니다.</p>
         <div id="memWrap">불러오는 중…</div>
+      </section>
+
+      <!-- 등록 신청 -->
+      <section id="sec-apps" class="secPanel hidden">
+        <h1 class="text-2xl font-bold mb-1">인증 과정 등록 신청</h1>
+        <p class="text-ink/50 text-sm mb-6">수강생이 academy 페이지에서 신청한 목록입니다. 입금 확인 후 <button onclick="show('cert')" class="text-gold underline">수강권(인증)</button> 탭에서 수강권을 부여하세요.</p>
+        <div id="appsWrap">불러오는 중…</div>
       </section>
 
       <!-- 수강권(인증) -->
@@ -213,7 +221,7 @@
       document.querySelectorAll('.secPanel').forEach(p=>p.classList.add('hidden'));
       document.getElementById('sec-'+sec).classList.remove('hidden');
       document.querySelectorAll('.navItem').forEach(b=> b.className='navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg '+(b.dataset.sec===sec?'bg-white/10 text-paper font-medium':'hover:bg-white/5'));
-      if(!LOADED[sec]){ LOADED[sec]=true; try{ ({dash:loadDash,curr:loadCurr,reqs:loadReqs,comm:loadComm,mem:loadMem,cert:loadCert,cont:loadCont,site:loadSite}[sec]||(()=>{}))(); }catch(e){} }
+      if(!LOADED[sec]){ LOADED[sec]=true; try{ ({dash:loadDash,curr:loadCurr,reqs:loadReqs,comm:loadComm,mem:loadMem,apps:loadApps,cert:loadCert,cont:loadCont,site:loadSite}[sec]||(()=>{}))(); }catch(e){} }
     }
 
     // ===== 대시보드 =====
@@ -365,6 +373,20 @@
         <p class="text-xs text-ink/35 mt-2">※ 이메일·연락처는 보안(auth)상 이 화면에서 조회되지 않습니다.</p>`;
     }
     function exportMembersCSV(){ if(!MEMBERS.length){ toast('회원 데이터 없음'); return; } const fd=d=>d?new Date(d).toLocaleDateString('ko'):''; const rows=[['이름','가입일','수강트랙수','완료강의수'],...MEMBERS.map(m=>[m.name,fd(m.created),m.enr,m.done])]; const csv='﻿'+rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n'); const b=new Blob([csv],{type:'text/csv'}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='회원목록.csv'; a.click(); toast('CSV 내려받음'); }
+
+    // ===== 등록 신청(course_applications) =====
+    async function loadApps(){
+      const wrap=document.getElementById('appsWrap');
+      let rows,err;
+      try{ const r=await withTimeout(sb.from('course_applications').select('*').order('created_at',{ascending:false}).limit(300),8000); rows=r.data; err=r.error; }catch(e){ err=e; }
+      if(err){ wrap.innerHTML='<p class="text-ink/50 text-sm">'+(tableMissing(err)?'신청 테이블이 아직 없습니다. (course_applications — setup.sql 5번 실행 필요)':'불러오기 오류: '+esc(err.message||err))+'</p>'; return; }
+      if(!rows||!rows.length){ wrap.innerHTML='<p class="text-ink/50 text-sm">아직 등록 신청이 없습니다.</p>'; return; }
+      wrap.innerHTML = '<p class="text-sm text-ink/50 mb-3">총 <b class="text-ink">'+rows.length+'</b>건 · 최신순</p>'
+        + '<div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">'
+        + '<thead class="text-ink/45 text-left border-b border-ink/5"><tr><th class="px-5 py-3 font-medium">신청일</th><th class="px-5 py-3 font-medium">패키지</th><th class="px-5 py-3 font-medium">이름</th><th class="px-5 py-3 font-medium">이메일</th><th class="px-5 py-3 font-medium">연락처</th><th class="px-5 py-3 font-medium">메모</th></tr></thead><tbody>'
+        + rows.map(r=>`<tr class="border-b border-ink/5"><td class="px-5 py-3 text-ink/55">${new Date(r.created_at).toLocaleDateString('ko')}</td><td class="px-5 py-3 font-medium text-gold">${esc(r.interest||'')}</td><td class="px-5 py-3">${esc(r.name||'')}</td><td class="px-5 py-3 text-ink/70">${esc(r.email||'')}</td><td class="px-5 py-3 text-ink/60">${esc(r.phone||'')}</td><td class="px-5 py-3 text-ink/55 max-w-[260px] truncate" title="${esc(r.motivation||'')}">${esc(r.motivation||'')}</td></tr>`).join('')
+        + '</tbody></table></div>';
+    }
 
     // ===== 수강권(인증) =====
     const CERT_TIERNAME={1:'여명 (3급)',2:'통찰 (2급)',3:'파수 (1급)'};

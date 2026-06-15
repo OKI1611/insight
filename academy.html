@@ -177,6 +177,27 @@
     const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType: 'implicit', lock: async (_n, _t, fn) => await fn() } });
     function tableMissing(e){ return e && (e.code === '42P01' || /relation|does not exist|schema cache|find the table/i.test(e.message || '')); }
 
+    // 신청 알림(이메일) — Web3Forms. 아래 NOTIFY_KEY에 발급받은 access key를 넣으면 활성화됩니다.
+    const NOTIFY_KEY = '';
+    async function notifyApplication(d){
+      if(!NOTIFY_KEY) return;   // 키 없으면 조용히 건너뜀(신청 저장에는 영향 없음)
+      try{
+        await fetch('https://api.web3forms.com/submit', {
+          method:'POST', headers:{ 'Content-Type':'application/json', Accept:'application/json' },
+          body: JSON.stringify({
+            access_key: NOTIFY_KEY,
+            subject: '[BIBLY 아카데미] 새 인증 과정 등록 신청 🎓',
+            from_name: 'BIBLY 아카데미',
+            '신청 패키지': d.interest || '(미선택)',
+            '이름': d.name || '',
+            '이메일': d.email || '',
+            '연락처': d.phone || '',
+            '메모': d.motivation || ''
+          })
+        });
+      }catch(e){}
+    }
+
     // 급수 패키지 — program.json에서 동적 렌더(단일 출처)
     let PROG = null;
     function won(n){ return '₩' + (Number(n)||0).toLocaleString(); }
@@ -219,6 +240,7 @@
         else { msg.textContent = '신청 중 오류가 났어요: ' + (error.message || error); }
         return;
       }
+      notifyApplication({ name, email, phone, interest, motivation });   // 관리자 이메일 알림(비차단)
       document.getElementById('apply').innerHTML = '<div class="bg-white rounded-3xl border border-gold/30 shadow-card p-8 md:p-10 max-w-xl mx-auto text-center"><p class="text-4xl mb-3">🎉</p><h2 class="text-xl md:text-2xl font-bold">등록 신청이 접수됐어요!</h2><p class="text-ink/60 text-sm mt-3 leading-relaxed"><b class="text-ink">입금·등록 안내</b>를 입력하신 이메일로 보내드릴게요. 입금이 확인되면 수강권을 열어 드립니다.<br/>함께해 주셔서 감사합니다. 🙏</p><a href="index.html" class="inline-block mt-6 text-gold font-semibold hover:underline">홈으로 돌아가기 →</a></div>';
       document.getElementById('apply').scrollIntoView({ behavior:'smooth', block:'center' });
     }
