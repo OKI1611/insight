@@ -53,6 +53,13 @@
     .resbody p{margin:.2rem 0}.resbody h2{font-size:1.05rem;font-weight:700;margin:.4rem 0}.resbody h3{font-weight:700;margin:.3rem 0}
     .resbody blockquote{border-left:3px solid #d8c28a;padding-left:.7rem;color:rgba(21,32,58,.6);margin:.4rem 0}
     .resbody a{color:#b8923f;text-decoration:underline}.resbody ul,.resbody ol{margin:.3rem 0 .3rem 1.2rem}.resbody li{list-style:disc}
+    /* Quill 글자크기·폰트 드롭다운 한글 라벨 */
+    .ql-snow .ql-picker.ql-size{width:82px}
+    .ql-snow .ql-picker.ql-size .ql-picker-label:not([data-value])::before,.ql-snow .ql-picker.ql-size .ql-picker-item:not([data-value])::before{content:'보통'}
+    .ql-snow .ql-picker.ql-size .ql-picker-label[data-value]::before,.ql-snow .ql-picker.ql-size .ql-picker-item[data-value]::before{content:attr(data-value)}
+    .ql-snow .ql-picker.ql-font .ql-picker-label:not([data-value])::before,.ql-snow .ql-picker.ql-font .ql-picker-item:not([data-value])::before{content:'기본'}
+    .ql-snow .ql-picker.ql-font .ql-picker-label[data-value="serif"]::before,.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="serif"]::before{content:'명조'}
+    .ql-snow .ql-picker.ql-font .ql-picker-label[data-value="monospace"]::before,.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="monospace"]::before{content:'고정폭'}
   </style>
 </head>
 <body class="font-sans bg-paper text-ink antialiased min-h-screen">
@@ -104,14 +111,20 @@
     function fmtDate(iso){ return new Date(iso).toLocaleDateString('ko-KR'); }
     function sanitize(html){ const d=document.createElement('div'); d.innerHTML=html||''; d.querySelectorAll('script,style,iframe,object,embed,link,meta,base,form,input,button,textarea,svg,math,frame,frameset,applet,noscript').forEach(n=>n.remove()); d.querySelectorAll('*').forEach(el=>{ [...el.attributes].forEach(a=>{ const name=a.name.toLowerCase(), val=a.value||''; if(/^on/i.test(name)){ el.removeAttribute(a.name); return; } if(/^(href|src|xlink:href|formaction|action|srcdoc|srcset|data|background|poster)$/.test(name)){ const v=val.replace(/\s+/g,'').toLowerCase(), okImg=(name==='src')&&/^data:image\//i.test(val.trim()); if(!okImg && /^(javascript:|data:|vbscript:)/.test(v)){ el.removeAttribute(a.name); return; } } if(name==='style' && /expression\(|javascript:|behavior:|@import|url\(/i.test(val)){ el.removeAttribute(a.name); } }); if(el.tagName==='A'){ el.setAttribute('rel','noopener noreferrer nofollow'); } }); return d.innerHTML; }
     function bodyHTML(b){ return /<[a-z][\s\S]*>/i.test(b||'') ? sanitize(b) : esc(b||'').replace(/\n/g,'<br>'); }
+    // 글자 크기·폰트를 인라인 스타일로 등록 — 표시 페이지에서도 그대로 렌더(한 번만)
+    function registerQuillStyles(){ if(window.__qReg || !window.Quill) return; window.__qReg = true;
+      var S = Quill.import('attributors/style/size'); S.whitelist = ['13px','15px','17px','20px','24px','30px']; Quill.register(S, true);
+      var F = Quill.import('attributors/style/font'); F.whitelist = ['serif','monospace']; Quill.register(F, true);
+    }
     // 블로그식 리치 에디터 (Quill)
     let resQuill = null;
     function ensureResQuill(){
       if(resQuill) return resQuill;
+      registerQuillStyles();
       resQuill = new Quill('#fEditor', {
         theme:'snow',
         placeholder:'자료 설명·본문을 자유롭게 작성하세요. 서식·사진·링크를 넣을 수 있어요.',
-        modules:{ toolbar:[ [{ header:[2,3,false] }], ['bold','italic','underline'], [{ color:[] },{ background:[] }], [{ list:'ordered' },{ list:'bullet' }], ['blockquote','link','image'], ['clean'] ] }
+        modules:{ toolbar:[ [{ size:['13px','15px',false,'20px','24px','30px'] },{ font:['serif','monospace'] }], [{ header:[2,3,false] }], ['bold','italic','underline'], [{ color:[] },{ background:[] }], [{ list:'ordered' },{ list:'bullet' }], ['blockquote','link','image'], ['clean'] ] }
       });
       resQuill.getModule('toolbar').addHandler('image', () => {
         const input=document.createElement('input'); input.type='file'; input.accept='image/*';
@@ -155,19 +168,21 @@
       if(!data.length){ wrap.innerHTML = '<p class="text-ink/40 text-sm text-center py-10">아직 자료가 없습니다.'+(isAdmin?' 첫 자료를 올려보세요!':'')+'</p>'; return; }
       wrap.innerHTML = data.map(r => {
         const url = (r.file_url || r.link || '').trim();
-        return `<div class="px-5 py-4 hover:bg-ink/[0.015]">
-          <div class="flex items-center gap-4">
+        const hasBody = !!(r.description && r.description.trim());
+        return `<div class="px-5 py-4">
+          <div class="flex items-center gap-4 ${hasBody?'cursor-pointer':''}" ${hasBody?`onclick="toggleRes('${r.id}')"`:''}>
             <div class="w-10 h-10 rounded-lg bg-gold/15 text-gold flex items-center justify-center shrink-0">📄</div>
             <div class="min-w-0 flex-1">
               ${ r.category ? `<span class="text-[11px] text-gold font-bold tracking-wide">${esc(r.category)}</span>` : '' }
               <p class="font-semibold leading-snug">${esc(r.title||'')}</p>
-              <p class="text-xs text-ink/35 mt-0.5">${fmtDate(r.created_at)}</p>
+              <p class="text-xs text-ink/35 mt-0.5">${fmtDate(r.created_at)}${hasBody?' · 클릭하면 내용 보기':''}</p>
             </div>
-            ${ url ? `<a href="${encodeURI(url)}" target="_blank" rel="noopener" class="shrink-0 bg-ink text-paper text-sm font-semibold px-4 py-2 rounded-full hover:bg-navy">받기</a>`
-                   : `<span class="shrink-0 text-ink/35 text-xs">준비 중</span>` }
-            ${ isAdmin ? `<button onclick="delResource('${r.id}')" class="shrink-0 text-ink/30 hover:text-red-500 text-sm">삭제</button>` : '' }
+            ${ hasBody ? `<svg id="rchev-${r.id}" class="w-5 h-5 text-ink/25 shrink-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>` : '' }
+            ${ url ? `<a href="${encodeURI(url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="shrink-0 bg-ink text-paper text-sm font-semibold px-4 py-2 rounded-full hover:bg-navy">받기</a>`
+                   : (hasBody ? '' : `<span class="shrink-0 text-ink/35 text-xs">준비 중</span>`) }
+            ${ isAdmin ? `<button onclick="event.stopPropagation();delResource('${r.id}')" class="shrink-0 text-ink/30 hover:text-red-500 text-sm">삭제</button>` : '' }
           </div>
-          ${ r.description ? `<div class="resbody text-sm text-ink/65 mt-2 sm:pl-14 leading-relaxed">${bodyHTML(r.description)}</div>` : '' }
+          ${ hasBody ? `<div id="resbody-${r.id}" class="hidden resbody text-sm text-ink/70 mt-3 sm:pl-14 leading-relaxed border-t border-ink/5 pt-3">${bodyHTML(r.description)}</div>` : '' }
         </div>`;
       }).join('');
     }
@@ -197,6 +212,12 @@
         closeForm(); loadList();
       } catch(e){ msg.textContent = '오류: ' + (e.message || e); }
       finally { btn.disabled = false; btn.textContent = '올리기'; }
+    }
+
+    function toggleRes(id){
+      var b=document.getElementById('resbody-'+id), c=document.getElementById('rchev-'+id);
+      if(!b) return; var closed=b.classList.toggle('hidden');
+      if(c) c.style.transform = closed ? '' : 'rotate(180deg)';
     }
 
     async function delResource(id){

@@ -160,12 +160,25 @@
       });
       return d.innerHTML;
     }
+    function registerQuillStyles(){ if(window.__qReg || !window.Quill) return; window.__qReg = true;
+      var S = Quill.import('attributors/style/size'); S.whitelist = ['13px','15px','17px','20px','24px','30px']; Quill.register(S, true);
+      var F = Quill.import('attributors/style/font'); F.whitelist = ['serif','monospace']; Quill.register(F, true);
+      var css = ".ql-snow .ql-picker.ql-size{width:82px}"
+        + ".ql-snow .ql-picker.ql-size .ql-picker-label:not([data-value])::before,.ql-snow .ql-picker.ql-size .ql-picker-item:not([data-value])::before{content:'보통'}"
+        + ".ql-snow .ql-picker.ql-size .ql-picker-label[data-value]::before,.ql-snow .ql-picker.ql-size .ql-picker-item[data-value]::before{content:attr(data-value)}"
+        + ".ql-snow .ql-picker.ql-font .ql-picker-label:not([data-value])::before,.ql-snow .ql-picker.ql-font .ql-picker-item:not([data-value])::before{content:'기본'}"
+        + ".ql-snow .ql-picker.ql-font .ql-picker-label[data-value=\"serif\"]::before,.ql-snow .ql-picker.ql-font .ql-picker-item[data-value=\"serif\"]::before{content:'명조'}"
+        + ".ql-snow .ql-picker.ql-font .ql-picker-label[data-value=\"monospace\"]::before,.ql-snow .ql-picker.ql-font .ql-picker-item[data-value=\"monospace\"]::before{content:'고정폭'}";
+      var st=document.createElement('style'); st.textContent=css; document.head.appendChild(st);
+    }
     function ensureCommQuill(){
       if(commQuill) return commQuill;
+      registerQuillStyles();
       commQuill = new Quill('#postEditor', {
         theme: 'snow',
         placeholder: '오늘의 나눔, 은혜, 사진을 자유롭게 나눠보세요…',
         modules: { toolbar: [
+          [{ size:['13px','15px',false,'20px','24px','30px'] }, { font:['serif','monospace'] }],
           [{ header:[1,2,3,false] }],
           ['bold','italic','underline','strike'],
           [{ color:[] }, { background:[] }],
