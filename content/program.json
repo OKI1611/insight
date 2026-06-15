@@ -1,0 +1,46 @@
+{
+  "title": "바이블 인사이트 급수제",
+  "subtitle": "성경 분별력 공인 인증 과정",
+  "intro": "강의를 듣고 끝나는 것이 아니라, 직접 풀고 검증하여 '스스로 분별하는 사람'으로 인증받는 과정입니다. 각 강의를 마치면 시험을 통해 학점을 쌓고, 한 과목을 완주하면 급수 수료증을 받습니다.",
+  "exam": {
+    "perLesson": 20,
+    "basic": 10,
+    "advanced": 10,
+    "pointPerQuestion": 5,
+    "passScore": 80,
+    "timeLimitMin": 30,
+    "maxAttempts": 2,
+    "weight": { "attempt1": 0.6, "attempt2": 0.4 }
+  },
+  "gradeScale": [
+    { "min": 97, "grade": "A+" },
+    { "min": 93, "grade": "A0" },
+    { "min": 90, "grade": "A-" },
+    { "min": 87, "grade": "B+" },
+    { "min": 83, "grade": "B0" },
+    { "min": 80, "grade": "B-" }
+  ],
+  "ranks": [
+    {
+      "rank": "3급",
+      "name": "분별의 기초",
+      "en": "FOUNDATION",
+      "tagline": "성경을 스스로 읽는 첫걸음",
+      "tracks": ["천년왕국 세미나"]
+    },
+    {
+      "rank": "2급",
+      "name": "시대의 분별자",
+      "en": "DISCERNMENT",
+      "tagline": "예언과 종말로 시대를 읽다",
+      "tracks": []
+    },
+    {
+      "rank": "1급",
+      "name": "말씀의 파수꾼",
+      "en": "WATCHMAN",
+      "tagline": "진리를 지키고 전하는 자",
+      "tracks": []
+    }
+  ]
+}

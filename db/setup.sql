@@ -127,6 +127,29 @@ create policy ca_select on public.course_applications for select using (public.i
 drop policy if exists ca_delete on public.course_applications;
 create policy ca_delete on public.course_applications for delete using (public.is_admin());
 
+-- ── 6) 수료 시험 결과 · 학점 (exam.html, mylearning.html) ──────
+create table if not exists public.exam_results (
+  user_id     uuid not null references auth.users(id) on delete cascade,
+  lesson_id   text not null,        -- 유튜브 영상 ID (강의 단위)
+  track       text,                 -- 과목(트랙) 이름
+  attempt1    int,                  -- 1차 점수 (0~100)
+  attempt2    int,                  -- 2차 점수 (0~100, 미응시면 null)
+  final_score numeric,              -- 최종 점수 (1차 통과=1차점수 / 2차=1차*0.6+2차*0.4)
+  passed      boolean not null default false,
+  updated_at  timestamptz not null default now(),
+  primary key (user_id, lesson_id)
+);
+alter table public.exam_results enable row level security;
+drop policy if exists ex_select on public.exam_results;
+create policy ex_select on public.exam_results for select using (auth.uid() = user_id);
+drop policy if exists ex_insert on public.exam_results;
+create policy ex_insert on public.exam_results for insert with check (auth.uid() = user_id);
+drop policy if exists ex_update on public.exam_results;
+create policy ex_update on public.exam_results for update using (auth.uid() = user_id) with check (auth.uid() = user_id);
+drop policy if exists ex_delete on public.exam_results;
+create policy ex_delete on public.exam_results for delete using (auth.uid() = user_id);
+
 -- ============================================================
--- 끝! 이제 강의요청·건의, 수강신청·내강의실, 강의 질의응답, 커뮤니티 탭, 정규과정 사전신청이 작동합니다.
+-- 끝! 이제 강의요청·건의, 수강신청·내강의실, 강의 질의응답, 커뮤니티 탭,
+--     정규과정 사전신청, 수료 시험·학점이 작동합니다.
 -- ============================================================

@@ -205,6 +205,8 @@
     }
 
     let LEVELS = [];
+    let EXAM_SET = new Set();   // 수료 시험이 준비된 강의(유튜브ID) 집합
+    fetch('content/exams/index.json?t=' + Date.now()).then(r => r.json()).then(a => { EXAM_SET = new Set(a); if(typeof refreshLearningUI === 'function') refreshLearningUI(); }).catch(() => {});
     fetch('content/course.json?t=' + Date.now())
       .then(r => r.json())
       .then(c => {
@@ -907,7 +909,10 @@
       const doneBtn = done
         ? `<button onclick="toggleComplete()" class="inline-flex items-center gap-1.5 bg-green-600 text-white font-semibold px-4 py-2 rounded-full hover:opacity-90 transition">✅ 학습 완료됨</button>`
         : `<button onclick="toggleComplete()" class="inline-flex items-center gap-1.5 border border-ink/20 text-ink/80 font-semibold px-4 py-2 rounded-full hover:bg-ink/5 transition">⬜ 학습 완료 체크</button>`;
-      bar.innerHTML = enrollBtn + doneBtn + myClass + msgEl;
+      const examBtn = EXAM_SET.has(curId())
+        ? `<a href="exam.html?l=${cur}" class="inline-flex items-center gap-1.5 bg-ink text-paper font-semibold px-4 py-2 rounded-full hover:bg-navy transition">📝 수료 시험</a>`
+        : '';
+      bar.innerHTML = enrollBtn + doneBtn + examBtn + myClass + msgEl;
     }
     function lLogin(){ openLogin(); }
     function openLogin(){ const m = document.getElementById('loginModal'); m.classList.remove('hidden'); m.classList.add('flex'); document.body.style.overflow='hidden'; }

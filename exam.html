@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <script src="/content-loader.js"></script>
+  <script src="/site-header.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>수료 시험 — BIBLY 바이블 인사이트</title>
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#15203a" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="canonical" href="https://biblynote.com/exam" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BIBLY 바이블 인사이트" />
+  <meta property="og:title" content="수료 시험 — BIBLY 바이블 인사이트" />
+  <meta property="og:description" content="강의를 듣고 직접 풀어 학점을 쌓는 바이블 인사이트 급수제 수료 시험." />
+  <meta property="og:url" content="https://biblynote.com/exam" />
+  <meta property="og:image" content="https://biblynote.com/images/og-cover.png?v=2" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink:'#15203a', navy:'#1b2a4a', gold:'#b8923f', sand:'#efe7d6', paper:'#fcfaf6' },
+      fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
+      boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
+    }}}
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js"></script>
+  <script>
+    const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
+    const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+  </script>
+  <style>
+    h1,h2{font-family:'Noto Serif KR',Pretendard,serif}
+    .opt{transition:all .12s ease}
+    .opt.sel{border-color:#b8923f;background:#b8923f12}
+    .opt.correct{border-color:#16a34a;background:#16a34a14}
+    .opt.wrong{border-color:#dc2626;background:#dc262610}
+  </style>
+</head>
+<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+
+  <div id="siteHeader" data-active=""></div>
+
+  <main class="max-w-2xl mx-auto px-4 py-7">
+
+    <!-- 비로그인 -->
+    <div id="loginView" class="hidden">
+      <div class="bg-white rounded-3xl border border-ink/8 shadow-card p-8 max-w-sm mx-auto text-center">
+        <p class="text-3xl mb-3">📝</p>
+        <h2 class="text-lg font-bold mb-1">로그인하고 시험에 응시하세요</h2>
+        <p class="text-sm text-ink/55 mb-6">시험 결과와 학점은 로그인 후 저장됩니다.</p>
+        <button onclick="googleLogin()" class="w-full flex items-center justify-center gap-3 border border-ink/15 bg-white rounded-xl py-3 font-medium hover:bg-ink/5 transition mb-3">
+          <svg class="w-5 h-5" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C39.9 36.5 44 31 44 24c0-1.3-.1-2.3-.4-3.5z"/></svg>
+          구글로 로그인
+        </button>
+        <input id="le" type="email" placeholder="이메일" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold mb-2"/>
+        <input id="lp" type="password" placeholder="비밀번호" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold mb-2"/>
+        <button onclick="emailLogin()" class="w-full bg-ink text-paper font-semibold rounded-xl py-3 hover:bg-navy transition">이메일로 로그인</button>
+        <p id="loginMsg" class="text-red-500 text-xs mt-2 min-h-[16px]"></p>
+      </div>
+    </div>
+
+    <!-- 본문 (로딩/인트로/시험/결과 모두 여기에 렌더) -->
+    <div id="view"></div>
+  </main>
+
+  <script>
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType: 'implicit', lock: async (_n,_t,fn)=>await fn() } });
+    let user=null, uname='회원', COURSE=null, PROGRAM=null, EXAM=null, LESSON=null, TRACK='', LID='', RESULT=null;
+    let RUN=null, picked=[], timer=null, timeLeft=0, curAttempt=1;
+    const $ = id => document.getElementById(id);
+    function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    function ytId(u){ if(!u) return ''; const m=String(u).match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/); return m?m[1]:(String(u).trim().length===11?String(u).trim():''); }
+    function qparam(k){ return new URLSearchParams(location.search).get(k); }
+    function withTimeout(p,ms){ return Promise.race([Promise.resolve(p), new Promise((_,r)=>setTimeout(()=>r(new Error('TIMEOUT')),ms))]); }
+    function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+
+    // ── 인증 ──
+    function readStoredSession(){
+      try{ for(const k of Object.keys(localStorage)){ if(!/auth-token/.test(k)) continue;
+        const v=JSON.parse(localStorage.getItem(k)); const s=(v&&v.user)?v:(v&&v.currentSession)?v.currentSession:null;
+        if(s&&s.user){ if(s.expires_at&&s.expires_at*1000<Date.now()) return null; return s; } } }catch(e){}
+      return null;
+    }
+    sb.auth.onAuthStateChange((_e,s)=>onAuth(s));
+    onAuth(readStoredSession());
+    setTimeout(()=>{ if($('loginView').classList.contains('hidden') && !$('view').innerHTML) $('loginView').classList.remove('hidden'); }, 3000);
+    let authShown=false;
+    async function onAuth(session){
+      if(session && session.user){
+        if(authShown && user && user.id===session.user.id) return;
+        authShown=true; user=session.user; uname=user.email||'회원';
+        $('loginView').classList.add('hidden');
+        boot();
+        try{ const {data:prof}=await withTimeout(sb.from('profiles').select('full_name').eq('id',user.id).maybeSingle(),6000); if(prof&&prof.full_name) uname=prof.full_name; }catch(e){}
+      } else {
+        if(authShown) return; user=null;
+        $('loginView').classList.remove('hidden'); $('view').innerHTML='';
+      }
+    }
+    async function googleLogin(){ await sb.auth.signInWithOAuth({ provider:'google', options:{ redirectTo: location.href } }); }
+    async function emailLogin(){
+      const email=($('le').value||'').trim(), pw=$('lp').value||''; const msg=$('loginMsg');
+      if(!email||!pw){ msg.textContent='이메일과 비밀번호를 입력하세요.'; return; }
+      const { error }=await sb.auth.signInWithPassword({ email, password: pw }); if(error) msg.textContent=error.message;
+    }
+
+    // ── 데이터 적재 ──
+    async function boot(){
+      $('view').innerHTML = '<p class="text-ink/40 text-sm text-center py-16">불러오는 중…</p>';
+      try{
+        if(!COURSE)  COURSE  = await (await fetch('content/course.json?t='+Date.now())).json();
+        if(!PROGRAM) PROGRAM = await (await fetch('content/program.json?t='+Date.now())).json();
+      }catch(e){ $('view').innerHTML='<p class="text-red-500 text-sm text-center py-16">강의 정보를 불러오지 못했습니다.</p>'; return; }
+      // ?l=N → 강의 찾기
+      const levels=COURSE.levels||[]; let acc=0, found=null;
+      for(const lv of levels){ const ls=lv.lessons||[]; for(let i=0;i<ls.length;i++){ if(acc===Number(qparam('l'))){ found={lv,lesson:ls[i]}; } acc++; } }
+      if(!found){ $('view').innerHTML='<p class="text-red-500 text-sm text-center py-16">강의를 찾을 수 없습니다.</p>'; return; }
+      LESSON=found.lesson; TRACK=found.lv.name; LID=ytId(LESSON.youtube);
+      // 시험 콘텐츠
+      try{ EXAM = await (await fetch('content/exams/'+LID+'.json?t='+Date.now())).json(); }
+      catch(e){ EXAM=null; }
+      // 기존 결과
+      RESULT=null;
+      try{ const {data}=await withTimeout(sb.from('exam_results').select('*').eq('user_id',user.id).eq('lesson_id',LID).maybeSingle(),8000); RESULT=data||null; }catch(e){}
+      renderIntro();
+    }
+
+    // ── 인트로 ──
+    function renderIntro(){
+      if(!EXAM){
+        $('view').innerHTML = `<div class="bg-white rounded-2xl border border-ink/8 p-8 text-center">
+          <p class="text-3xl mb-3">🛠️</p><p class="font-semibold mb-1">이 강의의 시험은 준비 중입니다</p>
+          <p class="text-sm text-ink/55 mb-5">${esc(LESSON.title||'')}</p>
+          <a href="watch.html?l=${qparam('l')}" class="inline-block bg-ink text-paper font-semibold px-6 py-3 rounded-full hover:bg-navy transition">강의로 돌아가기</a>
+        </div>`; return;
+      }
+      const ex=PROGRAM.exam;
+      let state='';
+      if(RESULT){
+        if(RESULT.passed){
+          state = `<div class="bg-green-50 border border-green-200 rounded-xl p-4 text-center mb-5">
+            <p class="font-bold text-green-700">✅ 이미 통과한 시험입니다 · 최종 ${RESULT.final_score}점 (${letter(RESULT.final_score)})</p>
+            <p class="text-xs text-green-700/70 mt-1">아래에서 정답·해설을 다시 볼 수 있어요.</p></div>`;
+        } else if(RESULT.attempt1!=null && RESULT.attempt2==null){
+          state = `<div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-center mb-5">
+            <p class="font-bold text-amber-700">1차 ${RESULT.attempt1}점 · 아쉽게 미통과</p>
+            <p class="text-xs text-amber-700/80 mt-1">2차에 도전하세요. 최종 점수 = 1차 60% + 2차 40%</p></div>`;
+        } else {
+          state = `<div class="bg-rose-50 border border-rose-200 rounded-xl p-4 text-center mb-5">
+            <p class="font-bold text-rose-700">최종 ${RESULT.final_score}점 · 미통과 (1차 ${RESULT.attempt1} / 2차 ${RESULT.attempt2})</p>
+            <p class="text-xs text-rose-700/80 mt-1">기록을 초기화하고 처음부터 다시 도전할 수 있어요.</p></div>`;
+        }
+      }
+      const nextAttempt = !RESULT ? 1 : (RESULT.attempt1!=null && RESULT.attempt2==null && !RESULT.passed ? 2 : null);
+      const canReset = RESULT && (RESULT.passed || RESULT.attempt2!=null);
+      let action='';
+      if(nextAttempt){
+        action = `<button onclick="startExam(${nextAttempt})" class="w-full bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition text-[15px]">${nextAttempt===1?'시험 시작하기':'2차 시험 도전하기'} →</button>`;
+      }
+      let review = (RESULT && (RESULT.passed || RESULT.attempt2!=null))
+        ? `<button onclick="reviewAnswers()" class="w-full mt-2 border border-ink/15 text-ink/75 font-semibold py-3 rounded-xl hover:bg-ink/5 transition text-sm">정답·해설 다시 보기</button>` : '';
+      let reset = canReset
+        ? `<button onclick="resetExam()" class="w-full mt-2 text-rose-500/80 hover:text-rose-600 font-medium py-2 text-sm">처음부터 다시 도전 (기록 초기화)</button>` : '';
+
+      $('view').innerHTML = `
+        <div class="mb-5">
+          <a href="watch.html?l=${qparam('l')}" class="text-sm text-ink/45 hover:text-gold">← 강의로</a>
+          <p class="text-gold text-xs font-bold tracking-[0.3em] mt-3 mb-1">CERTIFICATION EXAM · ${esc(TRACK)}</p>
+          <h1 class="text-xl font-bold leading-snug">${esc(EXAM.title||LESSON.title||'')}</h1>
+        </div>
+        ${state}
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-6 mb-4">
+          <h2 class="font-bold mb-3">시험 안내</h2>
+          <ul class="text-sm text-ink/70 space-y-2 leading-relaxed">
+            <li>📋 총 <b>${ex.perLesson}문제</b> (기본 ${ex.basic} + 심화 ${ex.advanced}) · 문항당 ${ex.pointPerQuestion}점</li>
+            <li>⏱️ 제한시간 <b>${ex.timeLimitMin}분</b> · 시간이 끝나면 자동 제출됩니다</li>
+            <li>🎯 <b>${ex.passScore}점 이상</b> 통과</li>
+            <li>🔁 최대 <b>${ex.maxAttempts}회</b> 응시 · 1차 통과 시 즉시 정답·해설 공개</li>
+            <li>⚖️ 2차까지 본 경우 최종 = 1차×${ex.weight.attempt1} + 2차×${ex.weight.attempt2}</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 mb-5 flex items-center justify-between gap-3">
+          <div><p class="font-semibold text-sm">📑 시험 대비 요약노트</p><p class="text-xs text-ink/50 mt-0.5">핵심 정리·성구·용어를 PDF로 저장해 복습하세요.</p></div>
+          <button onclick="downloadNote()" class="shrink-0 bg-ink text-paper text-sm font-semibold px-4 py-2.5 rounded-xl hover:bg-navy transition">PDF 저장</button>
+        </div>
+        ${action}${review}${reset}
+        <div id="noteHidden" style="position:fixed;left:-9999px;top:0;width:720px"></div>`;
+    }
+
+    function letter(score){
+      for(const g of (PROGRAM.gradeScale||[])) if(score>=g.min) return g.grade;
+      return '미수료';
+    }
+
+    // ── 시험 진행 ──
+    function buildRun(){
+      const tag=(arr,t)=>arr.map(q=>({ q:q.q, type:t, src:q }));
+      const all=[...tag(EXAM.basic,'기본'), ...tag(EXAM.advanced,'심화')];
+      return all.map(item=>{
+        const idx=item.src.choices.map((_,i)=>i); shuffle(idx);
+        return { q:item.q, type:item.type, choices:idx.map(i=>item.src.choices[i]),
+                 answer:idx.indexOf(item.src.answer), explain:item.src.explain };
+      });
+    }
+    function startExam(attempt){
+      curAttempt=attempt; RUN=buildRun(); picked=new Array(RUN.length).fill(-1);
+      timeLeft=(PROGRAM.exam.timeLimitMin||30)*60;
+      window.scrollTo(0,0); renderExam();
+      timer=setInterval(()=>{ timeLeft--; updateTimer(); if(timeLeft<=0){ clearInterval(timer); submitExam(true); } },1000);
+    }
+    function updateTimer(){
+      const el=$('timer'); if(!el) return;
+      const m=Math.floor(timeLeft/60), s=timeLeft%60;
+      el.textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+      el.className = timeLeft<=60 ? 'font-bold text-rose-600' : (timeLeft<=300 ? 'font-bold text-amber-600' : 'font-bold text-ink');
+    }
+    function renderExam(){
+      const rows=RUN.map((it,i)=>`
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="shrink-0 text-[11px] font-bold ${it.type==='심화'?'text-rose-500 bg-rose-50':'text-gold bg-gold/10'} px-2 py-0.5 rounded-full">${it.type}</span>
+            <p class="font-semibold leading-snug">${i+1}. ${esc(it.q)}</p>
+          </div>
+          <div class="space-y-2">
+            ${it.choices.map((c,ci)=>`
+              <label class="opt flex items-start gap-3 border border-ink/12 rounded-xl px-4 py-3 cursor-pointer hover:bg-ink/[0.02]" data-q="${i}" data-c="${ci}" onclick="pick(${i},${ci})">
+                <span class="shrink-0 w-5 h-5 rounded-full border border-ink/25 flex items-center justify-center text-[11px] font-bold text-ink/45">${'ABCD'[ci]}</span>
+                <span class="text-sm text-ink/80">${esc(c)}</span>
+              </label>`).join('')}
+          </div>
+        </div>`).join('');
+      $('view').innerHTML = `
+        <div class="sticky top-0 -mx-4 px-4 py-3 bg-paper/95 backdrop-blur border-b border-ink/8 z-30 flex items-center justify-between mb-5">
+          <p class="text-sm font-semibold">${curAttempt}차 시험 · ${esc(TRACK)}</p>
+          <p class="text-sm">남은 시간 <span id="timer" class="font-bold text-ink">--:--</span></p>
+        </div>
+        <div class="space-y-4">${rows}</div>
+        <p id="progressTxt" class="text-center text-xs text-ink/45 mt-5">0 / ${RUN.length} 선택됨</p>
+        <button onclick="submitExam(false)" class="w-full mt-2 bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition">제출하기</button>
+        <p class="text-center text-xs text-ink/40 mt-3">제출하면 채점됩니다. 시간이 다 되면 자동 제출돼요.</p>`;
+      updateTimer();
+    }
+    function pick(qi,ci){
+      picked[qi]=ci;
+      document.querySelectorAll(`label[data-q="${qi}"]`).forEach(el=>el.classList.toggle('sel', Number(el.dataset.c)===ci));
+      const done=picked.filter(p=>p>=0).length;
+      const pt=$('progressTxt'); if(pt) pt.textContent=`${done} / ${RUN.length} 선택됨`;
+    }
+
+    async function submitExam(auto){
+      if(!auto){
+        const unanswered=picked.filter(p=>p<0).length;
+        if(unanswered>0 && !confirm(`아직 ${unanswered}문제를 풀지 않았어요. 그대로 제출할까요?`)) return;
+      }
+      if(timer){ clearInterval(timer); timer=null; }
+      let correct=0; RUN.forEach((it,i)=>{ if(picked[i]===it.answer) correct++; });
+      const score=correct*(PROGRAM.exam.pointPerQuestion||5);
+      const pass=score>=(PROGRAM.exam.passScore||80);
+
+      // 결과 저장
+      let row={ user_id:user.id, lesson_id:LID, track:TRACK };
+      let finalScore=score, passed=pass, reveal;
+      if(curAttempt===1){
+        row.attempt1=score; row.attempt2=null;
+        if(pass){ row.final_score=score; row.passed=true; reveal=true; }
+        else { row.final_score=null; row.passed=false; reveal=false; }
+      } else {
+        const a1=(RESULT&&RESULT.attempt1!=null)?RESULT.attempt1:0;
+        finalScore=Math.round(a1*(PROGRAM.exam.weight.attempt1) + score*(PROGRAM.exam.weight.attempt2));
+        passed=finalScore>=(PROGRAM.exam.passScore||80);
+        row.attempt1=a1; row.attempt2=score; row.final_score=finalScore; row.passed=passed; reveal=true;
+      }
+      try{ await withTimeout(sb.from('exam_results').upsert(row,{onConflict:'user_id,lesson_id'}),9000); }catch(e){}
+      RESULT=row;
+      renderResult(score, finalScore, passed, reveal);
+    }
+
+    function renderResult(score, finalScore, passed, reveal){
+      window.scrollTo(0,0);
+      let head;
+      if(curAttempt===1 && passed){
+        head=`<div class="text-center py-3"><p class="text-5xl mb-2">🎉</p>
+          <p class="text-2xl font-bold text-green-600">통과! ${score}점</p>
+          <p class="text-sm text-ink/55 mt-1">최종 ${score}점 · 학점 ${letter(score)}</p></div>`;
+      } else if(curAttempt===1 && !passed){
+        head=`<div class="text-center py-3"><p class="text-5xl mb-2">💪</p>
+          <p class="text-2xl font-bold text-amber-600">1차 ${score}점 · 아쉽네요</p>
+          <p class="text-sm text-ink/55 mt-1">${PROGRAM.exam.passScore}점 이상이면 통과예요. 2차에 도전하세요!</p>
+          <p class="text-xs text-ink/40 mt-2">최종 점수 = 1차×${PROGRAM.exam.weight.attempt1} + 2차×${PROGRAM.exam.weight.attempt2}</p></div>`;
+      } else {
+        head=`<div class="text-center py-3"><p class="text-5xl mb-2">${passed?'🎓':'📌'}</p>
+          <p class="text-2xl font-bold ${passed?'text-green-600':'text-rose-600'}">최종 ${finalScore}점 ${passed?'· 통과!':'· 미통과'}</p>
+          <p class="text-sm text-ink/55 mt-1">1차 ${RESULT.attempt1} · 2차 ${score} → 최종 ${finalScore}점${passed?' · 학점 '+letter(finalScore):''}</p></div>`;
+      }
+      let body;
+      if(reveal){
+        body=`<div class="space-y-3 mt-4">${RUN.map((it,i)=>{
+          const my=picked[i], ok=my===it.answer;
+          return `<div class="bg-white rounded-2xl border ${ok?'border-green-200':'border-rose-200'} p-5">
+            <div class="flex items-start gap-2 mb-3"><span class="shrink-0 text-[11px] font-bold ${it.type==='심화'?'text-rose-500 bg-rose-50':'text-gold bg-gold/10'} px-2 py-0.5 rounded-full">${it.type}</span>
+              <p class="font-semibold leading-snug">${i+1}. ${esc(it.q)} ${ok?'<span class="text-green-600">✓</span>':'<span class="text-rose-600">✗</span>'}</p></div>
+            <div class="space-y-1.5">${it.choices.map((c,ci)=>{
+              let cls='border-ink/12'; if(ci===it.answer) cls='opt correct'; else if(ci===my && !ok) cls='opt wrong';
+              return `<div class="flex items-start gap-3 border rounded-xl px-4 py-2.5 ${cls}"><span class="shrink-0 w-5 h-5 rounded-full border border-ink/25 flex items-center justify-center text-[11px] font-bold text-ink/45">${'ABCD'[ci]}</span><span class="text-sm text-ink/80">${esc(c)}${ci===it.answer?' <b class="text-green-600">(정답)</b>':''}${(ci===my&&!ok)?' <b class="text-rose-600">(내 선택)</b>':''}</span></div>`;
+            }).join('')}</div>
+            <p class="text-xs text-ink/65 bg-ink/[0.03] rounded-lg px-3 py-2 mt-3 leading-relaxed">💡 ${esc(it.explain||'')}</p>
+          </div>`; }).join('')}</div>`;
+      } else {
+        body=`<div class="bg-amber-50 border border-amber-200 rounded-2xl p-5 mt-4 text-center text-sm text-amber-800 leading-relaxed">
+          2차 도전을 위해 이번 정답·해설은 공개되지 않습니다.<br/>요약노트로 복습한 뒤 다시 도전해 보세요. 화이팅! 💪</div>`;
+      }
+      let btns='';
+      if(curAttempt===1 && !passed){
+        btns=`<button onclick="startExam(2)" class="w-full mt-5 bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition">2차 시험 도전하기 →</button>
+              <button onclick="downloadNote()" class="w-full mt-2 border border-ink/15 text-ink/75 font-semibold py-3 rounded-xl hover:bg-ink/5 transition text-sm">📑 요약노트 PDF로 복습</button>`;
+      } else {
+        btns=`<a href="mylearning.html" class="block text-center w-full mt-5 bg-ink text-paper font-bold py-3.5 rounded-xl hover:bg-navy transition">내 강의실에서 학점 보기 →</a>
+              <a href="watch.html?l=${qparam('l')}" class="block text-center w-full mt-2 border border-ink/15 text-ink/75 font-semibold py-3 rounded-xl hover:bg-ink/5 transition text-sm">강의로 돌아가기</a>`;
+      }
+      $('view').innerHTML = `<div class="bg-white rounded-3xl border border-ink/8 shadow-card p-6">${head}</div>${body}${btns}
+        <div id="noteHidden" style="position:fixed;left:-9999px;top:0;width:720px"></div>`;
+    }
+
+    function reviewAnswers(){
+      // 저장된 정답을 보여주려면 시험 문항이 필요 — 인트로의 정답 공개는 원문 순서로 렌더
+      RUN=buildRun(); picked=new Array(RUN.length).fill(-1);
+      // 채점 없이 정답만 표시
+      const body=`<div class="space-y-3 mt-1">${RUN.map((it,i)=>`
+        <div class="bg-white rounded-2xl border border-green-200 p-5">
+          <div class="flex items-start gap-2 mb-3"><span class="shrink-0 text-[11px] font-bold ${it.type==='심화'?'text-rose-500 bg-rose-50':'text-gold bg-gold/10'} px-2 py-0.5 rounded-full">${it.type}</span>
+            <p class="font-semibold leading-snug">${i+1}. ${esc(it.q)}</p></div>
+          <div class="space-y-1.5">${it.choices.map((c,ci)=>`<div class="flex items-start gap-3 border rounded-xl px-4 py-2.5 ${ci===it.answer?'opt correct':'border-ink/12'}"><span class="shrink-0 w-5 h-5 rounded-full border border-ink/25 flex items-center justify-center text-[11px] font-bold text-ink/45">${'ABCD'[ci]}</span><span class="text-sm text-ink/80">${esc(c)}${ci===it.answer?' <b class="text-green-600">(정답)</b>':''}</span></div>`).join('')}</div>
+          <p class="text-xs text-ink/65 bg-ink/[0.03] rounded-lg px-3 py-2 mt-3 leading-relaxed">💡 ${esc(it.explain||'')}</p>
+        </div>`).join('')}</div>`;
+      $('view').innerHTML = `<div class="mb-4"><button onclick="renderIntro()" class="text-sm text-ink/45 hover:text-gold">← 돌아가기</button>
+        <h1 class="text-xl font-bold mt-2">정답 · 해설</h1><p class="text-sm text-ink/50 mt-1">${esc(EXAM.title||'')}</p></div>${body}`;
+    }
+
+    async function resetExam(){
+      if(!confirm('지금까지의 시험 기록이 초기화됩니다. 처음부터 다시 도전할까요?')) return;
+      try{ await withTimeout(sb.from('exam_results').delete().eq('user_id',user.id).eq('lesson_id',LID),9000); }catch(e){}
+      RESULT=null; renderIntro();
+    }
+
+    // ── 요약노트 PDF ──
+    function noteHTML(){
+      const n=EXAM.studyNote||{};
+      const sec=(t,inner)=>inner?`<h3 style="font-size:15px;font-weight:700;color:#15203a;margin:16px 0 7px">${t}</h3>${inner}`:'';
+      const kp=(n.keyPoints||[]).map(p=>`<li style="margin-bottom:6px;line-height:1.7">${esc(p)}</li>`).join('');
+      const ks=(n.keyScriptures||[]).map(s=>`<li style="margin-bottom:6px;line-height:1.7"><b style="color:#b8923f">${esc(s.ref)}</b> — ${esc(s.note)}</li>`).join('');
+      const kt=(n.keyTerms||[]).map(s=>`<li style="margin-bottom:6px;line-height:1.7"><b>${esc(s.term)}</b>: ${esc(s.def)}</li>`).join('');
+      return `<div style="font-family:Pretendard,system-ui,sans-serif;color:#1a1a1a;padding:30px 32px;width:720px;box-sizing:border-box">
+        <div style="border-bottom:2px solid #b8923f;padding-bottom:10px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:baseline">
+          <span style="font-weight:700;color:#15203a;font-size:15px">시험 대비 요약노트</span>
+          <span style="font-size:12px;color:#a7adba">BIBLY 바이블 인사이트 · 급수제</span></div>
+        <h2 style="font-size:18px;font-weight:700;color:#15203a;margin:0 0 4px">${esc(EXAM.title||'')}</h2>
+        <p style="font-size:13px;color:#555;margin:0 0 6px">${esc(TRACK)}</p>
+        ${n.thesis?`<p style="background:#f4f0e6;border-left:3px solid #b8923f;padding:10px 14px;border-radius:6px;font-size:13.5px;line-height:1.7;margin:12px 0">${esc(n.thesis)}</p>`:''}
+        ${sec('핵심 정리', kp?`<ul style="padding-left:18px;font-size:13.5px;margin:0">${kp}</ul>`:'')}
+        ${sec('핵심 성구', ks?`<ul style="padding-left:18px;font-size:13.5px;margin:0">${ks}</ul>`:'')}
+        ${sec('핵심 용어', kt?`<ul style="padding-left:18px;font-size:13.5px;margin:0">${kt}</ul>`:'')}
+        <p style="margin-top:22px;font-size:11px;color:#9aa0ab;text-align:center">© BIBLY 바이블 인사이트 — biblynote.com</p>
+      </div>`;
+    }
+    function downloadNote(){
+      if(!EXAM||!EXAM.studyNote){ alert('요약노트가 준비 중입니다.'); return; }
+      const host=$('noteHidden'); if(!host) return;
+      host.innerHTML=noteHTML();
+      const fname=(EXAM.title||'요약노트').replace(/[\\/:*?"<>|]/g,'').slice(0,40)+' 요약노트.pdf';
+      html2pdf().set({ margin:0, filename:fname, image:{type:'jpeg',quality:0.96}, html2canvas:{scale:2,useCORS:true}, jsPDF:{unit:'mm',format:'a4',orientation:'portrait'} }).from(host.firstElementChild).save();
+    }
+  </script>
+
+  <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script src="auth-header.js"></script>
+</body>
+</html>

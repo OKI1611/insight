@@ -86,6 +86,7 @@
         <a href="index.html#catalog" class="text-sm text-gold font-semibold hover:underline whitespace-nowrap">+ 과정 추가</a>
       </div>
       <div id="tracks" class="space-y-5"></div>
+      <div id="program" class="mt-9"></div>
     </div>
   </main>
 
@@ -102,7 +103,7 @@
 
   <script>
     const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType: 'implicit', lock: async (_n, _t, fn) => await fn() } });
-    let user = null, uname = '회원', COURSE = null;
+    let user = null, uname = '회원', COURSE = null, PROGRAM = null;
     function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
     function ytId(u){ if(!u) return ''; const m = String(u).match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/); return m ? m[1] : (String(u).trim().length===11 ? String(u).trim() : ''); }
 
@@ -141,6 +142,7 @@
         document.getElementById('dashView').classList.remove('hidden');
         setNav();
         loadDashboard();
+        loadProgram();
         // ② 이름은 best-effort 업데이트
         try { const { data: prof } = await withTimeout(sb.from('profiles').select('full_name').eq('id', user.id).maybeSingle(), 6000); if(prof && prof.full_name){ uname = prof.full_name; setNav(); } } catch(e){}
       } else {
@@ -283,6 +285,64 @@
         </div>`;
       }).join('');
     }
+    // ── 급수 인증 · 학점 ──
+    async function loadProgram(){
+      const host = document.getElementById('program');
+      if(!host) return;
+      try {
+        if(!PROGRAM) PROGRAM = await (await fetch('content/program.json?t=' + Date.now())).json();
+        if(!COURSE)  COURSE  = await (await fetch('content/course.json?t=' + Date.now())).json();
+      } catch(e){ host.innerHTML = ''; return; }
+      let exById = {};
+      try {
+        const { data, error } = await withTimeout(sb.from('exam_results').select('lesson_id, final_score, passed').eq('user_id', user.id), 9000);
+        if(error) throw error;
+        (data||[]).forEach(r => { exById[r.lesson_id] = r; });
+      } catch(e){ host.innerHTML = ''; return; }   // 테이블 미생성 등 — 섹션 숨김(graceful)
+
+      const levels = COURSE.levels || [];
+      const byName = {}, startOf = {};
+      let acc = 0; levels.forEach(lv => { byName[lv.name] = lv.lessons || []; startOf[lv.name] = acc; acc += (lv.lessons||[]).length; });
+      const ex = PROGRAM.exam || {};
+      const letterOf = (s) => { for(const g of (PROGRAM.gradeScale||[])) if(s >= g.min) return g.grade; return '미수료'; };
+
+      const ranksHtml = (PROGRAM.ranks||[]).map(rk => {
+        const tracks = (rk.tracks||[]).filter(t => byName[t]);
+        const trackCards = tracks.map(tname => {
+          const ls = byName[tname] || [];
+          let passed = 0, sum = 0;
+          ls.forEach(l => { const r = exById[ytId(l.youtube)]; if(r && r.passed){ passed++; sum += Number(r.final_score)||0; } });
+          const total = ls.length, pct = total ? Math.round(passed/total*100) : 0;
+          const done = (passed === total && total > 0), avg = passed ? Math.round(sum/passed) : 0;
+          return `<div class="bg-white rounded-2xl border ${done?'border-gold/45':'border-ink/8'} shadow-soft p-5">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="flex-1 min-w-0"><h4 class="font-bold truncate">${esc(tname)}</h4>
+                <p class="text-xs text-ink/45 mt-0.5">시험 ${passed}/${total}강 통과</p></div>
+              ${done ? `<span class="shrink-0 bg-gold/15 text-gold text-sm font-bold px-3 py-1 rounded-full">학점 ${letterOf(avg)}</span>`
+                     : `<span class="shrink-0 text-sm font-semibold text-gold">${pct}%</span>`}
+            </div>
+            <div class="h-2 rounded-full bg-ink/8 overflow-hidden"><div class="h-full bg-gold rounded-full" style="width:${pct}%"></div></div>
+            ${done ? `<p class="text-xs text-ink/60 mt-2.5">🎓 과목 수료 · 평균 ${avg}점 (학점 ${letterOf(avg)})</p>`
+                   : `<a href="watch.html?l=${startOf[tname]||0}" class="inline-block text-xs text-gold font-semibold mt-2.5 hover:underline">시험 보러 가기 →</a>`}
+          </div>`;
+        }).join('');
+        const body = tracks.length ? `<div class="space-y-3">${trackCards}</div>`
+          : `<p class="text-xs text-ink/40 bg-white/60 rounded-xl border border-ink/8 px-4 py-3">과목 준비 중입니다.</p>`;
+        return `<div class="mb-5">
+          <div class="flex items-baseline gap-2 mb-2.5">
+            <span class="bg-ink text-paper text-xs font-bold px-2.5 py-1 rounded-full">${esc(rk.rank)}</span>
+            <span class="font-bold">${esc(rk.name)}</span>
+            <span class="text-xs text-ink/45">${esc(rk.tagline||'')}</span>
+          </div>${body}</div>`;
+      }).join('');
+
+      host.innerHTML = `
+        <h2 class="font-bold text-lg mb-3">🎓 ${esc(PROGRAM.title||'급수 인증')} · 학점</h2>
+        <p class="text-sm text-ink/55 mb-5 leading-relaxed">${esc(PROGRAM.intro||'')}</p>
+        ${ranksHtml}
+        <p class="text-xs text-ink/40 mt-1">통과 기준 ${ex.passScore||80}점 · 강의별 시험(${ex.perLesson||20}문제) 평균이 과목 학점이 됩니다.</p>`;
+    }
+
     function toggleFolder(ti){
       const body = document.getElementById('folder-' + ti);
       const icon = document.getElementById('ficon-' + ti);
