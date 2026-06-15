@@ -181,7 +181,7 @@
     function readStored(){ try{ for(const k of Object.keys(localStorage)){ if(!/auth-token/.test(k)) continue; const v=JSON.parse(localStorage.getItem(k)); const s=(v&&v.user)?v:(v&&v.currentSession)?v.currentSession:null; if(s&&s.user){ if(s.expires_at&&s.expires_at*1000<Date.now()) return null; return s; } } }catch(e){} return null; }
     sb.auth.onAuthStateChange((_e,s)=>applyAuth(s));
     applyAuth(readStored());
-    async function googleLogin(){ await sb.auth.signInWithOAuth({ provider:'google', options:{ redirectTo: location.href } }); }
+    async function googleLogin(){ await sb.auth.signInWithOAuth({ provider:'google', options:{ redirectTo: location.origin + location.pathname } }); }
     async function emailLogin(){ const email=document.getElementById('ge').value.trim(), password=document.getElementById('gp').value; const m=document.getElementById('gateErr'); m.textContent=''; if(!email||!password){ m.textContent='이메일과 비밀번호를 입력하세요.'; return; } const {error}=await sb.auth.signInWithPassword({email,password}); if(error) m.textContent='로그인 실패: '+error.message; }
     async function logout(){ await sb.auth.signOut(); location.reload(); }
     function applyAuth(session){
