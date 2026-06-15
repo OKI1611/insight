@@ -178,7 +178,7 @@
     function tableMissing(e){ return e && (e.code === '42P01' || /relation|does not exist|schema cache|find the table/i.test(e.message || '')); }
 
     // 신청 알림(이메일) — Web3Forms. 아래 NOTIFY_KEY에 발급받은 access key를 넣으면 활성화됩니다.
-    const NOTIFY_KEY = '';
+    const NOTIFY_KEY = '8de9d22a-81a8-411d-99e2-90b38d21a062';
     async function notifyApplication(d){
       if(!NOTIFY_KEY) return;   // 키 없으면 조용히 건너뜀(신청 저장에는 영향 없음)
       try{
