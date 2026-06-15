@@ -14,12 +14,12 @@
   <link rel="canonical" href="https://biblynote.com/column" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="BIBLY 바이블 인사이트" />
-  <meta property="og:title" content="오광일 칼럼 — BIBLY 바이블 인사이트" />
+  <meta property="og:title" content="인사이트 칼럼 — BIBLY 바이블 인사이트" />
   <meta property="og:description" content="오광일이 전하는 성경과 시대를 읽는 칼럼." />
   <meta property="og:url" content="https://biblynote.com/column" />
   <meta property="og:image" content="https://biblynote.com/images/og-cover.png?v=2" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="오광일 칼럼 — BIBLY 바이블 인사이트" />
+  <meta name="twitter:title" content="인사이트 칼럼 — BIBLY 바이블 인사이트" />
   <meta name="twitter:description" content="오광일이 전하는 성경과 시대를 읽는 칼럼." />
   <meta name="twitter:image" content="https://biblynote.com/images/og-cover.png?v=2" />
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
@@ -74,7 +74,7 @@
       <div class="flex items-end justify-between mb-8">
         <div>
           <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">COLUMN</p>
-          <h1 class="text-2xl md:text-3xl font-bold">오광일 칼럼</h1>
+          <h1 class="text-2xl md:text-3xl font-bold">인사이트 칼럼</h1>
           <p class="text-ink/55 text-sm mt-2">유튜브에서 다 못한 이야기, 시대를 읽는 묵상을 글로 나눕니다.</p>
         </div>
         <button id="writeBtn" onclick="openEditor()" class="hidden bg-ink text-paper text-sm font-semibold px-4 py-2.5 rounded-full hover:bg-navy transition shrink-0">✏️ 새 글 쓰기</button>
@@ -145,10 +145,11 @@
       if(day<1) return '오늘'; if(day<7) return day+'일 전';
       return new Date(iso).toLocaleDateString('ko-KR');
     }
-    async function shareItem(title,url){
+    function shareItem(title,url){
       const u=url||location.href;
-      if(navigator.share){ try{ await navigator.share({title:title||document.title,url:u}); }catch(e){} }
-      else { try{ await navigator.clipboard.writeText(u); alert('🔗 링크가 복사되었어요! 원하는 곳에 붙여넣어 공유하세요.'); }catch(e){ prompt('링크 복사', u); } }
+      if(window.biblyShare){ biblyShare(title, u); return; }
+      if(navigator.share){ navigator.share({title:title||document.title,url:u}).catch(()=>{}); }
+      else { try{ navigator.clipboard.writeText(u); alert('🔗 링크가 복사되었어요!'); }catch(e){ prompt('링크 복사', u); } }
     }
 
     sb.auth.getSession().then(({data:{session}})=>setUser(session));
@@ -284,6 +285,7 @@
   </script>
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script src="/share.js"></script>
   <script src="auth-header.js"></script>
 </body>
 </html>

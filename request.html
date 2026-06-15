@@ -347,6 +347,7 @@
             ${ r.body ? `<div class="text-sm text-ink/65 mt-1.5 leading-relaxed reqbody">${bodyHTML(r.body)}</div>` : '' }
             <div class="flex items-center gap-2 mt-2.5 text-xs text-ink/40">
               <span>${esc(r.author_name || '회원')}</span><span>·</span><span>${fmtDate(r.created_at)}</span>
+              <span>·</span><button onclick="biblyShare(this.dataset.t)" data-t="${esc(r.title||'').replace(/"/g,'&quot;')}" class="hover:text-gold">🔗 공유</button>
               ${ canDelete ? `<span>·</span><button onclick="del('${r.id}')" class="hover:text-red-500">삭제</button>` : '' }
             </div>
             ${reply}
@@ -401,6 +402,7 @@
   <!-- 공통 메뉴 -->
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script src="/share.js"></script>
   <script src="auth-header.js"></script>
 </body>
 </html>

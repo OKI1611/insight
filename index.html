@@ -327,7 +327,7 @@
       <div class="grid md:grid-cols-2 gap-5">
         <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-6">
           <div class="flex items-center justify-between mb-2">
-            <h3 class="font-bold flex items-center gap-2"><span>✍️</span> 오광일 칼럼</h3>
+            <h3 class="font-bold flex items-center gap-2"><span>✍️</span> 인사이트 칼럼</h3>
             <a href="column.html" class="text-xs text-gold font-semibold hover:underline whitespace-nowrap">전체 보기 →</a>
           </div>
           <div id="loungeColumns" class="divide-y divide-ink/[0.06]"><p class="text-ink/40 text-sm py-4">불러오는 중…</p></div>
@@ -338,6 +338,20 @@
             <a href="community.html" class="text-xs text-gold font-semibold hover:underline whitespace-nowrap">전체 보기 →</a>
           </div>
           <div id="loungeComm" class="divide-y divide-ink/[0.06]"><p class="text-ink/40 text-sm py-4">불러오는 중…</p></div>
+        </div>
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-6">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="font-bold flex items-center gap-2"><span>🎓</span> 강의 요청 · 건의</h3>
+            <a href="request.html" class="text-xs text-gold font-semibold hover:underline whitespace-nowrap">전체 보기 →</a>
+          </div>
+          <div id="loungeReq" class="divide-y divide-ink/[0.06]"><p class="text-ink/40 text-sm py-4">불러오는 중…</p></div>
+        </div>
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-6">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="font-bold flex items-center gap-2"><span>📂</span> 자료실</h3>
+            <a href="resources.html" class="text-xs text-gold font-semibold hover:underline whitespace-nowrap">전체 보기 →</a>
+          </div>
+          <div id="loungeRes" class="divide-y divide-ink/[0.06]"><p class="text-ink/40 text-sm py-4">불러오는 중…</p></div>
         </div>
       </div>
     </div>
@@ -928,7 +942,7 @@
       <div class="flex items-end justify-between mb-12">
         <div>
           <p class="eyebrow text-gold text-xs font-semibold mb-3">COLUMN</p>
-          <h2 data-cms="home-sec17" class="text-2xl md:text-[32px] font-bold">오광일 칼럼</h2>
+          <h2 data-cms="home-sec17" class="text-2xl md:text-[32px] font-bold">인사이트 칼럼</h2>
           <p class="text-ink/55 text-sm mt-2">유튜브에서 다 못한 이야기, 시대를 읽는 묵상을 글로 나눕니다.</p>
         </div>
         <a href="column.html" class="text-sm text-gold hover:underline shrink-0">전체 칼럼 보기 →</a>
@@ -1678,6 +1692,16 @@
           return `<a href="community.html?board=${p.board||'free'}" class="flex items-center gap-3 py-3 group"><span class="shrink-0 text-[10px] font-bold text-gold bg-gold/10 px-1.5 py-0.5 rounded">${BNAME[p.board]||'나눔'}</span><span class="flex-1 text-sm text-ink/80 truncate group-hover:text-gold transition">${safe(t)}</span><span class="text-xs text-ink/35 shrink-0">${fdate(p.created_at)}</span></a>`;
         }).join('');
       }).catch(()=>{ const el=document.getElementById('loungeComm'); if(el) el.innerHTML='<p class="text-ink/40 text-sm py-4">잠시 후 다시 확인해 주세요.</p>'; });
+      sb.from('lecture_requests').select('id,title,type,created_at').order('created_at',{ascending:false}).limit(5).then(({data})=>{
+        const el=document.getElementById('loungeReq'); if(!el) return;
+        if(!data||!data.length){ el.innerHTML='<p class="text-ink/40 text-sm py-4">아직 요청·건의가 없어요.</p>'; return; }
+        el.innerHTML = data.map(r=>`<a href="request.html" class="flex items-center gap-3 py-3 group"><span class="shrink-0 text-[10px] font-bold text-gold bg-gold/10 px-1.5 py-0.5 rounded">${r.type==='feedback'?'건의':'요청'}</span><span class="flex-1 text-sm font-medium text-ink/85 truncate group-hover:text-gold transition">${safe(r.title)||'(제목 없음)'}</span><span class="text-xs text-ink/35 shrink-0">${fdate(r.created_at)}</span></a>`).join('');
+      }).catch(()=>{ const el=document.getElementById('loungeReq'); if(el) el.innerHTML='<p class="text-ink/40 text-sm py-4">잠시 후 다시 확인해 주세요.</p>'; });
+      sb.from('resources').select('id,title,category,created_at').order('created_at',{ascending:false}).limit(5).then(({data})=>{
+        const el=document.getElementById('loungeRes'); if(!el) return;
+        if(!data||!data.length){ el.innerHTML='<p class="text-ink/40 text-sm py-4">곧 자료가 올라옵니다.</p>'; return; }
+        el.innerHTML = data.map(r=>`<a href="resources.html" class="flex items-center gap-3 py-3 group">${r.category?`<span class="shrink-0 text-[10px] font-bold text-gold bg-gold/10 px-1.5 py-0.5 rounded">${safe(r.category).slice(0,7)}</span>`:''}<span class="flex-1 text-sm font-medium text-ink/85 truncate group-hover:text-gold transition">${safe(r.title)||'(제목 없음)'}</span><span class="text-xs text-ink/35 shrink-0">${fdate(r.created_at)}</span></a>`).join('');
+      }).catch(()=>{ const el=document.getElementById('loungeRes'); if(el) el.innerHTML='<p class="text-ink/40 text-sm py-4">곧 자료가 올라옵니다.</p>'; });
     })();
 
     const postModal = document.getElementById('postModal');

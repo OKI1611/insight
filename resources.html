@@ -180,6 +180,7 @@
             ${ hasBody ? `<svg id="rchev-${r.id}" class="w-5 h-5 text-ink/25 shrink-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>` : '' }
             ${ url ? `<a href="${encodeURI(url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="shrink-0 bg-ink text-paper text-sm font-semibold px-4 py-2 rounded-full hover:bg-navy">받기</a>`
                    : (hasBody ? '' : `<span class="shrink-0 text-ink/35 text-xs">준비 중</span>`) }
+            <button onclick="event.stopPropagation();biblyShare(this.dataset.t)" data-t="${esc(r.title||'').replace(/"/g,'&quot;')}" class="shrink-0 text-ink/30 hover:text-gold text-base" title="공유">🔗</button>
             ${ isAdmin ? `<button onclick="event.stopPropagation();delResource('${r.id}')" class="shrink-0 text-ink/30 hover:text-red-500 text-sm">삭제</button>` : '' }
           </div>
           ${ hasBody ? `<div id="resbody-${r.id}" class="hidden resbody text-sm text-ink/70 mt-3 sm:pl-14 leading-relaxed border-t border-ink/5 pt-3">${bodyHTML(r.description)}</div>` : '' }
@@ -229,6 +230,7 @@
   </script>
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script src="/share.js"></script>
   <script src="auth-header.js"></script>
 </body>
 </html>

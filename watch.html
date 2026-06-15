@@ -105,6 +105,7 @@
             <button class="shareItem" onclick="shareTo('band')">🔵 네이버 밴드</button>
             <button class="shareItem" onclick="shareTo('cafe')">🍃 네이버 카페</button>
             <button class="shareItem" onclick="shareTo('kakao')">💬 카카오톡</button>
+            <button class="shareItem" onclick="shareTo('telegram')">✈️ 텔레그램</button>
             <button class="shareItem" onclick="shareTo('threads')">🧵 쓰레드(Threads)</button>
             <button class="shareItem" onclick="shareTo('insta')">📷 인스타그램</button>
             <button class="shareItem" onclick="shareTo('x')">𝕏 &nbsp;X(트위터)</button>
@@ -608,6 +609,7 @@
         case 'threads':  target = `https://www.threads.net/intent/post?text=${etxt}`; break;
         case 'x':        target = `https://twitter.com/intent/tweet?text=${et}&url=${eu}`; break;
         case 'facebook': target = `https://www.facebook.com/sharer/sharer.php?u=${eu}`; break;
+        case 'telegram': target = `https://t.me/share/url?url=${eu}&text=${et}`; break;
         case 'cafe':
         case 'insta':
         case 'kakao':

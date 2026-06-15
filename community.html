@@ -478,7 +478,9 @@
       const board = p.board || currentBoard;
       const url = location.origin + location.pathname + '?board=' + board + '#post-' + postId;
       const label = board === 'qna' ? '[질의응답]' : board === 'prayer' ? '[기도 요청]' : '[커뮤니티]';
-      SHARE_CTX = { url, text: `${label} ${postExcerpt(p)}\n— BIBLY 바이블 인사이트` };
+      const text = `${label} ${postExcerpt(p)} — BIBLY 바이블 인사이트`;
+      if(window.biblyShare){ biblyShare(text, url); return; }
+      SHARE_CTX = { url, text };
       document.getElementById('shareSheet').classList.remove('hidden');
       document.getElementById('shareSheet').classList.add('flex');
     }
@@ -567,6 +569,7 @@
 
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script src="/share.js"></script>
   <script src="auth-header.js"></script>
 </body>
 </html>
