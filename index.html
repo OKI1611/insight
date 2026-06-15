@@ -281,7 +281,7 @@
             <p class="text-xs text-ink/55 mt-1.5">구독자</p>
           </div>
           <div class="px-2">
-            <p id="ytViews" class="font-display text-[26px] sm:text-[32px] font-bold text-gold leading-none">142만+</p>
+            <p id="ytViews" class="font-display text-[26px] sm:text-[32px] font-bold text-gold leading-none">143만+</p>
             <p class="text-xs text-ink/55 mt-1.5">누적 조회수</p>
           </div>
           <div class="px-2">
@@ -311,6 +311,33 @@
           <div><span class="biShine font-display text-2xl sm:text-[28px] font-bold leading-none">B</span><span class="block text-[10px] sm:text-[11px] text-ink/55 mt-1">Believe</span></div>
           <div><span class="biShine font-display text-2xl sm:text-[28px] font-bold leading-none">L</span><span class="block text-[10px] sm:text-[11px] text-ink/55 mt-1">Light</span></div>
           <div><span class="biShine font-display text-2xl sm:text-[28px] font-bold leading-none">Y</span><span class="block text-[10px] sm:text-[11px] text-ink/55 mt-1">Yourself</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 최근 글 라운지 (칼럼 + 질의응답 목차) ===== -->
+  <section id="lounge" class="py-14 md:py-16 bg-paper border-b border-ink/8">
+    <div class="max-w-5xl mx-auto px-5">
+      <div class="text-center mb-8">
+        <p class="text-gold text-xs font-bold tracking-[0.25em] uppercase mb-2">BIBLY 라운지</p>
+        <h2 class="text-2xl md:text-[30px] font-bold">최근 올라온 글</h2>
+        <p class="text-ink/55 text-sm mt-2.5">칼럼과 수강생 질문·나눔을 한눈에 — 함께 묻고, 함께 자랍니다.</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-6">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="font-bold flex items-center gap-2"><span>✍️</span> 오광일 칼럼</h3>
+            <a href="column.html" class="text-xs text-gold font-semibold hover:underline whitespace-nowrap">전체 보기 →</a>
+          </div>
+          <div id="loungeColumns" class="divide-y divide-ink/[0.06]"><p class="text-ink/40 text-sm py-4">불러오는 중…</p></div>
+        </div>
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-6">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="font-bold flex items-center gap-2"><span>💬</span> 질문 · 나눔</h3>
+            <a href="community.html" class="text-xs text-gold font-semibold hover:underline whitespace-nowrap">전체 보기 →</a>
+          </div>
+          <div id="loungeComm" class="divide-y divide-ink/[0.06]"><p class="text-ink/40 text-sm py-4">불러오는 중…</p></div>
         </div>
       </div>
     </div>
@@ -796,7 +823,7 @@
           </div>
           <div class="text-center px-2">
             <p class="text-3xl mb-2.5">📺</p>
-            <p class="font-semibold text-[15px]">142만+ 조회로 검증</p>
+            <p class="font-semibold text-[15px]">143만+ 조회로 검증</p>
             <p class="text-paper/55 text-xs mt-1.5 leading-relaxed">2012년부터 유튜브에서<br/>오래 검증받아 온 가르침</p>
           </div>
           <div class="text-center px-2">
@@ -820,7 +847,7 @@
       <div class="text-center mb-12">
         <p class="eyebrow text-gold text-xs font-semibold mb-4">REAL REACTIONS · 시청자들의 실제 반응</p>
         <h2 data-cms="home-sec12" class="text-2xl md:text-[32px] font-bold leading-snug">꾸며 낸 후기가 아닙니다.</h2>
-        <p class="text-ink/65 mt-4 max-w-2xl mx-auto leading-relaxed">유튜브 강의에 <b class="text-ink">시청자들이 직접 남긴 반응</b>입니다.<br class="hidden sm:block"/> 이미 <b class="text-gold">142만+ 조회·7,300+ 분</b>이 이 가르침과 함께하고 있습니다.</p>
+        <p class="text-ink/65 mt-4 max-w-2xl mx-auto leading-relaxed">유튜브 강의에 <b class="text-ink">시청자들이 직접 남긴 반응</b>입니다.<br class="hidden sm:block"/> 이미 <b class="text-gold">143만+ 조회·7,300+ 분</b>이 이 가르침과 함께하고 있습니다.</p>
       </div>
 
       <!-- 실제 유튜브 댓글: API 키가 있으면 이 자리에 자동 표시. 없으면 아래 정직한 안내 + 유튜브 바로보기 -->
@@ -1632,6 +1659,26 @@
             </div>
           </a>`).join('');
       });
+
+    // ===== BIBLY 라운지 — 최근 칼럼 + 질문·나눔 목차 =====
+    (function(){
+      const BNAME = { qna:'질문', free:'나눔', prayer:'기도' };
+      const strip = h => { const d=document.createElement('div'); d.innerHTML=h||''; return (d.textContent||'').trim(); };
+      const fdate = s => { try{ return new Date(s).toLocaleDateString('ko',{month:'long',day:'numeric'}); }catch(e){ return ''; } };
+      const safe = s => (s||'').replace(/</g,'&lt;');
+      sb.from('columns').select('id,title,created_at').order('created_at',{ascending:false}).limit(5).then(({data})=>{
+        const el=document.getElementById('loungeColumns'); if(!el) return;
+        if(!data||!data.length){ el.innerHTML='<p class="text-ink/40 text-sm py-4">곧 칼럼이 올라옵니다.</p>'; return; }
+        el.innerHTML = data.map(c=>`<a href="column.html#col-${c.id}" class="flex items-center gap-3 py-3 group"><span class="flex-1 text-sm font-medium text-ink/85 truncate group-hover:text-gold transition">${safe(c.title)||'(제목 없음)'}</span><span class="text-xs text-ink/35 shrink-0">${fdate(c.created_at)}</span></a>`).join('');
+      }).catch(()=>{ const el=document.getElementById('loungeColumns'); if(el) el.innerHTML='<p class="text-ink/40 text-sm py-4">곧 칼럼이 올라옵니다.</p>'; });
+      sb.from('community_posts').select('id,content,board,created_at').order('created_at',{ascending:false}).limit(5).then(({data})=>{
+        const el=document.getElementById('loungeComm'); if(!el) return;
+        if(!data||!data.length){ el.innerHTML='<p class="text-ink/40 text-sm py-4">아직 글이 없어요. 첫 질문·나눔을 남겨보세요.</p>'; return; }
+        el.innerHTML = data.map(p=>{ const t=strip(p.content).slice(0,40)||'(내용)';
+          return `<a href="community.html?board=${p.board||'free'}" class="flex items-center gap-3 py-3 group"><span class="shrink-0 text-[10px] font-bold text-gold bg-gold/10 px-1.5 py-0.5 rounded">${BNAME[p.board]||'나눔'}</span><span class="flex-1 text-sm text-ink/80 truncate group-hover:text-gold transition">${safe(t)}</span><span class="text-xs text-ink/35 shrink-0">${fdate(p.created_at)}</span></a>`;
+        }).join('');
+      }).catch(()=>{ const el=document.getElementById('loungeComm'); if(el) el.innerHTML='<p class="text-ink/40 text-sm py-4">잠시 후 다시 확인해 주세요.</p>'; });
+    })();
 
     const postModal = document.getElementById('postModal');
     function openPost(i){
