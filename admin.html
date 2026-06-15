@@ -215,7 +215,7 @@
 
     // ===== 대시보드 =====
     let COURSE=null;
-    async function getCourse(){ if(COURSE) return COURSE; const r=await fetch('content/course.json?t='+Date.now()); COURSE=await r.json(); return COURSE; }
+    async function getCourse(){ if(COURSE) return COURSE; try{ const r=await withTimeout(fetch('content/course.json?t='+Date.now()),9000); const j=await r.json(); COURSE=j; return j; }catch(e){ return {levels:[]}; } }
     async function count(table){ try{ const {count,error}=await withTimeout(sb.from(table).select('*',{count:'exact',head:true}),7000); if(error) return tableMissing(error)?'—':'?'; return count; }catch(e){ return '?'; } }
     async function countSince(table,col,sinceISO){ try{ let q=sb.from(table).select('*',{count:'exact',head:true}); if(sinceISO) q=q.gte(col,sinceISO); const {count,error}=await withTimeout(q,7000); if(error) return tableMissing(error)?'—':'?'; return count; }catch(e){ return '?'; } }
     function daysAgo(n){ const d=new Date(); d.setHours(0,0,0,0); d.setDate(d.getDate()-n); return d.toISOString(); }
