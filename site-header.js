@@ -134,7 +134,7 @@
       + lnk('about.html', '우리의 사명') + lnk('community.html', '질문·나눔')
       + lnk('resources.html', '자료실') + lnk('request.html', '강의 요청·건의')
       + lnk('mylearning.html', '내 강의실') + lnk(YT, '▶ 유튜브 채널', '')
-      + lnk('support.html', '♥ 후원 안내')
+      + lnk('support.html', '♥ 후원 안내') + lnk('terms.html', '이용약관·환불 규정')
       + '</div>'
       + '</div>'
       + '<p class="text-center text-ink/30 text-xs mt-10">© 2026 BIBLY · 바이블 인사이트 (오광일의 인사이트 브리핑). All rights reserved.</p>'
