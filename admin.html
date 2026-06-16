@@ -137,9 +137,9 @@
           <input id="certEmail" type="email" placeholder="수강생 이메일" class="w-full border border-ink/12 rounded-lg px-3 py-2 text-sm mb-2"/>
           <div class="flex gap-2">
             <select id="certTier" class="flex-1 border border-ink/12 rounded-lg px-3 py-2 text-sm">
-              <option value="1">여명 (3급)</option>
-              <option value="2">통찰 (2급)</option>
-              <option value="3">파수 (1급)</option>
+              <option value="1">Associate (3급)</option>
+              <option value="2">Professional (2급)</option>
+              <option value="3">Expert (1급)</option>
             </select>
             <button onclick="grantCert()" class="bg-gold text-white font-semibold px-5 py-2 rounded-lg hover:opacity-90 text-sm shrink-0">부여</button>
           </div>
@@ -389,7 +389,7 @@
     }
 
     // ===== 수강권(인증) =====
-    const CERT_TIERNAME={1:'여명 (3급)',2:'통찰 (2급)',3:'파수 (1급)'};
+    const CERT_TIERNAME={1:'Associate (3급)',2:'Professional (2급)',3:'Expert (1급)'};
     async function loadCert(){
       const wrap=document.getElementById('certList');
       try{

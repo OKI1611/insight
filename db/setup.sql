@@ -150,7 +150,7 @@ drop policy if exists ex_delete on public.exam_results;
 create policy ex_delete on public.exam_results for delete using (auth.uid() = user_id);
 
 -- ── 7) BIBLY 아카데미 인증 과정 수강권 (잠금 해제) ──────────────
--- 결제(계좌이체) 확인 후 관리자가 행을 넣어 수강권 부여. tier 1=여명·2=통찰·3=파수.
+-- 결제(계좌이체) 확인 후 관리자가 행을 넣어 수강권 부여. tier 1=Associate·2=Professional·3=Expert.
 create table if not exists public.cert_access (
   user_id    uuid primary key references auth.users(id) on delete cascade,
   tier       int not null default 0,

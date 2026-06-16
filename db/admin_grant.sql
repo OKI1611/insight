@@ -6,7 +6,7 @@
 -- 선행: db/cert.sql(또는 setup.sql)로 cert_access 테이블과 is_admin() 함수가 있어야 함.
 -- ============================================================
 
--- 이메일로 수강권 부여(또는 등급 변경). tier 1=여명·2=통찰·3=파수.
+-- 이메일로 수강권 부여(또는 등급 변경). tier 1=Associate·2=Professional·3=Expert.
 create or replace function public.grant_cert(p_email text, p_tier int, p_package text default null)
 returns text language plpgsql security definer set search_path = public as $$
 declare uid uuid;
