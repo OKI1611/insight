@@ -169,7 +169,7 @@
       wrap.innerHTML = data.map(r => {
         const url = (r.file_url || r.link || '').trim();
         const hasBody = !!(r.description && r.description.trim());
-        return `<div class="px-5 py-4">
+        return `<div id="res-${r.id}" class="px-5 py-4 scroll-mt-24">
           <div class="flex items-center gap-4 ${hasBody?'cursor-pointer':''}" ${hasBody?`onclick="toggleRes('${r.id}')"`:''}>
             <div class="w-10 h-10 rounded-lg bg-gold/15 text-gold flex items-center justify-center shrink-0">📄</div>
             <div class="min-w-0 flex-1">
@@ -180,12 +180,32 @@
             ${ hasBody ? `<svg id="rchev-${r.id}" class="w-5 h-5 text-ink/25 shrink-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>` : '' }
             ${ url ? `<a href="${encodeURI(url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="shrink-0 bg-ink text-paper text-sm font-semibold px-4 py-2 rounded-full hover:bg-navy">받기</a>`
                    : (hasBody ? '' : `<span class="shrink-0 text-ink/35 text-xs">준비 중</span>`) }
-            <button onclick="event.stopPropagation();biblyShare(this.dataset.t)" data-t="${esc(r.title||'').replace(/"/g,'&quot;')}" class="shrink-0 text-ink/30 hover:text-gold text-base" title="공유">🔗</button>
+            <button onclick="event.stopPropagation();shareRes(this)" data-id="${r.id}" data-t="${esc(r.title||'').replace(/"/g,'&quot;')}" class="shrink-0 text-ink/35 hover:text-gold text-lg" title="공유하기">🔗</button>
             ${ isAdmin ? `<button onclick="event.stopPropagation();delResource('${r.id}')" class="shrink-0 text-ink/30 hover:text-red-500 text-sm">삭제</button>` : '' }
           </div>
           ${ hasBody ? `<div id="resbody-${r.id}" class="hidden resbody text-sm text-ink/70 mt-3 sm:pl-14 leading-relaxed border-t border-ink/5 pt-3">${bodyHTML(r.description)}</div>` : '' }
         </div>`;
       }).join('');
+      openResFromHash();
+    }
+
+    // 🔗 자료 공유 — 해당 자료로 바로 연결되는 링크 생성
+    function shareRes(el){
+      const url = location.origin + location.pathname + '#res-' + el.dataset.id;
+      const title = (el.dataset.t || '자료실') + ' — BIBLY 바이블 인사이트';
+      if(window.biblyShare){ biblyShare(title, url); }
+      else { try{ navigator.clipboard.writeText(url); alert('🔗 링크가 복사되었어요!'); }catch(e){ prompt('링크 복사', url); } }
+    }
+    // 공유 링크(#res-id)로 들어오면 해당 자료를 펼치고 그 위치로 이동
+    function openResFromHash(){
+      const m = (location.hash||'').match(/^#res-(.+)$/);
+      if(!m) return;
+      const card = document.getElementById('res-' + m[1]); if(!card) return;
+      const body = document.getElementById('resbody-' + m[1]);
+      if(body && body.classList.contains('hidden')) toggleRes(m[1]);
+      card.scrollIntoView({ behavior:'smooth', block:'center' });
+      card.classList.add('ring-2','ring-gold','rounded-xl');
+      setTimeout(()=>card.classList.remove('ring-2','ring-gold','rounded-xl'), 2400);
     }
 
     async function saveResource(){

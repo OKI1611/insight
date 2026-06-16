@@ -151,6 +151,10 @@
       if(navigator.share){ navigator.share({title:title||document.title,url:u}).catch(()=>{}); }
       else { try{ navigator.clipboard.writeText(u); alert('🔗 링크가 복사되었어요!'); }catch(e){ prompt('링크 복사', u); } }
     }
+    // 목록 카드에서 칼럼 공유 (해당 칼럼으로 바로 연결)
+    function shareCol(el){
+      shareItem(el.dataset.t, location.origin + location.pathname + '#col-' + el.dataset.id);
+    }
 
     sb.auth.getSession().then(({data:{session}})=>setUser(session));
     sb.auth.onAuthStateChange((_e,session)=>setUser(session));
@@ -175,7 +179,10 @@
           <div class="min-w-0">
             <h3 class="font-bold text-lg leading-snug group-hover:text-gold transition">${esc(c.title||'')}</h3>
             <p class="text-sm text-ink/55 mt-1.5 line-clamp-2">${esc(c.excerpt||'')}</p>
-            <p class="text-xs text-ink/40 mt-2">${esc(c.author_name||'오광일')} · ${timeAgo(c.created_at)}</p>
+            <div class="flex items-center gap-2 mt-2">
+              <p class="text-xs text-ink/40">${esc(c.author_name||'오광일')} · ${timeAgo(c.created_at)}</p>
+              <button onclick="event.stopPropagation();shareCol(this)" data-id="${c.id}" data-t="${esc(c.title||'').replace(/"/g,'&quot;')}" class="ml-auto text-ink/35 hover:text-gold text-sm font-semibold" title="공유하기">🔗 공유</button>
+            </div>
           </div>
         </div>`).join('');
     }
