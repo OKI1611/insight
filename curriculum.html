@@ -40,6 +40,13 @@
     details>summary{list-style:none;cursor:pointer}
     details>summary::-webkit-details-marker{display:none}
     details[open] .chev{transform:rotate(180deg)}
+    .sub{color:rgba(21,32,58,.45)}
+    .ctab{color:#15203a;transition:background .15s}
+    .ctab.active{background:#15203a;color:#fcfaf6}
+    .ctab.active .sub{color:rgba(252,250,246,.55)}
+    .ctab:not(.active):hover{background:rgba(21,32,58,.035)}
+    .mtab{background:#fff;color:rgba(21,32,58,.6);border-color:rgba(21,32,58,.15)}
+    .mtab.active{background:#15203a;color:#fcfaf6;border-color:#15203a}
   </style>
 </head>
 <body class="font-sans bg-paper text-ink antialiased min-h-screen">
@@ -47,79 +54,76 @@
   <div id="siteHeader" data-active="curriculum.html"></div>
 
   <main class="max-w-6xl mx-auto px-4 py-9">
-    <div class="text-center mb-9">
+    <div class="text-center mb-7">
       <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">CURRICULUM</p>
       <h1 class="text-2xl md:text-3xl font-bold">커리큘럼 안내</h1>
-      <p class="text-ink/55 text-sm mt-3 max-w-2xl mx-auto leading-relaxed">BIBLY는 두 가지 방법으로 배웁니다 — 누구나 무료로 보는 <b class="text-ink/70">자유 학습</b>과, 시험·학점·수료증으로 검증받는 <b class="text-gold">아카데미 인증 과정</b>.</p>
+      <p class="text-ink/55 text-sm mt-3 max-w-2xl mx-auto leading-relaxed">왼쪽에서 과정을 선택하세요 — 누구나 무료인 <b class="text-ink/70">자유 학습</b>, 그리고 시험·학점·수료증으로 검증받는 <b class="text-gold">아카데미 인증 과정</b>.</p>
     </div>
 
-    <!-- 두 과정 선택 -->
-    <div class="grid md:grid-cols-2 gap-4 mb-14">
-      <a href="#freeLearn" class="bg-white rounded-2xl border border-ink/8 shadow-soft p-6 hover:shadow-card transition flex flex-col">
-        <div class="flex items-center gap-2 mb-2"><span class="text-2xl">📺</span><h2 class="text-lg font-bold">자유 학습</h2><span class="ml-auto text-[11px] font-bold text-ink/45 bg-ink/[0.06] px-2 py-0.5 rounded-full">무료</span></div>
-        <p class="text-sm text-ink/60 leading-relaxed flex-1">27개 주제 트랙의 강의를 시험 없이 자유롭게. 누구나 무료로 시청합니다.</p>
-        <p class="text-sm font-semibold text-gold mt-3">강의 둘러보기 ↓</p>
-      </a>
-      <a href="#academy" class="bg-ink text-paper rounded-2xl border border-gold/40 shadow-soft p-6 hover:shadow-card transition flex flex-col">
-        <div class="flex items-center gap-2 mb-2"><span class="text-2xl">🎓</span><h2 class="text-lg font-bold">아카데미 인증 과정</h2><span class="ml-auto text-[11px] font-bold text-ink bg-gold px-2 py-0.5 rounded-full">유료</span></div>
-        <p class="text-sm text-paper/65 leading-relaxed flex-1">시험·학점·수료증으로 검증받는 급수 과정. Associate → Professional → Expert.</p>
-        <p class="text-sm font-semibold text-gold mt-3">등급별 안내 보기 ↓</p>
-      </a>
+    <!-- 모바일 과정 탭 -->
+    <div class="lg:hidden grid grid-cols-2 gap-2 mb-5">
+      <button id="mtab-free" onclick="showCourse('free')" class="mtab px-4 py-3 rounded-xl text-sm font-bold border">📺 자유 학습</button>
+      <button id="mtab-academy" onclick="showCourse('academy')" class="mtab px-4 py-3 rounded-xl text-sm font-bold border">🎓 인증 과정</button>
     </div>
 
-    <!-- 🎓 아카데미 인증 과정 -->
-    <section id="academy" class="mb-16 scroll-mt-24">
-      <div class="text-center mb-6">
-        <p class="text-gold text-xs font-bold tracking-[0.25em] mb-2">CERTIFICATION</p>
-        <h2 class="text-2xl font-bold">🎓 BIBLY 아카데미 인증 과정</h2>
-        <p class="text-ink/55 text-sm mt-2.5 max-w-2xl mx-auto leading-relaxed">강의를 듣고 끝내는 것이 아니라, 직접 풀고 검증해 ‘스스로 분별하는 사람’으로 인증받는 과정입니다. 급수가 올라갈수록 더 깊이 들어갑니다.</p>
-      </div>
-      <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-6 mb-6">
-        <p class="font-bold mb-4 flex items-center gap-2">📋 어떻게 진행되나요?</p>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center text-sm">
-          <div><p class="text-sm font-bold text-gold mb-1">STEP 1</p><p class="font-semibold">강의 수강</p><p class="text-xs text-ink/50 mt-1">과목의 강의를 듣습니다</p></div>
-          <div><p class="text-sm font-bold text-gold mb-1">STEP 2</p><p class="font-semibold">강의별 시험</p><p class="text-xs text-ink/50 mt-1">20문제·80점 통과(2회)</p></div>
-          <div><p class="text-sm font-bold text-gold mb-1">STEP 3</p><p class="font-semibold">학점 산출</p><p class="text-xs text-ink/50 mt-1">점수 평균이 과목 학점</p></div>
-          <div><p class="text-sm font-bold text-gold mb-1">STEP 4</p><p class="font-semibold">수료·급수 인증</p><p class="text-xs text-ink/50 mt-1">과목 완주 → 수료증</p></div>
-        </div>
-        <p class="text-xs text-ink/45 mt-4 text-center leading-relaxed">시험 대비 요약노트 PDF 제공 · 1차 통과 시 정답·해설 즉시 공개 · 최종 점수 = 1차×0.6 + 2차×0.4</p>
-      </div>
-      <div id="academyGrades" class="space-y-5"><p class="text-ink/40 text-sm text-center py-8">불러오는 중…</p></div>
-      <div class="text-center mt-8">
-        <a href="academy.html" class="inline-block bg-gold text-white font-bold px-8 py-3.5 rounded-full hover:opacity-90 transition shadow-card">등록 신청하기 →</a>
-        <a href="terms.html" class="inline-block sm:ml-4 mt-3 sm:mt-0 text-sm text-ink/50 hover:text-gold">수강 기간·환불 규정 보기</a>
-      </div>
-    </section>
-
-    <!-- 📺 자유 학습 -->
-    <section id="freeLearn" class="scroll-mt-24">
-      <div class="text-center mb-6">
-        <p class="text-gold text-xs font-bold tracking-[0.25em] mb-2">FREE</p>
-        <h2 class="text-2xl font-bold">📺 자유 학습 <span class="text-base font-normal text-ink/45">· 무료</span></h2>
-        <p class="text-ink/55 text-sm mt-2.5" id="curSub">트랙을 선택하면 강의 구성·특장점·목차를 한눈에 볼 수 있어요.</p>
-      </div>
-
-    <!-- 단계(난이도) 필터 -->
-    <div id="levelTabs" class="flex flex-wrap justify-center gap-2 mb-3"></div>
-    <p id="levelDesc" class="text-center text-sm text-ink/50 mb-6"></p>
-
-    <!-- 모바일 트랙 선택 -->
-    <select id="trackSelect" onchange="selectTrack(+this.value)" class="lg:hidden w-full bg-white border border-ink/15 rounded-xl px-4 py-3 text-sm font-semibold mb-5 outline-none focus:border-gold"></select>
-
-    <div class="grid lg:grid-cols-[270px_1fr] gap-6">
-      <!-- 사이드바 -->
-      <aside class="hidden lg:block lg:sticky lg:top-20 h-fit">
+    <div class="grid lg:grid-cols-[256px_1fr] gap-6">
+      <!-- 왼쪽: 과정 탭 + 컨텍스트 내비 -->
+      <aside class="hidden lg:block lg:sticky lg:top-20 h-fit space-y-3">
         <div class="bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden">
-          <p class="px-4 py-3 text-xs font-bold text-ink/45 border-b border-ink/8">트랙 목록</p>
-          <div id="trackNav" class="max-h-[70vh] overflow-auto"></div>
+          <button id="tab-free" onclick="showCourse('free')" class="ctab w-full text-left px-4 py-3.5 flex items-center gap-2.5 border-b border-ink/6">
+            <span class="text-xl shrink-0">📺</span>
+            <span class="flex-1 min-w-0"><span class="block font-bold text-sm">자유 학습</span><span class="sub block text-[11px] mt-0.5">무료 · 27트랙</span></span>
+          </button>
+          <button id="tab-academy" onclick="showCourse('academy')" class="ctab w-full text-left px-4 py-3.5 flex items-center gap-2.5">
+            <span class="text-xl shrink-0">🎓</span>
+            <span class="flex-1 min-w-0"><span class="block font-bold text-sm">아카데미 인증 과정</span><span class="sub block text-[11px] mt-0.5">유료 · 3급수 인증</span></span>
+          </button>
+        </div>
+        <div id="freeSide" class="bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden">
+          <p class="px-4 py-2.5 text-xs font-bold text-ink/45 border-b border-ink/8">트랙 목록</p>
+          <div id="trackNav" class="max-h-[58vh] overflow-auto"></div>
+        </div>
+        <div id="academySide" class="hidden bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden">
+          <p class="px-4 py-2.5 text-xs font-bold text-ink/45 border-b border-ink/8">급수 단계</p>
+          <div id="gradeNav"></div>
         </div>
       </aside>
-      <!-- 상세 -->
-      <section id="trackDetail" class="min-h-[420px]">
-        <p class="text-ink/40 text-sm text-center py-20">커리큘럼을 불러오는 중…</p>
-      </section>
+
+      <!-- 오른쪽: 상세 -->
+      <div class="min-w-0">
+        <!-- 📺 자유 학습 -->
+        <section id="freeContent">
+          <div class="flex items-center gap-2 mb-1"><span class="text-xl">📺</span><h2 class="text-xl font-bold">자유 학습</h2><span class="text-[11px] font-bold text-ink/45 bg-ink/[0.06] px-2 py-0.5 rounded-full">무료</span></div>
+          <p class="text-ink/55 text-sm mb-4">27개 주제 트랙의 강의를 시험 없이 자유롭게. 누구나 무료로 시청합니다.</p>
+          <select id="trackSelect" onchange="selectTrack(+this.value)" class="lg:hidden w-full bg-white border border-ink/15 rounded-xl px-4 py-3 text-sm font-semibold mb-4 outline-none focus:border-gold"></select>
+          <div id="levelTabs" class="flex flex-wrap gap-2 mb-2.5"></div>
+          <p id="levelDesc" class="text-sm text-ink/50 mb-5"></p>
+          <p id="curSub" class="hidden"></p>
+          <section id="trackDetail" class="min-h-[420px]"><p class="text-ink/40 text-sm text-center py-20">커리큘럼을 불러오는 중…</p></section>
+        </section>
+
+        <!-- 🎓 아카데미 인증 과정 -->
+        <section id="academyContent" class="hidden">
+          <div class="flex items-center gap-2 mb-1"><span class="text-xl">🎓</span><h2 class="text-xl font-bold">BIBLY 아카데미 인증 과정</h2><span class="text-[11px] font-bold text-ink bg-gold px-2 py-0.5 rounded-full">유료</span></div>
+          <p class="text-ink/55 text-sm mb-5 leading-relaxed">강의를 듣고 끝내는 것이 아니라, 직접 풀고 검증해 ‘스스로 분별하는 사람’으로 인증받는 과정입니다. 급수가 올라갈수록 더 깊이 들어갑니다.</p>
+          <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-6 mb-6">
+            <p class="font-bold mb-4 flex items-center gap-2">📋 어떻게 진행되나요?</p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center text-sm">
+              <div><p class="text-sm font-bold text-gold mb-1">STEP 1</p><p class="font-semibold">강의 수강</p><p class="text-xs text-ink/50 mt-1">과목의 강의를 듣습니다</p></div>
+              <div><p class="text-sm font-bold text-gold mb-1">STEP 2</p><p class="font-semibold">강의별 시험</p><p class="text-xs text-ink/50 mt-1">20문제·80점 통과(2회)</p></div>
+              <div><p class="text-sm font-bold text-gold mb-1">STEP 3</p><p class="font-semibold">학점 산출</p><p class="text-xs text-ink/50 mt-1">점수 평균이 과목 학점</p></div>
+              <div><p class="text-sm font-bold text-gold mb-1">STEP 4</p><p class="font-semibold">수료·급수 인증</p><p class="text-xs text-ink/50 mt-1">과목 완주 → 수료증</p></div>
+            </div>
+            <p class="text-xs text-ink/45 mt-4 text-center leading-relaxed">시험 대비 요약노트 PDF 제공 · 1차 통과 시 정답·해설 즉시 공개 · 최종 점수 = 1차×0.6 + 2차×0.4</p>
+          </div>
+          <div id="academyGrades" class="space-y-5"><p class="text-ink/40 text-sm text-center py-8">불러오는 중…</p></div>
+          <div class="text-center mt-8">
+            <a href="academy.html" class="inline-block bg-gold text-white font-bold px-8 py-3.5 rounded-full hover:opacity-90 transition shadow-card">등록 신청하기 →</a>
+            <a href="terms.html" class="inline-block sm:ml-4 mt-3 sm:mt-0 text-sm text-ink/50 hover:text-gold">수강 기간·환불 규정 보기</a>
+          </div>
+        </section>
+      </div>
     </div>
-    </section>
   </main>
 
   <script>
@@ -148,7 +152,7 @@
           const main = rk.earlybird || rk.price || 0;
           const trackList = tracks.map(t => `<li class="flex items-center justify-between gap-2 text-sm py-1.5 border-b border-ink/5 last:border-0"><span class="text-ink/80">${esc(t)}</span><span class="text-xs text-ink/40 shrink-0">${byName[t]}강</span></li>`).join('');
           const perks = (rk.perks||[]).map(p => `<li class="flex gap-1.5 text-sm text-ink/65"><span class="text-gold shrink-0">✓</span><span>${esc(p)}</span></li>`).join('');
-          return `<div class="bg-white rounded-2xl border ${rk.tier===1?'border-gold/45':'border-ink/8'} shadow-soft overflow-hidden">
+          return `<div id="grade-${rk.tier}" class="bg-white rounded-2xl border ${rk.tier===1?'border-gold/45':'border-ink/8'} shadow-soft overflow-hidden scroll-mt-20">
             <div class="bg-ink text-paper px-6 py-5">
               <div class="flex flex-wrap items-center gap-2 mb-1.5">
                 <span class="bg-gold text-ink text-xs font-bold px-2.5 py-1 rounded-full">${esc(rk.rank)}</span>
@@ -171,7 +175,20 @@
             </div>
           </div>`;
         }).join('');
+        const nav = document.getElementById('gradeNav');
+        if(nav) nav.innerHTML = (P.ranks||[]).map(rk => `<a href="#grade-${rk.tier}" onclick="event.preventDefault();var el=document.getElementById('grade-${rk.tier}');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});" class="block px-4 py-2.5 text-sm hover:bg-ink/[0.03] border-b border-ink/5 last:border-0"><span class="text-gold font-bold text-xs mr-1.5">${esc(rk.rank)}</span>${esc(rk.name)}</a>`).join('');
       }).catch(() => { host.innerHTML = '<p class="text-ink/40 text-sm text-center py-8">인증 과정 정보를 불러오지 못했습니다.</p>'; });
+    }
+
+    // 과정 탭 전환 (자유 학습 / 아카데미 인증 과정)
+    function showCourse(which){
+      const free = which !== 'academy';
+      const tog = (id, hide) => { const e = document.getElementById(id); if(e) e.classList.toggle('hidden', hide); };
+      tog('freeContent', !free); tog('academyContent', free);
+      tog('freeSide', !free); tog('academySide', free);
+      ['tab-free','mtab-free'].forEach(id => { const e=document.getElementById(id); if(e) e.classList.toggle('active', free); });
+      ['tab-academy','mtab-academy'].forEach(id => { const e=document.getElementById(id); if(e) e.classList.toggle('active', !free); });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     fetch('content/course.json?t=' + Date.now()).then(r => r.json()).then(c => {
@@ -186,6 +203,8 @@
       // URL ?t=인덱스 또는 기본 0
       const qp = parseInt(new URLSearchParams(location.search).get('track'), 10);
       selectTrack((!isNaN(qp) && qp >= 0 && qp < LEVELS.length) ? qp : 0);
+      const tabParam = (new URLSearchParams(location.search).get('tab') || '').toLowerCase();
+      showCourse((tabParam === 'academy' || location.hash === '#academy') ? 'academy' : 'free');
     }).catch(() => {
       document.getElementById('trackDetail').innerHTML = '<p class="text-red-500 text-sm text-center py-20">커리큘럼을 불러오지 못했습니다.</p>';
     });
