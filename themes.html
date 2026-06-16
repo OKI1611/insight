@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <script src="/content-loader.js"></script>
+  <script src="/site-header.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>주제별 성경 읽기 — BIBLY 바이블 인사이트</title>
+  <meta name="description" content="기독교 핵심 교리를 주제별로 — 원어(히브리어·헬라어)를 참고한 매끄러운 한국어 새 번역과 영어 학습 각주로 읽는 성경." />
+  <link rel="canonical" href="https://biblynote.com/themes" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BIBLY 바이블 인사이트" />
+  <meta property="og:title" content="주제별 성경 읽기 — Thematic Scripture" />
+  <meta property="og:description" content="교리 테마별 핵심 성구를 원어 기반 새 번역 + 영어 각주로 읽는 세계 유일의 성경 학습 코너." />
+  <meta property="og:url" content="https://biblynote.com/themes" />
+  <meta property="og:image" content="https://biblynote.com/images/og-cover.png?v=2" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://biblynote.com/images/og-cover.png?v=2" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#15203a" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink:'#15203a', navy:'#1b2a4a', gold:'#b8923f', sand:'#efe7d6', paper:'#fcfaf6' },
+      fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
+      boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
+    }}}
+  </script>
+  <style>
+    h1,h2,.serif{font-family:'Noto Serif KR',Pretendard,serif}
+    .verse-en{font-family:Georgia,'Times New Roman',serif}
+    .themeCard{transition:transform .15s, box-shadow .15s}
+    .themeCard:hover{transform:translateY(-3px)}
+  </style>
+</head>
+<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+
+  <div id="siteHeader" data-active="themes.html"></div>
+
+  <main class="max-w-4xl mx-auto px-4 py-8">
+
+    <!-- ===== 테마 목록 ===== -->
+    <section id="gridView">
+      <div class="text-center mb-8">
+        <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">THEMATIC SCRIPTURE · 주제별 성경 읽기</p>
+        <h1 class="text-3xl md:text-4xl font-bold leading-tight">교리로 읽는 성경</h1>
+        <p class="text-ink/60 text-base md:text-lg mt-4 max-w-2xl mx-auto leading-relaxed">
+          기독교 핵심 교리를 <b class="text-ink/80">주제별</b>로 모았습니다. 한 절 한 절,
+          <b class="text-gold">원어(히브리어·헬라어)를 참고한 새 번역</b>과 <b class="text-gold">영어 학습 각주</b>로 함께 읽습니다.
+        </p>
+        <div class="mt-5 inline-flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-sm text-ink/55 bg-white border border-ink/8 rounded-2xl px-5 py-3 shadow-soft">
+          <span>🇰🇷 매끄러운 한국어 새 번역</span>
+          <span class="text-ink/20">·</span>
+          <span>🔤 원어 핵심 단어 풀이</span>
+          <span class="text-ink/20">·</span>
+          <span>🇬🇧 영어 표현 학습 각주</span>
+        </div>
+      </div>
+
+      <div id="themeGrid" class="grid sm:grid-cols-2 gap-4">
+        <p class="text-ink/40 text-sm text-center py-16 col-span-2">불러오는 중…</p>
+      </div>
+
+      <p class="text-xs text-ink/40 mt-8 leading-relaxed bg-ink/[0.03] rounded-xl p-4">
+        ※ 한국어 본문은 개역·새번역 등 기존 저작권 번역을 옮기지 않고, <b>히브리어·헬라어 원어를 참고한 BIBLY 자체 번역</b>입니다.
+        영어 본문 또한 학습을 위한 자체 번역이며, 주요 표현·숙어에 각주를 달아 <b>영어 공부에도 도움</b>이 되도록 구성했습니다.
+      </p>
+    </section>
+
+    <!-- ===== 테마 읽기 ===== -->
+    <section id="readView" class="hidden">
+      <button onclick="showGrid()" class="text-sm text-ink/50 hover:text-gold mb-5">← 주제 목록으로</button>
+
+      <div id="themeHero" class="bg-ink text-paper rounded-3xl p-6 md:p-8 mb-5"></div>
+
+      <!-- 보기 옵션 -->
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mb-5 text-sm bg-white border border-ink/8 rounded-2xl px-4 py-3 shadow-soft">
+        <span class="font-bold text-ink/55">보기</span>
+        <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="optEn" checked onchange="renderVerses()"/> 🇬🇧 영어 원문</label>
+        <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="optNote" checked onchange="renderVerses()"/> 🔤 원어·영어 각주</label>
+      </div>
+
+      <div id="verseList" class="space-y-4"></div>
+
+      <div class="text-center mt-8">
+        <button onclick="showGrid()" class="text-sm text-gold hover:underline">← 다른 주제 보기</button>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    let THEMES = [];
+    const $ = id => document.getElementById(id);
+    function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+    fetch('content/themes.json?t='+Date.now()).then(r=>r.json()).then(d=>{
+      THEMES = d.themes || [];
+      renderGrid();
+      const id = new URLSearchParams(location.search).get('theme');
+      if(id && THEMES.some(t=>t.id===id)) openTheme(id, true);
+    }).catch(()=>{ $('themeGrid').innerHTML = '<p class="text-red-500 text-sm text-center py-16 col-span-2">주제를 불러오지 못했습니다.</p>'; });
+
+    function renderGrid(){
+      $('themeGrid').innerHTML = THEMES.map((t,i)=>`
+        <button onclick="openTheme('${t.id}')" class="themeCard text-left bg-white rounded-2xl border border-ink/8 shadow-soft hover:shadow-card p-5 flex gap-4">
+          <span class="text-3xl shrink-0 leading-none mt-0.5">${t.icon||'📖'}</span>
+          <span class="min-w-0">
+            <span class="block text-[10px] font-bold text-gold tracking-[0.18em] mb-0.5">THEME ${String(i+1).padStart(2,'0')}</span>
+            <span class="block font-bold text-lg leading-snug">${esc(t.title)}</span>
+            <span class="block text-xs text-ink/45 mt-0.5">${esc(t.en||'')}</span>
+            <span class="block text-sm text-ink/60 mt-2 leading-relaxed line-clamp-2">${esc(t.intro||'')}</span>
+            <span class="inline-block mt-2.5 text-xs font-semibold text-gold">${(t.verses||[]).length}개 핵심 성구 →</span>
+          </span>
+        </button>`).join('');
+    }
+
+    let CURRENT = null;
+    function openTheme(id, noScroll){
+      const t = THEMES.find(x=>x.id===id); if(!t) return;
+      CURRENT = t;
+      history.replaceState(null,'','?theme='+id);
+      $('themeHero').innerHTML = `
+        <div class="flex items-center gap-3 mb-2">
+          <span class="text-4xl leading-none">${t.icon||'📖'}</span>
+          <div>
+            <p class="text-gold text-xs font-bold tracking-[0.2em]">${esc(t.en||'')}</p>
+            <h1 class="text-2xl md:text-3xl font-bold leading-snug">${esc(t.title)}</h1>
+          </div>
+        </div>
+        <p class="text-paper/75 text-[15px] leading-relaxed mt-2">${esc(t.intro||'')}</p>
+        <p class="text-paper/45 text-xs mt-3">📖 ${(t.verses||[]).length}개 핵심 성구 · 한국어 새 번역 + 영어 각주</p>`;
+      $('gridView').classList.add('hidden');
+      $('readView').classList.remove('hidden');
+      renderVerses();
+      if(!noScroll) window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    function renderVerses(){
+      if(!CURRENT) return;
+      const showEn = $('optEn').checked, showNote = $('optNote').checked;
+      $('verseList').innerHTML = (CURRENT.verses||[]).map((v,i)=>{
+        const en = showEn && v.en ? `<p class="verse-en text-[15.5px] text-ink/70 leading-relaxed mt-3">${esc(v.en)}</p>` : '';
+        const orig = showNote && v.orig ? `<p class="text-[13px] text-ink/55 mt-3 bg-gold/[0.07] rounded-lg px-3 py-2"><span class="text-gold font-bold mr-1">🔤 원어</span>${esc(v.orig)}</p>` : '';
+        const notes = (showNote && (v.enNotes||[]).length) ? `
+          <div class="mt-2.5 border-l-2 border-ink/10 pl-3">
+            <p class="text-[11px] font-bold text-ink/40 mb-1.5">🇬🇧 영어 표현 노트</p>
+            <ul class="space-y-1">
+              ${v.enNotes.map(n=>`<li class="text-[13px] leading-snug"><span class="verse-en font-semibold text-ink/80">${esc(n.term)}</span> <span class="text-ink/50">— ${esc(n.ko)}</span></li>`).join('')}
+            </ul>
+          </div>` : '';
+        return `<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5">
+          <p class="text-gold font-bold text-sm mb-2">${esc(v.ref)}</p>
+          <p class="serif text-[18px] md:text-[19px] text-ink leading-[1.85]">${esc(v.ko)}</p>
+          ${en}${orig}${notes}
+        </div>`;
+      }).join('');
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    function showGrid(){
+      $('readView').classList.add('hidden');
+      $('gridView').classList.remove('hidden');
+      history.replaceState(null,'',location.pathname);
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+  </script>
+
+  <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script src="auth-header.js"></script>
+</body>
+</html>
