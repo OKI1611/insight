@@ -41,12 +41,16 @@
     details>summary::-webkit-details-marker{display:none}
     details[open] .chev{transform:rotate(180deg)}
     .sub{color:rgba(21,32,58,.45)}
-    .ctab{color:#15203a;transition:background .15s}
-    .ctab.active{background:#15203a;color:#fcfaf6}
-    .ctab.active .sub{color:rgba(252,250,246,.55)}
-    .ctab:not(.active):hover{background:rgba(21,32,58,.035)}
+    .ctab{color:#15203a;transition:all .15s}
+    .ctab.active{box-shadow:0 0 0 2px #b8923f}
+    .ctab:not(.active):hover{transform:translateY(-1px)}
+    .ctab-pro{transition:all .15s}
+    .ctab-pro:hover{transform:translateY(-1px)}
+    .ctab-pro.active{box-shadow:0 0 0 2px #b8923f,0 14px 40px -18px rgba(21,32,58,.45)}
     .mtab{background:#fff;color:rgba(21,32,58,.6);border-color:rgba(21,32,58,.15)}
     .mtab.active{background:#15203a;color:#fcfaf6;border-color:#15203a}
+    .mtab-pro{background:linear-gradient(135deg,#15203a,#1b2a4a);color:#fcfaf6;border-color:rgba(184,146,63,.55)}
+    .mtab-pro.active{box-shadow:0 0 0 2px #b8923f}
   </style>
 </head>
 <body class="font-sans bg-paper text-ink antialiased min-h-screen">
@@ -63,20 +67,31 @@
     <!-- 모바일 과정 탭 -->
     <div class="lg:hidden grid grid-cols-2 gap-2 mb-5">
       <button id="mtab-free" onclick="showCourse('free')" class="mtab px-4 py-3 rounded-xl text-sm font-bold border">📺 자유 학습</button>
-      <button id="mtab-academy" onclick="showCourse('academy')" class="mtab px-4 py-3 rounded-xl text-sm font-bold border">🎓 인증 과정</button>
+      <button id="mtab-academy" onclick="showCourse('academy')" class="mtab-pro px-4 py-3 rounded-xl text-sm font-bold border flex items-center justify-center gap-1.5">🎓 인증 과정 <span class="text-[9px] font-bold text-ink bg-gold px-1.5 py-0.5 rounded-full">유료</span></button>
     </div>
 
     <div class="grid lg:grid-cols-[256px_1fr] gap-6">
       <!-- 왼쪽: 과정 탭 + 컨텍스트 내비 -->
       <aside class="hidden lg:block lg:sticky lg:top-20 h-fit space-y-3">
-        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden">
-          <button id="tab-free" onclick="showCourse('free')" class="ctab w-full text-left px-4 py-3.5 flex items-center gap-2.5 border-b border-ink/6">
+        <div class="space-y-2.5">
+          <button id="tab-free" onclick="showCourse('free')" class="ctab w-full text-left bg-white rounded-2xl border border-ink/8 shadow-soft px-4 py-3.5 flex items-center gap-2.5">
             <span class="text-xl shrink-0">📺</span>
-            <span class="flex-1 min-w-0"><span class="block font-bold text-sm">자유 학습</span><span class="sub block text-[11px] mt-0.5">무료 · 27트랙</span></span>
+            <span class="flex-1 min-w-0"><span class="block font-bold text-sm">자유 학습</span><span class="sub block text-[11px] mt-0.5">무료 · 27트랙 자유 시청</span></span>
           </button>
-          <button id="tab-academy" onclick="showCourse('academy')" class="ctab w-full text-left px-4 py-3.5 flex items-center gap-2.5">
-            <span class="text-xl shrink-0">🎓</span>
-            <span class="flex-1 min-w-0"><span class="block font-bold text-sm">아카데미 인증 과정</span><span class="sub block text-[11px] mt-0.5">유료 · 3급수 인증</span></span>
+          <button id="tab-academy" onclick="showCourse('academy')" class="ctab-pro w-full text-left rounded-2xl border border-gold/45 bg-gradient-to-br from-ink to-navy text-paper shadow-card overflow-hidden relative">
+            <span class="absolute right-0 top-0 w-20 h-20 rounded-full bg-gold/10 -mr-7 -mt-7"></span>
+            <div class="px-4 py-4 relative">
+              <div class="flex items-start gap-2 mb-2">
+                <span class="text-2xl leading-none">🎓</span>
+                <div class="flex-1 min-w-0">
+                  <p class="font-bold text-sm leading-tight">아카데미 인증 과정</p>
+                  <p class="text-[10px] text-gold font-semibold tracking-[0.15em] mt-0.5">CERTIFICATION</p>
+                </div>
+                <span class="text-[9px] font-bold text-ink bg-gold px-1.5 py-0.5 rounded-full shrink-0">유료</span>
+              </div>
+              <p class="text-[11px] text-paper/65 leading-relaxed mb-3">시험·학점·<b class="text-paper">수료증</b>으로<br/>실력을 공인받는 과정</p>
+              <span class="inline-flex items-center gap-1 text-xs font-bold text-gold bg-gold/12 rounded-full px-3 py-1">자세히 보기 →</span>
+            </div>
           </button>
         </div>
         <div id="freeSide" class="bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden">
