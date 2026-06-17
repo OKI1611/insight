@@ -335,6 +335,7 @@
     function packagesHTML(){
       const cards = (PROGRAM.ranks||[]).map(rk => {
         const main = rk.earlybird || rk.price || 0;
+        const HIDE = !!PROGRAM.hidePrice;
         const perks = (rk.perks||[]).map(p=>`<li class="flex gap-1.5"><span class="text-gold shrink-0">✓</span><span>${esc(p)}</span></li>`).join('');
         const rec = rk.tier === 1;
         return `<div class="bg-white rounded-2xl border ${rec?'border-gold/50 shadow-soft':'border-ink/10'} p-5 flex flex-col">
@@ -344,7 +345,7 @@
             ${rec?'<span class="ml-auto text-[10px] font-bold text-gold bg-gold/12 px-2 py-0.5 rounded-full">입문 추천</span>':''}
           </div>
           <p class="text-xs text-ink/50 mb-3">${esc(rk.tagline||'')}</p>
-          <p class="mb-3"><span class="text-2xl font-bold">${won(main)}</span>${rk.earlybird?` <span class="text-sm text-ink/40 line-through">${won(rk.price)}</span> <span class="text-[11px] font-bold text-rose-500">얼리버드</span>`:''}</p>
+          <p class="mb-3">${HIDE ? '<span class="text-lg font-bold text-ink">가격 추후 안내</span>' : `<span class="text-2xl font-bold">${won(main)}</span>${rk.earlybird?` <span class="text-sm text-ink/40 line-through">${won(rk.price)}</span> <span class="text-[11px] font-bold text-rose-500">얼리버드</span>`:''}`}</p>
           <ul class="text-xs text-ink/65 space-y-1.5 mb-4 flex-1">${perks}</ul>
           <a href="academy.html" class="block text-center bg-ink text-paper text-sm font-semibold py-2.5 rounded-xl hover:bg-navy transition">등록 신청 →</a>
         </div>`;
@@ -407,7 +408,7 @@
             <div class="flex items-center gap-2 mb-2"><span class="text-2xl">🎓</span><h3 class="font-bold text-lg">${esc(brand)}</h3><span class="ml-auto text-[10px] font-bold text-paper bg-white/15 px-2 py-0.5 rounded-full">🔒 유료</span></div>
             <p class="text-sm text-paper/60 mb-4 flex-1">시험·요약노트·수료증·학점으로 분별력을 공인받는 인증 과정이에요.</p>
             <p class="text-xs text-paper/50 mb-1">3급 입문 «Associate»부터</p>
-            <p class="mb-3"><span class="text-2xl font-bold text-gold">${won(fromP)}</span><span class="text-xs text-paper/45"> 부터</span></p>
+            <p class="mb-3">${(PROGRAM&&PROGRAM.hidePrice) ? '<span class="text-lg font-bold text-gold">가격 추후 안내</span>' : `<span class="text-2xl font-bold text-gold">${won(fromP)}</span><span class="text-xs text-paper/45"> 부터</span>`}</p>
             <p class="text-sm font-semibold text-gold mt-auto">패키지 보기 · 등록 →</p>
           </button>`;
         }
