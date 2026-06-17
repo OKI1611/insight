@@ -211,6 +211,7 @@
         return `<div class="bg-white rounded-2xl border ${rec?'border-gold/50 shadow-card':'border-ink/10 shadow-soft'} p-6 flex flex-col">
           <div class="flex items-center gap-2 mb-1"><span class="bg-ink text-paper text-xs font-bold px-2 py-0.5 rounded-full">${rk.rank}</span><h3 class="font-bold text-lg">${rk.name}</h3>${rec?'<span class="ml-auto text-[10px] font-bold text-gold bg-gold/12 px-2 py-0.5 rounded-full">입문 추천</span>':''}</div>
           <p class="text-xs text-ink/50 mb-3">${rk.tagline||''}</p>
+          <p class="text-[12.5px] text-ink/65 leading-relaxed mb-3 bg-paper border border-ink/8 rounded-lg p-2.5"><b class="text-ink/80">이 등급을 받으면 ›</b> ${rk.outcome||''}</p>
           <p class="mb-4">${HIDE ? '<span class="text-lg font-bold text-ink">가격 추후 안내</span>' : `<span class="text-2xl font-bold">${won(main)}</span>${rk.earlybird?` <span class="text-sm text-ink/40 line-through">${won(rk.price)}</span> <span class="text-[11px] font-bold text-rose-500">얼리버드</span>`:''}`}</p>
           <ul class="text-sm text-ink/65 space-y-1.5 mb-5 flex-1">${perks}</ul>
           <a href="#apply" onclick="pickPkg('${rk.name} (${rk.rank})')" class="block text-center ${rec?'bg-gold text-white':'bg-ink text-paper'} text-sm font-semibold py-2.5 rounded-xl hover:opacity-90 transition">이 패키지로 신청 →</a>
