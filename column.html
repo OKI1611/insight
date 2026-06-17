@@ -97,6 +97,14 @@
           <button onclick="deleteCurrent()" class="text-ink/40 hover:text-red-500">삭제</button>
         </span>
       </div>
+
+      <!-- 댓글 -->
+      <section class="mt-12 pt-8 border-t border-ink/10">
+        <h2 class="font-bold text-xl mb-1">💬 댓글 <span id="cCount" class="text-ink/40 text-base font-normal"></span></h2>
+        <p class="text-ink/50 text-sm mb-5">이 칼럼에 대한 생각을 자유롭게 나눠 주세요.</p>
+        <div id="cForm" class="mb-6"></div>
+        <div id="cList" class="space-y-4"><p class="text-ink/40 text-sm text-center py-6">댓글을 불러오는 중…</p></div>
+      </section>
     </article>
 
     <!-- 글쓰기 화면 -->
@@ -119,7 +127,9 @@
 
   <script>
     const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType: 'implicit', lock: async (_n, _t, fn) => await fn() } });
-    let isAdmin = false, COLS = [], current = null, editingId = null, quill = null;
+    let isAdmin = false, SESSION = null, COLS = [], current = null, editingId = null, quill = null;
+    function myName(){ const u=SESSION&&SESSION.user; if(!u) return '회원'; return (u.user_metadata&&(u.user_metadata.full_name||u.user_metadata.name))||(u.email?u.email.split('@')[0]:'회원'); }
+    function nl2(s){ return esc(s).replace(/\n/g,'<br>'); }
 
     function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
     function plain(html){ const d=document.createElement('div'); d.innerHTML=html||''; return (d.textContent||'').trim(); }
@@ -159,9 +169,11 @@
     sb.auth.getSession().then(({data:{session}})=>setUser(session));
     sb.auth.onAuthStateChange((_e,session)=>setUser(session));
     function setUser(session){
+      SESSION = session;
       isAdmin = !!(session && session.user && session.user.email === ADMIN_EMAIL);
       document.getElementById('writeBtn').classList.toggle('hidden', !isAdmin);
       { var _nu=document.getElementById('navUser'); if(_nu) _nu.innerHTML = isAdmin ? '<span class="text-gold font-semibold">관리자</span>' : ''; }
+      if(current) renderCommentForm();
     }
 
     function showList(){ ['readView','editView'].forEach(id=>document.getElementById(id).classList.add('hidden')); document.getElementById('listView').classList.remove('hidden'); if(location.hash) history.replaceState(null,'',location.pathname); }
@@ -194,13 +206,64 @@
       history.replaceState(null,'','#col-'+id);
       document.getElementById('rTitle').textContent = data.title||'';
       document.getElementById('rDate').textContent = 'COLUMN';
-      document.getElementById('rMeta').textContent = (data.author_name||'오광일') + ' · ' + new Date(data.created_at).toLocaleDateString('ko-KR');
+      document.getElementById('rMeta').innerHTML = esc(data.author_name||'오광일') + ' · ' + new Date(data.created_at).toLocaleDateString('ko-KR') + ' · 👁 ' + ((Number(data.views)||0)+1).toLocaleString();
       document.getElementById('rBody').innerHTML = sanitize(data.body_html||'');
       const url = location.origin + location.pathname + '#col-' + id;
       document.getElementById('rShare').onclick = ()=>shareItem(data.title, url);
       document.getElementById('rAdmin').classList.toggle('hidden', !isAdmin);
       document.getElementById('rAdmin').classList.toggle('flex', isAdmin);
+      try{ sb.rpc('bump_column_views', { p_id: id }); }catch(e){}
+      renderCommentForm(); loadComments(id);
       show('readView'); window.scrollTo(0,0);
+    }
+
+    // ===== 댓글 =====
+    function renderCommentForm(){
+      const f = document.getElementById('cForm'); if(!f) return;
+      if(SESSION && SESSION.user){
+        f.innerHTML = `<div class="bg-white border border-ink/12 rounded-2xl p-4">
+          <textarea id="cInput" rows="3" placeholder="댓글을 남겨 주세요…" class="w-full text-sm outline-none resize-none"></textarea>
+          <div class="flex items-center justify-between mt-2 pt-2 border-t border-ink/8">
+            <span class="text-xs text-ink/40">${esc(myName())}님</span>
+            <button onclick="addComment()" class="bg-ink text-paper text-sm font-semibold px-4 py-2 rounded-full hover:bg-navy transition">등록</button>
+          </div></div>`;
+      } else {
+        f.innerHTML = `<div class="bg-ink/[0.03] border border-ink/8 rounded-2xl p-5 text-center text-sm text-ink/55">댓글을 남기려면 <a href="index.html" class="text-gold font-semibold hover:underline">로그인</a> 해 주세요.</div>`;
+      }
+    }
+    async function loadComments(colId){
+      const list = document.getElementById('cList');
+      const { data, error } = await sb.from('column_comments').select('*').eq('column_id', colId).order('created_at',{ascending:true});
+      if(error){ list.innerHTML = `<p class="text-ink/40 text-sm text-center py-4">댓글을 불러오지 못했습니다. (관리자: db/column_social.sql 실행 필요)</p>`; document.getElementById('cCount').textContent=''; return; }
+      const rows = data||[];
+      document.getElementById('cCount').textContent = rows.length || '';
+      if(!rows.length){ list.innerHTML = '<p class="text-ink/35 text-sm text-center py-6">첫 댓글을 남겨 보세요.</p>'; return; }
+      const myId = SESSION&&SESSION.user&&SESSION.user.id;
+      list.innerHTML = rows.map(c=>{
+        const canDel = isAdmin || (myId && c.user_id===myId);
+        return `<div class="bg-white border border-ink/8 rounded-2xl px-4 py-3.5">
+          <div class="flex items-center gap-2 mb-1.5">
+            <span class="font-semibold text-sm">${esc(c.author_name||'회원')}</span>
+            <span class="text-xs text-ink/35">${timeAgo(c.created_at)}</span>
+            ${canDel?`<button onclick="delComment('${c.id}')" class="ml-auto text-xs text-ink/30 hover:text-red-500">삭제</button>`:''}
+          </div>
+          <p class="text-[15px] text-ink/80 leading-relaxed">${nl2(c.content)}</p>
+        </div>`;
+      }).join('');
+    }
+    async function addComment(){
+      if(!(SESSION&&SESSION.user) || !current) return;
+      const el = document.getElementById('cInput'); const content = (el.value||'').trim();
+      if(!content){ el.focus(); return; }
+      const { error } = await sb.from('column_comments').insert({ column_id: current.id, user_id: SESSION.user.id, author_name: myName(), content });
+      if(error){ alert('등록 오류: ' + error.message); return; }
+      el.value=''; loadComments(current.id);
+    }
+    async function delComment(id){
+      if(!confirm('이 댓글을 삭제할까요?')) return;
+      const { error } = await sb.from('column_comments').delete().eq('id', id);
+      if(error){ alert('삭제 오류: ' + error.message); return; }
+      if(current) loadComments(current.id);
     }
 
     function registerQuillStyles(){ if(window.__qReg || !window.Quill) return; window.__qReg = true;
