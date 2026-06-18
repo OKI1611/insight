@@ -1,6 +1,19 @@
 /* 공통 헤더 인증 위젯 — #authArea 에 '내 강의실 + 로그인/로그아웃'을 렌더
    라이브러리 불필요(로컬 세션만 읽음). 모든 페이지 헤더에서 동일하게 표시 */
 (function(){
+  // ===== 채널톡(Channel.io) 실시간 상담 위젯 — 모든 페이지 공통 =====
+  // 수강생이 채팅을 시작하면 대표강사 휴대폰/PC 앱으로 알림이 오고, 부재중이면
+  // 채널톡 '운영시간·부재중 메시지'가 자동으로 정중한 안내를 보냅니다.
+  try{
+    (function(){var w=window;if(w.ChannelIO){return;}var ch=function(){ch.c(arguments);};ch.q=[];ch.c=function(args){ch.q.push(args);};w.ChannelIO=ch;function l(){if(w.ChannelIOInitialized){return;}w.ChannelIOInitialized=true;var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src="https://cdn.channel.io/plugin/ch-plugin-web.js";var x=document.getElementsByTagName("script")[0];if(x.parentNode){x.parentNode.insertBefore(s,x);}}if(document.readyState==="complete"){l();}else{w.addEventListener("DOMContentLoaded",l);w.addEventListener("load",l);}})();
+    ChannelIO('boot', { pluginKey: '37797b37-e00a-4c2f-8767-16d8fb3dcfd2', hideChannelButtonOnBoot: true });
+  }catch(e){}
+  // 우리 디자인의 '무엇이든 물어보세요' 버튼 → 채널톡 상담창 열기 (미로드 시 Q&A 게시판 폴백)
+  window.__biblyChat = function(){
+    if(window.ChannelIO){ try{ ChannelIO('showMessenger'); return; }catch(e){} }
+    location.href = 'community.html?board=qna';
+  };
+
   // 간단한 방문 통계 — 세션당 1회, 비로그인 포함 (Supabase REST, 비차단)
   try{
     if(!sessionStorage.getItem('_bv')){
@@ -88,11 +101,11 @@
         + '<div style="position:fixed;right:14px;bottom:14px;z-index:55" class="flex flex-col items-end gap-2.5">'
         + '<button id="installBtn" onclick="__biblyOpenInstall()" aria-label="앱 설치" class="inline-flex items-center gap-1.5 bg-ink text-white font-bold rounded-full shadow-xl hover:bg-navy transition" style="display:none;padding:11px 18px;font-size:15px"><span style="font-size:18px">📱</span> 앱 설치</button>'
         + '<a href="' + SUP + '" aria-label="후원하기" class="inline-flex items-center gap-1.5 bg-rose-500 text-white font-bold rounded-full shadow-xl hover:bg-rose-600 transition" style="padding:11px 18px;font-size:15px"><span style="font-size:17px">♥</span> 후원하기</a>'
-        + '<a href="community.html?board=qna" aria-label="무엇이든 질문하기" class="inline-flex items-center gap-2 bg-gold text-white font-bold rounded-full shadow-xl hover:opacity-95 transition">'
+        + '<button onclick="__biblyChat()" aria-label="무엇이든 질문하기" class="inline-flex items-center gap-2 bg-gold text-white font-bold rounded-full shadow-xl hover:opacity-95 transition" style="border:none;cursor:pointer">'
         + '<span style="padding:13px 0 13px 18px;font-size:20px">💬</span>'
         + '<span class="hidden sm:inline" style="padding-right:20px;font-size:15px">무엇이든 물어보세요</span>'
         + '<span class="sm:hidden" style="padding-right:16px;font-size:14px">질문</span>'
-        + '</a>'
+        + '</button>'
         + '</div>';
       document.body.appendChild(w);
 
