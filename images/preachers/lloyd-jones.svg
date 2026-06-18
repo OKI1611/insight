@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="550" viewBox="0 0 440 550">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="72%">
+      <stop offset="0%" stop-color="#7d6a4f"/>
+      <stop offset="55%" stop-color="#4f4231"/>
+      <stop offset="100%" stop-color="#241c12"/>
+    </radialGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e0cdab"/>
+      <stop offset="55%" stop-color="#c9b491"/>
+      <stop offset="100%" stop-color="#a78f6c"/>
+    </linearGradient>
+    <linearGradient id="suit" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3b3225"/>
+      <stop offset="100%" stop-color="#241d13"/>
+    </linearGradient>
+    <radialGradient id="vig" cx="50%" cy="44%" r="75%">
+      <stop offset="60%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.55"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="440" height="550" fill="url(#bg)"/>
+
+  <!-- 어깨/정장 -->
+  <path d="M30 550 C45 430 120 388 220 388 C320 388 395 430 410 550 Z" fill="url(#suit)"/>
+  <!-- 라펠 -->
+  <path d="M220 392 L168 470 L150 550 L205 550 L220 440 Z" fill="#2c2418"/>
+  <path d="M220 392 L272 470 L290 550 L235 550 L220 440 Z" fill="#322a1c"/>
+  <!-- 셔츠 칼라 -->
+  <path d="M220 392 L186 432 L220 452 L254 432 Z" fill="#e9e1cf"/>
+  <path d="M205 408 L220 452 L235 408 L220 398 Z" fill="#473a2a"/>
+  <!-- 넥타이 -->
+  <path d="M220 452 L210 470 L220 540 L230 470 Z" fill="#4a3c2b"/>
+
+  <!-- 목 -->
+  <path d="M188 330 C188 378 252 378 252 330 L252 300 L188 300 Z" fill="#b59c77"/>
+  <path d="M188 330 C188 360 252 360 252 330 L252 318 L188 318 Z" fill="#9c835f" opacity="0.5"/>
+
+  <!-- 귀 -->
+  <ellipse cx="123" cy="252" rx="17" ry="27" fill="url(#skin)"/>
+  <ellipse cx="317" cy="252" rx="17" ry="27" fill="url(#skin)"/>
+  <ellipse cx="123" cy="252" rx="8" ry="15" fill="#9c835f" opacity="0.5"/>
+  <ellipse cx="317" cy="252" rx="8" ry="15" fill="#9c835f" opacity="0.5"/>
+
+  <!-- 얼굴 -->
+  <path d="M132 222 C132 150 175 116 220 116 C265 116 308 150 308 222 C308 296 270 344 220 344 C170 344 132 296 132 222 Z" fill="url(#skin)"/>
+  <!-- 볼/턱 음영 -->
+  <path d="M132 226 C140 290 172 338 220 344 C176 330 150 286 142 230 Z" fill="#9c835f" opacity="0.45"/>
+  <path d="M308 226 C300 290 268 338 220 344 C264 330 290 286 298 230 Z" fill="#9c835f" opacity="0.35"/>
+
+  <!-- 머리(옆·뒤, 반백·정수리 벗겨짐) -->
+  <path d="M120 214 C116 150 168 104 220 104 C272 104 324 150 320 214 C322 188 300 150 285 142 C262 130 250 150 220 150 C190 150 178 130 155 142 C140 150 118 188 120 214 Z" fill="#cabfa9"/>
+  <path d="M120 214 C116 168 142 132 158 140 C150 168 146 198 150 232 C140 232 124 230 120 214 Z" fill="#b3a78f"/>
+  <path d="M320 214 C324 168 298 132 282 140 C290 168 294 198 290 232 C300 232 316 230 320 214 Z" fill="#b3a78f"/>
+  <!-- 이마 정수리 살결(벗겨진 부분) -->
+  <path d="M163 150 C185 138 255 138 277 150 C262 132 178 132 163 150 Z" fill="#d8c6a4" opacity="0.7"/>
+
+  <!-- 이마 주름 -->
+  <path d="M176 176 C200 168 240 168 264 176" fill="none" stroke="#9c835f" stroke-width="2.4" opacity="0.4" stroke-linecap="round"/>
+  <path d="M182 190 C202 184 238 184 258 190" fill="none" stroke="#9c835f" stroke-width="2" opacity="0.32" stroke-linecap="round"/>
+
+  <!-- 눈썹 -->
+  <path d="M158 214 C172 206 196 206 206 212" fill="none" stroke="#8a7c64" stroke-width="5" stroke-linecap="round"/>
+  <path d="M234 212 C244 206 268 206 282 214" fill="none" stroke="#8a7c64" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- 눈 -->
+  <ellipse cx="182" cy="232" rx="15" ry="9" fill="#f2ebda"/>
+  <ellipse cx="258" cy="232" rx="15" ry="9" fill="#f2ebda"/>
+  <circle cx="184" cy="233" r="6.2" fill="#4a3a28"/>
+  <circle cx="256" cy="233" r="6.2" fill="#4a3a28"/>
+  <circle cx="184" cy="233" r="2.6" fill="#1d150d"/>
+  <circle cx="256" cy="233" r="2.6" fill="#1d150d"/>
+  <path d="M167 228 C175 222 190 222 197 227" fill="none" stroke="#7a6b4e" stroke-width="2" opacity="0.6"/>
+  <!-- 눈밑 음영 -->
+  <path d="M168 242 C178 248 192 248 200 243" fill="none" stroke="#9c835f" stroke-width="2" opacity="0.4" stroke-linecap="round"/>
+  <path d="M240 243 C248 248 262 248 272 242" fill="none" stroke="#9c835f" stroke-width="2" opacity="0.4" stroke-linecap="round"/>
+
+  <!-- 코 -->
+  <path d="M220 226 C214 252 208 268 206 278 C210 288 232 288 234 278 C232 268 226 252 220 226 Z" fill="#bda584" opacity="0.55"/>
+  <path d="M205 278 C210 286 232 286 235 278" fill="none" stroke="#8a7256" stroke-width="2.2" opacity="0.6" stroke-linecap="round"/>
+  <ellipse cx="211" cy="280" rx="3" ry="2" fill="#8a7256" opacity="0.5"/>
+  <ellipse cx="229" cy="280" rx="3" ry="2" fill="#8a7256" opacity="0.5"/>
+
+  <!-- 입 (단정·진중) -->
+  <path d="M192 304 C206 298 234 298 248 304 C234 312 206 312 192 304 Z" fill="#a07f63"/>
+  <path d="M192 304 C206 300 234 300 248 304" fill="none" stroke="#6e5640" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M198 314 C212 320 228 320 242 314" fill="none" stroke="#9c835f" stroke-width="2" opacity="0.4" stroke-linecap="round"/>
+
+  <!-- 안경 -->
+  <g fill="none" stroke="#2b2117" stroke-width="5">
+    <circle cx="182" cy="233" r="29"/>
+    <circle cx="258" cy="233" r="29"/>
+  </g>
+  <path d="M211 230 C220 224 220 224 229 230" fill="none" stroke="#2b2117" stroke-width="5" stroke-linecap="round"/>
+  <path d="M153 230 L132 236" stroke="#2b2117" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M287 230 L308 236" stroke="#2b2117" stroke-width="4.5" stroke-linecap="round"/>
+  <ellipse cx="182" cy="233" rx="26" ry="26" fill="#cfe0e6" opacity="0.10"/>
+  <ellipse cx="258" cy="233" rx="26" ry="26" fill="#cfe0e6" opacity="0.10"/>
+
+  <!-- 비네트 -->
+  <rect width="440" height="550" fill="url(#vig)"/>
+  <!-- 타원 골드 프레임 -->
+  <ellipse cx="220" cy="262" rx="208" ry="262" fill="none" stroke="#b8923f" stroke-width="0" />
+</svg>
