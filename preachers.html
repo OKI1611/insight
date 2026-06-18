@@ -56,7 +56,7 @@
 
   <div id="siteHeader" data-active="preachers.html"></div>
 
-  <main class="max-w-5xl mx-auto px-4 py-9">
+  <main class="max-w-6xl mx-auto px-4 py-9">
 
     <!-- ===== 목록(목차) ===== -->
     <div id="listView">
@@ -73,11 +73,22 @@
         <button id="writeBtn" onclick="openEditor()" class="hidden bg-ink text-paper text-sm font-semibold px-4 py-2.5 rounded-full hover:bg-navy transition">✏️ 새 글 쓰기</button>
       </div>
 
-      <!-- 설교자 갤러리 -->
-      <div id="gallery" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 mb-10"><p class="text-ink/40 text-sm text-center py-12 col-span-full">불러오는 중…</p></div>
-
-      <!-- 선택한 설교자의 설교 목록 -->
-      <div id="sermons"></div>
+      <div class="grid lg:grid-cols-[220px_1fr] gap-6">
+        <!-- 좌측 사이드 (위대한 믿음) -->
+        <aside class="lg:sticky lg:top-20 h-fit">
+          <p class="text-[11px] font-bold text-gold tracking-[0.2em] mb-2 px-1">위대한 믿음</p>
+          <div class="bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden">
+            <a href="preachers.html" class="flex items-center gap-2.5 px-4 py-3 text-sm font-bold bg-gold/10 text-gold border-b border-ink/6"><span>🎙️</span> 위대한 설교자</a>
+            <a href="prayers.html" class="flex items-center gap-2.5 px-4 py-3 text-sm font-semibold hover:bg-ink/[0.03] transition"><span>🙏</span> 위대한 기도자</a>
+          </div>
+        </aside>
+        <div class="min-w-0">
+          <!-- 설교자 갤러리 -->
+          <div id="gallery" class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 mb-10"><p class="text-ink/40 text-sm text-center py-12 col-span-full">불러오는 중…</p></div>
+          <!-- 선택한 설교자의 설교 목록 -->
+          <div id="sermons"></div>
+        </div>
+      </div>
     </div>
 
     <!-- ===== 읽기 ===== -->
