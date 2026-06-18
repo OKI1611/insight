@@ -142,8 +142,9 @@
         var biAndroid = /android/i.test(navigator.userAgent);
         var __biReveal = function(){ if(biStandalone) return; var b = document.getElementById('installBtn'); if(b) b.style.display = 'inline-flex'; };
         window.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); biDP = e; __biReveal(); });
-        // 모바일(iOS·안드로이드)은 beforeinstallprompt 유무와 무관하게 항상 버튼 노출
-        if((biIOS || biAndroid) && !biStandalone) __biReveal();
+        // 앱으로 실행 중(standalone)만 아니면 항상 '앱 설치' 버튼 노출
+        // (UA 감지에 의존하지 않음 — 일부 모바일 환경에서 버튼이 안 뜨던 문제 해결)
+        if(!biStandalone) __biReveal();
         window.__biblyOpenInstall = function(){
           document.getElementById('installAndroid').style.display = biDP ? 'block' : 'none';
           document.getElementById('installAndroidManual').style.display = (biAndroid && !biDP) ? 'block' : 'none';
