@@ -14,12 +14,12 @@
     { label:'나에게 맞는 강의 찾기', href:'find.html' },
     { label:'커리큘럼', href:'curriculum.html' },
     { label:'칼럼', href:'column.html' },
-    { label:'위대한 믿음', href:'preachers.html' },
     { label:'질문·나눔·기도요청', href:'community.html' },
     { label:'강의 요청·건의함', href:'request.html' },
     { label:'자료실', href:'resources.html' },
     { label:'성경 읽기', href:'bible.html' },
-    { label:'주제별 성경', href:'themes.html' }
+    { label:'주제별 성경', href:'themes.html' },
+    { label:'위대한 믿음', href:'preachers.html' }
   ];
 
   function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
