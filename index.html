@@ -37,14 +37,40 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
-    "name": "BIBLY 바이블 인사이트",
-    "alternateName": "오광일의 인사이트 브리핑",
-    "url": "https://biblynote.com/",
-    "logo": "https://biblynote.com/images/og-cover.png",
-    "image": "https://biblynote.com/images/og-cover.png",
-    "description": "유튜브 「오광일의 인사이트 브리핑」 공식 강의 플랫폼. 천년왕국·종말론·성경적 세계관을 기초부터 고급까지 단계별 커리큘럼으로 배우는 온라인 성경·신학 아카데미.",
-    "sameAs": ["https://www.youtube.com/channel/UC82IOMnZud8NNt3BYzAxTMg"]
+    "@graph": [
+      {
+        "@type": "EducationalOrganization",
+        "@id": "https://biblynote.com/#org",
+        "name": "BIBLY 바이블 인사이트",
+        "alternateName": ["오광일의 인사이트 브리핑", "바이블 인사이트", "BIBLY"],
+        "url": "https://biblynote.com/",
+        "logo": "https://biblynote.com/images/og-cover.png",
+        "image": "https://biblynote.com/images/og-cover.png",
+        "description": "유튜브 「오광일의 인사이트 브리핑」 공식 강의 플랫폼. 천년왕국·종말론·성경적 세계관을 기초부터 고급까지 단계별 커리큘럼으로 배우는 온라인 성경·신학 아카데미.",
+        "founder": { "@id": "https://biblynote.com/#person" },
+        "sameAs": ["https://www.youtube.com/channel/UC82IOMnZud8NNt3BYzAxTMg"]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://biblynote.com/#person",
+        "name": "오광일",
+        "alternateName": ["오광일 강사", "오광일의 인사이트 브리핑"],
+        "jobTitle": "BIBLY 바이블 인사이트 대표강사",
+        "description": "유튜브 「오광일의 인사이트 브리핑」 대표강사. 천년왕국·종말론·성경적 세계관을 평신도가 스스로 분별하도록 가르친다.",
+        "alumniOf": "West Coast Baptist College",
+        "url": "https://biblynote.com/about",
+        "worksFor": { "@id": "https://biblynote.com/#org" },
+        "sameAs": ["https://www.youtube.com/channel/UC82IOMnZud8NNt3BYzAxTMg"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://biblynote.com/#website",
+        "url": "https://biblynote.com/",
+        "name": "BIBLY 바이블 인사이트",
+        "inLanguage": "ko",
+        "publisher": { "@id": "https://biblynote.com/#org" }
+      }
+    ]
   }
   </script>
 
