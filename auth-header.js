@@ -93,12 +93,12 @@
       };
       var w = document.createElement('div'); w.id = 'biblyFab';
       w.innerHTML =
-        '<div style="position:fixed;left:12px;bottom:12px;z-index:55" class="flex items-center gap-0.5 bg-white/95 backdrop-blur border border-ink/10 rounded-full shadow-lg px-1.5 py-1">'
+        '<div style="position:fixed;left:12px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:60" class="flex items-center gap-0.5 bg-white/95 backdrop-blur border border-ink/10 rounded-full shadow-lg px-1.5 py-1">'
         + '<span style="font-size:11px" class="text-ink/45 px-1 select-none">글자</span>'
         + '<button onclick="__biblyFont(-1)" aria-label="글자 작게" class="rounded-full hover:bg-ink/5 text-ink/60" style="width:34px;height:34px;font-size:13px">가&minus;</button>'
         + '<button onclick="__biblyFont(1)" aria-label="글자 크게" class="rounded-full hover:bg-ink/5 text-ink font-bold" style="width:34px;height:34px;font-size:18px">가&#43;</button>'
         + '</div>'
-        + '<div style="position:fixed;right:14px;bottom:14px;z-index:55" class="flex flex-col items-end gap-2.5">'
+        + '<div style="position:fixed;right:14px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:60" class="flex flex-col items-end gap-2.5">'
         + '<button id="installBtn" onclick="__biblyOpenInstall()" aria-label="앱 설치" class="inline-flex items-center gap-1.5 bg-ink text-white font-bold rounded-full shadow-xl hover:bg-navy transition" style="display:none;padding:11px 18px;font-size:15px"><span style="font-size:18px">📱</span> 앱 설치</button>'
         + '<a href="' + SUP + '" aria-label="후원하기" class="inline-flex items-center gap-1.5 bg-rose-500 text-white font-bold rounded-full shadow-xl hover:bg-rose-600 transition" style="padding:11px 18px;font-size:15px"><span style="font-size:17px">♥</span> 후원하기</a>'
         + '<button onclick="__biblyChat()" aria-label="무엇이든 질문하기" class="inline-flex items-center gap-2 bg-gold text-white font-bold rounded-full shadow-xl hover:opacity-95 transition" style="border:none;cursor:pointer">'

@@ -43,9 +43,21 @@
     if(typeof window.biblyHeaderLogin === 'function'){ try{ window.biblyHeaderLogin(); return; }catch(e){} }
     location.href = 'index.html';
   };
+  // 홈/로고 클릭: 이미 홈(index)에 있으면 해시 제거 후 맨 위로 (엉뚱한 위치로 가는 문제 방지)
+  window.__biblyHome = function(e){
+    var p = location.pathname;
+    var onIndex = p === '/' || p === '/index.html' || /\/index\.html$/.test(p) || p.charAt(p.length-1) === '/';
+    if(onIndex){
+      if(e && e.preventDefault) e.preventDefault();
+      if(location.hash){ try{ history.replaceState(null,'',p); }catch(_){} }
+      window.scrollTo({ top:0, behavior:'smooth' });
+      return false;
+    }
+    return true;
+  };
 
   var LOGO =
-    '<a href="index.html" class="flex items-center gap-2 shrink-0">'
+    '<a href="index.html" onclick="return __biblyHome(event)" class="flex items-center gap-2 shrink-0">'
     + '<svg class="w-9 h-9 shrink-0" viewBox="0 0 48 48" role="img" aria-label="BIBLY"><rect x="9" y="9" width="30" height="30" rx="6" transform="rotate(45 24 24)" fill="#b8923f"/><text x="24" y="32.5" text-anchor="middle" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#15203a">B</text></svg>'
     + '<span class="leading-none"><span class="block font-extrabold text-[15px] tracking-tight">BIBLY<span class="text-gold">.</span></span>'
     + '<span class="block text-[9px] text-ink/45 tracking-wide mt-0.5">말씀으로 시대를 읽다</span></span></a>';
@@ -74,7 +86,7 @@
       authpart = '<button onclick="__biblyHeaderLoginClick()" class="bg-gold text-white font-semibold px-3.5 py-1.5 rounded-full hover:opacity-90 transition text-xs whitespace-nowrap">로그인</button>';
     }
     return mylearn + support + authpart
-      + '<a href="index.html" class="hidden xl:inline text-ink/45 hover:text-gold whitespace-nowrap text-sm">홈</a>';
+      + '<a href="index.html" onclick="return __biblyHome(event)" class="hidden xl:inline text-ink/45 hover:text-gold whitespace-nowrap text-sm">홈</a>';
   }
 
   // 모바일 드롭다운 메뉴(햄버거)
@@ -87,7 +99,7 @@
     }).join('');
     return '<div class="max-w-6xl mx-auto px-4 py-1 flex flex-col text-[15px]">' + items
       + '<a href="mylearning.html" class="py-3 border-b border-ink/5 text-gold font-semibold">📚 내 강의실</a>'
-      + '<a href="index.html" class="py-3 text-ink/55">🏠 홈</a>'
+      + '<a href="index.html" onclick="return __biblyHome(event)" class="py-3 text-ink/55">🏠 홈</a>'
       + '</div>';
   }
   window.__biblyToggleMenu = function(){ var m = document.getElementById('biblyMobMenu'); if(m) m.classList.toggle('hidden'); };
