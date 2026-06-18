@@ -333,86 +333,44 @@
     <div class="blob bg-gold w-[460px] h-[460px] -top-24 -right-24"></div>
     <div class="blob bg-navy w-[380px] h-[380px] top-44 -left-32 opacity-20"></div>
 
-    <div class="relative max-w-6xl mx-auto px-5 grid lg:grid-cols-2 gap-12 items-center z-10">
-      <!-- 좌: 카피 -->
-      <div>
-        <span class="inline-flex items-center gap-2 bg-gold/15 text-gold text-xs font-bold px-3 py-1.5 rounded-full">
-          BIBLY · 온라인 성경·신학 아카데미
-        </span>
-        <style>
-          @keyframes heroUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
-          @keyframes heroShimmer{to{background-position:220% center}}
-          .heroLine{display:inline-block;opacity:0;animation:heroUp .9s cubic-bezier(.2,.75,.25,1) .15s forwards}
-          .heroShine{display:inline-block;opacity:0;
-            background:linear-gradient(100deg,#b8923f 0%,#b8923f 36%,#ecc97f 47%,#fff6dd 52%,#ecc97f 57%,#b8923f 70%,#b8923f 100%);
-            background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
-            animation:heroUp .9s cubic-bezier(.2,.75,.25,1) .42s forwards, heroShimmer 5s linear 1.5s infinite}
-          @media(prefers-reduced-motion:reduce){.heroLine,.heroShine{opacity:1!important;transform:none!important;animation:none!important}.heroShine{-webkit-text-fill-color:#b8923f!important;color:#b8923f!important}}
-        </style>
-        <h1 data-cms="home.heroTitle" class="mt-5 text-[36px] md:text-[56px] font-bold leading-[1.12] tracking-tight">
-          <span class="heroLine">말씀으로</span><br/><span class="heroShine">시대를 읽다</span>
-        </h1>
-        <p data-cms="home.heroSub" class="mt-5 text-ink/75 text-lg md:text-xl leading-relaxed">
-          교회가 깊이 다루지 않는 <b class="text-ink">종말론·천년왕국·성경적 세계관</b>을,<br class="hidden sm:block"/>
-          <b class="text-ink">평신도도 스스로 읽고 분별하도록.</b>
-        </p>
-        <p class="mt-3 text-ink/55 text-sm md:text-[15px] leading-relaxed">
-          미국 신학 석사 <b class="text-ink/80">대표강사 오광일</b>의 검증된 강의 · 기초부터 고급까지 · <b class="text-gold">지금은 100% 무료</b>
-        </p>
+    <div class="relative max-w-3xl mx-auto px-5 text-center z-10">
+      <style>
+        @keyframes heroUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes heroShimmer{to{background-position:220% center}}
+        .heroLine{display:inline-block;opacity:0;animation:heroUp .9s cubic-bezier(.2,.75,.25,1) .15s forwards}
+        .heroShine{display:inline-block;opacity:0;
+          background:linear-gradient(100deg,#b8923f 0%,#b8923f 36%,#ecc97f 47%,#fff6dd 52%,#ecc97f 57%,#b8923f 70%,#b8923f 100%);
+          background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+          animation:heroUp .9s cubic-bezier(.2,.75,.25,1) .42s forwards, heroShimmer 5s linear 1.5s infinite}
+        @media(prefers-reduced-motion:reduce){.heroLine,.heroShine{opacity:1!important;transform:none!important;animation:none!important}.heroShine{-webkit-text-fill-color:#b8923f!important;color:#b8923f!important}}
+      </style>
+      <span class="inline-flex items-center gap-2 bg-gold/15 text-gold text-xs font-bold px-3 py-1.5 rounded-full">
+        BIBLY · 온라인 성경·신학 아카데미
+      </span>
+      <h1 data-cms="home.heroTitle" class="mt-5 text-[38px] md:text-[60px] font-bold leading-[1.1] tracking-tight">
+        <span class="heroLine">말씀으로</span> <span class="heroShine">시대를 읽다</span>
+      </h1>
+      <p data-cms="home.heroSub" class="mt-5 text-ink/75 text-lg md:text-xl leading-relaxed">
+        교회가 깊이 다루지 않는 <b class="text-ink">종말론·천년왕국·성경적 세계관</b>을,<br class="hidden sm:block"/>
+        <b class="text-ink">평신도도 스스로 읽고 분별하도록.</b>
+      </p>
+      <p class="mt-3 text-ink/55 text-sm md:text-[15px] leading-relaxed">
+        미국 신학 석사 <b class="text-ink/80">대표강사 오광일 목사</b>의 검증된 강의 · 기초부터 고급까지 · <b class="text-gold">지금은 100% 무료</b>
+      </p>
 
-        <!-- 단계별 사다리 -->
-        <div class="mt-6 flex flex-wrap items-center gap-1.5 text-sm">
-          <a href="#catalog" class="px-3.5 py-1.5 rounded-full bg-white border border-ink/10 font-medium hover:border-gold hover:text-gold transition">기초</a>
-          <span class="text-ink/25">→</span>
-          <a href="#catalog" class="px-3.5 py-1.5 rounded-full bg-white border border-ink/10 font-medium hover:border-gold hover:text-gold transition">초급</a>
-          <span class="text-ink/25">→</span>
-          <a href="#catalog" class="px-3.5 py-1.5 rounded-full bg-white border border-ink/10 font-medium hover:border-gold hover:text-gold transition">중급</a>
-          <span class="text-ink/25">→</span>
-          <a href="#catalog" class="px-3.5 py-1.5 rounded-full bg-white border border-ink/10 font-medium hover:border-gold hover:text-gold transition">고급</a>
-        </div>
-
-        <div class="mt-8 flex flex-col sm:flex-row gap-3">
-          <a href="watch.html" class="bg-ink text-paper font-semibold px-8 py-4 rounded-full hover:bg-navy transition shadow-card text-center">
-            ▶ 무료 1강 시작하기
-          </a>
-          <a href="#catalog" class="border border-ink/15 px-8 py-4 rounded-full hover:bg-ink/5 transition text-center">
-            전체 강의 둘러보기
-          </a>
-        </div>
-
-        <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-ink/55">
-          <span class="flex items-center gap-1.5"><span class="text-gold font-bold">✓</span> 전 강의 무료 공개</span>
-          <span class="flex items-center gap-1.5"><span class="text-gold font-bold">✓</span> 회원가입 없이 시청</span>
-          <span class="flex items-center gap-1.5"><span class="text-gold font-bold">✓</span> 무제한 소장</span>
-        </div>
+      <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="watch.html" class="bg-ink text-paper font-semibold px-8 py-4 rounded-full hover:bg-navy transition shadow-card text-center">
+          ▶ 무료 1강 시작하기
+        </a>
+        <a href="curriculum.html" class="border border-ink/15 px-8 py-4 rounded-full hover:bg-ink/5 transition text-center">
+          전체 커리큘럼 보기
+        </a>
       </div>
 
-      <!-- 우: 무료 강의 미리보기 카드 -->
-      <div class="relative">
-        <a href="watch.html?l=143" class="block bg-white rounded-3xl shadow-card border border-ink/8 overflow-hidden hover:-translate-y-1 transition">
-          <div class="relative aspect-video bg-ink overflow-hidden">
-            <img src="https://i.ytimg.com/vi/DGt1xDMwUFI/maxresdefault.jpg" alt="천년왕국 스토리 01 · 당신이 몰랐던 천년왕국 7가지 비밀"
-                 onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/DGt1xDMwUFI/hqdefault.jpg'"
-                 class="absolute inset-0 w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/10 to-transparent"></div>
-            <span class="absolute inset-0 flex items-center justify-center">
-              <span class="w-16 h-16 rounded-full bg-white/95 flex items-center justify-center shadow-xl group-hover:scale-105 transition">
-                <svg class="w-6 h-6 text-ink ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              </span>
-            </span>
-            <span class="absolute top-3 left-3 bg-gold text-white text-xs font-bold px-2.5 py-1 rounded shadow">무료 공개</span>
-            <span class="absolute bottom-3 left-3 right-3 text-white font-bold text-sm leading-snug drop-shadow-lg">천년왕국 스토리 01</span>
-          </div>
-          <div class="p-6">
-            <p class="text-xs text-gold font-bold tracking-widest">대표 강좌 · 천년왕국 세미나</p>
-            <h3 data-cms="home-sec1" class="font-bold text-lg mt-1.5 leading-snug">당신이 몰랐던 천년왕국,<br/>7가지 비밀</h3>
-            <p class="text-sm text-ink/55 mt-2">천년왕국 스토리 01 · 지금 무료 시청</p>
-            <span class="mt-5 inline-flex items-center gap-2 bg-ink text-paper text-sm font-semibold px-5 py-3 rounded-full">▶ 무료로 시청하기</span>
-          </div>
-        </a>
-        <div class="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-card border border-ink/8 px-4 py-3 text-sm hidden md:block">
-          <p class="font-bold text-gold">M.R.E</p><p class="text-ink/55 text-xs">미국 신학 석사 · 교육학 박사</p>
-        </div>
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-ink/55">
+        <span class="flex items-center gap-1.5"><span class="text-gold font-bold">✓</span> 전 강의 무료 공개</span>
+        <span class="flex items-center gap-1.5"><span class="text-gold font-bold">✓</span> 회원가입 없이 시청</span>
+        <span class="flex items-center gap-1.5"><span class="text-gold font-bold">✓</span> 무제한 소장</span>
       </div>
     </div>
 
