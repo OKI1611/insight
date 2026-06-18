@@ -83,7 +83,7 @@
     tailwind.config = { theme: { extend: {
       colors: {
         ink:'#15203a', navy:'#1b2a4a', gold:'#b8923f', goldsoft:'#e7d6ac',
-        sand:'#efe7d6', paper:'#fcfaf6'
+        sand:'#e9edf3', paper:'#f5f7fa'
       },
       fontFamily: {
         sans: ['Pretendard','system-ui','sans-serif'],
@@ -102,7 +102,7 @@
     /* 세리프 디스플레이 — 히어로 h1 & 섹션 h2 에 격조를 부여 */
     h1, section h2{ font-family:'Noto Serif KR', Pretendard, serif; letter-spacing:-0.01em; font-weight:700; }
     .eyebrow{letter-spacing:.34em; text-transform:uppercase}
-    .blob{position:absolute;border-radius:9999px;filter:blur(90px);opacity:.22;z-index:0}
+    .blob{display:none}
     .star{width:14px;height:14px;display:inline-block;color:#cB9a4a;color:#c79a4a}
     .hairline{height:1px;background:linear-gradient(90deg,transparent,rgba(184,146,63,.5),transparent)}
     details>summary{list-style:none;cursor:pointer}
@@ -121,47 +121,7 @@
 
 <body class="font-sans text-ink bg-paper antialiased">
 
-  <!-- ===== 브랜드 인트로 (로딩 인트로) ===== -->
-  <style>
-    #bootScreen{position:fixed;inset:0;z-index:200;background:#15203a;color:#fcfaf6;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.1rem;
-      animation:bootOut .8s ease 2.2s forwards}
-    #bootScreen .bootLetters{display:flex;gap:.06em;font-family:'Noto Serif KR',serif;font-weight:700;line-height:1;font-size:clamp(52px,13vw,104px)}
-    #bootScreen .bl{display:inline-block;opacity:0;transform:translateY(.42em) scale(.92);animation:blRise .75s cubic-bezier(.2,.8,.25,1) forwards;animation-delay:var(--d)}
-    #bootScreen .bl.g{color:#cda14a}
-    #bootScreen .bootUnder{height:2px;width:0;background:linear-gradient(90deg,transparent,#b8923f,transparent);animation:underGrow .7s ease 1.05s forwards}
-    #bootScreen .bootTag{opacity:0;font-size:13px;letter-spacing:.04em;color:rgba(252,250,246,.6);animation:bootFade .8s ease 1.2s forwards}
-    #bootScreen .bootTag b{color:#cda14a;font-weight:700}
-    @keyframes blRise{to{opacity:1;transform:none}}
-    @keyframes underGrow{to{width:min(360px,72vw)}}
-    @keyframes bootFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-    @keyframes bootOut{to{opacity:0;visibility:hidden;pointer-events:none}}
-    /* 히어로 BIBLY 띠 — 금빛 shimmer */
-    .biShine{background:linear-gradient(100deg,#b8923f 18%,#e7d6ac 40%,#b8923f 62%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:biShine 3.6s linear infinite}
-    @keyframes biShine{to{background-position:-220% center}}
-    @media (prefers-reduced-motion: reduce){
-      #bootScreen{animation-delay:.3s}
-      #bootScreen .bl,#bootScreen .bootTag,#bootScreen .bootUnder{animation:none;opacity:1;transform:none;width:min(360px,72vw)}
-      .biShine{animation:none}
-    }
-  </style>
-  <div id="bootScreen" aria-hidden="true">
-    <div class="bootLetters">
-      <span class="bl" style="--d:.15s">B</span>
-      <span class="bl g" style="--d:.30s">I</span>
-      <span class="bl" style="--d:.45s">B</span>
-      <span class="bl g" style="--d:.60s">L</span>
-      <span class="bl" style="--d:.75s">Y</span>
-    </div>
-    <div class="bootUnder"></div>
-    <p class="bootTag"><b>Bible</b> + <b>Daily</b> — 날마다 말씀 곁에, 스스로 읽는 삶</p>
-  </div>
-  <script>
-    (function(){
-      var b = document.getElementById('bootScreen'); if(!b) return;
-      try{ if(sessionStorage.getItem('biblyBooted')){ b.style.display='none'; return; } sessionStorage.setItem('biblyBooted','1'); }catch(e){}
-      setTimeout(function(){ if(b && b.parentNode) b.parentNode.removeChild(b); }, 3200);
-    })();
-  </script>
+  <style>.biShine{color:#b8923f}</style>
 
 
   <!-- ===== 상단 유틸바 ===== -->
@@ -210,18 +170,6 @@
   <section class="bg-gradient-to-b from-sand/35 to-paper border-b border-ink/8 pt-5 pb-9">
     <div class="max-w-6xl mx-auto px-5">
 
-      <!-- 학습 카테고리 가로 내비 -->
-      <div class="flex items-center gap-2 overflow-x-auto pb-1.5 mb-4" style="scrollbar-width:none">
-        <span class="shrink-0 text-[11px] font-bold text-ink/40 pr-1">바로가기</span>
-        <a href="curriculum.html" class="shrink-0 inline-flex items-center gap-1.5 bg-ink text-paper text-[13px] font-semibold px-3.5 py-2 rounded-full hover:bg-navy transition">📚 전체 커리큘럼</a>
-        <a href="watch.html" class="shrink-0 inline-flex items-center gap-1.5 bg-white border border-ink/12 text-[13px] font-semibold px-3.5 py-2 rounded-full hover:border-gold hover:text-gold transition">📺 자유 학습<span class="text-[10px] text-gold font-bold">무료</span></a>
-        <a href="themes.html" class="shrink-0 inline-flex items-center gap-1.5 bg-white border border-ink/12 text-[13px] font-semibold px-3.5 py-2 rounded-full hover:border-gold hover:text-gold transition">📖 주제별 성경</a>
-        <a href="preachers.html" class="shrink-0 inline-flex items-center gap-1.5 bg-white border border-ink/12 text-[13px] font-semibold px-3.5 py-2 rounded-full hover:border-gold hover:text-gold transition">🎙️ 위대한 설교자</a>
-        <a href="curriculum.html?tab=academy" class="shrink-0 inline-flex items-center gap-1.5 bg-white border border-ink/12 text-[13px] font-semibold px-3.5 py-2 rounded-full hover:border-gold hover:text-gold transition">🏅 수료·인증</a>
-        <a href="community.html" class="shrink-0 inline-flex items-center gap-1.5 bg-white border border-ink/12 text-[13px] font-semibold px-3.5 py-2 rounded-full hover:border-gold hover:text-gold transition">💬 커뮤니티</a>
-        <a href="resources.html" class="shrink-0 inline-flex items-center gap-1.5 bg-white border border-ink/12 text-[13px] font-semibold px-3.5 py-2 rounded-full hover:border-gold hover:text-gold transition">📁 자료실</a>
-        <a href="bible.html" class="shrink-0 inline-flex items-center gap-1.5 bg-white border border-ink/12 text-[13px] font-semibold px-3.5 py-2 rounded-full hover:border-gold hover:text-gold transition">✝️ 성경 읽기</a>
-      </div>
 
       <!-- 3-카드 대시보드 -->
       <div class="grid lg:grid-cols-3 gap-4">
@@ -334,21 +282,11 @@
     <div class="blob bg-navy w-[380px] h-[380px] top-44 -left-32 opacity-20"></div>
 
     <div class="relative max-w-3xl mx-auto px-5 text-center z-10">
-      <style>
-        @keyframes heroUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
-        @keyframes heroShimmer{to{background-position:220% center}}
-        .heroLine{display:inline-block;opacity:0;animation:heroUp .9s cubic-bezier(.2,.75,.25,1) .15s forwards}
-        .heroShine{display:inline-block;opacity:0;
-          background:linear-gradient(100deg,#b8923f 0%,#b8923f 36%,#ecc97f 47%,#fff6dd 52%,#ecc97f 57%,#b8923f 70%,#b8923f 100%);
-          background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
-          animation:heroUp .9s cubic-bezier(.2,.75,.25,1) .42s forwards, heroShimmer 5s linear 1.5s infinite}
-        @media(prefers-reduced-motion:reduce){.heroLine,.heroShine{opacity:1!important;transform:none!important;animation:none!important}.heroShine{-webkit-text-fill-color:#b8923f!important;color:#b8923f!important}}
-      </style>
       <span class="inline-flex items-center gap-2 bg-gold/15 text-gold text-xs font-bold px-3 py-1.5 rounded-full">
         BIBLY · 온라인 성경·신학 아카데미
       </span>
       <h1 data-cms="home.heroTitle" class="mt-5 text-[38px] md:text-[60px] font-bold leading-[1.1] tracking-tight">
-        <span class="heroLine">말씀으로</span> <span class="heroShine">시대를 읽다</span>
+        말씀으로 <span class="text-gold">시대를 읽다</span>
       </h1>
       <p data-cms="home.heroSub" class="mt-5 text-ink/75 text-lg md:text-xl leading-relaxed">
         교회가 깊이 다루지 않는 <b class="text-ink">종말론·천년왕국·성경적 세계관</b>을,<br class="hidden sm:block"/>
