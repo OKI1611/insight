@@ -173,16 +173,10 @@
             c.style.pointerEvents = h ? 'none' : '';
           }
         }
-        function biNarrow(){ return window.innerWidth < 1024; }   // PC(넓은 화면)는 자동숨김 안 함, 항상 표시
-        window.addEventListener('scroll', function(){
-          if(!biNarrow()){ if(hid) setHid(false); return; }
-          var y = window.pageYOffset || 0;
-          if(y < 140) setHid(false);
-          else if(y > lastY + 6) setHid(true);
-          else if(y < lastY - 6) setHid(false);
-          lastY = y;
-        }, { passive: true });
-        window.addEventListener('resize', function(){ if(!biNarrow() && hid) setHid(false); }, { passive: true });
+        // 플로팅 버튼은 항상 표시 — 모바일에서 스크롤 시 후원·앱설치·질문 버튼이
+        // 사라져 '안 보인다'는 피드백 반영. (작고 모서리에 있어 콘텐츠를 거의 가리지 않음)
+        if(hid) setHid(false);
+        void lastY; void biNarrow;
       })();
     }
   }catch(e){}
