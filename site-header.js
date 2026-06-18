@@ -47,8 +47,7 @@
 
   var LOGO =
     '<a href="index.html" class="flex items-center gap-2 shrink-0">'
-    + '<span class="w-8 h-8 rounded-lg bg-ink flex items-center justify-center shrink-0">'
-    + '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#b8923f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.6C10.4 5.5 8.4 5 6 5C4.7 5 3.7 5.15 3 5.35V18.2C3.7 18 4.7 17.85 6 17.85C8.4 17.85 10.4 18.35 12 19.5"/><path d="M12 6.6C13.6 5.5 15.6 5 18 5C19.3 5 20.3 5.15 21 5.35V18.2C20.3 18 19.3 17.85 18 17.85C15.6 17.85 13.6 18.35 12 19.5"/><path d="M12 6.6V19.5"/></svg></span>'
+    + '<svg class="w-9 h-9 shrink-0" viewBox="0 0 48 48" role="img" aria-label="BIBLY"><rect x="9" y="9" width="30" height="30" rx="6" transform="rotate(45 24 24)" fill="#b8923f"/><text x="24" y="32.5" text-anchor="middle" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#15203a">B</text></svg>'
     + '<span class="leading-none"><span class="block font-extrabold text-[15px] tracking-tight">BIBLY<span class="text-gold">.</span></span>'
     + '<span class="block text-[9px] text-ink/45 tracking-wide mt-0.5">말씀으로 시대를 읽다</span></span></a>';
 
