@@ -144,7 +144,7 @@
         </span>
       </a>
       <!-- 메뉴는 페이지 맨 아래 MENU 목록에서 자동으로 그려집니다 -->
-      <div id="mainmenu" class="hidden xl:flex items-center gap-4 text-[14px] text-ink/70"></div>
+      <div id="mainmenu" class="hidden xl:flex items-center gap-5 text-[14.5px] font-medium text-ink/90"></div>
       <div class="flex items-center gap-2 ml-auto shrink-0">
         <a href="mylearning.html" class="hidden sm:inline-flex items-center gap-1.5 border border-gold/45 text-gold font-semibold text-sm px-4 py-2.5 rounded-full hover:bg-gold/10 transition">📚 내 강의실</a>
         <a href="support.html" aria-label="후원하기" title="후원하기" class="inline-flex items-center gap-1.5 rounded-full bg-rose-500/10 text-rose-500 border border-rose-300 font-semibold text-sm px-4 py-2.5 hover:bg-rose-500 hover:text-white transition shrink-0"><span style="font-size:15px">♥</span> 후원</a>
@@ -1318,15 +1318,15 @@
     function renderMenu(menu){
       if(!document.getElementById('biblyNavCSS')){
         var st=document.createElement('style'); st.id='biblyNavCSS';
-        st.textContent='.navItem{position:relative}.navItem>a{cursor:pointer}.navDrop{position:absolute;left:0;top:100%;padding-top:10px;opacity:0;visibility:hidden;transform:translateY(5px);transition:opacity .15s,transform .15s,visibility .15s;z-index:60}.navItem:hover .navDrop{opacity:1;visibility:visible;transform:none}.navDropCard{background:#fff;border:1px solid rgba(21,32,58,.1);border-radius:.8rem;box-shadow:0 16px 44px -18px rgba(21,32,58,.4);padding:.4rem;min-width:200px}.navDropCard a{display:block;padding:.55rem .75rem;border-radius:.55rem;font-size:.85rem;color:rgba(21,32,58,.72);white-space:nowrap}.navDropCard a:hover{background:rgba(184,146,63,.1);color:#b8923f}';
+        st.textContent='.navItem{position:relative}.navItem>a{cursor:pointer}.biblyTop{position:relative;padding:6px 2px;letter-spacing:-.005em;transition:color .18s}.biblyTop::after{content:"";position:absolute;left:2px;right:2px;bottom:0;height:2px;background:linear-gradient(90deg,#b8923f,#dcb866);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .22s cubic-bezier(.4,0,.2,1)}.biblyTop:hover::after,.navItem:hover>.biblyTop::after,.biblyOn::after{transform:scaleX(1)}.navDrop{position:absolute;left:0;top:100%;padding-top:12px;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .16s,transform .16s,visibility .16s;z-index:60}.navItem:hover .navDrop{opacity:1;visibility:visible;transform:none}.navDropCard{background:#fff;border:1px solid rgba(21,32,58,.08);border-radius:.9rem;box-shadow:0 18px 50px -20px rgba(21,32,58,.45);padding:.45rem;min-width:212px}.navDropCard a{display:flex;align-items:center;gap:.55rem;padding:.6rem .8rem;border-radius:.6rem;font-size:.875rem;font-weight:500;color:rgba(21,32,58,.82);white-space:nowrap;transition:background .15s,color .15s}.navDropCard a::before{content:"";width:5px;height:5px;border-radius:50%;background:rgba(184,146,63,.35);flex:none;transition:transform .15s,background .15s}.navDropCard a:hover{background:rgba(184,146,63,.1);color:#b8923f}.navDropCard a:hover::before{background:#b8923f;transform:scale(1.35)}';
         document.head.appendChild(st);
       }
       document.getElementById('mainmenu').innerHTML = (menu || []).map(m => {
         const href=_hrefI(m.href), kids=m.children||[];
-        if(!kids.length) return `<a href="${href}" class="hover:text-gold transition whitespace-nowrap">${m.label}</a>`;
-        const caret='<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="ml-0.5 opacity-70"><path d="M6 9l6 6 6-6"/></svg>';
+        if(!kids.length) return `<a href="${href}" class="biblyTop hover:text-gold transition whitespace-nowrap">${m.label}</a>`;
+        const caret='<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="ml-0.5 opacity-60"><path d="M6 9l6 6 6-6"/></svg>';
         const sub=kids.map(c=>`<a href="${_hrefI(c.href)}">${c.label}</a>`).join('');
-        return `<div class="navItem"><a href="${href}" class="hover:text-gold transition whitespace-nowrap inline-flex items-center">${m.label}${caret}</a><div class="navDrop"><div class="navDropCard">${sub}</div></div></div>`;
+        return `<div class="navItem"><a href="${href}" class="biblyTop hover:text-gold transition whitespace-nowrap inline-flex items-center">${m.label}${caret}</a><div class="navDrop"><div class="navDropCard">${sub}</div></div></div>`;
       }).join('');
       const mob = document.getElementById('mobilemenuLinks');
       if(mob) mob.innerHTML = (menu || []).map(m => {

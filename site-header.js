@@ -81,11 +81,11 @@
     return menu.map(function(m){
       var href = _hrefOf(m.href), kids = m.children || [];
       var on = _isOn(m.href) || kids.some(function(c){ return _isOn(c.href); });
-      var cls = on ? 'text-gold font-semibold' : 'hover:text-gold';
-      if(!kids.length) return '<a href="' + href + '" class="whitespace-nowrap ' + cls + '">' + esc(m.label) + '</a>';
-      var caret = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="ml-0.5 opacity-70"><path d="M6 9l6 6 6-6"/></svg>';
+      var cls = on ? 'text-gold font-semibold biblyOn' : 'hover:text-gold';
+      if(!kids.length) return '<a href="' + href + '" class="biblyTop whitespace-nowrap ' + cls + '">' + esc(m.label) + '</a>';
+      var caret = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="ml-0.5 opacity-60"><path d="M6 9l6 6 6-6"/></svg>';
       var sub = kids.map(function(c){ return '<a href="' + _hrefOf(c.href) + '">' + esc(c.label) + '</a>'; }).join('');
-      return '<div class="navItem"><a href="' + href + '" class="whitespace-nowrap inline-flex items-center ' + cls + '">' + esc(m.label) + caret + '</a>'
+      return '<div class="navItem"><a href="' + href + '" class="biblyTop whitespace-nowrap inline-flex items-center ' + cls + '">' + esc(m.label) + caret + '</a>'
         + '<div class="navDrop"><div class="navDropCard">' + sub + '</div></div></div>';
     }).join('');
   }
@@ -126,7 +126,7 @@
     return '<header class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-ink/8">'
       + '<div class="max-w-7xl mx-auto px-4 h-14 flex items-center gap-3">'
       + LOGO
-      + '<nav id="navmenu" class="hidden xl:flex items-center gap-4 text-sm text-ink/70 whitespace-nowrap pl-1">' + menuHTML(menu) + '</nav>'
+      + '<nav id="navmenu" class="hidden xl:flex items-center gap-5 text-[14.5px] font-medium text-ink/90 whitespace-nowrap pl-1">' + menuHTML(menu) + '</nav>'
       + '<div class="ml-auto flex items-center gap-2 sm:gap-3 text-sm shrink-0">' + authHTML()
       + '<button id="biblyHamb" aria-label="메뉴 열기" onclick="__biblyToggleMenu()" class="xl:hidden w-9 h-9 -mr-1 flex items-center justify-center rounded-lg hover:bg-ink/5 text-ink/70"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>'
       + '</div>'
@@ -177,11 +177,16 @@
     if(document.getElementById('biblyNavCSS')) return;
     var st = document.createElement('style'); st.id = 'biblyNavCSS';
     st.textContent = '.navItem{position:relative}.navItem>a{cursor:pointer}'
-      + '.navDrop{position:absolute;left:0;top:100%;padding-top:10px;opacity:0;visibility:hidden;transform:translateY(5px);transition:opacity .15s,transform .15s,visibility .15s;z-index:60}'
+      + '.biblyTop{position:relative;padding:6px 2px;letter-spacing:-.005em;transition:color .18s}'
+      + '.biblyTop::after{content:"";position:absolute;left:2px;right:2px;bottom:0;height:2px;background:linear-gradient(90deg,#b8923f,#dcb866);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .22s cubic-bezier(.4,0,.2,1)}'
+      + '.biblyTop:hover::after,.navItem:hover>.biblyTop::after,.biblyOn::after{transform:scaleX(1)}'
+      + '.navDrop{position:absolute;left:0;top:100%;padding-top:12px;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .16s,transform .16s,visibility .16s;z-index:60}'
       + '.navItem:hover .navDrop{opacity:1;visibility:visible;transform:none}'
-      + '.navDropCard{background:#fff;border:1px solid rgba(21,32,58,.1);border-radius:.8rem;box-shadow:0 16px 44px -18px rgba(21,32,58,.4);padding:.4rem;min-width:200px}'
-      + '.navDropCard a{display:block;padding:.55rem .75rem;border-radius:.55rem;font-size:.85rem;color:rgba(21,32,58,.72);white-space:nowrap}'
-      + '.navDropCard a:hover{background:rgba(184,146,63,.1);color:#b8923f}';
+      + '.navDropCard{background:#fff;border:1px solid rgba(21,32,58,.08);border-radius:.9rem;box-shadow:0 18px 50px -20px rgba(21,32,58,.45);padding:.45rem;min-width:212px}'
+      + '.navDropCard a{display:flex;align-items:center;gap:.55rem;padding:.6rem .8rem;border-radius:.6rem;font-size:.875rem;font-weight:500;color:rgba(21,32,58,.82);white-space:nowrap;transition:background .15s,color .15s}'
+      + '.navDropCard a::before{content:"";width:5px;height:5px;border-radius:50%;background:rgba(184,146,63,.35);flex:none;transition:transform .15s,background .15s}'
+      + '.navDropCard a:hover{background:rgba(184,146,63,.1);color:#b8923f}'
+      + '.navDropCard a:hover::before{background:#b8923f;transform:scale(1.35)}';
     document.head.appendChild(st);
   }
   function build(){
