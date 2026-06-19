@@ -16,6 +16,7 @@
     { label:'커리큘럼', href:'curriculum.html' },
     { label:'칼럼', href:'column.html' },
     { label:'질문·나눔·기도요청', href:'community.html' },
+    { label:'신앙상담', href:'counsel.html' },
     { label:'강의 요청·건의함', href:'request.html' },
     { label:'자료실', href:'resources.html' },
     { label:'성경 읽기', href:'bible.html' },

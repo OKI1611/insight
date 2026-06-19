@@ -101,12 +101,13 @@
     <div id="boardView" class="grid lg:grid-cols-[210px_1fr] gap-6">
       <!-- 좌측 보드 메뉴 -->
       <aside class="lg:sticky lg:top-20 h-fit">
-        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-2 grid grid-cols-2 lg:grid-cols-1 gap-1">
-          <button id="tab-qna" onclick="switchBoard('qna')" class="boardBtn"><span>📖</span><span>성경 구절 궁금증</span></button>
-          <button id="tab-counsel" onclick="switchBoard('counsel')" class="boardBtn"><span>🔒</span><span>신앙상담</span></button>
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-2 grid grid-cols-3 lg:grid-cols-1 gap-1">
+          <button id="tab-qna" onclick="switchBoard('qna')" class="boardBtn"><span>📖</span><span>성경·강의 질문</span></button>
           <button id="tab-free" onclick="switchBoard('free')" class="boardBtn"><span>💬</span><span>자유게시판</span></button>
           <button id="tab-prayer" onclick="switchBoard('prayer')" class="boardBtn"><span>🙏</span><span>기도요청</span></button>
         </div>
+        <!-- 신앙상담은 별도 메뉴(counsel.html)로 분리됨 -->
+        <a href="counsel.html" class="mt-2 flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-semibold text-ink/60 hover:bg-ink/[0.04] border border-dashed border-ink/15"><span>🕊️</span><span>비공개 신앙상담 →</span></a>
       </aside>
 
       <!-- 우측 콘텐츠 -->
@@ -140,7 +141,7 @@
 
     // 강의실에서 '강사에게 질문하기'로 넘어온 경우: Q&A 탭 + 질문 프리필
     const _qp = new URLSearchParams(location.search);
-    if(['qna','counsel','prayer','free'].includes(_qp.get('board'))) currentBoard = _qp.get('board');
+    if(['qna','prayer','free'].includes(_qp.get('board'))) currentBoard = _qp.get('board');
     const ASK_REF = _qp.get('ask');
     let askApplied = false;
 
