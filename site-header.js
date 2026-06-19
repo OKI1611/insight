@@ -11,7 +11,7 @@
   var ADMIN = 'josephoh1611@gmail.com';
   var DEFAULT_MENU = [
     { label:'무료로 시작하기', href:'welcome.html' },
-    { label:'소개', href:'about.html' },
+    { label:'BIBLY 이야기', href:'about.html' },
     { label:'강의·커리큘럼', href:'curriculum.html', children:[
       { label:'전체 커리큘럼', href:'curriculum.html' },
       { label:'나에게 맞는 강의 찾기', href:'find.html' },
