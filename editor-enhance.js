@@ -12,13 +12,28 @@
   ];
   window.BIBLY_EDITOR_FONTS = FONTS.map(function(f){ return f[0]; });
 
-  // 1) 폰트 whitelist 등록 (Quill 인스턴스 생성 전에 실행되도록 head에서 로드)
+  // 글자 크기 — 네이버 블로그式: [값(=인라인 font-size), 화면 라벨(=숫자)]
+  var SIZES = [
+    ['13px','13'], ['16px','16'], ['19px','19'],
+    ['22px','22'], ['26px','26'], ['30px','30'], ['36px','36']
+  ];
+  // Quill size whitelist (명시 크기만)
+  window.BIBLY_EDITOR_SIZE_VALUES = SIZES.map(function(s){ return s[0]; });
+  // 툴바 배열 — false='기본'(에디터 본문 크기, 약 15px), 13과 16 사이에 자연스럽게 배치
+  window.BIBLY_EDITOR_SIZES = ['13px', false, '16px', '19px', '22px', '26px', '30px', '36px'];
+
+  // 1) 폰트·크기 whitelist 등록 (Quill 인스턴스 생성 전에 실행되도록 head에서 로드)
   function registerFonts(){
     if(!window.Quill) return;
     try{
       var F = Quill.import('attributors/style/font');
       F.whitelist = window.BIBLY_EDITOR_FONTS.slice();
       Quill.register(F, true);
+    }catch(e){}
+    try{
+      var S = Quill.import('attributors/style/size');
+      S.whitelist = window.BIBLY_EDITOR_SIZE_VALUES.slice();
+      Quill.register(S, true);
     }catch(e){}
   }
   registerFonts();
@@ -43,12 +58,25 @@
       '#biblyImgBar button:active{background:rgba(255,255,255,.22)}',
       // 폰트 픽커
       '.ql-snow .ql-picker.ql-font{width:108px}',
-      ".ql-snow .ql-picker.ql-font .ql-picker-label::before,.ql-snow .ql-picker.ql-font .ql-picker-item::before{content:'기본'}"
+      ".ql-snow .ql-picker.ql-font .ql-picker-label::before,.ql-snow .ql-picker.ql-font .ql-picker-item::before{content:'기본'}",
+      // 글자크기 픽커 — 네이버 블로그式(넓은 메뉴 + 숫자 라벨 + 실제 크기 미리보기)
+      '.ql-snow .ql-picker.ql-size{width:62px}',
+      '.ql-snow .ql-picker.ql-size .ql-picker-label{padding-left:10px}',
+      '.ql-snow .ql-picker.ql-size .ql-picker-options{padding:5px 0;min-width:66px}',
+      '.ql-snow .ql-picker.ql-size .ql-picker-item{padding:6px 12px;line-height:1.1}',
+      ".ql-snow .ql-picker.ql-size .ql-picker-label:not([data-value])::before,.ql-snow .ql-picker.ql-size .ql-picker-item:not([data-value])::before{content:'기본'}"
     ];
     FONTS.forEach(function(f){
       var v = f[0], label = f[1];
       rules.push(".ql-snow .ql-picker.ql-font .ql-picker-label[data-value=\"" + v + "\"]::before,"
                + ".ql-snow .ql-picker.ql-font .ql-picker-item[data-value=\"" + v + "\"]::before{content:'" + label + "';font-family:" + v + "}");
+    });
+    SIZES.forEach(function(s){
+      var v = s[0], label = s[1], px = parseInt(v, 10), prev = Math.min(px, 30) + 'px';
+      // 툴바 버튼(접힘): 숫자만, 보통 크기
+      rules.push(".ql-snow .ql-picker.ql-size .ql-picker-label[data-value=\"" + v + "\"]::before{content:'" + label + "'}");
+      // 드롭다운 항목: 숫자 + 실제 크기로 미리보기(최대 30px로 제한해 메뉴 높이 안정)
+      rules.push(".ql-snow .ql-picker.ql-size .ql-picker-item[data-value=\"" + v + "\"]::before{content:'" + label + "';font-size:" + prev + "}");
     });
     var st = document.createElement('style'); st.id = 'biblyEditorCSS'; st.textContent = rules.join('\n');
     document.head.appendChild(st);
