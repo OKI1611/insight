@@ -37,6 +37,7 @@
   </script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+  <script src="/editor-enhance.js"></script>
   <script>
     const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
     const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
@@ -269,7 +270,7 @@
 
     function registerQuillStyles(){ if(window.__qReg || !window.Quill) return; window.__qReg = true;
       var S = Quill.import('attributors/style/size'); S.whitelist = ['13px','15px','17px','20px','24px','30px']; Quill.register(S, true);
-      var F = Quill.import('attributors/style/font'); F.whitelist = ['serif','monospace']; Quill.register(F, true);
+      /* 폰트 whitelist는 editor-enhance.js가 등록(다양한 한글 폰트) */
       var css = ".ql-snow .ql-picker.ql-size{width:82px}"
         + ".ql-snow .ql-picker.ql-size .ql-picker-label:not([data-value])::before,.ql-snow .ql-picker.ql-size .ql-picker-item:not([data-value])::before{content:'보통'}"
         + ".ql-snow .ql-picker.ql-size .ql-picker-label[data-value]::before,.ql-snow .ql-picker.ql-size .ql-picker-item[data-value]::before{content:attr(data-value)}"
@@ -285,7 +286,7 @@
         theme:'snow',
         placeholder:'블로그처럼 자유롭게 작성하세요… (워드·한글 글 복붙 OK)',
         modules:{ toolbar:[
-          [{ size:['13px','15px',false,'20px','24px','30px'] }, { font:['serif','monospace'] }],
+          [{ size:['13px','15px',false,'20px','24px','30px'] }, { font: (window.BIBLY_EDITOR_FONTS || ['serif','monospace']) }],
           [{ header:[1,2,3,false] }],
           ['bold','italic','underline','strike'],
           [{ color:[] }, { background:[] }],
