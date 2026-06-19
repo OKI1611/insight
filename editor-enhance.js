@@ -45,8 +45,9 @@
     document.head.appendChild(lk);
 
     var rules = [
-      // ② 툴바 고정 — 길게 써도 툴바가 위에 붙어 따라옴
-      '.ql-toolbar.ql-snow{position:sticky;top:0;z-index:30;background:#fff;box-shadow:0 4px 12px -6px rgba(21,32,58,.35)}',
+      // ② 툴바 고정 — 길게 써도 툴바가 상단 헤더 바로 아래에 붙어 따라옴
+      //    (top은 sticky 헤더 높이만큼 내려, 헤더에 가려지지 않게 — --bibly-hdr는 아래 JS가 측정)
+      '.ql-toolbar.ql-snow{position:sticky;top:var(--bibly-hdr,60px);z-index:30;background:#fff;box-shadow:0 6px 16px -9px rgba(21,32,58,.45)}',
       // ④ 반응형 이미지 (작성/표시 공통)
       '.ql-editor img,.post-body img,.article img,.col-read img,.res-body img,.req-body img,.community-content img{max-width:100%;height:auto;border-radius:8px}',
       // ③ 이미지 선택 표시
@@ -118,4 +119,17 @@
   document.addEventListener('click', onTap, true);
   window.addEventListener('scroll', function(){ if(selImg) positionBar(selImg); }, true);
   window.addEventListener('resize', function(){ if(selImg) positionBar(selImg); });
+
+  // 4) 툴바 sticky 오프셋 = 상단 고정(sticky) 헤더 높이 — 헤더에 가려지지 않도록 동적 측정
+  function setHeaderOffset(){
+    var h = document.querySelector('#siteHeader header') || document.querySelector('header.sticky') || document.querySelector('header');
+    var px = (h && h.offsetHeight) ? h.offsetHeight : 60;
+    document.documentElement.style.setProperty('--bibly-hdr', px + 'px');
+  }
+  setHeaderOffset();
+  window.addEventListener('load', setHeaderOffset);
+  window.addEventListener('resize', setHeaderOffset);
+  // 헤더는 site-header.js가 비동기로 mount하므로 잠시 뒤 재측정
+  setTimeout(setHeaderOffset, 800);
+  setTimeout(setHeaderOffset, 1800);
 })();
