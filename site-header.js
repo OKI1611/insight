@@ -11,17 +11,26 @@
   var ADMIN = 'josephoh1611@gmail.com';
   var DEFAULT_MENU = [
     { label:'무료로 시작하기', href:'welcome.html' },
-    { label:'우리의 사명', href:'about.html' },
-    { label:'나에게 맞는 강의 찾기', href:'find.html' },
-    { label:'커리큘럼', href:'curriculum.html' },
-    { label:'칼럼', href:'column.html' },
-    { label:'질문·나눔·기도요청', href:'community.html' },
-    { label:'신앙상담', href:'counsel.html' },
-    { label:'강의 요청·건의함', href:'request.html' },
-    { label:'자료실', href:'resources.html' },
-    { label:'성경 읽기', href:'bible.html' },
-    { label:'주제별 성경', href:'themes.html' },
-    { label:'위대한 믿음', href:'preachers.html' }
+    { label:'소개', href:'about.html' },
+    { label:'강의·커리큘럼', href:'curriculum.html', children:[
+      { label:'전체 커리큘럼', href:'curriculum.html' },
+      { label:'나에게 맞는 강의 찾기', href:'find.html' },
+      { label:'칼럼', href:'column.html' }
+    ]},
+    { label:'성경', href:'bible.html', children:[
+      { label:'성경 읽기', href:'bible.html' },
+      { label:'주제별 성경', href:'themes.html' }
+    ]},
+    { label:'위대한 믿음', href:'preachers.html', children:[
+      { label:'위대한 설교자', href:'preachers.html' },
+      { label:'위대한 기도자', href:'prayers.html' }
+    ]},
+    { label:'소통·나눔', href:'community.html', children:[
+      { label:'질문·나눔·기도요청', href:'community.html' },
+      { label:'신앙상담', href:'counsel.html' },
+      { label:'강의 요청·건의함', href:'request.html' },
+      { label:'자료실', href:'resources.html' }
+    ]}
   ];
 
   function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
@@ -66,12 +75,18 @@
 
   var mount, active;
 
+  function _hrefOf(h){ return String(h).charAt(0) === '#' ? ('index.html' + h) : h; }
+  function _isOn(h){ return _hrefOf(h).split('?')[0] === active; }
   function menuHTML(menu){
     return menu.map(function(m){
-      var hash = String(m.href).charAt(0) === '#';
-      var href = hash ? ('index.html' + m.href) : m.href;
-      var on = !hash && (href.split('?')[0] === active);
-      return '<a href="' + href + '" class="whitespace-nowrap ' + (on ? 'text-gold font-semibold' : 'hover:text-gold') + '">' + esc(m.label) + '</a>';
+      var href = _hrefOf(m.href), kids = m.children || [];
+      var on = _isOn(m.href) || kids.some(function(c){ return _isOn(c.href); });
+      var cls = on ? 'text-gold font-semibold' : 'hover:text-gold';
+      if(!kids.length) return '<a href="' + href + '" class="whitespace-nowrap ' + cls + '">' + esc(m.label) + '</a>';
+      var caret = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="ml-0.5 opacity-70"><path d="M6 9l6 6 6-6"/></svg>';
+      var sub = kids.map(function(c){ return '<a href="' + _hrefOf(c.href) + '">' + esc(c.label) + '</a>'; }).join('');
+      return '<div class="navItem"><a href="' + href + '" class="whitespace-nowrap inline-flex items-center ' + cls + '">' + esc(m.label) + caret + '</a>'
+        + '<div class="navDrop"><div class="navDropCard">' + sub + '</div></div></div>';
     }).join('');
   }
 
@@ -94,10 +109,11 @@
   // 모바일 드롭다운 메뉴(햄버거)
   function mobileMenuHTML(menu){
     var items = menu.map(function(m){
-      var hash = String(m.href).charAt(0) === '#';
-      var href = hash ? ('index.html' + m.href) : m.href;
-      var on = !hash && (href.split('?')[0] === active);
-      return '<a href="' + href + '" class="py-3 border-b border-ink/5 ' + (on ? 'text-gold font-semibold' : 'text-ink/75') + '">' + esc(m.label) + '</a>';
+      var href = _hrefOf(m.href), kids = m.children || [];
+      if(!kids.length) return '<a href="' + href + '" class="py-3 border-b border-ink/5 ' + (_isOn(m.href) ? 'text-gold font-semibold' : 'text-ink/75') + '">' + esc(m.label) + '</a>';
+      var head = '<a href="' + href + '" class="pt-3 pb-1 font-bold ' + (_isOn(m.href) ? 'text-gold' : 'text-ink/80') + '">' + esc(m.label) + '</a>';
+      var sub = kids.map(function(c){ return '<a href="' + _hrefOf(c.href) + '" class="py-2 pl-4 border-b border-ink/5 text-[14px] ' + (_isOn(c.href) ? 'text-gold font-semibold' : 'text-ink/60') + '">└ ' + esc(c.label) + '</a>'; }).join('');
+      return head + sub;
     }).join('');
     return '<div class="max-w-6xl mx-auto px-4 py-1 flex flex-col text-[15px]">' + items
       + '<a href="mylearning.html" class="py-3 border-b border-ink/5 text-gold font-semibold">📚 내 강의실</a>'
@@ -157,17 +173,30 @@
       + '</footer>';
   }
 
+  function injectNavCSS(){
+    if(document.getElementById('biblyNavCSS')) return;
+    var st = document.createElement('style'); st.id = 'biblyNavCSS';
+    st.textContent = '.navItem{position:relative}.navItem>a{cursor:pointer}'
+      + '.navDrop{position:absolute;left:0;top:100%;padding-top:10px;opacity:0;visibility:hidden;transform:translateY(5px);transition:opacity .15s,transform .15s,visibility .15s;z-index:60}'
+      + '.navItem:hover .navDrop{opacity:1;visibility:visible;transform:none}'
+      + '.navDropCard{background:#fff;border:1px solid rgba(21,32,58,.1);border-radius:.8rem;box-shadow:0 16px 44px -18px rgba(21,32,58,.4);padding:.4rem;min-width:200px}'
+      + '.navDropCard a{display:block;padding:.55rem .75rem;border-radius:.55rem;font-size:.85rem;color:rgba(21,32,58,.72);white-space:nowrap}'
+      + '.navDropCard a:hover{background:rgba(184,146,63,.1);color:#b8923f}';
+    document.head.appendChild(st);
+  }
   function build(){
     mount = document.getElementById('siteHeader');
     if(!mount) return;
+    injectNavCSS();
     active = mount.getAttribute('data-active') || (location.pathname.split('/').pop() || 'index.html');
     // 1) 기본 메뉴로 즉시 렌더(깜빡임 방지)
     mount.outerHTML = headerHTML(DEFAULT_MENU);
-    // 2) site.json 으로 메뉴 보강
+    // 2) site.json 으로 메뉴 보강(nav=그룹 우선, 없으면 menu)
     fetch('content/site.json?t=' + Date.now()).then(function(r){ return r.json(); }).then(function(s){
-      if(s && s.menu){
-        var nav = document.getElementById('navmenu'); if(nav) nav.innerHTML = menuHTML(s.menu);
-        var mob = document.getElementById('biblyMobMenu'); if(mob) mob.innerHTML = mobileMenuHTML(s.menu);
+      var mn = (s && s.nav && s.nav.length) ? s.nav : (s && s.menu);
+      if(mn){
+        var nav = document.getElementById('navmenu'); if(nav) nav.innerHTML = menuHTML(mn);
+        var mob = document.getElementById('biblyMobMenu'); if(mob) mob.innerHTML = mobileMenuHTML(mn);
       }
     }).catch(function(){});
     // 3) 로그인 이름 보강

@@ -1292,23 +1292,50 @@
   <script>
     // 메뉴 기본값(인터넷 연결 전/오류 시 대비 — 평소엔 site.json 값 사용)
     const DEFAULT_MENU = [
-      { label: '우리의 사명', href: 'about.html'    },
-      { label: '나에게 맞는 강의 찾기', href: 'find.html' },
-      { label: '커리큘럼', href: 'curriculum.html' },
-      { label: '칼럼', href: 'column.html' },
-      { label: '질문·나눔·기도요청', href: 'community.html' },
-      { label: '강의 요청·건의함', href: 'request.html' },
-      { label: '자료실',   href: 'resources.html' },
-      { label: '성경 읽기', href: 'bible.html'    },
+      { label:'무료로 시작하기', href:'welcome.html' },
+      { label:'소개', href:'about.html' },
+      { label:'강의·커리큘럼', href:'curriculum.html', children:[
+        { label:'전체 커리큘럼', href:'curriculum.html' },
+        { label:'나에게 맞는 강의 찾기', href:'find.html' },
+        { label:'칼럼', href:'column.html' }
+      ]},
+      { label:'성경', href:'bible.html', children:[
+        { label:'성경 읽기', href:'bible.html' },
+        { label:'주제별 성경', href:'themes.html' }
+      ]},
+      { label:'위대한 믿음', href:'preachers.html', children:[
+        { label:'위대한 설교자', href:'preachers.html' },
+        { label:'위대한 기도자', href:'prayers.html' }
+      ]},
+      { label:'소통·나눔', href:'community.html', children:[
+        { label:'질문·나눔·기도요청', href:'community.html' },
+        { label:'신앙상담', href:'counsel.html' },
+        { label:'강의 요청·건의함', href:'request.html' },
+        { label:'자료실', href:'resources.html' }
+      ]}
     ];
+    function _hrefI(h){ return String(h).charAt(0)==='#' ? ('index.html'+h) : h; }
     function renderMenu(menu){
-      document.getElementById('mainmenu').innerHTML = (menu || []).map(m =>
-        `<a href="${m.href}" class="hover:text-gold transition whitespace-nowrap">${m.label}</a>`
-      ).join('');
+      if(!document.getElementById('biblyNavCSS')){
+        var st=document.createElement('style'); st.id='biblyNavCSS';
+        st.textContent='.navItem{position:relative}.navItem>a{cursor:pointer}.navDrop{position:absolute;left:0;top:100%;padding-top:10px;opacity:0;visibility:hidden;transform:translateY(5px);transition:opacity .15s,transform .15s,visibility .15s;z-index:60}.navItem:hover .navDrop{opacity:1;visibility:visible;transform:none}.navDropCard{background:#fff;border:1px solid rgba(21,32,58,.1);border-radius:.8rem;box-shadow:0 16px 44px -18px rgba(21,32,58,.4);padding:.4rem;min-width:200px}.navDropCard a{display:block;padding:.55rem .75rem;border-radius:.55rem;font-size:.85rem;color:rgba(21,32,58,.72);white-space:nowrap}.navDropCard a:hover{background:rgba(184,146,63,.1);color:#b8923f}';
+        document.head.appendChild(st);
+      }
+      document.getElementById('mainmenu').innerHTML = (menu || []).map(m => {
+        const href=_hrefI(m.href), kids=m.children||[];
+        if(!kids.length) return `<a href="${href}" class="hover:text-gold transition whitespace-nowrap">${m.label}</a>`;
+        const caret='<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="ml-0.5 opacity-70"><path d="M6 9l6 6 6-6"/></svg>';
+        const sub=kids.map(c=>`<a href="${_hrefI(c.href)}">${c.label}</a>`).join('');
+        return `<div class="navItem"><a href="${href}" class="hover:text-gold transition whitespace-nowrap inline-flex items-center">${m.label}${caret}</a><div class="navDrop"><div class="navDropCard">${sub}</div></div></div>`;
+      }).join('');
       const mob = document.getElementById('mobilemenuLinks');
-      if(mob) mob.innerHTML = (menu || []).map(m =>
-        `<a href="${m.href}" onclick="closeMobileMenu()" class="py-2.5 border-b border-ink/5 text-ink/80 font-medium hover:text-gold transition">${m.label}</a>`
-      ).join('');
+      if(mob) mob.innerHTML = (menu || []).map(m => {
+        const href=_hrefI(m.href), kids=m.children||[];
+        if(!kids.length) return `<a href="${href}" onclick="closeMobileMenu()" class="py-2.5 border-b border-ink/5 text-ink/80 font-medium hover:text-gold transition">${m.label}</a>`;
+        const head=`<a href="${href}" onclick="closeMobileMenu()" class="pt-2.5 pb-1 font-bold text-ink/80">${m.label}</a>`;
+        const sub=kids.map(c=>`<a href="${_hrefI(c.href)}" onclick="closeMobileMenu()" class="py-2 pl-4 border-b border-ink/5 text-[14px] text-ink/60 hover:text-gold transition">└ ${c.label}</a>`).join('');
+        return head+sub;
+      }).join('');
     }
     function toggleMobileMenu(){ const m = document.getElementById('mobileMenu'); if(m) m.classList.toggle('hidden'); }
     function closeMobileMenu(){ const m = document.getElementById('mobileMenu'); if(m) m.classList.add('hidden'); }
@@ -1318,7 +1345,8 @@
     fetch('content/site.json?t=' + Date.now())
       .then(r => r.json())
       .then(site => {
-        if (site.menu && site.menu.length) renderMenu(site.menu);
+        var _mn = (site.nav && site.nav.length) ? site.nav : site.menu;
+        if (_mn && _mn.length) renderMenu(_mn);
 
         // 유튜브 채널 실적 신뢰 띠 — 실제 수치(site.json 스냅샷). API 키가 있으면 실시간으로 자동 갱신.
         (function(){
