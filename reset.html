@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>최신 버전으로 새로고침 — BIBLY</title>
+  <style>
+    html,body{margin:0;height:100%}
+    body{font-family:'Pretendard',system-ui,-apple-system,sans-serif;background:#15203a;color:#fcfaf6;
+         display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;box-sizing:border-box}
+    .box{max-width:340px}
+    .spin{width:42px;height:42px;border:4px solid rgba(255,255,255,.2);border-top-color:#b8923f;border-radius:50%;
+          margin:0 auto 22px;animation:r .9s linear infinite}
+    @keyframes r{to{transform:rotate(360deg)}}
+    h1{font-size:19px;margin:0 0 8px;font-weight:700}
+    p{font-size:14px;opacity:.75;line-height:1.6;margin:0}
+    a{color:#e7d6ac;font-weight:700}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="spin"></div>
+    <h1>최신 버전으로 새로고침 중…</h1>
+    <p id="msg">앱에 저장된 옛 데이터를 정리하고 있어요. 잠시만 기다려 주세요 🙏</p>
+  </div>
+  <script>
+    // 이 페이지는 공유 스크립트·서비스워커를 전혀 불러오지 않습니다.
+    // 갇힌 옛 캐시/서비스워커를 모두 제거한 뒤 홈으로 보냅니다.
+    (async function(){
+      try{
+        if('serviceWorker' in navigator){
+          var regs = await navigator.serviceWorker.getRegistrations();
+          for(var i=0;i<regs.length;i++){ try{ await regs[i].unregister(); }catch(e){} }
+        }
+      }catch(e){}
+      try{
+        if(window.caches){
+          var keys = await caches.keys();
+          for(var j=0;j<keys.length;j++){ try{ await caches.delete(keys[j]); }catch(e){} }
+        }
+      }catch(e){}
+      var m = document.getElementById('msg');
+      if(m) m.innerHTML = '완료됐어요! 홈 화면으로 이동합니다…<br><a href="/?v=' + Date.now() + '">바로 이동하기</a>';
+      setTimeout(function(){ location.replace('/?v=' + Date.now()); }, 800);
+    })();
+  </script>
+</body>
+</html>
