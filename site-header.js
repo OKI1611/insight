@@ -10,6 +10,7 @@
   var AK = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
   var ADMIN = 'josephoh1611@gmail.com';
   var DEFAULT_MENU = [
+    { label:'무료로 시작하기', href:'welcome.html' },
     { label:'우리의 사명', href:'about.html' },
     { label:'나에게 맞는 강의 찾기', href:'find.html' },
     { label:'커리큘럼', href:'curriculum.html' },

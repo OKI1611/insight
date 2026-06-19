@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <script src="/content-loader.js"></script>
+  <script src="/site-header.js?v=20260619c"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>무료로 시작하기 — BIBLY 바이블 인사이트 | 종말론·천년왕국·성경 무료 강의</title>
+  <meta name="description" content="천년왕국·종말론·성경을 평신도도 스스로 읽고 분별하도록. 100% 무료 강의 + 「천년왕국 연대표·핵심 성구 암송노트」 무료 PDF 증정. 지금 시작하세요." />
+  <link rel="canonical" href="https://biblynote.com/welcome" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BIBLY 바이블 인사이트" />
+  <meta property="og:title" content="종말이 두려운 시대, 성경을 스스로 읽는 눈 — BIBLY 무료 시작" />
+  <meta property="og:description" content="100% 무료 강의 + 「천년왕국 연대표·암송노트」 무료 PDF. 천년왕국·종말론을 기초부터 단계별로." />
+  <meta property="og:url" content="https://biblynote.com/welcome" />
+  <meta property="og:image" content="https://biblynote.com/images/og-cover.png?v=2" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#15203a" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink:'#15203a', navy:'#1b2a4a', gold:'#b8923f', sand:'#e9edf3', paper:'#f5f7fa' },
+      fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
+      boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 18px 50px -20px rgba(21,32,58,.28)' }
+    }}}
+  </script>
+  <style>
+    h1,h2,h3,.serif{font-family:'Noto Serif KR',Pretendard,serif}
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.in{opacity:1;transform:none}
+    .glow{background:radial-gradient(60% 60% at 50% 0%,rgba(184,146,63,.18),transparent 70%)}
+  </style>
+</head>
+<body class="font-sans bg-paper text-ink antialiased">
+
+  <div id="siteHeader" data-active="welcome.html"></div>
+
+  <!-- ===== HERO ===== -->
+  <section class="relative bg-ink text-paper overflow-hidden">
+    <div class="absolute inset-0 glow"></div>
+    <div class="relative max-w-5xl mx-auto px-5 pt-14 pb-16 md:pt-20 md:pb-20 text-center">
+      <p class="inline-flex items-center gap-2 bg-gold/15 text-gold text-xs font-bold px-3 py-1.5 rounded-full tracking-wide">BIBLY · 온라인 성경·신학 아카데미</p>
+      <h1 class="mt-6 text-[34px] md:text-[56px] font-black leading-[1.12] tracking-tight">
+        종말이 두려운 시대,<br/><span class="text-gold">성경을 스스로 읽는 눈</span>
+      </h1>
+      <p class="mt-5 text-paper/75 text-base md:text-xl leading-relaxed max-w-2xl mx-auto">
+        천년왕국·종말론·성경적 세계관을 <b class="text-paper">평신도도 스스로 읽고 분별하도록.</b><br class="hidden md:block"/>
+        어렵게만 느껴지던 예언을, 한 편씩 쉽고 깊이 있게.
+      </p>
+
+      <!-- 무료자료 신청 폼 (상단) -->
+      <div class="mt-9 max-w-xl mx-auto bg-white text-ink rounded-3xl shadow-card p-5 md:p-7 text-left">
+        <p class="text-center text-sm font-bold text-gold">🎁 지금 신청하면 무료 증정</p>
+        <p id="lmTitle1" class="text-center font-display font-bold text-lg md:text-xl mt-1 leading-snug">「천년왕국 연대표 한눈에 보기 + 핵심 성구 암송노트」 PDF</p>
+        <form onsubmit="getResource(event)" class="mt-4 grid sm:grid-cols-[1fr_1fr_auto] gap-2.5">
+          <input name="name" placeholder="이름(또는 닉네임)" class="bg-paper border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold" />
+          <input name="email" type="email" required placeholder="이메일 주소" class="bg-paper border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold" />
+          <button class="bg-gold text-white font-bold text-sm px-5 py-3 rounded-xl hover:opacity-90 transition whitespace-nowrap">무료 자료 받기</button>
+        </form>
+        <p class="text-[11px] text-ink/40 mt-2 text-center">이메일만 남기면 바로 받으실 수 있어요. 스팸·광고는 보내지 않습니다.</p>
+      </div>
+
+      <!-- 신뢰 띠 (실제 수치) -->
+      <div class="mt-9 flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-sm text-paper/70">
+        <span>📺 유튜브 구독 <b id="stSubs" class="text-gold">7,400+</b></span>
+        <span class="text-paper/25">·</span>
+        <span>👀 누적 조회 <b id="stViews" class="text-gold">144만+</b></span>
+        <span class="text-paper/25">·</span>
+        <span>🎬 무료 강의 <b id="stFree" class="text-gold">300편</b></span>
+      </div>
+      <p class="mt-6"><a href="watch.html" class="inline-flex items-center gap-2 text-paper/90 font-semibold text-sm hover:text-gold transition">▶ 먼저 무료 1강부터 보기</a></p>
+    </div>
+  </section>
+
+  <!-- ===== 공감(통점) ===== -->
+  <section class="py-16 md:py-20">
+    <div class="max-w-3xl mx-auto px-5 reveal">
+      <p class="text-center text-gold font-bold text-sm tracking-wide">혹시, 이런 고민 있으신가요?</p>
+      <div class="mt-6 space-y-3">
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft px-5 py-4 text-[15px] text-ink/80 leading-relaxed">💭 “재림·휴거·천년왕국… 궁금한데, <b class="text-ink">어디서 제대로 배워야 할지</b> 모르겠어요.”</div>
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft px-5 py-4 text-[15px] text-ink/80 leading-relaxed">💭 “유튜브엔 <b class="text-ink">자극적인 음모론</b>만 넘쳐나서 뭘 믿어야 할지….”</div>
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft px-5 py-4 text-[15px] text-ink/80 leading-relaxed">💭 “성경을 펴도 <b class="text-ink">요한계시록·다니엘</b>은 너무 어려워요.”</div>
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft px-5 py-4 text-[15px] text-ink/80 leading-relaxed">💭 “누가 ‘이건 이렇다’ 하면 <b class="text-ink">분별할 자신</b>이 없어요.”</div>
+      </div>
+      <p class="text-center text-ink/60 mt-7 text-[15px] leading-relaxed">괜찮습니다. <b class="text-ink">바로 그 자리에서 시작</b>하면 됩니다.<br/>BIBLY는 성경 본문과 원어, 역사적 맥락을 따라 <b class="text-gold">한 걸음씩</b> 안내합니다.</p>
+    </div>
+  </section>
+
+  <!-- ===== 이 질문들, 성경은? ===== -->
+  <section class="py-16 md:py-20 bg-ink text-paper">
+    <div class="max-w-4xl mx-auto px-5 text-center reveal">
+      <h2 class="text-2xl md:text-4xl font-bold leading-snug">이 질문들, <span class="text-gold">성경은 뭐라고 답할까요?</span></h2>
+      <div class="mt-9 grid sm:grid-cols-2 gap-3.5 text-left">
+        <div class="bg-white/[0.06] border border-white/10 rounded-2xl p-5"><p class="font-bold text-[17px]">휴거 후 7년 대환난,<br/>당신은 남으시겠습니까?</p></div>
+        <div class="bg-white/[0.06] border border-white/10 rounded-2xl p-5"><p class="font-bold text-[17px]">100세가 ‘어린아이’로<br/>여겨지는 시대가 온다?</p></div>
+        <div class="bg-white/[0.06] border border-white/10 rounded-2xl p-5"><p class="font-bold text-[17px]">짐승의 표 666의<br/>진짜 정체는?</p></div>
+        <div class="bg-white/[0.06] border border-white/10 rounded-2xl p-5"><p class="font-bold text-[17px]">죽은 신자는<br/>지금 어디에 있을까?</p></div>
+      </div>
+      <p class="mt-8 text-paper/70 text-[15px]">한 편씩 따라가다 보면, 흩어져 있던 종말의 큰 그림이 <b class="text-paper">하나로 꿰어집니다.</b></p>
+      <a href="watch.html" class="mt-7 inline-flex items-center gap-2 bg-gold text-white font-bold px-7 py-3.5 rounded-full hover:opacity-90 transition">▶ 무료로 1강 시작하기</a>
+    </div>
+  </section>
+
+  <!-- ===== 무엇을 얻나 ===== -->
+  <section class="py-16 md:py-20">
+    <div class="max-w-5xl mx-auto px-5">
+      <h2 class="text-center text-2xl md:text-3xl font-bold reveal">BIBLY에서 무엇을 얻나요?</h2>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <a href="watch.html" class="reveal bg-white rounded-2xl border border-ink/8 shadow-soft p-6 hover:-translate-y-1 hover:shadow-card transition block">
+          <span class="text-3xl">📺</span><h3 class="font-bold text-lg mt-3">100% 무료 강의</h3><p class="text-sm text-ink/60 mt-1.5 leading-relaxed">회원가입 없이, 평생 무제한 소장.</p></a>
+        <a href="curriculum.html" class="reveal bg-white rounded-2xl border border-ink/8 shadow-soft p-6 hover:-translate-y-1 hover:shadow-card transition block">
+          <span class="text-3xl">📚</span><h3 class="font-bold text-lg mt-3">단계별 커리큘럼</h3><p class="text-sm text-ink/60 mt-1.5 leading-relaxed">기초→고급, 주제별 트랙으로 정주행.</p></a>
+        <a href="preachers.html" class="reveal bg-white rounded-2xl border border-ink/8 shadow-soft p-6 hover:-translate-y-1 hover:shadow-card transition block">
+          <span class="text-3xl">🎙️</span><h3 class="font-bold text-lg mt-3">위대한 믿음</h3><p class="text-sm text-ink/60 mt-1.5 leading-relaxed">스펄전·에드워즈 등 명설교를 한 편씩.</p></a>
+        <a href="curriculum.html?tab=academy" class="reveal bg-white rounded-2xl border border-ink/8 shadow-soft p-6 hover:-translate-y-1 hover:shadow-card transition block">
+          <span class="text-3xl">🎓</span><h3 class="font-bold text-lg mt-3">수료 인증 과정</h3><p class="text-sm text-ink/60 mt-1.5 leading-relaxed">시험·학점·수료증으로 실력 공인 <span class="text-ink/40">(일부 유료)</span></p></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 사회적 증거 ===== -->
+  <section class="py-14 bg-sand/60">
+    <div class="max-w-4xl mx-auto px-5 text-center reveal">
+      <p class="text-gold font-bold text-sm">이미 수천 명이 함께 배우고 있습니다</p>
+      <p class="mt-3 text-ink/70 text-[15px] leading-relaxed">유튜브 <b class="text-ink">「오광일의 인사이트 브리핑」</b> 채널에서 이미 많은 분들이 함께 말씀을 공부하고 있어요.<br/>그 모든 강의가 이 사이트에 <b class="text-ink">체계적으로 정리</b>돼 있습니다.</p>
+      <div class="mt-7 grid grid-cols-3 gap-3 max-w-xl mx-auto">
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft py-5"><p class="font-display text-2xl md:text-3xl font-bold text-gold">7,400+</p><p class="text-xs text-ink/55 mt-1">구독자</p></div>
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft py-5"><p class="font-display text-2xl md:text-3xl font-bold text-gold">144만+</p><p class="text-xs text-ink/55 mt-1">누적 조회</p></div>
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft py-5"><p class="font-display text-2xl md:text-3xl font-bold text-gold">300편</p><p class="text-xs text-ink/55 mt-1">무료 강의</p></div>
+      </div>
+      <p class="mt-4 text-[11px] text-ink/40">2012년 개설 · 실제 채널 통계 기준</p>
+    </div>
+  </section>
+
+  <!-- ===== 강사 ===== -->
+  <section class="py-16 md:py-20">
+    <div class="max-w-3xl mx-auto px-5 reveal">
+      <div class="bg-ink text-paper rounded-3xl p-7 md:p-10 text-center">
+        <p class="text-gold text-xs font-bold tracking-[0.2em]">YOUR GUIDE</p>
+        <h2 class="text-2xl md:text-3xl font-bold mt-3">대표강사 · 오광일 전도자</h2>
+        <p class="mt-4 text-paper/75 text-[15px] leading-relaxed">
+          성균관대 교육학 박사(교육측정평가) · 미국 <b class="text-paper">West Coast Baptist College 신학 석사(M.R.E)</b>.<br/>
+          <b class="text-paper">교육과 신학</b>을 모두 갖춘 강의로, 어려운 예언도 누구나 따라올 수 있게 풀어냅니다.
+        </p>
+        <p class="mt-5 text-paper/60 text-sm italic">“성경을 스스로 읽는 눈을 길러, 흔들리지 않는 분별의 사람을 세우는 것 — 그것이 이 사역의 이유입니다.”</p>
+        <a href="about.html" class="mt-6 inline-block text-gold font-semibold text-sm hover:underline">→ 더 자세한 이야기 보기</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 무료자료 (하단 반복 폼) ===== -->
+  <section class="py-16 md:py-20 bg-gradient-to-b from-paper to-sand/70">
+    <div class="max-w-2xl mx-auto px-5 text-center reveal">
+      <span class="text-4xl">🎁</span>
+      <h2 class="text-2xl md:text-3xl font-bold mt-3 leading-snug">먼저, <span class="text-gold">무료 자료</span>부터 받아보세요</h2>
+      <p id="lmTitle2" class="mt-3 text-ink/70 text-[15px] leading-relaxed">「천년왕국 연대표 한눈에 보기 + 핵심 성구 암송노트」 PDF — 종말의 큰 그림을 한 장에 정리했습니다.</p>
+      <div class="mt-7 bg-white rounded-3xl shadow-card border border-ink/8 p-5 md:p-7 text-left">
+        <form onsubmit="getResource(event)" class="grid sm:grid-cols-[1fr_1fr_auto] gap-2.5">
+          <input name="name" placeholder="이름(또는 닉네임)" class="bg-paper border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold" />
+          <input name="email" type="email" required placeholder="이메일 주소" class="bg-paper border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold" />
+          <button class="bg-gold text-white font-bold text-sm px-5 py-3 rounded-xl hover:opacity-90 transition whitespace-nowrap">무료 자료 받기</button>
+        </form>
+        <p class="text-[11px] text-ink/40 mt-2 text-center">이메일만 남기면 바로 받으실 수 있어요.</p>
+      </div>
+      <p class="mt-8 text-ink/55 text-sm">자료를 받으신 뒤, <a href="watch.html" class="text-gold font-semibold hover:underline">무료 강의 1강</a>으로 이어가 보세요.</p>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="py-14 bg-white border-t border-ink/8">
+    <div class="max-w-2xl mx-auto px-5">
+      <h2 class="text-center text-xl font-bold reveal">자주 묻는 질문</h2>
+      <div class="mt-6 space-y-2.5 text-sm">
+        <details class="bg-paper rounded-xl border border-ink/8 p-4"><summary class="font-semibold cursor-pointer">정말 무료인가요?</summary><p class="mt-2 text-ink/65 leading-relaxed">네, 모든 강의는 100% 무료입니다. 회원가입 없이도 보실 수 있어요. (수료 인증 과정만 일부 유료)</p></details>
+        <details class="bg-paper rounded-xl border border-ink/8 p-4"><summary class="font-semibold cursor-pointer">초보자도 따라갈 수 있나요?</summary><p class="mt-2 text-ink/65 leading-relaxed">물론입니다. 기초부터 단계별로 구성되어 있어, 성경이 처음이어도 한 편씩 따라오실 수 있습니다.</p></details>
+        <details class="bg-paper rounded-xl border border-ink/8 p-4"><summary class="font-semibold cursor-pointer">무료 자료는 어떻게 받나요?</summary><p class="mt-2 text-ink/65 leading-relaxed">위 신청란에 이메일을 남기시면 바로 다운로드하실 수 있습니다.</p></details>
+        <details class="bg-paper rounded-xl border border-ink/8 p-4"><summary class="font-semibold cursor-pointer">휴대폰·앱에서도 볼 수 있나요?</summary><p class="mt-2 text-ink/65 leading-relaxed">네, 휴대폰·태블릿 모두 가능하고, 홈 화면에 앱으로 설치하면 더 편하게 보실 수 있어요.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 최종 CTA ===== -->
+  <section class="py-16 md:py-20 bg-ink text-paper text-center">
+    <div class="max-w-2xl mx-auto px-5 reveal">
+      <h2 class="text-2xl md:text-4xl font-bold leading-snug">말씀으로 시대를 읽는 눈,<br/><span class="text-gold">지금 시작하세요</span></h2>
+      <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="watch.html" class="bg-gold text-white font-bold px-8 py-4 rounded-full hover:opacity-90 transition">▶ 무료 1강 시작하기</a>
+        <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="border border-white/25 px-8 py-4 rounded-full hover:bg-white/10 transition">🎁 무료 자료 받기</a>
+      </div>
+      <p class="mt-6 text-paper/50 text-xs">© BIBLY 바이블 인사이트 · 말씀으로 시대를 읽다</p>
+    </div>
+  </section>
+
+  <script>
+    // 리드마그넷 제목·파일을 site.json에서 동적 반영(CMS 편집 가능)
+    var LEAD_FILE = '/files/종말핵심-한눈에-보기.pdf';
+    fetch('content/site.json?t=' + Date.now()).then(r => r.json()).then(s => {
+      if(s.leadmagnet && s.leadmagnet.title){ var t1=document.getElementById('lmTitle1'), t2=document.getElementById('lmTitle2');
+        if(t1) t1.textContent = '「' + s.leadmagnet.title.replace(/^[「『]|[」』]$/g,'') + '」'; }
+      if(s.leadmagnet && s.leadmagnet.file) LEAD_FILE = s.leadmagnet.file;
+      if(s.youtube && s.youtube.stats){ var st=s.youtube.stats;
+        var a=document.getElementById('stSubs'), b=document.getElementById('stViews'), c=document.getElementById('stFree');
+        if(a&&st.subscribers)a.textContent=st.subscribers; if(b&&st.views)b.textContent=st.views; if(c&&st.free_lectures)c.textContent=st.free_lectures; }
+    }).catch(function(){});
+
+    async function getResource(e){
+      e.preventDefault();
+      var f = e.target;
+      var name = (f.querySelector('[name=name]').value || '').trim();
+      var email = (f.querySelector('[name=email]').value || '').trim();
+      if(!email){ return; }
+      var btn = f.querySelector('button'); btn.disabled = true; btn.textContent = '보내는 중…';
+      try{
+        await fetch('https://api.web3forms.com/submit', {
+          method:'POST', headers:{ 'Content-Type':'application/json' },
+          body: JSON.stringify({ access_key:'8de9d22a-81a8-411d-99e2-90b38d21a062', subject:'[BIBLY] 무료자료 신청', from_name:'BIBLY 무료자료', 이름:name||'(미입력)', 이메일:email })
+        });
+      }catch(_){}
+      // 성공 → 다운로드 안내로 교체
+      f.outerHTML = '<div class="bg-gold/10 border border-gold/40 rounded-2xl p-5 text-center">'
+        + '<p class="font-bold text-ink">✅ 신청 완료! 아래에서 자료를 받으세요.</p>'
+        + '<a href="' + LEAD_FILE + '" target="_blank" rel="noopener" class="mt-3 inline-flex items-center gap-2 bg-gold text-white font-bold px-6 py-3 rounded-full hover:opacity-90 transition">📄 무료 자료 다운로드</a>'
+        + '<p class="text-[11px] text-ink/45 mt-2">다운로드가 안 되면 contact@biblynote.com 으로 문의해 주세요.</p></div>';
+    }
+
+    // 스크롤 등장 애니메이션
+    var io = new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } }); }, { threshold:0.12 });
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  </script>
+
+  <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script src="auth-header.js?v=20260619c"></script>
+</body>
+</html>
