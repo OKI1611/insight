@@ -21,3 +21,9 @@ tools/_digests*.txt
 
 _qgen.py
 _missing_quiz.txt
+
+# PWABuilder 안드로이드 패키지(서명키 keystore 포함) — 절대 커밋 금지
+바이블 인사이트 어플/
+*.keystore
+*.aab
+*.apk
