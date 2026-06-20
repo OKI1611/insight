@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <script src="/content-loader.js"></script>
+  <script src="/site-header.js?v=20260619c"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>고객센터 · 주문·배송·반품 안내 — BIBLY 북스토어</title>
+  <meta name="theme-color" content="#213a6b" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="canonical" href="https://biblynote.com/store-help" />
+  <meta name="description" content="BIBLY 북스토어 고객센터 — 주문 방법, 결제, 발송·배송, 교환·반품·환불·청약철회 안내." />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink:'#213a6b', navy:'#182c54', gold:'#b8923f', sand:'#eaf0f8', paper:'#f7f9fc' },
+      fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
+      boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
+    }}}
+  </script>
+  <style>h1,h2,h3{font-family:'Noto Serif KR',Pretendard,serif}html{scroll-behavior:smooth}</style>
+</head>
+<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+
+  <div id="siteHeader" data-active="booklet.html"></div>
+
+  <section class="bg-white border-b border-ink/8">
+    <div class="max-w-3xl mx-auto px-5 py-12 md:py-14 text-center">
+      <p class="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-3">Customer Center</p>
+      <h1 class="text-2xl md:text-3xl font-bold">고객센터 · 이용안내</h1>
+      <p class="text-ink/60 text-sm mt-3">주문 · 결제 · 발송/배송 · 교환/반품/환불을 한눈에 확인하세요.</p>
+      <div class="flex flex-wrap justify-center gap-2 mt-5 text-sm">
+        <a href="#order" class="border border-ink/12 rounded-full px-4 py-1.5 hover:bg-ink/5">주문 방법</a>
+        <a href="#pay" class="border border-ink/12 rounded-full px-4 py-1.5 hover:bg-ink/5">결제</a>
+        <a href="#ship" class="border border-ink/12 rounded-full px-4 py-1.5 hover:bg-ink/5">발송·배송</a>
+        <a href="#refund" class="border border-ink/12 rounded-full px-4 py-1.5 hover:bg-ink/5">교환·반품·환불</a>
+        <a href="#faq" class="border border-ink/12 rounded-full px-4 py-1.5 hover:bg-ink/5">FAQ</a>
+      </div>
+    </div>
+  </section>
+
+  <main class="max-w-3xl mx-auto px-5 py-12 space-y-12">
+
+    <!-- 주문 방법 -->
+    <section id="order" class="scroll-mt-20">
+      <h2 class="text-xl font-bold mb-5 flex items-center gap-2"><span class="text-gold">①</span> 주문 방법</h2>
+      <div class="grid sm:grid-cols-3 gap-3">
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5"><p class="text-2xl mb-2">📚</p><p class="font-bold">1. 책 고르기</p><p class="text-sm text-ink/60 mt-1.5 leading-relaxed"><a href="booklet.html" class="text-gold underline">북스토어</a>에서 과정을 고르고 ‘미리보기’로 내용을 확인하세요.</p></div>
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5"><p class="text-2xl mb-2">🧾</p><p class="font-bold">2. 주문서 작성</p><p class="text-sm text-ink/60 mt-1.5 leading-relaxed">‘구매’를 눌러 이름·이메일·연락처와 상품 형태(PDF/실물)를 선택합니다.</p></div>
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5"><p class="text-2xl mb-2">💳</p><p class="font-bold">3. 결제</p><p class="text-sm text-ink/60 mt-1.5 leading-relaxed">무통장입금·카카오페이·간편결제 중 선택해 결제하시면 주문 완료!</p></div>
+      </div>
+    </section>
+
+    <!-- 결제 -->
+    <section id="pay" class="scroll-mt-20">
+      <h2 class="text-xl font-bold mb-5 flex items-center gap-2"><span class="text-gold">②</span> 결제 안내</h2>
+      <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-6 space-y-4 text-sm leading-relaxed">
+        <div>
+          <p class="font-bold text-ink mb-1">🏦 무통장입금(계좌이체)</p>
+          <p id="payBank" class="text-ink/70">계좌 정보를 불러오는 중…</p>
+          <p class="text-ink/45 text-xs mt-1">입금자명에 <b>주문번호</b> 또는 <b>주문자 이름</b>을 적어주시면 확인이 빠릅니다.</p>
+        </div>
+        <div class="border-t border-ink/8 pt-4">
+          <p class="font-bold text-ink mb-1">💛 카카오페이 / ⚡ 간편결제</p>
+          <p class="text-ink/70">주문서에서 선택하시면 송금·결제 링크를 안내해 드립니다. 송금 메모에 주문번호를 남겨주세요.</p>
+          <div id="payLinks" class="flex flex-wrap gap-2 mt-2"></div>
+        </div>
+        <div class="border-t border-ink/8 pt-4">
+          <p class="font-bold text-ink mb-1">🌐 해외(Overseas)</p>
+          <p class="text-ink/70">PayPal 등으로 결제하실 수 있습니다. <a id="ppLink" href="#" target="_blank" rel="noopener" class="text-gold underline">PayPal</a></p>
+        </div>
+        <p class="text-ink/40 text-xs border-t border-ink/8 pt-3">※ 카드 자동결제(PG)는 사업자 등록 완료 후 도입 예정입니다. 현재는 입금·간편송금으로 진행됩니다.</p>
+      </div>
+    </section>
+
+    <!-- 발송·배송 -->
+    <section id="ship" class="scroll-mt-20">
+      <h2 class="text-xl font-bold mb-5 flex items-center gap-2"><span class="text-gold">③</span> 발송 · 배송 안내</h2>
+      <div class="grid sm:grid-cols-2 gap-3">
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5">
+          <p class="font-bold flex items-center gap-1.5">📄 PDF 자료집</p>
+          <ul class="text-sm text-ink/65 mt-2 space-y-1.5 leading-relaxed">
+            <li>· 결제(입금·송금) <b class="text-ink/80">확인 즉시</b> 입력하신 이메일로 발송</li>
+            <li>· 보통 영업시간 기준 수 시간 내(최대 1일)</li>
+            <li>· 다운로드 후 개인 소장용으로 자유롭게 보관·인쇄</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5">
+          <p class="font-bold flex items-center gap-1.5">📦 실물 제본 책자</p>
+          <ul class="text-sm text-ink/65 mt-2 space-y-1.5 leading-relaxed">
+            <li>· 인쇄·제본 후 택배 발송 (영업일 기준 <b class="text-ink/80">2~5일</b>)</li>
+            <li>· 인쇄·제본비와 배송비는 별도이며 주문 후 최종 금액 안내</li>
+            <li>· 주문 폭주·공휴일 시 발송이 늦어질 수 있습니다</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 교환·반품·환불·청약철회 -->
+    <section id="refund" class="scroll-mt-20">
+      <h2 class="text-xl font-bold mb-5 flex items-center gap-2"><span class="text-gold">④</span> 교환 · 반품 · 환불 · 청약철회</h2>
+      <div class="space-y-3">
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5">
+          <p class="font-bold text-ink mb-2">📄 디지털 콘텐츠(PDF)</p>
+          <ul class="text-sm text-ink/65 space-y-1.5 leading-relaxed">
+            <li>· <b class="text-ink/80">발송(다운로드·열람) 전</b>에는 7일 이내 청약철회(전액 환불)가 가능합니다.</li>
+            <li>· 콘텐츠 특성상 <b class="text-ink/80">PDF가 발송·다운로드·열람된 이후에는</b> 「전자상거래법」에 따라 청약철회가 제한될 수 있습니다(복제가 가능한 디지털 재화).</li>
+            <li>· 단, <b class="text-ink/80">결제 금액과 다르게 청구</b>되었거나 <b class="text-ink/80">파일이 손상되어 열람이 불가</b>한 경우 등은 전액 환불 또는 정상본 재발송해 드립니다.</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5">
+          <p class="font-bold text-ink mb-2">📦 실물 제본 책자</p>
+          <ul class="text-sm text-ink/65 space-y-1.5 leading-relaxed">
+            <li>· <b class="text-ink/80">단순 변심</b>: 수령일로부터 7일 이내 반품 가능(왕복 배송비는 구매자 부담). 단, 포장 훼손·사용 흔적이 있으면 제한될 수 있습니다.</li>
+            <li>· <b class="text-ink/80">파본·오배송·불량</b>: 무료로 교환 또는 환불해 드립니다(배송비 당사 부담).</li>
+            <li>· 주문 제작(인쇄·제본) 특성상 <b class="text-ink/80">제작 착수 후 단순 변심 취소</b>는 제한될 수 있습니다.</li>
+          </ul>
+        </div>
+        <div class="bg-sand/60 border border-gold/25 rounded-2xl p-5">
+          <p class="font-bold text-ink mb-1.5">환불 절차</p>
+          <p class="text-sm text-ink/70 leading-relaxed">환불 요청은 <b>주문번호 + 주문자 이름</b>과 함께 <a id="refundMail" href="#" class="text-gold underline">이메일</a> 또는 채널톡으로 접수해 주세요. 확인 후 영업일 기준 3~5일 내에 입금/송금 수단으로 환불해 드립니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="scroll-mt-20">
+      <h2 class="text-xl font-bold mb-5 flex items-center gap-2"><span class="text-gold">⑤</span> 자주 묻는 질문</h2>
+      <div class="space-y-3">
+        <details class="bg-white rounded-xl border border-ink/8 p-4"><summary class="font-semibold cursor-pointer text-sm">강의 노트는 무료라던데, 책자는 왜 유료인가요?</summary><p class="text-sm text-ink/60 mt-2.5 leading-relaxed">강의와 노트는 앞으로도 무료로 보실 수 있어요. 책자는 한 과정의 노트를 <b class="text-ink/75">표지·목차와 함께 한 권으로 편집·합본</b>해, 소장·인쇄·선물하기 좋게 만든 제작물입니다. 그 편집·제작에 대한 비용입니다.</p></details>
+        <details class="bg-white rounded-xl border border-ink/8 p-4"><summary class="font-semibold cursor-pointer text-sm">결제하면 언제 받나요?</summary><p class="text-sm text-ink/60 mt-2.5 leading-relaxed">입금·송금이 확인되면 PDF는 이메일로 즉시(보통 수 시간 내), 실물 제본은 2~5영업일 내 발송됩니다.</p></details>
+        <details class="bg-white rounded-xl border border-ink/8 p-4"><summary class="font-semibold cursor-pointer text-sm">주문 내역/진행 상황은 어디서 보나요?</summary><p class="text-sm text-ink/60 mt-2.5 leading-relaxed">주문 시 받으신 <b class="text-ink/75">주문번호</b>와 이메일로 안내드리며, 진행 상황이 궁금하시면 주문번호와 함께 문의해 주세요.</p></details>
+        <details class="bg-white rounded-xl border border-ink/8 p-4"><summary class="font-semibold cursor-pointer text-sm">세금계산서·현금영수증이 되나요?</summary><p class="text-sm text-ink/60 mt-2.5 leading-relaxed">사업자 등록 완료 후 발행해 드릴 수 있습니다. 필요하시면 주문 시 메모로 알려주세요.</p></details>
+      </div>
+    </section>
+
+    <!-- 문의 -->
+    <section class="scroll-mt-20">
+      <div class="bg-ink text-paper rounded-3xl p-7 md:p-8 text-center">
+        <h2 class="text-xl font-bold">더 궁금한 점이 있으신가요?</h2>
+        <p class="text-paper/70 text-sm mt-2">주문번호와 함께 문의해 주시면 빠르게 도와드릴게요.</p>
+        <div class="flex flex-wrap justify-center gap-2.5 mt-5">
+          <a id="contactMail" href="#" class="bg-gold text-white font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition text-sm">✉️ 이메일 문의</a>
+          <button onclick="(window.__biblyChat?__biblyChat():location.href='community.html?board=qna')" class="bg-paper/10 border border-paper/20 text-paper font-semibold px-5 py-2.5 rounded-full hover:bg-paper/15 transition text-sm">💬 실시간 채팅</button>
+        </div>
+      </div>
+      <p class="text-center text-ink/35 text-xs mt-5 leading-relaxed">※ 통신판매업 신고·사업자 정보 등 법적 표기는 사업자 등록 완료 후 본 페이지에 게시됩니다.</p>
+    </section>
+  </main>
+
+  <script>
+    function won(v){ return '₩'+(Number(v)||0).toLocaleString(); }
+    (async function(){
+      let s={}; try{ s=(await (await fetch('content/site.json?t='+Date.now())).json()).support||{}; }catch(e){}
+      const mail = s.contact_email || 'josephoh1611@gmail.com';
+      const bank = document.getElementById('payBank');
+      if(s.bank_account){ bank.innerHTML = (s.bank_name||'') + ' <b class="text-ink">' + s.bank_account + '</b> (예금주 ' + (s.bank_holder||'') + ')'; }
+      else { bank.textContent = '주문 접수 후 입금 계좌를 이메일로 안내해 드립니다.'; }
+      const links = document.getElementById('payLinks');
+      if(s.kakaopay_url) links.insertAdjacentHTML('beforeend','<a href="'+s.kakaopay_url+'" target="_blank" rel="noopener" class="bg-[#FEE500] text-[#191600] font-bold px-4 py-2 rounded-lg text-sm">💛 카카오페이 송금</a>');
+      if(s.simplepay_url) links.insertAdjacentHTML('beforeend','<a href="'+s.simplepay_url+'" target="_blank" rel="noopener" class="bg-ink text-white font-bold px-4 py-2 rounded-lg text-sm">⚡ 간편결제</a>');
+      const pp=document.getElementById('ppLink'); if(s.paypal_url) pp.href=s.paypal_url; else pp.style.display='none';
+      document.getElementById('refundMail').href = 'mailto:'+mail+'?subject=' + encodeURIComponent('[BIBLY 북스토어] 환불/반품 문의');
+      document.getElementById('contactMail').href = 'mailto:'+mail+'?subject=' + encodeURIComponent('[BIBLY 북스토어] 문의');
+    })();
+  </script>
+
+  <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script src="auth-header.js?v=20260619c"></script>
+</body>
+</html>
