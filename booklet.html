@@ -43,20 +43,28 @@
     .cover .ctitle{font-family:'Noto Serif KR',serif;font-weight:700;font-size:16.5px;line-height:1.32;text-shadow:0 1px 6px rgba(0,0,0,.25)}
     .cover .crule{width:32px;height:3px;background:#c8a455;border-radius:2px;margin:7px 0}
     .cover .cmeta{font-size:10.5px;opacity:.82}
-    /* 책자 본문(뷰어/인쇄) */
-    .book{font-family:'Noto Serif KR',Pretendard,serif;color:#1c2b46}
+    /* 책자 본문(뷰어/인쇄) — 줄간격 넉넉히, 강의 필기·참고용 */
+    .book{font-family:'Noto Serif KR',Pretendard,serif;color:#1c2b46;line-height:1.75}
     .book .lesson{page-break-before:always}
-    .book h2.bk-title{font-size:21px;font-weight:700;color:#213a6b;border-bottom:2px solid #b8923f;padding-bottom:8px;margin:0 0 14px}
-    .book h3.bk-h{font-size:15.5px;font-weight:700;color:#213a6b;margin:18px 0 6px}
-    .book p.bk-p{font-size:13.5px;line-height:1.85;margin:6px 0;color:#2a3a55}
-    .book .bk-thesis{background:#eaf0f8;border-left:3px solid #213a6b;border-radius:8px;padding:11px 14px;font-weight:600;color:#213a6b;font-size:14px;line-height:1.7}
-    .book .bk-scr{background:#faf7ef;border:1px solid #e6dcc3;border-radius:8px;padding:9px 12px;margin:5px 0;font-size:12.5px}
+    .book .ch-label{font-size:11.5px;font-weight:800;letter-spacing:.18em;color:#b8923f;margin:0 0 5px}
+    .book h2.bk-title{font-size:20px;font-weight:700;color:#213a6b;border-bottom:2px solid #b8923f;padding-bottom:9px;margin:0 0 16px;line-height:1.45}
+    .book h3.bk-h{font-size:15px;font-weight:700;color:#213a6b;margin:22px 0 8px}
+    .book p.bk-p{font-size:13.5px;line-height:2.05;margin:9px 0;color:#2a3a55}
+    .book .bk-thesis{background:#eaf0f8;border-left:3px solid #213a6b;border-radius:8px;padding:13px 16px;font-weight:600;color:#213a6b;font-size:14px;line-height:1.85;margin:4px 0 10px}
+    .book .bk-scr{background:#faf7ef;border:1px solid #e6dcc3;border-radius:8px;padding:11px 14px;margin:7px 0;font-size:12.5px;line-height:1.8}
     .book .bk-scr b{color:#9a7b30}
-    .book ul.bk-ul{margin:5px 0 5px 2px;padding:0;list-style:none}
-    .book ul.bk-ul li{font-size:13px;line-height:1.7;padding-left:15px;position:relative;color:#33415e}
+    .book ul.bk-ul{margin:7px 0 9px 2px;padding:0;list-style:none}
+    .book ul.bk-ul li{font-size:13px;line-height:1.95;padding-left:16px;position:relative;color:#33415e;margin:3px 0}
     .book ul.bk-ul li::before{content:'·';position:absolute;left:3px;color:#b8923f;font-weight:700}
-    .book .bk-term{font-size:12.5px;line-height:1.6;margin:3px 0}.book .bk-term b{color:#213a6b}
-    .book .bk-mis{font-size:12.5px;line-height:1.65;margin:4px 0}.book .bk-mis .w{color:#b4524a}.book .bk-mis .r{color:#2f7d57}
+    .book .bk-term{font-size:12.5px;line-height:1.85;margin:5px 0}.book .bk-term b{color:#213a6b}
+    .book .bk-mis{font-size:12.5px;line-height:1.8;margin:7px 0}.book .bk-mis .w{color:#b4524a}.book .bk-mis .r{color:#2f7d57}
+    /* 목차(책 틀) */
+    .book .toc-list{list-style:none;margin:6px 0 0;padding:0}
+    .book .toc-row{display:flex;align-items:baseline;gap:12px;padding:8px 2px;border-bottom:1px dotted #d6ddea}
+    .book .toc-no{flex-shrink:0;font-size:11.5px;font-weight:800;color:#b8923f;letter-spacing:.04em;min-width:42px}
+    .book .toc-t{flex:1;font-size:13.5px;color:#2a3a55;line-height:1.55}
+    /* 필기 공간 — 화면에선 숨기고 인쇄(PDF)에서만 표시 */
+    .book .note-area{display:none}
     @media print{ .no-print{display:none!important} }
   </style>
 </head>
@@ -346,8 +354,12 @@
         if(!data.expires_at) return true;
         return new Date(data.expires_at).getTime() > Date.now();
       }catch(e){ return false; } }
+    // 강의 제목을 책에 맞게 정리(밑줄→가운뎃점, 공백 정리)
+    function cleanTitle(t){ return String(t||'').replace(/_/g,' · ').replace(/\s*\|\s*/g,' · ').replace(/\s+/g,' ').trim(); }
+    // 강의별 필기 공간(괘선) — 화면엔 숨김, PDF에만 표시
+    function noteAreaHTML(lines){ let n=''; const c=lines||7; for(let i=0;i<c;i++) n+='<div class="nline"></div>'; return `<div class="note-area"><p class="note-h">✍️ 강의 필기</p>${n}</div>`; }
     function noteHTML(n,title,idx){ if(!n) return '';
-      let h=`<div class="lesson"><h2 class="bk-title">${idx}. ${esc(title)}</h2>`;
+      let h=`<div class="lesson"><p class="ch-label">제${idx}강</p><h2 class="bk-title">${esc(cleanTitle(title))}</h2>`;
       if(n.thesis) h+=`<p class="bk-thesis">${esc(n.thesis)}</p>`;
       if(n.overview) String(n.overview).split('\n').forEach(p=>{if(p.trim())h+=`<p class="bk-p">${esc(p.trim())}</p>`;});
       if(n.background){h+=`<h3 class="bk-h">📜 배경</h3>`;String(n.background).split('\n').forEach(p=>{if(p.trim())h+=`<p class="bk-p">${esc(p.trim())}</p>`;});}
@@ -372,9 +384,13 @@
       const lessons=t.lessons.map(le=>({id:id11(le.youtube||le.id||''),title:le.title||''}));
       const loadList=unlocked?lessons:lessons.slice(0,1);
       const notes=await Promise.all(loadList.map(async l=>{try{const r=await fetch('content/notes/'+l.id+'.json?t='+Date.now());if(r.ok)return await r.json();}catch(e){}return null;}));
-      let h=`<div style="text-align:center;padding:34px 0 30px;border-bottom:1px solid #e6e9f0"><p style="color:#b8923f;font-weight:700;letter-spacing:.28em;font-size:11px;margin:0 0 12px">BIBLY 바이블 인사이트 · 자료집</p><h1 style="font-size:30px;font-weight:700;color:#213a6b;line-height:1.3;margin:0 12px">${esc(t.name)}</h1><p style="color:#5a6b88;font-size:13px;margin:14px 0 0">요약노트 합본 · 전 ${t.lessons.length}강</p><p style="color:#9aa6bd;font-size:11px;margin:18px 0 0">말씀으로 시대를 읽다 · biblynote.com</p></div>`;
-      h+=`<div style="padding:18px 2px"><p style="font-weight:700;color:#213a6b;font-size:15px;margin:0 0 8px">목차</p><ol style="margin:0;padding-left:20px">`+lessons.map(l=>`<li style="font-size:13px;line-height:1.9;color:#33415e">${esc(l.title)}</li>`).join('')+`</ol></div>`;
-      notes.forEach((n,i)=>{ h+= n?noteHTML(n,lessons[i].title,i+1):`<div class="lesson"><h2 class="bk-title">${i+1}. ${esc(lessons[i].title)}</h2><p class="bk-p" style="color:#9aa6bd">이 강의의 노트는 준비 중입니다.</p></div>`; });
+      let h=`<div class="cover-page" style="text-align:center;padding:42px 0 34px;border-bottom:1px solid #e6e9f0"><p style="color:#b8923f;font-weight:700;letter-spacing:.28em;font-size:11px;margin:0 0 14px">BIBLY 바이블 인사이트 · 강의 노트</p><h1 style="font-size:29px;font-weight:700;color:#213a6b;line-height:1.4;margin:0 12px">${esc(t.name)}</h1><p style="color:#5a6b88;font-size:13px;margin:16px 0 0">요약노트 + 필기 공간 · 전 ${t.lessons.length}강</p><p style="color:#9aa6bd;font-size:11px;margin:20px 0 0">강의를 들으며 메모하고 참고하세요 · biblynote.com</p></div>`;
+      h+=`<section style="padding:24px 2px 8px"><p style="font-weight:700;color:#213a6b;font-size:17px;margin:0 0 3px">목차</p><p style="color:#9aa6bd;font-size:11px;margin:0 0 8px">전 ${lessons.length}강</p><ul class="toc-list">`+lessons.map((l,i)=>`<li class="toc-row"><span class="toc-no">제${i+1}강</span><span class="toc-t">${esc(cleanTitle(l.title))}</span></li>`).join('')+`</ul></section>`;
+      notes.forEach((n,i)=>{
+        const body = n ? noteHTML(n,lessons[i].title,i+1)
+          : `<div class="lesson"><p class="ch-label">제${i+1}강</p><h2 class="bk-title">${esc(cleanTitle(lessons[i].title))}</h2><p class="bk-p" style="color:#9aa6bd">이 강의의 요약노트는 준비 중입니다. 아래 공간에 직접 필기해 보세요.</p></div>`;
+        h += body + noteAreaHTML();
+      });
       const pdfBtn=$('bvPdf');
       if(unlocked){
         // 구매 인증 완료 → PDF 다운로드 정상 작동
@@ -392,20 +408,29 @@
     // 책자 본문 스타일(인쇄 문서에 그대로 주입) — 모두 OFL 폰트 + hex 색상(저작권·렌더링 안전)
     const BOOK_CSS = `
       *{box-sizing:border-box}
-      body.book{font-family:'Noto Serif KR',Pretendard,serif;color:#1c2b46;margin:0;line-height:1.6;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      body.book{font-family:'Noto Serif KR',Pretendard,serif;color:#1c2b46;margin:0;line-height:1.78;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      .book .cover-page{page-break-after:always;break-after:page}
       .book .lesson{page-break-before:always;break-before:page}
-      .book h2.bk-title{font-size:21px;font-weight:700;color:#213a6b;border-bottom:2px solid #b8923f;padding-bottom:8px;margin:0 0 14px}
-      .book h3.bk-h{font-size:15.5px;font-weight:700;color:#213a6b;margin:18px 0 6px}
-      .book p.bk-p{font-size:13.5px;line-height:1.85;margin:6px 0;color:#2a3a55}
-      .book .bk-thesis{background:#eaf0f8;border-left:3px solid #213a6b;border-radius:8px;padding:11px 14px;font-weight:600;color:#213a6b;font-size:14px;line-height:1.7}
-      .book .bk-scr{background:#faf7ef;border:1px solid #e6dcc3;border-radius:8px;padding:9px 12px;margin:5px 0;font-size:12.5px}
+      .book .ch-label{font-size:11.5px;font-weight:800;letter-spacing:.18em;color:#b8923f;margin:0 0 6px}
+      .book h2.bk-title{font-size:20px;font-weight:700;color:#213a6b;border-bottom:2px solid #b8923f;padding-bottom:9px;margin:0 0 16px;line-height:1.45}
+      .book h3.bk-h{font-size:15px;font-weight:700;color:#213a6b;margin:22px 0 8px}
+      .book p.bk-p{font-size:13px;line-height:2.1;margin:10px 0;color:#2a3a55}
+      .book .bk-thesis{background:#eaf0f8;border-left:3px solid #213a6b;border-radius:8px;padding:13px 16px;font-weight:600;color:#213a6b;font-size:13.5px;line-height:1.9;margin:4px 0 12px}
+      .book .bk-scr{background:#faf7ef;border:1px solid #e6dcc3;border-radius:8px;padding:11px 14px;margin:8px 0;font-size:12px;line-height:1.85}
       .book .bk-scr b{color:#9a7b30}
-      .book ul.bk-ul{margin:5px 0 5px 2px;padding:0;list-style:none}
-      .book ul.bk-ul li{font-size:13px;line-height:1.7;padding-left:15px;position:relative;color:#33415e}
+      .book ul.bk-ul{margin:8px 0 10px 2px;padding:0;list-style:none}
+      .book ul.bk-ul li{font-size:12.5px;line-height:2;padding-left:16px;position:relative;color:#33415e;margin:4px 0}
       .book ul.bk-ul li::before{content:'·';position:absolute;left:3px;color:#b8923f;font-weight:700}
-      .book .bk-term{font-size:12.5px;line-height:1.6;margin:3px 0}.book .bk-term b{color:#213a6b}
-      .book .bk-mis{font-size:12.5px;line-height:1.65;margin:4px 0}.book .bk-mis .w{color:#b4524a}.book .bk-mis .r{color:#2f7d57}
-      h2.bk-title,h3.bk-h,.bk-thesis,.bk-scr{break-inside:avoid}
+      .book .bk-term{font-size:12px;line-height:1.9;margin:6px 0}.book .bk-term b{color:#213a6b}
+      .book .bk-mis{font-size:12px;line-height:1.85;margin:8px 0}.book .bk-mis .w{color:#b4524a}.book .bk-mis .r{color:#2f7d57}
+      .book .toc-list{list-style:none;margin:6px 0 0;padding:0}
+      .book .toc-row{display:flex;align-items:baseline;gap:12px;padding:9px 2px;border-bottom:1px dotted #d6ddea}
+      .book .toc-no{flex-shrink:0;font-size:11.5px;font-weight:800;color:#b8923f;letter-spacing:.04em;min-width:42px}
+      .book .toc-t{flex:1;font-size:13px;color:#2a3a55;line-height:1.6}
+      .book .note-area{display:block;margin:18px 0 4px;break-inside:avoid}
+      .book .note-h{font-size:11.5px;font-weight:800;letter-spacing:.04em;color:#b8923f;margin:0 0 12px}
+      .book .nline{height:30px;border-bottom:1px solid #d8dee9}
+      h2.bk-title,h3.bk-h,.bk-thesis,.bk-scr,.note-h+.nline{break-inside:avoid}
     `;
     // 인쇄(벡터) 방식 PDF — 길이 제한 없음 + 진짜 글자(검색 가능) + OFL 폰트 임베딩
     function printDoc(title, innerHTML){
