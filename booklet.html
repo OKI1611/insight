@@ -213,7 +213,13 @@
     }
 
     /* ---------------- 책 뷰어 ---------------- */
+    function storedEmail(){
+      try{ for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); if(!/auth-token/.test(k)) continue;
+        const v=JSON.parse(localStorage.getItem(k)); const s=(v&&v.user)?v:(v&&v.currentSession)?v.currentSession:null;
+        if(s&&s.user&&s.user.email) return s.user.email; } }catch(e){} return null;
+    }
     async function isAdmin(){
+      if(storedEmail()===ADMIN_EMAIL) return true;   // 사이트 표준(localStorage) 우선
       try{ const { data } = await sb.auth.getSession(); return !!(data && data.session && data.session.user && data.session.user.email===ADMIN_EMAIL); }catch(e){ return false; }
     }
     function noteHTML(n, title, idx){
