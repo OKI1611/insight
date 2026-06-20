@@ -1039,7 +1039,7 @@
             <li>✓ 강의 영상 (평생 시청)</li>
             <li>✓ 전자책 (PDF)</li>
             <li>✓ 중요성구 암송노트</li>
-            <li>✓ <b class="text-gold">인쇄본 책 + 배송</b></li>
+            <li>✓ <b class="text-gold">인쇄본 책 + 배송</b> <span class="text-[11px] font-semibold text-ink/40">(준비중)</span></li>
           </ul>
           <a href="#contact" class="buyBtn mt-8 text-center border border-gold text-gold rounded-full py-3 hover:bg-gold/10 transition">선택하기</a>
         </div>
@@ -1302,7 +1302,7 @@
 
       <!-- STEP 2: 가입 정보(프로필) 입력 -->
       <form id="authStep2" onsubmit="return saveProfile(event)" class="space-y-3 hidden">
-        <p class="text-sm text-ink/70 bg-gold/10 rounded-xl px-4 py-3">로그인 완료! 배송·연락을 위해 아래 정보를 입력해 주세요.</p>
+        <p class="text-sm text-ink/70 bg-gold/10 rounded-xl px-4 py-3">로그인 완료! 안내·연락을 위해 아래 정보를 입력해 주세요.</p>
         <div>
           <label class="text-sm font-medium">실명 <span class="text-gold">*</span></label>
           <input id="pf_name" required placeholder="홍길동" class="mt-1 w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold"/>
@@ -1316,8 +1316,8 @@
           <input id="pf_email" required type="email" placeholder="you@example.com" class="mt-1 w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold"/>
         </div>
         <div>
-          <label class="text-sm font-medium">주소 <span class="text-ink/40 font-normal">(인쇄본 배송 시 필요)</span></label>
-          <input id="pf_address" placeholder="배송받을 주소" class="mt-1 w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold"/>
+          <label class="text-sm font-medium">주소 <span class="text-ink/40 font-normal">(선택 · 실물 배송 준비 중)</span></label>
+          <input id="pf_address" placeholder="주소 (선택)" class="mt-1 w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold"/>
         </div>
         <div class="space-y-2 pt-2">
           <label class="flex items-start gap-2 text-sm text-ink/70">
