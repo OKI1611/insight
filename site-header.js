@@ -21,7 +21,8 @@
     ]},
     { label:'성경', href:'bible.html', children:[
       { label:'성경 읽기', href:'bible.html' },
-      { label:'주제별 성경', href:'themes.html' }
+      { label:'주제별 성경', href:'themes.html' },
+      { label:'성경사전', href:'dictionary.html' }
     ]},
     { label:'위대한 믿음', href:'preachers.html', children:[
       { label:'위대한 설교자', href:'preachers.html' },

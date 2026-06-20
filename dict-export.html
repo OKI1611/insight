@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>비블리 성경사전 — 원고 내보내기 (관리자) · BIBLY</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { ink:'#213a6b', navy:'#182c54', gold:'#b8923f', sand:'#eaf0f8', paper:'#f7f9fc' }, fontFamily:{ sans:['Pretendard','system-ui','sans-serif'] }, boxShadow:{ soft:'0 2px 10px -4px rgba(21,32,58,.10)' } }}}
+  </script>
+  <style>h1,h2{font-family:'Noto Serif KR',Pretendard,serif}</style>
+</head>
+<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+  <header class="bg-ink text-paper"><div class="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between"><a href="index.html" class="font-bold text-sm">BIBLY <span class="text-gold">바이블 인사이트</span></a><span class="text-[11px] text-paper/60">🔒 관리자 전용 · 비공개</span></div></header>
+
+  <div id="lock" class="hidden max-w-md mx-auto px-4 py-24 text-center">
+    <div class="text-5xl mb-4">🔒</div>
+    <h1 class="text-xl font-bold">준비 중인 페이지입니다</h1>
+    <p class="text-ink/55 text-sm mt-3 leading-relaxed">관리자 작업용 페이지입니다. 성경사전은 <a href="dictionary.html" class="text-gold underline">성경사전 코너</a>에서 검색해 보실 수 있어요.</p>
+  </div>
+
+  <main id="dash" class="hidden max-w-3xl mx-auto px-4 py-8">
+    <div class="text-center mb-7">
+      <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">ADMIN · 원고 내보내기</p>
+      <h1 class="text-2xl font-bold">비블리 성경사전 — 책 원고</h1>
+      <p class="text-ink/55 text-sm mt-2.5">완성된 사전을 <b class="text-ink">Word·PDF 책 원고</b>로 내려받습니다. (출간·소장용)</p>
+    </div>
+    <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 md:p-6 text-center">
+      <p class="text-3xl font-bold"><span id="cnt" class="text-gold">–</span><span class="text-base text-ink/40 font-semibold"> 표제어</span></p>
+      <div class="flex flex-wrap justify-center gap-2.5 mt-5">
+        <button onclick="doExport('doc')" class="bg-ink text-paper text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-navy transition">📄 Word(.doc) 내려받기</button>
+        <button onclick="doExport('pdf')" class="bg-gold text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition">📕 PDF 내려받기</button>
+      </div>
+      <p id="msg" class="text-xs text-ink/50 mt-3 min-h-[16px]"></p>
+      <p class="text-[11px] text-ink/40 mt-2">표제어를 추가한 뒤 이 페이지에서 다시 내보내면 최신본이 반영됩니다.</p>
+    </div>
+    <p class="text-[11px] text-ink/35 text-center mt-6">PDF는 인쇄창에서 대상(목적지)을 “PDF로 저장”으로 선택하세요. Word(.doc)는 Word/한글에서 열어 편집·출간하세요.</p>
+  </main>
+
+  <script>
+    const SUPABASE_URL='https://bmxkndkwefdgsomlznoo.supabase.co';
+    const SUPABASE_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+    const ADMIN_EMAIL='josephoh1611@gmail.com';
+    const $=id=>document.getElementById(id);
+    const esc=s=>String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+    const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON,{auth:{flowType:'implicit',lock:async(_n,_t,fn)=>await fn()}});
+    let DATA=[];
+    function storedEmail(){ try{ for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); if(!/auth-token/.test(k)) continue; const v=JSON.parse(localStorage.getItem(k)); const s=(v&&v.user)?v:(v&&v.currentSession)?v.currentSession:null; if(s&&s.user&&s.user.email) return s.user.email; } }catch(e){} return null; }
+    async function isAdmin(){ if(storedEmail()===ADMIN_EMAIL) return true; try{ const {data}=await sb.auth.getSession(); return !!(data&&data.session&&data.session.user&&data.session.user.email===ADMIN_EMAIL); }catch(e){ return false; } }
+
+    (async function(){
+      if(!(await isAdmin())){ $('lock').classList.remove('hidden'); return; }
+      $('dash').classList.remove('hidden');
+      try{ DATA=await (await fetch('dictionary/entries.json?t='+Date.now())).json(); }catch(e){ DATA=[]; }
+      DATA.sort((a,b)=>(a.term||'').localeCompare(b.term||'','ko'));
+      $('cnt').textContent=DATA.length.toLocaleString();
+    })();
+
+    const CHO=['ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+    function initialOf(s){ const c=(s||'').charCodeAt(0); if(c>=0xAC00&&c<=0xD7A3){ return CHO[Math.floor((c-0xAC00)/588)].replace('ㄲ','ㄱ').replace('ㄸ','ㄷ').replace('ㅃ','ㅂ').replace('ㅆ','ㅅ').replace('ㅉ','ㅈ'); } return '#'; }
+
+    const DOC_CSS=`body{font-family:'Noto Serif KR','맑은 고딕',serif;line-height:1.85;font-size:11pt;color:#1a1a1a}
+      .cover{text-align:center;padding:50pt 0 36pt;page-break-after:always}.cover .t{font-size:30pt;font-weight:700;color:#213a6b}.cover .s{font-size:11pt;color:#888;margin-top:10pt}
+      h2.sec{font-size:18pt;font-weight:700;color:#213a6b;border-bottom:2px solid #b8923f;padding-bottom:5pt;margin:22pt 0 10pt;page-break-before:always}
+      .e{margin:0 0 11pt;page-break-inside:avoid}
+      .e .h{font-size:12.5pt;font-weight:700;color:#213a6b}.e .en{font-size:9.5pt;color:#7a7f88;font-weight:400}.e .cat{font-size:8pt;color:#b8923f;font-weight:700}
+      .e .o{font-size:9pt;color:#8a7a55;margin:1pt 0}
+      .e .d{font-size:10.5pt;margin:3pt 0;text-align:justify}
+      .e .m{font-size:9.5pt;color:#555;background:#f3f1ea;border-left:2px solid #c8a455;padding:4pt 7pt;margin:3pt 0}
+      .e .sc{font-size:9pt;color:#9a7b30;margin-top:2pt}.e .rl{font-size:9pt;color:#888}`;
+
+    function coverHTML(){ return `<div class="cover"><div class="t">비블리 성경사전</div><div class="s">원어로 읽는 말씀 키워드</div><div class="s" style="margin-top:16pt;font-size:9.5pt">히브리어·헬라어 원어 · 영어 용어 · 관련 성구 — 자체 집필<br/>BIBLY 바이블 인사이트 · biblynote.com</div></div>`; }
+    function entryHTML(e){
+      const sc=(e.scriptures||[]).length?`<div class="sc">▸ ${(e.scriptures||[]).map(esc).join(', ')}</div>`:'';
+      const rl=(e.related||[]).length?`<div class="rl">관련: ${(e.related||[]).map(esc).join(', ')}</div>`:'';
+      const o=e.original?`<div class="o">원어 · ${esc(e.original)}</div>`:'';
+      const m=e.note?`<div class="m">💡 ${esc(e.note)}</div>`:'';
+      return `<div class="e"><p class="h">${esc(e.term)} <span class="en">${esc(e.en||'')}</span> <span class="cat">${esc(e.category||'')}</span></p>${o}<div class="d">${esc(e.def||'')}</div>${m}${sc}${rl}</div>`;
+    }
+    function buildBody(){
+      let body=''; let cur='';
+      const groups={};
+      DATA.forEach(e=>{ const k=initialOf(e.term); (groups[k]=groups[k]||[]).push(e); });
+      CHO.filter((v,i,a)=>a.indexOf(v)===i).map(c=>c.replace('ㄲ','ㄱ').replace('ㄸ','ㄷ').replace('ㅃ','ㅂ').replace('ㅆ','ㅅ').replace('ㅉ','ㅈ')).filter((v,i,a)=>a.indexOf(v)===i).concat(['#']).forEach(k=>{
+        if(!groups[k]) return;
+        body+=`<h2 class="sec">${k}</h2>`+groups[k].map(entryHTML).join('');
+      });
+      return body;
+    }
+
+    function printDoc(title, inner){
+      const ifr=document.createElement('iframe'); ifr.style.cssText='position:fixed;right:0;bottom:0;width:0;height:0;border:0;visibility:hidden';
+      document.body.appendChild(ifr); const doc=ifr.contentWindow.document;
+      doc.open(); doc.write('<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><title>'+esc(title)+'</title><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet"><style>@page{size:A4;margin:16mm 15mm}body{-webkit-print-color-adjust:exact;print-color-adjust:exact}'+DOC_CSS+'</style></head><body>'+inner+'</body></html>'); doc.close();
+      const go=()=>{ try{ ifr.contentWindow.focus(); ifr.contentWindow.print(); }catch(e){} setTimeout(()=>{try{ifr.remove();}catch(_){}} ,1500); };
+      let done=false; const fire=()=>{ if(done) return; done=true; go(); };
+      try{ const fs=ifr.contentWindow.document.fonts; if(fs&&fs.ready) fs.ready.then(()=>setTimeout(fire,300)); }catch(e){}
+      setTimeout(fire,1400);
+    }
+
+    function doExport(kind){
+      if(!DATA.length){ $('msg').textContent='표제어가 없습니다.'; return; }
+      $('msg').textContent='원고를 만드는 중입니다…';
+      const title='비블리 성경사전 — 원어로 읽는 말씀 키워드';
+      const body=buildBody();
+      if(kind==='doc'){
+        const head='<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><title>'+esc(title)+'</title><style>'+DOC_CSS+'</style></head><body>';
+        const blob=new Blob(['﻿'+head+coverHTML()+body+'</body></html>'],{type:'application/msword'});
+        const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=title+'.doc'; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),4000);
+        $('msg').textContent='✅ Word(.doc) 파일을 내려받았습니다.';
+      } else {
+        printDoc(title, coverHTML()+body);
+        $('msg').textContent='✅ 인쇄창에서 대상을 “PDF로 저장”으로 선택하세요.';
+      }
+    }
+  </script>
+</body>
+</html>
