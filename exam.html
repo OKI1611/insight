@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>수료 시험 — BIBLY 바이블 인사이트</title>
   <link rel="manifest" href="/manifest.json" />
-  <meta name="theme-color" content="#15203a" />
+  <meta name="theme-color" content="#213a6b" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png" />
@@ -25,7 +25,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { theme: { extend: {
-      colors: { ink:'#15203a', navy:'#1b2a4a', gold:'#b8923f', sand:'#efe7d6', paper:'#fcfaf6' },
+      colors: { ink:'#213a6b', navy:'#182c54', gold:'#b8923f', sand:'#eaf0f8', paper:'#f7f9fc' },
       fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
       boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
     }}}
@@ -41,7 +41,7 @@
     .opt{transition:all .12s ease}
     .opt.sel{border-color:#b8923f;background:#b8923f24;box-shadow:0 0 0 2px #b8923f}
     .opt.sel>span:first-child{background:#b8923f;color:#fff;border-color:#b8923f}
-    .opt.sel>span:last-child{color:#15203a;font-weight:600}
+    .opt.sel>span:last-child{color:#213a6b;font-weight:600}
     .opt.correct{border-color:#16a34a;background:#16a34a1c}
     .opt.correct>span:first-child{background:#16a34a;color:#fff;border-color:#16a34a}
     .opt.wrong{border-color:#dc2626;background:#dc262614}
@@ -380,15 +380,15 @@
     // ── 요약노트 PDF ──
     function noteHTML(){
       const n=EXAM.studyNote||{};
-      const sec=(t,inner)=>inner?`<h3 style="font-size:15px;font-weight:700;color:#15203a;margin:16px 0 7px">${t}</h3>${inner}`:'';
+      const sec=(t,inner)=>inner?`<h3 style="font-size:15px;font-weight:700;color:#213a6b;margin:16px 0 7px">${t}</h3>${inner}`:'';
       const kp=(n.keyPoints||[]).map(p=>`<li style="margin-bottom:6px;line-height:1.7">${esc(p)}</li>`).join('');
       const ks=(n.keyScriptures||[]).map(s=>`<li style="margin-bottom:6px;line-height:1.7"><b style="color:#b8923f">${esc(s.ref)}</b> — ${esc(s.note)}</li>`).join('');
       const kt=(n.keyTerms||[]).map(s=>`<li style="margin-bottom:6px;line-height:1.7"><b>${esc(s.term)}</b>: ${esc(s.def)}</li>`).join('');
       return `<div style="font-family:Pretendard,system-ui,sans-serif;color:#1a1a1a;padding:30px 32px;width:720px;box-sizing:border-box">
         <div style="border-bottom:2px solid #b8923f;padding-bottom:10px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:baseline">
-          <span style="font-weight:700;color:#15203a;font-size:15px">시험 대비 요약노트</span>
+          <span style="font-weight:700;color:#213a6b;font-size:15px">시험 대비 요약노트</span>
           <span style="font-size:12px;color:#a7adba">BIBLY 바이블 인사이트 · 급수제</span></div>
-        <h2 style="font-size:18px;font-weight:700;color:#15203a;margin:0 0 4px">${esc(EXAM.title||'')}</h2>
+        <h2 style="font-size:18px;font-weight:700;color:#213a6b;margin:0 0 4px">${esc(EXAM.title||'')}</h2>
         <p style="font-size:13px;color:#555;margin:0 0 6px">${esc(TRACK)}</p>
         ${n.thesis?`<p style="background:#f4f0e6;border-left:3px solid #b8923f;padding:10px 14px;border-radius:6px;font-size:13.5px;line-height:1.7;margin:12px 0">${esc(n.thesis)}</p>`:''}
         ${sec('핵심 정리', kp?`<ul style="padding-left:18px;font-size:13.5px;margin:0">${kp}</ul>`:'')}

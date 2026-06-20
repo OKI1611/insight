@@ -6,7 +6,7 @@
   function open(t){ window.open(t, '_blank', 'noopener,noreferrer,width=640,height=660'); }
   function toast(m){
     var t=document.createElement('div'); t.textContent=m;
-    t.style.cssText='position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:#15203a;color:#fcfaf6;padding:10px 18px;border-radius:9999px;font-size:14px;z-index:2147483647;font-family:Pretendard,system-ui,sans-serif;box-shadow:0 8px 28px rgba(0,0,0,.3)';
+    t.style.cssText='position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:#213a6b;color:#f7f9fc;padding:10px 18px;border-radius:9999px;font-size:14px;z-index:2147483647;font-family:Pretendard,system-ui,sans-serif;box-shadow:0 8px 28px rgba(0,0,0,.3)';
     document.body.appendChild(t); setTimeout(function(){ t.remove(); }, 1800);
   }
   function copy(url){
@@ -38,11 +38,11 @@
     ov.onclick=function(e){ if(e.target===ov) ov.remove(); };
     var sheet=document.createElement('div');
     sheet.style.cssText='background:#fff;width:100%;max-width:420px;border-radius:20px 20px 0 0;padding:14px 10px 24px;max-height:82vh;overflow:auto;box-shadow:0 -8px 40px rgba(0,0,0,.25)';
-    var h='<div style="text-align:center;font-weight:700;color:#15203a;padding:6px 0 4px;font-size:15px">공유하기</div>';
+    var h='<div style="text-align:center;font-weight:700;color:#213a6b;padding:6px 0 4px;font-size:15px">공유하기</div>';
     h+='<p style="text-align:center;color:#9aa0ab;font-size:12px;margin:2px 0 10px;padding:0 18px;line-height:1.5;word-break:break-all">'+title.replace(/</g,'&lt;').slice(0,64)+'</p>';
     rows.forEach(function(r,i){
       if(r[0]==='SEP'){ h+='<div style="height:1px;background:rgba(21,32,58,.08);margin:6px 12px"></div>'; return; }
-      h+='<button data-i="'+i+'" style="width:100%;text-align:left;display:flex;align-items:center;gap:13px;padding:12px 18px;border:0;background:none;font-size:15px;color:#15203a;cursor:pointer;border-radius:10px"><span style="width:22px;text-align:center">'+r[0]+'</span>'+r[1]+'</button>';
+      h+='<button data-i="'+i+'" style="width:100%;text-align:left;display:flex;align-items:center;gap:13px;padding:12px 18px;border:0;background:none;font-size:15px;color:#213a6b;cursor:pointer;border-radius:10px"><span style="width:22px;text-align:center">'+r[0]+'</span>'+r[1]+'</button>';
     });
     sheet.innerHTML=h;
     sheet.querySelectorAll('button[data-i]').forEach(function(b){

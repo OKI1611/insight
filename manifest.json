@@ -6,25 +6,97 @@
   "start_url": "/?source=pwa",
   "scope": "/",
   "display": "standalone",
-  "display_override": ["standalone", "minimal-ui"],
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
   "orientation": "any",
-  "background_color": "#15203a",
-  "theme_color": "#15203a",
+  "background_color": "#f7f9fc",
+  "theme_color": "#213a6b",
   "lang": "ko",
   "dir": "ltr",
-  "categories": ["education", "books", "lifestyle"],
+  "categories": [
+    "education",
+    "books",
+    "lifestyle"
+  ],
   "icons": [
-    { "src": "/images/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "/images/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "/images/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ],
   "shortcuts": [
-    { "name": "강의실", "short_name": "강의실", "description": "천년왕국 세미나 강의 보기", "url": "/watch.html", "icons": [{ "src": "/images/icon-192.png", "sizes": "192x192" }] },
-    { "name": "내 강의실", "short_name": "내 강의실", "description": "내 수강 현황과 진도", "url": "/mylearning.html", "icons": [{ "src": "/images/icon-192.png", "sizes": "192x192" }] },
-    { "name": "커리큘럼", "short_name": "커리큘럼", "description": "전체 강의 트랙 보기", "url": "/curriculum.html", "icons": [{ "src": "/images/icon-192.png", "sizes": "192x192" }] },
-    { "name": "강의 찾기", "short_name": "강의 찾기", "description": "나에게 맞는 강의 진단", "url": "/find.html", "icons": [{ "src": "/images/icon-192.png", "sizes": "192x192" }] }
+    {
+      "name": "강의실",
+      "short_name": "강의실",
+      "description": "천년왕국 세미나 강의 보기",
+      "url": "/watch.html",
+      "icons": [
+        {
+          "src": "/images/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "내 강의실",
+      "short_name": "내 강의실",
+      "description": "내 수강 현황과 진도",
+      "url": "/mylearning.html",
+      "icons": [
+        {
+          "src": "/images/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "커리큘럼",
+      "short_name": "커리큘럼",
+      "description": "전체 강의 트랙 보기",
+      "url": "/curriculum.html",
+      "icons": [
+        {
+          "src": "/images/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "강의 찾기",
+      "short_name": "강의 찾기",
+      "description": "나에게 맞는 강의 진단",
+      "url": "/find.html",
+      "icons": [
+        {
+          "src": "/images/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
   ],
   "screenshots": [
-    { "src": "/images/screenshot-mobile.png", "sizes": "1080x1920", "type": "image/png", "form_factor": "narrow", "label": "BIBLY 바이블 인사이트 — 말씀으로 시대를 읽다" }
+    {
+      "src": "/images/screenshot-mobile.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "BIBLY 바이블 인사이트 — 말씀으로 시대를 읽다"
+    }
   ]
 }
