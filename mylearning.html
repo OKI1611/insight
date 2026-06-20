@@ -89,6 +89,24 @@
           <div id="catFree"></div>
           <div id="catCert"></div>
         </div>
+
+        <!-- 📕 내 교재 (구매한 PDF 자료) -->
+        <div id="myBooks" class="mt-9">
+          <div class="flex items-center justify-between mb-3">
+            <p class="text-xs font-bold text-ink/40 tracking-[0.2em]">📕 내 교재 · 구매한 PDF 자료</p>
+            <a href="booklet.html" class="text-xs text-gold font-semibold hover:underline">북스토어 →</a>
+          </div>
+          <div id="myBooksList" class="space-y-2"></div>
+        </div>
+
+        <!-- ✍️ 내가 쓴 글 -->
+        <div id="myPosts" class="mt-9">
+          <div class="flex items-center justify-between mb-3">
+            <p class="text-xs font-bold text-ink/40 tracking-[0.2em]">✍️ 내가 쓴 글</p>
+            <a href="community.html" class="text-xs text-gold font-semibold hover:underline">커뮤니티 →</a>
+          </div>
+          <div id="myPostsList" class="space-y-2"></div>
+        </div>
       </div>
 
       <!-- 자유 학습 상세 -->
@@ -167,6 +185,8 @@
         setNav();
         loadDashboard();
         loadProgram();
+        loadMyBooks();
+        loadMyPosts();
         // ② 이름은 best-effort 업데이트
         try { const { data: prof } = await withTimeout(sb.from('profiles').select('full_name').eq('id', user.id).maybeSingle(), 6000); if(prof && prof.full_name){ uname = prof.full_name; setNav(); } } catch(e){}
       } else {
@@ -471,6 +491,72 @@
           </div>
           <div class="p-4 md:p-6">${inner}</div>
         </div>`;
+    }
+
+    // ── 📕 내 교재(구매한 PDF 자료) · ✍️ 내가 쓴 글 ──
+    function stripHtml(h){ const d=document.createElement('div'); d.innerHTML=h||''; return (d.textContent||d.innerText||'').replace(/\s+/g,' ').trim(); }
+    function fmtDate(s){ try{ const d=new Date(s); return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`; }catch(e){ return ''; } }
+    function boardLabelKo(b){ return b==='qna'?'📖 성경·강의 질문':b==='prayer'?'🙏 기도요청':b==='counsel'?'🔒 비공개 상담':'💬 자유게시판'; }
+
+    async function loadMyBooks(){
+      const el=document.getElementById('myBooksList'); if(!el||!user) return;
+      el.innerHTML='<p class="text-ink/35 text-sm py-2">불러오는 중…</p>';
+      const email=user.email; let pass=null, books=[];
+      try{ const {data}=await withTimeout(sb.from('pass_members').select('type,expires_at').eq('email',email).maybeSingle(),8000); pass=data; }catch(e){}
+      try{ const {data}=await withTimeout(sb.from('book_access').select('track,expires_at,created_at').eq('email',email).order('created_at',{ascending:false}),8000); books=data||[]; }catch(e){}
+      const passActive=pass && (!pass.expires_at || new Date(pass.expires_at).getTime()>Date.now());
+      let h='';
+      if(passActive){
+        const term = pass.expires_at ? ('이용 기간 ~'+fmtDate(pass.expires_at)) : '평생 소장';
+        h += `<a href="booklet.html" class="flex items-center gap-3 bg-ink text-paper rounded-2xl px-4 py-3.5 hover:bg-navy transition">
+          <span class="text-xl shrink-0">🎫</span>
+          <span class="flex-1 min-w-0"><span class="block font-bold text-sm">전체 이용권 보유 중</span><span class="block text-paper/60 text-xs mt-0.5">모든 교재를 무제한 열람·PDF 저장 · ${term}</span></span>
+          <span class="text-gold text-sm font-bold shrink-0">전체 보기 →</span></a>`;
+      }
+      if(books.length){
+        h += books.map(b=>{
+          const expired = b.expires_at && new Date(b.expires_at).getTime()<Date.now();
+          const exp = b.expires_at ? (expired?'<span class="text-rose-500">기간 만료</span>':('~'+fmtDate(b.expires_at))) : '영구 소장';
+          return `<a href="booklet.html?track=${encodeURIComponent(b.track)}" class="flex items-center gap-3 bg-white rounded-2xl border border-ink/8 shadow-soft px-4 py-3 hover:border-gold/40 transition">
+            <span class="text-xl shrink-0">📕</span>
+            <span class="flex-1 min-w-0"><span class="block font-bold text-sm truncate">${esc(b.track)}</span><span class="block text-ink/45 text-xs mt-0.5">PDF 교재 · ${exp}</span></span>
+            <span class="text-gold text-sm font-bold shrink-0">열기 →</span></a>`;
+        }).join('');
+      }
+      if(!h){
+        h = `<div class="bg-white rounded-2xl border border-ink/8 p-6 text-center">
+          <p class="text-2xl mb-2">📕</p>
+          <p class="text-sm text-ink/55 mb-3">아직 구매한 교재가 없어요.</p>
+          <a href="booklet.html" class="inline-block bg-ink text-paper text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-navy transition">북스토어 둘러보기 →</a>
+        </div>`;
+      }
+      el.innerHTML=h;
+    }
+
+    async function loadMyPosts(){
+      const el=document.getElementById('myPostsList'); if(!el||!user) return;
+      el.innerHTML='<p class="text-ink/35 text-sm py-2">불러오는 중…</p>';
+      let posts=[];
+      try{ const {data}=await withTimeout(sb.from('community_posts').select('id,board,content,is_private,created_at').eq('author_id',user.id).order('created_at',{ascending:false}).limit(50),8000); posts=data||[]; }catch(e){}
+      if(!posts.length){
+        el.innerHTML=`<div class="bg-white rounded-2xl border border-ink/8 p-6 text-center">
+          <p class="text-2xl mb-2">✍️</p>
+          <p class="text-sm text-ink/55 mb-3">아직 작성한 글이 없어요.</p>
+          <a href="community.html" class="inline-block bg-ink text-paper text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-navy transition">커뮤니티 가기 →</a>
+        </div>`; return;
+      }
+      el.innerHTML = posts.map(p=>{
+        const board=p.board||'free'; const ex=stripHtml(p.content);
+        const excerpt = ex.length>50 ? ex.slice(0,50)+'…' : (ex||'(내용 없음)');
+        const priv = (p.is_private||board==='counsel') ? '🔒 ' : '';
+        return `<a href="community.html?board=${board}#post-${p.id}" class="block bg-white rounded-2xl border border-ink/8 shadow-soft px-4 py-3 hover:border-gold/40 transition">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-[11px] font-bold text-gold">${boardLabelKo(board)}</span>
+            <span class="text-[11px] text-ink/35 ml-auto">${fmtDate(p.created_at)}</span>
+          </div>
+          <p class="text-sm text-ink/80 truncate">${esc(priv)}${esc(excerpt)}</p>
+        </a>`;
+      }).join('');
     }
 
     function toggleFolder(ti){
