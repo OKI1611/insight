@@ -173,7 +173,7 @@
       <div class="max-w-3xl mx-auto px-4 py-2.5 flex items-center gap-2 flex-wrap">
         <a href="booklet.html" class="text-sm text-ink/60 hover:text-gold">← 북스토어</a>
         <span id="bvTitle" class="font-bold text-sm truncate flex-1 min-w-0 text-center"></span>
-        <button id="bvPdf" onclick="savePDF()" class="bg-gold text-white text-sm font-semibold px-4 py-2 rounded-full hover:opacity-90 transition shrink-0">📕 PDF로 저장</button>
+        <button id="bvPdf" onclick="savePDF()" title="인쇄창이 열리면 대상(목적지)을 'PDF로 저장'으로 선택하세요" class="bg-gold text-white text-sm font-semibold px-4 py-2 rounded-full hover:opacity-90 transition shrink-0">📕 PDF로 저장</button>
       </div>
     </div>
     <div id="bvLock" class="hidden max-w-xl mx-auto px-5 py-6">
@@ -368,10 +368,49 @@
       if(!unlocked){ h+=`<div class="no-print" style="text-align:center;padding:26px 0 6px;border-top:1px dashed #d6ddea;margin-top:10px"><p style="color:#5a6b88;font-size:13px">… 이하 전체 ${t.lessons.length}강 합본은 구매(또는 <b style="color:#b8923f">전체 이용권</b>) 후 보실 수 있어요.</p></div>`; $('bvLock').classList.remove('hidden'); $('bvPdf').style.display='none'; }
       $('book').innerHTML=h;
     }
-    function savePDF(){ const el=$('book'); const name=($('bvTitle').textContent||'BIBLY 자료집').replace(/[\\/:*?"<>|]/g,' ').trim();
-      $('bvPdf').disabled=true; $('bvPdf').textContent='PDF 만드는 중…';
-      html2pdf().set({margin:[12,12,14,12],filename:name+' — BIBLY 자료집.pdf',image:{type:'jpeg',quality:0.96},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},pagebreak:{mode:['css','legacy']}}).from(el).save()
-        .then(()=>{$('bvPdf').disabled=false;$('bvPdf').textContent='📕 PDF로 저장';}).catch(()=>{$('bvPdf').disabled=false;$('bvPdf').textContent='📕 PDF로 저장';alert('PDF 생성 중 문제가 있었어요. 다시 시도해 주세요.');});
+    // 책자 본문 스타일(인쇄 문서에 그대로 주입) — 모두 OFL 폰트 + hex 색상(저작권·렌더링 안전)
+    const BOOK_CSS = `
+      *{box-sizing:border-box}
+      body.book{font-family:'Noto Serif KR',Pretendard,serif;color:#1c2b46;margin:0;line-height:1.6;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      .book .lesson{page-break-before:always;break-before:page}
+      .book h2.bk-title{font-size:21px;font-weight:700;color:#213a6b;border-bottom:2px solid #b8923f;padding-bottom:8px;margin:0 0 14px}
+      .book h3.bk-h{font-size:15.5px;font-weight:700;color:#213a6b;margin:18px 0 6px}
+      .book p.bk-p{font-size:13.5px;line-height:1.85;margin:6px 0;color:#2a3a55}
+      .book .bk-thesis{background:#eaf0f8;border-left:3px solid #213a6b;border-radius:8px;padding:11px 14px;font-weight:600;color:#213a6b;font-size:14px;line-height:1.7}
+      .book .bk-scr{background:#faf7ef;border:1px solid #e6dcc3;border-radius:8px;padding:9px 12px;margin:5px 0;font-size:12.5px}
+      .book .bk-scr b{color:#9a7b30}
+      .book ul.bk-ul{margin:5px 0 5px 2px;padding:0;list-style:none}
+      .book ul.bk-ul li{font-size:13px;line-height:1.7;padding-left:15px;position:relative;color:#33415e}
+      .book ul.bk-ul li::before{content:'·';position:absolute;left:3px;color:#b8923f;font-weight:700}
+      .book .bk-term{font-size:12.5px;line-height:1.6;margin:3px 0}.book .bk-term b{color:#213a6b}
+      .book .bk-mis{font-size:12.5px;line-height:1.65;margin:4px 0}.book .bk-mis .w{color:#b4524a}.book .bk-mis .r{color:#2f7d57}
+      h2.bk-title,h3.bk-h,.bk-thesis,.bk-scr{break-inside:avoid}
+    `;
+    // 인쇄(벡터) 방식 PDF — 길이 제한 없음 + 진짜 글자(검색 가능) + OFL 폰트 임베딩
+    function printDoc(title, innerHTML){
+      const ifr=document.createElement('iframe');
+      ifr.setAttribute('aria-hidden','true');
+      ifr.style.cssText='position:fixed;right:0;bottom:0;width:0;height:0;border:0;visibility:hidden';
+      document.body.appendChild(ifr);
+      const doc=ifr.contentWindow.document;
+      doc.open();
+      doc.write('<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><title>'+esc(title)+'</title>'
+        +'<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">'
+        +'<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet">'
+        +'<style>@page{size:A4;margin:14mm 14mm 16mm}'+BOOK_CSS+'</style></head>'
+        +'<body class="book">'+innerHTML+'</body></html>');
+      doc.close();
+      const cleanup=()=>{ setTimeout(()=>{ try{ ifr.remove(); }catch(e){} }, 1500); };
+      const go=()=>{ try{ ifr.contentWindow.focus(); ifr.contentWindow.print(); }catch(e){ alert('PDF 저장 중 문제가 있었어요. 다시 시도해 주세요.'); } cleanup(); };
+      let done=false; const fire=()=>{ if(done) return; done=true; go(); };
+      try{ const fs=ifr.contentWindow.document.fonts; if(fs&&fs.ready){ fs.ready.then(()=>setTimeout(fire,250)); } }catch(e){}
+      setTimeout(fire, 1200); // 폰트 로딩 실패 대비 백업
+    }
+    function savePDF(){
+      const name=($('bvTitle').textContent||'BIBLY 자료집').replace(/[\\/:*?"<>|]/g,' ').trim();
+      $('bvPdf').disabled=true; $('bvPdf').textContent='인쇄창 여는 중…';
+      printDoc(name+' — BIBLY 자료집', $('book').innerHTML);
+      setTimeout(()=>{ $('bvPdf').disabled=false; $('bvPdf').textContent='📕 PDF로 저장'; }, 1600);
     }
 
     boot();

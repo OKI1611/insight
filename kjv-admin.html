@@ -202,14 +202,29 @@
           setTimeout(()=>URL.revokeObjectURL(a.href),4000);
           msg.textContent='✅ Word(.doc) 파일을 내려받았습니다. Word/한글에서 열어 편집하세요.';
         } else {
-          const stage=$('exStage');
-          stage.innerHTML = `<style>${DOC_CSS}</style>`+coverHTML(title)+body;
-          msg.textContent='PDF를 만드는 중입니다… (분량이 많으면 시간이 걸립니다)';
-          await html2pdf().set({margin:[14,14,16,14],filename:title+'.pdf',image:{type:'jpeg',quality:0.96},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},pagebreak:{mode:['css','legacy']}}).from(stage).save();
-          stage.innerHTML='';
-          msg.textContent='✅ PDF를 내려받았습니다.';
+          // 인쇄(벡터) 방식 — 분량이 길어도 백지 없이, 진짜 글자로 출력(검색 가능)
+          printDoc(title, coverHTML(title)+body);
+          msg.textContent='✅ 인쇄창이 열리면 대상(목적지)을 "PDF로 저장"으로 선택하세요.';
         }
       }catch(e){ msg.textContent='내보내기 중 오류: '+(e.message||e); }
+    }
+
+    // 인쇄(벡터) PDF — Noto Serif KR(OFL) 임베딩, 캔버스 높이 한계 영향 없음
+    function printDoc(title, innerHTML){
+      const ifr=document.createElement('iframe');
+      ifr.setAttribute('aria-hidden','true');
+      ifr.style.cssText='position:fixed;right:0;bottom:0;width:0;height:0;border:0;visibility:hidden';
+      document.body.appendChild(ifr);
+      const doc=ifr.contentWindow.document;
+      doc.open();
+      doc.write('<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><title>'+esc(title)+'</title>'
+        +'<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet">'
+        +'<style>@page{size:A4;margin:15mm 15mm 17mm}body{-webkit-print-color-adjust:exact;print-color-adjust:exact}'+DOC_CSS+'</style></head><body>'+innerHTML+'</body></html>');
+      doc.close();
+      const go=()=>{ try{ ifr.contentWindow.focus(); ifr.contentWindow.print(); }catch(e){} setTimeout(()=>{ try{ ifr.remove(); }catch(_){ } },1500); };
+      let done=false; const fire=()=>{ if(done) return; done=true; go(); };
+      try{ const fs=ifr.contentWindow.document.fonts; if(fs&&fs.ready){ fs.ready.then(()=>setTimeout(fire,250)); } }catch(e){}
+      setTimeout(fire,1200);
     }
   </script>
 </body>
