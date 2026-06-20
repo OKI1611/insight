@@ -61,18 +61,18 @@
 
   <!-- ===================== 카탈로그 ===================== -->
   <main id="catalogView" class="hidden">
-    <section class="bg-ink text-paper">
+    <section class="bg-white text-ink">
       <div class="max-w-3xl mx-auto px-5 py-16 md:py-20 text-center">
         <p class="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-5">PDF Booklet · 과정별 자료집</p>
         <h1 class="text-2xl md:text-[34px] font-bold leading-[1.35]">한 과정을, <span class="text-gold">한 권의 책</span>으로 소장하세요</h1>
-        <p class="text-paper/70 text-[15px] md:text-base mt-6 leading-relaxed max-w-xl mx-auto">
-          과정별 <b class="text-paper">요약노트(대학원 강의안 수준)</b>를 한 권으로 합본한 <b class="text-paper">PDF 자료집</b>입니다.
+        <p class="text-ink/70 text-[15px] md:text-base mt-6 leading-relaxed max-w-xl mx-auto">
+          과정별 <b class="text-ink">요약노트(대학원 강의안 수준)</b>를 한 권으로 합본한 <b class="text-ink">PDF 자료집</b>입니다.
           신청하시면 소장·인쇄용 책자 PDF를 보내드려요.
         </p>
         <div class="flex flex-wrap justify-center gap-2.5 mt-7 text-sm">
-          <span class="bg-white/10 border border-white/15 rounded-full px-4 py-1.5">📖 표지 + 목차 + 전 강의 노트</span>
-          <span class="bg-white/10 border border-white/15 rounded-full px-4 py-1.5">🖨 인쇄해도 깔끔한 편집</span>
-          <span class="bg-white/10 border border-white/15 rounded-full px-4 py-1.5">♾️ 소장용</span>
+          <span class="bg-ink/10 border border-ink/15 rounded-full px-4 py-1.5">📖 표지 + 목차 + 전 강의 노트</span>
+          <span class="bg-ink/10 border border-ink/15 rounded-full px-4 py-1.5">🖨 인쇄해도 깔끔한 편집</span>
+          <span class="bg-ink/10 border border-ink/15 rounded-full px-4 py-1.5">♾️ 소장용</span>
         </div>
       </div>
     </section>
@@ -141,6 +141,9 @@
     function id11(s){ s=s||''; const m=String(s).match(/([A-Za-z0-9_-]{11})/); return m?m[1]:s; }
     function tableMissing(e){ return e && (e.code==='42P01' || /relation|does not exist|schema cache|find the table/i.test(e.message||'')); }
     function estPages(noteCount){ return Math.max(8, Math.round(noteCount*2.6) + 3); }
+    // 자료집 가격(강의 수 기준 4단계) — 금액 조정은 이 함수만 고치면 전체에 반영됩니다
+    function priceOf(n){ if(n<=4) return 6900; if(n<=9) return 9900; if(n<=19) return 14900; return 19900; }
+    function won(v){ return '₩' + (Number(v)||0).toLocaleString(); }
 
     let COURSE=null, TRACKS=[];
     async function boot(){
@@ -164,13 +167,14 @@
           <div class="text-3xl mb-2">${ico}</div>
           <p class="font-bold leading-snug">${esc(t.name)}</p>
           <p class="text-xs text-ink/50 mt-1.5">전 ${n}강 합본 · 약 ${pages}쪽</p>
+          <p class="text-gold font-bold text-[15px] mt-1.5">${won(priceOf(n))} <span class="text-ink/35 text-xs font-normal">소장용 PDF</span></p>
           <div class="flex items-center gap-2 mt-4 pt-3 border-t border-ink/8">
             <a href="booklet.html?track=${encodeURIComponent(t.name)}" class="flex-1 text-center border border-ink/15 rounded-full text-sm py-2 hover:bg-ink/5 transition">미리보기</a>
             <button onclick="pickTrack('${esc(t.name).replace(/'/g,'&#39;')}')" class="flex-1 bg-gold text-white rounded-full text-sm font-semibold py-2 hover:opacity-90 transition">신청</button>
           </div>
         </div>`;
       }).join('');
-      sel.innerHTML = '<option value="">신청할 자료집(과정)을 골라주세요 *</option>' + TRACKS.map(t=>`<option>${esc(t.name)} (전 ${t.lessons.length}강)</option>`).join('');
+      sel.innerHTML = '<option value="">신청할 자료집(과정)을 골라주세요 *</option>' + TRACKS.map(t=>`<option>${esc(t.name)} (전 ${t.lessons.length}강 · ${won(priceOf(t.lessons.length))})</option>`).join('');
     }
     function pickTrack(name){
       const sel=$('bTrack');
