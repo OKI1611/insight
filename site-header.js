@@ -69,7 +69,7 @@
 
   var LOGO =
     '<a href="index.html" onclick="return __biblyHome(event)" class="flex items-center gap-2 shrink-0">'
-    + '<svg class="w-9 h-9 shrink-0" viewBox="0 0 48 48" role="img" aria-label="BIBLY"><rect x="9" y="9" width="30" height="30" rx="6" transform="rotate(45 24 24)" fill="#b8923f"/><text x="24" y="32.5" text-anchor="middle" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#15203a">B</text></svg>'
+    + '<svg class="w-9 h-9 shrink-0" viewBox="0 0 48 48" role="img" aria-label="BIBLY"><rect x="9" y="9" width="30" height="30" rx="6" transform="rotate(45 24 24)" fill="#6f8f6a"/><text x="24" y="32.5" text-anchor="middle" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#2b3440">B</text></svg>'
     + '<span class="leading-none"><span class="block font-extrabold text-[15px] tracking-tight">BIBLY<span class="text-gold">.</span></span>'
     + '<span class="block text-[9px] text-ink/45 tracking-wide mt-0.5">말씀으로 시대를 읽다</span></span></a>';
 
@@ -178,15 +178,15 @@
     var st = document.createElement('style'); st.id = 'biblyNavCSS';
     st.textContent = '.navItem{position:relative}.navItem>a{cursor:pointer}'
       + '.biblyTop{position:relative;padding:6px 2px;letter-spacing:-.005em;transition:color .18s}'
-      + '.biblyTop::after{content:"";position:absolute;left:2px;right:2px;bottom:0;height:2px;background:linear-gradient(90deg,#b8923f,#dcb866);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .22s cubic-bezier(.4,0,.2,1)}'
+      + '.biblyTop::after{content:"";position:absolute;left:2px;right:2px;bottom:0;height:2px;background:linear-gradient(90deg,#6f8f6a,#dcb866);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .22s cubic-bezier(.4,0,.2,1)}'
       + '.biblyTop:hover::after,.navItem:hover>.biblyTop::after,.biblyOn::after{transform:scaleX(1)}'
       + '.navDrop{position:absolute;left:0;top:100%;padding-top:12px;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .16s,transform .16s,visibility .16s;z-index:60}'
       + '.navItem:hover .navDrop{opacity:1;visibility:visible;transform:none}'
       + '.navDropCard{background:#fff;border:1px solid rgba(21,32,58,.08);border-radius:.9rem;box-shadow:0 18px 50px -20px rgba(21,32,58,.45);padding:.45rem;min-width:212px}'
       + '.navDropCard a{display:flex;align-items:center;gap:.55rem;padding:.6rem .8rem;border-radius:.6rem;font-size:.875rem;font-weight:500;color:rgba(21,32,58,.82);white-space:nowrap;transition:background .15s,color .15s}'
-      + '.navDropCard a::before{content:"";width:5px;height:5px;border-radius:50%;background:rgba(184,146,63,.35);flex:none;transition:transform .15s,background .15s}'
-      + '.navDropCard a:hover{background:rgba(184,146,63,.1);color:#b8923f}'
-      + '.navDropCard a:hover::before{background:#b8923f;transform:scale(1.35)}';
+      + '.navDropCard a::before{content:"";width:5px;height:5px;border-radius:50%;background:rgba(111,143,106,.35);flex:none;transition:transform .15s,background .15s}'
+      + '.navDropCard a:hover{background:rgba(111,143,106,.1);color:#6f8f6a}'
+      + '.navDropCard a:hover::before{background:#6f8f6a;transform:scale(1.35)}';
     document.head.appendChild(st);
   }
   function build(){
