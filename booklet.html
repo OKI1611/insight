@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <script src="/content-loader.js"></script>
+  <script src="/site-header.js?v=20260619c"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>과정별 PDF 자료집(책자) — BIBLY 바이블 인사이트</title>
+  <meta name="theme-color" content="#213a6b" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="canonical" href="https://biblynote.com/booklet" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BIBLY 바이블 인사이트" />
+  <meta property="og:title" content="과정별 PDF 자료집(책자) — BIBLY 바이블 인사이트" />
+  <meta property="og:description" content="과정별 요약노트를 한 권으로 합본한 PDF 자료집. 신청하시면 소장용 책자 PDF를 보내드립니다." />
+  <meta property="og:image" content="https://biblynote.com/images/og-cover.png?v=2" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink:'#213a6b', navy:'#182c54', gold:'#b8923f', sand:'#eaf0f8', paper:'#f7f9fc' },
+      fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
+      boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
+    }}}
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js"></script>
+  <script>
+    const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
+    const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+    const ADMIN_EMAIL = 'josephoh1611@gmail.com';
+    const NOTIFY_KEY  = '8de9d22a-81a8-411d-99e2-90b38d21a062';
+  </script>
+  <style>
+    h1,h2,h3,.serif{font-family:'Noto Serif KR',Pretendard,serif}
+    /* 책자(인쇄) 스타일 */
+    .book{font-family:'Noto Serif KR',Pretendard,serif;color:#1c2b46}
+    .book .lesson{page-break-before:always}
+    .book h2.bk-title{font-size:21px;font-weight:700;color:#213a6b;border-bottom:2px solid #b8923f;padding-bottom:8px;margin:0 0 14px}
+    .book h3.bk-h{font-size:15.5px;font-weight:700;color:#213a6b;margin:18px 0 6px}
+    .book p.bk-p{font-size:13.5px;line-height:1.85;margin:6px 0;color:#2a3a55}
+    .book .bk-thesis{background:#eaf0f8;border-left:3px solid #213a6b;border-radius:8px;padding:11px 14px;font-weight:600;color:#213a6b;font-size:14px;line-height:1.7}
+    .book .bk-scr{background:#faf7ef;border:1px solid #e6dcc3;border-radius:8px;padding:9px 12px;margin:5px 0;font-size:12.5px}
+    .book .bk-scr b{color:#9a7b30}
+    .book ul.bk-ul{margin:5px 0 5px 2px;padding:0;list-style:none}
+    .book ul.bk-ul li{font-size:13px;line-height:1.7;padding-left:15px;position:relative;color:#33415e}
+    .book ul.bk-ul li::before{content:'·';position:absolute;left:3px;color:#b8923f;font-weight:700}
+    .book .bk-term{font-size:12.5px;line-height:1.6;margin:3px 0}
+    .book .bk-term b{color:#213a6b}
+    .book .bk-mis{font-size:12.5px;line-height:1.65;margin:4px 0}
+    .book .bk-mis .w{color:#b4524a}.book .bk-mis .r{color:#2f7d57}
+    @media print{ .no-print{display:none!important} }
+  </style>
+</head>
+<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+
+  <div id="siteHeader" data-active="booklet.html"></div>
+
+  <!-- ===================== 카탈로그 ===================== -->
+  <main id="catalogView" class="hidden">
+    <section class="bg-ink text-paper">
+      <div class="max-w-3xl mx-auto px-5 py-16 md:py-20 text-center">
+        <p class="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-5">PDF Booklet · 과정별 자료집</p>
+        <h1 class="text-2xl md:text-[34px] font-bold leading-[1.35]">한 과정을, <span class="text-gold">한 권의 책</span>으로 소장하세요</h1>
+        <p class="text-paper/70 text-[15px] md:text-base mt-6 leading-relaxed max-w-xl mx-auto">
+          과정별 <b class="text-paper">요약노트(대학원 강의안 수준)</b>를 한 권으로 합본한 <b class="text-paper">PDF 자료집</b>입니다.
+          신청하시면 소장·인쇄용 책자 PDF를 보내드려요.
+        </p>
+        <div class="flex flex-wrap justify-center gap-2.5 mt-7 text-sm">
+          <span class="bg-white/10 border border-white/15 rounded-full px-4 py-1.5">📖 표지 + 목차 + 전 강의 노트</span>
+          <span class="bg-white/10 border border-white/15 rounded-full px-4 py-1.5">🖨 인쇄해도 깔끔한 편집</span>
+          <span class="bg-white/10 border border-white/15 rounded-full px-4 py-1.5">♾️ 소장용</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="max-w-4xl mx-auto px-5 py-12">
+      <div class="text-center mb-8">
+        <p class="text-gold text-xs font-bold tracking-[0.25em] uppercase mb-2">Catalog</p>
+        <h2 class="text-xl md:text-2xl font-bold">자료집 고르기</h2>
+        <p class="text-ink/55 text-sm mt-2">원하는 과정의 <b class="text-ink">미리보기</b>를 보고, <b class="text-ink">신청하기</b>로 책자 PDF를 받아보세요.</p>
+      </div>
+      <div id="catGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">불러오는 중…</div>
+
+      <!-- 신청 -->
+      <section id="apply" class="mt-14 scroll-mt-20">
+        <div class="bg-white rounded-3xl border border-ink/10 shadow-card p-6 md:p-8 max-w-xl mx-auto">
+          <div class="text-center mb-6">
+            <p class="text-gold text-xs font-bold tracking-[0.25em] uppercase mb-2">Apply · 신청</p>
+            <h2 class="text-xl md:text-2xl font-bold">PDF 자료집 신청</h2>
+            <p class="text-ink/55 text-sm mt-2 leading-relaxed">신청하시면 <b class="text-ink">입금 안내</b>를 이메일로 보내드리고, 확인되면 <b class="text-ink">책자 PDF</b>를 보내드려요.</p>
+          </div>
+          <div class="space-y-3">
+            <input id="bName" type="text" maxlength="40" placeholder="이름 (또는 닉네임)" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold" />
+            <input id="bEmail" type="email" maxlength="120" placeholder="이메일 *" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold" />
+            <input id="bPhone" type="tel" maxlength="30" placeholder="연락처 (선택)" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold" />
+            <select id="bTrack" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold text-ink/80 bg-white">
+              <option value="">신청할 자료집(과정)을 골라주세요 *</option>
+            </select>
+            <label class="flex items-start gap-2 text-xs text-ink/60 leading-relaxed px-1">
+              <input id="bFormat" type="checkbox" class="mt-0.5"/> 인쇄·제본(실물 책자)도 문의하고 싶어요 (별도 안내)
+            </label>
+            <textarea id="bMemo" rows="2" maxlength="500" placeholder="남기실 말씀 (선택)" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold resize-none"></textarea>
+            <input id="bHp" type="text" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+            <button id="bSubmit" onclick="submitBooklet()" class="w-full bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition">자료집 신청하기</button>
+            <p id="bMsg" class="text-center text-sm min-h-[18px]"></p>
+            <p class="text-center text-ink/40 text-xs leading-relaxed">결제는 <b class="text-ink/55">계좌이체</b>로 진행돼요. 신청 정보는 자료집 발송 목적으로만 사용됩니다.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ===================== 책 뷰어 ===================== -->
+  <main id="bookView" class="hidden">
+    <div class="no-print sticky top-14 z-30 bg-paper/95 backdrop-blur border-b border-ink/8">
+      <div class="max-w-3xl mx-auto px-4 py-2.5 flex items-center gap-2 flex-wrap">
+        <a href="booklet.html" class="text-sm text-ink/60 hover:text-gold">← 자료집 목록</a>
+        <span id="bvTitle" class="font-bold text-sm truncate flex-1 min-w-0 text-center"></span>
+        <button id="bvPdf" onclick="savePDF()" class="bg-gold text-white text-sm font-semibold px-4 py-2 rounded-full hover:opacity-90 transition shrink-0">📕 PDF로 저장</button>
+      </div>
+    </div>
+    <div id="bvLock" class="hidden max-w-xl mx-auto px-5 py-6">
+      <div class="bg-sand/60 border border-gold/30 rounded-2xl p-5 text-center">
+        <p class="text-sm text-ink/70 leading-relaxed">아래는 <b class="text-ink">맛보기 미리보기</b>예요. 전체 합본 책자 PDF는 <b class="text-gold">신청(유료)</b> 후 보내드립니다.</p>
+        <a href="booklet.html#apply" class="inline-block mt-3 bg-gold text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition">이 자료집 신청하기 →</a>
+      </div>
+    </div>
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-6">
+      <div id="book" class="book bg-white rounded-2xl border border-ink/8 shadow-soft p-7 sm:p-10 min-h-[400px]">불러오는 중…</div>
+    </div>
+  </main>
+
+  <script>
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType:'implicit', lock: async (_n,_t,fn)=>await fn() } });
+    const $ = id => document.getElementById(id);
+    function esc(s){ return (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    function id11(s){ s=s||''; const m=String(s).match(/([A-Za-z0-9_-]{11})/); return m?m[1]:s; }
+    function tableMissing(e){ return e && (e.code==='42P01' || /relation|does not exist|schema cache|find the table/i.test(e.message||'')); }
+    function estPages(noteCount){ return Math.max(8, Math.round(noteCount*2.6) + 3); }
+
+    let COURSE=null, TRACKS=[];
+    async function boot(){
+      try{ COURSE = await (await fetch('content/course.json?t='+Date.now())).json(); }catch(e){ COURSE={levels:[]}; }
+      TRACKS = (COURSE.levels||[]).map((lv,i)=>({ i, name:(lv.name||lv.title||('과정 '+(i+1))), lessons:(lv.lessons||[]) }))
+        .filter(t=>t.lessons.length>0);
+      const sp = new URLSearchParams(location.search);
+      const tname = sp.get('track');
+      if(tname){ renderBook(decodeURIComponent(tname)); }
+      else { renderCatalog(); }
+    }
+
+    /* ---------------- 카탈로그 ---------------- */
+    function renderCatalog(){
+      $('catalogView').classList.remove('hidden');
+      const grid = $('catGrid'), sel = $('bTrack');
+      grid.innerHTML = TRACKS.map(t=>{
+        const n=t.lessons.length, pages=estPages(n);
+        const ico = (/천년왕국|예언|종말|요한계시록|다니엘/.test(t.name))?'📕':(/설교자|기도자|사도/.test(t.name))?'📗':(/기초|구원|예수|성경/.test(t.name))?'📘':'📙';
+        return `<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 flex flex-col">
+          <div class="text-3xl mb-2">${ico}</div>
+          <p class="font-bold leading-snug">${esc(t.name)}</p>
+          <p class="text-xs text-ink/50 mt-1.5">전 ${n}강 합본 · 약 ${pages}쪽</p>
+          <div class="flex items-center gap-2 mt-4 pt-3 border-t border-ink/8">
+            <a href="booklet.html?track=${encodeURIComponent(t.name)}" class="flex-1 text-center border border-ink/15 rounded-full text-sm py-2 hover:bg-ink/5 transition">미리보기</a>
+            <button onclick="pickTrack('${esc(t.name).replace(/'/g,'&#39;')}')" class="flex-1 bg-gold text-white rounded-full text-sm font-semibold py-2 hover:opacity-90 transition">신청</button>
+          </div>
+        </div>`;
+      }).join('');
+      sel.innerHTML = '<option value="">신청할 자료집(과정)을 골라주세요 *</option>' + TRACKS.map(t=>`<option>${esc(t.name)} (전 ${t.lessons.length}강)</option>`).join('');
+    }
+    function pickTrack(name){
+      const sel=$('bTrack');
+      for(const o of sel.options){ if(o.value.indexOf(name)===0){ sel.value=o.value; break; } }
+      $('apply').scrollIntoView({behavior:'smooth', block:'center'});
+    }
+
+    async function notifyBooklet(d){
+      if(!NOTIFY_KEY) return;
+      try{ await fetch('https://api.web3forms.com/submit',{ method:'POST', headers:{'Content-Type':'application/json',Accept:'application/json'},
+        body: JSON.stringify({ access_key:NOTIFY_KEY, subject:'[BIBLY] 새 PDF 자료집 신청 📕', from_name:'BIBLY 자료집',
+          '자료집(과정)':d.track||'', '이름':d.name||'', '이메일':d.email||'', '연락처':d.phone||'', '실물제본문의':d.printed?'예':'아니오', '메모':d.memo||'' }) }); }catch(e){}
+    }
+    function withTimeout(p,ms){ return Promise.race([Promise.resolve(p), new Promise((_,r)=>setTimeout(()=>r(new Error('TIMEOUT')),ms))]); }
+    async function submitBooklet(){
+      const msg=$('bMsg'); msg.style.color='#dc2626'; msg.textContent='';
+      if($('bHp').value) return;
+      const email=$('bEmail').value.trim(), name=$('bName').value.trim(), phone=$('bPhone').value.trim();
+      const track=$('bTrack').value, memo=$('bMemo').value.trim(), printed=$('bFormat').checked;
+      if(!email||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ msg.textContent='이메일을 정확히 입력해 주세요.'; return; }
+      if(!track){ msg.textContent='신청할 자료집(과정)을 선택해 주세요.'; return; }
+      const btn=$('bSubmit'); btn.disabled=true; btn.textContent='신청 중…';
+      const interest = '📕 PDF 자료집 — ' + track + (printed?' (실물제본 문의)':'');
+      let error;
+      try{ const res=await withTimeout(sb.from('course_applications').insert({ name:name||null, email, phone:phone||null, interest, motivation:memo||null }), 9000); error=res.error; }
+      catch(e){ error=e; }
+      btn.disabled=false; btn.textContent='자료집 신청하기';
+      if(error){
+        if(tableMissing(error)) msg.innerHTML='신청 접수를 준비 중이에요. 잠시 후 다시 시도하시거나 <a href="mailto:josephoh1611@gmail.com" class="underline">이메일</a>로 알려주세요.';
+        else msg.textContent='신청 중 오류가 났어요: '+(error.message||error);
+        return;
+      }
+      notifyBooklet({ track, name, email, phone, memo, printed });
+      $('apply').innerHTML='<div class="bg-white rounded-3xl border border-gold/30 shadow-card p-8 md:p-10 max-w-xl mx-auto text-center"><p class="text-4xl mb-3">📬</p><h2 class="text-xl md:text-2xl font-bold">자료집 신청이 접수됐어요!</h2><p class="text-ink/60 text-sm mt-3 leading-relaxed"><b class="text-ink">입금 안내</b>를 이메일로 보내드릴게요. 입금이 확인되면 <b class="text-ink">합본 책자 PDF</b>를 보내드립니다. 🙏</p><a href="index.html" class="inline-block mt-6 text-gold font-semibold hover:underline">홈으로 →</a></div>';
+      $('apply').scrollIntoView({behavior:'smooth', block:'center'});
+    }
+
+    /* ---------------- 책 뷰어 ---------------- */
+    async function isAdmin(){
+      try{ const { data } = await sb.auth.getSession(); return !!(data && data.session && data.session.user && data.session.user.email===ADMIN_EMAIL); }catch(e){ return false; }
+    }
+    function noteHTML(n, title, idx){
+      if(!n) return '';
+      let h = `<div class="lesson"><h2 class="bk-title">${idx}. ${esc(title)}</h2>`;
+      if(n.thesis) h += `<p class="bk-thesis">${esc(n.thesis)}</p>`;
+      if(n.overview) String(n.overview).split('\n').forEach(p=>{ if(p.trim()) h+=`<p class="bk-p">${esc(p.trim())}</p>`; });
+      if(n.background){ h+=`<h3 class="bk-h">📜 배경</h3>`; String(n.background).split('\n').forEach(p=>{ if(p.trim()) h+=`<p class="bk-p">${esc(p.trim())}</p>`; }); }
+      (n.sections||[]).forEach(s=>{
+        h+=`<h3 class="bk-h">${s.t?('<span style=\"color:#b8923f\">'+esc(s.t)+'</span> '):''}${esc(s.heading||'')}</h3>`;
+        if(s.body) String(s.body).split('\n').forEach(p=>{ if(p.trim()) h+=`<p class="bk-p">${esc(p.trim())}</p>`; });
+        if((s.points||[]).length){ h+='<ul class="bk-ul">'+s.points.map(p=>`<li>${esc(p)}</li>`).join('')+'</ul>'; }
+      });
+      if((n.scriptures||[]).length){ h+=`<h3 class="bk-h">📖 핵심 성구</h3>`; n.scriptures.forEach(s=>{ h+=`<div class="bk-scr"><b>${esc(s.ref||'')}</b> — ${esc(s.note||'')}</div>`; }); }
+      if((n.terms||[]).length){ h+=`<h3 class="bk-h">🔑 핵심 용어</h3>`; n.terms.forEach(t=>{ h+=`<p class="bk-term"><b>${esc(t.term||'')}</b> — ${esc(t.def||'')}</p>`; }); }
+      if((n.misconceptions||[]).length){ h+=`<h3 class="bk-h">⚠️ 오해 vs 바른 이해</h3>`; n.misconceptions.forEach(m=>{ h+=`<p class="bk-mis"><span class="w">✗ ${esc(m.wrong||'')}</span><br/><span class="r">✓ ${esc(m.right||'')}</span></p>`; }); }
+      if((n.takeaways||[]).length){ h+=`<h3 class="bk-h">🌟 한눈 정리</h3><ul class="bk-ul">`+n.takeaways.map(t=>`<li>${esc(t)}</li>`).join('')+'</ul>'; }
+      if((n.application||[]).length){ h+=`<h3 class="bk-h">🌱 삶으로</h3><ul class="bk-ul">`+n.application.map(t=>`<li>${esc(t)}</li>`).join('')+'</ul>'; }
+      if((n.questions||[]).length){ h+=`<h3 class="bk-h">💬 묵상 질문</h3><ul class="bk-ul">`+n.questions.map(t=>`<li>${esc(t)}</li>`).join('')+'</ul>'; }
+      h+='</div>';
+      return h;
+    }
+    async function renderBook(trackName){
+      $('bookView').classList.remove('hidden');
+      const t = TRACKS.find(x=>x.name===trackName) || TRACKS.find(x=>x.name.indexOf(trackName)===0);
+      if(!t){ $('book').innerHTML='<p class="text-center text-ink/40 py-10">과정을 찾지 못했어요. <a href="booklet.html" class="text-gold underline">목록으로</a></p>'; return; }
+      $('bvTitle').textContent = t.name;
+      document.title = t.name + ' — PDF 자료집 · BIBLY';
+      const admin = await isAdmin();
+      const lessons = t.lessons.map(le=>({ id:id11(le.youtube||le.id||''), title:le.title||'' }));
+      // 노트 로드 (관리자=전체, 비관리자=첫 강의만 미리보기)
+      const loadList = admin ? lessons : lessons.slice(0,1);
+      const notes = await Promise.all(loadList.map(async l=>{
+        try{ const r=await fetch('content/notes/'+l.id+'.json?t='+Date.now()); if(r.ok) return await r.json(); }catch(e){}
+        return null;
+      }));
+      // 표지
+      let h = `<div style="text-align:center;padding:34px 0 30px;border-bottom:1px solid #e6e9f0">
+        <p style="color:#b8923f;font-weight:700;letter-spacing:.28em;font-size:11px;margin:0 0 12px">BIBLY 바이블 인사이트 · 자료집</p>
+        <h1 style="font-size:30px;font-weight:700;color:#213a6b;line-height:1.3;margin:0 12px">${esc(t.name)}</h1>
+        <p style="color:#5a6b88;font-size:13px;margin:14px 0 0">요약노트 합본 · 전 ${t.lessons.length}강</p>
+        <p style="color:#9aa6bd;font-size:11px;margin:18px 0 0">말씀으로 시대를 읽다 · biblynote.com</p></div>`;
+      // 목차
+      h += `<div style="padding:18px 2px"><p style="font-weight:700;color:#213a6b;font-size:15px;margin:0 0 8px">목차</p><ol style="margin:0;padding-left:20px">`
+        + lessons.map(l=>`<li style="font-size:13px;line-height:1.9;color:#33415e">${esc(l.title)}</li>`).join('') + `</ol></div>`;
+      // 본문
+      notes.forEach((n,i)=>{ h += n ? noteHTML(n, lessons[i].title, i+1) : `<div class="lesson"><h2 class="bk-title">${i+1}. ${esc(lessons[i].title)}</h2><p class="bk-p" style="color:#9aa6bd">이 강의의 노트는 준비 중입니다.</p></div>`; });
+      if(!admin){
+        h += `<div class="no-print" style="text-align:center;padding:26px 0 6px;border-top:1px dashed #d6ddea;margin-top:10px"><p style="color:#5a6b88;font-size:13px">… 이하 전체 ${t.lessons.length}강 합본은 신청 후 책자 PDF로 보내드려요.</p></div>`;
+        $('bvLock').classList.remove('hidden');
+        $('bvPdf').style.display='none';
+      }
+      $('book').innerHTML = h;
+    }
+    function savePDF(){
+      const el=$('book'); const name=($('bvTitle').textContent||'BIBLY 자료집').replace(/[\\/:*?"<>|]/g,' ').trim();
+      $('bvPdf').disabled=true; $('bvPdf').textContent='PDF 만드는 중…';
+      html2pdf().set({ margin:[12,12,14,12], filename:name+' — BIBLY 자료집.pdf', image:{type:'jpeg',quality:0.96},
+        html2canvas:{scale:2,useCORS:true}, jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}, pagebreak:{mode:['css','legacy']} })
+        .from(el).save().then(()=>{ $('bvPdf').disabled=false; $('bvPdf').textContent='📕 PDF로 저장'; })
+        .catch(()=>{ $('bvPdf').disabled=false; $('bvPdf').textContent='📕 PDF로 저장'; alert('PDF 생성 중 문제가 있었어요. 다시 시도해 주세요.'); });
+    }
+
+    boot();
+  </script>
+
+  <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script src="auth-header.js?v=20260619c"></script>
+</body>
+</html>
