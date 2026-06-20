@@ -72,11 +72,24 @@
 
   <div id="siteHeader" data-active="booklet.html"></div>
 
-  <!-- 장바구니 플로팅 버튼 -->
-  <button id="cartFab" onclick="showView('cart')" class="hidden fixed z-40 bottom-5 right-5 bg-ink text-paper rounded-full shadow-card pl-5 pr-4 py-3 flex items-center gap-2 hover:bg-navy transition">
-    <span class="text-base">🛒</span><span class="font-bold text-sm">장바구니</span>
-    <span id="cartBadge" class="bg-gold text-white text-xs font-bold rounded-full min-w-[20px] h-5 px-1.5 inline-flex items-center justify-center">0</span>
-  </button>
+  <!-- 스토어 상단바 (항상 보이는 장바구니·탭) -->
+  <div id="storeBar" class="hidden sticky top-14 z-30 bg-white/95 backdrop-blur border-b border-ink/8 shadow-soft">
+    <div class="max-w-5xl mx-auto px-4 py-2.5 flex items-center gap-2">
+      <button onclick="showView('catalog')" class="font-bold text-sm shrink-0">🛍 BIBLY <span class="text-gold">스토어</span></button>
+      <nav class="hidden sm:flex items-center gap-0.5 text-sm text-ink/60 ml-2">
+        <button onclick="goStore('pass')" class="px-2.5 py-1 rounded hover:bg-ink/5">이용권</button>
+        <button onclick="goStore('books')" class="px-2.5 py-1 rounded hover:bg-ink/5">책자</button>
+        <a href="store-help.html" class="px-2.5 py-1 rounded hover:bg-ink/5">고객센터</a>
+      </nav>
+      <div class="ml-auto flex items-center gap-1.5">
+        <a href="store-help.html" class="sm:hidden text-ink/55 text-sm px-1.5">고객센터</a>
+        <button onclick="showView('cart')" aria-label="장바구니" class="relative inline-flex items-center gap-1.5 bg-ink text-paper text-sm font-bold pl-3.5 pr-4 py-2 rounded-full hover:bg-navy transition">
+          <span>🛒 장바구니</span>
+          <span id="cartCount" class="bg-gold text-white text-[11px] font-bold rounded-full min-w-[18px] h-[18px] px-1 inline-flex items-center justify-center">0</span>
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- ===================== 북스토어 ===================== -->
   <main id="catalogView" class="hidden">
@@ -114,7 +127,7 @@
     </section>
 
     <!-- BIBLY PASS · 전체 이용권 (흰색·마케팅) -->
-    <section class="max-w-5xl mx-auto px-5 pt-12">
+    <section id="passSection" class="max-w-5xl mx-auto px-5 pt-12 scroll-mt-24">
       <div class="rounded-3xl border border-ink/10 bg-gradient-to-b from-sand/50 to-white shadow-soft overflow-hidden">
         <div class="px-6 md:px-10 py-10">
           <div class="text-center max-w-xl mx-auto">
@@ -275,16 +288,18 @@
       ['catalogView','cartView','checkoutView','bookView'].forEach(id=>{ const el=$(id); if(el) el.classList.add('hidden'); });
       const map={catalog:'catalogView',cart:'cartView',checkout:'checkoutView',book:'bookView'};
       const el=$(map[v]||'catalogView'); if(el) el.classList.remove('hidden');
+      const bar=$('storeBar'); if(bar) bar.classList.toggle('hidden', v==='book');  // 스토어바: 책뷰어 제외 항상 노출
       if(v==='cart') renderCart();
       if(v==='checkout') renderCheckout();
       window.scrollTo(0,0);
     }
     function scrollToBooks(){ const el=$('booksSection'); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }
+    function goStore(t){ showView('catalog'); setTimeout(()=>{ const el=$(t==='pass'?'passSection':'booksSection'); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); },70); }
 
     /* ---------------- 장바구니 ---------------- */
     function loadCart(){ try{ CART=JSON.parse(localStorage.getItem('bibly_cart'))||[]; }catch(e){ CART=[]; } if(!Array.isArray(CART)) CART=[]; }
     function saveCart(){ try{ localStorage.setItem('bibly_cart', JSON.stringify(CART)); }catch(e){} updateCartBadge(); }
-    function updateCartBadge(){ const b=$('cartBadge'), f=$('cartFab'); if(b) b.textContent=CART.length; if(f) f.classList.toggle('hidden', CART.length===0); }
+    function updateCartBadge(){ const c=$('cartCount'); if(c) c.textContent=CART.length; }
     function cartTotal(){ return CART.reduce((s,it)=>s+(Number(it.price)||0),0); }
     function inCart(key){ return CART.some(c=>c.key===key); }
     function addToCart(kind, name, silent){
@@ -299,7 +314,7 @@
     let toastT=null;
     function toast(msg, plain){
       let el=$('toastBox');
-      if(!el){ el=document.createElement('div'); el.id='toastBox'; el.className='fixed z-50 left-1/2 -translate-x-1/2 bottom-24 bg-ink text-paper text-sm font-semibold px-5 py-3 rounded-full shadow-card flex items-center gap-3 transition-opacity'; document.body.appendChild(el); }
+      if(!el){ el=document.createElement('div'); el.id='toastBox'; el.style.zIndex='2147483646'; el.className='fixed left-1/2 -translate-x-1/2 top-24 bg-ink text-paper text-sm font-semibold px-5 py-3 rounded-full shadow-card flex items-center gap-3 transition-opacity'; document.body.appendChild(el); }
       el.innerHTML='<span>'+esc(msg)+'</span>'+(plain?'':'<button onclick="showView(\'cart\')" class="text-gold font-bold">장바구니 보기</button>');
       el.style.opacity='1'; clearTimeout(toastT); toastT=setTimeout(()=>{ el.style.opacity='0'; }, 2600);
     }

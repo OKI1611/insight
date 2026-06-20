@@ -16,8 +16,12 @@
       { label:'전체 커리큘럼', href:'curriculum.html' },
       { label:'정규 심화 과정(아카데미)', href:'academy.html' },
       { label:'나에게 맞는 강의 찾기', href:'find.html' },
-      { label:'PDF 자료집(책자)', href:'booklet.html' },
       { label:'칼럼', href:'column.html' }
+    ]},
+    { label:'스토어', href:'booklet.html', children:[
+      { label:'PDF 책자·이용권', href:'booklet.html' },
+      { label:'고객센터(주문·배송·반품)', href:'store-help.html' },
+      { label:'내 구매·자료', href:'mylearning.html' }
     ]},
     { label:'성경', href:'bible.html', children:[
       { label:'성경 읽기', href:'bible.html' },
