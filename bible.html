@@ -39,7 +39,7 @@
 
   <div id="siteHeader" data-active="bible.html"></div>
 
-  <main class="max-w-3xl mx-auto px-4 py-6">
+  <main class="max-w-5xl mx-auto px-4 py-6">
     <div class="text-center mb-5">
       <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">HOLY BIBLE · 성경 읽기</p>
       <h1 class="text-2xl font-bold">King James Version <span class="text-ink/40 text-lg font-normal">킹제임스 성경</span></h1>
@@ -61,6 +61,7 @@
         <button onclick="togglePicker()" id="bookBtn" class="bg-ink text-paper font-semibold text-sm px-4 py-2 rounded-full hover:bg-navy transition">📖 책 선택</button>
         <select id="chapSel" onchange="loadChapter(+this.value)" class="border border-ink/15 rounded-full px-3 py-2 text-sm bg-white"></select>
         <label class="text-xs text-ink/60 flex items-center gap-1.5 ml-1"><input type="checkbox" id="parallel" checked onchange="renderChapter()"/>한·영 병행</label>
+        <label class="text-xs text-ink/60 flex items-center gap-1.5 ml-1"><input type="checkbox" id="enToggle" checked onchange="toggleEn()"/>🔤 영어 표현</label>
         <div class="ml-auto flex gap-1.5">
           <button onclick="nav(-1)" class="border border-ink/15 rounded-full px-3 py-2 text-sm hover:bg-ink/5">←</button>
           <button onclick="nav(1)" class="border border-ink/15 rounded-full px-3 py-2 text-sm hover:bg-ink/5">→</button>
@@ -76,10 +77,17 @@
       <div id="ntGrid" class="grid grid-cols-3 sm:grid-cols-5 gap-1.5"></div>
     </div>
 
-    <!-- 본문 -->
-    <article id="reader" class="mt-5 bg-white rounded-2xl border border-ink/8 shadow-soft p-5 lg:p-7 min-h-[300px]">
-      <p class="text-ink/40 text-center py-10">불러오는 중…</p>
-    </article>
+    <!-- 본문 + 영어 표현 사이드 -->
+    <div id="readWrap" class="mt-5 lg:grid lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-5 lg:items-start">
+      <article id="reader" class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 lg:p-7 min-h-[300px]">
+        <p class="text-ink/40 text-center py-10">불러오는 중…</p>
+      </article>
+      <aside id="enPanel" class="mt-4 lg:mt-0 lg:sticky lg:top-28 bg-white rounded-2xl border border-gold/25 shadow-soft p-4 lg:max-h-[78vh] lg:overflow-auto">
+        <p class="font-bold text-sm text-ink mb-0.5">🔤 이 장의 영어 표현</p>
+        <p class="text-[11px] text-ink/45 mb-3">중요 단어·숙어·문법을 확인하세요</p>
+        <div id="enList"></div>
+      </aside>
+    </div>
 
     <div class="flex justify-between mt-4">
       <button onclick="nav(-1)" class="text-sm text-gold hover:underline">← 이전 장</button>
@@ -94,7 +102,7 @@
   </main>
 
   <script>
-    let BOOKS=[], CUR=null, BOOK=null, CH=1, KR=null;
+    let BOOKS=[], CUR=null, BOOK=null, CH=1, KR=null, ENNOTES=null;
     const $=id=>document.getElementById(id);
 
     fetch('bible/books.json?t='+Date.now()).then(r=>r.json()).then(bs=>{
@@ -118,11 +126,26 @@
     }
     async function loadChapter(c){
       CH=Math.min(Math.max(1,c),CUR.ch); $('chapSel').value=CH;
-      KR=null;
+      KR=null; ENNOTES=null;
       try{ const r=await fetch('bible/kr/'+CUR.file+'-'+CH+'.json?t='+Date.now()); if(r.ok) KR=await r.json(); }catch(e){}
+      try{ const re=await fetch('bible/en/'+CUR.file+'-'+CH+'.json?t='+Date.now()); if(re.ok) ENNOTES=await re.json(); }catch(e){}
       history.replaceState(null,'','?b='+CUR.file+'&c='+CH);
-      renderChapter();
+      renderChapter(); renderEn();
       window.scrollTo({top:0,behavior:'smooth'});
+    }
+    function toggleEn(){ applyEnLayout($('enToggle').checked); }
+    function applyEnLayout(on){
+      $('enPanel').classList.toggle('hidden', !on);
+      $('readWrap').classList.toggle('lg:grid', on);
+      $('readWrap').classList.toggle('lg:grid-cols-[minmax(0,1fr)_320px]', on);
+    }
+    function renderEn(){
+      const box=$('enList'); if(!box) return;
+      if(!ENNOTES || !ENNOTES.length){ box.innerHTML='<p class="text-xs text-ink/40 leading-relaxed py-2">이 장의 영어 표현 노트는 준비 중입니다. (장별로 순차 추가)</p>'; return; }
+      box.innerHTML=ENNOTES.map(e=>`<div class="border-b border-ink/[0.07] py-2.5 last:border-0">
+        <p class="verse-en font-bold text-[14px] text-ink leading-snug">${esc(e.en||'')}</p>
+        <p class="text-[13px] text-gold font-semibold mt-0.5">${esc(e.ko||'')}</p>
+        ${e.note?`<p class="text-[12px] text-ink/55 leading-relaxed mt-1">${esc(e.note)}</p>`:''}</div>`).join('');
     }
     function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
     function renderChapter(){
