@@ -222,8 +222,10 @@
       try{ COURSE=await (await fetch('content/course.json?t='+Date.now())).json(); }catch(e){ COURSE={levels:[]}; }
       try{ const pj=await (await fetch('content/booklet-prices.json?t='+Date.now())).json(); if(pj){ if(pj.overrides) PRICE_OVERRIDE=pj.overrides; if(Array.isArray(pj.tiers)&&pj.tiers.length) PRICE_TIERS=pj.tiers; if(Array.isArray(pj.passes)&&pj.passes.length) PASSES=pj.passes; } }catch(e){}
       TRACKS=(COURSE.levels||[]).map((lv,i)=>({i,name:(lv.name||lv.title||('과정 '+(i+1))),lessons:(lv.lessons||[])})).filter(t=>t.lessons.length>0);
-      const tname=new URLSearchParams(location.search).get('track');
-      if(tname) renderBook(decodeURIComponent(tname)); else renderCatalog();
+      const sp=new URLSearchParams(location.search);
+      const tname=sp.get('track'), buy=sp.get('buy');
+      if(tname){ renderBook(decodeURIComponent(tname)); }
+      else { renderCatalog(); if(buy) setTimeout(()=>buyNow(decodeURIComponent(buy)),80); }
     }
 
     /* ---------------- 북스토어 ---------------- */
@@ -337,6 +339,13 @@
         if(!data.expires_at) return true;                       // 평생 이용권
         return new Date(data.expires_at).getTime() > Date.now(); // 기간 이용권
       }catch(e){ return false; } }
+    // 개별 책 구매 인증 여부 — book_access 테이블 기준(없으면 자동 false)
+    async function hasBook(track){ const email=await currentEmail(); if(!email) return false;
+      try{ const {data,error}=await sb.from('book_access').select('expires_at').eq('email',email).eq('track',track).maybeSingle();
+        if(error||!data) return false;
+        if(!data.expires_at) return true;
+        return new Date(data.expires_at).getTime() > Date.now();
+      }catch(e){ return false; } }
     function noteHTML(n,title,idx){ if(!n) return '';
       let h=`<div class="lesson"><h2 class="bk-title">${idx}. ${esc(title)}</h2>`;
       if(n.thesis) h+=`<p class="bk-thesis">${esc(n.thesis)}</p>`;
@@ -356,16 +365,28 @@
       const t=TRACKS.find(x=>x.name===trackName)||TRACKS.find(x=>x.name.indexOf(trackName)===0);
       if(!t){ $('book').innerHTML='<p class="text-center text-ink/40 py-10">책을 찾지 못했어요. <a href="booklet.html" class="text-gold underline">북스토어로</a></p>'; return; }
       $('bvTitle').textContent=t.name; document.title=t.name+' — BIBLY 북스토어';
-      $('bvBuy').href='booklet.html#order';
+      const buyLink='booklet.html?buy='+encodeURIComponent(t.name)+'#order';
+      $('bvBuy').href=buyLink;
       const admin=await isAdmin();
-      const unlocked = admin || await hasPass();
+      const unlocked = admin || await hasPass() || await hasBook(t.name);
       const lessons=t.lessons.map(le=>({id:id11(le.youtube||le.id||''),title:le.title||''}));
       const loadList=unlocked?lessons:lessons.slice(0,1);
       const notes=await Promise.all(loadList.map(async l=>{try{const r=await fetch('content/notes/'+l.id+'.json?t='+Date.now());if(r.ok)return await r.json();}catch(e){}return null;}));
       let h=`<div style="text-align:center;padding:34px 0 30px;border-bottom:1px solid #e6e9f0"><p style="color:#b8923f;font-weight:700;letter-spacing:.28em;font-size:11px;margin:0 0 12px">BIBLY 바이블 인사이트 · 자료집</p><h1 style="font-size:30px;font-weight:700;color:#213a6b;line-height:1.3;margin:0 12px">${esc(t.name)}</h1><p style="color:#5a6b88;font-size:13px;margin:14px 0 0">요약노트 합본 · 전 ${t.lessons.length}강</p><p style="color:#9aa6bd;font-size:11px;margin:18px 0 0">말씀으로 시대를 읽다 · biblynote.com</p></div>`;
       h+=`<div style="padding:18px 2px"><p style="font-weight:700;color:#213a6b;font-size:15px;margin:0 0 8px">목차</p><ol style="margin:0;padding-left:20px">`+lessons.map(l=>`<li style="font-size:13px;line-height:1.9;color:#33415e">${esc(l.title)}</li>`).join('')+`</ol></div>`;
       notes.forEach((n,i)=>{ h+= n?noteHTML(n,lessons[i].title,i+1):`<div class="lesson"><h2 class="bk-title">${i+1}. ${esc(lessons[i].title)}</h2><p class="bk-p" style="color:#9aa6bd">이 강의의 노트는 준비 중입니다.</p></div>`; });
-      if(!unlocked){ h+=`<div class="no-print" style="text-align:center;padding:26px 0 6px;border-top:1px dashed #d6ddea;margin-top:10px"><p style="color:#5a6b88;font-size:13px">… 이하 전체 ${t.lessons.length}강 합본은 구매(또는 <b style="color:#b8923f">전체 이용권</b>) 후 보실 수 있어요.</p></div>`; $('bvLock').classList.remove('hidden'); $('bvPdf').style.display='none'; }
+      const pdfBtn=$('bvPdf');
+      if(unlocked){
+        // 구매 인증 완료 → PDF 다운로드 정상 작동
+        pdfBtn.style.display=''; pdfBtn.textContent='📕 PDF로 저장'; pdfBtn.title='인쇄창이 열리면 대상(목적지)을 "PDF로 저장"으로 선택하세요';
+        pdfBtn.onclick=savePDF;
+      } else {
+        // 미구매 → 버튼이 구매하기로 연동
+        h+=`<div class="no-print" style="text-align:center;padding:26px 0 6px;border-top:1px dashed #d6ddea;margin-top:10px"><p style="color:#5a6b88;font-size:13px">… 이하 전체 ${t.lessons.length}강 합본은 구매(또는 <b style="color:#b8923f">전체 이용권</b>) 후 PDF로 받으실 수 있어요.</p></div>`;
+        $('bvLock').classList.remove('hidden');
+        pdfBtn.style.display=''; pdfBtn.textContent='🔒 구매하고 PDF 받기'; pdfBtn.title='구매(또는 전체 이용권) 후 로그인하시면 PDF로 저장할 수 있어요';
+        pdfBtn.onclick=()=>{ location.href=buyLink; };
+      }
       $('book').innerHTML=h;
     }
     // 책자 본문 스타일(인쇄 문서에 그대로 주입) — 모두 OFL 폰트 + hex 색상(저작권·렌더링 안전)
