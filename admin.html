@@ -179,7 +179,7 @@
             <p id="bookMsg" class="text-xs mt-2 min-h-[16px]"></p>
           </div>
         </div>
-        <h2 class="font-bold mb-3">현재 이용권 보유자</h2>
+        <div class="flex items-center gap-3 mb-3"><h2 class="font-bold">현재 이용권 보유자</h2><button onclick="loadStore()" class="text-xs text-gold hover:underline">🔄 새로고침</button></div>
         <div id="passList" class="mb-8">불러오는 중…</div>
         <h2 class="font-bold mb-3">현재 개별 교재 권한</h2>
         <div id="bookList">불러오는 중…</div>
@@ -256,7 +256,9 @@
       document.querySelectorAll('.secPanel').forEach(p=>p.classList.add('hidden'));
       document.getElementById('sec-'+sec).classList.remove('hidden');
       document.querySelectorAll('.navItem').forEach(b=> b.className='navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg '+(b.dataset.sec===sec?'bg-white/10 text-paper font-medium':'hover:bg-white/5'));
-      if(!LOADED[sec]){ LOADED[sec]=true; try{ ({dash:loadDash,curr:loadCurr,reqs:loadReqs,comm:loadComm,mem:loadMem,apps:loadApps,cert:loadCert,store:loadStore,cont:loadCont,site:loadSite}[sec]||(()=>{}))(); }catch(e){} }
+      // 폼 섹션(curr·site)만 1회 로드 캐시, 데이터 섹션은 누를 때마다 새로고침(멈춤 방지)
+      const formSec=(sec==='curr'||sec==='site');
+      if(!formSec || !LOADED[sec]){ LOADED[sec]=true; try{ ({dash:loadDash,curr:loadCurr,reqs:loadReqs,comm:loadComm,mem:loadMem,apps:loadApps,cert:loadCert,store:loadStore,cont:loadCont,site:loadSite}[sec]||(()=>{}))(); }catch(e){} }
     }
 
     // ===== 대시보드 =====
@@ -487,9 +489,9 @@
         +'<p style="font-size:12px;color:#9aa6bd;margin-top:16px">감사합니다. 평안한 하루 되세요. 🙏</p></div></div>';
     }
     async function loadStore(){
+      loadPassList(); loadBookList();   // 목록 먼저(다른 것에 안 막히게)
       try{ const c=await getCourse(); const sel=document.getElementById('bookTrack');
         if(sel && sel.options.length<=1){ (c.levels||[]).filter(l=>(l.lessons||[]).length).forEach(l=>{ const o=document.createElement('option'); o.value=l.name||l.title; o.textContent=l.name||l.title; sel.appendChild(o); }); } }catch(e){}
-      loadPassList(); loadBookList();
     }
     async function loadPassList(){
       const wrap=document.getElementById('passList');
