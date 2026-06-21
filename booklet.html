@@ -522,7 +522,7 @@
       const lessons=t.lessons.map(le=>({id:id11(le.youtube||le.id||''),title:le.title||''}));
       const loadList=unlocked?lessons:lessons.slice(0,1);
       const notes=await Promise.all(loadList.map(async l=>{try{const r=await fetch('content/notes/'+l.id+'.json?t='+Date.now());if(r.ok)return await r.json();}catch(e){}return null;}));
-      let h=`<div class="cover-page" style="text-align:center;padding:42px 0 34px;border-bottom:1px solid #e6e9f0"><p style="color:#b8923f;font-weight:700;letter-spacing:.28em;font-size:11px;margin:0 0 14px">BIBLY 바이블 인사이트 · 강의 노트</p><h1 style="font-size:29px;font-weight:700;color:#213a6b;line-height:1.4;margin:0 12px">${esc(t.name)}</h1><p style="color:#5a6b88;font-size:13px;margin:16px 0 0">요약노트 + 필기 공간 · 전 ${t.lessons.length}강</p><p style="color:#9aa6bd;font-size:11px;margin:20px 0 0">강의를 들으며 메모하고 참고하세요 · biblynote.com</p></div>`;
+      let h=`<div class="cover-page" style="text-align:center;padding:42px 0 34px;border-bottom:1px solid #e6e9f0"><p style="color:#b8923f;font-weight:700;letter-spacing:.28em;font-size:11px;margin:0 0 14px">BIBLY 바이블 인사이트 · 강의 노트</p><h1 style="font-size:29px;font-weight:700;color:#213a6b;line-height:1.4;margin:0 12px">${esc(t.name)}</h1><p style="color:#5a6b88;font-size:13px;margin:16px 0 0">요약노트 + 필기 공간 · 전 ${t.lessons.length}강</p><p style="color:#9aa6bd;font-size:11px;margin:20px 0 0">강의를 들으며 메모하고 참고하세요 · biblynote.com</p>${(CUR_BUYER&&CUR_EMAIL)?`<p style="color:#b8923f;font-size:10.5px;margin:18px 0 0;letter-spacing:.02em">📗 정품 · <b>${esc(CUR_EMAIL)}</b> 님께 발행 · 무단 복제·배포 금지</p>`:''}</div>`;
       h+=`<section style="padding:24px 2px 8px"><p style="font-weight:700;color:#213a6b;font-size:17px;margin:0 0 3px">목차</p><p style="color:#9aa6bd;font-size:11px;margin:0 0 8px">전 ${lessons.length}강</p><ul class="toc-list">`+lessons.map((l,i)=>`<li class="toc-row"><span class="toc-no">제${i+1}강</span><span class="toc-t">${esc(cleanTitle(l.title))}</span></li>`).join('')+`</ul></section>`;
       notes.forEach((n,i)=>{
         const body = n ? noteHTML(n,lessons[i].title,i+1)
@@ -578,13 +578,11 @@
       document.body.appendChild(ifr);
       const doc=ifr.contentWindow.document;
       doc.open();
-      // 구매자 이메일 워터마크(각 페이지 하단 고정) — 무단 배포 억제 + 전달 증거
-      const wm = CUR_EMAIL ? '<div style="position:fixed;left:0;right:0;bottom:5mm;text-align:center;font-size:7.5pt;color:#aab3c4;letter-spacing:.02em">BIBLY &middot; 구매자 '+esc(CUR_EMAIL)+' &middot; 무단 복제·배포 금지</div>' : '';
       doc.write('<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><title>'+esc(title)+'</title>'
         +'<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">'
         +'<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet">'
-        +'<style>@page{size:A4;margin:14mm 14mm 18mm}'+BOOK_CSS+'</style></head>'
-        +'<body class="book">'+wm+innerHTML+'</body></html>');
+        +'<style>@page{size:A4;margin:14mm 14mm 16mm}'+BOOK_CSS+'</style></head>'
+        +'<body class="book">'+innerHTML+'</body></html>');
       doc.close();
       const cleanup=()=>{ setTimeout(()=>{ try{ ifr.remove(); }catch(e){} }, 1500); };
       const go=()=>{ try{ ifr.contentWindow.focus(); ifr.contentWindow.print(); }catch(e){ alert('PDF 저장 중 문제가 있었어요. 다시 시도해 주세요.'); } cleanup(); };
