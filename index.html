@@ -156,6 +156,7 @@
     </nav>
     <!-- 모바일 메뉴 -->
     <div id="mobileMenu" class="hidden xl:hidden border-t border-ink/8 bg-paper/98 backdrop-blur px-5 py-3">
+      <div id="mobileAdminWrap"></div>
       <div id="mobilemenuLinks" class="flex flex-col"></div>
       <div class="flex gap-2 mt-3 pt-3 border-t border-ink/8">
         <a href="mylearning.html" class="flex-1 text-center border border-gold/45 text-gold font-semibold text-sm px-4 py-3 rounded-full">📚 내 강의실</a>
@@ -1806,10 +1807,21 @@
       } catch(e){}
       return null;
     }
+    const ADMIN_EMAIL = 'josephoh1611@gmail.com';
     function paintNav(user, name){
+      const isAdmin = !!(user && user.email === ADMIN_EMAIL);
+      const adminBtn = isAdmin
+        ? `<a href="admin.html" class="inline-flex items-center gap-1 border border-ink/25 text-ink/80 font-semibold px-3 py-1 rounded-full hover:border-gold hover:text-gold transition" title="관리자 콘솔">⚙ 관리자</a>`
+        : '';
+      // 모바일 메뉴 상단 관리자 바로가기
+      const mw = document.getElementById('mobileAdminWrap');
+      if(mw) mw.innerHTML = isAdmin
+        ? `<a href="admin.html" class="flex items-center justify-center gap-1 mb-3 bg-ink text-paper font-semibold text-sm px-4 py-3 rounded-full hover:bg-navy transition">⚙ 관리자 콘솔 바로가기</a>`
+        : '';
       if(user){
         authNav.innerHTML =
           `<span class="text-paper/70">${ (name || user.email || '회원') }님</span>` +
+          adminBtn +
           `<a href="mylearning.html" class="inline-flex items-center gap-1 bg-gold text-white font-semibold px-3 py-1 rounded-full hover:opacity-90 transition">📚 내 강의실</a>` +
           `<button onclick="logout()" class="hover:text-gold">로그아웃</button>`;
       } else {
