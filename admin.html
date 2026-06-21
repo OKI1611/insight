@@ -327,18 +327,26 @@
 
     // ===== 대시보드 =====
     let COURSE=null;
-    async function getCourse(){ if(COURSE) return COURSE; try{ const r=await withTimeout(fetch('content/course.json?t='+Date.now()),9000); const j=await r.json(); COURSE=j; return j; }catch(e){ return {levels:[]}; } }
+    // XHR로 정적 파일 직접 읽기 — content-loader.js(Supabase 우회)를 거치지 않아 즉시 응답
+    async function getCourse(){ if(COURSE) return COURSE; return new Promise(resolve=>{ const x=new XMLHttpRequest(); x.open('GET','content/course.json?t='+Date.now()); x.timeout=8000; x.onload=()=>{ try{ COURSE=JSON.parse(x.responseText); resolve(COURSE); }catch(e){ resolve({levels:[]}); } }; x.onerror=x.ontimeout=()=>resolve({levels:[]}); x.send(); }); }
     async function count(table){ return restCount(table); }
     async function countSince(table,col,sinceISO){ return restCount(table, sinceISO?(col+'=gte.'+encodeURIComponent(sinceISO)):''); }
     function daysAgo(n){ const d=new Date(); d.setHours(0,0,0,0); d.setDate(d.getDate()-n); return d.toISOString(); }
+    const mkCard=(t,v,s)=>`<div class="bg-white rounded-2xl p-5 border border-ink/5 shadow-sm"><p class="text-sm text-ink/50">${t}</p><p class="text-2xl font-bold mt-1">${v}</p><p class="text-xs text-ink/40 mt-1">${s}</p></div>`;
     async function loadDash(){
       try{
-        const c=await getCourse();
+        const c=await getCourse();  // XHR → 정적 CDN에서 즉시 로드
         const tracks=c.levels.length, lessons=c.levels.reduce((s,l)=>s+(l.lessons||[]).length,0);
-        // 강의 요약·편집 안내는 Supabase 없이 즉시 표시
+        // ① 콘텐츠 요약·카드 스켈레톤 즉시 표시(Supabase 대기 없음)
         document.getElementById('contentSummary').innerHTML = `총 <b>${tracks}개 트랙 / ${lessons}개 강의</b>가 등록되어 있습니다. 각 강의의 노트·퀴즈 보유 현황은 <button onclick="show('cont')" class="text-gold underline">노트·퀴즈 현황</button> 탭에서, 강의 추가·수정은 <button onclick="show('curr')" class="text-gold underline">커리큘럼 편집</button> 탭에서 하세요.
           <span class="block mt-3 pt-3 border-t border-ink/5">✏️ <b>홈페이지 문구 수정</b>: 관리자로 로그인한 채 <a href="index.html" class="text-gold underline">홈</a>·<a href="about.html" class="text-gold underline">우리의 사명</a> 페이지를 열면 상단에 <b>「✏️ 글 편집」</b> 바가 나타납니다. 켜고 노란 점선 글자를 직접 고친 뒤 <b>저장</b>하면 모든 방문자에게 즉시 반영돼요.</span>`;
-        // 모든 Supabase 쿼리 한 번에 병렬 실행(최대 6초 타임아웃)
+        document.getElementById('statCards').innerHTML = [
+          mkCard('커리큘럼', tracks+'트랙 · '+lessons+'강','전체 강의'),
+          mkCard('회원','…','집계 중'),
+          mkCard('강의 요청·건의','…','집계 중'),
+          mkCard('커뮤니티 글','…','집계 중'),
+        ].join('');
+        // ② Supabase 통계는 병렬로 백그라운드 집계(최대 6초, 완료되면 카드·트렌드 업데이트)
         const [reqs,comm,votes,members,vToday,v7,v30,vAll,sToday,s7,s30]=await Promise.all([
           count('lecture_requests'),count('community_posts'),count('lecture_request_votes'),count('profiles'),
           countSince('site_visits','created_at',daysAgo(0)),countSince('site_visits','created_at',daysAgo(7)),
@@ -346,13 +354,12 @@
           countSince('profiles','created_at',daysAgo(0)),countSince('profiles','created_at',daysAgo(7)),
           countSince('profiles','created_at',daysAgo(30))
         ]);
-        const cards=[
-          ['커리큘럼', tracks+'트랙 · '+lessons+'강','전체 강의'],
-          ['회원', members,'가입 누적'],
-          ['강의 요청·건의', reqs,'추천 '+votes+'표'],
-          ['커뮤니티 글', comm,'라운지 게시물'],
-        ];
-        document.getElementById('statCards').innerHTML = cards.map(([t,v,s])=>`<div class="bg-white rounded-2xl p-5 border border-ink/5 shadow-sm"><p class="text-sm text-ink/50">${t}</p><p class="text-2xl font-bold mt-1">${v}</p><p class="text-xs text-ink/40 mt-1">${s}</p></div>`).join('');
+        document.getElementById('statCards').innerHTML = [
+          mkCard('커리큘럼', tracks+'트랙 · '+lessons+'강','전체 강의'),
+          mkCard('회원', members,'가입 누적'),
+          mkCard('강의 요청·건의', reqs,'추천 '+votes+'표'),
+          mkCard('커뮤니티 글', comm,'라운지 게시물'),
+        ].join('');
         const trend=(label,emoji,a,b,c,d)=>`<div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-5 mb-4"><p class="font-bold mb-3">${emoji} ${label}</p><div class="grid grid-cols-4 gap-2 text-center">
           <div><p class="text-xl font-bold">${a}</p><p class="text-xs text-ink/45 mt-0.5">오늘</p></div>
           <div><p class="text-xl font-bold">${b}</p><p class="text-xs text-ink/45 mt-0.5">최근 7일</p></div>
