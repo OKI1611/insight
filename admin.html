@@ -231,7 +231,8 @@
   <div id="toast" class="hidden fixed bottom-5 right-5 z-[60] bg-ink text-paper text-sm px-5 py-3 rounded-xl shadow-lg"></div>
 
   <script>
-    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType: 'implicit', autoRefreshToken: false, detectSessionFromUrl: true, lock: async (_n,_t,fn)=>await fn() } });
+    // detectSessionFromUrl:false — OAuth 해시는 스크립트 끝 handleOAuthRedirect()에서 직접 처리(SDK 비동기 race·hang 차단)
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType: 'implicit', autoRefreshToken: false, persistSession: false, detectSessionFromUrl: false, lock: async (_n,_t,fn)=>await fn() } });
     let USER = null;
     function esc(s){ return (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
     function withTimeout(p,ms){ return Promise.race([Promise.resolve(p), new Promise((_,r)=>setTimeout(()=>r(new Error('TIMEOUT')),ms))]); }
@@ -268,8 +269,8 @@
         return res.ok?0:'—';
       }catch(e){ clearTimeout(to); return '?'; }
     }
-    // onAuthStateChange 제거 — Supabase 클라이언트 인증 감시자가 네트워크 hang을 유발
-    applyAuth(readStored());
+    // ⚠️ 부트스트랩(applyAuth)은 스크립트 맨 끝에서 호출 — 여기서 부르면 COURSE·mkCard 등이
+    //    아직 초기화되지 않아(TDZ) loadDash가 크래시하고 대시보드가 '불러오는 중'에 멈춤.
 
     // 구글 로그인 — OAuth 리디렉션(클라이언트 SDK 경유, 리디렉션만이라 hang 없음)
     async function googleLogin(){
@@ -339,7 +340,7 @@
     async function count(table){ return restCount(table); }
     async function countSince(table,col,sinceISO){ return restCount(table, sinceISO?(col+'=gte.'+encodeURIComponent(sinceISO)):''); }
     function daysAgo(n){ const d=new Date(); d.setHours(0,0,0,0); d.setDate(d.getDate()-n); return d.toISOString(); }
-    const mkCard=(t,v,s)=>`<div class="bg-white rounded-2xl p-5 border border-ink/5 shadow-sm"><p class="text-sm text-ink/50">${t}</p><p class="text-2xl font-bold mt-1">${v}</p><p class="text-xs text-ink/40 mt-1">${s}</p></div>`;
+    function mkCard(t,v,s){ return `<div class="bg-white rounded-2xl p-5 border border-ink/5 shadow-sm"><p class="text-sm text-ink/50">${t}</p><p class="text-2xl font-bold mt-1">${v}</p><p class="text-xs text-ink/40 mt-1">${s}</p></div>`; }
     function loadDash(){
       // ① await 없이 즉시 실행 — contentSummary·statCards 바로 표시
       const c0=COURSE||{levels:[]}, t0=c0.levels.length, l0=c0.levels.reduce((s,l)=>s+(l.lessons||[]).length,0);
@@ -746,6 +747,33 @@
     function setSite(path,val){ const [a,b]=path.split('.'); SITE[a]=SITE[a]||{}; SITE[a][b]=val; }
     function exportSite(){ dl('site.json', JSON.stringify(SITE,null,2)); }
     function copySite(){ navigator.clipboard.writeText(JSON.stringify(SITE,null,2)).then(()=>toast('site.json 복사됨')); }
+
+    // ============================================================
+    // ===== 부트스트랩 (반드시 스크립트 맨 끝 — 모든 변수 초기화 후) =====
+    // ============================================================
+    // ① 구글 OAuth 리디렉션 복귀 처리 — URL 해시의 토큰을 직접 추출(SDK 비동기 대기 없음)
+    //    이걸 안 하면 첫 로그인은 SDK가 해시를 처리하기 전에 게이트가 떠서 '2번 로그인'이 필요했음.
+    function jwtPayload(tok){
+      let s=tok.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'); while(s.length%4) s+='=';
+      const json=decodeURIComponent(atob(s).split('').map(c=>'%'+('00'+c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+      return JSON.parse(json);
+    }
+    (function handleOAuthRedirect(){
+      try{
+        if(location.hash && location.hash.indexOf('access_token=')>=0){
+          const p=new URLSearchParams(location.hash.slice(1));
+          const at=p.get('access_token'), rt=p.get('refresh_token'), ei=Number(p.get('expires_in')||3600);
+          if(at){
+            const payload=jwtPayload(at);
+            const user={ id:payload.sub, email:payload.email, role:payload.role, user_metadata:payload.user_metadata||{} };
+            localStorage.setItem('bibly-admin-auth', JSON.stringify({ access_token:at, token_type:'bearer', expires_in:ei, refresh_token:rt, expires_at:(payload.exp||Math.floor(Date.now()/1000)+ei), user }));
+            history.replaceState(null,'',location.pathname); // 주소창에서 토큰 해시 제거
+          }
+        }
+      }catch(e){}
+    })();
+    // ② 인증 적용 — 이 시점엔 COURSE·mkCard·loadDash 등 모든 정의가 끝나 안전함
+    applyAuth(readStored());
   </script>
 </body>
 </html>
