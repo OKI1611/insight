@@ -226,6 +226,26 @@
 
     // ===== 인증 =====
     function readStored(){ try{ for(const k of Object.keys(localStorage)){ if(!/auth-token/.test(k)) continue; const v=JSON.parse(localStorage.getItem(k)); const s=(v&&v.user)?v:(v&&v.currentSession)?v.currentSession:null; if(s&&s.user){ if(s.expires_at&&s.expires_at*1000<Date.now()) return null; return s; } } }catch(e){} return null; }
+    // ── 직접 REST 호출(Supabase 클라이언트 우회) + 강제 타임아웃 — 멈춤 원천 차단 ──
+    function _authToken(){ const s=readStored(); return (s&&s.access_token)||SUPABASE_ANON; }
+    async function rest(path, ms){
+      const ctrl=new AbortController(); const to=setTimeout(()=>ctrl.abort(), ms||6000);
+      try{
+        const res=await fetch(SUPABASE_URL+'/rest/v1/'+path, { signal:ctrl.signal, headers:{ apikey:SUPABASE_ANON, Authorization:'Bearer '+_authToken() } });
+        clearTimeout(to);
+        if(!res.ok){ throw new Error((await res.text())||('HTTP '+res.status)); }
+        const txt=await res.text(); return txt?JSON.parse(txt):[];
+      }catch(e){ clearTimeout(to); if(e&&e.name==='AbortError') throw new Error('TIMEOUT'); throw e; }
+    }
+    async function restCount(table, filter){
+      const ctrl=new AbortController(); const to=setTimeout(()=>ctrl.abort(), 6000);
+      try{
+        const res=await fetch(SUPABASE_URL+'/rest/v1/'+table+'?select=*'+(filter?('&'+filter):''), { method:'HEAD', signal:ctrl.signal, headers:{ apikey:SUPABASE_ANON, Authorization:'Bearer '+_authToken(), Prefer:'count=estimated' } });
+        clearTimeout(to);
+        const cr=res.headers.get('content-range'); if(cr){ const n=cr.split('/')[1]; return (n&&n!=='*')?Number(n):0; }
+        return res.ok?0:'—';
+      }catch(e){ clearTimeout(to); return '?'; }
+    }
     sb.auth.onAuthStateChange((_e,s)=>applyAuth(s));
     applyAuth(readStored());
     async function googleLogin(){ await sb.auth.signInWithOAuth({ provider:'google', options:{ redirectTo: location.origin + location.pathname } }); }
@@ -268,8 +288,8 @@
     // ===== 대시보드 =====
     let COURSE=null;
     async function getCourse(){ if(COURSE) return COURSE; try{ const r=await withTimeout(fetch('content/course.json?t='+Date.now()),9000); const j=await r.json(); COURSE=j; return j; }catch(e){ return {levels:[]}; } }
-    async function count(table){ try{ const {count,error}=await withTimeout(sb.from(table).select('*',{count:'estimated',head:true}),5000); if(error) return tableMissing(error)?'—':'?'; return count; }catch(e){ return '?'; } }
-    async function countSince(table,col,sinceISO){ try{ let q=sb.from(table).select('*',{count:'estimated',head:true}); if(sinceISO) q=q.gte(col,sinceISO); const {count,error}=await withTimeout(q,5000); if(error) return tableMissing(error)?'—':'?'; return count; }catch(e){ return '?'; } }
+    async function count(table){ return restCount(table); }
+    async function countSince(table,col,sinceISO){ return restCount(table, sinceISO?(col+'=gte.'+encodeURIComponent(sinceISO)):''); }
     function daysAgo(n){ const d=new Date(); d.setHours(0,0,0,0); d.setDate(d.getDate()-n); return d.toISOString(); }
     async function loadDash(){
       const c=await getCourse(); const tracks=c.levels.length, lessons=c.levels.reduce((s,l)=>s+(l.lessons||[]).length,0);
@@ -353,9 +373,9 @@
     const STATUSES=['접수','검토중','제작확정','완료'];
     async function loadReqs(){
       const wrap=document.getElementById('reqWrap');
-      let rows,err; try{ const r=await withTimeout(sb.from('lecture_requests').select('*').order('created_at',{ascending:false}).limit(200),8000); rows=r.data; err=r.error; }catch(e){ err=e; }
-      if(err){ wrap.innerHTML = tableMissing(err)? '<p class="text-ink/50 text-sm">요청함 테이블이 아직 없습니다. (supabase_lecture_requests.sql 실행 필요)</p>':'<p class="text-red-500 text-sm">불러오기 오류</p>'; return; }
-      let votes={}; try{ const {data}=await sb.from('lecture_request_votes').select('request_id'); (data||[]).forEach(v=>votes[v.request_id]=(votes[v.request_id]||0)+1); }catch(e){}
+      let rows,err; try{ rows=await rest('lecture_requests?select=*&order=created_at.desc&limit=200'); }catch(e){ err=e; }
+      if(err){ wrap.innerHTML = tableMissing(err)? '<p class="text-ink/50 text-sm">요청함 테이블이 아직 없습니다. (supabase_lecture_requests.sql 실행 필요)</p>':'<p class="text-red-500 text-sm">불러오기 오류: '+esc(err.message||err)+'</p>'; return; }
+      let votes={}; try{ const vd=await rest('lecture_request_votes?select=request_id'); (vd||[]).forEach(v=>votes[v.request_id]=(votes[v.request_id]||0)+1); }catch(e){}
       if(!rows.length){ wrap.innerHTML='<p class="text-ink/50 text-sm">아직 등록된 요청이 없습니다.</p>'; return; }
       wrap.innerHTML = rows.map(r=>`<div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-4 mb-3">
         <div class="flex items-center gap-2 flex-wrap mb-1">
@@ -383,8 +403,8 @@
     // ===== 커뮤니티 =====
     async function loadComm(){
       const wrap=document.getElementById('commWrap');
-      let rows,err; try{ const r=await withTimeout(sb.from('community_posts').select('*').order('created_at',{ascending:false}).limit(100),8000); rows=r.data; err=r.error; }catch(e){ err=e; }
-      if(err){ wrap.innerHTML='<p class="text-ink/50 text-sm">'+(tableMissing(err)?'커뮤니티 테이블이 없습니다.':'불러오기 오류')+'</p>'; return; }
+      let rows,err; try{ rows=await rest('community_posts?select=*&order=created_at.desc&limit=100'); }catch(e){ err=e; }
+      if(err){ wrap.innerHTML='<p class="text-ink/50 text-sm">'+(tableMissing(err)?'커뮤니티 테이블이 없습니다.':'불러오기 오류: '+esc(err.message||err))+'</p>'; return; }
       if(!rows.length){ wrap.innerHTML='<p class="text-ink/50 text-sm">게시물이 없습니다.</p>'; return; }
       const strip=h=>{const d=document.createElement('div');d.innerHTML=h||'';return (d.textContent||'').slice(0,120);};
       wrap.innerHTML = '<p class="text-sm text-ink/50 mb-3">최근 '+rows.length+'개 · 전체 관리는 <a href="community.html" class="text-gold underline">커뮤니티 페이지</a>에서도 가능합니다.</p>'+
@@ -399,10 +419,10 @@
     let MEMBERS=[];
     async function loadMem(){
       const wrap=document.getElementById('memWrap');
-      let profs,err; try{ const r=await withTimeout(sb.from('profiles').select('*').limit(5000),8000); profs=r.data; err=r.error; }catch(e){ err=e; }
-      if(err||!profs){ wrap.innerHTML='<p class="text-ink/50 text-sm">회원 목록을 불러오지 못했습니다. (profiles 테이블 권한 또는 부재)</p>'; return; }
-      let enr={},don={}; try{ const {data}=await sb.from('enrollments').select('user_id,track'); (data||[]).forEach(e=>{(enr[e.user_id]=enr[e.user_id]||[]).push(e.track);}); }catch(e){}
-      try{ const {data}=await sb.from('lesson_progress').select('user_id,completed'); (data||[]).forEach(p=>{ if(p.completed) don[p.user_id]=(don[p.user_id]||0)+1; }); }catch(e){}
+      let profs,err; try{ profs=await rest('profiles?select=*&limit=5000'); }catch(e){ err=e; }
+      if(err||!profs){ wrap.innerHTML='<p class="text-ink/50 text-sm">회원 목록을 불러오지 못했습니다. '+(err?esc(err.message||err):'(profiles 테이블 권한 또는 부재)')+'</p>'; return; }
+      let enr={},don={}; try{ const ed=await rest('enrollments?select=user_id,track'); (ed||[]).forEach(e=>{(enr[e.user_id]=enr[e.user_id]||[]).push(e.track);}); }catch(e){}
+      try{ const pd=await rest('lesson_progress?select=user_id,completed'); (pd||[]).forEach(p=>{ if(p.completed) don[p.user_id]=(don[p.user_id]||0)+1; }); }catch(e){}
       MEMBERS=profs.map(p=>({name:p.full_name||'(이름없음)', id:p.id, created:p.created_at||p.inserted_at||p.updated_at||null, enr:(enr[p.id]||[]).length, done:don[p.id]||0}));
       MEMBERS.sort((a,b)=> (b.created?new Date(b.created):0) - (a.created?new Date(a.created):0));
       if(!MEMBERS.length){ wrap.innerHTML='<p class="text-ink/50 text-sm">표시할 회원이 없습니다. (RLS 정책상 본인 정보만 조회될 수 있어요 — 전체 회원 조회가 필요하면 <code class="bg-ink/5 px-1 rounded">supabase_admin_profiles.sql</code>을 실행하세요.)</p>'; return; }
@@ -419,7 +439,7 @@
     async function loadApps(){
       const wrap=document.getElementById('appsWrap');
       let rows,err;
-      try{ const r=await withTimeout(sb.from('course_applications').select('*').order('created_at',{ascending:false}).limit(300),8000); rows=r.data; err=r.error; }catch(e){ err=e; }
+      try{ rows=await rest('course_applications?select=*&order=created_at.desc&limit=300'); }catch(e){ err=e; }
       if(err){ wrap.innerHTML='<p class="text-ink/50 text-sm">'+(tableMissing(err)?'신청 테이블이 아직 없습니다. (course_applications — setup.sql 5번 실행 필요)':'불러오기 오류: '+esc(err.message||err))+'</p>'; return; }
       if(!rows||!rows.length){ wrap.innerHTML='<p class="text-ink/50 text-sm">아직 등록 신청이 없습니다.</p>'; return; }
       wrap.innerHTML = '<p class="text-sm text-ink/50 mb-3">총 <b class="text-ink">'+rows.length+'</b>건 · 최신순</p>'
@@ -434,8 +454,7 @@
     async function loadCert(){
       const wrap=document.getElementById('certList');
       try{
-        const {data,error}=await withTimeout(sb.rpc('list_cert'),8000);
-        if(error) throw error;
+        const data=await rpcFetch('list_cert',{});
         if(!data||!data.length){ wrap.innerHTML='<p class="text-ink/50 text-sm">아직 수강권 보유자가 없습니다.</p>'; return; }
         wrap.innerHTML = `<div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">
           <thead class="text-ink/45 text-left border-b border-ink/5"><tr><th class="px-5 py-3 font-medium">이메일</th><th class="px-5 py-3 font-medium">등급</th><th class="px-5 py-3 font-medium">부여일</th><th class="px-5 py-3"></th></tr></thead>
