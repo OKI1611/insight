@@ -1808,8 +1808,18 @@
       return null;
     }
     const ADMIN_EMAIL = 'josephoh1611@gmail.com';
+    function isAdminUser(user){
+      const e = ((user && user.email) || '').toLowerCase().trim();
+      if(e === ADMIN_EMAIL) return true;
+      // admin.html 로그인 세션(같은 도메인 localStorage 공유)도 관리자로 인정
+      try{
+        const a = JSON.parse(localStorage.getItem('bibly-admin-auth') || 'null');
+        if(a && a.user && ((a.user.email||'').toLowerCase().trim() === ADMIN_EMAIL) && (!a.expires_at || a.expires_at*1000 > Date.now())) return true;
+      }catch(e){}
+      return false;
+    }
     function paintNav(user, name){
-      const isAdmin = !!(user && user.email === ADMIN_EMAIL);
+      const isAdmin = isAdminUser(user);
       const adminBtn = isAdmin
         ? `<a href="admin.html" class="inline-flex items-center gap-1 border border-ink/25 text-ink/80 font-semibold px-3 py-1 rounded-full hover:border-gold hover:text-gold transition" title="관리자 콘솔">⚙ 관리자</a>`
         : '';
