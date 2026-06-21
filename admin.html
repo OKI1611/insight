@@ -454,7 +454,7 @@
     }
 
     // ===== 🛒 스토어 권한 (이용권·교재) =====
-    const PASS_NAME={'pass-life':'평생소장','pass-1y':'1년'};
+    function passName(t){ return ({'pass-life':'평생소장','pass-1y':'1년'})[t] || t || '이용권'; }
     function _storeNeedSql(e){ return /function|does not exist|schema cache/i.test((e&&e.message)||''); }
     async function loadStore(){
       try{ const c=await getCourse(); const sel=document.getElementById('bookTrack');
@@ -468,7 +468,7 @@
         if(!data||!data.length){ wrap.innerHTML='<p class="text-ink/50 text-sm">아직 이용권 보유자가 없습니다.</p>'; return; }
         wrap.innerHTML=`<div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">
           <thead class="text-ink/45 text-left border-b border-ink/5"><tr><th class="px-5 py-3 font-medium">이메일</th><th class="px-5 py-3 font-medium">종류</th><th class="px-5 py-3 font-medium">만료</th><th class="px-5 py-3 font-medium">부여일</th><th class="px-5 py-3"></th></tr></thead>
-          <tbody>${data.map(r=>`<tr class="border-b border-ink/5"><td class="px-5 py-3">${esc(r.email)}</td><td class="px-5 py-3 font-medium text-gold">${esc(PASS_NAME[r.type]||r.type||'이용권')}</td><td class="px-5 py-3 text-ink/55">${r.expires_at?new Date(r.expires_at).toLocaleDateString('ko'):'평생'}</td><td class="px-5 py-3 text-ink/55">${r.created_at?new Date(r.created_at).toLocaleDateString('ko'):'-'}</td><td class="px-5 py-3 text-right"><button onclick="revokePass(this.dataset.e)" data-e="${esc(r.email)}" class="text-xs text-red-500 hover:underline">회수</button></td></tr>`).join('')}</tbody></table></div>`;
+          <tbody>${data.map(r=>`<tr class="border-b border-ink/5"><td class="px-5 py-3">${esc(r.email)}</td><td class="px-5 py-3 font-medium text-gold">${esc(passName(r.type))}</td><td class="px-5 py-3 text-ink/55">${r.expires_at?new Date(r.expires_at).toLocaleDateString('ko'):'평생'}</td><td class="px-5 py-3 text-ink/55">${r.created_at?new Date(r.created_at).toLocaleDateString('ko'):'-'}</td><td class="px-5 py-3 text-right"><button onclick="revokePass(this.dataset.e)" data-e="${esc(r.email)}" class="text-xs text-red-500 hover:underline">회수</button></td></tr>`).join('')}</tbody></table></div>`;
       }catch(e){ wrap.innerHTML='<p class="text-ink/50 text-sm">'+(_storeNeedSql(e)?'스토어 권한 기능 준비 중 — 관리자: <code class="bg-ink/5 px-1 rounded">supabase/store_grant.sql</code> 를 먼저 실행하세요.':'불러오기 오류: '+esc(e.message||e))+'</p>'; }
     }
     async function loadBookList(){
