@@ -262,8 +262,8 @@
     // ===== 대시보드 =====
     let COURSE=null;
     async function getCourse(){ if(COURSE) return COURSE; try{ const r=await withTimeout(fetch('content/course.json?t='+Date.now()),9000); const j=await r.json(); COURSE=j; return j; }catch(e){ return {levels:[]}; } }
-    async function count(table){ try{ const {count,error}=await withTimeout(sb.from(table).select('*',{count:'exact',head:true}),7000); if(error) return tableMissing(error)?'—':'?'; return count; }catch(e){ return '?'; } }
-    async function countSince(table,col,sinceISO){ try{ let q=sb.from(table).select('*',{count:'exact',head:true}); if(sinceISO) q=q.gte(col,sinceISO); const {count,error}=await withTimeout(q,7000); if(error) return tableMissing(error)?'—':'?'; return count; }catch(e){ return '?'; } }
+    async function count(table){ try{ const {count,error}=await withTimeout(sb.from(table).select('*',{count:'estimated',head:true}),5000); if(error) return tableMissing(error)?'—':'?'; return count; }catch(e){ return '?'; } }
+    async function countSince(table,col,sinceISO){ try{ let q=sb.from(table).select('*',{count:'estimated',head:true}); if(sinceISO) q=q.gte(col,sinceISO); const {count,error}=await withTimeout(q,5000); if(error) return tableMissing(error)?'—':'?'; return count; }catch(e){ return '?'; } }
     function daysAgo(n){ const d=new Date(); d.setHours(0,0,0,0); d.setDate(d.getDate()-n); return d.toISOString(); }
     async function loadDash(){
       const c=await getCourse(); const tracks=c.levels.length, lessons=c.levels.reduce((s,l)=>s+(l.lessons||[]).length,0);
@@ -456,6 +456,36 @@
     // ===== 🛒 스토어 권한 (이용권·교재) =====
     function passName(t){ return ({'pass-life':'평생소장','pass-1y':'1년'})[t] || t || '이용권'; }
     function _storeNeedSql(e){ return /function|does not exist|schema cache/i.test((e&&e.message)||''); }
+
+    // 사이트 설정(메일러 URL 등) 캐시
+    let SUPPORT=null;
+    async function getSupport(){ if(SUPPORT) return SUPPORT; try{ const s=await (await fetch('content/site.json?t='+Date.now())).json(); SUPPORT=s.support||{}; }catch(e){ SUPPORT={}; } return SUPPORT; }
+
+    // 고객에게 주문확인·감사 메일 자동 발송
+    //  · site.json support.mailer_url(Apps Script 웹앱)이 있으면 자동 발송
+    //  · 없으면 Gmail 작성창을 미리 채워 띄움(한 번 클릭으로 발송)
+    async function sendCustomerMail(to, subject, html, text){
+      if(!to) return 'no-to';
+      const sup=await getSupport();
+      const url=sup.mailer_url;
+      if(url){
+        try{ await fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},
+          body:JSON.stringify({token:'BIBLY-MAILER', to:to, subject:subject, html:html})}); return 'sent'; }
+        catch(e){ return 'fail'; }
+      }
+      try{ window.open('https://mail.google.com/mail/?view=cm&fs=1&to='+encodeURIComponent(to)+'&su='+encodeURIComponent(subject)+'&body='+encodeURIComponent(text||''),'_blank'); }catch(e){}
+      return 'compose';
+    }
+    function _mailHtml(intro, bodyLines, to){
+      return '<div style="font-family:\'Apple SD Gothic Neo\',sans-serif;max-width:560px;margin:0 auto;color:#1c2b46;line-height:1.75">'
+        +'<div style="background:#213a6b;color:#fff;padding:22px 24px;border-radius:14px 14px 0 0"><b style="font-size:17px">BIBLY 바이블 인사이트</b><div style="color:#cdd6e6;font-size:12px;margin-top:3px">말씀으로 시대를 읽다</div></div>'
+        +'<div style="border:1px solid #e6e9f0;border-top:0;border-radius:0 0 14px 14px;padding:24px">'
+        +'<p style="font-size:15px;font-weight:600">'+esc(intro)+'</p>'
+        +bodyLines.map(function(l){return '<p style="font-size:14px;color:#2a3a55">'+l+'</p>';}).join('')
+        +'<div style="background:#eaf0f8;border-radius:10px;padding:12px 14px;margin:14px 0;font-size:13px"><b>로그인 계정</b><br>'+esc(to)+' 으로 <b>biblynote.com</b>에 로그인하세요.</div>'
+        +'<p style="font-size:13px;color:#5a6b88">문의: <a href="mailto:josephoh1611@gmail.com" style="color:#b8923f">josephoh1611@gmail.com</a></p>'
+        +'<p style="font-size:12px;color:#9aa6bd;margin-top:16px">감사합니다. 평안한 하루 되세요. 🙏</p></div></div>';
+    }
     async function loadStore(){
       try{ const c=await getCourse(); const sel=document.getElementById('bookTrack');
         if(sel && sel.options.length<=1){ (c.levels||[]).filter(l=>(l.lessons||[]).length).forEach(l=>{ const o=document.createElement('option'); o.value=l.name||l.title; o.textContent=l.name||l.title; sel.appendChild(o); }); } }catch(e){}
@@ -488,6 +518,12 @@
       try{ const {data,error}=await withTimeout(sb.rpc('grant_pass',{p_email:email,p_type:type}),9000); if(error) throw error;
         if(data==='NOT_ADMIN'){ m.style.color='#dc2626'; m.textContent='관리자 권한이 없습니다.'; return; }
         m.style.color='#16a34a'; m.textContent='✅ 이용권 부여 완료'; document.getElementById('passEmail').value=''; loadPassList();
+        const subj='[BIBLY] 전체 이용권 등록 완료 안내';
+        const html=_mailHtml('전체 이용권 등록이 완료되었습니다 🎫',
+          ['주문하신 <b>전체 이용권('+passName(type)+')</b> 입금이 확인되어 등록을 완료했습니다.','이제 모든 과정의 요약노트 책자를 무제한으로 읽고 PDF로 받아보실 수 있어요.'], email);
+        const text='BIBLY 전체 이용권('+passName(type)+') 등록이 완료되었습니다.\n주문하신 '+email+' 으로 biblynote.com 에 로그인하시면 모든 책자를 보실 수 있어요.\n감사합니다. 🙏';
+        const r=await sendCustomerMail(email, subj, html, text);
+        m.textContent='✅ 이용권 부여 완료'+(r==='sent'?' · 확인 메일 발송됨':(r==='compose'?' · 메일 작성창 열림(보내기 클릭)':''));
       }catch(e){ m.style.color='#dc2626'; m.textContent=(_storeNeedSql(e)?'supabase/store_grant.sql 을 먼저 실행하세요.':'오류: '+(e.message||e)); }
     }
     async function revokePass(email){
@@ -503,6 +539,12 @@
       try{ const {data,error}=await withTimeout(sb.rpc('grant_book',{p_email:email,p_track:track}),9000); if(error) throw error;
         if(data==='NOT_ADMIN'){ m.style.color='#dc2626'; m.textContent='관리자 권한이 없습니다.'; return; }
         m.style.color='#16a34a'; m.textContent='✅ 교재 권한 부여 완료'; document.getElementById('bookEmail').value=''; loadBookList();
+        const subj='[BIBLY] 교재(자료) 등록 완료 안내';
+        const html=_mailHtml('교재 등록이 완료되었습니다 📕',
+          ['주문하신 교재 <b>「'+esc(track)+'」</b> 입금이 확인되어 등록을 완료했습니다.','이제 해당 교재를 PDF로 받아보실 수 있어요.'], email);
+        const text='BIBLY 교재 「'+track+'」 등록이 완료되었습니다.\n주문하신 '+email+' 으로 biblynote.com 에 로그인하시면 받아보실 수 있어요.\n감사합니다. 🙏';
+        const r=await sendCustomerMail(email, subj, html, text);
+        m.textContent='✅ 교재 권한 부여 완료'+(r==='sent'?' · 확인 메일 발송됨':(r==='compose'?' · 메일 작성창 열림(보내기 클릭)':''));
       }catch(e){ m.style.color='#dc2626'; m.textContent=(_storeNeedSql(e)?'supabase/store_grant.sql 을 먼저 실행하세요.':'오류: '+(e.message||e)); }
     }
     async function revokeBook(email,track){
