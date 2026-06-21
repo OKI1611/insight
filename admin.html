@@ -437,17 +437,31 @@
       if(err||!profs){ wrap.innerHTML='<p class="text-ink/50 text-sm">회원 목록을 불러오지 못했습니다. '+(err?esc(err.message||err):'(profiles 테이블 권한 또는 부재)')+'</p>'; return; }
       let enr={},don={}; try{ const ed=await rest('enrollments?select=user_id,track'); (ed||[]).forEach(e=>{(enr[e.user_id]=enr[e.user_id]||[]).push(e.track);}); }catch(e){}
       try{ const pd=await rest('lesson_progress?select=user_id,completed'); (pd||[]).forEach(p=>{ if(p.completed) don[p.user_id]=(don[p.user_id]||0)+1; }); }catch(e){}
-      MEMBERS=profs.map(p=>({name:p.full_name||'(이름없음)', id:p.id, created:p.created_at||p.inserted_at||p.updated_at||null, enr:(enr[p.id]||[]).length, done:don[p.id]||0}));
+      let fno={}; try{ const fd=await rpcFetch('list_founding',{}); (fd||[]).forEach(f=>{ fno[(f.email||'').toLowerCase()]=f.member_no; }); }catch(e){}
+      MEMBERS=profs.map(p=>{ const email=p.email||''; return {name:p.full_name||'(이름없음)', id:p.id, phone:p.phone||'', email:email, address:p.address||'', consent:!!p.marketing_consent, provider:p.provider||'', founding:fno[email.toLowerCase()]||null, created:p.created_at||p.inserted_at||p.updated_at||null, enr:(enr[p.id]||[]).length, done:don[p.id]||0}; });
       MEMBERS.sort((a,b)=> (b.created?new Date(b.created):0) - (a.created?new Date(a.created):0));
       if(!MEMBERS.length){ wrap.innerHTML='<p class="text-ink/50 text-sm">표시할 회원이 없습니다. (RLS 정책상 본인 정보만 조회될 수 있어요 — 전체 회원 조회가 필요하면 <code class="bg-ink/5 px-1 rounded">supabase_admin_profiles.sql</code>을 실행하세요.)</p>'; return; }
       const fdate=d=> d? new Date(d).toLocaleDateString('ko') : '—';
-      wrap.innerHTML = `<p class="text-sm text-ink/50 mb-3">총 <b class="text-ink">${MEMBERS.length}</b>명 · 최신 가입순</p>
+      const prov=p=>({google:'구글',kakao:'카카오',email:'이메일'}[p]||p||'-');
+      wrap.innerHTML = `<p class="text-sm text-ink/50 mb-3">총 <b class="text-ink">${MEMBERS.length}</b>명 · 최신 가입순 · 표를 좌우로 넘기면 모든 정보가 보여요</p>
         <div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">
-        <thead class="text-ink/45 text-left border-b border-ink/5"><tr><th class="px-5 py-3 font-medium">이름</th><th class="px-5 py-3 font-medium">가입일</th><th class="px-5 py-3 font-medium">수강 트랙</th><th class="px-5 py-3 font-medium">완료 강의</th></tr></thead>
-        <tbody>${MEMBERS.map(m=>`<tr class="border-b border-ink/5"><td class="px-5 py-3 font-medium">${esc(m.name)}</td><td class="px-5 py-3 text-ink/55">${fdate(m.created)}</td><td class="px-5 py-3 text-ink/60">${m.enr}개</td><td class="px-5 py-3 text-ink/60">${m.done}강</td></tr>`).join('')}</tbody></table></div>
-        <p class="text-xs text-ink/35 mt-2">※ 이메일·연락처는 보안(auth)상 이 화면에서 조회되지 않습니다.</p>`;
+        <thead class="text-ink/45 text-left border-b border-ink/5"><tr>
+          <th class="px-4 py-3 font-medium">이름</th><th class="px-4 py-3 font-medium">전화번호</th><th class="px-4 py-3 font-medium">이메일</th><th class="px-4 py-3 font-medium">주소</th><th class="px-4 py-3 font-medium">가입일</th><th class="px-4 py-3 font-medium">가입경로</th><th class="px-4 py-3 font-medium">마케팅</th><th class="px-4 py-3 font-medium">창립#</th><th class="px-4 py-3 font-medium">수강</th>
+        </tr></thead>
+        <tbody>${MEMBERS.map(m=>`<tr class="border-b border-ink/5">
+          <td class="px-4 py-3 font-medium">${esc(m.name)}</td>
+          <td class="px-4 py-3 text-ink/70">${esc(m.phone||'-')}</td>
+          <td class="px-4 py-3 text-ink/70">${esc(m.email||'-')}</td>
+          <td class="px-4 py-3 text-ink/60 max-w-[220px] truncate" title="${esc(m.address)}">${esc(m.address||'-')}</td>
+          <td class="px-4 py-3 text-ink/55">${fdate(m.created)}</td>
+          <td class="px-4 py-3 text-ink/55">${prov(m.provider)}</td>
+          <td class="px-4 py-3">${m.consent?'<span class="text-gold font-medium">동의</span>':'<span class="text-ink/35">미동의</span>'}</td>
+          <td class="px-4 py-3">${m.founding?'<span class="text-gold font-bold">#'+String(m.founding).padStart(3,'0')+'</span>':'<span class="text-ink/30">-</span>'}</td>
+          <td class="px-4 py-3 text-ink/60">${m.enr}트랙·${m.done}강</td>
+        </tr>`).join('')}</tbody></table></div>
+        <p class="text-xs text-ink/35 mt-2">※ 전화·이메일·주소는 회원이 가입 시 입력한 정보입니다. 개인정보이므로 취급에 유의하세요.</p>`;
     }
-    function exportMembersCSV(){ if(!MEMBERS.length){ toast('회원 데이터 없음'); return; } const fd=d=>d?new Date(d).toLocaleDateString('ko'):''; const rows=[['이름','가입일','수강트랙수','완료강의수'],...MEMBERS.map(m=>[m.name,fd(m.created),m.enr,m.done])]; const csv='﻿'+rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n'); const b=new Blob([csv],{type:'text/csv'}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='회원목록.csv'; a.click(); toast('CSV 내려받음'); }
+    function exportMembersCSV(){ if(!MEMBERS.length){ toast('회원 데이터 없음'); return; } const fd=d=>d?new Date(d).toLocaleDateString('ko'):''; const pv=p=>({google:'구글',kakao:'카카오',email:'이메일'}[p]||p||''); const rows=[['이름','전화번호','이메일','주소','가입일','가입경로','마케팅동의','창립번호','수강트랙','완료강의'],...MEMBERS.map(m=>[m.name,m.phone,m.email,m.address,fd(m.created),pv(m.provider),m.consent?'동의':'미동의',m.founding?('#'+String(m.founding).padStart(3,'0')):'',m.enr,m.done])]; const csv='﻿'+rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n'); const b=new Blob([csv],{type:'text/csv'}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='회원목록.csv'; a.click(); toast('CSV 내려받음'); }
 
     // ===== 🏅 창립 멤버 =====
     let FOUNDING=[];
@@ -546,11 +560,17 @@
       return '<div style="font-family:\'Apple SD Gothic Neo\',sans-serif;max-width:560px;margin:0 auto;color:#1c2b46;line-height:1.75">'
         +'<div style="background:#213a6b;color:#fff;padding:22px 24px;border-radius:14px 14px 0 0"><b style="font-size:17px">BIBLY 바이블 인사이트</b><div style="color:#cdd6e6;font-size:12px;margin-top:3px">말씀으로 시대를 읽다</div></div>'
         +'<div style="border:1px solid #e6e9f0;border-top:0;border-radius:0 0 14px 14px;padding:24px">'
+        +'<p style="font-size:13.5px;color:#5a6b88;margin:0 0 14px">마지막 세대 거룩한 성도를 위한 BIBLY 바이블 인사이트, 대표 오광일입니다.</p>'
         +'<p style="font-size:15px;font-weight:600">'+esc(intro)+'</p>'
         +bodyLines.map(function(l){return '<p style="font-size:14px;color:#2a3a55">'+l+'</p>';}).join('')
         +'<div style="background:#eaf0f8;border-radius:10px;padding:12px 14px;margin:14px 0;font-size:13px"><b>로그인 계정</b><br>'+esc(to)+' 으로 <b>biblynote.com</b>에 로그인하세요.</div>'
-        +'<p style="font-size:13px;color:#5a6b88">문의: <a href="mailto:josephoh1611@gmail.com" style="color:#b8923f">josephoh1611@gmail.com</a></p>'
-        +'<p style="font-size:12px;color:#9aa6bd;margin-top:16px">감사합니다. 평안한 하루 되세요. 🙏</p></div></div>';
+        +'<div style="font-size:13px;color:#3a4a66;background:#faf7ef;border:1px solid #ece3cc;border-radius:10px;padding:12px 14px;margin:12px 0"><b style="color:#9a7b30">📌 이용 방법</b><br>biblynote.com 로그인 → 상단 <b>스토어</b> 또는 <b>내 강의실 → 내 교재</b>에서 자료를 열람하고 PDF로 저장하실 수 있어요.</div>'
+        +'<p style="font-size:12px;color:#8a93a6;line-height:1.65;margin:10px 0 0">※ 디지털 자료 특성상, 「전자상거래법」 및 구매 시 동의하신 약관에 따라 <b>PDF를 다운로드·열람하신 이후에는 청약철회(환불)가 제한</b>될 수 있습니다.</p>'
+        +'<p style="font-size:13px;color:#5a6b88;margin-top:14px">문의: <a href="mailto:bibly.note@gmail.com" style="color:#b8923f">bibly.note@gmail.com</a></p>'
+        +'<div style="border-top:1px solid #eef1f6;margin-top:16px;padding-top:14px">'
+        +'<p style="font-size:13.5px;color:#2a3a55;margin:0">주님은 늘 선하십니다. 감사합니다.</p>'
+        +'<p style="font-size:12.5px;color:#9aa6bd;margin:8px 0 0"><b style="color:#213a6b">BIBLY</b> · 말씀으로 시대를 읽다<br>오광일 드림</p></div>'
+        +'</div></div>';
     }
     async function loadStore(){
       loadPassList(); loadBookList(); loadAccessLogs();   // 목록 먼저(다른 것에 안 막히게)
