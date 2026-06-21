@@ -269,7 +269,10 @@
 
     let COURSE=null, TRACKS=[], PAY={};
     let CART=[];
+    let CUR_TRACK='', CUR_KIND='book', CUR_BUYER=false, CUR_EMAIL='';
     function withTimeout(p,ms){ return Promise.race([Promise.resolve(p),new Promise((_,r)=>setTimeout(()=>r(new Error('TIMEOUT')),ms))]); }
+    // 자료 이용기록(열람·다운로드) — log_access RPC(없으면 자동 무시)
+    async function logAccess(track, action, kind){ try{ await sb.rpc('log_access',{p_kind:kind||'book', p_track:track||'', p_action:action}); }catch(e){} }
     async function boot(){
       try{ const s=await (await fetch('content/site.json?t='+Date.now())).json(); PAY=s.support||{}; }catch(e){ PAY={}; }
       try{ COURSE=await (await fetch('content/course.json?t='+Date.now())).json(); }catch(e){ COURSE={levels:[]}; }
@@ -509,7 +512,13 @@
       const buyLink='booklet.html?buy='+encodeURIComponent(t.name)+'#order';
       $('bvBuy').href=buyLink;
       const admin=await isAdmin();
-      const unlocked = admin || await hasPass() || await hasBook(t.name);
+      const isPass = !admin && await hasPass();
+      const isBook = !admin && !isPass && await hasBook(t.name);
+      const unlocked = admin || isPass || isBook;
+      // 이용기록·워터마크용 상태 저장
+      CUR_TRACK=t.name; CUR_KIND=isPass?'pass':'book'; CUR_BUYER=(isPass||isBook);
+      CUR_EMAIL = CUR_BUYER ? (await currentEmail()||'') : '';
+      if(CUR_BUYER) logAccess(t.name,'view',CUR_KIND);   // 열람 기록
       const lessons=t.lessons.map(le=>({id:id11(le.youtube||le.id||''),title:le.title||''}));
       const loadList=unlocked?lessons:lessons.slice(0,1);
       const notes=await Promise.all(loadList.map(async l=>{try{const r=await fetch('content/notes/'+l.id+'.json?t='+Date.now());if(r.ok)return await r.json();}catch(e){}return null;}));
@@ -569,11 +578,13 @@
       document.body.appendChild(ifr);
       const doc=ifr.contentWindow.document;
       doc.open();
+      // 구매자 이메일 워터마크(각 페이지 하단 고정) — 무단 배포 억제 + 전달 증거
+      const wm = CUR_EMAIL ? '<div style="position:fixed;left:0;right:0;bottom:5mm;text-align:center;font-size:7.5pt;color:#aab3c4;letter-spacing:.02em">BIBLY &middot; 구매자 '+esc(CUR_EMAIL)+' &middot; 무단 복제·배포 금지</div>' : '';
       doc.write('<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><title>'+esc(title)+'</title>'
         +'<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">'
         +'<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet">'
-        +'<style>@page{size:A4;margin:14mm 14mm 16mm}'+BOOK_CSS+'</style></head>'
-        +'<body class="book">'+innerHTML+'</body></html>');
+        +'<style>@page{size:A4;margin:14mm 14mm 18mm}'+BOOK_CSS+'</style></head>'
+        +'<body class="book">'+wm+innerHTML+'</body></html>');
       doc.close();
       const cleanup=()=>{ setTimeout(()=>{ try{ ifr.remove(); }catch(e){} }, 1500); };
       const go=()=>{ try{ ifr.contentWindow.focus(); ifr.contentWindow.print(); }catch(e){ alert('PDF 저장 중 문제가 있었어요. 다시 시도해 주세요.'); } cleanup(); };
@@ -583,6 +594,7 @@
     }
     function savePDF(){
       const name=($('bvTitle').textContent||'BIBLY 자료집').replace(/[\\/:*?"<>|]/g,' ').trim();
+      if(CUR_BUYER) logAccess(CUR_TRACK,'download',CUR_KIND);   // 다운로드 기록(환불 증거)
       $('bvPdf').disabled=true; $('bvPdf').textContent='인쇄창 여는 중…';
       printDoc(name+' — BIBLY 자료집', $('book').innerHTML);
       setTimeout(()=>{ $('bvPdf').disabled=false; $('bvPdf').textContent='📕 PDF로 저장'; }, 1600);

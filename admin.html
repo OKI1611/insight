@@ -183,6 +183,10 @@
         <div id="passList" class="mb-8">불러오는 중…</div>
         <h2 class="font-bold mb-3">현재 개별 교재 권한</h2>
         <div id="bookList">불러오는 중…</div>
+
+        <div class="flex items-center gap-3 mt-8 mb-1"><h2 class="font-bold">최근 이용 기록 (열람·다운로드)</h2><button onclick="loadAccessLogs()" class="text-xs text-gold hover:underline">🔄 새로고침</button></div>
+        <p class="text-ink/45 text-xs mb-3">⚖️ 환불 요청 시 참고 — 자료를 <b>다운로드·열람한 기록</b>은 「전자상거래법」상 청약철회를 제한할 수 있는 근거가 됩니다.</p>
+        <div id="accessList">불러오는 중…</div>
       </section>
 
       <!-- 노트·퀴즈 현황 -->
@@ -489,7 +493,7 @@
         +'<p style="font-size:12px;color:#9aa6bd;margin-top:16px">감사합니다. 평안한 하루 되세요. 🙏</p></div></div>';
     }
     async function loadStore(){
-      loadPassList(); loadBookList();   // 목록 먼저(다른 것에 안 막히게)
+      loadPassList(); loadBookList(); loadAccessLogs();   // 목록 먼저(다른 것에 안 막히게)
       try{ const c=await getCourse(); const sel=document.getElementById('bookTrack');
         if(sel && sel.options.length<=1){ (c.levels||[]).filter(l=>(l.lessons||[]).length).forEach(l=>{ const o=document.createElement('option'); o.value=l.name||l.title; o.textContent=l.name||l.title; sel.appendChild(o); }); } }catch(e){}
     }
@@ -512,6 +516,17 @@
           <thead class="text-ink/45 text-left border-b border-ink/5"><tr><th class="px-5 py-3 font-medium">이메일</th><th class="px-5 py-3 font-medium">책(과정)</th><th class="px-5 py-3 font-medium">부여일</th><th class="px-5 py-3"></th></tr></thead>
           <tbody>${data.map(r=>`<tr class="border-b border-ink/5"><td class="px-5 py-3">${esc(r.email)}</td><td class="px-5 py-3 font-medium">${esc(r.track)}</td><td class="px-5 py-3 text-ink/55">${r.created_at?new Date(r.created_at).toLocaleDateString('ko'):'-'}</td><td class="px-5 py-3 text-right"><button onclick="revokeBook(this.dataset.e,this.dataset.t)" data-e="${esc(r.email)}" data-t="${esc(r.track)}" class="text-xs text-red-500 hover:underline">회수</button></td></tr>`).join('')}</tbody></table></div>`;
       }catch(e){ wrap.innerHTML='<p class="text-ink/50 text-sm">'+(_storeNeedSql(e)?'스토어 권한 기능 준비 중 — <code class="bg-ink/5 px-1 rounded">supabase/store_grant.sql</code> 실행 필요.':'불러오기 오류: '+esc(e.message||e))+'</p>'; }
+    }
+    async function loadAccessLogs(){
+      const wrap=document.getElementById('accessList'); if(!wrap) return;
+      try{
+        const {data,error}=await withTimeout(sb.rpc('list_access',{p_limit:200}),8000); if(error) throw error;
+        if(!data||!data.length){ wrap.innerHTML='<p class="text-ink/50 text-sm">아직 이용 기록이 없습니다.</p>'; return; }
+        const AC={view:'👁️ 열람',download:'📥 다운로드'};
+        wrap.innerHTML=`<div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">
+          <thead class="text-ink/45 text-left border-b border-ink/5"><tr><th class="px-5 py-3 font-medium">일시</th><th class="px-5 py-3 font-medium">이메일</th><th class="px-5 py-3 font-medium">행위</th><th class="px-5 py-3 font-medium">자료</th></tr></thead>
+          <tbody>${data.map(r=>`<tr class="border-b border-ink/5"><td class="px-5 py-3 text-ink/55">${r.created_at?new Date(r.created_at).toLocaleString('ko'):'-'}</td><td class="px-5 py-3">${esc(r.email)}</td><td class="px-5 py-3 font-medium ${r.action==='download'?'text-gold':'text-ink/70'}">${AC[r.action]||esc(r.action)}</td><td class="px-5 py-3 text-ink/70">${esc(r.track||'-')}</td></tr>`).join('')}</tbody></table></div>`;
+      }catch(e){ wrap.innerHTML='<p class="text-ink/50 text-sm">'+(_storeNeedSql(e)?'이용기록 기능 준비 중 — <code class="bg-ink/5 px-1 rounded">supabase/access_logs.sql</code> 실행 필요.':'불러오기 오류: '+esc(e.message||e))+'</p>'; }
     }
     async function grantPass(){
       const email=document.getElementById('passEmail').value.trim(), type=document.getElementById('passType').value, m=document.getElementById('passMsg');
