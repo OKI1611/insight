@@ -60,9 +60,12 @@
     .book .bk-mis{font-size:12.5px;line-height:1.8;margin:7px 0}.book .bk-mis .w{color:#b4524a}.book .bk-mis .r{color:#2f7d57}
     /* 목차(책 틀) */
     .book .toc-list{list-style:none;margin:6px 0 0;padding:0}
-    .book .toc-row{display:flex;align-items:baseline;gap:12px;padding:8px 2px;border-bottom:1px dotted #d6ddea}
+    .book .toc-row{display:flex;align-items:center;gap:8px;padding:7px 2px;border-bottom:1px dotted #d6ddea}
     .book .toc-no{flex-shrink:0;font-size:11.5px;font-weight:800;color:#b8923f;letter-spacing:.04em;min-width:42px}
     .book .toc-t{flex:1;font-size:13.5px;color:#2a3a55;line-height:1.55}
+    .book a.toc-t{text-decoration:none;cursor:pointer;transition:color .15s}.book a.toc-t:hover{color:#b8923f}
+    .lesson-check{width:14px;height:14px;accent-color:#b8923f;cursor:pointer;flex-shrink:0;margin:0}
+    .toc-dl{background:none;border:none;cursor:pointer;color:#b8923f;opacity:.5;font-size:13px;padding:0 2px;transition:opacity .15s;flex-shrink:0}.toc-dl:hover{opacity:1}
     /* 필기 공간 — 화면에선 숨기고 인쇄(PDF)에서만 표시 */
     .book .note-area{display:none}
     @media print{ .no-print{display:none!important} }
@@ -224,7 +227,8 @@
       <div class="max-w-3xl mx-auto px-4 py-2.5 flex items-center gap-2 flex-wrap">
         <a href="booklet.html" class="text-sm text-ink/60 hover:text-gold">← 북스토어</a>
         <span id="bvTitle" class="font-bold text-sm truncate flex-1 min-w-0 text-center"></span>
-        <button id="bvPdf" onclick="savePDF()" title="인쇄창이 열리면 대상(목적지)을 'PDF로 저장'으로 선택하세요" class="bg-gold text-white text-sm font-semibold px-4 py-2 rounded-full hover:opacity-90 transition shrink-0">📕 PDF로 저장</button>
+        <button id="bvSelPdf" onclick="saveSelectedPDF()" class="hidden bg-ink text-paper text-sm font-semibold px-3 py-2 rounded-full hover:opacity-90 transition shrink-0">📑 선택 강의 PDF</button>
+        <button id="bvPdf" onclick="savePDF()" title="인쇄창이 열리면 대상(목적지)을 'PDF로 저장'으로 선택하세요" class="bg-gold text-white text-sm font-semibold px-4 py-2 rounded-full hover:opacity-90 transition shrink-0">📕 전체 PDF</button>
       </div>
     </div>
     <div id="bvLock" class="hidden max-w-xl mx-auto px-5 py-6">
@@ -491,7 +495,7 @@
     // 강의별 필기 공간(괘선) — 화면엔 숨김, PDF에만 표시
     function noteAreaHTML(lines){ let n=''; const c=lines||7; for(let i=0;i<c;i++) n+='<div class="nline"></div>'; return `<div class="note-area"><p class="note-h">✍️ 강의 필기</p>${n}</div>`; }
     function noteHTML(n,title,idx){ if(!n) return '';
-      let h=`<div class="lesson"><p class="ch-label">제${idx}강</p><h2 class="bk-title">${esc(cleanTitle(title))}</h2>`;
+      let h=`<div class="lesson" id="lesson-${idx}"><p class="ch-label">제${idx}강</p><h2 class="bk-title">${esc(cleanTitle(title))}</h2>`;
       if(n.thesis) h+=`<p class="bk-thesis">${esc(n.thesis)}</p>`;
       if(n.overview) String(n.overview).split('\n').forEach(p=>{if(p.trim())h+=`<p class="bk-p">${esc(p.trim())}</p>`;});
       if(n.background){h+=`<h3 class="bk-h">📜 배경</h3>`;String(n.background).split('\n').forEach(p=>{if(p.trim())h+=`<p class="bk-p">${esc(p.trim())}</p>`;});}
@@ -520,26 +524,33 @@
       CUR_EMAIL = CUR_BUYER ? (await currentEmail()||'') : '';
       if(CUR_BUYER) logAccess(t.name,'view',CUR_KIND);   // 열람 기록
       const lessons=t.lessons.map(le=>({id:id11(le.youtube||le.id||''),title:le.title||''}));
+      window._curLessons=lessons;
       const loadList=unlocked?lessons:lessons.slice(0,1);
       const notes=await Promise.all(loadList.map(async l=>{try{const r=await fetch('content/notes/'+l.id+'.json?t='+Date.now());if(r.ok)return await r.json();}catch(e){}return null;}));
       let h=`<div class="cover-page" style="text-align:center;padding:42px 0 34px;border-bottom:1px solid #e6e9f0"><p style="color:#b8923f;font-weight:700;letter-spacing:.28em;font-size:11px;margin:0 0 14px">BIBLY 바이블 인사이트 · 강의 노트</p><h1 style="font-size:29px;font-weight:700;color:#213a6b;line-height:1.4;margin:0 12px">${esc(t.name)}</h1><p style="color:#5a6b88;font-size:13px;margin:16px 0 0">요약노트 + 필기 공간 · 전 ${t.lessons.length}강</p><p style="color:#9aa6bd;font-size:11px;margin:20px 0 0">강의를 들으며 메모하고 참고하세요 · biblynote.com</p>${(CUR_BUYER&&CUR_EMAIL)?`<p style="color:#b8923f;font-size:10.5px;margin:18px 0 0;letter-spacing:.02em">📗 정품 · <b>${esc(CUR_EMAIL)}</b> 님께 발행 · 무단 복제·배포 금지</p>`:''}</div>`;
-      h+=`<section style="padding:24px 2px 8px"><p style="font-weight:700;color:#213a6b;font-size:17px;margin:0 0 3px">목차</p><p style="color:#9aa6bd;font-size:11px;margin:0 0 8px">전 ${lessons.length}강</p><ul class="toc-list">`+lessons.map((l,i)=>`<li class="toc-row"><span class="toc-no">제${i+1}강</span><span class="toc-t">${esc(cleanTitle(l.title))}</span></li>`).join('')+`</ul></section>`;
+      // 목차 — 구매자에게는 체크박스·클릭·개별PDF 제공
+      const tocRows=lessons.map((l,i)=>{
+        if(unlocked){
+          return `<li class="toc-row"><input type="checkbox" class="lesson-check no-print" data-idx="${i+1}" checked/><span class="toc-no">제${i+1}강</span><a class="toc-t" style="text-decoration:none;cursor:pointer;color:#2a3a55" onclick="scrollToLesson(${i+1});return false;" href="#lesson-${i+1}">${esc(cleanTitle(l.title))}</a><button class="toc-dl no-print" onclick="saveSinglePDF(${i+1})" title="이 강의만 PDF">📥</button></li>`;
+        }
+        return `<li class="toc-row"><span class="toc-no">제${i+1}강</span><span class="toc-t">${esc(cleanTitle(l.title))}</span></li>`;
+      }).join('');
+      const allToggle=unlocked?`<button id="btnAllLessons" onclick="toggleAllLessons()" style="font-size:11px;color:#9aa6bd;background:none;border:none;cursor:pointer;margin-left:auto;padding:0">전체 해제</button>`:'';
+      h+=`<section style="padding:24px 2px 8px"><div style="display:flex;align-items:center;gap:6px;margin:0 0 3px"><p style="font-weight:700;color:#213a6b;font-size:17px;margin:0">목차</p>${allToggle}</div><p style="color:#9aa6bd;font-size:11px;margin:0 0 8px">전 ${lessons.length}강${unlocked?' · 클릭하면 해당 강의로 이동':''}${unlocked?' · 📥 강의별 PDF 저장 가능':''}</p><ul class="toc-list">${tocRows}</ul></section>`;
       notes.forEach((n,i)=>{
         const body = n ? noteHTML(n,lessons[i].title,i+1)
-          : `<div class="lesson"><p class="ch-label">제${i+1}강</p><h2 class="bk-title">${esc(cleanTitle(lessons[i].title))}</h2><p class="bk-p" style="color:#9aa6bd">이 강의의 요약노트는 준비 중입니다. 아래 공간에 직접 필기해 보세요.</p></div>`;
+          : `<div class="lesson" id="lesson-${i+1}"><p class="ch-label">제${i+1}강</p><h2 class="bk-title">${esc(cleanTitle(lessons[i].title))}</h2><p class="bk-p" style="color:#9aa6bd">이 강의의 요약노트는 준비 중입니다. 아래 공간에 직접 필기해 보세요.</p></div>`;
         h += body + noteAreaHTML();
       });
-      const pdfBtn=$('bvPdf');
+      const pdfBtn=$('bvPdf'); const selBtn=$('bvSelPdf');
       if(unlocked){
-        // 구매 인증 완료 → PDF 다운로드 정상 작동
-        pdfBtn.style.display=''; pdfBtn.textContent='📕 PDF로 저장'; pdfBtn.title='인쇄창이 열리면 대상(목적지)을 "PDF로 저장"으로 선택하세요';
-        pdfBtn.onclick=savePDF;
+        pdfBtn.style.display=''; pdfBtn.textContent='📕 전체 PDF'; pdfBtn.title='전체 강의를 하나의 PDF로 저장합니다'; pdfBtn.onclick=savePDF;
+        if(selBtn) selBtn.classList.remove('hidden');
       } else {
-        // 미구매 → 버튼이 구매하기로 연동
         h+=`<div class="no-print" style="text-align:center;padding:26px 0 6px;border-top:1px dashed #d6ddea;margin-top:10px"><p style="color:#5a6b88;font-size:13px">… 이하 전체 ${t.lessons.length}강 합본은 구매(또는 <b style="color:#b8923f">전체 이용권</b>) 후 PDF로 받으실 수 있어요.</p></div>`;
         $('bvLock').classList.remove('hidden');
-        pdfBtn.style.display=''; pdfBtn.textContent='🔒 구매하고 PDF 받기'; pdfBtn.title='구매(또는 전체 이용권) 후 로그인하시면 PDF로 저장할 수 있어요';
-        pdfBtn.onclick=()=>{ location.href=buyLink; };
+        pdfBtn.style.display=''; pdfBtn.textContent='🔒 구매하고 PDF 받기'; pdfBtn.title='구매(또는 전체 이용권) 후 로그인하시면 PDF로 저장할 수 있어요'; pdfBtn.onclick=()=>{ location.href=buyLink; };
+        if(selBtn) selBtn.classList.add('hidden');
       }
       $('book').innerHTML=h;
     }
@@ -596,6 +607,65 @@
       $('bvPdf').disabled=true; $('bvPdf').textContent='인쇄창 여는 중…';
       printDoc(name+' — BIBLY 자료집', $('book').innerHTML);
       setTimeout(()=>{ $('bvPdf').disabled=false; $('bvPdf').textContent='📕 PDF로 저장'; }, 1600);
+    }
+
+    /* ── 목차 클릭 → 해당 강의로 스크롤 ── */
+    function scrollToLesson(idx){
+      const el=document.getElementById('lesson-'+idx); if(!el) return;
+      const sticky=document.querySelector('#bookView .sticky'); const off=(sticky?sticky.offsetHeight:56)+16;
+      window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-off, behavior:'smooth'});
+    }
+
+    /* ── 강의 하나만 PDF ── */
+    function saveSinglePDF(idx){
+      const lessonEl=document.getElementById('lesson-'+idx);
+      if(!lessonEl){ alert('강의 내용을 먼저 불러와 주세요.'); return; }
+      const trackTitle=($('bvTitle').textContent||'').trim();
+      const curL=(window._curLessons||[])[idx-1]; const lTitle=curL?cleanTitle(curL.title):'';
+      let html=`<div class="cover-page" style="text-align:center;padding:30px 0 24px;border-bottom:1px solid #e6e9f0">
+        <p style="color:#b8923f;font-weight:700;letter-spacing:.28em;font-size:11px">BIBLY 바이블 인사이트 · 강의 노트</p>
+        <h1 style="font-size:24px;font-weight:700;color:#213a6b;margin:10px 0 6px;line-height:1.4">${esc(trackTitle)}</h1>
+        <p style="font-size:13px;font-weight:700;color:#5a6b88">제${idx}강</p>
+        <p style="font-size:13.5px;color:#2a3a55;margin:6px 0 0">${esc(lTitle)}</p>
+        ${(CUR_BUYER&&CUR_EMAIL)?`<p style="color:#b8923f;font-size:10.5px;margin:16px 0 0">📗 정품 · <b>${esc(CUR_EMAIL)}</b> 님께 발행 · 무단 복제·배포 금지</p>`:''}
+      </div>`;
+      html+=lessonEl.outerHTML;
+      const nxt=lessonEl.nextElementSibling;
+      if(nxt&&nxt.classList&&nxt.classList.contains('note-area')) html+=nxt.outerHTML;
+      if(CUR_BUYER) logAccess(CUR_TRACK,'download',CUR_KIND);
+      printDoc(trackTitle+' 제'+idx+'강 — BIBLY', html);
+    }
+
+    /* ── 목차 전체 선택/해제 토글 ── */
+    let _allChecked=true;
+    function toggleAllLessons(){
+      _allChecked=!_allChecked;
+      document.querySelectorAll('.lesson-check').forEach(c=>{ c.checked=_allChecked; });
+      const btn=document.getElementById('btnAllLessons'); if(btn) btn.textContent=_allChecked?'전체 해제':'전체 선택';
+    }
+
+    /* ── 선택한 강의만 조합 PDF ── */
+    function saveSelectedPDF(){
+      const checks=Array.from(document.querySelectorAll('.lesson-check')).filter(c=>c.checked);
+      if(!checks.length){ alert('목차에서 원하는 강의를 선택(체크)해 주세요.'); return; }
+      const trackTitle=($('bvTitle').textContent||'').trim();
+      const indices=checks.map(c=>Number(c.dataset.idx));
+      let html=`<div class="cover-page" style="text-align:center;padding:42px 0 34px;border-bottom:1px solid #e6e9f0">
+        <p style="color:#b8923f;font-weight:700;letter-spacing:.28em;font-size:11px;margin:0 0 14px">BIBLY 바이블 인사이트 · 강의 노트</p>
+        <h1 style="font-size:29px;font-weight:700;color:#213a6b;line-height:1.4;margin:0 12px">${esc(trackTitle)}</h1>
+        <p style="color:#5a6b88;font-size:13px;margin:10px 0 0">선택된 강의 모음 · ${indices.length}강</p>
+        ${(CUR_BUYER&&CUR_EMAIL)?`<p style="color:#b8923f;font-size:10.5px;margin:18px 0 0">📗 정품 · <b>${esc(CUR_EMAIL)}</b> 님께 발행 · 무단 복제·배포 금지</p>`:''}
+      </div>`;
+      indices.forEach(idx=>{
+        const el=document.getElementById('lesson-'+idx); if(!el) return;
+        html+=el.outerHTML;
+        const nxt=el.nextElementSibling;
+        if(nxt&&nxt.classList&&nxt.classList.contains('note-area')) html+=nxt.outerHTML;
+      });
+      if(CUR_BUYER) logAccess(CUR_TRACK,'download',CUR_KIND);
+      const pdfBtn=$('bvPdf'); if(pdfBtn){ pdfBtn.disabled=true; pdfBtn.textContent='인쇄창 여는 중…'; }
+      printDoc(trackTitle+' (선택 강의) — BIBLY', html);
+      setTimeout(()=>{ if(pdfBtn){ pdfBtn.disabled=false; pdfBtn.textContent='📕 전체 PDF'; } }, 1600);
     }
 
     boot();
