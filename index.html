@@ -1835,7 +1835,7 @@
     function paintNav(user, name){
       const isAdmin = isAdminUser(user);
       const adminBtn = isAdmin
-        ? `<a href="admin.html" class="inline-flex items-center gap-1 border border-ink/25 text-ink/80 font-semibold px-3 py-1 rounded-full hover:border-gold hover:text-gold transition" title="관리자 콘솔">⚙ 관리자</a>`
+        ? `<a href="admin.html" class="inline-flex items-center gap-1 bg-gold/20 border border-gold/60 text-gold font-semibold px-3 py-1 rounded-full hover:bg-gold hover:text-white transition" title="관리자 콘솔">⚙ 관리자</a>`
         : '';
       // 모바일 메뉴 상단 관리자 바로가기
       const mw = document.getElementById('mobileAdminWrap');
