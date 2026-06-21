@@ -1808,13 +1808,27 @@
       return null;
     }
     const ADMIN_EMAIL = 'josephoh1611@gmail.com';
+    // JWT(access_token) 페이로드에서 이메일 추출 — user 객체에 email이 없을 때 대비
+    function jwtEmail(tok){
+      try{ let s=tok.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'); while(s.length%4) s+='=';
+        const json=decodeURIComponent(atob(s).split('').map(c=>'%'+('00'+c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+        return (JSON.parse(json).email||'').toLowerCase().trim();
+      }catch(e){ return ''; }
+    }
     function isAdminUser(user){
-      const e = ((user && user.email) || '').toLowerCase().trim();
-      if(e === ADMIN_EMAIL) return true;
-      // admin.html 로그인 세션(같은 도메인 localStorage 공유)도 관리자로 인정
+      // 1) 전달된 user 객체
+      if((((user&&user.email)||'')).toLowerCase().trim() === ADMIN_EMAIL) return true;
+      // 2) localStorage의 모든 세션(SDK auth-token 키 + admin 전용 키)을 훑어 이메일 확인
       try{
-        const a = JSON.parse(localStorage.getItem('bibly-admin-auth') || 'null');
-        if(a && a.user && ((a.user.email||'').toLowerCase().trim() === ADMIN_EMAIL) && (!a.expires_at || a.expires_at*1000 > Date.now())) return true;
+        for(const k of Object.keys(localStorage)){
+          if(!/auth-token|bibly-admin-auth/.test(k)) continue;
+          let v; try{ v=JSON.parse(localStorage.getItem(k)); }catch(_){ continue; }
+          const s=(v&&v.user)?v:(v&&v.currentSession)?v.currentSession:v;
+          if(!s) continue;
+          if(s.expires_at && s.expires_at*1000 < Date.now()) continue; // 만료 세션 제외
+          if((((s.user&&s.user.email)||'')).toLowerCase().trim() === ADMIN_EMAIL) return true;
+          if(s.access_token && jwtEmail(s.access_token) === ADMIN_EMAIL) return true; // 토큰에만 있어도 인정
+        }
       }catch(e){}
       return false;
     }
