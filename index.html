@@ -166,60 +166,66 @@
     </div>
   </header>
 
-  <!-- ===== Hero ===== -->
-  <section id="top" class="relative overflow-hidden pt-10 pb-16">
-    <div class="blob bg-gold w-[460px] h-[460px] -top-24 -right-24"></div>
-    <div class="blob bg-navy w-[380px] h-[380px] top-44 -left-32 opacity-20"></div>
+  <!-- ===== Hero (네이비 프리미엄 · 첫인상) ===== -->
+  <section id="top" class="relative overflow-hidden text-paper bg-gradient-to-b from-navy via-ink to-[#16284c]">
+    <div class="blob bg-gold w-[520px] h-[520px] -top-32 -right-24 opacity-20"></div>
+    <div class="blob bg-gold w-[340px] h-[340px] bottom-10 -left-32 opacity-[0.10]"></div>
+    <div class="absolute inset-0 opacity-[0.05] pointer-events-none" style="background-image:radial-gradient(circle at 1px 1px,#fff 1px,transparent 0);background-size:24px 24px"></div>
 
-    <div class="relative max-w-3xl mx-auto px-5 text-center z-10">
-      <span class="inline-flex items-center gap-2 bg-gold/15 text-gold text-xs font-bold px-3 py-1.5 rounded-full">
-        BIBLY · 온라인 성경·신학 아카데미
-      </span>
-      <h1 data-cms="home.heroTitle" class="mt-5 text-[38px] md:text-[60px] font-bold leading-[1.1] tracking-tight">
+    <div class="relative max-w-4xl mx-auto px-5 pt-14 pb-10 md:pt-20 md:pb-12 text-center z-10">
+      <span class="inline-flex items-center gap-2 bg-gold/15 border border-gold/30 text-gold text-xs font-bold px-3.5 py-1.5 rounded-full">✦ BIBLY · 온라인 성경·신학 아카데미</span>
+      <h1 data-cms="home.heroTitle" class="mt-6 text-[40px] md:text-[66px] font-bold leading-[1.08] tracking-tight">
         말씀으로 <span class="text-gold">시대를 읽다</span>
       </h1>
-      <p data-cms="home.heroSub" class="mt-5 text-ink/75 text-lg md:text-xl leading-relaxed">
-        교회가 깊이 다루지 않는 <b class="text-ink">종말론·천년왕국·성경적 세계관</b>을,<br class="hidden sm:block"/>
-        <b class="text-ink">평신도도 스스로 읽고 분별하도록.</b>
+      <p class="mt-5 text-paper/85 text-lg md:text-2xl font-semibold leading-relaxed">
+        보는 신앙에서, <span class="text-gold">스스로 읽고 분별하는 신앙</span>으로.
       </p>
-      <p class="mt-3 text-ink/55 text-sm md:text-[15px] leading-relaxed">
-        미국 신학 석사 <b class="text-ink/80">대표강사 오광일 전도자</b>의 검증된 강의 · 기초부터 고급까지 · <b class="text-gold">지금은 100% 무료</b>
+      <p data-cms="home.heroSub" class="mt-4 text-paper/60 text-[15px] md:text-[17px] leading-relaxed max-w-2xl mx-auto">
+        교회가 깊이 다루지 않는 <b class="text-paper/90">종말론·천년왕국·성경적 세계관</b>을,<br class="hidden sm:block"/>
+        미국 신학 석사 <b class="text-paper/90">오광일 전도자</b>의 검증된 강의로 — 기초부터 고급까지.
       </p>
 
-      <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-        <a href="watch.html" class="bg-ink text-paper font-semibold px-8 py-4 rounded-full hover:bg-navy transition shadow-card text-center">
-          ▶ 무료 1강 시작하기
-        </a>
-        <a href="curriculum.html" class="border border-ink/15 px-8 py-4 rounded-full hover:bg-ink/5 transition text-center">
-          전체 커리큘럼 보기
-        </a>
+      <div class="mt-9 flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="watch.html" class="bg-gold text-white font-bold text-lg px-9 py-4 rounded-full hover:opacity-90 transition shadow-xl shadow-black/30 text-center">▶ 무료로 시작하기</a>
+        <a href="curriculum.html" class="border border-paper/25 text-paper font-semibold px-9 py-4 rounded-full hover:bg-paper/10 transition text-center">전체 커리큘럼 보기</a>
       </div>
 
-      <div class="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-ink/55">
-        <span class="flex items-center gap-1.5"><span class="text-gold font-bold">✓</span> 전 강의 무료 공개</span>
+      <div class="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-paper/60">
+        <span class="flex items-center gap-1.5"><span class="text-gold font-bold">✓</span> 전 강의 100% 무료</span>
         <span class="flex items-center gap-1.5"><span class="text-gold font-bold">✓</span> 회원가입 없이 시청</span>
-        <span class="flex items-center gap-1.5"><span class="text-gold font-bold">✓</span> 무제한 소장</span>
+        <span class="flex items-center gap-1.5"><span class="text-gold font-bold">✓</span> 무제한 소장 · PDF 제공</span>
       </div>
     </div>
 
-    <!-- BIBLY 브랜드 약속 (히어로) -->
-    <div class="relative max-w-5xl mx-auto px-5 mt-12 z-10">
-      <div class="rounded-2xl border border-ink/10 bg-white/70 backdrop-blur shadow-soft px-5 py-5 flex flex-col sm:flex-row items-center justify-center gap-x-7 gap-y-4 text-center">
-        <p class="text-sm text-ink/60 shrink-0 leading-snug">
-          <b class="text-ink text-base">BIBLY</b> <span class="text-ink/35">=</span> Bible <span class="text-gold font-bold">+</span> Daily
-          <span class="block text-xs text-ink/45 mt-0.5">날마다 말씀 곁에, 스스로 읽는 삶</span>
-        </p>
-        <div class="hidden sm:block w-px self-stretch bg-ink/10"></div>
-        <div class="flex items-end gap-4 sm:gap-7">
-          <div><span class="biShine font-display text-2xl sm:text-[28px] font-bold leading-none">B</span><span class="block text-[10px] sm:text-[11px] text-ink/55 mt-1">Bible</span></div>
-          <div><span class="biShine font-display text-2xl sm:text-[28px] font-bold leading-none">I</span><span class="block text-[10px] sm:text-[11px] text-ink/55 mt-1">Insight</span></div>
-          <div><span class="biShine font-display text-2xl sm:text-[28px] font-bold leading-none">B</span><span class="block text-[10px] sm:text-[11px] text-ink/55 mt-1">Believe</span></div>
-          <div><span class="biShine font-display text-2xl sm:text-[28px] font-bold leading-none">L</span><span class="block text-[10px] sm:text-[11px] text-ink/55 mt-1">Light</span></div>
-          <div><span class="biShine font-display text-2xl sm:text-[28px] font-bold leading-none">Y</span><span class="block text-[10px] sm:text-[11px] text-ink/55 mt-1">Yourself</span></div>
-        </div>
+    <!-- 대표 시리즈 레일 (첫 화면에서 바로 '볼거리') -->
+    <div class="relative z-10 max-w-6xl mx-auto px-5 pb-14">
+      <div class="flex items-center justify-between mb-3">
+        <p class="text-paper/70 text-sm font-semibold"><span class="text-gold">●</span> 대표 시리즈 · 지금 바로 정주행</p>
+        <a href="curriculum.html" class="text-paper/55 text-xs hover:text-gold whitespace-nowrap">전체 트랙 보기 ›</a>
+      </div>
+      <div id="heroSeriesRail" class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="aspect-video rounded-xl bg-white/5 animate-pulse"></div>
+        <div class="aspect-video rounded-xl bg-white/5 animate-pulse"></div>
+        <div class="aspect-video rounded-xl bg-white/5 animate-pulse"></div>
+        <div class="aspect-video rounded-xl bg-white/5 animate-pulse"></div>
       </div>
     </div>
   </section>
+
+  <!-- BIBLY 브랜드 약속 (슬림 라이트 스트립) -->
+  <div class="bg-paper border-b border-ink/8">
+    <div class="max-w-5xl mx-auto px-5 py-4 flex flex-col sm:flex-row items-center justify-center gap-x-7 gap-y-3 text-center">
+      <p class="text-sm text-ink/60 shrink-0"><b class="text-ink text-base">BIBLY</b> <span class="text-ink/35">=</span> Bible <span class="text-gold font-bold">+</span> Daily <span class="text-ink/45 text-xs ml-1">· 날마다 말씀 곁에</span></p>
+      <div class="hidden sm:block w-px self-stretch bg-ink/10"></div>
+      <div class="flex items-end gap-4 sm:gap-7">
+        <div><span class="biShine font-display text-xl sm:text-2xl font-bold leading-none">B</span><span class="block text-[10px] text-ink/55 mt-0.5">Bible</span></div>
+        <div><span class="biShine font-display text-xl sm:text-2xl font-bold leading-none">I</span><span class="block text-[10px] text-ink/55 mt-0.5">Insight</span></div>
+        <div><span class="biShine font-display text-xl sm:text-2xl font-bold leading-none">B</span><span class="block text-[10px] text-ink/55 mt-0.5">Believe</span></div>
+        <div><span class="biShine font-display text-xl sm:text-2xl font-bold leading-none">L</span><span class="block text-[10px] text-ink/55 mt-0.5">Light</span></div>
+        <div><span class="biShine font-display text-xl sm:text-2xl font-bold leading-none">Y</span><span class="block text-[10px] text-ink/55 mt-0.5">Yourself</span></div>
+      </div>
+    </div>
+  </div>
 
   <!-- ===== 최근 추가된 강의 (신규 업데이트 · 수강생 알림) ===== -->
   <section id="newLessonsSec" class="hidden bg-white border-b border-ink/8 py-9">
@@ -1577,6 +1583,28 @@
         setTxt('curCount', total); setTxt('curTrackCount', levels.length);
         setTxt('curCount2b', total); setTxt('curTrackCount2', levels.length);
         const playSvg = '<svg class="w-5 h-5 text-ink ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+
+        // (0) 히어로 대표 시리즈 레일 — 정체성(종말론·천년왕국) 트랙 우선 노출
+        const rail = document.getElementById('heroSeriesRail');
+        if(rail){
+          const wantKeys = ['천년왕국','성경예언 마스터','종말과 국제정세','기독교 기초'];
+          const picks = [];
+          wantKeys.forEach(k => { const ti = levels.findIndex(lv => (lv.name||'').includes(k)); if(ti>=0 && picks.indexOf(ti)<0) picks.push(ti); });
+          levels.forEach((lv, ti) => { if(picks.length<4 && (lv.lessons||[]).length && picks.indexOf(ti)<0) picks.push(ti); });
+          const railHtml = picks.slice(0,4).map(ti => {
+            const lv = levels[ti]; const ls = lv.lessons || [];
+            const vid = ytId((ls[0] || {}).youtube);
+            const thumb = vid ? `https://img.youtube.com/vi/${vid}/mqdefault.jpg` : '';
+            const nm = (lv.name || '강의').replace(/</g,'&lt;');
+            return `<a href="watch.html?l=${starts[ti]}" class="group relative block rounded-xl overflow-hidden border border-white/10 hover:border-gold/60 transition">
+              <div class="aspect-video bg-ink/60 overflow-hidden">${ thumb ? `<img src="${thumb}" alt="" loading="lazy" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition duration-500"/>` : '' }</div>
+              <span class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent"></span>
+              <span class="absolute top-2 right-2 bg-gold text-white text-[10px] font-bold px-1.5 py-0.5 rounded">전 ${ls.length}강</span>
+              <span class="absolute bottom-2.5 left-3 right-3 text-white text-[13px] font-bold leading-tight drop-shadow" style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${nm}</span>
+            </a>`;
+          }).join('');
+          if(railHtml) rail.innerHTML = railHtml;
+        }
 
         // (1) 카탈로그: 트랙(시리즈) 카드
         if(grid){
