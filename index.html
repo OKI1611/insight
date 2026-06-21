@@ -250,6 +250,21 @@
     </div>
   </section>
 
+  <!-- ===== 최근 추가된 강의 (신규 업데이트 · 수강생 알림) ===== -->
+  <section id="newLessonsSec" class="hidden bg-white border-b border-ink/8 py-9">
+    <div class="max-w-6xl mx-auto px-5">
+      <div class="flex items-end justify-between gap-3 mb-5">
+        <div>
+          <p class="text-[11px] font-bold text-gold tracking-[0.15em] mb-1">NEW · 새 강의</p>
+          <h2 class="text-xl md:text-2xl font-bold">🆕 최근 추가된 강의</h2>
+          <p class="text-ink/50 text-sm mt-1">새로 올라온 강의를 가장 먼저 만나보세요.</p>
+        </div>
+        <a href="curriculum.html" class="hidden sm:inline-flex items-center gap-1 text-sm font-semibold text-ink hover:text-gold shrink-0">전체 커리큘럼 →</a>
+      </div>
+      <div id="newLessonsGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-4"></div>
+    </div>
+  </section>
+
   <!-- ===== 빠른 시작 대시보드 (홈 상단 · 플랫폼 진입) ===== -->
   <section class="bg-gradient-to-b from-sand/35 to-paper border-b border-ink/8 pt-5 pb-9">
     <div class="max-w-6xl mx-auto px-5">
@@ -1667,6 +1682,42 @@
             }).join('');
             return head + items;
           }).join('');
+        }
+
+        // (3) 최근 추가된 강의 — added 날짜가 있는 강의만 모아 최신순으로
+        const newSec = document.getElementById('newLessonsSec');
+        const newGrid = document.getElementById('newLessonsGrid');
+        if(newGrid){
+          const recent = [];
+          levels.forEach((lv, ti) => {
+            (lv.lessons || []).forEach((l, li) => {
+              if(l.added) recent.push({ l, track: lv.name || '', gi: starts[ti] + li });
+            });
+          });
+          // 추가일 최신순, 같은 날이면 뒤쪽(최근) 트랙·강의 우선 — 대표 신규 강의가 먼저 보이게
+          recent.sort((a, b) => String(b.l.added).localeCompare(String(a.l.added)) || (b.gi - a.gi));
+          const top = recent.slice(0, 8);
+          if(top.length){
+            newGrid.innerHTML = top.map(({ l, track, gi }) => {
+              const id = ytId(l.youtube);
+              const thumb = id ? `https://img.youtube.com/vi/${id}/mqdefault.jpg` : '';
+              const t2 = (l.title || '').replace(/</g,'&lt;');
+              const tr = track.replace(/</g,'&lt;');
+              const dur = l.duration ? `<span class="absolute bottom-2 right-2 bg-ink/75 text-white text-[10px] font-semibold px-1.5 py-0.5 rounded">${l.duration.replace(/</g,'&lt;')}</span>` : '';
+              return `<a href="watch.html?l=${gi}" class="group rounded-xl border border-ink/8 overflow-hidden bg-paper hover:shadow-card hover:-translate-y-1 transition flex flex-col">
+                <div class="relative aspect-video bg-ink overflow-hidden">
+                  ${ thumb ? `<img src="${thumb}" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-500"/>` : '' }
+                  <span class="absolute top-2 left-2 bg-gold text-white text-[10px] font-bold px-1.5 py-0.5 rounded shadow">NEW</span>
+                  ${dur}
+                </div>
+                <div class="p-3 flex flex-col flex-1">
+                  <p class="text-[11px] text-gold font-semibold truncate">${tr}</p>
+                  <h3 class="text-sm font-bold leading-snug mt-0.5 group-hover:text-gold transition" style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${t2}</h3>
+                </div>
+              </a>`;
+            }).join('');
+            newSec.classList.remove('hidden');
+          }
         }
       })
       .catch(() => {
