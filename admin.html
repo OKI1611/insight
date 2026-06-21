@@ -635,7 +635,7 @@
         if(!data||!data.length){ wrap.innerHTML='<p class="text-ink/50 text-sm">아직 이용권 보유자가 없습니다.</p>'; return; }
         wrap.innerHTML=`<div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">
           <thead class="text-ink/45 text-left border-b border-ink/5"><tr><th class="px-5 py-3 font-medium">이메일</th><th class="px-5 py-3 font-medium">종류</th><th class="px-5 py-3 font-medium">만료</th><th class="px-5 py-3 font-medium">부여일</th><th class="px-5 py-3"></th></tr></thead>
-          <tbody>${data.map(r=>`<tr class="border-b border-ink/5"><td class="px-5 py-3">${esc(r.email)}</td><td class="px-5 py-3 font-medium text-gold">${esc(passName(r.type))}</td><td class="px-5 py-3 text-ink/55">${r.expires_at?new Date(r.expires_at).toLocaleDateString('ko'):'평생'}</td><td class="px-5 py-3 text-ink/55">${r.created_at?new Date(r.created_at).toLocaleDateString('ko'):'-'}</td><td class="px-5 py-3 text-right"><button onclick="revokePass(this.dataset.e)" data-e="${esc(r.email)}" class="text-xs text-red-500 hover:underline">회수</button></td></tr>`).join('')}</tbody></table></div>`;
+          <tbody>${data.map(r=>`<tr class="border-b border-ink/5"><td class="px-5 py-3">${esc(r.email)}</td><td class="px-5 py-3 font-medium text-gold">${esc(passName(r.type))}</td><td class="px-5 py-3 text-ink/55">${r.expires_at?new Date(r.expires_at).toLocaleDateString('ko'):'평생'}</td><td class="px-5 py-3 text-ink/55">${r.created_at?new Date(r.created_at).toLocaleDateString('ko'):'-'}</td><td class="px-5 py-3 text-right whitespace-nowrap"><button onclick="showUserAccess(this.dataset.e)" data-e="${esc(r.email)}" class="text-xs text-ink/60 hover:text-gold hover:underline mr-3">📄 기록보기</button><button onclick="revokePass(this.dataset.e)" data-e="${esc(r.email)}" class="text-xs text-red-500 hover:underline">회수</button></td></tr>`).join('')}</tbody></table></div>`;
       }catch(e){ wrap.innerHTML='<p class="text-ink/50 text-sm">'+(_storeNeedSql(e)?'스토어 권한 기능 준비 중 — 관리자: <code class="bg-ink/5 px-1 rounded">supabase/store_grant.sql</code> 를 먼저 실행하세요.':'불러오기 오류: '+esc(e.message||e))+'</p>'; }
     }
     async function loadBookList(){
@@ -645,19 +645,49 @@
         if(!data||!data.length){ wrap.innerHTML='<p class="text-ink/50 text-sm">아직 개별 교재 권한이 없습니다.</p>'; return; }
         wrap.innerHTML=`<div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">
           <thead class="text-ink/45 text-left border-b border-ink/5"><tr><th class="px-5 py-3 font-medium">이메일</th><th class="px-5 py-3 font-medium">책(과정)</th><th class="px-5 py-3 font-medium">부여일</th><th class="px-5 py-3"></th></tr></thead>
-          <tbody>${data.map(r=>`<tr class="border-b border-ink/5"><td class="px-5 py-3">${esc(r.email)}</td><td class="px-5 py-3 font-medium">${esc(r.track)}</td><td class="px-5 py-3 text-ink/55">${r.created_at?new Date(r.created_at).toLocaleDateString('ko'):'-'}</td><td class="px-5 py-3 text-right"><button onclick="revokeBook(this.dataset.e,this.dataset.t)" data-e="${esc(r.email)}" data-t="${esc(r.track)}" class="text-xs text-red-500 hover:underline">회수</button></td></tr>`).join('')}</tbody></table></div>`;
+          <tbody>${data.map(r=>`<tr class="border-b border-ink/5"><td class="px-5 py-3">${esc(r.email)}</td><td class="px-5 py-3 font-medium">${esc(r.track)}</td><td class="px-5 py-3 text-ink/55">${r.created_at?new Date(r.created_at).toLocaleDateString('ko'):'-'}</td><td class="px-5 py-3 text-right whitespace-nowrap"><button onclick="showUserAccess(this.dataset.e)" data-e="${esc(r.email)}" class="text-xs text-ink/60 hover:text-gold hover:underline mr-3">📄 기록보기</button><button onclick="revokeBook(this.dataset.e,this.dataset.t)" data-e="${esc(r.email)}" data-t="${esc(r.track)}" class="text-xs text-red-500 hover:underline">회수</button></td></tr>`).join('')}</tbody></table></div>`;
       }catch(e){ wrap.innerHTML='<p class="text-ink/50 text-sm">'+(_storeNeedSql(e)?'스토어 권한 기능 준비 중 — <code class="bg-ink/5 px-1 rounded">supabase/store_grant.sql</code> 실행 필요.':'불러오기 오류: '+esc(e.message||e))+'</p>'; }
     }
+    const AC_LABEL={view:'👁️ 열람',download:'📥 다운로드'};
+    let _ACCESS_CACHE=[];
     async function loadAccessLogs(){
       const wrap=document.getElementById('accessList'); if(!wrap) return;
       try{
-        const data=await rpcFetch('list_access',{p_limit:200});
+        const data=await rpcFetch('list_access',{p_limit:300});
+        _ACCESS_CACHE = data||[];
         if(!data||!data.length){ wrap.innerHTML='<p class="text-ink/50 text-sm">아직 이용 기록이 없습니다.</p>'; return; }
-        const AC={view:'👁️ 열람',download:'📥 다운로드'};
         wrap.innerHTML=`<div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">
-          <thead class="text-ink/45 text-left border-b border-ink/5"><tr><th class="px-5 py-3 font-medium">일시</th><th class="px-5 py-3 font-medium">이메일</th><th class="px-5 py-3 font-medium">행위</th><th class="px-5 py-3 font-medium">자료</th></tr></thead>
-          <tbody>${data.map(r=>`<tr class="border-b border-ink/5"><td class="px-5 py-3 text-ink/55">${r.created_at?new Date(r.created_at).toLocaleString('ko'):'-'}</td><td class="px-5 py-3">${esc(r.email)}</td><td class="px-5 py-3 font-medium ${r.action==='download'?'text-gold':'text-ink/70'}">${AC[r.action]||esc(r.action)}</td><td class="px-5 py-3 text-ink/70">${esc(r.track||'-')}</td></tr>`).join('')}</tbody></table></div>`;
+          <thead class="text-ink/45 text-left border-b border-ink/5"><tr><th class="px-5 py-3 font-medium">일시</th><th class="px-5 py-3 font-medium">이메일</th><th class="px-5 py-3 font-medium">행위</th><th class="px-5 py-3 font-medium">자료</th><th class="px-5 py-3"></th></tr></thead>
+          <tbody>${data.map(r=>`<tr class="border-b border-ink/5"><td class="px-5 py-3 text-ink/55">${r.created_at?new Date(r.created_at).toLocaleString('ko'):'-'}</td><td class="px-5 py-3">${esc(r.email)}</td><td class="px-5 py-3 font-medium ${r.action==='download'?'text-gold':'text-ink/70'}">${AC_LABEL[r.action]||esc(r.action)}</td><td class="px-5 py-3 text-ink/70">${esc(r.track||'-')}</td><td class="px-5 py-3 text-right"><button onclick="showUserAccess(this.dataset.e)" data-e="${esc(r.email)}" class="text-xs text-ink/50 hover:text-gold hover:underline">이 사용자</button></td></tr>`).join('')}</tbody></table></div>`;
       }catch(e){ wrap.innerHTML='<p class="text-ink/50 text-sm">'+(_storeNeedSql(e)?'이용기록 기능 준비 중 — <code class="bg-ink/5 px-1 rounded">supabase/access_logs.sql</code> 실행 필요.':'불러오기 오류: '+esc(e.message||e))+'</p>'; }
+    }
+    // 특정 사용자의 열람·다운로드 기록만 모아 보기(모달)
+    async function showUserAccess(email){
+      email=(email||'').toLowerCase().trim(); if(!email) return;
+      // 모달 띄우고 로딩 표시
+      let ov=document.getElementById('uaOv');
+      if(!ov){ ov=document.createElement('div'); ov.id='uaOv'; ov.style.cssText='position:fixed;inset:0;z-index:120;background:rgba(21,32,58,.55);display:flex;align-items:center;justify-content:center;padding:16px'; ov.addEventListener('click',e=>{ if(e.target===ov) ov.remove(); }); document.body.appendChild(ov); }
+      const shell=(inner)=>`<div style="background:#fff;border-radius:18px;max-width:680px;width:100%;max-height:84vh;overflow:auto;box-shadow:0 30px 80px -20px rgba(0,0,0,.45)">
+        <div style="position:sticky;top:0;background:#fff;border-bottom:1px solid #eef1f6;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <div><p style="font-size:12px;color:#9aa6bd;margin:0">이용 기록</p><p style="font-size:16px;font-weight:700;color:#213a6b;margin:2px 0 0;word-break:break-all">${esc(email)}</p></div>
+          <button onclick="document.getElementById('uaOv').remove()" style="flex-shrink:0;background:#eef1f6;border:0;border-radius:10px;padding:8px 12px;font-weight:600;cursor:pointer;color:#5a6b88">닫기</button>
+        </div>${inner}</div>`;
+      ov.innerHTML=shell('<p style="padding:40px;text-align:center;color:#9aa6bd">기록을 불러오는 중…</p>');
+      // 최신 기록을 넉넉히 가져와 해당 이메일만 필터
+      let rows=[];
+      try{ const data=await rpcFetch('list_access',{p_limit:1000}); _ACCESS_CACHE=data||_ACCESS_CACHE; rows=(data||[]).filter(r=>(r.email||'').toLowerCase()===email); }
+      catch(e){ rows=_ACCESS_CACHE.filter(r=>(r.email||'').toLowerCase()===email); }
+      if(!document.getElementById('uaOv')) return; // 닫혔으면 중단
+      if(!rows.length){ ov.innerHTML=shell('<p style="padding:40px;text-align:center;color:#9aa6bd">이 사용자의 열람·다운로드 기록이 아직 없습니다.</p>'); return; }
+      const views=rows.filter(r=>r.action==='view').length, dls=rows.filter(r=>r.action==='download').length;
+      const tracks=[...new Set(rows.map(r=>r.track).filter(Boolean))];
+      const chip=(t)=>`<span style="display:inline-block;background:#f3f6fb;color:#5a6b88;font-size:12px;font-weight:600;padding:5px 11px;border-radius:999px">${t}</span>`;
+      const summary=`<div style="padding:16px 20px;display:flex;flex-wrap:wrap;gap:8px;border-bottom:1px solid #f3f6fb">${chip('👁️ 열람 '+views+'회')}${chip('📥 다운로드 '+dls+'회')}${chip('📚 자료 '+tracks.length+'종')}${chip('총 '+rows.length+'건')}</div>`;
+      const table=`<table style="width:100%;border-collapse:collapse;font-size:13.5px"><thead><tr style="color:#9aa6bd;text-align:left">
+        <th style="padding:10px 20px;font-weight:500">일시</th><th style="padding:10px 12px;font-weight:500">행위</th><th style="padding:10px 20px;font-weight:500">자료</th></tr></thead><tbody>
+        ${rows.map(r=>`<tr style="border-top:1px solid #f3f6fb"><td style="padding:10px 20px;color:#5a6b88;white-space:nowrap">${r.created_at?new Date(r.created_at).toLocaleString('ko'):'-'}</td><td style="padding:10px 12px;font-weight:600;color:${r.action==='download'?'#b8923f':'#41506e'};white-space:nowrap">${AC_LABEL[r.action]||esc(r.action)}</td><td style="padding:10px 20px;color:#41506e">${esc(r.track||'-')}</td></tr>`).join('')}
+        </tbody></table>`;
+      ov.innerHTML=shell(summary+table);
     }
     async function grantPass(){
       const email=document.getElementById('passEmail').value.trim(), type=document.getElementById('passType').value, m=document.getElementById('passMsg');
