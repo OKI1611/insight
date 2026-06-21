@@ -28,6 +28,26 @@
 
   <div id="siteHeader" data-active="booklet.html"></div>
 
+  <!-- 스토어 상단바 (booklet과 통일 — 고객센터에서도 스토어 메뉴 유지) -->
+  <div class="sticky top-14 z-30 bg-white/95 backdrop-blur border-b border-ink/8 shadow-soft">
+    <div class="max-w-5xl mx-auto px-4 py-2.5 flex items-center gap-2">
+      <a href="booklet.html" class="font-bold text-sm shrink-0">🛍 BIBLY <span class="text-gold">스토어</span></a>
+      <nav class="hidden sm:flex items-center gap-0.5 text-sm text-ink/60 ml-2">
+        <a href="booklet.html#pass" class="px-2.5 py-1 rounded hover:bg-ink/5">이용권</a>
+        <a href="booklet.html#books" class="px-2.5 py-1 rounded hover:bg-ink/5">책자</a>
+        <span class="px-2.5 py-1 rounded bg-ink/[0.06] text-ink font-semibold">고객센터</span>
+      </nav>
+      <div class="ml-auto flex items-center gap-1.5">
+        <a href="booklet.html" class="text-ink/55 text-sm px-1.5 hover:text-gold">← 스토어</a>
+        <a href="booklet.html#cart" class="relative inline-flex items-center gap-1.5 bg-ink text-paper text-sm font-bold pl-3.5 pr-4 py-2 rounded-full hover:bg-navy transition">
+          <span>🛒 장바구니</span>
+          <span id="shCartCount" class="bg-gold text-white text-[11px] font-bold rounded-full min-w-[18px] h-[18px] px-1 inline-flex items-center justify-center">0</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <script>try{var _c=JSON.parse(localStorage.getItem('bibly_cart'))||[];var _e=document.getElementById('shCartCount');if(_e)_e.textContent=Array.isArray(_c)?_c.length:0;}catch(e){}</script>
+
   <section class="bg-white border-b border-ink/8">
     <div class="max-w-3xl mx-auto px-5 py-12 md:py-14 text-center">
       <p class="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-3">Customer Center</p>

@@ -280,7 +280,13 @@
       const tname=sp.get('track'), buy=sp.get('buy');
       if(tname){ renderBook(decodeURIComponent(tname)); }
       else if(buy){ addToCart('book', decodeURIComponent(buy), true); showView('cart'); }
-      else { showView('catalog'); }
+      else {
+        const hash=(location.hash||'').replace('#','');
+        if(hash==='cart') showView('cart');
+        else if(hash==='pass') goStore('pass');
+        else if(hash==='books') goStore('books');
+        else showView('catalog');
+      }
     }
 
     /* ---------------- 뷰 전환 ---------------- */
