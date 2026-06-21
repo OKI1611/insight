@@ -58,6 +58,7 @@
         <button data-sec="reqs"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">📮 강의 요청·건의</button>
         <button data-sec="comm"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">💬 커뮤니티</button>
         <button data-sec="mem"    class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">👥 회원</button>
+        <button data-sec="founding" class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">🏅 창립 멤버</button>
         <button data-sec="apps"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">📩 등록 신청</button>
         <button data-sec="cert"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">🎓 수강권(인증)</button>
         <button data-sec="store"  class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">🛒 스토어 권한</button>
@@ -121,6 +122,19 @@
         </div>
         <p class="text-ink/50 text-sm mb-6">가입 회원과 수강·진도 현황입니다.</p>
         <div id="memWrap">불러오는 중…</div>
+      </section>
+
+      <!-- 창립 멤버 -->
+      <section id="sec-founding" class="secPanel hidden">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-1">
+          <h1 class="text-2xl font-bold">🏅 1기 창립 멤버</h1>
+          <div class="flex gap-2">
+            <button onclick="exportFoundingCSV()" class="border border-ink/15 text-sm px-3 py-2 rounded-lg hover:bg-ink/5">엑셀(CSV)</button>
+            <button onclick="loadFounding()" class="text-sm text-gold px-2 hover:underline">🔄 새로고침</button>
+          </div>
+        </div>
+        <p class="text-ink/50 text-sm mb-6">홈에서 ‘1기 창립 멤버 되기’로 가입한 분들입니다. (가입 순서대로 멤버 번호 부여)</p>
+        <div id="foundingWrap">불러오는 중…</div>
       </section>
 
       <!-- 등록 신청 -->
@@ -282,7 +296,7 @@
       document.querySelectorAll('.navItem').forEach(b=> b.className='navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg '+(b.dataset.sec===sec?'bg-white/10 text-paper font-medium':'hover:bg-white/5'));
       // 폼 섹션(curr·site)만 1회 로드 캐시, 데이터 섹션은 누를 때마다 새로고침(멈춤 방지)
       const formSec=(sec==='curr'||sec==='site');
-      if(!formSec || !LOADED[sec]){ LOADED[sec]=true; try{ ({dash:loadDash,curr:loadCurr,reqs:loadReqs,comm:loadComm,mem:loadMem,apps:loadApps,cert:loadCert,store:loadStore,cont:loadCont,site:loadSite}[sec]||(()=>{}))(); }catch(e){} }
+      if(!formSec || !LOADED[sec]){ LOADED[sec]=true; try{ ({dash:loadDash,curr:loadCurr,reqs:loadReqs,comm:loadComm,mem:loadMem,founding:loadFounding,apps:loadApps,cert:loadCert,store:loadStore,cont:loadCont,site:loadSite}[sec]||(()=>{}))(); }catch(e){} }
     }
 
     // ===== 대시보드 =====
@@ -434,6 +448,20 @@
         <p class="text-xs text-ink/35 mt-2">※ 이메일·연락처는 보안(auth)상 이 화면에서 조회되지 않습니다.</p>`;
     }
     function exportMembersCSV(){ if(!MEMBERS.length){ toast('회원 데이터 없음'); return; } const fd=d=>d?new Date(d).toLocaleDateString('ko'):''; const rows=[['이름','가입일','수강트랙수','완료강의수'],...MEMBERS.map(m=>[m.name,fd(m.created),m.enr,m.done])]; const csv='﻿'+rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n'); const b=new Blob([csv],{type:'text/csv'}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='회원목록.csv'; a.click(); toast('CSV 내려받음'); }
+
+    // ===== 🏅 창립 멤버 =====
+    let FOUNDING=[];
+    async function loadFounding(){
+      const wrap=document.getElementById('foundingWrap'); if(!wrap) return;
+      try{
+        const data=await rpcFetch('list_founding',{}); FOUNDING=data||[];
+        if(!FOUNDING.length){ wrap.innerHTML='<p class="text-ink/50 text-sm">아직 창립 멤버가 없습니다.</p>'; return; }
+        wrap.innerHTML=`<p class="text-sm text-ink/50 mb-3">총 <b class="text-ink">${FOUNDING.length}</b>명 · 가입(번호)순</p><div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">
+          <thead class="text-ink/45 text-left border-b border-ink/5"><tr><th class="px-5 py-3 font-medium">번호</th><th class="px-5 py-3 font-medium">이름</th><th class="px-5 py-3 font-medium">이메일</th><th class="px-5 py-3 font-medium">가입일</th></tr></thead>
+          <tbody>${FOUNDING.map(r=>`<tr class="border-b border-ink/5"><td class="px-5 py-3 font-bold text-gold">#${String(r.member_no).padStart(3,'0')}</td><td class="px-5 py-3 font-medium">${esc(r.name||'(이름없음)')}</td><td class="px-5 py-3">${esc(r.email)}</td><td class="px-5 py-3 text-ink/55">${r.joined_at?new Date(r.joined_at).toLocaleDateString('ko'):'-'}</td></tr>`).join('')}</tbody></table></div>`;
+      }catch(e){ wrap.innerHTML='<p class="text-ink/50 text-sm">'+(_storeNeedSql(e)?'창립 멤버 기능 준비 중 — <code class="bg-ink/5 px-1 rounded">supabase/founding_members.sql</code> 실행 필요.':'불러오기 오류: '+esc(e.message||e))+'</p>'; }
+    }
+    function exportFoundingCSV(){ if(!FOUNDING.length){ toast('창립 멤버 없음'); return; } const fd=d=>d?new Date(d).toLocaleDateString('ko'):''; const rows=[['번호','이름','이메일','가입일'],...FOUNDING.map(r=>['#'+String(r.member_no).padStart(3,'0'),r.name||'',r.email,fd(r.joined_at)])]; const csv='﻿'+rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n'); const b=new Blob([csv],{type:'text/csv'}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='창립멤버.csv'; a.click(); toast('CSV 내려받음'); }
 
     // ===== 등록 신청(course_applications) =====
     async function loadApps(){
