@@ -19,10 +19,12 @@
   var cache = {};
   function live(key){
     if(cache[key] !== undefined) return Promise.resolve(cache[key]);
-    return orig(SB + '/rest/v1/site_content?select=data&key=eq.' + key, { headers:{ apikey:AK, Authorization:'Bearer ' + AK } })
-      .then(function(r){ return r.ok ? r.json() : []; })
+    var ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    var to = ctrl ? setTimeout(function(){ ctrl.abort(); }, 5000) : null;
+    return orig(SB + '/rest/v1/site_content?select=data&key=eq.' + key, { signal: ctrl ? ctrl.signal : undefined, headers:{ apikey:AK, Authorization:'Bearer ' + AK } })
+      .then(function(r){ if(to) clearTimeout(to); return r.ok ? r.json() : []; })
       .then(function(rows){ var d = (rows && rows[0]) ? rows[0].data : null; cache[key] = d; return d; })
-      .catch(function(){ cache[key] = null; return null; });
+      .catch(function(){ if(to) clearTimeout(to); cache[key] = null; return null; });
   }
   window.fetch = function(url, opts){
     try{

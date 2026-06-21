@@ -231,7 +231,7 @@
   <div id="toast" class="hidden fixed bottom-5 right-5 z-[60] bg-ink text-paper text-sm px-5 py-3 rounded-xl shadow-lg"></div>
 
   <script>
-    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType: 'implicit', lock: async (_n,_t,fn)=>await fn() } });
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType: 'implicit', autoRefreshToken: false, detectSessionFromUrl: true, lock: async (_n,_t,fn)=>await fn() } });
     let USER = null;
     function esc(s){ return (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
     function withTimeout(p,ms){ return Promise.race([Promise.resolve(p), new Promise((_,r)=>setTimeout(()=>r(new Error('TIMEOUT')),ms))]); }
@@ -332,27 +332,35 @@
     async function countSince(table,col,sinceISO){ return restCount(table, sinceISO?(col+'=gte.'+encodeURIComponent(sinceISO)):''); }
     function daysAgo(n){ const d=new Date(); d.setHours(0,0,0,0); d.setDate(d.getDate()-n); return d.toISOString(); }
     async function loadDash(){
-      const c=await getCourse(); const tracks=c.levels.length, lessons=c.levels.reduce((s,l)=>s+(l.lessons||[]).length,0);
-      const [reqs,comm,votes,members]=await Promise.all([count('lecture_requests'),count('community_posts'),count('lecture_request_votes'),count('profiles')]);
-      const cards=[
-        ['커리큘럼', tracks+'트랙 · '+lessons+'강','전체 강의'],
-        ['회원', members,'가입 누적'],
-        ['강의 요청·건의', reqs,'추천 '+votes+'표'],
-        ['커뮤니티 글', comm,'라운지 게시물'],
-      ];
-      document.getElementById('statCards').innerHTML = cards.map(([t,v,s])=>`<div class="bg-white rounded-2xl p-5 border border-ink/5 shadow-sm"><p class="text-sm text-ink/50">${t}</p><p class="text-2xl font-bold mt-1">${v}</p><p class="text-xs text-ink/40 mt-1">${s}</p></div>`).join('');
-      // 방문·가입 추이
-      const [vToday,v7,v30,vAll]=await Promise.all([countSince('site_visits','created_at',daysAgo(0)),countSince('site_visits','created_at',daysAgo(7)),countSince('site_visits','created_at',daysAgo(30)),count('site_visits')]);
-      const [sToday,s7,s30]=await Promise.all([countSince('profiles','created_at',daysAgo(0)),countSince('profiles','created_at',daysAgo(7)),countSince('profiles','created_at',daysAgo(30))]);
-      const trend=(label,emoji,a,b,c,d)=>`<div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-5 mb-4"><p class="font-bold mb-3">${emoji} ${label}</p><div class="grid grid-cols-4 gap-2 text-center">
-        <div><p class="text-xl font-bold">${a}</p><p class="text-xs text-ink/45 mt-0.5">오늘</p></div>
-        <div><p class="text-xl font-bold">${b}</p><p class="text-xs text-ink/45 mt-0.5">최근 7일</p></div>
-        <div><p class="text-xl font-bold">${c}</p><p class="text-xs text-ink/45 mt-0.5">최근 30일</p></div>
-        <div><p class="text-xl font-bold text-gold">${d}</p><p class="text-xs text-ink/45 mt-0.5">누적</p></div></div></div>`;
-      const vNote = (vAll==='—')?'<p class="text-xs text-ink/40 mb-4">방문 통계 테이블이 아직 없습니다 — <code class="bg-ink/5 px-1 rounded">supabase_site_visits.sql</code> 실행 후 집계됩니다.</p>':'';
-      document.getElementById('trendWrap').innerHTML = vNote + trend('방문','👣',vToday,v7,v30,vAll) + trend('가입','✍️',sToday,s7,s30,members);
-      document.getElementById('contentSummary').innerHTML = `총 <b>${tracks}개 트랙 / ${lessons}개 강의</b>가 등록되어 있습니다. 각 강의의 노트·퀴즈 보유 현황은 <button onclick="show('cont')" class="text-gold underline">노트·퀴즈 현황</button> 탭에서, 강의 추가·수정은 <button onclick="show('curr')" class="text-gold underline">커리큘럼 편집</button> 탭에서 하세요.
-        <span class="block mt-3 pt-3 border-t border-ink/5">✏️ <b>홈페이지 문구 수정</b>: 관리자로 로그인한 채 <a href="index.html" class="text-gold underline">홈</a>·<a href="about.html" class="text-gold underline">우리의 사명</a> 페이지를 열면 상단에 <b>「✏️ 글 편집」</b> 바가 나타납니다. 켜고 노란 점선 글자를 직접 고친 뒤 <b>저장</b>하면 모든 방문자에게 즉시 반영돼요.</span>`;
+      try{
+        const c=await getCourse();
+        const tracks=c.levels.length, lessons=c.levels.reduce((s,l)=>s+(l.lessons||[]).length,0);
+        // 강의 요약·편집 안내는 Supabase 없이 즉시 표시
+        document.getElementById('contentSummary').innerHTML = `총 <b>${tracks}개 트랙 / ${lessons}개 강의</b>가 등록되어 있습니다. 각 강의의 노트·퀴즈 보유 현황은 <button onclick="show('cont')" class="text-gold underline">노트·퀴즈 현황</button> 탭에서, 강의 추가·수정은 <button onclick="show('curr')" class="text-gold underline">커리큘럼 편집</button> 탭에서 하세요.
+          <span class="block mt-3 pt-3 border-t border-ink/5">✏️ <b>홈페이지 문구 수정</b>: 관리자로 로그인한 채 <a href="index.html" class="text-gold underline">홈</a>·<a href="about.html" class="text-gold underline">우리의 사명</a> 페이지를 열면 상단에 <b>「✏️ 글 편집」</b> 바가 나타납니다. 켜고 노란 점선 글자를 직접 고친 뒤 <b>저장</b>하면 모든 방문자에게 즉시 반영돼요.</span>`;
+        // 모든 Supabase 쿼리 한 번에 병렬 실행(최대 6초 타임아웃)
+        const [reqs,comm,votes,members,vToday,v7,v30,vAll,sToday,s7,s30]=await Promise.all([
+          count('lecture_requests'),count('community_posts'),count('lecture_request_votes'),count('profiles'),
+          countSince('site_visits','created_at',daysAgo(0)),countSince('site_visits','created_at',daysAgo(7)),
+          countSince('site_visits','created_at',daysAgo(30)),count('site_visits'),
+          countSince('profiles','created_at',daysAgo(0)),countSince('profiles','created_at',daysAgo(7)),
+          countSince('profiles','created_at',daysAgo(30))
+        ]);
+        const cards=[
+          ['커리큘럼', tracks+'트랙 · '+lessons+'강','전체 강의'],
+          ['회원', members,'가입 누적'],
+          ['강의 요청·건의', reqs,'추천 '+votes+'표'],
+          ['커뮤니티 글', comm,'라운지 게시물'],
+        ];
+        document.getElementById('statCards').innerHTML = cards.map(([t,v,s])=>`<div class="bg-white rounded-2xl p-5 border border-ink/5 shadow-sm"><p class="text-sm text-ink/50">${t}</p><p class="text-2xl font-bold mt-1">${v}</p><p class="text-xs text-ink/40 mt-1">${s}</p></div>`).join('');
+        const trend=(label,emoji,a,b,c,d)=>`<div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-5 mb-4"><p class="font-bold mb-3">${emoji} ${label}</p><div class="grid grid-cols-4 gap-2 text-center">
+          <div><p class="text-xl font-bold">${a}</p><p class="text-xs text-ink/45 mt-0.5">오늘</p></div>
+          <div><p class="text-xl font-bold">${b}</p><p class="text-xs text-ink/45 mt-0.5">최근 7일</p></div>
+          <div><p class="text-xl font-bold">${c}</p><p class="text-xs text-ink/45 mt-0.5">최근 30일</p></div>
+          <div><p class="text-xl font-bold text-gold">${d}</p><p class="text-xs text-ink/45 mt-0.5">누적</p></div></div></div>`;
+        const vNote=(vAll==='—')?'<p class="text-xs text-ink/40 mb-4">방문 통계 테이블이 아직 없습니다 — <code class="bg-ink/5 px-1 rounded">supabase_site_visits.sql</code> 실행 후 집계됩니다.</p>':'';
+        document.getElementById('trendWrap').innerHTML = vNote+trend('방문','👣',vToday,v7,v30,vAll)+trend('가입','✍️',sToday,s7,s30,members);
+      }catch(e){ document.getElementById('contentSummary').innerHTML='<p class="text-red-400 text-sm">대시보드 오류: '+esc(String(e))+'</p>'; }
     }
 
     // ===== 커리큘럼 편집 =====
