@@ -5,13 +5,13 @@
   <script src="/content-loader.js"></script>
   <script src="/site-header.js?v=20260619c"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>성경 통독표 · 1년 1독 — BIBLY 바이블 인사이트</title>
+  <title>성경 통독표 · 1년 1독 / 맥체인 — BIBLY 바이블 인사이트</title>
   <link rel="manifest" href="/manifest.json" />
   <meta name="theme-color" content="#213a6b" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="canonical" href="https://biblynote.com/bible-plan" />
-  <meta property="og:title" content="성경 통독표 · 1년 1독 — BIBLY" />
-  <meta property="og:description" content="하루 분량을 확인하고 체크하며 성경 통독 진도를 스스로 관리하세요. 1독부터 다회독까지 자동 편성." />
+  <meta property="og:title" content="성경 통독표 · 1년 1독 / 맥체인 — BIBLY" />
+  <meta property="og:description" content="달력으로 한눈에 보는 성경 통독 진도. 순차 통독(1~5독)과 맥체인 신구약 병행 중 선택." />
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -29,23 +29,28 @@
   </script>
   <style>
     h1,h2{font-family:'Noto Serif KR',Pretendard,serif}
-    .day-row{scroll-margin-top:90px}
+    #dayDetail{scroll-margin-top:80px}
   </style>
 </head>
 <body class="font-sans bg-paper text-ink antialiased min-h-screen">
 
   <div id="siteHeader" data-active="bible-plan.html"></div>
 
-  <main class="max-w-3xl mx-auto px-4 py-8">
-    <div class="mb-6">
+  <main class="max-w-4xl mx-auto px-4 py-8">
+    <div class="mb-5">
       <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">BIBLE READING PLAN</p>
-      <h1 class="text-2xl md:text-3xl font-bold">성경 통독표 · 1년 1독</h1>
-      <p class="text-ink/55 text-sm mt-2 leading-relaxed">하루 읽을 분량을 확인하고 ✓ 체크하며 통독 진도를 스스로 관리하세요.<br class="hidden sm:block"/>1독이 기본이지만, 원하면 2독·3독에 맞춰 하루 분량이 자동으로 다시 편성됩니다.</p>
+      <h1 class="text-2xl md:text-3xl font-bold">성경 통독표</h1>
+      <p class="text-ink/55 text-sm mt-2 leading-relaxed">하루 분량을 ✓ 체크하며 통독 진도를 달력으로 한눈에 관리하세요. 지난 기록도 한 화면에서 확인됩니다.</p>
+    </div>
+
+    <!-- 플랜 방식 탭 -->
+    <div class="inline-flex bg-ink/5 rounded-full p-1 mb-5">
+      <button id="tab-seq" onclick="setMode('seq')" class="px-4 py-2 rounded-full text-sm font-semibold transition">📖 순차 통독</button>
+      <button id="tab-mc" onclick="setMode('mccheyne')" class="px-4 py-2 rounded-full text-sm font-semibold transition">📅 맥체인 (신구약 병행)</button>
     </div>
 
     <!-- 진행 요약 + 컨트롤 -->
     <div class="bg-white rounded-2xl border border-ink/8 shadow-card p-5 mb-5">
-      <!-- 진도 바 -->
       <div class="flex items-end justify-between gap-3 mb-2">
         <div>
           <p class="text-sm text-ink/55">나의 통독 진도</p>
@@ -58,16 +63,16 @@
       </div>
       <div class="h-2.5 rounded-full bg-ink/8 overflow-hidden"><div id="pctBar" class="h-full bg-gold transition-all" style="width:0%"></div></div>
 
-      <!-- 회독 선택 -->
-      <div class="mt-5">
-        <p class="text-xs font-semibold text-ink/60 mb-2">회독 선택 <span class="text-ink/40 font-normal">— 1년에 몇 번 통독할까요? (하루 분량이 자동 조정)</span></p>
+      <!-- 회독 선택 (순차 전용) -->
+      <div id="planRow" class="mt-5">
+        <p class="text-xs font-semibold text-ink/60 mb-2">회독 선택 <span class="text-ink/40 font-normal">— 1년에 몇 번 통독할까요? (하루 분량 자동 조정)</span></p>
         <div id="planBtns" class="flex flex-wrap gap-2"></div>
       </div>
+      <p id="mcNote" class="hidden mt-5 text-xs text-ink/55 bg-gold/8 rounded-lg px-3 py-2 leading-relaxed">📅 <b class="text-ink">맥체인 플랜</b> — 매일 <b>구약·신약·시편</b>을 함께 읽어 1년에 구약 1독, 신약·시편 2독을 완성합니다. (하루 약 4장)</p>
 
-      <!-- 시작일 -->
       <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
         <label class="text-xs font-semibold text-ink/60">시작일 <input id="startInput" type="date" class="ml-1 border border-ink/15 rounded-lg px-2.5 py-1.5 text-sm"/></label>
-        <button onclick="goToday()" class="text-xs font-semibold text-gold hover:underline">오늘 분량으로 이동 ↓</button>
+        <button onclick="selectDay(todayNum()); goDetail();" class="text-xs font-semibold text-gold hover:underline">오늘 분량 보기 ↓</button>
         <button onclick="resetPlan()" class="text-xs text-ink/40 hover:text-red-500 ml-auto">진도 초기화</button>
       </div>
     </div>
@@ -80,18 +85,26 @@
       💡 <b class="text-ink">로그인</b>하면 진도가 계정에 저장되어 휴대폰·PC 어디서나 이어집니다. <a href="mylearning.html" class="text-gold font-semibold hover:underline">로그인하기 →</a>
     </div>
 
-    <!-- 전체 통독표 -->
-    <div class="flex items-center justify-between mb-3">
-      <h2 class="text-lg font-bold">전체 통독표 <span id="planLabel" class="text-sm font-semibold text-gold">1독</span></h2>
-      <p class="text-xs text-ink/40">날짜를 눌러 ✓ 체크</p>
+    <!-- 연간 달력 -->
+    <div class="flex items-center justify-between mb-2">
+      <h2 class="text-lg font-bold">연간 진도 달력</h2>
+      <div class="flex items-center gap-2.5 text-[11px] text-ink/50">
+        <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-gold inline-block"></span>완료</span>
+        <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-red-100 border border-red-200 inline-block"></span>놓침</span>
+        <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-white border border-ink/15 inline-block"></span>예정</span>
+      </div>
     </div>
-    <div id="planList" class="space-y-1.5"></div>
+    <p class="text-xs text-ink/40 mb-3">날짜를 누르면 그날 읽을 분량을 보고 ✓ 체크할 수 있어요.</p>
+    <div id="calWrap" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-6"></div>
+
+    <!-- 선택한 날 상세 -->
+    <div id="dayDetail" class="hidden bg-white rounded-2xl border-2 border-gold/40 shadow-card p-5"></div>
   </main>
 
   <script>
     const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType: 'implicit', autoRefreshToken: false, lock: async (_n,_t,fn)=>await fn() } });
 
-    // ===== 성경 66권 (장수) — 총 1,189장 =====
+    // ===== 성경 66권(장수) — 총 1,189장 =====
     const BOOKS = [
       ['창세기',50],['출애굽기',40],['레위기',27],['민수기',36],['신명기',34],
       ['여호수아',24],['사사기',21],['룻기',4],['사무엘상',31],['사무엘하',24],
@@ -108,83 +121,77 @@
       ['베드로전서',5],['베드로후서',3],['요한일서',5],['요한이서',1],['요한삼서',1],
       ['유다서',1],['요한계시록',22]
     ];
-    const CHAPTERS = []; // {b, c}
-    BOOKS.forEach((bk, bi) => { for(let c=1;c<=bk[1];c++) CHAPTERS.push({b:bi, c}); });
-    const TOTAL = CHAPTERS.length; // 1189
-    const DAYS = 365;
+    const PSALMS_BI = 18; // 시편 책 인덱스
+    const CHAPTERS=[], OT_NOPS=[], NT_L=[], PS_L=[];
+    BOOKS.forEach((bk,bi)=>{ for(let c=1;c<=bk[1];c++){ const it={b:bi,c}; CHAPTERS.push(it); if(bi<=38){ (bi===PSALMS_BI?PS_L:OT_NOPS).push(it); } else NT_L.push(it); } });
+    const TOTAL=CHAPTERS.length, DAYS=365;
 
-    // 연속 장들을 책별 범위 문자열로 — 예: "창세기 1–4장", "창세기 50장 · 출애굽기 1–2장"
-    function rangify(items){
-      const parts=[]; let i=0;
-      while(i<items.length){
-        const b=items[i].b; let s=items[i].c, e=items[i].c; let j=i+1;
-        while(j<items.length && items[j].b===b && items[j].c===e+1){ e=items[j].c; j++; }
-        const name=BOOKS[b][0];
-        parts.push(s===e ? `${name} ${s}장` : `${name} ${s}–${e}장`);
-        i=j;
-      }
-      return parts.join(' · ');
+    function rangify(items){ if(!items.length) return ''; const parts=[]; let i=0; while(i<items.length){ const b=items[i].b; let s=items[i].c,e=items[i].c,j=i+1; while(j<items.length&&items[j].b===b&&items[j].c===e+1){ e=items[j].c; j++; } const nm=BOOKS[b][0]; parts.push(s===e?`${nm} ${s}장`:`${nm} ${s}–${e}장`); i=j; } return parts.join(' · '); }
+    function streamDay(list, reps, day0){ const seq=list.length*reps, a=Math.floor(day0*seq/DAYS), z=Math.floor((day0+1)*seq/DAYS), it=[]; for(let i=a;i<z;i++) it.push(list[i%list.length]); return rangify(it); }
+    // 순차 N독: day0(0-based) 분량
+    function seqDay(N, day0){ return streamDay(CHAPTERS, N, day0); }
+    // 맥체인: 구약1·신약2·시편2독
+    function mcDay(day0){ return { ot:streamDay(OT_NOPS,1,day0), nt:streamDay(NT_L,2,day0), ps:streamDay(PS_L,2,day0) }; }
+    // 특정 day(1-based)의 읽을 파트 배열 [[label,text],...]
+    function readingParts(day){
+      if(state.mode==='mccheyne'){ const r=mcDay(day-1); const out=[]; if(r.ot)out.push(['구약',r.ot]); if(r.nt)out.push(['신약',r.nt]); if(r.ps)out.push(['시편',r.ps]); return out; }
+      return [['오늘의 분량', seqDay(state.plan, day-1)]];
     }
-    // N독 → 365일 일일 분량 문자열 배열
-    function buildPlan(N){
-      const seqLen = TOTAL*N; const out=[];
-      for(let d=0; d<DAYS; d++){
-        const a=Math.floor(d*seqLen/DAYS), z=Math.floor((d+1)*seqLen/DAYS);
-        const items=[]; for(let i=a;i<z;i++) items.push(CHAPTERS[i % TOTAL]);
-        out.push(rangify(items));
-      }
-      return out;
-    }
+    function readingPlain(day){ return readingParts(day).map(p=>p[1]).join(' · '); }
 
     // ===== 상태 =====
     const LS_KEY='biblyBiblePlan';
-    let state = { plan:1, start:todayISO(), checked:new Set() };
-    let PLAN = buildPlan(1);
+    let state = { mode:'seq', plan:1, start:todayISO(), checked:new Set() };
     let USER = (readStoredSession()||{}).user || null;
-    let saveTimer=null;
+    let selectedDay = null, saveTimer=null;
 
-    function todayISO(){ const d=new Date(); const y=d.getFullYear(), m=String(d.getMonth()+1).padStart(2,'0'), day=String(d.getDate()).padStart(2,'0'); return `${y}-${m}-${day}`; } // 로컬 날짜(UTC 변환 금지)
+    function todayISO(){ const d=new Date(); const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),day=String(d.getDate()).padStart(2,'0'); return `${y}-${m}-${day}`; }
     function readStoredSession(){ try{ for(const k of Object.keys(localStorage)){ if(!/auth-token/.test(k)) continue; const v=JSON.parse(localStorage.getItem(k)); const s=(v&&v.user)?v:(v&&v.currentSession)?v.currentSession:null; if(s&&s.user){ if(s.expires_at&&s.expires_at*1000<Date.now()) return null; return s; } } }catch(e){} return null; }
     function dateOf(dayNum){ const d=new Date(state.start+'T00:00:00'); d.setDate(d.getDate()+(dayNum-1)); return d; }
     const WD=['일','월','화','수','목','금','토'];
-    function fmtDate(d){ return `${d.getMonth()+1}월 ${d.getDate()}일 (${WD[d.getDay()]})`; }
+    function fmtDate(d){ return `${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일 (${WD[d.getDay()]})`; }
     function todayNum(){ const s=new Date(state.start+'T00:00:00'); const t=new Date(); t.setHours(0,0,0,0); return Math.floor((t-s)/86400000)+1; }
+    function clampDay(d){ return Math.max(1, Math.min(d, DAYS)); }
 
     // ===== 저장/불러오기 =====
-    function loadLocal(){ try{ const o=JSON.parse(localStorage.getItem(LS_KEY)||'null'); if(o){ state.plan=o.plan||1; state.start=o.start||todayISO(); state.checked=new Set(o.checked||[]); } }catch(e){} }
-    function persistLocal(){ try{ localStorage.setItem(LS_KEY, JSON.stringify({ plan:state.plan, start:state.start, checked:[...state.checked] })); }catch(e){} }
+    function loadLocal(){ try{ const o=JSON.parse(localStorage.getItem(LS_KEY)||'null'); if(o){ state.mode=o.mode||'seq'; state.plan=o.plan||1; state.start=o.start||todayISO(); state.checked=new Set(o.checked||[]); } }catch(e){} }
+    function persistLocal(){ try{ localStorage.setItem(LS_KEY, JSON.stringify({ mode:state.mode, plan:state.plan, start:state.start, checked:[...state.checked] })); }catch(e){} }
     function scheduleSave(){
       persistLocal();
       if(!USER) return;
       clearTimeout(saveTimer);
       saveTimer=setTimeout(async ()=>{
-        try{ await sb.from('bible_reading').upsert({ user_id:USER.id, plan_reads:state.plan, start_date:state.start, checked:[...state.checked], updated_at:new Date().toISOString() }, { onConflict:'user_id' }); }catch(e){}
+        const pr = state.mode==='mccheyne' ? 0 : state.plan; // 0=맥체인 인코딩
+        try{ await sb.from('bible_reading').upsert({ user_id:USER.id, plan_reads:pr, start_date:state.start, checked:[...state.checked], updated_at:new Date().toISOString() }, { onConflict:'user_id' }); }catch(e){}
       }, 700);
     }
     async function loadCloud(){
       if(!USER) return;
-      document.getElementById('cloudText').textContent='계정 동기화 중…';
+      const ct=document.getElementById('cloudText'); ct.textContent='계정 동기화 중…';
       try{
         const { data } = await sb.from('bible_reading').select('plan_reads,start_date,checked').eq('user_id', USER.id).maybeSingle();
         if(data){
-          state.plan=data.plan_reads||1; state.start=(data.start_date||todayISO()).slice(0,10); state.checked=new Set(data.checked||[]);
-          PLAN=buildPlan(state.plan); persistLocal();
-          document.getElementById('cloudText').textContent='✅ 계정에 저장됨';
-        } else {
-          // 클라우드에 없으면 로컬 진도를 올림
-          document.getElementById('cloudText').textContent='✅ 계정에 저장됨';
-          scheduleSave();
-        }
-      }catch(e){ document.getElementById('cloudText').textContent='기기에 저장됨'; }
-      renderAll();
+          if(data.plan_reads===0){ state.mode='mccheyne'; } else { state.mode='seq'; state.plan=data.plan_reads||1; }
+          state.start=(data.start_date||todayISO()).slice(0,10); state.checked=new Set(data.checked||[]);
+          persistLocal();
+        } else { scheduleSave(); }
+        ct.textContent='✅ 계정에 저장됨';
+      }catch(e){ ct.textContent='기기에 저장됨'; }
+      selectedDay = clampDay(todayNum()); renderAll();
     }
 
     // ===== 렌더 =====
+    function renderTabs(){
+      const a=document.getElementById('tab-seq'), b=document.getElementById('tab-mc');
+      const on='bg-white text-ink shadow-soft', off='text-ink/50';
+      a.className='px-4 py-2 rounded-full text-sm font-semibold transition '+(state.mode==='seq'?on:off);
+      b.className='px-4 py-2 rounded-full text-sm font-semibold transition '+(state.mode==='mccheyne'?on:off);
+      document.getElementById('planRow').classList.toggle('hidden', state.mode!=='seq');
+      document.getElementById('mcNote').classList.toggle('hidden', state.mode!=='mccheyne');
+    }
     function renderPlanBtns(){
-      const box=document.getElementById('planBtns');
-      box.innerHTML=[1,2,3,4,5].map(n=>{
-        const on=state.plan===n;
-        const perDay=Math.round(TOTAL*n/DAYS);
+      document.getElementById('planBtns').innerHTML=[1,2,3,4,5].map(n=>{
+        const on=state.plan===n, perDay=Math.round(TOTAL*n/DAYS);
         return `<button onclick="setPlan(${n})" class="px-3.5 py-2 rounded-xl text-sm font-semibold border transition ${on?'bg-ink text-paper border-ink':'bg-white text-ink/70 border-ink/15 hover:border-gold'}">${n}독<span class="block text-[10px] font-normal ${on?'text-paper/60':'text-ink/40'}">하루 ~${perDay}장</span></button>`;
       }).join('');
     }
@@ -193,52 +200,77 @@
       document.getElementById('pctText').textContent=pct+'%';
       document.getElementById('doneText').textContent=`· ${done} / ${DAYS}일`;
       document.getElementById('pctBar').style.width=pct+'%';
-      // 연속 일수(오늘부터 거꾸로 연속 체크)
       let streak=0; const tn=todayNum();
       for(let d=Math.min(tn,DAYS); d>=1; d--){ if(state.checked.has(d)) streak++; else break; }
       document.getElementById('streakText').textContent=`🔥 연속 ${streak}일`;
-      document.getElementById('planLabel').textContent=state.plan+'독';
+    }
+    function partsHTML(day, light){
+      return readingParts(day).map(([lb,tx])=>`<div class="flex gap-2 ${light?'text-paper/90':'text-ink/80'}"><span class="shrink-0 text-xs font-bold ${light?'text-gold':'text-gold'} mt-0.5 w-9">${lb}</span><span class="font-semibold">${tx}</span></div>`).join('');
     }
     function renderToday(){
       const tn=todayNum(); const card=document.getElementById('todayCard');
       if(tn<1){ card.innerHTML=`<p class="text-paper/70 text-sm">시작일이 아직 오지 않았어요. 시작일을 오늘로 바꾸면 바로 시작할 수 있어요.</p>`; return; }
-      if(tn>DAYS){ card.innerHTML=`<p class="text-2xl">🎉</p><p class="font-bold text-lg mt-1">1년 통독 일정을 완주했습니다!</p><p class="text-paper/70 text-sm mt-1">새로운 회독을 원하면 시작일을 오늘로 바꿔 다시 시작하세요.</p>`; return; }
+      if(tn>DAYS){ card.innerHTML=`<p class="text-2xl">🎉</p><p class="font-bold text-lg mt-1">1년 통독 일정을 완주했습니다!</p><p class="text-paper/70 text-sm mt-1">새 회독을 원하면 시작일을 오늘로 바꿔 다시 시작하세요.</p>`; return; }
       const checked=state.checked.has(tn);
       card.innerHTML=`
-        <div class="flex items-center justify-between gap-3 mb-1">
+        <div class="flex items-center justify-between gap-3 mb-2">
           <p class="text-gold text-xs font-bold tracking-widest">오늘 · DAY ${tn} <span class="text-paper/50 font-normal">/ ${fmtDate(dateOf(tn))}</span></p>
-          <span class="text-paper/55 text-xs">${state.plan}독 기준</span>
+          <span class="text-paper/55 text-xs">${state.mode==='mccheyne'?'맥체인':state.plan+'독'}</span>
         </div>
-        <p class="text-xl md:text-2xl font-bold leading-snug">${PLAN[tn-1]}</p>
+        <div class="space-y-1.5 text-[15px] md:text-lg leading-snug">${partsHTML(tn,true)}</div>
         <button onclick="toggleDay(${tn})" class="mt-4 w-full py-3 rounded-xl font-bold transition ${checked?'bg-paper/15 text-paper':'bg-gold text-white hover:opacity-90'}">${checked?'✓ 오늘 분량 완료됨 (취소)':'오늘 분량 읽음 ✓'}</button>`;
     }
-    function renderList(){
-      const tn=todayNum(); const box=document.getElementById('planList');
-      let html='', lastMonth='';
-      for(let d=1; d<=DAYS; d++){
-        const dt=dateOf(d); const mk=`${dt.getFullYear()}-${dt.getMonth()}`;
-        if(mk!==lastMonth){ lastMonth=mk; html+=`<p class="text-xs font-bold text-ink/40 pt-3 pb-1">${dt.getFullYear()}년 ${dt.getMonth()+1}월</p>`; }
-        const checked=state.checked.has(d); const isToday=d===tn;
-        html+=`<div id="day-${d}" class="day-row flex items-center gap-3 rounded-xl border px-3 py-2.5 cursor-pointer transition ${checked?'bg-gold/8 border-gold/30':'bg-white border-ink/8 hover:border-ink/20'} ${isToday?'ring-2 ring-gold':''}" onclick="toggleDay(${d})">
-          <span class="shrink-0 w-6 h-6 rounded-md flex items-center justify-center text-sm font-bold ${checked?'bg-gold text-white':'bg-ink/8 text-ink/40'}">${checked?'✓':''}</span>
-          <span class="shrink-0 text-[11px] text-ink/40 w-16">DAY ${d}<br>${dt.getMonth()+1}/${dt.getDate()}</span>
-          <span class="text-sm ${checked?'text-ink/50 line-through':'text-ink/80'} ${isToday?'font-bold':''}">${PLAN[d-1]}</span>
-          ${isToday?'<span class="ml-auto shrink-0 text-[10px] font-bold text-gold">오늘</span>':''}
-        </div>`;
+    function renderCalendar(){
+      const s=new Date(state.start+'T00:00:00'); const tn=todayNum();
+      const end=new Date(s); end.setDate(end.getDate()+DAYS-1);
+      let html=''; let cur=new Date(s.getFullYear(), s.getMonth(), 1); const last=new Date(end.getFullYear(), end.getMonth(), 1);
+      const wdh=WD.map(w=>`<div class="text-[9px] text-ink/30 text-center">${w}</div>`).join('');
+      while(cur<=last){
+        const y=cur.getFullYear(), m=cur.getMonth();
+        const firstWd=new Date(y,m,1).getDay(), dim=new Date(y,m+1,0).getDate();
+        let cells=''; for(let i=0;i<firstWd;i++) cells+='<div></div>';
+        for(let dd=1;dd<=dim;dd++){
+          const diff=Math.floor((new Date(y,m,dd)-s)/86400000)+1;
+          if(diff<1||diff>DAYS){ cells+=`<div class="text-center text-[9px] text-ink/15 py-1.5">${dd}</div>`; continue; }
+          const done=state.checked.has(diff), isToday=diff===tn, past=diff<tn, sel=diff===selectedDay;
+          let cls='bg-white border-ink/12 text-ink/55';
+          if(done) cls='bg-gold border-gold text-white';
+          else if(past) cls='bg-red-50 border-red-200 text-red-400';
+          if(isToday) cls+=' ring-2 ring-gold';
+          if(sel) cls+=' ring-2 ring-ink';
+          cells+=`<button onclick="selectDay(${diff})" title="DAY ${diff}" class="aspect-square rounded-md border text-[10px] font-bold flex items-center justify-center hover:opacity-80 transition ${cls}">${done?'✓':dd}</button>`;
+        }
+        html+=`<div class="bg-white rounded-xl border border-ink/8 shadow-soft p-3"><p class="text-xs font-bold text-ink/60 mb-2 text-center">${y}년 ${m+1}월</p><div class="grid grid-cols-7 gap-1 mb-1">${wdh}</div><div class="grid grid-cols-7 gap-1">${cells}</div></div>`;
+        cur=new Date(y,m+1,1);
       }
-      box.innerHTML=html;
+      document.getElementById('calWrap').innerHTML=html;
     }
-    function renderAll(){ renderPlanBtns(); renderProgress(); renderToday(); renderList(); document.getElementById('startInput').value=state.start; document.getElementById('loginHint').classList.toggle('hidden', !!USER); if(!USER) document.getElementById('cloudText').textContent='기기에 저장됨'; }
+    function renderDetail(){
+      const panel=document.getElementById('dayDetail'); const d=selectedDay;
+      if(!d){ panel.classList.add('hidden'); return; }
+      panel.classList.remove('hidden');
+      const checked=state.checked.has(d), isToday=d===todayNum();
+      panel.innerHTML=`
+        <div class="flex items-center justify-between gap-3 mb-3">
+          <div><p class="text-gold text-xs font-bold tracking-widest">DAY ${d} ${isToday?'· 오늘':''}</p><p class="font-bold text-lg">${fmtDate(dateOf(d))}</p></div>
+          <span class="text-xs text-ink/45">${state.mode==='mccheyne'?'맥체인':state.plan+'독'}</span>
+        </div>
+        <div class="space-y-1.5 text-[15px] mb-4">${partsHTML(d,false)}</div>
+        <button onclick="toggleDay(${d})" class="w-full py-3 rounded-xl font-bold transition ${checked?'bg-ink/8 text-ink/70':'bg-gold text-white hover:opacity-90'}">${checked?'✓ 읽음 (취소하기)':'이 날 분량 읽음 ✓'}</button>`;
+    }
+    function renderAll(){ renderTabs(); renderPlanBtns(); renderProgress(); renderToday(); renderCalendar(); renderDetail(); document.getElementById('startInput').value=state.start; document.getElementById('loginHint').classList.toggle('hidden', !!USER); if(!USER) document.getElementById('cloudText').textContent='기기에 저장됨'; }
 
     // ===== 액션 =====
-    function setPlan(n){ state.plan=n; PLAN=buildPlan(n); scheduleSave(); renderAll(); }
-    function toggleDay(d){ if(state.checked.has(d)) state.checked.delete(d); else state.checked.add(d); scheduleSave(); renderProgress(); renderToday(); renderList(); }
-    function goToday(){ const tn=todayNum(); const el=document.getElementById('day-'+Math.max(1,Math.min(tn,DAYS))); if(el) el.scrollIntoView({behavior:'smooth',block:'center'}); }
+    function setMode(m){ state.mode=m; scheduleSave(); renderAll(); }
+    function setPlan(n){ state.plan=n; scheduleSave(); renderAll(); }
+    function toggleDay(d){ if(state.checked.has(d)) state.checked.delete(d); else state.checked.add(d); selectedDay=d; scheduleSave(); renderProgress(); renderToday(); renderCalendar(); renderDetail(); }
+    function selectDay(d){ selectedDay=clampDay(d); renderCalendar(); renderDetail(); }
+    function goDetail(){ const el=document.getElementById('dayDetail'); if(el) el.scrollIntoView({behavior:'smooth',block:'center'}); }
     function resetPlan(){ if(!confirm('통독 진도(체크 표시)를 모두 초기화할까요?')) return; state.checked=new Set(); scheduleSave(); renderAll(); }
-    document.getElementById('startInput').addEventListener('change', e=>{ if(e.target.value){ state.start=e.target.value; scheduleSave(); renderAll(); } });
+    document.getElementById('startInput').addEventListener('change', e=>{ if(e.target.value){ state.start=e.target.value; selectedDay=clampDay(todayNum()); scheduleSave(); renderAll(); } });
 
     // ===== 부트 =====
-    loadLocal(); PLAN=buildPlan(state.plan); renderAll();
+    loadLocal(); selectedDay=clampDay(todayNum()); renderAll();
     sb.auth.onAuthStateChange((_e,s)=>{ const u=(s&&s.user)||null; if(u){ USER=u; loadCloud(); } });
     if(USER) loadCloud();
   </script>
