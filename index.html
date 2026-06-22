@@ -250,23 +250,22 @@
       <!-- 3-카드 대시보드 -->
       <div class="grid lg:grid-cols-3 gap-4">
 
-        <!-- ① 대표 시리즈 -->
+        <!-- ① 성경 통독표 (NEW · 히어로 레일과 중복되던 대표 시리즈 카드 대체) -->
         <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 flex flex-col">
           <div class="flex items-center justify-between mb-3">
-            <p class="text-[11px] font-bold text-gold tracking-[0.15em]">대표 시리즈</p>
-            <a href="curriculum.html" class="text-[11px] text-ink/40 hover:text-gold">전체 보기 ›</a>
+            <p class="text-[11px] font-bold text-gold tracking-[0.15em]">오늘의 통독</p>
+            <a href="bible-plan.html" class="text-[11px] text-ink/40 hover:text-gold">통독표 ›</a>
           </div>
-          <a href="watch.html?l=143" class="group block">
-            <div class="relative aspect-video rounded-xl overflow-hidden bg-ink mb-3">
-              <img src="https://i.ytimg.com/vi/DGt1xDMwUFI/hqdefault.jpg" alt="천년왕국 세미나" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition" loading="lazy" />
-              <span class="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent"></span>
-              <span class="absolute top-2 left-2 bg-gold text-white text-[10px] font-bold px-2 py-0.5 rounded">무료 공개</span>
-              <span class="absolute bottom-2 left-2.5 right-2.5 text-white font-bold text-[13px] drop-shadow">천년왕국 세미나 · 전 10강</span>
+          <a href="bible-plan.html" class="group block">
+            <div class="relative aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-ink to-navy mb-3 flex items-center justify-center">
+              <span class="text-5xl drop-shadow">📖</span>
+              <span class="absolute top-2 left-2 bg-gold text-white text-[10px] font-bold px-2 py-0.5 rounded">NEW</span>
+              <span class="absolute bottom-2 left-2.5 right-2.5 text-white font-bold text-[13px] drop-shadow">성경 1년 1독 · 맥체인</span>
             </div>
           </a>
-          <h3 class="font-bold leading-snug">천년왕국 스토리</h3>
-          <p class="text-[13px] text-ink/55 mt-1 leading-relaxed flex-1">종말론·천년왕국을 처음부터 끝까지 — 누구나 무료로, 한 편씩 정주행.</p>
-          <a href="watch.html?l=143" class="mt-3 inline-flex items-center justify-center gap-1.5 bg-ink text-paper text-sm font-semibold px-4 py-2.5 rounded-full hover:bg-navy transition">▶ 1강부터 보기</a>
+          <h3 class="font-bold leading-snug">성경 통독표</h3>
+          <p class="text-[13px] text-ink/55 mt-1 leading-relaxed flex-1">매일 읽을 분량을 ✓ 체크하며 통독 진도를 달력으로 한눈에. 신구약 병행(맥체인)도 선택할 수 있어요.</p>
+          <a href="bible-plan.html" class="mt-3 inline-flex items-center justify-center gap-1.5 bg-ink text-paper text-sm font-semibold px-4 py-2.5 rounded-full hover:bg-navy transition">📖 오늘 분량 읽기</a>
         </div>
 
         <!-- ② 아카데미 인증 promo -->
@@ -306,7 +305,7 @@
       </div>
 
       <!-- 기능 바로가기 그리드 -->
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mt-4">
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 mt-4">
         <a href="watch.html" class="group bg-white rounded-xl border border-ink/8 shadow-soft px-3 py-4 text-center hover:-translate-y-0.5 hover:border-gold/40 transition">
           <span class="block text-2xl mb-1.5">📺</span><span class="block text-[13px] font-bold leading-tight">무료 강의</span><span class="block text-[11px] text-ink/45 mt-0.5">자유 학습</span>
         </a>
@@ -315,6 +314,9 @@
         </a>
         <a href="themes.html" class="group bg-white rounded-xl border border-ink/8 shadow-soft px-3 py-4 text-center hover:-translate-y-0.5 hover:border-gold/40 transition">
           <span class="block text-2xl mb-1.5">📖</span><span class="block text-[13px] font-bold leading-tight">주제별 성경</span><span class="block text-[11px] text-ink/45 mt-0.5">원어+영어</span>
+        </a>
+        <a href="bible-plan.html" class="group bg-white rounded-xl border border-ink/8 shadow-soft px-3 py-4 text-center hover:-translate-y-0.5 hover:border-gold/40 transition">
+          <span class="block text-2xl mb-1.5">🗓️</span><span class="block text-[13px] font-bold leading-tight">성경 통독표</span><span class="block text-[11px] text-ink/45 mt-0.5">1년1독·맥체인</span>
         </a>
         <a href="preachers.html" class="group bg-white rounded-xl border border-ink/8 shadow-soft px-3 py-4 text-center hover:-translate-y-0.5 hover:border-gold/40 transition">
           <span class="block text-2xl mb-1.5">🎙️</span><span class="block text-[13px] font-bold leading-tight">위대한 설교자</span><span class="block text-[11px] text-ink/45 mt-0.5">명설교 요약</span>
@@ -461,28 +463,28 @@
         <p class="text-ink/55 text-sm mt-2.5">칼럼과 수강생 질문·나눔을 한눈에 — 함께 묻고, 함께 자랍니다.</p>
       </div>
       <div class="grid md:grid-cols-2 gap-5">
-        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-6">
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-6 min-w-0">
           <div class="flex items-center justify-between mb-2">
             <h3 class="font-bold flex items-center gap-2"><span>✍️</span> 인사이트 칼럼</h3>
             <a href="column.html" class="text-xs text-gold font-semibold hover:underline whitespace-nowrap">전체 보기 →</a>
           </div>
           <div id="loungeColumns" class="divide-y divide-ink/[0.06]"><p class="text-ink/40 text-sm py-4">불러오는 중…</p></div>
         </div>
-        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-6">
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-6 min-w-0">
           <div class="flex items-center justify-between mb-2">
             <h3 class="font-bold flex items-center gap-2"><span>💬</span> 질문 · 나눔</h3>
             <a href="community.html" class="text-xs text-gold font-semibold hover:underline whitespace-nowrap">전체 보기 →</a>
           </div>
           <div id="loungeComm" class="divide-y divide-ink/[0.06]"><p class="text-ink/40 text-sm py-4">불러오는 중…</p></div>
         </div>
-        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-6">
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-6 min-w-0">
           <div class="flex items-center justify-between mb-2">
             <h3 class="font-bold flex items-center gap-2"><span>🎓</span> 강의 요청 · 건의</h3>
             <a href="request.html" class="text-xs text-gold font-semibold hover:underline whitespace-nowrap">전체 보기 →</a>
           </div>
           <div id="loungeReq" class="divide-y divide-ink/[0.06]"><p class="text-ink/40 text-sm py-4">불러오는 중…</p></div>
         </div>
-        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-6">
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-6 min-w-0">
           <div class="flex items-center justify-between mb-2">
             <h3 class="font-bold flex items-center gap-2"><span>📂</span> 자료실</h3>
             <a href="resources.html" class="text-xs text-gold font-semibold hover:underline whitespace-nowrap">전체 보기 →</a>
@@ -1961,24 +1963,24 @@
       sb.from('columns').select('id,title,created_at').order('created_at',{ascending:false}).limit(5).then(({data})=>{
         const el=document.getElementById('loungeColumns'); if(!el) return;
         if(!data||!data.length){ el.innerHTML='<p class="text-ink/40 text-sm py-4">곧 칼럼이 올라옵니다.</p>'; return; }
-        el.innerHTML = data.map(c=>`<a href="column.html#col-${c.id}" class="flex items-center gap-3 py-3 group"><span class="flex-1 text-sm font-medium text-ink/85 truncate group-hover:text-gold transition">${safe(c.title)||'(제목 없음)'}</span><span class="text-xs text-ink/35 shrink-0">${fdate(c.created_at)}</span></a>`).join('');
+        el.innerHTML = data.map(c=>`<a href="column.html#col-${c.id}" class="flex items-center gap-3 py-3 group"><span class="flex-1 min-w-0 text-sm font-medium text-ink/85 truncate group-hover:text-gold transition">${safe(c.title)||'(제목 없음)'}</span><span class="text-xs text-ink/35 shrink-0">${fdate(c.created_at)}</span></a>`).join('');
       }).catch(()=>{ const el=document.getElementById('loungeColumns'); if(el) el.innerHTML='<p class="text-ink/40 text-sm py-4">곧 칼럼이 올라옵니다.</p>'; });
       sb.from('community_posts').select('id,content,board,created_at').order('created_at',{ascending:false}).limit(5).then(({data})=>{
         const el=document.getElementById('loungeComm'); if(!el) return;
         if(!data||!data.length){ el.innerHTML='<p class="text-ink/40 text-sm py-4">아직 글이 없어요. 첫 질문·나눔을 남겨보세요.</p>'; return; }
         el.innerHTML = data.map(p=>{ const t=strip(p.content).slice(0,40)||'(내용)';
-          return `<a href="community.html?board=${p.board||'free'}" class="flex items-center gap-3 py-3 group"><span class="shrink-0 text-[10px] font-bold text-gold bg-gold/10 px-1.5 py-0.5 rounded">${BNAME[p.board]||'나눔'}</span><span class="flex-1 text-sm text-ink/80 truncate group-hover:text-gold transition">${safe(t)}</span><span class="text-xs text-ink/35 shrink-0">${fdate(p.created_at)}</span></a>`;
+          return `<a href="community.html?board=${p.board||'free'}" class="flex items-center gap-3 py-3 group"><span class="shrink-0 text-[10px] font-bold text-gold bg-gold/10 px-1.5 py-0.5 rounded">${BNAME[p.board]||'나눔'}</span><span class="flex-1 min-w-0 text-sm text-ink/80 truncate group-hover:text-gold transition">${safe(t)}</span><span class="text-xs text-ink/35 shrink-0">${fdate(p.created_at)}</span></a>`;
         }).join('');
       }).catch(()=>{ const el=document.getElementById('loungeComm'); if(el) el.innerHTML='<p class="text-ink/40 text-sm py-4">잠시 후 다시 확인해 주세요.</p>'; });
       sb.from('lecture_requests').select('id,title,type,created_at').order('created_at',{ascending:false}).limit(5).then(({data})=>{
         const el=document.getElementById('loungeReq'); if(!el) return;
         if(!data||!data.length){ el.innerHTML='<p class="text-ink/40 text-sm py-4">아직 요청·건의가 없어요.</p>'; return; }
-        el.innerHTML = data.map(r=>`<a href="request.html" class="flex items-center gap-3 py-3 group"><span class="shrink-0 text-[10px] font-bold text-gold bg-gold/10 px-1.5 py-0.5 rounded">${r.type==='feedback'?'건의':'요청'}</span><span class="flex-1 text-sm font-medium text-ink/85 truncate group-hover:text-gold transition">${safe(r.title)||'(제목 없음)'}</span><span class="text-xs text-ink/35 shrink-0">${fdate(r.created_at)}</span></a>`).join('');
+        el.innerHTML = data.map(r=>`<a href="request.html" class="flex items-center gap-3 py-3 group"><span class="shrink-0 text-[10px] font-bold text-gold bg-gold/10 px-1.5 py-0.5 rounded">${r.type==='feedback'?'건의':'요청'}</span><span class="flex-1 min-w-0 text-sm font-medium text-ink/85 truncate group-hover:text-gold transition">${safe(r.title)||'(제목 없음)'}</span><span class="text-xs text-ink/35 shrink-0">${fdate(r.created_at)}</span></a>`).join('');
       }).catch(()=>{ const el=document.getElementById('loungeReq'); if(el) el.innerHTML='<p class="text-ink/40 text-sm py-4">잠시 후 다시 확인해 주세요.</p>'; });
       sb.from('resources').select('id,title,category,created_at').order('created_at',{ascending:false}).limit(5).then(({data})=>{
         const el=document.getElementById('loungeRes'); if(!el) return;
         if(!data||!data.length){ el.innerHTML='<p class="text-ink/40 text-sm py-4">곧 자료가 올라옵니다.</p>'; return; }
-        el.innerHTML = data.map(r=>`<a href="resources.html" class="flex items-center gap-3 py-3 group">${r.category?`<span class="shrink-0 text-[10px] font-bold text-gold bg-gold/10 px-1.5 py-0.5 rounded">${safe(r.category).slice(0,7)}</span>`:''}<span class="flex-1 text-sm font-medium text-ink/85 truncate group-hover:text-gold transition">${safe(r.title)||'(제목 없음)'}</span><span class="text-xs text-ink/35 shrink-0">${fdate(r.created_at)}</span></a>`).join('');
+        el.innerHTML = data.map(r=>`<a href="resources.html" class="flex items-center gap-3 py-3 group">${r.category?`<span class="shrink-0 text-[10px] font-bold text-gold bg-gold/10 px-1.5 py-0.5 rounded">${safe(r.category).slice(0,7)}</span>`:''}<span class="flex-1 min-w-0 text-sm font-medium text-ink/85 truncate group-hover:text-gold transition">${safe(r.title)||'(제목 없음)'}</span><span class="text-xs text-ink/35 shrink-0">${fdate(r.created_at)}</span></a>`).join('');
       }).catch(()=>{ const el=document.getElementById('loungeRes'); if(el) el.innerHTML='<p class="text-ink/40 text-sm py-4">곧 자료가 올라옵니다.</p>'; });
     })();
 
