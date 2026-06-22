@@ -82,6 +82,15 @@
     <div id="dashView" class="hidden">
       <div id="welcome" class="mb-6"></div>
 
+      <!-- 🪙 미션포인트 -->
+      <div id="pointsWidget" class="hidden bg-gradient-to-br from-ink to-navy text-paper rounded-2xl shadow-soft p-5 mb-6 flex items-center justify-between gap-3">
+        <div>
+          <p class="text-gold text-[11px] font-bold tracking-[0.18em]">미션포인트</p>
+          <p class="text-3xl font-bold mt-1">🪙 <span id="ptTotal">0</span> <span class="text-base font-semibold text-paper/60">P</span></p>
+        </div>
+        <p class="text-right text-[11px] text-paper/55 leading-relaxed">성경 통독·학습으로<br>포인트를 모아보세요</p>
+      </div>
+
       <!-- 📖 성경 통독 진도 -->
       <a id="biblePlanCard" href="bible-plan.html" class="block bg-white rounded-2xl border border-ink/8 shadow-soft p-5 mb-6 hover:border-gold/40 transition">
         <div class="flex items-center justify-between gap-3 mb-2">
@@ -199,6 +208,7 @@
         loadMyBooks();
         loadMyPosts();
         loadBiblePlan();
+        loadPoints();
         // ② 이름은 best-effort 업데이트
         try { const { data: prof } = await withTimeout(sb.from('profiles').select('full_name').eq('id', user.id).maybeSingle(), 6000); if(prof && prof.full_name){ uname = prof.full_name; setNav(); } } catch(e){}
       } else {
@@ -225,6 +235,15 @@
     function bpRangify(items){ if(!items.length) return ''; const parts=[]; let i=0; while(i<items.length){ const b=items[i].b; let s=items[i].c,e=items[i].c,j=i+1; while(j<items.length&&items[j].b===b&&items[j].c===e+1){ e=items[j].c; j++; } const nm=BP_BOOKS[b][0]; parts.push(s===e?`${nm} ${s}장`:`${nm} ${s}–${e}장`); i=j; } return parts.join(' · '); }
     function bpStream(L,reps,day){ const seq=L.length*reps, a=Math.floor(day*seq/BP_DAYS), z=Math.floor((day+1)*seq/BP_DAYS), it=[]; for(let i=a;i<z;i++) it.push(L[i%L.length]); return bpRangify(it); }
     function bpReading(mcheyne, N, day){ if(mcheyne){ const a=bpStream(BP_OT,1,day), b=bpStream(BP_NT,2,day), c=bpStream(BP_PS,2,day); return [a,b,c].filter(Boolean).join(' · '); } return bpStream(BP_CH,N,day); }
+    async function loadPoints(){
+      try{
+        const { data, error } = await withTimeout(sb.from('user_points').select('total').eq('user_id', user.id).maybeSingle(), 6000);
+        if(error) throw error;
+        const t = (data && data.total) || 0;
+        const el = document.getElementById('ptTotal'); if(el) el.textContent = t.toLocaleString();
+        document.getElementById('pointsWidget').classList.remove('hidden');
+      }catch(e){ /* 테이블 미생성 시 위젯 숨김 유지 */ }
+    }
     async function loadBiblePlan(){
       let plan=1, start=null, checked=[], mcheyne=false;
       try{ const { data } = await withTimeout(sb.from('bible_reading').select('plan_reads,start_date,checked').eq('user_id',user.id).maybeSingle(), 6000); if(data){ mcheyne=(data.plan_reads===0); plan=data.plan_reads||1; start=(data.start_date||'').slice(0,10); checked=data.checked||[]; } }catch(e){}

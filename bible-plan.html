@@ -260,10 +260,22 @@
     }
     function renderAll(){ renderTabs(); renderPlanBtns(); renderProgress(); renderToday(); renderCalendar(); renderDetail(); document.getElementById('startInput').value=state.start; document.getElementById('loginHint').classList.toggle('hidden', !!USER); if(!USER) document.getElementById('cloudText').textContent='기기에 저장됨'; }
 
+    // ===== 포인트 적립(미션포인트) =====
+    async function awardPoints(amount, reason, ref){
+      if(!USER) return;
+      try{ await sb.rpc('award_points', { p_amount:amount, p_reason:reason, p_ref:ref }); pointToast('+'+amount+'P'); }catch(e){}
+    }
+    function pointToast(txt){
+      let t=document.getElementById('ptToast');
+      if(!t){ t=document.createElement('div'); t.id='ptToast'; t.style.cssText='position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:#b8923f;color:#fff;font-weight:800;padding:9px 18px;border-radius:999px;box-shadow:0 12px 30px -8px rgba(0,0,0,.4);opacity:0;transition:all .3s;z-index:200;font-size:15px'; document.body.appendChild(t); }
+      t.textContent='🪙 '+txt; requestAnimationFrame(()=>{ t.style.opacity='1'; t.style.transform='translateX(-50%) translateY(0)'; });
+      clearTimeout(t._h); t._h=setTimeout(()=>{ t.style.opacity='0'; t.style.transform='translateX(-50%) translateY(20px)'; }, 1400);
+    }
+
     // ===== 액션 =====
     function setMode(m){ state.mode=m; scheduleSave(); renderAll(); }
     function setPlan(n){ state.plan=n; scheduleSave(); renderAll(); }
-    function toggleDay(d){ if(state.checked.has(d)) state.checked.delete(d); else state.checked.add(d); selectedDay=d; scheduleSave(); renderProgress(); renderToday(); renderCalendar(); renderDetail(); }
+    function toggleDay(d){ const adding=!state.checked.has(d); if(adding) state.checked.add(d); else state.checked.delete(d); selectedDay=d; scheduleSave(); if(adding) awardPoints(10,'성경 통독','bible-day-'+d); renderProgress(); renderToday(); renderCalendar(); renderDetail(); }
     function selectDay(d){ selectedDay=clampDay(d); renderCalendar(); renderDetail(); }
     function goDetail(){ const el=document.getElementById('dayDetail'); if(el) el.scrollIntoView({behavior:'smooth',block:'center'}); }
     function resetPlan(){ if(!confirm('통독 진도(체크 표시)를 모두 초기화할까요?')) return; state.checked=new Set(); scheduleSave(); renderAll(); }
