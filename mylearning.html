@@ -93,13 +93,19 @@
       <!-- 🎯 이번 주 맞춤 학습 플랜 -->
       <div id="weekPlan" class="mb-6"></div>
 
-      <!-- 🪙 미션포인트 -->
-      <div id="pointsWidget" class="hidden bg-gradient-to-br from-ink to-navy text-paper rounded-2xl shadow-soft p-5 mb-6 flex items-center justify-between gap-3">
-        <div>
-          <p class="text-gold text-[11px] font-bold tracking-[0.18em]">미션포인트</p>
-          <p class="text-3xl font-bold mt-1">🪙 <span id="ptTotal">0</span> <span class="text-base font-semibold text-paper/60">P</span></p>
+      <!-- 🪙 미션포인트 + 등급 -->
+      <div id="pointsWidget" class="hidden bg-gradient-to-br from-ink to-navy text-paper rounded-2xl shadow-soft p-5 mb-6">
+        <div class="flex items-center justify-between gap-3">
+          <div>
+            <p class="text-gold text-[11px] font-bold tracking-[0.18em]">미션포인트</p>
+            <p class="text-3xl font-bold mt-1">🪙 <span id="ptTotal">0</span> <span class="text-base font-semibold text-paper/60">P</span></p>
+          </div>
+          <span id="ptTier" class="inline-block bg-gold/20 border border-gold/40 text-gold font-bold text-sm px-3 py-1.5 rounded-full shrink-0">🌱 씨앗</span>
         </div>
-        <p class="text-right text-[11px] text-paper/55 leading-relaxed">성경 통독·학습으로<br>포인트를 모아보세요</p>
+        <div class="mt-3">
+          <div class="flex justify-between text-[11px] text-paper/60 mb-1"><span id="ptNext">다음 등급까지…</span><span id="ptNextPct"></span></div>
+          <div class="h-1.5 rounded-full bg-paper/15 overflow-hidden"><div id="ptTierBar" class="h-full bg-gold transition-all" style="width:0%"></div></div>
+        </div>
       </div>
 
       <!-- 📖 성경 통독 진도 -->
@@ -173,11 +179,12 @@
           <p id="diaryStats" class="text-xs text-gold font-semibold text-center mb-3">　</p>
           <div id="diaryWd" class="grid grid-cols-7 gap-1 mb-1"></div>
           <div id="diaryGrid" class="grid grid-cols-7 gap-1"></div>
-          <p class="text-[11px] text-ink/40 mt-3 flex items-center justify-center gap-3">
+          <p class="text-[11px] text-ink/40 mt-3 flex items-center justify-center flex-wrap gap-x-3 gap-y-1">
             <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-gold inline-block"></span>통독 완료</span>
+            <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-gold/15 border border-gold/30 inline-block"></span>강의 학습</span>
             <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-white border border-ink/15 ring-2 ring-gold inline-block"></span>오늘</span>
           </p>
-          <p class="text-[11px] text-ink/40 text-center mt-3">매일 성경 통독을 ✓ 체크하면 이 달력에 기록되고 미션포인트가 쌓여요. <a href="bible-plan.html" class="text-gold font-semibold hover:underline">통독표 열기 →</a></p>
+          <p class="text-[11px] text-ink/40 text-center mt-3">매일 강의 학습·성경 통독을 하면 이 달력에 기록되고 미션포인트가 쌓여요. <a href="bible-plan.html" class="text-gold font-semibold hover:underline">통독표 열기 →</a></p>
         </div>
       </div>
     </div>
@@ -277,7 +284,7 @@
       if(td) td.classList.toggle('hidden', t!=='diary');
       if(t==='diary') loadDiary();
     }
-    let _diaryYM=null, _diaryDates=null;
+    let _diaryYM=null, _diaryDates=null, _diaryStudy=null;
     async function loadDiary(){
       if(!_diaryDates){
         let start=null, checked=[];
@@ -286,6 +293,10 @@
         const set=new Set();
         if(start){ const s=new Date(start+'T00:00:00'); (checked||[]).forEach(dn=>{ const d=new Date(s); d.setDate(d.getDate()+(dn-1)); set.add(d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate()); }); }
         _diaryDates=set;
+        // 강의 수강·퀴즈 학습일 (points_log 활동 기록)
+        const study=new Set();
+        try{ const { data } = await withTimeout(sb.from('points_log').select('reason,created_at').eq('user_id',user.id),6000); (data||[]).forEach(r=>{ if(r.reason==='강의 수강'||r.reason==='퀴즈 합격'){ const d=new Date(r.created_at); study.add(d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate()); } }); }catch(e){}
+        _diaryStudy=study;
       }
       if(!_diaryYM){ const n=new Date(); _diaryYM={y:n.getFullYear(), m:n.getMonth()}; }
       renderDiary();
@@ -299,20 +310,40 @@
       const t=new Date(); const tKey=t.getFullYear()+'-'+t.getMonth()+'-'+t.getDate();
       let cells='', cnt=0; for(let i=0;i<firstWd;i++) cells+='<div></div>';
       for(let dd=1; dd<=dim; dd++){
-        const key=y+'-'+m+'-'+dd; const done=_diaryDates.has(key); if(done) cnt++;
-        let cls = done ? 'bg-gold text-white border-gold' : 'bg-white border-ink/10 text-ink/45';
+        const key=y+'-'+m+'-'+dd;
+        const bible=_diaryDates.has(key), study=(_diaryStudy&&_diaryStudy.has(key));
+        if(bible||study) cnt++;
+        let cls, mark;
+        if(bible){ cls='bg-gold text-white border-gold'; mark='✓'; }
+        else if(study){ cls='bg-gold/15 text-gold border-gold/30'; mark='•'; }
+        else { cls='bg-white border-ink/10 text-ink/45'; mark=dd; }
         if(key===tKey) cls += ' ring-2 ring-gold';
-        cells += '<div class="aspect-square rounded-md border text-[11px] font-bold flex items-center justify-center '+cls+'">'+(done?'✓':dd)+'</div>';
+        cells += '<div class="aspect-square rounded-md border text-[11px] font-bold flex items-center justify-center '+cls+'">'+mark+'</div>';
       }
       document.getElementById('diaryGrid').innerHTML = cells;
-      document.getElementById('diaryStats').textContent = '이번 달 통독 완료 '+cnt+'일';
+      document.getElementById('diaryStats').textContent = '이번 달 학습 '+cnt+'일';
     }
+    const PT_TIERS = [[0,'🌱','씨앗'],[150,'🌿','새싹'],[400,'🌳','나무'],[900,'🌲','큰 나무'],[1800,'🌟','빛'],[3500,'🔥','등불']];
     async function loadPoints(){
       try{
         const { data, error } = await withTimeout(sb.from('user_points').select('total').eq('user_id', user.id).maybeSingle(), 6000);
         if(error) throw error;
         const t = (data && data.total) || 0;
-        const el = document.getElementById('ptTotal'); if(el) el.textContent = t.toLocaleString();
+        document.getElementById('ptTotal').textContent = t.toLocaleString();
+        // 등급 계산
+        let ci = 0; for(let i=0;i<PT_TIERS.length;i++){ if(t >= PT_TIERS[i][0]) ci = i; }
+        const cur = PT_TIERS[ci], nxt = PT_TIERS[ci+1] || null;
+        document.getElementById('ptTier').textContent = cur[1]+' '+cur[2];
+        if(nxt){
+          const need = nxt[0]-t, span = nxt[0]-cur[0], prog = Math.max(0, Math.min(100, Math.round((t-cur[0])/span*100)));
+          document.getElementById('ptNext').textContent = '다음 등급 '+nxt[1]+' '+nxt[2]+'까지 '+need.toLocaleString()+'P';
+          document.getElementById('ptNextPct').textContent = prog+'%';
+          document.getElementById('ptTierBar').style.width = prog+'%';
+        } else {
+          document.getElementById('ptNext').textContent = '🎉 최고 등급 달성!';
+          document.getElementById('ptNextPct').textContent = '100%';
+          document.getElementById('ptTierBar').style.width = '100%';
+        }
         document.getElementById('pointsWidget').classList.remove('hidden');
       }catch(e){ /* 테이블 미생성 시 위젯 숨김 유지 */ }
     }
