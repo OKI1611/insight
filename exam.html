@@ -306,6 +306,7 @@
         row.attempt1=a1; row.attempt2=score; row.final_score=finalScore; row.passed=passed; reveal=true;
       }
       try{ await withTimeout(sb.from('exam_results').upsert(row,{onConflict:'user_id,lesson_id'}),9000); }catch(e){}
+      if(passed){ try{ await sb.rpc('award_points', { p_amount:30, p_reason:'퀴즈 합격', p_ref:'exam:'+LID }); }catch(e){} }
       RESULT=row;
       renderResult(score, finalScore, passed, reveal);
     }

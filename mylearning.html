@@ -356,9 +356,22 @@
         if(ti >= 0){ starter = true; (levels[ti].lessons||[]).forEach((l,li)=>{ if(!done.has(ytId(l.youtube))) cand.push({ track: levels[ti].name, title: l.title, gi: starts[ti]+li }); }); }
       }
       const week = cand.slice(0,5);
+      // ── 주간 목표(이번 주 완료 강의 수) + 달성 보너스 ──
+      const GOAL = 5;
+      const monday = new Date(); monday.setHours(0,0,0,0); monday.setDate(monday.getDate() - ((monday.getDay()+6)%7));
+      const mondayISO = monday.getFullYear()+'-'+String(monday.getMonth()+1).padStart(2,'0')+'-'+String(monday.getDate()).padStart(2,'0');
+      let weekDone = 0;
+      try{ const { data } = await withTimeout(sb.from('points_log').select('reason,created_at').eq('user_id', user.id).gte('created_at', monday.toISOString()), 6000); weekDone = (data||[]).filter(r => r.reason==='강의 수강').length; }catch(e){}
+      const met = weekDone >= GOAL, gp = Math.min(100, Math.round(weekDone/GOAL*100));
+      if(met){ try{ await sb.rpc('award_points', { p_amount:50, p_reason:'주간 목표 달성', p_ref:'weekgoal:'+mondayISO }); }catch(e){} }
+      const goalBar = '<div class="bg-gold/5 rounded-xl p-3 mb-3">'
+        + '<div class="flex items-center justify-between text-xs mb-1.5"><span class="font-semibold text-ink/70">📅 이번 주 목표 '+GOAL+'강 완주</span>'
+        + '<span class="font-bold '+(met?'text-gold':'text-ink/60')+'">'+(met?'🎉 목표 달성! +50P':weekDone+' / '+GOAL+'강')+'</span></div>'
+        + '<div class="h-2 rounded-full bg-ink/8 overflow-hidden"><div class="h-full bg-gold transition-all" style="width:'+gp+'%"></div></div></div>';
       let html = '<div class="bg-white border border-gold/25 rounded-2xl shadow-soft p-5">'
-        + '<div class="flex items-center justify-between mb-1 gap-2"><p class="font-bold flex items-center gap-2">🎯 이번 주 학습 플랜 '+levelBadge+'</p>'
-        + (cand.length?'<span class="text-xs text-ink/45 shrink-0">'+cand.length+'강 남음</span>':'')+'</div>';
+        + '<div class="flex items-center justify-between mb-3 gap-2"><p class="font-bold flex items-center gap-2">🎯 이번 주 학습 플랜 '+levelBadge+'</p>'
+        + (cand.length?'<span class="text-xs text-ink/45 shrink-0">'+cand.length+'강 남음</span>':'')+'</div>'
+        + goalBar;
       if(!week.length){
         html += '<div class="text-center py-5 text-sm text-ink/55">🎉 추천 강의를 모두 완료했어요! <a href="index.html#catalog" class="text-gold font-semibold hover:underline">새 과정 추가 →</a></div>';
       } else {

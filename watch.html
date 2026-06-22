@@ -894,7 +894,8 @@
         }
         DONE.add(id);
         if(!ENROLLED.has(curTrack())){ try { await lsb.from('enrollments').insert({ user_id: LUSER.id, track: curTrack() }); ENROLLED.add(curTrack()); } catch(e){} }
-        refreshLearningUI(); learnToast('✅ 이 강의를 학습 완료로 표시했어요! 📚 내 강의실에서 확인하세요.', true);
+        let _pt=''; try{ const { data } = await lsb.rpc('award_points', { p_amount:20, p_reason:'강의 수강', p_ref:'lesson:'+id }); if(typeof data==='number') _pt=' · 🪙 +20P'; }catch(e){}
+        refreshLearningUI(); learnToast('✅ 학습 완료'+_pt+' · 📚 내 강의실에서 확인하세요.', true);
       }
     }
 
