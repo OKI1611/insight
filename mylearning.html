@@ -82,6 +82,14 @@
     <div id="dashView" class="hidden">
       <div id="welcome" class="mb-6"></div>
 
+      <!-- 마이페이지 탭 -->
+      <div class="inline-flex bg-ink/5 rounded-full p-1 mb-6">
+        <button id="myt-main" onclick="myTab('main')" class="px-5 py-2 rounded-full text-sm font-semibold transition bg-white text-ink shadow-soft">📊 학습 현황</button>
+        <button id="myt-diary" onclick="myTab('diary')" class="px-5 py-2 rounded-full text-sm font-semibold transition text-ink/50">📅 학습 다이어리</button>
+      </div>
+
+      <div id="tabMain">
+
       <!-- 🪙 미션포인트 -->
       <div id="pointsWidget" class="hidden bg-gradient-to-br from-ink to-navy text-paper rounded-2xl shadow-soft p-5 mb-6 flex items-center justify-between gap-3">
         <div>
@@ -148,6 +156,26 @@
       <div id="certView" class="hidden">
         <button onclick="showCat('overview')" class="text-sm text-ink/50 hover:text-gold mb-3">← 과정 선택으로</button>
         <div id="program"></div>
+      </div>
+      </div><!-- /tabMain -->
+
+      <!-- 📅 학습 다이어리 -->
+      <div id="tabDiary" class="hidden">
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5">
+          <div class="flex items-center justify-between mb-1">
+            <button onclick="diaryMonth(-1)" class="px-2 py-1 text-sm text-ink/50 hover:text-gold">‹ 이전달</button>
+            <p id="diaryLabel" class="font-bold">　</p>
+            <button onclick="diaryMonth(1)" class="px-2 py-1 text-sm text-ink/50 hover:text-gold">다음달 ›</button>
+          </div>
+          <p id="diaryStats" class="text-xs text-gold font-semibold text-center mb-3">　</p>
+          <div id="diaryWd" class="grid grid-cols-7 gap-1 mb-1"></div>
+          <div id="diaryGrid" class="grid grid-cols-7 gap-1"></div>
+          <p class="text-[11px] text-ink/40 mt-3 flex items-center justify-center gap-3">
+            <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-gold inline-block"></span>통독 완료</span>
+            <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-white border border-ink/15 ring-2 ring-gold inline-block"></span>오늘</span>
+          </p>
+          <p class="text-[11px] text-ink/40 text-center mt-3">매일 성경 통독을 ✓ 체크하면 이 달력에 기록되고 미션포인트가 쌓여요. <a href="bible-plan.html" class="text-gold font-semibold hover:underline">통독표 열기 →</a></p>
+        </div>
       </div>
     </div>
   </main>
@@ -235,6 +263,47 @@
     function bpRangify(items){ if(!items.length) return ''; const parts=[]; let i=0; while(i<items.length){ const b=items[i].b; let s=items[i].c,e=items[i].c,j=i+1; while(j<items.length&&items[j].b===b&&items[j].c===e+1){ e=items[j].c; j++; } const nm=BP_BOOKS[b][0]; parts.push(s===e?`${nm} ${s}장`:`${nm} ${s}–${e}장`); i=j; } return parts.join(' · '); }
     function bpStream(L,reps,day){ const seq=L.length*reps, a=Math.floor(day*seq/BP_DAYS), z=Math.floor((day+1)*seq/BP_DAYS), it=[]; for(let i=a;i<z;i++) it.push(L[i%L.length]); return bpRangify(it); }
     function bpReading(mcheyne, N, day){ if(mcheyne){ const a=bpStream(BP_OT,1,day), b=bpStream(BP_NT,2,day), c=bpStream(BP_PS,2,day); return [a,b,c].filter(Boolean).join(' · '); } return bpStream(BP_CH,N,day); }
+    // ===== 마이페이지 탭 + 학습 다이어리 =====
+    function myTab(t){
+      const on='bg-white text-ink shadow-soft', off='text-ink/50';
+      const a=document.getElementById('myt-main'), b=document.getElementById('myt-diary');
+      if(a) a.className='px-5 py-2 rounded-full text-sm font-semibold transition '+(t==='main'?on:off);
+      if(b) b.className='px-5 py-2 rounded-full text-sm font-semibold transition '+(t==='diary'?on:off);
+      const tm=document.getElementById('tabMain'), td=document.getElementById('tabDiary');
+      if(tm) tm.classList.toggle('hidden', t!=='main');
+      if(td) td.classList.toggle('hidden', t!=='diary');
+      if(t==='diary') loadDiary();
+    }
+    let _diaryYM=null, _diaryDates=null;
+    async function loadDiary(){
+      if(!_diaryDates){
+        let start=null, checked=[];
+        try{ const { data } = await withTimeout(sb.from('bible_reading').select('start_date,checked').eq('user_id',user.id).maybeSingle(),6000); if(data){ start=(data.start_date||'').slice(0,10); checked=data.checked||[]; } }catch(e){}
+        if(!start){ try{ const o=JSON.parse(localStorage.getItem('biblyBiblePlan')||'null'); if(o){ start=o.start||null; checked=o.checked||[]; } }catch(e){} }
+        const set=new Set();
+        if(start){ const s=new Date(start+'T00:00:00'); (checked||[]).forEach(dn=>{ const d=new Date(s); d.setDate(d.getDate()+(dn-1)); set.add(d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate()); }); }
+        _diaryDates=set;
+      }
+      if(!_diaryYM){ const n=new Date(); _diaryYM={y:n.getFullYear(), m:n.getMonth()}; }
+      renderDiary();
+    }
+    function diaryMonth(delta){ if(!_diaryYM) return; let y=_diaryYM.y, m=_diaryYM.m+delta; if(m<0){m=11;y--;} if(m>11){m=0;y++;} _diaryYM={y,m}; renderDiary(); }
+    function renderDiary(){
+      const { y, m } = _diaryYM;
+      document.getElementById('diaryLabel').textContent = y+'년 '+(m+1)+'월';
+      document.getElementById('diaryWd').innerHTML = ['일','월','화','수','목','금','토'].map(w=>'<div class="text-[10px] text-ink/30 text-center">'+w+'</div>').join('');
+      const firstWd=new Date(y,m,1).getDay(), dim=new Date(y,m+1,0).getDate();
+      const t=new Date(); const tKey=t.getFullYear()+'-'+t.getMonth()+'-'+t.getDate();
+      let cells='', cnt=0; for(let i=0;i<firstWd;i++) cells+='<div></div>';
+      for(let dd=1; dd<=dim; dd++){
+        const key=y+'-'+m+'-'+dd; const done=_diaryDates.has(key); if(done) cnt++;
+        let cls = done ? 'bg-gold text-white border-gold' : 'bg-white border-ink/10 text-ink/45';
+        if(key===tKey) cls += ' ring-2 ring-gold';
+        cells += '<div class="aspect-square rounded-md border text-[11px] font-bold flex items-center justify-center '+cls+'">'+(done?'✓':dd)+'</div>';
+      }
+      document.getElementById('diaryGrid').innerHTML = cells;
+      document.getElementById('diaryStats').textContent = '이번 달 통독 완료 '+cnt+'일';
+    }
     async function loadPoints(){
       try{
         const { data, error } = await withTimeout(sb.from('user_points').select('total').eq('user_id', user.id).maybeSingle(), 6000);
