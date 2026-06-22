@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <script src="/content-loader.js"></script>
+  <script src="/site-header.js?v=20260622a"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>공지사항 · 이벤트 — BIBLY 바이블 인사이트</title>
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#213a6b" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="canonical" href="https://biblynote.com/notices" />
+  <meta property="og:title" content="공지사항 · 이벤트 — BIBLY" />
+  <meta property="og:description" content="BIBLY의 새 소식과 이벤트를 확인하세요." />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink:'#213a6b', navy:'#182c54', gold:'#b8923f', sand:'#eaf0f8', paper:'#f7f9fc' },
+      fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
+      boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
+    }}}
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
+    const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+    const ADMIN_EMAIL = 'josephoh1611@gmail.com';
+  </script>
+  <style> h1,h2{font-family:'Noto Serif KR',Pretendard,serif} </style>
+</head>
+<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+
+  <div id="siteHeader" data-active="notices.html"></div>
+
+  <main class="max-w-3xl mx-auto px-4 py-8">
+    <div class="mb-6">
+      <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">NEWS</p>
+      <h1 class="text-2xl md:text-3xl font-bold">공지사항 · 이벤트</h1>
+      <p class="text-ink/55 text-sm mt-2">BIBLY의 새 소식과 이벤트를 전해드립니다.</p>
+    </div>
+
+    <!-- 탭 -->
+    <div class="inline-flex bg-ink/5 rounded-full p-1 mb-5">
+      <button id="tab-notice" onclick="setTab('notice')" class="px-5 py-2 rounded-full text-sm font-semibold transition">📢 공지사항</button>
+      <button id="tab-event"  onclick="setTab('event')"  class="px-5 py-2 rounded-full text-sm font-semibold transition">🎁 이벤트</button>
+    </div>
+
+    <!-- 관리자 작성 -->
+    <div id="composeWrap" class="hidden bg-white rounded-2xl border border-gold/30 shadow-soft p-4 mb-5">
+      <p class="text-xs font-bold text-gold mb-2">✍️ 관리자 글쓰기 (<span id="composeKind">공지</span>)</p>
+      <input id="cTitle" placeholder="제목" class="w-full border border-ink/15 rounded-lg px-3 py-2 text-sm mb-2 outline-none focus:border-gold"/>
+      <textarea id="cBody" rows="4" placeholder="내용" class="w-full border border-ink/15 rounded-lg px-3 py-2 text-sm mb-2 outline-none focus:border-gold"></textarea>
+      <div class="flex items-center gap-2">
+        <label class="text-xs text-ink/60 flex items-center gap-1"><input type="checkbox" id="cPinned"/> 상단 고정</label>
+        <button onclick="postNotice()" class="ml-auto bg-ink text-paper text-sm font-semibold px-4 py-2 rounded-lg hover:bg-navy transition">등록</button>
+      </div>
+      <p id="cMsg" class="text-xs mt-2"></p>
+    </div>
+
+    <div id="list" class="space-y-3"><p class="text-ink/40 text-sm py-8 text-center">불러오는 중…</p></div>
+  </main>
+
+  <script>
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType:'implicit', autoRefreshToken:false, lock: async (_n,_t,fn)=>await fn() } });
+    function readStored(){ try{ for(const k of Object.keys(localStorage)){ if(!/auth-token/.test(k)) continue; const v=JSON.parse(localStorage.getItem(k)); const s=(v&&v.user)?v:(v&&v.currentSession)?v.currentSession:null; if(s&&s.user){ if(s.expires_at&&s.expires_at*1000<Date.now())return null; return s; } } }catch(e){} return null; }
+    const SESSION = readStored();
+    const IS_ADMIN = !!(SESSION && SESSION.user && (SESSION.user.email||'').toLowerCase()===ADMIN_EMAIL);
+    const esc = s => String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    let tab = (new URLSearchParams(location.search).get('tab')==='event') ? 'event' : 'notice';
+
+    function setTab(t){ tab=t; renderTabs(); load(); history.replaceState(null,'', 'notices.html'+(t==='event'?'?tab=event':'')); }
+    function renderTabs(){
+      const on='bg-white text-ink shadow-soft', off='text-ink/50';
+      document.getElementById('tab-notice').className='px-5 py-2 rounded-full text-sm font-semibold transition '+(tab==='notice'?on:off);
+      document.getElementById('tab-event').className='px-5 py-2 rounded-full text-sm font-semibold transition '+(tab==='event'?on:off);
+      document.getElementById('composeWrap').classList.toggle('hidden', !IS_ADMIN);
+      document.getElementById('composeKind').textContent = tab==='event'?'이벤트':'공지';
+    }
+    function fdate(s){ try{ const d=new Date(s); return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`; }catch(e){ return ''; } }
+    async function load(){
+      const box=document.getElementById('list'); box.innerHTML='<p class="text-ink/40 text-sm py-8 text-center">불러오는 중…</p>';
+      try{
+        const { data, error } = await sb.from('notices').select('*').eq('kind',tab).order('pinned',{ascending:false}).order('created_at',{ascending:false}).limit(50);
+        if(error) throw error;
+        if(!data||!data.length){ box.innerHTML=`<p class="text-ink/40 text-sm py-12 text-center">아직 ${tab==='event'?'이벤트':'공지'}가 없습니다.</p>`; return; }
+        box.innerHTML = data.map(n=>`
+          <div class="bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden">
+            <button onclick="this.nextElementSibling.classList.toggle('hidden')" class="w-full flex items-center gap-3 px-5 py-4 text-left">
+              ${n.pinned?'<span class="shrink-0 text-[10px] font-bold text-white bg-gold px-1.5 py-0.5 rounded">고정</span>':''}
+              <span class="font-bold flex-1 min-w-0">${esc(n.title)}</span>
+              <span class="text-xs text-ink/40 shrink-0">${fdate(n.created_at)}</span>
+              ${IS_ADMIN?`<span onclick="event.stopPropagation();delNotice(${n.id})" class="shrink-0 text-xs text-red-400 hover:text-red-600 cursor-pointer">삭제</span>`:''}
+            </button>
+            <div class="hidden px-5 pb-5 text-sm text-ink/75 leading-relaxed whitespace-pre-wrap border-t border-ink/5 pt-3">${esc(n.body||'')}</div>
+          </div>`).join('');
+      }catch(e){ box.innerHTML='<p class="text-ink/50 text-sm py-8 text-center">'+( /relation|does not exist|schema cache/i.test(e.message||'') ? '게시판 준비 중 — 관리자: <code class="bg-ink/5 px-1 rounded">supabase/notices.sql</code> 를 실행하세요.' : '불러오기 오류: '+esc(e.message||e))+'</p>'; }
+    }
+    async function postNotice(){
+      const title=document.getElementById('cTitle').value.trim(), body=document.getElementById('cBody').value.trim(), pinned=document.getElementById('cPinned').checked, m=document.getElementById('cMsg');
+      if(!title){ m.style.color='#dc2626'; m.textContent='제목을 입력하세요.'; return; }
+      m.style.color='#6b7280'; m.textContent='등록 중…';
+      try{ const { error } = await sb.from('notices').insert({ kind:tab, title, body, pinned }); if(error) throw error;
+        m.style.color='#16a34a'; m.textContent='✅ 등록 완료'; document.getElementById('cTitle').value=''; document.getElementById('cBody').value=''; document.getElementById('cPinned').checked=false; load();
+      }catch(e){ m.style.color='#dc2626'; m.textContent='오류: '+(e.message||e); }
+    }
+    async function delNotice(id){ if(!confirm('이 글을 삭제할까요?')) return; try{ const { error } = await sb.from('notices').delete().eq('id',id); if(error) throw error; load(); }catch(e){ alert('오류: '+(e.message||e)); } }
+
+    renderTabs(); load();
+  </script>
+</body>
+</html>

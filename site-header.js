@@ -97,20 +97,29 @@
     }).join('');
   }
 
-  function authHTML(){
-    var mylearn = '<a href="mylearning.html" class="hidden xl:inline-flex items-center gap-1 border border-gold/45 text-gold font-semibold px-3 py-1.5 rounded-full hover:bg-gold/10 transition text-xs whitespace-nowrap">📚 내 강의실</a>';
-    var support = '<a href="support.html" aria-label="후원하기" title="후원하기" class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-rose-500/10 text-rose-500 border border-rose-300 hover:bg-rose-500 hover:text-white transition shrink-0" style="font-size:15px">♥</a>';
-    var s = readStored(), authpart;
+  // 메인 헤더 우측 CTA(내 강의실 버튼) — 로그인/로그아웃은 상단 퀵바로 이동
+  function mainCtaHTML(){
+    return '<a href="mylearning.html" class="hidden xl:inline-flex items-center gap-1 border border-gold/45 text-gold font-semibold px-3 py-1.5 rounded-full hover:bg-gold/10 transition text-xs whitespace-nowrap">📚 내 강의실</a>';
+  }
+  // 상단 퀵바(유틸리티) — 수학싸부식: 공지·이벤트·후원 + 로그인 상태/마이메뉴
+  function topbarHTML(){
+    var sep = '<span class="sep hidden sm:inline">·</span>';
+    var common = '<a href="notices.html">📢 공지사항</a>' + sep
+      + '<a href="notices.html?tab=event">🎁 이벤트</a>' + sep
+      + '<a href="support.html" class="hidden sm:inline">♥ 후원</a>';
+    var s = readStored(), right;
     if(s && s.user){
       var nm = (s.user.user_metadata && (s.user.user_metadata.full_name || s.user.user_metadata.name)) || (s.user.email ? s.user.email.split('@')[0] : '회원');
-      var admin = (s.user.email === ADMIN) ? ' <span class="text-gold font-semibold">· 관리자</span>' : '';
-      authpart = '<span id="biblyAuthName" class="text-ink/60 text-xs whitespace-nowrap">' + esc(nm) + '님' + admin
-        + ' · <button onclick="__biblyLogout()" class="hover:text-gold">로그아웃</button></span>';
+      var admin = (s.user.email === ADMIN) ? sep + '<a href="admin.html" class="!text-gold font-semibold">⚙ 관리자</a>' : '';
+      right = '<span id="biblyAuthName" class="font-semibold !text-paper/90">' + esc(nm) + '님</span>' + sep
+        + '<a href="mylearning.html" class="hidden sm:inline">📚 마이</a>' + sep
+        + '<a href="bible-plan.html" class="hidden sm:inline">📖 성경 통독</a>' + sep
+        + common + admin + sep
+        + '<button onclick="__biblyLogout()">로그아웃</button>';
     } else {
-      authpart = '<button onclick="__biblyHeaderLoginClick()" class="bg-gold text-white font-semibold px-3.5 py-1.5 rounded-full hover:opacity-90 transition text-xs whitespace-nowrap">로그인</button>';
+      right = common + sep + '<button onclick="__biblyHeaderLoginClick()" class="font-semibold !text-gold">로그인</button>';
     }
-    return mylearn + support + authpart
-      + '<a href="index.html" onclick="return __biblyHome(event)" class="hidden xl:inline text-ink/45 hover:text-gold whitespace-nowrap text-sm">홈</a>';
+    return '<div class="bibly-topbar bg-ink text-xs"><div class="max-w-7xl mx-auto px-4 h-9 flex items-center justify-end gap-x-2.5 overflow-x-auto">' + right + '</div></div>';
   }
 
   // 모바일 드롭다운 메뉴(햄버거)
@@ -130,11 +139,12 @@
   window.__biblyToggleMenu = function(){ var m = document.getElementById('biblyMobMenu'); if(m) m.classList.toggle('hidden'); };
 
   function headerHTML(menu){
-    return '<header class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-ink/8">'
+    return topbarHTML()
+      + '<header class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-ink/8">'
       + '<div class="max-w-7xl mx-auto px-4 h-14 flex items-center gap-3">'
       + LOGO
       + '<nav id="navmenu" class="hidden xl:flex items-center gap-5 text-[14.5px] font-medium text-ink/90 whitespace-nowrap pl-1">' + menuHTML(menu) + '</nav>'
-      + '<div class="ml-auto flex items-center gap-2 sm:gap-3 text-sm shrink-0">' + authHTML()
+      + '<div class="ml-auto flex items-center gap-2 sm:gap-3 text-sm shrink-0">' + mainCtaHTML()
       + '<button id="biblyHamb" aria-label="메뉴 열기" onclick="__biblyToggleMenu()" class="xl:hidden w-9 h-9 -mr-1 flex items-center justify-center rounded-lg hover:bg-ink/5 text-ink/70"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>'
       + '</div>'
       + '</div>'
@@ -193,7 +203,11 @@
       + '.navDropCard a{display:flex;align-items:center;gap:.55rem;padding:.6rem .8rem;border-radius:.6rem;font-size:.875rem;font-weight:500;color:rgba(21,32,58,.82);white-space:nowrap;transition:background .15s,color .15s}'
       + '.navDropCard a::before{content:"";width:5px;height:5px;border-radius:50%;background:rgba(184,146,63,.35);flex:none;transition:transform .15s,background .15s}'
       + '.navDropCard a:hover{background:rgba(184,146,63,.1);color:#b8923f}'
-      + '.navDropCard a:hover::before{background:#b8923f;transform:scale(1.35)}';
+      + '.navDropCard a:hover::before{background:#b8923f;transform:scale(1.35)}'
+      + '.bibly-topbar a,.bibly-topbar button{color:rgba(247,249,252,.72);white-space:nowrap;transition:color .15s}'
+      + '.bibly-topbar a:hover,.bibly-topbar button:hover{color:#dcb866}'
+      + '.bibly-topbar .sep{color:rgba(247,249,252,.22)}'
+      + '.bibly-topbar>div{scrollbar-width:none}.bibly-topbar>div::-webkit-scrollbar{display:none}';
     document.head.appendChild(st);
   }
   function build(){
