@@ -90,6 +90,9 @@
 
       <div id="tabMain">
 
+      <!-- 🎯 이번 주 맞춤 학습 플랜 -->
+      <div id="weekPlan" class="mb-6"></div>
+
       <!-- 🪙 미션포인트 -->
       <div id="pointsWidget" class="hidden bg-gradient-to-br from-ink to-navy text-paper rounded-2xl shadow-soft p-5 mb-6 flex items-center justify-between gap-3">
         <div>
@@ -338,6 +341,37 @@
       window.scrollTo(0, 0);
     }
 
+    // 🎯 이번 주 맞춤 학습 플랜 — 수강 단계·진도에 맞춰 다음 강의를 추천(추가 DB 불필요)
+    async function renderWeekPlan(levels, starts, done, mine){
+      const el = document.getElementById('weekPlan'); if(!el) return;
+      let myTier = 0; try{ const { data } = await withTimeout(sb.from('cert_access').select('tier').eq('user_id', user.id).maybeSingle(), 6000); if(data && data.tier) myTier = Number(data.tier)||0; }catch(e){}
+      const levelBadge = myTier>0
+        ? '<span class="text-[11px] font-semibold text-gold bg-gold/15 px-2 py-0.5 rounded-full">인증 '+myTier+'급 과정</span>'
+        : '<span class="text-[11px] font-semibold text-ink/55 bg-ink/5 px-2 py-0.5 rounded-full">무료 학습 단계</span>';
+      let cand = [], starter = false;
+      (mine||[]).forEach(({lv,ti}) => { (lv.lessons||[]).forEach((l,li)=>{ if(!done.has(ytId(l.youtube))) cand.push({ track: lv.name, title: l.title, gi: starts[ti]+li }); }); });
+      if(!cand.length){
+        let ti = levels.findIndex(lv => /기독교 기초/.test(lv.name||''));
+        if(ti < 0) ti = levels.findIndex(lv => (lv.lessons||[]).length);
+        if(ti >= 0){ starter = true; (levels[ti].lessons||[]).forEach((l,li)=>{ if(!done.has(ytId(l.youtube))) cand.push({ track: levels[ti].name, title: l.title, gi: starts[ti]+li }); }); }
+      }
+      const week = cand.slice(0,5);
+      let html = '<div class="bg-white border border-gold/25 rounded-2xl shadow-soft p-5">'
+        + '<div class="flex items-center justify-between mb-1 gap-2"><p class="font-bold flex items-center gap-2">🎯 이번 주 학습 플랜 '+levelBadge+'</p>'
+        + (cand.length?'<span class="text-xs text-ink/45 shrink-0">'+cand.length+'강 남음</span>':'')+'</div>';
+      if(!week.length){
+        html += '<div class="text-center py-5 text-sm text-ink/55">🎉 추천 강의를 모두 완료했어요! <a href="index.html#catalog" class="text-gold font-semibold hover:underline">새 과정 추가 →</a></div>';
+      } else {
+        html += '<p class="text-xs text-ink/50 mb-3">'+(starter?'먼저 <b class="text-ink/70">'+esc(week[0].track)+'</b>부터 시작해 보세요. ':'')+'하루 한 강씩, 이번 주 <b class="text-gold">'+week.length+'강</b>에 도전해요. 꾸준함이 실력이 됩니다.</p>';
+        html += week.map((c,i)=>'<a href="watch.html?l='+c.gi+'" class="flex items-center gap-3 rounded-xl border border-ink/8 px-3 py-2.5 mb-1.5 hover:border-gold/40 hover:bg-gold/[0.03] transition">'
+          + '<span class="shrink-0 w-8 h-8 rounded-lg bg-gold/12 text-gold text-[11px] font-bold flex items-center justify-center">'+(i+1)+'일</span>'
+          + '<span class="min-w-0 flex-1"><span class="block text-[11px] text-gold/80 font-semibold truncate">'+esc(c.track)+'</span><span class="block text-sm font-medium truncate">'+esc(c.title)+'</span></span>'
+          + '<span class="shrink-0 text-gold text-sm font-semibold">학습 ▷</span></a>').join('');
+      }
+      html += '</div>';
+      el.innerHTML = html;
+    }
+
     async function loadDashboard(){
       const tracksEl = document.getElementById('tracks');
       const sumEl = document.getElementById('summary');
@@ -397,6 +431,9 @@
           <p class="text-paper/60 text-sm mt-1.5">각 과정의 <b class="text-gold">수료증</b>을 받아 학습을 기념해 보세요.</p>
         </div>`;
       }
+
+      // ── 🎯 이번 주 맞춤 학습 플랜 ──
+      renderWeekPlan(levels, starts, done, mine);
 
       // ── 요약 카드 (3) ──
       const card = (val, label) => `<div class="bg-white rounded-2xl border border-ink/8 p-4 text-center"><p class="text-2xl font-bold text-gold">${val}</p><p class="text-xs text-ink/55 mt-1">${label}</p></div>`;
