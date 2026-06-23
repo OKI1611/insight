@@ -65,13 +65,13 @@
         <p class="text-[11px] text-ink/40 mt-2 text-center">이메일만 남기면 바로 받으실 수 있어요. 스팸·광고는 보내지 않습니다.</p>
       </div>
 
-      <!-- 신뢰 띠 (실제 수치) -->
+      <!-- 신뢰 띠 (변하지 않는 가치) -->
       <div class="mt-9 flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-sm text-ink/70">
-        <span>📺 유튜브 구독 <b id="stSubs" class="text-gold">7,400+</b></span>
+        <span>🎬 전 강의 <b class="text-gold">100% 무료</b></span>
         <span class="text-ink/25">·</span>
-        <span>👀 누적 조회 <b id="stViews" class="text-gold">144만+</b></span>
+        <span>✅ <b class="text-gold">회원가입 없이</b> 시청</span>
         <span class="text-ink/25">·</span>
-        <span>🎬 무료 강의 <b id="stFree" class="text-gold">300편</b></span>
+        <span>♾️ <b class="text-gold">평생 무제한</b> 소장</span>
       </div>
       <p class="mt-6"><a href="watch.html" class="inline-flex items-center gap-2 text-ink/90 font-semibold text-sm hover:text-gold transition">▶ 먼저 무료 1강부터 보기</a></p>
     </div>
@@ -203,9 +203,6 @@
       if(s.leadmagnet && s.leadmagnet.title){ var t1=document.getElementById('lmTitle1'), t2=document.getElementById('lmTitle2');
         if(t1) t1.textContent = '「' + s.leadmagnet.title.replace(/^[「『]|[」』]$/g,'') + '」'; }
       if(s.leadmagnet && s.leadmagnet.file) LEAD_FILE = s.leadmagnet.file;
-      if(s.youtube && s.youtube.stats){ var st=s.youtube.stats;
-        var a=document.getElementById('stSubs'), b=document.getElementById('stViews'), c=document.getElementById('stFree');
-        if(a&&st.subscribers)a.textContent=st.subscribers; if(b&&st.views)b.textContent=st.views; if(c&&st.free_lectures)c.textContent=st.free_lectures; }
     }).catch(function(){});
 
     async function getResource(e){
