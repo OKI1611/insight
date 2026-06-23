@@ -125,7 +125,7 @@
 
       <div class="mt-4 bg-white rounded-2xl border border-ink/8 p-5 shadow-soft text-sm text-ink/70 leading-relaxed">
         <p class="font-semibold text-ink mb-1">강의 안내</p>
-        강의 영상은 <b class="text-ink">로그인 없이 누구나 무료</b>로 시청하실 수 있어요. 🎯진단평가·📝요약노트·🧩확인학습 등 <b class="text-ink">학습 도구는 무료 회원(로그인)</b> 전용입니다 — 가입은 무료예요.
+        모든 강의는 <b class="text-ink">무료 회원가입 후</b> 시청하실 수 있어요. 🎯진단평가·📝요약노트·🧩확인학습 등 <b class="text-ink">학습 도구도 함께</b> 이용하실 수 있습니다 — 가입은 무료예요.
         잠긴 강의는 <b class="text-ink">정식 오픈 후</b> 공개됩니다. 미리 등록하시면 출시 소식을 가장 먼저 받아보실 수 있어요.
         <a href="index.html#pricing" class="text-gold underline ml-1">출시 알림 받기</a>
       </div>
@@ -383,7 +383,7 @@
         <p class="font-bold text-ink text-[17px]">${title}</p>
         <p class="text-sm text-ink/55 mt-1.5 mb-4 leading-relaxed">${desc}</p>
         <button onclick="openLogin()" class="bg-gold text-white font-semibold px-7 py-3 rounded-full hover:opacity-90 transition">무료로 로그인하고 이용하기</button>
-        <p class="text-xs text-ink/40 mt-2.5">가입은 무료예요 · 영상은 로그인 없이도 시청할 수 있어요</p>
+        <p class="text-xs text-ink/40 mt-2.5">가입은 무료예요 · 로그인하면 모든 강의를 무료로 시청할 수 있어요</p>
       </div>`;
     }
     // ===== 확인 학습 퀴즈 =====
@@ -667,7 +667,14 @@
 
       const player = document.getElementById('player');
       const id = ytId(l.youtube);
-      if(l.free && id){
+      if(!LUSER){
+        player.innerHTML = `<div class="w-full h-full flex flex-col items-center justify-center text-paper gap-3 text-center px-6">
+          <span class="text-4xl">🔒</span>
+          <p class="font-bold text-lg">로그인하고 강의를 시청하세요</p>
+          <p class="text-paper/65 text-sm">무료 회원가입만 하면 모든 강의를 무료로 보실 수 있어요.</p>
+          <button onclick="openLogin()" class="mt-2 bg-gold text-white font-semibold px-7 py-2.5 rounded-full text-sm hover:opacity-90 transition">무료로 로그인 · 회원가입</button>
+        </div>`;
+      } else if(l.free && id){
         player.innerHTML = `<iframe class="w-full h-full" src="https://www.youtube.com/embed/${id}?rel=0" title="${esc(l.title)}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
       } else {
         player.innerHTML = `<div class="w-full h-full flex flex-col items-center justify-center text-paper gap-3 text-center px-6">
@@ -766,7 +773,10 @@
       aState.innerHTML = LUSER ? `${escQ(QNAME)}님 · <button onclick="lLogout()" class="hover:text-gold">로그아웃</button>` : `<button onclick="openLogin()" class="bg-gold text-white font-semibold px-4 py-1.5 rounded-full hover:opacity-90 transition">로그인</button>`;
     }
     async function lAuth(session){
+      const wasLogged = !!LUSER;
       LUSER = (session && session.user) || null;
+      // 로그인 상태가 바뀌면(로그인/로그아웃) 현재 강의 플레이어를 다시 그려 게이트 적용/해제
+      if(wasLogged !== !!LUSER && typeof cur === 'number' && cur >= 0 && typeof lessons !== 'undefined' && lessons.length){ loadLesson(cur); }
       ENROLLED = new Set(); DONE = new Set(); TABLES_READY = true;
       QNAME = LUSER ? (LUSER.email || '회원') : '회원';
       // ① UI를 먼저 그린다 — 데이터 로딩이 지연돼도 화면이 멈추지 않게
