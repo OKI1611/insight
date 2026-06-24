@@ -108,7 +108,7 @@
   function topbarHTML(){
     var sep = '<span class="sep hidden sm:inline">·</span>';
     var common = '<a href="notices.html">📢 공지사항</a>' + sep
-      + '<a href="notices.html?tab=event">🎁 이벤트</a>' + sep
+      + '<a href="event.html" class="font-semibold">🎁 혜택 이벤트</a>' + sep
       + '<a href="support.html" class="hidden sm:inline">♥ 후원</a>';
     var s = readStored(), right;
     if(s && s.user){
