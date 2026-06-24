@@ -1891,6 +1891,13 @@
       if(location.hash){ window.addEventListener('load', function(){ setTimeout(go, 250); }); }
       window.addEventListener('hashchange', go);
     })();
+    // 이벤트/추천 진입(?signup=1) 시 회원가입 모달 자동 오픈 (추천인 코드 입력)
+    (function(){
+      var sp = new URLSearchParams(location.search);
+      if(sp.get('signup') === '1'){
+        window.addEventListener('load', function(){ setTimeout(function(){ try{ if(typeof openAuth==='function') openAuth('signup'); }catch(e){} }, 500); });
+      }
+    })();
   </script>
 </body>
 </html>
