@@ -6,7 +6,7 @@
   <script src="/site-header.js?v=20260622a"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BIBLY 북스토어 — 과정별 요약노트 합본 책자</title>
-  <meta name="theme-color" content="#213a6b" />
+  <meta name="theme-color" content="#2e2a24" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="canonical" href="https://biblynote.com/booklet" />
@@ -21,9 +21,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { theme: { extend: {
-      colors: { ink:'#213a6b', navy:'#182c54', gold:'#b8923f', sand:'#eaf0f8', paper:'#f7f9fc' },
+      colors: { ink:'#2e2a24', navy:'#25211b', gold:'#4e6e5a', sand:'#f0e9dc', paper:'#faf8f3' },
       fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
-      boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
+      boxShadow: { soft:'0 2px 10px -4px rgba(46,42,36,.10)', card:'0 14px 40px -18px rgba(46,42,36,.22)' }
     }}}
   </script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -37,7 +37,7 @@
   <style>
     h1,h2,h3,.serif{font-family:'Noto Serif KR',Pretendard,serif}
     /* 책 표지 */
-    .cover{position:relative;aspect-ratio:3/4;border-radius:3px 8px 8px 3px;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:15px 13px 13px 19px;color:#fff;box-shadow:0 10px 26px -10px rgba(21,32,58,.55)}
+    .cover{position:relative;aspect-ratio:3/4;border-radius:3px 8px 8px 3px;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:15px 13px 13px 19px;color:#fff;box-shadow:0 10px 26px -10px rgba(46,42,36,.55)}
     .cover::before{content:'';position:absolute;left:0;top:0;bottom:0;width:7px;background:rgba(0,0,0,.20)}
     .cover .cbrand{font-size:10.5px;font-weight:800;letter-spacing:.18em;color:#ecca77}
     .cover .ctitle{font-family:'Noto Serif KR',serif;font-weight:700;font-size:16.5px;line-height:1.32;text-shadow:0 1px 6px rgba(0,0,0,.25)}
@@ -46,26 +46,26 @@
     /* 책자 본문(뷰어/인쇄) — 줄간격 넉넉히, 강의 필기·참고용 */
     .book{font-family:'Noto Serif KR',Pretendard,serif;color:#1c2b46;line-height:1.75}
     .book .lesson{page-break-before:always}
-    .book .ch-label{font-size:11.5px;font-weight:800;letter-spacing:.18em;color:#b8923f;margin:0 0 5px}
-    .book h2.bk-title{font-size:20px;font-weight:700;color:#213a6b;border-bottom:2px solid #b8923f;padding-bottom:9px;margin:0 0 16px;line-height:1.45}
-    .book h3.bk-h{font-size:15px;font-weight:700;color:#213a6b;margin:22px 0 8px}
+    .book .ch-label{font-size:11.5px;font-weight:800;letter-spacing:.18em;color:#4e6e5a;margin:0 0 5px}
+    .book h2.bk-title{font-size:20px;font-weight:700;color:#2e2a24;border-bottom:2px solid #4e6e5a;padding-bottom:9px;margin:0 0 16px;line-height:1.45}
+    .book h3.bk-h{font-size:15px;font-weight:700;color:#2e2a24;margin:22px 0 8px}
     .book p.bk-p{font-size:13.5px;line-height:2.05;margin:9px 0;color:#2a3a55}
-    .book .bk-thesis{background:#eaf0f8;border-left:3px solid #213a6b;border-radius:8px;padding:13px 16px;font-weight:600;color:#213a6b;font-size:14px;line-height:1.85;margin:4px 0 10px}
+    .book .bk-thesis{background:#f0e9dc;border-left:3px solid #2e2a24;border-radius:8px;padding:13px 16px;font-weight:600;color:#2e2a24;font-size:14px;line-height:1.85;margin:4px 0 10px}
     .book .bk-scr{background:#faf7ef;border:1px solid #e6dcc3;border-radius:8px;padding:11px 14px;margin:7px 0;font-size:12.5px;line-height:1.8}
     .book .bk-scr b{color:#9a7b30}
     .book ul.bk-ul{margin:7px 0 9px 2px;padding:0;list-style:none}
     .book ul.bk-ul li{font-size:13px;line-height:1.95;padding-left:16px;position:relative;color:#33415e;margin:3px 0}
-    .book ul.bk-ul li::before{content:'·';position:absolute;left:3px;color:#b8923f;font-weight:700}
-    .book .bk-term{font-size:12.5px;line-height:1.85;margin:5px 0}.book .bk-term b{color:#213a6b}
+    .book ul.bk-ul li::before{content:'·';position:absolute;left:3px;color:#4e6e5a;font-weight:700}
+    .book .bk-term{font-size:12.5px;line-height:1.85;margin:5px 0}.book .bk-term b{color:#2e2a24}
     .book .bk-mis{font-size:12.5px;line-height:1.8;margin:7px 0}.book .bk-mis .w{color:#b4524a}.book .bk-mis .r{color:#2f7d57}
     /* 목차(책 틀) */
     .book .toc-list{list-style:none;margin:6px 0 0;padding:0}
     .book .toc-row{display:flex;align-items:center;gap:8px;padding:7px 2px;border-bottom:1px dotted #d6ddea}
-    .book .toc-no{flex-shrink:0;font-size:11.5px;font-weight:800;color:#b8923f;letter-spacing:.04em;min-width:42px}
+    .book .toc-no{flex-shrink:0;font-size:11.5px;font-weight:800;color:#4e6e5a;letter-spacing:.04em;min-width:42px}
     .book .toc-t{flex:1;font-size:13.5px;color:#2a3a55;line-height:1.55}
-    .book a.toc-t{text-decoration:none;cursor:pointer;transition:color .15s}.book a.toc-t:hover{color:#b8923f}
-    .lesson-check{width:14px;height:14px;accent-color:#b8923f;cursor:pointer;flex-shrink:0;margin:0}
-    .toc-dl{background:none;border:none;cursor:pointer;color:#b8923f;opacity:.5;font-size:13px;padding:0 2px;transition:opacity .15s;flex-shrink:0}.toc-dl:hover{opacity:1}
+    .book a.toc-t{text-decoration:none;cursor:pointer;transition:color .15s}.book a.toc-t:hover{color:#4e6e5a}
+    .lesson-check{width:14px;height:14px;accent-color:#4e6e5a;cursor:pointer;flex-shrink:0;margin:0}
+    .toc-dl{background:none;border:none;cursor:pointer;color:#4e6e5a;opacity:.5;font-size:13px;padding:0 2px;transition:opacity .15s;flex-shrink:0}.toc-dl:hover{opacity:1}
     /* 필기 공간 — 화면에선 숨기고 인쇄(PDF)에서만 표시 */
     .book .note-area{display:none}
     @media print{ .no-print{display:none!important} }
@@ -269,7 +269,7 @@
       const t=TRACKS.find(x=>x.name===val); if(t) return { name:t.name, price:bookPrice(t), meta:'전 '+t.lessons.length+'강 합본 · 약 '+bookPages(t)+'쪽', pass:false };
       return null;
     }
-    const COVERS=[['#213a6b','#162a52'],['#1f3a63','#122441'],['#2a3f6e','#1a2c52'],['#243b66','#152848'],['#26406e','#172d54']];
+    const COVERS=[['#2e2a24','#162a52'],['#1f3a63','#122441'],['#2a3f6e','#1a2c52'],['#243b66','#152848'],['#26406e','#172d54']];
 
     let COURSE=null, TRACKS=[], PAY={};
     let CART=[];
@@ -499,7 +499,7 @@
       if(n.thesis) h+=`<p class="bk-thesis">${esc(n.thesis)}</p>`;
       if(n.overview) String(n.overview).split('\n').forEach(p=>{if(p.trim())h+=`<p class="bk-p">${esc(p.trim())}</p>`;});
       if(n.background){h+=`<h3 class="bk-h">📜 배경</h3>`;String(n.background).split('\n').forEach(p=>{if(p.trim())h+=`<p class="bk-p">${esc(p.trim())}</p>`;});}
-      (n.sections||[]).forEach(s=>{h+=`<h3 class="bk-h">${s.t?('<span style="color:#b8923f">'+esc(s.t)+'</span> '):''}${esc(s.heading||'')}</h3>`;if(s.body)String(s.body).split('\n').forEach(p=>{if(p.trim())h+=`<p class="bk-p">${esc(p.trim())}</p>`;});if((s.points||[]).length)h+='<ul class="bk-ul">'+s.points.map(p=>`<li>${esc(p)}</li>`).join('')+'</ul>';});
+      (n.sections||[]).forEach(s=>{h+=`<h3 class="bk-h">${s.t?('<span style="color:#4e6e5a">'+esc(s.t)+'</span> '):''}${esc(s.heading||'')}</h3>`;if(s.body)String(s.body).split('\n').forEach(p=>{if(p.trim())h+=`<p class="bk-p">${esc(p.trim())}</p>`;});if((s.points||[]).length)h+='<ul class="bk-ul">'+s.points.map(p=>`<li>${esc(p)}</li>`).join('')+'</ul>';});
       if((n.scriptures||[]).length){h+=`<h3 class="bk-h">📖 핵심 성구</h3>`;n.scriptures.forEach(s=>{h+=`<div class="bk-scr"><b>${esc(s.ref||'')}</b> — ${esc(s.note||'')}</div>`;});}
       if((n.terms||[]).length){h+=`<h3 class="bk-h">🔑 핵심 용어</h3>`;n.terms.forEach(t=>{h+=`<p class="bk-term"><b>${esc(t.term||'')}</b> — ${esc(t.def||'')}</p>`;});}
       if((n.misconceptions||[]).length){h+=`<h3 class="bk-h">⚠️ 오해 vs 바른 이해</h3>`;n.misconceptions.forEach(m=>{h+=`<p class="bk-mis"><span class="w">✗ ${esc(m.wrong||'')}</span><br/><span class="r">✓ ${esc(m.right||'')}</span></p>`;});}
@@ -527,7 +527,7 @@
       window._curLessons=lessons;
       const loadList=unlocked?lessons:lessons.slice(0,1);
       const notes=await Promise.all(loadList.map(async l=>{try{const r=await fetch('content/notes/'+l.id+'.json?t='+Date.now());if(r.ok)return await r.json();}catch(e){}return null;}));
-      let h=`<div class="cover-page" style="text-align:center;padding:42px 0 34px;border-bottom:1px solid #e6e9f0"><p style="color:#b8923f;font-weight:700;letter-spacing:.28em;font-size:11px;margin:0 0 14px">BIBLY 바이블 인사이트 · 강의 노트</p><h1 style="font-size:29px;font-weight:700;color:#213a6b;line-height:1.4;margin:0 12px">${esc(t.name)}</h1><p style="color:#5a6b88;font-size:13px;margin:16px 0 0">요약노트 + 필기 공간 · 전 ${t.lessons.length}강</p><p style="color:#9aa6bd;font-size:11px;margin:20px 0 0">강의를 들으며 메모하고 참고하세요 · biblynote.com</p>${(CUR_BUYER&&CUR_EMAIL)?`<p style="color:#b8923f;font-size:10.5px;margin:18px 0 0;letter-spacing:.02em">📗 정품 · <b>${esc(CUR_EMAIL)}</b> 님께 발행 · 무단 복제·배포 금지</p>`:''}</div>`;
+      let h=`<div class="cover-page" style="text-align:center;padding:42px 0 34px;border-bottom:1px solid #e6e9f0"><p style="color:#4e6e5a;font-weight:700;letter-spacing:.28em;font-size:11px;margin:0 0 14px">BIBLY 바이블 인사이트 · 강의 노트</p><h1 style="font-size:29px;font-weight:700;color:#2e2a24;line-height:1.4;margin:0 12px">${esc(t.name)}</h1><p style="color:#5a6b88;font-size:13px;margin:16px 0 0">요약노트 + 필기 공간 · 전 ${t.lessons.length}강</p><p style="color:#9aa6bd;font-size:11px;margin:20px 0 0">강의를 들으며 메모하고 참고하세요 · biblynote.com</p>${(CUR_BUYER&&CUR_EMAIL)?`<p style="color:#4e6e5a;font-size:10.5px;margin:18px 0 0;letter-spacing:.02em">📗 정품 · <b>${esc(CUR_EMAIL)}</b> 님께 발행 · 무단 복제·배포 금지</p>`:''}</div>`;
       // 목차 — 구매자에게는 체크박스·클릭·개별PDF 제공
       const tocRows=lessons.map((l,i)=>{
         if(unlocked){
@@ -536,7 +536,7 @@
         return `<li class="toc-row"><span class="toc-no">제${i+1}강</span><span class="toc-t">${esc(cleanTitle(l.title))}</span></li>`;
       }).join('');
       const allToggle=unlocked?`<button id="btnAllLessons" onclick="toggleAllLessons()" style="font-size:11px;color:#9aa6bd;background:none;border:none;cursor:pointer;margin-left:auto;padding:0">전체 해제</button>`:'';
-      h+=`<section style="padding:24px 2px 8px"><div style="display:flex;align-items:center;gap:6px;margin:0 0 3px"><p style="font-weight:700;color:#213a6b;font-size:17px;margin:0">목차</p>${allToggle}</div><p style="color:#9aa6bd;font-size:11px;margin:0 0 8px">전 ${lessons.length}강${unlocked?' · 클릭하면 해당 강의로 이동':''}${unlocked?' · 📥 강의별 PDF 저장 가능':''}</p><ul class="toc-list">${tocRows}</ul></section>`;
+      h+=`<section style="padding:24px 2px 8px"><div style="display:flex;align-items:center;gap:6px;margin:0 0 3px"><p style="font-weight:700;color:#2e2a24;font-size:17px;margin:0">목차</p>${allToggle}</div><p style="color:#9aa6bd;font-size:11px;margin:0 0 8px">전 ${lessons.length}강${unlocked?' · 클릭하면 해당 강의로 이동':''}${unlocked?' · 📥 강의별 PDF 저장 가능':''}</p><ul class="toc-list">${tocRows}</ul></section>`;
       notes.forEach((n,i)=>{
         const body = n ? noteHTML(n,lessons[i].title,i+1)
           : `<div class="lesson" id="lesson-${i+1}"><p class="ch-label">제${i+1}강</p><h2 class="bk-title">${esc(cleanTitle(lessons[i].title))}</h2><p class="bk-p" style="color:#9aa6bd">이 강의의 요약노트는 준비 중입니다. 아래 공간에 직접 필기해 보세요.</p></div>`;
@@ -547,7 +547,7 @@
         pdfBtn.style.display=''; pdfBtn.textContent='📕 전체 PDF'; pdfBtn.title='전체 강의를 하나의 PDF로 저장합니다'; pdfBtn.onclick=savePDF;
         if(selBtn) selBtn.classList.remove('hidden');
       } else {
-        h+=`<div class="no-print" style="text-align:center;padding:26px 0 6px;border-top:1px dashed #d6ddea;margin-top:10px"><p style="color:#5a6b88;font-size:13px">… 이하 전체 ${t.lessons.length}강 합본은 구매(또는 <b style="color:#b8923f">전체 이용권</b>) 후 PDF로 받으실 수 있어요.</p></div>`;
+        h+=`<div class="no-print" style="text-align:center;padding:26px 0 6px;border-top:1px dashed #d6ddea;margin-top:10px"><p style="color:#5a6b88;font-size:13px">… 이하 전체 ${t.lessons.length}강 합본은 구매(또는 <b style="color:#4e6e5a">전체 이용권</b>) 후 PDF로 받으실 수 있어요.</p></div>`;
         $('bvLock').classList.remove('hidden');
         pdfBtn.style.display=''; pdfBtn.textContent='🔒 구매하고 PDF 받기'; pdfBtn.title='구매(또는 전체 이용권) 후 로그인하시면 PDF로 저장할 수 있어요'; pdfBtn.onclick=()=>{ location.href=buyLink; };
         if(selBtn) selBtn.classList.add('hidden');
@@ -560,24 +560,24 @@
       body.book{font-family:'Noto Serif KR',Pretendard,serif;color:#1c2b46;margin:0;line-height:1.78;-webkit-print-color-adjust:exact;print-color-adjust:exact}
       .book .cover-page{page-break-after:always;break-after:page}
       .book .lesson{page-break-before:always;break-before:page}
-      .book .ch-label{font-size:11.5px;font-weight:800;letter-spacing:.18em;color:#b8923f;margin:0 0 6px}
-      .book h2.bk-title{font-size:20px;font-weight:700;color:#213a6b;border-bottom:2px solid #b8923f;padding-bottom:9px;margin:0 0 16px;line-height:1.45}
-      .book h3.bk-h{font-size:15px;font-weight:700;color:#213a6b;margin:22px 0 8px}
+      .book .ch-label{font-size:11.5px;font-weight:800;letter-spacing:.18em;color:#4e6e5a;margin:0 0 6px}
+      .book h2.bk-title{font-size:20px;font-weight:700;color:#2e2a24;border-bottom:2px solid #4e6e5a;padding-bottom:9px;margin:0 0 16px;line-height:1.45}
+      .book h3.bk-h{font-size:15px;font-weight:700;color:#2e2a24;margin:22px 0 8px}
       .book p.bk-p{font-size:13px;line-height:2.1;margin:10px 0;color:#2a3a55}
-      .book .bk-thesis{background:#eaf0f8;border-left:3px solid #213a6b;border-radius:8px;padding:13px 16px;font-weight:600;color:#213a6b;font-size:13.5px;line-height:1.9;margin:4px 0 12px}
+      .book .bk-thesis{background:#f0e9dc;border-left:3px solid #2e2a24;border-radius:8px;padding:13px 16px;font-weight:600;color:#2e2a24;font-size:13.5px;line-height:1.9;margin:4px 0 12px}
       .book .bk-scr{background:#faf7ef;border:1px solid #e6dcc3;border-radius:8px;padding:11px 14px;margin:8px 0;font-size:12px;line-height:1.85}
       .book .bk-scr b{color:#9a7b30}
       .book ul.bk-ul{margin:8px 0 10px 2px;padding:0;list-style:none}
       .book ul.bk-ul li{font-size:12.5px;line-height:2;padding-left:16px;position:relative;color:#33415e;margin:4px 0}
-      .book ul.bk-ul li::before{content:'·';position:absolute;left:3px;color:#b8923f;font-weight:700}
-      .book .bk-term{font-size:12px;line-height:1.9;margin:6px 0}.book .bk-term b{color:#213a6b}
+      .book ul.bk-ul li::before{content:'·';position:absolute;left:3px;color:#4e6e5a;font-weight:700}
+      .book .bk-term{font-size:12px;line-height:1.9;margin:6px 0}.book .bk-term b{color:#2e2a24}
       .book .bk-mis{font-size:12px;line-height:1.85;margin:8px 0}.book .bk-mis .w{color:#b4524a}.book .bk-mis .r{color:#2f7d57}
       .book .toc-list{list-style:none;margin:6px 0 0;padding:0}
       .book .toc-row{display:flex;align-items:baseline;gap:12px;padding:9px 2px;border-bottom:1px dotted #d6ddea}
-      .book .toc-no{flex-shrink:0;font-size:11.5px;font-weight:800;color:#b8923f;letter-spacing:.04em;min-width:42px}
+      .book .toc-no{flex-shrink:0;font-size:11.5px;font-weight:800;color:#4e6e5a;letter-spacing:.04em;min-width:42px}
       .book .toc-t{flex:1;font-size:13px;color:#2a3a55;line-height:1.6}
       .book .note-area{display:block;margin:18px 0 4px;break-inside:avoid}
-      .book .note-h{font-size:11.5px;font-weight:800;letter-spacing:.04em;color:#b8923f;margin:0 0 12px}
+      .book .note-h{font-size:11.5px;font-weight:800;letter-spacing:.04em;color:#4e6e5a;margin:0 0 12px}
       .book .nline{height:30px;border-bottom:1px solid #d8dee9}
       h2.bk-title,h3.bk-h,.bk-thesis,.bk-scr,.note-h+.nline{break-inside:avoid}
     `;
@@ -623,11 +623,11 @@
       const trackTitle=($('bvTitle').textContent||'').trim();
       const curL=(window._curLessons||[])[idx-1]; const lTitle=curL?cleanTitle(curL.title):'';
       let html=`<div class="cover-page" style="text-align:center;padding:30px 0 24px;border-bottom:1px solid #e6e9f0">
-        <p style="color:#b8923f;font-weight:700;letter-spacing:.28em;font-size:11px">BIBLY 바이블 인사이트 · 강의 노트</p>
-        <h1 style="font-size:24px;font-weight:700;color:#213a6b;margin:10px 0 6px;line-height:1.4">${esc(trackTitle)}</h1>
+        <p style="color:#4e6e5a;font-weight:700;letter-spacing:.28em;font-size:11px">BIBLY 바이블 인사이트 · 강의 노트</p>
+        <h1 style="font-size:24px;font-weight:700;color:#2e2a24;margin:10px 0 6px;line-height:1.4">${esc(trackTitle)}</h1>
         <p style="font-size:13px;font-weight:700;color:#5a6b88">제${idx}강</p>
         <p style="font-size:13.5px;color:#2a3a55;margin:6px 0 0">${esc(lTitle)}</p>
-        ${(CUR_BUYER&&CUR_EMAIL)?`<p style="color:#b8923f;font-size:10.5px;margin:16px 0 0">📗 정품 · <b>${esc(CUR_EMAIL)}</b> 님께 발행 · 무단 복제·배포 금지</p>`:''}
+        ${(CUR_BUYER&&CUR_EMAIL)?`<p style="color:#4e6e5a;font-size:10.5px;margin:16px 0 0">📗 정품 · <b>${esc(CUR_EMAIL)}</b> 님께 발행 · 무단 복제·배포 금지</p>`:''}
       </div>`;
       html+=lessonEl.outerHTML;
       const nxt=lessonEl.nextElementSibling;
@@ -651,10 +651,10 @@
       const trackTitle=($('bvTitle').textContent||'').trim();
       const indices=checks.map(c=>Number(c.dataset.idx));
       let html=`<div class="cover-page" style="text-align:center;padding:42px 0 34px;border-bottom:1px solid #e6e9f0">
-        <p style="color:#b8923f;font-weight:700;letter-spacing:.28em;font-size:11px;margin:0 0 14px">BIBLY 바이블 인사이트 · 강의 노트</p>
-        <h1 style="font-size:29px;font-weight:700;color:#213a6b;line-height:1.4;margin:0 12px">${esc(trackTitle)}</h1>
+        <p style="color:#4e6e5a;font-weight:700;letter-spacing:.28em;font-size:11px;margin:0 0 14px">BIBLY 바이블 인사이트 · 강의 노트</p>
+        <h1 style="font-size:29px;font-weight:700;color:#2e2a24;line-height:1.4;margin:0 12px">${esc(trackTitle)}</h1>
         <p style="color:#5a6b88;font-size:13px;margin:10px 0 0">선택된 강의 모음 · ${indices.length}강</p>
-        ${(CUR_BUYER&&CUR_EMAIL)?`<p style="color:#b8923f;font-size:10.5px;margin:18px 0 0">📗 정품 · <b>${esc(CUR_EMAIL)}</b> 님께 발행 · 무단 복제·배포 금지</p>`:''}
+        ${(CUR_BUYER&&CUR_EMAIL)?`<p style="color:#4e6e5a;font-size:10.5px;margin:18px 0 0">📗 정품 · <b>${esc(CUR_EMAIL)}</b> 님께 발행 · 무단 복제·배포 금지</p>`:''}
       </div>`;
       indices.forEach(idx=>{
         const el=document.getElementById('lesson-'+idx); if(!el) return;

@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>내 강의실 — BIBLY 바이블 인사이트</title>
   <link rel="manifest" href="/manifest.json" />
-  <meta name="theme-color" content="#213a6b" />
+  <meta name="theme-color" content="#2e2a24" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png" />
@@ -29,9 +29,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { theme: { extend: {
-      colors: { ink:'#213a6b', navy:'#182c54', gold:'#b8923f', sand:'#eaf0f8', paper:'#f7f9fc' },
+      colors: { ink:'#2e2a24', navy:'#25211b', gold:'#4e6e5a', sand:'#f0e9dc', paper:'#faf8f3' },
       fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
-      boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
+      boxShadow: { soft:'0 2px 10px -4px rgba(46,42,36,.10)', card:'0 14px 40px -18px rgba(46,42,36,.22)' }
     }}}
   </script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -41,6 +41,13 @@
   </script>
   <style>
     h1,h2{font-family:'Noto Serif KR',Pretendard,serif}
+    /* 나의 학습방 사이드바 */
+    .sbItem{display:flex;align-items:center;gap:.6rem;width:100%;text-align:left;padding:.62rem .8rem;border-radius:.7rem;font-size:.9rem;font-weight:600;color:rgba(46,42,36,.68);white-space:nowrap;transition:all .15s;cursor:pointer}
+    .sbItem:hover{background:rgba(176,112,90,.10);color:#2e2a24}
+    .sbItem.active{background:#b0705a;color:#fff;box-shadow:0 6px 16px -8px rgba(176,112,90,.7)}
+    .sbItem.active span{color:#fff}
+    .sbGroup{padding:.35rem .85rem .25rem;font-size:.68rem;font-weight:800;letter-spacing:.12em;color:rgba(46,42,36,.32)}
+    @media (max-width:1023px){ .sbItem{width:auto} }
     @media print{
       body *{visibility:hidden!important}
       #certModal,#certModal *{visibility:visible!important}
@@ -54,9 +61,9 @@
 
   <div id="siteHeader" data-active="mylearning.html"></div>
 
-  <main class="max-w-3xl mx-auto px-4 py-8">
-    <div class="mb-8">
-      <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">MY CLASSROOM</p>
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <div class="mb-6">
+      <p class="text-[#b0705a] text-xs font-bold tracking-[0.3em] mb-2">MY CLASSROOM</p>
       <h1 class="text-2xl font-bold">내 강의실</h1>
       <p class="text-ink/55 text-sm mt-2">수강신청한 강의의 학습 현황을 한눈에 확인하세요.</p>
     </div>
@@ -80,13 +87,36 @@
 
     <!-- 로그인 -->
     <div id="dashView" class="hidden">
-      <div id="welcome" class="mb-6"></div>
+      <div class="grid lg:grid-cols-[240px_1fr] gap-6 lg:gap-8 items-start">
 
-      <!-- 마이페이지 탭 -->
-      <div class="inline-flex bg-ink/5 rounded-full p-1 mb-6">
-        <button id="myt-main" onclick="myTab('main')" class="px-5 py-2 rounded-full text-sm font-semibold transition bg-white text-ink shadow-soft">📊 학습 현황</button>
-        <button id="myt-diary" onclick="myTab('diary')" class="px-5 py-2 rounded-full text-sm font-semibold transition text-ink/50">📅 학습 다이어리</button>
-      </div>
+        <!-- ◀ 나의 학습방 사이드바 -->
+        <aside class="lg:sticky lg:top-20 space-y-3">
+          <div class="bg-gradient-to-br from-ink to-navy text-paper rounded-2xl p-5">
+            <div class="flex items-center gap-3">
+              <div id="sbAvatar" class="w-11 h-11 rounded-full bg-[#b0705a] text-white flex items-center justify-center font-bold text-lg shrink-0">B</div>
+              <div class="min-w-0">
+                <p id="sbName" class="font-bold text-[15px] truncate">회원</p>
+                <p id="sbEmail" class="text-paper/55 text-xs truncate"></p>
+              </div>
+            </div>
+          </div>
+          <nav class="bg-white rounded-2xl border border-ink/8 shadow-soft p-2.5 flex lg:block gap-1.5 overflow-x-auto">
+            <p class="sbGroup hidden lg:block">나의 학습</p>
+            <button class="sbItem active" data-sec="main" onclick="sbGo('main')">📊 <span>학습 현황</span></button>
+            <button class="sbItem" data-sec="free" onclick="sbGo('free')">📚 <span>자유 학습 과정</span></button>
+            <button class="sbItem" data-sec="cert" onclick="sbGo('cert')">🎓 <span>인증 과정</span></button>
+            <button class="sbItem" data-sec="diary" onclick="sbGo('diary')">📅 <span>학습 다이어리</span></button>
+            <p class="sbGroup hidden lg:block mt-2">나의 정보 · 설정</p>
+            <button class="sbItem" data-sec="profile" onclick="sbGo('profile')">👤 <span>개인정보 수정</span></button>
+            <a class="sbItem" href="bible-plan.html">📖 <span>성경 통독표</span></a>
+            <a class="sbItem" href="booklet.html">📕 <span>내 교재·스토어</span></a>
+            <button class="sbItem" onclick="logout()" style="color:#c0564a">🚪 <span style="color:#c0564a">로그아웃</span></button>
+          </nav>
+        </aside>
+
+        <!-- 콘텐츠 -->
+        <div class="min-w-0">
+      <div id="welcome" class="mb-6"></div>
 
       <div id="tabMain">
 
@@ -187,6 +217,46 @@
           <p class="text-[11px] text-ink/40 text-center mt-3">매일 강의 학습·성경 통독을 하면 이 달력에 기록되고 미션포인트가 쌓여요. <a href="bible-plan.html" class="text-gold font-semibold hover:underline">통독표 열기 →</a></p>
         </div>
       </div>
+
+      <!-- 👤 개인정보 수정 -->
+      <div id="tabProfile" class="hidden">
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-6 md:p-7 max-w-xl">
+          <h2 class="font-bold text-lg mb-1">개인정보 수정</h2>
+          <p class="text-ink/55 text-sm mb-6">회원 정보를 안전하게 관리하세요.</p>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-xs font-semibold text-ink/50 mb-1.5">이메일 <span class="text-ink/30">(변경 불가)</span></label>
+              <input id="pfEmail" disabled class="w-full bg-paper border border-ink/10 rounded-xl px-4 py-2.5 text-sm text-ink/50" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-ink/50 mb-1.5">이름</label>
+              <input id="pfName" placeholder="이름" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#b0705a]" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-ink/50 mb-1.5">휴대전화</label>
+              <input id="pfPhone" placeholder="010-0000-0000" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#b0705a]" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-ink/50 mb-1.5">주소</label>
+              <input id="pfAddr" placeholder="주소" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#b0705a]" />
+            </div>
+            <button onclick="saveProfile()" class="w-full bg-ink text-paper font-semibold rounded-xl py-3 hover:bg-navy transition">저장하기</button>
+            <p id="pfMsg" class="text-center text-sm min-h-[18px]"></p>
+          </div>
+
+          <div class="mt-7 pt-6 border-t border-ink/8">
+            <h3 class="font-bold text-[15px] mb-3">비밀번호 변경</h3>
+            <input id="pfPw1" type="password" placeholder="새 비밀번호 (6자 이상)" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#b0705a] mb-2" />
+            <input id="pfPw2" type="password" placeholder="새 비밀번호 확인" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#b0705a] mb-3" />
+            <button onclick="changePassword()" class="w-full border border-ink/20 text-ink font-semibold rounded-xl py-2.5 hover:bg-ink/5 transition">비밀번호 변경</button>
+            <p id="pfPwMsg" class="text-center text-sm min-h-[18px] mt-2"></p>
+            <p class="text-[11px] text-ink/40 mt-2">※ 구글 등 소셜 로그인 계정은 비밀번호 변경이 적용되지 않을 수 있습니다.</p>
+          </div>
+        </div>
+      </div>
+
+        </div><!-- /콘텐츠 -->
+      </div><!-- /grid -->
     </div>
   </main>
 
@@ -241,6 +311,7 @@
         document.getElementById('loginView').classList.add('hidden');
         document.getElementById('dashView').classList.remove('hidden');
         setNav();
+        updateSidebar();
         loadDashboard();
         loadProgram();
         loadMyBooks();
@@ -248,7 +319,7 @@
         loadBiblePlan();
         loadPoints();
         // ② 이름은 best-effort 업데이트
-        try { const { data: prof } = await withTimeout(sb.from('profiles').select('full_name').eq('id', user.id).maybeSingle(), 6000); if(prof && prof.full_name){ uname = prof.full_name; setNav(); } } catch(e){}
+        try { const { data: prof } = await withTimeout(sb.from('profiles').select('full_name').eq('id', user.id).maybeSingle(), 6000); if(prof && prof.full_name){ uname = prof.full_name; setNav(); updateSidebar(); } } catch(e){}
       } else {
         if(authShown) return; // 이미 로그인 상태면 무시(잘못된 null 이벤트 방지)
         user = null;
@@ -802,6 +873,68 @@
     }
     function closeCert(){ document.getElementById('certModal').style.display = 'none'; }
     function printCert(){ window.print(); }
+
+    // ===== 나의 학습방 사이드바 =====
+    function updateSidebar(){
+      const a=document.getElementById('sbAvatar'), n=document.getElementById('sbName'), e=document.getElementById('sbEmail');
+      if(n) n.textContent=uname;
+      if(e) e.textContent=(user&&user.email)||'';
+      if(a) a.textContent=(uname||'B').trim().charAt(0).toUpperCase();
+    }
+    function sbGo(sec){
+      const mainSecs=['main','free','cert'];
+      const tm=document.getElementById('tabMain'), td=document.getElementById('tabDiary'), tp=document.getElementById('tabProfile');
+      if(tm) tm.classList.toggle('hidden', !mainSecs.includes(sec));
+      if(td) td.classList.toggle('hidden', sec!=='diary');
+      if(tp) tp.classList.toggle('hidden', sec!=='profile');
+      if(sec==='free') showCat('free');
+      else if(sec==='cert') showCat('cert');
+      else if(sec==='main') showCat('overview');
+      if(sec==='diary') loadDiary();
+      if(sec==='profile') loadProfile();
+      document.querySelectorAll('.sbItem[data-sec]').forEach(b=>b.classList.toggle('active', b.dataset.sec===sec));
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    // ===== 개인정보 수정 =====
+    let _pfLoaded=false;
+    function pfSet(el, cls, txt){ const m=document.getElementById(el); if(m){ m.className='text-center text-sm min-h-[18px] '+cls; m.textContent=txt; } }
+    async function loadProfile(){
+      const em=document.getElementById('pfEmail'); if(em) em.value=(user&&user.email)||'';
+      if(_pfLoaded) return; _pfLoaded=true;
+      try{
+        const { data } = await withTimeout(sb.from('profiles').select('full_name,phone,address').eq('id', user.id).maybeSingle(), 6000);
+        if(data){
+          const nm=document.getElementById('pfName'); if(nm) nm.value=data.full_name||'';
+          const ph=document.getElementById('pfPhone'); if(ph) ph.value=data.phone||'';
+          const ad=document.getElementById('pfAddr'); if(ad) ad.value=data.address||'';
+        }
+      }catch(e){}
+    }
+    async function saveProfile(){
+      const full_name=(document.getElementById('pfName').value||'').trim();
+      const phone=(document.getElementById('pfPhone').value||'').trim();
+      const address=(document.getElementById('pfAddr').value||'').trim();
+      pfSet('pfMsg','text-ink/50','저장 중…');
+      try{
+        const { error } = await sb.from('profiles').upsert({ id:user.id, email:user.email, full_name, phone, address }, { onConflict:'id' });
+        if(error) throw error;
+        if(full_name){ uname=full_name; setNav(); updateSidebar(); }
+        pfSet('pfMsg','text-green-600','✓ 저장되었습니다.');
+      }catch(e){ pfSet('pfMsg','text-rose-500','저장 실패: '+(e.message||'다시 시도해 주세요.')); }
+    }
+    async function changePassword(){
+      const p1=document.getElementById('pfPw1').value||'', p2=document.getElementById('pfPw2').value||'';
+      if(p1.length<6){ pfSet('pfPwMsg','text-rose-500','비밀번호는 6자 이상이어야 합니다.'); return; }
+      if(p1!==p2){ pfSet('pfPwMsg','text-rose-500','비밀번호가 일치하지 않습니다.'); return; }
+      pfSet('pfPwMsg','text-ink/50','변경 중…');
+      try{
+        const { error } = await sb.auth.updateUser({ password:p1 });
+        if(error) throw error;
+        pfSet('pfPwMsg','text-green-600','✓ 비밀번호가 변경되었습니다.');
+        document.getElementById('pfPw1').value=''; document.getElementById('pfPw2').value='';
+      }catch(e){ pfSet('pfPwMsg','text-rose-500','변경 실패: '+(e.message||'')); }
+    }
   </script>
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>

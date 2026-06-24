@@ -13,7 +13,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { theme: { extend: {
-      colors: { ink:'#213a6b', navy:'#182c54', gold:'#b8923f', paper:'#f7f9fc', sand:'#eaf0f8' },
+      colors: { ink:'#2e2a24', navy:'#25211b', gold:'#4e6e5a', paper:'#faf8f3', sand:'#f0e9dc' },
       fontFamily: { sans: ['Pretendard','system-ui','sans-serif'] }
     }}}
   </script>
@@ -609,18 +609,18 @@
     }
     function _mailHtml(intro, bodyLines, to){
       return '<div style="font-family:\'Apple SD Gothic Neo\',sans-serif;max-width:560px;margin:0 auto;color:#1c2b46;line-height:1.75">'
-        +'<div style="background:#213a6b;color:#fff;padding:22px 24px;border-radius:14px 14px 0 0"><b style="font-size:17px">BIBLY 바이블 인사이트</b><div style="color:#cdd6e6;font-size:12px;margin-top:3px">말씀으로 시대를 읽다</div></div>'
+        +'<div style="background:#2e2a24;color:#fff;padding:22px 24px;border-radius:14px 14px 0 0"><b style="font-size:17px">BIBLY 바이블 인사이트</b><div style="color:#cdd6e6;font-size:12px;margin-top:3px">말씀으로 시대를 읽다</div></div>'
         +'<div style="border:1px solid #e6e9f0;border-top:0;border-radius:0 0 14px 14px;padding:24px">'
         +'<p style="font-size:13.5px;color:#5a6b88;margin:0 0 14px">마지막 세대 거룩한 성도를 위한 BIBLY 바이블 인사이트, 대표 오광일입니다.</p>'
         +'<p style="font-size:15px;font-weight:600">'+esc(intro)+'</p>'
         +bodyLines.map(function(l){return '<p style="font-size:14px;color:#2a3a55">'+l+'</p>';}).join('')
-        +'<div style="background:#eaf0f8;border-radius:10px;padding:12px 14px;margin:14px 0;font-size:13px"><b>로그인 계정</b><br>'+esc(to)+' 으로 <b>biblynote.com</b>에 로그인하세요.</div>'
+        +'<div style="background:#f0e9dc;border-radius:10px;padding:12px 14px;margin:14px 0;font-size:13px"><b>로그인 계정</b><br>'+esc(to)+' 으로 <b>biblynote.com</b>에 로그인하세요.</div>'
         +'<div style="font-size:13px;color:#3a4a66;background:#faf7ef;border:1px solid #ece3cc;border-radius:10px;padding:12px 14px;margin:12px 0"><b style="color:#9a7b30">📌 이용 방법</b><br>biblynote.com 로그인 → 상단 <b>스토어</b> 또는 <b>내 강의실 → 내 교재</b>에서 자료를 열람하고 PDF로 저장하실 수 있어요.</div>'
         +'<p style="font-size:12px;color:#8a93a6;line-height:1.65;margin:10px 0 0">※ 디지털 자료 특성상, 「전자상거래법」 및 구매 시 동의하신 약관에 따라 <b>PDF를 다운로드·열람하신 이후에는 청약철회(환불)가 제한</b>될 수 있습니다.</p>'
-        +'<p style="font-size:13px;color:#5a6b88;margin-top:14px">문의: <a href="mailto:bibly.note@gmail.com" style="color:#b8923f">bibly.note@gmail.com</a></p>'
+        +'<p style="font-size:13px;color:#5a6b88;margin-top:14px">문의: <a href="mailto:bibly.note@gmail.com" style="color:#4e6e5a">bibly.note@gmail.com</a></p>'
         +'<div style="border-top:1px solid #eef1f6;margin-top:16px;padding-top:14px">'
         +'<p style="font-size:13.5px;color:#2a3a55;margin:0">주님은 늘 선하십니다. 감사합니다.</p>'
-        +'<p style="font-size:12.5px;color:#9aa6bd;margin:8px 0 0"><b style="color:#213a6b">BIBLY</b> · 말씀으로 시대를 읽다<br>오광일 드림</p></div>'
+        +'<p style="font-size:12.5px;color:#9aa6bd;margin:8px 0 0"><b style="color:#2e2a24">BIBLY</b> · 말씀으로 시대를 읽다<br>오광일 드림</p></div>'
         +'</div></div>';
     }
     async function loadStore(){
@@ -666,10 +666,10 @@
       email=(email||'').toLowerCase().trim(); if(!email) return;
       // 모달 띄우고 로딩 표시
       let ov=document.getElementById('uaOv');
-      if(!ov){ ov=document.createElement('div'); ov.id='uaOv'; ov.style.cssText='position:fixed;inset:0;z-index:120;background:rgba(21,32,58,.55);display:flex;align-items:center;justify-content:center;padding:16px'; ov.addEventListener('click',e=>{ if(e.target===ov) ov.remove(); }); document.body.appendChild(ov); }
+      if(!ov){ ov=document.createElement('div'); ov.id='uaOv'; ov.style.cssText='position:fixed;inset:0;z-index:120;background:rgba(46,42,36,.55);display:flex;align-items:center;justify-content:center;padding:16px'; ov.addEventListener('click',e=>{ if(e.target===ov) ov.remove(); }); document.body.appendChild(ov); }
       const shell=(inner)=>`<div style="background:#fff;border-radius:18px;max-width:680px;width:100%;max-height:84vh;overflow:auto;box-shadow:0 30px 80px -20px rgba(0,0,0,.45)">
         <div style="position:sticky;top:0;background:#fff;border-bottom:1px solid #eef1f6;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:10px">
-          <div><p style="font-size:12px;color:#9aa6bd;margin:0">이용 기록</p><p style="font-size:16px;font-weight:700;color:#213a6b;margin:2px 0 0;word-break:break-all">${esc(email)}</p></div>
+          <div><p style="font-size:12px;color:#9aa6bd;margin:0">이용 기록</p><p style="font-size:16px;font-weight:700;color:#2e2a24;margin:2px 0 0;word-break:break-all">${esc(email)}</p></div>
           <button onclick="document.getElementById('uaOv').remove()" style="flex-shrink:0;background:#eef1f6;border:0;border-radius:10px;padding:8px 12px;font-weight:600;cursor:pointer;color:#5a6b88">닫기</button>
         </div>${inner}</div>`;
       ov.innerHTML=shell('<p style="padding:40px;text-align:center;color:#9aa6bd">기록을 불러오는 중…</p>');
@@ -685,7 +685,7 @@
       const summary=`<div style="padding:16px 20px;display:flex;flex-wrap:wrap;gap:8px;border-bottom:1px solid #f3f6fb">${chip('👁️ 열람 '+views+'회')}${chip('📥 다운로드 '+dls+'회')}${chip('📚 자료 '+tracks.length+'종')}${chip('총 '+rows.length+'건')}</div>`;
       const table=`<table style="width:100%;border-collapse:collapse;font-size:13.5px"><thead><tr style="color:#9aa6bd;text-align:left">
         <th style="padding:10px 20px;font-weight:500">일시</th><th style="padding:10px 12px;font-weight:500">행위</th><th style="padding:10px 20px;font-weight:500">자료</th></tr></thead><tbody>
-        ${rows.map(r=>`<tr style="border-top:1px solid #f3f6fb"><td style="padding:10px 20px;color:#5a6b88;white-space:nowrap">${r.created_at?new Date(r.created_at).toLocaleString('ko'):'-'}</td><td style="padding:10px 12px;font-weight:600;color:${r.action==='download'?'#b8923f':'#41506e'};white-space:nowrap">${AC_LABEL[r.action]||esc(r.action)}</td><td style="padding:10px 20px;color:#41506e">${esc(r.track||'-')}</td></tr>`).join('')}
+        ${rows.map(r=>`<tr style="border-top:1px solid #f3f6fb"><td style="padding:10px 20px;color:#5a6b88;white-space:nowrap">${r.created_at?new Date(r.created_at).toLocaleString('ko'):'-'}</td><td style="padding:10px 12px;font-weight:600;color:${r.action==='download'?'#4e6e5a':'#41506e'};white-space:nowrap">${AC_LABEL[r.action]||esc(r.action)}</td><td style="padding:10px 20px;color:#41506e">${esc(r.track||'-')}</td></tr>`).join('')}
         </tbody></table>`;
       ov.innerHTML=shell(summary+table);
     }

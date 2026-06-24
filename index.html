@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BIBLY 바이블 인사이트 — 말씀으로 시대를 읽다 (오광일의 인사이트 브리핑 공식 강의)</title>
   <link rel="manifest" href="/manifest.json" />
-  <meta name="theme-color" content="#213a6b" />
+  <meta name="theme-color" content="#2e2a24" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png" />
@@ -83,16 +83,16 @@
   <script>
     tailwind.config = { theme: { extend: {
       colors: {
-        ink:'#213a6b', navy:'#182c54', gold:'#b8923f', goldsoft:'#e7d6ac',
-        sand:'#eaf0f8', paper:'#f7f9fc'
+        ink:'#2e2a24', navy:'#25211b', gold:'#4e6e5a', goldsoft:'#dce6de', sage:'#4e6e5a', clay:'#b0705a', claysoft:'#f1e2da',
+        sand:'#f0e9dc', paper:'#faf8f3'
       },
       fontFamily: {
         sans: ['Pretendard','system-ui','sans-serif'],
         display: ['"Noto Serif KR"','Pretendard','serif']
       },
       boxShadow: {
-        card:'0 14px 40px -18px rgba(21,32,58,.22)',
-        soft:'0 2px 10px -4px rgba(21,32,58,.10)'
+        card:'0 14px 40px -18px rgba(46,42,36,.22)',
+        soft:'0 2px 10px -4px rgba(46,42,36,.10)'
       }
     }}}
   </script>
@@ -104,8 +104,8 @@
     h1, section h2{ font-family:'Noto Serif KR', Pretendard, serif; letter-spacing:-0.01em; font-weight:700; }
     .eyebrow{letter-spacing:.34em; text-transform:uppercase}
     .blob{display:none}
-    .star{width:14px;height:14px;display:inline-block;color:#cB9a4a;color:#c79a4a}
-    .hairline{height:1px;background:linear-gradient(90deg,transparent,rgba(184,146,63,.5),transparent)}
+    .star{width:14px;height:14px;display:inline-block;color:#4e6e5a;color:#c79a4a}
+    .hairline{height:1px;background:linear-gradient(90deg,transparent,rgba(78,110,90,.5),transparent)}
     details>summary{list-style:none;cursor:pointer}
     details>summary::-webkit-details-marker{display:none}
     details[open] .chev{transform:rotate(180deg)}
@@ -115,14 +115,14 @@
     #postBody p{margin:.6em 0}
     #postBody ul{list-style:disc;padding-left:1.2em;margin:.6em 0}
     #postBody li{margin:.25em 0}
-    #postBody blockquote{border-left:3px solid #b8923f;padding-left:1em;color:#5a6275;font-style:italic;margin:.9em 0}
-    #postBody strong{font-weight:700;color:#213a6b}
+    #postBody blockquote{border-left:3px solid #4e6e5a;padding-left:1em;color:#5a6275;font-style:italic;margin:.9em 0}
+    #postBody strong{font-weight:700;color:#2e2a24}
   </style>
 </head>
 
 <body class="font-sans text-ink bg-paper antialiased">
 
-  <style>.biShine{color:#b8923f}</style>
+  <style>.biShine{color:#4e6e5a}</style>
 
 
   <!-- ===== 상단 유틸바 ===== -->
@@ -140,7 +140,7 @@
   <header class="sticky top-0 z-50 bg-paper/90 backdrop-blur-md border-b border-ink/8">
     <nav class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between gap-5">
       <a href="#top" class="flex items-center gap-2.5 shrink-0">
-        <svg class="w-10 h-10 shrink-0" viewBox="0 0 48 48" role="img" aria-label="BIBLY"><rect x="9" y="9" width="30" height="30" rx="6" transform="rotate(45 24 24)" fill="#b8923f"/><text x="24" y="32.5" text-anchor="middle" font-family="'Noto Serif KR', Georgia, serif" font-size="22" font-weight="700" fill="#213a6b">B</text></svg>
+        <svg class="w-10 h-10 shrink-0" viewBox="0 0 48 48" role="img" aria-label="BIBLY"><rect x="9" y="9" width="30" height="30" rx="6" transform="rotate(45 24 24)" fill="#4e6e5a"/><text x="24" y="32.5" text-anchor="middle" font-family="'Noto Serif KR', Georgia, serif" font-size="22" font-weight="700" fill="#2e2a24">B</text></svg>
         <span class="leading-none">
           <span class="block font-extrabold tracking-tight text-[20px]">BIBLY<span class="text-gold">.</span></span>
           <span class="block text-[10px] text-ink/50 tracking-[0.04em] mt-1">말씀으로 시대를 읽다</span>
@@ -169,31 +169,30 @@
     </div>
   </header>
 
-  <!-- ===== Hero (네이비 프리미엄 · 첫인상) ===== -->
-  <section id="top" class="relative overflow-hidden text-paper bg-gradient-to-b from-navy via-ink to-[#16284c]">
-    <div class="blob bg-gold w-[520px] h-[520px] -top-32 -right-24 opacity-20"></div>
-    <div class="blob bg-gold w-[340px] h-[340px] bottom-10 -left-32 opacity-[0.10]"></div>
-    <div class="absolute inset-0 opacity-[0.05] pointer-events-none" style="background-image:radial-gradient(circle at 1px 1px,#fff 1px,transparent 0);background-size:24px 24px"></div>
+  <!-- ===== Hero (웜화이트 · 첫인상) ===== -->
+  <section id="top" class="relative overflow-hidden text-ink bg-gradient-to-b from-white via-paper to-[#f1e9dc]">
+    <div class="absolute inset-0 opacity-[0.5] pointer-events-none" style="background:radial-gradient(60% 50% at 50% 0%,rgba(176,112,90,.07),transparent 70%)"></div>
+    <div class="absolute inset-0 opacity-[0.04] pointer-events-none" style="background-image:radial-gradient(circle at 1px 1px,#2e2a24 1px,transparent 0);background-size:26px 26px"></div>
 
     <div class="relative max-w-4xl mx-auto px-5 pt-14 pb-10 md:pt-20 md:pb-12 text-center z-10">
-      <span class="inline-flex items-center gap-2 bg-gold/15 border border-gold/30 text-gold text-xs font-bold px-3.5 py-1.5 rounded-full">✦ BIBLY · 온라인 성경·신학 아카데미</span>
+      <span class="inline-flex items-center gap-2 bg-gold/10 border border-gold/25 text-gold text-xs font-bold px-3.5 py-1.5 rounded-full">✦ BIBLY · 온라인 성경·신학 아카데미</span>
       <h1 data-cms="home.heroTitle" class="mt-6 text-[40px] md:text-[66px] font-bold leading-[1.08] tracking-tight">
         말씀으로 <span class="text-gold">시대를 읽다</span>
       </h1>
-      <p class="mt-5 text-paper/85 text-lg md:text-2xl font-semibold leading-relaxed">
-        보는 신앙에서, <span class="text-gold">스스로 읽고 분별하는 신앙</span>으로.
+      <p class="mt-5 text-ink/80 text-lg md:text-2xl font-semibold leading-relaxed">
+        보는 신앙에서, <span class="text-[#b0705a]">스스로 읽고 분별하는 신앙</span>으로.
       </p>
-      <p data-cms="home.heroSub" class="mt-4 text-paper/60 text-[15px] md:text-[17px] leading-relaxed max-w-2xl mx-auto">
-        교회가 깊이 다루지 않는 <b class="text-paper/90">종말론·천년왕국·성경적 세계관</b>을,<br class="hidden sm:block"/>
-        미국 신학 석사 <b class="text-paper/90">오광일 전도자</b>의 검증된 강의로 — 기초부터 고급까지.
+      <p data-cms="home.heroSub" class="mt-4 text-ink/60 text-[15px] md:text-[17px] leading-relaxed max-w-2xl mx-auto">
+        교회가 깊이 다루지 않는 <b class="text-ink/90">종말론·천년왕국·성경적 세계관</b>을,<br class="hidden sm:block"/>
+        미국 신학 석사 <b class="text-ink/90">오광일 전도자</b>의 검증된 강의로 — 기초부터 고급까지.
       </p>
 
       <div class="mt-9 flex flex-col sm:flex-row gap-3 justify-center">
-        <a href="watch.html" class="bg-gold text-white font-bold text-lg px-9 py-4 rounded-full hover:opacity-90 transition shadow-xl shadow-black/30 text-center">▶ 무료로 시작하기</a>
-        <a href="curriculum.html" class="border border-paper/25 text-paper font-semibold px-9 py-4 rounded-full hover:bg-paper/10 transition text-center">전체 커리큘럼 보기</a>
+        <a href="watch.html" class="bg-gold text-white font-bold text-lg px-9 py-4 rounded-full hover:opacity-90 transition shadow-card text-center">▶ 무료로 시작하기</a>
+        <a href="curriculum.html" class="border border-ink/20 text-ink font-semibold px-9 py-4 rounded-full hover:bg-ink/5 transition text-center">전체 커리큘럼 보기</a>
       </div>
 
-      <div class="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-paper/60">
+      <div class="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-ink/55">
         <span class="flex items-center gap-1.5"><span class="text-gold font-bold">✓</span> 전 강의 100% 무료</span>
         <span class="flex items-center gap-1.5"><span class="text-gold font-bold">✓</span> 무료 회원가입 후 시청</span>
         <span class="flex items-center gap-1.5"><span class="text-gold font-bold">✓</span> 무제한 소장 · PDF 제공</span>
@@ -203,14 +202,14 @@
     <!-- 대표 시리즈 레일 (첫 화면에서 바로 '볼거리') -->
     <div class="relative z-10 max-w-6xl mx-auto px-5 pb-14">
       <div class="flex items-center justify-between mb-3">
-        <p class="text-paper/70 text-sm font-semibold"><span class="text-gold">●</span> 대표 시리즈 · 지금 바로 정주행</p>
-        <a href="curriculum.html" class="text-paper/55 text-xs hover:text-gold whitespace-nowrap">전체 트랙 보기 ›</a>
+        <p class="text-ink/60 text-sm font-semibold"><span class="text-[#b0705a]">●</span> 대표 시리즈 · 지금 바로 정주행</p>
+        <a href="curriculum.html" class="text-ink/45 text-xs hover:text-gold whitespace-nowrap">전체 트랙 보기 ›</a>
       </div>
       <div id="heroSeriesRail" class="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <div class="aspect-video rounded-xl bg-white/5 animate-pulse"></div>
-        <div class="aspect-video rounded-xl bg-white/5 animate-pulse"></div>
-        <div class="aspect-video rounded-xl bg-white/5 animate-pulse"></div>
-        <div class="aspect-video rounded-xl bg-white/5 animate-pulse"></div>
+        <div class="aspect-video rounded-xl bg-ink/5 animate-pulse"></div>
+        <div class="aspect-video rounded-xl bg-ink/5 animate-pulse"></div>
+        <div class="aspect-video rounded-xl bg-ink/5 animate-pulse"></div>
+        <div class="aspect-video rounded-xl bg-ink/5 animate-pulse"></div>
       </div>
     </div>
   </section>
@@ -813,6 +812,23 @@
     </div>
   </section>
 
+  <!-- ===== 주요 학습 시리즈 (깔끔한 타이포 디렉터리) ===== -->
+  <section id="series" class="py-24 bg-paper">
+    <div class="max-w-6xl mx-auto px-5">
+      <div class="flex flex-wrap items-end justify-between gap-4 mb-9">
+        <div>
+          <p class="eyebrow text-[#b0705a] text-xs font-semibold mb-3">SERIES</p>
+          <h2 class="text-2xl md:text-[32px] font-bold">주요 학습 시리즈</h2>
+          <p class="text-ink/60 mt-3 max-w-2xl leading-relaxed">관심 가는 주제를 골라 바로 시작하세요. 모든 시리즈는 <b class="text-ink">무료</b>로 열려 있습니다.</p>
+        </div>
+        <a href="curriculum.html" class="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-gold">전체 커리큘럼 →</a>
+      </div>
+      <div id="seriesGrid" class="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
+        <p class="text-ink/40 text-sm col-span-full text-center py-10">불러오는 중…</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== 유튜브 영상 ===== -->
   <section id="videos" class="py-24 bg-paper">
     <div class="max-w-6xl mx-auto px-5">
@@ -876,7 +892,7 @@
         <!-- 사진 + 약력 카드 -->
         <div class="md:col-span-2">
           <div id="instructorPhoto" class="aspect-[4/5] rounded-3xl bg-gradient-to-br from-navy to-ink border border-ink/10 flex flex-col items-center justify-center gap-3 relative overflow-hidden">
-            <div class="absolute inset-0 opacity-15" style="background-image:radial-gradient(circle at 50% 30%, #b8923f 0, transparent 55%)"></div>
+            <div class="absolute inset-0 opacity-15" style="background-image:radial-gradient(circle at 50% 30%, #4e6e5a 0, transparent 55%)"></div>
             <span class="relative font-display text-5xl text-gold/80">吳</span>
             <span class="relative text-ink/40 text-xs tracking-[0.3em]">OH KWANG-IL</span>
             <span class="relative text-ink/25 text-[11px]">강사 사진이 들어갈 자리</span>
@@ -1392,7 +1408,7 @@
     function renderMenu(menu){
       if(!document.getElementById('biblyNavCSS')){
         var st=document.createElement('style'); st.id='biblyNavCSS';
-        st.textContent='.navItem{position:relative}.navItem>a{cursor:pointer}.biblyTop{position:relative;padding:6px 2px;letter-spacing:-.005em;transition:color .18s}.biblyTop::after{content:"";position:absolute;left:2px;right:2px;bottom:0;height:2px;background:linear-gradient(90deg,#b8923f,#dcb866);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .22s cubic-bezier(.4,0,.2,1)}.biblyTop:hover::after,.navItem:hover>.biblyTop::after,.biblyOn::after{transform:scaleX(1)}.navDrop{position:absolute;left:0;top:100%;padding-top:12px;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .16s,transform .16s,visibility .16s;z-index:60}.navItem:hover .navDrop{opacity:1;visibility:visible;transform:none}.navDropCard{background:#fff;border:1px solid rgba(21,32,58,.08);border-radius:.9rem;box-shadow:0 18px 50px -20px rgba(21,32,58,.45);padding:.45rem;min-width:212px}.navDropCard a{display:flex;align-items:center;gap:.55rem;padding:.6rem .8rem;border-radius:.6rem;font-size:.875rem;font-weight:500;color:rgba(21,32,58,.82);white-space:nowrap;transition:background .15s,color .15s}.navDropCard a::before{content:"";width:5px;height:5px;border-radius:50%;background:rgba(184,146,63,.35);flex:none;transition:transform .15s,background .15s}.navDropCard a:hover{background:rgba(184,146,63,.1);color:#b8923f}.navDropCard a:hover::before{background:#b8923f;transform:scale(1.35)}';
+        st.textContent='.navItem{position:relative}.navItem>a{cursor:pointer}.biblyTop{position:relative;padding:6px 2px;letter-spacing:-.005em;transition:color .18s}.biblyTop::after{content:"";position:absolute;left:2px;right:2px;bottom:0;height:2px;background:linear-gradient(90deg,#4e6e5a,#dcb866);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .22s cubic-bezier(.4,0,.2,1)}.biblyTop:hover::after,.navItem:hover>.biblyTop::after,.biblyOn::after{transform:scaleX(1)}.navDrop{position:absolute;left:0;top:100%;padding-top:12px;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .16s,transform .16s,visibility .16s;z-index:60}.navItem:hover .navDrop{opacity:1;visibility:visible;transform:none}.navDropCard{background:#fff;border:1px solid rgba(46,42,36,.08);border-radius:.9rem;box-shadow:0 18px 50px -20px rgba(46,42,36,.45);padding:.45rem;min-width:212px}.navDropCard a{display:flex;align-items:center;gap:.55rem;padding:.6rem .8rem;border-radius:.6rem;font-size:.875rem;font-weight:500;color:rgba(46,42,36,.82);white-space:nowrap;transition:background .15s,color .15s}.navDropCard a::before{content:"";width:5px;height:5px;border-radius:50%;background:rgba(78,110,90,.35);flex:none;transition:transform .15s,background .15s}.navDropCard a:hover{background:rgba(78,110,90,.1);color:#4e6e5a}.navDropCard a:hover::before{background:#4e6e5a;transform:scale(1.35)}';
         document.head.appendChild(st);
       }
       document.getElementById('mainmenu').innerHTML = (menu || []).map(m => {
@@ -1609,7 +1625,7 @@
             const vid = ytId((ls[0] || {}).youtube);
             const thumb = vid ? `https://img.youtube.com/vi/${vid}/mqdefault.jpg` : '';
             const nm = (lv.name || '강의').replace(/</g,'&lt;');
-            return `<a href="watch.html?l=${starts[ti]}" class="group relative block rounded-xl overflow-hidden border border-white/10 hover:border-gold/60 transition">
+            return `<a href="watch.html?l=${starts[ti]}" class="group relative block rounded-xl overflow-hidden border border-ink/10 hover:border-gold/60 transition shadow-soft">
               <div class="aspect-video bg-ink/60 overflow-hidden">${ thumb ? `<img src="${thumb}" alt="" loading="lazy" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition duration-500"/>` : '' }</div>
               <span class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent"></span>
               <span class="absolute top-2 right-2 bg-gold text-white text-[10px] font-bold px-1.5 py-0.5 rounded">전 ${ls.length}강</span>
@@ -1652,6 +1668,25 @@
                   <span class="text-sm font-semibold text-gold">강의 보기 →</span>
                 </div>
               </div>
+            </a>`;
+          }).join(''); }
+        }
+
+        // (1.5) 주요 학습 시리즈 — 깔끔한 타이포 디렉터리(전체 트랙)
+        const seriesGrid = document.getElementById('seriesGrid');
+        if(seriesGrid){
+          if(!total){ seriesGrid.innerHTML = '<p class="text-ink/40 text-sm col-span-full text-center py-10">곧 강의가 추가됩니다.</p>'; }
+          else { seriesGrid.innerHTML = levels.map((lv, ti) => {
+            const ls = lv.lessons || [];
+            if(!ls.length) return '';
+            const name = (lv.name || '강의').replace(/</g,'&lt;');
+            return `<a href="watch.html?l=${starts[ti]}" class="group bg-white border border-ink/8 rounded-2xl px-5 py-4 hover:border-[#b0705a]/45 hover:shadow-soft transition flex flex-col min-h-[112px]">
+              <span class="text-[11px] font-bold text-[#b0705a] tracking-[0.12em] mb-1.5">SERIES ${String(ti+1).padStart(2,'0')}</span>
+              <h3 class="font-display font-bold text-[16px] md:text-[17px] leading-snug text-ink group-hover:text-[#b0705a] transition">${name}</h3>
+              <span class="mt-auto pt-3 flex items-center justify-between">
+                <span class="text-xs font-semibold text-ink/45">${ls.length}강 · 무료</span>
+                <span class="text-[#4e6e5a] text-sm opacity-0 group-hover:opacity-100 transition">→</span>
+              </span>
             </a>`;
           }).join(''); }
         }
@@ -1842,15 +1877,15 @@
     function showFoundingWelcome(no, gaveGift){
       const noLine = no ? '당신은 <b>BIBLY 1기 창립 멤버 #'+String(no).padStart(3,'0')+'</b> 입니다 🎉'
                         : '1기 창립 멤버로 함께해 주셔서 감사합니다 🎉';
-      const giftLine = gaveGift ? '<p style="color:#b8923f;font-size:13px;margin-top:8px">🎁 가입 선물을 새 창에서 열었어요.</p>' : '';
+      const giftLine = gaveGift ? '<p style="color:#4e6e5a;font-size:13px;margin-top:8px">🎁 가입 선물을 새 창에서 열었어요.</p>' : '';
       const ov=document.createElement('div'); ov.id='foundingOv';
-      ov.style.cssText='position:fixed;inset:0;z-index:140;background:rgba(21,32,58,.6);display:flex;align-items:center;justify-content:center;padding:16px';
+      ov.style.cssText='position:fixed;inset:0;z-index:140;background:rgba(46,42,36,.6);display:flex;align-items:center;justify-content:center;padding:16px';
       ov.innerHTML='<div style="background:#fff;border-radius:20px;max-width:380px;width:100%;padding:28px 24px;text-align:center;box-shadow:0 30px 80px -20px rgba(0,0,0,.5)">'
         +'<div style="font-size:42px">🏅</div>'
-        +'<h3 style="font-size:19px;font-weight:700;color:#213a6b;margin:8px 0 6px">환영합니다!</h3>'
+        +'<h3 style="font-size:19px;font-weight:700;color:#2e2a24;margin:8px 0 6px">환영합니다!</h3>'
         +'<p style="color:#2a3a55;font-size:14px;line-height:1.7">'+noLine+'</p>'+giftLine
         +'<p style="color:#5a6b88;font-size:12.5px;margin-top:10px;line-height:1.7">앞으로 새 강의·자료를 가장 먼저 전해드리고, 유료 전환 시 1기 특별 혜택으로 보답할게요.</p>'
-        +'<div style="display:flex;gap:8px;margin-top:18px"><a href="mylearning.html" style="flex:1;background:#213a6b;color:#fff;font-weight:700;padding:11px;border-radius:12px;text-decoration:none">내 강의실 가기</a>'
+        +'<div style="display:flex;gap:8px;margin-top:18px"><a href="mylearning.html" style="flex:1;background:#2e2a24;color:#fff;font-weight:700;padding:11px;border-radius:12px;text-decoration:none">내 강의실 가기</a>'
         +'<button onclick="document.getElementById(\'foundingOv\').remove()" style="padding:11px 16px;background:#eef1f6;border:0;border-radius:12px;font-weight:600;cursor:pointer">닫기</button></div></div>';
       ov.addEventListener('click',function(e){ if(e.target===ov) ov.remove(); });
       document.body.appendChild(ov);
