@@ -689,6 +689,8 @@
       if(nextRank){ nextRemain = (nextRank.tracks||[]).filter(t => byName[t]).filter(t => (byName[t]||[]).some(l => { const r = exById[ytId(l.youtube)]; return !(r && r.passed); })).length; }
       renderRankBadge(earnedTier, nextRank, nextRemain);
       setSidebarRank(earnedTier);
+      // 커뮤니티 등에서 남들도 내 급수 휘장을 볼 수 있도록 공개용 member_ranks에 저장(테이블 없으면 조용히 무시)
+      if(earnedTier>0){ try{ sb.from('member_ranks').upsert({ user_id: user.id, tier: earnedTier }, { onConflict:'user_id' }).then(()=>{},()=>{}); }catch(e){} }
 
       // 접근 가능한 과목 기준 진행 요약
       let progPassed = 0, progTotal = 0, finishedCourses = 0;
@@ -870,10 +872,12 @@
       document.getElementById('certSheet').innerHTML = `
         <div class="bg-ink text-paper px-7 py-8">
           <div class="border-2 border-gold/40 rounded-2xl px-6 py-9 text-center">
+            ${window.__earnedTier>0?`<div class="flex justify-center mb-3">${rankSeal(window.__earnedTier,42,true)}</div>`:''}
             <p class="text-gold tracking-[0.34em] text-[11px] font-bold mb-1">CERTIFICATE OF COMPLETION</p>
             <p class="text-paper/45 text-xs tracking-[0.3em] mb-7">수　료　증</p>
             <p class="text-paper/50 text-xs mb-1">학습자</p>
-            <p class="text-2xl font-bold mb-6" style="font-family:'Noto Serif KR',serif">${esc(uname)}</p>
+            <p class="text-2xl font-bold mb-1" style="font-family:'Noto Serif KR',serif">${esc(uname)}</p>
+            ${window.__earnedTier>0?`<p class="text-gold text-[11px] font-semibold mb-6">아카데미 ${esc(((((window.PROGRAM)||PROGRAM||{}).ranks||[]).find(r=>r.tier===window.__earnedTier)||{}).name||'')} 급수</p>`:'<div class="mb-6"></div>'}
             <p class="text-paper/65 text-[13px] leading-relaxed mb-7">위 학습자는 BIBLY 바이블 인사이트의 아래 과정을<br/>성실히 이수하였기에 이 증서를 드립니다.</p>
             <p class="text-paper/45 text-xs mb-1">이수 과정</p>
             <p class="text-gold font-bold text-lg leading-snug mb-7 px-2">${esc(name)}</p>
@@ -930,10 +934,19 @@
             <p class="text-[11px] font-bold tracking-[0.18em] mb-1" style="color:${earned?(earned.color||'#b0705a'):'#b0a48f'}">MY RANK · 내 급수</p>
             <p class="font-bold text-lg leading-tight">${headline}</p>
             <p class="text-xs text-ink/55 mt-1 leading-relaxed">${sub}</p>
+            ${earnedTier>0?`<button onclick="shareRank()" class="mt-2 inline-flex items-center gap-1 text-xs font-bold text-[#b0705a] hover:underline">🎉 내 급수 자랑하기</button>`:''}
           </div>
         </div>
         <div class="mt-4 pt-4 border-t border-ink/8 flex items-center justify-between gap-0.5">${ladder}</div>
       </div>`;
+    }
+    function shareRank(){
+      const t = window.__earnedTier||0; if(!t) return;
+      const rk = ((PROGRAM&&PROGRAM.ranks)||[]).find(r => r.tier === t);
+      const nm = rk ? rk.name : '';
+      const txt = `BIBLY 아카데미에서 '${nm}' 급수를 취득했어요! 🏅 말씀으로 시대를 읽다 · ${location.origin}/academy.html`;
+      if(navigator.share){ navigator.share({ title:'BIBLY 급수 휘장', text:txt }).catch(()=>{}); }
+      else { try{ navigator.clipboard.writeText(txt).then(()=>alert('자랑 문구를 복사했어요! 어디든 붙여넣어 공유하세요 🙌'),()=>{}); }catch(e){} }
     }
     function sbGo(sec){
       const mainSecs=['main','free','cert'];

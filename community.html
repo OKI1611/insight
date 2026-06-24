@@ -319,6 +319,23 @@
       return new Date(iso).toLocaleDateString('ko-KR');
     }
 
+    // ===== 🏅 작성자 급수 휘장 =====
+    const RANKS = {};
+    const RANK_C = {1:['#8aa595','#6f8c7e'],2:['#5e8169','#4a6a55'],3:['#3f6b5a','#305446'],4:['#b0705a','#965a46'],5:['#9c4f3a','#7e3d2c']};
+    const RANK_RN = {1:'Ⅰ',2:'Ⅱ',3:'Ⅲ',4:'Ⅳ',5:'Ⅴ'};
+    const RANK_NM = {1:'Associate',2:'Professional',3:'Expert',4:'Master',5:'Laureate'};
+    function rankSeal(tier, size){
+      tier = Number(tier)||0; if(!tier) return '';
+      const [c,c2]=RANK_C[tier]||RANK_C[1];
+      return `<span title="BIBLY 아카데미 ${RANK_NM[tier]||''} 급수" class="inline-flex items-center justify-center rounded-full align-middle shrink-0" style="width:${size}px;height:${size}px;background:radial-gradient(circle at 32% 26%, rgba(255,255,255,.55), transparent 58%), linear-gradient(145deg,${c},${c2});box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.3)"><span style="font-size:${Math.round(size*0.5)}px;color:#fff;font-family:Georgia,serif;font-weight:700;line-height:1">${RANK_RN[tier]||''}</span></span>`;
+    }
+    async function loadRanks(ids){
+      const need = [...new Set(ids)].filter(id => id && !(id in RANKS));
+      if(!need.length) return;
+      try{ const { data } = await sb.from('member_ranks').select('user_id,tier').in('user_id', need); (data||[]).forEach(r => { RANKS[r.user_id] = Number(r.tier)||0; }); }catch(e){}
+      need.forEach(id => { if(!(id in RANKS)) RANKS[id] = 0; });
+    }
+
     function renderPost(p){
       const mine = currentUser && p.author_id === currentUser.id;
       const canDel = mine || isAdmin;
@@ -327,7 +344,7 @@
         <div class="flex items-center justify-between mb-2">
           <div class="flex items-center gap-2.5">
             <div class="w-9 h-9 rounded-full bg-gold/20 text-gold flex items-center justify-center font-bold">${esc((p.author_name||'?').slice(0,1))}</div>
-            <div><p class="font-semibold text-sm">${esc(p.author_name||'회원')}${ p.is_private ? ' <span class="ml-1 text-[10px] bg-ink/10 text-ink/60 font-bold px-1.5 py-0.5 rounded-full align-middle">🔒 비공개</span>' : '' }</p><p class="text-ink/40 text-xs">${timeAgo(p.created_at)}</p></div>
+            <div><p class="font-semibold text-sm flex items-center gap-1.5">${esc(p.author_name||'회원')}${rankSeal(RANKS[p.author_id],16)}${ p.is_private ? ' <span class="text-[10px] bg-ink/10 text-ink/60 font-bold px-1.5 py-0.5 rounded-full align-middle">🔒 비공개</span>' : '' }</p><p class="text-ink/40 text-xs">${timeAgo(p.created_at)}</p></div>
           </div>
           <div class="flex items-center gap-2 shrink-0">
             <button onclick="shareCommunityPost('${p.id}')" class="text-ink/40 hover:text-gold text-xs font-medium" title="이 글 공유하기">🔗 공유</button>
@@ -399,7 +416,7 @@
           <div class="w-7 h-7 rounded-full ${ c.is_admin ? 'bg-gold text-white' : 'bg-ink/10 text-ink/55' } flex items-center justify-center font-bold text-xs shrink-0">${esc((c.author_name||'?').slice(0,1))}</div>
           <div class="flex-1 min-w-0 bg-paper rounded-2xl px-3.5 py-2">
             <div class="flex items-center gap-1.5">
-              <span class="font-semibold text-[13px] ${ c.is_admin ? 'text-gold' : '' }">${esc(c.author_name || '회원')}${adminBadge}</span>
+              <span class="font-semibold text-[13px] ${ c.is_admin ? 'text-gold' : '' }">${esc(c.author_name || '회원')}${adminBadge}</span>${rankSeal(RANKS[c.author_id],13)}
               <span class="text-ink/35 text-[11px]">${timeAgo(c.created_at)}</span>
               ${canDel ? `<button onclick="delComment('${c.id}')" class="ml-auto text-ink/25 hover:text-red-500 text-sm leading-none shrink-0" title="삭제">×</button>` : ''}
             </div>
@@ -444,10 +461,12 @@
       if(error){ feed.innerHTML = `<p class="text-red-500 text-sm text-center py-8">불러오기 오류: ${esc(error.message)}</p>`; return; }
       if(!data.length){ feed.innerHTML = `<p class="text-ink/40 text-sm text-center py-10">${ currentBoard === 'qna' ? '첫 질문을 남겨보세요! 🙋' : currentBoard === 'counsel' ? '아직 상담 글이 없어요. 비공개로 첫 상담을 남겨보세요 🙏' : currentBoard === 'prayer' ? '첫 기도 제목을 나눠보세요! 🙏' : '첫 글의 주인공이 되어보세요! ✍️' }</p>`; return; }
       POSTS_BY_ID = {}; data.forEach(p => { POSTS_BY_ID[p.id] = p; });
+      await loadRanks(data.map(p => p.author_id));   // 작성자 급수 휘장
       feed.innerHTML = data.map(renderPost).join('');
       // 댓글 불러오기
       const ids = data.map(p => p.id);
       const { data: comments } = await sb.from('community_comments').select('*').in('post_id', ids).order('created_at', { ascending:true });
+      await loadRanks((comments || []).map(c => c.author_id));   // 댓글 작성자 급수 휘장
       const byPost = {};
       (comments || []).forEach(c => { (byPost[c.post_id] = byPost[c.post_id] || []).push(c); });
       data.forEach(p => renderComments(p.id, byPost[p.id] || []));
