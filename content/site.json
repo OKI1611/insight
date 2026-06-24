@@ -6,7 +6,17 @@
     },
     {
       "label": "BIBLY 이야기",
-      "href": "about.html"
+      "href": "about.html",
+      "children": [
+        {
+          "label": "우리의 사명·소개",
+          "href": "about.html"
+        },
+        {
+          "label": "🎖️ 1기 창립 멤버",
+          "href": "founding.html"
+        }
+      ]
     },
     {
       "label": "강의·커리큘럼",
