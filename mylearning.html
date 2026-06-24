@@ -187,7 +187,7 @@
             <span class="text-xl">📚</span><h2 class="font-bold text-lg">자유 학습 과정</h2>
             <span class="text-[11px] font-bold text-ink/45 bg-ink/[0.06] px-2 py-0.5 rounded-full">시험 없이 무료</span>
           </div>
-          <a href="index.html#catalog" class="text-sm text-gold font-semibold hover:underline whitespace-nowrap">+ 과정 추가</a>
+          <a href="index.html#series" class="text-sm text-gold font-semibold hover:underline whitespace-nowrap">+ 과정 추가</a>
         </div>
         <p class="text-xs text-ink/45 mb-4">원하는 강의를 자유롭게 듣고 진도를 쌓는 과정이에요.</p>
         <div id="summary" class="grid grid-cols-3 gap-3 mb-6"></div>
@@ -492,7 +492,7 @@
         + (cand.length?'<span class="text-xs text-ink/45 shrink-0">'+cand.length+'강 남음</span>':'')+'</div>'
         + goalBar;
       if(!week.length){
-        html += '<div class="text-center py-5 text-sm text-ink/55">🎉 추천 강의를 모두 완료했어요! <a href="index.html#catalog" class="text-gold font-semibold hover:underline">새 과정 추가 →</a></div>';
+        html += '<div class="text-center py-5 text-sm text-ink/55">🎉 추천 강의를 모두 완료했어요! <a href="index.html#series" class="text-gold font-semibold hover:underline">새 과정 추가 →</a></div>';
       } else {
         html += '<p class="text-xs text-ink/50 mb-3">'+(starter?'먼저 <b class="text-ink/70">'+esc(week[0].track)+'</b>부터 시작해 보세요. ':'')+'하루 한 강씩, 이번 주 <b class="text-gold">'+week.length+'강</b>에 도전해요. 꾸준함이 실력이 됩니다.</p>';
         html += week.map((c,i)=>'<a href="watch.html?l='+c.gi+'" class="flex items-center gap-3 rounded-xl border border-ink/8 px-3 py-2.5 mb-1.5 hover:border-gold/40 hover:bg-gold/[0.03] transition">'
@@ -596,7 +596,7 @@
           <p class="text-3xl mb-3">📚</p>
           <p class="font-semibold mb-1">아직 수강신청한 강의가 없어요</p>
           <p class="text-sm text-ink/55 mb-5">강의실에서 마음에 드는 과정을 수강신청해 보세요.</p>
-          <a href="index.html#catalog" class="inline-block bg-gold text-white font-semibold px-6 py-3 rounded-full hover:opacity-90 transition">강의 둘러보기 →</a>
+          <a href="index.html#series" class="inline-block bg-gold text-white font-semibold px-6 py-3 rounded-full hover:opacity-90 transition">강의 둘러보기 →</a>
         </div>`;
         return;
       }
