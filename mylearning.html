@@ -117,6 +117,7 @@
         <!-- 콘텐츠 -->
         <div class="min-w-0">
       <div id="welcome" class="mb-6"></div>
+      <div id="accessBanner" class="mb-6"></div>
 
       <div id="tabMain">
 
@@ -335,6 +336,7 @@
         loadMyPosts();
         loadBiblePlan();
         loadPoints();
+        loadAccessBanner();
         // ② 이름은 best-effort 업데이트
         try { const { data: prof } = await withTimeout(sb.from('profiles').select('full_name').eq('id', user.id).maybeSingle(), 6000); if(prof && prof.full_name){ uname = prof.full_name; setNav(); updateSidebar(); } } catch(e){}
       } else {
@@ -909,6 +911,25 @@
     function closeCert(){ document.getElementById('certModal').style.display = 'none'; }
     function printCert(){ window.print(); }
 
+    // ===== 🎟️ 멤버십 이용권 상태/안내 =====
+    async function loadAccessBanner(){
+      const el = document.getElementById('accessBanner'); if(!el || !window.biblyAccess || !user) return;
+      try{
+        const st = await biblyAccess(sb, user);
+        let html = (window.biblyAccessBanner ? biblyAccessBanner(st) : '') || '';
+        if(st.kind !== 'none' && !st.expired && st.paidTier === 0){
+          const label = st.founding ? '창립 멤버 · 1년 무료 이용권' : '추천 가입 · 3개월 무료 이용권';
+          const until = st.expiresAt ? new Date(st.expiresAt).toLocaleDateString('ko-KR') : '';
+          const card = '<div class="bg-white rounded-2xl border border-gold/30 shadow-soft p-4 flex items-center gap-3">'
+            + '<span class="text-2xl">'+(st.founding?'🎖️':'🎟️')+'</span>'
+            + '<div class="flex-1 min-w-0"><p class="font-bold text-sm">'+label+'</p>'
+            + '<p class="text-xs text-ink/55 mt-0.5">~'+until+'까지 · 모든 과정·자료 무료 이용'+(st.daysLeft!=null?' <span class="text-gold font-semibold">(D-'+st.daysLeft+')</span>':'')+'</p></div></div>';
+          html = card + (html ? '<div class="mt-3">'+html+'</div>' : '');
+        }
+        el.innerHTML = html;
+      }catch(e){ el.innerHTML = ''; }
+    }
+
     // ===== 나의 학습방 사이드바 =====
     function updateSidebar(){
       const a=document.getElementById('sbAvatar'), n=document.getElementById('sbName'), e=document.getElementById('sbEmail');
@@ -1025,6 +1046,7 @@
   </script>
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script src="/access.js?v=1"></script>
   <script src="auth-header.js?v=20260619c"></script>
 </body>
 </html>

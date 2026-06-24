@@ -135,26 +135,37 @@
       let reqTier=0, userTier=0;
       (PROGRAM.ranks||[]).forEach(rk=>{ if((rk.tracks||[]).includes(TRACK)) reqTier=rk.tier||0; });
       try{ const {data}=await withTimeout(sb.from('cert_access').select('tier').eq('user_id',user.id).maybeSingle(),8000); if(data&&data.tier) userTier=Number(data.tier)||0; }catch(e){}
-      if(reqTier>0 && userTier<reqTier){ renderLocked(); return; }
+      let access={full:false,founding:false,expired:false,kind:'none'};
+      try{ if(window.biblyAccess) access=await biblyAccess(sb,user); }catch(e){}
+      if(reqTier>0 && !access.full && userTier<reqTier){ renderLocked(access); return; }
       // 기존 결과
       RESULT=null;
       try{ const {data}=await withTimeout(sb.from('exam_results').select('*').eq('user_id',user.id).eq('lesson_id',LID).maybeSingle(),8000); RESULT=data||null; }catch(e){}
       renderIntro();
     }
 
-    function renderLocked(){
+    function renderLocked(access){
+      access = access||{};
       const rk=(PROGRAM.ranks||[]).find(r=>(r.tracks||[]).includes(TRACK))||{};
       const won=(n)=>'₩'+(Number(n)||0).toLocaleString();
-      const price=rk.earlybird||rk.price||0;
+      const HIDE=!!PROGRAM.hidePrice, founding=!!access.founding, base=rk.price||0;
+      const price = founding ? Math.round(base*0.8) : (rk.earlybird||base||0);
+      const expiredFlow = !!access.expired;
+      const head = expiredFlow ? '무료 이용 기간이 종료되었어요' : '수료 시험은 인증 과정 등록자 전용이에요';
+      const body = expiredFlow
+        ? `${founding?'창립 멤버 ':'추천 가입 '}무료 이용 기간이 끝났어요. 계속해서 시험·요약노트·교재를 이용하시려면 결제가 필요합니다.${founding?' <b class="text-gold">창립 멤버는 정가의 80%(20% 할인)</b>로 이어가실 수 있어요.':''}`
+        : `이 시험은 «${esc(rk.name||'')}»(${esc(rk.rank||'')}) 패키지에 포함돼 있어요. 등록하시면 시험·요약노트·수료증·학점을 모두 이용할 수 있습니다.`;
+      const priceHtml = HIDE ? '<span class="text-lg font-bold text-gold">가격 추후 안내</span>'
+        : `<span class="text-2xl font-bold text-gold">${won(price)}</span>${founding?` <span class="text-sm text-paper/40 line-through">${won(base)}</span> <span class="text-[11px] font-bold text-rose-300">창립 20%↓</span>`:(rk.earlybird?` <span class="text-sm text-paper/40 line-through">${won(rk.price)}</span> <span class="text-[11px] font-bold text-rose-300">얼리버드</span>`:'')}`;
       $('view').innerHTML = `<div class="max-w-md mx-auto">
         <a href="watch.html?l=${qparam('l')}" class="text-sm text-ink/45 hover:text-gold">← 강의로</a>
-        <div class="bg-gold text-white rounded-3xl p-7 mt-3 text-center">
+        <div class="bg-ink text-paper rounded-3xl p-7 mt-3 text-center">
           <p class="text-4xl mb-3">🔒</p>
           <p class="text-gold text-xs font-bold tracking-[0.2em] mb-2">${esc(PROGRAM.brand||'BIBLY 아카데미')} · 인증 과정</p>
-          <h1 class="text-xl font-bold mb-2">수료 시험은 인증 과정 등록자 전용이에요</h1>
-          <p class="text-sm text-paper/65 leading-relaxed mb-5">이 시험은 «${esc(rk.name||'')}»(${esc(rk.rank||'')}) 패키지에 포함돼 있어요. 등록하시면 시험·요약노트·수료증·학점을 모두 이용할 수 있습니다.</p>
-          <p class="mb-5"><span class="text-2xl font-bold text-gold">${won(price)}</span>${rk.earlybird?` <span class="text-sm text-paper/40 line-through">${won(rk.price)}</span> <span class="text-[11px] font-bold text-rose-300">얼리버드</span>`:''}</p>
-          <a href="academy.html" class="inline-block bg-gold text-white font-bold px-7 py-3 rounded-full hover:opacity-90 transition">등록 신청하기 →</a>
+          <h1 class="text-xl font-bold mb-2">${head}</h1>
+          <p class="text-sm text-paper/65 leading-relaxed mb-5">${body}</p>
+          <p class="mb-5">${priceHtml}</p>
+          <a href="academy.html#packages" class="inline-block bg-gold text-white font-bold px-7 py-3 rounded-full hover:opacity-90 transition">${expiredFlow?'결제하고 계속 이용 →':'등록 신청하기 →'}</a>
         </div>
         <a href="watch.html?l=${qparam('l')}" class="block text-center text-sm text-ink/50 mt-4 hover:text-gold">먼저 무료 강의로 학습하기</a>
       </div>`;
@@ -408,6 +419,7 @@
   </script>
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script src="/access.js?v=1"></script>
   <script src="auth-header.js?v=20260619c"></script>
 </body>
 </html>

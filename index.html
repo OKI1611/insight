@@ -1102,6 +1102,14 @@
           <label class="text-sm font-medium">주소 <span class="text-ink/40 font-normal">(선택 · 실물 배송 준비 중)</span></label>
           <input id="pf_address" placeholder="주소 (선택)" class="mt-1 w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold"/>
         </div>
+        <div class="bg-gold/[0.06] border border-gold/25 rounded-xl px-3.5 py-3">
+          <label class="text-sm font-medium">추천인 코드 <span class="text-ink/40 font-normal">(선택 · 창립 멤버 소개로 오셨다면)</span></label>
+          <div class="grid grid-cols-2 gap-2 mt-1.5">
+            <input id="pf_ref_name" placeholder="창립멤버 이름" class="w-full border border-ink/15 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold bg-white"/>
+            <input id="pf_ref_email" type="email" placeholder="창립멤버 이메일" class="w-full border border-ink/15 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold bg-white"/>
+          </div>
+          <p class="text-[11px] text-gold font-semibold mt-1.5">🎟️ 입력하시면 <b>3개월간 모든 과정·자료 무료 이용권</b>이 발급돼요.</p>
+        </div>
         <div class="space-y-2 pt-2">
           <label class="flex items-start gap-2 text-sm text-ink/70">
             <input id="pf_consent" required type="checkbox" class="mt-1 accent-gold"/>
@@ -1612,6 +1620,10 @@
         provider: (user.app_metadata && user.app_metadata.provider) || 'email'
       });
       if(error){ setMsg('profMsg','저장 오류: ' + error.message); return false; }
+      // 추천인(창립멤버) 코드 → 추천 가입 3개월 무료 이용권 발급
+      const refEmail = (document.getElementById('pf_ref_email') && document.getElementById('pf_ref_email').value||'').trim();
+      const refName  = (document.getElementById('pf_ref_name')  && document.getElementById('pf_ref_name').value ||'').trim();
+      if(refEmail && window.biblyGrantAccess){ try{ await biblyGrantAccess(sb, user, 'referral', 3, { email:refEmail, name:refName }); }catch(e){} }
       const name = document.getElementById('pf_name').value.trim();
       let memberNo = null;
       try{ memberNo = await rpcTimeout('join_founding', { p_name: name||null }, 6000); }catch(e){}
@@ -1857,6 +1869,7 @@
     }
   </script>
 
+  <script src="/access.js?v=1"></script>
   <script src="auth-header.js?v=20260619c"></script>
   <script src="/cms.js"></script>
   <script>
