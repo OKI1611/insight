@@ -197,15 +197,21 @@
           const main = rk.earlybird || rk.price || 0;
           const trackList = tracks.map(t => `<li class="flex items-center justify-between gap-2 text-sm py-1.5 border-b border-ink/5 last:border-0"><span class="text-ink/80">${esc(t)}</span><span class="text-xs text-ink/40 shrink-0">${byName[t]}강</span></li>`).join('');
           const perks = (rk.perks||[]).map(p => `<li class="flex gap-1.5 text-sm text-ink/65"><span class="text-gold shrink-0">✓</span><span>${esc(p)}</span></li>`).join('');
-          return `<div id="grade-${rk.tier}" class="bg-white rounded-2xl border ${rk.tier===1?'border-gold/45':'border-ink/8'} shadow-soft overflow-hidden scroll-mt-20">
-            <div class="bg-gold text-white px-6 py-5">
-              <div class="flex flex-wrap items-center gap-2 mb-1.5">
-                <span class="bg-gold text-ink text-xs font-bold px-2.5 py-1 rounded-full">${esc(rk.rank)}</span>
-                <h3 class="text-xl font-bold">${EM[rk.tier]||''} ${esc(rk.name)}</h3>
-                ${rk.tier===1?'<span class="text-[10px] font-bold text-ink bg-gold/90 px-2 py-0.5 rounded-full">입문 추천</span>':''}
+          const topTier = (rk.tier===5);
+          const tag = topTier ? '<span class="text-[10px] font-bold text-white border border-white/45 px-2 py-0.5 rounded-full">👑 최고 등급</span>'
+                    : (rk.tier===1 ? '<span class="text-[10px] font-bold text-white bg-white/20 px-2 py-0.5 rounded-full">입문 추천</span>' : '');
+          return `<div id="grade-${rk.tier}" class="bg-white rounded-2xl border ${topTier?'border-2':'border'} shadow-soft overflow-hidden scroll-mt-20" style="border-color:${rk.color}55">
+            <div class="px-6 py-5 text-white relative overflow-hidden" style="background:linear-gradient(135deg, ${rk.color}, ${rk.color}cc)">
+              <span class="absolute -right-8 -top-8 w-28 h-28 rounded-full bg-white/10"></span>
+              <div class="relative flex flex-wrap items-center gap-2 mb-1.5">
+                <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/18 border border-white/35 text-white font-bold text-sm shrink-0" style="font-family:Georgia,serif">${['Ⅴ','Ⅳ','Ⅲ','Ⅱ','Ⅰ'][rk.tier-1]||''}</span>
+                <span class="bg-white text-xs font-bold px-2.5 py-1 rounded-full" style="color:${rk.color}">${esc(rk.rank)}</span>
+                <h3 class="text-xl font-bold">${esc(rk.name)}</h3>
+                <span class="text-[10px] font-bold tracking-wider text-white/65">${esc(rk.en||'')}</span>
+                ${tag}
               </div>
-              <p class="text-paper/65 text-sm">${esc(rk.tagline||'')}</p>
-              <p class="mt-3">${HIDE ? '<span class="text-lg font-bold text-gold">가격 추후 안내</span>' : `<span class="text-2xl font-bold text-gold">${won(main)}</span>${rk.earlybird?` <span class="text-sm text-paper/40 line-through">${won(rk.price)}</span> <span class="text-[11px] font-bold text-rose-300">얼리버드</span>`:''}`}<span class="text-paper/45 text-xs ml-2">· ${tracks.length}과목 ${lessons}강</span></p>
+              <p class="relative text-white/75 text-sm">${esc(rk.tagline||'')}</p>
+              <p class="relative mt-3">${HIDE ? '<span class="text-lg font-bold">가격 추후 안내</span>' : `<span class="text-2xl font-bold">${won(main)}</span>${rk.earlybird?` <span class="text-sm text-white/50 line-through">${won(rk.price)}</span> <span class="text-[11px] font-bold bg-white/20 px-1.5 py-0.5 rounded">얼리버드</span>`:''}`}<span class="text-white/55 text-xs ml-2">· ${tracks.length}과목 ${lessons}강</span></p>
             </div>
             <div class="px-6 pt-5">
               <p class="text-xs font-bold text-gold mb-1.5">✦ 이 등급을 받으면</p>
@@ -226,7 +232,7 @@
           </div>`;
         }).join('');
         const nav = document.getElementById('gradeNav');
-        if(nav) nav.innerHTML = (P.ranks||[]).map(rk => `<a href="#grade-${rk.tier}" onclick="event.preventDefault();var el=document.getElementById('grade-${rk.tier}');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});" class="block px-4 py-2.5 text-sm hover:bg-ink/[0.03] border-b border-ink/5 last:border-0"><span class="text-gold font-bold text-xs mr-1.5">${esc(rk.rank)}</span>${esc(rk.name)}</a>`).join('');
+        if(nav) nav.innerHTML = (P.ranks||[]).map(rk => `<a href="#grade-${rk.tier}" onclick="event.preventDefault();var el=document.getElementById('grade-${rk.tier}');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});" class="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-ink/[0.03] border-b border-ink/5 last:border-0"><span class="inline-block w-2.5 h-2.5 rounded-full shrink-0" style="background:${rk.color}"></span><span class="font-bold text-xs" style="color:${rk.color==='#1f2d4d'?'#1f2d4d':'#9a7a34'}">${esc(rk.rank)}</span>${esc(rk.name)}</a>`).join('');
       }).catch(() => { host.innerHTML = '<p class="text-ink/40 text-sm text-center py-8">인증 과정 정보를 불러오지 못했습니다.</p>'; });
     }
 

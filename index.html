@@ -1620,10 +1620,13 @@
         provider: (user.app_metadata && user.app_metadata.provider) || 'email'
       });
       if(error){ setMsg('profMsg','저장 오류: ' + error.message); return false; }
-      // 추천인(창립멤버) 코드 → 추천 가입 3개월 무료 이용권 발급
+      // 이용권: 추천인 입력 시 3개월(추천), 없으면 5일 무료 체험(신규)
       const refEmail = (document.getElementById('pf_ref_email') && document.getElementById('pf_ref_email').value||'').trim();
       const refName  = (document.getElementById('pf_ref_name')  && document.getElementById('pf_ref_name').value ||'').trim();
-      if(refEmail && window.biblyGrantAccess){ try{ await biblyGrantAccess(sb, user, 'referral', 3, { email:refEmail, name:refName }); }catch(e){} }
+      if(window.biblyGrantAccess){ try{
+        if(refEmail) await biblyGrantAccess(sb, user, 'referral', { months:3 }, { email:refEmail, name:refName });
+        else         await biblyGrantAccess(sb, user, 'trial', { days:5 });
+      }catch(e){} }
       const name = document.getElementById('pf_name').value.trim();
       let memberNo = null;
       try{ memberNo = await rpcTimeout('join_founding', { p_name: name||null }, 6000); }catch(e){}

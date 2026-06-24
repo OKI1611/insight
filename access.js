@@ -21,10 +21,19 @@
     return { full, kind, founding, expiresAt, expired, daysLeft, paidTier };
   };
 
+  // 이용권 종류 라벨
+  window.biblyAccessLabel = function(st){
+    if(!st) return '';
+    return st.founding ? '창립멤버 1년 무료 이용'
+         : st.kind === 'referral' ? '추천 가입 3개월 무료 이용'
+         : st.kind === 'trial' ? '신규 가입 5일 무료 체험'
+         : '';
+  };
+
   // 만료/임박 안내 배너 (없으면 빈 문자열)
   window.biblyAccessBanner = function(st){
-    if(!st || st.paidTier > 0 || st.kind === 'none') return '';   // 유료회원·이용권없음(전강의 무료기) → 배너 없음
-    const kindLabel = st.founding ? '창립멤버 1년 무료 이용' : '추천 가입 3개월 무료 이용';
+    if(!st || st.paidTier > 0 || st.kind === 'none') return '';   // 유료회원·이용권없음 → 배너 없음
+    const kindLabel = window.biblyAccessLabel(st);
     if(!st.expired){
       if(st.daysLeft != null && st.daysLeft <= 21){
         return '<div class="bg-gold/10 border border-gold/30 text-ink/80 rounded-xl px-4 py-2.5 text-sm">⏳ <b>'+kindLabel+'</b> 종료까지 <b class="text-gold">'+st.daysLeft+'일</b> 남았어요. 기간 안에 마음껏 누리세요!</div>';
@@ -39,18 +48,24 @@
       + '</div>';
   };
 
-  // 이용권 부여(창립멤버 1년 / 추천가입 3개월). months=12 또는 3.
-  window.biblyGrantAccess = async function(sb, user, kind, months, referrer){
+  // 이용권 부여. period = 숫자(개월) 또는 {months:n} / {days:n}.
+  //  kind: 'founding'(1년) | 'referral'(3개월) | 'trial'(5일). 하위 등급으로 덮어쓰지 않음.
+  window.biblyGrantAccess = async function(sb, user, kind, period, referrer){
     if(!sb || !user) return false;
+    const RANK = { trial:1, referral:2, founding:3 };
     const start = new Date();
-    const exp = new Date(start); exp.setMonth(exp.getMonth() + months);
+    const exp = new Date(start);
+    if(typeof period === 'number'){ exp.setMonth(exp.getMonth() + period); }
+    else if(period && period.days){ exp.setDate(exp.getDate() + period.days); }
+    else if(period && period.months){ exp.setMonth(exp.getMonth() + period.months); }
+    else { exp.setDate(exp.getDate() + 5); }
     const row = { user_id:user.id, email:user.email||null, kind:kind,
       started_at:start.toISOString(), expires_at:exp.toISOString(), updated_at:start.toISOString() };
     if(referrer){ row.referrer_email = (referrer.email||'').trim()||null; row.referrer_name = (referrer.name||'').trim()||null; }
     try{
-      // 기존 이용권이 founding이면 referral로 덮어쓰지 않음(상위 유지)
+      // 기존 이용권이 더 높거나 같은 등급이면 유지(특히 trial 재발급·상위→하위 강등 방지)
       const { data:cur } = await sb.from('member_access').select('kind,expires_at').eq('user_id', user.id).maybeSingle();
-      if(cur && cur.kind === 'founding' && kind === 'referral') return true;
+      if(cur && (RANK[cur.kind]||0) >= (RANK[kind]||0)) return true;
       const { error } = await sb.from('member_access').upsert(row, { onConflict:'user_id' });
       return !error;
     }catch(e){ return false; }
