@@ -190,7 +190,7 @@
       fetch('content/program.json?t=' + Date.now()).then(r => r.json()).then(P => {
         const won = n => '₩' + (Number(n)||0).toLocaleString();
         const HIDE = !!P.hidePrice;
-        const EM = { 1:'🥉', 2:'🥈', 3:'🥇' };
+        const EM = { 1:'🌱', 2:'📖', 3:'🔍', 4:'⚖️', 5:'🛡' };
         host.innerHTML = (P.ranks||[]).map(rk => {
           const tracks = (rk.tracks||[]).filter(t => byName[t] != null);
           const lessons = tracks.reduce((s,t) => s + byName[t], 0);
