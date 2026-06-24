@@ -120,6 +120,9 @@
 
       <div id="tabMain">
 
+      <!-- 🏅 내 급수 휘장 -->
+      <div id="rankBadge"></div>
+
       <!-- 🎯 이번 주 맞춤 학습 플랜 -->
       <div id="weekPlan" class="mb-6"></div>
 
@@ -673,6 +676,20 @@
       const ex = PROGRAM.exam || {};
       const letterOf = (s) => { for(const g of (PROGRAM.gradeScale||[])) if(s >= g.min) return g.grade; return '미수료'; };
 
+      // ── 🏅 내 급수: 시험으로 '통과'한 최고 급수(해당 급수의 모든 과목·강의 합격) ──
+      let earnedTier = 0;
+      (PROGRAM.ranks||[]).slice().sort((a,b)=>a.tier-b.tier).forEach(rk => {
+        const tks = (rk.tracks||[]).filter(t => byName[t]);
+        let pass = tks.length > 0;
+        tks.forEach(t => { const ls = byName[t]||[]; if(!ls.length){ pass = false; return; } ls.forEach(l => { const r = exById[ytId(l.youtube)]; if(!(r && r.passed)) pass = false; }); });
+        if(pass && rk.tier > earnedTier) earnedTier = rk.tier;
+      });
+      const nextRank = (PROGRAM.ranks||[]).find(r => r.tier === earnedTier + 1);
+      let nextRemain = 0;
+      if(nextRank){ nextRemain = (nextRank.tracks||[]).filter(t => byName[t]).filter(t => (byName[t]||[]).some(l => { const r = exById[ytId(l.youtube)]; return !(r && r.passed); })).length; }
+      renderRankBadge(earnedTier, nextRank, nextRemain);
+      setSidebarRank(earnedTier);
+
       // 접근 가능한 과목 기준 진행 요약
       let progPassed = 0, progTotal = 0, finishedCourses = 0;
       (PROGRAM.ranks||[]).forEach(rk => {
@@ -703,7 +720,7 @@
           catCert.innerHTML = `<button onclick="showCat('cert')" class="w-full h-full text-left bg-ink text-paper rounded-3xl border border-gold/40 shadow-soft p-6 hover:shadow-card transition flex flex-col">
             <div class="flex items-center gap-2 mb-2"><span class="text-2xl">🎓</span><h3 class="font-bold text-lg">${esc(brand)}</h3><span class="ml-auto text-[10px] font-bold text-paper bg-white/15 px-2 py-0.5 rounded-full">🔒 유료</span></div>
             <p class="text-sm text-paper/60 mb-4 flex-1">시험·요약노트·수료증·학점으로 분별력을 공인받는 인증 과정이에요.</p>
-            <p class="text-xs text-paper/50 mb-1">5급 입문자부터 1급 파수꾼까지</p>
+            <p class="text-xs text-paper/50 mb-1">5급 Associate부터 1급 Laureate까지</p>
             <p class="mb-3">${(PROGRAM&&PROGRAM.hidePrice) ? '<span class="text-lg font-bold text-gold">가격 추후 안내</span>' : `<span class="text-2xl font-bold text-gold">${won(fromP)}</span><span class="text-xs text-paper/45"> 부터</span>`}</p>
             <p class="text-sm font-semibold text-gold mt-auto">패키지 보기 · 등록 →</p>
           </button>`;
@@ -879,7 +896,44 @@
       const a=document.getElementById('sbAvatar'), n=document.getElementById('sbName'), e=document.getElementById('sbEmail');
       if(n) n.textContent=uname;
       if(e) e.textContent=(user&&user.email)||'';
-      if(a) a.textContent=(uname||'B').trim().charAt(0).toUpperCase();
+      if(a){
+        if(window.__earnedTier>0){ a.style.background='transparent'; a.style.boxShadow='none'; a.innerHTML=rankSeal(window.__earnedTier,44,true); }
+        else { a.style.background='#b0705a'; a.style.boxShadow=''; a.innerHTML=''; a.textContent=(uname||'B').trim().charAt(0).toUpperCase(); }
+      }
+    }
+
+    // ===== 🏅 급수 휘장(뱃지) =====
+    const RANK_C = {1:['#8aa595','#6f8c7e'],2:['#5e8169','#4a6a55'],3:['#3f6b5a','#305446'],4:['#b0705a','#965a46'],5:['#9c4f3a','#7e3d2c']};
+    const RANK_RN = {1:'Ⅰ',2:'Ⅱ',3:'Ⅲ',4:'Ⅳ',5:'Ⅴ'};
+    function rankSeal(tier, size, earned){
+      const rn = RANK_RN[tier]||'Ⅰ';
+      if(!earned){
+        return `<span class="inline-flex items-center justify-center rounded-full shrink-0" style="width:${size}px;height:${size}px;background:#ece7dd;box-shadow:inset 0 0 0 2px rgba(46,42,36,.06)"><span style="font-size:${Math.round(size*0.4)}px;color:#c3b6a3;font-family:Georgia,serif;font-weight:700">${rn}</span></span>`;
+      }
+      const [c,c2]=RANK_C[tier]||RANK_C[1];
+      return `<span class="inline-flex items-center justify-center rounded-full shrink-0" style="width:${size}px;height:${size}px;background:radial-gradient(circle at 32% 26%, rgba(255,255,255,.55), transparent 58%), linear-gradient(145deg,${c},${c2});box-shadow:0 7px 18px -7px ${c}, inset 0 0 0 2px rgba(255,255,255,.3)"><span style="font-size:${Math.round(size*0.44)}px;color:#fff;font-family:Georgia,serif;font-weight:700;text-shadow:0 1px 2px rgba(0,0,0,.28)">${rn}</span></span>`;
+    }
+    function setSidebarRank(t){ window.__earnedTier=t; updateSidebar(); }
+    function renderRankBadge(earnedTier, nextRank, nextRemain){
+      const el=document.getElementById('rankBadge'); if(!el || !PROGRAM) return;
+      const ranks=(PROGRAM.ranks||[]).slice().sort((a,b)=>a.tier-b.tier);
+      const earned=ranks.find(r=>r.tier===earnedTier);
+      let headline, sub;
+      if(earnedTier===0){ headline='아직 취득한 급수가 없어요'; sub = ranks[0] ? `<b>${esc(ranks[0].name)}</b> 과목의 시험을 모두 통과하면 첫 급수 휘장을 얻어요.` : ''; }
+      else if(!nextRank){ headline=`${esc(earned.name)} <span class="text-ink/45 text-sm font-semibold">${esc(earned.rank)}</span>`; sub='🎉 최고 급수까지 모두 달성하셨어요! 자랑스러운 분별의 사람입니다.'; }
+      else { headline=`${esc(earned.name)} <span class="text-ink/45 text-sm font-semibold">${esc(earned.rank)}</span>`; sub=`다음 급수 <b style="color:${nextRank.color||'#b0705a'}">${esc(nextRank.name)}</b>까지 <b>${nextRemain}과목</b> 남았어요.`; }
+      const ladder = ranks.map(r=>`<div class="flex flex-col items-center gap-1">${rankSeal(r.tier,30,r.tier<=earnedTier)}<span class="text-[8.5px] font-bold ${r.tier<=earnedTier?'text-ink/70':'text-ink/30'}">${esc(r.name)}</span></div>`).join('<span class="text-ink/15 self-start mt-3 text-xs">·</span>');
+      el.innerHTML=`<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 mb-6">
+        <div class="flex items-center gap-4">
+          ${rankSeal(earnedTier||1, 60, earnedTier>0)}
+          <div class="min-w-0 flex-1">
+            <p class="text-[11px] font-bold tracking-[0.18em] mb-1" style="color:${earned?(earned.color||'#b0705a'):'#b0a48f'}">MY RANK · 내 급수</p>
+            <p class="font-bold text-lg leading-tight">${headline}</p>
+            <p class="text-xs text-ink/55 mt-1 leading-relaxed">${sub}</p>
+          </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-ink/8 flex items-center justify-between gap-0.5">${ladder}</div>
+      </div>`;
     }
     function sbGo(sec){
       const mainSecs=['main','free','cert'];

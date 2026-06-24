@@ -210,36 +210,39 @@
       if(!PROG || !PROG.ranks){ if(grid) grid.innerHTML = ''; return; }
       const ranks = PROG.ranks, N = ranks.length;
 
-      // 급수 사다리 — 입문(낮음) → 최고(높음) 계단 시각화
+      // 급수 사다리 — 입문(낮음) → 최고(높음) 계단 + 급수 휘장
+      const RN = ['Ⅰ','Ⅱ','Ⅲ','Ⅳ','Ⅴ'];
+      const seal = (tier,color,size)=>`<span class="inline-flex items-center justify-center rounded-full shrink-0" style="width:${size}px;height:${size}px;background:radial-gradient(circle at 32% 26%, rgba(255,255,255,.55), transparent 58%), linear-gradient(145deg,${color},${color}cc);box-shadow:0 6px 14px -6px ${color}, inset 0 0 0 2px rgba(255,255,255,.3)"><span style="font-size:${Math.round(size*0.44)}px;color:#fff;font-family:Georgia,serif;font-weight:700;text-shadow:0 1px 2px rgba(0,0,0,.28)">${RN[tier-1]||'Ⅰ'}</span></span>`;
       if(ladder){
         ladder.innerHTML = `<div class="bg-paper border border-ink/8 rounded-2xl p-5 md:p-6 shadow-soft">
           <div class="flex items-end gap-1.5 md:gap-3">
             ${ranks.map((rk,i)=>{
-              const top = i===N-1, accent = top ? '#b0705a' : '#4e6e5a', h = 46 + i*24;
+              const accent = rk.color || (i===N-1 ? '#b0705a' : '#4e6e5a'), h = 46 + i*24;
               return `<div class="flex-1 flex flex-col items-center justify-end text-center">
-                <span class="text-[9px] md:text-[11px] font-bold tracking-wider mb-1.5" style="color:${accent}">${rk.en||''}</span>
+                <span class="mb-2">${seal(rk.tier, accent, 30)}</span>
                 <div class="w-full rounded-t-lg flex items-start justify-center pt-1.5" style="height:${h}px;background:linear-gradient(180deg,${accent},${accent}d0)">
                   <span class="text-white text-[11px] md:text-sm font-bold">${rk.rank}</span>
                 </div>
                 <div class="w-full border-t-2 pt-1.5" style="border-color:${accent}">
                   <p class="text-[11px] md:text-sm font-bold text-ink leading-tight">${rk.name}</p>
+                  <p class="text-[8.5px] md:text-[10px] font-bold tracking-wider mt-0.5" style="color:${accent}">${rk.en||''}</p>
                   <p class="text-[9px] md:text-[11px] text-ink/45 mt-0.5">${(rk.tracks||[]).length}과목</p>
                 </div>
               </div>`;
             }).join('')}
           </div>
-          <p class="text-center text-xs text-ink/55 mt-4">5급 <b class="text-ink/75">입문자</b>에서 한 칸씩 올라 1급 <b style="color:#b0705a">파수꾼</b>에 이르는 다섯 단계 · <span class="text-ink/45">상위 급수는 하위 과목을 모두 포함합니다.</span></p>
+          <p class="text-center text-xs text-ink/55 mt-4">🏅 각 급수를 통과하면 <b class="text-ink/75">나만의 등급 휘장</b>을 얻어 내 학습방·프로필에서 빛납니다 · <span class="text-ink/45">상위 급수는 하위 과목을 모두 포함합니다.</span></p>
         </div>`;
       }
 
       if(grid) grid.innerHTML = ranks.map((rk,i) => {
         const main = rk.earlybird || rk.price || 0, rec = rk.tier === 1, top = i===N-1, HIDE = !!PROG.hidePrice;
-        const accent = top ? '#b0705a' : '#4e6e5a';
+        const accent = rk.color || (top ? '#b0705a' : '#4e6e5a');
         const perks = (rk.perks||[]).map(p => `<li class="flex gap-1.5"><span class="shrink-0" style="color:${accent}">✓</span><span>${p}</span></li>`).join('');
         const tag = rec ? '<span class="ml-auto text-[10px] font-bold text-gold bg-gold/12 px-2 py-0.5 rounded-full">입문 추천</span>'
-                  : (top ? '<span class="ml-auto text-[10px] font-bold text-white px-2 py-0.5 rounded-full" style="background:#b0705a">최고 등급</span>' : '');
-        return `<div class="bg-white rounded-2xl border ${rec?'border-gold/50 shadow-card':(top?'shadow-card':'border-ink/10 shadow-soft')} p-6 flex flex-col" ${top?'style="border-color:rgba(176,112,90,.45)"':''}>
-          <div class="flex items-center gap-2 mb-1"><span class="text-paper text-xs font-bold px-2 py-0.5 rounded-full" style="background:${accent}">${rk.rank}</span><h3 class="font-bold text-lg">${rk.name}</h3><span class="text-[10px] font-bold tracking-wider" style="color:${accent}">${rk.en||''}</span>${tag}</div>
+                  : (top ? '<span class="ml-auto text-[10px] font-bold text-white px-2 py-0.5 rounded-full" style="background:#9c4f3a">최고 등급</span>' : '');
+        return `<div class="bg-white rounded-2xl border ${rec?'border-gold/50 shadow-card':(top?'shadow-card':'border-ink/10 shadow-soft')} p-6 flex flex-col" ${top?'style="border-color:rgba(156,79,58,.45)"':''}>
+          <div class="flex items-center gap-2 mb-2">${seal(rk.tier, accent, 34)}<div><div class="flex items-center gap-1.5"><span class="text-white text-[11px] font-bold px-2 py-0.5 rounded-full" style="background:${accent}">${rk.rank}</span><h3 class="font-bold text-lg leading-none">${rk.name}</h3></div><span class="text-[10px] font-bold tracking-wider" style="color:${accent}">${rk.en||''}</span></div>${tag}</div>
           <p class="text-xs text-ink/50 mb-3">${rk.tagline||''}</p>
           <p class="text-[12.5px] text-ink/65 leading-relaxed mb-3 bg-paper border border-ink/8 rounded-lg p-2.5"><b class="text-ink/80">이 등급을 받으면 ›</b> ${rk.outcome||''}</p>
           <p class="text-[11px] text-ink/45 font-semibold mb-3">📚 ${(rk.tracks||[]).length}개 과목 과정</p>
