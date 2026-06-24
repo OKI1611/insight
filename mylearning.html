@@ -130,14 +130,14 @@
       <div id="pointsWidget" class="hidden bg-gradient-to-br from-[#3b9be0] to-[#1f6cab] text-paper rounded-2xl shadow-soft p-5 mb-6">
         <div class="flex items-center justify-between gap-3">
           <div>
-            <p class="text-gold text-[11px] font-bold tracking-[0.18em]">미션포인트</p>
+            <p class="text-white/80 text-[11px] font-bold tracking-[0.18em]">미션포인트</p>
             <p class="text-3xl font-bold mt-1">🪙 <span id="ptTotal">0</span> <span class="text-base font-semibold text-paper/60">P</span></p>
           </div>
-          <span id="ptTier" class="inline-block bg-gold/20 border border-gold/40 text-gold font-bold text-sm px-3 py-1.5 rounded-full shrink-0">🌱 씨앗</span>
+          <span id="ptTier" class="inline-block bg-white/20 border border-white/40 text-white font-bold text-sm px-3 py-1.5 rounded-full shrink-0">🌱 씨앗</span>
         </div>
         <div class="mt-3">
           <div class="flex justify-between text-[11px] text-paper/60 mb-1"><span id="ptNext">다음 등급까지…</span><span id="ptNextPct"></span></div>
-          <div class="h-1.5 rounded-full bg-paper/15 overflow-hidden"><div id="ptTierBar" class="h-full bg-gold transition-all" style="width:0%"></div></div>
+          <div class="h-1.5 rounded-full bg-paper/15 overflow-hidden"><div id="ptTierBar" class="h-full bg-white transition-all" style="width:0%"></div></div>
         </div>
       </div>
 
@@ -549,18 +549,18 @@
       if(!mine.length){
         welEl.innerHTML = '';
       } else if(resume){
-        welEl.innerHTML = `<div class="bg-gold text-white rounded-3xl p-6 md:p-7">
-          <p class="text-gold text-xs font-bold tracking-wide mb-3">${esc(uname)}님, 오늘도 환영합니다 👋</p>
-          <p class="text-paper/50 text-xs mb-1">이어서 학습할 강의</p>
+        welEl.innerHTML = `<div class="bg-gradient-to-br from-[#3b9be0] to-[#1f6cab] text-white rounded-3xl p-6 md:p-7 shadow-card">
+          <p class="text-white/85 text-xs font-bold tracking-wide mb-3">${esc(uname)}님, 오늘도 환영합니다 👋</p>
+          <p class="text-paper/60 text-xs mb-1">이어서 학습할 강의</p>
           <p class="font-bold text-lg leading-snug">${esc(resume.lv.name)}</p>
           <p class="text-paper/75 text-sm mt-1 mb-5 truncate">▸ ${esc(resume.nextTitle)}</p>
-          <a href="watch.html?l=${resume.nextIdx}" class="inline-flex items-center gap-2 bg-gold text-white font-bold px-7 py-3 rounded-full hover:opacity-90 transition">▶ 이어서 학습하기</a>
+          <a href="watch.html?l=${resume.nextIdx}" class="inline-flex items-center gap-2 bg-white text-gold font-bold px-7 py-3 rounded-full hover:opacity-90 transition shadow">▶ 이어서 학습하기</a>
         </div>`;
       } else {
-        welEl.innerHTML = `<div class="bg-gold text-white rounded-3xl p-7 text-center">
+        welEl.innerHTML = `<div class="bg-gradient-to-br from-[#3b9be0] to-[#1f6cab] text-white rounded-3xl p-7 text-center shadow-card">
           <p class="text-4xl mb-2">🎉</p>
           <p class="font-bold text-lg">${esc(uname)}님, 수강 중인 모든 과정을 완주하셨어요!</p>
-          <p class="text-paper/60 text-sm mt-1.5">각 과정의 <b class="text-gold">수료증</b>을 받아 학습을 기념해 보세요.</p>
+          <p class="text-paper/70 text-sm mt-1.5">각 과정의 <b class="text-white underline">수료증</b>을 받아 학습을 기념해 보세요.</p>
         </div>`;
       }
 
@@ -721,24 +721,24 @@
       // ── 개요 카드 (인증) ──
       if(catCert){
         if(userTier > 0){
-          catCert.innerHTML = `<button onclick="showCat('cert')" class="w-full h-full text-left bg-gold text-white rounded-3xl border border-gold/40 shadow-soft p-6 hover:shadow-card transition flex flex-col">
-            <div class="flex items-center gap-2 mb-2"><span class="text-2xl">🎓</span><h3 class="font-bold text-lg">${esc(brand)}</h3><span class="ml-auto text-[10px] font-bold text-ink bg-gold px-2 py-0.5 rounded-full">인증</span></div>
-            <p class="text-sm text-paper/60 mb-4">시험으로 검증하고 학점을 쌓는 과정</p>
+          catCert.innerHTML = `<button onclick="showCat('cert')" class="w-full h-full text-left bg-gradient-to-br from-[#3b9be0] to-[#1f6cab] text-white rounded-3xl border border-white/25 shadow-soft p-6 hover:shadow-card transition flex flex-col">
+            <div class="flex items-center gap-2 mb-2"><span class="text-2xl">🎓</span><h3 class="font-bold text-lg">${esc(brand)}</h3><span class="ml-auto text-[10px] font-bold text-gold bg-white px-2 py-0.5 rounded-full">인증</span></div>
+            <p class="text-sm text-paper/70 mb-4">시험으로 검증하고 학점을 쌓는 과정</p>
             <div class="flex items-end gap-5 mb-3">
-              <div><p class="text-2xl font-bold text-gold leading-none">${progPct}%</p><p class="text-[11px] text-paper/45 mt-1">시험 통과율</p></div>
-              <div><p class="text-2xl font-bold leading-none">${finishedCourses}</p><p class="text-[11px] text-paper/45 mt-1">수료 과목</p></div>
+              <div><p class="text-2xl font-bold text-white leading-none">${progPct}%</p><p class="text-[11px] text-paper/55 mt-1">시험 통과율</p></div>
+              <div><p class="text-2xl font-bold leading-none">${finishedCourses}</p><p class="text-[11px] text-paper/55 mt-1">수료 과목</p></div>
             </div>
-            <div class="h-1.5 rounded-full bg-white/15 overflow-hidden mb-3"><div class="h-full bg-gold rounded-full" style="width:${progPct}%"></div></div>
-            <p class="text-sm font-semibold text-gold mt-auto">상세 보기 →</p>
+            <div class="h-1.5 rounded-full bg-white/20 overflow-hidden mb-3"><div class="h-full bg-white rounded-full" style="width:${progPct}%"></div></div>
+            <p class="text-sm font-semibold text-white mt-auto">상세 보기 →</p>
           </button>`;
         } else {
           const fromP = (PROGRAM.ranks && PROGRAM.ranks[0] && (PROGRAM.ranks[0].earlybird||PROGRAM.ranks[0].price)) || 0;
-          catCert.innerHTML = `<button onclick="showCat('cert')" class="w-full h-full text-left bg-gold text-white rounded-3xl border border-gold/40 shadow-soft p-6 hover:shadow-card transition flex flex-col">
+          catCert.innerHTML = `<button onclick="showCat('cert')" class="w-full h-full text-left bg-gradient-to-br from-[#3b9be0] to-[#1f6cab] text-white rounded-3xl border border-white/25 shadow-soft p-6 hover:shadow-card transition flex flex-col">
             <div class="flex items-center gap-2 mb-2"><span class="text-2xl">🎓</span><h3 class="font-bold text-lg">${esc(brand)}</h3><span class="ml-auto text-[10px] font-bold text-paper bg-white/15 px-2 py-0.5 rounded-full">🔒 유료</span></div>
-            <p class="text-sm text-paper/60 mb-4 flex-1">시험·요약노트·수료증·학점으로 분별력을 공인받는 인증 과정이에요.</p>
-            <p class="text-xs text-paper/50 mb-1">5급 Associate부터 1급 Laureate까지</p>
-            <p class="mb-3">${(PROGRAM&&PROGRAM.hidePrice) ? '<span class="text-lg font-bold text-gold">가격 추후 안내</span>' : `<span class="text-2xl font-bold text-gold">${won(fromP)}</span><span class="text-xs text-paper/45"> 부터</span>`}</p>
-            <p class="text-sm font-semibold text-gold mt-auto">패키지 보기 · 등록 →</p>
+            <p class="text-sm text-paper/70 mb-4 flex-1">시험·요약노트·수료증·학점으로 분별력을 공인받는 인증 과정이에요.</p>
+            <p class="text-xs text-paper/60 mb-1">5급 Associate부터 1급 Laureate까지</p>
+            <p class="mb-3">${(PROGRAM&&PROGRAM.hidePrice) ? '<span class="text-lg font-bold text-white">가격 추후 안내</span>' : `<span class="text-2xl font-bold text-white">${won(fromP)}</span><span class="text-xs text-paper/55"> 부터</span>`}</p>
+            <p class="text-sm font-semibold text-white mt-auto">패키지 보기 · 등록 →</p>
           </button>`;
         }
       }
@@ -884,22 +884,22 @@
       const dateStr = `${t.getFullYear()}년 ${t.getMonth()+1}월 ${t.getDate()}일`;
       const certNo = `BIBLY-${t.getFullYear()}${String(t.getMonth()+1).padStart(2,'0')}${String(t.getDate()).padStart(2,'0')}-${String(idx+1).padStart(2,'0')}`;
       document.getElementById('certSheet').innerHTML = `
-        <div class="bg-gold text-white px-7 py-8">
+        <div class="bg-gradient-to-br from-white to-[#e8f3fd] text-ink px-7 py-8">
           <div class="border-2 border-gold/40 rounded-2xl px-6 py-9 text-center">
             ${window.__earnedTier>0?`<div class="flex justify-center mb-3">${rankSeal(window.__earnedTier,42,true)}</div>`:''}
             <p class="text-gold tracking-[0.34em] text-[11px] font-bold mb-1">CERTIFICATE OF COMPLETION</p>
-            <p class="text-paper/45 text-xs tracking-[0.3em] mb-7">수　료　증</p>
-            <p class="text-paper/50 text-xs mb-1">학습자</p>
+            <p class="text-ink/45 text-xs tracking-[0.3em] mb-7">수　료　증</p>
+            <p class="text-ink/50 text-xs mb-1">학습자</p>
             <p class="text-2xl font-bold mb-1" style="font-family:'Noto Serif KR',serif">${esc(uname)}</p>
             ${window.__earnedTier>0?`<p class="text-gold text-[11px] font-semibold mb-6">아카데미 ${esc(((((window.PROGRAM)||PROGRAM||{}).ranks||[]).find(r=>r.tier===window.__earnedTier)||{}).name||'')} 급수</p>`:'<div class="mb-6"></div>'}
-            <p class="text-paper/65 text-[13px] leading-relaxed mb-7">위 학습자는 BIBLY 바이블 인사이트의 아래 과정을<br/>성실히 이수하였기에 이 증서를 드립니다.</p>
-            <p class="text-paper/45 text-xs mb-1">이수 과정</p>
+            <p class="text-ink/65 text-[13px] leading-relaxed mb-7">위 학습자는 BIBLY 바이블 인사이트의 아래 과정을<br/>성실히 이수하였기에 이 증서를 드립니다.</p>
+            <p class="text-ink/45 text-xs mb-1">이수 과정</p>
             <p class="text-gold font-bold text-lg leading-snug mb-7 px-2">${esc(name)}</p>
-            <p class="text-paper/45 text-xs">${dateStr}</p>
-            <div class="mt-7 pt-5 border-t border-white/10">
+            <p class="text-ink/45 text-xs">${dateStr}</p>
+            <div class="mt-7 pt-5 border-t border-ink/10">
               <p class="font-bold tracking-tight">BIBLY<span class="text-gold">.</span> 바이블 인사이트</p>
-              <p class="text-paper/45 text-xs mt-0.5">대표강사　오광일</p>
-              <p class="text-paper/25 text-[10px] mt-3">증서번호 ${certNo}</p>
+              <p class="text-ink/45 text-xs mt-0.5">대표강사　오광일</p>
+              <p class="text-ink/30 text-[10px] mt-3">증서번호 ${certNo}</p>
             </div>
           </div>
         </div>`;
