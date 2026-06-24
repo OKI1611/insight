@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>수료 시험 — BIBLY 바이블 인사이트</title>
   <link rel="manifest" href="/manifest.json" />
-  <meta name="theme-color" content="#2e2a24" />
+  <meta name="theme-color" content="#1f4d77" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png" />
@@ -25,9 +25,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { theme: { extend: {
-      colors: { ink:'#2e2a24', navy:'#25211b', gold:'#4e6e5a', sand:'#f0e9dc', paper:'#faf8f3' },
+      colors: { ink:'#1f4d77', navy:'#163c61', gold:'#2e8fd6', sand:'#e3f0fb', paper:'#f3f9ff' },
       fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
-      boxShadow: { soft:'0 2px 10px -4px rgba(46,42,36,.10)', card:'0 14px 40px -18px rgba(46,42,36,.22)' }
+      boxShadow: { soft:'0 2px 10px -4px rgba(31,77,119,.10)', card:'0 14px 40px -18px rgba(31,77,119,.22)' }
     }}}
   </script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -39,9 +39,9 @@
   <style>
     h1,h2{font-family:'Noto Serif KR',Pretendard,serif}
     .opt{transition:all .12s ease}
-    .opt.sel{border-color:#4e6e5a;background:#4e6e5a24;box-shadow:0 0 0 2px #4e6e5a}
-    .opt.sel>span:first-child{background:#4e6e5a;color:#fff;border-color:#4e6e5a}
-    .opt.sel>span:last-child{color:#2e2a24;font-weight:600}
+    .opt.sel{border-color:#2e8fd6;background:#2e8fd624;box-shadow:0 0 0 2px #2e8fd6}
+    .opt.sel>span:first-child{background:#2e8fd6;color:#fff;border-color:#2e8fd6}
+    .opt.sel>span:last-child{color:#1f4d77;font-weight:600}
     .opt.correct{border-color:#16a34a;background:#16a34a1c}
     .opt.correct>span:first-child{background:#16a34a;color:#fff;border-color:#16a34a}
     .opt.wrong{border-color:#dc2626;background:#dc262614}
@@ -66,7 +66,7 @@
         </button>
         <input id="le" type="email" placeholder="이메일" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold mb-2"/>
         <input id="lp" type="password" placeholder="비밀번호" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold mb-2"/>
-        <button onclick="emailLogin()" class="w-full bg-ink text-paper font-semibold rounded-xl py-3 hover:bg-navy transition">이메일로 로그인</button>
+        <button onclick="emailLogin()" class="w-full bg-gold text-white font-semibold rounded-xl py-3 hover:opacity-90 transition">이메일로 로그인</button>
         <p id="loginMsg" class="text-red-500 text-xs mt-2 min-h-[16px]"></p>
       </div>
     </div>
@@ -148,7 +148,7 @@
       const price=rk.earlybird||rk.price||0;
       $('view').innerHTML = `<div class="max-w-md mx-auto">
         <a href="watch.html?l=${qparam('l')}" class="text-sm text-ink/45 hover:text-gold">← 강의로</a>
-        <div class="bg-ink text-paper rounded-3xl p-7 mt-3 text-center">
+        <div class="bg-gold text-white rounded-3xl p-7 mt-3 text-center">
           <p class="text-4xl mb-3">🔒</p>
           <p class="text-gold text-xs font-bold tracking-[0.2em] mb-2">${esc(PROGRAM.brand||'BIBLY 아카데미')} · 인증 과정</p>
           <h1 class="text-xl font-bold mb-2">수료 시험은 인증 과정 등록자 전용이에요</h1>
@@ -166,7 +166,7 @@
         $('view').innerHTML = `<div class="bg-white rounded-2xl border border-ink/8 p-8 text-center">
           <p class="text-3xl mb-3">🛠️</p><p class="font-semibold mb-1">이 강의의 시험은 준비 중입니다</p>
           <p class="text-sm text-ink/55 mb-5">${esc(LESSON.title||'')}</p>
-          <a href="watch.html?l=${qparam('l')}" class="inline-block bg-ink text-paper font-semibold px-6 py-3 rounded-full hover:bg-navy transition">강의로 돌아가기</a>
+          <a href="watch.html?l=${qparam('l')}" class="inline-block bg-gold text-white font-semibold px-6 py-3 rounded-full hover:opacity-90 transition">강의로 돌아가기</a>
         </div>`; return;
       }
       const ex=PROGRAM.exam;
@@ -216,7 +216,7 @@
         </div>
         <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 mb-5 flex items-center justify-between gap-3">
           <div><p class="font-semibold text-sm">📑 시험 대비 요약노트</p><p class="text-xs text-ink/50 mt-0.5">핵심 정리·성구·용어를 PDF로 저장해 복습하세요.</p></div>
-          <button onclick="downloadNote()" class="shrink-0 bg-ink text-paper text-sm font-semibold px-4 py-2.5 rounded-xl hover:bg-navy transition">PDF 저장</button>
+          <button onclick="downloadNote()" class="shrink-0 bg-gold text-white text-sm font-semibold px-4 py-2.5 rounded-xl hover:opacity-90 transition">PDF 저장</button>
         </div>
         ${action}${review}${reset}
         <div id="noteHidden" style="position:fixed;left:-9999px;top:0;width:720px"></div>`;
@@ -350,7 +350,7 @@
         btns=`<button onclick="startExam(2)" class="w-full mt-5 bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition">2차 시험 도전하기 →</button>
               <button onclick="downloadNote()" class="w-full mt-2 border border-ink/15 text-ink/75 font-semibold py-3 rounded-xl hover:bg-ink/5 transition text-sm">📑 요약노트 PDF로 복습</button>`;
       } else {
-        btns=`<a href="mylearning.html" class="block text-center w-full mt-5 bg-ink text-paper font-bold py-3.5 rounded-xl hover:bg-navy transition">내 강의실에서 학점 보기 →</a>
+        btns=`<a href="mylearning.html" class="block text-center w-full mt-5 bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition">내 강의실에서 학점 보기 →</a>
               <a href="watch.html?l=${qparam('l')}" class="block text-center w-full mt-2 border border-ink/15 text-ink/75 font-semibold py-3 rounded-xl hover:bg-ink/5 transition text-sm">강의로 돌아가기</a>`;
       }
       $('view').innerHTML = `<div class="bg-white rounded-3xl border border-ink/8 shadow-card p-6">${head}</div>${body}${btns}
@@ -381,17 +381,17 @@
     // ── 요약노트 PDF ──
     function noteHTML(){
       const n=EXAM.studyNote||{};
-      const sec=(t,inner)=>inner?`<h3 style="font-size:15px;font-weight:700;color:#2e2a24;margin:16px 0 7px">${t}</h3>${inner}`:'';
+      const sec=(t,inner)=>inner?`<h3 style="font-size:15px;font-weight:700;color:#1f4d77;margin:16px 0 7px">${t}</h3>${inner}`:'';
       const kp=(n.keyPoints||[]).map(p=>`<li style="margin-bottom:6px;line-height:1.7">${esc(p)}</li>`).join('');
-      const ks=(n.keyScriptures||[]).map(s=>`<li style="margin-bottom:6px;line-height:1.7"><b style="color:#4e6e5a">${esc(s.ref)}</b> — ${esc(s.note)}</li>`).join('');
+      const ks=(n.keyScriptures||[]).map(s=>`<li style="margin-bottom:6px;line-height:1.7"><b style="color:#2e8fd6">${esc(s.ref)}</b> — ${esc(s.note)}</li>`).join('');
       const kt=(n.keyTerms||[]).map(s=>`<li style="margin-bottom:6px;line-height:1.7"><b>${esc(s.term)}</b>: ${esc(s.def)}</li>`).join('');
       return `<div style="font-family:Pretendard,system-ui,sans-serif;color:#1a1a1a;padding:30px 32px;width:720px;box-sizing:border-box">
-        <div style="border-bottom:2px solid #4e6e5a;padding-bottom:10px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:baseline">
-          <span style="font-weight:700;color:#2e2a24;font-size:15px">시험 대비 요약노트</span>
+        <div style="border-bottom:2px solid #2e8fd6;padding-bottom:10px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:baseline">
+          <span style="font-weight:700;color:#1f4d77;font-size:15px">시험 대비 요약노트</span>
           <span style="font-size:12px;color:#a7adba">BIBLY 바이블 인사이트 · 급수제</span></div>
-        <h2 style="font-size:18px;font-weight:700;color:#2e2a24;margin:0 0 4px">${esc(EXAM.title||'')}</h2>
+        <h2 style="font-size:18px;font-weight:700;color:#1f4d77;margin:0 0 4px">${esc(EXAM.title||'')}</h2>
         <p style="font-size:13px;color:#555;margin:0 0 6px">${esc(TRACK)}</p>
-        ${n.thesis?`<p style="background:#f4f0e6;border-left:3px solid #4e6e5a;padding:10px 14px;border-radius:6px;font-size:13.5px;line-height:1.7;margin:12px 0">${esc(n.thesis)}</p>`:''}
+        ${n.thesis?`<p style="background:#f4f0e6;border-left:3px solid #2e8fd6;padding:10px 14px;border-radius:6px;font-size:13.5px;line-height:1.7;margin:12px 0">${esc(n.thesis)}</p>`:''}
         ${sec('핵심 정리', kp?`<ul style="padding-left:18px;font-size:13.5px;margin:0">${kp}</ul>`:'')}
         ${sec('핵심 성구', ks?`<ul style="padding-left:18px;font-size:13.5px;margin:0">${ks}</ul>`:'')}
         ${sec('핵심 용어', kt?`<ul style="padding-left:18px;font-size:13.5px;margin:0">${kt}</ul>`:'')}

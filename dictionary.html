@@ -6,7 +6,7 @@
   <script src="/site-header.js?v=20260622a"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>비블리 성경사전 — 원어로 읽는 말씀 키워드 · BIBLY</title>
-  <meta name="theme-color" content="#2e2a24" />
+  <meta name="theme-color" content="#1f4d77" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="canonical" href="https://biblynote.com/dictionary" />
@@ -21,9 +21,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { theme: { extend: {
-      colors: { ink:'#2e2a24', navy:'#25211b', gold:'#4e6e5a', sand:'#f0e9dc', paper:'#faf8f3' },
+      colors: { ink:'#1f4d77', navy:'#163c61', gold:'#2e8fd6', sand:'#e3f0fb', paper:'#f3f9ff' },
       fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
-      boxShadow: { soft:'0 2px 10px -4px rgba(46,42,36,.10)', card:'0 14px 40px -18px rgba(46,42,36,.22)' }
+      boxShadow: { soft:'0 2px 10px -4px rgba(31,77,119,.10)', card:'0 14px 40px -18px rgba(31,77,119,.22)' }
     }}}
   </script>
   <style>h1,h2,.serif{font-family:'Noto Serif KR',Pretendard,serif} mark{background:#fbeec2;color:inherit;border-radius:3px;padding:0 1px}</style>
@@ -87,7 +87,7 @@
     function buildCats(){
       const present=new Set(DATA.map(e=>e.category).filter(Boolean));
       $('cats').innerHTML=CATS.filter(c=>c==='전체'||present.has(c)).map(c=>
-        `<button onclick="setCat('${c}')" data-cat="${c}" class="cat-btn text-xs font-semibold px-3.5 py-1.5 rounded-full border transition ${c===CAT?'bg-ink text-paper border-ink':'bg-white text-ink/60 border-ink/15 hover:border-ink/30'}">${c}</button>`
+        `<button onclick="setCat('${c}')" data-cat="${c}" class="cat-btn text-xs font-semibold px-3.5 py-1.5 rounded-full border transition ${c===CAT?'bg-gold text-white border-ink':'bg-white text-ink/60 border-ink/15 hover:border-ink/30'}">${c}</button>`
       ).join('');
     }
     function buildIndex(){

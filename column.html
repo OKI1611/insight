@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>칼럼 — BIBLY 바이블 인사이트 (오광일)</title>
   <link rel="manifest" href="/manifest.json" />
-  <meta name="theme-color" content="#2e2a24" />
+  <meta name="theme-color" content="#1f4d77" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png" />
@@ -30,9 +30,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { theme: { extend: {
-      colors: { ink:'#2e2a24', navy:'#25211b', gold:'#4e6e5a', sand:'#f0e9dc', paper:'#faf8f3' },
+      colors: { ink:'#1f4d77', navy:'#163c61', gold:'#2e8fd6', sand:'#e3f0fb', paper:'#f3f9ff' },
       fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
-      boxShadow: { soft:'0 2px 10px -4px rgba(46,42,36,.10)', card:'0 14px 40px -18px rgba(46,42,36,.22)' }
+      boxShadow: { soft:'0 2px 10px -4px rgba(31,77,119,.10)', card:'0 14px 40px -18px rgba(31,77,119,.22)' }
     }}}
   </script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -53,14 +53,14 @@
     .article ul{list-style:disc;padding-left:1.3em;margin:.7em 0}
     .article ol{list-style:decimal;padding-left:1.3em;margin:.7em 0}
     .article li{margin:.25em 0;line-height:1.8}
-    .article blockquote{border-left:3px solid #4e6e5a;padding:.2em 1em;color:#5a6275;font-style:italic;margin:1em 0;background:#4e6e5a0d}
-    .article a{color:#4e6e5a;text-decoration:underline}
+    .article blockquote{border-left:3px solid #2e8fd6;padding:.2em 1em;color:#5a6275;font-style:italic;margin:1em 0;background:#2e8fd60d}
+    .article a{color:#2e8fd6;text-decoration:underline}
     .article img{max-width:100%;height:auto;border-radius:.75rem;margin:1em 0}
-    .article strong{font-weight:700;color:#2e2a24}
+    .article strong{font-weight:700;color:#1f4d77}
     .ql-container{font-family:'Pretendard',sans-serif;font-size:16px}
     .ql-editor{min-height:420px;font-size:16px;line-height:1.85}
-    .ql-toolbar.ql-snow{border-color:rgba(46,42,36,.12);border-radius:.75rem .75rem 0 0;background:#fff}
-    .ql-container.ql-snow{border-color:rgba(46,42,36,.12);border-radius:0 0 .75rem .75rem}
+    .ql-toolbar.ql-snow{border-color:rgba(31,77,119,.12);border-radius:.75rem .75rem 0 0;background:#fff}
+    .ql-container.ql-snow{border-color:rgba(31,77,119,.12);border-radius:0 0 .75rem .75rem}
     /* 한글 입력(조합) 중 안내문구 겹침 방지 — 포커스 시 placeholder 숨김 */
     .ql-container:focus-within .ql-editor.ql-blank::before{content:''}
   </style>
@@ -79,7 +79,7 @@
           <h1 class="text-2xl md:text-3xl font-bold">인사이트 칼럼</h1>
           <p class="text-ink/55 text-sm mt-2">유튜브에서 다 못한 이야기, 시대를 읽는 묵상을 글로 나눕니다.</p>
         </div>
-        <button id="writeBtn" onclick="openEditor()" class="hidden bg-ink text-paper text-sm font-semibold px-4 py-2.5 rounded-full hover:bg-navy transition shrink-0">✏️ 새 글 쓰기</button>
+        <button id="writeBtn" onclick="openEditor()" class="hidden bg-gold text-white text-sm font-semibold px-4 py-2.5 rounded-full hover:opacity-90 transition shrink-0">✏️ 새 글 쓰기</button>
       </div>
       <div id="colList" class="space-y-4"><p class="text-ink/40 text-sm text-center py-10">칼럼을 불러오는 중…</p></div>
     </div>
@@ -93,7 +93,7 @@
       <div id="rBody" class="article text-ink/85"></div>
       <div class="mt-10 pt-6 border-t border-ink/10 flex items-center gap-3">
         <span class="text-sm text-ink/50">이 칼럼이 좋았다면 공유해 주세요</span>
-        <button id="rShare" class="ml-auto bg-ink text-paper text-sm font-semibold px-4 py-2 rounded-full hover:bg-navy transition">↗ 공유하기</button>
+        <button id="rShare" class="ml-auto bg-gold text-white text-sm font-semibold px-4 py-2 rounded-full hover:opacity-90 transition">↗ 공유하기</button>
         <span id="rAdmin" class="hidden gap-2 text-sm">
           <button onclick="editCurrent()" class="text-ink/50 hover:text-gold">수정</button>
           <button onclick="deleteCurrent()" class="text-ink/40 hover:text-red-500">삭제</button>
@@ -227,7 +227,7 @@
           <textarea id="cInput" rows="3" placeholder="댓글을 남겨 주세요…" class="w-full text-sm outline-none resize-none"></textarea>
           <div class="flex items-center justify-between mt-2 pt-2 border-t border-ink/8">
             <span class="text-xs text-ink/40">${esc(myName())}님</span>
-            <button onclick="addComment()" class="bg-ink text-paper text-sm font-semibold px-4 py-2 rounded-full hover:bg-navy transition">등록</button>
+            <button onclick="addComment()" class="bg-gold text-white text-sm font-semibold px-4 py-2 rounded-full hover:opacity-90 transition">등록</button>
           </div></div>`;
       } else {
         f.innerHTML = `<div class="bg-ink/[0.03] border border-ink/8 rounded-2xl p-5 text-center text-sm text-ink/55">댓글을 남기려면 <a href="index.html" class="text-gold font-semibold hover:underline">로그인</a> 해 주세요.</div>`;

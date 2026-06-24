@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>내 강의실 — BIBLY 바이블 인사이트</title>
   <link rel="manifest" href="/manifest.json" />
-  <meta name="theme-color" content="#2e2a24" />
+  <meta name="theme-color" content="#1f4d77" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png" />
@@ -29,9 +29,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { theme: { extend: {
-      colors: { ink:'#2e2a24', navy:'#25211b', gold:'#4e6e5a', sand:'#f0e9dc', paper:'#faf8f3' },
+      colors: { ink:'#1f4d77', navy:'#163c61', gold:'#2e8fd6', sand:'#e3f0fb', paper:'#f3f9ff' },
       fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
-      boxShadow: { soft:'0 2px 10px -4px rgba(46,42,36,.10)', card:'0 14px 40px -18px rgba(46,42,36,.22)' }
+      boxShadow: { soft:'0 2px 10px -4px rgba(31,77,119,.10)', card:'0 14px 40px -18px rgba(31,77,119,.22)' }
     }}}
   </script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -42,11 +42,11 @@
   <style>
     h1,h2{font-family:'Noto Serif KR',Pretendard,serif}
     /* 나의 학습방 사이드바 */
-    .sbItem{display:flex;align-items:center;gap:.6rem;width:100%;text-align:left;padding:.62rem .8rem;border-radius:.7rem;font-size:.9rem;font-weight:600;color:rgba(46,42,36,.68);white-space:nowrap;transition:all .15s;cursor:pointer}
-    .sbItem:hover{background:rgba(176,112,90,.10);color:#2e2a24}
-    .sbItem.active{background:#b0705a;color:#fff;box-shadow:0 6px 16px -8px rgba(176,112,90,.7)}
+    .sbItem{display:flex;align-items:center;gap:.6rem;width:100%;text-align:left;padding:.62rem .8rem;border-radius:.7rem;font-size:.9rem;font-weight:600;color:rgba(31,77,119,.68);white-space:nowrap;transition:all .15s;cursor:pointer}
+    .sbItem:hover{background:rgba(239,155,118,.10);color:#1f4d77}
+    .sbItem.active{background:#ef9b76;color:#fff;box-shadow:0 6px 16px -8px rgba(239,155,118,.7)}
     .sbItem.active span{color:#fff}
-    .sbGroup{padding:.35rem .85rem .25rem;font-size:.68rem;font-weight:800;letter-spacing:.12em;color:rgba(46,42,36,.32)}
+    .sbGroup{padding:.35rem .85rem .25rem;font-size:.68rem;font-weight:800;letter-spacing:.12em;color:rgba(31,77,119,.32)}
     @media (max-width:1023px){ .sbItem{width:auto} }
     @media print{
       body *{visibility:hidden!important}
@@ -63,7 +63,7 @@
 
   <main class="max-w-6xl mx-auto px-4 py-8">
     <div class="mb-6">
-      <p class="text-[#b0705a] text-xs font-bold tracking-[0.3em] mb-2">MY CLASSROOM</p>
+      <p class="text-[#ef9b76] text-xs font-bold tracking-[0.3em] mb-2">MY CLASSROOM</p>
       <h1 class="text-2xl font-bold">내 강의실</h1>
       <p class="text-ink/55 text-sm mt-2">수강신청한 강의의 학습 현황을 한눈에 확인하세요.</p>
     </div>
@@ -80,7 +80,7 @@
         </button>
         <input id="le" type="email" placeholder="이메일" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold mb-2"/>
         <input id="lp" type="password" placeholder="비밀번호" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold mb-2"/>
-        <button onclick="emailLogin()" class="w-full bg-ink text-paper font-semibold rounded-xl py-3 hover:bg-navy transition">이메일로 로그인</button>
+        <button onclick="emailLogin()" class="w-full bg-gold text-white font-semibold rounded-xl py-3 hover:opacity-90 transition">이메일로 로그인</button>
         <p id="loginMsg" class="text-red-500 text-xs mt-2 min-h-[16px]"></p>
       </div>
     </div>
@@ -91,9 +91,9 @@
 
         <!-- ◀ 나의 학습방 사이드바 -->
         <aside class="lg:sticky lg:top-20 space-y-3">
-          <div class="bg-gradient-to-br from-ink to-navy text-paper rounded-2xl p-5">
+          <div class="bg-gradient-to-br from-[#3b9be0] to-[#1f6cab] text-paper rounded-2xl p-5">
             <div class="flex items-center gap-3">
-              <div id="sbAvatar" class="w-11 h-11 rounded-full bg-[#b0705a] text-white flex items-center justify-center font-bold text-lg shrink-0">B</div>
+              <div id="sbAvatar" class="w-11 h-11 rounded-full bg-[#ef9b76] text-white flex items-center justify-center font-bold text-lg shrink-0">B</div>
               <div class="min-w-0">
                 <p id="sbName" class="font-bold text-[15px] truncate">회원</p>
                 <p id="sbEmail" class="text-paper/55 text-xs truncate"></p>
@@ -108,8 +108,8 @@
             <button class="sbItem" data-sec="diary" onclick="sbGo('diary')">📅 <span>학습 다이어리</span></button>
             <p class="sbGroup hidden lg:block mt-2">나의 정보 · 설정</p>
             <button class="sbItem" data-sec="profile" onclick="sbGo('profile')">👤 <span>개인정보 수정</span></button>
-            <a class="sbItem" href="bible-plan.html">📖 <span>성경 통독표</span></a>
-            <a class="sbItem" href="booklet.html">📕 <span>내 교재·스토어</span></a>
+            <button class="sbItem" data-sec="bible" onclick="sbGo('bible')">📖 <span>성경 통독표</span></button>
+            <button class="sbItem" data-sec="books" onclick="sbGo('books')">📕 <span>내 교재·스토어</span></button>
             <button class="sbItem" onclick="logout()" style="color:#c0564a">🚪 <span style="color:#c0564a">로그아웃</span></button>
           </nav>
         </aside>
@@ -127,7 +127,7 @@
       <div id="weekPlan" class="mb-6"></div>
 
       <!-- 🪙 미션포인트 + 등급 -->
-      <div id="pointsWidget" class="hidden bg-gradient-to-br from-ink to-navy text-paper rounded-2xl shadow-soft p-5 mb-6">
+      <div id="pointsWidget" class="hidden bg-gradient-to-br from-[#3b9be0] to-[#1f6cab] text-paper rounded-2xl shadow-soft p-5 mb-6">
         <div class="flex items-center justify-between gap-3">
           <div>
             <p class="text-gold text-[11px] font-bold tracking-[0.18em]">미션포인트</p>
@@ -233,28 +233,42 @@
             </div>
             <div>
               <label class="block text-xs font-semibold text-ink/50 mb-1.5">이름</label>
-              <input id="pfName" placeholder="이름" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#b0705a]" />
+              <input id="pfName" placeholder="이름" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#ef9b76]" />
             </div>
             <div>
               <label class="block text-xs font-semibold text-ink/50 mb-1.5">휴대전화</label>
-              <input id="pfPhone" placeholder="010-0000-0000" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#b0705a]" />
+              <input id="pfPhone" placeholder="010-0000-0000" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#ef9b76]" />
             </div>
             <div>
               <label class="block text-xs font-semibold text-ink/50 mb-1.5">주소</label>
-              <input id="pfAddr" placeholder="주소" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#b0705a]" />
+              <input id="pfAddr" placeholder="주소" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#ef9b76]" />
             </div>
-            <button onclick="saveProfile()" class="w-full bg-ink text-paper font-semibold rounded-xl py-3 hover:bg-navy transition">저장하기</button>
+            <button onclick="saveProfile()" class="w-full bg-gold text-white font-semibold rounded-xl py-3 hover:opacity-90 transition">저장하기</button>
             <p id="pfMsg" class="text-center text-sm min-h-[18px]"></p>
           </div>
 
           <div class="mt-7 pt-6 border-t border-ink/8">
             <h3 class="font-bold text-[15px] mb-3">비밀번호 변경</h3>
-            <input id="pfPw1" type="password" placeholder="새 비밀번호 (6자 이상)" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#b0705a] mb-2" />
-            <input id="pfPw2" type="password" placeholder="새 비밀번호 확인" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#b0705a] mb-3" />
+            <input id="pfPw1" type="password" placeholder="새 비밀번호 (6자 이상)" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#ef9b76] mb-2" />
+            <input id="pfPw2" type="password" placeholder="새 비밀번호 확인" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#ef9b76] mb-3" />
             <button onclick="changePassword()" class="w-full border border-ink/20 text-ink font-semibold rounded-xl py-2.5 hover:bg-ink/5 transition">비밀번호 변경</button>
             <p id="pfPwMsg" class="text-center text-sm min-h-[18px] mt-2"></p>
             <p class="text-[11px] text-ink/40 mt-2">※ 구글 등 소셜 로그인 계정은 비밀번호 변경이 적용되지 않을 수 있습니다.</p>
           </div>
+        </div>
+      </div>
+
+      <!-- 📖 성경 통독표 (내 강의실 안에서 열림) -->
+      <div id="tabBible" class="hidden">
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden">
+          <iframe id="embBible" title="성경 통독표" class="w-full block" style="height:80vh;border:0" loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <!-- 📕 내 교재·스토어 (내 강의실 안에서 열림) -->
+      <div id="tabBooks" class="hidden">
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden">
+          <iframe id="embBooks" title="내 교재·스토어" class="w-full block" style="height:80vh;border:0" loading="lazy"></iframe>
         </div>
       </div>
 
@@ -268,7 +282,7 @@
     <div class="bg-paper rounded-2xl max-w-lg w-full shadow-2xl overflow-hidden">
       <div id="certSheet"></div>
       <div id="certPrintActions" class="flex gap-2 p-4 bg-white border-t border-ink/8">
-        <button onclick="printCert()" class="flex-1 bg-ink text-paper font-semibold py-2.5 rounded-xl hover:bg-navy transition">🖨 인쇄 · PDF 저장</button>
+        <button onclick="printCert()" class="flex-1 bg-gold text-white font-semibold py-2.5 rounded-xl hover:opacity-90 transition">🖨 인쇄 · PDF 저장</button>
         <button onclick="closeCert()" class="px-5 bg-ink/5 hover:bg-ink/10 font-semibold py-2.5 rounded-xl transition">닫기</button>
       </div>
     </div>
@@ -535,7 +549,7 @@
       if(!mine.length){
         welEl.innerHTML = '';
       } else if(resume){
-        welEl.innerHTML = `<div class="bg-ink text-paper rounded-3xl p-6 md:p-7">
+        welEl.innerHTML = `<div class="bg-gold text-white rounded-3xl p-6 md:p-7">
           <p class="text-gold text-xs font-bold tracking-wide mb-3">${esc(uname)}님, 오늘도 환영합니다 👋</p>
           <p class="text-paper/50 text-xs mb-1">이어서 학습할 강의</p>
           <p class="font-bold text-lg leading-snug">${esc(resume.lv.name)}</p>
@@ -543,7 +557,7 @@
           <a href="watch.html?l=${resume.nextIdx}" class="inline-flex items-center gap-2 bg-gold text-white font-bold px-7 py-3 rounded-full hover:opacity-90 transition">▶ 이어서 학습하기</a>
         </div>`;
       } else {
-        welEl.innerHTML = `<div class="bg-ink text-paper rounded-3xl p-7 text-center">
+        welEl.innerHTML = `<div class="bg-gold text-white rounded-3xl p-7 text-center">
           <p class="text-4xl mb-2">🎉</p>
           <p class="font-bold text-lg">${esc(uname)}님, 수강 중인 모든 과정을 완주하셨어요!</p>
           <p class="text-paper/60 text-sm mt-1.5">각 과정의 <b class="text-gold">수료증</b>을 받아 학습을 기념해 보세요.</p>
@@ -582,7 +596,7 @@
           <p class="text-3xl mb-3">📚</p>
           <p class="font-semibold mb-1">아직 수강신청한 강의가 없어요</p>
           <p class="text-sm text-ink/55 mb-5">강의실에서 마음에 드는 과정을 수강신청해 보세요.</p>
-          <a href="index.html#catalog" class="inline-block bg-ink text-paper font-semibold px-6 py-3 rounded-full hover:bg-navy transition">강의 둘러보기 →</a>
+          <a href="index.html#catalog" class="inline-block bg-gold text-white font-semibold px-6 py-3 rounded-full hover:opacity-90 transition">강의 둘러보기 →</a>
         </div>`;
         return;
       }
@@ -605,9 +619,9 @@
         const bottom = s.finished
           ? `<div class="flex gap-2 mt-1.5 mb-1 mx-1">
                <button onclick="showCert(${idx})" class="flex-1 bg-gold text-white text-sm font-bold py-2.5 rounded-xl hover:opacity-90 transition">🎓 수료증 보기</button>
-               <a href="watch.html?l=${starts[ti]}" class="px-4 flex items-center bg-ink text-paper text-sm font-semibold rounded-xl hover:bg-navy transition">다시보기</a>
+               <a href="watch.html?l=${starts[ti]}" class="px-4 flex items-center bg-gold text-white text-sm font-semibold rounded-xl hover:opacity-90 transition">다시보기</a>
              </div>`
-          : `<a href="watch.html?l=${s.nextIdx}" class="block text-center mt-1.5 mb-1 mx-1 bg-ink text-paper text-sm font-semibold py-2.5 rounded-xl hover:bg-navy transition">${ doneCnt === 0 ? '▶ 학습 시작하기' : '▶ 이어보기' }</a>`;
+          : `<a href="watch.html?l=${s.nextIdx}" class="block text-center mt-1.5 mb-1 mx-1 bg-gold text-white text-sm font-semibold py-2.5 rounded-xl hover:opacity-90 transition">${ doneCnt === 0 ? '▶ 학습 시작하기' : '▶ 이어보기' }</a>`;
         return `<div class="bg-white rounded-2xl border ${ s.finished ? 'border-gold/40' : 'border-ink/8' } shadow-soft overflow-hidden">
           <div onclick="toggleFolder(${ti})" class="px-5 pt-5 pb-4 cursor-pointer hover:bg-ink/[0.015] transition select-none">
             <div class="flex items-center gap-3 mb-3">
@@ -639,14 +653,14 @@
         const rec = rk.tier === 1;
         return `<div class="bg-white rounded-2xl border ${rec?'border-gold/50 shadow-soft':'border-ink/10'} p-5 flex flex-col">
           <div class="flex items-center gap-2 mb-1">
-            <span class="bg-ink text-paper text-xs font-bold px-2 py-0.5 rounded-full">${esc(rk.rank)}</span>
+            <span class="bg-gold text-white text-xs font-bold px-2 py-0.5 rounded-full">${esc(rk.rank)}</span>
             <h4 class="font-bold text-lg">${esc(rk.name)}</h4>
             ${rec?'<span class="ml-auto text-[10px] font-bold text-gold bg-gold/12 px-2 py-0.5 rounded-full">입문 추천</span>':''}
           </div>
           <p class="text-xs text-ink/50 mb-3">${esc(rk.tagline||'')}</p>
           <p class="mb-3">${HIDE ? '<span class="text-lg font-bold text-ink">가격 추후 안내</span>' : `<span class="text-2xl font-bold">${won(main)}</span>${rk.earlybird?` <span class="text-sm text-ink/40 line-through">${won(rk.price)}</span> <span class="text-[11px] font-bold text-rose-500">얼리버드</span>`:''}`}</p>
           <ul class="text-xs text-ink/65 space-y-1.5 mb-4 flex-1">${perks}</ul>
-          <a href="academy.html" class="block text-center bg-ink text-paper text-sm font-semibold py-2.5 rounded-xl hover:bg-navy transition">등록 신청 →</a>
+          <a href="academy.html" class="block text-center bg-gold text-white text-sm font-semibold py-2.5 rounded-xl hover:opacity-90 transition">등록 신청 →</a>
         </div>`;
       }).join('');
       return `<p class="text-sm text-ink/60 mb-4 leading-relaxed">아래 패키지를 등록하면 인증 과정이 열립니다. <b class="text-ink/80">계좌이체로 수강료를 입금</b>하시고 등록 신청하시면, 확인 후 수강권을 열어드려요.</p>
@@ -707,7 +721,7 @@
       // ── 개요 카드 (인증) ──
       if(catCert){
         if(userTier > 0){
-          catCert.innerHTML = `<button onclick="showCat('cert')" class="w-full h-full text-left bg-ink text-paper rounded-3xl border border-gold/40 shadow-soft p-6 hover:shadow-card transition flex flex-col">
+          catCert.innerHTML = `<button onclick="showCat('cert')" class="w-full h-full text-left bg-gold text-white rounded-3xl border border-gold/40 shadow-soft p-6 hover:shadow-card transition flex flex-col">
             <div class="flex items-center gap-2 mb-2"><span class="text-2xl">🎓</span><h3 class="font-bold text-lg">${esc(brand)}</h3><span class="ml-auto text-[10px] font-bold text-ink bg-gold px-2 py-0.5 rounded-full">인증</span></div>
             <p class="text-sm text-paper/60 mb-4">시험으로 검증하고 학점을 쌓는 과정</p>
             <div class="flex items-end gap-5 mb-3">
@@ -719,7 +733,7 @@
           </button>`;
         } else {
           const fromP = (PROGRAM.ranks && PROGRAM.ranks[0] && (PROGRAM.ranks[0].earlybird||PROGRAM.ranks[0].price)) || 0;
-          catCert.innerHTML = `<button onclick="showCat('cert')" class="w-full h-full text-left bg-ink text-paper rounded-3xl border border-gold/40 shadow-soft p-6 hover:shadow-card transition flex flex-col">
+          catCert.innerHTML = `<button onclick="showCat('cert')" class="w-full h-full text-left bg-gold text-white rounded-3xl border border-gold/40 shadow-soft p-6 hover:shadow-card transition flex flex-col">
             <div class="flex items-center gap-2 mb-2"><span class="text-2xl">🎓</span><h3 class="font-bold text-lg">${esc(brand)}</h3><span class="ml-auto text-[10px] font-bold text-paper bg-white/15 px-2 py-0.5 rounded-full">🔒 유료</span></div>
             <p class="text-sm text-paper/60 mb-4 flex-1">시험·요약노트·수료증·학점으로 분별력을 공인받는 인증 과정이에요.</p>
             <p class="text-xs text-paper/50 mb-1">5급 Associate부터 1급 Laureate까지</p>
@@ -735,7 +749,7 @@
         const ranksHtml = (PROGRAM.ranks||[]).map(rk => {
           const unlocked = userTier >= (rk.tier||99);
           const header = `<div class="flex items-baseline gap-2 mb-2.5">
-              <span class="bg-ink text-paper text-xs font-bold px-2.5 py-1 rounded-full">${esc(rk.rank)}</span>
+              <span class="bg-gold text-white text-xs font-bold px-2.5 py-1 rounded-full">${esc(rk.rank)}</span>
               <span class="font-bold">${esc(rk.name)}</span>
               <span class="text-xs text-ink/45">${esc(rk.tagline||'')}</span>
               ${unlocked ? '' : '<span class="ml-auto text-[11px] font-bold text-ink/45 bg-ink/[0.06] px-2 py-0.5 rounded-full">🔒 상위 패키지</span>'}
@@ -775,7 +789,7 @@
 
       host.innerHTML = `
         <div class="rounded-3xl border border-gold/35 bg-gold/[0.05] overflow-hidden shadow-soft">
-          <div class="bg-ink text-paper px-5 md:px-6 py-4">
+          <div class="bg-gold text-white px-5 md:px-6 py-4">
             <div class="flex items-center gap-2">
               <span class="text-xl">🎓</span>
               <h2 class="font-bold text-lg">${esc(brand)}</h2>
@@ -802,7 +816,7 @@
       let h='';
       if(passActive){
         const term = pass.expires_at ? ('이용 기간 ~'+fmtDate(pass.expires_at)) : '평생 소장';
-        h += `<a href="booklet.html" class="flex items-center gap-3 bg-ink text-paper rounded-2xl px-4 py-3.5 hover:bg-navy transition">
+        h += `<a href="booklet.html" class="flex items-center gap-3 bg-gold text-white rounded-2xl px-4 py-3.5 hover:opacity-90 transition">
           <span class="text-xl shrink-0">🎫</span>
           <span class="flex-1 min-w-0"><span class="block font-bold text-sm">전체 이용권 보유 중</span><span class="block text-paper/60 text-xs mt-0.5">모든 교재를 무제한 열람·PDF 저장 · ${term}</span></span>
           <span class="text-gold text-sm font-bold shrink-0">전체 보기 →</span></a>`;
@@ -821,7 +835,7 @@
         h = `<div class="bg-white rounded-2xl border border-ink/8 p-6 text-center">
           <p class="text-2xl mb-2">📕</p>
           <p class="text-sm text-ink/55 mb-3">아직 구매한 교재가 없어요.</p>
-          <a href="booklet.html" class="inline-block bg-ink text-paper text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-navy transition">북스토어 둘러보기 →</a>
+          <a href="booklet.html" class="inline-block bg-gold text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition">북스토어 둘러보기 →</a>
         </div>`;
       }
       el.innerHTML=h;
@@ -836,7 +850,7 @@
         el.innerHTML=`<div class="bg-white rounded-2xl border border-ink/8 p-6 text-center">
           <p class="text-2xl mb-2">✍️</p>
           <p class="text-sm text-ink/55 mb-3">아직 작성한 글이 없어요.</p>
-          <a href="community.html" class="inline-block bg-ink text-paper text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-navy transition">커뮤니티 가기 →</a>
+          <a href="community.html" class="inline-block bg-gold text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition">커뮤니티 가기 →</a>
         </div>`; return;
       }
       el.innerHTML = posts.map(p=>{
@@ -870,7 +884,7 @@
       const dateStr = `${t.getFullYear()}년 ${t.getMonth()+1}월 ${t.getDate()}일`;
       const certNo = `BIBLY-${t.getFullYear()}${String(t.getMonth()+1).padStart(2,'0')}${String(t.getDate()).padStart(2,'0')}-${String(idx+1).padStart(2,'0')}`;
       document.getElementById('certSheet').innerHTML = `
-        <div class="bg-ink text-paper px-7 py-8">
+        <div class="bg-gold text-white px-7 py-8">
           <div class="border-2 border-gold/40 rounded-2xl px-6 py-9 text-center">
             ${window.__earnedTier>0?`<div class="flex justify-center mb-3">${rankSeal(window.__earnedTier,42,true)}</div>`:''}
             <p class="text-gold tracking-[0.34em] text-[11px] font-bold mb-1">CERTIFICATE OF COMPLETION</p>
@@ -902,17 +916,17 @@
       if(e) e.textContent=(user&&user.email)||'';
       if(a){
         if(window.__earnedTier>0){ a.style.background='transparent'; a.style.boxShadow='none'; a.innerHTML=rankSeal(window.__earnedTier,44,true); }
-        else { a.style.background='#b0705a'; a.style.boxShadow=''; a.innerHTML=''; a.textContent=(uname||'B').trim().charAt(0).toUpperCase(); }
+        else { a.style.background='#ef9b76'; a.style.boxShadow=''; a.innerHTML=''; a.textContent=(uname||'B').trim().charAt(0).toUpperCase(); }
       }
     }
 
     // ===== 🏅 급수 휘장(뱃지) =====
-    const RANK_C = {1:['#8aa595','#6f8c7e'],2:['#5e8169','#4a6a55'],3:['#3f6b5a','#305446'],4:['#b0705a','#965a46'],5:['#9c4f3a','#7e3d2c']};
+    const RANK_C = {1:['#8cc3ec','#6fb0e4'],2:['#5aa6de','#3f93d2'],3:['#2e8fd6','#1f78bd'],4:['#1f6cab','#155890'],5:['#ef9b76','#e07f55']};
     const RANK_RN = {1:'Ⅰ',2:'Ⅱ',3:'Ⅲ',4:'Ⅳ',5:'Ⅴ'};
     function rankSeal(tier, size, earned){
       const rn = RANK_RN[tier]||'Ⅰ';
       if(!earned){
-        return `<span class="inline-flex items-center justify-center rounded-full shrink-0" style="width:${size}px;height:${size}px;background:#ece7dd;box-shadow:inset 0 0 0 2px rgba(46,42,36,.06)"><span style="font-size:${Math.round(size*0.4)}px;color:#c3b6a3;font-family:Georgia,serif;font-weight:700">${rn}</span></span>`;
+        return `<span class="inline-flex items-center justify-center rounded-full shrink-0" style="width:${size}px;height:${size}px;background:#ece7dd;box-shadow:inset 0 0 0 2px rgba(31,77,119,.06)"><span style="font-size:${Math.round(size*0.4)}px;color:#c3b6a3;font-family:Georgia,serif;font-weight:700">${rn}</span></span>`;
       }
       const [c,c2]=RANK_C[tier]||RANK_C[1];
       return `<span class="inline-flex items-center justify-center rounded-full shrink-0" style="width:${size}px;height:${size}px;background:radial-gradient(circle at 32% 26%, rgba(255,255,255,.55), transparent 58%), linear-gradient(145deg,${c},${c2});box-shadow:0 7px 18px -7px ${c}, inset 0 0 0 2px rgba(255,255,255,.3)"><span style="font-size:${Math.round(size*0.44)}px;color:#fff;font-family:Georgia,serif;font-weight:700;text-shadow:0 1px 2px rgba(0,0,0,.28)">${rn}</span></span>`;
@@ -925,16 +939,16 @@
       let headline, sub;
       if(earnedTier===0){ headline='아직 취득한 급수가 없어요'; sub = ranks[0] ? `<b>${esc(ranks[0].name)}</b> 과목의 시험을 모두 통과하면 첫 급수 휘장을 얻어요.` : ''; }
       else if(!nextRank){ headline=`${esc(earned.name)} <span class="text-ink/45 text-sm font-semibold">${esc(earned.rank)}</span>`; sub='🎉 최고 급수까지 모두 달성하셨어요! 자랑스러운 분별의 사람입니다.'; }
-      else { headline=`${esc(earned.name)} <span class="text-ink/45 text-sm font-semibold">${esc(earned.rank)}</span>`; sub=`다음 급수 <b style="color:${nextRank.color||'#b0705a'}">${esc(nextRank.name)}</b>까지 <b>${nextRemain}과목</b> 남았어요.`; }
+      else { headline=`${esc(earned.name)} <span class="text-ink/45 text-sm font-semibold">${esc(earned.rank)}</span>`; sub=`다음 급수 <b style="color:${nextRank.color||'#ef9b76'}">${esc(nextRank.name)}</b>까지 <b>${nextRemain}과목</b> 남았어요.`; }
       const ladder = ranks.map(r=>`<div class="flex flex-col items-center gap-1">${rankSeal(r.tier,30,r.tier<=earnedTier)}<span class="text-[8.5px] font-bold ${r.tier<=earnedTier?'text-ink/70':'text-ink/30'}">${esc(r.name)}</span></div>`).join('<span class="text-ink/15 self-start mt-3 text-xs">·</span>');
       el.innerHTML=`<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 mb-6">
         <div class="flex items-center gap-4">
           ${rankSeal(earnedTier||1, 60, earnedTier>0)}
           <div class="min-w-0 flex-1">
-            <p class="text-[11px] font-bold tracking-[0.18em] mb-1" style="color:${earned?(earned.color||'#b0705a'):'#b0a48f'}">MY RANK · 내 급수</p>
+            <p class="text-[11px] font-bold tracking-[0.18em] mb-1" style="color:${earned?(earned.color||'#ef9b76'):'#b0a48f'}">MY RANK · 내 급수</p>
             <p class="font-bold text-lg leading-tight">${headline}</p>
             <p class="text-xs text-ink/55 mt-1 leading-relaxed">${sub}</p>
-            ${earnedTier>0?`<button onclick="shareRank()" class="mt-2 inline-flex items-center gap-1 text-xs font-bold text-[#b0705a] hover:underline">🎉 내 급수 자랑하기</button>`:''}
+            ${earnedTier>0?`<button onclick="shareRank()" class="mt-2 inline-flex items-center gap-1 text-xs font-bold text-[#ef9b76] hover:underline">🎉 내 급수 자랑하기</button>`:''}
           </div>
         </div>
         <div class="mt-4 pt-4 border-t border-ink/8 flex items-center justify-between gap-0.5">${ladder}</div>
@@ -951,17 +965,23 @@
     function sbGo(sec){
       const mainSecs=['main','free','cert'];
       const tm=document.getElementById('tabMain'), td=document.getElementById('tabDiary'), tp=document.getElementById('tabProfile');
+      const tb=document.getElementById('tabBible'), tk=document.getElementById('tabBooks');
       if(tm) tm.classList.toggle('hidden', !mainSecs.includes(sec));
       if(td) td.classList.toggle('hidden', sec!=='diary');
       if(tp) tp.classList.toggle('hidden', sec!=='profile');
+      if(tb) tb.classList.toggle('hidden', sec!=='bible');
+      if(tk) tk.classList.toggle('hidden', sec!=='books');
       if(sec==='free') showCat('free');
       else if(sec==='cert') showCat('cert');
       else if(sec==='main') showCat('overview');
       if(sec==='diary') loadDiary();
       if(sec==='profile') loadProfile();
+      if(sec==='bible') loadEmbed('embBible','bible-plan.html?embed=1');
+      if(sec==='books') loadEmbed('embBooks','booklet.html?embed=1');
       document.querySelectorAll('.sbItem[data-sec]').forEach(b=>b.classList.toggle('active', b.dataset.sec===sec));
       window.scrollTo({top:0, behavior:'smooth'});
     }
+    function loadEmbed(id, src){ const f=document.getElementById(id); if(f && !f.getAttribute('src')){ f.setAttribute('src', src); } }
 
     // ===== 개인정보 수정 =====
     let _pfLoaded=false;

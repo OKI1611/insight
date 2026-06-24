@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>자료실 — BIBLY 바이블 인사이트</title>
   <link rel="manifest" href="/manifest.json" />
-  <meta name="theme-color" content="#2e2a24" />
+  <meta name="theme-color" content="#1f4d77" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png" />
@@ -32,9 +32,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { theme: { extend: {
-      colors: { ink:'#2e2a24', navy:'#25211b', gold:'#4e6e5a', sand:'#f0e9dc', paper:'#faf8f3' },
+      colors: { ink:'#1f4d77', navy:'#163c61', gold:'#2e8fd6', sand:'#e3f0fb', paper:'#f3f9ff' },
       fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
-      boxShadow: { soft:'0 2px 10px -4px rgba(46,42,36,.10)', card:'0 14px 40px -18px rgba(46,42,36,.22)' }
+      boxShadow: { soft:'0 2px 10px -4px rgba(31,77,119,.10)', card:'0 14px 40px -18px rgba(31,77,119,.22)' }
     }}}
   </script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -48,13 +48,13 @@
     .ql-editor{min-height:150px;font-size:15px;line-height:1.7}
     .ql-editor.ql-blank::before{color:#9aa1ad;font-style:normal}
     .ql-container:focus-within .ql-editor.ql-blank::before{content:''}
-    .ql-toolbar.ql-snow,.ql-container.ql-snow{border-color:rgba(46,42,36,.15)}
+    .ql-toolbar.ql-snow,.ql-container.ql-snow{border-color:rgba(31,77,119,.15)}
     .ql-toolbar.ql-snow{border-top-left-radius:.5rem;border-top-right-radius:.5rem}
     .ql-container.ql-snow{border-bottom-left-radius:.5rem;border-bottom-right-radius:.5rem}
     .resbody img{max-width:100%;border-radius:.5rem;margin:.4rem 0}
     .resbody p{margin:.2rem 0}.resbody h2{font-size:1.05rem;font-weight:700;margin:.4rem 0}.resbody h3{font-weight:700;margin:.3rem 0}
-    .resbody blockquote{border-left:3px solid #d8c28a;padding-left:.7rem;color:rgba(46,42,36,.6);margin:.4rem 0}
-    .resbody a{color:#4e6e5a;text-decoration:underline}.resbody ul,.resbody ol{margin:.3rem 0 .3rem 1.2rem}.resbody li{list-style:disc}
+    .resbody blockquote{border-left:3px solid #d8c28a;padding-left:.7rem;color:rgba(31,77,119,.6);margin:.4rem 0}
+    .resbody a{color:#2e8fd6;text-decoration:underline}.resbody ul,.resbody ol{margin:.3rem 0 .3rem 1.2rem}.resbody li{list-style:disc}
     /* Quill 글자크기·폰트 드롭다운 한글 라벨 */
     .ql-snow .ql-picker.ql-size{width:82px}
     .ql-snow .ql-picker.ql-size .ql-picker-label:not([data-value])::before,.ql-snow .ql-picker.ql-size .ql-picker-item:not([data-value])::before{content:'보통'}
@@ -75,7 +75,7 @@
         <h1 class="text-2xl md:text-3xl font-bold">자료실</h1>
         <p class="text-ink/55 text-sm mt-2">강의와 함께 보는 자료 — 암송노트·강의노트·도표를 받아보세요.</p>
       </div>
-      <button id="writeBtn" onclick="openForm()" class="hidden bg-ink text-paper text-sm font-semibold px-4 py-2.5 rounded-full hover:bg-navy transition shrink-0">＋ 자료 올리기</button>
+      <button id="writeBtn" onclick="openForm()" class="hidden bg-gold text-white text-sm font-semibold px-4 py-2.5 rounded-full hover:opacity-90 transition shrink-0">＋ 자료 올리기</button>
     </div>
 
     <!-- 작성 폼 (관리자) -->
@@ -179,7 +179,7 @@
               <p class="text-xs text-ink/35 mt-0.5">${fmtDate(r.created_at)}${hasBody?' · 클릭하면 내용 보기':''}</p>
             </div>
             ${ hasBody ? `<svg id="rchev-${r.id}" class="w-5 h-5 text-ink/25 shrink-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>` : '' }
-            ${ url ? `<a href="${encodeURI(url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="shrink-0 bg-ink text-paper text-sm font-semibold px-4 py-2 rounded-full hover:bg-navy">받기</a>`
+            ${ url ? `<a href="${encodeURI(url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="shrink-0 bg-gold text-white text-sm font-semibold px-4 py-2 rounded-full hover:opacity-90">받기</a>`
                    : (hasBody ? '' : `<span class="shrink-0 text-ink/35 text-xs">준비 중</span>`) }
             <button onclick="event.stopPropagation();shareRes(this)" data-id="${r.id}" data-t="${esc(r.title||'').replace(/"/g,'&quot;')}" class="shrink-0 text-ink/35 hover:text-gold text-lg" title="공유하기">🔗</button>
             ${ isAdmin ? `<button onclick="event.stopPropagation();delResource('${r.id}')" class="shrink-0 text-ink/30 hover:text-red-500 text-sm">삭제</button>` : '' }

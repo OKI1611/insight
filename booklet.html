@@ -6,7 +6,7 @@
   <script src="/site-header.js?v=20260622a"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BIBLY 북스토어 — 과정별 요약노트 합본 책자</title>
-  <meta name="theme-color" content="#2e2a24" />
+  <meta name="theme-color" content="#1f4d77" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="canonical" href="https://biblynote.com/booklet" />
@@ -21,9 +21,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { theme: { extend: {
-      colors: { ink:'#2e2a24', navy:'#25211b', gold:'#4e6e5a', sand:'#f0e9dc', paper:'#faf8f3' },
+      colors: { ink:'#1f4d77', navy:'#163c61', gold:'#2e8fd6', sand:'#e3f0fb', paper:'#f3f9ff' },
       fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
-      boxShadow: { soft:'0 2px 10px -4px rgba(46,42,36,.10)', card:'0 14px 40px -18px rgba(46,42,36,.22)' }
+      boxShadow: { soft:'0 2px 10px -4px rgba(31,77,119,.10)', card:'0 14px 40px -18px rgba(31,77,119,.22)' }
     }}}
   </script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -37,7 +37,7 @@
   <style>
     h1,h2,h3,.serif{font-family:'Noto Serif KR',Pretendard,serif}
     /* 책 표지 */
-    .cover{position:relative;aspect-ratio:3/4;border-radius:3px 8px 8px 3px;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:15px 13px 13px 19px;color:#fff;box-shadow:0 10px 26px -10px rgba(46,42,36,.55)}
+    .cover{position:relative;aspect-ratio:3/4;border-radius:3px 8px 8px 3px;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:15px 13px 13px 19px;color:#fff;box-shadow:0 10px 26px -10px rgba(31,77,119,.55)}
     .cover::before{content:'';position:absolute;left:0;top:0;bottom:0;width:7px;background:rgba(0,0,0,.20)}
     .cover .cbrand{font-size:10.5px;font-weight:800;letter-spacing:.18em;color:#ecca77}
     .cover .ctitle{font-family:'Noto Serif KR',serif;font-weight:700;font-size:16.5px;line-height:1.32;text-shadow:0 1px 6px rgba(0,0,0,.25)}
@@ -46,32 +46,34 @@
     /* 책자 본문(뷰어/인쇄) — 줄간격 넉넉히, 강의 필기·참고용 */
     .book{font-family:'Noto Serif KR',Pretendard,serif;color:#1c2b46;line-height:1.75}
     .book .lesson{page-break-before:always}
-    .book .ch-label{font-size:11.5px;font-weight:800;letter-spacing:.18em;color:#4e6e5a;margin:0 0 5px}
-    .book h2.bk-title{font-size:20px;font-weight:700;color:#2e2a24;border-bottom:2px solid #4e6e5a;padding-bottom:9px;margin:0 0 16px;line-height:1.45}
-    .book h3.bk-h{font-size:15px;font-weight:700;color:#2e2a24;margin:22px 0 8px}
+    .book .ch-label{font-size:11.5px;font-weight:800;letter-spacing:.18em;color:#2e8fd6;margin:0 0 5px}
+    .book h2.bk-title{font-size:20px;font-weight:700;color:#1f4d77;border-bottom:2px solid #2e8fd6;padding-bottom:9px;margin:0 0 16px;line-height:1.45}
+    .book h3.bk-h{font-size:15px;font-weight:700;color:#1f4d77;margin:22px 0 8px}
     .book p.bk-p{font-size:13.5px;line-height:2.05;margin:9px 0;color:#2a3a55}
-    .book .bk-thesis{background:#f0e9dc;border-left:3px solid #2e2a24;border-radius:8px;padding:13px 16px;font-weight:600;color:#2e2a24;font-size:14px;line-height:1.85;margin:4px 0 10px}
+    .book .bk-thesis{background:#e3f0fb;border-left:3px solid #1f4d77;border-radius:8px;padding:13px 16px;font-weight:600;color:#1f4d77;font-size:14px;line-height:1.85;margin:4px 0 10px}
     .book .bk-scr{background:#faf7ef;border:1px solid #e6dcc3;border-radius:8px;padding:11px 14px;margin:7px 0;font-size:12.5px;line-height:1.8}
     .book .bk-scr b{color:#9a7b30}
     .book ul.bk-ul{margin:7px 0 9px 2px;padding:0;list-style:none}
     .book ul.bk-ul li{font-size:13px;line-height:1.95;padding-left:16px;position:relative;color:#33415e;margin:3px 0}
-    .book ul.bk-ul li::before{content:'·';position:absolute;left:3px;color:#4e6e5a;font-weight:700}
-    .book .bk-term{font-size:12.5px;line-height:1.85;margin:5px 0}.book .bk-term b{color:#2e2a24}
+    .book ul.bk-ul li::before{content:'·';position:absolute;left:3px;color:#2e8fd6;font-weight:700}
+    .book .bk-term{font-size:12.5px;line-height:1.85;margin:5px 0}.book .bk-term b{color:#1f4d77}
     .book .bk-mis{font-size:12.5px;line-height:1.8;margin:7px 0}.book .bk-mis .w{color:#b4524a}.book .bk-mis .r{color:#2f7d57}
     /* 목차(책 틀) */
     .book .toc-list{list-style:none;margin:6px 0 0;padding:0}
     .book .toc-row{display:flex;align-items:center;gap:8px;padding:7px 2px;border-bottom:1px dotted #d6ddea}
-    .book .toc-no{flex-shrink:0;font-size:11.5px;font-weight:800;color:#4e6e5a;letter-spacing:.04em;min-width:42px}
+    .book .toc-no{flex-shrink:0;font-size:11.5px;font-weight:800;color:#2e8fd6;letter-spacing:.04em;min-width:42px}
     .book .toc-t{flex:1;font-size:13.5px;color:#2a3a55;line-height:1.55}
-    .book a.toc-t{text-decoration:none;cursor:pointer;transition:color .15s}.book a.toc-t:hover{color:#4e6e5a}
-    .lesson-check{width:14px;height:14px;accent-color:#4e6e5a;cursor:pointer;flex-shrink:0;margin:0}
-    .toc-dl{background:none;border:none;cursor:pointer;color:#4e6e5a;opacity:.5;font-size:13px;padding:0 2px;transition:opacity .15s;flex-shrink:0}.toc-dl:hover{opacity:1}
+    .book a.toc-t{text-decoration:none;cursor:pointer;transition:color .15s}.book a.toc-t:hover{color:#2e8fd6}
+    .lesson-check{width:14px;height:14px;accent-color:#2e8fd6;cursor:pointer;flex-shrink:0;margin:0}
+    .toc-dl{background:none;border:none;cursor:pointer;color:#2e8fd6;opacity:.5;font-size:13px;padding:0 2px;transition:opacity .15s;flex-shrink:0}.toc-dl:hover{opacity:1}
     /* 필기 공간 — 화면에선 숨기고 인쇄(PDF)에서만 표시 */
     .book .note-area{display:none}
     @media print{ .no-print{display:none!important} }
   </style>
 </head>
 <body class="font-sans bg-paper text-ink antialiased min-h-screen">
+  <style>html.embed #siteHeader,html.embed footer{display:none!important}html.embed body{padding:0!important}html.embed main{padding-top:1rem!important}</style>
+  <script>if(new URLSearchParams(location.search).get('embed')==='1')document.documentElement.classList.add('embed');</script>
 
   <div id="siteHeader" data-active="booklet.html"></div>
 
@@ -86,7 +88,7 @@
       </nav>
       <div class="ml-auto flex items-center gap-1.5">
         <a href="store-help.html" class="sm:hidden text-ink/55 text-sm px-1.5">고객센터</a>
-        <button onclick="showView('cart')" aria-label="장바구니" class="relative inline-flex items-center gap-1.5 bg-ink text-paper text-sm font-bold pl-3.5 pr-4 py-2 rounded-full hover:bg-navy transition">
+        <button onclick="showView('cart')" aria-label="장바구니" class="relative inline-flex items-center gap-1.5 bg-gold text-white text-sm font-bold pl-3.5 pr-4 py-2 rounded-full hover:opacity-90 transition">
           <span>🛒 장바구니</span>
           <span id="cartCount" class="bg-gold text-white text-[11px] font-bold rounded-full min-w-[18px] h-[18px] px-1 inline-flex items-center justify-center">0</span>
         </button>
@@ -134,7 +136,7 @@
       <div class="rounded-3xl border border-ink/10 bg-gradient-to-b from-sand/50 to-white shadow-soft overflow-hidden">
         <div class="px-6 md:px-10 py-10">
           <div class="text-center max-w-xl mx-auto">
-            <span class="inline-flex items-center gap-1.5 bg-ink text-paper text-[11px] font-bold tracking-[0.2em] px-3.5 py-1.5 rounded-full">🎫 BIBLY PASS</span>
+            <span class="inline-flex items-center gap-1.5 bg-gold text-white text-[11px] font-bold tracking-[0.2em] px-3.5 py-1.5 rounded-full">🎫 BIBLY PASS</span>
             <h2 class="text-2xl md:text-[30px] font-bold mt-4 leading-tight">한 번 끊고, <span class="text-gold">전부 누리세요</span></h2>
             <p class="text-ink/60 text-sm md:text-[15px] mt-3 leading-relaxed">지금 있는 <b class="text-ink">모든 책자</b>는 물론, 앞으로 나올 책자까지 — 이용권 하나로 무제한 열람·PDF 저장.</p>
           </div>
@@ -227,7 +229,7 @@
       <div class="max-w-3xl mx-auto px-4 py-2.5 flex items-center gap-2 flex-wrap">
         <a href="booklet.html" class="text-sm text-ink/60 hover:text-gold">← 북스토어</a>
         <span id="bvTitle" class="font-bold text-sm truncate flex-1 min-w-0 text-center"></span>
-        <button id="bvSelPdf" onclick="saveSelectedPDF()" class="hidden bg-ink text-paper text-sm font-semibold px-3 py-2 rounded-full hover:opacity-90 transition shrink-0">📑 선택 강의 PDF</button>
+        <button id="bvSelPdf" onclick="saveSelectedPDF()" class="hidden bg-gold text-white text-sm font-semibold px-3 py-2 rounded-full hover:opacity-90 transition shrink-0">📑 선택 강의 PDF</button>
         <button id="bvPdf" onclick="savePDF()" title="인쇄창이 열리면 대상(목적지)을 'PDF로 저장'으로 선택하세요" class="bg-gold text-white text-sm font-semibold px-4 py-2 rounded-full hover:opacity-90 transition shrink-0">📕 전체 PDF</button>
       </div>
     </div>
@@ -269,7 +271,7 @@
       const t=TRACKS.find(x=>x.name===val); if(t) return { name:t.name, price:bookPrice(t), meta:'전 '+t.lessons.length+'강 합본 · 약 '+bookPages(t)+'쪽', pass:false };
       return null;
     }
-    const COVERS=[['#2e2a24','#162a52'],['#1f3a63','#122441'],['#2a3f6e','#1a2c52'],['#243b66','#152848'],['#26406e','#172d54']];
+    const COVERS=[['#1f4d77','#162a52'],['#1f3a63','#122441'],['#2a3f6e','#1a2c52'],['#243b66','#152848'],['#26406e','#172d54']];
 
     let COURSE=null, TRACKS=[], PAY={};
     let CART=[];
@@ -327,7 +329,7 @@
     let toastT=null;
     function toast(msg, plain){
       let el=$('toastBox');
-      if(!el){ el=document.createElement('div'); el.id='toastBox'; el.style.zIndex='2147483646'; el.className='fixed left-1/2 -translate-x-1/2 top-24 bg-ink text-paper text-sm font-semibold px-5 py-3 rounded-full shadow-card flex items-center gap-3 transition-opacity'; document.body.appendChild(el); }
+      if(!el){ el=document.createElement('div'); el.id='toastBox'; el.style.zIndex='2147483646'; el.className='fixed left-1/2 -translate-x-1/2 top-24 bg-gold text-white text-sm font-semibold px-5 py-3 rounded-full shadow-card flex items-center gap-3 transition-opacity'; document.body.appendChild(el); }
       el.innerHTML='<span>'+esc(msg)+'</span>'+(plain?'':'<button onclick="showView(\'cart\')" class="text-gold font-bold">장바구니 보기</button>');
       el.style.opacity='1'; clearTimeout(toastT); toastT=setTimeout(()=>{ el.style.opacity='0'; }, 2600);
     }
@@ -350,7 +352,7 @@
           <p class="text-[11px] text-ink/45 mt-0.5">약 ${pages}쪽 · 전 ${n}강</p>
           <div class="flex items-center justify-between mt-1.5 gap-2">
             <p class="text-gold font-bold text-[15px]">${won(price)}</p>
-            <button onclick="addToCart('book','${nameAttr}')" class="bg-ink text-paper text-xs font-bold px-3 py-1.5 rounded-full hover:bg-navy transition whitespace-nowrap">🛒 담기</button>
+            <button onclick="addToCart('book','${nameAttr}')" class="bg-gold text-white text-xs font-bold px-3 py-1.5 rounded-full hover:opacity-90 transition whitespace-nowrap">🛒 담기</button>
           </div>
         </div>`;
       }).join('');
@@ -372,13 +374,13 @@
           : ['모든 책자 무제한 열람·PDF 저장','1년 내내 자유롭게','기간 중 추가되는 책자도 포함'];
         const badge=best
           ? '<span class="absolute -top-2.5 left-5 bg-gold text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">가장 인기</span>'
-          : '<span class="absolute -top-2.5 left-5 bg-ink text-paper text-[10px] font-bold px-2.5 py-1 rounded-full shadow">평생 소장</span>';
+          : '<span class="absolute -top-2.5 left-5 bg-gold text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">평생 소장</span>';
         return `<div class="relative bg-white rounded-2xl border ${best?'border-gold/50 ring-1 ring-gold/15':'border-ink/12'} shadow-soft p-5 pt-6 flex flex-col text-left">
           ${badge}
           <p class="font-bold text-[15px]">${esc(p.name)}</p>
           <div class="mt-2 mb-1 flex items-end gap-1.5"><span class="text-2xl font-bold text-ink">${won(p.price)}</span>${monthly?`<span class="text-[11px] text-ink/45 mb-1">월 ${won(monthly)}꼴</span>`:''}</div>
           <ul class="text-xs text-ink/65 space-y-1.5 my-3 flex-1">${bullets.map(b=>`<li class="flex gap-1.5"><span class="text-gold shrink-0">✓</span><span>${esc(b)}</span></li>`).join('')}</ul>
-          <button onclick="addToCart('pass','${p.id}')" class="w-full ${best?'bg-gold text-white':'bg-ink text-paper hover:bg-navy'} font-bold text-sm py-2.5 rounded-xl hover:opacity-90 transition">🛒 이용권 담기</button>
+          <button onclick="addToCart('pass','${p.id}')" class="w-full ${best?'bg-gold text-white':'bg-gold text-white hover:opacity-90'} font-bold text-sm py-2.5 rounded-xl hover:opacity-90 transition">🛒 이용권 담기</button>
         </div>`;
       }).join('');
     }
@@ -388,7 +390,7 @@
     function renderCart(){
       const list=$('cartList'), sum=$('cartSummary'); if(!list) return;
       if(!CART.length){
-        list.innerHTML='<div class="bg-white rounded-2xl border border-ink/8 p-10 text-center"><p class="text-3xl mb-3">🛒</p><p class="font-semibold mb-1">장바구니가 비어 있어요</p><p class="text-sm text-ink/55 mb-5">마음에 드는 책자나 이용권을 담아보세요.</p><button onclick="showView(\'catalog\')" class="inline-block bg-ink text-paper font-semibold px-6 py-3 rounded-full hover:bg-navy transition">책자 둘러보기 →</button></div>';
+        list.innerHTML='<div class="bg-white rounded-2xl border border-ink/8 p-10 text-center"><p class="text-3xl mb-3">🛒</p><p class="font-semibold mb-1">장바구니가 비어 있어요</p><p class="text-sm text-ink/55 mb-5">마음에 드는 책자나 이용권을 담아보세요.</p><button onclick="showView(\'catalog\')" class="inline-block bg-gold text-white font-semibold px-6 py-3 rounded-full hover:opacity-90 transition">책자 둘러보기 →</button></div>';
         if(sum) sum.innerHTML=''; return;
       }
       list.innerHTML=CART.map(it=>`<div class="bg-white rounded-2xl border border-ink/10 shadow-soft px-4 py-3.5 flex items-center gap-3">
@@ -455,7 +457,7 @@
     }
     function payGuide(pay,price){
       if(pay==='카카오페이'){ const u=PAY.kakaopay_url; return u?`<a href="${u}" target="_blank" rel="noopener" class="inline-block bg-[#FEE500] text-[#191600] font-bold px-5 py-2.5 rounded-xl">💛 카카오페이로 ${won(price)} 송금하기 →</a><p class="text-ink/45 text-xs mt-2">송금 후 메모에 <b>주문번호</b>를 적어주시면 빠릅니다.</p>`:'카카오페이 송금 안내를 이메일로 보내드릴게요.'; }
-      if(pay==='간편결제'){ const u=PAY.simplepay_url; return u?`<a href="${u}" target="_blank" rel="noopener" class="inline-block bg-ink text-white font-bold px-5 py-2.5 rounded-xl">⚡ 간편결제로 ${won(price)} 결제하기 →</a>`:'간편결제 안내를 이메일로 보내드릴게요.'; }
+      if(pay==='간편결제'){ const u=PAY.simplepay_url; return u?`<a href="${u}" target="_blank" rel="noopener" class="inline-block bg-gold text-white font-bold px-5 py-2.5 rounded-xl">⚡ 간편결제로 ${won(price)} 결제하기 →</a>`:'간편결제 안내를 이메일로 보내드릴게요.'; }
       const acct=PAY.bank_account, bn=PAY.bank_name, hd=PAY.bank_holder;
       return acct?`<div class="bg-sand/70 border border-ink/10 rounded-xl p-4 text-left text-sm leading-relaxed"><p class="font-bold text-ink mb-1">입금 계좌</p><p>${esc(bn||'')} <b class="text-ink">${esc(acct)}</b> (예금주 ${esc(hd||'')})</p><p class="mt-1">입금액 <b class="text-gold">${won(price)}</b> · 입금자명에 <b>주문번호</b> 또는 <b>주문자 이름</b></p></div>`:'입금 계좌를 이메일로 보내드릴게요.';
     }
@@ -499,7 +501,7 @@
       if(n.thesis) h+=`<p class="bk-thesis">${esc(n.thesis)}</p>`;
       if(n.overview) String(n.overview).split('\n').forEach(p=>{if(p.trim())h+=`<p class="bk-p">${esc(p.trim())}</p>`;});
       if(n.background){h+=`<h3 class="bk-h">📜 배경</h3>`;String(n.background).split('\n').forEach(p=>{if(p.trim())h+=`<p class="bk-p">${esc(p.trim())}</p>`;});}
-      (n.sections||[]).forEach(s=>{h+=`<h3 class="bk-h">${s.t?('<span style="color:#4e6e5a">'+esc(s.t)+'</span> '):''}${esc(s.heading||'')}</h3>`;if(s.body)String(s.body).split('\n').forEach(p=>{if(p.trim())h+=`<p class="bk-p">${esc(p.trim())}</p>`;});if((s.points||[]).length)h+='<ul class="bk-ul">'+s.points.map(p=>`<li>${esc(p)}</li>`).join('')+'</ul>';});
+      (n.sections||[]).forEach(s=>{h+=`<h3 class="bk-h">${s.t?('<span style="color:#2e8fd6">'+esc(s.t)+'</span> '):''}${esc(s.heading||'')}</h3>`;if(s.body)String(s.body).split('\n').forEach(p=>{if(p.trim())h+=`<p class="bk-p">${esc(p.trim())}</p>`;});if((s.points||[]).length)h+='<ul class="bk-ul">'+s.points.map(p=>`<li>${esc(p)}</li>`).join('')+'</ul>';});
       if((n.scriptures||[]).length){h+=`<h3 class="bk-h">📖 핵심 성구</h3>`;n.scriptures.forEach(s=>{h+=`<div class="bk-scr"><b>${esc(s.ref||'')}</b> — ${esc(s.note||'')}</div>`;});}
       if((n.terms||[]).length){h+=`<h3 class="bk-h">🔑 핵심 용어</h3>`;n.terms.forEach(t=>{h+=`<p class="bk-term"><b>${esc(t.term||'')}</b> — ${esc(t.def||'')}</p>`;});}
       if((n.misconceptions||[]).length){h+=`<h3 class="bk-h">⚠️ 오해 vs 바른 이해</h3>`;n.misconceptions.forEach(m=>{h+=`<p class="bk-mis"><span class="w">✗ ${esc(m.wrong||'')}</span><br/><span class="r">✓ ${esc(m.right||'')}</span></p>`;});}
@@ -527,7 +529,7 @@
       window._curLessons=lessons;
       const loadList=unlocked?lessons:lessons.slice(0,1);
       const notes=await Promise.all(loadList.map(async l=>{try{const r=await fetch('content/notes/'+l.id+'.json?t='+Date.now());if(r.ok)return await r.json();}catch(e){}return null;}));
-      let h=`<div class="cover-page" style="text-align:center;padding:42px 0 34px;border-bottom:1px solid #e6e9f0"><p style="color:#4e6e5a;font-weight:700;letter-spacing:.28em;font-size:11px;margin:0 0 14px">BIBLY 바이블 인사이트 · 강의 노트</p><h1 style="font-size:29px;font-weight:700;color:#2e2a24;line-height:1.4;margin:0 12px">${esc(t.name)}</h1><p style="color:#5a6b88;font-size:13px;margin:16px 0 0">요약노트 + 필기 공간 · 전 ${t.lessons.length}강</p><p style="color:#9aa6bd;font-size:11px;margin:20px 0 0">강의를 들으며 메모하고 참고하세요 · biblynote.com</p>${(CUR_BUYER&&CUR_EMAIL)?`<p style="color:#4e6e5a;font-size:10.5px;margin:18px 0 0;letter-spacing:.02em">📗 정품 · <b>${esc(CUR_EMAIL)}</b> 님께 발행 · 무단 복제·배포 금지</p>`:''}</div>`;
+      let h=`<div class="cover-page" style="text-align:center;padding:42px 0 34px;border-bottom:1px solid #e6e9f0"><p style="color:#2e8fd6;font-weight:700;letter-spacing:.28em;font-size:11px;margin:0 0 14px">BIBLY 바이블 인사이트 · 강의 노트</p><h1 style="font-size:29px;font-weight:700;color:#1f4d77;line-height:1.4;margin:0 12px">${esc(t.name)}</h1><p style="color:#5a6b88;font-size:13px;margin:16px 0 0">요약노트 + 필기 공간 · 전 ${t.lessons.length}강</p><p style="color:#9aa6bd;font-size:11px;margin:20px 0 0">강의를 들으며 메모하고 참고하세요 · biblynote.com</p>${(CUR_BUYER&&CUR_EMAIL)?`<p style="color:#2e8fd6;font-size:10.5px;margin:18px 0 0;letter-spacing:.02em">📗 정품 · <b>${esc(CUR_EMAIL)}</b> 님께 발행 · 무단 복제·배포 금지</p>`:''}</div>`;
       // 목차 — 구매자에게는 체크박스·클릭·개별PDF 제공
       const tocRows=lessons.map((l,i)=>{
         if(unlocked){
@@ -536,7 +538,7 @@
         return `<li class="toc-row"><span class="toc-no">제${i+1}강</span><span class="toc-t">${esc(cleanTitle(l.title))}</span></li>`;
       }).join('');
       const allToggle=unlocked?`<button id="btnAllLessons" onclick="toggleAllLessons()" style="font-size:11px;color:#9aa6bd;background:none;border:none;cursor:pointer;margin-left:auto;padding:0">전체 해제</button>`:'';
-      h+=`<section style="padding:24px 2px 8px"><div style="display:flex;align-items:center;gap:6px;margin:0 0 3px"><p style="font-weight:700;color:#2e2a24;font-size:17px;margin:0">목차</p>${allToggle}</div><p style="color:#9aa6bd;font-size:11px;margin:0 0 8px">전 ${lessons.length}강${unlocked?' · 클릭하면 해당 강의로 이동':''}${unlocked?' · 📥 강의별 PDF 저장 가능':''}</p><ul class="toc-list">${tocRows}</ul></section>`;
+      h+=`<section style="padding:24px 2px 8px"><div style="display:flex;align-items:center;gap:6px;margin:0 0 3px"><p style="font-weight:700;color:#1f4d77;font-size:17px;margin:0">목차</p>${allToggle}</div><p style="color:#9aa6bd;font-size:11px;margin:0 0 8px">전 ${lessons.length}강${unlocked?' · 클릭하면 해당 강의로 이동':''}${unlocked?' · 📥 강의별 PDF 저장 가능':''}</p><ul class="toc-list">${tocRows}</ul></section>`;
       notes.forEach((n,i)=>{
         const body = n ? noteHTML(n,lessons[i].title,i+1)
           : `<div class="lesson" id="lesson-${i+1}"><p class="ch-label">제${i+1}강</p><h2 class="bk-title">${esc(cleanTitle(lessons[i].title))}</h2><p class="bk-p" style="color:#9aa6bd">이 강의의 요약노트는 준비 중입니다. 아래 공간에 직접 필기해 보세요.</p></div>`;
@@ -547,7 +549,7 @@
         pdfBtn.style.display=''; pdfBtn.textContent='📕 전체 PDF'; pdfBtn.title='전체 강의를 하나의 PDF로 저장합니다'; pdfBtn.onclick=savePDF;
         if(selBtn) selBtn.classList.remove('hidden');
       } else {
-        h+=`<div class="no-print" style="text-align:center;padding:26px 0 6px;border-top:1px dashed #d6ddea;margin-top:10px"><p style="color:#5a6b88;font-size:13px">… 이하 전체 ${t.lessons.length}강 합본은 구매(또는 <b style="color:#4e6e5a">전체 이용권</b>) 후 PDF로 받으실 수 있어요.</p></div>`;
+        h+=`<div class="no-print" style="text-align:center;padding:26px 0 6px;border-top:1px dashed #d6ddea;margin-top:10px"><p style="color:#5a6b88;font-size:13px">… 이하 전체 ${t.lessons.length}강 합본은 구매(또는 <b style="color:#2e8fd6">전체 이용권</b>) 후 PDF로 받으실 수 있어요.</p></div>`;
         $('bvLock').classList.remove('hidden');
         pdfBtn.style.display=''; pdfBtn.textContent='🔒 구매하고 PDF 받기'; pdfBtn.title='구매(또는 전체 이용권) 후 로그인하시면 PDF로 저장할 수 있어요'; pdfBtn.onclick=()=>{ location.href=buyLink; };
         if(selBtn) selBtn.classList.add('hidden');
@@ -560,24 +562,24 @@
       body.book{font-family:'Noto Serif KR',Pretendard,serif;color:#1c2b46;margin:0;line-height:1.78;-webkit-print-color-adjust:exact;print-color-adjust:exact}
       .book .cover-page{page-break-after:always;break-after:page}
       .book .lesson{page-break-before:always;break-before:page}
-      .book .ch-label{font-size:11.5px;font-weight:800;letter-spacing:.18em;color:#4e6e5a;margin:0 0 6px}
-      .book h2.bk-title{font-size:20px;font-weight:700;color:#2e2a24;border-bottom:2px solid #4e6e5a;padding-bottom:9px;margin:0 0 16px;line-height:1.45}
-      .book h3.bk-h{font-size:15px;font-weight:700;color:#2e2a24;margin:22px 0 8px}
+      .book .ch-label{font-size:11.5px;font-weight:800;letter-spacing:.18em;color:#2e8fd6;margin:0 0 6px}
+      .book h2.bk-title{font-size:20px;font-weight:700;color:#1f4d77;border-bottom:2px solid #2e8fd6;padding-bottom:9px;margin:0 0 16px;line-height:1.45}
+      .book h3.bk-h{font-size:15px;font-weight:700;color:#1f4d77;margin:22px 0 8px}
       .book p.bk-p{font-size:13px;line-height:2.1;margin:10px 0;color:#2a3a55}
-      .book .bk-thesis{background:#f0e9dc;border-left:3px solid #2e2a24;border-radius:8px;padding:13px 16px;font-weight:600;color:#2e2a24;font-size:13.5px;line-height:1.9;margin:4px 0 12px}
+      .book .bk-thesis{background:#e3f0fb;border-left:3px solid #1f4d77;border-radius:8px;padding:13px 16px;font-weight:600;color:#1f4d77;font-size:13.5px;line-height:1.9;margin:4px 0 12px}
       .book .bk-scr{background:#faf7ef;border:1px solid #e6dcc3;border-radius:8px;padding:11px 14px;margin:8px 0;font-size:12px;line-height:1.85}
       .book .bk-scr b{color:#9a7b30}
       .book ul.bk-ul{margin:8px 0 10px 2px;padding:0;list-style:none}
       .book ul.bk-ul li{font-size:12.5px;line-height:2;padding-left:16px;position:relative;color:#33415e;margin:4px 0}
-      .book ul.bk-ul li::before{content:'·';position:absolute;left:3px;color:#4e6e5a;font-weight:700}
-      .book .bk-term{font-size:12px;line-height:1.9;margin:6px 0}.book .bk-term b{color:#2e2a24}
+      .book ul.bk-ul li::before{content:'·';position:absolute;left:3px;color:#2e8fd6;font-weight:700}
+      .book .bk-term{font-size:12px;line-height:1.9;margin:6px 0}.book .bk-term b{color:#1f4d77}
       .book .bk-mis{font-size:12px;line-height:1.85;margin:8px 0}.book .bk-mis .w{color:#b4524a}.book .bk-mis .r{color:#2f7d57}
       .book .toc-list{list-style:none;margin:6px 0 0;padding:0}
       .book .toc-row{display:flex;align-items:baseline;gap:12px;padding:9px 2px;border-bottom:1px dotted #d6ddea}
-      .book .toc-no{flex-shrink:0;font-size:11.5px;font-weight:800;color:#4e6e5a;letter-spacing:.04em;min-width:42px}
+      .book .toc-no{flex-shrink:0;font-size:11.5px;font-weight:800;color:#2e8fd6;letter-spacing:.04em;min-width:42px}
       .book .toc-t{flex:1;font-size:13px;color:#2a3a55;line-height:1.6}
       .book .note-area{display:block;margin:18px 0 4px;break-inside:avoid}
-      .book .note-h{font-size:11.5px;font-weight:800;letter-spacing:.04em;color:#4e6e5a;margin:0 0 12px}
+      .book .note-h{font-size:11.5px;font-weight:800;letter-spacing:.04em;color:#2e8fd6;margin:0 0 12px}
       .book .nline{height:30px;border-bottom:1px solid #d8dee9}
       h2.bk-title,h3.bk-h,.bk-thesis,.bk-scr,.note-h+.nline{break-inside:avoid}
     `;
@@ -623,11 +625,11 @@
       const trackTitle=($('bvTitle').textContent||'').trim();
       const curL=(window._curLessons||[])[idx-1]; const lTitle=curL?cleanTitle(curL.title):'';
       let html=`<div class="cover-page" style="text-align:center;padding:30px 0 24px;border-bottom:1px solid #e6e9f0">
-        <p style="color:#4e6e5a;font-weight:700;letter-spacing:.28em;font-size:11px">BIBLY 바이블 인사이트 · 강의 노트</p>
-        <h1 style="font-size:24px;font-weight:700;color:#2e2a24;margin:10px 0 6px;line-height:1.4">${esc(trackTitle)}</h1>
+        <p style="color:#2e8fd6;font-weight:700;letter-spacing:.28em;font-size:11px">BIBLY 바이블 인사이트 · 강의 노트</p>
+        <h1 style="font-size:24px;font-weight:700;color:#1f4d77;margin:10px 0 6px;line-height:1.4">${esc(trackTitle)}</h1>
         <p style="font-size:13px;font-weight:700;color:#5a6b88">제${idx}강</p>
         <p style="font-size:13.5px;color:#2a3a55;margin:6px 0 0">${esc(lTitle)}</p>
-        ${(CUR_BUYER&&CUR_EMAIL)?`<p style="color:#4e6e5a;font-size:10.5px;margin:16px 0 0">📗 정품 · <b>${esc(CUR_EMAIL)}</b> 님께 발행 · 무단 복제·배포 금지</p>`:''}
+        ${(CUR_BUYER&&CUR_EMAIL)?`<p style="color:#2e8fd6;font-size:10.5px;margin:16px 0 0">📗 정품 · <b>${esc(CUR_EMAIL)}</b> 님께 발행 · 무단 복제·배포 금지</p>`:''}
       </div>`;
       html+=lessonEl.outerHTML;
       const nxt=lessonEl.nextElementSibling;
@@ -651,10 +653,10 @@
       const trackTitle=($('bvTitle').textContent||'').trim();
       const indices=checks.map(c=>Number(c.dataset.idx));
       let html=`<div class="cover-page" style="text-align:center;padding:42px 0 34px;border-bottom:1px solid #e6e9f0">
-        <p style="color:#4e6e5a;font-weight:700;letter-spacing:.28em;font-size:11px;margin:0 0 14px">BIBLY 바이블 인사이트 · 강의 노트</p>
-        <h1 style="font-size:29px;font-weight:700;color:#2e2a24;line-height:1.4;margin:0 12px">${esc(trackTitle)}</h1>
+        <p style="color:#2e8fd6;font-weight:700;letter-spacing:.28em;font-size:11px;margin:0 0 14px">BIBLY 바이블 인사이트 · 강의 노트</p>
+        <h1 style="font-size:29px;font-weight:700;color:#1f4d77;line-height:1.4;margin:0 12px">${esc(trackTitle)}</h1>
         <p style="color:#5a6b88;font-size:13px;margin:10px 0 0">선택된 강의 모음 · ${indices.length}강</p>
-        ${(CUR_BUYER&&CUR_EMAIL)?`<p style="color:#4e6e5a;font-size:10.5px;margin:18px 0 0">📗 정품 · <b>${esc(CUR_EMAIL)}</b> 님께 발행 · 무단 복제·배포 금지</p>`:''}
+        ${(CUR_BUYER&&CUR_EMAIL)?`<p style="color:#2e8fd6;font-size:10.5px;margin:18px 0 0">📗 정품 · <b>${esc(CUR_EMAIL)}</b> 님께 발행 · 무단 복제·배포 금지</p>`:''}
       </div>`;
       indices.forEach(idx=>{
         const el=document.getElementById('lesson-'+idx); if(!el) return;

@@ -175,7 +175,7 @@
       + '<div class="max-w-md">'
       + '<p class="font-bold text-lg">BIBLY<span class="text-gold">.</span> <span class="text-ink/50 text-sm font-normal">바이블 인사이트</span></p>'
       + '<p class="text-sm mt-2 text-ink/60 leading-relaxed">말씀으로 시대를 읽다 · 유튜브 「오광일의 인사이트 브리핑」 공식 강의 플랫폼</p>'
-      + '<p class="text-sm mt-3 text-ink/50">✉ josephoh1611@gmail.com</p>'
+      + '<p class="text-sm mt-3 text-ink/50">✉ contact@biblynote.com</p>'
       + '<p class="text-xs mt-3 text-ink/35 leading-relaxed">본 사이트 강의 영상의 무단 다운로드·녹화·재배포를 금합니다.</p>'
       + '</div>'
       + '<div class="grid grid-cols-2 gap-x-10 gap-y-2.5 text-sm text-ink/60 shrink-0">'
