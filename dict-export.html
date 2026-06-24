@@ -11,7 +11,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
-    tailwind.config = { theme: { extend: { colors: { ink:'#1f4d77', navy:'#163c61', gold:'#2e8fd6', sand:'#e3f0fb', paper:'#f3f9ff' }, fontFamily:{ sans:['Pretendard','system-ui','sans-serif'] }, boxShadow:{ soft:'0 2px 10px -4px rgba(31,77,119,.10)' } }}}
+    tailwind.config = { theme: { extend: { colors: { ink:'#213a6b', navy:'#182c54', gold:'#b8923f', sand:'#eaf0f8', paper:'#f7f9fc' }, fontFamily:{ sans:['Pretendard','system-ui','sans-serif'] }, boxShadow:{ soft:'0 2px 10px -4px rgba(21,32,58,.10)' } }}}
   </script>
   <style>h1,h2{font-family:'Noto Serif KR',Pretendard,serif}</style>
 </head>
@@ -65,10 +65,10 @@
     function initialOf(s){ const c=(s||'').charCodeAt(0); if(c>=0xAC00&&c<=0xD7A3){ return CHO[Math.floor((c-0xAC00)/588)].replace('ㄲ','ㄱ').replace('ㄸ','ㄷ').replace('ㅃ','ㅂ').replace('ㅆ','ㅅ').replace('ㅉ','ㅈ'); } return '#'; }
 
     const DOC_CSS=`body{font-family:'Noto Serif KR','맑은 고딕',serif;line-height:1.85;font-size:11pt;color:#1a1a1a}
-      .cover{text-align:center;padding:50pt 0 36pt;page-break-after:always}.cover .t{font-size:30pt;font-weight:700;color:#1f4d77}.cover .s{font-size:11pt;color:#888;margin-top:10pt}
-      h2.sec{font-size:18pt;font-weight:700;color:#1f4d77;border-bottom:2px solid #2e8fd6;padding-bottom:5pt;margin:22pt 0 10pt;page-break-before:always}
+      .cover{text-align:center;padding:50pt 0 36pt;page-break-after:always}.cover .t{font-size:30pt;font-weight:700;color:#213a6b}.cover .s{font-size:11pt;color:#888;margin-top:10pt}
+      h2.sec{font-size:18pt;font-weight:700;color:#213a6b;border-bottom:2px solid #b8923f;padding-bottom:5pt;margin:22pt 0 10pt;page-break-before:always}
       .e{margin:0 0 11pt;page-break-inside:avoid}
-      .e .h{font-size:12.5pt;font-weight:700;color:#1f4d77}.e .en{font-size:9.5pt;color:#7a7f88;font-weight:400}.e .cat{font-size:8pt;color:#2e8fd6;font-weight:700}
+      .e .h{font-size:12.5pt;font-weight:700;color:#213a6b}.e .en{font-size:9.5pt;color:#7a7f88;font-weight:400}.e .cat{font-size:8pt;color:#b8923f;font-weight:700}
       .e .o{font-size:9pt;color:#8a7a55;margin:1pt 0}
       .e .d{font-size:10.5pt;margin:3pt 0;text-align:justify}
       .e .m{font-size:9.5pt;color:#555;background:#f3f1ea;border-left:2px solid #c8a455;padding:4pt 7pt;margin:3pt 0}

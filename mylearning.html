@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>내 강의실 — BIBLY 바이블 인사이트</title>
   <link rel="manifest" href="/manifest.json" />
-  <meta name="theme-color" content="#1f4d77" />
+  <meta name="theme-color" content="#213a6b" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png" />
@@ -29,9 +29,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { theme: { extend: {
-      colors: { ink:'#1f4d77', navy:'#163c61', gold:'#2e8fd6', sand:'#e3f0fb', paper:'#f3f9ff' },
+      colors: { ink:'#213a6b', navy:'#182c54', gold:'#b8923f', sand:'#eaf0f8', paper:'#f7f9fc' },
       fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
-      boxShadow: { soft:'0 2px 10px -4px rgba(31,77,119,.10)', card:'0 14px 40px -18px rgba(31,77,119,.22)' }
+      boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
     }}}
   </script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -42,11 +42,11 @@
   <style>
     h1,h2{font-family:'Noto Serif KR',Pretendard,serif}
     /* 나의 학습방 사이드바 */
-    .sbItem{display:flex;align-items:center;gap:.6rem;width:100%;text-align:left;padding:.62rem .8rem;border-radius:.7rem;font-size:.9rem;font-weight:600;color:rgba(31,77,119,.68);white-space:nowrap;transition:all .15s;cursor:pointer}
-    .sbItem:hover{background:rgba(239,155,118,.10);color:#1f4d77}
-    .sbItem.active{background:#ef9b76;color:#fff;box-shadow:0 6px 16px -8px rgba(239,155,118,.7)}
+    .sbItem{display:flex;align-items:center;gap:.6rem;width:100%;text-align:left;padding:.62rem .8rem;border-radius:.7rem;font-size:.9rem;font-weight:600;color:rgba(21,32,58,.68);white-space:nowrap;transition:all .15s;cursor:pointer}
+    .sbItem:hover{background:rgba(184,146,63,.10);color:#213a6b}
+    .sbItem.active{background:#b8923f;color:#fff;box-shadow:0 6px 16px -8px rgba(184,146,63,.7)}
     .sbItem.active span{color:#fff}
-    .sbGroup{padding:.35rem .85rem .25rem;font-size:.68rem;font-weight:800;letter-spacing:.12em;color:rgba(31,77,119,.32)}
+    .sbGroup{padding:.35rem .85rem .25rem;font-size:.68rem;font-weight:800;letter-spacing:.12em;color:rgba(21,32,58,.32)}
     @media (max-width:1023px){ .sbItem{width:auto} }
     @media print{
       body *{visibility:hidden!important}
@@ -63,7 +63,7 @@
 
   <main class="max-w-6xl mx-auto px-4 py-8">
     <div class="mb-6">
-      <p class="text-[#ef9b76] text-xs font-bold tracking-[0.3em] mb-2">MY CLASSROOM</p>
+      <p class="text-[#b8923f] text-xs font-bold tracking-[0.3em] mb-2">MY CLASSROOM</p>
       <h1 class="text-2xl font-bold">내 강의실</h1>
       <p class="text-ink/55 text-sm mt-2">수강신청한 강의의 학습 현황을 한눈에 확인하세요.</p>
     </div>
@@ -91,9 +91,9 @@
 
         <!-- ◀ 나의 학습방 사이드바 -->
         <aside class="lg:sticky lg:top-20 space-y-3">
-          <div class="bg-gradient-to-br from-[#3b9be0] to-[#1f6cab] text-paper rounded-2xl p-5">
+          <div class="bg-gradient-to-br from-ink to-navy text-paper rounded-2xl p-5">
             <div class="flex items-center gap-3">
-              <div id="sbAvatar" class="w-11 h-11 rounded-full bg-[#ef9b76] text-white flex items-center justify-center font-bold text-lg shrink-0">B</div>
+              <div id="sbAvatar" class="w-11 h-11 rounded-full bg-[#b8923f] text-white flex items-center justify-center font-bold text-lg shrink-0">B</div>
               <div class="min-w-0">
                 <p id="sbName" class="font-bold text-[15px] truncate">회원</p>
                 <p id="sbEmail" class="text-paper/55 text-xs truncate"></p>
@@ -127,7 +127,7 @@
       <div id="weekPlan" class="mb-6"></div>
 
       <!-- 🪙 미션포인트 + 등급 -->
-      <div id="pointsWidget" class="hidden bg-gradient-to-br from-[#3b9be0] to-[#1f6cab] text-paper rounded-2xl shadow-soft p-5 mb-6">
+      <div id="pointsWidget" class="hidden bg-gradient-to-br from-ink to-navy text-paper rounded-2xl shadow-soft p-5 mb-6">
         <div class="flex items-center justify-between gap-3">
           <div>
             <p class="text-white/80 text-[11px] font-bold tracking-[0.18em]">미션포인트</p>
@@ -233,15 +233,15 @@
             </div>
             <div>
               <label class="block text-xs font-semibold text-ink/50 mb-1.5">이름</label>
-              <input id="pfName" placeholder="이름" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#ef9b76]" />
+              <input id="pfName" placeholder="이름" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#b8923f]" />
             </div>
             <div>
               <label class="block text-xs font-semibold text-ink/50 mb-1.5">휴대전화</label>
-              <input id="pfPhone" placeholder="010-0000-0000" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#ef9b76]" />
+              <input id="pfPhone" placeholder="010-0000-0000" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#b8923f]" />
             </div>
             <div>
               <label class="block text-xs font-semibold text-ink/50 mb-1.5">주소</label>
-              <input id="pfAddr" placeholder="주소" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#ef9b76]" />
+              <input id="pfAddr" placeholder="주소" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#b8923f]" />
             </div>
             <button onclick="saveProfile()" class="w-full bg-gold text-white font-semibold rounded-xl py-3 hover:opacity-90 transition">저장하기</button>
             <p id="pfMsg" class="text-center text-sm min-h-[18px]"></p>
@@ -249,8 +249,8 @@
 
           <div class="mt-7 pt-6 border-t border-ink/8">
             <h3 class="font-bold text-[15px] mb-3">비밀번호 변경</h3>
-            <input id="pfPw1" type="password" placeholder="새 비밀번호 (6자 이상)" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#ef9b76] mb-2" />
-            <input id="pfPw2" type="password" placeholder="새 비밀번호 확인" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#ef9b76] mb-3" />
+            <input id="pfPw1" type="password" placeholder="새 비밀번호 (6자 이상)" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#b8923f] mb-2" />
+            <input id="pfPw2" type="password" placeholder="새 비밀번호 확인" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#b8923f] mb-3" />
             <button onclick="changePassword()" class="w-full border border-ink/20 text-ink font-semibold rounded-xl py-2.5 hover:bg-ink/5 transition">비밀번호 변경</button>
             <p id="pfPwMsg" class="text-center text-sm min-h-[18px] mt-2"></p>
             <p class="text-[11px] text-ink/40 mt-2">※ 구글 등 소셜 로그인 계정은 비밀번호 변경이 적용되지 않을 수 있습니다.</p>
@@ -549,7 +549,7 @@
       if(!mine.length){
         welEl.innerHTML = '';
       } else if(resume){
-        welEl.innerHTML = `<div class="bg-gradient-to-br from-[#3b9be0] to-[#1f6cab] text-white rounded-3xl p-6 md:p-7 shadow-card">
+        welEl.innerHTML = `<div class="bg-gradient-to-br from-ink to-navy text-white rounded-3xl p-6 md:p-7 shadow-card">
           <p class="text-white/85 text-xs font-bold tracking-wide mb-3">${esc(uname)}님, 오늘도 환영합니다 👋</p>
           <p class="text-paper/60 text-xs mb-1">이어서 학습할 강의</p>
           <p class="font-bold text-lg leading-snug">${esc(resume.lv.name)}</p>
@@ -557,7 +557,7 @@
           <a href="watch.html?l=${resume.nextIdx}" class="inline-flex items-center gap-2 bg-white text-gold font-bold px-7 py-3 rounded-full hover:opacity-90 transition shadow">▶ 이어서 학습하기</a>
         </div>`;
       } else {
-        welEl.innerHTML = `<div class="bg-gradient-to-br from-[#3b9be0] to-[#1f6cab] text-white rounded-3xl p-7 text-center shadow-card">
+        welEl.innerHTML = `<div class="bg-gradient-to-br from-ink to-navy text-white rounded-3xl p-7 text-center shadow-card">
           <p class="text-4xl mb-2">🎉</p>
           <p class="font-bold text-lg">${esc(uname)}님, 수강 중인 모든 과정을 완주하셨어요!</p>
           <p class="text-paper/70 text-sm mt-1.5">각 과정의 <b class="text-white underline">수료증</b>을 받아 학습을 기념해 보세요.</p>
@@ -721,7 +721,7 @@
       // ── 개요 카드 (인증) ──
       if(catCert){
         if(userTier > 0){
-          catCert.innerHTML = `<button onclick="showCat('cert')" class="w-full h-full text-left bg-gradient-to-br from-[#3b9be0] to-[#1f6cab] text-white rounded-3xl border border-white/25 shadow-soft p-6 hover:shadow-card transition flex flex-col">
+          catCert.innerHTML = `<button onclick="showCat('cert')" class="w-full h-full text-left bg-gradient-to-br from-ink to-navy text-white rounded-3xl border border-white/25 shadow-soft p-6 hover:shadow-card transition flex flex-col">
             <div class="flex items-center gap-2 mb-2"><span class="text-2xl">🎓</span><h3 class="font-bold text-lg">${esc(brand)}</h3><span class="ml-auto text-[10px] font-bold text-gold bg-white px-2 py-0.5 rounded-full">인증</span></div>
             <p class="text-sm text-paper/70 mb-4">시험으로 검증하고 학점을 쌓는 과정</p>
             <div class="flex items-end gap-5 mb-3">
@@ -733,7 +733,7 @@
           </button>`;
         } else {
           const fromP = (PROGRAM.ranks && PROGRAM.ranks[0] && (PROGRAM.ranks[0].earlybird||PROGRAM.ranks[0].price)) || 0;
-          catCert.innerHTML = `<button onclick="showCat('cert')" class="w-full h-full text-left bg-gradient-to-br from-[#3b9be0] to-[#1f6cab] text-white rounded-3xl border border-white/25 shadow-soft p-6 hover:shadow-card transition flex flex-col">
+          catCert.innerHTML = `<button onclick="showCat('cert')" class="w-full h-full text-left bg-gradient-to-br from-ink to-navy text-white rounded-3xl border border-white/25 shadow-soft p-6 hover:shadow-card transition flex flex-col">
             <div class="flex items-center gap-2 mb-2"><span class="text-2xl">🎓</span><h3 class="font-bold text-lg">${esc(brand)}</h3><span class="ml-auto text-[10px] font-bold text-paper bg-white/15 px-2 py-0.5 rounded-full">🔒 유료</span></div>
             <p class="text-sm text-paper/70 mb-4 flex-1">시험·요약노트·수료증·학점으로 분별력을 공인받는 인증 과정이에요.</p>
             <p class="text-xs text-paper/60 mb-1">5급 Associate부터 1급 Laureate까지</p>
@@ -884,7 +884,7 @@
       const dateStr = `${t.getFullYear()}년 ${t.getMonth()+1}월 ${t.getDate()}일`;
       const certNo = `BIBLY-${t.getFullYear()}${String(t.getMonth()+1).padStart(2,'0')}${String(t.getDate()).padStart(2,'0')}-${String(idx+1).padStart(2,'0')}`;
       document.getElementById('certSheet').innerHTML = `
-        <div class="bg-gradient-to-br from-white to-[#e8f3fd] text-ink px-7 py-8">
+        <div class="bg-gradient-to-br from-white to-[#f7f9fc] text-ink px-7 py-8">
           <div class="border-2 border-gold/40 rounded-2xl px-6 py-9 text-center">
             ${window.__earnedTier>0?`<div class="flex justify-center mb-3">${rankSeal(window.__earnedTier,42,true)}</div>`:''}
             <p class="text-gold tracking-[0.34em] text-[11px] font-bold mb-1">CERTIFICATE OF COMPLETION</p>
@@ -916,17 +916,17 @@
       if(e) e.textContent=(user&&user.email)||'';
       if(a){
         if(window.__earnedTier>0){ a.style.background='transparent'; a.style.boxShadow='none'; a.innerHTML=rankSeal(window.__earnedTier,44,true); }
-        else { a.style.background='#ef9b76'; a.style.boxShadow=''; a.innerHTML=''; a.textContent=(uname||'B').trim().charAt(0).toUpperCase(); }
+        else { a.style.background='#b8923f'; a.style.boxShadow=''; a.innerHTML=''; a.textContent=(uname||'B').trim().charAt(0).toUpperCase(); }
       }
     }
 
     // ===== 🏅 급수 휘장(뱃지) =====
-    const RANK_C = {1:['#8cc3ec','#6fb0e4'],2:['#5aa6de','#3f93d2'],3:['#2e8fd6','#1f78bd'],4:['#1f6cab','#155890'],5:['#ef9b76','#e07f55']};
+    const RANK_C = {1:['#d2b878','#c2a050'],2:['#c2a050','#b8923f'],3:['#b8923f','#9a7a34'],4:['#9a7a34','#7d6228'],5:['#213a6b','#182c54']};
     const RANK_RN = {1:'Ⅰ',2:'Ⅱ',3:'Ⅲ',4:'Ⅳ',5:'Ⅴ'};
     function rankSeal(tier, size, earned){
       const rn = RANK_RN[tier]||'Ⅰ';
       if(!earned){
-        return `<span class="inline-flex items-center justify-center rounded-full shrink-0" style="width:${size}px;height:${size}px;background:#ece7dd;box-shadow:inset 0 0 0 2px rgba(31,77,119,.06)"><span style="font-size:${Math.round(size*0.4)}px;color:#c3b6a3;font-family:Georgia,serif;font-weight:700">${rn}</span></span>`;
+        return `<span class="inline-flex items-center justify-center rounded-full shrink-0" style="width:${size}px;height:${size}px;background:#ece7dd;box-shadow:inset 0 0 0 2px rgba(21,32,58,.06)"><span style="font-size:${Math.round(size*0.4)}px;color:#c3b6a3;font-family:Georgia,serif;font-weight:700">${rn}</span></span>`;
       }
       const [c,c2]=RANK_C[tier]||RANK_C[1];
       return `<span class="inline-flex items-center justify-center rounded-full shrink-0" style="width:${size}px;height:${size}px;background:radial-gradient(circle at 32% 26%, rgba(255,255,255,.55), transparent 58%), linear-gradient(145deg,${c},${c2});box-shadow:0 7px 18px -7px ${c}, inset 0 0 0 2px rgba(255,255,255,.3)"><span style="font-size:${Math.round(size*0.44)}px;color:#fff;font-family:Georgia,serif;font-weight:700;text-shadow:0 1px 2px rgba(0,0,0,.28)">${rn}</span></span>`;
@@ -939,16 +939,16 @@
       let headline, sub;
       if(earnedTier===0){ headline='아직 취득한 급수가 없어요'; sub = ranks[0] ? `<b>${esc(ranks[0].name)}</b> 과목의 시험을 모두 통과하면 첫 급수 휘장을 얻어요.` : ''; }
       else if(!nextRank){ headline=`${esc(earned.name)} <span class="text-ink/45 text-sm font-semibold">${esc(earned.rank)}</span>`; sub='🎉 최고 급수까지 모두 달성하셨어요! 자랑스러운 분별의 사람입니다.'; }
-      else { headline=`${esc(earned.name)} <span class="text-ink/45 text-sm font-semibold">${esc(earned.rank)}</span>`; sub=`다음 급수 <b style="color:${nextRank.color||'#ef9b76'}">${esc(nextRank.name)}</b>까지 <b>${nextRemain}과목</b> 남았어요.`; }
+      else { headline=`${esc(earned.name)} <span class="text-ink/45 text-sm font-semibold">${esc(earned.rank)}</span>`; sub=`다음 급수 <b style="color:${nextRank.color||'#b8923f'}">${esc(nextRank.name)}</b>까지 <b>${nextRemain}과목</b> 남았어요.`; }
       const ladder = ranks.map(r=>`<div class="flex flex-col items-center gap-1">${rankSeal(r.tier,30,r.tier<=earnedTier)}<span class="text-[8.5px] font-bold ${r.tier<=earnedTier?'text-ink/70':'text-ink/30'}">${esc(r.name)}</span></div>`).join('<span class="text-ink/15 self-start mt-3 text-xs">·</span>');
       el.innerHTML=`<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 mb-6">
         <div class="flex items-center gap-4">
           ${rankSeal(earnedTier||1, 60, earnedTier>0)}
           <div class="min-w-0 flex-1">
-            <p class="text-[11px] font-bold tracking-[0.18em] mb-1" style="color:${earned?(earned.color||'#ef9b76'):'#b0a48f'}">MY RANK · 내 급수</p>
+            <p class="text-[11px] font-bold tracking-[0.18em] mb-1" style="color:${earned?(earned.color||'#b8923f'):'#b0a48f'}">MY RANK · 내 급수</p>
             <p class="font-bold text-lg leading-tight">${headline}</p>
             <p class="text-xs text-ink/55 mt-1 leading-relaxed">${sub}</p>
-            ${earnedTier>0?`<button onclick="shareRank()" class="mt-2 inline-flex items-center gap-1 text-xs font-bold text-[#ef9b76] hover:underline">🎉 내 급수 자랑하기</button>`:''}
+            ${earnedTier>0?`<button onclick="shareRank()" class="mt-2 inline-flex items-center gap-1 text-xs font-bold text-[#b8923f] hover:underline">🎉 내 급수 자랑하기</button>`:''}
           </div>
         </div>
         <div class="mt-4 pt-4 border-t border-ink/8 flex items-center justify-between gap-0.5">${ladder}</div>

@@ -18,7 +18,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://biblynote.com/images/og-cover.png?v=2" />
   <link rel="manifest" href="/manifest.json" />
-  <meta name="theme-color" content="#1f4d77" />
+  <meta name="theme-color" content="#213a6b" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png" />
@@ -29,29 +29,29 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { theme: { extend: {
-      colors: { ink:'#1f4d77', navy:'#163c61', gold:'#2e8fd6', sand:'#e3f0fb', paper:'#f3f9ff' },
+      colors: { ink:'#213a6b', navy:'#182c54', gold:'#b8923f', sand:'#eaf0f8', paper:'#f7f9fc' },
       fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
-      boxShadow: { card:'0 14px 40px -18px rgba(31,77,119,.22)', soft:'0 2px 10px -4px rgba(31,77,119,.10)' }
+      boxShadow: { card:'0 14px 40px -18px rgba(21,32,58,.22)', soft:'0 2px 10px -4px rgba(21,32,58,.10)' }
     }}}
   </script>
   <style>h1,h2{font-family:'Noto Serif KR',Pretendard,serif}
-    .trackBtn.active{background:#1f4d77;color:#f3f9ff}
-    .trackBtn.active .tbNum{color:#2e8fd6}
+    .trackBtn.active{background:#213a6b;color:#f7f9fc}
+    .trackBtn.active .tbNum{color:#b8923f}
     .trackBtn.active .tbCnt{color:rgba(252,250,246,.5)}
     details>summary{list-style:none;cursor:pointer}
     details>summary::-webkit-details-marker{display:none}
     details[open] .chev{transform:rotate(180deg)}
-    .sub{color:rgba(31,77,119,.45)}
-    .ctab{color:#1f4d77;transition:all .15s}
-    .ctab.active{box-shadow:0 0 0 2px #2e8fd6}
+    .sub{color:rgba(21,32,58,.45)}
+    .ctab{color:#213a6b;transition:all .15s}
+    .ctab.active{box-shadow:0 0 0 2px #b8923f}
     .ctab:not(.active):hover{transform:translateY(-1px)}
     .ctab-pro{transition:all .15s}
     .ctab-pro:hover{transform:translateY(-1px)}
-    .ctab-pro.active{box-shadow:0 0 0 2px #2e8fd6,0 14px 40px -18px rgba(31,77,119,.45)}
-    .mtab{background:#fff;color:rgba(31,77,119,.6);border-color:rgba(31,77,119,.15)}
-    .mtab.active{background:#1f4d77;color:#f3f9ff;border-color:#1f4d77}
-    .mtab-pro{background:linear-gradient(135deg,#1f4d77,#163c61);color:#f3f9ff;border-color:rgba(46,143,214,.55)}
-    .mtab-pro.active{box-shadow:0 0 0 2px #2e8fd6}
+    .ctab-pro.active{box-shadow:0 0 0 2px #b8923f,0 14px 40px -18px rgba(21,32,58,.45)}
+    .mtab{background:#fff;color:rgba(21,32,58,.6);border-color:rgba(21,32,58,.15)}
+    .mtab.active{background:#213a6b;color:#f7f9fc;border-color:#213a6b}
+    .mtab-pro{background:linear-gradient(135deg,#213a6b,#182c54);color:#f7f9fc;border-color:rgba(184,146,63,.55)}
+    .mtab-pro.active{box-shadow:0 0 0 2px #b8923f}
   </style>
 </head>
 <body class="font-sans bg-paper text-ink antialiased min-h-screen">
@@ -66,7 +66,7 @@
     </div>
 
     <!-- 👋 처음 오신 분 안내 (자유 학습일 때만) -->
-    <section id="onboard" class="bg-gradient-to-br from-[#3b9be0] to-[#1f6cab] text-paper rounded-3xl p-6 md:p-8 mb-7 shadow-card">
+    <section id="onboard" class="bg-gradient-to-br from-ink to-navy text-paper rounded-3xl p-6 md:p-8 mb-7 shadow-card">
       <div class="flex items-center gap-2.5 mb-5">
         <span class="text-3xl">👋</span>
         <h2 class="text-xl md:text-2xl font-bold">처음 오셨나요? 이렇게 보시면 됩니다</h2>
@@ -105,7 +105,7 @@
             <span class="text-xl shrink-0">📺</span>
             <span class="flex-1 min-w-0"><span class="block font-bold text-base">자유 학습</span><span class="sub block text-xs mt-0.5">무료 · 27개 주제 자유 시청</span></span>
           </button>
-          <button id="tab-academy" onclick="showCourse('academy')" class="ctab-pro w-full text-left rounded-2xl border border-gold/45 bg-gradient-to-br from-[#3b9be0] to-[#1f6cab] text-paper shadow-card overflow-hidden relative">
+          <button id="tab-academy" onclick="showCourse('academy')" class="ctab-pro w-full text-left rounded-2xl border border-gold/45 bg-gradient-to-br from-ink to-navy text-paper shadow-card overflow-hidden relative">
             <span class="absolute right-0 top-0 w-20 h-20 rounded-full bg-gold/10 -mr-7 -mt-7"></span>
             <div class="px-4 py-4 relative">
               <div class="flex items-start gap-2 mb-2">
