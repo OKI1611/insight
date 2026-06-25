@@ -70,7 +70,10 @@
         <button class="text-[11px] px-2.5 py-1 rounded-full border border-ink/12 text-ink/70 hover:border-gold/50 hover:bg-gold/5 transition" onclick="quickSearch('회개')">회개</button>
         <button class="text-[11px] px-2.5 py-1 rounded-full border border-ink/12 text-ink/70 hover:border-gold/50 hover:bg-gold/5 transition" onclick="quickSearch('구원')">구원</button>
         <button class="text-[11px] px-2.5 py-1 rounded-full border border-ink/12 text-ink/70 hover:border-gold/50 hover:bg-gold/5 transition" onclick="quickSearch('왕국')">왕국</button>
-        <label class="ml-auto text-[11px] text-ink/55 flex items-center gap-1 cursor-pointer" title="한국어 본문과 함께 영어(KJV)에서도 검색합니다"><input type="checkbox" id="searchEn" class="accent-gold"/> 영어도 함께</label>
+        <button id="searchEnBtn" type="button" onclick="toggleSearchEn()" aria-pressed="false" title="켜면 검색 결과에 영어 KJV 본문을 함께 보여주고, 영어 단어에도 형광펜이 칠해집니다" class="ml-auto inline-flex items-center gap-2 text-[13px] font-semibold text-ink/65 bg-white border border-ink/15 rounded-full pl-2 pr-3.5 py-1.5 hover:border-gold/50 transition">
+          <span id="searchEnSwitch" class="relative inline-block w-9 h-5 rounded-full bg-ink/15 transition-colors duration-200 shrink-0"><span id="searchEnKnob" class="absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform duration-200"></span></span>
+          <span>영어 KJV 함께 보기</span>
+        </button>
       </div>
     </div>
 
@@ -273,60 +276,102 @@
         ${ws.theology?`<div class="mb-3"><h4 class="font-bold text-ink text-[13.5px] mb-1">📖 신학적 의미</h4><p class="text-[13.5px] text-ink/80 leading-[1.9]">${esc(ws.theology)}</p></div>`:''}
         ${ws.context?`<div class="mb-2"><h4 class="font-bold text-ink text-[13.5px] mb-1">🧭 성경에서의 맥락</h4><p class="text-[13.5px] text-ink/80 leading-[1.9]">${esc(ws.context)}</p></div>`:''}
         ${refs?`<div class="mt-2.5">${refs}</div>`:''}
-        <p class="text-[12px] text-gold/90 mt-3 pt-2.5 border-t border-ink/8">👇 아래는 번역된 본문에서 <b>‘${esc(ws.w)}’</b>가 실제로 쓰인 구절입니다 — 맥락 속에서 직접 확인하며 학습해 보세요.</p>
+        <p class="text-[12px] text-gold/90 mt-3 pt-2.5 border-t border-ink/8">👇 아래는 성경 전체에서 <b>‘${esc(ws.w)}’</b>가 실제로 쓰인 구절입니다 — 맥락 속에서 직접 확인하며 학습해 보세요.</p>
       </div>`;
     }
+    let SEARCH_EN=false;
+    function paintEnToggle(){
+      const sw=$('searchEnSwitch'), kn=$('searchEnKnob'), b=$('searchEnBtn'); if(!sw) return;
+      sw.style.background = SEARCH_EN ? '#b8923f' : '';
+      kn.style.transform = SEARCH_EN ? 'translateX(16px)' : '';
+      b.setAttribute('aria-pressed', SEARCH_EN?'true':'false');
+      b.classList.toggle('border-gold', SEARCH_EN); b.classList.toggle('text-ink', SEARCH_EN); b.classList.toggle('text-ink/65', !SEARCH_EN);
+    }
+    function toggleSearchEn(){ SEARCH_EN=!SEARCH_EN; paintEnToggle(); if(!$('searchView').classList.contains('hidden') && ($('searchInput').value||'').trim()) doSearch(true); }
     function quickSearch(w){ $('searchInput').value=w; doSearch(); }
+    // 한글 검색어 → 영어 KJV 검색어간(구약 미번역분까지 찾기 위함)
+    function enTermsFor(q, ws){
+      const t=new Set();
+      if(ws){ (ws.ensearch||[]).forEach(x=>x&&t.add(String(x).toLowerCase()));
+        if(ws.en) t.add(String(ws.en).toLowerCase());
+        (ws.aliases||[]).forEach(a=>{ if(/^[a-zA-Z][a-zA-Z '-]*$/.test(a||'')) t.add(a.toLowerCase()); }); }
+      if(/^[a-zA-Z][a-zA-Z '-]*$/.test(q)) t.add(q.toLowerCase());
+      return [...t].filter(Boolean);
+    }
+    function hlEn(text, terms){ let safe=esc(text); if(!terms||!terms.length) return safe;
+      try{ return safe.replace(new RegExp('('+terms.map(escRe).join('|')+')','gi'),'<mark class="hl">$1</mark>'); }catch(e){ return safe; } }
     async function doSearch(fromHistory){
       const q=($('searchInput').value||'').trim();
       const view=$('searchView');
       if(q.length<1){ closeSearch(); return; }
       if(!fromHistory){ try{ history.pushState({view:'search',q}, '', '?q='+encodeURIComponent(q)); }catch(e){} }
       setSearchMode(true);
-      view.innerHTML='<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-8 text-center text-ink/45">검색 준비 중…</div>';
+      view.innerHTML='<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-8 text-center text-ink/45">성경 전체에서 찾는 중…</div>';
       const idx=await ensureIndex();
       await ensureWordStudy();
-      const alsoEn=$('searchEn').checked;
-      const ql=q.toLowerCase();
-      const hits=[];
-      const MAX=400;
+      const ws=findWordStudy(q);
+      const enTerms=enTermsFor(q, ws);
+      const koList=[], enList=[];
       for(let i=0;i<idx.verses.length;i++){
-        const r=idx.verses[i]; // [bookIdx, ch, v, ko, en]
-        let inKo=r[3] && r[3].indexOf(q)>=0;
-        let inEn=alsoEn && r[4] && r[4].toLowerCase().indexOf(ql)>=0;
-        if(inKo||inEn){ hits.push([r,inKo,inEn]); if(hits.length>=MAX) break; }
+        const r=idx.verses[i]; // [bi,ch,v,ko,en]
+        const inKo = r[3] && r[3].indexOf(q)>=0;
+        let enMatch=null;
+        if(enTerms.length && r[4]){ const low=r[4].toLowerCase(); for(const x of enTerms){ if(low.indexOf(x)>=0){ enMatch=x; break; } } }
+        if(inKo) koList.push([r,true,enMatch]);
+        else if(enMatch) enList.push([r,false,enMatch]);
+        if(koList.length+enList.length>=2400) break;
       }
-      renderResults(q, hits, idx);
+      // 번역된 한글 구절 우선 → 구약 등 영어 전용 구절
+      const hits=koList.slice(0,600).concat(enList.slice(0,500));
+      renderResults(q, hits, idx, ws, enTerms, koList.length, enList.length);
     }
-    function renderResults(q, hits, idx){
+    function verseRow(r, idx, q, enTerms){
+      const bk=idx.books[r[0]], ref=bk.k+' '+r[1]+':'+r[2];
+      const showEn = SEARCH_EN || !r[3];      // 토글 ON 또는 한글 미번역(구약)
+      const koHtml = r[3] ? `<p class="serif text-[15px] text-ink/90 leading-relaxed">${hl(r[3], q)}</p>`
+                          : `<p class="text-[12px] text-ink/40 mt-0.5">📖 한글 번역 준비 중 — 영어 KJV로 확인하세요</p>`;
+      const enHtml = (showEn && r[4]) ? `<p class="verse-en text-[13px] ${r[3]?'text-ink/50':'text-ink/85'} leading-relaxed mt-1">${hlEn(r[4], enTerms.length?enTerms:[q])}</p>` : '';
+      const tag = !r[3] ? '<span class="text-[10px] text-ink/40 bg-ink/5 rounded px-1.5 py-0.5 shrink-0">번역 준비중</span>' : '';
+      return `<button onclick="gotoVerse(${r[0]},${r[1]},${r[2]})" class="w-full text-left bg-white rounded-xl border border-ink/8 hover:border-gold/45 hover:shadow-soft p-3.5 transition group">
+        <div class="flex items-center gap-2 mb-1">
+          <span class="text-[11px] font-bold text-gold bg-gold/10 rounded-full px-2.5 py-0.5 shrink-0">${esc(ref)}</span>${tag}
+          <span class="text-[11px] text-ink/30 group-hover:text-gold/70 ml-auto transition">펼쳐 읽기 →</span>
+        </div>${koHtml}${enHtml}</button>`;
+    }
+    function renderResults(q, hits, idx, ws, enTerms, koN, enN){
       const view=$('searchView');
-      const study=studyPanel(findWordStudy(q));
+      const study=studyPanel(ws);
+      const otN = hits.filter(h=>!h[0][3]).length;
       const head=`<div class="flex items-center justify-between gap-3 mb-3">
-        <p class="text-sm text-ink/70"><b class="text-ink">‘${esc(q)}’</b> 검색 결과 <b class="text-gold">${hits.length}${hits.length>=400?'+':''}</b>구절</p>
+        <p class="text-sm text-ink/70"><b class="text-ink">‘${esc(q)}’</b> 검색 결과 <b class="text-gold">${hits.length}</b>구절 <span class="text-ink/40 text-xs">${otN?`· 구약 등 미번역 ${otN}구절 포함`:''}</span></p>
         <button onclick="closeSearch()" class="text-xs text-ink/55 hover:text-ink border border-ink/15 rounded-full px-3 py-1.5 hover:bg-ink/5 transition">✕ 읽기로 돌아가기</button>
-      </div>`+study;
+      </div>`;
       if(!hits.length){
-        view.innerHTML=head+`<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-10 text-center">
+        view.innerHTML=head+study+`<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-10 text-center">
           <p class="text-3xl mb-2">🔍</p>
-          <p class="text-ink/60 text-sm">번역된 본문에서 <b>‘${esc(q)}’</b>를 찾지 못했어요.</p>
-          <p class="text-ink/40 text-xs mt-2">다른 단어로 검색하거나, ‘영어도 함께’를 켜고 다시 시도해 보세요.<br/>(검색은 현재까지 번역된 ${idx.verses.length.toLocaleString()}절 안에서 이루어집니다.)</p>
+          <p class="text-ink/60 text-sm">성경 전체에서 <b>‘${esc(q)}’</b>에 해당하는 구절을 찾지 못했어요.</p>
+          <p class="text-ink/40 text-xs mt-2">맞춤법을 확인하거나 다른 단어로 검색해 보세요. (한글 번역 본문 + 전 성경 영어 KJV에서 검색합니다.)</p>
         </div>`;
         return;
       }
-      let rows='';
-      hits.forEach(([r,inKo,inEn])=>{
-        const bk=idx.books[r[0]], ref=bk.k+' '+r[1]+':'+r[2];
-        rows+=`<button onclick="gotoVerse(${r[0]},${r[1]},${r[2]})" class="w-full text-left bg-white rounded-xl border border-ink/8 hover:border-gold/45 hover:shadow-soft p-3.5 transition group">
-          <div class="flex items-center gap-2 mb-1">
-            <span class="text-[11px] font-bold text-gold bg-gold/10 rounded-full px-2.5 py-0.5 shrink-0">${esc(ref)}</span>
-            <span class="text-[11px] text-ink/30 group-hover:text-gold/70 ml-auto transition">펼쳐 읽기 →</span>
-          </div>
-          <p class="serif text-[15px] text-ink/90 leading-relaxed">${hl(r[3]||'', inKo?q:'')}</p>
-          ${inEn?`<p class="verse-en text-[13px] text-ink/45 leading-relaxed mt-1">${hl(r[4]||'', q)}</p>`:''}
-        </button>`;
-      });
-      view.innerHTML=head+`<div class="space-y-2">${rows}</div>`
-        + (hits.length>=400?'<p class="text-[11px] text-ink/40 text-center mt-3">결과가 많아 처음 400구절만 표시합니다. 더 구체적인 단어로 좁혀 보세요.</p>':'');
+      let body='';
+      const senses=(ws&&ws.senses)||[];
+      if(senses.length){
+        const norm=s=>String(s||'').replace(/\s+/g,' ').trim();
+        const refMap={}; senses.forEach((s,si)=>(s.refs||[]).forEach(rf=>{ refMap[norm(rf)]=si; }));
+        const groups=senses.map(()=>[]); const other=[];
+        hits.forEach(h=>{ const bk=idx.books[h[0][0]]; const ref=norm(bk.k+' '+h[0][1]+':'+h[0][2]); const si=refMap[ref]; if(si!=null) groups[si].push(h); else other.push(h); });
+        body+=`<p class="text-[12px] text-ink/55 mb-2">🔀 <b class="text-ink/75">‘${esc(q)}’</b>는 맥락에 따라 의미가 나뉩니다 — 의미 갈래별로 모았어요.</p>`;
+        senses.forEach((s,si)=>{
+          const list=groups[si];
+          body+=`<details class="mb-2.5" open><summary class="cursor-pointer select-none flex items-center gap-2 bg-gradient-to-r from-gold/[0.12] to-transparent rounded-lg px-3.5 py-2.5"><span class="text-[14px] font-bold text-ink">${si+1}. ${esc(s.label)}</span><span class="hidden sm:inline text-[12px] text-ink/55">${esc(s.gloss||'')}</span><span class="ml-auto text-[11px] font-bold text-gold shrink-0">${list.length}구절</span></summary><div class="space-y-2 mt-2 pl-1">${list.length?list.map(h=>verseRow(h[0],idx,q,enTerms)).join(''):'<p class="text-xs text-ink/40 px-2 py-2">이 의미의 대표 구절이 현재 결과에 없습니다.</p>'}</div></details>`;
+        });
+        if(other.length){ body+=`<details class="mb-2.5" open><summary class="cursor-pointer select-none flex items-center gap-2 bg-ink/[0.03] rounded-lg px-3.5 py-2.5"><span class="text-[14px] font-bold text-ink/75">그 밖의 용례</span><span class="ml-auto text-[11px] font-bold text-ink/45 shrink-0">${other.length}구절</span></summary><div class="space-y-2 mt-2 pl-1">${other.map(h=>verseRow(h[0],idx,q,enTerms)).join('')}</div></details>`; }
+      } else {
+        body=`<div class="space-y-2">${hits.map(h=>verseRow(h[0],idx,q,enTerms)).join('')}</div>`;
+      }
+      view.innerHTML=head+study+body
+        + ((koN>600||enN>500)?'<p class="text-[11px] text-ink/40 text-center mt-3">결과가 많아 일부만 표시합니다. 더 구체적인 단어로 좁혀 보세요.</p>':'');
       window.scrollTo({top:0,behavior:'smooth'});
     }
     function gotoVerse(bookIdx, c, v){
