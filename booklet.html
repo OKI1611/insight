@@ -520,7 +520,10 @@
       const admin=await isAdmin();
       const isPass = !admin && await hasPass();
       const isBook = !admin && !isPass && await hasBook(t.name);
-      const unlocked = admin || isPass || isBook;
+      // 멤버십 무료기간(창립1년·추천3개월·신규5일) 보유 시에도 전체 열람 허용
+      let access = { full:false, expired:false, founding:false, kind:'none' };
+      try{ const {data}=await sb.auth.getSession(); const u=data&&data.session&&data.session.user; if(u && window.biblyAccess) access=await biblyAccess(sb,u); }catch(e){}
+      const unlocked = admin || isPass || isBook || access.full;
       // 이용기록·워터마크용 상태 저장
       CUR_TRACK=t.name; CUR_KIND=isPass?'pass':'book'; CUR_BUYER=(isPass||isBook);
       CUR_EMAIL = CUR_BUYER ? (await currentEmail()||'') : '';
@@ -549,7 +552,10 @@
         pdfBtn.style.display=''; pdfBtn.textContent='📕 전체 PDF'; pdfBtn.title='전체 강의를 하나의 PDF로 저장합니다'; pdfBtn.onclick=savePDF;
         if(selBtn) selBtn.classList.remove('hidden');
       } else {
-        h+=`<div class="no-print" style="text-align:center;padding:26px 0 6px;border-top:1px dashed #d6ddea;margin-top:10px"><p style="color:#5a6b88;font-size:13px">… 이하 전체 ${t.lessons.length}강 합본은 구매(또는 <b style="color:#b8923f">전체 이용권</b>) 후 PDF로 받으실 수 있어요.</p></div>`;
+        const expiredMsg = access.expired
+          ? `<div class="no-print" style="text-align:center;padding:22px 0 0"><p style="color:#213a6b;font-weight:700;font-size:14px">🔔 무료 이용 기간이 종료되었어요</p><p style="color:#5a6b88;font-size:12.5px;margin:6px 0 0">교재(PDF)를 계속 이용하시려면 결제가 필요합니다.${access.founding?' <b style="color:#b8923f">창립 멤버는 정가의 80%(20% 할인)</b>로 이어가실 수 있어요.':''}</p></div>`
+          : '';
+        h+= expiredMsg + `<div class="no-print" style="text-align:center;padding:26px 0 6px;border-top:1px dashed #d6ddea;margin-top:10px"><p style="color:#5a6b88;font-size:13px">… 이하 전체 ${t.lessons.length}강 합본은 구매(또는 <b style="color:#b8923f">전체 이용권</b>) 후 PDF로 받으실 수 있어요.</p></div>`;
         $('bvLock').classList.remove('hidden');
         pdfBtn.style.display=''; pdfBtn.textContent='🔒 구매하고 PDF 받기'; pdfBtn.title='구매(또는 전체 이용권) 후 로그인하시면 PDF로 저장할 수 있어요'; pdfBtn.onclick=()=>{ location.href=buyLink; };
         if(selBtn) selBtn.classList.add('hidden');

@@ -66,6 +66,9 @@
 
     <!-- 플레이어 영역 -->
     <section>
+      <!-- 멤버십 이용권 상태/만료 안내 -->
+      <div id="accessBanner" class="mb-4"></div>
+
       <!-- 강의 전 진단평가 (동기 유발 · 퀴즈 데이터 있는 강의만) -->
       <div id="prequizSection" class="mb-4" style="display:none"><div id="prequizCard"></div></div>
 
@@ -772,6 +775,12 @@
       const aState = document.getElementById('authState'); if(!aState) return;
       aState.innerHTML = LUSER ? `${escQ(QNAME)}님 · <button onclick="lLogout()" class="hover:text-gold">로그아웃</button>` : `<button onclick="openLogin()" class="bg-gold text-white font-semibold px-4 py-1.5 rounded-full hover:opacity-90 transition">로그인</button>`;
     }
+    async function loadAccessBanner(){
+      const el = document.getElementById('accessBanner'); if(!el || !window.biblyAccess) return;
+      if(!LUSER){ el.innerHTML = ''; return; }
+      try{ const st = await biblyAccess(lsb, LUSER); el.innerHTML = (window.biblyAccessBanner ? biblyAccessBanner(st) : '') || ''; }
+      catch(e){ el.innerHTML = ''; }
+    }
     async function lAuth(session){
       const wasLogged = !!LUSER;
       LUSER = (session && session.user) || null;
@@ -781,6 +790,7 @@
       QNAME = LUSER ? (LUSER.email || '회원') : '회원';
       // ① UI를 먼저 그린다 — 데이터 로딩이 지연돼도 화면이 멈추지 않게
       setAuthState(); refreshLearningUI(); renderQaComposer(); loadQuestions(); refreshGatedTools();
+      loadAccessBanner();
       // ② 데이터는 타임아웃 보호로 best-effort 로딩
       if(LUSER){
         try { const { data, error } = await withTimeout(lsb.from('enrollments').select('track').eq('user_id', LUSER.id), 8000); if(error){ TABLES_READY = false; } else { (data||[]).forEach(e => ENROLLED.add(e.track)); } } catch(e){}
