@@ -55,7 +55,7 @@
       '.ql-editor img.bibly-sel{outline:3px solid #b8923f;outline-offset:2px}',
       // ③ 크기조절 바
       '#biblyImgBar{position:absolute;z-index:99999;background:#213a6b;border-radius:9999px;box-shadow:0 8px 22px rgba(0,0,0,.35);display:flex;gap:2px;padding:4px}',
-      '#biblyImgBar button{color:#f7f9fc;font-size:12px;font-weight:700;padding:6px 12px;border-radius:9999px;border:0;background:transparent;cursor:pointer;white-space:nowrap}',
+      '#biblyImgBar button{color:#ffffff;font-size:12px;font-weight:700;padding:6px 12px;border-radius:9999px;border:0;background:transparent;cursor:pointer;white-space:nowrap}',
       '#biblyImgBar button:active{background:rgba(255,255,255,.22)}',
       // 폰트 픽커
       '.ql-snow .ql-picker.ql-font{width:108px}',

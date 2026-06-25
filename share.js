@@ -6,7 +6,7 @@
   function open(t){ window.open(t, '_blank', 'noopener,noreferrer,width=640,height=660'); }
   function toast(m){
     var t=document.createElement('div'); t.textContent=m;
-    t.style.cssText='position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:#213a6b;color:#f7f9fc;padding:10px 18px;border-radius:9999px;font-size:14px;z-index:2147483647;font-family:Pretendard,system-ui,sans-serif;box-shadow:0 8px 28px rgba(0,0,0,.3)';
+    t.style.cssText='position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:#213a6b;color:#ffffff;padding:10px 18px;border-radius:9999px;font-size:14px;z-index:2147483647;font-family:Pretendard,system-ui,sans-serif;box-shadow:0 8px 28px rgba(0,0,0,.3)';
     document.body.appendChild(t); setTimeout(function(){ t.remove(); }, 1800);
   }
   function copy(url){

@@ -29,7 +29,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { theme: { extend: {
-      colors: { ink:'#213a6b', navy:'#182c54', gold:'#b8923f', sand:'#eaf0f8', paper:'#f7f9fc' },
+      colors: { ink:'#213a6b', navy:'#182c54', gold:'#b8923f', sand:'#eaf0f8', paper:'#ffffff' },
       fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
       boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
     }}}
@@ -912,7 +912,7 @@
       const dateStr = `${t.getFullYear()}년 ${t.getMonth()+1}월 ${t.getDate()}일`;
       const certNo = `BIBLY-${t.getFullYear()}${String(t.getMonth()+1).padStart(2,'0')}${String(t.getDate()).padStart(2,'0')}-${String(idx+1).padStart(2,'0')}`;
       document.getElementById('certSheet').innerHTML = `
-        <div class="bg-gradient-to-br from-white to-[#f7f9fc] text-ink px-7 py-8">
+        <div class="bg-gradient-to-br from-white to-[#ffffff] text-ink px-7 py-8">
           <div class="border-2 border-gold/40 rounded-2xl px-6 py-9 text-center">
             ${window.__earnedTier>0?`<div class="flex justify-center mb-3">${rankSeal(window.__earnedTier,42,true)}</div>`:''}
             <p class="text-gold tracking-[0.34em] text-[11px] font-bold mb-1">CERTIFICATE OF COMPLETION</p>
