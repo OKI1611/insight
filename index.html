@@ -239,6 +239,25 @@
     </div>
   </a>
 
+  <!-- ===== 새 소식 티커 (최근 글·강의가 시간 간격으로 회전) ===== -->
+  <div id="recentTicker" class="hidden bg-white border-b border-ink/8">
+    <div class="max-w-6xl mx-auto px-5 py-2.5 flex items-center gap-3">
+      <span class="shrink-0 inline-flex items-center gap-1.5 bg-ink text-paper text-[11px] font-bold px-3 py-1 rounded-full">📢 새 소식</span>
+      <div class="flex-1 min-w-0 relative h-5 overflow-hidden">
+        <a id="tkItem" href="#" class="absolute inset-0 flex items-center gap-2 transition-opacity duration-500">
+          <span id="tkCat" class="shrink-0 text-[10px] font-bold text-gold bg-gold/10 px-1.5 py-0.5 rounded"></span>
+          <span id="tkTitle" class="flex-1 min-w-0 text-sm text-ink/80 truncate"></span>
+          <span id="tkDate" class="shrink-0 text-xs text-ink/35 hidden sm:inline"></span>
+        </a>
+      </div>
+      <div class="shrink-0 flex items-center gap-0.5 text-ink/40">
+        <button onclick="tkStep(-1)" title="이전" class="w-6 h-6 rounded-full hover:bg-ink/5 hover:text-ink transition">‹</button>
+        <button id="tkPlay" onclick="tkToggle()" title="멈춤/재생" class="w-6 h-6 rounded-full hover:bg-ink/5 hover:text-ink transition text-[11px]">❚❚</button>
+        <button onclick="tkStep(1)" title="다음" class="w-6 h-6 rounded-full hover:bg-ink/5 hover:text-ink transition">›</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ===== 최근 추가된 강의 (신규 업데이트 · 수강생 알림) ===== -->
   <section id="newLessonsSec" class="hidden bg-white border-b border-ink/8 py-9">
     <div class="max-w-6xl mx-auto px-5">
@@ -1898,6 +1917,47 @@
         window.addEventListener('load', function(){ setTimeout(function(){ try{ if(typeof openAuth==='function') openAuth('signup'); }catch(e){} }, 500); });
       }
     })();
+  </script>
+  <!-- ===== 새 소식 티커 로직 ===== -->
+  <script>
+  (function(){
+    if(!window.supabase) return;
+    const TK_URL='https://bmxkndkwefdgsomlznoo.supabase.co';
+    const TK_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+    const tsb=window.supabase.createClient(TK_URL,TK_ANON,{auth:{persistSession:false}});
+    const strip=s=>String(s||'').replace(/<[^>]*>/g,'').replace(/&[a-z]+;/g,' ').trim();
+    const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    function fdate(d){ if(!d)return''; const x=new Date(d), now=new Date(); const diff=(now-x)/86400000;
+      if(diff<1&&x.getDate()===now.getDate())return '오늘'; if(diff<2)return '어제';
+      return (x.getMonth()+1)+'.'+x.getDate(); }
+    const TK=[]; let i=0, timer=null, playing=true;
+    const $=id=>document.getElementById(id);
+    function show(){ if(!TK.length)return; const it=TK[i%TK.length]; const a=$('tkItem');
+      a.style.opacity=0;
+      setTimeout(()=>{ $('tkCat').textContent=it.cat; $('tkTitle').textContent=it.title; $('tkDate').textContent=it.date; a.href=it.href; a.style.opacity=1; },180);
+    }
+    window.tkStep=function(d){ if(!TK.length)return; i=(i+d+TK.length)%TK.length; show(); reset(); };
+    window.tkToggle=function(){ playing=!playing; $('tkPlay').textContent=playing?'❚❚':'▶'; if(playing)reset(); else clearInterval(timer); };
+    function reset(){ clearInterval(timer); if(playing) timer=setInterval(()=>{ i=(i+1)%TK.length; show(); }, 4200); }
+    Promise.allSettled([
+      tsb.from('columns').select('id,title,created_at').order('created_at',{ascending:false}).limit(4),
+      tsb.from('community_posts').select('id,content,board,created_at').order('created_at',{ascending:false}).limit(4),
+      tsb.from('resources').select('id,title,category,created_at').order('created_at',{ascending:false}).limit(3),
+      tsb.from('lecture_requests').select('id,title,type,created_at').order('created_at',{ascending:false}).limit(2)
+    ]).then(rs=>{
+      const BN={free:'나눔',qna:'질문',prayer:'기도'};
+      const get=k=>(rs[k].status==='fulfilled'&&rs[k].value.data)||[];
+      get(0).forEach(c=>TK.push({cat:'칼럼',title:strip(c.title)||'(제목 없음)',date:fdate(c.created_at),href:'column.html#col-'+c.id,t:c.created_at}));
+      get(1).forEach(p=>TK.push({cat:BN[p.board]||'나눔',title:strip(p.content).slice(0,46)||'(내용)',date:fdate(p.created_at),href:'community.html?board='+(p.board||'free'),t:p.created_at}));
+      get(2).forEach(r=>TK.push({cat:(r.category||'자료').slice(0,6),title:strip(r.title)||'(제목 없음)',date:fdate(r.created_at),href:'resources.html',t:r.created_at}));
+      get(3).forEach(r=>TK.push({cat:r.type==='feedback'?'건의':'요청',title:strip(r.title)||'(제목 없음)',date:fdate(r.created_at),href:'request.html',t:r.created_at}));
+      // 최신순 정렬 + 최대 12개
+      TK.sort((a,b)=>String(b.t||'').localeCompare(String(a.t||''))); TK.length=Math.min(TK.length,12);
+      if(TK.length){ $('recentTicker').classList.remove('hidden'); show(); reset();
+        const band=$('recentTicker'); band.addEventListener('mouseenter',()=>clearInterval(timer)); band.addEventListener('mouseleave',()=>{ if(playing)reset(); });
+      }
+    });
+  })();
   </script>
 </body>
 </html>
