@@ -69,6 +69,17 @@
     /* 필기 공간 — 화면에선 숨기고 인쇄(PDF)에서만 표시 */
     .book .note-area{display:none}
     @media print{ .no-print{display:none!important} }
+    /* 이용권 카드 — 호버 시 금색 테두리가 그려지며 떠오르는 구매 유도 효과 */
+    .pass-card{transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s ease;will-change:transform}
+    .pass-card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+      border:2px solid #b8923f;opacity:0;transform:scale(1.012);
+      transition:opacity .3s ease,transform .35s cubic-bezier(.2,.7,.3,1);
+      box-shadow:0 0 0 4px rgba(184,146,63,.12)}
+    .pass-card:hover{transform:translateY(-6px);box-shadow:0 22px 50px -22px rgba(21,32,58,.32)}
+    .pass-card:hover::after{opacity:1;transform:scale(1)}
+    .pass-card:hover .pass-cta{box-shadow:0 8px 22px -8px rgba(184,146,63,.7);transform:translateY(-1px)}
+    .pass-cta{transition:box-shadow .25s ease,transform .25s ease,opacity .2s ease}
+    @media (hover:none){.pass-card:hover{transform:none}.pass-card::after{display:none}}
   </style>
 </head>
 <body class="font-sans bg-paper text-ink antialiased min-h-screen">
@@ -375,12 +386,12 @@
         const badge=best
           ? '<span class="absolute -top-2.5 left-5 bg-gold text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">가장 인기</span>'
           : '<span class="absolute -top-2.5 left-5 bg-gold text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">평생 소장</span>';
-        return `<div class="relative bg-white rounded-2xl border ${best?'border-gold/50 ring-1 ring-gold/15':'border-ink/12'} shadow-soft p-5 pt-6 flex flex-col text-left">
+        return `<div onclick="addToCart('pass','${p.id}')" class="pass-card relative bg-white rounded-2xl border ${best?'border-gold/50 ring-1 ring-gold/15':'border-ink/12'} shadow-soft p-5 pt-6 flex flex-col text-left cursor-pointer">
           ${badge}
           <p class="font-bold text-[15px]">${esc(p.name)}</p>
           <div class="mt-2 mb-1 flex items-end gap-1.5"><span class="text-2xl font-bold text-ink">${won(p.price)}</span>${monthly?`<span class="text-[11px] text-ink/45 mb-1">월 ${won(monthly)}꼴</span>`:''}</div>
           <ul class="text-xs text-ink/65 space-y-1.5 my-3 flex-1">${bullets.map(b=>`<li class="flex gap-1.5"><span class="text-gold shrink-0">✓</span><span>${esc(b)}</span></li>`).join('')}</ul>
-          <button onclick="addToCart('pass','${p.id}')" class="w-full ${best?'bg-gold text-white':'bg-gold text-white hover:opacity-90'} font-bold text-sm py-2.5 rounded-xl hover:opacity-90 transition">🛒 이용권 담기</button>
+          <button onclick="event.stopPropagation();addToCart('pass','${p.id}')" class="pass-cta w-full bg-gold text-white font-bold text-sm py-2.5 rounded-xl transition">🛒 이용권 담기</button>
         </div>`;
       }).join('');
     }
