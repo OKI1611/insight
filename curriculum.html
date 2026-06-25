@@ -191,11 +191,24 @@
         const won = n => '₩' + (Number(n)||0).toLocaleString();
         const HIDE = !!P.hidePrice;
         const EM = { 1:'🌱', 2:'📖', 3:'🔍', 4:'⚖️', 5:'🛡' };
+        const SUBJ_EMOJI = (name)=>{ const n=String(name||'');
+          const map=[['종말|재림|천년|계시록|다니엘','🌅'],['창세|창조|기원','🌍'],['구원|복음|십자가','✝️'],['기도|영성|경건','🙏'],['교회|예배|성례','⛪'],['역사|교회사','📜'],['신학|교리|조직','📚'],['성경|통독|개관|원어','📖'],['예언|선지','🔭'],['은혜|믿음|칭의','🕊️'],['전도|선교|사명','📣'],['가정|결혼|자녀','🏠'],['상담|치유|회복','💬'],['윤리|제자|삶','🧭'],['시편|찬양|예배','🎵'],['지혜|잠언','💡']];
+          for(const [k,e] of map){ if(new RegExp(k).test(n)) return e; } return '📘'; };
         host.innerHTML = (P.ranks||[]).map(rk => {
           const tracks = (rk.tracks||[]).filter(t => byName[t] != null);
           const lessons = tracks.reduce((s,t) => s + byName[t], 0);
           const main = rk.earlybird || rk.price || 0;
-          const trackList = tracks.map(t => `<li class="flex items-center justify-between gap-2 text-sm py-1.5 border-b border-ink/5 last:border-0"><span class="text-ink/80">${esc(t)}</span><span class="text-xs text-ink/40 shrink-0">${byName[t]}강</span></li>`).join('');
+          const trackCards = tracks.map(t => `<a href="curriculum.html" class="group flex flex-col rounded-xl border border-ink/8 bg-white hover:shadow-card hover:-translate-y-0.5 transition overflow-hidden">
+            <div class="px-3.5 pt-3.5 pb-3" style="background:linear-gradient(135deg, ${rk.color}14, ${rk.color}05)">
+              <div class="flex items-start gap-2">
+                <span class="text-2xl leading-none shrink-0">${SUBJ_EMOJI(t)}</span>
+                <h4 class="font-bold text-[14px] leading-snug text-ink group-hover:text-gold transition" style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${esc(t)}</h4>
+              </div>
+            </div>
+            <div class="px-3.5 py-2 flex items-center justify-between border-t border-ink/5">
+              <span class="text-[11px] text-ink/45">${byName[t]}강</span>
+              <span class="text-[11px] font-bold" style="color:${rk.color}">수강 →</span>
+            </div></a>`).join('');
           const perks = (rk.perks||[]).map(p => `<li class="flex gap-1.5 text-sm text-ink/65"><span class="text-gold shrink-0">✓</span><span>${esc(p)}</span></li>`).join('');
           const topTier = (rk.tier===5);
           const tag = topTier ? '<span class="text-[10px] font-bold text-white border border-white/45 px-2 py-0.5 rounded-full">👑 최고 등급</span>'
@@ -218,16 +231,14 @@
               <p class="text-[14px] text-ink/70 leading-relaxed">${esc(rk.outcome||'')}</p>
               ${(rk.able&&rk.able.length)?`<ul class="mt-3 grid sm:grid-cols-2 gap-x-5 gap-y-1.5">${rk.able.map(a=>`<li class="flex gap-1.5 text-[13.5px] text-ink/65"><span class="text-gold shrink-0">✓</span><span>${esc(a)}</span></li>`).join('')}</ul>`:''}
             </div>
-            <div class="p-6 grid md:grid-cols-2 gap-x-8 gap-y-5">
-              <div>
-                <p class="text-xs font-bold text-ink/45 mb-2">📚 포함 과목</p>
-                ${tracks.length ? `<ul>${trackList}</ul>` : '<p class="text-sm text-ink/40">과목 준비 중입니다.</p>'}
-              </div>
-              <div>
-                <p class="text-xs font-bold text-ink/45 mb-2">🎁 혜택</p>
-                <ul class="space-y-1.5">${perks}</ul>
-                ${rk.tier>1 ? '<p class="text-xs text-ink/45 mt-3">※ 하위 등급 과목을 모두 포함합니다.</p>' : ''}
-              </div>
+            <div class="px-6 pt-5">
+              <p class="text-xs font-bold text-ink/45 mb-2.5">📚 포함 과목 <span class="text-ink/30">${tracks.length}과목</span></p>
+              ${tracks.length ? `<div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">${trackCards}</div>` : '<p class="text-sm text-ink/40">과목 준비 중입니다.</p>'}
+            </div>
+            <div class="p-6">
+              <p class="text-xs font-bold text-ink/45 mb-2">🎁 혜택</p>
+              <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-1.5">${perks}</ul>
+              ${rk.tier>1 ? '<p class="text-xs text-ink/45 mt-3">※ 하위 등급 과목을 모두 포함합니다.</p>' : ''}
             </div>
           </div>`;
         }).join('');
