@@ -241,6 +241,42 @@
         .catch(()=>{ SIDX={books:[],verses:[]}; return SIDX; });
       return SLOADING;
     }
+    let WSTUDY=null, WLOADING=null;
+    async function ensureWordStudy(){
+      if(WSTUDY) return WSTUDY;
+      if(WLOADING) return WLOADING;
+      WLOADING = fetch('bible/wordstudy.json?t='+Date.now())
+        .then(r=>r.json()).then(j=>{ WSTUDY=(j&&j.words)||[]; return WSTUDY; })
+        .catch(()=>{ WSTUDY=[]; return WSTUDY; });
+      return WLOADING;
+    }
+    function findWordStudy(q){
+      if(!WSTUDY) return null;
+      const n=q.trim().toLowerCase();
+      return WSTUDY.find(w=>{
+        if((w.w||'').toLowerCase()===n) return true;
+        if((w.aliases||[]).some(a=>(a||'').toLowerCase()===n)) return true;
+        if(n.length>=2 && (w.w||'').toLowerCase().startsWith(n)) return true;
+        if(n.length>=2 && (w.aliases||[]).some(a=>{ a=(a||'').toLowerCase(); return a.length>=2 && (n.startsWith(a)||a.startsWith(n)); })) return true;
+        return false;
+      })||null;
+    }
+    function studyPanel(ws){
+      if(!ws) return '';
+      const refs=(ws.refs||[]).map(r=>`<span class="inline-block bg-sand/70 text-ink/70 text-[11px] px-2 py-0.5 rounded mr-1 mb-1">${esc(r)}</span>`).join('');
+      return `<div class="bg-white rounded-2xl border border-gold/30 shadow-soft p-5 mb-4">
+        <div class="flex items-center flex-wrap gap-2 mb-1.5">
+          <h3 class="text-lg font-bold text-ink">‘${esc(ws.w)}’의 신학적 의미</h3>
+          ${ws.en?`<span class="text-ink/45 text-sm verse-en">${esc(ws.en)}</span>`:''}
+          <span class="ml-auto text-[10px] font-bold text-gold bg-gold/10 px-2 py-0.5 rounded-full">근본주의 침례신학</span>
+        </div>
+        ${ws.orig?`<p class="text-[12px] text-ink/45 mb-2.5">원어 · ${esc(ws.orig)}</p>`:''}
+        ${ws.theology?`<div class="mb-3"><h4 class="font-bold text-ink text-[13.5px] mb-1">📖 신학적 의미</h4><p class="text-[13.5px] text-ink/80 leading-[1.9]">${esc(ws.theology)}</p></div>`:''}
+        ${ws.context?`<div class="mb-2"><h4 class="font-bold text-ink text-[13.5px] mb-1">🧭 성경에서의 맥락</h4><p class="text-[13.5px] text-ink/80 leading-[1.9]">${esc(ws.context)}</p></div>`:''}
+        ${refs?`<div class="mt-2.5">${refs}</div>`:''}
+        <p class="text-[12px] text-gold/90 mt-3 pt-2.5 border-t border-ink/8">👇 아래는 번역된 본문에서 <b>‘${esc(ws.w)}’</b>가 실제로 쓰인 구절입니다 — 맥락 속에서 직접 확인하며 학습해 보세요.</p>
+      </div>`;
+    }
     function quickSearch(w){ $('searchInput').value=w; doSearch(); }
     async function doSearch(){
       const q=($('searchInput').value||'').trim();
@@ -249,6 +285,7 @@
       setSearchMode(true);
       view.innerHTML='<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-8 text-center text-ink/45">검색 준비 중…</div>';
       const idx=await ensureIndex();
+      await ensureWordStudy();
       const alsoEn=$('searchEn').checked;
       const ql=q.toLowerCase();
       const hits=[];
@@ -263,10 +300,11 @@
     }
     function renderResults(q, hits, idx){
       const view=$('searchView');
+      const study=studyPanel(findWordStudy(q));
       const head=`<div class="flex items-center justify-between gap-3 mb-3">
         <p class="text-sm text-ink/70"><b class="text-ink">‘${esc(q)}’</b> 검색 결과 <b class="text-gold">${hits.length}${hits.length>=400?'+':''}</b>구절</p>
         <button onclick="closeSearch()" class="text-xs text-ink/55 hover:text-ink border border-ink/15 rounded-full px-3 py-1.5 hover:bg-ink/5 transition">✕ 읽기로 돌아가기</button>
-      </div>`;
+      </div>`+study;
       if(!hits.length){
         view.innerHTML=head+`<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-10 text-center">
           <p class="text-3xl mb-2">🔍</p>

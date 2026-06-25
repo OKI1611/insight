@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <script src="/content-loader.js"></script>
+  <script src="/site-header.js?v=20260626a"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>성경암송 365 — 주제별 핵심 구절 암송 · BIBLY</title>
+  <meta name="description" content="성경의 주요 주제별 대표 구절을 한글·영어로 암송하세요. 영어 단어·숙어·원어 풀이, 빈칸 채우기·통암송 테스트, 학습 기록까지." />
+  <meta name="theme-color" content="#213a6b" />
+  <link rel="canonical" href="https://biblynote.com/memorize" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink:'#213a6b', navy:'#182c54', gold:'#b8923f', goldsoft:'#e7d6ac', sand:'#eaf0f8', paper:'#f7f9fc' },
+      fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
+      boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
+    }}}
+  </script>
+  <style>
+    h1,h2,h3,.serif{font-family:'Noto Serif KR',Pretendard,serif}
+    .verse-en{font-family:Georgia,'Times New Roman',serif}
+    .blank-input{border:none;border-bottom:2px solid #b8923f;background:#fbf6e9;border-radius:4px 4px 0 0;padding:1px 6px;min-width:54px;text-align:center;font-weight:600;color:#182c54;outline:none}
+    .blank-input.ok{background:#e6f4ea;border-color:#3f9d5e}
+    .blank-input.no{background:#fdeaea;border-color:#d05a5a}
+    mark.df{background:#e6f4ea;color:#1f6b3a;border-radius:3px}
+    mark.dx{background:#fdeaea;color:#b23b3b;border-radius:3px;text-decoration:line-through}
+  </style>
+</head>
+<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+
+  <div id="siteHeader" data-active="memorize.html"></div>
+
+  <!-- 히어로 -->
+  <section class="bg-gradient-to-b from-navy via-ink to-[#16284c] text-paper">
+    <div class="max-w-5xl mx-auto px-5 py-11 md:py-14 text-center">
+      <p class="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-3">Scripture Memory · 성경암송 365</p>
+      <h1 class="text-2xl md:text-[34px] font-bold leading-tight">말씀을 <span class="text-gold">마음에 새기다</span></h1>
+      <p class="text-paper/75 text-sm md:text-[15px] mt-3 leading-relaxed max-w-xl mx-auto">성경의 주요 주제별 대표 구절을 <b class="text-paper">한글·영어</b>로 암송하세요. 영어 단어·숙어와 원어 풀이를 곁들여, 외우고 또 <b class="text-paper">테스트</b>로 확인합니다.</p>
+      <div id="heroStat" class="mt-5 inline-flex items-center gap-4 text-[13px] text-paper/70 bg-white/5 border border-white/10 rounded-full px-5 py-2"></div>
+    </div>
+  </section>
+
+  <main class="max-w-6xl mx-auto px-4 py-6 lg:grid lg:grid-cols-[230px_minmax(0,1fr)] lg:gap-6 lg:items-start">
+
+    <!-- 사이드 메뉴 -->
+    <aside class="lg:sticky lg:top-20 mb-5 lg:mb-0">
+      <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-3">
+        <div class="grid grid-cols-2 lg:grid-cols-1 gap-2">
+          <button onclick="setMode('learn')" id="mLearn" class="mode-btn text-sm font-bold rounded-xl px-3 py-3 transition flex items-center justify-center gap-2"><span>📖</span> 암송 학습하기</button>
+          <button onclick="setMode('test')" id="mTest" class="mode-btn text-sm font-bold rounded-xl px-3 py-3 transition flex items-center justify-center gap-2"><span>✍️</span> 암송 테스트</button>
+        </div>
+        <div class="mt-3 pt-3 border-t border-ink/8">
+          <p class="text-[11px] font-bold text-ink/40 px-1 mb-1.5">주제 선택</p>
+          <div id="themeNav" class="flex flex-wrap lg:flex-col gap-1"></div>
+        </div>
+        <div class="mt-3 pt-3 border-t border-ink/8">
+          <p class="text-[11px] font-bold text-ink/40 px-1 mb-1">나의 진도</p>
+          <div class="px-1">
+            <div class="h-2 rounded-full bg-sand overflow-hidden"><div id="progBar" class="h-full bg-gold transition-all" style="width:0%"></div></div>
+            <p id="progText" class="text-[11px] text-ink/55 mt-1">– / –</p>
+          </div>
+          <a href="mylearning.html" class="block text-center text-[12px] font-semibold text-gold hover:underline mt-2">📊 내 강의실에서 기록 보기 →</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 콘텐츠 -->
+    <section>
+      <div id="loginHint" class="hidden mb-4 bg-gold/[0.08] border border-gold/25 rounded-xl px-4 py-2.5 text-[12.5px] text-ink/70">🔐 <button onclick="location.href='index.html'" class="font-bold text-gold hover:underline">로그인</button>하면 암송 학습·테스트 기록이 계정에 저장되어 <b>내 강의실</b>에서 진도를 확인할 수 있어요. (지금은 이 기기에만 임시 저장됩니다.)</div>
+
+      <!-- 학습 모드 -->
+      <div id="learnView">
+        <div id="learnList" class="space-y-4"></div>
+      </div>
+
+      <!-- 테스트 모드 -->
+      <div id="testView" class="hidden"></div>
+    </section>
+  </main>
+
+  <script src="auth-header.js?v=20260619c"></script>
+  <script>
+  const SUPABASE_URL='https://bmxkndkwefdgsomlznoo.supabase.co';
+  const SUPABASE_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth:{ flowType:'implicit', lock: async(_n,_t,fn)=>await fn() } });
+  const $=id=>document.getElementById(id);
+  const esc=s=>String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+  let DATA={themes:[],verses:[]}, THEMES=[], VERSES=[], REC={}, USER=null;
+  let MODE='learn', THEME='all';
+  const LS='bibly_memorize';
+
+  // ---------- 기록 (로그인=Supabase, 비로그인=localStorage) ----------
+  function lsLoad(){ try{ return JSON.parse(localStorage.getItem(LS)||'{}'); }catch(e){ return {}; } }
+  function lsSave(o){ try{ localStorage.setItem(LS, JSON.stringify(o)); }catch(e){} }
+  async function loadRecords(){
+    REC={};
+    if(USER){
+      try{ const { data } = await sb.from('memorize_records').select('verse_id,learned,test_best,test_count').eq('user_id',USER.id);
+        (data||[]).forEach(r=>REC[r.verse_id]={learned:r.learned,test_best:r.test_best||0,test_count:r.test_count||0}); }catch(e){}
+    } else { REC=lsLoad(); }
+  }
+  async function saveRecord(vid, patch){
+    const cur=REC[vid]||{learned:false,test_best:0,test_count:0};
+    const next={ learned: patch.learned!=null?patch.learned:cur.learned,
+                 test_best: patch.test_best!=null?Math.max(cur.test_best||0,patch.test_best):(cur.test_best||0),
+                 test_count: (cur.test_count||0)+(patch.bumpTest?1:0) };
+    REC[vid]=next;
+    if(USER){
+      const row={ user_id:USER.id, verse_id:vid, learned:next.learned, test_best:next.test_best, test_count:next.test_count, updated_at:new Date().toISOString() };
+      if(patch.learned && !cur.learned) row.learned_at=new Date().toISOString();
+      try{ await sb.from('memorize_records').upsert(row,{onConflict:'user_id,verse_id'}); }catch(e){}
+    } else { const all=lsLoad(); all[vid]=next; lsSave(all); }
+    updateProgress();
+  }
+
+  // ---------- 초기화 ----------
+  (async()=>{
+    try{ const { data:{ session } } = await sb.auth.getSession(); USER=session?session.user:null; }catch(e){}
+    $('loginHint').classList.toggle('hidden', !!USER);
+    try{ DATA=await (await fetch('content/memorize.json?t='+Date.now())).json(); }catch(e){ DATA={themes:[],verses:[]}; }
+    THEMES=DATA.themes||[]; VERSES=DATA.verses||[];
+    await loadRecords();
+    buildThemeNav(); setMode('learn');
+    $('heroStat').innerHTML = `<span>📚 <b class="text-paper">${THEMES.length}</b> 주제</span><span class="opacity-40">·</span><span>✨ <b class="text-paper">${VERSES.length}</b> 구절</span>`;
+    const sp=new URLSearchParams(location.search); if(sp.get('mode')==='test') setMode('test');
+  })();
+
+  function versesOf(t){ return t==='all'?VERSES:VERSES.filter(v=>v.theme===t); }
+  function themeTitle(id){ const t=THEMES.find(x=>x.id===id); return t?((t.emoji?t.emoji+' ':'')+t.title):id; }
+
+  function buildThemeNav(){
+    const mk=(id,label,count)=>`<button onclick="setTheme('${id}')" data-t="${id}" class="theme-pill text-[12px] rounded-lg px-2.5 py-1.5 text-left transition flex items-center justify-between gap-2 lg:w-full"><span class="truncate">${esc(label)}</span><span class="text-[10px] opacity-60">${count}</span></button>`;
+    let h=mk('all','전체', VERSES.length);
+    h+=THEMES.map(t=>mk(t.id,(t.emoji?t.emoji+' ':'')+t.title, versesOf(t.id).length)).join('');
+    $('themeNav').innerHTML=h; paintNav();
+  }
+  function paintNav(){
+    document.querySelectorAll('.theme-pill').forEach(b=>{
+      const on=b.dataset.t===THEME;
+      b.className='theme-pill text-[12px] rounded-lg px-2.5 py-1.5 text-left transition flex items-center justify-between gap-2 lg:w-full '+(on?'bg-ink text-paper font-bold':'bg-sand/60 text-ink/70 hover:bg-sand');
+    });
+    document.querySelectorAll('.mode-btn').forEach(b=>{
+      const on=(b.id==='mLearn'&&MODE==='learn')||(b.id==='mTest'&&MODE==='test');
+      b.className='mode-btn text-sm font-bold rounded-xl px-3 py-3 transition flex items-center justify-center gap-2 '+(on?'bg-gold text-white shadow-soft':'bg-sand/60 text-ink/60 hover:bg-sand');
+    });
+  }
+  function setMode(m){ MODE=m; $('learnView').classList.toggle('hidden',m!=='learn'); $('testView').classList.toggle('hidden',m!=='test'); paintNav(); if(m==='learn') renderLearn(); else renderTest(); window.scrollTo({top:0,behavior:'smooth'}); }
+  function setTheme(t){ THEME=t; paintNav(); if(MODE==='learn') renderLearn(); else renderTest(); }
+
+  function updateProgress(){
+    const list=versesOf(THEME); const tot=list.length;
+    const learned=list.filter(v=>REC[v.id]&&REC[v.id].learned).length;
+    $('progBar').style.width=(tot?Math.round(learned/tot*100):0)+'%';
+    $('progText').textContent=`외운 구절 ${learned} / ${tot}`;
+  }
+
+  // ---------- 학습 모드 ----------
+  function renderLearn(){
+    const list=versesOf(THEME); updateProgress();
+    if(!list.length){ $('learnList').innerHTML='<p class="text-center text-ink/40 py-16">구절을 준비 중입니다.</p>'; return; }
+    $('learnList').innerHTML=list.map(v=>{
+      const r=REC[v.id]||{}; const done=r.learned;
+      const words=(v.words||[]).map(w=>`<div class="border-b border-ink/[0.06] py-2 last:border-0"><p class="verse-en font-bold text-[13.5px] text-ink">${esc(w.w||'')}</p><p class="text-[12.5px] text-gold font-semibold">${esc(w.ko||'')}</p>${w.note?`<p class="text-[11.5px] text-ink/55 leading-relaxed mt-0.5">${esc(w.note)}</p>`:''}</div>`).join('');
+      return `<article class="bg-white rounded-2xl border ${done?'border-gold/40':'border-ink/8'} shadow-soft overflow-hidden">
+        <div class="lg:grid lg:grid-cols-[minmax(0,1fr)_260px]">
+          <div class="p-5 lg:p-6">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-[10px] font-bold text-gold bg-gold/10 px-2 py-0.5 rounded-full">${esc(themeTitle(v.theme))}</span>
+              <span class="text-[12px] font-bold text-ink/70">${esc(v.ref||'')}</span>
+              ${done?'<span class="ml-auto text-[11px] font-bold text-green-700 bg-green-50 px-2 py-0.5 rounded-full">✅ 외웠어요</span>':''}
+            </div>
+            <p class="serif text-[18px] md:text-[19px] text-ink leading-[1.95]">${esc(v.kr||'')}</p>
+            <p class="verse-en text-[14px] text-ink/55 leading-relaxed mt-2.5">${esc(v.en||'')}</p>
+            ${v.orig?`<p class="text-[12px] text-ink/45 mt-2">원어 · ${esc(v.orig)}</p>`:''}
+            <div class="flex gap-2 mt-4">
+              <button onclick="toggleLearned('${v.id}')" class="text-sm font-semibold px-4 py-2 rounded-full transition ${done?'bg-sand text-ink/60 hover:bg-sand/70':'bg-gold text-white hover:opacity-90'}">${done?'외움 취소':'✅ 외웠어요'}</button>
+              <button onclick="quizThis('${v.id}')" class="text-sm font-semibold px-4 py-2 rounded-full border border-ink/15 text-ink/70 hover:bg-ink/5 transition">✍️ 이 구절 테스트</button>
+            </div>
+          </div>
+          ${words?`<aside class="bg-sand/30 border-t lg:border-t-0 lg:border-l border-ink/8 p-4 lg:p-5">
+            <p class="text-[11px] font-bold text-gold mb-1.5">🔤 영어 표현·원어</p>
+            <div>${words}</div></aside>`:''}
+        </div>
+      </article>`;
+    }).join('');
+  }
+  async function toggleLearned(vid){ const cur=REC[vid]&&REC[vid].learned; await saveRecord(vid,{learned:!cur}); renderLearn(); }
+  function quizThis(vid){ setMode('test'); setTimeout(()=>startQuiz(vid),0); }
+
+  // ---------- 테스트 모드 ----------
+  let Q=null;
+  function renderTest(){
+    const list=versesOf(THEME);
+    if(!list.length){ $('testView').innerHTML='<p class="text-center text-ink/40 py-16">구절을 준비 중입니다.</p>'; return; }
+    const opts=list.map(v=>`<option value="${v.id}">${esc(v.ref)} — ${esc((v.kr||'').slice(0,16))}…</option>`).join('');
+    $('testView').innerHTML=`
+      <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 mb-4">
+        <div class="flex flex-wrap items-end gap-3">
+          <label class="text-sm"><span class="block text-[11px] font-bold text-ink/45 mb-1">구절 선택</span>
+            <select id="qVerse" class="border border-ink/15 rounded-lg px-3 py-2 text-sm bg-white max-w-[260px]">${opts}</select></label>
+          <label class="text-sm"><span class="block text-[11px] font-bold text-ink/45 mb-1">언어</span>
+            <select id="qLang" class="border border-ink/15 rounded-lg px-3 py-2 text-sm bg-white"><option value="kr">한글</option><option value="en">영어(KJV)</option></select></label>
+          <label class="text-sm"><span class="block text-[11px] font-bold text-ink/45 mb-1">유형</span>
+            <select id="qType" class="border border-ink/15 rounded-lg px-3 py-2 text-sm bg-white"><option value="blank">빈칸 채우기</option><option value="full">통암송 적어보기</option></select></label>
+          <button onclick="startQuiz()" class="bg-gold text-white font-bold text-sm px-5 py-2.5 rounded-full hover:opacity-90 transition">문제 풀기 →</button>
+          <button onclick="randomQuiz()" class="text-sm font-semibold px-4 py-2.5 rounded-full border border-ink/15 text-ink/70 hover:bg-ink/5 transition">🎲 무작위</button>
+        </div>
+      </div>
+      <div id="quizArea"></div>`;
+  }
+  function randomQuiz(){ const list=versesOf(THEME); if(!list.length)return; const v=list[Math.floor(Math.random()*list.length)]; $('qVerse').value=v.id; const types=['blank','full']; $('qType').value=types[Math.floor(Math.random()*2)]; startQuiz(); }
+  function norm(s){ return String(s||'').replace(/[\s.,!?;:'"“”‘’()\[\]·…\-]/g,'').toLowerCase(); }
+  function tokenize(s,lang){ return String(s||'').trim().split(/\s+/); }
+
+  function startQuiz(forceId){
+    if(forceId && $('qVerse')) $('qVerse').value=forceId;
+    const vid=$('qVerse').value, lang=$('qLang').value, type=$('qType').value;
+    const v=VERSES.find(x=>x.id===vid); if(!v) return;
+    const text=lang==='kr'?(v.kr||''):(v.en||'');
+    Q={v,lang,type,text};
+    if(type==='blank') renderBlank(v,lang,text); else renderFull(v,lang,text);
+  }
+  function renderBlank(v,lang,text){
+    const toks=tokenize(text,lang);
+    // 의미있는 토큰을 약 35% 빈칸 처리(2글자 이상 우선)
+    const idxs=toks.map((t,i)=>i).filter(i=>norm(toks[i]).length>=(lang==='en'?3:2));
+    const blanks=new Set(); const target=Math.max(2,Math.round(idxs.length*0.38));
+    for(let k=0;k<idxs.length && blanks.size<target;k++){ if(k% (Math.max(1,Math.round(idxs.length/target)))===0) blanks.add(idxs[k]); }
+    Q.blanks=[...blanks]; Q.toks=toks;
+    const html=toks.map((t,i)=> blanks.has(i)
+      ? `<input class="blank-input" data-i="${i}" size="${Math.max(4,norm(t).length+1)}" autocomplete="off" />`
+      : `<span>${esc(t)}</span>`).join(' ');
+    $('quizArea').innerHTML=`<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 lg:p-6">
+      <div class="flex items-center gap-2 mb-3"><span class="text-[10px] font-bold text-gold bg-gold/10 px-2 py-0.5 rounded-full">빈칸 채우기</span><span class="text-[12px] font-bold text-ink/70">${esc(v.ref)}</span></div>
+      <p class="${lang==='kr'?'serif':'verse-en'} text-[18px] leading-[2.5] text-ink">${html}</p>
+      <div class="flex gap-2 mt-5"><button onclick="gradeBlank()" class="bg-ink text-paper font-bold text-sm px-5 py-2.5 rounded-full hover:bg-navy transition">채점하기</button>
+      <button onclick="revealBlank()" class="text-sm font-semibold px-4 py-2.5 rounded-full border border-ink/15 text-ink/60 hover:bg-ink/5">정답 보기</button></div>
+      <div id="quizResult" class="mt-4"></div>
+    </div>`;
+  }
+  function gradeBlank(){
+    let ok=0; const tot=Q.blanks.length;
+    Q.blanks.forEach(i=>{ const el=document.querySelector(`.blank-input[data-i="${i}"]`); const good=norm(el.value)===norm(Q.toks[i]);
+      el.classList.toggle('ok',good); el.classList.toggle('no',!good); if(good)ok++; else el.value=el.value; });
+    const score=Math.round(ok/tot*100);
+    finishQuiz(score, `빈칸 ${tot}개 중 <b>${ok}개</b> 정답`);
+  }
+  function revealBlank(){ Q.blanks.forEach(i=>{ const el=document.querySelector(`.blank-input[data-i="${i}"]`); el.value=Q.toks[i]; el.classList.add('ok'); }); }
+
+  function renderFull(v,lang,text){
+    $('quizArea').innerHTML=`<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 lg:p-6">
+      <div class="flex items-center gap-2 mb-3"><span class="text-[10px] font-bold text-gold bg-gold/10 px-2 py-0.5 rounded-full">통암송 적어보기</span><span class="text-[12px] font-bold text-ink/70">${esc(v.ref)}</span><span class="ml-auto text-[11px] text-ink/45">${lang==='kr'?'한글로':'영어로'} 외운 구절을 적어보세요</span></div>
+      <textarea id="fullInput" rows="4" class="w-full border border-ink/15 rounded-xl p-3.5 text-[16px] ${lang==='kr'?'serif':'verse-en'} leading-relaxed outline-none focus:border-gold" placeholder="${esc(v.ref)} 구절을 기억나는 대로 적어보세요…"></textarea>
+      <div class="flex gap-2 mt-3"><button onclick="gradeFull()" class="bg-ink text-paper font-bold text-sm px-5 py-2.5 rounded-full hover:bg-navy transition">채점하기</button>
+      <button onclick="revealFull()" class="text-sm font-semibold px-4 py-2.5 rounded-full border border-ink/15 text-ink/60 hover:bg-ink/5">정답 보기</button></div>
+      <div id="quizResult" class="mt-4"></div>
+    </div>`;
+  }
+  // LCS 기반 유사도(문자 단위)
+  function similarity(a,b){ a=norm(a); b=norm(b); if(!a||!b) return 0;
+    const m=a.length,n=b.length; if(m*n>400000){ // 너무 길면 토큰 집합 비교로 대체
+      const sa=new Set(a), sb=new Set(b); let c=0; sa.forEach(x=>{ if(sb.has(x))c++; }); return c/Math.max(sa.size,sb.size); }
+    const dp=Array(n+1).fill(0); for(let i=1;i<=m;i++){ let prev=0; for(let j=1;j<=n;j++){ const tmp=dp[j]; dp[j]=a[i-1]===b[j-1]?prev+1:Math.max(dp[j],dp[j-1]); prev=tmp; } }
+    return dp[n]/Math.max(m,n);
+  }
+  function gradeFull(){
+    const ans=Q.text, inp=$('fullInput').value;
+    const sim=similarity(inp,ans); const score=Math.round(sim*100);
+    const verdict = score>=90?'완벽해요! 🎉':score>=70?'거의 다 외웠어요 👍':score>=40?'조금 더 연습해요 💪':'다시 천천히 외워봐요 📖';
+    finishQuiz(score, `정확도 <b>${score}%</b> — ${verdict}`, true);
+  }
+  function revealFull(){ const r=$('quizResult'); r.innerHTML=`<div class="bg-sand/50 rounded-xl p-3.5 ${Q.lang==='kr'?'serif':'verse-en'} text-[16px] text-ink leading-relaxed">${esc(Q.text)}</div>`; }
+
+  function finishQuiz(score, msg, showAnswer){
+    const tone = score>=70?'bg-green-50 border-green-200 text-green-800':score>=40?'bg-amber-50 border-amber-200 text-amber-800':'bg-rose-50 border-rose-200 text-rose-800';
+    let h=`<div class="rounded-xl border ${tone} px-4 py-3 text-sm">${msg} <b>(${score}점)</b></div>`;
+    if(showAnswer) h+=`<div class="mt-2 bg-sand/50 rounded-xl p-3.5 ${Q.lang==='kr'?'serif':'verse-en'} text-[15px] text-ink/80 leading-relaxed"><span class="text-[11px] font-bold text-ink/45 block mb-1">정답</span>${esc(Q.text)}</div>`;
+    if(score>=80) h+=`<button onclick="markLearnedFromTest('${Q.v.id}')" class="mt-3 text-sm font-semibold text-gold hover:underline">✅ 이 구절 외움 처리하기</button>`;
+    $('quizResult').innerHTML=h;
+    saveRecord(Q.v.id,{ test_best:score, bumpTest:true });
+  }
+  async function markLearnedFromTest(vid){ await saveRecord(vid,{learned:true}); $('quizResult').insertAdjacentHTML('beforeend','<p class="text-[12px] text-green-700 mt-1">기록되었습니다 ✓</p>'); }
+  </script>
+</body>
+</html>
