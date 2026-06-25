@@ -268,7 +268,6 @@
         <div class="flex items-center flex-wrap gap-2 mb-1.5">
           <h3 class="text-lg font-bold text-ink">‘${esc(ws.w)}’의 신학적 의미</h3>
           ${ws.en?`<span class="text-ink/45 text-sm verse-en">${esc(ws.en)}</span>`:''}
-          <span class="ml-auto text-[10px] font-bold text-gold bg-gold/10 px-2 py-0.5 rounded-full">근본주의 침례신학</span>
         </div>
         ${ws.orig?`<p class="text-[12px] text-ink/45 mb-2.5">원어 · ${esc(ws.orig)}</p>`:''}
         ${ws.theology?`<div class="mb-3"><h4 class="font-bold text-ink text-[13.5px] mb-1">📖 신학적 의미</h4><p class="text-[13.5px] text-ink/80 leading-[1.9]">${esc(ws.theology)}</p></div>`:''}
@@ -278,10 +277,11 @@
       </div>`;
     }
     function quickSearch(w){ $('searchInput').value=w; doSearch(); }
-    async function doSearch(){
+    async function doSearch(fromHistory){
       const q=($('searchInput').value||'').trim();
       const view=$('searchView');
       if(q.length<1){ closeSearch(); return; }
+      if(!fromHistory){ try{ history.pushState({view:'search',q}, '', '?q='+encodeURIComponent(q)); }catch(e){} }
       setSearchMode(true);
       view.innerHTML='<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-8 text-center text-ink/45">검색 준비 중…</div>';
       const idx=await ensureIndex();
@@ -331,10 +331,18 @@
     }
     function gotoVerse(bookIdx, c, v){
       const bk=SIDX.books[bookIdx]; if(!bk) return;
+      // 읽기용 히스토리 항목을 새로 쌓아, 뒤로가기 시 검색 결과 화면으로 돌아오게 한다
+      try{ history.pushState({view:'read',file:bk.f,c,v}, '', '?b='+bk.f+'&c='+c); }catch(e){}
       setSearchMode(false);
       selectBook(bk.f, c, v);
     }
     function closeSearch(){ setSearchMode(false); }
+    // 뒤로가기/앞으로가기: 검색 상태면 검색 결과 복원, 아니면 검색 닫기
+    window.addEventListener('popstate', e=>{
+      const st=e.state;
+      if(st && st.view==='search'){ $('searchInput').value=st.q||''; doSearch(true); }
+      else { if(!$('searchView').classList.contains('hidden')) setSearchMode(false); }
+    });
     document.addEventListener('keydown', e=>{
       if(e.key==='Enter' && document.activeElement===$('searchInput')){ e.preventDefault(); doSearch(); }
       if(e.key==='Escape' && !$('searchView').classList.contains('hidden')){ closeSearch(); }
