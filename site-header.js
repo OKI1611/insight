@@ -101,9 +101,10 @@
     }).join('');
   }
 
-  // 메인 헤더 우측 CTA(내 강의실 버튼) — 로그인/로그아웃은 상단 퀵바로 이동
+  // 메인 헤더 우측 CTA — 두란노식 강조 '바로 수강' + 내 강의실(로그인/로그아웃은 상단 퀵바)
   function mainCtaHTML(){
-    return '<a href="mylearning.html" class="hidden xl:inline-flex items-center gap-1 border border-gold/45 text-gold font-semibold px-3 py-1.5 rounded-full hover:bg-gold/10 transition text-xs whitespace-nowrap">📚 내 강의실</a>';
+    return '<a href="watch.html" class="inline-flex items-center gap-1 bg-gold text-white font-bold px-3.5 py-1.5 rounded-full hover:opacity-90 transition text-xs whitespace-nowrap shadow-soft">▶ 바로 수강</a>'
+      + '<a href="mylearning.html" class="hidden xl:inline-flex items-center gap-1 border border-gold/45 text-gold font-semibold px-3 py-1.5 rounded-full hover:bg-gold/10 transition text-xs whitespace-nowrap">📚 내 강의실</a>';
   }
   // 상단 퀵바(유틸리티) — 수학싸부식: 공지·이벤트·후원 + 로그인 상태/마이메뉴
   function topbarHTML(){
