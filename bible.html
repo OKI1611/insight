@@ -40,6 +40,12 @@
     @keyframes vflash{0%{background:rgba(184,146,63,.32)}100%{background:transparent}}
     .verse-flash{animation:vflash 2.6s ease;border-radius:8px}
     #searchInput::-webkit-search-cancel-button{cursor:pointer}
+    .vrow{cursor:pointer;border-radius:8px;transition:background .12s}
+    .vrow:hover{background:rgba(184,146,63,.06)}
+    .vact{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
+    .vact button{font-size:12px;font-weight:600;padding:5px 11px;border-radius:999px;border:1px solid rgba(33,58,107,.14);background:#fff;color:#213a6b;cursor:pointer;transition:background .12s}
+    .vact button:hover{background:rgba(184,146,63,.12)}
+    .vact .vclose{border:0;color:rgba(33,58,107,.35);padding:5px 8px}
   </style>
   <script type="application/ld+json">
 {
@@ -193,6 +199,8 @@
       </aside>
     </div>
 
+    <p id="copyHint" class="text-[11.5px] text-ink/40 mt-3 text-center">💡 구절을 <b class="text-ink/55">클릭</b>하면 복사·공유할 수 있고, <b class="text-ink/55">드래그해서 복사</b>하면 출처(책·장·절)가 자동으로 함께 붙습니다.</p>
+
     <div id="bottomNav" class="flex justify-between mt-4">
       <button onclick="nav(-1)" class="text-sm text-gold hover:underline">← 이전 장</button>
       <button onclick="nav(1)" class="text-sm text-gold hover:underline">다음 장 →</button>
@@ -309,7 +317,7 @@
       h+='<div class="space-y-3.5">';
       verses.forEach((en,i)=>{
         const ko = (par && KR[i]) ? `<p class="serif text-[16px] text-ink leading-relaxed mt-0.5">${esc(KR[i])}</p>` : '';
-        h+=`<div id="v${i+1}" class="flex gap-2.5 px-1.5 -mx-1.5 py-0.5"><span class="text-gold font-bold text-xs pt-1 w-5 shrink-0 text-right">${i+1}</span><div class="flex-1">${ko}<p class="verse-en text-[15px] ${par?'text-ink/55':'text-ink/85'} leading-relaxed">${esc(en)}</p></div></div>`;
+        h+=`<div id="v${i+1}" class="vrow flex gap-2.5 px-1.5 -mx-1.5 py-0.5"><span class="text-gold font-bold text-xs pt-1 w-5 shrink-0 text-right">${i+1}</span><div class="vbody flex-1">${ko}<p class="verse-en text-[15px] ${par?'text-ink/55':'text-ink/85'} leading-relaxed">${esc(en)}</p></div></div>`;
       });
       h+='</div>';
       if($('parallel').checked && !KR){ h+='<p class="text-xs text-gold/80 mt-5 bg-gold/[0.07] rounded-lg p-3">🕊️ 이 장의 한국어 번역은 아직 준비 중입니다. (원어 기반 자체 번역으로 순차 추가)</p>'; }
@@ -322,9 +330,60 @@
       loadChapter(c);
     }
 
+    /* ===================== 구절 복사·공유 + 출처 자동첨부 ===================== */
+    function bToast(m){ let t=document.getElementById('bToast'); if(!t){ t=document.createElement('div'); t.id='bToast'; t.style.cssText='position:fixed;left:50%;bottom:90px;transform:translateX(-50%);z-index:120;background:#213a6b;color:#fff;padding:9px 16px;border-radius:999px;font-size:13px;box-shadow:0 8px 24px rgba(0,0,0,.2);max-width:90vw;text-align:center'; document.body.appendChild(t); } t.textContent=m; t.style.display=''; clearTimeout(t._t); t._t=setTimeout(()=>{ t.style.display='none'; }, 2200); }
+    function verseRef(v1,v2){ const r=(v2&&v2!==v1)?(CH+':'+v1+'-'+v2):(CH+':'+v1); return CUR.ko+' '+r; }
+    function attrib(refTxt, withSite){ return '— '+refTxt+' · KJV 새번역'+(withSite?' · biblynote.com':''); }
+    // 한 구절의 공유/복사 본문(한글+영어+출처)
+    function verseText(v, withSite){
+      const i=v-1; const en=(BOOK&&BOOK[CH]&&BOOK[CH][i])||''; const kr=(KR&&KR[i])||'';
+      let t=''; if(kr) t+=kr+'\n'; if(en) t+=en+'\n';
+      return t+attrib(verseRef(v), withSite);
+    }
+    async function clip(text){
+      try{ await navigator.clipboard.writeText(text); return true; }
+      catch(e){ const ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); let ok=false; try{ ok=document.execCommand('copy'); }catch(_){} ta.remove(); return ok; }
+    }
+    async function copyVerse(v){ const ok=await clip(verseText(v,true)); bToast(ok?'구절을 복사했어요 · 붙여넣기 하면 출처가 함께 붙어요':'복사에 실패했어요'); closeVerseActions(); }
+    async function shareVerse(v){
+      const body=verseText(v,false); const url='https://biblynote.com/bible?b='+CUR.file+'&c='+CH;
+      if(navigator.share){ try{ await navigator.share({ title:verseRef(v), text:body, url }); }catch(e){} }
+      else { const ok=await clip(verseText(v,true)); bToast(ok?'공유 기능이 없어 클립보드에 복사했어요':'복사에 실패했어요'); }
+      closeVerseActions();
+    }
+    function closeVerseActions(){ document.querySelectorAll('.vact').forEach(b=>b.remove()); }
+    function toggleVerseActions(v){
+      const open=document.querySelector('#v'+v+' .vact'); closeVerseActions(); if(open) return;
+      const body=document.querySelector('#v'+v+' .vbody'); if(!body) return;
+      const bar=document.createElement('div'); bar.className='vact';
+      bar.innerHTML='<button type="button" onclick="event.stopPropagation();copyVerse('+v+')">📋 복사</button>'
+        +'<button type="button" onclick="event.stopPropagation();shareVerse('+v+')">🔗 공유</button>'
+        +'<button type="button" class="vclose" onclick="event.stopPropagation();closeVerseActions()">✕</button>';
+      body.appendChild(bar);
+    }
+    function vnumOf(node){ let a=(node&&node.nodeType===3)?node.parentElement:node; const rd=$('reader'); while(a&&a!==rd){ if(a.id&&/^v\d+$/.test(a.id)) return +a.id.slice(1); a=a.parentElement; } return null; }
+    (function initVerseTools(){
+      const rd=$('reader'); if(!rd||rd.__vt) return; rd.__vt=1;
+      // 클릭(탭) → 복사·공유 바. 단, 텍스트를 드래그 선택 중이면 무시.
+      rd.addEventListener('click', e=>{
+        if(e.target.closest('.vact')) return;
+        const sel=window.getSelection(); if(sel && !sel.isCollapsed) return;
+        const v=vnumOf(e.target); if(v) toggleVerseActions(v);
+      });
+      // 드래그 복사(Ctrl+C 등) → 선택 끝에 출처를 자동으로 덧붙인다.
+      rd.addEventListener('copy', e=>{
+        const sel=window.getSelection(); if(!sel||!sel.rangeCount) return;
+        const txt=sel.toString(); if(!txt.trim()) return;
+        const a=vnumOf(sel.anchorNode), b=vnumOf(sel.focusNode);
+        let ref; if(a&&b) ref=verseRef(Math.min(a,b),Math.max(a,b)); else if(a||b) ref=verseRef(a||b); else ref=CUR.ko+' '+CH+'장';
+        try{ e.clipboardData.setData('text/plain', txt.replace(/\s+$/,'')+'\n'+attrib(ref,true)); e.preventDefault(); }catch(_){}
+      });
+      document.addEventListener('click', e=>{ if(!e.target.closest('.vrow')) closeVerseActions(); });
+    })();
+
     /* ===================== 본문 단어 검색 ===================== */
     let SIDX=null, SLOADING=null;
-    const READ_IDS=['themesBanner','ctrlBar','picker','readWrap','bottomNav','footerNote'];
+    const READ_IDS=['themesBanner','ctrlBar','picker','readWrap','bottomNav','footerNote','copyHint'];
     function setSearchMode(on){
       READ_IDS.forEach(id=>{ const el=$(id); if(el) el.classList.toggle('hidden', on); });
       $('searchView').classList.toggle('hidden', !on);
