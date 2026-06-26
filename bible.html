@@ -130,8 +130,20 @@
         <p class="text-ink/40 text-center py-10">불러오는 중…</p>
       </article>
       <aside id="enPanel" class="mt-4 lg:mt-0 lg:sticky lg:top-28 bg-white rounded-2xl border border-gold/25 shadow-soft p-4 lg:max-h-[78vh] lg:overflow-auto">
-        <p class="font-bold text-sm text-ink mb-0.5">🔤 이 장의 영어 표현</p>
-        <p class="text-[11px] text-ink/45 mb-3">중요 단어·숙어·문법을 확인하세요</p>
+        <style>
+          #enPanel.hide-learn .sec-learn{display:none}
+          #enPanel.hide-theo .sec-theo{display:none}
+          .seclbl{display:inline-block;font-size:10.5px;font-weight:700;padding:0 7px;border-radius:20px;line-height:1.7}
+          .seclbl-voc{background:#fbeec2;color:#7a5e16}
+          .seclbl-idi{background:#e7eefb;color:#1c3c74}
+          .seclbl-gra{background:#e3f1ea;color:#0f6e56}
+          .secbtn{cursor:pointer;font-size:11.5px;font-weight:600;padding:3px 11px;border-radius:20px;border:0.5px solid;transition:all .15s}
+        </style>
+        <p class="font-bold text-sm text-ink mb-2">🔤 영어로 읽는 말씀</p>
+        <div class="flex gap-1.5 mb-3">
+          <button id="tgLearn" type="button" onclick="togSec('learn')" class="secbtn" title="단어·숙어·어법 켜고 끄기">📘 영어 학습</button>
+          <button id="tgTheo" type="button" onclick="togSec('theo')" class="secbtn" title="신학 해설 켜고 끄기">💡 신학 해설</button>
+        </div>
         <div id="enList"></div>
       </aside>
     </div>
@@ -192,14 +204,54 @@
       $('readWrap').classList.toggle('lg:grid', on);
       $('readWrap').classList.toggle('lg:grid-cols-[minmax(0,1fr)_320px]', on);
     }
+    function hlVoc(en, e){
+      let s=esc(en); const terms=[];
+      (e.idi||[]).forEach(x=>{ if(x&&x[0]) terms.push([x[0],'#1c3c74']); });
+      (e.voc||[]).forEach(v=>{ if(v&&v[0]) terms.push([v[0],'#b8923f']); });
+      terms.sort((a,b)=>b[0].length-a[0].length);
+      terms.forEach(([t,c])=>{ try{ const re=new RegExp('\\b('+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')\\b','i'); s=s.replace(re,'<u style="text-decoration:none;border-bottom:1.5px solid '+c+'">$1</u>'); }catch(_){} });
+      return s;
+    }
     function renderEn(){
       const box=$('enList'); if(!box) return;
       if(!ENNOTES || !ENNOTES.length){ box.innerHTML='<p class="text-xs text-ink/40 leading-relaxed py-2">이 장의 영어 표현 노트는 준비 중입니다. (장별로 순차 추가)</p>'; return; }
-      box.innerHTML=ENNOTES.map(e=>`<div class="border-b border-ink/[0.07] py-2.5 last:border-0">
-        <p class="verse-en font-bold text-[14px] text-ink leading-snug">${esc(e.en||'')}</p>
-        <p class="text-[13px] text-gold font-semibold mt-0.5">${esc(e.ko||'')}</p>
-        ${e.note?`<p class="text-[12px] text-ink/55 leading-relaxed mt-1">${esc(e.note)}</p>`:''}</div>`).join('');
+      box.innerHTML=ENNOTES.map(e=>{
+        const voc=(e.voc||[]).map(v=>`<div class="text-[12px] leading-tight"><span class="font-semibold text-ink">${esc(v[0]||'')}</span> <span class="text-ink/35 text-[10.5px]">${esc(v[1]||'')}</span><br><span class="text-ink/60">${esc(v[2]||'')}</span></div>`).join('');
+        const vocB=voc?`<div class="mt-2"><span class="seclbl seclbl-voc">단어</span><div class="grid grid-cols-2 gap-x-3 gap-y-1.5 mt-1.5">${voc}</div></div>`:'';
+        const idi=(e.idi||[]).map(x=>`<div class="text-[12px] text-ink/70 leading-snug"><span class="font-semibold text-ink">${esc(x[0]||'')}</span> — ${esc(x[1]||'')}</div>`).join('');
+        const idiB=idi?`<div class="mt-2"><span class="seclbl seclbl-idi">숙어·표현</span><div class="mt-1 space-y-0.5">${idi}</div></div>`:'';
+        const gra=(e.gra||[]).map(x=>`<div class="text-[12px] text-ink/70 leading-snug"><span class="font-semibold" style="color:#0f6e56">${esc(x[0]||'')}</span> — ${esc(x[1]||'')}</div>`).join('');
+        const graB=gra?`<div class="mt-2"><span class="seclbl seclbl-gra">어법</span><div class="mt-1 space-y-0.5">${gra}</div></div>`:'';
+        const learn=(graB||idiB||vocB)?`<div class="sec-learn">${graB}${idiB}${vocB}</div>`:'';
+        const theo=e.note?`<div class="sec-theo mt-2 bg-gold/[0.06] border-l-2 border-gold/50 rounded-r px-2.5 py-2"><p class="text-[12px] text-ink/70 leading-relaxed">${esc(e.note)}</p></div>`:'';
+        return `<div class="border-b border-ink/[0.07] py-3 last:border-0">
+          <p class="verse-en font-bold text-[13.5px] text-ink leading-snug">${hlVoc(e.en||'', e)}</p>
+          <p class="text-[12.5px] text-gold font-semibold mt-0.5">${esc(e.ko||'')}</p>
+          ${learn}${theo}</div>`;
+      }).join('');
     }
+    function applySecBtn(kind,on){
+      const b=$(kind==='learn'?'tgLearn':'tgTheo'); if(!b) return;
+      const name=kind==='learn'?'📘 영어 학습':'💡 신학 해설';
+      b.textContent=name+' '+(on?'ON':'OFF');
+      if(on){ b.style.background=kind==='learn'?'#fbeec2':'#e3f1ea'; b.style.color=kind==='learn'?'#7a5e16':'#0f6e56'; b.style.borderColor=kind==='learn'?'#e6cf86':'#9ec6a6'; }
+      else { b.style.background='#f3f3f3'; b.style.color='#999'; b.style.borderColor='#ddd'; }
+    }
+    function togSec(kind){
+      const cls='hide-'+kind, panel=$('enPanel');
+      const hidden=panel.classList.toggle(cls);
+      try{ localStorage.setItem('bibly_'+cls, hidden?'1':'0'); }catch(_){}
+      applySecBtn(kind, !hidden);
+    }
+    function initSec(){
+      ['learn','theo'].forEach(kind=>{
+        const cls='hide-'+kind; let hidden=false;
+        try{ hidden=localStorage.getItem('bibly_'+cls)==='1'; }catch(_){}
+        if(hidden) $('enPanel').classList.add(cls);
+        applySecBtn(kind, !hidden);
+      });
+    }
+    initSec();
     function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
     function renderChapter(){
       const verses=(BOOK&&BOOK[CH])||[];
