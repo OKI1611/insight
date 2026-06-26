@@ -1,1073 +1,4062 @@
 {
-  "themes": [
-    { "id": "salvation", "title": "구원", "emoji": "✝️", "desc": "오직 믿음으로 받는 하나님의 구원" },
-    { "id": "faith", "title": "믿음", "emoji": "🌱", "desc": "보지 못하는 것을 바라보며 나아가는 믿음" },
-    { "id": "love", "title": "사랑", "emoji": "❤️", "desc": "하나님의 사랑과 우리가 행할 사랑" },
-    { "id": "grace", "title": "은혜", "emoji": "🕊️", "desc": "값없이 베푸시는 하나님의 은혜" },
-    { "id": "prayer", "title": "기도", "emoji": "🙏", "desc": "쉬지 말고 아뢰는 기도의 능력" },
-    { "id": "peace", "title": "평안과 위로", "emoji": "🌿", "desc": "근심을 이기는 하나님의 평안" },
-    { "id": "guidance", "title": "인도와 지혜", "emoji": "🧭", "desc": "주를 의지하는 자를 인도하시는 지혜" },
-    { "id": "trial", "title": "시련과 인내", "emoji": "🔥", "desc": "연단을 통해 자라는 인내와 소망" },
-    { "id": "thanks", "title": "감사와 찬양", "emoji": "🎶", "desc": "범사에 드리는 감사와 찬양" },
-    { "id": "holiness", "title": "거룩과 성결", "emoji": "🤍", "desc": "구별되어 거룩을 좇는 삶" },
-    { "id": "mission", "title": "전도와 사명", "emoji": "📣", "desc": "땅끝까지 복음을 전하는 사명" },
-    { "id": "hope", "title": "약속과 소망", "emoji": "🌅", "desc": "흔들리지 않는 하나님의 약속과 소망" },
-    { "id": "word", "title": "하나님의 말씀", "emoji": "📖", "desc": "살아 운동력 있는 하나님의 말씀" },
-    { "id": "repentance", "title": "회개와 용서", "emoji": "💧", "desc": "죄를 자복하고 받는 용서" },
-    { "id": "eternal", "title": "영생과 천국", "emoji": "👑", "desc": "예비된 영원한 생명과 천국" },
-    { "id": "character", "title": "하나님의 성품", "emoji": "🌟", "desc": "변함없으신 하나님의 성품과 영광" }
-  ],
-  "verses": [
+ "themes": [
+  {
+   "id": "salvation",
+   "title": "구원",
+   "emoji": "✝️",
+   "desc": "오직 믿음으로 받는 하나님의 구원"
+  },
+  {
+   "id": "faith",
+   "title": "믿음",
+   "emoji": "🌱",
+   "desc": "보지 못하는 것을 바라보며 나아가는 믿음"
+  },
+  {
+   "id": "love",
+   "title": "사랑",
+   "emoji": "❤️",
+   "desc": "하나님의 사랑과 우리가 행할 사랑"
+  },
+  {
+   "id": "grace",
+   "title": "은혜",
+   "emoji": "🕊️",
+   "desc": "값없이 베푸시는 하나님의 은혜"
+  },
+  {
+   "id": "prayer",
+   "title": "기도",
+   "emoji": "🙏",
+   "desc": "쉬지 말고 아뢰는 기도의 능력"
+  },
+  {
+   "id": "peace",
+   "title": "평안과 위로",
+   "emoji": "🌿",
+   "desc": "근심을 이기는 하나님의 평안"
+  },
+  {
+   "id": "guidance",
+   "title": "인도와 지혜",
+   "emoji": "🧭",
+   "desc": "주를 의지하는 자를 인도하시는 지혜"
+  },
+  {
+   "id": "trial",
+   "title": "시련과 인내",
+   "emoji": "🔥",
+   "desc": "연단을 통해 자라는 인내와 소망"
+  },
+  {
+   "id": "thanks",
+   "title": "감사와 찬양",
+   "emoji": "🎶",
+   "desc": "범사에 드리는 감사와 찬양"
+  },
+  {
+   "id": "holiness",
+   "title": "거룩과 성결",
+   "emoji": "🤍",
+   "desc": "구별되어 거룩을 좇는 삶"
+  },
+  {
+   "id": "mission",
+   "title": "전도와 사명",
+   "emoji": "📣",
+   "desc": "땅끝까지 복음을 전하는 사명"
+  },
+  {
+   "id": "hope",
+   "title": "약속과 소망",
+   "emoji": "🌅",
+   "desc": "흔들리지 않는 하나님의 약속과 소망"
+  },
+  {
+   "id": "word",
+   "title": "하나님의 말씀",
+   "emoji": "📖",
+   "desc": "살아 운동력 있는 하나님의 말씀"
+  },
+  {
+   "id": "repentance",
+   "title": "회개와 용서",
+   "emoji": "💧",
+   "desc": "죄를 자복하고 받는 용서"
+  },
+  {
+   "id": "eternal",
+   "title": "영생과 천국",
+   "emoji": "👑",
+   "desc": "예비된 영원한 생명과 천국"
+  },
+  {
+   "id": "character",
+   "title": "하나님의 성품",
+   "emoji": "🌟",
+   "desc": "변함없으신 하나님의 성품과 영광"
+  }
+ ],
+ "verses": [
+  {
+   "id": "jn3-16",
+   "theme": "salvation",
+   "ref": "요한복음 3:16",
+   "kr": "하나님이 세상을 이토록 사랑하사 독생자를 주셨으니, 이는 그를 믿는 자마다 멸망하지 아니하고 영생을 얻게 하려 하심이라.",
+   "en": "For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.",
+   "words": [
     {
-      "id": "jn3-16",
-      "theme": "salvation",
-      "ref": "요한복음 3:16",
-      "kr": "하나님이 세상을 이토록 사랑하사 독생자를 주셨으니, 이는 그를 믿는 자마다 멸망하지 아니하고 영생을 얻게 하려 하심이라.",
-      "en": "For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.",
-      "words": [
-        { "w": "so loved", "ko": "이토록 사랑하사", "note": "ἀγαπάω(아가파오) — 값없이 베푸는 무조건적 사랑" },
-        { "w": "only begotten Son", "ko": "독생자", "note": "μονογενής(모노게네스) — 유일하게 나신 아들" },
-        { "w": "whosoever believeth", "ko": "믿는 자마다", "note": "πιστεύω(피스튜오) — 인격적으로 신뢰하다" },
-        { "w": "everlasting life", "ko": "영생", "note": "ζωὴ αἰώνιος(조에 아이오니오스) — 영원한 생명" }
-      ],
-      "orig": "ἠγάπησεν ὁ θεὸς τὸν κόσμον (ēgapēsen ho theos ton kosmon)"
+     "w": "so loved",
+     "ko": "이토록 사랑하사",
+     "note": "ἀγαπάω(아가파오) — 값없이 베푸는 무조건적 사랑"
     },
     {
-      "id": "eph2-8",
-      "theme": "salvation",
-      "ref": "에베소서 2:8~9",
-      "kr": "너희가 은혜로 말미암아 믿음으로 구원을 받았으니, 이것이 너희에게서 난 것이 아니요 하나님의 선물이라. 행위에서 난 것이 아니니, 이는 아무도 자랑하지 못하게 하려 하심이라.",
-      "en": "For by grace are ye saved through faith; and that not of yourselves: it is the gift of God: Not of works, lest any man should boast.",
-      "words": [
-        { "w": "by grace", "ko": "은혜로", "note": "χάρις(카리스) — 받을 자격 없는 자에게 베푸는 호의" },
-        { "w": "through faith", "ko": "믿음으로", "note": "διὰ πίστεως(디아 피스테오스) — 믿음을 통로로" },
-        { "w": "the gift of God", "ko": "하나님의 선물", "note": "δῶρον(도론) — 값없이 주어진 선물" },
-        { "w": "lest any man should boast", "ko": "아무도 자랑하지 못하게", "note": "καυχάομαι(카우카오마이) — 자랑하다" }
-      ],
-      "orig": "τῇ γὰρ χάριτί ἐστε σεσῳσμένοι (tē gar chariti este sesōsmenoi)"
+     "w": "only begotten Son",
+     "ko": "독생자",
+     "note": "μονογενής(모노게네스) — 유일하게 나신 아들"
     },
     {
-      "id": "rom10-9",
-      "theme": "salvation",
-      "ref": "로마서 10:9",
-      "kr": "네가 만일 네 입으로 예수를 주로 시인하며 하나님께서 그를 죽은 자 가운데서 살리신 것을 네 마음에 믿으면 구원을 받으리라.",
-      "en": "That if thou shalt confess with thy mouth the Lord Jesus, and shalt believe in thine heart that God hath raised him from the dead, thou shalt be saved.",
-      "words": [
-        { "w": "confess", "ko": "시인하며", "note": "ὁμολογέω(호몰로게오) — 입으로 동의하여 고백하다" },
-        { "w": "believe in thine heart", "ko": "네 마음에 믿으면", "note": "καρδίᾳ πιστεύω(카르디아 피스튜오) — 중심으로 신뢰하다" },
-        { "w": "raised from the dead", "ko": "죽은 자 가운데서 살리신", "note": "ἐγείρω(에게이로) — 일으키다, 부활시키다" }
-      ],
-      "orig": "κύριον Ἰησοῦν (kyrion Iēsoun)"
+     "w": "whosoever believeth",
+     "ko": "믿는 자마다",
+     "note": "πιστεύω(피스튜오) — 인격적으로 신뢰하다"
     },
     {
-      "id": "ac4-12",
-      "theme": "salvation",
-      "ref": "사도행전 4:12",
-      "kr": "다른 이로써는 구원을 받을 수 없나니, 천하 사람 가운데 우리가 그로 말미암아 구원을 받을 만한 다른 이름을 주신 일이 없느니라.",
-      "en": "Neither is there salvation in any other: for there is none other name under heaven given among men, whereby we must be saved.",
-      "words": [
-        { "w": "salvation", "ko": "구원", "note": "σωτηρία(소테리아) — 건져 냄, 구원" },
-        { "w": "none other name", "ko": "다른 이름이 없느니라", "note": "ὄνομα(오노마) — 이름, 곧 그 인격과 권위" },
-        { "w": "must be saved", "ko": "구원을 받을 만한", "note": "δεῖ σωθῆναι(데이 소테나이) — 마땅히 구원받아야 함" }
-      ],
-      "orig": "οὐκ ἔστιν ἐν ἄλλῳ οὐδενὶ ἡ σωτηρία (ouk estin en allō oudeni hē sōtēria)"
-    },
-    {
-      "id": "tit3-5",
-      "theme": "salvation",
-      "ref": "디도서 3:5",
-      "kr": "우리를 구원하시되 우리가 행한 의로운 행위로 말미암지 아니하고, 오직 그의 긍휼하심을 따라 중생의 씻음과 성령의 새롭게 하심으로 하셨나니,",
-      "en": "Not by works of righteousness which we have done, but according to his mercy he saved us, by the washing of regeneration, and renewing of the Holy Ghost;",
-      "words": [
-        { "w": "according to his mercy", "ko": "그의 긍휼하심을 따라", "note": "ἔλεος(엘레오스) — 불쌍히 여기는 긍휼" },
-        { "w": "washing of regeneration", "ko": "중생의 씻음", "note": "παλιγγενεσία(팔링게네시아) — 거듭남, 중생" },
-        { "w": "renewing", "ko": "새롭게 하심", "note": "ἀνακαίνωσις(아나카이노시스) — 새롭게 함" }
-      ],
-      "orig": "κατὰ τὸ αὐτοῦ ἔλεος ἔσωσεν ἡμᾶς (kata to autou eleos esōsen hēmas)"
-    },
-
-    {
-      "id": "heb11-1",
-      "theme": "faith",
-      "ref": "히브리서 11:1",
-      "kr": "믿음은 바라는 것들의 실상이요, 보이지 않는 것들의 증거니라.",
-      "en": "Now faith is the substance of things hoped for, the evidence of things not seen.",
-      "words": [
-        { "w": "faith", "ko": "믿음", "note": "πίστις(피스티스) — 신뢰, 확신" },
-        { "w": "substance", "ko": "실상", "note": "ὑπόστασις(휘포스타시스) — 토대, 확실한 본질" },
-        { "w": "evidence", "ko": "증거", "note": "ἔλεγχος(엘렝코스) — 확증, 증거" }
-      ],
-      "orig": "ἔστιν δὲ πίστις ἐλπιζομένων ὑπόστασις (estin de pistis elpizomenōn hypostasis)"
-    },
-    {
-      "id": "heb11-6",
-      "theme": "faith",
-      "ref": "히브리서 11:6",
-      "kr": "믿음이 없이는 하나님을 기쁘시게 하지 못하나니, 하나님께 나아가는 자는 반드시 그가 계신 것과 또한 그를 간절히 찾는 자들에게 상 주시는 분이심을 믿어야 할지니라.",
-      "en": "But without faith it is impossible to please him: for he that cometh to God must believe that he is, and that he is a rewarder of them that diligently seek him.",
-      "words": [
-        { "w": "impossible to please", "ko": "기쁘시게 하지 못하나니", "note": "εὐαρεστέω(유아레스테오) — 기쁘게 하다" },
-        { "w": "rewarder", "ko": "상 주시는 분", "note": "μισθαποδότης(미스타포도테스) — 갚아 주시는 분" },
-        { "w": "diligently seek", "ko": "간절히 찾는", "note": "ἐκζητέω(에크제테오) — 힘써 찾다" }
-      ],
-      "orig": "χωρὶς δὲ πίστεως ἀδύνατον εὐαρεστῆσαι (chōris de pisteōs adynaton euarestēsai)"
-    },
-    {
-      "id": "gal2-20",
-      "theme": "faith",
-      "ref": "갈라디아서 2:20",
-      "kr": "내가 그리스도와 함께 십자가에 못 박혔나니, 그런즉 이제는 내가 사는 것이 아니요 오직 내 안에 그리스도께서 사시는 것이라. 이제 내가 육체 가운데 사는 것은 나를 사랑하사 나를 위하여 자기 몸을 버리신 하나님의 아들을 믿는 믿음 안에서 사는 것이라.",
-      "en": "I am crucified with Christ: nevertheless I live; yet not I, but Christ liveth in me: and the life which I now live in the flesh I live by the faith of the Son of God, who loved me, and gave himself for me.",
-      "words": [
-        { "w": "crucified with Christ", "ko": "그리스도와 함께 십자가에 못 박혔나니", "note": "συσταυρόω(쉬스타우로오) — 함께 십자가에 못 박히다" },
-        { "w": "Christ liveth in me", "ko": "그리스도께서 사시는 것이라", "note": "ζάω(자오) — 살다, 생명으로 거하다" },
-        { "w": "gave himself", "ko": "자기 몸을 버리신", "note": "παραδίδωμι(파라디도미) — 내어 주다" }
-      ],
-      "orig": "Χριστῷ συνεσταύρωμαι (Christō synestaurōmai)"
-    },
-    {
-      "id": "pr3-5",
-      "theme": "faith",
-      "ref": "잠언 3:5~6",
-      "kr": "네 마음을 다하여 여호와를 신뢰하고 네 명철을 의지하지 말라. 너는 범사에 그를 인정하라. 그리하면 그가 네 길을 곧게 하시리라.",
-      "en": "Trust in the LORD with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.",
-      "words": [
-        { "w": "Trust in the LORD", "ko": "여호와를 신뢰하고", "note": "בָּטַח(바타흐) — 의지하다, 신뢰하다" },
-        { "w": "lean not", "ko": "의지하지 말라", "note": "שָׁעַן(샤안) — 기대다, 의지하다" },
-        { "w": "direct thy paths", "ko": "네 길을 곧게 하시리라", "note": "יָשַׁר(야샤르) — 곧게 하다, 평탄케 하다" }
-      ],
-      "orig": "בְּטַח אֶל־יְהוָה בְּכָל־לִבֶּךָ (betaḥ el-YHWH be-kol-libbekha)"
-    },
-    {
-      "id": "2cor5-7",
-      "theme": "faith",
-      "ref": "고린도후서 5:7",
-      "kr": "이는 우리가 보는 것으로 행하지 아니하고 믿음으로 행함이로라.",
-      "en": "(For we walk by faith, not by sight:)",
-      "words": [
-        { "w": "walk by faith", "ko": "믿음으로 행함", "note": "περιπατέω(페리파테오) — 살아가다, 행하다" },
-        { "w": "not by sight", "ko": "보는 것으로 아니하고", "note": "εἶδος(에이도스) — 눈에 보이는 형상" }
-      ],
-      "orig": "διὰ πίστεως γὰρ περιπατοῦμεν (dia pisteōs gar peripatoumen)"
-    },
-
-    {
-      "id": "1co13-4",
-      "theme": "love",
-      "ref": "고린도전서 13:4~7",
-      "kr": "사랑은 오래 참고 사랑은 온유하며, 시기하지 아니하며 자랑하지 아니하며 교만하지 아니하며, 무례히 행하지 아니하며 자기의 유익을 구하지 아니하며 성내지 아니하며 악한 것을 생각하지 아니하며, 불의를 기뻐하지 아니하며 진리와 함께 기뻐하고, 모든 것을 참으며 모든 것을 믿으며 모든 것을 바라며 모든 것을 견디느니라.",
-      "en": "Charity suffereth long, and is kind; charity envieth not; charity vaunteth not itself, is not puffed up, Doth not behave itself unseemly, seeketh not her own, is not easily provoked, thinketh no evil; Rejoiceth not in iniquity, but rejoiceth in the truth; Beareth all things, believeth all things, hopeth all things, endureth all things.",
-      "words": [
-        { "w": "Charity", "ko": "사랑", "note": "ἀγάπη(아가페) — 자기를 내어 주는 사랑" },
-        { "w": "suffereth long", "ko": "오래 참고", "note": "μακροθυμέω(마크로뒤메오) — 오래 참다" },
-        { "w": "is kind", "ko": "온유하며", "note": "χρηστεύομαι(크레스튜오마이) — 친절을 베풀다" },
-        { "w": "endureth all things", "ko": "모든 것을 견디느니라", "note": "ὑπομένω(휘포메노) — 끝까지 견디다" }
-      ],
-      "orig": "ἡ ἀγάπη μακροθυμεῖ (hē agapē makrothymei)"
-    },
-    {
-      "id": "1jn4-19",
-      "theme": "love",
-      "ref": "요한일서 4:19",
-      "kr": "우리가 사랑함은 그가 먼저 우리를 사랑하셨음이라.",
-      "en": "We love him, because he first loved us.",
-      "words": [
-        { "w": "we love", "ko": "우리가 사랑함은", "note": "ἀγαπάω(아가파오) — 사랑하다" },
-        { "w": "he first loved us", "ko": "그가 먼저 우리를 사랑하셨음이라", "note": "πρῶτος(프로토스) — 먼저, 앞서" }
-      ],
-      "orig": "ἡμεῖς ἀγαπῶμεν, ὅτι αὐτὸς πρῶτος ἠγάπησεν ἡμᾶς (hēmeis agapōmen, hoti autos prōtos ēgapēsen hēmas)"
-    },
-    {
-      "id": "jn13-34",
-      "theme": "love",
-      "ref": "요한복음 13:34",
-      "kr": "새 계명을 너희에게 주노니, 곧 서로 사랑하라. 내가 너희를 사랑한 것같이 너희도 서로 사랑하라.",
-      "en": "A new commandment I give unto you, That ye love one another; as I have loved you, that ye also love one another.",
-      "words": [
-        { "w": "new commandment", "ko": "새 계명", "note": "ἐντολὴ καινή(엔톨레 카이네) — 새로운 명령" },
-        { "w": "love one another", "ko": "서로 사랑하라", "note": "ἀλλήλους(알렐루스) — 서로를" },
-        { "w": "as I have loved you", "ko": "내가 너희를 사랑한 것같이", "note": "καθώς(카토스) — ~한 그대로" }
-      ],
-      "orig": "ἐντολὴν καινὴν δίδωμι ὑμῖν (entolēn kainēn didōmi hymin)"
-    },
-    {
-      "id": "rom5-8",
-      "theme": "love",
-      "ref": "로마서 5:8",
-      "kr": "우리가 아직 죄인 되었을 때에 그리스도께서 우리를 위하여 죽으심으로 하나님께서 우리에 대한 자기의 사랑을 확증하셨느니라.",
-      "en": "But God commendeth his love toward us, in that, while we were yet sinners, Christ died for us.",
-      "words": [
-        { "w": "commendeth his love", "ko": "자기의 사랑을 확증하셨느니라", "note": "συνίστημι(쉬니스테미) — 드러내어 입증하다" },
-        { "w": "yet sinners", "ko": "아직 죄인 되었을 때에", "note": "ἁμαρτωλός(하마르톨로스) — 죄인" },
-        { "w": "died for us", "ko": "우리를 위하여 죽으심으로", "note": "ἀποθνῄσκω ὑπέρ(아포트네스코 휘페르) — 위하여 죽다" }
-      ],
-      "orig": "συνίστησιν τὴν ἑαυτοῦ ἀγάπην εἰς ἡμᾶς ὁ θεός (synistēsin tēn heautou agapēn eis hēmas ho theos)"
-    },
-    {
-      "id": "rom8-38",
-      "theme": "love",
-      "ref": "로마서 8:38~39",
-      "kr": "내가 확신하노니, 사망이나 생명이나 천사들이나 권세 잡은 자들이나 능력이나 현재 일이나 장래 일이나, 높음이나 깊음이나 다른 어떤 피조물이라도 우리를 우리 주 그리스도 예수 안에 있는 하나님의 사랑에서 끊을 수 없으리라.",
-      "en": "For I am persuaded, that neither death, nor life, nor angels, nor principalities, nor powers, nor things present, nor things to come, Nor height, nor depth, nor any other creature, shall be able to separate us from the love of God, which is in Christ Jesus our Lord.",
-      "words": [
-        { "w": "I am persuaded", "ko": "내가 확신하노니", "note": "πείθω(페이토) — 확신하다" },
-        { "w": "separate", "ko": "끊을 수 없으리라", "note": "χωρίζω(코리조) — 갈라놓다, 분리하다" },
-        { "w": "the love of God", "ko": "하나님의 사랑", "note": "ἀγάπη τοῦ θεοῦ(아가페 투 테우)" }
-      ],
-      "orig": "πέπεισμαι γὰρ ὅτι οὔτε θάνατος (pepeismai gar hoti oute thanatos)"
-    },
-
-    {
-      "id": "eph2-8b",
-      "theme": "grace",
-      "ref": "고린도후서 12:9",
-      "kr": "내게 이르시되 \"내 은혜가 네게 족하도다. 이는 내 능력이 약한 데서 온전하여짐이라\" 하신지라. 그러므로 도리어 내가 크게 기뻐함으로 나의 약한 것들을 자랑하리니, 이는 그리스도의 능력이 내게 머물게 하려 함이라.",
-      "en": "And he said unto me, My grace is sufficient for thee: for my strength is made perfect in weakness. Most gladly therefore will I rather glory in my infirmities, that the power of Christ may rest upon me.",
-      "words": [
-        { "w": "my grace is sufficient", "ko": "내 은혜가 네게 족하도다", "note": "ἀρκέω(아르케오) — 충분하다" },
-        { "w": "made perfect in weakness", "ko": "약한 데서 온전하여짐", "note": "τελειόω(텔레이오오) — 온전케 하다" },
-        { "w": "rest upon me", "ko": "내게 머물게", "note": "ἐπισκηνόω(에피스케노오) — 위에 거하다" }
-      ],
-      "orig": "ἀρκεῖ σοι ἡ χάρις μου (arkei soi hē charis mou)"
-    },
-    {
-      "id": "2cor9-8",
-      "theme": "grace",
-      "ref": "고린도후서 9:8",
-      "kr": "하나님께서 능히 모든 은혜를 너희에게 넘치게 하시나니, 이는 너희로 모든 일에 항상 모든 것을 넉넉히 가져 모든 선한 일을 넘치게 하게 하려 하심이라.",
-      "en": "And God is able to make all grace abound toward you; that ye, always having all sufficiency in all things, may abound to every good work:",
-      "words": [
-        { "w": "all grace abound", "ko": "모든 은혜를 넘치게", "note": "περισσεύω(페리쓔오) — 넘치게 하다" },
-        { "w": "all sufficiency", "ko": "모든 것을 넉넉히", "note": "αὐτάρκεια(아우타르케이아) — 자족함, 넉넉함" },
-        { "w": "every good work", "ko": "모든 선한 일", "note": "ἔργον ἀγαθόν(에르곤 아가톤)" }
-      ],
-      "orig": "δυνατεῖ δὲ ὁ θεὸς πᾶσαν χάριν περισσεῦσαι (dynatei de ho theos pasan charin perisseusai)"
-    },
-    {
-      "id": "jn1-16",
-      "theme": "grace",
-      "ref": "요한복음 1:16",
-      "kr": "우리가 다 그의 충만한 데서 받으니 은혜 위에 은혜러라.",
-      "en": "And of his fulness have all we received, and grace for grace.",
-      "words": [
-        { "w": "his fulness", "ko": "그의 충만한 데서", "note": "πλήρωμα(플레로마) — 충만함" },
-        { "w": "grace for grace", "ko": "은혜 위에 은혜", "note": "χάριν ἀντὶ χάριτος(카린 안티 카리토스) — 은혜를 잇는 은혜" }
-      ],
-      "orig": "χάριν ἀντὶ χάριτος (charin anti charitos)"
-    },
-    {
-      "id": "heb4-16",
-      "theme": "grace",
-      "ref": "히브리서 4:16",
-      "kr": "그러므로 우리가 긍휼하심을 받고 때를 따라 돕는 은혜를 얻기 위하여, 담대히 은혜의 보좌 앞에 나아갈 것이니라.",
-      "en": "Let us therefore come boldly unto the throne of grace, that we may obtain mercy, and find grace to help in time of need.",
-      "words": [
-        { "w": "come boldly", "ko": "담대히 나아갈", "note": "παρρησία(파르레시아) — 담대함, 거리낌 없음" },
-        { "w": "throne of grace", "ko": "은혜의 보좌", "note": "θρόνος τῆς χάριτος(트로노스 테스 카리토스)" },
-        { "w": "in time of need", "ko": "때를 따라", "note": "εὔκαιρος(유카이로스) — 적절한 때의" }
-      ],
-      "orig": "προσερχώμεθα οὖν μετὰ παρρησίας τῷ θρόνῳ τῆς χάριτος (proserchōmetha oun meta parrēsias tō thronō tēs charitos)"
-    },
-    {
-      "id": "rom6-23",
-      "theme": "grace",
-      "ref": "로마서 6:23",
-      "kr": "죄의 삯은 사망이요, 하나님의 은사는 우리 주 그리스도 예수 안에 있는 영생이니라.",
-      "en": "For the wages of sin is death; but the gift of God is eternal life through Jesus Christ our Lord.",
-      "words": [
-        { "w": "wages of sin", "ko": "죄의 삯", "note": "ὀψώνιον(옵소니온) — 품삯, 당연히 받을 보수" },
-        { "w": "gift of God", "ko": "하나님의 은사", "note": "χάρισμα(카리스마) — 값없이 주어진 선물" },
-        { "w": "eternal life", "ko": "영생", "note": "ζωὴ αἰώνιος(조에 아이오니오스)" }
-      ],
-      "orig": "τὸ γὰρ ὀψώνιον τῆς ἁμαρτίας θάνατος (to gar opsōnion tēs hamartias thanatos)"
-    },
-
-    {
-      "id": "php4-6",
-      "theme": "prayer",
-      "ref": "빌립보서 4:6~7",
-      "kr": "아무것도 염려하지 말고, 오직 모든 일에 기도와 간구로 너희의 구할 것을 감사함으로 하나님께 아뢰라. 그리하면 모든 지각에 뛰어난 하나님의 평강이 그리스도 예수 안에서 너희 마음과 생각을 지키시리라.",
-      "en": "Be careful for nothing; but in every thing by prayer and supplication with thanksgiving let your requests be made known unto God. And the peace of God, which passeth all understanding, shall keep your hearts and minds through Christ Jesus.",
-      "words": [
-        { "w": "be careful for nothing", "ko": "아무것도 염려하지 말고", "note": "μεριμνάω(메림나오) — 염려하다, 근심하다" },
-        { "w": "supplication", "ko": "간구", "note": "δέησις(데에시스) — 절실한 간구" },
-        { "w": "passeth all understanding", "ko": "모든 지각에 뛰어난", "note": "ὑπερέχω(휘페레코) — 능가하다, 뛰어나다" }
-      ],
-      "orig": "μηδὲν μεριμνᾶτε (mēden merimnate)"
-    },
-    {
-      "id": "1th5-17",
-      "theme": "prayer",
-      "ref": "데살로니가전서 5:16~18",
-      "kr": "항상 기뻐하라. 쉬지 말고 기도하라. 범사에 감사하라. 이것이 그리스도 예수 안에서 너희를 향하신 하나님의 뜻이니라.",
-      "en": "Rejoice evermore. Pray without ceasing. In every thing give thanks: for this is the will of God in Christ Jesus concerning you.",
-      "words": [
-        { "w": "Rejoice evermore", "ko": "항상 기뻐하라", "note": "χαίρω(카이로) — 기뻐하다" },
-        { "w": "without ceasing", "ko": "쉬지 말고", "note": "ἀδιαλείπτως(아디알레입토스) — 끊임없이" },
-        { "w": "in every thing give thanks", "ko": "범사에 감사하라", "note": "εὐχαριστέω(유카리스테오) — 감사하다" }
-      ],
-      "orig": "ἀδιαλείπτως προσεύχεσθε (adialeiptōs proseuchesthe)"
-    },
-    {
-      "id": "mt7-7",
-      "theme": "prayer",
-      "ref": "마태복음 7:7",
-      "kr": "구하라, 그리하면 너희에게 주실 것이요. 찾으라, 그리하면 찾아낼 것이요. 두드리라, 그리하면 너희에게 열릴 것이니라.",
-      "en": "Ask, and it shall be given you; seek, and ye shall find; knock, and it shall be opened unto you:",
-      "words": [
-        { "w": "Ask", "ko": "구하라", "note": "αἰτέω(아이테오) — 청하다, 구하다" },
-        { "w": "seek", "ko": "찾으라", "note": "ζητέω(제테오) — 찾다" },
-        { "w": "knock", "ko": "두드리라", "note": "κρούω(크루오) — 문을 두드리다" }
-      ],
-      "orig": "αἰτεῖτε καὶ δοθήσεται ὑμῖν (aiteite kai dothēsetai hymin)"
-    },
-    {
-      "id": "jer33-3",
-      "theme": "prayer",
-      "ref": "예레미야 33:3",
-      "kr": "너는 내게 부르짖으라, 그리하면 내가 네게 응답하겠고, 네가 알지 못하는 크고 은밀한 일을 네게 보이리라.",
-      "en": "Call unto me, and I will answer thee, and shew thee great and mighty things, which thou knowest not.",
-      "words": [
-        { "w": "Call unto me", "ko": "내게 부르짖으라", "note": "קָרָא(카라) — 부르다, 부르짖다" },
-        { "w": "I will answer thee", "ko": "내가 네게 응답하겠고", "note": "עָנָה(아나) — 응답하다" },
-        { "w": "great and mighty things", "ko": "크고 은밀한 일", "note": "בָּצַר(바차르) — 견고한, 헤아릴 수 없는" }
-      ],
-      "orig": "קְרָא אֵלַי וְאֶעֱנֶךָּ (qera elai we-e'enekka)"
-    },
-    {
-      "id": "jas5-16",
-      "theme": "prayer",
-      "ref": "야고보서 5:16",
-      "kr": "그러므로 너희 죄를 서로 고백하며 병이 낫기를 위하여 서로 기도하라. 의인의 간구는 역사하는 힘이 큼이니라.",
-      "en": "Confess your faults one to another, and pray one for another, that ye may be healed. The effectual fervent prayer of a righteous man availeth much.",
-      "words": [
-        { "w": "Confess your faults", "ko": "너희 죄를 서로 고백하며", "note": "ἐξομολογέω(엑소몰로게오) — 드러내어 고백하다" },
-        { "w": "effectual fervent prayer", "ko": "역사하는 힘이 큰 간구", "note": "δέησις ἐνεργουμένη(데에시스 에네르구메네) — 힘 있게 역사하는 기도" },
-        { "w": "availeth much", "ko": "힘이 큼이니라", "note": "ἰσχύω(이스퀴오) — 능력이 있다" }
-      ],
-      "orig": "πολὺ ἰσχύει δέησις δικαίου ἐνεργουμένη (poly ischyei deēsis dikaiou energoumenē)"
-    },
-
-    {
-      "id": "jn14-27",
-      "theme": "peace",
-      "ref": "요한복음 14:27",
-      "kr": "평안을 너희에게 끼치노니, 곧 나의 평안을 너희에게 주노라. 내가 너희에게 주는 것은 세상이 주는 것과 같지 아니하니라. 너희는 마음에 근심하지도 말고 두려워하지도 말라.",
-      "en": "Peace I leave with you, my peace I give unto you: not as the world giveth, give I unto you. Let not your heart be troubled, neither let it be afraid.",
-      "words": [
-        { "w": "Peace I leave with you", "ko": "평안을 너희에게 끼치노니", "note": "εἰρήνη(에이레네) — 평안, 온전함" },
-        { "w": "not as the world giveth", "ko": "세상이 주는 것과 같지 아니하니라", "note": "κόσμος(코스모스) — 세상" },
-        { "w": "be troubled", "ko": "근심하지도 말고", "note": "ταράσσω(타라쏘) — 흔들리다, 동요하다" }
-      ],
-      "orig": "εἰρήνην ἀφίημι ὑμῖν (eirēnēn aphiēmi hymin)"
-    },
-    {
-      "id": "ps23-1",
-      "theme": "peace",
-      "ref": "시편 23:1~3",
-      "kr": "여호와는 나의 목자시니, 내게 모자람이 없도다. 그가 나를 푸른 풀밭에 누이시며 잔잔한 물가로 인도하시는도다. 내 영혼을 소생시키시고, 자기 이름을 위하여 의의 길로 나를 인도하시는도다.",
-      "en": "The LORD is my shepherd; I shall not want. He maketh me to lie down in green pastures: he leadeth me beside the still waters. He restoreth my soul: he leadeth me in the paths of righteousness for his name's sake.",
-      "words": [
-        { "w": "my shepherd", "ko": "나의 목자", "note": "רֹעֶה(로에) — 양을 치는 목자" },
-        { "w": "I shall not want", "ko": "모자람이 없도다", "note": "חָסֵר(하세르) — 부족하다" },
-        { "w": "restoreth my soul", "ko": "내 영혼을 소생시키시고", "note": "נֶפֶשׁ(네페쉬) — 영혼, 생명" }
-      ],
-      "orig": "יְהוָה רֹעִי לֹא אֶחְסָר (YHWH ro'i lo eḥsar)"
-    },
-    {
-      "id": "is41-10",
-      "theme": "peace",
-      "ref": "이사야 41:10",
-      "kr": "두려워하지 말라, 내가 너와 함께함이라. 놀라지 말라, 나는 네 하나님이 됨이라. 내가 너를 굳세게 하리라. 참으로 너를 도우리라. 참으로 나의 의로운 오른손으로 너를 붙들리라.",
-      "en": "Fear thou not; for I am with thee: be not dismayed; for I am thy God: I will strengthen thee; yea, I will help thee; yea, I will uphold thee with the right hand of my righteousness.",
-      "words": [
-        { "w": "Fear thou not", "ko": "두려워하지 말라", "note": "יָרֵא(야레) — 두려워하다" },
-        { "w": "I will strengthen thee", "ko": "너를 굳세게 하리라", "note": "אָמַץ(아마츠) — 강하게 하다" },
-        { "w": "uphold thee", "ko": "너를 붙들리라", "note": "תָּמַךְ(타마크) — 붙들다, 떠받치다" }
-      ],
-      "orig": "אַל־תִּירָא כִּי עִמְּךָ־אָנִי (al-tira ki immekha-ani)"
-    },
-    {
-      "id": "ps46-1",
-      "theme": "peace",
-      "ref": "시편 46:1",
-      "kr": "하나님은 우리의 피난처시요 힘이시니, 환난 중에 만날 큰 도움이시라.",
-      "en": "God is our refuge and strength, a very present help in trouble.",
-      "words": [
-        { "w": "refuge", "ko": "피난처", "note": "מַחֲסֶה(마하세) — 피할 곳, 피난처" },
-        { "w": "strength", "ko": "힘", "note": "עֹז(오즈) — 능력, 힘" },
-        { "w": "very present help", "ko": "만날 큰 도움", "note": "עֶזְרָה(에즈라) — 도움" }
-      ],
-      "orig": "אֱלֹהִים לָנוּ מַחֲסֶה וָעֹז (Elohim lanu maḥaseh wa-oz)"
-    },
-    {
-      "id": "mt11-28",
-      "theme": "peace",
-      "ref": "마태복음 11:28",
-      "kr": "수고하고 무거운 짐 진 자들아, 다 내게로 오라. 내가 너희를 쉬게 하리라.",
-      "en": "Come unto me, all ye that labour and are heavy laden, and I will give you rest.",
-      "words": [
-        { "w": "labour", "ko": "수고하고", "note": "κοπιάω(코피아오) — 지치도록 수고하다" },
-        { "w": "heavy laden", "ko": "무거운 짐 진", "note": "φορτίζω(포르티조) — 짐을 지우다" },
-        { "w": "give you rest", "ko": "쉬게 하리라", "note": "ἀναπαύω(아나파우오) — 안식을 주다" }
-      ],
-      "orig": "δεῦτε πρός με πάντες οἱ κοπιῶντες (deute pros me pantes hoi kopiōntes)"
-    },
-
-    {
-      "id": "pr3-6",
-      "theme": "guidance",
-      "ref": "잠언 16:9",
-      "kr": "사람이 마음으로 자기의 길을 계획할지라도, 그의 걸음을 인도하시는 이는 여호와시니라.",
-      "en": "A man's heart deviseth his way: but the LORD directeth his steps.",
-      "words": [
-        { "w": "deviseth his way", "ko": "자기의 길을 계획할지라도", "note": "חָשַׁב(하샤브) — 헤아리다, 계획하다" },
-        { "w": "directeth his steps", "ko": "그의 걸음을 인도하시는", "note": "כּוּן(쿤) — 굳게 세우다, 정하다" }
-      ],
-      "orig": "לֵב אָדָם יְחַשֵּׁב דַּרְכּוֹ (lev adam yeḥashshev darko)"
-    },
-    {
-      "id": "jas1-5",
-      "theme": "guidance",
-      "ref": "야고보서 1:5",
-      "kr": "너희 중에 누구든지 지혜가 부족하거든, 모든 사람에게 후히 주시고 꾸짖지 아니하시는 하나님께 구하라. 그리하면 그에게 주시리라.",
-      "en": "If any of you lack wisdom, let him ask of God, that giveth to all men liberally, and upbraideth not; and it shall be given him.",
-      "words": [
-        { "w": "lack wisdom", "ko": "지혜가 부족하거든", "note": "σοφία(소피아) — 지혜" },
-        { "w": "liberally", "ko": "후히", "note": "ἁπλῶς(하플로스) — 아낌없이, 넉넉히" },
-        { "w": "upbraideth not", "ko": "꾸짖지 아니하시는", "note": "ὀνειδίζω(오네이디조) — 책망하다, 나무라다" }
-      ],
-      "orig": "εἰ δέ τις ὑμῶν λείπεται σοφίας (ei de tis hymōn leipetai sophias)"
-    },
-    {
-      "id": "ps32-8",
-      "theme": "guidance",
-      "ref": "시편 32:8",
-      "kr": "내가 네 갈 길을 가르쳐 보이고, 너를 주목하여 인도하리로다.",
-      "en": "I will instruct thee and teach thee in the way which thou shalt go: I will guide thee with mine eye.",
-      "words": [
-        { "w": "instruct thee", "ko": "가르쳐 보이고", "note": "שָׂכַל(사칼) — 깨닫게 하다, 가르치다" },
-        { "w": "teach thee in the way", "ko": "네 갈 길을 보이고", "note": "יָרָה(야라) — 가리켜 보이다" },
-        { "w": "guide thee with mine eye", "ko": "너를 주목하여 인도하리로다", "note": "יָעַץ(야아츠) — 권면하여 이끌다" }
-      ],
-      "orig": "אַשְׂכִּילְךָ וְאוֹרְךָ בְּדֶרֶךְ־זוּ תֵלֵךְ (askilekha we-orkha be-derek-zu telekh)"
-    },
-    {
-      "id": "ps37-5",
-      "theme": "guidance",
-      "ref": "시편 37:5",
-      "kr": "네 길을 여호와께 맡기라. 그를 의지하면 그가 이루시리로다.",
-      "en": "Commit thy way unto the LORD; trust also in him; and he shall bring it to pass.",
-      "words": [
-        { "w": "Commit thy way", "ko": "네 길을 맡기라", "note": "גָּלַל(갈랄) — 굴려 맡기다" },
-        { "w": "trust also in him", "ko": "그를 의지하면", "note": "בָּטַח(바타흐) — 신뢰하다" },
-        { "w": "bring it to pass", "ko": "이루시리로다", "note": "עָשָׂה(아사) — 행하다, 이루다" }
-      ],
-      "orig": "גּוֹל עַל־יְהוָה דַּרְכֶּךָ (gol al-YHWH darkekha)"
-    },
-    {
-      "id": "is30-21",
-      "theme": "guidance",
-      "ref": "이사야 30:21",
-      "kr": "너희가 오른편으로 치우치든지 왼편으로 치우치든지, 너희 뒤에서 말소리가 들려 이르기를 \"이것이 바른길이니 너희는 이리로 행하라\" 하리라.",
-      "en": "And thine ears shall hear a word behind thee, saying, This is the way, walk ye in it, when ye turn to the right hand, and when ye turn to the left.",
-      "words": [
-        { "w": "a word behind thee", "ko": "뒤에서 말소리가", "note": "דָּבָר(다바르) — 말씀, 음성" },
-        { "w": "This is the way", "ko": "이것이 바른길이니", "note": "דֶּרֶךְ(데레크) — 길" },
-        { "w": "turn to the right", "ko": "오른편으로 치우치든지", "note": "אָמַן(아만) — 오른쪽으로 향하다" }
-      ],
-      "orig": "זֶה הַדֶּרֶךְ לְכוּ בוֹ (zeh ha-derek leku vo)"
-    },
-
-    {
-      "id": "rom8-28",
-      "theme": "trial",
-      "ref": "로마서 8:28",
-      "kr": "우리가 알거니와, 하나님을 사랑하는 자 곧 그 뜻대로 부르심을 입은 자들에게는 모든 것이 합력하여 선을 이루느니라.",
-      "en": "And we know that all things work together for good to them that love God, to them who are the called according to his purpose.",
-      "words": [
-        { "w": "all things work together", "ko": "모든 것이 합력하여", "note": "συνεργέω(쉬네르게오) — 함께 일하다" },
-        { "w": "for good", "ko": "선을 이루느니라", "note": "ἀγαθόν(아가톤) — 선한 것" },
-        { "w": "the called", "ko": "부르심을 입은 자들", "note": "κλητός(클레토스) — 부르심 받은 자" }
-      ],
-      "orig": "πάντα συνεργεῖ εἰς ἀγαθόν (panta synergei eis agathon)"
-    },
-    {
-      "id": "jas1-2",
-      "theme": "trial",
-      "ref": "야고보서 1:2~3",
-      "kr": "내 형제들아, 너희가 여러 가지 시험을 만나거든 온전히 기쁘게 여기라. 이는 너희 믿음의 시련이 인내를 이루는 줄 너희가 앎이라.",
-      "en": "My brethren, count it all joy when ye fall into divers temptations; Knowing this, that the trying of your faith worketh patience.",
-      "words": [
-        { "w": "count it all joy", "ko": "온전히 기쁘게 여기라", "note": "χαρά(카라) — 기쁨" },
-        { "w": "trying of your faith", "ko": "믿음의 시련", "note": "δοκίμιον(도키미온) — 연단, 검증" },
-        { "w": "worketh patience", "ko": "인내를 이루는", "note": "ὑπομονή(휘포모네) — 견디어 냄, 인내" }
-      ],
-      "orig": "πᾶσαν χαρὰν ἡγήσασθε (pasan charan hēgēsasthe)"
-    },
-    {
-      "id": "is40-31",
-      "theme": "trial",
-      "ref": "이사야 40:31",
-      "kr": "오직 여호와를 앙망하는 자는 새 힘을 얻으리니, 독수리가 날개 치며 올라감 같을 것이요, 달음박질하여도 곤비하지 아니하겠고, 걸어가도 피곤하지 아니하리로다.",
-      "en": "But they that wait upon the LORD shall renew their strength; they shall mount up with wings as eagles; they shall run, and not be weary; and they shall walk, and not faint.",
-      "words": [
-        { "w": "wait upon the LORD", "ko": "여호와를 앙망하는", "note": "קָוָה(카바) — 간절히 기다리다, 바라다" },
-        { "w": "renew their strength", "ko": "새 힘을 얻으리니", "note": "חָלַף(할라프) — 새롭게 바뀌다" },
-        { "w": "mount up with wings", "ko": "날개 치며 올라감", "note": "עָלָה(알라) — 올라가다" }
-      ],
-      "orig": "וְקוֹיֵ יְהוָה יַחֲלִיפוּ כֹחַ (we-qoye YHWH yaḥalifu koaḥ)"
-    },
-    {
-      "id": "1co10-13",
-      "theme": "trial",
-      "ref": "고린도전서 10:13",
-      "kr": "사람이 감당할 시험밖에는 너희가 당한 것이 없나니, 하나님은 미쁘사 너희가 감당하지 못할 시험 당함을 허락하지 아니하시고, 시험 당할 즈음에 또한 피할 길을 내사 너희로 능히 감당하게 하시느니라.",
-      "en": "There hath no temptation taken you but such as is common to man: but God is faithful, who will not suffer you to be tempted above that ye are able; but will with the temptation also make a way to escape, that ye may be able to bear it.",
-      "words": [
-        { "w": "common to man", "ko": "사람이 감당할", "note": "ἀνθρώπινος(안트로피노스) — 사람에게 흔한" },
-        { "w": "God is faithful", "ko": "하나님은 미쁘사", "note": "πιστός(피스토스) — 신실하신" },
-        { "w": "way to escape", "ko": "피할 길", "note": "ἔκβασις(에크바시스) — 빠져나갈 출구" }
-      ],
-      "orig": "πιστὸς δὲ ὁ θεός (pistos de ho theos)"
-    },
-    {
-      "id": "2co4-17",
-      "theme": "trial",
-      "ref": "고린도후서 4:17",
-      "kr": "우리의 잠시 받는 가벼운 환난이 지극히 크고 영원한 영광의 중한 것을 우리에게 이루게 함이니,",
-      "en": "For our light affliction, which is but for a moment, worketh for us a far more exceeding and eternal weight of glory;",
-      "words": [
-        { "w": "light affliction", "ko": "가벼운 환난", "note": "θλῖψις(틀립시스) — 압박, 환난" },
-        { "w": "but for a moment", "ko": "잠시 받는", "note": "παραυτίκα(파라우티카) — 잠깐의" },
-        { "w": "weight of glory", "ko": "영광의 중한 것", "note": "βάρος δόξης(바로스 독세스) — 영광의 무게" }
-      ],
-      "orig": "τὸ παραυτίκα ἐλαφρὸν τῆς θλίψεως ἡμῶν (to parautika elaphron tēs thlipseōs hēmōn)"
-    },
-
-    {
-      "id": "ps100-4",
-      "theme": "thanks",
-      "ref": "시편 100:4~5",
-      "kr": "감사함으로 그의 문에 들어가며 찬송함으로 그의 궁정에 들어가서, 그에게 감사하며 그의 이름을 송축할지어다. 여호와는 선하시니 그의 인자하심이 영원하고 그의 성실하심이 대대에 이르리로다.",
-      "en": "Enter into his gates with thanksgiving, and into his courts with praise: be thankful unto him, and bless his name. For the LORD is good; his mercy is everlasting; and his truth endureth to all generations.",
-      "words": [
-        { "w": "with thanksgiving", "ko": "감사함으로", "note": "תּוֹדָה(토다) — 감사, 감사의 제사" },
-        { "w": "bless his name", "ko": "그의 이름을 송축할지어다", "note": "בָּרַךְ(바라크) — 송축하다, 찬양하다" },
-        { "w": "his mercy is everlasting", "ko": "그의 인자하심이 영원하고", "note": "חֶסֶד(헤세드) — 변함없는 인자" }
-      ],
-      "orig": "בֹּאוּ שְׁעָרָיו בְּתוֹדָה (bo'u she'arav be-todah)"
-    },
-    {
-      "id": "ps103-1",
-      "theme": "thanks",
-      "ref": "시편 103:1~2",
-      "kr": "내 영혼아, 여호와를 송축하라. 내 속에 있는 것들아, 다 그의 거룩한 이름을 송축하라. 내 영혼아, 여호와를 송축하며 그의 모든 은택을 잊지 말지어다.",
-      "en": "Bless the LORD, O my soul: and all that is within me, bless his holy name. Bless the LORD, O my soul, and forget not all his benefits:",
-      "words": [
-        { "w": "Bless the LORD", "ko": "여호와를 송축하라", "note": "בָּרַךְ(바라크) — 송축하다" },
-        { "w": "all that is within me", "ko": "내 속에 있는 것들아", "note": "קֶרֶב(케레브) — 속, 내면" },
-        { "w": "forget not all his benefits", "ko": "그의 모든 은택을 잊지 말지어다", "note": "גְּמוּל(게물) — 베푸신 은혜" }
-      ],
-      "orig": "בָּרֲכִי נַפְשִׁי אֶת־יְהוָה (barakhi nafshi et-YHWH)"
-    },
-    {
-      "id": "ps107-1",
-      "theme": "thanks",
-      "ref": "시편 107:1",
-      "kr": "여호와께 감사하라. 그는 선하시며, 그의 인자하심이 영원함이로다.",
-      "en": "O give thanks unto the LORD, for he is good: for his mercy endureth for ever.",
-      "words": [
-        { "w": "give thanks", "ko": "감사하라", "note": "יָדָה(야다) — 손 들어 찬양하다, 감사하다" },
-        { "w": "he is good", "ko": "그는 선하시며", "note": "טוֹב(토브) — 선한, 좋은" },
-        { "w": "endureth for ever", "ko": "영원함이로다", "note": "לְעוֹלָם(레올람) — 영원히" }
-      ],
-      "orig": "הֹדוּ לַיהוָה כִּי־טוֹב (hodu la-YHWH ki-tov)"
-    },
-    {
-      "id": "ps150-6",
-      "theme": "thanks",
-      "ref": "시편 150:6",
-      "kr": "호흡이 있는 자마다 여호와를 찬양할지어다. 할렐루야.",
-      "en": "Let every thing that hath breath praise the LORD. Praise ye the LORD.",
-      "words": [
-        { "w": "every thing that hath breath", "ko": "호흡이 있는 자마다", "note": "נְשָׁמָה(네샤마) — 호흡, 숨" },
-        { "w": "praise the LORD", "ko": "여호와를 찬양할지어다", "note": "הָלַל(할랄) — 찬양하다" }
-      ],
-      "orig": "כֹּל הַנְּשָׁמָה תְּהַלֵּל יָהּ (kol ha-neshamah tehallel Yah)"
-    },
-    {
-      "id": "col3-17",
-      "theme": "thanks",
-      "ref": "골로새서 3:17",
-      "kr": "또 무엇을 하든지 말에나 일에나 다 주 예수의 이름으로 하고, 그를 힘입어 하나님 아버지께 감사하라.",
-      "en": "And whatsoever ye do in word or deed, do all in the name of the Lord Jesus, giving thanks to God and the Father by him.",
-      "words": [
-        { "w": "whatsoever ye do", "ko": "무엇을 하든지", "note": "πᾶν ὅ τι ἐάν(판 호 티 에안) — 무엇이든" },
-        { "w": "in the name of the Lord Jesus", "ko": "주 예수의 이름으로", "note": "ἐν ὀνόματι(엔 오노마티) — 그 이름으로, 그 권위로" },
-        { "w": "giving thanks", "ko": "감사하라", "note": "εὐχαριστέω(유카리스테오) — 감사하다" }
-      ],
-      "orig": "πᾶν ὅ τι ἂν ποιῆτε ἐν λόγῳ ἢ ἐν ἔργῳ (pan ho ti an poiēte en logō ē en ergō)"
-    },
-
-    {
-      "id": "1pe1-15",
-      "theme": "holiness",
-      "ref": "베드로전서 1:15~16",
-      "kr": "오직 너희를 부르신 거룩하신 분처럼 너희도 모든 행실에 거룩한 자가 되라. 기록되었으되 \"내가 거룩하니 너희도 거룩할지어다\" 하셨느니라.",
-      "en": "But as he which hath called you is holy, so be ye holy in all manner of conversation; Because it is written, Be ye holy; for I am holy.",
-      "words": [
-        { "w": "holy", "ko": "거룩한", "note": "ἅγιος(하기오스) — 구별된, 거룩한" },
-        { "w": "all manner of conversation", "ko": "모든 행실에", "note": "ἀναστροφή(아나스트로페) — 삶의 태도, 행실" },
-        { "w": "Be ye holy; for I am holy", "ko": "내가 거룩하니 너희도 거룩할지어다", "note": "קָדוֹשׁ(카도쉬) — 거룩하신(레 11:44 인용)" }
-      ],
-      "orig": "ἅγιοι γένεσθε, ὅτι ἐγὼ ἅγιος (hagioi genesthe, hoti egō hagios)"
-    },
-    {
-      "id": "rom12-1",
-      "theme": "holiness",
-      "ref": "로마서 12:1",
-      "kr": "그러므로 형제들아, 내가 하나님의 모든 자비하심으로 너희를 권하노니, 너희 몸을 하나님이 기뻐하시는 거룩한 산 제물로 드리라. 이는 너희의 마땅히 드릴 영적 예배니라.",
-      "en": "I beseech you therefore, brethren, by the mercies of God, that ye present your bodies a living sacrifice, holy, acceptable unto God, which is your reasonable service.",
-      "words": [
-        { "w": "living sacrifice", "ko": "산 제물", "note": "θυσία ζῶσα(튀시아 조사) — 살아 있는 제물" },
-        { "w": "acceptable unto God", "ko": "하나님이 기뻐하시는", "note": "εὐάρεστος(유아레스토스) — 기쁘게 받으시는" },
-        { "w": "reasonable service", "ko": "영적 예배", "note": "λογικὴ λατρεία(로기케 라트레이아) — 합당한 섬김, 예배" }
-      ],
-      "orig": "παραστῆσαι τὰ σώματα ὑμῶν θυσίαν ζῶσαν (parastēsai ta sōmata hymōn thysian zōsan)"
-    },
-    {
-      "id": "mt5-8",
-      "theme": "holiness",
-      "ref": "마태복음 5:8",
-      "kr": "마음이 청결한 자는 복이 있나니, 그들이 하나님을 볼 것임이요.",
-      "en": "Blessed are the pure in heart: for they shall see God.",
-      "words": [
-        { "w": "Blessed", "ko": "복이 있나니", "note": "μακάριος(마카리오스) — 복된, 행복한" },
-        { "w": "pure in heart", "ko": "마음이 청결한", "note": "καθαρός(카타로스) — 깨끗한, 정결한" },
-        { "w": "see God", "ko": "하나님을 볼 것임이요", "note": "ὁράω(호라오) — 보다, 뵙다" }
-      ],
-      "orig": "μακάριοι οἱ καθαροὶ τῇ καρδίᾳ (makarioi hoi katharoi tē kardia)"
-    },
-    {
-      "id": "2co7-1",
-      "theme": "holiness",
-      "ref": "고린도후서 7:1",
-      "kr": "그런즉 사랑하는 자들아, 이 약속을 가진 우리가 하나님을 두려워하는 가운데 거룩함을 온전히 이루어, 육과 영의 온갖 더러운 것에서 자신을 깨끗하게 하자.",
-      "en": "Having therefore these promises, dearly beloved, let us cleanse ourselves from all filthiness of the flesh and spirit, perfecting holiness in the fear of God.",
-      "words": [
-        { "w": "cleanse ourselves", "ko": "자신을 깨끗하게 하자", "note": "καθαρίζω(카타리조) — 정결케 하다" },
-        { "w": "filthiness", "ko": "더러운 것", "note": "μολυσμός(몰뤼스모스) — 오염, 더러움" },
-        { "w": "perfecting holiness", "ko": "거룩함을 온전히 이루어", "note": "ἁγιωσύνη(하기오쉬네) — 거룩함, 성결" }
-      ],
-      "orig": "ἐπιτελοῦντες ἁγιωσύνην ἐν φόβῳ θεοῦ (epitelountes hagiōsynēn en phobō theou)"
-    },
-    {
-      "id": "1th4-7",
-      "theme": "holiness",
-      "ref": "데살로니가전서 4:7",
-      "kr": "하나님이 우리를 부르심은 부정하게 하심이 아니요, 거룩하게 하심이라.",
-      "en": "For God hath not called us unto uncleanness, but unto holiness.",
-      "words": [
-        { "w": "not called us unto uncleanness", "ko": "부정하게 하심이 아니요", "note": "ἀκαθαρσία(아카타르시아) — 더러움, 부정함" },
-        { "w": "unto holiness", "ko": "거룩하게 하심이라", "note": "ἁγιασμός(하기아스모스) — 성화, 거룩하게 하심" }
-      ],
-      "orig": "οὐ γὰρ ἐκάλεσεν ἡμᾶς ὁ θεὸς ἐπὶ ἀκαθαρσίᾳ ἀλλ’ ἐν ἁγιασμῷ (ou gar ekalesen hēmas ho theos epi akatharsia all’ en hagiasmō)"
-    },
-
-    {
-      "id": "mt28-19",
-      "theme": "mission",
-      "ref": "마태복음 28:19~20",
-      "kr": "그러므로 너희는 가서 모든 민족을 제자로 삼아 아버지와 아들과 성령의 이름으로 그들에게 침례를 베풀고, 내가 너희에게 분부한 모든 것을 지키게 하라. 볼지어다, 내가 세상 끝날까지 항상 너희와 함께 있으리라.",
-      "en": "Go ye therefore, and teach all nations, baptizing them in the name of the Father, and of the Son, and of the Holy Ghost: Teaching them to observe all things whatsoever I have commanded you: and, lo, I am with you alway, even unto the end of the world. Amen.",
-      "words": [
-        { "w": "teach all nations", "ko": "모든 민족을 제자로 삼아", "note": "μαθητεύω(마테튜오) — 제자로 삼다" },
-        { "w": "baptizing them", "ko": "침례를 베풀고", "note": "βαπτίζω(밥티조) — 물에 잠그다, 침례를 베풀다" },
-        { "w": "I am with you alway", "ko": "항상 너희와 함께 있으리라", "note": "μεθ’ ὑμῶν(메트 휘몬) — 너희와 함께" }
-      ],
-      "orig": "πορευθέντες μαθητεύσατε πάντα τὰ ἔθνη (poreuthentes mathēteusate panta ta ethnē)"
-    },
-    {
-      "id": "ac1-8",
-      "theme": "mission",
-      "ref": "사도행전 1:8",
-      "kr": "오직 성령이 너희에게 임하시면 너희가 권능을 받고, 예루살렘과 온 유대와 사마리아와 땅끝까지 이르러 내 증인이 되리라.",
-      "en": "But ye shall receive power, after that the Holy Ghost is come upon you: and ye shall be witnesses unto me both in Jerusalem, and in all Judaea, and in Samaria, and unto the uttermost part of the earth.",
-      "words": [
-        { "w": "receive power", "ko": "권능을 받고", "note": "δύναμις(뒤나미스) — 능력, 권능" },
-        { "w": "witnesses unto me", "ko": "내 증인이", "note": "μάρτυς(마르튀스) — 증인" },
-        { "w": "uttermost part of the earth", "ko": "땅끝까지", "note": "ἔσχατον τῆς γῆς(에스카톤 테스 게스)" }
-      ],
-      "orig": "ἔσεσθέ μου μάρτυρες (esesthe mou martyres)"
-    },
-    {
-      "id": "mk16-15",
-      "theme": "mission",
-      "ref": "마가복음 16:15",
-      "kr": "또 그들에게 이르시되 \"너희는 온 천하에 두루 다니며 만민에게 복음을 전파하라\" 하시니라.",
-      "en": "And he said unto them, Go ye into all the world, and preach the gospel to every creature.",
-      "words": [
-        { "w": "all the world", "ko": "온 천하에", "note": "κόσμος(코스모스) — 세상" },
-        { "w": "preach the gospel", "ko": "복음을 전파하라", "note": "κηρύσσω(케뤼쏘) — 선포하다, 전파하다" },
-        { "w": "every creature", "ko": "만민에게", "note": "κτίσις(크티시스) — 피조물, 사람" }
-      ],
-      "orig": "κηρύξατε τὸ εὐαγγέλιον πάσῃ τῇ κτίσει (kēryxate to euangelion pasē tē ktisei)"
-    },
-    {
-      "id": "rom1-16",
-      "theme": "mission",
-      "ref": "로마서 1:16",
-      "kr": "내가 그리스도의 복음을 부끄러워하지 아니하노니, 이는 모든 믿는 자에게 구원을 주시는 하나님의 능력이 됨이라, 먼저는 유대인에게요 또한 헬라인에게로다.",
-      "en": "For I am not ashamed of the gospel of Christ: for it is the power of God unto salvation to every one that believeth; to the Jew first, and also to the Greek.",
-      "words": [
-        { "w": "not ashamed of the gospel", "ko": "복음을 부끄러워하지 아니하노니", "note": "ἐπαισχύνομαι(에파이스퀴노마이) — 부끄러워하다" },
-        { "w": "power of God", "ko": "하나님의 능력", "note": "δύναμις θεοῦ(뒤나미스 테우)" },
-        { "w": "unto salvation", "ko": "구원을 주시는", "note": "σωτηρία(소테리아) — 구원" }
-      ],
-      "orig": "δύναμις γὰρ θεοῦ ἐστιν εἰς σωτηρίαν (dynamis gar theou estin eis sōtērian)"
-    },
-    {
-      "id": "mt5-16",
-      "theme": "mission",
-      "ref": "마태복음 5:16",
-      "kr": "이같이 너희 빛을 사람 앞에 비취게 하여, 그들로 너희 착한 행실을 보고 하늘에 계신 너희 아버지께 영광을 돌리게 하라.",
-      "en": "Let your light so shine before men, that they may see your good works, and glorify your Father which is in heaven.",
-      "words": [
-        { "w": "let your light so shine", "ko": "너희 빛을 비취게 하여", "note": "λάμπω(람포) — 빛나다" },
-        { "w": "good works", "ko": "착한 행실", "note": "καλὰ ἔργα(칼라 에르가) — 선한 일" },
-        { "w": "glorify your Father", "ko": "아버지께 영광을 돌리게", "note": "δοξάζω(독사조) — 영광을 돌리다" }
-      ],
-      "orig": "λαμψάτω τὸ φῶς ὑμῶν (lampsatō to phōs hymōn)"
-    },
-
-    {
-      "id": "jer29-11",
-      "theme": "hope",
-      "ref": "예레미야 29:11",
-      "kr": "여호와의 말씀이니라. 너희를 향한 나의 생각을 내가 아나니, 곧 평안이요 재앙이 아니니라. 너희에게 미래와 소망을 주려 하는 생각이라.",
-      "en": "For I know the thoughts that I think toward you, saith the LORD, thoughts of peace, and not of evil, to give you an expected end.",
-      "words": [
-        { "w": "thoughts of peace", "ko": "평안의 생각", "note": "שָׁלוֹם(샬롬) — 평안, 온전함" },
-        { "w": "not of evil", "ko": "재앙이 아니니라", "note": "רָעָה(라아) — 재앙, 악" },
-        { "w": "expected end", "ko": "미래와 소망", "note": "תִּקְוָה(티크바) — 소망, 기대" }
-      ],
-      "orig": "מַחְשְׁבוֹת שָׁלוֹם וְלֹא לְרָעָה (maḥshevot shalom we-lo le-ra'ah)"
-    },
-    {
-      "id": "rom15-13",
-      "theme": "hope",
-      "ref": "로마서 15:13",
-      "kr": "소망의 하나님이 모든 기쁨과 평강을 믿음 안에서 너희에게 충만하게 하사, 성령의 능력으로 소망이 넘치게 하시기를 원하노라.",
-      "en": "Now the God of hope fill you with all joy and peace in believing, that ye may abound in hope, through the power of the Holy Ghost.",
-      "words": [
-        { "w": "God of hope", "ko": "소망의 하나님", "note": "ἐλπίς(엘피스) — 소망" },
-        { "w": "fill you with all joy", "ko": "모든 기쁨을 충만하게", "note": "πληρόω(플레로오) — 가득 채우다" },
-        { "w": "abound in hope", "ko": "소망이 넘치게", "note": "περισσεύω(페리쓔오) — 넘치다" }
-      ],
-      "orig": "ὁ δὲ θεὸς τῆς ἐλπίδος (ho de theos tēs elpidos)"
-    },
-    {
-      "id": "ps121-1",
-      "theme": "hope",
-      "ref": "시편 121:1~2",
-      "kr": "내가 산을 향하여 눈을 들리라. 나의 도움이 어디서 올꼬. 나의 도움은 하늘과 땅을 지으신 여호와에게서 오는도다.",
-      "en": "I will lift up mine eyes unto the hills, from whence cometh my help. My help cometh from the LORD, which made heaven and earth.",
-      "words": [
-        { "w": "lift up mine eyes", "ko": "눈을 들리라", "note": "נָשָׂא עֵינַי(나사 에이나이) — 눈을 들어 바라보다" },
-        { "w": "from whence cometh my help", "ko": "나의 도움이 어디서 올꼬", "note": "עֵזֶר(에제르) — 도움" },
-        { "w": "made heaven and earth", "ko": "하늘과 땅을 지으신", "note": "עָשָׂה(아사) — 만드시다, 지으시다" }
-      ],
-      "orig": "עֶזְרִי מֵעִם יְהוָה (ezri me-im YHWH)"
-    },
-    {
-      "id": "lam3-22",
-      "theme": "hope",
-      "ref": "예레미야애가 3:22~23",
-      "kr": "여호와의 인자와 긍휼이 무궁하시므로 우리가 진멸되지 아니함이니이다. 이것들이 아침마다 새로우니, 주의 성실하심이 크시도소이다.",
-      "en": "It is of the LORD'S mercies that we are not consumed, because his compassions fail not. They are new every morning: great is thy faithfulness.",
-      "words": [
-        { "w": "mercies", "ko": "인자", "note": "חֶסֶד(헤세드) — 변함없는 인자" },
-        { "w": "not consumed", "ko": "진멸되지 아니함", "note": "תָּמַם(타맘) — 다하다, 끝나다" },
-        { "w": "new every morning", "ko": "아침마다 새로우니", "note": "חָדָשׁ(하다쉬) — 새로운" }
-      ],
-      "orig": "חַדָשִׁים לַבְּקָרִים רַבָּה אֱמוּנָתֶךָ (ḥadashim la-bekarim rabbah emunatekha)"
-    },
-    {
-      "id": "rom8-18",
-      "theme": "hope",
-      "ref": "로마서 8:18",
-      "kr": "생각하건대 현재의 고난은 장차 우리에게 나타날 영광과 족히 비교할 수 없도다.",
-      "en": "For I reckon that the sufferings of this present time are not worthy to be compared with the glory which shall be revealed in us.",
-      "words": [
-        { "w": "sufferings of this present time", "ko": "현재의 고난", "note": "παθήματα(파테마타) — 고난, 환난" },
-        { "w": "not worthy to be compared", "ko": "족히 비교할 수 없도다", "note": "ἄξιος(악시오스) — 견줄 만한" },
-        { "w": "glory which shall be revealed", "ko": "장차 나타날 영광", "note": "δόξα(독사) — 영광" }
-      ],
-      "orig": "οὐκ ἄξια τὰ παθήματα τοῦ νῦν καιροῦ (ouk axia ta pathēmata tou nyn kairou)"
-    },
-
-    {
-      "id": "ps119-105",
-      "theme": "word",
-      "ref": "시편 119:105",
-      "kr": "주의 말씀은 내 발에 등이요, 내 길에 빛이니이다.",
-      "en": "Thy word is a lamp unto my feet, and a light unto my path.",
-      "words": [
-        { "w": "Thy word", "ko": "주의 말씀", "note": "דָּבָר(다바르) — 말씀" },
-        { "w": "a lamp unto my feet", "ko": "내 발에 등이요", "note": "נֵר(네르) — 등불" },
-        { "w": "a light unto my path", "ko": "내 길에 빛이니이다", "note": "אוֹר(오르) — 빛" }
-      ],
-      "orig": "נֵר־לְרַגְלִי דְבָרֶךָ (ner-le-ragli devarekha)"
-    },
-    {
-      "id": "heb4-12",
-      "theme": "word",
-      "ref": "히브리서 4:12",
-      "kr": "하나님의 말씀은 살아 있고 운동력이 있어 좌우에 날선 어떤 검보다도 예리하여, 혼과 영과 및 관절과 골수를 찔러 쪼개기까지 하며, 또 마음의 생각과 뜻을 분별하느니라.",
-      "en": "For the word of God is quick, and powerful, and sharper than any twoedged sword, piercing even to the dividing asunder of soul and spirit, and of the joints and marrow, and is a discerner of the thoughts and intents of the heart.",
-      "words": [
-        { "w": "quick", "ko": "살아 있고", "note": "ζῶν(존) — 살아 있는" },
-        { "w": "powerful", "ko": "운동력이 있어", "note": "ἐνεργής(에네르게스) — 힘 있게 역사하는" },
-        { "w": "discerner", "ko": "분별하느니라", "note": "κριτικός(크리티코스) — 판단하는, 분별하는" }
-      ],
-      "orig": "ζῶν γὰρ ὁ λόγος τοῦ θεοῦ καὶ ἐνεργής (zōn gar ho logos tou theou kai energēs)"
-    },
-    {
-      "id": "is40-8",
-      "theme": "word",
-      "ref": "이사야 40:8",
-      "kr": "풀은 마르고 꽃은 시드나, 우리 하나님의 말씀은 영원히 서리라.",
-      "en": "The grass withereth, the flower fadeth: but the word of our God shall stand for ever.",
-      "words": [
-        { "w": "withereth", "ko": "마르고", "note": "יָבֵשׁ(야베쉬) — 마르다" },
-        { "w": "fadeth", "ko": "시드나", "note": "נָבֵל(나벨) — 시들다" },
-        { "w": "shall stand for ever", "ko": "영원히 서리라", "note": "קוּם לְעוֹלָם(쿰 레올람) — 영원히 굳게 서다" }
-      ],
-      "orig": "וּדְבַר־אֱלֹהֵינוּ יָקוּם לְעוֹלָם (u-devar-Eloheinu yaqum le-olam)"
-    },
-    {
-      "id": "2ti3-16",
-      "theme": "word",
-      "ref": "디모데후서 3:16~17",
-      "kr": "모든 성경은 하나님의 감동으로 된 것으로, 교훈과 책망과 바르게 함과 의로 교육하기에 유익하니, 이는 하나님의 사람으로 온전케 하며 모든 선한 일을 행하기에 온전히 갖추게 하려 함이라.",
-      "en": "All scripture is given by inspiration of God, and is profitable for doctrine, for reproof, for correction, for instruction in righteousness: That the man of God may be perfect, throughly furnished unto all good works.",
-      "words": [
-        { "w": "inspiration of God", "ko": "하나님의 감동으로", "note": "θεόπνευστος(테오프뉴스토스) — 하나님이 불어넣으신" },
-        { "w": "profitable for doctrine", "ko": "교훈에 유익하니", "note": "ὠφέλιμος(오펠리모스) — 유익한" },
-        { "w": "throughly furnished", "ko": "온전히 갖추게", "note": "ἐξαρτίζω(엑사르티조) — 완전히 갖추다" }
-      ],
-      "orig": "πᾶσα γραφὴ θεόπνευστος (pasa graphē theopneustos)"
-    },
-    {
-      "id": "jos1-8",
-      "theme": "word",
-      "ref": "여호수아 1:8",
-      "kr": "이 율법책을 네 입에서 떠나지 말게 하며 주야로 그것을 묵상하여, 그 안에 기록된 대로 다 지켜 행하라. 그리하면 네 길이 평탄하게 되며 네가 형통하리라.",
-      "en": "This book of the law shall not depart out of thy mouth; but thou shalt meditate therein day and night, that thou mayest observe to do according to all that is written therein: for then thou shalt make thy way prosperous, and then thou shalt have good success.",
-      "words": [
-        { "w": "meditate therein day and night", "ko": "주야로 그것을 묵상하여", "note": "הָגָה(하가) — 읊조리다, 묵상하다" },
-        { "w": "observe to do", "ko": "지켜 행하라", "note": "שָׁמַר(샤마르) — 지키다, 준행하다" },
-        { "w": "prosperous", "ko": "평탄하게", "note": "צָלַח(찰라흐) — 형통하다" }
-      ],
-      "orig": "וְהָגִיתָ בּוֹ יוֹמָם וָלַיְלָה (we-hagita bo yomam wa-laylah)"
-    },
-
-    {
-      "id": "1jn1-9",
-      "theme": "repentance",
-      "ref": "요한일서 1:9",
-      "kr": "만일 우리가 우리 죄를 자백하면, 그는 미쁘시고 의로우사 우리 죄를 사하시며 우리를 모든 불의에서 깨끗하게 하실 것이라.",
-      "en": "If we confess our sins, he is faithful and just to forgive us our sins, and to cleanse us from all unrighteousness.",
-      "words": [
-        { "w": "confess our sins", "ko": "우리 죄를 자백하면", "note": "ὁμολογέω(호몰로게오) — 죄를 인정하여 고백하다" },
-        { "w": "faithful and just", "ko": "미쁘시고 의로우사", "note": "πιστὸς καὶ δίκαιος(피스토스 카이 디카이오스)" },
-        { "w": "cleanse us", "ko": "깨끗하게 하실 것이라", "note": "καθαρίζω(카타리조) — 정결케 하다" }
-      ],
-      "orig": "ἐὰν ὁμολογῶμεν τὰς ἁμαρτίας ἡμῶν (ean homologōmen tas hamartias hēmōn)"
-    },
-    {
-      "id": "2ch7-14",
-      "theme": "repentance",
-      "ref": "역대하 7:14",
-      "kr": "내 이름으로 일컫는 내 백성이 스스로 겸비하여 기도하고 내 얼굴을 구하여 그 악한 길에서 떠나면, 내가 하늘에서 듣고 그들의 죄를 사하며 그들의 땅을 고칠지라.",
-      "en": "If my people, which are called by my name, shall humble themselves, and pray, and seek my face, and turn from their wicked ways; then will I hear from heaven, and will forgive their sin, and will heal their land.",
-      "words": [
-        { "w": "humble themselves", "ko": "스스로 겸비하여", "note": "כָּנַע(카나) — 낮추다, 굴복하다" },
-        { "w": "seek my face", "ko": "내 얼굴을 구하여", "note": "בָּקַשׁ פָּנִים(바카쉬 파님) — 그 얼굴을 찾다" },
-        { "w": "turn from their wicked ways", "ko": "악한 길에서 떠나면", "note": "שׁוּב(슈브) — 돌이키다, 회개하다" }
-      ],
-      "orig": "וְיָשֻׁבוּ מִדַּרְכֵיהֶם הָרָעִים (we-yashuvu mi-darkeihem ha-ra'im)"
-    },
-    {
-      "id": "is1-18",
-      "theme": "repentance",
-      "ref": "이사야 1:18",
-      "kr": "여호와께서 이르시되 \"오라, 우리가 서로 변론하자. 너희 죄가 주홍 같을지라도 눈과 같이 희어질 것이요, 진홍같이 붉을지라도 양털같이 되리라\" 하시니라.",
-      "en": "Come now, and let us reason together, saith the LORD: though your sins be as scarlet, they shall be as white as snow; though they be red like crimson, they shall be as wool.",
-      "words": [
-        { "w": "reason together", "ko": "서로 변론하자", "note": "יָכַח(야카흐) — 따지다, 변론하다" },
-        { "w": "as scarlet", "ko": "주홍 같을지라도", "note": "שָׁנִי(샤니) — 주홍빛" },
-        { "w": "white as snow", "ko": "눈과 같이 희어질", "note": "שֶׁלֶג(셸레그) — 눈" }
-      ],
-      "orig": "אִם־יִהְיוּ חֲטָאֵיכֶם כַּשָּׁנִים כַּשֶּׁלֶג יַלְבִּינוּ (im-yihyu ḥata'eikhem ka-shanim ka-sheleg yalbinu)"
-    },
-    {
-      "id": "ps51-10",
-      "theme": "repentance",
-      "ref": "시편 51:10",
-      "kr": "하나님이여, 내 속에 정한 마음을 창조하시고, 내 안에 정직한 영을 새롭게 하소서.",
-      "en": "Create in me a clean heart, O God; and renew a right spirit within me.",
-      "words": [
-        { "w": "Create in me", "ko": "내 속에 창조하시고", "note": "בָּרָא(바라) — 새로이 지으시다(하나님만의 창조)" },
-        { "w": "a clean heart", "ko": "정한 마음", "note": "לֵב טָהוֹר(레브 타호르) — 정결한 마음" },
-        { "w": "renew a right spirit", "ko": "정직한 영을 새롭게", "note": "רוּחַ נָכוֹן(루아흐 나콘) — 굳건한 영" }
-      ],
-      "orig": "לֵב טָהוֹר בְּרָא־לִי אֱלֹהִים (lev tahor bera-li Elohim)"
-    },
-    {
-      "id": "ac3-19",
-      "theme": "repentance",
-      "ref": "사도행전 3:19",
-      "kr": "그러므로 너희가 회개하고 돌이켜 너희 죄 없이 함을 받으라. 이는 새롭게 되는 날이 주 앞으로부터 이르게 하려 하심이라.",
-      "en": "Repent ye therefore, and be converted, that your sins may be blotted out, when the times of refreshing shall come from the presence of the Lord;",
-      "words": [
-        { "w": "Repent ye", "ko": "회개하고", "note": "μετανοέω(메타노에오) — 마음을 돌이키다, 회개하다" },
-        { "w": "be converted", "ko": "돌이켜", "note": "ἐπιστρέφω(에피스트레포) — 돌아서다" },
-        { "w": "blotted out", "ko": "죄 없이 함을 받으라", "note": "ἐξαλείφω(엑살레이포) — 지워 없애다" }
-      ],
-      "orig": "μετανοήσατε οὖν καὶ ἐπιστρέψατε (metanoēsate oun kai epistrepsate)"
-    },
-
-    {
-      "id": "jn11-25",
-      "theme": "eternal",
-      "ref": "요한복음 11:25~26",
-      "kr": "예수께서 이르시되 \"나는 부활이요 생명이니, 나를 믿는 자는 죽어도 살겠고, 무릇 살아서 나를 믿는 자는 영원히 죽지 아니하리니, 네가 이것을 믿느냐\" 하시니라.",
-      "en": "Jesus said unto her, I am the resurrection, and the life: he that believeth in me, though he were dead, yet shall he live: And whosoever liveth and believeth in me shall never die. Believest thou this?",
-      "words": [
-        { "w": "the resurrection", "ko": "부활이요", "note": "ἀνάστασις(아나스타시스) — 부활" },
-        { "w": "the life", "ko": "생명이니", "note": "ζωή(조에) — 생명" },
-        { "w": "never die", "ko": "영원히 죽지 아니하리니", "note": "οὐ μὴ ἀποθάνῃ(우 메 아포타네) — 결코 죽지 않으리라" }
-      ],
-      "orig": "ἐγώ εἰμι ἡ ἀνάστασις καὶ ἡ ζωή (egō eimi hē anastasis kai hē zōē)"
-    },
-    {
-      "id": "jn14-2",
-      "theme": "eternal",
-      "ref": "요한복음 14:2~3",
-      "kr": "내 아버지의 집에 거할 곳이 많도다. 그렇지 않으면 너희에게 일렀으리라. 내가 너희를 위하여 처소를 예비하러 가노니, 가서 너희를 위하여 처소를 예비하면 내가 다시 와서 너희를 내게로 영접하여, 나 있는 곳에 너희도 있게 하리라.",
-      "en": "In my Father's house are many mansions: if it were not so, I would have told you. I go to prepare a place for you. And if I go and prepare a place for you, I will come again, and receive you unto myself; that where I am, there ye may be also.",
-      "words": [
-        { "w": "many mansions", "ko": "거할 곳이 많도다", "note": "μοναί(모나이) — 거처, 처소" },
-        { "w": "prepare a place", "ko": "처소를 예비하러", "note": "ἑτοιμάζω(헤토이마조) — 예비하다" },
-        { "w": "I will come again", "ko": "내가 다시 와서", "note": "πάλιν ἔρχομαι(팔린 에르코마이) — 다시 오다" }
-      ],
-      "orig": "ἐν τῇ οἰκίᾳ τοῦ πατρός μου μοναὶ πολλαί εἰσιν (en tē oikia tou patros mou monai pollai eisin)"
-    },
-    {
-      "id": "rev21-4",
-      "theme": "eternal",
-      "ref": "요한계시록 21:4",
-      "kr": "하나님께서 그들의 눈에서 모든 눈물을 씻기시리니, 다시는 사망이 없고 애통하는 것이나 곡하는 것이나 아픈 것이 다시 있지 아니하리라. 이는 처음 것들이 다 지나갔음이러라.",
-      "en": "And God shall wipe away all tears from their eyes; and there shall be no more death, neither sorrow, nor crying, neither shall there be any more pain: for the former things are passed away.",
-      "words": [
-        { "w": "wipe away all tears", "ko": "모든 눈물을 씻기시리니", "note": "ἐξαλείφω(엑살레이포) — 닦아 없애다" },
-        { "w": "no more death", "ko": "다시는 사망이 없고", "note": "θάνατος(타나토스) — 사망" },
-        { "w": "former things are passed away", "ko": "처음 것들이 다 지나갔음", "note": "παρῆλθον(파렐톤) — 지나가다, 사라지다" }
-      ],
-      "orig": "ὁ θάνατος οὐκ ἔσται ἔτι (ho thanatos ouk estai eti)"
-    },
-    {
-      "id": "jn3-36",
-      "theme": "eternal",
-      "ref": "요한복음 3:36",
-      "kr": "아들을 믿는 자에게는 영생이 있고, 아들을 순종치 아니하는 자는 생명을 보지 못하고 도리어 하나님의 진노가 그 위에 머물러 있느니라.",
-      "en": "He that believeth on the Son hath everlasting life: and he that believeth not the Son shall not see life; but the wrath of God abideth on him.",
-      "words": [
-        { "w": "hath everlasting life", "ko": "영생이 있고", "note": "ζωὴ αἰώνιος(조에 아이오니오스) — 영원한 생명" },
-        { "w": "shall not see life", "ko": "생명을 보지 못하고", "note": "ὁράω(호라오) — 보다, 누리다" },
-        { "w": "wrath of God abideth", "ko": "진노가 머물러 있느니라", "note": "μένω(메노) — 머무르다, 거하다" }
-      ],
-      "orig": "ὁ πιστεύων εἰς τὸν υἱὸν ἔχει ζωὴν αἰώνιον (ho pisteuōn eis ton huion echei zōēn aiōnion)"
-    },
-    {
-      "id": "rev21-3",
-      "theme": "eternal",
-      "ref": "요한계시록 21:3",
-      "kr": "내가 들으니 보좌에서 큰 음성이 나서 이르되 \"보라, 하나님의 장막이 사람들과 함께 있으매, 하나님이 그들과 함께 거하시리니 그들은 그의 백성이 되고 하나님은 친히 그들과 함께 계셔서 그들의 하나님이 되시리라\" 하더라.",
-      "en": "And I heard a great voice out of heaven saying, Behold, the tabernacle of God is with men, and he will dwell with them, and they shall be his people, and God himself shall be with them, and be their God.",
-      "words": [
-        { "w": "tabernacle of God", "ko": "하나님의 장막", "note": "σκηνή(스케네) — 장막, 거처" },
-        { "w": "dwell with them", "ko": "그들과 함께 거하시리니", "note": "σκηνόω(스케노오) — 함께 장막 치고 거하다" },
-        { "w": "his people", "ko": "그의 백성", "note": "λαός(라오스) — 백성" }
-      ],
-      "orig": "ἡ σκηνὴ τοῦ θεοῦ μετὰ τῶν ἀνθρώπων (hē skēnē tou theou meta tōn anthrōpōn)"
-    },
-
-    {
-      "id": "ps103-8",
-      "theme": "character",
-      "ref": "시편 103:8",
-      "kr": "여호와는 긍휼이 많으시고 은혜로우시며, 노하기를 더디 하시며 인자하심이 풍부하시도다.",
-      "en": "The LORD is merciful and gracious, slow to anger, and plenteous in mercy.",
-      "words": [
-        { "w": "merciful and gracious", "ko": "긍휼이 많으시고 은혜로우시며", "note": "רַחוּם וְחַנּוּן(라훔 베한눈) — 긍휼하고 은혜로운" },
-        { "w": "slow to anger", "ko": "노하기를 더디 하시며", "note": "אֶרֶךְ אַפַּיִם(에레크 아파임) — 분노를 더디 내심" },
-        { "w": "plenteous in mercy", "ko": "인자하심이 풍부하시도다", "note": "רַב־חֶסֶד(라브-헤세드) — 인자가 풍성하심" }
-      ],
-      "orig": "רַחוּם וְחַנּוּן יְהוָה אֶרֶךְ אַפַּיִם (raḥum we-ḥannun YHWH erekh appayim)"
-    },
-    {
-      "id": "mal3-6",
-      "theme": "character",
-      "ref": "말라기 3:6",
-      "kr": "나 여호와는 변하지 아니하나니, 그러므로 야곱의 자손들아, 너희가 소멸되지 아니하느니라.",
-      "en": "For I am the LORD, I change not; therefore ye sons of Jacob are not consumed.",
-      "words": [
-        { "w": "I change not", "ko": "변하지 아니하나니", "note": "שָׁנָה(샤나) — 변하다, 바뀌다" },
-        { "w": "not consumed", "ko": "소멸되지 아니하느니라", "note": "כָּלָה(칼라) — 다하다, 멸하다" }
-      ],
-      "orig": "אֲנִי יְהוָה לֹא שָׁנִיתִי (ani YHWH lo shaniti)"
-    },
-    {
-      "id": "heb13-8",
-      "theme": "character",
-      "ref": "히브리서 13:8",
-      "kr": "예수 그리스도는 어제나 오늘이나 영원토록 동일하시니라.",
-      "en": "Jesus Christ the same yesterday, and to day, and for ever.",
-      "words": [
-        { "w": "the same", "ko": "동일하시니라", "note": "ὁ αὐτός(호 아우토스) — 동일하신 그분" },
-        { "w": "yesterday, and to day", "ko": "어제나 오늘이나", "note": "ἐχθὲς καὶ σήμερον(에크테스 카이 세메론)" },
-        { "w": "for ever", "ko": "영원토록", "note": "εἰς τοὺς αἰῶνας(에이스 투스 아이오나스) — 영원히" }
-      ],
-      "orig": "Ἰησοῦς Χριστὸς ἐχθὲς καὶ σήμερον ὁ αὐτός (Iēsous Christos echthes kai sēmeron ho autos)"
-    },
-    {
-      "id": "1jn4-8",
-      "theme": "character",
-      "ref": "요한일서 4:8",
-      "kr": "사랑하지 아니하는 자는 하나님을 알지 못하나니, 이는 하나님은 사랑이심이라.",
-      "en": "He that loveth not knoweth not God; for God is love.",
-      "words": [
-        { "w": "loveth not", "ko": "사랑하지 아니하는", "note": "ἀγαπάω(아가파오) — 사랑하다" },
-        { "w": "knoweth not God", "ko": "하나님을 알지 못하나니", "note": "γινώσκω(기노스코) — 체험적으로 알다" },
-        { "w": "God is love", "ko": "하나님은 사랑이심이라", "note": "ὁ θεὸς ἀγάπη ἐστίν(호 테오스 아가페 에스틴)" }
-      ],
-      "orig": "ὁ θεὸς ἀγάπη ἐστίν (ho theos agapē estin)"
-    },
-    {
-      "id": "deut7-9",
-      "theme": "character",
-      "ref": "신명기 7:9",
-      "kr": "그런즉 너는 알라. 오직 네 하나님 여호와 그는 하나님이시요 신실하신 하나님이시라. 그를 사랑하고 그의 계명을 지키는 자에게는 천 대까지 그 언약을 이행하시며 인애를 베푸시되,",
-      "en": "Know therefore that the LORD thy God, he is God, the faithful God, which keepeth covenant and mercy with them that love him and keep his commandments to a thousand generations;",
-      "words": [
-        { "w": "the faithful God", "ko": "신실하신 하나님", "note": "אֵל נֶאֱמָן(엘 네에만) — 미쁘신 하나님" },
-        { "w": "keepeth covenant", "ko": "언약을 이행하시며", "note": "בְּרִית(베리트) — 언약" },
-        { "w": "to a thousand generations", "ko": "천 대까지", "note": "אֶלֶף דּוֹר(엘레프 도르) — 천 세대" }
-      ],
-      "orig": "הָאֵל הַנֶּאֱמָן שֹׁמֵר הַבְּרִית (ha-El ha-ne'eman shomer ha-berit)"
+     "w": "everlasting life",
+     "ko": "영생",
+     "note": "ζωὴ αἰώνιος(조에 아이오니오스) — 영원한 생명"
     }
-  ]
+   ],
+   "orig": "ἠγάπησεν ὁ θεὸς τὸν κόσμον (ēgapēsen ho theos ton kosmon)"
+  },
+  {
+   "id": "eph2-8",
+   "theme": "salvation",
+   "ref": "에베소서 2:8~9",
+   "kr": "너희가 은혜로 말미암아 믿음으로 구원을 받았으니, 이것이 너희에게서 난 것이 아니요 하나님의 선물이라. 행위에서 난 것이 아니니, 이는 아무도 자랑하지 못하게 하려 하심이라.",
+   "en": "For by grace are ye saved through faith; and that not of yourselves: it is the gift of God: Not of works, lest any man should boast.",
+   "words": [
+    {
+     "w": "by grace",
+     "ko": "은혜로",
+     "note": "χάρις(카리스) — 받을 자격 없는 자에게 베푸는 호의"
+    },
+    {
+     "w": "through faith",
+     "ko": "믿음으로",
+     "note": "διὰ πίστεως(디아 피스테오스) — 믿음을 통로로"
+    },
+    {
+     "w": "the gift of God",
+     "ko": "하나님의 선물",
+     "note": "δῶρον(도론) — 값없이 주어진 선물"
+    },
+    {
+     "w": "lest any man should boast",
+     "ko": "아무도 자랑하지 못하게",
+     "note": "καυχάομαι(카우카오마이) — 자랑하다"
+    }
+   ],
+   "orig": "τῇ γὰρ χάριτί ἐστε σεσῳσμένοι (tē gar chariti este sesōsmenoi)"
+  },
+  {
+   "id": "rom10-9",
+   "theme": "salvation",
+   "ref": "로마서 10:9",
+   "kr": "네가 만일 네 입으로 예수를 주로 시인하며 하나님께서 그를 죽은 자 가운데서 살리신 것을 네 마음에 믿으면 구원을 받으리라.",
+   "en": "That if thou shalt confess with thy mouth the Lord Jesus, and shalt believe in thine heart that God hath raised him from the dead, thou shalt be saved.",
+   "words": [
+    {
+     "w": "confess",
+     "ko": "시인하며",
+     "note": "ὁμολογέω(호몰로게오) — 입으로 동의하여 고백하다"
+    },
+    {
+     "w": "believe in thine heart",
+     "ko": "네 마음에 믿으면",
+     "note": "καρδίᾳ πιστεύω(카르디아 피스튜오) — 중심으로 신뢰하다"
+    },
+    {
+     "w": "raised from the dead",
+     "ko": "죽은 자 가운데서 살리신",
+     "note": "ἐγείρω(에게이로) — 일으키다, 부활시키다"
+    }
+   ],
+   "orig": "κύριον Ἰησοῦν (kyrion Iēsoun)"
+  },
+  {
+   "id": "ac4-12",
+   "theme": "salvation",
+   "ref": "사도행전 4:12",
+   "kr": "다른 이로써는 구원을 받을 수 없나니, 천하 사람 가운데 우리가 그로 말미암아 구원을 받을 만한 다른 이름을 주신 일이 없느니라.",
+   "en": "Neither is there salvation in any other: for there is none other name under heaven given among men, whereby we must be saved.",
+   "words": [
+    {
+     "w": "salvation",
+     "ko": "구원",
+     "note": "σωτηρία(소테리아) — 건져 냄, 구원"
+    },
+    {
+     "w": "none other name",
+     "ko": "다른 이름이 없느니라",
+     "note": "ὄνομα(오노마) — 이름, 곧 그 인격과 권위"
+    },
+    {
+     "w": "must be saved",
+     "ko": "구원을 받을 만한",
+     "note": "δεῖ σωθῆναι(데이 소테나이) — 마땅히 구원받아야 함"
+    }
+   ],
+   "orig": "οὐκ ἔστιν ἐν ἄλλῳ οὐδενὶ ἡ σωτηρία (ouk estin en allō oudeni hē sōtēria)"
+  },
+  {
+   "id": "tit3-5",
+   "theme": "salvation",
+   "ref": "디도서 3:5",
+   "kr": "우리를 구원하시되 우리가 행한 의로운 행위로 말미암지 아니하고, 오직 그의 긍휼하심을 따라 중생의 씻음과 성령의 새롭게 하심으로 하셨나니,",
+   "en": "Not by works of righteousness which we have done, but according to his mercy he saved us, by the washing of regeneration, and renewing of the Holy Ghost;",
+   "words": [
+    {
+     "w": "according to his mercy",
+     "ko": "그의 긍휼하심을 따라",
+     "note": "ἔλεος(엘레오스) — 불쌍히 여기는 긍휼"
+    },
+    {
+     "w": "washing of regeneration",
+     "ko": "중생의 씻음",
+     "note": "παλιγγενεσία(팔링게네시아) — 거듭남, 중생"
+    },
+    {
+     "w": "renewing",
+     "ko": "새롭게 하심",
+     "note": "ἀνακαίνωσις(아나카이노시스) — 새롭게 함"
+    }
+   ],
+   "orig": "κατὰ τὸ αὐτοῦ ἔλεος ἔσωσεν ἡμᾶς (kata to autou eleos esōsen hēmas)"
+  },
+  {
+   "id": "heb11-1",
+   "theme": "faith",
+   "ref": "히브리서 11:1",
+   "kr": "믿음은 바라는 것들의 실상이요, 보이지 않는 것들의 증거니라.",
+   "en": "Now faith is the substance of things hoped for, the evidence of things not seen.",
+   "words": [
+    {
+     "w": "faith",
+     "ko": "믿음",
+     "note": "πίστις(피스티스) — 신뢰, 확신"
+    },
+    {
+     "w": "substance",
+     "ko": "실상",
+     "note": "ὑπόστασις(휘포스타시스) — 토대, 확실한 본질"
+    },
+    {
+     "w": "evidence",
+     "ko": "증거",
+     "note": "ἔλεγχος(엘렝코스) — 확증, 증거"
+    }
+   ],
+   "orig": "ἔστιν δὲ πίστις ἐλπιζομένων ὑπόστασις (estin de pistis elpizomenōn hypostasis)"
+  },
+  {
+   "id": "heb11-6",
+   "theme": "faith",
+   "ref": "히브리서 11:6",
+   "kr": "믿음이 없이는 하나님을 기쁘시게 하지 못하나니, 하나님께 나아가는 자는 반드시 그가 계신 것과 또한 그를 간절히 찾는 자들에게 상 주시는 분이심을 믿어야 할지니라.",
+   "en": "But without faith it is impossible to please him: for he that cometh to God must believe that he is, and that he is a rewarder of them that diligently seek him.",
+   "words": [
+    {
+     "w": "impossible to please",
+     "ko": "기쁘시게 하지 못하나니",
+     "note": "εὐαρεστέω(유아레스테오) — 기쁘게 하다"
+    },
+    {
+     "w": "rewarder",
+     "ko": "상 주시는 분",
+     "note": "μισθαποδότης(미스타포도테스) — 갚아 주시는 분"
+    },
+    {
+     "w": "diligently seek",
+     "ko": "간절히 찾는",
+     "note": "ἐκζητέω(에크제테오) — 힘써 찾다"
+    }
+   ],
+   "orig": "χωρὶς δὲ πίστεως ἀδύνατον εὐαρεστῆσαι (chōris de pisteōs adynaton euarestēsai)"
+  },
+  {
+   "id": "gal2-20",
+   "theme": "faith",
+   "ref": "갈라디아서 2:20",
+   "kr": "내가 그리스도와 함께 십자가에 못 박혔나니, 그런즉 이제는 내가 사는 것이 아니요 오직 내 안에 그리스도께서 사시는 것이라. 이제 내가 육체 가운데 사는 것은 나를 사랑하사 나를 위하여 자기 몸을 버리신 하나님의 아들을 믿는 믿음 안에서 사는 것이라.",
+   "en": "I am crucified with Christ: nevertheless I live; yet not I, but Christ liveth in me: and the life which I now live in the flesh I live by the faith of the Son of God, who loved me, and gave himself for me.",
+   "words": [
+    {
+     "w": "crucified with Christ",
+     "ko": "그리스도와 함께 십자가에 못 박혔나니",
+     "note": "συσταυρόω(쉬스타우로오) — 함께 십자가에 못 박히다"
+    },
+    {
+     "w": "Christ liveth in me",
+     "ko": "그리스도께서 사시는 것이라",
+     "note": "ζάω(자오) — 살다, 생명으로 거하다"
+    },
+    {
+     "w": "gave himself",
+     "ko": "자기 몸을 버리신",
+     "note": "παραδίδωμι(파라디도미) — 내어 주다"
+    }
+   ],
+   "orig": "Χριστῷ συνεσταύρωμαι (Christō synestaurōmai)"
+  },
+  {
+   "id": "pr3-5",
+   "theme": "faith",
+   "ref": "잠언 3:5~6",
+   "kr": "네 마음을 다하여 여호와를 신뢰하고 네 명철을 의지하지 말라. 너는 범사에 그를 인정하라. 그리하면 그가 네 길을 곧게 하시리라.",
+   "en": "Trust in the LORD with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.",
+   "words": [
+    {
+     "w": "Trust in the LORD",
+     "ko": "여호와를 신뢰하고",
+     "note": "בָּטַח(바타흐) — 의지하다, 신뢰하다"
+    },
+    {
+     "w": "lean not",
+     "ko": "의지하지 말라",
+     "note": "שָׁעַן(샤안) — 기대다, 의지하다"
+    },
+    {
+     "w": "direct thy paths",
+     "ko": "네 길을 곧게 하시리라",
+     "note": "יָשַׁר(야샤르) — 곧게 하다, 평탄케 하다"
+    }
+   ],
+   "orig": "בְּטַח אֶל־יְהוָה בְּכָל־לִבֶּךָ (betaḥ el-YHWH be-kol-libbekha)"
+  },
+  {
+   "id": "2cor5-7",
+   "theme": "faith",
+   "ref": "고린도후서 5:7",
+   "kr": "이는 우리가 보는 것으로 행하지 아니하고 믿음으로 행함이로라.",
+   "en": "(For we walk by faith, not by sight:)",
+   "words": [
+    {
+     "w": "walk by faith",
+     "ko": "믿음으로 행함",
+     "note": "περιπατέω(페리파테오) — 살아가다, 행하다"
+    },
+    {
+     "w": "not by sight",
+     "ko": "보는 것으로 아니하고",
+     "note": "εἶδος(에이도스) — 눈에 보이는 형상"
+    }
+   ],
+   "orig": "διὰ πίστεως γὰρ περιπατοῦμεν (dia pisteōs gar peripatoumen)"
+  },
+  {
+   "id": "1co13-4",
+   "theme": "love",
+   "ref": "고린도전서 13:4~7",
+   "kr": "사랑은 오래 참고 사랑은 온유하며, 시기하지 아니하며 자랑하지 아니하며 교만하지 아니하며, 무례히 행하지 아니하며 자기의 유익을 구하지 아니하며 성내지 아니하며 악한 것을 생각하지 아니하며, 불의를 기뻐하지 아니하며 진리와 함께 기뻐하고, 모든 것을 참으며 모든 것을 믿으며 모든 것을 바라며 모든 것을 견디느니라.",
+   "en": "Charity suffereth long, and is kind; charity envieth not; charity vaunteth not itself, is not puffed up, Doth not behave itself unseemly, seeketh not her own, is not easily provoked, thinketh no evil; Rejoiceth not in iniquity, but rejoiceth in the truth; Beareth all things, believeth all things, hopeth all things, endureth all things.",
+   "words": [
+    {
+     "w": "Charity",
+     "ko": "사랑",
+     "note": "ἀγάπη(아가페) — 자기를 내어 주는 사랑"
+    },
+    {
+     "w": "suffereth long",
+     "ko": "오래 참고",
+     "note": "μακροθυμέω(마크로뒤메오) — 오래 참다"
+    },
+    {
+     "w": "is kind",
+     "ko": "온유하며",
+     "note": "χρηστεύομαι(크레스튜오마이) — 친절을 베풀다"
+    },
+    {
+     "w": "endureth all things",
+     "ko": "모든 것을 견디느니라",
+     "note": "ὑπομένω(휘포메노) — 끝까지 견디다"
+    }
+   ],
+   "orig": "ἡ ἀγάπη μακροθυμεῖ (hē agapē makrothymei)"
+  },
+  {
+   "id": "1jn4-19",
+   "theme": "love",
+   "ref": "요한일서 4:19",
+   "kr": "우리가 사랑함은 그가 먼저 우리를 사랑하셨음이라.",
+   "en": "We love him, because he first loved us.",
+   "words": [
+    {
+     "w": "we love",
+     "ko": "우리가 사랑함은",
+     "note": "ἀγαπάω(아가파오) — 사랑하다"
+    },
+    {
+     "w": "he first loved us",
+     "ko": "그가 먼저 우리를 사랑하셨음이라",
+     "note": "πρῶτος(프로토스) — 먼저, 앞서"
+    }
+   ],
+   "orig": "ἡμεῖς ἀγαπῶμεν, ὅτι αὐτὸς πρῶτος ἠγάπησεν ἡμᾶς (hēmeis agapōmen, hoti autos prōtos ēgapēsen hēmas)"
+  },
+  {
+   "id": "jn13-34",
+   "theme": "love",
+   "ref": "요한복음 13:34",
+   "kr": "새 계명을 너희에게 주노니, 곧 서로 사랑하라. 내가 너희를 사랑한 것같이 너희도 서로 사랑하라.",
+   "en": "A new commandment I give unto you, That ye love one another; as I have loved you, that ye also love one another.",
+   "words": [
+    {
+     "w": "new commandment",
+     "ko": "새 계명",
+     "note": "ἐντολὴ καινή(엔톨레 카이네) — 새로운 명령"
+    },
+    {
+     "w": "love one another",
+     "ko": "서로 사랑하라",
+     "note": "ἀλλήλους(알렐루스) — 서로를"
+    },
+    {
+     "w": "as I have loved you",
+     "ko": "내가 너희를 사랑한 것같이",
+     "note": "καθώς(카토스) — ~한 그대로"
+    }
+   ],
+   "orig": "ἐντολὴν καινὴν δίδωμι ὑμῖν (entolēn kainēn didōmi hymin)"
+  },
+  {
+   "id": "rom5-8",
+   "theme": "love",
+   "ref": "로마서 5:8",
+   "kr": "우리가 아직 죄인 되었을 때에 그리스도께서 우리를 위하여 죽으심으로 하나님께서 우리에 대한 자기의 사랑을 확증하셨느니라.",
+   "en": "But God commendeth his love toward us, in that, while we were yet sinners, Christ died for us.",
+   "words": [
+    {
+     "w": "commendeth his love",
+     "ko": "자기의 사랑을 확증하셨느니라",
+     "note": "συνίστημι(쉬니스테미) — 드러내어 입증하다"
+    },
+    {
+     "w": "yet sinners",
+     "ko": "아직 죄인 되었을 때에",
+     "note": "ἁμαρτωλός(하마르톨로스) — 죄인"
+    },
+    {
+     "w": "died for us",
+     "ko": "우리를 위하여 죽으심으로",
+     "note": "ἀποθνῄσκω ὑπέρ(아포트네스코 휘페르) — 위하여 죽다"
+    }
+   ],
+   "orig": "συνίστησιν τὴν ἑαυτοῦ ἀγάπην εἰς ἡμᾶς ὁ θεός (synistēsin tēn heautou agapēn eis hēmas ho theos)"
+  },
+  {
+   "id": "rom8-38",
+   "theme": "love",
+   "ref": "로마서 8:38~39",
+   "kr": "내가 확신하노니, 사망이나 생명이나 천사들이나 권세 잡은 자들이나 능력이나 현재 일이나 장래 일이나, 높음이나 깊음이나 다른 어떤 피조물이라도 우리를 우리 주 그리스도 예수 안에 있는 하나님의 사랑에서 끊을 수 없으리라.",
+   "en": "For I am persuaded, that neither death, nor life, nor angels, nor principalities, nor powers, nor things present, nor things to come, Nor height, nor depth, nor any other creature, shall be able to separate us from the love of God, which is in Christ Jesus our Lord.",
+   "words": [
+    {
+     "w": "I am persuaded",
+     "ko": "내가 확신하노니",
+     "note": "πείθω(페이토) — 확신하다"
+    },
+    {
+     "w": "separate",
+     "ko": "끊을 수 없으리라",
+     "note": "χωρίζω(코리조) — 갈라놓다, 분리하다"
+    },
+    {
+     "w": "the love of God",
+     "ko": "하나님의 사랑",
+     "note": "ἀγάπη τοῦ θεοῦ(아가페 투 테우)"
+    }
+   ],
+   "orig": "πέπεισμαι γὰρ ὅτι οὔτε θάνατος (pepeismai gar hoti oute thanatos)"
+  },
+  {
+   "id": "eph2-8b",
+   "theme": "grace",
+   "ref": "고린도후서 12:9",
+   "kr": "내게 이르시되 \"내 은혜가 네게 족하도다. 이는 내 능력이 약한 데서 온전하여짐이라\" 하신지라. 그러므로 도리어 내가 크게 기뻐함으로 나의 약한 것들을 자랑하리니, 이는 그리스도의 능력이 내게 머물게 하려 함이라.",
+   "en": "And he said unto me, My grace is sufficient for thee: for my strength is made perfect in weakness. Most gladly therefore will I rather glory in my infirmities, that the power of Christ may rest upon me.",
+   "words": [
+    {
+     "w": "my grace is sufficient",
+     "ko": "내 은혜가 네게 족하도다",
+     "note": "ἀρκέω(아르케오) — 충분하다"
+    },
+    {
+     "w": "made perfect in weakness",
+     "ko": "약한 데서 온전하여짐",
+     "note": "τελειόω(텔레이오오) — 온전케 하다"
+    },
+    {
+     "w": "rest upon me",
+     "ko": "내게 머물게",
+     "note": "ἐπισκηνόω(에피스케노오) — 위에 거하다"
+    }
+   ],
+   "orig": "ἀρκεῖ σοι ἡ χάρις μου (arkei soi hē charis mou)"
+  },
+  {
+   "id": "2cor9-8",
+   "theme": "grace",
+   "ref": "고린도후서 9:8",
+   "kr": "하나님께서 능히 모든 은혜를 너희에게 넘치게 하시나니, 이는 너희로 모든 일에 항상 모든 것을 넉넉히 가져 모든 선한 일을 넘치게 하게 하려 하심이라.",
+   "en": "And God is able to make all grace abound toward you; that ye, always having all sufficiency in all things, may abound to every good work:",
+   "words": [
+    {
+     "w": "all grace abound",
+     "ko": "모든 은혜를 넘치게",
+     "note": "περισσεύω(페리쓔오) — 넘치게 하다"
+    },
+    {
+     "w": "all sufficiency",
+     "ko": "모든 것을 넉넉히",
+     "note": "αὐτάρκεια(아우타르케이아) — 자족함, 넉넉함"
+    },
+    {
+     "w": "every good work",
+     "ko": "모든 선한 일",
+     "note": "ἔργον ἀγαθόν(에르곤 아가톤)"
+    }
+   ],
+   "orig": "δυνατεῖ δὲ ὁ θεὸς πᾶσαν χάριν περισσεῦσαι (dynatei de ho theos pasan charin perisseusai)"
+  },
+  {
+   "id": "jn1-16",
+   "theme": "grace",
+   "ref": "요한복음 1:16",
+   "kr": "우리가 다 그의 충만한 데서 받으니 은혜 위에 은혜러라.",
+   "en": "And of his fulness have all we received, and grace for grace.",
+   "words": [
+    {
+     "w": "his fulness",
+     "ko": "그의 충만한 데서",
+     "note": "πλήρωμα(플레로마) — 충만함"
+    },
+    {
+     "w": "grace for grace",
+     "ko": "은혜 위에 은혜",
+     "note": "χάριν ἀντὶ χάριτος(카린 안티 카리토스) — 은혜를 잇는 은혜"
+    }
+   ],
+   "orig": "χάριν ἀντὶ χάριτος (charin anti charitos)"
+  },
+  {
+   "id": "heb4-16",
+   "theme": "grace",
+   "ref": "히브리서 4:16",
+   "kr": "그러므로 우리가 긍휼하심을 받고 때를 따라 돕는 은혜를 얻기 위하여, 담대히 은혜의 보좌 앞에 나아갈 것이니라.",
+   "en": "Let us therefore come boldly unto the throne of grace, that we may obtain mercy, and find grace to help in time of need.",
+   "words": [
+    {
+     "w": "come boldly",
+     "ko": "담대히 나아갈",
+     "note": "παρρησία(파르레시아) — 담대함, 거리낌 없음"
+    },
+    {
+     "w": "throne of grace",
+     "ko": "은혜의 보좌",
+     "note": "θρόνος τῆς χάριτος(트로노스 테스 카리토스)"
+    },
+    {
+     "w": "in time of need",
+     "ko": "때를 따라",
+     "note": "εὔκαιρος(유카이로스) — 적절한 때의"
+    }
+   ],
+   "orig": "προσερχώμεθα οὖν μετὰ παρρησίας τῷ θρόνῳ τῆς χάριτος (proserchōmetha oun meta parrēsias tō thronō tēs charitos)"
+  },
+  {
+   "id": "rom6-23",
+   "theme": "grace",
+   "ref": "로마서 6:23",
+   "kr": "죄의 삯은 사망이요, 하나님의 은사는 우리 주 그리스도 예수 안에 있는 영생이니라.",
+   "en": "For the wages of sin is death; but the gift of God is eternal life through Jesus Christ our Lord.",
+   "words": [
+    {
+     "w": "wages of sin",
+     "ko": "죄의 삯",
+     "note": "ὀψώνιον(옵소니온) — 품삯, 당연히 받을 보수"
+    },
+    {
+     "w": "gift of God",
+     "ko": "하나님의 은사",
+     "note": "χάρισμα(카리스마) — 값없이 주어진 선물"
+    },
+    {
+     "w": "eternal life",
+     "ko": "영생",
+     "note": "ζωὴ αἰώνιος(조에 아이오니오스)"
+    }
+   ],
+   "orig": "τὸ γὰρ ὀψώνιον τῆς ἁμαρτίας θάνατος (to gar opsōnion tēs hamartias thanatos)"
+  },
+  {
+   "id": "php4-6",
+   "theme": "prayer",
+   "ref": "빌립보서 4:6~7",
+   "kr": "아무것도 염려하지 말고, 오직 모든 일에 기도와 간구로 너희의 구할 것을 감사함으로 하나님께 아뢰라. 그리하면 모든 지각에 뛰어난 하나님의 평강이 그리스도 예수 안에서 너희 마음과 생각을 지키시리라.",
+   "en": "Be careful for nothing; but in every thing by prayer and supplication with thanksgiving let your requests be made known unto God. And the peace of God, which passeth all understanding, shall keep your hearts and minds through Christ Jesus.",
+   "words": [
+    {
+     "w": "be careful for nothing",
+     "ko": "아무것도 염려하지 말고",
+     "note": "μεριμνάω(메림나오) — 염려하다, 근심하다"
+    },
+    {
+     "w": "supplication",
+     "ko": "간구",
+     "note": "δέησις(데에시스) — 절실한 간구"
+    },
+    {
+     "w": "passeth all understanding",
+     "ko": "모든 지각에 뛰어난",
+     "note": "ὑπερέχω(휘페레코) — 능가하다, 뛰어나다"
+    }
+   ],
+   "orig": "μηδὲν μεριμνᾶτε (mēden merimnate)"
+  },
+  {
+   "id": "1th5-17",
+   "theme": "prayer",
+   "ref": "데살로니가전서 5:16~18",
+   "kr": "항상 기뻐하라. 쉬지 말고 기도하라. 범사에 감사하라. 이것이 그리스도 예수 안에서 너희를 향하신 하나님의 뜻이니라.",
+   "en": "Rejoice evermore. Pray without ceasing. In every thing give thanks: for this is the will of God in Christ Jesus concerning you.",
+   "words": [
+    {
+     "w": "Rejoice evermore",
+     "ko": "항상 기뻐하라",
+     "note": "χαίρω(카이로) — 기뻐하다"
+    },
+    {
+     "w": "without ceasing",
+     "ko": "쉬지 말고",
+     "note": "ἀδιαλείπτως(아디알레입토스) — 끊임없이"
+    },
+    {
+     "w": "in every thing give thanks",
+     "ko": "범사에 감사하라",
+     "note": "εὐχαριστέω(유카리스테오) — 감사하다"
+    }
+   ],
+   "orig": "ἀδιαλείπτως προσεύχεσθε (adialeiptōs proseuchesthe)"
+  },
+  {
+   "id": "mt7-7",
+   "theme": "prayer",
+   "ref": "마태복음 7:7",
+   "kr": "구하라, 그리하면 너희에게 주실 것이요. 찾으라, 그리하면 찾아낼 것이요. 두드리라, 그리하면 너희에게 열릴 것이니라.",
+   "en": "Ask, and it shall be given you; seek, and ye shall find; knock, and it shall be opened unto you:",
+   "words": [
+    {
+     "w": "Ask",
+     "ko": "구하라",
+     "note": "αἰτέω(아이테오) — 청하다, 구하다"
+    },
+    {
+     "w": "seek",
+     "ko": "찾으라",
+     "note": "ζητέω(제테오) — 찾다"
+    },
+    {
+     "w": "knock",
+     "ko": "두드리라",
+     "note": "κρούω(크루오) — 문을 두드리다"
+    }
+   ],
+   "orig": "αἰτεῖτε καὶ δοθήσεται ὑμῖν (aiteite kai dothēsetai hymin)"
+  },
+  {
+   "id": "jer33-3",
+   "theme": "prayer",
+   "ref": "예레미야 33:3",
+   "kr": "너는 내게 부르짖으라, 그리하면 내가 네게 응답하겠고, 네가 알지 못하는 크고 은밀한 일을 네게 보이리라.",
+   "en": "Call unto me, and I will answer thee, and shew thee great and mighty things, which thou knowest not.",
+   "words": [
+    {
+     "w": "Call unto me",
+     "ko": "내게 부르짖으라",
+     "note": "קָרָא(카라) — 부르다, 부르짖다"
+    },
+    {
+     "w": "I will answer thee",
+     "ko": "내가 네게 응답하겠고",
+     "note": "עָנָה(아나) — 응답하다"
+    },
+    {
+     "w": "great and mighty things",
+     "ko": "크고 은밀한 일",
+     "note": "בָּצַר(바차르) — 견고한, 헤아릴 수 없는"
+    }
+   ],
+   "orig": "קְרָא אֵלַי וְאֶעֱנֶךָּ (qera elai we-e'enekka)"
+  },
+  {
+   "id": "jas5-16",
+   "theme": "prayer",
+   "ref": "야고보서 5:16",
+   "kr": "그러므로 너희 죄를 서로 고백하며 병이 낫기를 위하여 서로 기도하라. 의인의 간구는 역사하는 힘이 큼이니라.",
+   "en": "Confess your faults one to another, and pray one for another, that ye may be healed. The effectual fervent prayer of a righteous man availeth much.",
+   "words": [
+    {
+     "w": "Confess your faults",
+     "ko": "너희 죄를 서로 고백하며",
+     "note": "ἐξομολογέω(엑소몰로게오) — 드러내어 고백하다"
+    },
+    {
+     "w": "effectual fervent prayer",
+     "ko": "역사하는 힘이 큰 간구",
+     "note": "δέησις ἐνεργουμένη(데에시스 에네르구메네) — 힘 있게 역사하는 기도"
+    },
+    {
+     "w": "availeth much",
+     "ko": "힘이 큼이니라",
+     "note": "ἰσχύω(이스퀴오) — 능력이 있다"
+    }
+   ],
+   "orig": "πολὺ ἰσχύει δέησις δικαίου ἐνεργουμένη (poly ischyei deēsis dikaiou energoumenē)"
+  },
+  {
+   "id": "jn14-27",
+   "theme": "peace",
+   "ref": "요한복음 14:27",
+   "kr": "평안을 너희에게 끼치노니, 곧 나의 평안을 너희에게 주노라. 내가 너희에게 주는 것은 세상이 주는 것과 같지 아니하니라. 너희는 마음에 근심하지도 말고 두려워하지도 말라.",
+   "en": "Peace I leave with you, my peace I give unto you: not as the world giveth, give I unto you. Let not your heart be troubled, neither let it be afraid.",
+   "words": [
+    {
+     "w": "Peace I leave with you",
+     "ko": "평안을 너희에게 끼치노니",
+     "note": "εἰρήνη(에이레네) — 평안, 온전함"
+    },
+    {
+     "w": "not as the world giveth",
+     "ko": "세상이 주는 것과 같지 아니하니라",
+     "note": "κόσμος(코스모스) — 세상"
+    },
+    {
+     "w": "be troubled",
+     "ko": "근심하지도 말고",
+     "note": "ταράσσω(타라쏘) — 흔들리다, 동요하다"
+    }
+   ],
+   "orig": "εἰρήνην ἀφίημι ὑμῖν (eirēnēn aphiēmi hymin)"
+  },
+  {
+   "id": "ps23-1",
+   "theme": "peace",
+   "ref": "시편 23:1~3",
+   "kr": "여호와는 나의 목자시니, 내게 모자람이 없도다. 그가 나를 푸른 풀밭에 누이시며 잔잔한 물가로 인도하시는도다. 내 영혼을 소생시키시고, 자기 이름을 위하여 의의 길로 나를 인도하시는도다.",
+   "en": "The LORD is my shepherd; I shall not want. He maketh me to lie down in green pastures: he leadeth me beside the still waters. He restoreth my soul: he leadeth me in the paths of righteousness for his name's sake.",
+   "words": [
+    {
+     "w": "my shepherd",
+     "ko": "나의 목자",
+     "note": "רֹעֶה(로에) — 양을 치는 목자"
+    },
+    {
+     "w": "I shall not want",
+     "ko": "모자람이 없도다",
+     "note": "חָסֵר(하세르) — 부족하다"
+    },
+    {
+     "w": "restoreth my soul",
+     "ko": "내 영혼을 소생시키시고",
+     "note": "נֶפֶשׁ(네페쉬) — 영혼, 생명"
+    }
+   ],
+   "orig": "יְהוָה רֹעִי לֹא אֶחְסָר (YHWH ro'i lo eḥsar)"
+  },
+  {
+   "id": "is41-10",
+   "theme": "peace",
+   "ref": "이사야 41:10",
+   "kr": "두려워하지 말라, 내가 너와 함께함이라. 놀라지 말라, 나는 네 하나님이 됨이라. 내가 너를 굳세게 하리라. 참으로 너를 도우리라. 참으로 나의 의로운 오른손으로 너를 붙들리라.",
+   "en": "Fear thou not; for I am with thee: be not dismayed; for I am thy God: I will strengthen thee; yea, I will help thee; yea, I will uphold thee with the right hand of my righteousness.",
+   "words": [
+    {
+     "w": "Fear thou not",
+     "ko": "두려워하지 말라",
+     "note": "יָרֵא(야레) — 두려워하다"
+    },
+    {
+     "w": "I will strengthen thee",
+     "ko": "너를 굳세게 하리라",
+     "note": "אָמַץ(아마츠) — 강하게 하다"
+    },
+    {
+     "w": "uphold thee",
+     "ko": "너를 붙들리라",
+     "note": "תָּמַךְ(타마크) — 붙들다, 떠받치다"
+    }
+   ],
+   "orig": "אַל־תִּירָא כִּי עִמְּךָ־אָנִי (al-tira ki immekha-ani)"
+  },
+  {
+   "id": "ps46-1",
+   "theme": "peace",
+   "ref": "시편 46:1",
+   "kr": "하나님은 우리의 피난처시요 힘이시니, 환난 중에 만날 큰 도움이시라.",
+   "en": "God is our refuge and strength, a very present help in trouble.",
+   "words": [
+    {
+     "w": "refuge",
+     "ko": "피난처",
+     "note": "מַחֲסֶה(마하세) — 피할 곳, 피난처"
+    },
+    {
+     "w": "strength",
+     "ko": "힘",
+     "note": "עֹז(오즈) — 능력, 힘"
+    },
+    {
+     "w": "very present help",
+     "ko": "만날 큰 도움",
+     "note": "עֶזְרָה(에즈라) — 도움"
+    }
+   ],
+   "orig": "אֱלֹהִים לָנוּ מַחֲסֶה וָעֹז (Elohim lanu maḥaseh wa-oz)"
+  },
+  {
+   "id": "mt11-28",
+   "theme": "peace",
+   "ref": "마태복음 11:28",
+   "kr": "수고하고 무거운 짐 진 자들아, 다 내게로 오라. 내가 너희를 쉬게 하리라.",
+   "en": "Come unto me, all ye that labour and are heavy laden, and I will give you rest.",
+   "words": [
+    {
+     "w": "labour",
+     "ko": "수고하고",
+     "note": "κοπιάω(코피아오) — 지치도록 수고하다"
+    },
+    {
+     "w": "heavy laden",
+     "ko": "무거운 짐 진",
+     "note": "φορτίζω(포르티조) — 짐을 지우다"
+    },
+    {
+     "w": "give you rest",
+     "ko": "쉬게 하리라",
+     "note": "ἀναπαύω(아나파우오) — 안식을 주다"
+    }
+   ],
+   "orig": "δεῦτε πρός με πάντες οἱ κοπιῶντες (deute pros me pantes hoi kopiōntes)"
+  },
+  {
+   "id": "pr3-6",
+   "theme": "guidance",
+   "ref": "잠언 16:9",
+   "kr": "사람이 마음으로 자기의 길을 계획할지라도, 그의 걸음을 인도하시는 이는 여호와시니라.",
+   "en": "A man's heart deviseth his way: but the LORD directeth his steps.",
+   "words": [
+    {
+     "w": "deviseth his way",
+     "ko": "자기의 길을 계획할지라도",
+     "note": "חָשַׁב(하샤브) — 헤아리다, 계획하다"
+    },
+    {
+     "w": "directeth his steps",
+     "ko": "그의 걸음을 인도하시는",
+     "note": "כּוּן(쿤) — 굳게 세우다, 정하다"
+    }
+   ],
+   "orig": "לֵב אָדָם יְחַשֵּׁב דַּרְכּוֹ (lev adam yeḥashshev darko)"
+  },
+  {
+   "id": "jas1-5",
+   "theme": "guidance",
+   "ref": "야고보서 1:5",
+   "kr": "너희 중에 누구든지 지혜가 부족하거든, 모든 사람에게 후히 주시고 꾸짖지 아니하시는 하나님께 구하라. 그리하면 그에게 주시리라.",
+   "en": "If any of you lack wisdom, let him ask of God, that giveth to all men liberally, and upbraideth not; and it shall be given him.",
+   "words": [
+    {
+     "w": "lack wisdom",
+     "ko": "지혜가 부족하거든",
+     "note": "σοφία(소피아) — 지혜"
+    },
+    {
+     "w": "liberally",
+     "ko": "후히",
+     "note": "ἁπλῶς(하플로스) — 아낌없이, 넉넉히"
+    },
+    {
+     "w": "upbraideth not",
+     "ko": "꾸짖지 아니하시는",
+     "note": "ὀνειδίζω(오네이디조) — 책망하다, 나무라다"
+    }
+   ],
+   "orig": "εἰ δέ τις ὑμῶν λείπεται σοφίας (ei de tis hymōn leipetai sophias)"
+  },
+  {
+   "id": "ps32-8",
+   "theme": "guidance",
+   "ref": "시편 32:8",
+   "kr": "내가 네 갈 길을 가르쳐 보이고, 너를 주목하여 인도하리로다.",
+   "en": "I will instruct thee and teach thee in the way which thou shalt go: I will guide thee with mine eye.",
+   "words": [
+    {
+     "w": "instruct thee",
+     "ko": "가르쳐 보이고",
+     "note": "שָׂכַל(사칼) — 깨닫게 하다, 가르치다"
+    },
+    {
+     "w": "teach thee in the way",
+     "ko": "네 갈 길을 보이고",
+     "note": "יָרָה(야라) — 가리켜 보이다"
+    },
+    {
+     "w": "guide thee with mine eye",
+     "ko": "너를 주목하여 인도하리로다",
+     "note": "יָעַץ(야아츠) — 권면하여 이끌다"
+    }
+   ],
+   "orig": "אַשְׂכִּילְךָ וְאוֹרְךָ בְּדֶרֶךְ־זוּ תֵלֵךְ (askilekha we-orkha be-derek-zu telekh)"
+  },
+  {
+   "id": "ps37-5",
+   "theme": "guidance",
+   "ref": "시편 37:5",
+   "kr": "네 길을 여호와께 맡기라. 그를 의지하면 그가 이루시리로다.",
+   "en": "Commit thy way unto the LORD; trust also in him; and he shall bring it to pass.",
+   "words": [
+    {
+     "w": "Commit thy way",
+     "ko": "네 길을 맡기라",
+     "note": "גָּלַל(갈랄) — 굴려 맡기다"
+    },
+    {
+     "w": "trust also in him",
+     "ko": "그를 의지하면",
+     "note": "בָּטַח(바타흐) — 신뢰하다"
+    },
+    {
+     "w": "bring it to pass",
+     "ko": "이루시리로다",
+     "note": "עָשָׂה(아사) — 행하다, 이루다"
+    }
+   ],
+   "orig": "גּוֹל עַל־יְהוָה דַּרְכֶּךָ (gol al-YHWH darkekha)"
+  },
+  {
+   "id": "is30-21",
+   "theme": "guidance",
+   "ref": "이사야 30:21",
+   "kr": "너희가 오른편으로 치우치든지 왼편으로 치우치든지, 너희 뒤에서 말소리가 들려 이르기를 \"이것이 바른길이니 너희는 이리로 행하라\" 하리라.",
+   "en": "And thine ears shall hear a word behind thee, saying, This is the way, walk ye in it, when ye turn to the right hand, and when ye turn to the left.",
+   "words": [
+    {
+     "w": "a word behind thee",
+     "ko": "뒤에서 말소리가",
+     "note": "דָּבָר(다바르) — 말씀, 음성"
+    },
+    {
+     "w": "This is the way",
+     "ko": "이것이 바른길이니",
+     "note": "דֶּרֶךְ(데레크) — 길"
+    },
+    {
+     "w": "turn to the right",
+     "ko": "오른편으로 치우치든지",
+     "note": "אָמַן(아만) — 오른쪽으로 향하다"
+    }
+   ],
+   "orig": "זֶה הַדֶּרֶךְ לְכוּ בוֹ (zeh ha-derek leku vo)"
+  },
+  {
+   "id": "rom8-28",
+   "theme": "trial",
+   "ref": "로마서 8:28",
+   "kr": "우리가 알거니와, 하나님을 사랑하는 자 곧 그 뜻대로 부르심을 입은 자들에게는 모든 것이 합력하여 선을 이루느니라.",
+   "en": "And we know that all things work together for good to them that love God, to them who are the called according to his purpose.",
+   "words": [
+    {
+     "w": "all things work together",
+     "ko": "모든 것이 합력하여",
+     "note": "συνεργέω(쉬네르게오) — 함께 일하다"
+    },
+    {
+     "w": "for good",
+     "ko": "선을 이루느니라",
+     "note": "ἀγαθόν(아가톤) — 선한 것"
+    },
+    {
+     "w": "the called",
+     "ko": "부르심을 입은 자들",
+     "note": "κλητός(클레토스) — 부르심 받은 자"
+    }
+   ],
+   "orig": "πάντα συνεργεῖ εἰς ἀγαθόν (panta synergei eis agathon)"
+  },
+  {
+   "id": "jas1-2",
+   "theme": "trial",
+   "ref": "야고보서 1:2~3",
+   "kr": "내 형제들아, 너희가 여러 가지 시험을 만나거든 온전히 기쁘게 여기라. 이는 너희 믿음의 시련이 인내를 이루는 줄 너희가 앎이라.",
+   "en": "My brethren, count it all joy when ye fall into divers temptations; Knowing this, that the trying of your faith worketh patience.",
+   "words": [
+    {
+     "w": "count it all joy",
+     "ko": "온전히 기쁘게 여기라",
+     "note": "χαρά(카라) — 기쁨"
+    },
+    {
+     "w": "trying of your faith",
+     "ko": "믿음의 시련",
+     "note": "δοκίμιον(도키미온) — 연단, 검증"
+    },
+    {
+     "w": "worketh patience",
+     "ko": "인내를 이루는",
+     "note": "ὑπομονή(휘포모네) — 견디어 냄, 인내"
+    }
+   ],
+   "orig": "πᾶσαν χαρὰν ἡγήσασθε (pasan charan hēgēsasthe)"
+  },
+  {
+   "id": "is40-31",
+   "theme": "trial",
+   "ref": "이사야 40:31",
+   "kr": "오직 여호와를 앙망하는 자는 새 힘을 얻으리니, 독수리가 날개 치며 올라감 같을 것이요, 달음박질하여도 곤비하지 아니하겠고, 걸어가도 피곤하지 아니하리로다.",
+   "en": "But they that wait upon the LORD shall renew their strength; they shall mount up with wings as eagles; they shall run, and not be weary; and they shall walk, and not faint.",
+   "words": [
+    {
+     "w": "wait upon the LORD",
+     "ko": "여호와를 앙망하는",
+     "note": "קָוָה(카바) — 간절히 기다리다, 바라다"
+    },
+    {
+     "w": "renew their strength",
+     "ko": "새 힘을 얻으리니",
+     "note": "חָלַף(할라프) — 새롭게 바뀌다"
+    },
+    {
+     "w": "mount up with wings",
+     "ko": "날개 치며 올라감",
+     "note": "עָלָה(알라) — 올라가다"
+    }
+   ],
+   "orig": "וְקוֹיֵ יְהוָה יַחֲלִיפוּ כֹחַ (we-qoye YHWH yaḥalifu koaḥ)"
+  },
+  {
+   "id": "1co10-13",
+   "theme": "trial",
+   "ref": "고린도전서 10:13",
+   "kr": "사람이 감당할 시험밖에는 너희가 당한 것이 없나니, 하나님은 미쁘사 너희가 감당하지 못할 시험 당함을 허락하지 아니하시고, 시험 당할 즈음에 또한 피할 길을 내사 너희로 능히 감당하게 하시느니라.",
+   "en": "There hath no temptation taken you but such as is common to man: but God is faithful, who will not suffer you to be tempted above that ye are able; but will with the temptation also make a way to escape, that ye may be able to bear it.",
+   "words": [
+    {
+     "w": "common to man",
+     "ko": "사람이 감당할",
+     "note": "ἀνθρώπινος(안트로피노스) — 사람에게 흔한"
+    },
+    {
+     "w": "God is faithful",
+     "ko": "하나님은 미쁘사",
+     "note": "πιστός(피스토스) — 신실하신"
+    },
+    {
+     "w": "way to escape",
+     "ko": "피할 길",
+     "note": "ἔκβασις(에크바시스) — 빠져나갈 출구"
+    }
+   ],
+   "orig": "πιστὸς δὲ ὁ θεός (pistos de ho theos)"
+  },
+  {
+   "id": "2co4-17",
+   "theme": "trial",
+   "ref": "고린도후서 4:17",
+   "kr": "우리의 잠시 받는 가벼운 환난이 지극히 크고 영원한 영광의 중한 것을 우리에게 이루게 함이니,",
+   "en": "For our light affliction, which is but for a moment, worketh for us a far more exceeding and eternal weight of glory;",
+   "words": [
+    {
+     "w": "light affliction",
+     "ko": "가벼운 환난",
+     "note": "θλῖψις(틀립시스) — 압박, 환난"
+    },
+    {
+     "w": "but for a moment",
+     "ko": "잠시 받는",
+     "note": "παραυτίκα(파라우티카) — 잠깐의"
+    },
+    {
+     "w": "weight of glory",
+     "ko": "영광의 중한 것",
+     "note": "βάρος δόξης(바로스 독세스) — 영광의 무게"
+    }
+   ],
+   "orig": "τὸ παραυτίκα ἐλαφρὸν τῆς θλίψεως ἡμῶν (to parautika elaphron tēs thlipseōs hēmōn)"
+  },
+  {
+   "id": "ps100-4",
+   "theme": "thanks",
+   "ref": "시편 100:4~5",
+   "kr": "감사함으로 그의 문에 들어가며 찬송함으로 그의 궁정에 들어가서, 그에게 감사하며 그의 이름을 송축할지어다. 여호와는 선하시니 그의 인자하심이 영원하고 그의 성실하심이 대대에 이르리로다.",
+   "en": "Enter into his gates with thanksgiving, and into his courts with praise: be thankful unto him, and bless his name. For the LORD is good; his mercy is everlasting; and his truth endureth to all generations.",
+   "words": [
+    {
+     "w": "with thanksgiving",
+     "ko": "감사함으로",
+     "note": "תּוֹדָה(토다) — 감사, 감사의 제사"
+    },
+    {
+     "w": "bless his name",
+     "ko": "그의 이름을 송축할지어다",
+     "note": "בָּרַךְ(바라크) — 송축하다, 찬양하다"
+    },
+    {
+     "w": "his mercy is everlasting",
+     "ko": "그의 인자하심이 영원하고",
+     "note": "חֶסֶד(헤세드) — 변함없는 인자"
+    }
+   ],
+   "orig": "בֹּאוּ שְׁעָרָיו בְּתוֹדָה (bo'u she'arav be-todah)"
+  },
+  {
+   "id": "ps103-1",
+   "theme": "thanks",
+   "ref": "시편 103:1~2",
+   "kr": "내 영혼아, 여호와를 송축하라. 내 속에 있는 것들아, 다 그의 거룩한 이름을 송축하라. 내 영혼아, 여호와를 송축하며 그의 모든 은택을 잊지 말지어다.",
+   "en": "Bless the LORD, O my soul: and all that is within me, bless his holy name. Bless the LORD, O my soul, and forget not all his benefits:",
+   "words": [
+    {
+     "w": "Bless the LORD",
+     "ko": "여호와를 송축하라",
+     "note": "בָּרַךְ(바라크) — 송축하다"
+    },
+    {
+     "w": "all that is within me",
+     "ko": "내 속에 있는 것들아",
+     "note": "קֶרֶב(케레브) — 속, 내면"
+    },
+    {
+     "w": "forget not all his benefits",
+     "ko": "그의 모든 은택을 잊지 말지어다",
+     "note": "גְּמוּל(게물) — 베푸신 은혜"
+    }
+   ],
+   "orig": "בָּרֲכִי נַפְשִׁי אֶת־יְהוָה (barakhi nafshi et-YHWH)"
+  },
+  {
+   "id": "ps107-1",
+   "theme": "thanks",
+   "ref": "시편 107:1",
+   "kr": "여호와께 감사하라. 그는 선하시며, 그의 인자하심이 영원함이로다.",
+   "en": "O give thanks unto the LORD, for he is good: for his mercy endureth for ever.",
+   "words": [
+    {
+     "w": "give thanks",
+     "ko": "감사하라",
+     "note": "יָדָה(야다) — 손 들어 찬양하다, 감사하다"
+    },
+    {
+     "w": "he is good",
+     "ko": "그는 선하시며",
+     "note": "טוֹב(토브) — 선한, 좋은"
+    },
+    {
+     "w": "endureth for ever",
+     "ko": "영원함이로다",
+     "note": "לְעוֹלָם(레올람) — 영원히"
+    }
+   ],
+   "orig": "הֹדוּ לַיהוָה כִּי־טוֹב (hodu la-YHWH ki-tov)"
+  },
+  {
+   "id": "ps150-6",
+   "theme": "thanks",
+   "ref": "시편 150:6",
+   "kr": "호흡이 있는 자마다 여호와를 찬양할지어다. 할렐루야.",
+   "en": "Let every thing that hath breath praise the LORD. Praise ye the LORD.",
+   "words": [
+    {
+     "w": "every thing that hath breath",
+     "ko": "호흡이 있는 자마다",
+     "note": "נְשָׁמָה(네샤마) — 호흡, 숨"
+    },
+    {
+     "w": "praise the LORD",
+     "ko": "여호와를 찬양할지어다",
+     "note": "הָלַל(할랄) — 찬양하다"
+    }
+   ],
+   "orig": "כֹּל הַנְּשָׁמָה תְּהַלֵּל יָהּ (kol ha-neshamah tehallel Yah)"
+  },
+  {
+   "id": "col3-17",
+   "theme": "thanks",
+   "ref": "골로새서 3:17",
+   "kr": "또 무엇을 하든지 말에나 일에나 다 주 예수의 이름으로 하고, 그를 힘입어 하나님 아버지께 감사하라.",
+   "en": "And whatsoever ye do in word or deed, do all in the name of the Lord Jesus, giving thanks to God and the Father by him.",
+   "words": [
+    {
+     "w": "whatsoever ye do",
+     "ko": "무엇을 하든지",
+     "note": "πᾶν ὅ τι ἐάν(판 호 티 에안) — 무엇이든"
+    },
+    {
+     "w": "in the name of the Lord Jesus",
+     "ko": "주 예수의 이름으로",
+     "note": "ἐν ὀνόματι(엔 오노마티) — 그 이름으로, 그 권위로"
+    },
+    {
+     "w": "giving thanks",
+     "ko": "감사하라",
+     "note": "εὐχαριστέω(유카리스테오) — 감사하다"
+    }
+   ],
+   "orig": "πᾶν ὅ τι ἂν ποιῆτε ἐν λόγῳ ἢ ἐν ἔργῳ (pan ho ti an poiēte en logō ē en ergō)"
+  },
+  {
+   "id": "1pe1-15",
+   "theme": "holiness",
+   "ref": "베드로전서 1:15~16",
+   "kr": "오직 너희를 부르신 거룩하신 분처럼 너희도 모든 행실에 거룩한 자가 되라. 기록되었으되 \"내가 거룩하니 너희도 거룩할지어다\" 하셨느니라.",
+   "en": "But as he which hath called you is holy, so be ye holy in all manner of conversation; Because it is written, Be ye holy; for I am holy.",
+   "words": [
+    {
+     "w": "holy",
+     "ko": "거룩한",
+     "note": "ἅγιος(하기오스) — 구별된, 거룩한"
+    },
+    {
+     "w": "all manner of conversation",
+     "ko": "모든 행실에",
+     "note": "ἀναστροφή(아나스트로페) — 삶의 태도, 행실"
+    },
+    {
+     "w": "Be ye holy; for I am holy",
+     "ko": "내가 거룩하니 너희도 거룩할지어다",
+     "note": "קָדוֹשׁ(카도쉬) — 거룩하신(레 11:44 인용)"
+    }
+   ],
+   "orig": "ἅγιοι γένεσθε, ὅτι ἐγὼ ἅγιος (hagioi genesthe, hoti egō hagios)"
+  },
+  {
+   "id": "rom12-1",
+   "theme": "holiness",
+   "ref": "로마서 12:1",
+   "kr": "그러므로 형제들아, 내가 하나님의 모든 자비하심으로 너희를 권하노니, 너희 몸을 하나님이 기뻐하시는 거룩한 산 제물로 드리라. 이는 너희의 마땅히 드릴 영적 예배니라.",
+   "en": "I beseech you therefore, brethren, by the mercies of God, that ye present your bodies a living sacrifice, holy, acceptable unto God, which is your reasonable service.",
+   "words": [
+    {
+     "w": "living sacrifice",
+     "ko": "산 제물",
+     "note": "θυσία ζῶσα(튀시아 조사) — 살아 있는 제물"
+    },
+    {
+     "w": "acceptable unto God",
+     "ko": "하나님이 기뻐하시는",
+     "note": "εὐάρεστος(유아레스토스) — 기쁘게 받으시는"
+    },
+    {
+     "w": "reasonable service",
+     "ko": "영적 예배",
+     "note": "λογικὴ λατρεία(로기케 라트레이아) — 합당한 섬김, 예배"
+    }
+   ],
+   "orig": "παραστῆσαι τὰ σώματα ὑμῶν θυσίαν ζῶσαν (parastēsai ta sōmata hymōn thysian zōsan)"
+  },
+  {
+   "id": "mt5-8",
+   "theme": "holiness",
+   "ref": "마태복음 5:8",
+   "kr": "마음이 청결한 자는 복이 있나니, 그들이 하나님을 볼 것임이요.",
+   "en": "Blessed are the pure in heart: for they shall see God.",
+   "words": [
+    {
+     "w": "Blessed",
+     "ko": "복이 있나니",
+     "note": "μακάριος(마카리오스) — 복된, 행복한"
+    },
+    {
+     "w": "pure in heart",
+     "ko": "마음이 청결한",
+     "note": "καθαρός(카타로스) — 깨끗한, 정결한"
+    },
+    {
+     "w": "see God",
+     "ko": "하나님을 볼 것임이요",
+     "note": "ὁράω(호라오) — 보다, 뵙다"
+    }
+   ],
+   "orig": "μακάριοι οἱ καθαροὶ τῇ καρδίᾳ (makarioi hoi katharoi tē kardia)"
+  },
+  {
+   "id": "2co7-1",
+   "theme": "holiness",
+   "ref": "고린도후서 7:1",
+   "kr": "그런즉 사랑하는 자들아, 이 약속을 가진 우리가 하나님을 두려워하는 가운데 거룩함을 온전히 이루어, 육과 영의 온갖 더러운 것에서 자신을 깨끗하게 하자.",
+   "en": "Having therefore these promises, dearly beloved, let us cleanse ourselves from all filthiness of the flesh and spirit, perfecting holiness in the fear of God.",
+   "words": [
+    {
+     "w": "cleanse ourselves",
+     "ko": "자신을 깨끗하게 하자",
+     "note": "καθαρίζω(카타리조) — 정결케 하다"
+    },
+    {
+     "w": "filthiness",
+     "ko": "더러운 것",
+     "note": "μολυσμός(몰뤼스모스) — 오염, 더러움"
+    },
+    {
+     "w": "perfecting holiness",
+     "ko": "거룩함을 온전히 이루어",
+     "note": "ἁγιωσύνη(하기오쉬네) — 거룩함, 성결"
+    }
+   ],
+   "orig": "ἐπιτελοῦντες ἁγιωσύνην ἐν φόβῳ θεοῦ (epitelountes hagiōsynēn en phobō theou)"
+  },
+  {
+   "id": "1th4-7",
+   "theme": "holiness",
+   "ref": "데살로니가전서 4:7",
+   "kr": "하나님이 우리를 부르심은 부정하게 하심이 아니요, 거룩하게 하심이라.",
+   "en": "For God hath not called us unto uncleanness, but unto holiness.",
+   "words": [
+    {
+     "w": "not called us unto uncleanness",
+     "ko": "부정하게 하심이 아니요",
+     "note": "ἀκαθαρσία(아카타르시아) — 더러움, 부정함"
+    },
+    {
+     "w": "unto holiness",
+     "ko": "거룩하게 하심이라",
+     "note": "ἁγιασμός(하기아스모스) — 성화, 거룩하게 하심"
+    }
+   ],
+   "orig": "οὐ γὰρ ἐκάλεσεν ἡμᾶς ὁ θεὸς ἐπὶ ἀκαθαρσίᾳ ἀλλ’ ἐν ἁγιασμῷ (ou gar ekalesen hēmas ho theos epi akatharsia all’ en hagiasmō)"
+  },
+  {
+   "id": "mt28-19",
+   "theme": "mission",
+   "ref": "마태복음 28:19~20",
+   "kr": "그러므로 너희는 가서 모든 민족을 제자로 삼아 아버지와 아들과 성령의 이름으로 그들에게 침례를 베풀고, 내가 너희에게 분부한 모든 것을 지키게 하라. 볼지어다, 내가 세상 끝날까지 항상 너희와 함께 있으리라.",
+   "en": "Go ye therefore, and teach all nations, baptizing them in the name of the Father, and of the Son, and of the Holy Ghost: Teaching them to observe all things whatsoever I have commanded you: and, lo, I am with you alway, even unto the end of the world. Amen.",
+   "words": [
+    {
+     "w": "teach all nations",
+     "ko": "모든 민족을 제자로 삼아",
+     "note": "μαθητεύω(마테튜오) — 제자로 삼다"
+    },
+    {
+     "w": "baptizing them",
+     "ko": "침례를 베풀고",
+     "note": "βαπτίζω(밥티조) — 물에 잠그다, 침례를 베풀다"
+    },
+    {
+     "w": "I am with you alway",
+     "ko": "항상 너희와 함께 있으리라",
+     "note": "μεθ’ ὑμῶν(메트 휘몬) — 너희와 함께"
+    }
+   ],
+   "orig": "πορευθέντες μαθητεύσατε πάντα τὰ ἔθνη (poreuthentes mathēteusate panta ta ethnē)"
+  },
+  {
+   "id": "ac1-8",
+   "theme": "mission",
+   "ref": "사도행전 1:8",
+   "kr": "오직 성령이 너희에게 임하시면 너희가 권능을 받고, 예루살렘과 온 유대와 사마리아와 땅끝까지 이르러 내 증인이 되리라.",
+   "en": "But ye shall receive power, after that the Holy Ghost is come upon you: and ye shall be witnesses unto me both in Jerusalem, and in all Judaea, and in Samaria, and unto the uttermost part of the earth.",
+   "words": [
+    {
+     "w": "receive power",
+     "ko": "권능을 받고",
+     "note": "δύναμις(뒤나미스) — 능력, 권능"
+    },
+    {
+     "w": "witnesses unto me",
+     "ko": "내 증인이",
+     "note": "μάρτυς(마르튀스) — 증인"
+    },
+    {
+     "w": "uttermost part of the earth",
+     "ko": "땅끝까지",
+     "note": "ἔσχατον τῆς γῆς(에스카톤 테스 게스)"
+    }
+   ],
+   "orig": "ἔσεσθέ μου μάρτυρες (esesthe mou martyres)"
+  },
+  {
+   "id": "mk16-15",
+   "theme": "mission",
+   "ref": "마가복음 16:15",
+   "kr": "또 그들에게 이르시되 \"너희는 온 천하에 두루 다니며 만민에게 복음을 전파하라\" 하시니라.",
+   "en": "And he said unto them, Go ye into all the world, and preach the gospel to every creature.",
+   "words": [
+    {
+     "w": "all the world",
+     "ko": "온 천하에",
+     "note": "κόσμος(코스모스) — 세상"
+    },
+    {
+     "w": "preach the gospel",
+     "ko": "복음을 전파하라",
+     "note": "κηρύσσω(케뤼쏘) — 선포하다, 전파하다"
+    },
+    {
+     "w": "every creature",
+     "ko": "만민에게",
+     "note": "κτίσις(크티시스) — 피조물, 사람"
+    }
+   ],
+   "orig": "κηρύξατε τὸ εὐαγγέλιον πάσῃ τῇ κτίσει (kēryxate to euangelion pasē tē ktisei)"
+  },
+  {
+   "id": "rom1-16",
+   "theme": "mission",
+   "ref": "로마서 1:16",
+   "kr": "내가 그리스도의 복음을 부끄러워하지 아니하노니, 이는 모든 믿는 자에게 구원을 주시는 하나님의 능력이 됨이라, 먼저는 유대인에게요 또한 헬라인에게로다.",
+   "en": "For I am not ashamed of the gospel of Christ: for it is the power of God unto salvation to every one that believeth; to the Jew first, and also to the Greek.",
+   "words": [
+    {
+     "w": "not ashamed of the gospel",
+     "ko": "복음을 부끄러워하지 아니하노니",
+     "note": "ἐπαισχύνομαι(에파이스퀴노마이) — 부끄러워하다"
+    },
+    {
+     "w": "power of God",
+     "ko": "하나님의 능력",
+     "note": "δύναμις θεοῦ(뒤나미스 테우)"
+    },
+    {
+     "w": "unto salvation",
+     "ko": "구원을 주시는",
+     "note": "σωτηρία(소테리아) — 구원"
+    }
+   ],
+   "orig": "δύναμις γὰρ θεοῦ ἐστιν εἰς σωτηρίαν (dynamis gar theou estin eis sōtērian)"
+  },
+  {
+   "id": "mt5-16",
+   "theme": "mission",
+   "ref": "마태복음 5:16",
+   "kr": "이같이 너희 빛을 사람 앞에 비취게 하여, 그들로 너희 착한 행실을 보고 하늘에 계신 너희 아버지께 영광을 돌리게 하라.",
+   "en": "Let your light so shine before men, that they may see your good works, and glorify your Father which is in heaven.",
+   "words": [
+    {
+     "w": "let your light so shine",
+     "ko": "너희 빛을 비취게 하여",
+     "note": "λάμπω(람포) — 빛나다"
+    },
+    {
+     "w": "good works",
+     "ko": "착한 행실",
+     "note": "καλὰ ἔργα(칼라 에르가) — 선한 일"
+    },
+    {
+     "w": "glorify your Father",
+     "ko": "아버지께 영광을 돌리게",
+     "note": "δοξάζω(독사조) — 영광을 돌리다"
+    }
+   ],
+   "orig": "λαμψάτω τὸ φῶς ὑμῶν (lampsatō to phōs hymōn)"
+  },
+  {
+   "id": "jer29-11",
+   "theme": "hope",
+   "ref": "예레미야 29:11",
+   "kr": "여호와의 말씀이니라. 너희를 향한 나의 생각을 내가 아나니, 곧 평안이요 재앙이 아니니라. 너희에게 미래와 소망을 주려 하는 생각이라.",
+   "en": "For I know the thoughts that I think toward you, saith the LORD, thoughts of peace, and not of evil, to give you an expected end.",
+   "words": [
+    {
+     "w": "thoughts of peace",
+     "ko": "평안의 생각",
+     "note": "שָׁלוֹם(샬롬) — 평안, 온전함"
+    },
+    {
+     "w": "not of evil",
+     "ko": "재앙이 아니니라",
+     "note": "רָעָה(라아) — 재앙, 악"
+    },
+    {
+     "w": "expected end",
+     "ko": "미래와 소망",
+     "note": "תִּקְוָה(티크바) — 소망, 기대"
+    }
+   ],
+   "orig": "מַחְשְׁבוֹת שָׁלוֹם וְלֹא לְרָעָה (maḥshevot shalom we-lo le-ra'ah)"
+  },
+  {
+   "id": "rom15-13",
+   "theme": "hope",
+   "ref": "로마서 15:13",
+   "kr": "소망의 하나님이 모든 기쁨과 평강을 믿음 안에서 너희에게 충만하게 하사, 성령의 능력으로 소망이 넘치게 하시기를 원하노라.",
+   "en": "Now the God of hope fill you with all joy and peace in believing, that ye may abound in hope, through the power of the Holy Ghost.",
+   "words": [
+    {
+     "w": "God of hope",
+     "ko": "소망의 하나님",
+     "note": "ἐλπίς(엘피스) — 소망"
+    },
+    {
+     "w": "fill you with all joy",
+     "ko": "모든 기쁨을 충만하게",
+     "note": "πληρόω(플레로오) — 가득 채우다"
+    },
+    {
+     "w": "abound in hope",
+     "ko": "소망이 넘치게",
+     "note": "περισσεύω(페리쓔오) — 넘치다"
+    }
+   ],
+   "orig": "ὁ δὲ θεὸς τῆς ἐλπίδος (ho de theos tēs elpidos)"
+  },
+  {
+   "id": "ps121-1",
+   "theme": "hope",
+   "ref": "시편 121:1~2",
+   "kr": "내가 산을 향하여 눈을 들리라. 나의 도움이 어디서 올꼬. 나의 도움은 하늘과 땅을 지으신 여호와에게서 오는도다.",
+   "en": "I will lift up mine eyes unto the hills, from whence cometh my help. My help cometh from the LORD, which made heaven and earth.",
+   "words": [
+    {
+     "w": "lift up mine eyes",
+     "ko": "눈을 들리라",
+     "note": "נָשָׂא עֵינַי(나사 에이나이) — 눈을 들어 바라보다"
+    },
+    {
+     "w": "from whence cometh my help",
+     "ko": "나의 도움이 어디서 올꼬",
+     "note": "עֵזֶר(에제르) — 도움"
+    },
+    {
+     "w": "made heaven and earth",
+     "ko": "하늘과 땅을 지으신",
+     "note": "עָשָׂה(아사) — 만드시다, 지으시다"
+    }
+   ],
+   "orig": "עֶזְרִי מֵעִם יְהוָה (ezri me-im YHWH)"
+  },
+  {
+   "id": "lam3-22",
+   "theme": "hope",
+   "ref": "예레미야애가 3:22~23",
+   "kr": "여호와의 인자와 긍휼이 무궁하시므로 우리가 진멸되지 아니함이니이다. 이것들이 아침마다 새로우니, 주의 성실하심이 크시도소이다.",
+   "en": "It is of the LORD'S mercies that we are not consumed, because his compassions fail not. They are new every morning: great is thy faithfulness.",
+   "words": [
+    {
+     "w": "mercies",
+     "ko": "인자",
+     "note": "חֶסֶד(헤세드) — 변함없는 인자"
+    },
+    {
+     "w": "not consumed",
+     "ko": "진멸되지 아니함",
+     "note": "תָּמַם(타맘) — 다하다, 끝나다"
+    },
+    {
+     "w": "new every morning",
+     "ko": "아침마다 새로우니",
+     "note": "חָדָשׁ(하다쉬) — 새로운"
+    }
+   ],
+   "orig": "חַדָשִׁים לַבְּקָרִים רַבָּה אֱמוּנָתֶךָ (ḥadashim la-bekarim rabbah emunatekha)"
+  },
+  {
+   "id": "rom8-18",
+   "theme": "hope",
+   "ref": "로마서 8:18",
+   "kr": "생각하건대 현재의 고난은 장차 우리에게 나타날 영광과 족히 비교할 수 없도다.",
+   "en": "For I reckon that the sufferings of this present time are not worthy to be compared with the glory which shall be revealed in us.",
+   "words": [
+    {
+     "w": "sufferings of this present time",
+     "ko": "현재의 고난",
+     "note": "παθήματα(파테마타) — 고난, 환난"
+    },
+    {
+     "w": "not worthy to be compared",
+     "ko": "족히 비교할 수 없도다",
+     "note": "ἄξιος(악시오스) — 견줄 만한"
+    },
+    {
+     "w": "glory which shall be revealed",
+     "ko": "장차 나타날 영광",
+     "note": "δόξα(독사) — 영광"
+    }
+   ],
+   "orig": "οὐκ ἄξια τὰ παθήματα τοῦ νῦν καιροῦ (ouk axia ta pathēmata tou nyn kairou)"
+  },
+  {
+   "id": "ps119-105",
+   "theme": "word",
+   "ref": "시편 119:105",
+   "kr": "주의 말씀은 내 발에 등이요, 내 길에 빛이니이다.",
+   "en": "Thy word is a lamp unto my feet, and a light unto my path.",
+   "words": [
+    {
+     "w": "Thy word",
+     "ko": "주의 말씀",
+     "note": "דָּבָר(다바르) — 말씀"
+    },
+    {
+     "w": "a lamp unto my feet",
+     "ko": "내 발에 등이요",
+     "note": "נֵר(네르) — 등불"
+    },
+    {
+     "w": "a light unto my path",
+     "ko": "내 길에 빛이니이다",
+     "note": "אוֹר(오르) — 빛"
+    }
+   ],
+   "orig": "נֵר־לְרַגְלִי דְבָרֶךָ (ner-le-ragli devarekha)"
+  },
+  {
+   "id": "heb4-12",
+   "theme": "word",
+   "ref": "히브리서 4:12",
+   "kr": "하나님의 말씀은 살아 있고 운동력이 있어 좌우에 날선 어떤 검보다도 예리하여, 혼과 영과 및 관절과 골수를 찔러 쪼개기까지 하며, 또 마음의 생각과 뜻을 분별하느니라.",
+   "en": "For the word of God is quick, and powerful, and sharper than any twoedged sword, piercing even to the dividing asunder of soul and spirit, and of the joints and marrow, and is a discerner of the thoughts and intents of the heart.",
+   "words": [
+    {
+     "w": "quick",
+     "ko": "살아 있고",
+     "note": "ζῶν(존) — 살아 있는"
+    },
+    {
+     "w": "powerful",
+     "ko": "운동력이 있어",
+     "note": "ἐνεργής(에네르게스) — 힘 있게 역사하는"
+    },
+    {
+     "w": "discerner",
+     "ko": "분별하느니라",
+     "note": "κριτικός(크리티코스) — 판단하는, 분별하는"
+    }
+   ],
+   "orig": "ζῶν γὰρ ὁ λόγος τοῦ θεοῦ καὶ ἐνεργής (zōn gar ho logos tou theou kai energēs)"
+  },
+  {
+   "id": "is40-8",
+   "theme": "word",
+   "ref": "이사야 40:8",
+   "kr": "풀은 마르고 꽃은 시드나, 우리 하나님의 말씀은 영원히 서리라.",
+   "en": "The grass withereth, the flower fadeth: but the word of our God shall stand for ever.",
+   "words": [
+    {
+     "w": "withereth",
+     "ko": "마르고",
+     "note": "יָבֵשׁ(야베쉬) — 마르다"
+    },
+    {
+     "w": "fadeth",
+     "ko": "시드나",
+     "note": "נָבֵל(나벨) — 시들다"
+    },
+    {
+     "w": "shall stand for ever",
+     "ko": "영원히 서리라",
+     "note": "קוּם לְעוֹלָם(쿰 레올람) — 영원히 굳게 서다"
+    }
+   ],
+   "orig": "וּדְבַר־אֱלֹהֵינוּ יָקוּם לְעוֹלָם (u-devar-Eloheinu yaqum le-olam)"
+  },
+  {
+   "id": "2ti3-16",
+   "theme": "word",
+   "ref": "디모데후서 3:16~17",
+   "kr": "모든 성경은 하나님의 감동으로 된 것으로, 교훈과 책망과 바르게 함과 의로 교육하기에 유익하니, 이는 하나님의 사람으로 온전케 하며 모든 선한 일을 행하기에 온전히 갖추게 하려 함이라.",
+   "en": "All scripture is given by inspiration of God, and is profitable for doctrine, for reproof, for correction, for instruction in righteousness: That the man of God may be perfect, throughly furnished unto all good works.",
+   "words": [
+    {
+     "w": "inspiration of God",
+     "ko": "하나님의 감동으로",
+     "note": "θεόπνευστος(테오프뉴스토스) — 하나님이 불어넣으신"
+    },
+    {
+     "w": "profitable for doctrine",
+     "ko": "교훈에 유익하니",
+     "note": "ὠφέλιμος(오펠리모스) — 유익한"
+    },
+    {
+     "w": "throughly furnished",
+     "ko": "온전히 갖추게",
+     "note": "ἐξαρτίζω(엑사르티조) — 완전히 갖추다"
+    }
+   ],
+   "orig": "πᾶσα γραφὴ θεόπνευστος (pasa graphē theopneustos)"
+  },
+  {
+   "id": "jos1-8",
+   "theme": "word",
+   "ref": "여호수아 1:8",
+   "kr": "이 율법책을 네 입에서 떠나지 말게 하며 주야로 그것을 묵상하여, 그 안에 기록된 대로 다 지켜 행하라. 그리하면 네 길이 평탄하게 되며 네가 형통하리라.",
+   "en": "This book of the law shall not depart out of thy mouth; but thou shalt meditate therein day and night, that thou mayest observe to do according to all that is written therein: for then thou shalt make thy way prosperous, and then thou shalt have good success.",
+   "words": [
+    {
+     "w": "meditate therein day and night",
+     "ko": "주야로 그것을 묵상하여",
+     "note": "הָגָה(하가) — 읊조리다, 묵상하다"
+    },
+    {
+     "w": "observe to do",
+     "ko": "지켜 행하라",
+     "note": "שָׁמַר(샤마르) — 지키다, 준행하다"
+    },
+    {
+     "w": "prosperous",
+     "ko": "평탄하게",
+     "note": "צָלַח(찰라흐) — 형통하다"
+    }
+   ],
+   "orig": "וְהָגִיתָ בּוֹ יוֹמָם וָלַיְלָה (we-hagita bo yomam wa-laylah)"
+  },
+  {
+   "id": "1jn1-9",
+   "theme": "repentance",
+   "ref": "요한일서 1:9",
+   "kr": "만일 우리가 우리 죄를 자백하면, 그는 미쁘시고 의로우사 우리 죄를 사하시며 우리를 모든 불의에서 깨끗하게 하실 것이라.",
+   "en": "If we confess our sins, he is faithful and just to forgive us our sins, and to cleanse us from all unrighteousness.",
+   "words": [
+    {
+     "w": "confess our sins",
+     "ko": "우리 죄를 자백하면",
+     "note": "ὁμολογέω(호몰로게오) — 죄를 인정하여 고백하다"
+    },
+    {
+     "w": "faithful and just",
+     "ko": "미쁘시고 의로우사",
+     "note": "πιστὸς καὶ δίκαιος(피스토스 카이 디카이오스)"
+    },
+    {
+     "w": "cleanse us",
+     "ko": "깨끗하게 하실 것이라",
+     "note": "καθαρίζω(카타리조) — 정결케 하다"
+    }
+   ],
+   "orig": "ἐὰν ὁμολογῶμεν τὰς ἁμαρτίας ἡμῶν (ean homologōmen tas hamartias hēmōn)"
+  },
+  {
+   "id": "2ch7-14",
+   "theme": "repentance",
+   "ref": "역대하 7:14",
+   "kr": "내 이름으로 일컫는 내 백성이 스스로 겸비하여 기도하고 내 얼굴을 구하여 그 악한 길에서 떠나면, 내가 하늘에서 듣고 그들의 죄를 사하며 그들의 땅을 고칠지라.",
+   "en": "If my people, which are called by my name, shall humble themselves, and pray, and seek my face, and turn from their wicked ways; then will I hear from heaven, and will forgive their sin, and will heal their land.",
+   "words": [
+    {
+     "w": "humble themselves",
+     "ko": "스스로 겸비하여",
+     "note": "כָּנַע(카나) — 낮추다, 굴복하다"
+    },
+    {
+     "w": "seek my face",
+     "ko": "내 얼굴을 구하여",
+     "note": "בָּקַשׁ פָּנִים(바카쉬 파님) — 그 얼굴을 찾다"
+    },
+    {
+     "w": "turn from their wicked ways",
+     "ko": "악한 길에서 떠나면",
+     "note": "שׁוּב(슈브) — 돌이키다, 회개하다"
+    }
+   ],
+   "orig": "וְיָשֻׁבוּ מִדַּרְכֵיהֶם הָרָעִים (we-yashuvu mi-darkeihem ha-ra'im)"
+  },
+  {
+   "id": "is1-18",
+   "theme": "repentance",
+   "ref": "이사야 1:18",
+   "kr": "여호와께서 이르시되 \"오라, 우리가 서로 변론하자. 너희 죄가 주홍 같을지라도 눈과 같이 희어질 것이요, 진홍같이 붉을지라도 양털같이 되리라\" 하시니라.",
+   "en": "Come now, and let us reason together, saith the LORD: though your sins be as scarlet, they shall be as white as snow; though they be red like crimson, they shall be as wool.",
+   "words": [
+    {
+     "w": "reason together",
+     "ko": "서로 변론하자",
+     "note": "יָכַח(야카흐) — 따지다, 변론하다"
+    },
+    {
+     "w": "as scarlet",
+     "ko": "주홍 같을지라도",
+     "note": "שָׁנִי(샤니) — 주홍빛"
+    },
+    {
+     "w": "white as snow",
+     "ko": "눈과 같이 희어질",
+     "note": "שֶׁלֶג(셸레그) — 눈"
+    }
+   ],
+   "orig": "אִם־יִהְיוּ חֲטָאֵיכֶם כַּשָּׁנִים כַּשֶּׁלֶג יַלְבִּינוּ (im-yihyu ḥata'eikhem ka-shanim ka-sheleg yalbinu)"
+  },
+  {
+   "id": "ps51-10",
+   "theme": "repentance",
+   "ref": "시편 51:10",
+   "kr": "하나님이여, 내 속에 정한 마음을 창조하시고, 내 안에 정직한 영을 새롭게 하소서.",
+   "en": "Create in me a clean heart, O God; and renew a right spirit within me.",
+   "words": [
+    {
+     "w": "Create in me",
+     "ko": "내 속에 창조하시고",
+     "note": "בָּרָא(바라) — 새로이 지으시다(하나님만의 창조)"
+    },
+    {
+     "w": "a clean heart",
+     "ko": "정한 마음",
+     "note": "לֵב טָהוֹר(레브 타호르) — 정결한 마음"
+    },
+    {
+     "w": "renew a right spirit",
+     "ko": "정직한 영을 새롭게",
+     "note": "רוּחַ נָכוֹן(루아흐 나콘) — 굳건한 영"
+    }
+   ],
+   "orig": "לֵב טָהוֹר בְּרָא־לִי אֱלֹהִים (lev tahor bera-li Elohim)"
+  },
+  {
+   "id": "ac3-19",
+   "theme": "repentance",
+   "ref": "사도행전 3:19",
+   "kr": "그러므로 너희가 회개하고 돌이켜 너희 죄 없이 함을 받으라. 이는 새롭게 되는 날이 주 앞으로부터 이르게 하려 하심이라.",
+   "en": "Repent ye therefore, and be converted, that your sins may be blotted out, when the times of refreshing shall come from the presence of the Lord;",
+   "words": [
+    {
+     "w": "Repent ye",
+     "ko": "회개하고",
+     "note": "μετανοέω(메타노에오) — 마음을 돌이키다, 회개하다"
+    },
+    {
+     "w": "be converted",
+     "ko": "돌이켜",
+     "note": "ἐπιστρέφω(에피스트레포) — 돌아서다"
+    },
+    {
+     "w": "blotted out",
+     "ko": "죄 없이 함을 받으라",
+     "note": "ἐξαλείφω(엑살레이포) — 지워 없애다"
+    }
+   ],
+   "orig": "μετανοήσατε οὖν καὶ ἐπιστρέψατε (metanoēsate oun kai epistrepsate)"
+  },
+  {
+   "id": "jn11-25",
+   "theme": "eternal",
+   "ref": "요한복음 11:25~26",
+   "kr": "예수께서 이르시되 \"나는 부활이요 생명이니, 나를 믿는 자는 죽어도 살겠고, 무릇 살아서 나를 믿는 자는 영원히 죽지 아니하리니, 네가 이것을 믿느냐\" 하시니라.",
+   "en": "Jesus said unto her, I am the resurrection, and the life: he that believeth in me, though he were dead, yet shall he live: And whosoever liveth and believeth in me shall never die. Believest thou this?",
+   "words": [
+    {
+     "w": "the resurrection",
+     "ko": "부활이요",
+     "note": "ἀνάστασις(아나스타시스) — 부활"
+    },
+    {
+     "w": "the life",
+     "ko": "생명이니",
+     "note": "ζωή(조에) — 생명"
+    },
+    {
+     "w": "never die",
+     "ko": "영원히 죽지 아니하리니",
+     "note": "οὐ μὴ ἀποθάνῃ(우 메 아포타네) — 결코 죽지 않으리라"
+    }
+   ],
+   "orig": "ἐγώ εἰμι ἡ ἀνάστασις καὶ ἡ ζωή (egō eimi hē anastasis kai hē zōē)"
+  },
+  {
+   "id": "jn14-2",
+   "theme": "eternal",
+   "ref": "요한복음 14:2~3",
+   "kr": "내 아버지의 집에 거할 곳이 많도다. 그렇지 않으면 너희에게 일렀으리라. 내가 너희를 위하여 처소를 예비하러 가노니, 가서 너희를 위하여 처소를 예비하면 내가 다시 와서 너희를 내게로 영접하여, 나 있는 곳에 너희도 있게 하리라.",
+   "en": "In my Father's house are many mansions: if it were not so, I would have told you. I go to prepare a place for you. And if I go and prepare a place for you, I will come again, and receive you unto myself; that where I am, there ye may be also.",
+   "words": [
+    {
+     "w": "many mansions",
+     "ko": "거할 곳이 많도다",
+     "note": "μοναί(모나이) — 거처, 처소"
+    },
+    {
+     "w": "prepare a place",
+     "ko": "처소를 예비하러",
+     "note": "ἑτοιμάζω(헤토이마조) — 예비하다"
+    },
+    {
+     "w": "I will come again",
+     "ko": "내가 다시 와서",
+     "note": "πάλιν ἔρχομαι(팔린 에르코마이) — 다시 오다"
+    }
+   ],
+   "orig": "ἐν τῇ οἰκίᾳ τοῦ πατρός μου μοναὶ πολλαί εἰσιν (en tē oikia tou patros mou monai pollai eisin)"
+  },
+  {
+   "id": "rev21-4",
+   "theme": "eternal",
+   "ref": "요한계시록 21:4",
+   "kr": "하나님께서 그들의 눈에서 모든 눈물을 씻기시리니, 다시는 사망이 없고 애통하는 것이나 곡하는 것이나 아픈 것이 다시 있지 아니하리라. 이는 처음 것들이 다 지나갔음이러라.",
+   "en": "And God shall wipe away all tears from their eyes; and there shall be no more death, neither sorrow, nor crying, neither shall there be any more pain: for the former things are passed away.",
+   "words": [
+    {
+     "w": "wipe away all tears",
+     "ko": "모든 눈물을 씻기시리니",
+     "note": "ἐξαλείφω(엑살레이포) — 닦아 없애다"
+    },
+    {
+     "w": "no more death",
+     "ko": "다시는 사망이 없고",
+     "note": "θάνατος(타나토스) — 사망"
+    },
+    {
+     "w": "former things are passed away",
+     "ko": "처음 것들이 다 지나갔음",
+     "note": "παρῆλθον(파렐톤) — 지나가다, 사라지다"
+    }
+   ],
+   "orig": "ὁ θάνατος οὐκ ἔσται ἔτι (ho thanatos ouk estai eti)"
+  },
+  {
+   "id": "jn3-36",
+   "theme": "eternal",
+   "ref": "요한복음 3:36",
+   "kr": "아들을 믿는 자에게는 영생이 있고, 아들을 순종치 아니하는 자는 생명을 보지 못하고 도리어 하나님의 진노가 그 위에 머물러 있느니라.",
+   "en": "He that believeth on the Son hath everlasting life: and he that believeth not the Son shall not see life; but the wrath of God abideth on him.",
+   "words": [
+    {
+     "w": "hath everlasting life",
+     "ko": "영생이 있고",
+     "note": "ζωὴ αἰώνιος(조에 아이오니오스) — 영원한 생명"
+    },
+    {
+     "w": "shall not see life",
+     "ko": "생명을 보지 못하고",
+     "note": "ὁράω(호라오) — 보다, 누리다"
+    },
+    {
+     "w": "wrath of God abideth",
+     "ko": "진노가 머물러 있느니라",
+     "note": "μένω(메노) — 머무르다, 거하다"
+    }
+   ],
+   "orig": "ὁ πιστεύων εἰς τὸν υἱὸν ἔχει ζωὴν αἰώνιον (ho pisteuōn eis ton huion echei zōēn aiōnion)"
+  },
+  {
+   "id": "rev21-3",
+   "theme": "eternal",
+   "ref": "요한계시록 21:3",
+   "kr": "내가 들으니 보좌에서 큰 음성이 나서 이르되 \"보라, 하나님의 장막이 사람들과 함께 있으매, 하나님이 그들과 함께 거하시리니 그들은 그의 백성이 되고 하나님은 친히 그들과 함께 계셔서 그들의 하나님이 되시리라\" 하더라.",
+   "en": "And I heard a great voice out of heaven saying, Behold, the tabernacle of God is with men, and he will dwell with them, and they shall be his people, and God himself shall be with them, and be their God.",
+   "words": [
+    {
+     "w": "tabernacle of God",
+     "ko": "하나님의 장막",
+     "note": "σκηνή(스케네) — 장막, 거처"
+    },
+    {
+     "w": "dwell with them",
+     "ko": "그들과 함께 거하시리니",
+     "note": "σκηνόω(스케노오) — 함께 장막 치고 거하다"
+    },
+    {
+     "w": "his people",
+     "ko": "그의 백성",
+     "note": "λαός(라오스) — 백성"
+    }
+   ],
+   "orig": "ἡ σκηνὴ τοῦ θεοῦ μετὰ τῶν ἀνθρώπων (hē skēnē tou theou meta tōn anthrōpōn)"
+  },
+  {
+   "id": "ps103-8",
+   "theme": "character",
+   "ref": "시편 103:8",
+   "kr": "여호와는 긍휼이 많으시고 은혜로우시며, 노하기를 더디 하시며 인자하심이 풍부하시도다.",
+   "en": "The LORD is merciful and gracious, slow to anger, and plenteous in mercy.",
+   "words": [
+    {
+     "w": "merciful and gracious",
+     "ko": "긍휼이 많으시고 은혜로우시며",
+     "note": "רַחוּם וְחַנּוּן(라훔 베한눈) — 긍휼하고 은혜로운"
+    },
+    {
+     "w": "slow to anger",
+     "ko": "노하기를 더디 하시며",
+     "note": "אֶרֶךְ אַפַּיִם(에레크 아파임) — 분노를 더디 내심"
+    },
+    {
+     "w": "plenteous in mercy",
+     "ko": "인자하심이 풍부하시도다",
+     "note": "רַב־חֶסֶד(라브-헤세드) — 인자가 풍성하심"
+    }
+   ],
+   "orig": "רַחוּם וְחַנּוּן יְהוָה אֶרֶךְ אַפַּיִם (raḥum we-ḥannun YHWH erekh appayim)"
+  },
+  {
+   "id": "mal3-6",
+   "theme": "character",
+   "ref": "말라기 3:6",
+   "kr": "나 여호와는 변하지 아니하나니, 그러므로 야곱의 자손들아, 너희가 소멸되지 아니하느니라.",
+   "en": "For I am the LORD, I change not; therefore ye sons of Jacob are not consumed.",
+   "words": [
+    {
+     "w": "I change not",
+     "ko": "변하지 아니하나니",
+     "note": "שָׁנָה(샤나) — 변하다, 바뀌다"
+    },
+    {
+     "w": "not consumed",
+     "ko": "소멸되지 아니하느니라",
+     "note": "כָּלָה(칼라) — 다하다, 멸하다"
+    }
+   ],
+   "orig": "אֲנִי יְהוָה לֹא שָׁנִיתִי (ani YHWH lo shaniti)"
+  },
+  {
+   "id": "heb13-8",
+   "theme": "character",
+   "ref": "히브리서 13:8",
+   "kr": "예수 그리스도는 어제나 오늘이나 영원토록 동일하시니라.",
+   "en": "Jesus Christ the same yesterday, and to day, and for ever.",
+   "words": [
+    {
+     "w": "the same",
+     "ko": "동일하시니라",
+     "note": "ὁ αὐτός(호 아우토스) — 동일하신 그분"
+    },
+    {
+     "w": "yesterday, and to day",
+     "ko": "어제나 오늘이나",
+     "note": "ἐχθὲς καὶ σήμερον(에크테스 카이 세메론)"
+    },
+    {
+     "w": "for ever",
+     "ko": "영원토록",
+     "note": "εἰς τοὺς αἰῶνας(에이스 투스 아이오나스) — 영원히"
+    }
+   ],
+   "orig": "Ἰησοῦς Χριστὸς ἐχθὲς καὶ σήμερον ὁ αὐτός (Iēsous Christos echthes kai sēmeron ho autos)"
+  },
+  {
+   "id": "1jn4-8",
+   "theme": "character",
+   "ref": "요한일서 4:8",
+   "kr": "사랑하지 아니하는 자는 하나님을 알지 못하나니, 이는 하나님은 사랑이심이라.",
+   "en": "He that loveth not knoweth not God; for God is love.",
+   "words": [
+    {
+     "w": "loveth not",
+     "ko": "사랑하지 아니하는",
+     "note": "ἀγαπάω(아가파오) — 사랑하다"
+    },
+    {
+     "w": "knoweth not God",
+     "ko": "하나님을 알지 못하나니",
+     "note": "γινώσκω(기노스코) — 체험적으로 알다"
+    },
+    {
+     "w": "God is love",
+     "ko": "하나님은 사랑이심이라",
+     "note": "ὁ θεὸς ἀγάπη ἐστίν(호 테오스 아가페 에스틴)"
+    }
+   ],
+   "orig": "ὁ θεὸς ἀγάπη ἐστίν (ho theos agapē estin)"
+  },
+  {
+   "id": "deut7-9",
+   "theme": "character",
+   "ref": "신명기 7:9",
+   "kr": "그런즉 너는 알라. 오직 네 하나님 여호와 그는 하나님이시요 신실하신 하나님이시라. 그를 사랑하고 그의 계명을 지키는 자에게는 천 대까지 그 언약을 이행하시며 인애를 베푸시되,",
+   "en": "Know therefore that the LORD thy God, he is God, the faithful God, which keepeth covenant and mercy with them that love him and keep his commandments to a thousand generations;",
+   "words": [
+    {
+     "w": "the faithful God",
+     "ko": "신실하신 하나님",
+     "note": "אֵל נֶאֱמָן(엘 네에만) — 미쁘신 하나님"
+    },
+    {
+     "w": "keepeth covenant",
+     "ko": "언약을 이행하시며",
+     "note": "בְּרִית(베리트) — 언약"
+    },
+    {
+     "w": "to a thousand generations",
+     "ko": "천 대까지",
+     "note": "אֶלֶף דּוֹר(엘레프 도르) — 천 세대"
+    }
+   ],
+   "orig": "הָאֵל הַנֶּאֱמָן שֹׁמֵר הַבְּרִית (ha-El ha-ne'eman shomer ha-berit)"
+  },
+  {
+   "id": "2co5-17",
+   "theme": "salvation",
+   "ref": "고린도후서 5:17",
+   "kr": "그런즉 누구든지 그리스도 안에 있으면 새로운 피조물이라. 옛것은 지나갔으니, 보라, 모든 것이 새것이 되었도다.",
+   "en": "Therefore if any man be in Christ, he is a new creature: old things are passed away; behold, all things are become new.",
+   "words": [
+    {
+     "w": "new creature",
+     "ko": "새로운 피조물",
+     "note": "καινὴ κτίσις(카이네 크티시스) — 새 창조물"
+    },
+    {
+     "w": "old things are passed away",
+     "ko": "옛것은 지나갔으니",
+     "note": "παρῆλθεν(파렐텐) — 사라지다, 지나가다"
+    },
+    {
+     "w": "all things are become new",
+     "ko": "모든 것이 새것이 되었도다",
+     "note": "καινός(카이노스) — 질적으로 새로운"
+    }
+   ],
+   "orig": "εἴ τις ἐν Χριστῷ καινὴ κτίσις (ei tis en Christō kainē ktisis)"
+  },
+  {
+   "id": "jn5-24",
+   "theme": "salvation",
+   "ref": "요한복음 5:24",
+   "kr": "진실로 진실로 너희에게 이르노니, 내 말을 듣고 또 나 보내신 이를 믿는 자는 영생을 얻었고 심판에 이르지 아니하나니, 사망에서 생명으로 옮겼느니라.",
+   "en": "Verily, verily, I say unto you, He that heareth my word, and believeth on him that sent me, hath everlasting life, and shall not come into condemnation; but is passed from death unto life.",
+   "words": [
+    {
+     "w": "heareth my word",
+     "ko": "내 말을 듣고",
+     "note": "ἀκούω(아쿠오) — 듣고 받아들이다"
+    },
+    {
+     "w": "shall not come into condemnation",
+     "ko": "심판에 이르지 아니하나니",
+     "note": "κρίσις(크리시스) — 심판, 정죄"
+    },
+    {
+     "w": "passed from death unto life",
+     "ko": "사망에서 생명으로 옮겼느니라",
+     "note": "μεταβέβηκεν(메타베베켄) — 이미 건너갔다"
+    }
+   ],
+   "orig": "μεταβέβηκεν ἐκ τοῦ θανάτου εἰς τὴν ζωήν (metabebēken ek tou thanatou eis tēn zōēn)"
+  },
+  {
+   "id": "1pe1-18",
+   "theme": "salvation",
+   "ref": "베드로전서 1:18~19",
+   "kr": "너희가 알거니와, 너희 조상이 물려준 헛된 행실에서 너희가 구속함을 받은 것은 은이나 금같이 없어질 것으로 된 것이 아니요, 오직 흠 없고 점 없는 어린양 같은 그리스도의 보배로운 피로 된 것이니라.",
+   "en": "Forasmuch as ye know that ye were not redeemed with corruptible things, as silver and gold, from your vain conversation received by tradition from your fathers; But with the precious blood of Christ, as of a lamb without blemish and without spot:",
+   "words": [
+    {
+     "w": "redeemed",
+     "ko": "구속함을 받은",
+     "note": "λυτρόω(뤼트로오) — 값을 치러 속량하다"
+    },
+    {
+     "w": "corruptible things",
+     "ko": "없어질 것",
+     "note": "φθαρτός(프타르토스) — 썩어 없어지는"
+    },
+    {
+     "w": "precious blood",
+     "ko": "보배로운 피",
+     "note": "τίμιον αἷμα(티미온 하이마) — 값진 피"
+    }
+   ],
+   "orig": "τιμίῳ αἵματι ὡς ἀμνοῦ ἀμώμου Χριστοῦ (timiō haimati hōs amnou amōmou Christou)"
+  },
+  {
+   "id": "lk19-10",
+   "theme": "salvation",
+   "ref": "누가복음 19:10",
+   "kr": "인자가 온 것은 잃어버린 자를 찾아 구원하려 함이니라.",
+   "en": "For the Son of man is come to seek and to save that which was lost.",
+   "words": [
+    {
+     "w": "Son of man",
+     "ko": "인자",
+     "note": "υἱὸς τοῦ ἀνθρώπου(휘오스 투 안트로푸) — 사람의 아들"
+    },
+    {
+     "w": "seek",
+     "ko": "찾아",
+     "note": "ζητέω(제테오) — 찾다"
+    },
+    {
+     "w": "save that which was lost",
+     "ko": "잃어버린 자를 구원하려",
+     "note": "ἀπολωλός(아폴롤로스) — 잃어버린 것"
+    }
+   ],
+   "orig": "ζητῆσαι καὶ σῶσαι τὸ ἀπολωλός (zētēsai kai sōsai to apolōlos)"
+  },
+  {
+   "id": "2ti1-9",
+   "theme": "salvation",
+   "ref": "디모데후서 1:9",
+   "kr": "하나님이 우리를 구원하사 거룩하신 부르심으로 부르심은, 우리의 행위대로 하심이 아니요 오직 자기의 뜻과 영원 전부터 그리스도 예수 안에서 우리에게 주신 은혜대로 하심이라.",
+   "en": "Who hath saved us, and called us with an holy calling, not according to our works, but according to his own purpose and grace, which was given us in Christ Jesus before the world began,",
+   "words": [
+    {
+     "w": "holy calling",
+     "ko": "거룩하신 부르심",
+     "note": "κλῆσις ἁγία(클레시스 하기아) — 거룩한 부르심"
+    },
+    {
+     "w": "his own purpose",
+     "ko": "자기의 뜻",
+     "note": "πρόθεσις(프로테시스) — 작정, 계획"
+    },
+    {
+     "w": "before the world began",
+     "ko": "영원 전부터",
+     "note": "πρὸ χρόνων αἰωνίων(프로 크로논 아이오니온) — 영원한 때 이전에"
+    }
+   ],
+   "orig": "τοῦ σώσαντος ἡμᾶς καὶ καλέσαντος κλήσει ἁγίᾳ (tou sōsantos hēmas kai kalesantos klēsei hagia)"
+  },
+  {
+   "id": "mk11-24",
+   "theme": "faith",
+   "ref": "마가복음 11:24",
+   "kr": "그러므로 너희에게 이르노니, 무엇이든지 기도하고 구하는 것은 받은 줄로 믿으라. 그리하면 너희에게 그대로 되리라.",
+   "en": "Therefore I say unto you, What things soever ye desire, when ye pray, believe that ye receive them, and ye shall have them.",
+   "words": [
+    {
+     "w": "what things soever ye desire",
+     "ko": "무엇이든지 구하는 것",
+     "note": "ὅσα(호사) — 무엇이든지"
+    },
+    {
+     "w": "believe that ye receive",
+     "ko": "받은 줄로 믿으라",
+     "note": "πιστεύω(피스튜오) — 신뢰하다, 믿다"
+    },
+    {
+     "w": "ye shall have them",
+     "ko": "그대로 되리라",
+     "note": "ἔσται(에스타이) — 이루어지리라"
+    }
+   ],
+   "orig": "πιστεύετε ὅτι ἐλάβετε (pisteuete hoti elabete)"
+  },
+  {
+   "id": "rom10-17",
+   "theme": "faith",
+   "ref": "로마서 10:17",
+   "kr": "그러므로 믿음은 들음에서 나며, 들음은 하나님의 말씀으로 말미암느니라.",
+   "en": "So then faith cometh by hearing, and hearing by the word of God.",
+   "words": [
+    {
+     "w": "faith cometh by hearing",
+     "ko": "믿음은 들음에서 나며",
+     "note": "ἀκοή(아코에) — 들음, 들려진 소식"
+    },
+    {
+     "w": "the word of God",
+     "ko": "하나님의 말씀",
+     "note": "ῥῆμα θεοῦ(레마 테우) — 선포된 하나님의 말씀"
+    }
+   ],
+   "orig": "ἡ πίστις ἐξ ἀκοῆς (hē pistis ex akoēs)"
+  },
+  {
+   "id": "mt17-20",
+   "theme": "faith",
+   "ref": "마태복음 17:20",
+   "kr": "이르시되 \"너희 믿음이 작은 까닭이니라. 진실로 너희에게 이르노니, 만일 너희에게 겨자씨 한 알만 한 믿음이 있으면 이 산을 명하여 여기서 저기로 옮겨지라 하여도 옮겨질 것이요, 너희가 못할 것이 없으리라\" 하시니라.",
+   "en": "And Jesus said unto them, Because of your unbelief: for verily I say unto you, If ye have faith as a grain of mustard seed, ye shall say unto this mountain, Remove hence to yonder place; and it shall remove; and nothing shall be impossible unto you.",
+   "words": [
+    {
+     "w": "as a grain of mustard seed",
+     "ko": "겨자씨 한 알만 한",
+     "note": "κόκκος σινάπεως(콕코스 시나페오스) — 겨자씨 한 알"
+    },
+    {
+     "w": "remove hence",
+     "ko": "여기서 옮겨지라",
+     "note": "μεταβαίνω(메타바이노) — 옮겨가다"
+    },
+    {
+     "w": "nothing shall be impossible",
+     "ko": "못할 것이 없으리라",
+     "note": "ἀδυνατέω(아뒤나테오) — 불가능하다"
+    }
+   ],
+   "orig": "ἐὰν ἔχητε πίστιν ὡς κόκκον σινάπεως (ean echēte pistin hōs kokkon sinapeōs)"
+  },
+  {
+   "id": "1jn5-4",
+   "theme": "faith",
+   "ref": "요한일서 5:4",
+   "kr": "무릇 하나님께로부터 난 자는 다 세상을 이기느니라. 세상을 이기는 승리는 이것이니, 곧 우리의 믿음이니라.",
+   "en": "For whatsoever is born of God overcometh the world: and this is the victory that overcometh the world, even our faith.",
+   "words": [
+    {
+     "w": "born of God",
+     "ko": "하나님께로부터 난 자",
+     "note": "γεγεννημένον ἐκ τοῦ θεοῦ(게겐네메논 에크 투 테우)"
+    },
+    {
+     "w": "overcometh the world",
+     "ko": "세상을 이기느니라",
+     "note": "νικάω(니카오) — 이기다, 정복하다"
+    },
+    {
+     "w": "the victory",
+     "ko": "승리",
+     "note": "νίκη(니케) — 승리"
+    }
+   ],
+   "orig": "αὕτη ἐστὶν ἡ νίκη ἡ νικήσασα τὸν κόσμον, ἡ πίστις ἡμῶν (hautē estin hē nikē hē nikēsasa ton kosmon, hē pistis hēmōn)"
+  },
+  {
+   "id": "hab2-4",
+   "theme": "faith",
+   "ref": "하박국 2:4",
+   "kr": "보라, 그의 마음은 교만하여 그 속에서 정직하지 못하나, 오직 의인은 그의 믿음으로 말미암아 살리라.",
+   "en": "Behold, his soul which is lifted up is not upright in him: but the just shall live by his faith.",
+   "words": [
+    {
+     "w": "lifted up",
+     "ko": "교만하여",
+     "note": "עָפַל(아팔) — 부풀어 오르다, 교만하다"
+    },
+    {
+     "w": "the just",
+     "ko": "의인",
+     "note": "צַדִּיק(차디크) — 의로운 자"
+    },
+    {
+     "w": "live by his faith",
+     "ko": "그의 믿음으로 말미암아 살리라",
+     "note": "אֱמוּנָה(에무나) — 신실함, 믿음"
+    }
+   ],
+   "orig": "וְצַדִּיק בֶּאֱמוּנָתוֹ יִחְיֶה (we-tsaddiq be-emunato yiḥyeh)"
+  },
+  {
+   "id": "1jn4-9",
+   "theme": "love",
+   "ref": "요한일서 4:9~10",
+   "kr": "하나님의 사랑이 우리에게 이렇게 나타난 바 되었으니, 곧 하나님이 자기의 독생자를 세상에 보내심은 우리로 그로 말미암아 살게 하려 하심이라. 사랑은 여기 있으니, 우리가 하나님을 사랑한 것이 아니요 하나님이 우리를 사랑하사 우리 죄를 위하여 화목제물로 그 아들을 보내셨음이라.",
+   "en": "In this was manifested the love of God toward us, because that God sent his only begotten Son into the world, that we might live through him. Herein is love, not that we loved God, but that he loved us, and sent his Son to be the propitiation for our sins.",
+   "words": [
+    {
+     "w": "was manifested",
+     "ko": "나타난 바 되었으니",
+     "note": "φανερόω(파네로오) — 드러내다, 나타내다"
+    },
+    {
+     "w": "his only begotten Son",
+     "ko": "자기의 독생자",
+     "note": "μονογενής(모노게네스) — 독생자"
+    },
+    {
+     "w": "the propitiation",
+     "ko": "화목제물",
+     "note": "ἱλασμός(힐라스모스) — 화목제물, 진노를 푸심"
+    }
+   ],
+   "orig": "ἱλασμὸν περὶ τῶν ἁμαρτιῶν ἡμῶν (hilasmon peri tōn hamartiōn hēmōn)"
+  },
+  {
+   "id": "1co13-13",
+   "theme": "love",
+   "ref": "고린도전서 13:13",
+   "kr": "그런즉 믿음, 소망, 사랑, 이 세 가지는 항상 있을 것인데, 그중의 제일은 사랑이라.",
+   "en": "And now abideth faith, hope, charity, these three; but the greatest of these is charity.",
+   "words": [
+    {
+     "w": "abideth",
+     "ko": "항상 있을 것인데",
+     "note": "μένω(메노) — 머물다, 남아 있다"
+    },
+    {
+     "w": "these three",
+     "ko": "이 세 가지",
+     "note": "τὰ τρία ταῦτα(타 트리아 타우타)"
+    },
+    {
+     "w": "the greatest",
+     "ko": "제일",
+     "note": "μείζων(메이존) — 더 큰, 으뜸가는"
+    }
+   ],
+   "orig": "μείζων δὲ τούτων ἡ ἀγάπη (meizōn de toutōn hē agapē)"
+  },
+  {
+   "id": "jn15-13",
+   "theme": "love",
+   "ref": "요한복음 15:13",
+   "kr": "사람이 친구를 위하여 자기 목숨을 버리면, 이보다 더 큰 사랑이 없나니.",
+   "en": "Greater love hath no man than this, that a man lay down his life for his friends.",
+   "words": [
+    {
+     "w": "greater love",
+     "ko": "더 큰 사랑",
+     "note": "μείζονα ἀγάπην(메이조나 아가펜)"
+    },
+    {
+     "w": "lay down his life",
+     "ko": "자기 목숨을 버리면",
+     "note": "τὴν ψυχὴν τίθημι(텐 프쉬켄 티테미) — 목숨을 내어놓다"
+    },
+    {
+     "w": "for his friends",
+     "ko": "친구를 위하여",
+     "note": "φίλος(필로스) — 벗, 친구"
+    }
+   ],
+   "orig": "μείζονα ταύτης ἀγάπην οὐδεὶς ἔχει (meizona tautēs agapēn oudeis echei)"
+  },
+  {
+   "id": "1pe4-8",
+   "theme": "love",
+   "ref": "베드로전서 4:8",
+   "kr": "무엇보다도 뜨겁게 서로 사랑할지니, 사랑은 허다한 죄를 덮느니라.",
+   "en": "And above all things have fervent charity among yourselves: for charity shall cover the multitude of sins.",
+   "words": [
+    {
+     "w": "above all things",
+     "ko": "무엇보다도",
+     "note": "πρὸ πάντων(프로 판톤) — 모든 것에 앞서"
+    },
+    {
+     "w": "fervent charity",
+     "ko": "뜨겁게 서로 사랑",
+     "note": "ἐκτενής ἀγάπη(에크테네스 아가페) — 간절하고 뜨거운 사랑"
+    },
+    {
+     "w": "cover the multitude of sins",
+     "ko": "허다한 죄를 덮느니라",
+     "note": "καλύπτω(칼뤼프토) — 가리다, 덮다"
+    }
+   ],
+   "orig": "ἀγάπη καλύπτει πλῆθος ἁμαρτιῶν (agapē kalyptei plēthos hamartiōn)"
+  },
+  {
+   "id": "deut6-5",
+   "theme": "love",
+   "ref": "신명기 6:5",
+   "kr": "너는 마음을 다하고 뜻을 다하고 힘을 다하여 네 하나님 여호와를 사랑하라.",
+   "en": "And thou shalt love the LORD thy God with all thine heart, and with all thy soul, and with all thy might.",
+   "words": [
+    {
+     "w": "with all thine heart",
+     "ko": "마음을 다하고",
+     "note": "לֵבָב(레바브) — 마음, 중심"
+    },
+    {
+     "w": "with all thy soul",
+     "ko": "뜻을 다하고",
+     "note": "נֶפֶשׁ(네페쉬) — 혼, 생명"
+    },
+    {
+     "w": "with all thy might",
+     "ko": "힘을 다하여",
+     "note": "מְאֹד(메오드) — 힘, 능력"
+    }
+   ],
+   "orig": "וְאָהַבְתָּ אֵת יְהוָה אֱלֹהֶיךָ (we-ahavta et YHWH Elohekha)"
+  },
+  {
+   "id": "rom5-20",
+   "theme": "grace",
+   "ref": "로마서 5:20",
+   "kr": "율법이 들어온 것은 범죄를 더하게 하려 함이라. 그러나 죄가 더한 곳에 은혜가 더욱 넘쳤나니,",
+   "en": "Moreover the law entered, that the offence might abound. But where sin abounded, grace did much more abound:",
+   "words": [
+    {
+     "w": "the law entered",
+     "ko": "율법이 들어온 것은",
+     "note": "παρεισέρχομαι(파레이세르코마이) — 곁으로 들어오다"
+    },
+    {
+     "w": "where sin abounded",
+     "ko": "죄가 더한 곳에",
+     "note": "πλεονάζω(플레오나조) — 많아지다, 넘치다"
+    },
+    {
+     "w": "grace did much more abound",
+     "ko": "은혜가 더욱 넘쳤나니",
+     "note": "ὑπερπερισσεύω(휘페르페리쓔오) — 훨씬 더 넘치다"
+    }
+   ],
+   "orig": "ὑπερεπερίσσευσεν ἡ χάρις (hypereperisseusen hē charis)"
+  },
+  {
+   "id": "eph1-7",
+   "theme": "grace",
+   "ref": "에베소서 1:7",
+   "kr": "우리는 그리스도 안에서 그의 피로 말미암아 구속 곧 죄 사함을 받았으니, 이는 그의 은혜의 풍성함을 따라 하심이라.",
+   "en": "In whom we have redemption through his blood, the forgiveness of sins, according to the riches of his grace;",
+   "words": [
+    {
+     "w": "redemption through his blood",
+     "ko": "그의 피로 말미암아 구속",
+     "note": "ἀπολύτρωσις(아폴뤼트로시스) — 값을 치른 구속"
+    },
+    {
+     "w": "forgiveness of sins",
+     "ko": "죄 사함",
+     "note": "ἄφεσις(아페시스) — 사함, 놓아줌"
+    },
+    {
+     "w": "riches of his grace",
+     "ko": "은혜의 풍성함",
+     "note": "πλοῦτος τῆς χάριτος(플루토스 테스 카리토스)"
+    }
+   ],
+   "orig": "κατὰ τὸ πλοῦτος τῆς χάριτος αὐτοῦ (kata to ploutos tēs charitos autou)"
+  },
+  {
+   "id": "tit2-11",
+   "theme": "grace",
+   "ref": "디도서 2:11",
+   "kr": "모든 사람에게 구원을 주시는 하나님의 은혜가 나타나,",
+   "en": "For the grace of God that bringeth salvation hath appeared to all men,",
+   "words": [
+    {
+     "w": "the grace of God",
+     "ko": "하나님의 은혜",
+     "note": "χάρις τοῦ θεοῦ(카리스 투 테우)"
+    },
+    {
+     "w": "bringeth salvation",
+     "ko": "구원을 주시는",
+     "note": "σωτήριος(소테리오스) — 구원을 가져오는"
+    },
+    {
+     "w": "hath appeared",
+     "ko": "나타나",
+     "note": "ἐπιφαίνω(에피파이노) — 나타나다, 비추다"
+    }
+   ],
+   "orig": "ἐπεφάνη γὰρ ἡ χάρις τοῦ θεοῦ ἡ σωτήριος (epephanē gar hē charis tou theou hē sōtērios)"
+  },
+  {
+   "id": "2co8-9",
+   "theme": "grace",
+   "ref": "고린도후서 8:9",
+   "kr": "너희가 우리 주 예수 그리스도의 은혜를 알거니와, 그는 부요하신 분으로서 너희를 위하여 가난하게 되심은 그의 가난함으로 말미암아 너희를 부요하게 하려 하심이라.",
+   "en": "For ye know the grace of our Lord Jesus Christ, that, though he was rich, yet for your sakes he became poor, that ye through his poverty might be rich.",
+   "words": [
+    {
+     "w": "though he was rich",
+     "ko": "부요하신 분으로서",
+     "note": "πλούσιος(플루시오스) — 부요한"
+    },
+    {
+     "w": "he became poor",
+     "ko": "가난하게 되심은",
+     "note": "πτωχεύω(프토큐오) — 가난하게 되다"
+    },
+    {
+     "w": "might be rich",
+     "ko": "부요하게 하려",
+     "note": "πλουτέω(플루테오) — 부요하게 되다"
+    }
+   ],
+   "orig": "δι’ ὑμᾶς ἐπτώχευσεν πλούσιος ὤν (di’ hymas eptōcheusen plousios ōn)"
+  },
+  {
+   "id": "rom3-24",
+   "theme": "grace",
+   "ref": "로마서 3:24",
+   "kr": "그리스도 예수 안에 있는 구속으로 말미암아 하나님의 은혜로 값없이 의롭다 하심을 얻은 자 되었느니라.",
+   "en": "Being justified freely by his grace through the redemption that is in Christ Jesus:",
+   "words": [
+    {
+     "w": "justified",
+     "ko": "의롭다 하심을 얻은",
+     "note": "δικαιόω(디카이오오) — 칭의, 의롭다 선언하다"
+    },
+    {
+     "w": "freely by his grace",
+     "ko": "은혜로 값없이",
+     "note": "δωρεάν(도레안) — 값없이, 거저"
+    },
+    {
+     "w": "the redemption",
+     "ko": "구속",
+     "note": "ἀπολύτρωσις(아폴뤼트로시스) — 구속, 속량"
+    }
+   ],
+   "orig": "δικαιούμενοι δωρεὰν τῇ αὐτοῦ χάριτι (dikaioumenoi dōrean tē autou chariti)"
+  },
+  {
+   "id": "mt6-9",
+   "theme": "prayer",
+   "ref": "마태복음 6:9~10",
+   "kr": "그러므로 너희는 이렇게 기도하라. 하늘에 계신 우리 아버지여, 이름이 거룩히 여김을 받으시오며, 나라가 임하시오며, 뜻이 하늘에서 이루어진 것같이 땅에서도 이루어지이다.",
+   "en": "After this manner therefore pray ye: Our Father which art in heaven, Hallowed be thy name. Thy kingdom come. Thy will be done in earth, as it is in heaven.",
+   "words": [
+    {
+     "w": "Hallowed be thy name",
+     "ko": "이름이 거룩히 여김을 받으시오며",
+     "note": "ἁγιάζω(하기아조) — 거룩하게 하다"
+    },
+    {
+     "w": "Thy kingdom come",
+     "ko": "나라가 임하시오며",
+     "note": "βασιλεία(바실레이아) — 왕국, 통치"
+    },
+    {
+     "w": "Thy will be done",
+     "ko": "뜻이 이루어지이다",
+     "note": "θέλημα(텔레마) — 뜻, 의지"
+    }
+   ],
+   "orig": "ἐλθέτω ἡ βασιλεία σου (elthetō hē basileia sou)"
+  },
+  {
+   "id": "lk18-1",
+   "theme": "prayer",
+   "ref": "누가복음 18:1",
+   "kr": "또 그들에게 항상 기도하고 낙심하지 말아야 할 것을 비유로 말씀하시되,",
+   "en": "And he spake a parable unto them to this end, that men ought always to pray, and not to faint;",
+   "words": [
+    {
+     "w": "always to pray",
+     "ko": "항상 기도하고",
+     "note": "πάντοτε προσεύχομαι(판토테 프로슈코마이) — 늘 기도하다"
+    },
+    {
+     "w": "not to faint",
+     "ko": "낙심하지 말아야",
+     "note": "ἐκκακέω(에크카케오) — 지쳐 낙심하다"
+    },
+    {
+     "w": "a parable",
+     "ko": "비유로",
+     "note": "παραβολή(파라볼레) — 비유"
+    }
+   ],
+   "orig": "πάντοτε προσεύχεσθαι καὶ μὴ ἐκκακεῖν (pantote proseuchesthai kai mē ekkakein)"
+  },
+  {
+   "id": "ps145-18",
+   "theme": "prayer",
+   "ref": "시편 145:18",
+   "kr": "여호와께서는 자기에게 간구하는 모든 자, 곧 진실하게 간구하는 모든 자에게 가까이 하시는도다.",
+   "en": "The LORD is nigh unto all them that call upon him, to all that call upon him in truth.",
+   "words": [
+    {
+     "w": "is nigh",
+     "ko": "가까이 하시는도다",
+     "note": "קָרוֹב(카로브) — 가까운"
+    },
+    {
+     "w": "call upon him",
+     "ko": "간구하는",
+     "note": "קָרָא(카라) — 부르다, 간구하다"
+    },
+    {
+     "w": "in truth",
+     "ko": "진실하게",
+     "note": "אֱמֶת(에메트) — 진실, 참됨"
+    }
+   ],
+   "orig": "קָרוֹב יְהוָה לְכָל־קֹרְאָיו (qarov YHWH le-kol-qore'av)"
+  },
+  {
+   "id": "1jn5-14",
+   "theme": "prayer",
+   "ref": "요한일서 5:14",
+   "kr": "그를 향하여 우리가 가진 바 담대함이 이것이니, 곧 무엇이든지 그의 뜻대로 구하면 그가 우리의 구하는 것을 들으심이라.",
+   "en": "And this is the confidence that we have in him, that, if we ask any thing according to his will, he heareth us:",
+   "words": [
+    {
+     "w": "confidence",
+     "ko": "담대함",
+     "note": "παρρησία(파르레시아) — 담대함, 거리낌 없음"
+    },
+    {
+     "w": "according to his will",
+     "ko": "그의 뜻대로",
+     "note": "κατὰ τὸ θέλημα(카타 토 텔레마)"
+    },
+    {
+     "w": "he heareth us",
+     "ko": "우리의 구하는 것을 들으심",
+     "note": "ἀκούω(아쿠오) — 들으시다, 응답하시다"
+    }
+   ],
+   "orig": "ἐάν τι αἰτώμεθα κατὰ τὸ θέλημα αὐτοῦ (ean ti aitōmetha kata to thelēma autou)"
+  },
+  {
+   "id": "col4-2",
+   "theme": "prayer",
+   "ref": "골로새서 4:2",
+   "kr": "기도를 계속하고 기도에 감사함으로 깨어 있으라.",
+   "en": "Continue in prayer, and watch in the same with thanksgiving;",
+   "words": [
+    {
+     "w": "continue in prayer",
+     "ko": "기도를 계속하고",
+     "note": "προσκαρτερέω(프로스카르테레오) — 끈질기게 힘쓰다"
+    },
+    {
+     "w": "watch",
+     "ko": "깨어 있으라",
+     "note": "γρηγορέω(그레고레오) — 깨어 경성하다"
+    },
+    {
+     "w": "with thanksgiving",
+     "ko": "감사함으로",
+     "note": "εὐχαριστία(유카리스티아) — 감사"
+    }
+   ],
+   "orig": "τῇ προσευχῇ προσκαρτερεῖτε (tē proseuchē proskartereite)"
+  },
+  {
+   "id": "is26-3",
+   "theme": "peace",
+   "ref": "이사야 26:3",
+   "kr": "주께서 심지가 견고한 자를 평강에 평강으로 지키시리니, 이는 그가 주를 신뢰함이니이다.",
+   "en": "Thou wilt keep him in perfect peace, whose mind is stayed on thee: because he trusteth in thee.",
+   "words": [
+    {
+     "w": "perfect peace",
+     "ko": "평강에 평강으로",
+     "note": "שָׁלוֹם שָׁלוֹם(샬롬 샬롬) — 온전한 평강"
+    },
+    {
+     "w": "whose mind is stayed",
+     "ko": "심지가 견고한 자",
+     "note": "סָמַךְ(사마크) — 의지하다, 굳게 두다"
+    },
+    {
+     "w": "he trusteth in thee",
+     "ko": "주를 신뢰함",
+     "note": "בָּטַח(바타흐) — 신뢰하다"
+    }
+   ],
+   "orig": "תִּצֹּר שָׁלוֹם שָׁלוֹם כִּי בְךָ בָּטוּחַ (titsor shalom shalom ki vekha batuaḥ)"
+  },
+  {
+   "id": "ps34-18",
+   "theme": "peace",
+   "ref": "시편 34:18",
+   "kr": "여호와는 마음이 상한 자를 가까이 하시고, 영이 통회하는 자를 구원하시는도다.",
+   "en": "The LORD is nigh unto them that are of a broken heart; and saveth such as be of a contrite spirit.",
+   "words": [
+    {
+     "w": "broken heart",
+     "ko": "마음이 상한 자",
+     "note": "נִשְׁבַּר־לֵב(니쉬바르-레브) — 마음이 부서진"
+    },
+    {
+     "w": "contrite spirit",
+     "ko": "영이 통회하는 자",
+     "note": "דַּכָּא רוּחַ(다카 루아흐) — 영이 짓눌린, 겸비한"
+    },
+    {
+     "w": "saveth",
+     "ko": "구원하시는도다",
+     "note": "יָשַׁע(야샤) — 구원하다"
+    }
+   ],
+   "orig": "קָרוֹב יְהוָה לְנִשְׁבְּרֵי־לֵב (qarov YHWH le-nishbere-lev)"
+  },
+  {
+   "id": "jn16-33",
+   "theme": "peace",
+   "ref": "요한복음 16:33",
+   "kr": "이것을 너희에게 이름은 너희로 내 안에서 평안을 누리게 하려 함이라. 세상에서는 너희가 환난을 당하나, 담대하라, 내가 세상을 이기었노라.",
+   "en": "These things I have spoken unto you, that in me ye might have peace. In the world ye shall have tribulation: but be of good cheer; I have overcome the world.",
+   "words": [
+    {
+     "w": "in me ye might have peace",
+     "ko": "내 안에서 평안을 누리게",
+     "note": "εἰρήνη(에이레네) — 평안"
+    },
+    {
+     "w": "tribulation",
+     "ko": "환난",
+     "note": "θλῖψις(틀립시스) — 환난, 압박"
+    },
+    {
+     "w": "I have overcome the world",
+     "ko": "내가 세상을 이기었노라",
+     "note": "νικάω(니카오) — 이기다, 정복하다"
+    }
+   ],
+   "orig": "θαρσεῖτε, ἐγὼ νενίκηκα τὸν κόσμον (tharseite, egō nenikēka ton kosmon)"
+  },
+  {
+   "id": "ps55-22",
+   "theme": "peace",
+   "ref": "시편 55:22",
+   "kr": "네 짐을 여호와께 맡기라. 그가 너를 붙드시고 의인의 요동함을 영원히 허락하지 아니하시리로다.",
+   "en": "Cast thy burden upon the LORD, and he shall sustain thee: he shall never suffer the righteous to be moved.",
+   "words": [
+    {
+     "w": "cast thy burden",
+     "ko": "네 짐을 맡기라",
+     "note": "יָהַב(야하브) — 던지다, 맡기다"
+    },
+    {
+     "w": "he shall sustain thee",
+     "ko": "그가 너를 붙드시고",
+     "note": "כּוּל(쿨) — 떠받치다, 공급하다"
+    },
+    {
+     "w": "never suffer to be moved",
+     "ko": "요동함을 허락하지 아니하시리로다",
+     "note": "מוֹט(모트) — 흔들리다, 미끄러지다"
+    }
+   ],
+   "orig": "הַשְׁלֵךְ עַל־יְהוָה יְהָבְךָ (hashlek al-YHWH yehavekha)"
+  },
+  {
+   "id": "2th3-16",
+   "theme": "peace",
+   "ref": "데살로니가후서 3:16",
+   "kr": "평강의 주께서 친히 때마다 일마다 너희에게 평강을 주시기를 원하노라. 주께서 너희 모든 사람과 함께하시기를 원하노라.",
+   "en": "Now the Lord of peace himself give you peace always by all means. The Lord be with you all.",
+   "words": [
+    {
+     "w": "Lord of peace",
+     "ko": "평강의 주",
+     "note": "ὁ κύριος τῆς εἰρήνης(호 퀴리오스 테스 에이레네스)"
+    },
+    {
+     "w": "peace always",
+     "ko": "때마다 평강을",
+     "note": "διὰ παντός(디아 판토스) — 항상, 늘"
+    },
+    {
+     "w": "be with you all",
+     "ko": "너희 모든 사람과 함께하시기를",
+     "note": "μετὰ πάντων(메타 판톤) — 모두와 함께"
+    }
+   ],
+   "orig": "αὐτὸς ὁ κύριος τῆς εἰρήνης δῴη ὑμῖν τὴν εἰρήνην (autos ho kyrios tēs eirēnēs dōē hymin tēn eirēnēn)"
+  },
+  {
+   "id": "ps119-130",
+   "theme": "guidance",
+   "ref": "시편 119:130",
+   "kr": "주의 말씀이 열리면 빛이 비치어 우둔한 자들을 깨닫게 하나이다.",
+   "en": "The entrance of thy words giveth light; it giveth understanding unto the simple.",
+   "words": [
+    {
+     "w": "the entrance of thy words",
+     "ko": "주의 말씀이 열리면",
+     "note": "פֵּתַח(페타흐) — 열림, 풀어짐"
+    },
+    {
+     "w": "giveth light",
+     "ko": "빛이 비치어",
+     "note": "אוֹר(오르) — 빛"
+    },
+    {
+     "w": "understanding unto the simple",
+     "ko": "우둔한 자들을 깨닫게",
+     "note": "פֶּתִי(페티) — 어리석은, 단순한 자"
+    }
+   ],
+   "orig": "פֵּתַח דְּבָרֶיךָ יָאִיר (petaḥ devarekha ya'ir)"
+  },
+  {
+   "id": "pr2-6",
+   "theme": "guidance",
+   "ref": "잠언 2:6",
+   "kr": "대저 여호와는 지혜를 주시며, 지식과 명철도 그 입에서 나오느니라.",
+   "en": "For the LORD giveth wisdom: out of his mouth cometh knowledge and understanding.",
+   "words": [
+    {
+     "w": "giveth wisdom",
+     "ko": "지혜를 주시며",
+     "note": "חָכְמָה(호크마) — 지혜"
+    },
+    {
+     "w": "knowledge",
+     "ko": "지식",
+     "note": "דַּעַת(다아트) — 지식"
+    },
+    {
+     "w": "understanding",
+     "ko": "명철",
+     "note": "תְּבוּנָה(테부나) — 명철, 분별"
+    }
+   ],
+   "orig": "כִּי־יְהוָה יִתֵּן חָכְמָה (ki-YHWH yitten ḥokhmah)"
+  },
+  {
+   "id": "jn16-13",
+   "theme": "guidance",
+   "ref": "요한복음 16:13",
+   "kr": "그러하나 진리의 성령이 오시면 그가 너희를 모든 진리 가운데로 인도하시리니, 그가 스스로 말하지 아니하고 오직 듣는 것을 말하며 장래 일을 너희에게 알리시리라.",
+   "en": "Howbeit when he, the Spirit of truth, is come, he will guide you into all truth: for he shall not speak of himself; but whatsoever he shall hear, that shall he speak: and he will shew you things to come.",
+   "words": [
+    {
+     "w": "Spirit of truth",
+     "ko": "진리의 성령",
+     "note": "πνεῦμα τῆς ἀληθείας(프뉴마 테스 알레테이아스)"
+    },
+    {
+     "w": "guide you into all truth",
+     "ko": "모든 진리 가운데로 인도하시리니",
+     "note": "ὁδηγέω(호데게오) — 길을 인도하다"
+    },
+    {
+     "w": "things to come",
+     "ko": "장래 일",
+     "note": "τὰ ἐρχόμενα(타 에르코메나) — 장차 올 것들"
+    }
+   ],
+   "orig": "ὁδηγήσει ὑμᾶς εἰς πᾶσαν τὴν ἀλήθειαν (hodēgēsei hymas eis pasan tēn alētheian)"
+  },
+  {
+   "id": "pr16-3",
+   "theme": "guidance",
+   "ref": "잠언 16:3",
+   "kr": "너의 행사를 여호와께 맡기라. 그리하면 네가 경영하는 것이 이루어지리라.",
+   "en": "Commit thy works unto the LORD, and thy thoughts shall be established.",
+   "words": [
+    {
+     "w": "commit thy works",
+     "ko": "너의 행사를 맡기라",
+     "note": "גָּלַל(갈랄) — 굴려 맡기다"
+    },
+    {
+     "w": "thy thoughts",
+     "ko": "네가 경영하는 것",
+     "note": "מַחֲשָׁבָה(마하샤바) — 생각, 계획"
+    },
+    {
+     "w": "shall be established",
+     "ko": "이루어지리라",
+     "note": "כּוּן(쿤) — 굳게 세워지다"
+    }
+   ],
+   "orig": "גֹּל אֶל־יְהוָה מַעֲשֶׂיךָ (gol el-YHWH ma'asekha)"
+  },
+  {
+   "id": "ps25-9",
+   "theme": "guidance",
+   "ref": "시편 25:9",
+   "kr": "온유한 자를 공의로 인도하심이여, 온유한 자에게 그의 도를 가르치시리로다.",
+   "en": "The meek will he guide in judgment: and the meek will he teach his way.",
+   "words": [
+    {
+     "w": "the meek",
+     "ko": "온유한 자",
+     "note": "עָנָו(아나브) — 겸손한, 온유한"
+    },
+    {
+     "w": "guide in judgment",
+     "ko": "공의로 인도하심",
+     "note": "דָּרַךְ(다라크) — 이끌어 행하게 하다"
+    },
+    {
+     "w": "teach his way",
+     "ko": "그의 도를 가르치시리로다",
+     "note": "לָמַד(라마드) — 가르치다"
+    }
+   ],
+   "orig": "יַדְרֵךְ עֲנָוִים בַּמִּשְׁפָּט (yadrek anawim ba-mishpat)"
+  },
+  {
+   "id": "jas1-12",
+   "theme": "trial",
+   "ref": "야고보서 1:12",
+   "kr": "시험을 참는 자는 복이 있나니, 이는 그가 시련을 견디어 낸 후에 주께서 자기를 사랑하는 자들에게 약속하신 생명의 면류관을 얻을 것임이라.",
+   "en": "Blessed is the man that endureth temptation: for when he is tried, he shall receive the crown of life, which the Lord hath promised to them that love him.",
+   "words": [
+    {
+     "w": "endureth temptation",
+     "ko": "시험을 참는",
+     "note": "ὑπομένω(휘포메노) — 견디어 내다"
+    },
+    {
+     "w": "when he is tried",
+     "ko": "시련을 견디어 낸 후에",
+     "note": "δόκιμος(도키모스) — 검증되어 인정받은"
+    },
+    {
+     "w": "crown of life",
+     "ko": "생명의 면류관",
+     "note": "στέφανος τῆς ζωῆς(스테파노스 테스 조에스)"
+    }
+   ],
+   "orig": "λήμψεται τὸν στέφανον τῆς ζωῆς (lēmpsetai ton stephanon tēs zōēs)"
+  },
+  {
+   "id": "1pe5-7",
+   "theme": "trial",
+   "ref": "베드로전서 5:7",
+   "kr": "너희 염려를 다 주께 맡기라. 이는 그가 너희를 돌보심이라.",
+   "en": "Casting all your care upon him; for he careth for you.",
+   "words": [
+    {
+     "w": "casting all your care",
+     "ko": "너희 염려를 다 맡기라",
+     "note": "ἐπιρίπτω(에피리프토) — 던져 맡기다"
+    },
+    {
+     "w": "he careth for you",
+     "ko": "그가 너희를 돌보심이라",
+     "note": "μέλει(멜레이) — 마음을 쓰시다, 돌보시다"
+    }
+   ],
+   "orig": "πᾶσαν τὴν μέριμναν ὑμῶν ἐπιρίψαντες ἐπ’ αὐτόν (pasan tēn merimnan hymōn epiripsantes ep’ auton)"
+  },
+  {
+   "id": "ps30-5",
+   "theme": "trial",
+   "ref": "시편 30:5",
+   "kr": "그의 노염은 잠깐이요 그의 은총은 평생이로다. 저녁에는 울음이 깃들일지라도 아침에는 기쁨이 오리로다.",
+   "en": "For his anger endureth but a moment; in his favour is life: weeping may endure for a night, but joy cometh in the morning.",
+   "words": [
+    {
+     "w": "his anger endureth but a moment",
+     "ko": "그의 노염은 잠깐이요",
+     "note": "רֶגַע(레가) — 순간, 잠깐"
+    },
+    {
+     "w": "in his favour is life",
+     "ko": "그의 은총은 평생이로다",
+     "note": "רָצוֹן(라촌) — 은총, 호의"
+    },
+    {
+     "w": "joy cometh in the morning",
+     "ko": "아침에는 기쁨이 오리로다",
+     "note": "רִנָּה(린나) — 기쁨의 외침"
+    }
+   ],
+   "orig": "בָּעֶרֶב יָלִין בֶּכִי וְלַבֹּקֶר רִנָּה (ba-erev yalin bekhi we-la-boker rinnah)"
+  },
+  {
+   "id": "rom5-3",
+   "theme": "trial",
+   "ref": "로마서 5:3~4",
+   "kr": "다만 이뿐 아니라 우리가 환난 중에도 즐거워하나니, 이는 환난은 인내를, 인내는 연단을, 연단은 소망을 이루는 줄 앎이로다.",
+   "en": "And not only so, but we glory in tribulations also: knowing that tribulation worketh patience; And patience, experience; and experience, hope:",
+   "words": [
+    {
+     "w": "glory in tribulations",
+     "ko": "환난 중에도 즐거워하나니",
+     "note": "καυχάομαι(카우카오마이) — 자랑하다, 기뻐하다"
+    },
+    {
+     "w": "tribulation worketh patience",
+     "ko": "환난은 인내를",
+     "note": "ὑπομονή(휘포모네) — 인내, 견딤"
+    },
+    {
+     "w": "experience",
+     "ko": "연단",
+     "note": "δοκιμή(도키메) — 검증된 인격, 연단"
+    }
+   ],
+   "orig": "ἡ θλῖψις ὑπομονὴν κατεργάζεται (hē thlipsis hypomonēn katergazetai)"
+  },
+  {
+   "id": "ps34-19",
+   "theme": "trial",
+   "ref": "시편 34:19",
+   "kr": "의인은 고난이 많으나, 여호와께서 그의 모든 고난에서 건지시는도다.",
+   "en": "Many are the afflictions of the righteous: but the LORD delivereth him out of them all.",
+   "words": [
+    {
+     "w": "afflictions of the righteous",
+     "ko": "의인은 고난이 많으나",
+     "note": "רָעָה(라아) — 재앙, 고난"
+    },
+    {
+     "w": "delivereth him",
+     "ko": "건지시는도다",
+     "note": "נָצַל(나찰) — 건져 내다, 구출하다"
+    },
+    {
+     "w": "out of them all",
+     "ko": "모든 고난에서",
+     "note": "מִכֻּלָּם(미쿨람) — 그 모두로부터"
+    }
+   ],
+   "orig": "רַבּוֹת רָעוֹת צַדִּיק וּמִכֻּלָּם יַצִּילֶנּוּ יְהוָה (rabbot ra'ot tsaddiq u-mikkullam yatsilennu YHWH)"
+  },
+  {
+   "id": "ps9-1",
+   "theme": "thanks",
+   "ref": "시편 9:1",
+   "kr": "내가 전심으로 여호와께 감사하오며, 주의 모든 기이한 일들을 전하리이다.",
+   "en": "I will praise thee, O LORD, with my whole heart; I will shew forth all thy marvellous works.",
+   "words": [
+    {
+     "w": "with my whole heart",
+     "ko": "전심으로",
+     "note": "בְּכָל־לֵב(베콜-레브) — 온 마음으로"
+    },
+    {
+     "w": "praise thee",
+     "ko": "감사하오며",
+     "note": "יָדָה(야다) — 감사하다, 찬양하다"
+    },
+    {
+     "w": "marvellous works",
+     "ko": "기이한 일들",
+     "note": "נִפְלָאוֹת(니플라오트) — 놀라운 일들"
+    }
+   ],
+   "orig": "אוֹדֶה יְהוָה בְּכָל־לִבִּי (odeh YHWH be-kol-libbi)"
+  },
+  {
+   "id": "ps118-24",
+   "theme": "thanks",
+   "ref": "시편 118:24",
+   "kr": "이날은 여호와께서 정하신 날이라. 이날에 우리가 즐거워하고 기뻐하리로다.",
+   "en": "This is the day which the LORD hath made; we will rejoice and be glad in it.",
+   "words": [
+    {
+     "w": "the day which the LORD hath made",
+     "ko": "여호와께서 정하신 날",
+     "note": "עָשָׂה(아사) — 만드시다, 정하시다"
+    },
+    {
+     "w": "rejoice",
+     "ko": "즐거워하고",
+     "note": "גִּיל(길) — 크게 기뻐하다"
+    },
+    {
+     "w": "be glad",
+     "ko": "기뻐하리로다",
+     "note": "שָׂמַח(사마흐) — 즐거워하다"
+    }
+   ],
+   "orig": "זֶה־הַיּוֹם עָשָׂה יְהוָה (zeh-ha-yom asah YHWH)"
+  },
+  {
+   "id": "eph5-20",
+   "theme": "thanks",
+   "ref": "에베소서 5:20",
+   "kr": "범사에 우리 주 예수 그리스도의 이름으로 항상 아버지 하나님께 감사하며,",
+   "en": "Giving thanks always for all things unto God and the Father in the name of our Lord Jesus Christ;",
+   "words": [
+    {
+     "w": "giving thanks always",
+     "ko": "항상 감사하며",
+     "note": "εὐχαριστέω(유카리스테오) — 감사하다"
+    },
+    {
+     "w": "for all things",
+     "ko": "범사에",
+     "note": "ὑπὲρ πάντων(휘페르 판톤) — 모든 것에 대하여"
+    },
+    {
+     "w": "in the name of our Lord",
+     "ko": "주의 이름으로",
+     "note": "ἐν ὀνόματι(엔 오노마티) — 그 이름으로"
+    }
+   ],
+   "orig": "εὐχαριστοῦντες πάντοτε ὑπὲρ πάντων (eucharistountes pantote hyper pantōn)"
+  },
+  {
+   "id": "ps95-1",
+   "theme": "thanks",
+   "ref": "시편 95:1~2",
+   "kr": "오라, 우리가 여호와께 노래하며 우리 구원의 반석을 향하여 즐거이 외치자. 우리가 감사함으로 그 앞에 나아가며 시를 지어 즐거이 그를 향하여 외치자.",
+   "en": "O come, let us sing unto the LORD: let us make a joyful noise to the rock of our salvation. Let us come before his presence with thanksgiving, and make a joyful noise unto him with psalms.",
+   "words": [
+    {
+     "w": "sing unto the LORD",
+     "ko": "여호와께 노래하며",
+     "note": "רָנַן(라난) — 기쁨으로 노래하다"
+    },
+    {
+     "w": "rock of our salvation",
+     "ko": "우리 구원의 반석",
+     "note": "צוּר(추르) — 반석, 견고한 바위"
+    },
+    {
+     "w": "come before his presence with thanksgiving",
+     "ko": "감사함으로 그 앞에 나아가며",
+     "note": "תּוֹדָה(토다) — 감사"
+    }
+   ],
+   "orig": "נְקַדְּמָה פָנָיו בְּתוֹדָה (neqaddemah fanav be-todah)"
+  },
+  {
+   "id": "1th5-18b",
+   "theme": "thanks",
+   "ref": "시편 136:1",
+   "kr": "여호와께 감사하라. 그는 선하시며, 그의 인자하심이 영원함이로다.",
+   "en": "O give thanks unto the LORD; for he is good: for his mercy endureth for ever.",
+   "words": [
+    {
+     "w": "give thanks",
+     "ko": "감사하라",
+     "note": "יָדָה(야다) — 감사하다"
+    },
+    {
+     "w": "he is good",
+     "ko": "그는 선하시며",
+     "note": "טוֹב(토브) — 선한"
+    },
+    {
+     "w": "his mercy endureth for ever",
+     "ko": "그의 인자하심이 영원함이로다",
+     "note": "חֶסֶד לְעוֹלָם(헤세드 레올람) — 영원한 인자"
+    }
+   ],
+   "orig": "הוֹדוּ לַיהוָה כִּי־טוֹב כִּי לְעוֹלָם חַסְדּוֹ (hodu la-YHWH ki-tov ki le-olam ḥasdo)"
+  },
+  {
+   "id": "1pe2-9",
+   "theme": "holiness",
+   "ref": "베드로전서 2:9",
+   "kr": "그러나 너희는 택하신 족속이요 왕 같은 제사장들이요 거룩한 나라요 그의 소유가 된 백성이니, 이는 너희를 어둠에서 불러내어 그의 기이한 빛에 들어가게 하신 분의 아름다운 덕을 너희로 선포하게 하려 하심이라.",
+   "en": "But ye are a chosen generation, a royal priesthood, an holy nation, a peculiar people; that ye should shew forth the praises of him who hath called you out of darkness into his marvellous light:",
+   "words": [
+    {
+     "w": "a chosen generation",
+     "ko": "택하신 족속",
+     "note": "γένος ἐκλεκτόν(게노스 에클렉톤) — 택함받은 족속"
+    },
+    {
+     "w": "royal priesthood",
+     "ko": "왕 같은 제사장들",
+     "note": "βασίλειον ἱεράτευμα(바실레이온 히에라튜마)"
+    },
+    {
+     "w": "holy nation",
+     "ko": "거룩한 나라",
+     "note": "ἔθνος ἅγιον(에트노스 하기온)"
+    }
+   ],
+   "orig": "γένος ἐκλεκτόν, βασίλειον ἱεράτευμα, ἔθνος ἅγιον (genos eklekton, basileion hierateuma, ethnos hagion)"
+  },
+  {
+   "id": "heb12-14",
+   "theme": "holiness",
+   "ref": "히브리서 12:14",
+   "kr": "모든 사람과 더불어 화평함과 거룩함을 좇으라. 이것이 없이는 아무도 주를 보지 못하리라.",
+   "en": "Follow peace with all men, and holiness, without which no man shall see the Lord:",
+   "words": [
+    {
+     "w": "follow peace",
+     "ko": "화평함을 좇으라",
+     "note": "διώκω(디오코) — 힘써 추구하다"
+    },
+    {
+     "w": "holiness",
+     "ko": "거룩함",
+     "note": "ἁγιασμός(하기아스모스) — 성화, 거룩함"
+    },
+    {
+     "w": "no man shall see the Lord",
+     "ko": "아무도 주를 보지 못하리라",
+     "note": "ὁράω(호라오) — 보다, 뵙다"
+    }
+   ],
+   "orig": "τὸν ἁγιασμόν, οὗ χωρὶς οὐδεὶς ὄψεται τὸν κύριον (ton hagiasmon, hou chōris oudeis opsetai ton kyrion)"
+  },
+  {
+   "id": "1jn3-3",
+   "theme": "holiness",
+   "ref": "요한일서 3:3",
+   "kr": "주를 향하여 이 소망을 가진 자마다 그의 깨끗하심과 같이 자기를 깨끗하게 하느니라.",
+   "en": "And every man that hath this hope in him purifieth himself, even as he is pure.",
+   "words": [
+    {
+     "w": "this hope",
+     "ko": "이 소망",
+     "note": "ἐλπίς(엘피스) — 소망"
+    },
+    {
+     "w": "purifieth himself",
+     "ko": "자기를 깨끗하게 하느니라",
+     "note": "ἁγνίζω(하그니조) — 정결케 하다"
+    },
+    {
+     "w": "as he is pure",
+     "ko": "그의 깨끗하심과 같이",
+     "note": "ἁγνός(하그노스) — 순결한, 깨끗한"
+    }
+   ],
+   "orig": "ἁγνίζει ἑαυτόν καθὼς ἐκεῖνος ἁγνός ἐστιν (hagnizei heauton kathōs ekeinos hagnos estin)"
+  },
+  {
+   "id": "lev20-26",
+   "theme": "holiness",
+   "ref": "레위기 20:26",
+   "kr": "너희는 나에게 거룩할지어다. 이는 나 여호와가 거룩하고, 내가 너희를 만민 중에서 구별하여 내 소유를 삼았음이니라.",
+   "en": "And ye shall be holy unto me: for I the LORD am holy, and have severed you from other people, that ye should be mine.",
+   "words": [
+    {
+     "w": "holy unto me",
+     "ko": "나에게 거룩할지어다",
+     "note": "קָדוֹשׁ(카도쉬) — 거룩한, 구별된"
+    },
+    {
+     "w": "I the LORD am holy",
+     "ko": "나 여호와가 거룩하고",
+     "note": "קָדוֹשׁ אֲנִי(카도쉬 아니)"
+    },
+    {
+     "w": "severed you",
+     "ko": "구별하여",
+     "note": "בָּדַל(바달) — 나누다, 구별하다"
+    }
+   ],
+   "orig": "וִהְיִיתֶם לִי קְדֹשִׁים כִּי קָדוֹשׁ אֲנִי יְהוָה (wihyitem li qedoshim ki qadosh ani YHWH)"
+  },
+  {
+   "id": "ps24-3",
+   "theme": "holiness",
+   "ref": "시편 24:3~4",
+   "kr": "여호와의 산에 오를 자가 누구며 그의 거룩한 곳에 설 자가 누구인고. 곧 손이 깨끗하며 마음이 청결하며 뜻을 허탄한 데 두지 아니하며 거짓 맹세하지 아니하는 자로다.",
+   "en": "Who shall ascend into the hill of the LORD? or who shall stand in his holy place? He that hath clean hands, and a pure heart; who hath not lifted up his soul unto vanity, nor sworn deceitfully.",
+   "words": [
+    {
+     "w": "ascend into the hill",
+     "ko": "산에 오를",
+     "note": "עָלָה(알라) — 올라가다"
+    },
+    {
+     "w": "clean hands",
+     "ko": "손이 깨끗하며",
+     "note": "נְקִי כַפַּיִם(네키 카파임) — 깨끗한 손"
+    },
+    {
+     "w": "a pure heart",
+     "ko": "마음이 청결하며",
+     "note": "בַּר־לֵבָב(바르-레바브) — 정결한 마음"
+    }
+   ],
+   "orig": "נְקִי כַפַּיִם וּבַר־לֵבָב (neqi khappayim u-var-levav)"
+  },
+  {
+   "id": "1pe3-15",
+   "theme": "mission",
+   "ref": "베드로전서 3:15",
+   "kr": "너희 마음에 그리스도를 주로 삼아 거룩하게 하고, 너희 속에 있는 소망에 관한 이유를 묻는 자에게는 대답할 것을 항상 준비하되 온유와 두려움으로 하라.",
+   "en": "But sanctify the Lord God in your hearts: and be ready always to give an answer to every man that asketh you a reason of the hope that is in you with meekness and fear:",
+   "words": [
+    {
+     "w": "sanctify the Lord",
+     "ko": "그리스도를 주로 삼아 거룩하게 하고",
+     "note": "ἁγιάζω(하기아조) — 거룩히 모시다"
+    },
+    {
+     "w": "give an answer",
+     "ko": "대답할 것을",
+     "note": "ἀπολογία(아폴로기아) — 변증, 답변"
+    },
+    {
+     "w": "with meekness and fear",
+     "ko": "온유와 두려움으로",
+     "note": "πραΰτης καὶ φόβος(프라위테스 카이 포보스)"
+    }
+   ],
+   "orig": "ἕτοιμοι ἀεὶ πρὸς ἀπολογίαν (hetoimoi aei pros apologian)"
+  },
+  {
+   "id": "is6-8",
+   "theme": "mission",
+   "ref": "이사야 6:8",
+   "kr": "내가 또 주의 음성을 들으니, 이르시되 \"내가 누구를 보내며 누가 우리를 위하여 갈꼬\" 하시는지라. 그때에 내가 이르되 \"내가 여기 있나이다. 나를 보내소서\" 하였더니,",
+   "en": "Also I heard the voice of the Lord, saying, Whom shall I send, and who will go for us? Then said I, Here am I; send me.",
+   "words": [
+    {
+     "w": "whom shall I send",
+     "ko": "내가 누구를 보내며",
+     "note": "שָׁלַח(샬라흐) — 보내다"
+    },
+    {
+     "w": "who will go for us",
+     "ko": "누가 우리를 위하여 갈꼬",
+     "note": "הָלַךְ(할라크) — 가다"
+    },
+    {
+     "w": "send me",
+     "ko": "나를 보내소서",
+     "note": "שְׁלָחֵנִי(셸라헤니) — 나를 보내소서"
+    }
+   ],
+   "orig": "הִנְנִי שְׁלָחֵנִי (hineni shelaḥeni)"
+  },
+  {
+   "id": "ps96-3",
+   "theme": "mission",
+   "ref": "시편 96:3",
+   "kr": "그의 영광을 열방 중에 선포하며, 그의 기이한 행적을 만민 중에 선포할지어다.",
+   "en": "Declare his glory among the heathen, his wonders among all people.",
+   "words": [
+    {
+     "w": "declare his glory",
+     "ko": "그의 영광을 선포하며",
+     "note": "סָפַר(사파르) — 알리다, 선포하다"
+    },
+    {
+     "w": "among the heathen",
+     "ko": "열방 중에",
+     "note": "גּוֹיִם(고임) — 이방, 민족들"
+    },
+    {
+     "w": "his wonders",
+     "ko": "그의 기이한 행적",
+     "note": "נִפְלָאוֹת(니플라오트) — 놀라운 일들"
+    }
+   ],
+   "orig": "סַפְּרוּ בַגּוֹיִם כְּבוֹדוֹ (sapperu va-goyim kevodo)"
+  },
+  {
+   "id": "ac4-20",
+   "theme": "mission",
+   "ref": "사도행전 4:20",
+   "kr": "우리는 보고 들은 것을 말하지 아니할 수 없다 하니,",
+   "en": "For we cannot but speak the things which we have seen and heard.",
+   "words": [
+    {
+     "w": "we cannot but speak",
+     "ko": "말하지 아니할 수 없다",
+     "note": "οὐ δυνάμεθα μὴ λαλεῖν(우 뒤나메타 메 랄레인) — 말하지 않을 수 없다"
+    },
+    {
+     "w": "seen and heard",
+     "ko": "보고 들은 것",
+     "note": "εἴδαμεν καὶ ἠκούσαμεν(에이다멘 카이 에쿠사멘)"
+    }
+   ],
+   "orig": "οὐ δυνάμεθα γὰρ ἡμεῖς ἃ εἴδαμεν καὶ ἠκούσαμεν μὴ λαλεῖν (ou dynametha gar hēmeis ha eidamen kai ēkousamen mē lalein)"
+  },
+  {
+   "id": "dan12-3",
+   "theme": "mission",
+   "ref": "다니엘 12:3",
+   "kr": "지혜 있는 자는 궁창의 빛과 같이 빛날 것이요, 많은 사람을 옳은 데로 돌아오게 한 자는 별과 같이 영원토록 빛나리라.",
+   "en": "And they that be wise shall shine as the brightness of the firmament; and they that turn many to righteousness as the stars for ever and ever.",
+   "words": [
+    {
+     "w": "they that be wise",
+     "ko": "지혜 있는 자",
+     "note": "מַשְׂכִּלִים(마스킬림) — 지혜로운 자들"
+    },
+    {
+     "w": "turn many to righteousness",
+     "ko": "많은 사람을 옳은 데로 돌아오게 한 자",
+     "note": "מַצְדִּיקֵי הָרַבִּים(마츠디케이 하라빔)"
+    },
+    {
+     "w": "as the stars for ever",
+     "ko": "별과 같이 영원토록",
+     "note": "כּוֹכָבִים(코카빔) — 별들"
+    }
+   ],
+   "orig": "וּמַצְדִּיקֵי הָרַבִּים כַּכּוֹכָבִים לְעוֹלָם וָעֶד (u-matsdiqei ha-rabbim ka-kokhavim le-olam wa-ed)"
+  },
+  {
+   "id": "rom8-25",
+   "theme": "hope",
+   "ref": "로마서 8:24~25",
+   "kr": "우리가 소망으로 구원을 얻었으매, 보이는 소망이 소망이 아니니, 보는 것을 누가 바라리요. 만일 우리가 보지 못하는 것을 바라면 참음으로 기다릴지니라.",
+   "en": "For we are saved by hope: but hope that is seen is not hope: for what a man seeth, why doth he yet hope for? But if we hope for that we see not, then do we with patience wait for it.",
+   "words": [
+    {
+     "w": "saved by hope",
+     "ko": "소망으로 구원을 얻었으매",
+     "note": "ἐλπίς(엘피스) — 소망"
+    },
+    {
+     "w": "hope that is seen",
+     "ko": "보이는 소망",
+     "note": "βλεπομένη(블레포메네) — 보이는"
+    },
+    {
+     "w": "with patience wait",
+     "ko": "참음으로 기다릴지니라",
+     "note": "ὑπομονή(휘포모네) — 인내, 견딤"
+    }
+   ],
+   "orig": "τῇ γὰρ ἐλπίδι ἐσώθημεν (tē gar elpidi esōthēmen)"
+  },
+  {
+   "id": "heb6-19",
+   "theme": "hope",
+   "ref": "히브리서 6:19",
+   "kr": "우리가 이 소망을 가지고 있으니, 이는 영혼의 닻 같아서 든든하고 견고하여, 휘장 안에 들어가나니,",
+   "en": "Which hope we have as an anchor of the soul, both sure and stedfast, and which entereth into that within the veil;",
+   "words": [
+    {
+     "w": "an anchor of the soul",
+     "ko": "영혼의 닻",
+     "note": "ἄγκυρα τῆς ψυχῆς(앙퀴라 테스 프쉬케스)"
+    },
+    {
+     "w": "sure and stedfast",
+     "ko": "든든하고 견고하여",
+     "note": "ἀσφαλὴς καὶ βέβαιος(아스팔레스 카이 베바이오스)"
+    },
+    {
+     "w": "within the veil",
+     "ko": "휘장 안에",
+     "note": "καταπέτασμα(카타페타스마) — 휘장, 성소의 막"
+    }
+   ],
+   "orig": "ἣν ὡς ἄγκυραν ἔχομεν τῆς ψυχῆς (hēn hōs ankyran echomen tēs psychēs)"
+  },
+  {
+   "id": "tit2-13",
+   "theme": "hope",
+   "ref": "디도서 2:13",
+   "kr": "복스러운 소망과 우리의 크신 하나님이요 구주이신 예수 그리스도의 영광이 나타나심을 기다리게 하셨으니,",
+   "en": "Looking for that blessed hope, and the glorious appearing of the great God and our Saviour Jesus Christ;",
+   "words": [
+    {
+     "w": "that blessed hope",
+     "ko": "복스러운 소망",
+     "note": "μακαρία ἐλπίς(마카리아 엘피스) — 복된 소망"
+    },
+    {
+     "w": "the glorious appearing",
+     "ko": "영광이 나타나심",
+     "note": "ἐπιφάνεια(에피파네이아) — 영광스런 나타나심"
+    },
+    {
+     "w": "the great God and our Saviour",
+     "ko": "크신 하나님이요 구주이신",
+     "note": "ὁ μέγας θεὸς καὶ σωτήρ(호 메가스 테오스 카이 소테르)"
+    }
+   ],
+   "orig": "προσδεχόμενοι τὴν μακαρίαν ἐλπίδα (prosdechomenoi tēn makarian elpida)"
+  },
+  {
+   "id": "ps39-7",
+   "theme": "hope",
+   "ref": "시편 39:7",
+   "kr": "주여, 이제 내가 무엇을 바라리요. 나의 소망은 주께 있나이다.",
+   "en": "And now, Lord, what wait I for? my hope is in thee.",
+   "words": [
+    {
+     "w": "what wait I for",
+     "ko": "내가 무엇을 바라리요",
+     "note": "קָוָה(카바) — 바라다, 기다리다"
+    },
+    {
+     "w": "my hope is in thee",
+     "ko": "나의 소망은 주께 있나이다",
+     "note": "תּוֹחֶלֶת(토헬레트) — 소망, 기대"
+    }
+   ],
+   "orig": "תּוֹחַלְתִּי לְךָ הִיא (toḥalti lekha hi)"
+  },
+  {
+   "id": "ps31-24",
+   "theme": "hope",
+   "ref": "시편 31:24",
+   "kr": "여호와를 바라는 너희들아, 강하고 담대하라. 그리하면 너희 마음을 굳세게 하시리라.",
+   "en": "Be of good courage, and he shall strengthen your heart, all ye that hope in the LORD.",
+   "words": [
+    {
+     "w": "be of good courage",
+     "ko": "강하고 담대하라",
+     "note": "חָזַק(하자크) — 강하게 하다, 굳세게 하다"
+    },
+    {
+     "w": "strengthen your heart",
+     "ko": "너희 마음을 굳세게 하시리라",
+     "note": "אָמַץ(아마츠) — 견고하게 하다"
+    },
+    {
+     "w": "all ye that hope in the LORD",
+     "ko": "여호와를 바라는 너희들아",
+     "note": "יָחַל(야할) — 기다리다, 바라다"
+    }
+   ],
+   "orig": "חִזְקוּ וְיַאֲמֵץ לְבַבְכֶם כָּל־הַמְיַחֲלִים לַיהוָה (ḥizqu we-ya'amets levavkhem kol-ha-meyaḥalim la-YHWH)"
+  },
+  {
+   "id": "mt4-4",
+   "theme": "word",
+   "ref": "마태복음 4:4",
+   "kr": "예수께서 대답하여 이르시되 \"기록되었으되 '사람이 떡으로만 살 것이 아니요, 하나님의 입으로 나오는 모든 말씀으로 살 것이라' 하였느니라\" 하시니라.",
+   "en": "But he answered and said, It is written, Man shall not live by bread alone, but by every word that proceedeth out of the mouth of God.",
+   "words": [
+    {
+     "w": "not live by bread alone",
+     "ko": "떡으로만 살 것이 아니요",
+     "note": "ἄρτος(아르토스) — 떡, 양식"
+    },
+    {
+     "w": "every word",
+     "ko": "모든 말씀",
+     "note": "πᾶν ῥῆμα(판 레마) — 모든 말씀"
+    },
+    {
+     "w": "proceedeth out of the mouth of God",
+     "ko": "하나님의 입으로 나오는",
+     "note": "ἐκπορεύομαι(에크포류오마이) — 나오다, 발하다"
+    }
+   ],
+   "orig": "ἐπὶ παντὶ ῥήματι ἐκπορευομένῳ διὰ στόματος θεοῦ (epi panti rēmati ekporeuomenō dia stomatos theou)"
+  },
+  {
+   "id": "jas1-22",
+   "theme": "word",
+   "ref": "야고보서 1:22",
+   "kr": "너희는 말씀을 행하는 자가 되고 듣기만 하여 자신을 속이는 자가 되지 말라.",
+   "en": "But be ye doers of the word, and not hearers only, deceiving your own selves.",
+   "words": [
+    {
+     "w": "doers of the word",
+     "ko": "말씀을 행하는 자",
+     "note": "ποιηταὶ λόγου(포이에타이 로구) — 말씀을 행하는 자들"
+    },
+    {
+     "w": "hearers only",
+     "ko": "듣기만 하여",
+     "note": "ἀκροαταί(아크로아타이) — 듣는 자들"
+    },
+    {
+     "w": "deceiving your own selves",
+     "ko": "자신을 속이는",
+     "note": "παραλογίζομαι(파랄로기조마이) — 그릇 헤아려 속이다"
+    }
+   ],
+   "orig": "γίνεσθε δὲ ποιηταὶ λόγου καὶ μὴ μόνον ἀκροαταί (ginesthe de poiētai logou kai mē monon akroatai)"
+  },
+  {
+   "id": "ps119-11",
+   "theme": "word",
+   "ref": "시편 119:11",
+   "kr": "내가 주께 범죄하지 아니하려 하여 주의 말씀을 내 마음에 두었나이다.",
+   "en": "Thy word have I hid in mine heart, that I might not sin against thee.",
+   "words": [
+    {
+     "w": "hid in mine heart",
+     "ko": "내 마음에 두었나이다",
+     "note": "צָפַן(차판) — 감추다, 간직하다"
+    },
+    {
+     "w": "thy word",
+     "ko": "주의 말씀",
+     "note": "אִמְרָה(임라) — 말씀, 약속"
+    },
+    {
+     "w": "might not sin",
+     "ko": "범죄하지 아니하려",
+     "note": "חָטָא(하타) — 죄를 짓다"
+    }
+   ],
+   "orig": "בְּלִבִּי צָפַנְתִּי אִמְרָתֶךָ (be-libbi tsafanti imratekha)"
+  },
+  {
+   "id": "ps19-7",
+   "theme": "word",
+   "ref": "시편 19:7",
+   "kr": "여호와의 율법은 완전하여 영혼을 소생시키며, 여호와의 증거는 확실하여 우둔한 자를 지혜롭게 하며,",
+   "en": "The law of the LORD is perfect, converting the soul: the testimony of the LORD is sure, making wise the simple.",
+   "words": [
+    {
+     "w": "the law of the LORD is perfect",
+     "ko": "여호와의 율법은 완전하여",
+     "note": "תְּמִימָה(테미마) — 완전한, 흠 없는"
+    },
+    {
+     "w": "converting the soul",
+     "ko": "영혼을 소생시키며",
+     "note": "שׁוּב נֶפֶשׁ(슈브 네페쉬) — 영혼을 돌이키다"
+    },
+    {
+     "w": "making wise the simple",
+     "ko": "우둔한 자를 지혜롭게 하며",
+     "note": "מַחְכִּימַת פֶּתִי(마흐키마트 페티)"
+    }
+   ],
+   "orig": "תּוֹרַת יְהוָה תְּמִימָה מְשִׁיבַת נָפֶשׁ (torat YHWH temimah meshivat nafesh)"
+  },
+  {
+   "id": "mt24-35",
+   "theme": "word",
+   "ref": "마태복음 24:35",
+   "kr": "천지는 없어질지언정 내 말은 없어지지 아니하리라.",
+   "en": "Heaven and earth shall pass away, but my words shall not pass away.",
+   "words": [
+    {
+     "w": "heaven and earth shall pass away",
+     "ko": "천지는 없어질지언정",
+     "note": "παρέρχομαι(파레르코마이) — 지나가다, 사라지다"
+    },
+    {
+     "w": "my words",
+     "ko": "내 말",
+     "note": "οἱ λόγοι μου(호이 로고이 무)"
+    },
+    {
+     "w": "shall not pass away",
+     "ko": "없어지지 아니하리라",
+     "note": "οὐ μὴ παρέλθωσιν(우 메 파렐토신) — 결코 사라지지 않으리라"
+    }
+   ],
+   "orig": "οἱ δὲ λόγοι μου οὐ μὴ παρέλθωσιν (hoi de logoi mou ou mē parelthōsin)"
+  },
+  {
+   "id": "pr28-13",
+   "theme": "repentance",
+   "ref": "잠언 28:13",
+   "kr": "자기의 죄를 숨기는 자는 형통하지 못하나, 죄를 자복하고 버리는 자는 긍휼히 여김을 받으리라.",
+   "en": "He that covereth his sins shall not prosper: but whoso confesseth and forsaketh them shall have mercy.",
+   "words": [
+    {
+     "w": "covereth his sins",
+     "ko": "자기의 죄를 숨기는",
+     "note": "כָּסָה(카사) — 덮다, 감추다"
+    },
+    {
+     "w": "confesseth and forsaketh",
+     "ko": "자복하고 버리는",
+     "note": "יָדָה וְעָזַב(야다 베아자브) — 고백하고 떠나다"
+    },
+    {
+     "w": "shall have mercy",
+     "ko": "긍휼히 여김을 받으리라",
+     "note": "רָחַם(라함) — 긍휼히 여기다"
+    }
+   ],
+   "orig": "וּמוֹדֶה וְעֹזֵב יְרֻחָם (u-modeh we-ozev yeruḥam)"
+  },
+  {
+   "id": "joe2-13",
+   "theme": "repentance",
+   "ref": "요엘 2:13",
+   "kr": "너희는 옷을 찢지 말고 마음을 찢고 너희 하나님 여호와께로 돌아올지어다. 그는 은혜로우시며 자비로우시며 노하기를 더디 하시며 인애가 크시사 뜻을 돌이켜 재앙을 내리지 아니하시는 분이심이라.",
+   "en": "And rend your heart, and not your garments, and turn unto the LORD your God: for he is gracious and merciful, slow to anger, and of great kindness, and repenteth him of the evil.",
+   "words": [
+    {
+     "w": "rend your heart",
+     "ko": "마음을 찢고",
+     "note": "קָרַע לֵבָב(카라 레바브) — 마음을 찢다, 진정한 회개"
+    },
+    {
+     "w": "turn unto the LORD",
+     "ko": "여호와께로 돌아올지어다",
+     "note": "שׁוּב(슈브) — 돌이키다, 회개하다"
+    },
+    {
+     "w": "gracious and merciful",
+     "ko": "은혜로우시며 자비로우시며",
+     "note": "חַנּוּן וְרַחוּם(한눈 베라훔)"
+    }
+   ],
+   "orig": "וְקִרְעוּ לְבַבְכֶם וְאַל־בִּגְדֵיכֶם (we-qir'u levavkhem we-al-bigdeikhem)"
+  },
+  {
+   "id": "lk15-7",
+   "theme": "repentance",
+   "ref": "누가복음 15:7",
+   "kr": "내가 너희에게 이르노니, 이와 같이 죄인 한 사람이 회개하면 하늘에서는 회개할 것 없는 의인 아흔아홉으로 인하여 기뻐하는 것보다 더하리라.",
+   "en": "I say unto you, that likewise joy shall be in heaven over one sinner that repenteth, more than over ninety and nine just persons, which need no repentance.",
+   "words": [
+    {
+     "w": "one sinner that repenteth",
+     "ko": "죄인 한 사람이 회개하면",
+     "note": "μετανοέω(메타노에오) — 회개하다, 마음을 돌이키다"
+    },
+    {
+     "w": "joy shall be in heaven",
+     "ko": "하늘에서는 기뻐하는",
+     "note": "χαρά(카라) — 기쁨"
+    },
+    {
+     "w": "ninety and nine just persons",
+     "ko": "의인 아흔아홉",
+     "note": "δίκαιοι(디카이오이) — 의인들"
+    }
+   ],
+   "orig": "χαρὰ ἔσται ἐν τῷ οὐρανῷ ἐπὶ ἑνὶ ἁμαρτωλῷ μετανοοῦντι (chara estai en tō ouranō epi heni hamartōlō metanoounti)"
+  },
+  {
+   "id": "ps32-1",
+   "theme": "repentance",
+   "ref": "시편 32:1~2",
+   "kr": "허물의 사함을 받고 자신의 죄가 가려진 자는 복이 있도다. 마음에 간사함이 없고 여호와께 정죄를 당하지 아니하는 자는 복이 있도다.",
+   "en": "Blessed is he whose transgression is forgiven, whose sin is covered. Blessed is the man unto whom the LORD imputeth not iniquity, and in whose spirit there is no guile.",
+   "words": [
+    {
+     "w": "transgression is forgiven",
+     "ko": "허물의 사함을 받고",
+     "note": "נְשׂוּי־פֶּשַׁע(네수이-페샤) — 허물이 들려 옮겨진"
+    },
+    {
+     "w": "sin is covered",
+     "ko": "죄가 가려진",
+     "note": "כְּסוּי חֲטָאָה(케수이 하타아) — 죄가 덮인"
+    },
+    {
+     "w": "imputeth not iniquity",
+     "ko": "정죄를 당하지 아니하는",
+     "note": "חָשַׁב(하샤브) — 헤아리다, 돌리다"
+    }
+   ],
+   "orig": "אַשְׁרֵי נְשׂוּי־פֶּשַׁע כְּסוּי חֲטָאָה (ashre nesui-pesha kesui ḥata'ah)"
+  },
+  {
+   "id": "is55-7",
+   "theme": "repentance",
+   "ref": "이사야 55:7",
+   "kr": "악인은 그의 길을, 불의한 자는 그의 생각을 버리고 여호와께로 돌아오라. 그리하면 그가 긍휼히 여기시리라. 우리 하나님께로 돌아오라. 그가 너그럽게 용서하시리라.",
+   "en": "Let the wicked forsake his way, and the unrighteous man his thoughts: and let him return unto the LORD, and he will have mercy upon him; and to our God, for he will abundantly pardon.",
+   "words": [
+    {
+     "w": "forsake his way",
+     "ko": "그의 길을 버리고",
+     "note": "עָזַב(아자브) — 떠나다, 버리다"
+    },
+    {
+     "w": "return unto the LORD",
+     "ko": "여호와께로 돌아오라",
+     "note": "שׁוּב(슈브) — 돌이키다"
+    },
+    {
+     "w": "abundantly pardon",
+     "ko": "너그럽게 용서하시리라",
+     "note": "סָלַח(살라흐) — 용서하다"
+    }
+   ],
+   "orig": "וְיָשֹׁב אֶל־יְהוָה וִירַחֲמֵהוּ (we-yashov el-YHWH wiraḥamehu)"
+  },
+  {
+   "id": "jn14-6",
+   "theme": "eternal",
+   "ref": "요한복음 14:6",
+   "kr": "예수께서 이르시되 \"내가 곧 길이요 진리요 생명이니, 나로 말미암지 않고는 아버지께로 올 자가 없느니라\" 하시니라.",
+   "en": "Jesus saith unto him, I am the way, the truth, and the life: no man cometh unto the Father, but by me.",
+   "words": [
+    {
+     "w": "the way",
+     "ko": "길이요",
+     "note": "ἡ ὁδός(헤 호도스) — 길"
+    },
+    {
+     "w": "the truth",
+     "ko": "진리요",
+     "note": "ἡ ἀλήθεια(헤 알레테이아) — 진리"
+    },
+    {
+     "w": "no man cometh unto the Father, but by me",
+     "ko": "나로 말미암지 않고는 아버지께로 올 자가 없느니라",
+     "note": "δι’ ἐμοῦ(디 에무) — 나를 통하여"
+    }
+   ],
+   "orig": "ἐγώ εἰμι ἡ ὁδὸς καὶ ἡ ἀλήθεια καὶ ἡ ζωή (egō eimi hē hodos kai hē alētheia kai hē zōē)"
+  },
+  {
+   "id": "1co15-54",
+   "theme": "eternal",
+   "ref": "고린도전서 15:54~55",
+   "kr": "이 썩을 것이 썩지 아니함을 입고 이 죽을 것이 죽지 아니함을 입을 때에는, 기록된 바 \"사망이 승리에 삼킨 바 되리라\" 하신 말씀이 이루어지리라. 사망아, 너의 승리가 어디 있느냐. 사망아, 너의 쏘는 것이 어디 있느냐.",
+   "en": "So when this corruptible shall have put on incorruption, and this mortal shall have put on immortality, then shall be brought to pass the saying that is written, Death is swallowed up in victory. O death, where is thy sting? O grave, where is thy victory?",
+   "words": [
+    {
+     "w": "put on incorruption",
+     "ko": "썩지 아니함을 입고",
+     "note": "ἀφθαρσία(아프타르시아) — 썩지 않음"
+    },
+    {
+     "w": "swallowed up in victory",
+     "ko": "승리에 삼킨 바 되리라",
+     "note": "καταπίνω(카타피노) — 삼키다"
+    },
+    {
+     "w": "where is thy sting",
+     "ko": "너의 쏘는 것이 어디 있느냐",
+     "note": "κέντρον(켄트론) — 쏘는 침"
+    }
+   ],
+   "orig": "κατεπόθη ὁ θάνατος εἰς νῖκος (katepothē ho thanatos eis nikos)"
+  },
+  {
+   "id": "1pe1-4",
+   "theme": "eternal",
+   "ref": "베드로전서 1:3~4",
+   "kr": "우리 주 예수 그리스도의 아버지 하나님을 찬송하리로다. 그의 많으신 긍휼을 따라 예수 그리스도를 죽은 자 가운데서 부활하게 하심으로 말미암아 우리를 거듭나게 하사 산 소망이 있게 하시며, 썩지 않고 더럽지 않고 쇠하지 아니하는 유업을 잇게 하시나니, 곧 너희를 위하여 하늘에 간직하신 것이라.",
+   "en": "Blessed be the God and Father of our Lord Jesus Christ, which according to his abundant mercy hath begotten us again unto a lively hope by the resurrection of Jesus Christ from the dead, To an inheritance incorruptible, and undefiled, and that fadeth not away, reserved in heaven for you,",
+   "words": [
+    {
+     "w": "begotten us again",
+     "ko": "거듭나게 하사",
+     "note": "ἀναγεννάω(아나겐나오) — 다시 낳다, 중생케 하다"
+    },
+    {
+     "w": "a lively hope",
+     "ko": "산 소망",
+     "note": "ἐλπὶς ζῶσα(엘피스 조사) — 살아 있는 소망"
+    },
+    {
+     "w": "inheritance incorruptible",
+     "ko": "썩지 않는 유업",
+     "note": "κληρονομία ἄφθαρτος(클레로노미아 아프타르토스)"
+    }
+   ],
+   "orig": "εἰς κληρονομίαν ἄφθαρτον καὶ ἀμίαντον (eis klēronomian aphtharton kai amianton)"
+  },
+  {
+   "id": "rev22-5",
+   "theme": "eternal",
+   "ref": "요한계시록 22:5",
+   "kr": "다시는 밤이 없겠고 등불과 햇빛이 쓸데없으니, 이는 주 하나님이 그들에게 비치심이라. 그들이 세세토록 왕 노릇 하리로다.",
+   "en": "And there shall be no night there; and they need no candle, neither light of the sun; for the Lord God giveth them light: and they shall reign for ever and ever.",
+   "words": [
+    {
+     "w": "no night there",
+     "ko": "다시는 밤이 없겠고",
+     "note": "νὺξ οὐκ ἔσται(뉙스 우크 에스타이) — 밤이 없으리라"
+    },
+    {
+     "w": "the Lord God giveth them light",
+     "ko": "주 하나님이 그들에게 비치심이라",
+     "note": "φωτίζω(포티조) — 비추다, 빛을 주다"
+    },
+    {
+     "w": "reign for ever and ever",
+     "ko": "세세토록 왕 노릇 하리로다",
+     "note": "βασιλεύω(바실류오) — 다스리다, 왕 노릇 하다"
+    }
+   ],
+   "orig": "βασιλεύσουσιν εἰς τοὺς αἰῶνας τῶν αἰώνων (basileusousin eis tous aiōnas tōn aiōnōn)"
+  },
+  {
+   "id": "php3-20",
+   "theme": "eternal",
+   "ref": "빌립보서 3:20~21",
+   "kr": "오직 우리의 시민권은 하늘에 있는지라. 거기로부터 구원하시는 자 곧 주 예수 그리스도를 기다리노니, 그가 만물을 자기에게 복종하게 하실 수 있는 능력으로 우리의 낮은 몸을 자기의 영광의 몸과 같은 형체로 변하게 하시리라.",
+   "en": "For our conversation is in heaven; from whence also we look for the Saviour, the Lord Jesus Christ: Who shall change our vile body, that it may be fashioned like unto his glorious body, according to the working whereby he is able even to subdue all things unto himself.",
+   "words": [
+    {
+     "w": "our conversation is in heaven",
+     "ko": "우리의 시민권은 하늘에 있는지라",
+     "note": "πολίτευμα(폴리튜마) — 시민권, 본향"
+    },
+    {
+     "w": "we look for the Saviour",
+     "ko": "구원하시는 자를 기다리노니",
+     "note": "ἀπεκδέχομαι(아펙데코마이) — 간절히 기다리다"
+    },
+    {
+     "w": "his glorious body",
+     "ko": "그의 영광의 몸",
+     "note": "σῶμα τῆς δόξης(소마 테스 독세스)"
+    }
+   ],
+   "orig": "ἡμῶν γὰρ τὸ πολίτευμα ἐν οὐρανοῖς ὑπάρχει (hēmōn gar to politeuma en ouranois hyparchei)"
+  },
+  {
+   "id": "ex34-6",
+   "theme": "character",
+   "ref": "출애굽기 34:6",
+   "kr": "여호와께서 그의 앞으로 지나시며 선포하시되 \"여호와라, 여호와라. 자비롭고 은혜롭고 노하기를 더디 하고 인자와 진실이 많은 하나님이라\" 하시니라.",
+   "en": "And the LORD passed by before him, and proclaimed, The LORD, The LORD God, merciful and gracious, longsuffering, and abundant in goodness and truth,",
+   "words": [
+    {
+     "w": "merciful and gracious",
+     "ko": "자비롭고 은혜롭고",
+     "note": "רַחוּם וְחַנּוּן(라훔 베한눈)"
+    },
+    {
+     "w": "longsuffering",
+     "ko": "노하기를 더디 하고",
+     "note": "אֶרֶךְ אַפַּיִם(에레크 아파임) — 분노를 더디 내심"
+    },
+    {
+     "w": "abundant in goodness and truth",
+     "ko": "인자와 진실이 많은",
+     "note": "רַב־חֶסֶד וֶאֱמֶת(라브-헤세드 베에메트)"
+    }
+   ],
+   "orig": "יְהוָה יְהוָה אֵל רַחוּם וְחַנּוּן (YHWH YHWH El raḥum we-ḥannun)"
+  },
+  {
+   "id": "ps145-9",
+   "theme": "character",
+   "ref": "시편 145:8~9",
+   "kr": "여호와는 은혜로우시며 긍휼이 많으시며, 노하기를 더디 하시며 인자하심이 크시도다. 여호와께서는 모든 것을 선대하시며, 그 지으신 모든 것에 긍휼을 베푸시는도다.",
+   "en": "The LORD is gracious, and full of compassion; slow to anger, and of great mercy. The LORD is good to all: and his tender mercies are over all his works.",
+   "words": [
+    {
+     "w": "gracious",
+     "ko": "은혜로우시며",
+     "note": "חַנּוּן(한눈) — 은혜로운"
+    },
+    {
+     "w": "full of compassion",
+     "ko": "긍휼이 많으시며",
+     "note": "רַחוּם(라훔) — 긍휼한"
+    },
+    {
+     "w": "good to all",
+     "ko": "모든 것을 선대하시며",
+     "note": "טוֹב לַכֹּל(토브 라콜) — 모두에게 선하심"
+    }
+   ],
+   "orig": "טוֹב־יְהוָה לַכֹּל וְרַחֲמָיו עַל־כָּל־מַעֲשָׂיו (tov-YHWH la-kol we-raḥamav al-kol-ma'asav)"
+  },
+  {
+   "id": "1jn1-5",
+   "theme": "character",
+   "ref": "요한일서 1:5",
+   "kr": "우리가 그에게서 듣고 너희에게 전하는 소식은 이것이니, 곧 하나님은 빛이시라, 그에게는 어둠이 조금도 없으시니라.",
+   "en": "This then is the message which we have heard of him, and declare unto you, that God is light, and in him is no darkness at all.",
+   "words": [
+    {
+     "w": "God is light",
+     "ko": "하나님은 빛이시라",
+     "note": "ὁ θεὸς φῶς ἐστιν(호 테오스 포스 에스틴)"
+    },
+    {
+     "w": "no darkness at all",
+     "ko": "어둠이 조금도 없으시니라",
+     "note": "σκοτία οὐκ ἔστιν(스코티아 우크 에스틴)"
+    },
+    {
+     "w": "the message",
+     "ko": "소식",
+     "note": "ἀγγελία(앙겔리아) — 소식, 전갈"
+    }
+   ],
+   "orig": "ὁ θεὸς φῶς ἐστιν καὶ σκοτία ἐν αὐτῷ οὐκ ἔστιν οὐδεμία (ho theos phōs estin kai skotia en autō ouk estin oudemia)"
+  },
+  {
+   "id": "ps90-2",
+   "theme": "character",
+   "ref": "시편 90:2",
+   "kr": "산이 생기기 전, 땅과 세계도 주께서 만드시기 전, 곧 영원부터 영원까지 주는 하나님이시니이다.",
+   "en": "Before the mountains were brought forth, or ever thou hadst formed the earth and the world, even from everlasting to everlasting, thou art God.",
+   "words": [
+    {
+     "w": "before the mountains were brought forth",
+     "ko": "산이 생기기 전",
+     "note": "טֶרֶם הָרִים יֻלָּדוּ(테렘 하림 율라두)"
+    },
+    {
+     "w": "from everlasting to everlasting",
+     "ko": "영원부터 영원까지",
+     "note": "מֵעוֹלָם עַד־עוֹלָם(메올람 아드-올람)"
+    },
+    {
+     "w": "thou art God",
+     "ko": "주는 하나님이시니이다",
+     "note": "אַתָּה אֵל(아타 엘) — 주는 하나님이시라"
+    }
+   ],
+   "orig": "מֵעוֹלָם עַד־עוֹלָם אַתָּה אֵל (me-olam ad-olam attah El)"
+  },
+  {
+   "id": "jas1-17",
+   "theme": "character",
+   "ref": "야고보서 1:17",
+   "kr": "온갖 좋은 은사와 온전한 선물이 다 위로부터 빛들의 아버지께로부터 내려오나니, 그는 변함도 없으시고 회전하는 그림자도 없으시니라.",
+   "en": "Every good gift and every perfect gift is from above, and cometh down from the Father of lights, with whom is no variableness, neither shadow of turning.",
+   "words": [
+    {
+     "w": "every good gift",
+     "ko": "온갖 좋은 은사",
+     "note": "πᾶσα δόσις ἀγαθή(파사 도시스 아가테)"
+    },
+    {
+     "w": "the Father of lights",
+     "ko": "빛들의 아버지",
+     "note": "ὁ πατὴρ τῶν φώτων(호 파테르 톤 포톤)"
+    },
+    {
+     "w": "no variableness",
+     "ko": "변함도 없으시고",
+     "note": "παραλλαγή(파랄라게) — 변화, 바뀜"
+    }
+   ],
+   "orig": "παρ’ ᾧ οὐκ ἔνι παραλλαγὴ ἢ τροπῆς ἀποσκίασμα (par’ hō ouk eni parallagē ē tropēs aposkiasma)"
+  }
+ ]
 }
