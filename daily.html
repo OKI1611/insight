@@ -106,13 +106,15 @@
   const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth:{ flowType:'implicit', lock: async(_n,_t,fn)=>await fn() } });
   const $=id=>document.getElementById(id);
   const esc=s=>String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
-  let INDEX=[], CUR=null, USER=null, REF='';
+  const ADMIN_EMAIL='josephoh1611@gmail.com';
+  let INDEX=[], CUR=null, USER=null, REF='', IS_ADMIN=false, EDITING=null, POSTS=[];
 
   function todayStr(){ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
   function fmtK(s){ const [y,m,d]=s.split('-'); const wd=['일','월','화','수','목','금','토'][new Date(s+'T00:00:00').getDay()]; return `${y}년 ${+m}월 ${+d}일 (${wd})`; }
 
   (async()=>{
     try{ const { data:{ session } } = await sb.auth.getSession(); USER=session?session.user:null; }catch(e){}
+    IS_ADMIN = !!(USER && USER.email===ADMIN_EMAIL);
     try{ INDEX=await (await fetch('content/daily/index.json?t='+Date.now())).json(); }catch(e){ INDEX=[]; }
     INDEX=(INDEX.dates||INDEX||[]).filter(Boolean).sort();
     const t=todayStr();
@@ -202,16 +204,32 @@
     const ids=posts.map(p=>p.id); let likeRows=[];
     try{ const { data } = await sb.from('daily_post_likes').select('post_id,user_id').in('post_id',ids); likeRows=data||[]; }catch(e){}
     const lc={}, mine={}; likeRows.forEach(r=>{ lc[r.post_id]=(lc[r.post_id]||0)+1; if(USER&&r.user_id===USER.id) mine[r.post_id]=true; });
+    POSTS=posts;
     list.innerHTML=posts.map(p=>postCard(p,lc[p.id]||0,!!mine[p.id])).join('');
   }
   function postCard(p,likes,liked){
     const own = USER && p.author_id===USER.id;
+    const canEdit = own || IS_ADMIN;            // 본인 글 또는 관리자
     const nm = esc(p.author_name||'익명'); const init = nm.slice(0,2);
+    // 편집 모드: 제목·내용을 직접 고칠 수 있는 폼
+    if(EDITING===p.id){
+      return `<article class="bg-white rounded-2xl border border-gold/40 shadow-soft p-4">
+        <p class="text-[12px] font-bold text-gold mb-2">✏️ 글 수정 ${IS_ADMIN&&!own?'<span class="text-ink/40 font-normal">(관리자)</span>':''}</p>
+        <input id="et_${p.id}" type="text" maxlength="60" value="${esc(p.title||'')}" placeholder="제목 (선택)" class="w-full border border-ink/15 rounded-lg px-3 py-2 text-sm mb-2 outline-none focus:border-gold" />
+        <textarea id="ec_${p.id}" rows="5" maxlength="2000" class="w-full border border-ink/15 rounded-lg px-3 py-2 text-[14px] outline-none focus:border-gold leading-relaxed" style="white-space:pre-wrap">${esc(p.content)}</textarea>
+        <div class="flex items-center justify-end gap-2 mt-2">
+          <span id="em_${p.id}" class="text-xs text-red-500 mr-auto"></span>
+          <button onclick="cancelEdit()" class="text-sm text-ink/50 px-3 py-2">취소</button>
+          <button onclick="saveEdit('${p.id}')" class="text-sm font-bold bg-ink text-paper px-5 py-2 rounded-full hover:bg-navy transition">💾 저장</button>
+        </div>
+      </article>`;
+    }
     return `<article class="bg-white rounded-2xl border border-ink/8 shadow-soft p-4">
       <div class="flex items-center gap-2.5 mb-2">
         <div class="w-9 h-9 rounded-full bg-gold/15 text-gold flex items-center justify-center font-bold text-xs shrink-0">${init}</div>
-        <div class="flex-1 min-w-0"><p class="font-bold text-sm text-ink truncate">${nm}</p><p class="text-[11px] text-ink/40">${fdt(p.created_at)}</p></div>
-        ${own?`<button onclick="deletePost('${p.id}')" class="text-[11px] text-ink/35 hover:text-red-500">삭제</button>`:''}
+        <div class="flex-1 min-w-0"><p class="font-bold text-sm text-ink truncate">${nm}${IS_ADMIN&&!own?' <span class="text-[10px] text-ink/35 font-normal">· 다른 회원</span>':''}</p><p class="text-[11px] text-ink/40">${fdt(p.created_at)}</p></div>
+        ${canEdit?`<button onclick="startEdit('${p.id}')" class="text-[11px] text-ink/40 hover:text-gold">✏️ 수정</button>
+        <button onclick="deletePost('${p.id}')" class="text-[11px] text-ink/35 hover:text-red-500">삭제</button>`:''}
       </div>
       ${p.title?`<p class="font-bold text-ink text-[15px] mb-1">${esc(p.title)}</p>`:''}
       <p class="text-[14px] text-ink/80 leading-relaxed" style="white-space:pre-wrap">${esc(p.content)}</p>
@@ -219,6 +237,21 @@
         <button onclick="toggleLike('${p.id}')" class="flex items-center gap-1.5 text-[13px] ${liked?'text-gold font-bold':'text-ink/55'} hover:text-gold transition">❤️ <span>${likes}</span></button>
       </div>
     </article>`;
+  }
+  function startEdit(id){ EDITING=id; const p=POSTS.find(x=>x.id===id); if(!p) return;
+    // 화면만 편집 폼으로 교체(좋아요 수 재조회 없이 빠르게)
+    const list=$('postList'); const arts=list.querySelectorAll('article');
+    const idx=POSTS.findIndex(x=>x.id===id); if(arts[idx]) arts[idx].outerHTML=postCard(p,0,false);
+    const ta=$('ec_'+id); if(ta){ ta.focus(); ta.setSelectionRange(ta.value.length,ta.value.length); }
+  }
+  function cancelEdit(){ EDITING=null; loadPosts(CUR); }
+  async function saveEdit(id){
+    const title=($('et_'+id)?$('et_'+id).value.trim():''), content=($('ec_'+id)?$('ec_'+id).value.trim():'');
+    if(content.length<5){ if($('em_'+id))$('em_'+id).textContent='조금 더 적어주세요 (5자 이상).'; return; }
+    try{ const { error }=await sb.from('daily_posts').update({ title:title||null, content }).eq('id',id);
+      if(error){ if($('em_'+id))$('em_'+id).textContent='수정 권한이 없거나 저장에 실패했어요.'; return; }
+    }catch(e){ if($('em_'+id))$('em_'+id).textContent='저장 중 문제가 생겼어요.'; return; }
+    EDITING=null; loadPosts(CUR);
   }
   async function submitPost(){
     if(!USER){ location.href='index.html'; return; }

@@ -31,6 +31,15 @@ create policy "daily_posts update own" on public.daily_posts for update using (a
 drop policy if exists "daily_posts delete own" on public.daily_posts;
 create policy "daily_posts delete own" on public.daily_posts for delete using (auth.uid() = author_id);
 
+-- 관리자: 모든 글을 읽고 수정·삭제할 수 있음(내용 검토/관리용). 이메일은 cms.js의 ADMIN과 동일.
+drop policy if exists "daily_posts admin update" on public.daily_posts;
+create policy "daily_posts admin update" on public.daily_posts
+  for update using (auth.jwt() ->> 'email' = 'josephoh1611@gmail.com')
+  with check (auth.jwt() ->> 'email' = 'josephoh1611@gmail.com');
+drop policy if exists "daily_posts admin delete" on public.daily_posts;
+create policy "daily_posts admin delete" on public.daily_posts
+  for delete using (auth.jwt() ->> 'email' = 'josephoh1611@gmail.com');
+
 -- 공감: 누구나 읽기, 본인 것만 추가·삭제
 drop policy if exists "daily_likes read" on public.daily_post_likes;
 create policy "daily_likes read" on public.daily_post_likes for select using (true);
