@@ -110,7 +110,12 @@
   const ADMIN_EMAIL='josephoh1611@gmail.com';
   let INDEX=[], CUR=null, USER=null, REF='', IS_ADMIN=false, EDITING=null, POSTS=[], CUR_DOC=null;
 
-  function todayStr(){ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+  // 한국시간(KST=UTC+9) 기준 — 발행/오늘 판단을 방문자 시간대와 무관하게 통일
+  function kstDate(){ return new Date(Date.now() + 9*3600000); }   // UTC부재 메서드(getUTC*)로 읽으면 KST 벽시계
+  function pad2(n){ return String(n).padStart(2,'0'); }
+  function todayStr(){ const k=kstDate(); return k.getUTCFullYear()+'-'+pad2(k.getUTCMonth()+1)+'-'+pad2(k.getUTCDate()); }
+  // 발행 기준일: 매일 오전 6시(KST)에 그날 묵상이 공개된다. 6시 이전이면 전날까지만 공개.
+  function publishCutoff(){ const k=kstDate(); if(k.getUTCHours()<6){ k.setUTCDate(k.getUTCDate()-1); } return k.getUTCFullYear()+'-'+pad2(k.getUTCMonth()+1)+'-'+pad2(k.getUTCDate()); }
   function fmtK(s){ const [y,m,d]=s.split('-'); const wd=['일','월','화','수','목','금','토'][new Date(s+'T00:00:00').getDay()]; return `${y}년 ${+m}월 ${+d}일 (${wd})`; }
 
   (async()=>{
@@ -118,8 +123,11 @@
     IS_ADMIN = !!(USER && USER.email===ADMIN_EMAIL);
     try{ INDEX=await (await fetch('content/daily/index.json?t='+Date.now())).json(); }catch(e){ INDEX=[]; }
     INDEX=(INDEX.dates||INDEX||[]).filter(Boolean).sort();
+    // 발행 게이트: 일반 방문자는 오전 6시(KST) 지난 날짜까지만. 관리자는 미리보기·편집 위해 전체 노출.
+    const cut=publishCutoff();
+    if(!IS_ADMIN) INDEX=INDEX.filter(d=>d<=cut);
     const t=todayStr();
-    // 오늘 것이 있으면 오늘, 없으면 오늘 이전 가장 최근 것
+    // 공개된 것 중 오늘 것이 있으면 오늘, 없으면 가장 최근(=발행 기준일)
     let pick = INDEX.includes(t) ? t : INDEX.filter(d=>d<=t).pop() || INDEX[INDEX.length-1];
     if(!pick){ $('dev').innerHTML='<p class="text-center text-ink/50 py-12">곧 첫 묵상이 발행됩니다. 잠시만 기다려 주세요 🙏</p>'; $('dDate').textContent=fmtK(t); return; }
     load(pick);
