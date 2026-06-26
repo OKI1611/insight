@@ -28,6 +28,7 @@
     ]},
     { label:'성경', href:'bible.html', children:[
       { label:'성경 읽기', href:'bible.html' },
+      { label:'매일 말씀과 함께', href:'daily.html' },
       { label:'성경암송 365', href:'memorize.html' },
       { label:'주제별 성경', href:'themes.html' },
       { label:'성경사전', href:'dictionary.html' }

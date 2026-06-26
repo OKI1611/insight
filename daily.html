@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <script src="/content-loader.js"></script>
+  <script src="/site-header.js?v=20260626b"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>매일 말씀과 함께 — 맥체인 데일리 묵상 · BIBLY</title>
+  <meta name="description" content="맥체인 성경읽기표를 따라 매일 한 본문을 묵상합니다. 맥락·원어·시대배경·신학적 의미·삶의 적용까지 3~5분 묵상글로, 매일 말씀으로 살아갈 힘과 용기를 얻으세요." />
+  <meta name="theme-color" content="#213a6b" />
+  <link rel="canonical" href="https://biblynote.com/daily" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="BIBLY 바이블 인사이트" />
+  <meta property="og:title" content="매일 말씀과 함께 — 맥체인 데일리 묵상" />
+  <meta property="og:description" content="매일 한 본문을 맥락·원어·신학·적용으로 묵상하는 3~5분 데일리 QT. 말씀으로 살아갈 힘과 용기." />
+  <meta property="og:image" content="https://biblynote.com/images/og-cover.png?v=2" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink:'#213a6b', navy:'#182c54', gold:'#b8923f', goldsoft:'#e7d6ac', sand:'#eaf0f8', paper:'#ffffff' },
+      fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
+      boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
+    }}}
+  </script>
+  <style>
+    h1,h2,h3,.serif{font-family:'Noto Serif KR',Pretendard,serif}
+    .verse-en{font-family:Georgia,'Times New Roman',serif}
+    .dev-body p{line-height:1.95}
+  </style>
+</head>
+<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+
+  <div id="siteHeader" data-active="daily.html"></div>
+
+  <!-- 히어로 -->
+  <section class="bg-gradient-to-b from-navy via-ink to-[#16284c] text-paper">
+    <div class="max-w-3xl mx-auto px-5 py-10 md:py-12 text-center">
+      <p class="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-2">Daily Word · 맥체인 데일리 묵상</p>
+      <h1 class="text-2xl md:text-[30px] font-bold leading-tight">매일 <span class="text-gold">말씀과 함께</span></h1>
+      <p class="text-paper/70 text-sm mt-3 leading-relaxed max-w-xl mx-auto">맥체인 성경읽기표를 따라 매일 한 본문을 — <b class="text-paper">맥락·원어·시대배경·신학·삶의 적용</b>으로. 오늘도 말씀으로 살아갈 힘과 용기를 얻으세요.</p>
+    </div>
+  </section>
+
+  <main class="max-w-3xl mx-auto px-4 py-7">
+    <!-- 날짜 네비 -->
+    <div class="flex items-center justify-between gap-2 mb-5">
+      <button onclick="step(-1)" id="prevBtn" class="text-sm border border-ink/15 rounded-full px-4 py-2 hover:bg-ink/5 transition">← 어제</button>
+      <div class="text-center">
+        <p id="dDate" class="font-bold text-ink">—</p>
+        <button onclick="openArchive()" class="text-[12px] text-gold hover:underline mt-0.5">📅 지난 묵상 보기</button>
+      </div>
+      <button onclick="step(1)" id="nextBtn" class="text-sm border border-ink/15 rounded-full px-4 py-2 hover:bg-ink/5 transition">내일 →</button>
+    </div>
+
+    <article id="dev" class="bg-white rounded-2xl border border-ink/8 shadow-card p-6 md:p-8">
+      <p class="text-ink/40 text-center py-12">불러오는 중…</p>
+    </article>
+
+    <!-- 묵상 완료 / 공유 -->
+    <div id="actions" class="hidden mt-5 flex flex-col sm:flex-row items-center justify-center gap-3">
+      <button onclick="markDone()" id="doneBtn" class="bg-gold text-white font-bold px-6 py-3 rounded-full hover:opacity-90 transition shadow-soft">🙏 오늘 묵상 완료</button>
+      <button onclick="share()" class="border border-ink/15 text-ink/70 font-semibold px-5 py-3 rounded-full hover:bg-ink/5 transition">🔗 공유하기</button>
+      <a href="bible.html" class="text-sm text-gold hover:underline">📖 본문 전체 읽기 →</a>
+    </div>
+    <p id="streak" class="text-center text-[12.5px] text-ink/55 mt-3"></p>
+
+    <!-- 보관함 -->
+    <div id="archive" class="hidden mt-7 bg-white rounded-2xl border border-ink/8 shadow-soft p-5">
+      <div class="flex items-center justify-between mb-3"><p class="font-bold text-sm">📅 지난 묵상</p><button onclick="closeArchive()" class="text-xs text-ink/40 hover:text-ink">✕ 닫기</button></div>
+      <div id="archiveList" class="grid sm:grid-cols-2 gap-2"></div>
+    </div>
+
+    <p class="text-[11px] text-ink/40 text-center mt-8 leading-relaxed">매일 새 묵상이 맥체인 읽기표에 따라 자동으로 발행됩니다. 본문은 KJV 새번역·원어 대조를 따릅니다.</p>
+  </main>
+
+  <script src="auth-header.js?v=20260619c"></script>
+  <script>
+  const SUPABASE_URL='https://bmxkndkwefdgsomlznoo.supabase.co';
+  const SUPABASE_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth:{ flowType:'implicit', lock: async(_n,_t,fn)=>await fn() } });
+  const $=id=>document.getElementById(id);
+  const esc=s=>String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  let INDEX=[], CUR=null, USER=null;
+
+  function todayStr(){ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+  function fmtK(s){ const [y,m,d]=s.split('-'); const wd=['일','월','화','수','목','금','토'][new Date(s+'T00:00:00').getDay()]; return `${y}년 ${+m}월 ${+d}일 (${wd})`; }
+
+  (async()=>{
+    try{ const { data:{ session } } = await sb.auth.getSession(); USER=session?session.user:null; }catch(e){}
+    try{ INDEX=await (await fetch('content/daily/index.json?t='+Date.now())).json(); }catch(e){ INDEX=[]; }
+    INDEX=(INDEX.dates||INDEX||[]).filter(Boolean).sort();
+    const t=todayStr();
+    // 오늘 것이 있으면 오늘, 없으면 오늘 이전 가장 최근 것
+    let pick = INDEX.includes(t) ? t : INDEX.filter(d=>d<=t).pop() || INDEX[INDEX.length-1];
+    if(!pick){ $('dev').innerHTML='<p class="text-center text-ink/50 py-12">곧 첫 묵상이 발행됩니다. 잠시만 기다려 주세요 🙏</p>'; $('dDate').textContent=fmtK(t); return; }
+    load(pick);
+  })();
+
+  async function load(date){
+    CUR=date; $('dDate').textContent=fmtK(date);
+    $('dev').innerHTML='<p class="text-ink/40 text-center py-12">불러오는 중…</p>';
+    $('actions').classList.add('hidden'); $('streak').textContent='';
+    let d;
+    try{ d=await (await fetch('content/daily/'+date+'.json?t='+Date.now())).json(); }catch(e){ $('dev').innerHTML='<p class="text-center text-ink/50 py-12">이 날의 묵상을 불러오지 못했어요.</p>'; return; }
+    render(d);
+    const i=INDEX.indexOf(date);
+    $('prevBtn').disabled=(i<=0); $('prevBtn').classList.toggle('opacity-30',i<=0);
+    $('nextBtn').disabled=(i>=INDEX.length-1); $('nextBtn').classList.toggle('opacity-30',i>=INDEX.length-1);
+    $('actions').classList.remove('hidden');
+    history.replaceState(null,'','?d='+date);
+    refreshDone(date);
+  }
+  function render(d){
+    const secs=(d.sections||[]).map(s=>`<div class="mb-4"><h3 class="font-bold text-ink text-[15px] mb-1.5 flex items-center gap-1.5">${esc(s.icon||'•')} ${esc(s.h)}</h3><p class="text-[14.5px] text-ink/80">${esc(s.p)}</p></div>`).join('');
+    $('dev').innerHTML=`
+      <div class="text-center border-b border-ink/8 pb-5 mb-5">
+        <span class="inline-block text-[11px] font-bold text-gold bg-gold/10 px-3 py-1 rounded-full mb-2">📖 ${esc(d.ref||'')}</span>
+        <h2 class="text-xl md:text-2xl font-bold leading-snug">${esc(d.title||'')}</h2>
+        ${d.verse_kr?`<p class="serif text-[16px] text-ink mt-3 leading-relaxed">"${esc(d.verse_kr)}"</p>`:''}
+        ${d.verse_en?`<p class="verse-en text-[13px] text-ink/45 mt-1.5 leading-relaxed">${esc(d.verse_en)}</p>`:''}
+        ${d.focus?`<p class="text-[12px] text-ink/40 mt-1.5">— ${esc(d.focus)}</p>`:''}
+      </div>
+      <div class="dev-body">${secs}</div>
+      ${d.prayer?`<div class="mt-5 bg-sand/40 border-l-2 border-gold/50 rounded-r-xl px-4 py-3"><p class="text-[12px] font-bold text-gold mb-1">🙏 오늘의 기도</p><p class="text-[14px] text-ink/80 leading-relaxed">${esc(d.prayer)}</p></div>`:''}
+      ${d.question?`<div class="mt-3 bg-ink/[0.03] rounded-xl px-4 py-3"><p class="text-[12px] font-bold text-ink/50 mb-1">💭 묵상 질문</p><p class="text-[14px] text-ink/80 leading-relaxed">${esc(d.question)}</p></div>`:''}
+      ${d.encouragement?`<p class="text-center text-[15px] font-bold text-ink mt-6 serif">✨ ${esc(d.encouragement)}</p>`:''}`;
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  function step(n){ const i=INDEX.indexOf(CUR); const j=i+n; if(j>=0&&j<INDEX.length) load(INDEX[j]); }
+
+  function openArchive(){
+    const box=$('archiveList');
+    box.innerHTML=INDEX.slice().reverse().map(d=>`<button onclick="load('${d}');closeArchive()" class="text-left text-[13px] px-3 py-2 rounded-lg border border-ink/8 hover:border-gold/40 hover:bg-gold/5 transition ${d===CUR?'border-gold/50 bg-gold/5':''}">${fmtK(d)}</button>`).join('') || '<p class="text-xs text-ink/40">아직 보관된 묵상이 없어요.</p>';
+    $('archive').classList.remove('hidden'); $('archive').scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+  function closeArchive(){ $('archive').classList.add('hidden'); }
+
+  // ---- 묵상 완료(스트릭) ----
+  const LS='bibly_devotion';
+  function lsGet(){ try{ return JSON.parse(localStorage.getItem(LS)||'{}'); }catch(e){ return {}; } }
+  async function refreshDone(date){
+    let done=false, dates=[];
+    if(USER){ try{ const { data } = await sb.from('devotion_log').select('devo_date').eq('user_id',USER.id); dates=(data||[]).map(r=>r.devo_date); }catch(e){} }
+    else { dates=Object.keys(lsGet()); }
+    done=dates.includes(date);
+    paintDone(done); $('streak').textContent = dates.length ? `🔥 지금까지 ${dates.length}일 묵상했어요${streakOf(dates)}` : '';
+  }
+  function streakOf(dates){ const set=new Set(dates); let s=0; let d=new Date(); for(;;){ const k=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); if(set.has(k)){ s++; d.setDate(d.getDate()-1); } else break; } return s>1?` · 연속 ${s}일째 ✨`:''; }
+  function paintDone(done){ const b=$('doneBtn'); if(!b) return; if(done){ b.textContent='✅ 오늘 묵상 완료됨'; b.classList.add('opacity-70'); } else { b.textContent='🙏 오늘 묵상 완료'; b.classList.remove('opacity-70'); } }
+  async function markDone(){
+    if(!CUR) return;
+    if(USER){ try{ await sb.from('devotion_log').upsert({ user_id:USER.id, devo_date:CUR, created_at:new Date().toISOString() },{onConflict:'user_id,devo_date'}); }catch(e){} }
+    else { const o=lsGet(); o[CUR]=1; localStorage.setItem(LS, JSON.stringify(o)); }
+    refreshDone(CUR);
+  }
+  function share(){
+    const url='https://biblynote.com/daily?d='+CUR;
+    if(navigator.share){ navigator.share({title:'매일 말씀과 함께', text:'오늘의 묵상', url}); }
+    else { navigator.clipboard.writeText(url).then(()=>alert('링크를 복사했어요!\n'+url),()=>prompt('링크',url)); }
+  }
+  </script>
+</body>
+</html>
