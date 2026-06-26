@@ -71,6 +71,25 @@
     </div>
     <p id="streak" class="text-center text-[12.5px] text-ink/55 mt-3"></p>
 
+    <!-- ===== 수강생 묵상 나눔 (블로그식) ===== -->
+    <section id="shareSection" class="mt-9">
+      <div class="flex items-center justify-between gap-2 mb-2">
+        <h3 class="font-bold text-ink flex items-center gap-1.5">✍️ 수강생 묵상 나눔 <span id="postCount" class="text-xs font-semibold text-gold bg-gold/10 px-2 py-0.5 rounded-full">0</span></h3>
+        <button onclick="toggleComposer()" id="writeBtn" class="text-sm font-semibold bg-gold text-white px-4 py-2 rounded-full hover:opacity-90 transition shadow-soft">✍️ 내 묵상 쓰기</button>
+      </div>
+      <p class="text-[12px] text-ink/50 mb-3">오늘 본문(<span id="shareRef" class="text-ink/70 font-medium">—</span>)을 묵상하며 받은 은혜를 자유롭게 나눠보세요. 누구나 쓸 수 있어요.</p>
+      <div id="composer" class="hidden bg-white rounded-2xl border border-gold/30 shadow-soft p-4 mb-4">
+        <input id="pTitle" type="text" maxlength="60" placeholder="제목 (선택)" class="w-full border border-ink/15 rounded-lg px-3 py-2 text-sm mb-2 outline-none focus:border-gold" />
+        <textarea id="pContent" rows="5" maxlength="2000" placeholder="오늘 말씀에서 받은 은혜·깨달음·삶의 적용을 나눠주세요…" class="w-full border border-ink/15 rounded-lg px-3 py-2 text-[14px] outline-none focus:border-gold leading-relaxed"></textarea>
+        <div class="flex items-center justify-end gap-2 mt-2">
+          <span id="pMsg" class="text-xs text-red-500 mr-auto"></span>
+          <button onclick="toggleComposer()" class="text-sm text-ink/50 px-3 py-2">취소</button>
+          <button onclick="submitPost()" id="pSubmit" class="text-sm font-bold bg-ink text-paper px-5 py-2 rounded-full hover:bg-navy transition">나눔 올리기</button>
+        </div>
+      </div>
+      <div id="postList" class="space-y-3"></div>
+    </section>
+
     <!-- 보관함 -->
     <div id="archive" class="hidden mt-7 bg-white rounded-2xl border border-ink/8 shadow-soft p-5">
       <div class="flex items-center justify-between mb-3"><p class="font-bold text-sm">📅 지난 묵상</p><button onclick="closeArchive()" class="text-xs text-ink/40 hover:text-ink">✕ 닫기</button></div>
@@ -87,7 +106,7 @@
   const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth:{ flowType:'implicit', lock: async(_n,_t,fn)=>await fn() } });
   const $=id=>document.getElementById(id);
   const esc=s=>String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
-  let INDEX=[], CUR=null, USER=null;
+  let INDEX=[], CUR=null, USER=null, REF='';
 
   function todayStr(){ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
   function fmtK(s){ const [y,m,d]=s.split('-'); const wd=['일','월','화','수','목','금','토'][new Date(s+'T00:00:00').getDay()]; return `${y}년 ${+m}월 ${+d}일 (${wd})`; }
@@ -110,6 +129,7 @@
     let d;
     try{ d=await (await fetch('content/daily/'+date+'.json?t='+Date.now())).json(); }catch(e){ $('dev').innerHTML='<p class="text-center text-ink/50 py-12">이 날의 묵상을 불러오지 못했어요.</p>'; return; }
     render(d);
+    REF=d.ref||''; loadPosts(date);
     const i=INDEX.indexOf(date);
     $('prevBtn').disabled=(i<=0); $('prevBtn').classList.toggle('opacity-30',i<=0);
     $('nextBtn').disabled=(i>=INDEX.length-1); $('nextBtn').classList.toggle('opacity-30',i>=INDEX.length-1);
@@ -164,6 +184,65 @@
     const url='https://biblynote.com/daily?d='+CUR;
     if(navigator.share){ navigator.share({title:'매일 말씀과 함께', text:'오늘의 묵상', url}); }
     else { navigator.clipboard.writeText(url).then(()=>alert('링크를 복사했어요!\n'+url),()=>prompt('링크',url)); }
+  }
+
+  // ===== 수강생 묵상 나눔(블로그식) =====
+  function fdt(s){ if(!s) return ''; const d=new Date(s), now=new Date(); const m=(now-d)/60000; if(m<1)return'방금'; if(m<60)return Math.floor(m)+'분 전'; if(m<1440)return Math.floor(m/60)+'시간 전'; return (d.getMonth()+1)+'.'+d.getDate(); }
+  function toggleComposer(){
+    if(!USER){ if(confirm('로그인하면 묵상을 나눌 수 있어요. 로그인하시겠어요?')) location.href='index.html'; return; }
+    const c=$('composer'); c.classList.toggle('hidden'); if(!c.classList.contains('hidden')) $('pContent').focus();
+  }
+  async function loadPosts(date){
+    $('shareRef').textContent = REF || '';
+    const list=$('postList'); list.innerHTML='<p class="text-ink/35 text-sm py-3 text-center">불러오는 중…</p>';
+    let posts=[];
+    try{ const { data } = await sb.from('daily_posts').select('id,author_id,author_name,title,content,created_at').eq('devo_date',date).order('created_at',{ascending:false}); posts=data||[]; }catch(e){ posts=[]; }
+    $('postCount').textContent=posts.length;
+    if(!posts.length){ list.innerHTML='<p class="text-ink/40 text-sm py-6 text-center bg-white rounded-2xl border border-ink/8">아직 이 날의 수강생 묵상이 없어요.<br/>첫 나눔을 남겨보세요 🙏</p>'; return; }
+    const ids=posts.map(p=>p.id); let likeRows=[];
+    try{ const { data } = await sb.from('daily_post_likes').select('post_id,user_id').in('post_id',ids); likeRows=data||[]; }catch(e){}
+    const lc={}, mine={}; likeRows.forEach(r=>{ lc[r.post_id]=(lc[r.post_id]||0)+1; if(USER&&r.user_id===USER.id) mine[r.post_id]=true; });
+    list.innerHTML=posts.map(p=>postCard(p,lc[p.id]||0,!!mine[p.id])).join('');
+  }
+  function postCard(p,likes,liked){
+    const own = USER && p.author_id===USER.id;
+    const nm = esc(p.author_name||'익명'); const init = nm.slice(0,2);
+    return `<article class="bg-white rounded-2xl border border-ink/8 shadow-soft p-4">
+      <div class="flex items-center gap-2.5 mb-2">
+        <div class="w-9 h-9 rounded-full bg-gold/15 text-gold flex items-center justify-center font-bold text-xs shrink-0">${init}</div>
+        <div class="flex-1 min-w-0"><p class="font-bold text-sm text-ink truncate">${nm}</p><p class="text-[11px] text-ink/40">${fdt(p.created_at)}</p></div>
+        ${own?`<button onclick="deletePost('${p.id}')" class="text-[11px] text-ink/35 hover:text-red-500">삭제</button>`:''}
+      </div>
+      ${p.title?`<p class="font-bold text-ink text-[15px] mb-1">${esc(p.title)}</p>`:''}
+      <p class="text-[14px] text-ink/80 leading-relaxed" style="white-space:pre-wrap">${esc(p.content)}</p>
+      <div class="flex items-center gap-4 mt-3 pt-2.5 border-t border-ink/5">
+        <button onclick="toggleLike('${p.id}')" class="flex items-center gap-1.5 text-[13px] ${liked?'text-gold font-bold':'text-ink/55'} hover:text-gold transition">❤️ <span>${likes}</span></button>
+      </div>
+    </article>`;
+  }
+  async function submitPost(){
+    if(!USER){ location.href='index.html'; return; }
+    const content=$('pContent').value.trim(), title=$('pTitle').value.trim();
+    if(content.length<5){ $('pMsg').textContent='조금 더 적어주세요 (5자 이상).'; return; }
+    $('pSubmit').disabled=true;
+    let nm='회원'; try{ const { data:prof }=await sb.from('profiles').select('full_name').eq('id',USER.id).maybeSingle(); nm=(prof&&prof.full_name)||(USER.email?USER.email.split('@')[0]:'회원'); }catch(e){ nm=USER.email?USER.email.split('@')[0]:'회원'; }
+    try{ await sb.from('daily_posts').insert({ author_id:USER.id, author_name:nm, devo_date:CUR, title:title||null, content }); }
+    catch(e){ $('pMsg').textContent='저장 중 문제가 생겼어요. 잠시 후 다시 시도해 주세요.'; $('pSubmit').disabled=false; return; }
+    $('pTitle').value=''; $('pContent').value=''; $('pMsg').textContent=''; $('pSubmit').disabled=false;
+    $('composer').classList.add('hidden'); loadPosts(CUR);
+  }
+  async function toggleLike(id){
+    if(!USER){ if(confirm('로그인하면 공감할 수 있어요. 로그인하시겠어요?')) location.href='index.html'; return; }
+    try{ const { data }=await sb.from('daily_post_likes').select('post_id').eq('post_id',id).eq('user_id',USER.id).maybeSingle();
+      if(data){ await sb.from('daily_post_likes').delete().eq('post_id',id).eq('user_id',USER.id); }
+      else { await sb.from('daily_post_likes').insert({ post_id:id, user_id:USER.id }); }
+    }catch(e){}
+    loadPosts(CUR);
+  }
+  async function deletePost(id){
+    if(!confirm('이 글을 삭제할까요?')) return;
+    try{ await sb.from('daily_posts').delete().eq('id',id); }catch(e){}
+    loadPosts(CUR);
   }
   </script>
 </body>
