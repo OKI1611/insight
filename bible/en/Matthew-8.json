@@ -1,16 +1,373 @@
 [
-  {"en": "if thou wilt", "ko": "주께서 원하시면", "note": "고어 'wilt'는 'will'의 2인칭 단수형으로 '원하다, 뜻을 두다'의 의미. 나병환자가 예수의 의지에 모든 것을 맡기는 겸손한 신앙 고백이다."},
-  {"en": "be thou clean", "ko": "깨끗하게 되라", "note": "명령형에 'thou'가 붙은 고어 표현. 예수의 권위 있는 선언으로, 단순한 바람이 아니라 즉각 효력을 내는 말씀임을 보여준다."},
-  {"en": "for a testimony unto them", "ko": "그들에게 증거가 되게 하라", "note": "'unto'는 'to'의 고어. 치유받은 사실을 제사장에게 보임으로써 율법 절차를 따르고, 동시에 메시아의 사역을 입증하는 증거가 되게 한다는 뜻."},
-  {"en": "sick of the palsy", "ko": "중풍으로 앓아", "note": "'palsy'는 마비(paralysis)를 가리키는 고어. 'sick of'는 '~병을 앓는'이라는 옛 용법으로, 현대어 'sick of(싫증나다)'와 혼동하지 말아야 한다."},
-  {"en": "I am not worthy that thou shouldest come under my roof", "ko": "주를 제 지붕 아래로 모실 만한 자가 못 되나이다", "note": "'shouldest'는 'should'의 2인칭 단수 고어형. 백부장이 자신의 부족함을 고백하는 겸양 표현으로, 한국 교회 전통의 겸손한 어조를 살려 옮긴다."},
-  {"en": "speak the word only", "ko": "다만 말씀만 하옵소서", "note": "'only'를 명사 뒤에 두어 '말씀만으로 충분하다'는 의미를 강조한 어순. 예수의 말씀 자체가 능력임을 믿는 신앙의 핵심 표현이다."},
-  {"en": "I have not found so great faith", "ko": "이만한 믿음을 만나 보지 못하였노라", "note": "'so great faith'는 '이토록 큰 믿음'. 예수께서 이방인 백부장의 믿음을 이스라엘 백성과 대조하여 칭찬하시는 강조 구문."},
-  {"en": "the children of the kingdom", "ko": "그 왕국의 자손들", "note": "혈통상 왕국의 상속자로 여겨지던 이들(이스라엘 백성)을 가리키는 표현. '하늘의 왕국'은 전통 표기를 따른 역어이며, 마태복음 특유의 표현으로 메시아 왕국의 측면을 강조한다."},
-  {"en": "weeping and gnashing of teeth", "ko": "슬피 울며 이를 갊", "note": "'gnashing of teeth'는 '이를 갈다'로, 극심한 고통과 후회를 나타내는 관용 표현. 심판의 엄중함을 그리는 정형구로 마태복음에 반복된다."},
-  {"en": "let the dead bury their dead", "ko": "죽은 자들로 자기들의 죽은 자를 장사하게 하라", "note": "앞의 '죽은 자'는 영적으로 죽은 자, 뒤의 '죽은 자'는 육신이 죽은 자를 가리키는 이중 의미. 'let ~ bury'는 '~로 하여금 장사하게 하라'는 사역 구문."},
-  {"en": "the Son of man hath not where to lay his head", "ko": "인자는 머리 둘 곳이 없도다", "note": "'hath'는 'has'의 고어. '인자(人子)'는 전통 신학 용어로 예수의 자기 호칭. 안주할 거처가 없는 제자도의 대가를 보여주는 표현."},
-  {"en": "what manner of man is this", "ko": "이 어떠한 분이시기에", "note": "'what manner of'는 '어떤 종류의, 어떠한'을 뜻하는 고어 숙어. 바람과 바다까지 순종케 하시는 예수의 정체에 대한 경이를 담은 물음."},
-  {"en": "What have we to do with thee", "ko": "우리가 당신과 무슨 상관이 있나이까", "note": "'have ~ to do with'는 '~와 상관/관계가 있다'는 관용구. 귀신들이 예수의 권위 앞에서 자신들과의 거리를 두려 하는 항변의 어법."},
-  {"en": "besought him that he would depart out of their coasts", "ko": "자기들의 지경에서 떠나기를 간구하니라", "note": "'besought'는 'beseech(간청하다)'의 과거형. 'coasts'는 해안이 아니라 '지역, 경계(지경)'를 뜻하는 고어. 마을 사람들이 예수를 두려워하여 떠나기를 청한 장면."}
+ {
+  "en": "if thou wilt",
+  "ko": "주께서 원하시면",
+  "note": "고어 'wilt'는 'will'의 2인칭 단수형으로 '원하다, 뜻을 두다'의 의미. 나병환자가 예수의 의지에 모든 것을 맡기는 겸손한 신앙 고백이다.",
+  "voc": [
+   [
+    "wilt",
+    "v.",
+    "원하다(will의 고어 2인칭)"
+   ],
+   [
+    "clean",
+    "a.",
+    "깨끗한"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "if thou wilt",
+    "thou wilt = you will (2인칭 단수 고어). 조건절에서 의지를 나타냄"
+   ]
+  ]
+ },
+ {
+  "en": "be thou clean",
+  "ko": "깨끗하게 되라",
+  "note": "명령형에 'thou'가 붙은 고어 표현. 예수의 권위 있는 선언으로, 단순한 바람이 아니라 즉각 효력을 내는 말씀임을 보여준다.",
+  "voc": [
+   [
+    "clean",
+    "a.",
+    "깨끗한"
+   ],
+   [
+    "thou",
+    "pron.",
+    "너(2인칭 단수 주격 고어)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "be thou clean",
+    "명령문에서 주어 thou를 동사 뒤에 둔 고어 어순(=be clean)"
+   ]
+  ]
+ },
+ {
+  "en": "for a testimony unto them",
+  "ko": "그들에게 증거가 되게 하라",
+  "note": "'unto'는 'to'의 고어. 치유받은 사실을 제사장에게 보임으로써 율법 절차를 따르고, 동시에 메시아의 사역을 입증하는 증거가 되게 한다는 뜻.",
+  "voc": [
+   [
+    "testimony",
+    "n.",
+    "증거, 증언"
+   ],
+   [
+    "unto",
+    "prep.",
+    "~에게(to의 고어)"
+   ]
+  ],
+  "idi": [
+   [
+    "for a testimony unto them",
+    "그들에게 증거가 되게"
+   ]
+  ],
+  "gra": [
+   [
+    "unto them",
+    "unto = to (고어 전치사)"
+   ]
+  ]
+ },
+ {
+  "en": "sick of the palsy",
+  "ko": "중풍으로 앓아",
+  "note": "'palsy'는 마비(paralysis)를 가리키는 고어. 'sick of'는 '~병을 앓는'이라는 옛 용법으로, 현대어 'sick of(싫증나다)'와 혼동하지 말아야 한다.",
+  "voc": [
+   [
+    "palsy",
+    "n.",
+    "중풍, 마비(고어)"
+   ],
+   [
+    "sick",
+    "a.",
+    "병든"
+   ]
+  ],
+  "idi": [
+   [
+    "sick of the palsy",
+    "중풍을 앓는"
+   ]
+  ],
+  "gra": [
+   [
+    "sick of the palsy",
+    "of = ~을 앓는(병명을 나타내는 고어 용법). 현대 sick of(싫증난)와 다름"
+   ]
+  ]
+ },
+ {
+  "en": "I am not worthy that thou shouldest come under my roof",
+  "ko": "주를 제 지붕 아래로 모실 만한 자가 못 되나이다",
+  "note": "'shouldest'는 'should'의 2인칭 단수 고어형. 백부장이 자신의 부족함을 고백하는 겸양 표현으로, 한국 교회 전통의 겸손한 어조를 살려 옮긴다.",
+  "voc": [
+   [
+    "worthy",
+    "a.",
+    "합당한, ~할 자격이 있는"
+   ],
+   [
+    "roof",
+    "n.",
+    "지붕"
+   ]
+  ],
+  "idi": [
+   [
+    "come under my roof",
+    "내 집에 들어오다"
+   ]
+  ],
+  "gra": [
+   [
+    "thou shouldest come",
+    "shouldest = should (2인칭 단수 고어)"
+   ]
+  ]
+ },
+ {
+  "en": "speak the word only",
+  "ko": "다만 말씀만 하옵소서",
+  "note": "'only'를 명사 뒤에 두어 '말씀만으로 충분하다'는 의미를 강조한 어순. 예수의 말씀 자체가 능력임을 믿는 신앙의 핵심 표현이다.",
+  "voc": [
+   [
+    "speak",
+    "v.",
+    "말하다"
+   ],
+   [
+    "only",
+    "ad.",
+    "다만, ~만"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "speak the word only",
+    "only를 목적어 뒤에 두어 '말씀만으로'를 강조한 어순"
+   ]
+  ]
+ },
+ {
+  "en": "I have not found so great faith",
+  "ko": "이만한 믿음을 만나 보지 못하였노라",
+  "note": "'so great faith'는 '이토록 큰 믿음'. 예수께서 이방인 백부장의 믿음을 이스라엘 백성과 대조하여 칭찬하시는 강조 구문.",
+  "voc": [
+   [
+    "faith",
+    "n.",
+    "믿음"
+   ],
+   [
+    "great",
+    "a.",
+    "큰"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "so great faith",
+    "so + 형용사 + 명사: 이토록 큰 믿음(강조 구문)"
+   ]
+  ]
+ },
+ {
+  "en": "the children of the kingdom",
+  "ko": "그 왕국의 자손들",
+  "note": "혈통상 왕국의 상속자로 여겨지던 이들(이스라엘 백성)을 가리키는 표현. '하늘의 왕국'은 전통 표기를 따른 역어이며, 마태복음 특유의 표현으로 메시아 왕국의 측면을 강조한다.",
+  "voc": [
+   [
+    "kingdom",
+    "n.",
+    "왕국"
+   ],
+   [
+    "children",
+    "n.",
+    "자손, 자녀들"
+   ]
+  ],
+  "idi": [
+   [
+    "children of the kingdom",
+    "왕국의 자손들(셈어식 표현)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "weeping and gnashing of teeth",
+  "ko": "슬피 울며 이를 갊",
+  "note": "'gnashing of teeth'는 '이를 갈다'로, 극심한 고통과 후회를 나타내는 관용 표현. 심판의 엄중함을 그리는 정형구로 마태복음에 반복된다.",
+  "voc": [
+   [
+    "weeping",
+    "n.",
+    "울음"
+   ],
+   [
+    "gnashing",
+    "n.",
+    "이갈이"
+   ],
+   [
+    "teeth",
+    "n.",
+    "이(tooth의 복수)"
+   ]
+  ],
+  "idi": [
+   [
+    "gnashing of teeth",
+    "이를 갊(극심한 고통·후회)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "let the dead bury their dead",
+  "ko": "죽은 자들로 자기들의 죽은 자를 장사하게 하라",
+  "note": "앞의 '죽은 자'는 영적으로 죽은 자, 뒤의 '죽은 자'는 육신이 죽은 자를 가리키는 이중 의미. 'let ~ bury'는 '~로 하여금 장사하게 하라'는 사역 구문.",
+  "voc": [
+   [
+    "dead",
+    "a.",
+    "죽은"
+   ],
+   [
+    "bury",
+    "v.",
+    "장사하다, 묻다"
+   ]
+  ],
+  "idi": [
+   [
+    "let the dead bury their dead",
+    "죽은 자들이 죽은 자를 장사하게 두라"
+   ]
+  ],
+  "gra": [
+   [
+    "let the dead bury",
+    "let + 목적어 + 동사원형: ~로 하여금 …하게 하라(사역)"
+   ]
+  ]
+ },
+ {
+  "en": "the Son of man hath not where to lay his head",
+  "ko": "인자는 머리 둘 곳이 없도다",
+  "note": "'hath'는 'has'의 고어. '인자(人子)'는 전통 신학 용어로 예수의 자기 호칭. 안주할 거처가 없는 제자도의 대가를 보여주는 표현.",
+  "voc": [
+   [
+    "hath",
+    "v.",
+    "가지다(has의 고어)"
+   ],
+   [
+    "lay",
+    "v.",
+    "두다, 누이다"
+   ]
+  ],
+  "idi": [
+   [
+    "where to lay his head",
+    "머리 둘 곳"
+   ]
+  ],
+  "gra": [
+   [
+    "hath not where to lay",
+    "hath = has (3인칭 단수 고어). where to + 동사원형: ~할 곳"
+   ]
+  ]
+ },
+ {
+  "en": "what manner of man is this",
+  "ko": "이 어떠한 분이시기에",
+  "note": "'what manner of'는 '어떤 종류의, 어떠한'을 뜻하는 고어 숙어. 바람과 바다까지 순종케 하시는 예수의 정체에 대한 경이를 담은 물음.",
+  "voc": [
+   [
+    "manner",
+    "n.",
+    "종류, 방식"
+   ]
+  ],
+  "idi": [
+   [
+    "what manner of man",
+    "어떠한 사람(어떤 종류의 사람)"
+   ]
+  ],
+  "gra": [
+   [
+    "what manner of man is this",
+    "what manner of = 어떤 종류의(고어 의문 숙어)"
+   ]
+  ]
+ },
+ {
+  "en": "What have we to do with thee",
+  "ko": "우리가 당신과 무슨 상관이 있나이까",
+  "note": "'have ~ to do with'는 '~와 상관/관계가 있다'는 관용구. 귀신들이 예수의 권위 앞에서 자신들과의 거리를 두려 하는 항변의 어법.",
+  "voc": [
+   [
+    "thee",
+    "pron.",
+    "너에게(thou의 목적격 고어)"
+   ]
+  ],
+  "idi": [
+   [
+    "have to do with",
+    "~와 상관이 있다"
+   ]
+  ],
+  "gra": [
+   [
+    "What have we to do with thee",
+    "have ~ to do with: ~와 무슨 상관이 있느냐(관용 구문)"
+   ]
+  ]
+ },
+ {
+  "en": "besought him that he would depart out of their coasts",
+  "ko": "자기들의 지경에서 떠나기를 간구하니라",
+  "note": "'besought'는 'beseech(간청하다)'의 과거형. 'coasts'는 해안이 아니라 '지역, 경계(지경)'를 뜻하는 고어. 마을 사람들이 예수를 두려워하여 떠나기를 청한 장면.",
+  "voc": [
+   [
+    "besought",
+    "v.",
+    "간청하였다(beseech의 과거)"
+   ],
+   [
+    "coasts",
+    "n.",
+    "지역, 경계(고어)"
+   ],
+   [
+    "depart",
+    "v.",
+    "떠나다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "that he would depart",
+    "would = 의지·요청을 담은 가정법(떠나 주기를). coasts = 지역(고어, 해안 아님)"
+   ]
+  ]
+ }
 ]

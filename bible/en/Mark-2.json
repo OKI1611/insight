@@ -1,16 +1,388 @@
 [
-  {"en":"sick of the palsy","ko":"중풍 병자","note":"'palsy'는 고어로 마비(paralysis)를 뜻한다. 'sick of the palsy'는 '중풍에 걸린/마비된'이라는 뜻으로, 'sick of(싫증 난)'의 현대적 의미가 아니다."},
-  {"en":"which was borne of four","ko":"네 사람이 메고 온","note":"'borne'은 'bear(나르다, 들다)'의 과거분사. '네 사람에 의해 들려 온'이라는 뜻이다."},
-  {"en":"thy sins be forgiven thee","ko":"네 죄를 사함받았느니라","note":"고어 가정법/선언 어법. 'be forgiven'은 죄 사함(forgive sins)의 선언으로, 예수의 권세 있는 사죄 선포다."},
-  {"en":"reasoning in their hearts","ko":"마음속으로 따져 생각하되","note":"'reason'은 여기서 '추론하다, 속으로 따지다'의 뜻. 서기관들이 입 밖에 내지 않고 속으로 의심하며 헤아린 것을 가리킨다."},
-  {"en":"the Son of man hath power on earth to forgive sins","ko":"인자가 땅에서 죄를 사하는 권세가 있음","note":"'Son of man(인자)'는 다니엘 7장의 메시아 칭호. 예수께서 하나님만이 하실 수 있는 사죄의 권세를 자신이 지녔음을 선언하신 핵심 구절이다."},
-  {"en":"sat at meat","ko":"음식을 잡수실 때에","note":"'sit at meat'는 고어 숙어로 '식탁에 앉아 식사하다'의 뜻. 'meat'는 고기가 아니라 음식 전반(food)을 가리킨다."},
-  {"en":"publicans and sinners","ko":"세리와 죄인들","note":"'publican'은 로마를 위해 세금을 걷던 세리로, 유대 사회에서 멸시받던 부류였다. 죄인들과 함께 묶여 천대받았다."},
-  {"en":"They that are whole have no need of the physician","ko":"건강한 자에게는 의원이 쓸데없으나","note":"'whole'은 '온전한, 건강한'의 뜻. 예수께서 자신을 영혼의 의원에 비유하며 죄인을 부르러 오셨음을 밝히신 비유다."},
-  {"en":"the children of the bridechamber","ko":"혼인집 손님들","note":"직역하면 '신방의 자녀들'이나, 신랑의 친구·혼인 잔치 하객을 가리키는 히브리식 관용 표현이다."},
-  {"en":"the bridegroom shall be taken away","ko":"신랑을 빼앗길","note":"'신랑'은 예수 자신을 가리키며, '빼앗김'은 그분의 죽음을 예고하는 표현이다. 그때 비로소 제자들이 금식하리라 하셨다."},
-  {"en":"new wine into old bottles","ko":"새 포도주를 낡은 가죽 부대에","note":"'bottles'는 유리병이 아니라 가죽으로 만든 술부대(wineskin)다. 새 포도주가 발효하며 팽창하면 굳은 낡은 부대는 터진다. 새 시대와 옛 관습의 비유다."},
-  {"en":"to pluck the ears of corn","ko":"이삭을 자르기","note":"'corn'은 영국식 영어로 옥수수가 아니라 곡식(밀 등)을 뜻한다. 'ears of corn'은 '곡식의 이삭'이다."},
-  {"en":"the shewbread","ko":"진설병","note":"'shewbread(showbread)'는 성소 상에 차려 놓던 거룩한 떡으로, 제사장만 먹을 수 있었다(레위기 24장). 다윗의 일화에서 인용된다."},
-  {"en":"The sabbath was made for man, and not man for the sabbath","ko":"안식일이 사람을 위하여 있는 것이요 사람이 안식일을 위하여 있는 것이 아니니","note":"안식일 제도의 본래 목적이 사람의 유익에 있음을 선언한 구절. 이어 인자가 안식일의 주인(Lord of the sabbath)이심을 밝히신다."}
+ {
+  "en": "sick of the palsy",
+  "ko": "중풍 병자",
+  "note": "'palsy'는 고어로 마비(paralysis)를 뜻한다. 'sick of the palsy'는 '중풍에 걸린/마비된'이라는 뜻으로, 'sick of(싫증 난)'의 현대적 의미가 아니다.",
+  "voc": [
+   [
+    "palsy",
+    "n.",
+    "중풍, 마비(고어)"
+   ],
+   [
+    "sick",
+    "adj.",
+    "병든"
+   ]
+  ],
+  "idi": [
+   [
+    "sick of the palsy",
+    "중풍(마비)에 걸린"
+   ]
+  ],
+  "gra": [
+   [
+    "sick of the palsy",
+    "여기서 of는 '~병에 걸린'을 뜻하며, 현대 sick of(싫증 난)와 다름"
+   ]
+  ]
+ },
+ {
+  "en": "which was borne of four",
+  "ko": "네 사람이 메고 온",
+  "note": "'borne'은 'bear(나르다, 들다)'의 과거분사. '네 사람에 의해 들려 온'이라는 뜻이다.",
+  "voc": [
+   [
+    "borne",
+    "v.",
+    "나르다(bear의 과거분사)"
+   ],
+   [
+    "four",
+    "num.",
+    "넷, 네 사람"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "which was borne of four",
+    "수동태(was borne) + of=by(고어 행위자): '네 사람에 의해 들려 온'"
+   ]
+  ]
+ },
+ {
+  "en": "thy sins be forgiven thee",
+  "ko": "네 죄를 사함받았느니라",
+  "note": "고어 가정법/선언 어법. 'be forgiven'은 죄 사함(forgive sins)의 선언으로, 예수의 권세 있는 사죄 선포다.",
+  "voc": [
+   [
+    "forgive",
+    "v.",
+    "용서하다, 사하다"
+   ],
+   [
+    "thee",
+    "pron.",
+    "너에게(고어)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "thy sins be forgiven thee",
+    "가정법/선언형 be + 수동태: '네 죄가 사하여졌다'는 권위 있는 선포"
+   ]
+  ]
+ },
+ {
+  "en": "reasoning in their hearts",
+  "ko": "마음속으로 따져 생각하되",
+  "note": "'reason'은 여기서 '추론하다, 속으로 따지다'의 뜻. 서기관들이 입 밖에 내지 않고 속으로 의심하며 헤아린 것을 가리킨다.",
+  "voc": [
+   [
+    "reason",
+    "v.",
+    "따져 생각하다, 추론하다"
+   ],
+   [
+    "heart",
+    "n.",
+    "마음"
+   ]
+  ],
+  "idi": [
+   [
+    "reason in one's heart",
+    "마음속으로 따지다"
+   ]
+  ],
+  "gra": [
+   [
+    "reasoning",
+    "분사구문: '~하면서/따지면서'의 동시 동작"
+   ]
+  ]
+ },
+ {
+  "en": "the Son of man hath power on earth to forgive sins",
+  "ko": "인자가 땅에서 죄를 사하는 권세가 있음",
+  "note": "'Son of man(인자)'는 다니엘 7장의 메시아 칭호. 예수께서 하나님만이 하실 수 있는 사죄의 권세를 자신이 지녔음을 선언하신 핵심 구절이다.",
+  "voc": [
+   [
+    "power",
+    "n.",
+    "권세, 능력"
+   ],
+   [
+    "earth",
+    "n.",
+    "땅"
+   ],
+   [
+    "hath",
+    "v.",
+    "가지다(has의 고어)"
+   ]
+  ],
+  "idi": [
+   [
+    "the Son of man",
+    "인자(메시아 칭호)"
+   ]
+  ],
+  "gra": [
+   [
+    "hath power to forgive",
+    "hath=has의 고어; power to+동사원형: '~할 권세'"
+   ]
+  ]
+ },
+ {
+  "en": "sat at meat",
+  "ko": "음식을 잡수실 때에",
+  "note": "'sit at meat'는 고어 숙어로 '식탁에 앉아 식사하다'의 뜻. 'meat'는 고기가 아니라 음식 전반(food)을 가리킨다.",
+  "voc": [
+   [
+    "meat",
+    "n.",
+    "음식(고어, 음식 전반)"
+   ],
+   [
+    "sat",
+    "v.",
+    "앉았다(sit의 과거)"
+   ]
+  ],
+  "idi": [
+   [
+    "sit at meat",
+    "식탁에 앉아 식사하다"
+   ]
+  ],
+  "gra": [
+   [
+    "meat",
+    "고어에서 meat은 고기가 아니라 음식 전반(food)을 뜻함"
+   ]
+  ]
+ },
+ {
+  "en": "publicans and sinners",
+  "ko": "세리와 죄인들",
+  "note": "'publican'은 로마를 위해 세금을 걷던 세리로, 유대 사회에서 멸시받던 부류였다. 죄인들과 함께 묶여 천대받았다.",
+  "voc": [
+   [
+    "publican",
+    "n.",
+    "세리(고어)"
+   ],
+   [
+    "sinner",
+    "n.",
+    "죄인"
+   ]
+  ],
+  "idi": [
+   [
+    "publicans and sinners",
+    "세리와 죄인들(멸시받던 부류)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "They that are whole have no need of the physician",
+  "ko": "건강한 자에게는 의원이 쓸데없으나",
+  "note": "'whole'은 '온전한, 건강한'의 뜻. 예수께서 자신을 영혼의 의원에 비유하며 죄인을 부르러 오셨음을 밝히신 비유다.",
+  "voc": [
+   [
+    "whole",
+    "adj.",
+    "온전한, 건강한"
+   ],
+   [
+    "physician",
+    "n.",
+    "의원, 의사"
+   ],
+   [
+    "need",
+    "n.",
+    "필요"
+   ]
+  ],
+  "idi": [
+   [
+    "have no need of",
+    "~이 필요 없다"
+   ]
+  ],
+  "gra": [
+   [
+    "They that are whole",
+    "that=관계대명사(고어 who): '건강한 자들'"
+   ]
+  ]
+ },
+ {
+  "en": "the children of the bridechamber",
+  "ko": "혼인집 손님들",
+  "note": "직역하면 '신방의 자녀들'이나, 신랑의 친구·혼인 잔치 하객을 가리키는 히브리식 관용 표현이다.",
+  "voc": [
+   [
+    "bridechamber",
+    "n.",
+    "신방, 혼인방"
+   ],
+   [
+    "children",
+    "n.",
+    "자녀들, 무리"
+   ]
+  ],
+  "idi": [
+   [
+    "children of the bridechamber",
+    "혼인집 손님들(신랑의 친구)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "the bridegroom shall be taken away",
+  "ko": "신랑을 빼앗길",
+  "note": "'신랑'은 예수 자신을 가리키며, '빼앗김'은 그분의 죽음을 예고하는 표현이다. 그때 비로소 제자들이 금식하리라 하셨다.",
+  "voc": [
+   [
+    "bridegroom",
+    "n.",
+    "신랑"
+   ],
+   [
+    "take away",
+    "phr.",
+    "데려가다, 빼앗다"
+   ]
+  ],
+  "idi": [
+   [
+    "take away",
+    "데려가다, 빼앗아 가다"
+   ]
+  ],
+  "gra": [
+   [
+    "shall be taken away",
+    "shall + 수동태: 미래의 일을 예고하는 '빼앗기리라'"
+   ]
+  ]
+ },
+ {
+  "en": "new wine into old bottles",
+  "ko": "새 포도주를 낡은 가죽 부대에",
+  "note": "'bottles'는 유리병이 아니라 가죽으로 만든 술부대(wineskin)다. 새 포도주가 발효하며 팽창하면 굳은 낡은 부대는 터진다. 새 시대와 옛 관습의 비유다.",
+  "voc": [
+   [
+    "wine",
+    "n.",
+    "포도주"
+   ],
+   [
+    "bottle",
+    "n.",
+    "가죽 부대(고어)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "bottles",
+    "고어 bottle은 유리병이 아니라 가죽 술부대(wineskin)를 뜻함"
+   ]
+  ]
+ },
+ {
+  "en": "to pluck the ears of corn",
+  "ko": "이삭을 자르기",
+  "note": "'corn'은 영국식 영어로 옥수수가 아니라 곡식(밀 등)을 뜻한다. 'ears of corn'은 '곡식의 이삭'이다.",
+  "voc": [
+   [
+    "pluck",
+    "v.",
+    "따다, 자르다"
+   ],
+   [
+    "corn",
+    "n.",
+    "곡식(영국식, 밀 등)"
+   ],
+   [
+    "ear",
+    "n.",
+    "이삭"
+   ]
+  ],
+  "idi": [
+   [
+    "ears of corn",
+    "곡식의 이삭"
+   ]
+  ],
+  "gra": [
+   [
+    "corn",
+    "영국식 영어에서 corn은 옥수수가 아니라 곡식 전반을 뜻함"
+   ]
+  ]
+ },
+ {
+  "en": "the shewbread",
+  "ko": "진설병",
+  "note": "'shewbread(showbread)'는 성소 상에 차려 놓던 거룩한 떡으로, 제사장만 먹을 수 있었다(레위기 24장). 다윗의 일화에서 인용된다.",
+  "voc": [
+   [
+    "shewbread",
+    "n.",
+    "진설병(고어 표기)"
+   ],
+   [
+    "bread",
+    "n.",
+    "떡, 빵"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "shewbread",
+    "shew=show의 고어 철자; '차려 보이는 떡'이라는 뜻"
+   ]
+  ]
+ },
+ {
+  "en": "The sabbath was made for man, and not man for the sabbath",
+  "ko": "안식일이 사람을 위하여 있는 것이요 사람이 안식일을 위하여 있는 것이 아니니",
+  "note": "안식일 제도의 본래 목적이 사람의 유익에 있음을 선언한 구절. 이어 인자가 안식일의 주인(Lord of the sabbath)이심을 밝히신다.",
+  "voc": [
+   [
+    "sabbath",
+    "n.",
+    "안식일"
+   ],
+   [
+    "man",
+    "n.",
+    "사람"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "not man for the sabbath",
+    "반복되는 was made가 생략된 대구 구문: '사람이 안식일을 위해 (지어진 것이) 아니다'"
+   ]
+  ]
+ }
 ]

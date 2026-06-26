@@ -1,23 +1,536 @@
 [
-  {"en": "led into the wilderness", "ko": "광야로 이끌리시다", "note": "성령께서 예수를 시험의 자리로 인도하시니라."},
-  {"en": "forty days tempted", "ko": "사십 일 시험", "note": "금식 후 주리신 가운데 마귀의 시험을 받으시다."},
-  {"en": "command this stone", "ko": "이 돌로 빵을", "note": "굶주림을 이용한 첫째 시험."},
-  {"en": "It is written", "ko": "기록되었으되", "note": "예수께서 신명기 말씀으로 시험을 물리치시다."},
-  {"en": "all the kingdoms", "ko": "세상 모든 왕국", "note": "마귀가 세상 권세를 보이며 유혹하다."},
-  {"en": "worship me", "ko": "내게 경배하면", "note": "경배를 조건으로 권세를 약속한 둘째 시험."},
-  {"en": "Get thee behind me", "ko": "사탄아 물러가라", "note": "오직 하나님만 섬기라는 말씀으로 응하시다."},
-  {"en": "pinnacle of the temple", "ko": "성전 꼭대기", "note": "성경을 빌미로 한 셋째 시험의 무대."},
-  {"en": "cast thyself down", "ko": "몸을 던지라", "note": "마귀가 시편을 인용해 하나님을 시험케 하려 하다."},
-  {"en": "tempt not the Lord", "ko": "주를 시험 말라", "note": "예수께서 시험을 단호히 거절하시다."},
-  {"en": "departed for a season", "ko": "잠시 떠나다", "note": "마귀가 때를 노려 물러가니라."},
-  {"en": "his custom in the synagogue", "ko": "회당의 관례대로", "note": "나사렛에서 안식일에 말씀을 읽으시다."},
-  {"en": "Spirit of the Lord upon me", "ko": "주의 영이 임하다", "note": "이사야 예언을 자신에게 적용하시다."},
-  {"en": "this scripture fulfilled", "ko": "이 말씀이 응하다", "note": "예언의 성취를 친히 선포하시다."},
-  {"en": "Is not this Joseph's son", "ko": "요셉의 아들 아니냐", "note": "고향 사람들의 의심과 친숙함의 걸림돌."},
-  {"en": "no prophet accepted at home", "ko": "고향에서 배척받다", "note": "선지자가 자기 고향에서 환영받지 못하는 이치."},
-  {"en": "filled with wrath", "ko": "분노로 가득 차다", "note": "이방인 사례에 분노한 회당 사람들."},
-  {"en": "passing through their midst", "ko": "무리를 지나가시다", "note": "그를 죽이려는 자들 가운데를 벗어나시다."},
-  {"en": "unclean spirit cast out", "ko": "더러운 영을 쫓다", "note": "가버나움에서 권위로 귀신을 내쫓으시다."},
-  {"en": "healed Simon's mother", "ko": "시몬의 장모를 고치다", "note": "열병을 꾸짖어 즉시 낫게 하시다."},
-  {"en": "preach the kingdom of God", "ko": "하나님의 왕국 전파", "note": "여러 성읍에 복음을 전하라 보냄받으셨음을 밝히시다."}
+ {
+  "en": "led into the wilderness",
+  "ko": "광야로 이끌리시다",
+  "note": "성령께서 예수를 시험의 자리로 인도하시니라.",
+  "voc": [
+   [
+    "wilderness",
+    "n.",
+    "광야"
+   ],
+   [
+    "led",
+    "v.",
+    "이끌렸다(lead의 과거분사)"
+   ]
+  ],
+  "idi": [
+   [
+    "led into",
+    "~로 이끌리다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "forty days tempted",
+  "ko": "사십 일 시험",
+  "note": "금식 후 주리신 가운데 마귀의 시험을 받으시다.",
+  "voc": [
+   [
+    "tempt",
+    "v.",
+    "시험하다·유혹하다"
+   ],
+   [
+    "forty",
+    "num.",
+    "사십"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "forty days tempted",
+    "being tempted forty days의 축약; 분사 수동 '사십 일 동안 시험받으며'"
+   ]
+  ]
+ },
+ {
+  "en": "command this stone",
+  "ko": "이 돌로 빵을",
+  "note": "굶주림을 이용한 첫째 시험.",
+  "voc": [
+   [
+    "command",
+    "v.",
+    "명하다"
+   ],
+   [
+    "stone",
+    "n.",
+    "돌"
+   ],
+   [
+    "bread",
+    "n.",
+    "빵·떡"
+   ]
+  ],
+  "idi": [
+   [
+    "command this stone that it be made bread",
+    "이 돌더러 빵이 되라 명하다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "It is written",
+  "ko": "기록되었으되",
+  "note": "예수께서 신명기 말씀으로 시험을 물리치시다.",
+  "voc": [
+   [
+    "written",
+    "v.",
+    "기록된(write의 과거분사)"
+   ],
+   [
+    "live",
+    "v.",
+    "살다"
+   ]
+  ],
+  "idi": [
+   [
+    "it is written",
+    "기록되었으되(성경에 이르기를)"
+   ]
+  ],
+  "gra": [
+   [
+    "It is written",
+    "is written=현재완료적 수동 '기록되어 있다'; 성경 인용 정형구"
+   ]
+  ]
+ },
+ {
+  "en": "all the kingdoms",
+  "ko": "세상 모든 왕국",
+  "note": "마귀가 세상 권세를 보이며 유혹하다.",
+  "voc": [
+   [
+    "kingdom",
+    "n.",
+    "왕국·나라"
+   ],
+   [
+    "world",
+    "n.",
+    "세상"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "worship me",
+  "ko": "내게 경배하면",
+  "note": "경배를 조건으로 권세를 약속한 둘째 시험.",
+  "voc": [
+   [
+    "worship",
+    "v.",
+    "경배하다"
+   ],
+   [
+    "fall down",
+    "phr.v.",
+    "엎드리다"
+   ]
+  ],
+  "idi": [
+   [
+    "fall down and worship",
+    "엎드려 경배하다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Get thee behind me",
+  "ko": "사탄아 물러가라",
+  "note": "오직 하나님만 섬기라는 말씀으로 응하시다.",
+  "voc": [
+   [
+    "behind",
+    "prep.",
+    "뒤에"
+   ],
+   [
+    "Satan",
+    "n.",
+    "사탄"
+   ]
+  ],
+  "idi": [
+   [
+    "Get thee behind me, Satan",
+    "사탄아 내 뒤로 물러가라"
+   ]
+  ],
+  "gra": [
+   [
+    "Get thee behind me",
+    "thee=재귀의 you(yourself); '너 자신을 물리라'는 옛 명령형"
+   ]
+  ]
+ },
+ {
+  "en": "pinnacle of the temple",
+  "ko": "성전 꼭대기",
+  "note": "성경을 빌미로 한 셋째 시험의 무대.",
+  "voc": [
+   [
+    "pinnacle",
+    "n.",
+    "꼭대기·첨탑"
+   ],
+   [
+    "temple",
+    "n.",
+    "성전"
+   ]
+  ],
+  "idi": [
+   [
+    "pinnacle of the temple",
+    "성전 꼭대기"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "cast thyself down",
+  "ko": "몸을 던지라",
+  "note": "마귀가 시편을 인용해 하나님을 시험케 하려 하다.",
+  "voc": [
+   [
+    "cast",
+    "v.",
+    "던지다"
+   ],
+   [
+    "thyself",
+    "pron.",
+    "너 자신을(고어)"
+   ]
+  ],
+  "idi": [
+   [
+    "cast oneself down",
+    "몸을 아래로 던지다"
+   ]
+  ],
+  "gra": [
+   [
+    "cast thyself down",
+    "thyself=현대영어 yourself(2인칭 재귀)"
+   ]
+  ]
+ },
+ {
+  "en": "tempt not the Lord",
+  "ko": "주를 시험 말라",
+  "note": "예수께서 시험을 단호히 거절하시다.",
+  "voc": [
+   [
+    "tempt",
+    "v.",
+    "시험하다"
+   ],
+   [
+    "Lord",
+    "n.",
+    "주"
+   ]
+  ],
+  "idi": [
+   [
+    "tempt not",
+    "시험하지 말라"
+   ]
+  ],
+  "gra": [
+   [
+    "tempt not the Lord",
+    "not을 동사 뒤에 둔 옛 부정 명령; 현대영어 do not tempt"
+   ]
+  ]
+ },
+ {
+  "en": "departed for a season",
+  "ko": "잠시 떠나다",
+  "note": "마귀가 때를 노려 물러가니라.",
+  "voc": [
+   [
+    "depart",
+    "v.",
+    "떠나다"
+   ],
+   [
+    "season",
+    "n.",
+    "때·기간"
+   ]
+  ],
+  "idi": [
+   [
+    "for a season",
+    "한동안·잠시"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "his custom in the synagogue",
+  "ko": "회당의 관례대로",
+  "note": "나사렛에서 안식일에 말씀을 읽으시다.",
+  "voc": [
+   [
+    "custom",
+    "n.",
+    "관례·습관"
+   ],
+   [
+    "synagogue",
+    "n.",
+    "회당"
+   ]
+  ],
+  "idi": [
+   [
+    "as his custom was",
+    "그의 관례대로"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Spirit of the Lord upon me",
+  "ko": "주의 영이 임하다",
+  "note": "이사야 예언을 자신에게 적용하시다.",
+  "voc": [
+   [
+    "spirit",
+    "n.",
+    "영"
+   ],
+   [
+    "upon",
+    "prep.",
+    "~위에"
+   ],
+   [
+    "anoint",
+    "v.",
+    "기름 붓다"
+   ]
+  ],
+  "idi": [
+   [
+    "the Spirit ... is upon me",
+    "주의 영이 내게 임하다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "this scripture fulfilled",
+  "ko": "이 말씀이 응하다",
+  "note": "예언의 성취를 친히 선포하시다.",
+  "voc": [
+   [
+    "scripture",
+    "n.",
+    "성경·기록된 말씀"
+   ],
+   [
+    "fulfil",
+    "v.",
+    "이루다·성취하다"
+   ]
+  ],
+  "idi": [
+   [
+    "this scripture is fulfilled",
+    "이 말씀이 응하다·성취되다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Is not this Joseph's son",
+  "ko": "요셉의 아들 아니냐",
+  "note": "고향 사람들의 의심과 친숙함의 걸림돌.",
+  "voc": [
+   [
+    "son",
+    "n.",
+    "아들"
+   ],
+   [
+    "carpenter",
+    "n.",
+    "목수"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Is not this Joseph's son",
+    "Is not this=현대영어 Isn't this; 부정 의문문 '이는 요셉의 아들 아니냐'"
+   ]
+  ]
+ },
+ {
+  "en": "no prophet accepted at home",
+  "ko": "고향에서 배척받다",
+  "note": "선지자가 자기 고향에서 환영받지 못하는 이치.",
+  "voc": [
+   [
+    "prophet",
+    "n.",
+    "선지자"
+   ],
+   [
+    "accept",
+    "v.",
+    "받아들이다·환영하다"
+   ]
+  ],
+  "idi": [
+   [
+    "accepted in his own country",
+    "자기 고향에서 환영받다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "filled with wrath",
+  "ko": "분노로 가득 차다",
+  "note": "이방인 사례에 분노한 회당 사람들.",
+  "voc": [
+   [
+    "wrath",
+    "n.",
+    "분노·진노"
+   ],
+   [
+    "fill",
+    "v.",
+    "채우다"
+   ]
+  ],
+  "idi": [
+   [
+    "filled with wrath",
+    "분노로 가득 차다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "passing through their midst",
+  "ko": "무리를 지나가시다",
+  "note": "그를 죽이려는 자들 가운데를 벗어나시다.",
+  "voc": [
+   [
+    "midst",
+    "n.",
+    "한가운데"
+   ],
+   [
+    "pass",
+    "v.",
+    "지나가다"
+   ]
+  ],
+  "idi": [
+   [
+    "through the midst of",
+    "~의 한가운데를 지나"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "unclean spirit cast out",
+  "ko": "더러운 영을 쫓다",
+  "note": "가버나움에서 권위로 귀신을 내쫓으시다.",
+  "voc": [
+   [
+    "unclean",
+    "adj.",
+    "더러운·부정한"
+   ],
+   [
+    "spirit",
+    "n.",
+    "영"
+   ],
+   [
+    "cast out",
+    "phr.v.",
+    "쫓아내다"
+   ]
+  ],
+  "idi": [
+   [
+    "cast out",
+    "내쫓다·축출하다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "healed Simon's mother",
+  "ko": "시몬의 장모를 고치다",
+  "note": "열병을 꾸짖어 즉시 낫게 하시다.",
+  "voc": [
+   [
+    "heal",
+    "v.",
+    "고치다"
+   ],
+   [
+    "fever",
+    "n.",
+    "열병"
+   ],
+   [
+    "rebuke",
+    "v.",
+    "꾸짖다"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "preach the kingdom of God",
+  "ko": "하나님의 왕국 전파",
+  "note": "여러 성읍에 복음을 전하라 보냄받으셨음을 밝히시다.",
+  "voc": [
+   [
+    "preach",
+    "v.",
+    "전파하다·선포하다"
+   ],
+   [
+    "kingdom",
+    "n.",
+    "왕국·나라"
+   ]
+  ],
+  "idi": [
+   [
+    "preach the kingdom of God",
+    "하나님의 왕국을 전파하다"
+   ]
+  ],
+  "gra": []
+ }
 ]

@@ -1,17 +1,392 @@
 [
-  { "en": "It is written", "ko": "기록되었으되 / 기록된 바", "note": "예수께서 마귀를 물리치실 때 세 번 쓰신 정형구. 헬라어 '게그랍타이(γέγραπται)'의 완료수동 — '기록되어 (지금도) 있다', 즉 성경의 항구적 권위를 가리킴." },
-  { "en": "If thou be the Son of God", "ko": "네가 만일 하나님의 아들이거든", "note": "고어 가정법. thou be = if you are. 마귀가 예수의 신분을 빌미 삼아 의심을 심으려는 시험의 도입구." },
-  { "en": "an hungred", "ko": "주리다 (몹시 시장하다)", "note": "고어 형태 'an hungred' = 'hungered(very hungry)'. an-은 강세 접두어. 현대영어 'he was hungry'." },
-  { "en": "Man shall not live by bread alone", "ko": "사람이 빵으로만 살 것이 아니라", "note": "신 8:3 인용. 전통 표기에서 bread는 '떡'으로 옮기기도 하나, 여기서는 양식(빵) 전체를 가리킴." },
-  { "en": "pinnacle of the temple", "ko": "성전 꼭대기(첨탑)", "note": "pinnacle = 가장 높은 끝·첨단. 성전 건물의 가장 높은 모서리." },
-  { "en": "cast thyself down", "ko": "네 몸을 던져 뛰어내리라", "note": "고어 재귀형 'cast thyself' = 'throw yourself'. thyself = yourself." },
-  { "en": "Thou shalt not tempt the Lord thy God", "ko": "주 너의 하나님을 시험하지 말라", "note": "신 6:16 인용. shalt not = shall not(금지). thy = your. tempt = 시험하다·시련에 들게 하다." },
-  { "en": "Get thee hence, Satan", "ko": "사탄아, 물러가라 / 썩 떠나가라", "note": "강한 명령. 'get thee hence' = 'go away from here'. hence = 여기서부터(멀리). thee = 재귀의 you." },
-  { "en": "him only shalt thou serve", "ko": "오직 그분만을 섬기라", "note": "어순 도치로 'only(오직)'를 강조. = 'thou shalt serve him only'. 신 6:13 인용." },
-  { "en": "the kingdom of heaven is at hand", "ko": "하늘의 왕국이 가까이 왔느니라", "note": "마태복음 고유 표현 'kingdom of heaven'(하늘의 왕국). at hand = 가까이 와 있다·임박하다. '회개하라'와 짝을 이루는 선포구." },
-  { "en": "Follow me", "ko": "나를 따라오라", "note": "예수의 제자 부르심의 정형 명령. 단순한 동행이 아니라 삶 전체를 좇으라는 부름." },
-  { "en": "fishers of men", "ko": "사람을 낚는 어부", "note": "어부였던 제자들의 직업에 빗댄 비유. fisher = 고기 잡는 자. 사람을 하나님 나라로 이끄는 사역을 가리킴." },
-  { "en": "they straightway left their nets", "ko": "그들이 곧바로 그물을 버려두었다", "note": "straightway = 고어 'immediately(즉시·곧바로)'. 부르심에 대한 지체 없는 순종을 강조." },
-  { "en": "his fame went throughout all Syria", "ko": "그분의 명성이 온 시리아에 두루 퍼졌다", "note": "fame = 소문·명성. 'went throughout' = 두루 퍼지다. 예수의 치유 사역이 널리 알려진 모습." },
-  { "en": "those which were possessed with devils", "ko": "귀신 들린 자들", "note": "고어 'possessed with devils' = 'demon-possessed'. KJV는 demon을 devil로 옮김. 마귀(사탄)와 구분되는 더러운 영에 사로잡힌 상태." }
+ {
+  "en": "It is written",
+  "ko": "기록되었으되 / 기록된 바",
+  "note": "예수께서 마귀를 물리치실 때 세 번 쓰신 정형구. 헬라어 '게그랍타이(γέγραπται)'의 완료수동 — '기록되어 (지금도) 있다', 즉 성경의 항구적 권위를 가리킴.",
+  "voc": [
+   [
+    "write",
+    "v.",
+    "쓰다, 기록하다"
+   ],
+   [
+    "proceed",
+    "v.",
+    "나오다, 비롯되다"
+   ]
+  ],
+  "idi": [
+   [
+    "It is written",
+    "기록되었으되, 기록된 바"
+   ]
+  ],
+  "gra": [
+   [
+    "It is written",
+    "현재완료수동의 함의 — '기록되어 (지금도) 있다'(헬라어 완료수동)"
+   ]
+  ]
+ },
+ {
+  "en": "If thou be the Son of God",
+  "ko": "네가 만일 하나님의 아들이거든",
+  "note": "고어 가정법. thou be = if you are. 마귀가 예수의 신분을 빌미 삼아 의심을 심으려는 시험의 도입구.",
+  "voc": [
+   [
+    "Son",
+    "n.",
+    "아들"
+   ],
+   [
+    "God",
+    "n.",
+    "하나님"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "If thou be the Son",
+    "thou be=고어 가정법(현대: if you are); thou=2인칭 you"
+   ]
+  ]
+ },
+ {
+  "en": "an hungred",
+  "ko": "주리다 (몹시 시장하다)",
+  "note": "고어 형태 'an hungred' = 'hungered(very hungry)'. an-은 강세 접두어. 현대영어 'he was hungry'.",
+  "voc": [
+   [
+    "an hungred",
+    "",
+    "주린, 몹시 시장한 (고어)"
+   ],
+   [
+    "fast",
+    "v.",
+    "금식하다"
+   ]
+  ],
+  "idi": [
+   [
+    "an hungred",
+    "몹시 시장하다 (현대: very hungry)"
+   ]
+  ],
+  "gra": [
+   [
+    "an hungred",
+    "hungered의 고어형. an-=강세 접두. 현대 'he was hungry'"
+   ]
+  ]
+ },
+ {
+  "en": "Man shall not live by bread alone",
+  "ko": "사람이 빵으로만 살 것이 아니라",
+  "note": "신 8:3 인용. 전통 표기에서 bread는 '떡'으로 옮기기도 하나, 여기서는 양식(빵) 전체를 가리킴.",
+  "voc": [
+   [
+    "live",
+    "v.",
+    "살다"
+   ],
+   [
+    "bread",
+    "n.",
+    "빵, 양식"
+   ],
+   [
+    "alone",
+    "adv.",
+    "~만으로"
+   ]
+  ],
+  "idi": [
+   [
+    "not by bread alone",
+    "빵으로만 (사는 것이) 아니라"
+   ]
+  ],
+  "gra": [
+   [
+    "Man shall not live",
+    "shall not=금지·부정의 단언 '살 것이 아니라'"
+   ]
+  ]
+ },
+ {
+  "en": "pinnacle of the temple",
+  "ko": "성전 꼭대기(첨탑)",
+  "note": "pinnacle = 가장 높은 끝·첨단. 성전 건물의 가장 높은 모서리.",
+  "voc": [
+   [
+    "pinnacle",
+    "n.",
+    "꼭대기, 첨탑"
+   ],
+   [
+    "temple",
+    "n.",
+    "성전"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "cast thyself down",
+  "ko": "네 몸을 던져 뛰어내리라",
+  "note": "고어 재귀형 'cast thyself' = 'throw yourself'. thyself = yourself.",
+  "voc": [
+   [
+    "cast",
+    "v.",
+    "던지다"
+   ],
+   [
+    "thyself",
+    "pron.",
+    "너 자신 (고어)"
+   ]
+  ],
+  "idi": [
+   [
+    "cast thyself down",
+    "네 몸을 던져 뛰어내리라"
+   ]
+  ],
+  "gra": [
+   [
+    "cast thyself",
+    "고어 재귀형 'cast thyself'(현대: throw yourself); thyself=yourself"
+   ]
+  ]
+ },
+ {
+  "en": "Thou shalt not tempt the Lord thy God",
+  "ko": "주 너의 하나님을 시험하지 말라",
+  "note": "신 6:16 인용. shalt not = shall not(금지). thy = your. tempt = 시험하다·시련에 들게 하다.",
+  "voc": [
+   [
+    "tempt",
+    "v.",
+    "시험하다, 시련에 들게 하다"
+   ],
+   [
+    "thy",
+    "pron.",
+    "너의 (고어)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Thou shalt not tempt",
+    "shalt not=금지 '~하지 말라'; thy=your"
+   ]
+  ]
+ },
+ {
+  "en": "Get thee hence, Satan",
+  "ko": "사탄아, 물러가라 / 썩 떠나가라",
+  "note": "강한 명령. 'get thee hence' = 'go away from here'. hence = 여기서부터(멀리). thee = 재귀의 you.",
+  "voc": [
+   [
+    "hence",
+    "adv.",
+    "여기서부터 (고어)"
+   ],
+   [
+    "thee",
+    "pron.",
+    "너 (고어 목적격)"
+   ]
+  ],
+  "idi": [
+   [
+    "Get thee hence",
+    "썩 물러가라 (현대: go away from here)"
+   ]
+  ],
+  "gra": [
+   [
+    "Get thee hence",
+    "get thee=재귀적 명령(현대: get yourself away); hence=from here"
+   ]
+  ]
+ },
+ {
+  "en": "him only shalt thou serve",
+  "ko": "오직 그분만을 섬기라",
+  "note": "어순 도치로 'only(오직)'를 강조. = 'thou shalt serve him only'. 신 6:13 인용.",
+  "voc": [
+   [
+    "serve",
+    "v.",
+    "섬기다"
+   ],
+   [
+    "only",
+    "adv.",
+    "오직"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "him only shalt thou serve",
+    "어순 도치(목적어 him only 전치)로 '오직' 강조; 평서: thou shalt serve him only"
+   ]
+  ]
+ },
+ {
+  "en": "the kingdom of heaven is at hand",
+  "ko": "하늘의 왕국이 가까이 왔느니라",
+  "note": "마태복음 고유 표현 'kingdom of heaven'(하늘의 왕국). at hand = 가까이 와 있다·임박하다. '회개하라'와 짝을 이루는 선포구.",
+  "voc": [
+   [
+    "kingdom",
+    "n.",
+    "왕국"
+   ],
+   [
+    "heaven",
+    "n.",
+    "하늘"
+   ]
+  ],
+  "idi": [
+   [
+    "at hand",
+    "가까이 와 있다, 임박하다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Follow me",
+  "ko": "나를 따라오라",
+  "note": "예수의 제자 부르심의 정형 명령. 단순한 동행이 아니라 삶 전체를 좇으라는 부름.",
+  "voc": [
+   [
+    "follow",
+    "v.",
+    "따르다, 좇다"
+   ],
+   [
+    "make",
+    "v.",
+    "만들다, 되게 하다"
+   ]
+  ],
+  "idi": [
+   [
+    "Follow me",
+    "나를 따라오라 — 제자 부르심의 정형구"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "fishers of men",
+  "ko": "사람을 낚는 어부",
+  "note": "어부였던 제자들의 직업에 빗댄 비유. fisher = 고기 잡는 자. 사람을 하나님 나라로 이끄는 사역을 가리킴.",
+  "voc": [
+   [
+    "fisher",
+    "n.",
+    "어부, 고기 잡는 자"
+   ],
+   [
+    "men",
+    "n.",
+    "사람들"
+   ]
+  ],
+  "idi": [
+   [
+    "fishers of men",
+    "사람을 낚는 어부"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "they straightway left their nets",
+  "ko": "그들이 곧바로 그물을 버려두었다",
+  "note": "straightway = 고어 'immediately(즉시·곧바로)'. 부르심에 대한 지체 없는 순종을 강조.",
+  "voc": [
+   [
+    "straightway",
+    "adv.",
+    "곧바로, 즉시 (고어)"
+   ],
+   [
+    "net",
+    "n.",
+    "그물"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "straightway",
+    "immediately의 고어 '즉시·곧바로'"
+   ]
+  ]
+ },
+ {
+  "en": "his fame went throughout all Syria",
+  "ko": "그분의 명성이 온 시리아에 두루 퍼졌다",
+  "note": "fame = 소문·명성. 'went throughout' = 두루 퍼지다. 예수의 치유 사역이 널리 알려진 모습.",
+  "voc": [
+   [
+    "fame",
+    "n.",
+    "명성, 소문"
+   ],
+   [
+    "throughout",
+    "prep.",
+    "~전역에 두루"
+   ]
+  ],
+  "idi": [
+   [
+    "went throughout",
+    "두루 퍼지다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "those which were possessed with devils",
+  "ko": "귀신 들린 자들",
+  "note": "고어 'possessed with devils' = 'demon-possessed'. KJV는 demon을 devil로 옮김. 마귀(사탄)와 구분되는 더러운 영에 사로잡힌 상태.",
+  "voc": [
+   [
+    "possess",
+    "v.",
+    "사로잡다, 들리다"
+   ],
+   [
+    "devil",
+    "n.",
+    "귀신 (KJV: demon)"
+   ]
+  ],
+  "idi": [
+   [
+    "possessed with devils",
+    "귀신 들린 (현대: demon-possessed)"
+   ]
+  ],
+  "gra": [
+   [
+    "those which were possessed",
+    "which=사람 가리키는 고어 관계대명사(현대: who); were possessed=수동"
+   ]
+  ]
+ }
 ]

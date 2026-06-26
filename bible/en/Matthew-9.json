@@ -1,17 +1,372 @@
 [
-  {"en":"sick of the palsy","ko":"중풍병에 걸린","note":"여기서 'sick of'는 '~을 앓는'이라는 뜻의 옛 표현. 'palsy'는 중풍·마비를 가리키는 고어다."},
-  {"en":"be of good cheer","ko":"안심하라, 힘을 내라","note":"상대를 위로·격려하는 전통 표현. 'cheer'는 본래 '기분·심정'을 뜻해 '좋은 마음을 가지라'는 의미다."},
-  {"en":"thy sins be forgiven thee","ko":"네 죄가 사함을 받았느니라","note":"'thy(너의)·thee(너에게)'는 2인칭 단수 고어. 'be forgiven'은 선언·기원을 나타내는 옛 가정법 형태다."},
-  {"en":"This man blasphemeth","ko":"이 사람이 신성을 모독하는도다","note":"'blaspheme'는 하나님을 모독하다. 어미 '-eth'는 3인칭 단수 현재형 고어 어미(=blasphemes)다."},
-  {"en":"sitting at the receipt of custom","ko":"세관에 앉아 있는","note":"'receipt of custom'은 세금을 걷는 세관·징수소를 뜻하는 옛 표현. 세리 마태의 직업을 묘사한다."},
-  {"en":"sat at meat","ko":"식사하려고 앉아 있었다","note":"'meat'는 고기가 아니라 '음식·식사' 전반을 뜻하는 고어. 'sit at meat'는 '식탁에 앉다'라는 관용구다."},
-  {"en":"They that be whole need not a physician","ko":"건강한 자에게는 의사가 쓸데없다","note":"'they that be whole'는 '온전한(건강한) 자들'이라는 고어 어법. 'whole'은 '병 없는, 멀쩡한'을 뜻한다."},
-  {"en":"I will have mercy, and not sacrifice","ko":"나는 자비를 원하고 제사를 원치 않는다","note":"호세아 6:6 인용 관용구. 'will have'는 '원하다·요구하다'의 뜻으로, 형식보다 긍휼을 강조한다."},
-  {"en":"children of the bridechamber","ko":"혼인집 손님들","note":"'bridechamber'는 신방·혼인 잔치집. '~의 자녀들'은 셈어식 표현으로 '그 자리에 속한 사람들'을 뜻한다."},
-  {"en":"new wine into old bottles","ko":"새 포도주를 낡은 가죽부대에","note":"여기서 'bottles'는 유리병이 아니라 가죽부대. 새것과 옛것이 어울리지 않는다는 비유적 관용구다."},
-  {"en":"touched the hem of his garment","ko":"그의 옷자락을 만졌다","note":"'hem'은 옷의 가장자리·단. 믿음으로 예수께 다가가는 모습을 나타내는 표현이다."},
-  {"en":"thy faith hath made thee whole","ko":"네 믿음이 너를 낫게 하였다","note":"'hath made'는 'has made'의 고어. 'whole'은 '온전한·치유된' 상태를 뜻하는 옛 용법이다."},
-  {"en":"laughed him to scorn","ko":"그를 비웃었다, 조롱했다","note":"'laugh someone to scorn'은 '~을 조롱하며 비웃다'라는 옛 관용구. 'scorn'은 경멸·조소를 뜻한다."},
-  {"en":"as sheep having no shepherd","ko":"목자 없는 양과 같이","note":"인도자가 없어 흩어지고 지친 무리를 가리키는 성경적 비유 표현이다."},
-  {"en":"The harvest truly is plenteous","ko":"추수할 것은 참으로 많다","note":"'plenteous'는 '풍성한·많은'을 뜻하는 고어(=plentiful). 전도의 대상이 많음을 추수에 빗댄 표현이다."}
+ {
+  "en": "sick of the palsy",
+  "ko": "중풍병에 걸린",
+  "note": "여기서 'sick of'는 '~을 앓는'이라는 뜻의 옛 표현. 'palsy'는 중풍·마비를 가리키는 고어다.",
+  "voc": [
+   [
+    "palsy",
+    "n.",
+    "중풍, 마비(고어)"
+   ],
+   [
+    "sick",
+    "a.",
+    "병든"
+   ]
+  ],
+  "idi": [
+   [
+    "sick of the palsy",
+    "중풍을 앓는"
+   ]
+  ],
+  "gra": [
+   [
+    "sick of the palsy",
+    "of = ~을 앓는(병명 표시 고어 용법)"
+   ]
+  ]
+ },
+ {
+  "en": "be of good cheer",
+  "ko": "안심하라, 힘을 내라",
+  "note": "상대를 위로·격려하는 전통 표현. 'cheer'는 본래 '기분·심정'을 뜻해 '좋은 마음을 가지라'는 의미다.",
+  "voc": [
+   [
+    "cheer",
+    "n.",
+    "기분, 마음"
+   ]
+  ],
+  "idi": [
+   [
+    "be of good cheer",
+    "안심하라, 힘을 내라"
+   ]
+  ],
+  "gra": [
+   [
+    "be of good cheer",
+    "of + 명사로 성질·상태를 나타내는 고어 구문"
+   ]
+  ]
+ },
+ {
+  "en": "thy sins be forgiven thee",
+  "ko": "네 죄가 사함을 받았느니라",
+  "note": "'thy(너의)·thee(너에게)'는 2인칭 단수 고어. 'be forgiven'은 선언·기원을 나타내는 옛 가정법 형태다.",
+  "voc": [
+   [
+    "thy",
+    "pron.",
+    "너의(고어)"
+   ],
+   [
+    "forgiven",
+    "v.",
+    "용서받은"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "thy sins be forgiven thee",
+    "be forgiven = 선언·기원의 가정법(사함을 받았느니라). thee = 너에게"
+   ]
+  ]
+ },
+ {
+  "en": "This man blasphemeth",
+  "ko": "이 사람이 신성을 모독하는도다",
+  "note": "'blaspheme'는 하나님을 모독하다. 어미 '-eth'는 3인칭 단수 현재형 고어 어미(=blasphemes)다.",
+  "voc": [
+   [
+    "blaspheme",
+    "v.",
+    "신성을 모독하다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "This man blasphemeth",
+    "-eth = 3인칭 단수 현재형 고어 어미(=blasphemes)"
+   ]
+  ]
+ },
+ {
+  "en": "sitting at the receipt of custom",
+  "ko": "세관에 앉아 있는",
+  "note": "'receipt of custom'은 세금을 걷는 세관·징수소를 뜻하는 옛 표현. 세리 마태의 직업을 묘사한다.",
+  "voc": [
+   [
+    "receipt",
+    "n.",
+    "수령, 징수"
+   ],
+   [
+    "custom",
+    "n.",
+    "세금, 관세(고어)"
+   ]
+  ],
+  "idi": [
+   [
+    "receipt of custom",
+    "세관, 세금 징수소"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "sat at meat",
+  "ko": "식사하려고 앉아 있었다",
+  "note": "'meat'는 고기가 아니라 '음식·식사' 전반을 뜻하는 고어. 'sit at meat'는 '식탁에 앉다'라는 관용구다.",
+  "voc": [
+   [
+    "meat",
+    "n.",
+    "음식, 식사(고어)"
+   ]
+  ],
+  "idi": [
+   [
+    "sit at meat",
+    "식탁에 앉다, 식사하다"
+   ]
+  ],
+  "gra": [
+   [
+    "sat at meat",
+    "meat = 음식 전반(고어). 고기 아님"
+   ]
+  ]
+ },
+ {
+  "en": "They that be whole need not a physician",
+  "ko": "건강한 자에게는 의사가 쓸데없다",
+  "note": "'they that be whole'는 '온전한(건강한) 자들'이라는 고어 어법. 'whole'은 '병 없는, 멀쩡한'을 뜻한다.",
+  "voc": [
+   [
+    "whole",
+    "a.",
+    "온전한, 건강한"
+   ],
+   [
+    "physician",
+    "n.",
+    "의사"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "they that be whole",
+    "they that = those who (고어 관계 구문). be = are (가정법·고어)"
+   ]
+  ]
+ },
+ {
+  "en": "I will have mercy, and not sacrifice",
+  "ko": "나는 자비를 원하고 제사를 원치 않는다",
+  "note": "호세아 6:6 인용 관용구. 'will have'는 '원하다·요구하다'의 뜻으로, 형식보다 긍휼을 강조한다.",
+  "voc": [
+   [
+    "mercy",
+    "n.",
+    "자비, 긍휼"
+   ],
+   [
+    "sacrifice",
+    "n.",
+    "제사, 희생"
+   ]
+  ],
+  "idi": [
+   [
+    "have mercy",
+    "자비를 베풀다"
+   ]
+  ],
+  "gra": [
+   [
+    "I will have mercy",
+    "will have = 원하다·요구하다(고어 의지)"
+   ]
+  ]
+ },
+ {
+  "en": "children of the bridechamber",
+  "ko": "혼인집 손님들",
+  "note": "'bridechamber'는 신방·혼인 잔치집. '~의 자녀들'은 셈어식 표현으로 '그 자리에 속한 사람들'을 뜻한다.",
+  "voc": [
+   [
+    "bridechamber",
+    "n.",
+    "신방, 혼인 잔치집(고어)"
+   ]
+  ],
+  "idi": [
+   [
+    "children of the bridechamber",
+    "혼인집 손님들"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "new wine into old bottles",
+  "ko": "새 포도주를 낡은 가죽부대에",
+  "note": "여기서 'bottles'는 유리병이 아니라 가죽부대. 새것과 옛것이 어울리지 않는다는 비유적 관용구다.",
+  "voc": [
+   [
+    "wine",
+    "n.",
+    "포도주"
+   ],
+   [
+    "bottles",
+    "n.",
+    "가죽부대(고어)"
+   ]
+  ],
+  "idi": [
+   [
+    "new wine into old bottles",
+    "낡은 부대에 새 포도주(어울리지 않음)"
+   ]
+  ],
+  "gra": [
+   [
+    "bottles",
+    "고어로 유리병이 아닌 가죽부대를 뜻함"
+   ]
+  ]
+ },
+ {
+  "en": "touched the hem of his garment",
+  "ko": "그의 옷자락을 만졌다",
+  "note": "'hem'은 옷의 가장자리·단. 믿음으로 예수께 다가가는 모습을 나타내는 표현이다.",
+  "voc": [
+   [
+    "hem",
+    "n.",
+    "옷단, 옷자락"
+   ],
+   [
+    "garment",
+    "n.",
+    "옷, 의복"
+   ]
+  ],
+  "idi": [
+   [
+    "touch the hem of his garment",
+    "그의 옷자락을 만지다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "thy faith hath made thee whole",
+  "ko": "네 믿음이 너를 낫게 하였다",
+  "note": "'hath made'는 'has made'의 고어. 'whole'은 '온전한·치유된' 상태를 뜻하는 옛 용법이다.",
+  "voc": [
+   [
+    "hath",
+    "v.",
+    "가지다(has의 고어)"
+   ],
+   [
+    "whole",
+    "a.",
+    "온전한, 나은"
+   ]
+  ],
+  "idi": [
+   [
+    "make whole",
+    "낫게 하다, 온전케 하다"
+   ]
+  ],
+  "gra": [
+   [
+    "thy faith hath made thee whole",
+    "hath made = has made (고어 완료). thee = 너를"
+   ]
+  ]
+ },
+ {
+  "en": "laughed him to scorn",
+  "ko": "그를 비웃었다, 조롱했다",
+  "note": "'laugh someone to scorn'은 '~을 조롱하며 비웃다'라는 옛 관용구. 'scorn'은 경멸·조소를 뜻한다.",
+  "voc": [
+   [
+    "scorn",
+    "n.",
+    "조롱, 경멸"
+   ]
+  ],
+  "idi": [
+   [
+    "laugh someone to scorn",
+    "~을 비웃다, 조롱하다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "as sheep having no shepherd",
+  "ko": "목자 없는 양과 같이",
+  "note": "인도자가 없어 흩어지고 지친 무리를 가리키는 성경적 비유 표현이다.",
+  "voc": [
+   [
+    "sheep",
+    "n.",
+    "양"
+   ],
+   [
+    "shepherd",
+    "n.",
+    "목자"
+   ]
+  ],
+  "idi": [
+   [
+    "as sheep having no shepherd",
+    "목자 없는 양처럼"
+   ]
+  ],
+  "gra": [
+   [
+    "having no shepherd",
+    "분사구문: ~을 가지지 못한 채(부대 상황)"
+   ]
+  ]
+ },
+ {
+  "en": "The harvest truly is plenteous",
+  "ko": "추수할 것은 참으로 많다",
+  "note": "'plenteous'는 '풍성한·많은'을 뜻하는 고어(=plentiful). 전도의 대상이 많음을 추수에 빗댄 표현이다.",
+  "voc": [
+   [
+    "harvest",
+    "n.",
+    "추수, 수확"
+   ],
+   [
+    "plenteous",
+    "a.",
+    "풍성한, 많은(고어)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "plenteous",
+    "plentiful의 고어형(=풍성한)"
+   ]
+  ]
+ }
 ]

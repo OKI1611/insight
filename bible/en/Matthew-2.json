@@ -1,16 +1,368 @@
 [
-  {"en": "wise men from the east", "ko": "동방에서 온 박사들", "note": "그리스어 마고스(magos)의 번역으로, 별을 연구하던 동방의 학자·점성가를 가리킨다. KJV는 'wise men'으로 옮겼고 한국 교회 전통은 '동방박사'로 부른다."},
-  {"en": "he that is born King of the Jews", "ko": "유대인의 왕으로 나신 이", "note": "'he that ...'는 '~한 그 사람'을 뜻하는 고어식 관계대명사 구문이다. 현대 영어로는 'the one who is born ...'에 해당한다."},
-  {"en": "to worship him", "ko": "그분께 경배하러", "note": "동사 worship은 여기서 단순한 존경이 아니라 왕·신적 존재 앞에 엎드려 절하는 '경배'를 뜻한다. 11절의 'fell down, and worshipped him'과 함께 읽으면 의미가 분명해진다."},
-  {"en": "was troubled", "ko": "마음이 어지러워졌다", "note": "be troubled는 '동요하다, 근심하다'라는 숙어적 표현이다. 헤롯이 자기 왕위를 위협받아 불안에 빠진 상태를 가리킨다."},
-  {"en": "demanded of them", "ko": "그들에게 캐물었다", "note": "고어에서 demand of는 '~에게 묻다, 따져 묻다'라는 뜻이다. 현대 영어의 'demand'(강하게 요구하다)와 달리 여기서는 '묻다(ask)'에 가깝다."},
-  {"en": "enquired ... diligently", "ko": "부지런히/자세히 캐어물었다", "note": "enquire(=inquire)는 '캐묻다, 알아보다'. diligently는 '부지런히, 자세히'라는 부사로, 헤롯이 별이 나타난 정확한 시점을 집요하게 알아냈음을 강조한다."},
-  {"en": "bring me word again", "ko": "내게 다시 알려 다오", "note": "bring word는 '소식을 전하다, 알리다'라는 고어 숙어다. again은 '다시'가 아니라 '도로, 회신하여'의 뉘앙스로 쓰였다."},
-  {"en": "lo / behold", "ko": "보라", "note": "lo와 behold는 모두 '보라!'라는 고어 감탄사로, 뒤따르는 놀랍거나 중요한 장면에 독자의 주의를 끌기 위해 쓰인다. KJV 전반에 매우 자주 등장한다."},
-  {"en": "being warned of God in a dream", "ko": "꿈에 하나님의 지시(경고)를 받고", "note": "warned of God에서 of는 행위자를 나타내는 고어 전치사로 '하나님에 의해'를 뜻한다(현대 영어 by God). 분사구문 being warned는 '경고를 받았으므로'의 뜻이다."},
-  {"en": "he was exceeding wroth", "ko": "심히 노하였다", "note": "wroth는 '몹시 화난'을 뜻하는 고어 형용사(angry의 옛말)다. exceeding은 부사로 그 분노가 극에 달했음을 강조한다."},
-  {"en": "the coasts thereof", "ko": "그 지경(경계 지역)", "note": "KJV의 coast는 '해안'이 아니라 '경계, 지역, 일대'를 뜻하는 고어다. thereof는 '그것의'라는 고어 대명사로 '베들레헴의'를 가리킨다."},
-  {"en": "which sought the young child's life", "ko": "어린아이의 목숨을 노리던 자들", "note": "seek one's life는 '~의 목숨을 노리다, 죽이려 하다'라는 성경적 숙어다. which는 사람을 가리키는 고어 관계대명사로 현대 영어의 who에 해당한다."},
-  {"en": "in the room of his father Herod", "ko": "그 아버지 헤롯을 이어(대신하여)", "note": "in the room of는 '~의 자리에, ~를 대신하여'라는 고어 숙어로 현대 영어의 'in place of'에 해당한다. 아켈라오가 헤롯의 뒤를 이어 통치했음을 뜻한다."},
-  {"en": "that it might be fulfilled", "ko": "이루어지게 하려 하심이라", "note": "마태복음에 반복되는 구속사적 정형구로, 구약 예언이 성취되었음을 가리킨다. might be fulfilled는 목적을 나타내는 가정법 수동 구문이다."}
+ {
+  "en": "wise men from the east",
+  "ko": "동방에서 온 박사들",
+  "note": "그리스어 마고스(magos)의 번역으로, 별을 연구하던 동방의 학자·점성가를 가리킨다. KJV는 'wise men'으로 옮겼고 한국 교회 전통은 '동방박사'로 부른다.",
+  "voc": [
+   [
+    "wise men",
+    "",
+    "박사들, 현자들"
+   ],
+   [
+    "east",
+    "n.",
+    "동방"
+   ]
+  ],
+  "idi": [
+   [
+    "wise men from the east",
+    "동방에서 온 박사들 (그리스어 magos)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "he that is born King of the Jews",
+  "ko": "유대인의 왕으로 나신 이",
+  "note": "'he that ...'는 '~한 그 사람'을 뜻하는 고어식 관계대명사 구문이다. 현대 영어로는 'the one who is born ...'에 해당한다.",
+  "voc": [
+   [
+    "born",
+    "v.",
+    "태어난 (bear의 과거분사)"
+   ],
+   [
+    "King",
+    "n.",
+    "왕"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "he that is born King",
+    "he that=관계대명사 '~한 그 사람'(현대: the one who is born)"
+   ]
+  ]
+ },
+ {
+  "en": "to worship him",
+  "ko": "그분께 경배하러",
+  "note": "동사 worship은 여기서 단순한 존경이 아니라 왕·신적 존재 앞에 엎드려 절하는 '경배'를 뜻한다. 11절의 'fell down, and worshipped him'과 함께 읽으면 의미가 분명해진다.",
+  "voc": [
+   [
+    "worship",
+    "v.",
+    "경배하다"
+   ],
+   [
+    "star",
+    "n.",
+    "별"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "to worship him",
+    "to부정사(목적) '그분께 경배하러'"
+   ]
+  ]
+ },
+ {
+  "en": "was troubled",
+  "ko": "마음이 어지러워졌다",
+  "note": "be troubled는 '동요하다, 근심하다'라는 숙어적 표현이다. 헤롯이 자기 왕위를 위협받아 불안에 빠진 상태를 가리킨다.",
+  "voc": [
+   [
+    "trouble",
+    "v.",
+    "어지럽히다, 근심하게 하다"
+   ],
+   [
+    "Jerusalem",
+    "n.",
+    "예루살렘"
+   ]
+  ],
+  "idi": [
+   [
+    "be troubled",
+    "동요하다, 근심하다"
+   ]
+  ],
+  "gra": [
+   [
+    "was troubled",
+    "수동태 '마음이 어지러워지다'"
+   ]
+  ]
+ },
+ {
+  "en": "demanded of them",
+  "ko": "그들에게 캐물었다",
+  "note": "고어에서 demand of는 '~에게 묻다, 따져 묻다'라는 뜻이다. 현대 영어의 'demand'(강하게 요구하다)와 달리 여기서는 '묻다(ask)'에 가깝다.",
+  "voc": [
+   [
+    "demand",
+    "v.",
+    "묻다 (고어: ask)"
+   ],
+   [
+    "Christ",
+    "n.",
+    "그리스도, 메시아"
+   ]
+  ],
+  "idi": [
+   [
+    "demand of (someone)",
+    "~에게 묻다, 따져 묻다"
+   ]
+  ],
+  "gra": [
+   [
+    "demanded of them",
+    "고어 demand of='~에게 묻다'. 현대 demand(강력히 요구하다)와 다름"
+   ]
+  ]
+ },
+ {
+  "en": "enquired ... diligently",
+  "ko": "부지런히/자세히 캐어물었다",
+  "note": "enquire(=inquire)는 '캐묻다, 알아보다'. diligently는 '부지런히, 자세히'라는 부사로, 헤롯이 별이 나타난 정확한 시점을 집요하게 알아냈음을 강조한다.",
+  "voc": [
+   [
+    "enquire",
+    "v.",
+    "캐묻다, 알아보다 (=inquire)"
+   ],
+   [
+    "diligently",
+    "adv.",
+    "부지런히, 자세히"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "bring me word again",
+  "ko": "내게 다시 알려 다오",
+  "note": "bring word는 '소식을 전하다, 알리다'라는 고어 숙어다. again은 '다시'가 아니라 '도로, 회신하여'의 뉘앙스로 쓰였다.",
+  "voc": [
+   [
+    "word",
+    "n.",
+    "소식, 전갈"
+   ],
+   [
+    "again",
+    "adv.",
+    "도로, 회신하여"
+   ]
+  ],
+  "idi": [
+   [
+    "bring (me) word again",
+    "내게 다시 알려 다오 (소식을 전하다)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "lo / behold",
+  "ko": "보라",
+  "note": "lo와 behold는 모두 '보라!'라는 고어 감탄사로, 뒤따르는 놀랍거나 중요한 장면에 독자의 주의를 끌기 위해 쓰인다. KJV 전반에 매우 자주 등장한다.",
+  "voc": [
+   [
+    "lo",
+    "",
+    "보라 (감탄사)"
+   ],
+   [
+    "behold",
+    "",
+    "보라 (감탄사)"
+   ]
+  ],
+  "idi": [
+   [
+    "lo / behold",
+    "보라! — 주의를 끄는 고어 감탄사"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "being warned of God in a dream",
+  "ko": "꿈에 하나님의 지시(경고)를 받고",
+  "note": "warned of God에서 of는 행위자를 나타내는 고어 전치사로 '하나님에 의해'를 뜻한다(현대 영어 by God). 분사구문 being warned는 '경고를 받았으므로'의 뜻이다.",
+  "voc": [
+   [
+    "warn",
+    "v.",
+    "경고하다, 지시하다"
+   ],
+   [
+    "dream",
+    "n.",
+    "꿈"
+   ]
+  ],
+  "idi": [
+   [
+    "being warned of God",
+    "하나님의 지시(경고)를 받고"
+   ]
+  ],
+  "gra": [
+   [
+    "warned of God",
+    "of=행위자 표시 고어 전치사 '하나님에 의해'(현대: by God); being warned=분사구문"
+   ]
+  ]
+ },
+ {
+  "en": "he was exceeding wroth",
+  "ko": "심히 노하였다",
+  "note": "wroth는 '몹시 화난'을 뜻하는 고어 형용사(angry의 옛말)다. exceeding은 부사로 그 분노가 극에 달했음을 강조한다.",
+  "voc": [
+   [
+    "wroth",
+    "adj.",
+    "몹시 화난 (angry의 고어)"
+   ],
+   [
+    "exceeding",
+    "adv.",
+    "심히, 극도로"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "exceeding wroth",
+    "exceeding=부사 '심히'(현대 -ly 없는 옛 부사); wroth=angry의 고어"
+   ]
+  ]
+ },
+ {
+  "en": "the coasts thereof",
+  "ko": "그 지경(경계 지역)",
+  "note": "KJV의 coast는 '해안'이 아니라 '경계, 지역, 일대'를 뜻하는 고어다. thereof는 '그것의'라는 고어 대명사로 '베들레헴의'를 가리킨다.",
+  "voc": [
+   [
+    "coast",
+    "n.",
+    "지경, 지역 (고어)"
+   ],
+   [
+    "thereof",
+    "pron.",
+    "그것의 (고어)"
+   ]
+  ],
+  "idi": [
+   [
+    "the coasts thereof",
+    "그 지경(경계 지역)"
+   ]
+  ],
+  "gra": [
+   [
+    "thereof",
+    "'of it'의 고어 대명사 — '그것의'"
+   ]
+  ]
+ },
+ {
+  "en": "which sought the young child's life",
+  "ko": "어린아이의 목숨을 노리던 자들",
+  "note": "seek one's life는 '~의 목숨을 노리다, 죽이려 하다'라는 성경적 숙어다. which는 사람을 가리키는 고어 관계대명사로 현대 영어의 who에 해당한다.",
+  "voc": [
+   [
+    "seek",
+    "v.",
+    "찾다, 노리다"
+   ],
+   [
+    "life",
+    "n.",
+    "목숨"
+   ]
+  ],
+  "idi": [
+   [
+    "seek one's life",
+    "~의 목숨을 노리다, 죽이려 하다"
+   ]
+  ],
+  "gra": [
+   [
+    "which sought",
+    "which=사람을 가리키는 고어 관계대명사(현대: who)"
+   ]
+  ]
+ },
+ {
+  "en": "in the room of his father Herod",
+  "ko": "그 아버지 헤롯을 이어(대신하여)",
+  "note": "in the room of는 '~의 자리에, ~를 대신하여'라는 고어 숙어로 현대 영어의 'in place of'에 해당한다. 아켈라오가 헤롯의 뒤를 이어 통치했음을 뜻한다.",
+  "voc": [
+   [
+    "room",
+    "n.",
+    "자리 (고어)"
+   ],
+   [
+    "reign",
+    "v.",
+    "통치하다"
+   ]
+  ],
+  "idi": [
+   [
+    "in the room of",
+    "~의 자리에, ~를 대신하여 (현대: in place of)"
+   ]
+  ],
+  "gra": [
+   [
+    "in the room of his father",
+    "room=고어 '자리'(현대: in place of his father)"
+   ]
+  ]
+ },
+ {
+  "en": "that it might be fulfilled",
+  "ko": "이루어지게 하려 하심이라",
+  "note": "마태복음에 반복되는 구속사적 정형구로, 구약 예언이 성취되었음을 가리킨다. might be fulfilled는 목적을 나타내는 가정법 수동 구문이다.",
+  "voc": [
+   [
+    "fulfil",
+    "v.",
+    "이루다, 성취하다"
+   ],
+   [
+    "prophet",
+    "n.",
+    "선지자"
+   ]
+  ],
+  "idi": [
+   [
+    "that it might be fulfilled",
+    "이루어지게 하려 하심이라 — 마태복음 성취 정형구"
+   ]
+  ],
+  "gra": [
+   [
+    "that it might be fulfilled",
+    "that+might be=목적 '이루어지게 하려'; 가정법 수동"
+   ]
+  ]
+ }
 ]

@@ -1,24 +1,525 @@
 [
-  {"en": "the sabbath was past", "ko": "안식일이 지나매", "note": "유대 안식일(토요일)이 끝난 뒤를 가리킨다."},
-  {"en": "sweet spices", "ko": "향품", "note": "시신에 바르는 향유와 향료. 매장 관습이다."},
-  {"en": "to anoint him", "ko": "그에게 바르려고", "note": "anoint는 기름·향유를 발라 시신을 정성껏 돌보는 행위."},
-  {"en": "the sepulchre", "ko": "무덤", "note": "바위를 깎아 만든 굴 무덤(tomb)을 뜻한다."},
-  {"en": "roll away the stone", "ko": "돌을 굴려 내다", "note": "무덤 입구를 막은 큰 둥근 돌을 옆으로 굴리는 것."},
-  {"en": "a young man", "ko": "한 청년", "note": "흰옷 입은 천사를 가리키는 표현으로 본다."},
-  {"en": "he is risen", "ko": "그가 살아나셨다", "note": "예수의 부활을 선포하는 핵심 구절."},
-  {"en": "were affrighted", "ko": "크게 놀라다", "note": "두려움에 압도되어 떠는 상태."},
-  {"en": "the first day of the week", "ko": "주의 첫날", "note": "안식 후 첫날, 곧 일요일. 부활의 날이다."},
-  {"en": "cast seven devils", "ko": "일곱 귀신을 쫓아내다", "note": "마리아가 받은 온전한 해방을 강조한다."},
-  {"en": "believed not", "ko": "믿지 아니하다", "note": "제자들의 거듭된 불신을 드러낸다."},
-  {"en": "in another form", "ko": "다른 모양으로", "note": "부활하신 몸이 즉시 알아보이지 않았음을 시사한다."},
-  {"en": "upbraided them", "ko": "그들을 꾸짖으시다", "note": "엄히 책망하셨다는 뜻."},
-  {"en": "hardness of heart", "ko": "마음의 완악함", "note": "믿으려 하지 않는 굳은 마음."},
-  {"en": "into all the world", "ko": "온 천하에", "note": "복음의 보편적 사명을 가리킨다."},
-  {"en": "preach the gospel to every creature", "ko": "만민에게 복음을 전파하라", "note": "대사명(Great Commission)의 핵심 명령."},
-  {"en": "is baptized", "ko": "침례를 받다", "note": "원어는 '물에 잠그다'의 뜻. 전권에서 '침례'로 통일한다."},
-  {"en": "shall be damned", "ko": "정죄를 받으리라", "note": "구원의 반대편, 곧 심판에 처함을 뜻한다."},
-  {"en": "these signs shall follow", "ko": "이런 표적이 따르리니", "note": "믿는 자에게 따르는 증거의 이적들."},
-  {"en": "received up into heaven", "ko": "하늘로 들려 올라가다", "note": "예수의 승천을 서술한다."},
-  {"en": "the right hand of God", "ko": "하나님의 오른편", "note": "최고의 권세와 영광의 자리를 상징한다."},
-  {"en": "confirming the word with signs", "ko": "표적으로 말씀을 확증하시다", "note": "따르는 이적들로 전한 말씀이 참됨을 입증함."}
+ {
+  "en": "the sabbath was past",
+  "ko": "안식일이 지나매",
+  "note": "유대 안식일(토요일)이 끝난 뒤를 가리킨다.",
+  "voc": [
+   [
+    "sabbath",
+    "n.",
+    "안식일"
+   ],
+   [
+    "past",
+    "a.",
+    "지나간"
+   ]
+  ],
+  "idi": [
+   [
+    "be past",
+    "지나다, 끝나다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "sweet spices",
+  "ko": "향품",
+  "note": "시신에 바르는 향유와 향료. 매장 관습이다.",
+  "voc": [
+   [
+    "spice",
+    "n.",
+    "향품, 향료"
+   ],
+   [
+    "sweet",
+    "a.",
+    "향기로운"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "to anoint him",
+  "ko": "그에게 바르려고",
+  "note": "anoint는 기름·향유를 발라 시신을 정성껏 돌보는 행위.",
+  "voc": [
+   [
+    "anoint",
+    "v.",
+    "기름·향유를 바르다"
+   ],
+   [
+    "him",
+    "pron.",
+    "그를"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "the sepulchre",
+  "ko": "무덤",
+  "note": "바위를 깎아 만든 굴 무덤(tomb)을 뜻한다.",
+  "voc": [
+   [
+    "sepulchre",
+    "n.",
+    "무덤"
+   ],
+   [
+    "enter",
+    "v.",
+    "들어가다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "sepulchre",
+    "'무덤'을 뜻하는 옛말(영국식 철자); 현대영어 'tomb'"
+   ]
+  ]
+ },
+ {
+  "en": "roll away the stone",
+  "ko": "돌을 굴려 내다",
+  "note": "무덤 입구를 막은 큰 둥근 돌을 옆으로 굴리는 것.",
+  "voc": [
+   [
+    "roll away",
+    "",
+    "굴려 치우다"
+   ],
+   [
+    "stone",
+    "n.",
+    "돌"
+   ]
+  ],
+  "idi": [
+   [
+    "roll away",
+    "굴려서 치우다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "a young man",
+  "ko": "한 청년",
+  "note": "흰옷 입은 천사를 가리키는 표현으로 본다.",
+  "voc": [
+   [
+    "young man",
+    "",
+    "청년"
+   ],
+   [
+    "affright",
+    "v.",
+    "놀라게 하다"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "he is risen",
+  "ko": "그가 살아나셨다",
+  "note": "예수의 부활을 선포하는 핵심 구절.",
+  "voc": [
+   [
+    "rise",
+    "v.",
+    "일어나다, 살아나다(과거분사 risen)"
+   ],
+   [
+    "crucify",
+    "v.",
+    "못 박다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "he is risen",
+    "be동사+과거분사로 완료를 나타낸 옛 용법; 현대영어 'he has risen'"
+   ]
+  ]
+ },
+ {
+  "en": "were affrighted",
+  "ko": "크게 놀라다",
+  "note": "두려움에 압도되어 떠는 상태.",
+  "voc": [
+   [
+    "affright",
+    "v.",
+    "크게 놀라게 하다"
+   ],
+   [
+    "tremble",
+    "v.",
+    "떨다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "affrighted",
+    "affright의 과거분사; 현대영어 'frightened, terrified'"
+   ]
+  ]
+ },
+ {
+  "en": "the first day of the week",
+  "ko": "주의 첫날",
+  "note": "안식 후 첫날, 곧 일요일. 부활의 날이다.",
+  "voc": [
+   [
+    "week",
+    "n.",
+    "주, 한 주간"
+   ],
+   [
+    "first",
+    "a.",
+    "첫째의"
+   ]
+  ],
+  "idi": [
+   [
+    "the first day of the week",
+    "주의 첫날(일요일)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "cast seven devils",
+  "ko": "일곱 귀신을 쫓아내다",
+  "note": "마리아가 받은 온전한 해방을 강조한다.",
+  "voc": [
+   [
+    "cast out",
+    "",
+    "쫓아내다"
+   ],
+   [
+    "devil",
+    "n.",
+    "귀신, 마귀"
+   ]
+  ],
+  "idi": [
+   [
+    "cast out devils",
+    "귀신을 쫓아내다"
+   ]
+  ],
+  "gra": [
+   [
+    "cast",
+    "여기 cast는 cast out의 옛 축약; 현대영어 'cast out / driven out'"
+   ]
+  ]
+ },
+ {
+  "en": "believed not",
+  "ko": "믿지 아니하다",
+  "note": "제자들의 거듭된 불신을 드러낸다.",
+  "voc": [
+   [
+    "believe",
+    "v.",
+    "믿다"
+   ],
+   [
+    "mourn",
+    "v.",
+    "애통하다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "believed not",
+    "조동사 없이 not을 뒤에 둔 옛 부정문; 현대영어 'did not believe'"
+   ]
+  ]
+ },
+ {
+  "en": "in another form",
+  "ko": "다른 모양으로",
+  "note": "부활하신 몸이 즉시 알아보이지 않았음을 시사한다.",
+  "voc": [
+   [
+    "form",
+    "n.",
+    "모양, 형체"
+   ],
+   [
+    "appear",
+    "v.",
+    "나타나다"
+   ]
+  ],
+  "idi": [
+   [
+    "in another form",
+    "다른 모양으로"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "upbraided them",
+  "ko": "그들을 꾸짖으시다",
+  "note": "엄히 책망하셨다는 뜻.",
+  "voc": [
+   [
+    "upbraid",
+    "v.",
+    "꾸짖다, 책망하다"
+   ],
+   [
+    "unbelief",
+    "n.",
+    "불신"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "upbraided",
+    "'엄히 책망하다'를 뜻하는 옛말; 현대영어 'rebuked, reproached'"
+   ]
+  ]
+ },
+ {
+  "en": "hardness of heart",
+  "ko": "마음의 완악함",
+  "note": "믿으려 하지 않는 굳은 마음.",
+  "voc": [
+   [
+    "hardness",
+    "n.",
+    "완악함, 굳음"
+   ],
+   [
+    "heart",
+    "n.",
+    "마음"
+   ]
+  ],
+  "idi": [
+   [
+    "hardness of heart",
+    "마음의 완악함"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "into all the world",
+  "ko": "온 천하에",
+  "note": "복음의 보편적 사명을 가리킨다.",
+  "voc": [
+   [
+    "world",
+    "n.",
+    "세상, 천하"
+   ],
+   [
+    "go",
+    "v.",
+    "가다"
+   ]
+  ],
+  "idi": [
+   [
+    "into all the world",
+    "온 천하에"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "preach the gospel to every creature",
+  "ko": "만민에게 복음을 전파하라",
+  "note": "대사명(Great Commission)의 핵심 명령.",
+  "voc": [
+   [
+    "preach",
+    "v.",
+    "전파하다, 설교하다"
+   ],
+   [
+    "creature",
+    "n.",
+    "피조물, 사람"
+   ]
+  ],
+  "idi": [
+   [
+    "every creature",
+    "모든 피조물, 만민"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "is baptized",
+  "ko": "침례를 받다",
+  "note": "원어는 '물에 잠그다'의 뜻. 전권에서 '침례'로 통일한다.",
+  "voc": [
+   [
+    "baptize",
+    "v.",
+    "침례를 베풀다"
+   ],
+   [
+    "save",
+    "v.",
+    "구원하다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "is baptized",
+    "be동사+과거분사 수동태 '침례를 받다'; 현대영어 'is baptized'"
+   ]
+  ]
+ },
+ {
+  "en": "shall be damned",
+  "ko": "정죄를 받으리라",
+  "note": "구원의 반대편, 곧 심판에 처함을 뜻한다.",
+  "voc": [
+   [
+    "damn",
+    "v.",
+    "정죄하다, 심판하다"
+   ],
+   [
+    "condemn",
+    "v.",
+    "정죄하다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "shall be damned",
+    "shall+수동태로 확정된 미래; 현대영어 'will be condemned'"
+   ]
+  ]
+ },
+ {
+  "en": "these signs shall follow",
+  "ko": "이런 표적이 따르리니",
+  "note": "믿는 자에게 따르는 증거의 이적들.",
+  "voc": [
+   [
+    "sign",
+    "n.",
+    "표적, 이적"
+   ],
+   [
+    "follow",
+    "v.",
+    "따르다, 뒤따르다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "shall follow",
+    "shall은 확실한 미래의 옛 용법; 현대영어 'will follow / will accompany'"
+   ]
+  ]
+ },
+ {
+  "en": "received up into heaven",
+  "ko": "하늘로 들려 올라가다",
+  "note": "예수의 승천을 서술한다.",
+  "voc": [
+   [
+    "receive up",
+    "",
+    "들려 올라가다"
+   ],
+   [
+    "heaven",
+    "n.",
+    "하늘"
+   ]
+  ],
+  "idi": [
+   [
+    "received up into heaven",
+    "하늘로 들려 올라가다(승천)"
+   ]
+  ],
+  "gra": [
+   [
+    "received up",
+    "receive의 수동형으로 '들려 올려지다'; 현대영어 'was taken up'"
+   ]
+  ]
+ },
+ {
+  "en": "the right hand of God",
+  "ko": "하나님의 오른편",
+  "note": "최고의 권세와 영광의 자리를 상징한다.",
+  "voc": [
+   [
+    "right hand",
+    "",
+    "오른편, 우편"
+   ],
+   [
+    "sit",
+    "v.",
+    "앉다"
+   ]
+  ],
+  "idi": [
+   [
+    "the right hand of God",
+    "하나님의 오른편(최고 권세의 자리)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "confirming the word with signs",
+  "ko": "표적으로 말씀을 확증하시다",
+  "note": "따르는 이적들로 전한 말씀이 참됨을 입증함.",
+  "voc": [
+   [
+    "confirm",
+    "v.",
+    "확증하다, 굳게 하다"
+   ],
+   [
+    "work with",
+    "",
+    "함께 일하다"
+   ]
+  ],
+  "idi": [
+   [
+    "confirm with",
+    "~으로 확증하다"
+   ]
+  ],
+  "gra": []
+ }
 ]

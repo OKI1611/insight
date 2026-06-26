@@ -1,14 +1,290 @@
 [
-  {"en": "a colt tied", "ko": "매여 있는 나귀 새끼", "note": "아직 아무도 타 본 적 없는 어린 나귀로, 왕의 겸손한 입성을 상징한다."},
-  {"en": "the Lord hath need of him", "ko": "주께서 쓰시려 하나이다", "note": "제자들이 나귀를 데려올 때 댈 한마디로, 예수의 주권적 권위를 드러낸다."},
-  {"en": "Hosanna", "ko": "호산나", "note": "'이제 구원하소서'라는 뜻의 히브리어 환호로, 메시아를 맞는 외침이다."},
-  {"en": "Blessed is he that cometh", "ko": "오시는 이여 복이 있도다", "note": "시편 118편의 메시아 환영구를 무리가 예수께 그대로 적용한다."},
-  {"en": "the kingdom of our father David", "ko": "우리 조상 다윗의 왕국", "note": "다윗에게 약속된 왕권의 회복을 고대하는 백성의 기대를 보여 준다."},
-  {"en": "nothing but leaves", "ko": "잎사귀뿐", "note": "겉만 무성하고 열매 없는 무화과나무로, 형식뿐인 신앙을 책망하는 표징이다."},
-  {"en": "a den of thieves", "ko": "강도의 소굴", "note": "예레미야의 말을 인용해 성전 장사로 더럽혀진 예배를 고발하신다."},
-  {"en": "the house of prayer", "ko": "기도하는 집", "note": "성전의 본래 목적이 만민을 위한 기도임을 이사야의 말로 선언하신다."},
-  {"en": "dried up from the roots", "ko": "뿌리째 마름", "note": "저주받은 무화과나무가 완전히 시들어, 말씀의 능력과 심판을 보여 준다."},
-  {"en": "Have faith in God", "ko": "하나님을 믿으라", "note": "기도 응답의 근본 조건으로 흔들림 없는 믿음을 가르치신다."},
-  {"en": "believe that ye receive them", "ko": "받은 줄로 믿으라", "note": "기도할 때 이미 응답을 받은 줄로 신뢰하라는 믿음의 원리이다."},
-  {"en": "By what authority", "ko": "무슨 권세로", "note": "종교 지도자들이 예수의 권위에 도전하며 던진 질문이다."}
+ {
+  "en": "a colt tied",
+  "ko": "매여 있는 나귀 새끼",
+  "note": "아직 아무도 타 본 적 없는 어린 나귀로, 왕의 겸손한 입성을 상징한다.",
+  "voc": [
+   [
+    "colt",
+    "n.",
+    "나귀 새끼"
+   ],
+   [
+    "tie",
+    "v.",
+    "매다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "tied",
+    "tie의 과거분사; '매여 있는'으로 colt를 수식하는 수동 의미"
+   ]
+  ]
+ },
+ {
+  "en": "the Lord hath need of him",
+  "ko": "주께서 쓰시려 하나이다",
+  "note": "제자들이 나귀를 데려올 때 댈 한마디로, 예수의 주권적 권위를 드러낸다.",
+  "voc": [
+   [
+    "need",
+    "n.",
+    "필요"
+   ],
+   [
+    "loose",
+    "v.",
+    "풀다"
+   ]
+  ],
+  "idi": [
+   [
+    "have need of",
+    "~을 필요로 하다"
+   ]
+  ],
+  "gra": [
+   [
+    "hath need of",
+    "hath는 has의 옛형; 현대영어 'has need of, needs'"
+   ]
+  ]
+ },
+ {
+  "en": "Hosanna",
+  "ko": "호산나",
+  "note": "'이제 구원하소서'라는 뜻의 히브리어 환호로, 메시아를 맞는 외침이다.",
+  "voc": [
+   [
+    "Hosanna",
+    "int.",
+    "호산나(구원하소서)"
+   ],
+   [
+    "cry",
+    "v.",
+    "외치다"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "Blessed is he that cometh",
+  "ko": "오시는 이여 복이 있도다",
+  "note": "시편 118편의 메시아 환영구를 무리가 예수께 그대로 적용한다.",
+  "voc": [
+   [
+    "blessed",
+    "a.",
+    "복 있는"
+   ],
+   [
+    "come",
+    "v.",
+    "오다"
+   ]
+  ],
+  "idi": [
+   [
+    "he that cometh",
+    "오시는 그분"
+   ]
+  ],
+  "gra": [
+   [
+    "he that cometh",
+    "that은 관계대명사 who, cometh는 comes의 옛형; 현대영어 'he who comes'"
+   ]
+  ]
+ },
+ {
+  "en": "the kingdom of our father David",
+  "ko": "우리 조상 다윗의 왕국",
+  "note": "다윗에게 약속된 왕권의 회복을 고대하는 백성의 기대를 보여 준다.",
+  "voc": [
+   [
+    "kingdom",
+    "n.",
+    "왕국, 나라"
+   ],
+   [
+    "father",
+    "n.",
+    "조상, 아버지"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "nothing but leaves",
+  "ko": "잎사귀뿐",
+  "note": "겉만 무성하고 열매 없는 무화과나무로, 형식뿐인 신앙을 책망하는 표징이다.",
+  "voc": [
+   [
+    "leaf",
+    "n.",
+    "잎사귀(복수 leaves)"
+   ],
+   [
+    "fig tree",
+    "",
+    "무화과나무"
+   ]
+  ],
+  "idi": [
+   [
+    "nothing but",
+    "오직 ~뿐, ~외에는 아무것도"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "a den of thieves",
+  "ko": "강도의 소굴",
+  "note": "예레미야의 말을 인용해 성전 장사로 더럽혀진 예배를 고발하신다.",
+  "voc": [
+   [
+    "den",
+    "n.",
+    "소굴, 굴"
+   ],
+   [
+    "thief",
+    "n.",
+    "도둑(복수 thieves)"
+   ]
+  ],
+  "idi": [
+   [
+    "a den of thieves",
+    "강도의 소굴"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "the house of prayer",
+  "ko": "기도하는 집",
+  "note": "성전의 본래 목적이 만민을 위한 기도임을 이사야의 말로 선언하신다.",
+  "voc": [
+   [
+    "house",
+    "n.",
+    "집"
+   ],
+   [
+    "prayer",
+    "n.",
+    "기도"
+   ]
+  ],
+  "idi": [
+   [
+    "house of prayer",
+    "기도하는 집"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "dried up from the roots",
+  "ko": "뿌리째 마름",
+  "note": "저주받은 무화과나무가 완전히 시들어, 말씀의 능력과 심판을 보여 준다.",
+  "voc": [
+   [
+    "dry up",
+    "",
+    "말라 버리다"
+   ],
+   [
+    "root",
+    "n.",
+    "뿌리"
+   ]
+  ],
+  "idi": [
+   [
+    "dry up from the roots",
+    "뿌리째 마르다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Have faith in God",
+  "ko": "하나님을 믿으라",
+  "note": "기도 응답의 근본 조건으로 흔들림 없는 믿음을 가르치신다.",
+  "voc": [
+   [
+    "faith",
+    "n.",
+    "믿음"
+   ],
+   [
+    "doubt",
+    "v.",
+    "의심하다"
+   ]
+  ],
+  "idi": [
+   [
+    "have faith in",
+    "~을 믿다, 신뢰하다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "believe that ye receive them",
+  "ko": "받은 줄로 믿으라",
+  "note": "기도할 때 이미 응답을 받은 줄로 신뢰하라는 믿음의 원리이다.",
+  "voc": [
+   [
+    "believe",
+    "v.",
+    "믿다"
+   ],
+   [
+    "receive",
+    "v.",
+    "받다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "ye receive",
+    "ye는 복수 주어 '너희가'; 현대영어 'you receive'"
+   ]
+  ]
+ },
+ {
+  "en": "By what authority",
+  "ko": "무슨 권세로",
+  "note": "종교 지도자들이 예수의 권위에 도전하며 던진 질문이다.",
+  "voc": [
+   [
+    "authority",
+    "n.",
+    "권세, 권위"
+   ],
+   [
+    "thing",
+    "n.",
+    "일, 것"
+   ]
+  ],
+  "idi": [
+   [
+    "by what authority",
+    "무슨 권세로"
+   ]
+  ],
+  "gra": []
+ }
 ]

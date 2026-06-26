@@ -1,16 +1,367 @@
 [
-{"en":"great with child","ko":"산기가 가까운 / 만삭의","note":"임신하여 해산이 임박한 상태를 가리키는 고어 표현. 마리아가 베들레헴에 이르렀을 때의 정황을 보여 준다."},
-{"en":"swaddling clothes","ko":"강보(襁褓)","note":"갓난아기를 감싸던 천 띠. 당시 신생아를 단단히 둘러 싸매던 풍습으로, 구주께서 가장 낮은 자리에 나셨음을 드러낸다."},
-{"en":"laid him in a manger","ko":"구유에 뉘었으니","note":"manger는 가축의 여물통. 전통 표기 '구유'로 옮긴다. 여관에 자리가 없어 짐승의 먹이통에 누이신 겸비를 보여 준다."},
-{"en":"there was no room for them in the inn","ko":"여관에 그들을 위한 자리가 없었음이라","note":"inn은 여행자가 묵던 숙소. 세상이 구주를 위해 마련한 자리가 없었다는 깊은 상징을 담고 있다."},
-{"en":"keeping watch over their flock by night","ko":"밤을 새워 양 떼를 지키고","note":"밤중에 들에서 양을 지키던 목자들. 가장 낮고 평범한 자들에게 먼저 복음이 전해졌음을 보여 준다."},
-{"en":"good tidings of great joy","ko":"큰 기쁨의 좋은 소식","note":"tidings는 '소식'을 뜻하는 고어. 헬라어 동사 euangelizō(복음을 전하다)와 이어지는 표현으로, 구주 탄생의 기쁜 소식을 가리킨다."},
-{"en":"a Saviour, which is Christ the Lord","ko":"한 구주, 곧 주 그리스도","note":"Saviour(구주)·Christ(그리스도, 메시아)·Lord(주)가 한 분께 모인다. 탄생하신 아기가 곧 약속된 메시아요 주이심을 선언한다."},
-{"en":"the heavenly host","ko":"하늘 군대","note":"host는 '군대·무리'를 뜻한다. 천사들의 무리를 군대에 빗댄 표현으로, 하나님의 영광스러운 권능을 드러낸다."},
-{"en":"Glory to God in the highest","ko":"지극히 높은 곳에서는 하나님께 영광","note":"천사들의 찬송. in the highest는 '지극히 높은 곳에서'. 지침에 따른 고정 표현이다."},
-{"en":"on earth peace, good will toward men","ko":"땅에서는 그가 기뻐하시는 사람들 가운데 평화","note":"위 찬송의 후반부. 하늘의 영광과 땅의 평화가 대구를 이룬다. 헬라어 사본에 따라 '그가 기뻐하시는 사람들'로 옮긴다."},
-{"en":"pondered them in her heart","ko":"마음에 간직하여 깊이 새기니라","note":"ponder는 곰곰이 헤아려 묵상하다. 마리아가 일어난 일들을 마음에 두고 거듭 되새겼음을 표현한다."},
-{"en":"the consolation of Israel","ko":"이스라엘의 위로","note":"메시아의 오심으로 이루어질 이스라엘의 위로와 구원. 시므온이 기다리던 소망을 가리킨다(사 40:1 참조)."},
-{"en":"Lord, now lettest thou thy servant depart in peace","ko":"주여, 이제는 종을 평안히 놓아 떠나게 하시는도다","note":"시므온의 찬가(Nunc Dimittis)의 첫 구절. depart는 세상을 떠남(죽음)을 가리키는 완곡한 표현이다."},
-{"en":"a light to lighten the Gentiles","ko":"이방을 비추는 빛","note":"Gentiles는 이방인. 구주께서 이스라엘뿐 아니라 모든 민족을 비추는 빛이심을 선언한다(사 49:6 참조)."}
+ {
+  "en": "great with child",
+  "ko": "산기가 가까운 / 만삭의",
+  "note": "임신하여 해산이 임박한 상태를 가리키는 고어 표현. 마리아가 베들레헴에 이르렀을 때의 정황을 보여 준다.",
+  "voc": [
+   [
+    "child",
+    "n.",
+    "아이"
+   ],
+   [
+    "great",
+    "adj.",
+    "(아이를) 밴·만삭의(고어)"
+   ]
+  ],
+  "idi": [
+   [
+    "great with child",
+    "만삭의·산기가 가까운"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "swaddling clothes",
+  "ko": "강보(襁褓)",
+  "note": "갓난아기를 감싸던 천 띠. 당시 신생아를 단단히 둘러 싸매던 풍습으로, 구주께서 가장 낮은 자리에 나셨음을 드러낸다.",
+  "voc": [
+   [
+    "swaddle",
+    "v.",
+    "(아기를) 천으로 싸매다"
+   ],
+   [
+    "clothes",
+    "n.",
+    "천·옷"
+   ]
+  ],
+  "idi": [
+   [
+    "swaddling clothes",
+    "강보"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "laid him in a manger",
+  "ko": "구유에 뉘었으니",
+  "note": "manger는 가축의 여물통. 전통 표기 '구유'로 옮긴다. 여관에 자리가 없어 짐승의 먹이통에 누이신 겸비를 보여 준다.",
+  "voc": [
+   [
+    "manger",
+    "n.",
+    "구유·여물통"
+   ],
+   [
+    "laid",
+    "v.",
+    "뉘었다(lay의 과거)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "laid him in a manger",
+    "laid=lay(눕히다)의 과거; lie(눕다)와 혼동 주의"
+   ]
+  ]
+ },
+ {
+  "en": "there was no room for them in the inn",
+  "ko": "여관에 그들을 위한 자리가 없었음이라",
+  "note": "inn은 여행자가 묵던 숙소. 세상이 구주를 위해 마련한 자리가 없었다는 깊은 상징을 담고 있다.",
+  "voc": [
+   [
+    "room",
+    "n.",
+    "자리·공간"
+   ],
+   [
+    "inn",
+    "n.",
+    "여관·숙소"
+   ]
+  ],
+  "idi": [
+   [
+    "no room for",
+    "~을 위한 자리가 없다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "keeping watch over their flock by night",
+  "ko": "밤을 새워 양 떼를 지키고",
+  "note": "밤중에 들에서 양을 지키던 목자들. 가장 낮고 평범한 자들에게 먼저 복음이 전해졌음을 보여 준다.",
+  "voc": [
+   [
+    "flock",
+    "n.",
+    "양 떼"
+   ],
+   [
+    "watch",
+    "n.",
+    "지킴·파수"
+   ]
+  ],
+  "idi": [
+   [
+    "keep watch over",
+    "~을 지키다·파수하다"
+   ],
+   [
+    "by night",
+    "밤에"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "good tidings of great joy",
+  "ko": "큰 기쁨의 좋은 소식",
+  "note": "tidings는 '소식'을 뜻하는 고어. 헬라어 동사 euangelizō(복음을 전하다)와 이어지는 표현으로, 구주 탄생의 기쁜 소식을 가리킨다.",
+  "voc": [
+   [
+    "tidings",
+    "n.",
+    "소식(고어)"
+   ],
+   [
+    "joy",
+    "n.",
+    "기쁨"
+   ]
+  ],
+  "idi": [
+   [
+    "good tidings of great joy",
+    "큰 기쁨의 좋은 소식"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "a Saviour, which is Christ the Lord",
+  "ko": "한 구주, 곧 주 그리스도",
+  "note": "Saviour(구주)·Christ(그리스도, 메시아)·Lord(주)가 한 분께 모인다. 탄생하신 아기가 곧 약속된 메시아요 주이심을 선언한다.",
+  "voc": [
+   [
+    "Saviour",
+    "n.",
+    "구주"
+   ],
+   [
+    "Christ",
+    "n.",
+    "그리스도·메시아"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "which is Christ the Lord",
+    "which=현대영어 who(사람을 가리킨 옛 관계대명사)"
+   ]
+  ]
+ },
+ {
+  "en": "the heavenly host",
+  "ko": "하늘 군대",
+  "note": "host는 '군대·무리'를 뜻한다. 천사들의 무리를 군대에 빗댄 표현으로, 하나님의 영광스러운 권능을 드러낸다.",
+  "voc": [
+   [
+    "host",
+    "n.",
+    "군대·무리(고어)"
+   ],
+   [
+    "heavenly",
+    "adj.",
+    "하늘의"
+   ]
+  ],
+  "idi": [
+   [
+    "heavenly host",
+    "하늘 군대"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Glory to God in the highest",
+  "ko": "지극히 높은 곳에서는 하나님께 영광",
+  "note": "천사들의 찬송. in the highest는 '지극히 높은 곳에서'. 지침에 따른 고정 표현이다.",
+  "voc": [
+   [
+    "glory",
+    "n.",
+    "영광"
+   ],
+   [
+    "highest",
+    "n.",
+    "지극히 높은 곳"
+   ]
+  ],
+  "idi": [
+   [
+    "in the highest",
+    "지극히 높은 곳에서"
+   ]
+  ],
+  "gra": [
+   [
+    "Glory to God in the highest",
+    "동사 없는 송영 표현; 현대영어 (Give) glory to God으로 보충"
+   ]
+  ]
+ },
+ {
+  "en": "on earth peace, good will toward men",
+  "ko": "땅에서는 그가 기뻐하시는 사람들 가운데 평화",
+  "note": "위 찬송의 후반부. 하늘의 영광과 땅의 평화가 대구를 이룬다. 헬라어 사본에 따라 '그가 기뻐하시는 사람들'로 옮긴다.",
+  "voc": [
+   [
+    "peace",
+    "n.",
+    "평화"
+   ],
+   [
+    "good will",
+    "n.",
+    "호의·기뻐하심"
+   ],
+   [
+    "toward",
+    "prep.",
+    "~을 향하여"
+   ]
+  ],
+  "idi": [
+   [
+    "good will toward men",
+    "사람을 향한 기뻐하심"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "pondered them in her heart",
+  "ko": "마음에 간직하여 깊이 새기니라",
+  "note": "ponder는 곰곰이 헤아려 묵상하다. 마리아가 일어난 일들을 마음에 두고 거듭 되새겼음을 표현한다.",
+  "voc": [
+   [
+    "ponder",
+    "v.",
+    "곰곰이 헤아리다·묵상하다"
+   ],
+   [
+    "heart",
+    "n.",
+    "마음"
+   ]
+  ],
+  "idi": [
+   [
+    "ponder in one's heart",
+    "마음에 두고 깊이 새기다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "the consolation of Israel",
+  "ko": "이스라엘의 위로",
+  "note": "메시아의 오심으로 이루어질 이스라엘의 위로와 구원. 시므온이 기다리던 소망을 가리킨다(사 40:1 참조).",
+  "voc": [
+   [
+    "consolation",
+    "n.",
+    "위로"
+   ],
+   [
+    "Israel",
+    "n.",
+    "이스라엘"
+   ]
+  ],
+  "idi": [
+   [
+    "the consolation of Israel",
+    "이스라엘의 위로"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Lord, now lettest thou thy servant depart in peace",
+  "ko": "주여, 이제는 종을 평안히 놓아 떠나게 하시는도다",
+  "note": "시므온의 찬가(Nunc Dimittis)의 첫 구절. depart는 세상을 떠남(죽음)을 가리키는 완곡한 표현이다.",
+  "voc": [
+   [
+    "depart",
+    "v.",
+    "떠나다·세상을 뜨다"
+   ],
+   [
+    "servant",
+    "n.",
+    "종"
+   ],
+   [
+    "lettest",
+    "v.",
+    "놓아주다(let의 고어 2인칭)"
+   ]
+  ],
+  "idi": [
+   [
+    "depart in peace",
+    "평안히 떠나다"
+   ]
+  ],
+  "gra": [
+   [
+    "now lettest thou thy servant depart",
+    "lettest thou=현대영어 you let(2인칭 도치); thy=your"
+   ]
+  ]
+ },
+ {
+  "en": "a light to lighten the Gentiles",
+  "ko": "이방을 비추는 빛",
+  "note": "Gentiles는 이방인. 구주께서 이스라엘뿐 아니라 모든 민족을 비추는 빛이심을 선언한다(사 49:6 참조).",
+  "voc": [
+   [
+    "lighten",
+    "v.",
+    "비추다·밝히다"
+   ],
+   [
+    "Gentiles",
+    "n.",
+    "이방인들"
+   ]
+  ],
+  "idi": [
+   [
+    "a light to lighten",
+    "비추는 빛"
+   ]
+  ],
+  "gra": [
+   [
+    "to lighten the Gentiles",
+    "to+동사=목적의 부정사 '비추기 위한'"
+   ]
+  ]
+ }
 ]

@@ -1,14 +1,320 @@
 [
-  {"en": "tradition of the elders", "ko": "장로들의 전통", "note": "조상 대대로 구전으로 전해진 종교적 규례. 성문 율법이 아니라 사람이 덧붙인 관습이다."},
-  {"en": "with unwashen hands", "ko": "씻지 아니한 손으로", "note": "의례적 정결 규례를 어긴 것을 가리키며, 위생이 아니라 종교 전통의 문제였다."},
-  {"en": "honoureth me with their lips", "ko": "입술로는 나를 공경하되", "note": "이사야 29장 13절 인용. 말과 마음이 일치하지 않는 형식적 신앙을 책망하신다."},
-  {"en": "their heart is far from me", "ko": "그 마음은 내게서 멀도다", "note": "외식의 핵심은 마음의 거리다. 행위는 있으나 사랑이 없는 상태다."},
-  {"en": "for doctrines the commandments of men", "ko": "사람의 계명을 교훈으로", "note": "사람의 규례를 하나님의 진리인 양 가르치는 잘못을 지적하신다."},
-  {"en": "It is Corban", "ko": "고르반이라", "note": "히브리어로 '하나님께 바친 예물'. 이를 핑계로 부모 봉양의 의무를 회피했다."},
-  {"en": "Honour thy father and thy mother", "ko": "네 아버지와 어머니를 공경하라", "note": "십계명의 다섯째 계명. 전통이 이 계명을 무효로 만들었음을 드러내신다."},
-  {"en": "the things which come out of him", "ko": "사람에게서 나오는 그것", "note": "참된 부정함은 외부가 아니라 마음 속에서 비롯됨을 가르치신다."},
-  {"en": "out of the heart of men, proceed evil thoughts", "ko": "마음에서 악한 생각이 나오니", "note": "죄의 근원이 마음임을 선언하시는 핵심 구절이다."},
-  {"en": "the dogs under the table eat of the children's crumbs", "ko": "상 아래 개들도 부스러기를 먹나이다", "note": "수로보니게 여인의 겸손하고 끈질긴 믿음. 예수께서 이 믿음을 칭찬하셨다."},
-  {"en": "Ephphatha, that is, Be opened", "ko": "에바다, 곧 열리라", "note": "아람어 그대로 보존된 예수의 치유 명령. 귀먹은 자를 고치신 권능의 말씀이다."},
-  {"en": "He hath done all things well", "ko": "그가 모든 일을 잘하셨도다", "note": "창조의 선하심(창세기 1장)을 떠올리게 하는 무리의 감탄이다."}
+ {
+  "en": "tradition of the elders",
+  "ko": "장로들의 전통",
+  "note": "조상 대대로 구전으로 전해진 종교적 규례. 성문 율법이 아니라 사람이 덧붙인 관습이다.",
+  "voc": [
+   [
+    "tradition",
+    "n.",
+    "전통, 전승"
+   ],
+   [
+    "elder",
+    "n.",
+    "장로"
+   ]
+  ],
+  "idi": [
+   [
+    "tradition of the elders",
+    "장로들의 전통"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "with unwashen hands",
+  "ko": "씻지 아니한 손으로",
+  "note": "의례적 정결 규례를 어긴 것을 가리키며, 위생이 아니라 종교 전통의 문제였다.",
+  "voc": [
+   [
+    "unwashen",
+    "adj.",
+    "씻지 않은(고어)"
+   ],
+   [
+    "hand",
+    "n.",
+    "손"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "unwashen",
+    "un-+wash의 고어 과거분사(현대 unwashed)"
+   ]
+  ]
+ },
+ {
+  "en": "honoureth me with their lips",
+  "ko": "입술로는 나를 공경하되",
+  "note": "이사야 29장 13절 인용. 말과 마음이 일치하지 않는 형식적 신앙을 책망하신다.",
+  "voc": [
+   [
+    "honour",
+    "v.",
+    "공경하다(영국식 철자)"
+   ],
+   [
+    "lip",
+    "n.",
+    "입술"
+   ]
+  ],
+  "idi": [
+   [
+    "honour with the lips",
+    "입술로만 공경하다(형식적 신앙)"
+   ]
+  ],
+  "gra": [
+   [
+    "honoureth",
+    "honour의 고어 3인칭 단수 현재형(-eth)"
+   ]
+  ]
+ },
+ {
+  "en": "their heart is far from me",
+  "ko": "그 마음은 내게서 멀도다",
+  "note": "외식의 핵심은 마음의 거리다. 행위는 있으나 사랑이 없는 상태다.",
+  "voc": [
+   [
+    "far",
+    "adv.",
+    "멀리"
+   ],
+   [
+    "heart",
+    "n.",
+    "마음"
+   ]
+  ],
+  "idi": [
+   [
+    "far from",
+    "~에서 먼"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "for doctrines the commandments of men",
+  "ko": "사람의 계명을 교훈으로",
+  "note": "사람의 규례를 하나님의 진리인 양 가르치는 잘못을 지적하신다.",
+  "voc": [
+   [
+    "doctrine",
+    "n.",
+    "교훈, 교리"
+   ],
+   [
+    "commandment",
+    "n.",
+    "계명"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "for doctrines",
+    "for=~로서, ~인 양: '계명을 교훈으로 (삼아)'"
+   ]
+  ]
+ },
+ {
+  "en": "It is Corban",
+  "ko": "고르반이라",
+  "note": "히브리어로 '하나님께 바친 예물'. 이를 핑계로 부모 봉양의 의무를 회피했다.",
+  "voc": [
+   [
+    "Corban",
+    "n.",
+    "고르반(하나님께 바친 예물)"
+   ],
+   [
+    "gift",
+    "n.",
+    "예물, 드림"
+   ]
+  ],
+  "idi": [
+   [
+    "It is Corban",
+    "고르반이라(하나님께 드린 것이라)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Honour thy father and thy mother",
+  "ko": "네 아버지와 어머니를 공경하라",
+  "note": "십계명의 다섯째 계명. 전통이 이 계명을 무효로 만들었음을 드러내신다.",
+  "voc": [
+   [
+    "honour",
+    "v.",
+    "공경하다"
+   ],
+   [
+    "thy",
+    "pron.",
+    "너의(고어)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "thy father",
+    "thy=your의 고어 소유격"
+   ]
+  ]
+ },
+ {
+  "en": "the things which come out of him",
+  "ko": "사람에게서 나오는 그것",
+  "note": "참된 부정함은 외부가 아니라 마음 속에서 비롯됨을 가르치신다.",
+  "voc": [
+   [
+    "thing",
+    "n.",
+    "것, 일"
+   ],
+   [
+    "thing",
+    "n.",
+    "것, 일"
+   ]
+  ],
+  "idi": [
+   [
+    "come out of",
+    "~에서 나오다"
+   ]
+  ],
+  "gra": [
+   [
+    "the things which come out",
+    "which=관계대명사: 앞의 the things를 수식"
+   ]
+  ]
+ },
+ {
+  "en": "out of the heart of men, proceed evil thoughts",
+  "ko": "마음에서 악한 생각이 나오니",
+  "note": "죄의 근원이 마음임을 선언하시는 핵심 구절이다.",
+  "voc": [
+   [
+    "proceed",
+    "v.",
+    "나오다, 비롯되다"
+   ],
+   [
+    "evil",
+    "adj.",
+    "악한"
+   ],
+   [
+    "thought",
+    "n.",
+    "생각"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "out of the heart proceed evil thoughts",
+    "장소 부사구가 앞서며 주어(evil thoughts)와 동사(proceed)가 도치됨"
+   ]
+  ]
+ },
+ {
+  "en": "the dogs under the table eat of the children's crumbs",
+  "ko": "상 아래 개들도 부스러기를 먹나이다",
+  "note": "수로보니게 여인의 겸손하고 끈질긴 믿음. 예수께서 이 믿음을 칭찬하셨다.",
+  "voc": [
+   [
+    "crumb",
+    "n.",
+    "부스러기"
+   ],
+   [
+    "dog",
+    "n.",
+    "개"
+   ]
+  ],
+  "idi": [
+   [
+    "eat of",
+    "~을(에서) 먹다"
+   ]
+  ],
+  "gra": [
+   [
+    "children's crumbs",
+    "'s 소유격: '아이들의 부스러기'"
+   ]
+  ]
+ },
+ {
+  "en": "Ephphatha, that is, Be opened",
+  "ko": "에바다, 곧 열리라",
+  "note": "아람어 그대로 보존된 예수의 치유 명령. 귀먹은 자를 고치신 권능의 말씀이다.",
+  "voc": [
+   [
+    "open",
+    "v.",
+    "열다, 열리다"
+   ],
+   [
+    "open",
+    "v.",
+    "열다, 열리다"
+   ]
+  ],
+  "idi": [
+   [
+    "Ephphatha",
+    "에바다('열리라'의 아람어)"
+   ]
+  ],
+  "gra": [
+   [
+    "that is",
+    "'곧, 다시 말해'라는 동격 설명구"
+   ]
+  ]
+ },
+ {
+  "en": "He hath done all things well",
+  "ko": "그가 모든 일을 잘하셨도다",
+  "note": "창조의 선하심(창세기 1장)을 떠올리게 하는 무리의 감탄이다.",
+  "voc": [
+   [
+    "well",
+    "adv.",
+    "잘"
+   ],
+   [
+    "hath",
+    "v.",
+    "가지다(has의 고어)"
+   ]
+  ],
+  "idi": [
+   [
+    "do all things well",
+    "모든 일을 잘하다"
+   ]
+  ],
+  "gra": [
+   [
+    "hath done",
+    "hath=has; have+과거분사(현재완료): '잘 행하셨다'"
+   ]
+  ]
+ }
 ]

@@ -1,14 +1,325 @@
 [
-  {"en":"freely ye have received, freely give","ko":"거저 받았으니 거저 주라","note":"freely는 '값없이·대가 없이'라는 부사. 같은 부사를 앞뒤로 반복해 균형을 이루는 고어체 표현."},
-  {"en":"the workman is worthy of his meat","ko":"일꾼이 자기 먹을 것을 받는 것이 마땅하다","note":"meat는 고어로 '고기'가 아니라 '식량·먹을 것' 전반. worthy of = ~을 받을 자격이 있는."},
-  {"en":"shake off the dust of your feet","ko":"발의 먼지를 떨어 버리라","note":"거부하는 곳과 관계를 끊는다는 상징적 숙어. shake off = 털어내다."},
-  {"en":"more tolerable ... in the day of judgment","ko":"심판 날에 더 견디기 쉬우리라","note":"tolerable = 참을 만한. more tolerable for A than for B 비교 구문."},
-  {"en":"wise as serpents, and harmless as doves","ko":"뱀같이 슬기롭고 비둘기같이 순결하라","note":"as ... as 직유 한 쌍. harmless는 '해를 끼치지 않는→순결한'의 뜻."},
-  {"en":"take no thought how or what ye shall speak","ko":"어떻게 무엇을 말할지 염려하지 말라","note":"take no thought = 걱정하지 말라(고어). 현대 영어 don't worry에 해당."},
-  {"en":"he that endureth to the end shall be saved","ko":"끝까지 견디는 자가 구원을 받으리라","note":"endure = 견디다. -eth는 3인칭 단수 고어 어미(=endures)."},
-  {"en":"the very hairs of your head are all numbered","ko":"너희 머리털까지 다 세신 바 되었다","note":"very는 '바로 그~'를 강조. numbered = 헤아려진(수동태)."},
-  {"en":"ye are of more value than many sparrows","ko":"너희는 많은 참새보다 귀하다","note":"of more value = 더 큰 가치가 있는. of+명사로 성질을 나타내는 고어 구문."},
-  {"en":"set a man at variance against his father","ko":"사람이 그 아비와 불화하게 하다","note":"at variance with/against = ~와 불화·대립하는 상태. set A at variance = A를 다투게 하다."},
-  {"en":"he that taketh not his cross","ko":"자기 십자가를 지지 않는 자","note":"take up one's cross 숙어의 변형으로 '고난·헌신을 감당하다'는 뜻."},
-  {"en":"he that loseth his life for my sake shall find it","ko":"나를 위해 목숨을 잃는 자가 얻으리라","note":"for one's sake = ~을 위하여. lose/find one's life의 역설적 대구."}
+ {
+  "en": "freely ye have received, freely give",
+  "ko": "거저 받았으니 거저 주라",
+  "note": "freely는 '값없이·대가 없이'라는 부사. 같은 부사를 앞뒤로 반복해 균형을 이루는 고어체 표현.",
+  "voc": [
+   [
+    "freely",
+    "ad.",
+    "값없이, 거저"
+   ],
+   [
+    "receive",
+    "v.",
+    "받다"
+   ]
+  ],
+  "idi": [
+   [
+    "freely give",
+    "거저 주라"
+   ]
+  ],
+  "gra": [
+   [
+    "freely ye have received",
+    "ye = you (주격 복수 고어). 부사 freely를 앞뒤로 반복해 균형을 이룸"
+   ]
+  ]
+ },
+ {
+  "en": "the workman is worthy of his meat",
+  "ko": "일꾼이 자기 먹을 것을 받는 것이 마땅하다",
+  "note": "meat는 고어로 '고기'가 아니라 '식량·먹을 것' 전반. worthy of = ~을 받을 자격이 있는.",
+  "voc": [
+   [
+    "workman",
+    "n.",
+    "일꾼"
+   ],
+   [
+    "meat",
+    "n.",
+    "먹을 것, 식량(고어)"
+   ],
+   [
+    "worthy",
+    "a.",
+    "받을 자격이 있는"
+   ]
+  ],
+  "idi": [
+   [
+    "worthy of",
+    "~을 받을 만한"
+   ]
+  ],
+  "gra": [
+   [
+    "the workman is worthy of his meat",
+    "meat = 식량 전반(고어)"
+   ]
+  ]
+ },
+ {
+  "en": "shake off the dust of your feet",
+  "ko": "발의 먼지를 떨어 버리라",
+  "note": "거부하는 곳과 관계를 끊는다는 상징적 숙어. shake off = 털어내다.",
+  "voc": [
+   [
+    "dust",
+    "n.",
+    "먼지"
+   ]
+  ],
+  "idi": [
+   [
+    "shake off the dust of your feet",
+    "발의 먼지를 떨다(관계 단절의 상징)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "more tolerable ... in the day of judgment",
+  "ko": "심판 날에 더 견디기 쉬우리라",
+  "note": "tolerable = 참을 만한. more tolerable for A than for B 비교 구문.",
+  "voc": [
+   [
+    "tolerable",
+    "a.",
+    "견딜 만한"
+   ],
+   [
+    "judgment",
+    "n.",
+    "심판"
+   ]
+  ],
+  "idi": [
+   [
+    "in the day of judgment",
+    "심판 날에"
+   ]
+  ],
+  "gra": [
+   [
+    "more tolerable",
+    "비교급 + for A than for B 구문"
+   ]
+  ]
+ },
+ {
+  "en": "wise as serpents, and harmless as doves",
+  "ko": "뱀같이 슬기롭고 비둘기같이 순결하라",
+  "note": "as ... as 직유 한 쌍. harmless는 '해를 끼치지 않는→순결한'의 뜻.",
+  "voc": [
+   [
+    "serpent",
+    "n.",
+    "뱀"
+   ],
+   [
+    "harmless",
+    "a.",
+    "해 없는, 순결한"
+   ],
+   [
+    "dove",
+    "n.",
+    "비둘기"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "wise as serpents ... harmless as doves",
+    "as + 형용사 + as: 직유 한 쌍"
+   ]
+  ]
+ },
+ {
+  "en": "take no thought how or what ye shall speak",
+  "ko": "어떻게 무엇을 말할지 염려하지 말라",
+  "note": "take no thought = 걱정하지 말라(고어). 현대 영어 don't worry에 해당.",
+  "voc": [
+   [
+    "thought",
+    "n.",
+    "염려, 걱정(고어)"
+   ]
+  ],
+  "idi": [
+   [
+    "take no thought",
+    "염려하지 말라"
+   ]
+  ],
+  "gra": [
+   [
+    "how or what ye shall speak",
+    "ye = you. shall = 미래·의무. 간접의문 how/what절"
+   ]
+  ]
+ },
+ {
+  "en": "he that endureth to the end shall be saved",
+  "ko": "끝까지 견디는 자가 구원을 받으리라",
+  "note": "endure = 견디다. -eth는 3인칭 단수 고어 어미(=endures).",
+  "voc": [
+   [
+    "endure",
+    "v.",
+    "견디다, 참다"
+   ]
+  ],
+  "idi": [
+   [
+    "endure to the end",
+    "끝까지 견디다"
+   ]
+  ],
+  "gra": [
+   [
+    "he that endureth",
+    "he that = he who (고어). -eth = 3인칭 단수(=endures)"
+   ]
+  ]
+ },
+ {
+  "en": "the very hairs of your head are all numbered",
+  "ko": "너희 머리털까지 다 세신 바 되었다",
+  "note": "very는 '바로 그~'를 강조. numbered = 헤아려진(수동태).",
+  "voc": [
+   [
+    "hairs",
+    "n.",
+    "머리털"
+   ],
+   [
+    "numbered",
+    "v.",
+    "세어진"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "the very hairs ... are all numbered",
+    "very = 바로 그~(강조). numbered = 헤아려진(수동태)"
+   ]
+  ]
+ },
+ {
+  "en": "ye are of more value than many sparrows",
+  "ko": "너희는 많은 참새보다 귀하다",
+  "note": "of more value = 더 큰 가치가 있는. of+명사로 성질을 나타내는 고어 구문.",
+  "voc": [
+   [
+    "value",
+    "n.",
+    "가치"
+   ],
+   [
+    "sparrow",
+    "n.",
+    "참새"
+   ]
+  ],
+  "idi": [
+   [
+    "of more value",
+    "더 큰 가치가 있는"
+   ]
+  ],
+  "gra": [
+   [
+    "ye are of more value",
+    "of + 명사로 성질을 나타내는 고어 구문"
+   ]
+  ]
+ },
+ {
+  "en": "set a man at variance against his father",
+  "ko": "사람이 그 아비와 불화하게 하다",
+  "note": "at variance with/against = ~와 불화·대립하는 상태. set A at variance = A를 다투게 하다.",
+  "voc": [
+   [
+    "variance",
+    "n.",
+    "불화, 다툼"
+   ]
+  ],
+  "idi": [
+   [
+    "at variance against",
+    "~와 불화하는"
+   ]
+  ],
+  "gra": [
+   [
+    "set a man at variance",
+    "set A at B = A를 B 상태가 되게 하다"
+   ]
+  ]
+ },
+ {
+  "en": "he that taketh not his cross",
+  "ko": "자기 십자가를 지지 않는 자",
+  "note": "take up one's cross 숙어의 변형으로 '고난·헌신을 감당하다'는 뜻.",
+  "voc": [
+   [
+    "cross",
+    "n.",
+    "십자가"
+   ],
+   [
+    "taketh",
+    "v.",
+    "취하다(takes의 고어)"
+   ]
+  ],
+  "idi": [
+   [
+    "take up one's cross",
+    "자기 십자가를 지다"
+   ]
+  ],
+  "gra": [
+   [
+    "he that taketh not",
+    "he that = he who. -eth = 3인칭 단수(=takes)"
+   ]
+  ]
+ },
+ {
+  "en": "he that loseth his life for my sake shall find it",
+  "ko": "나를 위해 목숨을 잃는 자가 얻으리라",
+  "note": "for one's sake = ~을 위하여. lose/find one's life의 역설적 대구.",
+  "voc": [
+   [
+    "loseth",
+    "v.",
+    "잃다(loses의 고어)"
+   ],
+   [
+    "sake",
+    "n.",
+    "위함, 까닭"
+   ]
+  ],
+  "idi": [
+   [
+    "for my sake",
+    "나를 위하여"
+   ]
+  ],
+  "gra": [
+   [
+    "he that loseth ... shall find it",
+    "he that = he who. lose/find의 역설적 대구"
+   ]
+  ]
+ }
 ]

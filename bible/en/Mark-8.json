@@ -1,18 +1,421 @@
 [
-  {"en": "I have compassion on the multitude", "ko": "내가 이 무리를 불쌍히 여기노니", "note": "그리스어 '스플랑크니조마이'는 창자가 뒤틀릴 만큼의 깊은 긍휼을 뜻한다."},
-  {"en": "three days, and have nothing to eat", "ko": "사흘이나 먹을 것이 없었더라", "note": "무리가 사흘간 예수와 함께 머물렀다는 것은 그분의 가르침에 대한 굶주림을 보여 준다."},
-  {"en": "lest they faint by the way", "ko": "길에서 기진할까 하노라", "note": "예수의 긍휼은 영혼뿐 아니라 육신의 필요까지 살피신다."},
-  {"en": "How many loaves have ye?", "ko": "너희에게 떡이 몇 개나 있느냐", "note": "예수께서 가진 것부터 묻고 그것으로 일하신다."},
-  {"en": "gave thanks, and brake", "ko": "감사를 드리고 떼어", "note": "성찬을 예표하는 동작 — 감사, 떼심, 나누심."},
-  {"en": "seven baskets", "ko": "일곱 광주리", "note": "오천 명 때의 열두 광주리와 다른 단어(스퓌리스)로, 더 큰 바구니를 가리킨다."},
-  {"en": "seeking of him a sign from heaven", "ko": "하늘로부터 오는 표적을 구하더라", "note": "이미 표적을 본 자들이 또 표적을 요구함은 믿지 않으려는 마음의 증거다."},
-  {"en": "he sighed deeply in his spirit", "ko": "심령에 깊이 탄식하시며", "note": "불신에 대한 예수의 깊은 슬픔을 드러내는 표현."},
-  {"en": "the leaven of the Pharisees, and of Herod", "ko": "바리새인과 헤롯의 누룩", "note": "누룩은 은밀히 퍼지는 위선과 불신앙을 상징한다."},
-  {"en": "Having eyes, see ye not?", "ko": "눈이 있어도 보지 못하느냐", "note": "이사야의 예언적 책망(사 6:9)을 제자들에게 적용하신다."},
-  {"en": "I see men as trees, walking", "ko": "사람들이 나무 같이 걸어가나이다", "note": "두 단계로 치유된 유일한 기적 — 점진적 깨달음을 상징한다."},
-  {"en": "Thou art the Christ", "ko": "주는 그리스도시니이다", "note": "베드로의 신앙 고백 — 마가복음의 전환점이다."},
-  {"en": "the Son of man must suffer", "ko": "인자가 반드시 고난을 받아야 하리라", "note": "처음으로 자기 죽음과 부활을 명확히 예고하신다."},
-  {"en": "Get thee behind me, Satan", "ko": "사탄아 내 뒤로 물러가라", "note": "고난의 길을 막는 생각은 곧 사탄의 유혹과 같다."},
-  {"en": "take up his cross, and follow me", "ko": "자기 십자가를 지고 나를 따르라", "note": "제자도의 핵심 — 자기 부인과 헌신의 길."},
-  {"en": "gain the whole world, and lose his own soul", "ko": "온 천하를 얻고도 제 영혼을 잃으면", "note": "'프쉬케'는 목숨이자 영혼 — 영원한 가치와 세상 이익의 대조."}
+ {
+  "en": "I have compassion on the multitude",
+  "ko": "내가 이 무리를 불쌍히 여기노니",
+  "note": "그리스어 '스플랑크니조마이'는 창자가 뒤틀릴 만큼의 깊은 긍휼을 뜻한다.",
+  "voc": [
+   [
+    "compassion",
+    "n.",
+    "긍휼, 불쌍히 여김"
+   ],
+   [
+    "multitude",
+    "n.",
+    "무리, 군중"
+   ]
+  ],
+  "idi": [
+   [
+    "have compassion on",
+    "~을 불쌍히 여기다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "three days, and have nothing to eat",
+  "ko": "사흘이나 먹을 것이 없었더라",
+  "note": "무리가 사흘간 예수와 함께 머물렀다는 것은 그분의 가르침에 대한 굶주림을 보여 준다.",
+  "voc": [
+   [
+    "nothing",
+    "pron.",
+    "아무것도 ~않음"
+   ],
+   [
+    "eat",
+    "v.",
+    "먹다"
+   ]
+  ],
+  "idi": [
+   [
+    "have nothing to eat",
+    "먹을 것이 없다"
+   ]
+  ],
+  "gra": [
+   [
+    "nothing to eat",
+    "nothing+to부정사: '먹을 (만한) 것이 없다'"
+   ]
+  ]
+ },
+ {
+  "en": "lest they faint by the way",
+  "ko": "길에서 기진할까 하노라",
+  "note": "예수의 긍휼은 영혼뿐 아니라 육신의 필요까지 살피신다.",
+  "voc": [
+   [
+    "faint",
+    "v.",
+    "기진하다, 쓰러지다"
+   ],
+   [
+    "lest",
+    "conj.",
+    "~할까 봐(고어)"
+   ]
+  ],
+  "idi": [
+   [
+    "by the way",
+    "길에서, 도중에"
+   ]
+  ],
+  "gra": [
+   [
+    "lest they faint",
+    "lest+주어+동사원형: '~하지 않도록, ~할까 봐'의 고어 접속사"
+   ]
+  ]
+ },
+ {
+  "en": "How many loaves have ye?",
+  "ko": "너희에게 떡이 몇 개나 있느냐",
+  "note": "예수께서 가진 것부터 묻고 그것으로 일하신다.",
+  "voc": [
+   [
+    "loaf",
+    "n.",
+    "떡 한 덩이(복수 loaves)"
+   ],
+   [
+    "ye",
+    "pron.",
+    "너희(고어 주격)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "have ye",
+    "의문문 도치 'do you have'의 고어 어순; ye=you(복수)"
+   ]
+  ]
+ },
+ {
+  "en": "gave thanks, and brake",
+  "ko": "감사를 드리고 떼어",
+  "note": "성찬을 예표하는 동작 — 감사, 떼심, 나누심.",
+  "voc": [
+   [
+    "thanks",
+    "n.",
+    "감사"
+   ],
+   [
+    "brake",
+    "v.",
+    "떼다(break의 고어 과거)"
+   ]
+  ],
+  "idi": [
+   [
+    "give thanks",
+    "감사를 드리다"
+   ]
+  ],
+  "gra": [
+   [
+    "brake",
+    "break의 고어 과거형(현대 broke)"
+   ]
+  ]
+ },
+ {
+  "en": "seven baskets",
+  "ko": "일곱 광주리",
+  "note": "오천 명 때의 열두 광주리와 다른 단어(스퓌리스)로, 더 큰 바구니를 가리킨다.",
+  "voc": [
+   [
+    "basket",
+    "n.",
+    "광주리, 바구니"
+   ],
+   [
+    "seven",
+    "num.",
+    "일곱"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "seeking of him a sign from heaven",
+  "ko": "하늘로부터 오는 표적을 구하더라",
+  "note": "이미 표적을 본 자들이 또 표적을 요구함은 믿지 않으려는 마음의 증거다.",
+  "voc": [
+   [
+    "sign",
+    "n.",
+    "표적, 징조"
+   ],
+   [
+    "heaven",
+    "n.",
+    "하늘"
+   ]
+  ],
+  "idi": [
+   [
+    "seek of (someone)",
+    "~에게 구하다, 요구하다"
+   ]
+  ],
+  "gra": [
+   [
+    "seeking of him a sign",
+    "seek of+사람+목적어: 고어로 '그에게 ~을 구하다'"
+   ]
+  ]
+ },
+ {
+  "en": "he sighed deeply in his spirit",
+  "ko": "심령에 깊이 탄식하시며",
+  "note": "불신에 대한 예수의 깊은 슬픔을 드러내는 표현.",
+  "voc": [
+   [
+    "sigh",
+    "v.",
+    "탄식하다, 한숨짓다"
+   ],
+   [
+    "deeply",
+    "adv.",
+    "깊이"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "sighed deeply in his spirit",
+    "in his spirit=심령에; 마음 깊은 곳에서의 탄식을 강조"
+   ]
+  ]
+ },
+ {
+  "en": "the leaven of the Pharisees, and of Herod",
+  "ko": "바리새인과 헤롯의 누룩",
+  "note": "누룩은 은밀히 퍼지는 위선과 불신앙을 상징한다.",
+  "voc": [
+   [
+    "leaven",
+    "n.",
+    "누룩"
+   ],
+   [
+    "Pharisee",
+    "n.",
+    "바리새인"
+   ]
+  ],
+  "idi": [
+   [
+    "the leaven of",
+    "~의 누룩(은밀히 퍼지는 영향)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Having eyes, see ye not?",
+  "ko": "눈이 있어도 보지 못하느냐",
+  "note": "이사야의 예언적 책망(사 6:9)을 제자들에게 적용하신다.",
+  "voc": [
+   [
+    "eye",
+    "n.",
+    "눈"
+   ],
+   [
+    "ye",
+    "pron.",
+    "너희(고어)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Having eyes, see ye not?",
+    "분사구문 Having + 도치 의문 see ye not: '눈이 있으면서도 보지 못하느냐'"
+   ]
+  ]
+ },
+ {
+  "en": "I see men as trees, walking",
+  "ko": "사람들이 나무 같이 걸어가나이다",
+  "note": "두 단계로 치유된 유일한 기적 — 점진적 깨달음을 상징한다.",
+  "voc": [
+   [
+    "tree",
+    "n.",
+    "나무"
+   ],
+   [
+    "walk",
+    "v.",
+    "걷다"
+   ]
+  ],
+  "idi": [
+   [
+    "as trees",
+    "나무처럼"
+   ]
+  ],
+  "gra": [
+   [
+    "men as trees, walking",
+    "walking은 men을 수식하는 현재분사: '걸어다니는 사람들을 나무처럼 보다'"
+   ]
+  ]
+ },
+ {
+  "en": "Thou art the Christ",
+  "ko": "주는 그리스도시니이다",
+  "note": "베드로의 신앙 고백 — 마가복음의 전환점이다.",
+  "voc": [
+   [
+    "thou",
+    "pron.",
+    "너(고어 주격)"
+   ],
+   [
+    "art",
+    "v.",
+    "~이다(are의 고어)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Thou art",
+    "thou=you(단수); art=are의 고어 형태"
+   ]
+  ]
+ },
+ {
+  "en": "the Son of man must suffer",
+  "ko": "인자가 반드시 고난을 받아야 하리라",
+  "note": "처음으로 자기 죽음과 부활을 명확히 예고하신다.",
+  "voc": [
+   [
+    "suffer",
+    "v.",
+    "고난을 받다"
+   ],
+   [
+    "must",
+    "aux.",
+    "반드시 ~해야 한다"
+   ]
+  ],
+  "idi": [
+   [
+    "the Son of man",
+    "인자(메시아 칭호)"
+   ]
+  ],
+  "gra": [
+   [
+    "must suffer",
+    "must+동사원형: 필연/당위 '반드시 고난받아야 한다'"
+   ]
+  ]
+ },
+ {
+  "en": "Get thee behind me, Satan",
+  "ko": "사탄아 내 뒤로 물러가라",
+  "note": "고난의 길을 막는 생각은 곧 사탄의 유혹과 같다.",
+  "voc": [
+   [
+    "behind",
+    "prep.",
+    "뒤에"
+   ],
+   [
+    "thee",
+    "pron.",
+    "너 자신을(고어)"
+   ]
+  ],
+  "idi": [
+   [
+    "get thee behind me",
+    "내 뒤로 물러가라"
+   ]
+  ],
+  "gra": [
+   [
+    "Get thee behind me",
+    "재귀 thee를 쓴 고어 명령형: '너 자신을 내 뒤로 데려가라'"
+   ]
+  ]
+ },
+ {
+  "en": "take up his cross, and follow me",
+  "ko": "자기 십자가를 지고 나를 따르라",
+  "note": "제자도의 핵심 — 자기 부인과 헌신의 길.",
+  "voc": [
+   [
+    "cross",
+    "n.",
+    "십자가"
+   ],
+   [
+    "follow",
+    "v.",
+    "따르다"
+   ]
+  ],
+  "idi": [
+   [
+    "take up one's cross",
+    "자기 십자가를 지다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "gain the whole world, and lose his own soul",
+  "ko": "온 천하를 얻고도 제 영혼을 잃으면",
+  "note": "'프쉬케'는 목숨이자 영혼 — 영원한 가치와 세상 이익의 대조.",
+  "voc": [
+   [
+    "gain",
+    "v.",
+    "얻다"
+   ],
+   [
+    "soul",
+    "n.",
+    "영혼, 목숨"
+   ],
+   [
+    "lose",
+    "v.",
+    "잃다"
+   ]
+  ],
+  "idi": [
+   [
+    "the whole world",
+    "온 천하"
+   ]
+  ],
+  "gra": []
+ }
 ]

@@ -1,13 +1,306 @@
 [
-  {"en": "the word of God came", "ko": "하나님의 말씀이 임하다", "note": "광야에 있던 사가랴의 아들 요한에게 하나님의 말씀이 임한 사건. 공적 사역의 시작을 알린다."},
-  {"en": "the baptism of repentance", "ko": "회개의 침례", "note": "죄 사함을 위한 회개의 표로 베푼 침례. 마음을 돌이켜 주께로 향함을 나타낸다."},
-  {"en": "Prepare ye the way", "ko": "너희는 길을 예비하라", "note": "이사야의 예언 인용. 주께서 오시는 길을 곧게 닦으라는 광야의 외침."},
-  {"en": "fruits worthy of repentance", "ko": "회개에 합당한 열매", "note": "참된 회개는 삶의 변화라는 열매로 증명된다는 뜻."},
-  {"en": "the axe is laid unto the root", "ko": "도끼가 뿌리에 놓이다", "note": "임박한 심판의 비유. 열매 없는 나무는 찍혀 불에 던져진다."},
-  {"en": "What shall we do?", "ko": "무엇을 하리이까?", "note": "무리, 세리, 군인이 각각 던진 실천적 물음. 회개의 구체적 적용을 구한다."},
-  {"en": "one mightier than I", "ko": "나보다 더 능하신 이", "note": "요한이 자신과 메시아를 대비함. 신발 끈을 풀 자격도 없다며 낮춘다."},
-  {"en": "baptize with the Holy Ghost and with fire", "ko": "성령과 불로 침례를 베풀다", "note": "물의 침례를 넘어선 메시아의 침례. 정결케 하심과 심판을 함께 가리킨다."},
-  {"en": "the wheat into his garner", "ko": "알곡을 곳간에", "note": "키질의 비유. 알곡은 모으고 쭉정이는 불사르는 최후의 분별."},
-  {"en": "Thou art my beloved Son", "ko": "너는 내 사랑하는 아들이라", "note": "예수의 침례 때 하늘에서 난 음성. 성부께서 성자를 기뻐하심을 선언한다."},
-  {"en": "which was the son of God", "ko": "그 위는 하나님이시니라", "note": "누가의 계보가 아담을 거쳐 하나님께로 거슬러 올라감. 예수의 인류 전체와의 연결을 강조한다."}
+ {
+  "en": "the word of God came",
+  "ko": "하나님의 말씀이 임하다",
+  "note": "광야에 있던 사가랴의 아들 요한에게 하나님의 말씀이 임한 사건. 공적 사역의 시작을 알린다.",
+  "voc": [
+   [
+    "word",
+    "n.",
+    "말씀"
+   ],
+   [
+    "came",
+    "v.",
+    "임하였다(come의 과거)"
+   ]
+  ],
+  "idi": [
+   [
+    "the word of God came unto",
+    "하나님의 말씀이 ~에게 임하다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "the baptism of repentance",
+  "ko": "회개의 침례",
+  "note": "죄 사함을 위한 회개의 표로 베푼 침례. 마음을 돌이켜 주께로 향함을 나타낸다.",
+  "voc": [
+   [
+    "baptism",
+    "n.",
+    "침례"
+   ],
+   [
+    "repentance",
+    "n.",
+    "회개"
+   ]
+  ],
+  "idi": [
+   [
+    "baptism of repentance",
+    "회개의 침례"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Prepare ye the way",
+  "ko": "너희는 길을 예비하라",
+  "note": "이사야의 예언 인용. 주께서 오시는 길을 곧게 닦으라는 광야의 외침.",
+  "voc": [
+   [
+    "prepare",
+    "v.",
+    "예비하다"
+   ],
+   [
+    "way",
+    "n.",
+    "길"
+   ],
+   [
+    "ye",
+    "pron.",
+    "너희(고어 주격)"
+   ]
+  ],
+  "idi": [
+   [
+    "prepare the way",
+    "길을 예비하다"
+   ]
+  ],
+  "gra": [
+   [
+    "Prepare ye the way",
+    "ye=현대영어 you; 명령문에서 주어 ye를 동사 뒤에 둔 옛 어법"
+   ]
+  ]
+ },
+ {
+  "en": "fruits worthy of repentance",
+  "ko": "회개에 합당한 열매",
+  "note": "참된 회개는 삶의 변화라는 열매로 증명된다는 뜻.",
+  "voc": [
+   [
+    "fruit",
+    "n.",
+    "열매"
+   ],
+   [
+    "worthy",
+    "adj.",
+    "합당한·걸맞은"
+   ]
+  ],
+  "idi": [
+   [
+    "worthy of",
+    "~에 합당한"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "the axe is laid unto the root",
+  "ko": "도끼가 뿌리에 놓이다",
+  "note": "임박한 심판의 비유. 열매 없는 나무는 찍혀 불에 던져진다.",
+  "voc": [
+   [
+    "axe",
+    "n.",
+    "도끼"
+   ],
+   [
+    "root",
+    "n.",
+    "뿌리"
+   ],
+   [
+    "unto",
+    "prep.",
+    "~에(고어)"
+   ]
+  ],
+  "idi": [
+   [
+    "lay the axe unto the root",
+    "도끼를 뿌리에 대다(심판이 임박하다)"
+   ]
+  ],
+  "gra": [
+   [
+    "is laid unto the root",
+    "is laid=수동태(놓여 있다); unto=현대영어 at/to"
+   ]
+  ]
+ },
+ {
+  "en": "What shall we do?",
+  "ko": "무엇을 하리이까?",
+  "note": "무리, 세리, 군인이 각각 던진 실천적 물음. 회개의 구체적 적용을 구한다.",
+  "voc": [
+   [
+    "shall",
+    "aux.",
+    "~하리(의지·미래)"
+   ],
+   [
+    "do",
+    "v.",
+    "행하다·하다"
+   ]
+  ],
+  "idi": [
+   [
+    "What shall we do?",
+    "우리가 무엇을 하리이까?"
+   ]
+  ],
+  "gra": [
+   [
+    "What shall we do",
+    "shall=1인칭 의문에서 '무엇을 해야 합니까'를 묻는 옛 용법"
+   ]
+  ]
+ },
+ {
+  "en": "one mightier than I",
+  "ko": "나보다 더 능하신 이",
+  "note": "요한이 자신과 메시아를 대비함. 신발 끈을 풀 자격도 없다며 낮춘다.",
+  "voc": [
+   [
+    "mighty",
+    "adj.",
+    "능한·강한"
+   ],
+   [
+    "mightier",
+    "adj.",
+    "더 능한(비교급)"
+   ]
+  ],
+  "idi": [
+   [
+    "mightier than",
+    "~보다 더 능한"
+   ]
+  ],
+  "gra": [
+   [
+    "one mightier than I",
+    "than I=주격 비교(현대 구어 than me); '나보다 더 능하신 분'"
+   ]
+  ]
+ },
+ {
+  "en": "baptize with the Holy Ghost and with fire",
+  "ko": "성령과 불로 침례를 베풀다",
+  "note": "물의 침례를 넘어선 메시아의 침례. 정결케 하심과 심판을 함께 가리킨다.",
+  "voc": [
+   [
+    "baptize",
+    "v.",
+    "침례를 베풀다"
+   ],
+   [
+    "Ghost",
+    "n.",
+    "영(Holy Ghost=성령)"
+   ],
+   [
+    "fire",
+    "n.",
+    "불"
+   ]
+  ],
+  "idi": [
+   [
+    "baptize with",
+    "~으로 침례를 베풀다"
+   ]
+  ],
+  "gra": [
+   [
+    "the Holy Ghost",
+    "Ghost=현대영어 Spirit의 고어; Holy Ghost=성령"
+   ]
+  ]
+ },
+ {
+  "en": "the wheat into his garner",
+  "ko": "알곡을 곳간에",
+  "note": "키질의 비유. 알곡은 모으고 쭉정이는 불사르는 최후의 분별.",
+  "voc": [
+   [
+    "wheat",
+    "n.",
+    "알곡·밀"
+   ],
+   [
+    "garner",
+    "n.",
+    "곳간·곡창"
+   ]
+  ],
+  "idi": [
+   [
+    "gather into the garner",
+    "곳간에 모아들이다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Thou art my beloved Son",
+  "ko": "너는 내 사랑하는 아들이라",
+  "note": "예수의 침례 때 하늘에서 난 음성. 성부께서 성자를 기뻐하심을 선언한다.",
+  "voc": [
+   [
+    "beloved",
+    "adj.",
+    "사랑하는"
+   ],
+   [
+    "thou",
+    "pron.",
+    "너(고어 주격)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Thou art my beloved Son",
+    "Thou art=현대영어 You are; 친밀한 2인칭 단수"
+   ]
+  ]
+ },
+ {
+  "en": "which was the son of God",
+  "ko": "그 위는 하나님이시니라",
+  "note": "누가의 계보가 아담을 거쳐 하나님께로 거슬러 올라감. 예수의 인류 전체와의 연결을 강조한다.",
+  "voc": [
+   [
+    "son",
+    "n.",
+    "아들"
+   ],
+   [
+    "God",
+    "n.",
+    "하나님"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "which was the son of God",
+    "which=현대영어 who; 계보를 거슬러 잇는 관계대명사절"
+   ]
+  ]
+ }
 ]

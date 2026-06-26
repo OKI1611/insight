@@ -1,15 +1,354 @@
 [
-  { "en": "begat", "ko": "낳았다 (beget의 과거형)", "note": "고어 동사. 족보에서 'A begat B' = 'A가 B를 낳다'. 현대영어로는 'was the father of'." },
-  { "en": "the book of the generation", "ko": "계보(족보)의 책", "note": "generation = 세대·혈통·계보. 히브리어 '톨레도트(계보의 기록)' 어법(창 5:1)." },
-  { "en": "carried away to Babylon", "ko": "바벨론으로 끌려감", "note": "carry away = (강제로) 데려가다 — 포로로 끌고 가다라는 숙어." },
-  { "en": "on this wise", "ko": "이런 식으로 / 이러하니라", "note": "고어 표현. wise = 방식(way·manner). 'in this way'와 같음." },
-  { "en": "espoused to", "ko": "~와 정혼(약혼)한", "note": "espouse = 약혼·정혼하다. 현대영어 'engaged/betrothed'." },
-  { "en": "with child", "ko": "아이를 밴 (임신한)", "note": "관용구 'be with child' = pregnant(임신하다)." },
-  { "en": "a just man", "ko": "의로운 사람", "note": "just = 공정한·의로운(righteous). 도덕적으로 올바른." },
-  { "en": "make her a publick example", "ko": "공개적으로 본보기(망신) 삼다", "note": "관용구 'make an example of (someone)' = 본보기로 벌하다·망신 주다." },
-  { "en": "put her away privily", "ko": "가만히(은밀히) 내보내다 = 조용히 파혼하다", "note": "put away = 내보내다·이혼(파혼)하다. privily = 고어 'privately(은밀히)'." },
-  { "en": "fear not", "ko": "두려워 말라", "note": "고어 부정 명령형 = 'do not fear'. 성경에 가장 자주 나오는 위로의 말." },
-  { "en": "bring forth a son", "ko": "아들을 낳다", "note": "관용구 'bring forth' = (열매·자식을) 낳다·산출하다." },
-  { "en": "which being interpreted is", "ko": "번역(해석)하면 ~이다", "note": "being interpreted = 해석되면. 이름의 뜻을 풀이할 때 쓰는 표현(임마누엘 = God with us)." },
-  { "en": "knew her not", "ko": "그녀를 가까이하지(동침하지) 아니하였다", "note": "성경에서 'know'는 부부의 잠자리를 가리키는 완곡어법. 'knew her not' = 동침하지 않았다." }
+ {
+  "en": "begat",
+  "ko": "낳았다 (beget의 과거형)",
+  "note": "고어 동사. 족보에서 'A begat B' = 'A가 B를 낳다'. 현대영어로는 'was the father of'.",
+  "voc": [
+   [
+    "begat",
+    "v.",
+    "낳았다"
+   ],
+   [
+    "generation",
+    "n.",
+    "세대, 계보"
+   ]
+  ],
+  "idi": [
+   [
+    "A begat B",
+    "A가 B를 낳다 (현대: A was the father of B)"
+   ]
+  ],
+  "gra": [
+   [
+    "begat",
+    "beget의 고어 과거형. 현대영어로는 'fathered/was the father of'"
+   ]
+  ]
+ },
+ {
+  "en": "the book of the generation",
+  "ko": "계보(족보)의 책",
+  "note": "generation = 세대·혈통·계보. 히브리어 '톨레도트(계보의 기록)' 어법(창 5:1).",
+  "voc": [
+   [
+    "book",
+    "n.",
+    "책, 기록"
+   ],
+   [
+    "generation",
+    "n.",
+    "계보, 혈통"
+   ]
+  ],
+  "idi": [
+   [
+    "the book of the generation",
+    "계보의 기록 (현대: the record of the genealogy)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "carried away to Babylon",
+  "ko": "바벨론으로 끌려감",
+  "note": "carry away = (강제로) 데려가다 — 포로로 끌고 가다라는 숙어.",
+  "voc": [
+   [
+    "carry away",
+    "v.",
+    "끌고 가다"
+   ],
+   [
+    "Babylon",
+    "n.",
+    "바벨론"
+   ]
+  ],
+  "idi": [
+   [
+    "carried away to Babylon",
+    "바벨론으로 (포로로) 끌려가다"
+   ]
+  ],
+  "gra": [
+   [
+    "carried away",
+    "수동태(be carried away) '끌려가다' — 강제로 데려가짐"
+   ]
+  ]
+ },
+ {
+  "en": "on this wise",
+  "ko": "이런 식으로 / 이러하니라",
+  "note": "고어 표현. wise = 방식(way·manner). 'in this way'와 같음.",
+  "voc": [
+   [
+    "wise",
+    "adj.",
+    "현명한"
+   ],
+   [
+    "manner",
+    "n.",
+    "방식"
+   ]
+  ],
+  "idi": [
+   [
+    "on this wise",
+    "이런 식으로, 이러하니라 (현대: in this way)"
+   ]
+  ],
+  "gra": [
+   [
+    "on this wise",
+    "wise=옛 명사 '방식(way·manner)'. 현대영어 'in this way'와 동일"
+   ]
+  ]
+ },
+ {
+  "en": "espoused to",
+  "ko": "~와 정혼(약혼)한",
+  "note": "espouse = 약혼·정혼하다. 현대영어 'engaged/betrothed'.",
+  "voc": [
+   [
+    "espouse",
+    "v.",
+    "약혼하다, 정혼하다"
+   ],
+   [
+    "mother",
+    "n.",
+    "어머니"
+   ]
+  ],
+  "idi": [
+   [
+    "espoused to",
+    "~와 정혼(약혼)한 (현대: engaged/betrothed to)"
+   ]
+  ],
+  "gra": [
+   [
+    "was espoused",
+    "수동태 '정혼한 상태가 되다'"
+   ]
+  ]
+ },
+ {
+  "en": "with child",
+  "ko": "아이를 밴 (임신한)",
+  "note": "관용구 'be with child' = pregnant(임신하다).",
+  "voc": [
+   [
+    "child",
+    "n.",
+    "아이"
+   ],
+   [
+    "found",
+    "v.",
+    "발견되다 (find의 과거분사)"
+   ]
+  ],
+  "idi": [
+   [
+    "with child",
+    "아이를 밴, 임신한 (현대: pregnant)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "a just man",
+  "ko": "의로운 사람",
+  "note": "just = 공정한·의로운(righteous). 도덕적으로 올바른.",
+  "voc": [
+   [
+    "just",
+    "adj.",
+    "의로운, 공정한"
+   ],
+   [
+    "man",
+    "n.",
+    "사람"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "make her a publick example",
+  "ko": "공개적으로 본보기(망신) 삼다",
+  "note": "관용구 'make an example of (someone)' = 본보기로 벌하다·망신 주다.",
+  "voc": [
+   [
+    "publick",
+    "adj.",
+    "공개적인 (public의 고어 철자)"
+   ],
+   [
+    "example",
+    "n.",
+    "본보기"
+   ]
+  ],
+  "idi": [
+   [
+    "make her a publick example",
+    "그녀를 공개적으로 본보기(망신) 삼다 (현대: make an example of her)"
+   ]
+  ],
+  "gra": [
+   [
+    "publick",
+    "public의 고어 철자 — 어미에 -k를 붙인 옛 표기"
+   ]
+  ]
+ },
+ {
+  "en": "put her away privily",
+  "ko": "가만히(은밀히) 내보내다 = 조용히 파혼하다",
+  "note": "put away = 내보내다·이혼(파혼)하다. privily = 고어 'privately(은밀히)'.",
+  "voc": [
+   [
+    "privily",
+    "adv.",
+    "은밀히 (privately의 고어)"
+   ],
+   [
+    "minded",
+    "v.",
+    "마음먹다, 작정하다 (고어)"
+   ]
+  ],
+  "idi": [
+   [
+    "put her away privily",
+    "가만히 내보내다, 조용히 파혼하다 (현대: divorce her quietly)"
+   ]
+  ],
+  "gra": [
+   [
+    "put away",
+    "구동사 '내보내다·이혼(파혼)하다'; privily=privately의 고어 부사"
+   ]
+  ]
+ },
+ {
+  "en": "fear not",
+  "ko": "두려워 말라",
+  "note": "고어 부정 명령형 = 'do not fear'. 성경에 가장 자주 나오는 위로의 말.",
+  "voc": [
+   [
+    "fear",
+    "v.",
+    "두려워하다"
+   ],
+   [
+    "take unto",
+    "v.",
+    "맞아들이다, 데려오다"
+   ]
+  ],
+  "idi": [
+   [
+    "fear not",
+    "두려워 말라 (현대: do not fear)"
+   ]
+  ],
+  "gra": [
+   [
+    "fear not",
+    "고어 부정 명령형 — 동사+not 어순. 현대영어 'do not fear'"
+   ]
+  ]
+ },
+ {
+  "en": "bring forth a son",
+  "ko": "아들을 낳다",
+  "note": "관용구 'bring forth' = (열매·자식을) 낳다·산출하다.",
+  "voc": [
+   [
+    "bring forth",
+    "v.",
+    "낳다, 산출하다"
+   ],
+   [
+    "son",
+    "n.",
+    "아들"
+   ]
+  ],
+  "idi": [
+   [
+    "bring forth a son",
+    "아들을 낳다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "which being interpreted is",
+  "ko": "번역(해석)하면 ~이다",
+  "note": "being interpreted = 해석되면. 이름의 뜻을 풀이할 때 쓰는 표현(임마누엘 = God with us).",
+  "voc": [
+   [
+    "interpret",
+    "v.",
+    "번역하다, 해석하다"
+   ],
+   [
+    "Emmanuel",
+    "",
+    "임마누엘 (하나님이 우리와 함께)"
+   ]
+  ],
+  "idi": [
+   [
+    "which being interpreted is",
+    "번역(해석)하면 ~이다"
+   ]
+  ],
+  "gra": [
+   [
+    "being interpreted",
+    "분사구문(수동) '해석되면' — 현대영어 'which, when interpreted, is'"
+   ]
+  ]
+ },
+ {
+  "en": "knew her not",
+  "ko": "그녀를 가까이하지(동침하지) 아니하였다",
+  "note": "성경에서 'know'는 부부의 잠자리를 가리키는 완곡어법. 'knew her not' = 동침하지 않았다.",
+  "voc": [
+   [
+    "know",
+    "v.",
+    "알다 (여기선 동침하다)"
+   ],
+   [
+    "firstborn",
+    "n.",
+    "맏아들, 첫아들"
+   ]
+  ],
+  "idi": [
+   [
+    "knew her not",
+    "그녀를 가까이하지(동침하지) 아니하였다"
+   ]
+  ],
+  "gra": [
+   [
+    "knew her not",
+    "고어 부정 어순(동사+목적어+not). 'know'는 부부관계의 완곡어법"
+   ]
+  ]
+ }
 ]
