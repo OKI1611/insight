@@ -2,46 +2,134 @@
  {
   "en": "And if a soul sin, and hear the voice of swearing ... if he do not utter it, then he shall bear his iniquity.",
   "ko": "누구든지 맹세시키는 소리를 듣고 그 본 일이나 아는 일에 증인이 되었으되 이를 알리지 아니하면 그 허물을 담당할지니라.",
-  "note": "'허물을 담당하다'는 나사 아본(נָשָׂא עָוֺן, '죄악을 짊어지다')이다. 침묵으로 진실을 덮는 것도 죄이니, 알면서 증언하지 않는 자가 그 무게를 스스로 진다."
+  "note": "'허물을 담당하다'는 나사 아본(נָשָׂא עָוֺן, '죄악을 짊어지다')이다. 침묵으로 진실을 덮는 것도 죄이니, 알면서 증언하지 않는 자가 그 무게를 스스로 진다.",
+  "voc": [
+   ["swearing", "n.", "맹세, 서약"],
+   ["utter", "v.", "(소리 내어) 말하다, 알리다"],
+   ["bear", "v.", "짊어지다, 담당하다"],
+   ["iniquity", "n.", "허물, 죄악"]
+  ],
+  "idi": [
+   ["bear his iniquity", "그의 허물을 담당하다(죗값을 지다)"]
+  ],
+  "gra": [
+   ["if he do not utter it", "고어에서는 가정·조건절에 do의 원형 do not가 쓰였다. 현대 영어로는 'if he does not utter it'이다."]
+  ]
  },
  {
   "en": "Or if a soul touch any unclean thing ... and if it be hidden from him; he also shall be unclean, and guilty.",
   "ko": "또 누구든지 부정한 것을 만졌으되 ... 그것이 자기도 모르는 새에 그리하였으면, 그도 부정하여 허물이 있을 것이요,",
-  "note": "'부정한'은 타메(טָמֵא)이다. 모르고 부정에 닿았어도 부정은 부정이니, 죄와 더러움은 사람의 자각 여부로 사라지지 않는다."
+  "note": "'부정한'은 타메(טָמֵא)이다. 모르고 부정에 닿았어도 부정은 부정이니, 죄와 더러움은 사람의 자각 여부로 사라지지 않는다.",
+  "voc": [
+   ["touch", "v.", "만지다, 닿다"],
+   ["unclean", "adj.", "부정한, 더러운"],
+   ["hidden", "adj.", "숨겨진, 알지 못하는"],
+   ["guilty", "adj.", "허물이 있는, 유죄의"]
+  ],
+  "gra": [
+   ["if it be hidden from him", "가정법 현재에서 be동사의 원형 be가 쓰인 고어 표현이다. 현대 영어로는 'if it is hidden from him'이다."]
+  ]
  },
  {
   "en": "... that he shall confess that he hath sinned in that thing:",
   "ko": "그가 무슨 일에 범죄하였노라 자복하고,",
-  "note": "'자복하다'는 히트와다(הִתְוַדָּה, '고백하다·시인하다')이다. 제물에 앞서 입으로 죄를 토설함이 속죄의 첫걸음이니, 가린 죄는 형통하지 못한다."
+  "note": "'자복하다'는 히트와다(הִתְוַדָּה, '고백하다·시인하다')이다. 제물에 앞서 입으로 죄를 토설함이 속죄의 첫걸음이니, 가린 죄는 형통하지 못한다.",
+  "voc": [
+   ["confess", "v.", "자복하다, 고백하다"],
+   ["hath sinned", "", "죄를 지었다(현재완료 고어형)"],
+   ["thing", "n.", "일, 사물"]
+  ],
+  "gra": [
+   ["confess that he hath sinned", "confess 뒤에 that절이 목적어로 와서 고백한 내용을 이끈다. hath sinned는 'has sinned'의 고어형이다."]
+  ]
  },
  {
   "en": "And he shall bring his trespass offering unto the LORD for his sin ... a lamb or a kid of the goats, for a sin offering ...",
   "ko": "그 범한 죄로 말미암아 여호와께 속건제를 드리되, 양 떼의 암컷 곧 어린 양이나 염소를 속죄제로 끌어올 것이요,",
-  "note": "'속건제'는 아샴(אָשָׁם, '허물·배상')이다. 속죄제(하타트)가 죄의 부정을 씻는다면, 속건제는 끼친 손해의 배상을 요구하니, 죄에는 회복해야 할 빚이 따른다."
+  "note": "'속건제'는 아샴(אָשָׁם, '허물·배상')이다. 속죄제(하타트)가 죄의 부정을 씻는다면, 속건제는 끼친 손해의 배상을 요구하니, 죄에는 회복해야 할 빚이 따른다.",
+  "voc": [
+   ["trespass offering", "n.", "속건제"],
+   ["bring", "v.", "가져오다, 드리다"],
+   ["lamb", "n.", "어린 양"],
+   ["kid of the goats", "", "염소(염소 새끼)"]
+  ],
+  "idi": [
+   ["trespass offering", "속건제(허물을 갚는 제사)"]
+  ]
  },
  {
   "en": "And if he be not able to bring a lamb, then he shall bring ... two turtledoves, or two young pigeons ...",
   "ko": "그 힘이 어린 양에 미치지 못하거든 ... 산비둘기 둘이나 집비둘기 새끼 둘을 여호와께 가져다가 ...",
-  "note": "'미치지 못하다'는 직역하면 '그의 손이 닿지 못하면'(로 타기아 야도, לֹא־תַגִּיעַ יָדוֹ)이다. 가난한 자도 형편대로 드릴 길을 여시니, 속죄의 문은 부요한 자에게만 열린 것이 아니다."
+  "note": "'미치지 못하다'는 직역하면 '그의 손이 닿지 못하면'(로 타기아 야도, לֹא־תַגִּיעַ יָדוֹ)이다. 가난한 자도 형편대로 드릴 길을 여시니, 속죄의 문은 부요한 자에게만 열린 것이 아니다.",
+  "voc": [
+   ["be able to", "", "~할 수 있다"],
+   ["turtledove", "n.", "산비둘기"],
+   ["young pigeon", "", "집비둘기 새끼"]
+  ],
+  "idi": [
+   ["be not able to", "~할 수 없다, 능력이 미치지 못하다"]
+  ],
+  "gra": [
+   ["if he be not able to bring", "고어 가정법으로 be동사 원형 be가 쓰였다. 현대 영어로는 'if he is not able to bring'이다."]
+  ]
  },
  {
   "en": "... the tenth part of an ephah of fine flour for a sin offering; he shall put no oil upon it ...",
   "ko": "고운 가루 십분의 일 에바를 속죄제물로 가져오되 ... 그 위에 기름을 붓지 말고 그 위에 유향을 두지 말 것이며,",
-  "note": "'고운 가루'는 솔레트(סֹלֶת)이다. 피 없는 곡식이 속죄제로 허용되나 기쁨을 상징하는 기름과 유향은 금하니, 속죄는 즐거움이 아니라 죄를 슬퍼함 위에 선다."
+  "note": "'고운 가루'는 솔레트(סֹלֶת)이다. 피 없는 곡식이 속죄제로 허용되나 기쁨을 상징하는 기름과 유향은 금하니, 속죄는 즐거움이 아니라 죄를 슬퍼함 위에 선다.",
+  "voc": [
+   ["the tenth part", "", "십분의 일"],
+   ["ephah", "n.", "에바(곡물 부피 단위)"],
+   ["fine flour", "", "고운 가루"],
+   ["oil", "n.", "기름"]
+  ],
+  "gra": [
+   ["he shall put no oil upon it", "no가 목적어 oil 앞에 붙어 'put no oil = 기름을 전혀 두지 말라'는 강한 부정을 만든다."]
+  ]
  },
  {
   "en": "If a soul commit a trespass, and sin through ignorance, in the holy things of the LORD ... a ram without blemish ...",
   "ko": "누구든지 여호와의 성물에 대하여 그릇 범죄하였거든 ... 양 떼 가운데 흠 없는 숫양을 ... 속건제로 끌어올 것이요,",
-  "note": "'성물'은 코드셰(קָדְשֵׁי, '여호와의 거룩한 것들')이다. 거룩한 것을 부지중에라도 범하면 배상해야 하니, 하나님께 속한 것은 함부로 가벼이 여길 수 없다."
+  "note": "'성물'은 코드셰(קָדְשֵׁי, '여호와의 거룩한 것들')이다. 거룩한 것을 부지중에라도 범하면 배상해야 하니, 하나님께 속한 것은 함부로 가벼이 여길 수 없다.",
+  "voc": [
+   ["commit a trespass", "", "허물을 범하다"],
+   ["holy things", "", "성물, 거룩한 것들"],
+   ["ram", "n.", "숫양"],
+   ["without blemish", "", "흠 없는"]
+  ],
+  "idi": [
+   ["commit a trespass", "허물(잘못)을 저지르다"]
+  ]
  },
  {
   "en": "And he shall make amends for the harm ... and shall add the fifth part thereto, and give it unto the priest:",
   "ko": "그 성물에 대하여 끼친 손해를 보상하되 거기에 오분의 일을 더하여 제사장에게 돌릴지니,",
-  "note": "'오분의 일'은 하미쉬(חֲמִישִׁית)이다. 본래 값에 오분의 일을 얹어 갚게 하심은, 죄가 단순한 원상복구를 넘어 더 큰 회복을 요구함을 보인다."
+  "note": "'오분의 일'은 하미쉬(חֲמִישִׁית)이다. 본래 값에 오분의 일을 얹어 갚게 하심은, 죄가 단순한 원상복구를 넘어 더 큰 회복을 요구함을 보인다.",
+  "voc": [
+   ["make amends", "", "보상하다, 배상하다"],
+   ["harm", "n.", "손해, 해"],
+   ["the fifth part", "", "오분의 일"],
+   ["thereto", "adv.", "거기에(고어)"]
+  ],
+  "idi": [
+   ["make amends for", "~에 대해 보상하다"]
+  ],
+  "gra": [
+   ["add the fifth part thereto", "thereto는 'to that(거기에)'를 뜻하는 고어 부사로, 현대 영어로는 'add the fifth part to it'이다."]
+  ]
  },
  {
   "en": "It is a trespass offering: he hath certainly trespassed against the LORD.",
   "ko": "이는 속건제니, 그가 진실로 여호와께 허물을 범하였음이니라.",
-  "note": "'진실로 ... 범하였다'는 아숌 아샴(אָשֹׁם אָשָׁם)으로 같은 어근을 거듭한 강조다. 사람에게 지은 죄든 무심코 지은 죄든, 모든 허물은 결국 여호와께 범한 죄임을 못 박는다."
+  "note": "'진실로 ... 범하였다'는 아숌 아샴(אָשֹׁם אָשָׁם)으로 같은 어근을 거듭한 강조다. 사람에게 지은 죄든 무심코 지은 죄든, 모든 허물은 결국 여호와께 범한 죄임을 못 박는다.",
+  "voc": [
+   ["trespass offering", "n.", "속건제"],
+   ["certainly", "adv.", "진실로, 확실히"],
+   ["trespass", "v.", "허물을 범하다, 죄를 짓다"],
+   ["against", "prep.", "~에 대하여, ~를 거슬러"]
+  ],
+  "gra": [
+   ["he hath certainly trespassed against the LORD", "hath ... trespassed는 'has trespassed'의 고어 현재완료형이고, certainly가 그 사이에 들어가 동작을 강조한다."]
+  ]
  }
 ]
