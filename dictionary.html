@@ -79,7 +79,9 @@
     const IDX=['ㄱ','ㄴ','ㄷ','ㄹ','ㅁ','ㅂ','ㅅ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ','A-Z'];
     function initialOf(s){ const c=(s||'').charCodeAt(0); if(c>=0xAC00&&c<=0xD7A3){ return CHO[Math.floor((c-0xAC00)/588)].replace(/[ㄲ]/,'ㄱ').replace(/[ㄸ]/,'ㄷ').replace(/[ㅃ]/,'ㅂ').replace(/[ㅆ]/,'ㅅ').replace(/[ㅉ]/,'ㅈ'); } if(/[A-Za-z]/.test(s||'')) return 'A-Z'; return ''; }
 
-    fetch('dictionary/entries.json?t='+Date.now()).then(r=>r.json()).then(d=>{
+    $('results').innerHTML='<div class="text-center text-ink/40 py-16"><p class="text-3xl mb-3 animate-pulse">📖</p><p class="text-sm">성경사전을 불러오는 중…</p></div>';
+    // 캐시 무력화(?t=Date.now) 제거 — 서버의 ETag/304 재검증으로 변경 없으면 즉시 로딩, 변경 시 자동 최신화
+    fetch('dictionary/entries.json').then(r=>r.json()).then(d=>{
       DATA=(Array.isArray(d)?d:[]).sort((a,b)=>(a.term||'').localeCompare(b.term||'','ko'));
       $('count').textContent=DATA.length.toLocaleString();
       buildCats(); buildIndex(); render();
