@@ -215,7 +215,7 @@
     function renderEn(){
       const box=$('enList'); if(!box) return;
       if(!ENNOTES || !ENNOTES.length){ box.innerHTML='<p class="text-xs text-ink/40 leading-relaxed py-2">이 장의 영어 표현 노트는 준비 중입니다. (장별로 순차 추가)</p>'; return; }
-      box.innerHTML=ENNOTES.map(e=>{
+      box.innerHTML=ENNOTES.map((e,vi)=>{
         const voc=(e.voc||[]).map(v=>`<div class="text-[12px] leading-tight"><span class="font-semibold text-ink">${esc(v[0]||'')}</span> <span class="text-ink/35 text-[10.5px]">${esc(v[1]||'')}</span><br><span class="text-ink/60">${esc(v[2]||'')}</span></div>`).join('');
         const vocB=voc?`<div class="mt-2"><span class="seclbl seclbl-voc">단어</span><div class="grid grid-cols-2 gap-x-3 gap-y-1.5 mt-1.5">${voc}</div></div>`:'';
         const idi=(e.idi||[]).map(x=>`<div class="text-[12px] text-ink/70 leading-snug"><span class="font-semibold text-ink">${esc(x[0]||'')}</span> — ${esc(x[1]||'')}</div>`).join('');
@@ -225,9 +225,12 @@
         const learn=(graB||idiB||vocB)?`<div class="sec-learn">${graB}${idiB}${vocB}</div>`:'';
         const theo=e.note?`<div class="sec-theo mt-2 bg-gold/[0.06] border-l-2 border-gold/50 rounded-r px-2.5 py-2"><p class="text-[12px] text-ink/70 leading-relaxed">${esc(e.note)}</p></div>`:'';
         return `<div class="border-b border-ink/[0.07] py-3 last:border-0">
-          <p class="verse-en font-bold text-[13.5px] text-ink leading-snug">${hlVoc(e.en||'', e)}</p>
-          <p class="text-[12.5px] text-gold font-semibold mt-0.5">${esc(e.ko||'')}</p>
-          ${learn}${theo}</div>`;
+          <div class="flex gap-1.5 items-baseline">
+            <span class="text-[11px] font-bold text-gold shrink-0">${vi+1}</span>
+            <p class="verse-en font-bold text-[13.5px] text-ink leading-snug">${hlVoc(e.en||'', e)}</p>
+          </div>
+          <p class="text-[12.5px] text-gold font-semibold mt-0.5 ml-[18px]">${esc(e.ko||'')}</p>
+          <div class="ml-[18px]">${learn}${theo}</div></div>`;
       }).join('');
     }
     function applySecBtn(kind,on){
