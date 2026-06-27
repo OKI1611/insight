@@ -114,8 +114,26 @@
   <script>
     const $=id=>document.getElementById(id);
     const esc=s=>String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
-    let DATA=[], CAT='전체', INITIAL='';
+    let DATA=[], CAT='전체', INITIAL='', FAQ_TOPIC='';
     const CATS=['전체','자주 묻는 질문','교리','인물','지명','사물·자연','절기·제도','종말론','기타'];
+    const FAQ_TOPICS=[
+      {n:'구원·믿음', ic:'✝️'},{n:'종말·예언', ic:'⏳'},{n:'죽음·천국·지옥', ic:'🕊️'},
+      {n:'예수님·삼위일체', ic:'👑'},{n:'성령·은사', ic:'🔥'},{n:'성경·창조', ic:'📖'},
+      {n:'교회·예배·헌금', ic:'⛪'},{n:'윤리·관계', ic:'⚖️'},{n:'생활·문화', ic:'🌿'}
+    ];
+    function setFaqTopic(t){ FAQ_TOPIC=t; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+    function renderFaqTopics(){
+      const counts={}; DATA.forEach(e=>{ if(e.category==='자주 묻는 질문') counts[e.faqTopic||'기타']=(counts[e.faqTopic||'기타']||0)+1; });
+      const total=Object.values(counts).reduce((a,b)=>a+b,0);
+      $('count').textContent=total.toLocaleString(); $('empty').classList.add('hidden');
+      const cards=FAQ_TOPICS.filter(t=>counts[t.n]).map(t=>
+        `<button onclick="setFaqTopic('${t.n.replace(/'/g,"\\'")}')" class="group bg-white rounded-2xl border border-ink/8 shadow-soft p-5 text-left hover:-translate-y-0.5 hover:border-gold/40 hover:shadow-card transition">
+          <div class="text-3xl mb-2.5">${t.ic}</div>
+          <p class="font-bold text-ink text-[15px] group-hover:text-gold transition">${esc(t.n)}</p>
+          <p class="text-xs text-ink/45 mt-1">질문 ${counts[t.n]}개 →</p></button>`).join('');
+      $('results').innerHTML=`<p class="text-sm text-ink/55 mb-4">궁금한 <b class="text-ink">주제를 선택</b>하면 관련 질문을 모아서 볼 수 있어요.</p>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">${cards}</div>`;
+    }
     // 한글 초성
     const CHO=['ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
     const IDX=['ㄱ','ㄴ','ㄷ','ㄹ','ㅁ','ㅂ','ㅅ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ','A-Z'];
@@ -143,7 +161,7 @@
       $('index').innerHTML='<button onclick="setInitial(\'\')" class="idx px-2 py-1 rounded font-semibold '+(INITIAL===''?'text-gold':'text-ink/45 hover:text-ink')+'">전체</button>'+
         IDX.filter(i=>present.has(i)).map(i=>`<button onclick="setInitial('${i}')" class="idx px-2 py-1 rounded ${INITIAL===i?'text-gold font-bold':'text-ink/45 hover:text-ink'}">${i}</button>`).join('');
     }
-    function setCat(c){ CAT=c; buildCats(); render(); }
+    function setCat(c){ CAT=c; FAQ_TOPIC=''; INITIAL=''; buildCats(); buildIndex(); render(); }
     function setInitial(i){ INITIAL=i; $('q').value=''; buildIndex(); render(); }
     function searchTerm(t){ $('q').value=t; INITIAL=''; CAT='전체'; buildCats(); buildIndex(); render(); window.scrollTo({top:0,behavior:'smooth'}); }
 
@@ -151,6 +169,20 @@
 
     function render(){
       const q=($('q').value||'').trim().toLowerCase();
+      const idxEl=$('index');
+      // ===== FAQ 주제별 모드(검색어 없을 때) =====
+      if(CAT==='자주 묻는 질문' && !q){
+        if(idxEl) idxEl.style.display='none';
+        if(!FAQ_TOPIC){ renderFaqTopics(); return; }
+        const tl=DATA.filter(e=>e.category==='자주 묻는 질문' && (e.faqTopic||'기타')===FAQ_TOPIC);
+        $('count').textContent=tl.length.toLocaleString(); $('empty').classList.add('hidden');
+        const tm=FAQ_TOPICS.find(x=>x.n===FAQ_TOPIC)||{ic:'❓'};
+        const head=`<button onclick="setFaqTopic('')" class="inline-flex items-center gap-1 text-sm font-semibold text-gold mb-3 hover:underline">← 주제 전체 보기</button>
+          <h2 class="text-xl font-bold mb-4 flex items-center gap-2">${tm.ic} ${esc(FAQ_TOPIC)} <span class="text-sm font-semibold text-ink/40">${tl.length}</span></h2>`;
+        $('results').innerHTML=head+tl.map(e=>card(e,'')).join('');
+        return;
+      }
+      if(idxEl) idxEl.style.display='';
       let list=DATA.filter(e=>{
         if(CAT!=='전체' && e.category!==CAT) return false;
         if(INITIAL && initialOf(e.term)!==INITIAL) return false;
