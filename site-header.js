@@ -149,7 +149,7 @@
       + '<header class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-ink/8">'
       + '<div class="max-w-7xl mx-auto px-4 h-14 flex items-center gap-3">'
       + LOGO
-      + '<nav id="navmenu" class="hidden xl:flex items-center gap-5 text-[14.5px] font-medium text-ink/90 whitespace-nowrap pl-1">' + menuHTML(menu) + '</nav>'
+      + '<nav id="navmenu" class="hidden xl:flex items-center gap-5 text-[14.5px] font-medium text-[#15223d] whitespace-nowrap pl-1">' + menuHTML(menu) + '</nav>'
       + '<div class="ml-auto flex items-center gap-2 sm:gap-3 text-sm shrink-0">' + mainCtaHTML()
       + '<button id="biblyHamb" aria-label="메뉴 열기" onclick="__biblyToggleMenu()" class="xl:hidden w-9 h-9 -mr-1 flex items-center justify-center rounded-lg hover:bg-ink/5 text-ink/70"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>'
       + '</div>'
@@ -206,10 +206,10 @@
       + '.navDrop{position:absolute;left:0;top:100%;padding-top:12px;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .16s,transform .16s,visibility .16s;z-index:60}'
       + '.navItem:hover .navDrop{opacity:1;visibility:visible;transform:none}'
       + '.navDropCard{background:#fff;border:1px solid rgba(21,32,58,.08);border-radius:.9rem;box-shadow:0 18px 50px -20px rgba(21,32,58,.45);padding:.45rem;min-width:212px}'
-      + '.navDropCard a{display:flex;align-items:center;gap:.55rem;padding:.6rem .8rem;border-radius:.6rem;font-size:.875rem;font-weight:500;color:rgba(21,32,58,.82);white-space:nowrap;transition:background .15s,color .15s}'
-      + '.navDropCard a::before{content:"";width:5px;height:5px;border-radius:50%;background:rgba(184,146,63,.35);flex:none;transition:transform .15s,background .15s}'
-      + '.navDropCard a:hover{background:rgba(184,146,63,.1);color:#b8923f}'
-      + '.navDropCard a:hover::before{background:#b8923f;transform:scale(1.35)}'
+      + '.navDropCard a{display:flex;align-items:center;gap:.6rem;padding:.62rem .85rem;border-radius:.65rem;font-size:.9rem;font-weight:600;color:#15223d;white-space:nowrap;transition:background .15s,color .15s,transform .15s}'
+      + '.navDropCard a::before{content:"";width:6px;height:6px;border-radius:50%;background:rgba(184,146,63,.4);flex:none;transition:transform .15s,background .15s}'
+      + '.navDropCard a:hover{background:#eef3fb;color:#b8923f;transform:translateX(2px)}'
+      + '.navDropCard a:hover::before{background:#b8923f;transform:scale(1.4)}'
       + '.bibly-topbar a,.bibly-topbar button{color:rgba(247,249,252,.72);white-space:nowrap;transition:color .15s}'
       + '.bibly-topbar a:hover,.bibly-topbar button:hover{color:#dcb866}'
       + '.bibly-topbar .sep{color:rgba(247,249,252,.22)}'
@@ -227,7 +227,7 @@
     fetch('content/site.json?t=' + Date.now()).then(function(r){ return r.json(); }).then(function(s){
       var mn = (s && s.nav && s.nav.length) ? s.nav : (s && s.menu);
       if(mn){
-        var nav = document.getElementById('navmenu'); if(nav) nav.innerHTML = menuHTML(mn);
+        var nav = document.getElementById('navmenu'); if(nav){ nav.className = nav.className.replace('text-ink/90','text-[#15223d]'); nav.innerHTML = menuHTML(mn); }
         var mob = document.getElementById('biblyMobMenu'); if(mob) mob.innerHTML = mobileMenuHTML(mn);
       }
     }).catch(function(){});

@@ -1,0 +1,111 @@
+/* 범용 좌측 섹션 사이드바 — 모든 상위메뉴(성경·소통나눔·강의·스토어·위대한믿음·BIBLY이야기)에서
+   현재 페이지가 속한 섹션의 하위메뉴를 좌측 세로 메뉴로 자동 생성한다.
+   메뉴 정의는 content/site.json 의 nav 를 단일 소스로 사용(헤더와 100% 동일).
+   데스크톱(>=1024px)에서만 노출되며 본문을 오른쪽으로 밀어 가려지지 않게 한다.
+   좁은 화면(<1024px)에서는 상단 드롭다운 메뉴로 대체되므로 숨긴다. */
+(function(){
+  if(window.__biblySectionNav) return; window.__biblySectionNav = true;
+
+  // 페이지별 아이콘(없으면 섹션 기본 아이콘)
+  var ICON = {
+    'about.html':'✨','founding.html':'🎖️',
+    'curriculum.html':'📚','academy.html':'🎓','find.html':'🧭','column.html':'📰',
+    'booklet.html':'📕','store-help.html':'🛟','mylearning.html':'🗂️',
+    'bible.html':'📖','daily.html':'🌅','memorize.html':'✨','bible-plan.html':'📅','themes.html':'📚','dictionary.html':'🔎',
+    'preachers.html':'🎙️','prayers.html':'🙏',
+    'community.html':'💬','counsel.html':'🕊️','request.html':'📨','resources.html':'📂'
+  };
+  // 섹션(상위메뉴 href) 기본 아이콘
+  var SECICON = {
+    'about.html':'📘','curriculum.html':'🎬','booklet.html':'🛒',
+    'bible.html':'📖','preachers.html':'🔥','community.html':'🤝'
+  };
+  // site.json 로드 실패 시 사용할 내장 백업(헤더 DEFAULT_MENU와 동일 구조)
+  var FALLBACK = [
+    { label:'BIBLY 이야기', href:'about.html', children:[
+      { label:'우리의 사명·소개', href:'about.html' }, { label:'1기 창립 멤버', href:'founding.html' } ]},
+    { label:'강의·커리큘럼', href:'curriculum.html', children:[
+      { label:'전체 커리큘럼', href:'curriculum.html' }, { label:'정규 심화 과정(아카데미)', href:'academy.html' },
+      { label:'나에게 맞는 강의 찾기', href:'find.html' } ]},
+    { label:'스토어', href:'booklet.html', children:[
+      { label:'PDF 책자·이용권', href:'booklet.html' }, { label:'고객센터(주문·배송·반품)', href:'store-help.html' },
+      { label:'내 구매·자료', href:'mylearning.html' } ]},
+    { label:'성경', href:'bible.html', children:[
+      { label:'성경 읽기', href:'bible.html' }, { label:'매일 말씀과 함께', href:'daily.html' },
+      { label:'성경암송 365', href:'memorize.html' }, { label:'성경 통독표 (1년 1독)', href:'bible-plan.html' },
+      { label:'주제별 성경', href:'themes.html' }, { label:'성경사전', href:'dictionary.html' } ]},
+    { label:'위대한 믿음', href:'preachers.html', children:[
+      { label:'위대한 설교자', href:'preachers.html' }, { label:'위대한 기도자', href:'prayers.html' } ]},
+    { label:'소통·나눔', href:'community.html', children:[
+      { label:'질문·나눔·기도요청', href:'community.html' }, { label:'신앙상담', href:'counsel.html' },
+      { label:'강의 요청·건의함', href:'request.html' }, { label:'자료실', href:'resources.html' },
+      { label:'칼럼', href:'column.html' } ]}
+  ];
+
+  var page = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  if(!page) page = 'index.html';
+
+  function base(h){ return String(h||'').split('#')[0].split('?')[0].toLowerCase(); }
+
+  function pickSection(nav){
+    for(var i=0;i<nav.length;i++){
+      var m = nav[i], kids = m.children || [];
+      if(!kids.length) continue;
+      for(var j=0;j<kids.length;j++){ if(base(kids[j].href) === page) return m; }
+      if(base(m.href) === page) return m; // 섹션 대표 페이지(자식에 없을 때)
+    }
+    return null;
+  }
+
+  function render(sec){
+    if(document.getElementById('bibleSideNav') || document.getElementById('sectionSideNav')) return;
+    var W = 212;
+    var st = document.createElement('style');
+    st.textContent =
+      '#sectionSideNav{display:none;position:fixed;top:0;left:0;bottom:0;width:' + W + 'px;z-index:45;'
+      + 'background:#fff;border-right:1px solid rgba(33,58,107,.1);box-shadow:2px 0 18px -10px rgba(21,32,58,.18);'
+      + 'flex-direction:column;padding:16px 12px;overflow-y:auto}'
+      + '#sectionSideNav .hd{font-size:11.5px;font-weight:800;color:#b8923f;letter-spacing:.05em;padding:4px 8px 12px;display:flex;align-items:center;gap:8px}'
+      + '#sectionSideNav .hd b{color:#15223d;font-size:15px;letter-spacing:-.01em}'
+      + '#sectionSideNav a{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:11px;'
+      + 'text-decoration:none;margin-bottom:3px;white-space:nowrap;transition:background .15s,transform .15s}'
+      + '#sectionSideNav .ic{font-size:17px;flex:0 0 auto;width:22px;text-align:center}'
+      + '#sectionSideNav .lbl{font-size:13.5px}'
+      + '#sectionSideNav a.on{background:#b8923f;box-shadow:0 6px 16px -8px rgba(184,146,63,.8)}'
+      + '#sectionSideNav a.on .lbl{color:#fff;font-weight:800}'
+      + '#sectionSideNav a:not(.on) .lbl{color:#15223d;font-weight:600}'
+      + '#sectionSideNav a:not(.on):hover{background:#eef3fb;transform:translateX(2px)}'
+      + '#sectionSideNav .foot{margin-top:auto;padding:12px 8px 2px;font-size:10.5px;color:rgba(33,58,107,.4);line-height:1.55;border-top:1px solid rgba(33,58,107,.06)}'
+      + '@media(min-width:1024px){body{padding-left:' + W + 'px}#sectionSideNav{display:flex}}';
+    document.head.appendChild(st);
+
+    var secIcon = SECICON[base(sec.href)] || '📌';
+    var rail = document.createElement('nav');
+    rail.id = 'sectionSideNav';
+    rail.setAttribute('aria-label', sec.label + ' 메뉴');
+    var h = '<div class="hd">' + secIcon + ' <b>' + sec.label + '</b></div>';
+    (sec.children || []).forEach(function(c){
+      var ph = base(c.href), on = (ph === page);
+      var ic = ICON[ph] || '•';
+      h += '<a href="' + c.href + '" class="' + (on ? 'on' : '') + '" title="' + c.label + '">'
+        + '<span class="ic">' + ic + '</span><span class="lbl">' + c.label + '</span></a>';
+    });
+    h += '<div class="foot">말씀으로 시대를 읽다<br>BIBLY · 바이블 인사이트</div>';
+    rail.innerHTML = h;
+    document.body.appendChild(rail);
+  }
+
+  function start(){
+    fetch('content/site.json', { cache:'no-cache' })
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){
+        var nav = (d && d.nav) ? d.nav : FALLBACK;
+        var sec = pickSection(nav) || pickSection(FALLBACK);
+        if(sec) render(sec);
+      })
+      .catch(function(){ var sec = pickSection(FALLBACK); if(sec) render(sec); });
+  }
+
+  if(document.body) start();
+  else document.addEventListener('DOMContentLoaded', start);
+})();

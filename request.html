@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <script src="/content-loader.js"></script>
-  <script src="/site-header.js?v=20260626b"></script>
+  <script src="/site-header.js?v=20260628a"></script>
+  <script src="/section-sidenav.js?v=1"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>강의 요청·건의 — BIBLY 바이블 인사이트</title>
   <link rel="manifest" href="/manifest.json" />
@@ -45,7 +46,7 @@
   <style>
     h1,h2{font-family:'Noto Serif KR',Pretendard,serif}
     .boardBtn{display:flex;align-items:center;gap:.5rem;width:100%;justify-content:center;padding:.6rem .75rem;border-radius:.75rem;font-size:.9rem;font-weight:600;color:rgba(21,32,58,.6);transition:all .15s}
-    @media(min-width:1024px){.boardBtn{justify-content:flex-start}}
+    @media(min-width:1024px){.boardBtn{justify-content:center}}
     .boardBtn:hover{background:rgba(21,32,58,.05)}
     .boardBtn.on{background:#213a6b;color:#ffffff}
     .ql-editor{min-height:140px;font-size:15px;line-height:1.7}
@@ -90,18 +91,15 @@
       </div>
     </div>
 
-    <div class="grid lg:grid-cols-[210px_1fr] gap-6">
-      <!-- 좌측 메뉴 -->
-      <aside class="lg:sticky lg:top-20 h-fit">
-        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-2 grid grid-cols-3 lg:grid-cols-1 gap-1">
-          <button id="rtab-all" onclick="setFilter('all')" class="boardBtn"><span>📋</span><span>전체 보기</span></button>
-          <button id="rtab-request" onclick="setFilter('request')" class="boardBtn"><span>🎓</span><span>강의 요청</span></button>
-          <button id="rtab-feedback" onclick="setFilter('feedback')" class="boardBtn"><span>💡</span><span>건의·피드백</span></button>
-        </div>
-        <p class="hidden lg:block text-[11px] text-ink/40 leading-relaxed mt-3 px-1">듣고 싶은 강의를 신청하거나, 사이트·강의 개선 의견을 남겨주세요. 추천 👍이 많은 요청이 먼저 제작됩니다.</p>
-      </aside>
+    <div>
+      <!-- 요청 유형 가로 탭 -->
+      <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-2 mb-5 max-w-2xl grid grid-cols-3 gap-1.5">
+        <button id="rtab-all" onclick="setFilter('all')" class="boardBtn"><span>📋</span><span>전체 보기</span></button>
+        <button id="rtab-request" onclick="setFilter('request')" class="boardBtn"><span>🎓</span><span>강의 요청</span></button>
+        <button id="rtab-feedback" onclick="setFilter('feedback')" class="boardBtn"><span>💡</span><span>건의·피드백</span></button>
+      </div>
 
-      <!-- 우측 콘텐츠 -->
+      <!-- 콘텐츠 -->
       <div class="min-w-0">
 
     <!-- 작성 폼 -->
