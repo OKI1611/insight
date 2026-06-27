@@ -1,4 +1,31 @@
 User-agent: *
 Allow: /
 
+# 저작권 보호: 번역·학습 원본 데이터(JSON)와 비공개 작업실은 수집/색인 금지
+Disallow: /bible/kr/
+Disallow: /bible/en/
+Disallow: /bible/kjv/
+Disallow: /bible/search-index.json
+Disallow: /dictionary/entries.json
+Disallow: /dictionary/passage-summaries.json
+Disallow: /content/
+Disallow: /kjv-admin.html
+Disallow: /admin.html
+
+# AI 학습/대량 수집 크롤러 차단
+User-agent: GPTBot
+Disallow: /
+User-agent: CCBot
+Disallow: /
+User-agent: Google-Extended
+Disallow: /
+User-agent: anthropic-ai
+Disallow: /
+User-agent: ClaudeBot
+Disallow: /
+User-agent: Bytespider
+Disallow: /
+User-agent: Amazonbot
+Disallow: /
+
 Sitemap: https://biblynote.com/sitemap.xml
