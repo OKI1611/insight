@@ -345,11 +345,48 @@
       catch(e){ const ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); let ok=false; try{ ok=document.execCommand('copy'); }catch(_){} ta.remove(); return ok; }
     }
     async function copyVerse(v){ const ok=await clip(verseText(v,true)); bToast(ok?'구절을 복사했어요 · 붙여넣기 하면 출처가 함께 붙어요':'복사에 실패했어요'); closeVerseActions(); }
-    async function shareVerse(v){
-      const body=verseText(v,false); const url='https://biblynote.com/bible?b='+CUR.file+'&c='+CH;
+    function shareUrl(){ return 'https://biblynote.com/bible?b='+CUR.file+'&c='+CH+'&v='+SHARE_V; }
+    // SNS용 공유 본문(따옴표 구절 + 출처). 출처 표기는 attrib() 한 곳에서 관리.
+    function shareBody(v){ const i=v-1; const kr=(KR&&KR[i])||''; const en=(BOOK&&BOOK[CH]&&BOOK[CH][i])||''; const line=kr||en; return '"'+line+'"\n'+attrib(verseRef(v), false); }
+    let SHARE_V=1;
+    function snsOpen(href){ window.open(href,'_blank','noopener,noreferrer'); }
+    async function shareNative(v){ const body=verseText(v,false), url='https://biblynote.com/bible?b='+CUR.file+'&c='+CH;
       if(navigator.share){ try{ await navigator.share({ title:verseRef(v), text:body, url }); }catch(e){} }
-      else { const ok=await clip(verseText(v,true)); bToast(ok?'공유 기능이 없어 클립보드에 복사했어요':'복사에 실패했어요'); }
-      closeVerseActions();
+      else { await shareCopy(v,'카카오톡·메신저'); } closeShareSheet(); }
+    async function shareCopy(v, where){ const ok=await clip(verseText(v,true)+'\n'+shareUrl()); bToast(ok?('복사됐어요 · '+where+'에 붙여넣으세요'):'복사에 실패했어요'); closeShareSheet(); }
+    async function shareLink(v){ const ok=await clip(shareUrl()); bToast(ok?'링크를 복사했어요':'복사에 실패했어요'); closeShareSheet(); }
+    function closeShareSheet(){ var s=document.getElementById('shareSheet'); if(s) s.remove(); }
+    function openShareSheet(v){
+      SHARE_V=v; closeVerseActions(); closeShareSheet();
+      var url=shareUrl(), body=shareBody(v);
+      var U=encodeURIComponent(url), T=encodeURIComponent(body), TU=encodeURIComponent(body+'\n'+url);
+      var items=[
+        {ic:'💬', l:'카카오톡', bg:'#FEE500', fg:'#3C1E1E', fn:'shareNative('+v+')'},
+        {ic:'🟢', l:'네이버 블로그', bg:'#03C75A', fg:'#fff', href:'https://blog.naver.com/openapi/share?url='+U+'&title='+T},
+        {ic:'☕', l:'네이버 카페', bg:'#1EC800', fg:'#fff', fn:"shareCopy("+v+",'카페 글쓰기')"},
+        {ic:'🧵', l:'쓰레드', bg:'#000', fg:'#fff', href:'https://www.threads.net/intent/post?text='+TU},
+        {ic:'📷', l:'인스타그램', bg:'linear-gradient(45deg,#f09433,#dc2743,#bc1888)', fg:'#fff', fn:"shareCopy("+v+",'인스타그램')"},
+        {ic:'𝕏', l:'X (트위터)', bg:'#000', fg:'#fff', href:'https://twitter.com/intent/tweet?text='+T+'&url='+U},
+        {ic:'📘', l:'페이스북', bg:'#1877F2', fg:'#fff', href:'https://www.facebook.com/sharer/sharer.php?u='+U},
+        {ic:'🔗', l:'링크 복사', bg:'#eef1f6', fg:'#213a6b', fn:'shareLink('+v+')'}
+      ];
+      var cells=items.map(function(x){
+        var on='onclick="event.stopPropagation();'+(x.href?("snsOpen('"+x.href.replace(/'/g,"\\'")+"');closeShareSheet()"):x.fn)+'"';
+        return '<button type="button" '+on+' style="display:flex;flex-direction:column;align-items:center;gap:6px;border:0;background:transparent;cursor:pointer;padding:4px">'
+          +'<span style="width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;background:'+x.bg+';color:'+x.fg+';box-shadow:0 2px 8px rgba(21,32,58,.12)">'+x.ic+'</span>'
+          +'<span style="font-size:11.5px;color:#213a6b;font-weight:600;white-space:nowrap">'+x.l+'</span></button>';
+      }).join('');
+      var ov=document.createElement('div'); ov.id='shareSheet';
+      ov.style.cssText='position:fixed;inset:0;z-index:130;background:rgba(21,32,58,.4);display:flex;align-items:flex-end;justify-content:center';
+      ov.onclick=closeShareSheet;
+      ov.innerHTML='<div onclick="event.stopPropagation()" style="background:#fff;width:100%;max-width:440px;border-radius:20px 20px 0 0;padding:18px 16px 24px;box-shadow:0 -8px 32px rgba(21,32,58,.2)">'
+        +'<div style="width:38px;height:4px;border-radius:99px;background:#dde3ec;margin:0 auto 14px"></div>'
+        +'<p style="font-weight:700;color:#213a6b;font-size:14px;text-align:center;margin-bottom:4px">📖 '+verseRef(v)+' 공유</p>'
+        +'<p style="font-size:11.5px;color:rgba(33,58,107,.5);text-align:center;margin-bottom:16px">구절과 출처가 함께 전달됩니다</p>'
+        +'<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px 4px">'+cells+'</div>'
+        +'<button type="button" onclick="closeShareSheet()" style="margin-top:18px;width:100%;padding:11px;border:0;border-radius:12px;background:#f3f5f9;color:rgba(33,58,107,.6);font-weight:600;font-size:14px;cursor:pointer">닫기</button>'
+        +'</div>';
+      document.body.appendChild(ov);
     }
     function closeVerseActions(){ document.querySelectorAll('.vact').forEach(b=>b.remove()); }
     function toggleVerseActions(v){
@@ -357,7 +394,7 @@
       const body=document.querySelector('#v'+v+' .vbody'); if(!body) return;
       const bar=document.createElement('div'); bar.className='vact';
       bar.innerHTML='<button type="button" onclick="event.stopPropagation();copyVerse('+v+')">📋 복사</button>'
-        +'<button type="button" onclick="event.stopPropagation();shareVerse('+v+')">🔗 공유</button>'
+        +'<button type="button" onclick="event.stopPropagation();openShareSheet('+v+')">🔗 공유</button>'
         +'<button type="button" class="vclose" onclick="event.stopPropagation();closeVerseActions()">✕</button>';
       body.appendChild(bar);
     }
