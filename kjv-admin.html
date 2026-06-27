@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>바이블 인사이트 역 작업실 (관리자 전용) — BIBLY</title>
+  <title>KJV 새번역 작업실 (관리자 전용) — BIBLY</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -91,7 +91,7 @@
       </div>
     </section>
 
-    <p class="text-[11px] text-ink/35 text-center mt-7">BIBLY · 바이블 인사이트 역 작업실 — 이 페이지의 모든 내용은 비공개입니다.</p>
+    <p class="text-[11px] text-ink/35 text-center mt-7">BIBLY · KJV 새번역 작업실 — 이 페이지의 모든 내용은 비공개입니다.</p>
   </main>
 
   <!-- 내보내기용 숨김 렌더 영역 -->
@@ -173,7 +173,7 @@
       p.en{margin:1pt 0 7pt 14pt;font-family:Georgia,serif;font-size:9.5pt;color:#7a7f88;font-style:italic}`;
 
     function coverHTML(title){
-      return `<div class="cover"><div class="t">바이블 인사이트 역</div><div class="s">${esc(title)}</div>
+      return `<div class="cover"><div class="t">KJV 새번역</div><div class="s">${esc(title)}</div>
         <div class="s" style="margin-top:18pt;font-size:9.5pt">King James Version · 히브리어 · 헬라어 원문 대조 — 표준 국어 어법<br/>BIBLY 바이블 인사이트</div></div>`;
     }
 
@@ -190,7 +190,7 @@
       if(!sel){ return; }
       const withEn = $('exEn').checked;
       const bobj = sel==='__all__' ? null : PROG.books.find(b=>b.file===sel);
-      const title = sel==='__all__' ? '바이블 인사이트 역 — 완성분 합본' : ('바이블 인사이트 역 — '+bobj.ko);
+      const title = sel==='__all__' ? 'KJV 새번역 — 완성분 합본' : ('KJV 새번역 — '+bobj.ko);
       const msg=$('exMsg'); msg.classList.remove('hidden'); msg.textContent='원고를 만드는 중입니다…';
       try{
         const body = await buildManuscript(withEn);
