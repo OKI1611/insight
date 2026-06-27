@@ -59,10 +59,12 @@
     .post-body ol{list-style:decimal;padding-left:1.3em;margin:.4em 0}
     .post-body blockquote{border-left:3px solid #b8923f;padding-left:.8em;color:#5a6275;margin:.6em 0;font-style:italic}
     .post-body a{color:#b8923f;text-decoration:underline}
-    .boardBtn{display:flex;align-items:center;gap:.5rem;width:100%;justify-content:center;padding:.6rem .75rem;border-radius:.75rem;font-size:.9rem;font-weight:600;color:rgba(21,32,58,.6);transition:all .15s}
+    .boardBtn{display:flex;align-items:center;gap:.55rem;width:100%;justify-content:center;padding:.64rem .75rem;border-radius:.75rem;font-size:.9rem;font-weight:700;color:rgba(21,32,58,.82);transition:all .15s}
     @media(min-width:1024px){.boardBtn{justify-content:flex-start}}
-    .boardBtn:hover{background:rgba(21,32,58,.05)}
-    .boardBtn.on{background:#213a6b;color:#ffffff}
+    .boardBtn:hover{background:rgba(184,146,63,.12);color:#213a6b}
+    .boardBtn.on{background:#213a6b;color:#ffffff;box-shadow:0 6px 16px -6px rgba(33,58,107,.5)}
+    .boardLink{display:flex;align-items:center;gap:.55rem;padding:.62rem .7rem;border-radius:.7rem;font-size:.875rem;font-weight:600;color:rgba(21,32,58,.72);transition:all .15s}
+    .boardLink:hover{background:rgba(184,146,63,.12);color:#213a6b}
   </style>
 </head>
 <body class="font-sans bg-paper text-ink antialiased min-h-screen">
@@ -100,14 +102,24 @@
     <!-- 라운지 (좌: 보드 메뉴 / 우: 글쓰기·피드) -->
     <div id="boardView" class="grid lg:grid-cols-[210px_1fr] gap-6">
       <!-- 좌측 보드 메뉴 -->
-      <aside class="lg:sticky lg:top-20 h-fit">
-        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-2 grid grid-cols-3 lg:grid-cols-1 gap-1">
-          <button id="tab-qna" onclick="switchBoard('qna')" class="boardBtn"><span>📖</span><span>성경·강의 질문</span></button>
-          <button id="tab-free" onclick="switchBoard('free')" class="boardBtn"><span>💬</span><span>자유게시판</span></button>
-          <button id="tab-prayer" onclick="switchBoard('prayer')" class="boardBtn"><span>🙏</span><span>기도요청</span></button>
+      <aside class="lg:sticky lg:top-20 h-fit space-y-2.5">
+        <div class="bg-white rounded-2xl border border-ink/12 shadow-card p-2.5">
+          <p class="hidden lg:block px-2 pt-0.5 pb-2 text-[11px] font-bold text-ink/45 tracking-wide">📋 게시판</p>
+          <div class="grid grid-cols-3 lg:grid-cols-1 gap-1.5">
+            <button id="tab-qna" onclick="switchBoard('qna')" class="boardBtn"><span>📖</span><span>성경·강의 질문</span></button>
+            <button id="tab-free" onclick="switchBoard('free')" class="boardBtn"><span>💬</span><span>자유게시판</span></button>
+            <button id="tab-prayer" onclick="switchBoard('prayer')" class="boardBtn"><span>🙏</span><span>기도요청</span></button>
+          </div>
         </div>
-        <!-- 신앙상담은 별도 메뉴(counsel.html)로 분리됨 -->
-        <a href="counsel.html" class="mt-2 flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-semibold text-ink/60 hover:bg-ink/[0.04] border border-dashed border-ink/15"><span>🕊️</span><span>비공개 신앙상담 →</span></a>
+        <!-- 더 보기: 신앙상담·칼럼·자료실 -->
+        <div class="bg-white rounded-2xl border border-ink/12 shadow-soft p-2.5">
+          <p class="hidden lg:block px-2 pt-0.5 pb-2 text-[11px] font-bold text-ink/45 tracking-wide">📚 더 보기</p>
+          <div class="grid grid-cols-3 lg:grid-cols-1 gap-1">
+            <a href="counsel.html" class="boardLink"><span>🕊️</span><span>비공개 신앙상담</span><span class="hidden lg:inline ml-auto text-ink/25">→</span></a>
+            <a href="column.html" class="boardLink"><span>📰</span><span>칼럼</span><span class="hidden lg:inline ml-auto text-ink/25">→</span></a>
+            <a href="resources.html" class="boardLink"><span>📂</span><span>자료실</span><span class="hidden lg:inline ml-auto text-ink/25">→</span></a>
+          </div>
+        </div>
       </aside>
 
       <!-- 우측 콘텐츠 -->
