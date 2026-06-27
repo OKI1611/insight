@@ -33,7 +33,7 @@
       + '#bibleSideNav a:not(.on) .lbl{color:rgba(33,58,107,.82);font-weight:600}'
       + '#bibleSideNav a:not(.on):hover{background:rgba(184,146,63,.1)}'
       + '#bibleSideNav .foot{margin-top:auto;padding:10px 8px 4px;font-size:10.5px;color:rgba(33,58,107,.35);line-height:1.5}'
-      + '@media(min-width:1100px){body{padding-left:' + W + 'px}#bibleSideNav{display:flex}}';
+      + '@media(min-width:1024px){body{padding-left:' + W + 'px}#bibleSideNav{display:flex}}';
     document.head.appendChild(st);
 
     var rail = document.createElement('nav');
