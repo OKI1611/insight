@@ -35,28 +35,37 @@
   </script>
   <script>
     tailwind.config = { theme: { extend: {
-      colors: { ink:'#213a6b', navy:'#182c54', gold:'#b8923f', sand:'#eaf0f8', paper:'#ffffff' },
+      colors: { ink:'#213a6b', navy:'#182c54', gold:'#b8923f', sand:'#eaf0f8', sky:'#eef5fe', cloud:'#f6f9fe', paper:'#ffffff' },
       fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
-      boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)' }
+      boxShadow: { soft:'0 2px 16px -8px rgba(21,32,58,.12)', card:'0 20px 54px -26px rgba(21,32,58,.22)' }
     }}}
   </script>
   <style>
     h1{font-family:'Noto Serif KR',Pretendard,serif}
+    body{background:#f5f8fd}
     #lessonList::-webkit-scrollbar{width:6px}
-    #lessonList::-webkit-scrollbar-thumb{background:rgba(21,32,58,.18);border-radius:3px}
+    #lessonList::-webkit-scrollbar-thumb{background:rgba(21,32,58,.16);border-radius:3px}
     .shareItem{display:flex;width:100%;align-items:center;gap:10px;padding:9px 11px;border-radius:10px;font-size:14px;color:#2b3550;text-align:left;background:none;border:none;cursor:pointer;transition:background .15s}
-    .shareItem:hover{background:rgba(21,32,58,.05)}
+    .shareItem:hover{background:#eef5fe}
+    /* 산뜻한 액션 버튼 */
+    .actBtn{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:14px;padding:10px 16px;border-radius:9999px;transition:all .15s;border:1px solid transparent}
+    .actBtn-primary{background:linear-gradient(135deg,#c79a44,#b8923f);color:#fff;box-shadow:0 8px 18px -8px rgba(184,146,63,.55)}
+    .actBtn-primary:hover{filter:brightness(1.05);transform:translateY(-1px)}
+    .actBtn-soft{background:#fbf4e3;color:#9a7726;border-color:#efe2c2}
+    .actBtn-soft:hover{background:#f7eccf}
+    .actBtn-ghost{background:#fff;color:#42506c;border-color:#e3e9f3}
+    .actBtn-ghost:hover{background:#eef5fe;border-color:#cfe0f6}
   </style>
 </head>
-<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+<body class="font-sans bg-cloud text-ink antialiased min-h-screen">
 
   <!-- 상단바 -->
   <div id="siteHeader" data-active="watch.html"></div>
 
   <!-- 강의 헤더 -->
-  <div class="border-b border-ink/8 bg-white">
-    <div class="max-w-7xl mx-auto px-4 py-5">
-      <p class="text-gold text-xs font-bold tracking-widest mb-1">CLASS</p>
+  <div class="border-b border-ink/[0.06] bg-gradient-to-br from-white via-white to-sky">
+    <div class="max-w-7xl mx-auto px-4 py-6">
+      <p class="inline-flex items-center gap-1.5 text-gold text-[11px] font-bold tracking-[0.18em] bg-gold/10 px-2.5 py-1 rounded-full mb-2">🎬 CLASS</p>
       <h1 id="courseTitle" class="text-xl md:text-2xl font-bold">강의를 불러오는 중…</h1>
       <p id="courseSub" class="text-ink/55 text-sm mt-1"></p>
       <p id="courseMeta" class="text-ink/45 text-xs mt-2"></p>
@@ -93,19 +102,19 @@
       </div>
 
       <!-- 내 학습 (수강신청 / 진도 체크) — 제목 바로 아래, 잘 보이게 -->
-      <div id="learnBar" class="mt-4 flex flex-wrap items-center gap-2 text-sm bg-gold/[0.07] border border-gold/25 rounded-2xl px-4 py-3"></div>
+      <div id="learnBar" class="mt-4 flex flex-wrap items-center gap-2 text-sm bg-white border border-ink/[0.07] rounded-2xl px-4 py-3.5 shadow-soft"></div>
 
-      <div id="lessonDesc" class="mt-4 bg-white rounded-2xl border border-ink/8 p-5 shadow-soft text-[15px] text-ink/75 leading-relaxed" style="display:none"></div>
+      <div id="lessonDesc" class="mt-4 bg-white rounded-2xl border border-ink/[0.07] p-5 shadow-soft text-[15px] text-ink/75 leading-relaxed" style="display:none"></div>
 
-      <div id="lessonChapters" class="mt-4 bg-white rounded-2xl border border-ink/8 p-5 shadow-soft" style="display:none"></div>
+      <div id="lessonChapters" class="mt-4 bg-white rounded-2xl border border-ink/[0.07] p-5 shadow-soft" style="display:none"></div>
 
       <!-- 학습 도구: 질문하기 / 요약 노트 / PDF / 공유 -->
       <div class="mt-4 flex flex-wrap gap-2">
-        <button onclick="askInstructor()" class="inline-flex items-center gap-1.5 bg-gold text-white font-semibold text-sm px-4 py-2.5 rounded-full hover:opacity-90 transition">💬 강사에게 질문하기</button>
-        <button onclick="toggleNote()" id="noteToggleBtn" class="inline-flex items-center gap-1.5 bg-gold/10 text-gold font-semibold text-sm px-4 py-2.5 rounded-full hover:bg-gold/20 transition">📝 요약 노트 보기</button>
-        <button onclick="downloadNotePDF()" class="inline-flex items-center gap-1.5 border border-ink/15 text-ink/80 font-semibold text-sm px-4 py-2.5 rounded-full hover:bg-ink/5 transition">⬇️ PDF로 저장</button>
+        <button onclick="askInstructor()" class="actBtn actBtn-primary">💬 강사에게 질문하기</button>
+        <button onclick="toggleNote()" id="noteToggleBtn" class="actBtn actBtn-soft">📝 요약 노트 보기</button>
+        <button onclick="downloadNotePDF()" class="actBtn actBtn-ghost">⬇️ PDF로 저장</button>
         <div class="relative inline-block">
-          <button onclick="toggleShareMenu(event)" class="inline-flex items-center gap-1.5 border border-ink/15 text-ink/80 font-semibold text-sm px-4 py-2.5 rounded-full hover:bg-ink/5 transition">🔗 공유 ▾</button>
+          <button onclick="toggleShareMenu(event)" class="actBtn actBtn-ghost">🔗 공유 ▾</button>
           <div id="shareMenu" class="hidden absolute right-0 sm:left-0 mt-2 w-56 bg-white rounded-2xl border border-ink/10 shadow-card p-2 z-30">
             <button class="shareItem" onclick="shareTo('blog')">🟢 네이버 블로그</button>
             <button class="shareItem" onclick="shareTo('band')">🔵 네이버 밴드</button>
@@ -125,7 +134,7 @@
 
       <!-- 요약 노트 (PDF 출력 영역) -->
       <div id="noteCard" class="mt-4" style="display:none">
-        <div id="noteSheet" style="background:#ffffff;border:1px solid #e7e2d4;border-radius:16px;padding:30px 28px;color:#213a6b"></div>
+        <div id="noteSheet" style="background:#ffffff;border:1px solid #e9eef7;border-radius:20px;padding:32px 30px;color:#213a6b;box-shadow:0 16px 48px -26px rgba(21,32,58,.20)"></div>
       </div>
 
       <div class="mt-4 bg-white rounded-2xl border border-ink/8 p-5 shadow-soft text-sm text-ink/70 leading-relaxed">
@@ -306,15 +315,15 @@
     function richNoteHTML(l, n){
       let h = noteHeader() + titleBlock(l);
       if(n.thesis){
-        h += `<div style="background:#faf6ea;border-left:4px solid #b8923f;border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:20px">
+        h += `<div style="background:linear-gradient(135deg,#fdfaf1,#fbf6e7);border:1px solid #f0e4c6;border-left:4px solid #c79a44;border-radius:14px;padding:15px 18px;margin-bottom:22px">
           <p style="font-size:11px;font-weight:700;letter-spacing:.06em;color:#b8923f;margin:0 0 4px">핵심 한 문장</p>
-          <p style="color:#2b3550;font-size:15px;font-weight:600;line-height:1.6;margin:0">${esc(n.thesis)}</p></div>`;
+          <p style="color:#2b3550;font-size:15px;font-weight:600;line-height:1.65;margin:0">${esc(n.thesis)}</p></div>`;
       }
       if(n.overview){
         h += `<div style="margin-bottom:22px"><p style="font-weight:700;color:#213a6b;margin:0 0 8px;font-size:15px">📘 강의 개요</p>${noteParas(n.overview)}</div>`;
       }
       if(n.background){
-        h += `<div style="margin-bottom:22px;background:#ffffff;border:1px solid #e8edf4;border-radius:12px;padding:15px 17px">
+        h += `<div style="margin-bottom:22px;background:#f4f9ff;border:1px solid #e0ebfa;border-radius:14px;padding:16px 18px">
           <p style="font-weight:700;color:#213a6b;margin:0 0 8px;font-size:14.5px">📜 배경 — 역사적·신학적 맥락</p>${noteParas(n.background)}</div>`;
       }
       if(n.sections && n.sections.length){
@@ -329,7 +338,7 @@
         });
       }
       if(n.scriptures && n.scriptures.length){
-        h += `<div style="margin:20px 0;background:#ffffff;border:1px solid #e8edf4;border-radius:12px;padding:14px 16px">
+        h += `<div style="margin:20px 0;background:#f4f9ff;border:1px solid #e0ebfa;border-radius:14px;padding:15px 17px">
           <p style="font-weight:700;color:#213a6b;margin:0 0 8px;font-size:14.5px">📖 핵심 성구</p>` +
           n.scriptures.map(s => `<p style="margin:7px 0;color:#44506a;line-height:1.6"><b style="color:#182c54">${esc(s.ref)}</b>${ s.note ? ` — ${esc(s.note)}` : '' }</p>`).join('') + `</div>`;
       }
@@ -345,7 +354,7 @@
           </div>`).join('') + `</div>`;
       }
       if(n.takeaways && n.takeaways.length){
-        h += `<div style="margin:20px 0;background:#faf6ea;border-radius:12px;padding:14px 16px">
+        h += `<div style="margin:20px 0;background:linear-gradient(135deg,#fdfaf1,#fbf6e7);border:1px solid #f1e6cb;border-radius:14px;padding:15px 17px">
           <p style="font-weight:700;color:#213a6b;margin:0 0 8px;font-size:14.5px">✅ 한눈에 정리</p>
           <ul style="margin:0;padding-left:20px">` + n.takeaways.map(t => `<li style="margin:5px 0;color:#2b3550;line-height:1.65">${esc(t)}</li>`).join('') + `</ul></div>`;
       }
@@ -358,7 +367,7 @@
           <ol style="margin:0;padding-left:20px">` + n.questions.map(q => `<li style="margin:6px 0;color:#44506a;line-height:1.65">${esc(q)}</li>`).join('') + `</ol></div>`;
       }
       if(n.furtherStudy && n.furtherStudy.length){
-        h += `<div style="margin:20px 0;background:#faf6ea;border-radius:12px;padding:14px 16px"><p style="font-weight:700;color:#213a6b;margin:0 0 8px;font-size:14.5px">📚 더 깊이 공부하려면</p>
+        h += `<div style="margin:20px 0;background:#f4f9ff;border:1px solid #e0ebfa;border-radius:14px;padding:15px 17px"><p style="font-weight:700;color:#213a6b;margin:0 0 8px;font-size:14.5px">📚 더 깊이 공부하려면</p>
           <ul style="margin:0;padding-left:20px">` + n.furtherStudy.map(f => `<li style="margin:5px 0;color:#44506a;line-height:1.65">${esc(f)}</li>`).join('') + `</ul></div>`;
       }
       const tags = (l.tags || []).map(t => `<span style="display:inline-block;background:#f4eedd;color:#8a6d2f;font-size:12px;font-weight:600;padding:3px 11px;border-radius:999px;margin:3px 5px 3px 0">#${esc(t)}</span>`).join('');
