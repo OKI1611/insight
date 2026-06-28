@@ -354,7 +354,7 @@
           </div>
         </div>
         <div class="post-body text-ink/80 leading-relaxed text-[15px]">${ /<[a-z][\s\S]*>/i.test(p.content||'') ? sanitize(p.content) : esc(p.content).replace(/\n/g,'<br>') }</div>
-        ${p.image_url ? `<img src="${p.image_url}" class="mt-3 rounded-xl max-h-96 w-auto border border-ink/5" loading="lazy">` : ''}
+        ${p.image_url ? `<img src="${p.image_url}" alt="게시글 첨부 이미지" class="mt-3 rounded-xl max-h-96 w-auto border border-ink/5" loading="lazy">` : ''}
         <div class="mt-3 flex items-center gap-2">
           <button onclick="toggleReaction('${p.id}','love')" id="rxb-${p.id}-love" class="inline-flex items-center gap-1 text-sm border border-ink/12 rounded-full px-3 py-1 hover:border-gold transition">❤️ <span id="rxc-${p.id}-love" class="font-semibold text-ink/55">0</span></button>
           <button onclick="toggleReaction('${p.id}','pray')" id="rxb-${p.id}-pray" class="inline-flex items-center gap-1 text-sm border border-ink/12 rounded-full px-3 py-1 hover:border-gold transition">🙏 <span id="rxc-${p.id}-pray" class="font-semibold text-ink/55">0</span></button>

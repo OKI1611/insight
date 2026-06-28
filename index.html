@@ -1262,7 +1262,7 @@
               const txt = esc(c.textOriginal).replace(/\n+/g, ' ');
               return '<div class="bg-paper rounded-2xl border border-ink/8 p-6 flex flex-col">'
                 + '<div class="flex items-center gap-2.5 mb-3">'
-                + '<img src="' + esc(c.authorProfileImageUrl) + '" referrerpolicy="no-referrer" onerror="this.style.visibility=\'hidden\'" class="w-8 h-8 rounded-full bg-ink/10 object-cover shrink-0"/>'
+                + '<img src="' + esc(c.authorProfileImageUrl) + '" alt="' + esc(c.authorDisplayName) + ' 프로필 사진" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.visibility=\'hidden\'" class="w-8 h-8 rounded-full bg-ink/10 object-cover shrink-0"/>'
                 + '<span class="text-sm font-semibold text-ink/80 truncate">' + esc(c.authorDisplayName) + '</span>'
                 + (c.likeCount ? '<span class="ml-auto text-xs text-ink/35 shrink-0">👍 ' + c.likeCount + '</span>' : '')
                 + '</div>'
