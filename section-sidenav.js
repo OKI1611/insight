@@ -43,7 +43,9 @@
   ];
 
   var page = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  page = page.split('#')[0].split('?')[0];
   if(!page) page = 'index.html';
+  else if(page.indexOf('.') < 0) page += '.html'; // 클린 URL(/column) → column.html 보정
 
   function base(h){ return String(h||'').split('#')[0].split('?')[0].toLowerCase(); }
 
