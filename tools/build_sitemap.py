@@ -9,7 +9,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 
 BASE = 'https://biblynote.com'
-STAMP = sys.argv[1] if len(sys.argv) > 1 else '2026-06-26'
+STAMP = sys.argv[1] if len(sys.argv) > 1 else '2026-06-28'
 
 # (clean-url, priority) — 공개 인덱싱 페이지
 PAGES = [
