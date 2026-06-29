@@ -28,6 +28,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://www.youtube.com/iframe_api"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
@@ -80,14 +81,16 @@
       <!-- 멤버십 이용권 상태/만료 안내 -->
       <div id="accessBanner" class="mb-4"></div>
 
-      <!-- 강의 전 진단평가 (동기 유발 · 퀴즈 데이터 있는 강의만) -->
-      <div id="prequizSection" class="mb-4" style="display:none"><div id="prequizCard"></div></div>
-
       <div id="playerWrap" class="relative select-none">
         <div id="player" class="aspect-video bg-navy rounded-2xl overflow-hidden shadow-soft"></div>
         <span id="wmark" class="pointer-events-none absolute top-2 right-3 text-[10px] font-semibold text-white/35 select-none" style="text-shadow:0 1px 3px rgba(0,0,0,.5)">오광일의 인사이트 브리핑</span>
       </div>
       <p class="text-[11px] text-ink/45 mt-2 flex items-center gap-1.5 leading-snug">🔒 본 강의 영상의 <b class="text-ink/60">무단 다운로드·화면 녹화·재배포를 금합니다.</b> © 오광일의 인사이트 브리핑</p>
+
+      <!-- 영상 시청 후 마무리 안내(영상이 끝나면 자동으로 진단평가·핵심요약이 열립니다) -->
+      <div id="finishPrompt" class="mt-3" style="display:none">
+        <button onclick="revealPostLesson(true)" class="w-full flex items-center justify-center gap-2 bg-sky border border-ink/10 text-ink/75 font-semibold text-sm py-3 rounded-2xl hover:bg-sand transition">✅ 영상을 다 보셨나요? <span class="text-gold">진단평가 풀고 핵심요약 확인하기 →</span></button>
+      </div>
 
       <div class="mt-5 flex items-start justify-between gap-4">
         <div>
@@ -177,8 +180,24 @@
     </div>
   </div>
 
-  <!-- ===== 확인 학습 퀴즈 (강의별) ===== -->
-  <section id="quizSection" class="max-w-7xl mx-auto px-4 pb-2"><div id="quizCard"></div></section>
+  <!-- ===== 영상 시청 후: ① 진단평가(풀고 정답 확인) → ② 핵심 요약 ===== -->
+  <section id="postLesson" class="max-w-7xl mx-auto px-4 pb-2" style="display:none">
+    <div class="bg-gradient-to-br from-white to-sky border border-ink/[0.07] rounded-3xl shadow-soft p-6 lg:p-8">
+      <div class="text-center mb-6">
+        <p class="text-3xl mb-1">🎉</p>
+        <h3 class="font-bold text-xl">강의를 끝까지 보셨어요!</h3>
+        <p class="text-ink/55 text-sm mt-1.5">이제 <b class="text-ink/75">진단평가</b>로 점검하고, <b class="text-ink/75">핵심 요약</b>으로 정리해볼까요?</p>
+      </div>
+      <!-- ① 진단평가 -->
+      <div id="quizCard"></div>
+      <!-- ② 핵심 요약 (진단평가를 모두 풀면 자동으로 열립니다) -->
+      <div id="postSummaryWrap" class="mt-7" style="display:none"><div id="postSummary"></div></div>
+      <!-- 다음 강의 -->
+      <div class="text-center mt-8 pt-2">
+        <button onclick="next()" id="postNextBtn" class="actBtn actBtn-primary">다음 강의 →</button>
+      </div>
+    </div>
+  </section>
 
 
   <section id="qaSection" class="max-w-7xl mx-auto px-4 pb-14">
@@ -202,11 +221,71 @@
       return m ? m[1] : (String(u).trim().length === 11 ? String(u).trim() : '');
     }
     function parseT(t){ if(!t) return null; const p = String(t).trim().split(':').map(Number); if(!p.length || p.some(isNaN)) return null; return p.length===3 ? p[0]*3600+p[1]*60+p[2] : p.length===2 ? p[0]*60+p[1] : p[0]; }
+    // ===== YouTube IFrame Player (영상 종료 감지용) =====
+    let YT_READY = false, ytPlayer = null, pendingVid = null;
+    window.onYouTubeIframeAPIReady = function(){ YT_READY = true; if(pendingVid){ const v = pendingVid; pendingVid = null; buildYT(v.id); } };
+    function buildYT(id){
+      const el = document.getElementById('ytplayer'); if(!el) return;
+      try { if(ytPlayer && ytPlayer.destroy) ytPlayer.destroy(); } catch(e){}
+      ytPlayer = new YT.Player('ytplayer', {
+        width:'100%', height:'100%', videoId: id,
+        playerVars: { rel:0, modestbranding:1, playsinline:1 },
+        events: { onStateChange: (e) => { if(e.data === YT.PlayerState.ENDED) onVideoEnded(); } }
+      });
+    }
+    function mountPlayer(id, title){
+      const host = document.getElementById('player'); if(!host) return;
+      host.innerHTML = '<div id="ytplayer" class="w-full h-full"></div>';
+      if(window.YT && YT.Player){ buildYT(id); return; }
+      pendingVid = { id, title };
+      // 안전장치: API가 제때 준비되지 않으면 일반 iframe으로라도 영상을 재생(영상은 반드시 보이게)
+      setTimeout(() => {
+        if(pendingVid && pendingVid.id === id && !(window.YT && YT.Player)){
+          pendingVid = null;
+          const h = document.getElementById('player');
+          if(h) h.innerHTML = `<iframe class="w-full h-full" src="https://www.youtube.com/embed/${id}?rel=0&enablejsapi=1" title="${esc(title||'')}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+        }
+      }, 2500);
+    }
+    function onVideoEnded(){ revealPostLesson(true); }
+    function revealPostLesson(scroll){
+      const ps = document.getElementById('postLesson'); if(!ps) return;
+      ps.style.display = '';
+      if(scroll) ps.scrollIntoView({ behavior:'smooth', block:'start' });
+    }
     function seekTo(sec){
       const l = lessons[cur]; const id = ytId(l && l.youtube);
       if(!l || !l.free || !id) return;
+      if(ytPlayer && ytPlayer.seekTo){ try { ytPlayer.seekTo(sec, true); if(ytPlayer.playVideo) ytPlayer.playVideo(); window.scrollTo({ top:0, behavior:'smooth' }); return; } catch(e){} }
       document.getElementById('player').innerHTML = `<iframe class="w-full h-full" src="https://www.youtube.com/embed/${id}?rel=0&start=${sec}&autoplay=1" title="${esc(l.title)}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    // ===== 핵심 요약 (영상 종료·진단평가 후) =====
+    function revealSummary(){
+      const wrap = document.getElementById('postSummaryWrap'), box = document.getElementById('postSummary');
+      if(!wrap || !box) return;
+      const l = lessons[cur] || {}, id = ytId(l.youtube);
+      const paint = (n) => { box.innerHTML = postSummaryHTML(l, n); wrap.style.display = ''; wrap.scrollIntoView({ behavior:'smooth', block:'start' }); };
+      let n = NOTE_CACHE[id];
+      if(n !== undefined){ paint(n); }
+      else { fetch('content/notes/' + id + '.json?t=' + Date.now()).then(r => r.ok ? r.json() : null).then(j => { NOTE_CACHE[id] = j; paint(j); }).catch(() => paint(null)); }
+    }
+    function postSummaryHTML(l, n){
+      let h = `<div class="border border-gold/25 rounded-2xl overflow-hidden">
+        <div class="bg-gold/10 px-5 py-3.5 flex items-center gap-2 border-b border-gold/20"><span class="text-xl">📌</span><h4 class="font-bold text-lg text-ink">핵심 요약</h4><span class="text-xs text-ink/45 ml-auto">${esc(l.title || '')}</span></div>
+        <div class="p-5 lg:p-6 bg-white">`;
+      if(!n){
+        h += `<p class="text-ink/55 text-sm">이 강의의 핵심 요약을 준비 중이에요. 위 <b>요약 노트 보기</b>에서 전체 노트를 확인하실 수 있어요.</p>`;
+      } else {
+        if(n.thesis){ h += `<div class="bg-gradient-to-br from-[#fdfaf1] to-[#fbf6e7] border border-[#f0e4c6] border-l-4 border-l-gold rounded-xl px-4 py-3.5 mb-5"><p class="text-[11px] font-bold tracking-wide text-gold mb-1">핵심 한 문장</p><p class="text-ink font-semibold leading-relaxed">${esc(n.thesis)}</p></div>`; }
+        if(n.takeaways && n.takeaways.length){ h += `<p class="font-bold text-ink mb-2">✅ 한눈에 정리</p><ul class="space-y-1.5 mb-5">` + n.takeaways.map(t => `<li class="flex gap-2 text-[15px] text-ink/80 leading-relaxed"><span class="text-gold shrink-0">·</span><span>${esc(t)}</span></li>`).join('') + `</ul>`; }
+        if(n.scriptures && n.scriptures.length){ h += `<p class="font-bold text-ink mb-2">📖 핵심 성구</p><div class="bg-sky rounded-xl px-4 py-3 space-y-1.5">` + n.scriptures.slice(0,4).map(s => `<p class="text-sm text-ink/80 leading-relaxed"><b class="text-navy">${esc(s.ref)}</b>${ s.note ? ' — ' + esc(s.note) : '' }</p>`).join('') + `</div>`; }
+      }
+      h += `<div class="mt-5 pt-4 border-t border-ink/8 flex flex-wrap gap-2">
+        <button onclick="toggleNote(); document.getElementById('noteCard').scrollIntoView({behavior:'smooth'})" class="actBtn actBtn-soft">📝 전체 요약 노트 보기</button>
+        <button onclick="downloadNotePDF()" class="actBtn actBtn-ghost">⬇️ 요약노트 PDF</button>
+      </div></div></div>`;
+      return h;
     }
 
     let LEVELS = [];
@@ -472,7 +551,8 @@
         }
         done.style.display = '';
         done.innerHTML = `<div class="inline-block bg-gold/10 rounded-2xl px-6 py-4"><p class="text-xl font-bold text-gold mb-1">최종 ${correct} / ${total}점</p><p class="text-sm text-ink/65">${msg}</p>${growth}<button type="button" onclick="retakeQuiz()" class="mt-3 inline-flex items-center gap-1.5 bg-gold text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition">🔄 다시 도전</button></div>`;
-        done.scrollIntoView({ behavior:'smooth', block:'nearest' });
+        // 진단평가를 모두 풀면 핵심 요약을 자동으로 펼친다
+        if(typeof revealSummary === 'function') setTimeout(revealSummary, 600);
       }
     }
     function retakeQuiz(){
@@ -689,7 +769,7 @@
           <button onclick="openLogin()" class="mt-2 bg-gold text-white font-semibold px-7 py-2.5 rounded-full text-sm hover:opacity-90 transition">무료로 로그인 · 회원가입</button>
         </div>`;
       } else if(l.free && id){
-        player.innerHTML = `<iframe class="w-full h-full" src="https://www.youtube.com/embed/${id}?rel=0" title="${esc(l.title)}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+        mountPlayer(id, l.title);
       } else {
         player.innerHTML = `<div class="w-full h-full flex flex-col items-center justify-center text-paper gap-3 text-center px-6">
           <span class="text-4xl">🔒</span>
@@ -731,7 +811,6 @@
         : '<span class="bg-ink/10 text-ink/50 text-xs font-semibold px-2.5 py-1 rounded-full">🔒 오픈 예정</span>';
 
       renderNote(l);
-      renderPreQuiz(l);
       renderQuiz(l);
       refreshLearningUI();
       loadQuestions();
@@ -739,6 +818,10 @@
       const noteBtn = document.getElementById('noteToggleBtn');
       if(noteCard){ noteCard.style.display = 'none'; }
       if(noteBtn){ noteBtn.textContent = '📝 요약 노트 보기'; }
+      // 영상 시청 후 단계 초기화: 진단평가·핵심요약은 영상이 끝나야(또는 프롬프트 클릭) 열림
+      const postLesson = document.getElementById('postLesson'); if(postLesson) postLesson.style.display = 'none';
+      const postSumWrap = document.getElementById('postSummaryWrap'); if(postSumWrap) postSumWrap.style.display = 'none';
+      const finishPrompt = document.getElementById('finishPrompt'); if(finishPrompt) finishPrompt.style.display = (LUSER && l.free && id) ? '' : 'none';
 
       document.getElementById('prevBtn').disabled = i <= 0;
       document.getElementById('nextBtn').disabled = i >= lessons.length - 1;
