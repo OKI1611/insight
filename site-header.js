@@ -82,8 +82,8 @@
   var LOGO =
     '<a href="index.html" onclick="return __biblyHome(event)" class="flex items-center gap-2 shrink-0">'
     + '<svg class="w-9 h-9 shrink-0" viewBox="0 0 48 48" role="img" aria-label="BIBLY"><rect x="9" y="9" width="30" height="30" rx="6" transform="rotate(45 24 24)" fill="#b8923f"/><text x="24" y="32.5" text-anchor="middle" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#213a6b">B</text></svg>'
-    + '<span class="leading-none"><span class="block font-extrabold text-[15px] tracking-tight">BIBLY<span class="text-gold">.</span></span>'
-    + '<span class="block text-[9px] text-ink/45 tracking-wide mt-0.5">말씀으로 시대를 읽다</span></span></a>';
+    + '<span class="leading-tight"><span class="block font-extrabold text-[16px] tracking-tight text-ink">BIBLY<span class="text-gold">.</span></span>'
+    + '<span class="block text-[10px] font-semibold text-gold tracking-[0.06em] mt-0.5">말씀으로 시대를 읽다</span></span></a>';
 
   var mount, active;
 

@@ -6,20 +6,7 @@
 (function(){
   if(window.__biblySectionNav) return; window.__biblySectionNav = true;
 
-  // 페이지별 아이콘(없으면 섹션 기본 아이콘)
-  var ICON = {
-    'about.html':'✨','founding.html':'🎖️',
-    'curriculum.html':'📚','academy.html':'🎓','find.html':'🧭','column.html':'📰',
-    'booklet.html':'📕','store-help.html':'🛟','mylearning.html':'🗂️',
-    'bible.html':'📖','daily.html':'🌅','memorize.html':'✨','bible-plan.html':'📅','themes.html':'📚','dictionary.html':'🔎',
-    'preachers.html':'🎙️','prayers.html':'🙏',
-    'community.html':'💬','counsel.html':'🕊️','request.html':'📨','resources.html':'📂'
-  };
-  // 섹션(상위메뉴 href) 기본 아이콘
-  var SECICON = {
-    'about.html':'📘','curriculum.html':'🎬','booklet.html':'🛒',
-    'bible.html':'📖','preachers.html':'🔥','community.html':'🤝'
-  };
+  // 아이콘 없이 타이포그래피 중심의 깔끔한 메뉴(이모지 제거 — 현재 항목은 골드 알약으로 강조)
   // site.json 로드 실패 시 사용할 내장 백업(헤더 DEFAULT_MENU와 동일 구조)
   var FALLBACK = [
     { label:'BIBLY 이야기', href:'about.html', children:[
@@ -66,31 +53,28 @@
     st.textContent =
       '#sectionSideNav{display:none;position:fixed;top:0;left:0;bottom:0;width:' + W + 'px;z-index:45;'
       + 'background:#fff;border-right:1px solid rgba(33,58,107,.1);box-shadow:2px 0 18px -10px rgba(21,32,58,.18);'
-      + 'flex-direction:column;padding:16px 12px;overflow-y:auto}'
-      + '#sectionSideNav .hd{font-size:11.5px;font-weight:800;color:#b8923f;letter-spacing:.05em;padding:4px 8px 12px;display:flex;align-items:center;gap:8px}'
-      + '#sectionSideNav .hd b{color:#15223d;font-size:15px;letter-spacing:-.01em}'
-      + '#sectionSideNav a{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:11px;'
-      + 'text-decoration:none;margin-bottom:3px;white-space:nowrap;transition:background .15s,transform .15s}'
-      + '#sectionSideNav .ic{font-size:17px;flex:0 0 auto;width:22px;text-align:center}'
+      + 'flex-direction:column;padding:18px 12px;overflow-y:auto}'
+      + '#sectionSideNav .hd{position:relative;font-size:15px;font-weight:800;color:#15223d;letter-spacing:-.01em;padding:4px 10px 14px;margin-bottom:8px}'
+      + '#sectionSideNav .hd:after{content:"";position:absolute;left:10px;bottom:0;width:20px;height:2px;background:#b8923f;border-radius:2px}'
+      + '#sectionSideNav a{display:block;padding:10px 14px;border-radius:10px;'
+      + 'text-decoration:none;margin-bottom:2px;white-space:nowrap;transition:background .15s,transform .15s}'
       + '#sectionSideNav .lbl{font-size:13.5px}'
       + '#sectionSideNav a.on{background:#b8923f;box-shadow:0 6px 16px -8px rgba(184,146,63,.8)}'
       + '#sectionSideNav a.on .lbl{color:#fff;font-weight:800}'
-      + '#sectionSideNav a:not(.on) .lbl{color:#15223d;font-weight:600}'
+      + '#sectionSideNav a:not(.on) .lbl{color:#33425f;font-weight:600}'
       + '#sectionSideNav a:not(.on):hover{background:#eef3fb;transform:translateX(2px)}'
-      + '#sectionSideNav .foot{margin-top:auto;padding:12px 8px 2px;font-size:10.5px;color:rgba(33,58,107,.4);line-height:1.55;border-top:1px solid rgba(33,58,107,.06)}'
+      + '#sectionSideNav .foot{margin-top:auto;padding:12px 10px 2px;font-size:10.5px;color:rgba(33,58,107,.4);line-height:1.55;border-top:1px solid rgba(33,58,107,.06)}'
       + '@media(min-width:1024px){body{padding-left:' + W + 'px}#sectionSideNav{display:flex}}';
     document.head.appendChild(st);
 
-    var secIcon = SECICON[base(sec.href)] || '📌';
     var rail = document.createElement('nav');
     rail.id = 'sectionSideNav';
     rail.setAttribute('aria-label', sec.label + ' 메뉴');
-    var h = '<div class="hd">' + secIcon + ' <b>' + sec.label + '</b></div>';
+    var h = '<div class="hd">' + sec.label + '</div>';
     (sec.children || []).forEach(function(c){
       var ph = base(c.href), on = (ph === page);
-      var ic = ICON[ph] || '•';
       h += '<a href="' + c.href + '" class="' + (on ? 'on' : '') + '" title="' + c.label + '">'
-        + '<span class="ic">' + ic + '</span><span class="lbl">' + c.label + '</span></a>';
+        + '<span class="lbl">' + c.label + '</span></a>';
     });
     h += '<div class="foot">말씀으로 시대를 읽다<br>BIBLY · 바이블 인사이트</div>';
     rail.innerHTML = h;
