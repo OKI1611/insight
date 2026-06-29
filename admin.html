@@ -562,15 +562,14 @@
       if(!email){ m.style.color='#dc2626'; m.textContent='이메일을 입력하세요.'; return; }
       m.style.color='#6b7280'; m.textContent='처리 중…';
       try{
-        const {data,error}=await withTimeout(sb.rpc('grant_cert',{p_email:email,p_tier:tier,p_package:(CERT_TIERNAME[tier]||'').split(' ')[0]}),9000);
-        if(error) throw error;
+        const data=await rpcFetch('grant_cert',{p_email:email,p_tier:tier,p_package:(CERT_TIERNAME[tier]||'').split(' ')[0]},9000);
         if(data==='NOT_FOUND'){ m.style.color='#dc2626'; m.textContent='해당 이메일의 회원을 찾지 못했어요. (수강생이 먼저 가입했는지 확인)'; return; }
         m.style.color='#16a34a'; m.textContent='✅ 부여 완료'; document.getElementById('certEmail').value=''; loadCert();
       }catch(e){ m.style.color='#dc2626'; m.textContent=(/function|does not exist|schema cache/i.test(e.message||'')?'db/admin_grant.sql 을 먼저 실행하세요.':'오류: '+(e.message||e)); }
     }
     async function revokeCert(email){
       if(!confirm(email+' 님의 수강권을 회수할까요?')) return;
-      try{ const {data,error}=await withTimeout(sb.rpc('revoke_cert',{p_email:email}),9000); if(error) throw error; toast('수강권 회수됨'); loadCert(); }
+      try{ await rpcFetch('revoke_cert',{p_email:email},9000); toast('수강권 회수됨'); loadCert(); }
       catch(e){ alert('오류: '+(e.message||e)); }
     }
 
@@ -696,7 +695,7 @@
       const email=document.getElementById('passEmail').value.trim(), type=document.getElementById('passType').value, m=document.getElementById('passMsg');
       if(!email){ m.style.color='#dc2626'; m.textContent='이메일을 입력하세요.'; return; }
       m.style.color='#6b7280'; m.textContent='처리 중…';
-      try{ const {data,error}=await withTimeout(sb.rpc('grant_pass',{p_email:email,p_type:type}),9000); if(error) throw error;
+      try{ const data=await rpcFetch('grant_pass',{p_email:email,p_type:type},9000);
         if(data==='NOT_ADMIN'){ m.style.color='#dc2626'; m.textContent='관리자 권한이 없습니다.'; return; }
         m.style.color='#16a34a'; m.textContent='✅ 이용권 부여 완료'; document.getElementById('passEmail').value=''; loadPassList();
         const subj='[BIBLY] 전체 이용권 등록 완료 안내';
@@ -709,7 +708,7 @@
     }
     async function revokePass(email){
       if(!confirm(email+' 님의 이용권을 회수할까요?')) return;
-      try{ const {error}=await withTimeout(sb.rpc('revoke_pass',{p_email:email}),9000); if(error) throw error; toast('이용권 회수됨'); loadPassList(); }
+      try{ await rpcFetch('revoke_pass',{p_email:email},9000); toast('이용권 회수됨'); loadPassList(); }
       catch(e){ alert('오류: '+(e.message||e)); }
     }
     async function grantBook(){
@@ -717,7 +716,7 @@
       if(!email){ m.style.color='#dc2626'; m.textContent='이메일을 입력하세요.'; return; }
       if(!track){ m.style.color='#dc2626'; m.textContent='책(과정)을 선택하세요.'; return; }
       m.style.color='#6b7280'; m.textContent='처리 중…';
-      try{ const {data,error}=await withTimeout(sb.rpc('grant_book',{p_email:email,p_track:track}),9000); if(error) throw error;
+      try{ const data=await rpcFetch('grant_book',{p_email:email,p_track:track},9000);
         if(data==='NOT_ADMIN'){ m.style.color='#dc2626'; m.textContent='관리자 권한이 없습니다.'; return; }
         m.style.color='#16a34a'; m.textContent='✅ 교재 권한 부여 완료'; document.getElementById('bookEmail').value=''; loadBookList();
         const subj='[BIBLY] 교재(자료) 등록 완료 안내';
@@ -730,7 +729,7 @@
     }
     async function revokeBook(email,track){
       if(!confirm(email+' 님의 「'+track+'」 권한을 회수할까요?')) return;
-      try{ const {error}=await withTimeout(sb.rpc('revoke_book',{p_email:email,p_track:track}),9000); if(error) throw error; toast('교재 권한 회수됨'); loadBookList(); }
+      try{ await rpcFetch('revoke_book',{p_email:email,p_track:track},9000); toast('교재 권한 회수됨'); loadBookList(); }
       catch(e){ alert('오류: '+(e.message||e)); }
     }
 
