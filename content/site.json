@@ -1,225 +1,225 @@
 {
- "nav": [
-  {
-   "label": "무료로 시작하기",
-   "href": "welcome.html"
-  },
-  {
-   "label": "BIBLY 이야기",
-   "href": "about.html",
-   "children": [
+  "nav": [
     {
-     "label": "우리의 사명·소개",
-     "href": "about.html"
+      "label": "무료로 시작하기",
+      "href": "welcome.html"
     },
     {
-     "label": "🎖️ 1기 창립 멤버",
-     "href": "founding.html"
+      "label": "BIBLY 이야기",
+      "href": "about.html",
+      "children": [
+        {
+          "label": "우리의 사명·소개",
+          "href": "about.html"
+        },
+        {
+          "label": "🎖️ 1기 창립 멤버",
+          "href": "founding.html"
+        }
+      ]
+    },
+    {
+      "label": "강의·커리큘럼",
+      "href": "curriculum.html",
+      "children": [
+        {
+          "label": "전체 커리큘럼",
+          "href": "curriculum.html"
+        },
+        {
+          "label": "정규 심화 과정(아카데미)",
+          "href": "academy.html"
+        },
+        {
+          "label": "🎓 기수제 라이브 완주반",
+          "href": "cohort.html"
+        },
+        {
+          "label": "나에게 맞는 강의 찾기",
+          "href": "find.html"
+        }
+      ]
+    },
+    {
+      "label": "스토어",
+      "href": "booklet.html",
+      "children": [
+        {
+          "label": "PDF 책자·이용권",
+          "href": "booklet.html"
+        },
+        {
+          "label": "고객센터(주문·배송·반품)",
+          "href": "store-help.html"
+        },
+        {
+          "label": "내 구매·자료",
+          "href": "mylearning.html"
+        }
+      ]
+    },
+    {
+      "label": "성경",
+      "href": "bible.html",
+      "children": [
+        {
+          "label": "성경 읽기",
+          "href": "bible.html"
+        },
+        {
+          "label": "매일 말씀과 함께",
+          "href": "daily.html"
+        },
+        {
+          "label": "성경암송 365",
+          "href": "memorize.html"
+        },
+        {
+          "label": "성경 통독표 (1년 1독)",
+          "href": "bible-plan.html"
+        },
+        {
+          "label": "주제별 성경",
+          "href": "themes.html"
+        },
+        {
+          "label": "성경사전",
+          "href": "dictionary.html"
+        }
+      ]
+    },
+    {
+      "label": "위대한 믿음",
+      "href": "preachers.html",
+      "children": [
+        {
+          "label": "위대한 설교자",
+          "href": "preachers.html"
+        },
+        {
+          "label": "위대한 기도자",
+          "href": "prayers.html"
+        }
+      ]
+    },
+    {
+      "label": "소통·나눔",
+      "href": "community.html",
+      "children": [
+        {
+          "label": "질문·나눔·기도요청",
+          "href": "community.html"
+        },
+        {
+          "label": "신앙상담",
+          "href": "counsel.html"
+        },
+        {
+          "label": "강의 요청·건의함",
+          "href": "request.html"
+        },
+        {
+          "label": "자료실",
+          "href": "resources.html"
+        },
+        {
+          "label": "칼럼",
+          "href": "column.html"
+        }
+      ]
     }
-   ]
-  },
-  {
-   "label": "강의·커리큘럼",
-   "href": "curriculum.html",
-   "children": [
+  ],
+  "menu": [
     {
-     "label": "전체 커리큘럼",
-     "href": "curriculum.html"
+      "label": "무료로 시작하기",
+      "href": "welcome.html"
     },
     {
-     "label": "정규 심화 과정(아카데미)",
-     "href": "academy.html"
+      "label": "우리의 사명",
+      "href": "about.html"
     },
     {
-     "label": "🎓 기수제 라이브 완주반",
-     "href": "cohort.html"
+      "label": "나에게 맞는 강의 찾기",
+      "href": "find.html"
     },
     {
-     "label": "나에게 맞는 강의 찾기",
-     "href": "find.html"
+      "label": "커리큘럼",
+      "href": "curriculum.html"
+    },
+    {
+      "label": "칼럼",
+      "href": "column.html"
+    },
+    {
+      "label": "질문·나눔·기도요청",
+      "href": "community.html"
+    },
+    {
+      "label": "신앙상담",
+      "href": "counsel.html"
+    },
+    {
+      "label": "강의 요청·건의함",
+      "href": "request.html"
+    },
+    {
+      "label": "자료실",
+      "href": "resources.html"
+    },
+    {
+      "label": "성경 읽기",
+      "href": "bible.html"
+    },
+    {
+      "label": "주제별 성경",
+      "href": "themes.html"
+    },
+    {
+      "label": "위대한 믿음",
+      "href": "preachers.html"
     }
-   ]
+  ],
+  "brand": {
+    "name": "BIBLY",
+    "sub": "바이블 인사이트",
+    "catchphrase": "말씀으로 시대를 읽다",
+    "platform_badge": "유튜브 「오광일의 인사이트 브리핑」 공식 강의 플랫폼",
+    "instructor_label": "대표강사 오광일"
   },
-  {
-   "label": "스토어",
-   "href": "booklet.html",
-   "children": [
-    {
-     "label": "PDF 책자·이용권",
-     "href": "booklet.html"
-    },
-    {
-     "label": "고객센터(주문·배송·반품)",
-     "href": "store-help.html"
-    },
-    {
-     "label": "내 구매·자료",
-     "href": "mylearning.html"
-    }
-   ]
+  "instructor": {
+    "photo": "/images/프로필사진.jpg"
   },
-  {
-   "label": "성경",
-   "href": "bible.html",
-   "children": [
-    {
-     "label": "성경 읽기",
-     "href": "bible.html"
-    },
-    {
-     "label": "매일 말씀과 함께",
-     "href": "daily.html"
-    },
-    {
-     "label": "성경암송 365",
-     "href": "memorize.html"
-    },
-    {
-     "label": "성경 통독표 (1년 1독)",
-     "href": "bible-plan.html"
-    },
-    {
-     "label": "주제별 성경",
-     "href": "themes.html"
-    },
-    {
-     "label": "성경사전",
-     "href": "dictionary.html"
+  "youtube": {
+    "api_key": "",
+    "channel_id": "UC82IOMnZud8NNt3BYzAxTMg",
+    "channel_url": "https://www.youtube.com/channel/UC82IOMnZud8NNt3BYzAxTMg",
+    "stats": {
+      "subscribers": "7,500+",
+      "views": "147만+",
+      "videos": "550+",
+      "free_lectures": "310편"
     }
-   ]
   },
-  {
-   "label": "위대한 믿음",
-   "href": "preachers.html",
-   "children": [
-    {
-     "label": "위대한 설교자",
-     "href": "preachers.html"
-    },
-    {
-     "label": "위대한 기도자",
-     "href": "prayers.html"
-    }
-   ]
+  "leadmagnet": {
+    "title": "종말 핵심 한눈에 보기 — 천년왕국 연대표 & 중요성구 암송노트 (PDF)",
+    "file": "/files/종말핵심-한눈에-보기.pdf"
   },
-  {
-   "label": "소통·나눔",
-   "href": "community.html",
-   "children": [
-    {
-     "label": "질문·나눔·기도요청",
-     "href": "community.html"
-    },
-    {
-     "label": "신앙상담",
-     "href": "counsel.html"
-    },
-    {
-     "label": "강의 요청·건의함",
-     "href": "request.html"
-    },
-    {
-     "label": "자료실",
-     "href": "resources.html"
-    },
-    {
-     "label": "칼럼",
-     "href": "column.html"
+  "support": {
+    "bank_name": "우리은행",
+    "bank_account": "1006-301-266177",
+    "bank_holder": "오광일",
+    "simplepay_url": "https://link2.my/@insight?e=link",
+    "kakaopay_url": "https://qr.kakaopay.com/FKQjD73PQ",
+    "paypal_url": "https://paypal.me/oki1611",
+    "contact_email": "contact@biblynote.com",
+    "mailer_url": "",
+    "foreign": {
+      "bank_name_en": "Standard Chartered Bank Korea Limited",
+      "swift": "SCBLKRSEXXX",
+      "account": "183-85-028891",
+      "holder_en": "OH KWANG IL",
+      "bank_address": "Seoul, Republic of Korea",
+      "currency": "USD/KRW"
     }
-   ]
   }
- ],
- "menu": [
-  {
-   "label": "무료로 시작하기",
-   "href": "welcome.html"
-  },
-  {
-   "label": "우리의 사명",
-   "href": "about.html"
-  },
-  {
-   "label": "나에게 맞는 강의 찾기",
-   "href": "find.html"
-  },
-  {
-   "label": "커리큘럼",
-   "href": "curriculum.html"
-  },
-  {
-   "label": "칼럼",
-   "href": "column.html"
-  },
-  {
-   "label": "질문·나눔·기도요청",
-   "href": "community.html"
-  },
-  {
-   "label": "신앙상담",
-   "href": "counsel.html"
-  },
-  {
-   "label": "강의 요청·건의함",
-   "href": "request.html"
-  },
-  {
-   "label": "자료실",
-   "href": "resources.html"
-  },
-  {
-   "label": "성경 읽기",
-   "href": "bible.html"
-  },
-  {
-   "label": "주제별 성경",
-   "href": "themes.html"
-  },
-  {
-   "label": "위대한 믿음",
-   "href": "preachers.html"
-  }
- ],
- "brand": {
-  "name": "BIBLY",
-  "sub": "바이블 인사이트",
-  "catchphrase": "말씀으로 시대를 읽다",
-  "platform_badge": "유튜브 「오광일의 인사이트 브리핑」 공식 강의 플랫폼",
-  "instructor_label": "대표강사 오광일"
- },
- "instructor": {
-  "photo": "/images/프로필사진.jpg"
- },
- "youtube": {
-  "api_key": "",
-  "channel_id": "UC82IOMnZud8NNt3BYzAxTMg",
-  "channel_url": "https://www.youtube.com/channel/UC82IOMnZud8NNt3BYzAxTMg",
-  "stats": {
-   "subscribers": "7,500+",
-   "views": "146만+",
-   "videos": "550+",
-   "free_lectures": "310편"
-  }
- },
- "leadmagnet": {
-  "title": "종말 핵심 한눈에 보기 — 천년왕국 연대표 & 중요성구 암송노트 (PDF)",
-  "file": "/files/종말핵심-한눈에-보기.pdf"
- },
- "support": {
-  "bank_name": "우리은행",
-  "bank_account": "1006-301-266177",
-  "bank_holder": "오광일",
-  "simplepay_url": "https://link2.my/@insight?e=link",
-  "kakaopay_url": "https://qr.kakaopay.com/FKQjD73PQ",
-  "paypal_url": "https://paypal.me/oki1611",
-  "contact_email": "contact@biblynote.com",
-  "mailer_url": "",
-  "foreign": {
-   "bank_name_en": "Standard Chartered Bank Korea Limited",
-   "swift": "SCBLKRSEXXX",
-   "account": "183-85-028891",
-   "holder_en": "OH KWANG IL",
-   "bank_address": "Seoul, Republic of Korea",
-   "currency": "USD/KRW"
-  }
- }
 }
