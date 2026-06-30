@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <script src="/content-loader.js"></script>
+  <script src="/site-header.js?v=20260628b"></script>
+  <script src="/section-sidenav.js?v=2"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>스마트 검색 — 무엇이든 물어보세요 · BIBLY 바이블 인사이트</title>
+  <meta name="description" content="궁금한 것을 물어보면, 몇 가지 되물어 의도를 좁히고 — 영상 강의·요약노트·성경사전·성경을 종합해 딱 맞는 자료로 안내합니다." />
+  <meta name="theme-color" content="#213a6b" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="canonical" href="https://biblynote.com/search" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BIBLY 바이블 인사이트" />
+  <meta property="og:title" content="스마트 검색 — 무엇이든 물어보세요" />
+  <meta property="og:description" content="되물어 의도를 좁히고, 영상·노트·성경사전·성경을 종합해 딱 맞는 자료로 안내합니다." />
+  <meta property="og:url" content="https://biblynote.com/search" />
+  <meta property="og:image" content="https://biblynote.com/images/og-cover.png?v=2" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink:'#213a6b', navy:'#182c54', gold:'#b8923f', sand:'#eaf0f8', sky:'#eef5fe', cloud:'#f6f9fe', paper:'#ffffff' },
+      fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
+      boxShadow: { soft:'0 2px 16px -8px rgba(21,32,58,.12)', card:'0 20px 54px -26px rgba(21,32,58,.22)' }
+    }}}
+  </script>
+  <style>
+    h1,h2,h3{font-family:'Noto Serif KR',Pretendard,serif}
+    body{background:#f6f9fe}
+    .chip{display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(33,58,107,.16);background:#fff;color:#33406a;font-size:13.5px;font-weight:600;padding:7px 13px;border-radius:9999px;cursor:pointer;transition:all .14s}
+    .chip:hover{border-color:#b8923f;background:#fbf7ec}
+    .chip.on{background:#b8923f;color:#fff;border-color:#b8923f}
+    .typebtn{border:1px solid rgba(33,58,107,.14);background:#fff;color:#42506c;font-size:13px;font-weight:700;padding:7px 14px;border-radius:9999px;cursor:pointer;transition:all .14s}
+    .typebtn.on{background:#213a6b;color:#fff;border-color:#213a6b}
+    mark{background:#fbe7c0;color:inherit;border-radius:2px;padding:0 1px}
+  </style>
+</head>
+<body class="font-sans bg-cloud text-ink antialiased min-h-screen">
+
+  <div id="siteHeader" data-active="search.html"></div>
+
+  <!-- 검색 히어로 -->
+  <section class="bg-gradient-to-br from-white via-white to-sky border-b border-ink/[0.06]">
+    <div class="max-w-3xl mx-auto px-5 pt-12 pb-9 md:pt-16 md:pb-12 text-center">
+      <p class="inline-flex items-center gap-1.5 text-gold text-[11px] font-bold tracking-[0.18em] bg-gold/10 px-2.5 py-1 rounded-full mb-4">🔮 SMART SEARCH</p>
+      <h1 class="text-2xl md:text-[32px] font-bold leading-tight">무엇이 궁금하세요?</h1>
+      <p class="text-ink/60 text-sm md:text-[15px] mt-3 leading-relaxed">질문을 입력하면 <b class="text-ink">몇 가지 되물어</b> 의도를 좁히고 —<br class="hidden sm:block"/> 영상·요약노트·성경사전·성경을 <b class="text-ink">종합</b>해 딱 맞는 자료로 안내해요.</p>
+      <div class="mt-7 relative max-w-2xl mx-auto">
+        <input id="q" type="text" autocomplete="off" placeholder="예: 666이 뭐예요? · 죽으면 어디로 가나요? · 휴거가 언제예요?"
+          class="w-full border-2 border-ink/12 focus:border-gold rounded-2xl pl-5 pr-28 py-4 text-[15px] outline-none shadow-soft bg-white" />
+        <button id="goBtn" onclick="ask()" class="absolute right-2 top-1/2 -translate-y-1/2 bg-gold text-white font-bold text-sm px-5 py-2.5 rounded-xl hover:opacity-90 transition">물어보기</button>
+      </div>
+      <div id="hotRow" class="mt-4 flex flex-wrap justify-center gap-2"></div>
+    </div>
+  </section>
+
+  <main class="max-w-3xl mx-auto px-5 py-8">
+    <!-- 되묻기(좁히기) -->
+    <section id="clarify" class="mb-8" style="display:none"></section>
+    <!-- 결과 -->
+    <section id="results" style="display:none"></section>
+    <!-- 초기 안내 -->
+    <section id="intro">
+      <div class="grid sm:grid-cols-3 gap-3 text-center">
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5"><p class="text-2xl mb-1.5">💬</p><p class="font-bold text-sm">물어보세요</p><p class="text-xs text-ink/55 mt-1 leading-relaxed">정확한 키워드를 몰라도 돼요. 궁금한 걸 말하듯 적으세요.</p></div>
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5"><p class="text-2xl mb-1.5">🎯</p><p class="font-bold text-sm">되물어 좁혀요</p><p class="text-xs text-ink/55 mt-1 leading-relaxed">몇 가지 선택지로 진짜 알고 싶은 부분을 함께 찾아요.</p></div>
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5"><p class="text-2xl mb-1.5">📚</p><p class="font-bold text-sm">종합해 안내</p><p class="text-xs text-ink/55 mt-1 leading-relaxed">영상·노트·사전·성경에서 딱 맞는 자료로 이어드려요.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+  const TYPES = { video:{i:'🎬',n:'영상 강의',u:''}, note:{i:'📝',n:'강의 요약노트'}, dict:{i:'🔎',n:'성경사전'}, theme:{i:'📚',n:'주제별 성경'}, post:{i:'📰',n:'칼럼·글'}, bible:{i:'📖',n:'성경 본문'} };
+  // 핵심 주제 → 되묻기(부가질문) 지도. query에 키가 포함되면 그 부가질문 칩을 띄운다.
+  const TOPIC_MAP = [
+    { keys:['666','짐승의 표','짐승의표','베리칩','짐승표'], label:'짐승의 표(666)', subs:[
+      {q:'666 짐승의 표 정체', label:'표의 정체가 뭔가요?'},{q:'짐승의 표 언제 받나 대환난', label:'언제 받게 되나요?'},
+      {q:'짐승의 표 거부 구원', label:'거부하면 어떻게 되나요?'},{q:'베리칩 디지털화폐 짐승의 표', label:'베리칩·디지털화폐와 관계?'} ]},
+    { keys:['휴거'], label:'휴거', subs:[
+      {q:'휴거 시점 환난 전 후', label:'환난 전인가요, 후인가요?'},{q:'죽은 자 부활 휴거', label:'죽은 신자는 어떻게 되나요?'},
+      {q:'휴거 징조 준비', label:'무엇을 준비해야 하나요?'} ]},
+    { keys:['천년왕국','밀레니엄'], label:'천년왕국', subs:[
+      {q:'천년왕국 실체 통치', label:'어떤 나라인가요?'},{q:'천년왕국 성전 제사 에스겔', label:'성전·제사가 다시 있나요?'},
+      {q:'새 예루살렘 천년왕국', label:'새 예루살렘은 무엇인가요?'},{q:'전천년 후천년 무천년', label:'전·후·무천년설 차이?'} ]},
+    { keys:['적그리스도','짐승','악의 세력'], label:'적그리스도', subs:[
+      {q:'적그리스도 정체 누구', label:'정체가 누구인가요?'},{q:'적그리스도 등장 시기 표적', label:'언제 나타나나요?'},
+      {q:'적그리스도 교황 로마', label:'교황·로마와 관계?'} ]},
+    { keys:['재림','예수 오심','주의 날'], label:'예수의 재림', subs:[
+      {q:'재림 초림 차이 공중 지상', label:'초림과 무엇이 다른가요?'},{q:'재림 징조 마지막 때', label:'재림의 징조는?'},
+      {q:'재림 시기 알 수 있나', label:'시기를 알 수 있나요?'} ]},
+    { keys:['대환난','환난','칠년','7년','인 나팔 대접'], label:'대환난', subs:[
+      {q:'7년 대환난 성격', label:'7년 대환난이란?'},{q:'대환난 성도 교회 자리', label:'성도는 그때 어디에?'},
+      {q:'인 나팔 대접 심판 요한계시록', label:'인·나팔·대접 심판이란?'} ]},
+    { keys:['죽으면','죽은 후','죽음 이후','사후','음부','낙원','중간상태'], label:'죽음 이후', subs:[
+      {q:'죽으면 어디로 낙원 음부', label:'죽으면 바로 어디로 가나요?'},{q:'중간상태 영혼 잠 부활', label:'부활 전까지 영혼은?'},
+      {q:'천국 지옥 영원', label:'천국과 지옥은?'} ]},
+    { keys:['구원','거듭남','중생','영생','믿음으로'], label:'구원', subs:[
+      {q:'구원 받는 법 믿음 회개', label:'어떻게 구원받나요?'},{q:'구원의 확신', label:'구원의 확신은?'},
+      {q:'침례 구원 관계', label:'침례와 구원의 관계?'} ]},
+    { keys:['침례','세례'], label:'침례', subs:[
+      {q:'침례 의미 성경', label:'침례의 의미는?'},{q:'유아 침례 성경적', label:'유아에게도 베푸나요?'} ]},
+    { keys:['요한계시록','계시록'], label:'요한계시록', subs:[
+      {q:'요한계시록 구조 해석 관점', label:'어떻게 읽어야 하나요?'},{q:'일곱 교회 인 나팔 대접', label:'일곱 교회·심판 순서?'},
+      {q:'새 하늘 새 땅 새 예루살렘', label:'마지막 결말은?'} ]},
+    { keys:['다니엘','칠십 이레','70이레'], label:'다니엘서', subs:[
+      {q:'다니엘 70이레 칠십 이레 예언', label:'70이레 예언이란?'},{q:'다니엘 신상 짐승 나라', label:'신상·짐승은 어떤 나라?'} ]}
+  ];
+
+  const $ = id => document.getElementById(id);
+  function esc(s){ return String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+  let IDX = null, CURQ = '', SUBSEL = new Set(), TYPEF = 'all';
+
+  // 인덱스 로드
+  (async () => {
+    try { IDX = (await (await fetch('content/smart-index.json?v=1')).json()).items || []; } catch(e){ IDX = []; }
+  })();
+
+  const HOT = ['666 짐승의 표','휴거','천년왕국','적그리스도','죽으면 어디로 가나요','요한계시록','다니엘 70이레','구원의 확신'];
+  $('hotRow').innerHTML = '<span class="text-ink/40 text-xs self-center mr-1">인기:</span>' + HOT.map(h=>`<button class="chip" onclick="quick('${esc(h)}')">${esc(h)}</button>`).join('');
+  function quick(t){ $('q').value = t; ask(); }
+  $('q').addEventListener('keydown', e => { if(e.key==='Enter') ask(); });
+
+  function norm(s){ return String(s||'').toLowerCase().replace(/[^\w가-힣\s]/g,' ').replace(/\s+/g,' ').trim(); }
+  const JOSA = ['으로','에서','에게','부터','까지','이란','이라','인가','은','는','이','가','을','를','의','에','로','와','과','도','만','께','란','라','요'];
+  const STOP = new Set(['뭐','뭐예요','뭐에요','무엇','무엇인가요','무엇인가','뭔가요','뭔지','뭔가','언제','어디','어디로','어디에','어떻게','어떤','어찌','왜','얼마나','누구','누가','대해','대하여','관하여','관해','알려줘','알려주세요','설명','설명해줘','궁금','궁금해요','궁금합니다','싶어요','인가요','건가요','일까요','걸까요','나요','가요','예요','에요','하나요','되나요','받나요','한가요','요','그리고','대한','이게','저게','그게','정말','진짜']);
+  function terms(s){
+    const out = new Set();
+    norm(s).split(' ').forEach(tok=>{
+      if(!tok) return;
+      (tok.match(/[a-z0-9]{2,}/g)||[]).forEach(x=>out.add(x));         // 라틴·숫자(666, kjv 등)
+      (tok.match(/[가-힣]+/g)||[]).forEach(w=>{                         // 한글: 조사 분리 + 불용어 제거
+        if(STOP.has(w)) return;
+        let base=w;
+        for(const j of JOSA){ if(w.length>=j.length+2 && w.endsWith(j)){ base=w.slice(0,-j.length); break; } }
+        [w, base].forEach(x=>{ if(x.length>=2 && !STOP.has(x)) out.add(x); });
+      });
+    });
+    return [...out];
+  }
+
+  function detectTopic(q){ const nq = norm(q); for(const t of TOPIC_MAP){ if(t.keys.some(k=>nq.includes(norm(k)))) return t; } return null; }
+
+  function ask(){
+    const q = $('q').value.trim(); if(!q) { $('q').focus(); return; }
+    CURQ = q; SUBSEL = new Set(); TYPEF = 'all';
+    $('intro').style.display = 'none';
+    const topic = detectTopic(q);
+    if(topic){ renderClarify(topic); } else { renderResults(); }
+    window.scrollTo({ top: $('clarify').offsetParent ? 0 : 0, behavior:'smooth' });
+  }
+
+  function renderClarify(topic){
+    $('results').style.display = 'none';
+    const cl = $('clarify'); cl.style.display = '';
+    cl.innerHTML = `<div class="bg-white rounded-3xl border border-gold/25 shadow-soft p-6 md:p-7">
+      <p class="text-gold text-xs font-bold tracking-[0.2em] uppercase mb-1.5">한 가지만 더</p>
+      <h2 class="text-lg md:text-xl font-bold"><b class="text-gold">${esc(topic.label)}</b>에 대해 — 어떤 점이 가장 궁금하세요?</h2>
+      <p class="text-ink/55 text-sm mt-1.5">고르면 더 정확히 찾아드려요. (여러 개 선택 가능)</p>
+      <div class="flex flex-wrap gap-2 mt-4">
+        ${topic.subs.map((s,i)=>`<button class="chip" data-q="${esc(s.q)}" onclick="toggleSub(this)">${esc(s.label)}</button>`).join('')}
+      </div>
+      <div class="mt-5 pt-4 border-t border-ink/8 flex items-center gap-2 flex-wrap">
+        <button onclick="renderResults()" class="bg-gold text-white font-bold text-sm px-6 py-2.5 rounded-full hover:opacity-90 transition">결과 보기 →</button>
+        <button onclick="renderResults()" class="text-ink/45 text-sm hover:text-ink">건너뛰고 바로 보기</button>
+      </div>
+    </div>`;
+  }
+  function toggleSub(el){ const q = el.getAttribute('data-q'); if(SUBSEL.has(q)){ SUBSEL.delete(q); el.classList.remove('on'); } else { SUBSEL.add(q); el.classList.add('on'); } }
+
+  function score(item, toks, fullq){
+    let s = 0; const ti = item.ti.toLowerCase(), kw = item.kw||'';
+    if(ti.includes(fullq)) s += 12;
+    for(const t of toks){ if(ti.includes(t)) s += 5; if(kw.includes(t)) s += 1.4; }
+    return s;
+  }
+  function runSearch(){
+    const q = (CURQ + ' ' + [...SUBSEL].join(' ')).trim();
+    const toks = terms(q), fullq = norm(CURQ);
+    const scored = [];
+    for(const it of (IDX||[])){
+      const sc = score(it, toks, fullq);
+      if(sc > 0) scored.push([sc, it]);
+    }
+    scored.sort((a,b)=>b[1].free===a[1].free ? b[0]-a[0] : 0); // keep score order
+    scored.sort((a,b)=>b[0]-a[0]);
+    return scored.map(x=>x[1]);
+  }
+
+  function card(it){
+    const ty = TYPES[it.t] || {i:'•',n:''};
+    const freeBadge = it.t==='video' && it.free ? '<span class="text-[10px] font-bold text-green-600 bg-green-50 px-1.5 py-0.5 rounded-full ml-1">무료</span>' : '';
+    return `<a href="${esc(it.u)}" class="flex gap-3 items-start bg-white rounded-2xl border border-ink/8 shadow-soft p-4 hover:shadow-card hover:-translate-y-0.5 transition">
+      <span class="text-xl shrink-0">${ty.i}</span>
+      <span class="min-w-0 flex-1">
+        <span class="block font-bold text-[15px] leading-snug text-ink">${esc(it.ti)}${freeBadge}</span>
+        ${it.sn?`<span class="block text-[13px] text-ink/55 mt-1 leading-relaxed line-clamp-2">${esc(it.sn)}</span>`:''}
+      </span>
+      <span class="text-gold text-sm shrink-0 self-center">→</span>
+    </a>`;
+  }
+
+  function renderResults(){
+    $('clarify').style.display = 'none';
+    const box = $('results'); box.style.display = '';
+    const all = runSearch();
+    const byType = { video:[], dict:[], theme:[], post:[] };
+    for(const it of all){ if(byType[it.t]) byType[it.t].push(it); }
+    const topic = detectTopic(CURQ);
+    const total = all.length;
+
+    // 맞춤 안내(규칙기반)
+    const subTxt = SUBSEL.size ? ' 중 <b class="text-ink">' + [...SUBSEL].map(s=>esc(s)).join(', ') + '</b>' : '';
+    let guide = `‘<b class="text-gold">${esc(CURQ)}</b>’${topic?(' ('+esc(topic.label)+')'):''}에 대해 <b class="text-ink">${total}건</b>을 모았어요.`;
+    if(byType.video.length) guide += ' 먼저 <b class="text-ink">영상 강의</b>로 보시고,';
+    if(byType.dict.length) guide += ' 핵심 용어는 <b class="text-ink">성경사전</b>에서,';
+    guide += ' 성경 본문은 아래에서 바로 확인하세요.';
+
+    const sec = (t, max) => {
+      const arr = byType[t]; if(!arr || !arr.length) return '';
+      const ty = TYPES[t];
+      const more = arr.length > max ? `<p class="text-center mt-2"><button class="text-gold text-sm font-semibold hover:underline" onclick="this.parentElement.previousElementSibling.querySelectorAll('.hid').forEach(e=>e.classList.remove('hid'));this.remove()">+ ${arr.length-max}건 더 보기</button></p>` : '';
+      return `<div class="mb-7">
+        <h3 class="font-bold text-ink mb-3 flex items-center gap-2"><span>${ty.i}</span>${ty.n} <span class="text-ink/40 text-sm font-normal">${arr.length}</span></h3>
+        <div class="space-y-2.5">${arr.map((it,i)=>`<div class="${i>=max?'hid hidden':''}">${card(it)}</div>`).join('')}</div>
+        ${more}
+      </div>`;
+    };
+
+    // 성경 본문 핸드오프
+    const bibleCard = `<div class="mb-7">
+      <h3 class="font-bold text-ink mb-3 flex items-center gap-2"><span>📖</span>성경 본문에서 찾기</h3>
+      <a href="bible.html?q=${encodeURIComponent(CURQ)}" class="flex gap-3 items-center bg-sky border border-ink/8 rounded-2xl p-4 hover:shadow-card transition">
+        <span class="text-xl">📖</span>
+        <span class="flex-1 font-semibold text-ink text-[15px]">‘${esc(CURQ)}’ 성경 본문 검색 — KJV 새번역에서 직접 찾아보기</span>
+        <span class="text-gold">→</span>
+      </a>
+    </div>`;
+
+    box.innerHTML = `
+      <div class="bg-white rounded-3xl border border-ink/8 shadow-soft p-5 md:p-6 mb-7">
+        <div class="flex items-start gap-3">
+          <span class="text-2xl">💡</span>
+          <div class="flex-1">
+            <p class="text-[15px] leading-relaxed text-ink/85">${guide}</p>
+            <div class="flex flex-wrap gap-1.5 mt-3">
+              <button class="typebtn ${TYPEF==='all'?'on':''}" onclick="setType('all')">전체</button>
+              ${['video','dict','theme','post'].filter(t=>byType[t].length).map(t=>`<button class="typebtn ${TYPEF===t?'on':''}" onclick="setType('${t}')">${TYPES[t].i} ${TYPES[t].n}</button>`).join('')}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="resBody">
+        ${total===0 ? '<p class="text-center text-ink/50 py-10">딱 맞는 자료를 못 찾았어요. 다른 표현으로 물어보시거나, 아래 성경 본문 검색을 이용해 보세요.</p>' : ''}
+        ${(TYPEF==='all'||TYPEF==='video')?sec('video',5):''}
+        ${(TYPEF==='all'||TYPEF==='dict')?sec('dict',6):''}
+        ${(TYPEF==='all'||TYPEF==='theme')?sec('theme',4):''}
+        ${(TYPEF==='all'||TYPEF==='post')?sec('post',4):''}
+        ${bibleCard}
+      </div>
+      <p class="text-center text-ink/40 text-xs mt-2">원하는 답을 못 찾으셨나요? <a href="community.html" class="text-gold underline">질문·나눔</a>에 남기면 강사가 직접 답해드려요.</p>`;
+    window.scrollTo({ top: 0, behavior:'smooth' });
+  }
+  function setType(t){ TYPEF = t; renderResults(); }
+
+  // URL ?q= 로 바로 검색
+  (function(){ const sp = new URLSearchParams(location.search); const q = sp.get('q'); if(q){ const iv = setInterval(()=>{ if(IDX){ clearInterval(iv); $('q').value = q; ask(); } }, 80); } })();
+  </script>
+
+  <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script src="auth-header.js?v=20260619c"></script>
+</body>
+</html>

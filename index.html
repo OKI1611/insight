@@ -205,6 +205,14 @@
         <a href="curriculum.html" class="border border-paper/25 text-paper font-semibold px-9 py-4 rounded-full hover:bg-paper/10 transition text-center">커리큘럼 둘러보기</a>
       </div>
 
+      <!-- 스마트 검색 (메인) -->
+      <form onsubmit="event.preventDefault();var v=document.getElementById('homeSearchQ').value.trim();location.href='search.html'+(v?('?q='+encodeURIComponent(v)):'');" class="mt-8 max-w-xl mx-auto relative">
+        <input id="homeSearchQ" type="text" autocomplete="off" aria-label="스마트 검색" placeholder="🔮 궁금한 걸 물어보세요 — 666? 휴거? 죽으면 어디로?"
+          class="w-full rounded-2xl pl-5 pr-24 py-4 text-[15px] text-ink bg-white/95 outline-none shadow-xl shadow-black/20 placeholder:text-ink/45 focus:bg-white" />
+        <button type="submit" class="absolute right-2 top-1/2 -translate-y-1/2 bg-gold text-white font-bold text-sm px-5 py-2.5 rounded-xl hover:opacity-90 transition">물어보기</button>
+      </form>
+      <p class="mt-2.5 text-paper/50 text-xs">질문하면 <b class="text-paper/75">되물어 의도를 좁히고</b> 영상·요약노트·성경사전·성경을 <b class="text-paper/75">종합</b>해 안내해요</p>
+
       <div class="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-paper/60">
         <span class="flex items-center gap-1.5"><span class="text-gold font-bold">✓</span> 전 강의 무료 공개</span>
         <span class="flex items-center gap-1.5"><span class="text-gold font-bold">✓</span> 무료 회원가입 후 시청</span>
