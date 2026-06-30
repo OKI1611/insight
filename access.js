@@ -3,10 +3,18 @@
 (function(){
   // 이용권 상태 조회
   window.biblyAccess = async function(sb, user){
-    const none = { full:false, allBooks:false, kind:'none', founding:false, expiresAt:null, expired:false, daysLeft:null, paidTier:0 };
+    const none = { full:false, allBooks:false, kind:'none', founding:false, expiresAt:null, expired:false, daysLeft:null, paidTier:0, certExpired:false, certExpiresAt:null };
     if(!sb || !user) return none;
-    let paidTier = 0, acc = null;
-    try{ const { data } = await sb.from('cert_access').select('tier').eq('user_id', user.id).maybeSingle(); if(data && data.tier) paidTier = Number(data.tier)||0; }catch(e){}
+    let paidTier = 0, acc = null, certExpired = false, certExpiresAt = null;
+    // 인증 수강기간: cert_access.expires_at(만료일)이 지나면 유료 혜택 잠금. (컬럼 없으면 expires_at=undefined → 무기한)
+    try{ const { data } = await sb.from('cert_access').select('*').eq('user_id', user.id).maybeSingle();
+      if(data && data.tier){
+        certExpiresAt = data.expires_at || null;
+        const exp = certExpiresAt ? new Date(certExpiresAt).getTime() : null;
+        if(exp && exp < Date.now()){ certExpired = true; }   // 수강기간 만료 → 잠금
+        else paidTier = Number(data.tier)||0;
+      }
+    }catch(e){}
     try{ const { data } = await sb.from('member_access').select('kind,expires_at,referrer_name').eq('user_id', user.id).maybeSingle(); acc = data || null; }catch(e){}
     const now = Date.now();
     let expired=false, daysLeft=null, expiresAt=null, kind='none', founding=false;
@@ -19,7 +27,7 @@
     }
     const full = paidTier > 0 || (acc && !expired);   // 유료등급(급수 보유)이거나 무료기간 유효 → 시험 등 유료자료 이용
     const allBooks = paidTier >= 3 || (acc && !expired);  // 3급 이상(tier≥3) 또는 무료기간 → 전 PDF 책자 이용권 포함(5·4급은 별도 구매)
-    return { full, allBooks, kind, founding, expiresAt, expired, daysLeft, paidTier };
+    return { full, allBooks, kind, founding, expiresAt, expired, daysLeft, paidTier, certExpired, certExpiresAt };
   };
 
   // 이용권 종류 라벨
@@ -33,7 +41,14 @@
 
   // 만료/임박 안내 배너 (없으면 빈 문자열)
   window.biblyAccessBanner = function(st){
-    if(!st || st.paidTier > 0 || st.kind === 'none') return '';   // 유료회원·이용권없음 → 배너 없음
+    if(!st) return '';
+    if(st.certExpired && st.paidTier === 0){   // 인증과정 수강기간(18개월) 만료 → 재등록 안내
+      return '<div class="bg-ink text-paper rounded-2xl px-5 py-4 flex flex-col sm:flex-row sm:items-center gap-3">'
+        + '<div class="flex-1 text-sm leading-relaxed">🔔 <b>인증 과정 수강기간(1년 6개월)이 종료</b>되었어요. 시험·라이브·교재 등 유료 혜택을 이어가시려면 재등록(연장)이 필요합니다. 이미 취득한 학점·수료는 보존됩니다.</div>'
+        + '<a href="academy.html#packages" class="shrink-0 bg-gold text-white font-bold text-sm px-5 py-2.5 rounded-full hover:opacity-90 transition text-center">재등록하고 계속 →</a>'
+        + '</div>';
+    }
+    if(st.paidTier > 0 || st.kind === 'none') return '';   // 유료회원(유효)·이용권없음 → 배너 없음
     const kindLabel = window.biblyAccessLabel(st);
     if(!st.expired){
       if(st.daysLeft != null && st.daysLeft <= 21){
