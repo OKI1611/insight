@@ -83,6 +83,26 @@
       </div>
     </section>
 
+    <!-- 후원·선물로 열리는 것 (값어치) -->
+    <section class="py-6">
+      <div class="text-center mb-8">
+        <p class="text-gold text-xs font-bold tracking-[0.25em] uppercase mb-3">What it unlocks</p>
+        <h2 class="text-xl md:text-2xl font-bold">후원·선물로 열리는 것</h2>
+        <p class="text-ink/55 text-sm mt-2 leading-relaxed max-w-xl mx-auto">받는 분이 무엇을 누리는지 — <b class="text-ink/70">비용이 아깝지 않게</b> 꽉 채웠습니다.</p>
+      </div>
+      <div id="unlockGrid" class="grid sm:grid-cols-3 gap-4"></div>
+    </section>
+
+    <!-- 어떻게 전달·사용 -->
+    <section class="py-8">
+      <div class="text-center mb-7">
+        <p class="text-gold text-xs font-bold tracking-[0.25em] uppercase mb-3">How it works</p>
+        <h2 class="text-xl md:text-2xl font-bold">어떻게 전달되고 사용하나요</h2>
+        <p class="text-ink/55 text-sm mt-2 leading-relaxed">받는 분이 헤매지 않도록, 전달부터 사용까지 한눈에.</p>
+      </div>
+      <div id="howGrid" class="grid sm:grid-cols-3 gap-3.5 max-w-2xl mx-auto"></div>
+    </section>
+
     <!-- 후원·선물 폼 -->
     <section id="give" class="py-6 pb-12">
       <div class="bg-white rounded-3xl border border-ink/10 shadow-card p-6 md:p-8 max-w-xl mx-auto">
@@ -173,7 +193,7 @@
     (async () => {
       try { GIFT = await (await fetch('content/gift.json?t=' + Date.now())).json(); } catch(e){ GIFT = { sponsorTiers:[], giftProducts:[] }; }
       try { const s = await (await fetch('content/site.json?t=' + Date.now())).json(); SUP = s.support || {}; } catch(e){ SUP = {}; }
-      renderAmts(); renderProducts(); renderPay();
+      renderAmts(); renderProducts(); renderPay(); renderUnlocks(); renderHow();
     })();
 
     function renderAmts(){
@@ -191,9 +211,37 @@
       const c = document.getElementById('aAmtCustom'); if(c) c.value = '';
     }
     function clearAmtPreset(){ SEL_AMT = 0; document.querySelectorAll('.amtBtn').forEach(b => b.classList.remove('on')); }
+    function pName(p){ return (typeof p === 'string') ? p : ((p.icon ? p.icon + ' ' : '') + (p.name||'')); }
     function renderProducts(){
       const sel = document.getElementById('aProduct'); if(!sel) return;
-      sel.innerHTML = '<option value="">선물할 상품을 골라주세요 *</option>' + (GIFT.giftProducts||[]).map(p => `<option>${esc(p)}</option>`).join('');
+      sel.innerHTML = '<option value="">선물할 상품을 골라주세요 *</option>' + (GIFT.giftProducts||[]).map(p => `<option>${esc(pName(p))}</option>`).join('');
+    }
+    function renderUnlocks(){
+      const g = document.getElementById('unlockGrid'); if(!g) return;
+      const prods = (GIFT.giftProducts||[]).filter(p => typeof p === 'object');
+      if(!prods.length){ g.innerHTML=''; return; }
+      g.innerHTML = prods.map(p => {
+        const benefits = (p.benefits||[]).map(b => `<li class="flex gap-1.5 leading-snug"><span class="text-gold shrink-0">✓</span><span>${esc(b)}</span></li>`).join('');
+        return `<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 flex flex-col">
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">${esc(p.icon||'🎁')}</span>
+            <div><p class="font-bold leading-tight">${esc(p.name||'')}</p>${p.value?`<p class="text-[11px] font-bold text-gold mt-0.5">${esc(p.value)}</p>`:''}</div>
+          </div>
+          ${p.summary?`<p class="text-[12.5px] text-ink/55 mt-2.5 leading-relaxed">${esc(p.summary)}</p>`:''}
+          <ul class="text-[13px] text-ink/70 space-y-1.5 mt-3 mb-3 flex-1">${benefits}</ul>
+          ${p.use?`<p class="text-[11.5px] text-ink/55 bg-sand/50 border border-gold/15 rounded-lg px-3 py-2 leading-relaxed"><b class="text-ink/70">사용법 ›</b> ${esc(p.use)}</p>`:''}
+        </div>`;
+      }).join('');
+    }
+    function renderHow(){
+      const g = document.getElementById('howGrid'); if(!g) return;
+      const steps = GIFT.howItWorks||[];
+      if(!steps.length){ g.innerHTML=''; return; }
+      g.innerHTML = steps.map(s => `<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 text-center">
+        <p class="text-3xl mb-2">${esc(s.icon||'•')}</p>
+        <p class="font-bold text-[15px]">${esc(s.t||'')}</p>
+        <p class="text-[12.5px] text-ink/55 mt-1.5 leading-relaxed">${esc(s.d||'')}</p>
+      </div>`).join('');
     }
     function renderPay(){
       const el = document.getElementById('payInfo'); if(!el) return;
