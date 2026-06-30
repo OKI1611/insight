@@ -3,7 +3,7 @@
 (function(){
   // 이용권 상태 조회
   window.biblyAccess = async function(sb, user){
-    const none = { full:false, kind:'none', founding:false, expiresAt:null, expired:false, daysLeft:null, paidTier:0 };
+    const none = { full:false, allBooks:false, kind:'none', founding:false, expiresAt:null, expired:false, daysLeft:null, paidTier:0 };
     if(!sb || !user) return none;
     let paidTier = 0, acc = null;
     try{ const { data } = await sb.from('cert_access').select('tier').eq('user_id', user.id).maybeSingle(); if(data && data.tier) paidTier = Number(data.tier)||0; }catch(e){}
@@ -17,8 +17,9 @@
       expired = exp < now;
       daysLeft = Math.ceil((exp - now) / 86400000);
     }
-    const full = paidTier > 0 || (acc && !expired);   // 유료등급이거나 무료기간 유효 → 전체 자료 이용 가능
-    return { full, kind, founding, expiresAt, expired, daysLeft, paidTier };
+    const full = paidTier > 0 || (acc && !expired);   // 유료등급(급수 보유)이거나 무료기간 유효 → 시험 등 유료자료 이용
+    const allBooks = paidTier >= 3 || (acc && !expired);  // 3급 이상(tier≥3) 또는 무료기간 → 전 PDF 책자 이용권 포함(5·4급은 별도 구매)
+    return { full, allBooks, kind, founding, expiresAt, expired, daysLeft, paidTier };
   };
 
   // 이용권 종류 라벨

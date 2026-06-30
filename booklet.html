@@ -537,9 +537,10 @@
       const isPass = !admin && await hasPass();
       const isBook = !admin && !isPass && await hasBook(t.name);
       // 멤버십 무료기간(창립1년·추천3개월·신규5일) 보유 시에도 전체 열람 허용
-      let access = { full:false, expired:false, founding:false, kind:'none' };
+      let access = { full:false, allBooks:false, expired:false, founding:false, kind:'none' };
       try{ const {data}=await sb.auth.getSession(); const u=data&&data.session&&data.session.user; if(u && window.biblyAccess) access=await biblyAccess(sb,u); }catch(e){}
-      const unlocked = admin || isPass || isBook || access.full;
+      // 책자(PDF) 전체 열람 = 관리자·이용권(PASS)·개별구매·또는 3급↑ 인증/무료기간(allBooks). 5·4급 인증은 책자 별도 구매.
+      const unlocked = admin || isPass || isBook || access.allBooks;
       // 이용기록·워터마크용 상태 저장
       CUR_TRACK=t.name; CUR_KIND=isPass?'pass':'book'; CUR_BUYER=(isPass||isBook);
       CUR_EMAIL = CUR_BUYER ? (await currentEmail()||'') : '';
