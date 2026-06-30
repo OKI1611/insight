@@ -15,8 +15,8 @@
       { label:'전체 커리큘럼', href:'curriculum.html' }, { label:'정규 심화 과정(아카데미)', href:'academy.html' },
       { label:'나에게 맞는 강의 찾기', href:'find.html' } ]},
     { label:'스토어', href:'booklet.html', children:[
-      { label:'PDF 책자·이용권', href:'booklet.html' }, { label:'고객센터(주문·배송·반품)', href:'store-help.html' },
-      { label:'내 구매·자료', href:'mylearning.html' } ]},
+      { label:'PDF 책자·이용권', href:'booklet.html' }, { label:'🎁 선물·후원 좌석', href:'gift.html' },
+      { label:'고객센터(주문·배송·반품)', href:'store-help.html' }, { label:'내 구매·자료', href:'mylearning.html' } ]},
     { label:'성경', href:'bible.html', children:[
       { label:'성경 읽기', href:'bible.html' }, { label:'매일 말씀과 함께', href:'daily.html' },
       { label:'성경암송 365', href:'memorize.html' }, { label:'성경 통독표 (1년 1독)', href:'bible-plan.html' },
@@ -26,7 +26,7 @@
     { label:'소통·나눔', href:'community.html', children:[
       { label:'질문·나눔·기도요청', href:'community.html' }, { label:'신앙상담', href:'counsel.html' },
       { label:'강의 요청·건의함', href:'request.html' }, { label:'자료실', href:'resources.html' },
-      { label:'칼럼', href:'column.html' }, { label:'🎁 선물·후원 좌석', href:'gift.html' } ]}
+      { label:'칼럼', href:'column.html' } ]}
   ];
 
   var page = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
