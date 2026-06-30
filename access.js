@@ -44,7 +44,7 @@
     if(!st) return '';
     if(st.certExpired && st.paidTier === 0){   // 인증과정 수강기간(18개월) 만료 → 재등록 안내
       return '<div class="bg-ink text-paper rounded-2xl px-5 py-4 flex flex-col sm:flex-row sm:items-center gap-3">'
-        + '<div class="flex-1 text-sm leading-relaxed">🔔 <b>인증 과정 수강기간(1년 6개월)이 종료</b>되었어요. 시험·라이브·교재 등 유료 혜택을 이어가시려면 재등록(연장)이 필요합니다. 이미 취득한 학점·수료는 보존됩니다.</div>'
+        + '<div class="flex-1 text-sm leading-relaxed">🔔 <b>인증 과정 수강기간(1년 6개월)이 종료</b>되었어요. 시험·1:1 질의응답·교재 등 유료 혜택을 이어가시려면 재등록(연장)이 필요합니다. 이미 취득한 학점·수료는 보존됩니다.</div>'
         + '<a href="academy.html#packages" class="shrink-0 bg-gold text-white font-bold text-sm px-5 py-2.5 rounded-full hover:opacity-90 transition text-center">재등록하고 계속 →</a>'
         + '</div>';
     }
