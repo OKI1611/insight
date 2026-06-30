@@ -10,7 +10,7 @@
   // site.json 로드 실패 시 사용할 내장 백업(헤더 DEFAULT_MENU와 동일 구조)
   var FALLBACK = [
     { label:'BIBLY 이야기', href:'about.html', children:[
-      { label:'우리의 사명·소개', href:'about.html' }, { label:'1기 창립 멤버', href:'founding.html' } ]},
+      { label:'우리의 사명·소개', href:'about.html' }, { label:'🌱 무료로 시작하기', href:'welcome.html' }, { label:'1기 창립 멤버', href:'founding.html' } ]},
     { label:'강의·커리큘럼', href:'curriculum.html', children:[
       { label:'전체 커리큘럼', href:'curriculum.html' }, { label:'정규 심화 과정(아카데미)', href:'academy.html' },
       { label:'🎓 기수제 라이브 완주반', href:'cohort.html' }, { label:'나에게 맞는 강의 찾기', href:'find.html' } ]},

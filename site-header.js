@@ -10,26 +10,22 @@
   var AK = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
   var ADMIN = 'josephoh1611@gmail.com';
   var DEFAULT_MENU = [
-    { label:'무료로 시작하기', href:'welcome.html' },
     { label:'BIBLY 이야기', href:'about.html', children:[
       { label:'우리의 사명·소개', href:'about.html' },
+      { label:'🌱 무료로 시작하기', href:'welcome.html' },
       { label:'🎖️ 1기 창립 멤버', href:'founding.html' }
     ]},
     { label:'강의·커리큘럼', href:'curriculum.html', children:[
       { label:'전체 커리큘럼', href:'curriculum.html' },
       { label:'정규 심화 과정(아카데미)', href:'academy.html' },
-      { label:'나에게 맞는 강의 찾기', href:'find.html' },
-      { label:'칼럼', href:'column.html' }
-    ]},
-    { label:'스토어', href:'booklet.html', children:[
-      { label:'PDF 책자·이용권', href:'booklet.html' },
-      { label:'고객센터(주문·배송·반품)', href:'store-help.html' },
-      { label:'내 구매·자료', href:'mylearning.html' }
+      { label:'🎓 기수제 라이브 완주반', href:'cohort.html' },
+      { label:'나에게 맞는 강의 찾기', href:'find.html' }
     ]},
     { label:'성경', href:'bible.html', children:[
       { label:'성경 읽기', href:'bible.html' },
       { label:'매일 말씀과 함께', href:'daily.html' },
       { label:'성경암송 365', href:'memorize.html' },
+      { label:'성경 통독표 (1년 1독)', href:'bible-plan.html' },
       { label:'주제별 성경', href:'themes.html' },
       { label:'성경사전', href:'dictionary.html' }
     ]},
@@ -41,7 +37,14 @@
       { label:'질문·나눔·기도요청', href:'community.html' },
       { label:'신앙상담', href:'counsel.html' },
       { label:'강의 요청·건의함', href:'request.html' },
-      { label:'자료실', href:'resources.html' }
+      { label:'자료실', href:'resources.html' },
+      { label:'칼럼', href:'column.html' },
+      { label:'🎁 선물·후원 좌석', href:'gift.html' }
+    ]},
+    { label:'스토어', href:'booklet.html', children:[
+      { label:'PDF 책자·이용권', href:'booklet.html' },
+      { label:'고객센터(주문·배송·반품)', href:'store-help.html' },
+      { label:'내 구매·자료', href:'mylearning.html' }
     ]}
   ];
 
@@ -104,7 +107,8 @@
 
   // 메인 헤더 우측 CTA — 두란노식 강조 '바로 수강' + 내 강의실(로그인/로그아웃은 상단 퀵바)
   function mainCtaHTML(){
-    return '<a href="watch.html" class="inline-flex items-center gap-1 bg-gold text-white font-bold px-3.5 py-1.5 rounded-full hover:opacity-90 transition text-xs whitespace-nowrap shadow-soft">▶ 바로 수강</a>'
+    return '<a href="search.html" aria-label="스마트 검색" title="스마트 검색" class="inline-flex items-center justify-center w-9 h-9 rounded-full hover:bg-ink/5 text-ink/70"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></svg></a>'
+      + '<a href="watch.html" class="inline-flex items-center gap-1 bg-gold text-white font-bold px-3.5 py-1.5 rounded-full hover:opacity-90 transition text-xs whitespace-nowrap shadow-soft">▶ 바로 수강</a>'
       + '<a href="mylearning.html" class="hidden xl:inline-flex items-center gap-1 border border-gold/45 text-gold font-semibold px-3 py-1.5 rounded-full hover:bg-gold/10 transition text-xs whitespace-nowrap">📚 내 강의실</a>';
   }
   // 상단 퀵바(유틸리티) — 수학싸부식: 공지·이벤트·후원 + 로그인 상태/마이메뉴
@@ -137,7 +141,8 @@
       var sub = kids.map(function(c){ return '<a href="' + _hrefOf(c.href) + '" class="py-2 pl-4 border-b border-ink/5 text-[14px] ' + (_isOn(c.href) ? 'text-gold font-semibold' : 'text-ink/60') + '">└ ' + esc(c.label) + '</a>'; }).join('');
       return head + sub;
     }).join('');
-    return '<div class="max-w-6xl mx-auto px-4 py-1 flex flex-col text-[15px]">' + items
+    return '<div class="max-w-6xl mx-auto px-4 py-1 flex flex-col text-[15px]">'
+      + '<a href="search.html" class="py-3 border-b border-ink/5 text-gold font-semibold">🔍 스마트 검색</a>' + items
       + '<a href="mylearning.html" class="py-3 border-b border-ink/5 text-gold font-semibold">📚 내 강의실</a>'
       + '<a href="index.html" onclick="return __biblyHome(event)" class="py-3 text-ink/55">🏠 홈</a>'
       + '</div>';
