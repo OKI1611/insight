@@ -13,7 +13,7 @@
       { label:'우리의 사명·소개', href:'about.html' }, { label:'🌱 무료로 시작하기', href:'welcome.html' }, { label:'1기 창립 멤버', href:'founding.html' } ]},
     { label:'강의·커리큘럼', href:'curriculum.html', children:[
       { label:'전체 커리큘럼', href:'curriculum.html' }, { label:'정규 심화 과정(아카데미)', href:'academy.html' },
-      { label:'🎓 기수제 완주반', href:'cohort.html' }, { label:'나에게 맞는 강의 찾기', href:'find.html' } ]},
+      { label:'나에게 맞는 강의 찾기', href:'find.html' } ]},
     { label:'스토어', href:'booklet.html', children:[
       { label:'PDF 책자·이용권', href:'booklet.html' }, { label:'고객센터(주문·배송·반품)', href:'store-help.html' },
       { label:'내 구매·자료', href:'mylearning.html' } ]},
