@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <script src="/content-loader.js"></script>
+  <script src="/site-header.js?v=20260628b"></script>
+  <script src="/section-sidenav.js?v=2"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>선물하기 · 후원 좌석 — BIBLY 바이블 인사이트</title>
+  <meta name="description" content="당신의 후원이 한 사람의 배움이 됩니다. 형편이 어려운 분께 좌석을 기증하거나, 소중한 사람에게 강의·이용권을 선물하세요." />
+  <meta name="theme-color" content="#213a6b" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="canonical" href="https://biblynote.com/gift" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BIBLY 바이블 인사이트" />
+  <meta property="og:title" content="선물하기 · 후원 좌석 — 당신의 후원이 한 사람의 배움이 됩니다" />
+  <meta property="og:description" content="형편이 어려운 분께 좌석을 기증하거나, 소중한 사람에게 강의·이용권을 선물하세요." />
+  <meta property="og:url" content="https://biblynote.com/gift" />
+  <meta property="og:image" content="https://biblynote.com/images/og-cover.png?v=2" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="선물하기 · 후원 좌석 — BIBLY" />
+  <meta name="twitter:description" content="당신의 후원이 한 사람의 배움이 됩니다. 좌석 기증 · 선물하기." />
+  <meta name="twitter:image" content="https://biblynote.com/images/og-cover.png?v=2" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink:'#213a6b', navy:'#182c54', gold:'#b8923f', sand:'#eaf0f8', paper:'#ffffff' },
+      fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
+      boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
+    }}}
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
+    const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+  </script>
+  <style>h1,h2,h3{font-family:'Noto Serif KR',Pretendard,serif}html{scroll-behavior:smooth}
+    .modeBtn.on{background:#b8923f;color:#fff;border-color:#b8923f}
+    .amtBtn.on{background:#b8923f;color:#fff;border-color:#b8923f}
+  </style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://biblynote.com/"},{"@type":"ListItem","position":2,"name":"선물·후원 좌석","item":"https://biblynote.com/gift"}]}
+  </script>
+</head>
+<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+
+  <div id="siteHeader" data-active="gift.html"></div>
+
+  <!-- 히어로 -->
+  <section class="bg-white text-ink">
+    <div class="max-w-3xl mx-auto px-5 py-16 md:py-20 text-center">
+      <p class="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-5">Gift &amp; Sponsor · 선물 · 후원 좌석</p>
+      <h1 class="text-2xl md:text-[34px] font-bold leading-[1.35]">당신의 후원이<br/><span class="text-gold">한 사람의 배움</span>이 됩니다</h1>
+      <p class="text-ink/70 text-[15px] md:text-base mt-6 leading-relaxed max-w-xl mx-auto">
+        형편 때문에 배움에서 소외되는 분이 없도록 <b class="text-ink">좌석을 기증</b>하거나, 소중한 사람에게 강의·이용권을 <b class="text-ink">선물</b>하세요. 한 사람을 세우면, 그 가정과 교회가 함께 섭니다.
+      </p>
+      <a href="#give" class="inline-flex items-center gap-2 mt-9 bg-gold text-white font-bold text-base px-8 py-3.5 rounded-full hover:opacity-90 transition shadow-xl">후원·선물 시작하기 →</a>
+    </div>
+  </section>
+
+  <main class="max-w-3xl mx-auto px-5">
+
+    <!-- 두 가지 방법 -->
+    <section class="py-12">
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-6">
+          <p class="text-2xl mb-2">🪑</p>
+          <p class="font-bold text-lg">좌석 후원 (기증)</p>
+          <p class="text-sm text-ink/60 mt-2 leading-relaxed">형편이 어려운 분·청년·선교지에 BIBLY가 대신 전달합니다. 받는 분을 몰라도 됩니다 — <b class="text-ink/70">"한 사람"</b>을 후원하는 거예요.</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-6">
+          <p class="text-2xl mb-2">🎁</p>
+          <p class="font-bold text-lg">지인에게 선물</p>
+          <p class="text-sm text-ink/60 mt-2 leading-relaxed">가족·친구·교우에게 라이브 완주반·이용권·책자를 선물하세요. 받는 분께 <b class="text-ink/70">선물 안내</b>를 보내드립니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 후원·선물 폼 -->
+    <section id="give" class="py-6 pb-12">
+      <div class="bg-white rounded-3xl border border-ink/10 shadow-card p-6 md:p-8 max-w-xl mx-auto">
+        <!-- 모드 선택 -->
+        <div class="grid grid-cols-2 gap-2 mb-6">
+          <button id="modeSponsor" onclick="setMode('sponsor')" class="modeBtn on border border-ink/15 rounded-xl py-3 text-sm font-bold transition">🪑 좌석 후원</button>
+          <button id="modeGift" onclick="setMode('gift')" class="modeBtn border border-ink/15 rounded-xl py-3 text-sm font-bold transition">🎁 선물하기</button>
+        </div>
+
+        <!-- 좌석 후원: 금액 선택 -->
+        <div id="sponsorFields">
+          <p class="text-sm font-semibold text-ink mb-2">후원 금액</p>
+          <div id="amtGrid" class="grid grid-cols-2 gap-2 mb-2"></div>
+          <input id="aAmtCustom" type="number" min="1000" step="1000" placeholder="직접 입력 (원)" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold mb-3" oninput="clearAmtPreset()" />
+        </div>
+
+        <!-- 선물하기: 받는 분 -->
+        <div id="giftFields" class="hidden space-y-3 mb-3">
+          <select id="aProduct" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold text-ink/80 bg-white">
+            <option value="">선물할 상품을 골라주세요 *</option>
+          </select>
+          <input id="aRecvName" type="text" maxlength="40" placeholder="받는 분 이름" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold" />
+          <input id="aRecvEmail" type="email" maxlength="120" placeholder="받는 분 이메일 (선물 안내를 보낼 곳)" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold" />
+          <textarea id="aCard" rows="2" maxlength="300" placeholder="받는 분께 전할 카드 메시지 (선택)" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold resize-none"></textarea>
+        </div>
+
+        <!-- 공통: 후원자/보내는 분 -->
+        <div class="space-y-3">
+          <input id="aName" type="text" maxlength="40" placeholder="보내는 분 이름 (또는 닉네임)" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold" />
+          <input id="aEmail" type="email" maxlength="120" placeholder="보내는 분 이메일 * (안내를 받을 곳)" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold" />
+          <input id="aPhone" type="tel" maxlength="30" placeholder="연락처 (선택)" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold" />
+          <textarea id="aMotive" rows="2" maxlength="400" placeholder="응원·전하고 싶은 말이 있다면 (선택)" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold resize-none"></textarea>
+          <input id="aHp" type="text" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+          <button id="aSubmit" onclick="submitGift()" class="w-full bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition">후원·선물 신청하기</button>
+          <p id="aMsg" class="text-center text-sm min-h-[18px]"></p>
+        </div>
+
+        <!-- 결제 안내 -->
+        <div id="payBox" class="mt-5 bg-sand/50 border border-gold/20 rounded-2xl p-4 text-sm text-ink/75 leading-relaxed">
+          <p class="font-bold text-ink mb-1.5">💳 입금 안내</p>
+          <p id="payInfo" class="text-ink/70">계좌 정보를 불러오는 중…</p>
+          <p class="text-xs text-ink/45 mt-2">신청 후 위 계좌로 입금해 주시면, 확인 후 좌석 전달(또는 선물 안내)을 진행해 드립니다. 신청만으로는 자동 결제되지 않습니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-8 pb-16">
+      <h2 class="text-xl font-bold text-center mb-6">자주 묻는 질문</h2>
+      <div class="space-y-3 max-w-xl mx-auto">
+        <details class="bg-white rounded-xl border border-ink/8 p-4"><summary class="font-semibold cursor-pointer text-sm">‘좌석 후원’은 누구에게 전달되나요?</summary><p class="text-sm text-ink/60 mt-2.5 leading-relaxed">형편이 어려운 분, 청년, 선교지 등 BIBLY가 연결하는 분께 전달됩니다. 특정한 분을 지정하고 싶으시면 메모에 적어주세요.</p></details>
+        <details class="bg-white rounded-xl border border-ink/8 p-4"><summary class="font-semibold cursor-pointer text-sm">선물은 어떻게 전달되나요?</summary><p class="text-sm text-ink/60 mt-2.5 leading-relaxed">입금이 확인되면 받는 분께 선물 안내(이용 방법·카드 메시지)를 이메일로 보내드립니다. 받는 분 이메일을 모르면, 보내는 분께 전달용 안내를 드릴게요.</p></details>
+        <details class="bg-white rounded-xl border border-ink/8 p-4"><summary class="font-semibold cursor-pointer text-sm">기부금 영수증이 발행되나요?</summary><p class="text-sm text-ink/60 mt-2.5 leading-relaxed">현재는 별도의 세금 영수증이 발행되지 않는 자발적 후원입니다. 양해 부탁드립니다.</p></details>
+        <details class="bg-white rounded-xl border border-ink/8 p-4"><summary class="font-semibold cursor-pointer text-sm">무료 강의도 있는데 왜 후원하나요?</summary><p class="text-sm text-ink/60 mt-2.5 leading-relaxed">강의는 앞으로도 무료입니다. 후원은 더 깊은 과정(라이브 완주반·이용권)을 형편이 어려운 분도 누리도록 ‘함께 세우는’ 일이에요. 후원은 사역의 지속에도 큰 힘이 됩니다.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType: 'implicit', lock: async (_n, _t, fn) => await fn() } });
+    function tableMissing(e){ return e && (e.code === '42P01' || /relation|does not exist|schema cache|find the table/i.test(e.message || '')); }
+    function won(n){ return '₩' + (Number(n)||0).toLocaleString(); }
+    function esc(s){ return String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+    function withTimeout(p, ms){ return Promise.race([ Promise.resolve(p), new Promise((_, rej) => setTimeout(() => rej(new Error('TIMEOUT')), ms)) ]); }
+
+    const NOTIFY_KEY = '8de9d22a-81a8-411d-99e2-90b38d21a062';
+    async function notifyApplication(d){
+      if(!NOTIFY_KEY) return;
+      try{
+        await fetch('https://api.web3forms.com/submit', {
+          method:'POST', headers:{ 'Content-Type':'application/json', Accept:'application/json' },
+          body: JSON.stringify({
+            access_key: NOTIFY_KEY,
+            subject: '[BIBLY 선물·후원좌석] 새 신청 🎁',
+            from_name: 'BIBLY 선물·후원좌석',
+            '유형': d.interest || '', '금액/상품': d.amountOrProduct || '', '보내는 분': d.name || '',
+            '보내는 분 이메일': d.email || '', '연락처': d.phone || '',
+            '받는 분': d.recvName || '', '받는 분 이메일': d.recvEmail || '',
+            '카드 메시지': d.card || '', '메모': d.motivation || ''
+          })
+        });
+      }catch(e){}
+    }
+
+    let MODE = 'sponsor', GIFT = null, SUP = null, SEL_AMT = 0;
+
+    // 데이터 로드: gift.json(금액·상품) + site.json(결제계좌)
+    (async () => {
+      try { GIFT = await (await fetch('content/gift.json?t=' + Date.now())).json(); } catch(e){ GIFT = { sponsorTiers:[], giftProducts:[] }; }
+      try { const s = await (await fetch('content/site.json?t=' + Date.now())).json(); SUP = s.support || {}; } catch(e){ SUP = {}; }
+      renderAmts(); renderProducts(); renderPay();
+    })();
+
+    function renderAmts(){
+      const g = document.getElementById('amtGrid'); if(!g) return;
+      g.innerHTML = (GIFT.sponsorTiers||[]).map(t =>
+        `<button type="button" class="amtBtn border border-ink/15 rounded-xl px-3 py-2.5 text-left transition hover:border-gold" data-amt="${t.amount}" onclick="pickAmt(${t.amount}, this)">
+          <span class="block font-bold text-sm">${won(t.amount)}</span>
+          <span class="block text-[11px] text-ink/55 leading-tight mt-0.5">${esc(t.label)}</span>
+        </button>`).join('');
+    }
+    function pickAmt(a, el){
+      SEL_AMT = a;
+      document.querySelectorAll('.amtBtn').forEach(b => b.classList.remove('on'));
+      if(el) el.classList.add('on');
+      const c = document.getElementById('aAmtCustom'); if(c) c.value = '';
+    }
+    function clearAmtPreset(){ SEL_AMT = 0; document.querySelectorAll('.amtBtn').forEach(b => b.classList.remove('on')); }
+    function renderProducts(){
+      const sel = document.getElementById('aProduct'); if(!sel) return;
+      sel.innerHTML = '<option value="">선물할 상품을 골라주세요 *</option>' + (GIFT.giftProducts||[]).map(p => `<option>${esc(p)}</option>`).join('');
+    }
+    function renderPay(){
+      const el = document.getElementById('payInfo'); if(!el) return;
+      const parts = [];
+      if(SUP.bank_account) parts.push(`<b class="text-ink">${esc(SUP.bank_name||'')} ${esc(SUP.bank_account)}</b> (예금주 ${esc(SUP.bank_holder||'')})`);
+      if(SUP.kakaopay_url) parts.push(`카카오페이: <a href="${esc(SUP.kakaopay_url)}" target="_blank" rel="noopener" class="text-gold underline">송금 링크</a>`);
+      if(SUP.paypal_url) parts.push(`PayPal: <a href="${esc(SUP.paypal_url)}" target="_blank" rel="noopener" class="text-gold underline">paypal.me</a>`);
+      el.innerHTML = parts.length ? parts.join('<br/>') : '입금 안내는 신청 후 이메일로 보내드립니다.';
+    }
+
+    function setMode(m){
+      MODE = m;
+      document.getElementById('modeSponsor').classList.toggle('on', m==='sponsor');
+      document.getElementById('modeGift').classList.toggle('on', m==='gift');
+      document.getElementById('sponsorFields').classList.toggle('hidden', m!=='sponsor');
+      document.getElementById('giftFields').classList.toggle('hidden', m!=='gift');
+      document.getElementById('aSubmit').textContent = m==='sponsor' ? '좌석 후원 신청하기' : '선물 신청하기';
+    }
+
+    async function submitGift(){
+      const msg = document.getElementById('aMsg'); msg.style.color = '#dc2626'; msg.textContent = '';
+      if (document.getElementById('aHp').value) return;
+      const name = document.getElementById('aName').value.trim();
+      const email = document.getElementById('aEmail').value.trim();
+      const phone = document.getElementById('aPhone').value.trim();
+      const motivation = document.getElementById('aMotive').value.trim();
+      if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.textContent = '보내는 분 이메일을 정확히 입력해 주세요.'; return; }
+
+      let interest, amountOrProduct, recvName='', recvEmail='', card='';
+      if (MODE === 'sponsor') {
+        const amt = SEL_AMT || parseInt(document.getElementById('aAmtCustom').value, 10) || 0;
+        if (!amt || amt < 1000) { msg.textContent = '후원 금액을 선택하거나 입력해 주세요.'; return; }
+        interest = '🪑 좌석 후원'; amountOrProduct = won(amt);
+      } else {
+        const product = document.getElementById('aProduct').value;
+        if (!product) { msg.textContent = '선물할 상품을 선택해 주세요.'; return; }
+        recvName = document.getElementById('aRecvName').value.trim();
+        recvEmail = document.getElementById('aRecvEmail').value.trim();
+        card = document.getElementById('aCard').value.trim();
+        interest = '🎁 선물하기'; amountOrProduct = product;
+      }
+
+      const memo = [
+        amountOrProduct ? ('금액/상품: ' + amountOrProduct) : '',
+        recvName ? ('받는 분: ' + recvName) : '',
+        recvEmail ? ('받는 분 이메일: ' + recvEmail) : '',
+        card ? ('카드: ' + card) : '',
+        motivation ? ('메모: ' + motivation) : ''
+      ].filter(Boolean).join(' / ');
+
+      const btn = document.getElementById('aSubmit'); btn.disabled = true; btn.textContent = '신청 중…';
+      let error;
+      try {
+        const res = await withTimeout(sb.from('course_applications').insert({
+          name: name || null, email, phone: phone || null, interest, motivation: memo || null
+        }), 9000);
+        error = res.error;
+      } catch(e){ error = e; }
+      btn.disabled = false; setMode(MODE);
+      if (error) {
+        if (tableMissing(error)) { msg.innerHTML = '신청을 준비 중이에요. 잠시 후 다시 시도하시거나 <a href="mailto:josephoh1611@gmail.com" class="underline">이메일</a>로 알려주세요.'; }
+        else { msg.textContent = '신청 중 오류가 났어요: ' + (error.message || error); }
+        return;
+      }
+      notifyApplication({ interest, amountOrProduct, name, email, phone, recvName, recvEmail, card, motivation });
+      document.getElementById('give').innerHTML = '<div class="bg-white rounded-3xl border border-gold/30 shadow-card p-8 md:p-10 max-w-xl mx-auto text-center"><p class="text-4xl mb-3">💛</p><h2 class="text-xl md:text-2xl font-bold">신청이 접수됐어요!</h2><p class="text-ink/60 text-sm mt-3 leading-relaxed">입금 안내를 입력하신 이메일로 보내드릴게요. 입금이 확인되면 좌석 전달(또는 선물 안내)을 진행합니다.<br/>한 사람을 세우는 일에 함께해 주셔서 감사합니다. 🙏</p><a href="index.html" class="inline-block mt-6 text-gold font-semibold hover:underline">홈으로 돌아가기 →</a></div>';
+      document.getElementById('give').scrollIntoView({ behavior:'smooth', block:'center' });
+    }
+  </script>
+
+  <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script src="auth-header.js?v=20260619c"></script>
+</body>
+</html>

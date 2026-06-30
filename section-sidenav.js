@@ -26,7 +26,7 @@
     { label:'소통·나눔', href:'community.html', children:[
       { label:'질문·나눔·기도요청', href:'community.html' }, { label:'신앙상담', href:'counsel.html' },
       { label:'강의 요청·건의함', href:'request.html' }, { label:'자료실', href:'resources.html' },
-      { label:'칼럼', href:'column.html' } ]}
+      { label:'칼럼', href:'column.html' }, { label:'🎁 선물·후원 좌석', href:'gift.html' } ]}
   ];
 
   var page = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
