@@ -147,25 +147,31 @@
     </div>
   </div>
 
-  <!-- ===== 네비 ===== -->
-  <header class="sticky top-0 z-50 bg-paper/90 backdrop-blur-md border-b border-ink/8">
-    <nav class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between gap-5">
-      <a href="#top" class="flex items-center gap-2.5 shrink-0">
-        <svg class="w-10 h-10 shrink-0" viewBox="0 0 48 48" role="img" aria-label="BIBLY"><rect x="9" y="9" width="30" height="30" rx="6" transform="rotate(45 24 24)" fill="#b8923f"/><text x="24" y="32.5" text-anchor="middle" font-family="'Noto Serif KR', Georgia, serif" font-size="22" font-weight="700" fill="#213a6b">B</text></svg>
-        <span class="leading-none">
-          <span class="block font-extrabold tracking-tight text-[20px]">BIBLY<span class="text-gold">.</span></span>
-          <span class="block text-[11px] font-semibold text-gold tracking-[0.06em] mt-1">말씀으로 시대를 읽다</span>
+  <!-- ===== 헤더 (바이블 인사이트 ACADEMY · 가운데 로고 + 메뉴 줄) ===== -->
+  <header class="sticky top-0 z-50 bg-paper/95 backdrop-blur-md border-b border-ink/8">
+    <!-- 로고(가운데 정렬) -->
+    <div class="max-w-7xl mx-auto px-5 pt-3.5 pb-2.5 relative flex items-center justify-center">
+      <a href="#top" class="text-center leading-none">
+        <span class="block text-[23px] md:text-[26px] font-bold tracking-tight text-ink">바이블 인사이트<span class="text-gold">.</span></span>
+        <span class="inline-flex items-center gap-2 mt-1.5">
+          <span class="h-px w-7 bg-gold/40"></span>
+          <span class="text-[10.5px] font-semibold text-gold tracking-[0.34em]">ACADEMY</span>
+          <span class="h-px w-7 bg-gold/40"></span>
         </span>
       </a>
-      <!-- 메뉴는 페이지 맨 아래 MENU 목록에서 자동으로 그려집니다 -->
-      <div id="mainmenu" class="hidden xl:flex items-center gap-5 text-[14.5px] font-medium text-[#15223d]"></div>
-      <div class="flex items-center gap-2 ml-auto shrink-0">
-        <a href="mylearning.html" class="inline-flex items-center gap-1.5 border border-gold/45 text-gold font-semibold text-sm px-3 sm:px-4 py-2.5 rounded-full hover:bg-gold/10 transition shrink-0">📚 내 강의실</a>
-        <a href="support.html" aria-label="후원하기" title="후원하기" class="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-rose-500/10 text-rose-500 border border-rose-300 font-semibold text-sm px-4 py-2.5 hover:bg-rose-500 hover:text-white transition shrink-0"><span style="font-size:15px">♥</span> 후원</a>
-        <a href="#pricing" class="hidden sm:inline-flex bg-gold text-white font-semibold text-sm px-5 py-2.5 rounded-full hover:opacity-90 transition">수강 신청</a>
-        <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="xl:hidden w-10 h-10 -mr-1.5 flex items-center justify-center text-ink" aria-label="메뉴 열기">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-        </button>
+      <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="xl:hidden absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center text-ink" aria-label="메뉴 열기">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+    <!-- 메뉴 줄 (큰 폰트 + 호버 드롭다운) -->
+    <nav class="hidden xl:block border-t border-ink/8">
+      <div class="max-w-7xl mx-auto px-5 h-14 flex items-center gap-7">
+        <div id="mainmenu" class="flex items-center gap-7 text-[16px] font-medium text-[#1f2a44]"></div>
+        <div class="flex items-center gap-2 ml-auto shrink-0">
+          <a href="welcome.html" style="background:#147d63" class="inline-flex items-center gap-1.5 text-white font-semibold text-[15px] px-5 py-2.5 rounded-full hover:opacity-90 transition">무료로 시작하기</a>
+          <a href="mylearning.html" class="inline-flex items-center gap-1.5 border border-gold/45 text-gold font-semibold text-sm px-4 py-2.5 rounded-full hover:bg-gold/10 transition">📚 내 강의실</a>
+          <a href="support.html" aria-label="후원하기" title="후원하기" class="inline-flex items-center gap-1 rounded-full bg-rose-500/10 text-rose-500 border border-rose-300 font-semibold text-sm px-4 py-2.5 hover:bg-rose-500 hover:text-white transition"><span style="font-size:15px">♥</span> 후원</a>
+        </div>
       </div>
     </nav>
     <!-- 모바일 메뉴 -->
@@ -1484,10 +1490,13 @@
       }
       document.getElementById('mainmenu').innerHTML = (menu || []).map(m => {
         const href=_hrefI(m.href), kids=m.children||[];
-        if(!kids.length) return `<a href="${href}" class="biblyTop hover:text-gold transition whitespace-nowrap">${m.label}</a>`;
+        const gold = (m.label||'').indexOf('아카데미')>=0;
+        const goldCls = gold ? ' text-gold' : '';
+        const label = m.label + (gold ? ' <span style="font-size:9px;background:#b8923f;color:#fff;border-radius:4px;padding:2px 5px;vertical-align:2px;font-weight:700">NEW</span>' : '');
+        if(!kids.length) return `<a href="${href}" class="biblyTop hover:text-gold transition whitespace-nowrap${goldCls}">${label}</a>`;
         const caret='<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="ml-0.5 opacity-60"><path d="M6 9l6 6 6-6"/></svg>';
         const sub=kids.map(c=>`<a href="${_hrefI(c.href)}">${c.label}</a>`).join('');
-        return `<div class="navItem"><a href="${href}" class="biblyTop hover:text-gold transition whitespace-nowrap inline-flex items-center">${m.label}${caret}</a><div class="navDrop"><div class="navDropCard">${sub}</div></div></div>`;
+        return `<div class="navItem"><a href="${href}" class="biblyTop hover:text-gold transition whitespace-nowrap inline-flex items-center${goldCls}">${label}${caret}</a><div class="navDrop"><div class="navDropCard">${sub}</div></div></div>`;
       }).join('');
       const mob = document.getElementById('mobilemenuLinks');
       if(mob) mob.innerHTML = (menu || []).map(m => {

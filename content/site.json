@@ -1,24 +1,6 @@
 {
   "nav": [
     {
-      "label": "BIBLY 이야기",
-      "href": "about.html",
-      "children": [
-        {
-          "label": "우리의 사명·소개",
-          "href": "about.html"
-        },
-        {
-          "label": "🌱 무료로 시작하기",
-          "href": "welcome.html"
-        },
-        {
-          "label": "🎖️ 1기 창립 멤버",
-          "href": "founding.html"
-        }
-      ]
-    },
-    {
       "label": "강의·커리큘럼",
       "href": "curriculum.html",
       "children": [
@@ -27,12 +9,12 @@
           "href": "curriculum.html"
         },
         {
-          "label": "정규 심화 과정(아카데미)",
-          "href": "academy.html"
-        },
-        {
           "label": "나에게 맞는 강의 찾기",
           "href": "find.html"
+        },
+        {
+          "label": "🌱 무료로 시작하기",
+          "href": "welcome.html"
         }
       ]
     },
@@ -65,6 +47,10 @@
           "href": "dictionary.html"
         }
       ]
+    },
+    {
+      "label": "성경사전",
+      "href": "dictionary.html"
     },
     {
       "label": "위대한 믿음",
@@ -125,6 +111,24 @@
         {
           "label": "내 구매·자료",
           "href": "mylearning.html"
+        }
+      ]
+    },
+    {
+      "label": "아카데미 인증과정",
+      "href": "academy.html",
+      "children": [
+        {
+          "label": "과정 소개",
+          "href": "academy.html"
+        },
+        {
+          "label": "급수 패키지·수강료",
+          "href": "academy.html#packages"
+        },
+        {
+          "label": "등록 신청",
+          "href": "academy.html#apply"
         }
       ]
     }
