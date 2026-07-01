@@ -190,6 +190,13 @@
         if(q){ const deepTxt=(e.deep||[]).map(s=>(s.h||'')+' '+(s.p||'')).join(' '); const hay=((e.term||'')+' '+(e.en||'')+' '+(e.original||'')+' '+(e.def||'')+' '+deepTxt+' '+((e.related||[]).join(' '))).toLowerCase(); if(!hay.includes(q)) return false; }
         return true;
       });
+      // 검색어가 있으면 관련도순 정렬(정확 일치 표제어 → 시작 일치 → 포함 → 영어 → 본문만 매칭)
+      if(q){
+        const score=e=>{ const t=(e.term||'').toLowerCase(), en=(e.en||'').toLowerCase();
+          if(t===q) return 0; if(t.indexOf(q)===0) return 1; if(t.indexOf(q)>=0) return 2;
+          if(en===q) return 3; if(en.indexOf(q)>=0) return 4; return 5; };
+        list.sort((a,b)=> score(a)-score(b) || (a.term||'').localeCompare(b.term||'','ko'));
+      }
       $('count').textContent=list.length.toLocaleString();
       if(!list.length){ $('results').innerHTML=''; $('empty').classList.remove('hidden'); return; }
       $('empty').classList.add('hidden');
