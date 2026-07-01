@@ -234,6 +234,21 @@
         var nav = document.getElementById('navmenu'); if(nav){ nav.className = nav.className.replace('text-ink/90','text-[#15223d]'); nav.innerHTML = menuHTML(mn); }
         var mob = document.getElementById('biblyMobMenu'); if(mob) mob.innerHTML = mobileMenuHTML(mn);
       }
+      // 사업자 정보 공통 표기(전 페이지 하단 자동 · 이미 표기된 페이지는 건너뜀)
+      try{
+        var biz = s && s.business;
+        if(biz && biz.reg_no && document.body.innerText.indexOf(biz.reg_no) < 0){
+          var eco = biz.ecommerce_no ? ('통신판매업 신고 ' + biz.ecommerce_no) : (biz.ecommerce_status || '통신판매업 신고 준비 중');
+          var bl = document.createElement('div');
+          bl.setAttribute('data-bibly-bizinfo','');
+          bl.style.cssText = 'max-width:1100px;margin:0 auto;padding:16px 20px;text-align:center;font-size:11px;line-height:1.75;color:rgba(33,58,107,.42);border-top:1px solid rgba(33,58,107,.06)';
+          bl.innerHTML = '상호 <b style="color:rgba(33,58,107,.6)">' + biz.name + '</b> · 대표 ' + biz.ceo
+            + ' · 사업자등록번호 ' + biz.reg_no + ' · ' + eco + '<br>' + biz.address
+            + (biz.contact_email ? ' · ' + biz.contact_email : '');
+          var f = document.querySelector('footer');
+          if(f) f.appendChild(bl); else document.body.appendChild(bl);
+        }
+      }catch(e){}
     }).catch(function(){});
     // 3) 로그인 이름 보강
     refineName(readStored());
