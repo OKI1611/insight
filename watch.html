@@ -1182,6 +1182,123 @@
       });
     })();
   </script>
+  <!-- ===== 사전 검색 드로어 (강의 중 용어 찾기) ===== -->
+  <button id="dictTab" onclick="dictOpen()" aria-label="성경사전 검색"
+    class="fixed right-0 top-[42%] z-40 bg-white text-ink shadow-[0_6px_22px_-8px_rgba(21,32,58,.4)] border border-ink/10 border-r-0 rounded-l-2xl px-2.5 py-3 flex flex-col items-center gap-0.5 hover:bg-sand transition group">
+    <span class="text-lg leading-none">📖</span>
+    <span class="text-[10px] font-bold text-ink/60 group-hover:text-gold">사전</span>
+  </button>
+
+  <div id="dictOverlay" onclick="if(event.target===this)dictClose()" class="hidden fixed inset-0 z-[70] bg-ink/40 backdrop-blur-sm">
+    <aside id="dictPanel" class="absolute right-0 top-0 h-full w-full max-w-[420px] bg-cloud shadow-2xl flex flex-col translate-x-full transition-transform duration-300 ease-out">
+      <div class="shrink-0 bg-white border-b border-ink/8 px-5 pt-5 pb-4">
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <p class="text-gold text-[11px] font-bold tracking-[0.2em] uppercase">Dictionary</p>
+            <h3 class="font-bold text-lg text-ink mt-0.5">성경사전 검색</h3>
+            <p class="text-xs text-ink/45 mt-1">강의 중 궁금한 말씀 용어를 바로 찾아보세요</p>
+          </div>
+          <button onclick="dictClose()" aria-label="닫기" class="shrink-0 w-9 h-9 rounded-full hover:bg-ink/5 flex items-center justify-center text-ink/50 text-lg">✕</button>
+        </div>
+        <div class="relative mt-4">
+          <span class="absolute left-4 top-1/2 -translate-y-1/2 text-ink/30 text-sm">🔍</span>
+          <input id="dictQ" type="text" autocomplete="off" oninput="dictSearch()" placeholder="예: 칭의 · 휴거 · 666 · 침례"
+            class="w-full bg-cloud border border-ink/12 rounded-full pl-10 pr-4 py-3 text-sm outline-none focus:border-gold focus:bg-white transition" />
+        </div>
+        <div id="dictChips" class="flex flex-wrap gap-1.5 mt-3"></div>
+      </div>
+      <div id="dictResults" class="flex-1 overflow-y-auto px-5 py-4 space-y-3"></div>
+      <div class="shrink-0 border-t border-ink/8 bg-white px-5 py-3 text-center">
+        <a href="dictionary.html" class="text-xs text-gold font-semibold hover:underline">사전 전체 보기 →</a>
+      </div>
+    </aside>
+  </div>
+  <script>
+  (function(){
+    var DICT=null, DLOAD=false, timer=null;
+    var $=function(id){return document.getElementById(id);};
+    function esc(s){return String(s==null?'':s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
+    function nospace(s){return String(s||'').replace(/\s+/g,'').toLowerCase();}
+    var CHIPS=['칭의','휴거','천년왕국','666','침례','회개','삼위일체','재림'];
+    window.dictOpen=function(){
+      var o=$('dictOverlay'), p=$('dictPanel');
+      o.classList.remove('hidden');
+      void p.offsetWidth;                       // 리플로우 강제 → 트랜지션 적용(rAF 미의존)
+      p.classList.remove('translate-x-full');
+      if(!DLOAD){ DLOAD=true; loadDict(); }
+      setTimeout(function(){ var q=$('dictQ'); if(q) q.focus(); },320);
+    };
+    window.dictClose=function(){
+      $('dictPanel').classList.add('translate-x-full');
+      setTimeout(function(){ $('dictOverlay').classList.add('hidden'); },300);
+    };
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape' && !$('dictOverlay').classList.contains('hidden')) dictClose(); });
+    function loadDict(){
+      $('dictResults').innerHTML='<p class="text-center text-ink/40 text-sm py-10">사전을 불러오는 중…</p>';
+      fetch('dictionary/entries.json?t='+Date.now()).then(function(r){return r.json();}).then(function(d){
+        DICT=d;
+        $('dictChips').innerHTML=CHIPS.map(function(c){return '<button onclick="dictChip(\''+c+'\')" class="text-xs bg-white border border-ink/10 text-ink/60 rounded-full px-3 py-1 hover:border-gold hover:text-gold transition">'+c+'</button>';}).join('');
+        emptyState();
+      }).catch(function(){ $('dictResults').innerHTML='<p class="text-center text-ink/40 text-sm py-10">사전을 불러오지 못했어요.</p>'; });
+    }
+    window.dictChip=function(t){ $('dictQ').value=t; runSearch(); $('dictQ').focus(); };
+    function emptyState(){
+      var n=DICT?DICT.length:0;
+      $('dictResults').innerHTML='<div class="text-center py-12 px-4"><p class="text-4xl mb-3">📖</p><p class="text-sm text-ink/50 leading-relaxed">강의를 듣다 궁금한 단어를<br/>위에서 검색해 보세요.</p><p class="text-xs text-ink/35 mt-2">인물·지명·교리·종말론 등 '+(n?n.toLocaleString()+'':'2,300여')+'개 항목</p></div>';
+    }
+    window.dictSearch=function(){ clearTimeout(timer); timer=setTimeout(runSearch,140); };
+    function runSearch(){
+      if(!DICT) return;
+      var raw=$('dictQ').value.trim();
+      if(!raw){ emptyState(); return; }
+      var q=raw.toLowerCase(), qn=nospace(raw), res=[];
+      for(var i=0;i<DICT.length;i++){
+        var e=DICT[i];
+        var deepTxt=(e.deep||[]).map(function(s){return (s.h||'')+' '+(s.p||'');}).join(' ');
+        var hay=((e.term||'')+' '+(e.en||'')+' '+(e.original||'')+' '+(e.def||'')+' '+deepTxt+' '+((e.related||[]).join(' '))).toLowerCase();
+        if(hay.indexOf(q)>=0 || nospace(hay).indexOf(qn)>=0){
+          var t=(e.term||'').toLowerCase();
+          var score=(t===q)?0:(t.indexOf(q)===0?1:(t.indexOf(q)>=0?2:3));
+          res.push([score,e]);
+        }
+      }
+      res.sort(function(a,b){return a[0]-b[0];});
+      if(!res.length){ $('dictResults').innerHTML='<div class="text-center py-12"><p class="text-3xl mb-2">🔍</p><p class="text-sm text-ink/50">‘'+esc(raw)+'’ 항목이 없어요.</p><p class="text-xs text-ink/35 mt-2">다른 단어로 검색해 보세요.</p></div>'; return; }
+      var shown=res.slice(0,40);
+      var html='<p class="text-[11px] text-ink/40 mb-1 px-0.5">'+res.length+'개 항목'+(res.length>40?' 중 40개 표시':'')+'</p>';
+      html+=shown.map(function(p){return card(p[1]);}).join('');
+      $('dictResults').innerHTML=html;
+      $('dictResults').scrollTop=0;
+    }
+    function card(e){
+      var isFaq=(e.category==='자주 묻는 질문');
+      var deep=Array.isArray(e.deep)?e.deep:[];
+      var deepHtml='';
+      if(deep.length){
+        deepHtml='<details class="mt-2 dictDeep"><summary class="cursor-pointer list-none text-[11px] font-semibold text-gold flex items-center gap-1 select-none">자세히 보기 <span class="dcaret">▾</span></summary><div class="mt-2 space-y-2">'+
+          deep.map(function(s){return '<div><p class="text-[12px] font-bold text-ink/80">'+esc(s.h||'')+'</p><p class="text-[12px] text-ink/65 leading-relaxed mt-0.5">'+esc(s.p||'')+'</p></div>';}).join('')+
+          '</div></details>';
+      }
+      var scr=(e.scriptures||[]).slice(0,5).map(function(s){return '<span class="text-[10px] text-ink/45 bg-ink/[0.04] rounded px-1.5 py-0.5">'+esc(s)+'</span>';}).join(' ');
+      return '<div class="bg-white rounded-2xl border border-ink/8 p-4 shadow-[0_2px_10px_-7px_rgba(21,32,58,.18)]">'+
+        '<div class="flex items-center gap-2 flex-wrap">'+
+          '<h4 class="font-bold text-ink text-[15px]">'+esc(e.term||'')+'</h4>'+
+          (e.en?'<span class="text-[11px] text-ink/40">'+esc(e.en)+'</span>':'')+
+          '<span class="ml-auto text-[10px] font-semibold text-gold bg-gold/10 rounded-full px-2 py-0.5">'+esc(e.category||'')+'</span>'+
+        '</div>'+
+        (e.original?'<p class="text-[11px] text-ink/40 mt-0.5">'+esc(e.original)+'</p>':'')+
+        '<p class="text-[13px] text-ink/80 leading-relaxed mt-2">'+esc(e.def||'')+'</p>'+
+        (scr?'<div class="flex flex-wrap gap-1 mt-2">'+scr+'</div>':'')+
+        deepHtml+
+      '</div>';
+    }
+  })();
+  </script>
+  <style>
+    #dictPanel .dictDeep[open] .dcaret{transform:rotate(180deg);display:inline-block}
+    #dictResults::-webkit-scrollbar{width:8px}
+    #dictResults::-webkit-scrollbar-thumb{background:rgba(33,58,107,.15);border-radius:8px}
+  </style>
   <script src="/access.js?v=1"></script>
   <script src="auth-header.js?v=20260619c"></script>
 </body>
