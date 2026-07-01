@@ -48,6 +48,17 @@
     .vact button{font-size:12px;font-weight:600;padding:5px 11px;border-radius:999px;border:1px solid rgba(33,58,107,.14);background:#fff;color:#213a6b;cursor:pointer;transition:background .12s}
     .vact button:hover{background:rgba(184,146,63,.12)}
     .vact .vclose{border:0;color:rgba(33,58,107,.35);padding:5px 8px}
+    /* 구절 형광펜 하이라이트 */
+    .vrow.hl-y{background:rgba(250,204,21,.30)}
+    .vrow.hl-g{background:rgba(52,199,89,.22)}
+    .vrow.hl-b{background:rgba(56,132,255,.20)}
+    .vrow.hl-p{background:rgba(255,64,129,.18)}
+    .vrow.hl-y:hover,.vrow.hl-g:hover,.vrow.hl-b:hover,.vrow.hl-p:hover{filter:brightness(.97)}
+    .vhl{display:inline-flex;gap:5px;align-items:center;margin-right:4px;padding-right:8px;border-right:1px solid rgba(33,58,107,.12)}
+    .vact .hlchip{width:20px;height:20px;min-width:20px;padding:0;border-radius:50%;border:1px solid rgba(33,58,107,.18);cursor:pointer;font-size:11px;line-height:1;display:inline-flex;align-items:center;justify-content:center}
+    .vact .hlchip.hy{background:rgba(250,204,21,.9)} .vact .hlchip.hg{background:rgba(52,199,89,.85)} .vact .hlchip.hb{background:rgba(56,132,255,.85)} .vact .hlchip.hp{background:rgba(255,64,129,.85)}
+    .vact .hlchip.hx{background:#fff;color:rgba(33,58,107,.5)}
+    .vact .hlchip:hover{transform:scale(1.12);background-clip:padding-box}
   </style>
   <script type="application/ld+json">
 {
@@ -324,6 +335,7 @@
       h+='</div>';
       if($('parallel').checked && !KR){ h+='<p class="text-xs text-gold/80 mt-5 bg-gold/[0.07] rounded-lg p-3">🕊️ 이 장의 한국어 번역은 아직 준비 중입니다. (원어 기반 자체 번역으로 순차 추가)</p>'; }
       $('reader').innerHTML=h;
+      restoreHl();
     }
     function nav(d){
       let c=CH+d;
@@ -391,11 +403,29 @@
       document.body.appendChild(ov);
     }
     function closeVerseActions(){ document.querySelectorAll('.vact').forEach(b=>b.remove()); }
+    /* ===== 구절 형광펜 하이라이트 (localStorage 저장 · 재방문 유지) ===== */
+    function hlKey(){ return 'bibly_hl_'+CUR.file+'_'+CH; }
+    function getHl(){ try{ return JSON.parse(localStorage.getItem(hlKey())||'{}')||{}; }catch(_){ return {}; } }
+    function applyHl(v,color){
+      const row=$('v'+v); if(!row) return;
+      row.classList.remove('hl-y','hl-g','hl-b','hl-p');
+      if(color) row.classList.add('hl-'+color);
+    }
+    function highlightVerse(v,color){
+      const m=getHl();
+      if(color) m[v]=color; else delete m[v];
+      try{ localStorage.setItem(hlKey(), JSON.stringify(m)); }catch(_){}
+      applyHl(v,color);
+    }
+    function restoreHl(){ const m=getHl(); Object.keys(m).forEach(function(v){ applyHl(v,m[v]); }); }
     function toggleVerseActions(v){
       const open=document.querySelector('#v'+v+' .vact'); closeVerseActions(); if(open) return;
       const body=document.querySelector('#v'+v+' .vbody'); if(!body) return;
       const bar=document.createElement('div'); bar.className='vact';
-      bar.innerHTML='<button type="button" onclick="event.stopPropagation();copyVerse('+v+')">📋 복사</button>'
+      const chip=(c,t)=>'<button type="button" class="hlchip h'+c+'" title="'+t+'" onclick="event.stopPropagation();highlightVerse('+v+",'"+c+"')\">"+(c==='x'?'✕':'')+'</button>';
+      bar.innerHTML='<span class="vhl">'+chip('y','노랑')+chip('g','초록')+chip('b','파랑')+chip('p','분홍')
+        +'<button type="button" class="hlchip hx" title="지우기" onclick="event.stopPropagation();highlightVerse('+v+',null)">✕</button></span>'
+        +'<button type="button" onclick="event.stopPropagation();copyVerse('+v+')">📋 복사</button>'
         +'<button type="button" onclick="event.stopPropagation();openShareSheet('+v+')">🔗 공유</button>'
         +'<button type="button" class="vclose" onclick="event.stopPropagation();closeVerseActions()">✕</button>';
       body.appendChild(bar);
