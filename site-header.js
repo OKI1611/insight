@@ -82,10 +82,9 @@
   };
 
   var LOGO =
-    '<a href="index.html" onclick="return __biblyHome(event)" class="flex items-center gap-2 shrink-0">'
-    + '<svg class="w-9 h-9 shrink-0" viewBox="0 0 48 48" role="img" aria-label="BIBLY"><rect x="9" y="9" width="30" height="30" rx="6" transform="rotate(45 24 24)" fill="#b8923f"/><text x="24" y="32.5" text-anchor="middle" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#213a6b">B</text></svg>'
-    + '<span class="leading-tight"><span class="block font-extrabold text-[16px] tracking-tight text-ink">BIBLY<span class="text-gold">.</span></span>'
-    + '<span class="block text-[10px] font-semibold text-gold tracking-[0.06em] mt-0.5">말씀으로 시대를 읽다</span></span></a>';
+    '<a href="index.html" onclick="return __biblyHome(event)" class="flex items-center shrink-0">'
+    + '<span class="leading-none text-center"><span class="block font-bold text-[18px] tracking-tight text-ink">바이블 인사이트<span class="text-gold">.</span></span>'
+    + '<span class="inline-flex items-center gap-1.5 mt-0.5"><span class="h-px w-4 bg-gold/40"></span><span class="text-[9px] font-semibold text-gold tracking-[0.3em]">ACADEMY</span><span class="h-px w-4 bg-gold/40"></span></span></span></a>';
 
   var mount, active;
 
