@@ -257,7 +257,9 @@
           if(f) f.appendChild(bl); else document.body.appendChild(bl);
         }
       }catch(e){}
-    }).catch(function(){});
+      // 왼쪽 퀵메뉴 바(전 페이지 공통 · 자주 쓰는 곳 바로가기 + 맨 위로)
+      try{ buildQuickRail(s); }catch(e){}
+    }).catch(function(){ try{ buildQuickRail(null); }catch(e){} });
     // 3) 로그인 이름 보강
     refineName(readStored());
     // 4) 공통 푸터(기존 footer 없을 때만)
@@ -267,6 +269,46 @@
         document.body.appendChild(wrap.firstChild);
       }
     }catch(e){}
+    // 5) 왼쪽 퀵메뉴 바(site.json 흐름과 무관하게 항상 생성 · 중복 방지 가드 있음)
+    try{ buildQuickRail(null); }catch(e){}
+  }
+
+  // 왼쪽 퀵메뉴 바(메가스터디식) — 자주 쓰는 곳 바로가기 + 맨 위로. 전 페이지 공통, 데스크톱 섹션 사이드바와 겹치면 자동 숨김.
+  function buildQuickRail(s){
+    if(document.getElementById('biblyRail')) return;
+    var yt = (s && s.youtube && s.youtube.channel_url) || 'https://www.youtube.com/channel/UC82IOMnZud8NNt3BYzAxTMg';
+    var items = [
+      { ic:'▶', lb:'유튜브', href:yt, ext:true },
+      { ic:'📖', lb:'성경', href:'bible.html' },
+      { ic:'📚', lb:'사전', href:'dictionary.html' },
+      { ic:'🎓', lb:'강의', href:'curriculum.html' },
+      { ic:'🛒', lb:'스토어', href:'booklet.html' },
+      { ic:'♥', lb:'후원', href:'support.html' }
+    ];
+    if(!document.getElementById('biblyRailCSS')){
+      var st = document.createElement('style'); st.id='biblyRailCSS';
+      st.textContent =
+        '#biblyRail{position:fixed;left:12px;top:50%;transform:translateY(-50%);z-index:44;display:flex;flex-direction:column;gap:1px;background:#fff;border:1px solid rgba(33,58,107,.1);border-radius:16px;box-shadow:0 12px 34px -14px rgba(21,32,58,.35);padding:6px}'
+        + '#biblyRail a{display:flex;flex-direction:column;align-items:center;gap:2px;width:48px;padding:9px 0;border-radius:12px;text-decoration:none;color:#42506c;transition:background .15s,color .15s;cursor:pointer}'
+        + '#biblyRail a:hover{background:#f4f7fc;color:#b8923f}'
+        + '#biblyRail .ic{font-size:17px;line-height:1}'
+        + '#biblyRail .lb{font-size:10px;font-weight:700;letter-spacing:-.02em}'
+        + '#biblyRail .rtop{border-top:1px solid rgba(33,58,107,.08);margin-top:3px;padding-top:9px;color:rgba(33,58,107,.45)}'
+        + '@media(max-width:767px){#biblyRail{display:none}}';   // 모바일에선 본문 가림 방지로 숨김
+      document.head.appendChild(st);
+    }
+    var rail = document.createElement('nav'); rail.id='biblyRail'; rail.setAttribute('aria-label','빠른 이동 메뉴');
+    var html = items.map(function(it){
+      return '<a href="'+it.href+'"'+(it.ext?' target="_blank" rel="noopener"':'')+' title="'+it.lb+'"><span class="ic">'+it.ic+'</span><span class="lb">'+it.lb+'</span></a>';
+    }).join('');
+    html += '<a class="rtop" title="맨 위로" onclick="window.scrollTo({top:0,behavior:\'smooth\'});return false;"><span class="ic">⤴</span><span class="lb">TOP</span></a>';
+    rail.innerHTML = html;
+    document.body.appendChild(rail);
+    // 데스크톱(≥1024)에서 좌측 섹션 사이드바가 있으면 겹치므로 숨김
+    function fit(){ var side=document.getElementById('sectionSideNav'); rail.style.display = (side && window.innerWidth>=1024) ? 'none' : ''; }
+    fit(); window.addEventListener('resize', fit);
+    [300,800,1500,2500].forEach(function(t){ setTimeout(fit,t); });   // 섹션 사이드바 비동기 렌더 대응
+    try{ new MutationObserver(fit).observe(document.body,{childList:true}); }catch(e){}
   }
 
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
