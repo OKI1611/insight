@@ -61,8 +61,10 @@
   </header>
 
   <!-- 후원 본문 -->
-  <main class="bg-gold text-white">
-    <section class="py-16 md:py-20">
+  <main class="relative overflow-hidden bg-gradient-to-b from-[#22366090] via-ink to-navy text-white" style="background-color:#1b2b4d">
+    <div class="pointer-events-none absolute -top-24 -right-24 w-96 h-96 rounded-full" style="background:radial-gradient(circle, rgba(184,146,63,.20), transparent 65%)"></div>
+    <div class="pointer-events-none absolute bottom-10 -left-24 w-80 h-80 rounded-full" style="background:radial-gradient(circle, rgba(184,146,63,.12), transparent 65%)"></div>
+    <section class="relative py-16 md:py-20">
       <div class="max-w-2xl mx-auto px-5 text-center">
         <p class="eyebrow text-gold text-xs font-semibold mb-4">SUPPORT · 함께 밝히는 빛</p>
         <h1 class="text-2xl md:text-[32px] font-bold mb-6 leading-snug">광야에서 부활의 주님을 만난 한 사역자가,<br class="hidden sm:block"/> 같은 길을 걷는 당신과 함께 섭니다</h1>
@@ -131,13 +133,13 @@
 
         <!-- 추천 후원 금액 -->
         <div class="max-w-md mx-auto mb-5">
-          <p class="text-paper/55 text-xs mb-2">이만큼이면 충분해요 — 부담 없이</p>
+          <p class="text-paper/60 text-xs mb-2">금액을 누르면 계좌이체 안내가 열려요 — 부담 없이</p>
           <div class="grid grid-cols-3 gap-2">
-            <div class="bg-white/5 border border-white/12 rounded-xl py-3"><p class="font-bold text-sm">5,000원</p><p class="text-paper/45 text-[11px] mt-0.5">커피 한 잔</p></div>
-            <div class="bg-white/5 border border-white/12 rounded-xl py-3"><p class="font-bold text-sm">10,000원</p><p class="text-paper/45 text-[11px] mt-0.5">한 끼 식사</p></div>
-            <div class="bg-white/5 border border-white/12 rounded-xl py-3"><p class="font-bold text-sm">30,000원</p><p class="text-paper/45 text-[11px] mt-0.5">든든한 응원</p></div>
+            <button type="button" onclick="openTransfer(5000)" class="bg-white/5 hover:bg-gold/20 border border-white/15 hover:border-gold/60 rounded-xl py-3.5 transition cursor-pointer"><p class="font-bold text-sm">5,000원</p><p class="text-paper/50 text-[11px] mt-0.5">커피 한 잔</p></button>
+            <button type="button" onclick="openTransfer(10000)" class="bg-white/5 hover:bg-gold/20 border border-white/15 hover:border-gold/60 rounded-xl py-3.5 transition cursor-pointer"><p class="font-bold text-sm">10,000원</p><p class="text-paper/50 text-[11px] mt-0.5">한 끼 식사</p></button>
+            <button type="button" onclick="openTransfer(30000)" class="bg-white/5 hover:bg-gold/20 border border-white/15 hover:border-gold/60 rounded-xl py-3.5 transition cursor-pointer"><p class="font-bold text-sm">30,000원</p><p class="text-paper/50 text-[11px] mt-0.5">든든한 응원</p></button>
           </div>
-          <p class="text-paper/35 text-[11px] mt-2">※ 금액은 결제·송금 앱에서 자유롭게 정하시면 돼요. 한 번도, 매달도 좋습니다.</p>
+          <p class="text-paper/40 text-[11px] mt-2">※ 금액은 자유롭게 정하셔도 돼요. 한 번도, 매달도 좋습니다.</p>
         </div>
 
         <!-- 후원 버튼 (content/site.json 에서 관리) -->
@@ -217,6 +219,26 @@
     </div>
   </div>
 
+  <!-- 계좌이체 안내 모달 (금액 클릭 시) -->
+  <div id="transferModal" style="display:none" class="fixed inset-0 z-[100] items-center justify-center bg-black/60 p-4"
+       onclick="if(event.target===this)this.style.display='none'">
+    <div class="bg-white rounded-2xl p-6 max-w-sm w-full shadow-2xl" style="color:#1a1a1a">
+      <div class="text-center mb-4">
+        <p class="text-gold text-xs font-bold tracking-[0.2em] uppercase mb-1">계좌이체 후원</p>
+        <p id="tfAmount" class="text-3xl font-bold text-neutral-900">5,000원</p>
+        <p class="text-neutral-500 text-xs mt-1.5">아래 계좌로 입금해 주시면 됩니다</p>
+      </div>
+      <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-4 text-center">
+        <p id="tfBank" class="text-neutral-400 text-xs mb-1">우리은행</p>
+        <p id="tfNum" class="text-lg font-bold tracking-tight text-neutral-900">1006-301-266177</p>
+        <p id="tfHolder" class="text-neutral-500 text-sm mt-0.5">예금주 오광일</p>
+      </div>
+      <button onclick="copyTransfer()" class="mt-3 w-full py-3 rounded-xl bg-gold text-white font-bold hover:opacity-90 transition">계좌번호 복사하기</button>
+      <p class="text-neutral-400 text-[11px] leading-relaxed mt-3 text-center">입금자명에 성함을 남겨 주시면 감사 인사를 드릴 수 있어요.<br>후원은 자발적이며 기부금 영수증은 발행되지 않습니다.</p>
+      <button onclick="document.getElementById('transferModal').style.display='none'" class="mt-2 w-full py-2.5 rounded-xl bg-neutral-100 hover:bg-neutral-200 font-semibold text-sm">닫기</button>
+    </div>
+  </div>
+
   <script>
     // 후원 정보 로드 (content/site.json — content-loader가 관리자 최신본으로 가로챔)
     fetch('content/site.json?t=' + Date.now()).then(r => r.json()).then(site => {
@@ -274,6 +296,25 @@
       const done = () => alert('계좌번호를 복사했어요! \n' + txt + '  (우리은행 · 예금주 오광일)');
       if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done).catch(() => prompt('아래 계좌번호를 복사하세요:', txt)); }
       else { prompt('아래 계좌번호를 복사하세요:', txt); }
+    }
+    // 금액 클릭 → 계좌이체 안내 모달 (계좌 정보는 #bankAccount에서 읽어 site.json 최신값 반영)
+    function openTransfer(amount){
+      const raw = (document.getElementById('bankAccount')||{}).textContent || '1006-301-266177 예금주 오광일';
+      const num = (raw.match(/[\d-]{8,}/) || ['1006-301-266177'])[0];
+      const holder = (raw.match(/예금주\s*(\S+)/) || [])[1] || '오광일';
+      const bankLbl = (document.getElementById('bankLabel')||{}).textContent || '계좌이체 · 우리은행';
+      const bank = bankLbl.replace(/계좌이체\s*·\s*/,'').trim() || '우리은행';
+      document.getElementById('tfAmount').textContent = Number(amount).toLocaleString() + '원';
+      document.getElementById('tfBank').textContent = bank;
+      document.getElementById('tfNum').textContent = num;
+      document.getElementById('tfHolder').textContent = '예금주 ' + holder;
+      document.getElementById('transferModal').style.display = 'flex';
+    }
+    function copyTransfer(){
+      const num = (document.getElementById('tfNum').textContent || '').trim();
+      const done = () => alert('계좌번호를 복사했어요!\n' + num);
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(num).then(done).catch(() => prompt('아래 계좌번호를 복사하세요:', num)); }
+      else prompt('아래 계좌번호를 복사하세요:', num);
     }
     function openKakaoQR(url){
       const modal = document.getElementById('kakaoQrModal');
