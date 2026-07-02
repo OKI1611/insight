@@ -304,8 +304,15 @@
     html += '<a class="rtop" title="맨 위로" onclick="window.scrollTo({top:0,behavior:\'smooth\'});return false;"><span class="ic">⤴</span><span class="lb">TOP</span></a>';
     rail.innerHTML = html;
     document.body.appendChild(rail);
-    // 데스크톱(≥1024)에서 좌측 섹션 사이드바가 있으면 겹치므로 숨김
-    function fit(){ var side=document.getElementById('sectionSideNav'); rail.style.display = (side && window.innerWidth>=1024) ? 'none' : ''; }
+    // 데스크톱(≥1024)에서 좌측 섹션 사이드바가 있으면 겹치므로 숨기는 대신 오른쪽으로 이동
+    // (퀵바는 항상 보이고, 좌측 섹션 메뉴도 그대로 보이도록 위치만 조정)
+    function fit(){
+      var side=document.getElementById('sectionSideNav');
+      var withSide = !!side && window.innerWidth>=1024;
+      if(withSide){ rail.style.left='auto'; rail.style.right='12px'; }
+      else { rail.style.right='auto'; rail.style.left='12px'; }
+      rail.style.display='';
+    }
     fit(); window.addEventListener('resize', fit);
     [300,800,1500,2500].forEach(function(t){ setTimeout(fit,t); });   // 섹션 사이드바 비동기 렌더 대응
     try{ new MutationObserver(fit).observe(document.body,{childList:true}); }catch(e){}
