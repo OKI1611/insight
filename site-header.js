@@ -10,9 +10,10 @@
   var AK = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
   var ADMIN = 'josephoh1611@gmail.com';
   var DEFAULT_MENU = [
-    { label:'BIBLY 이야기', href:'about.html', children:[
+    { label:'소개', href:'about.html', children:[
       { label:'우리의 사명·소개', href:'about.html' },
-      { label:'무료로 시작하기', href:'welcome.html' },
+      { label:'강사 소개', href:'about.html#instructor' },
+      { label:'설립 이야기 · 간증', href:'about.html#story' },
       { label:'1기 창립 멤버', href:'founding.html' }
     ]},
     { label:'강의·커리큘럼', href:'curriculum.html', children:[
