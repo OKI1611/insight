@@ -178,24 +178,24 @@
   // 공통 푸터(하위 페이지) — 이미 footer가 있는 페이지는 건너뜀
   var YT = 'https://www.youtube.com/channel/UC82IOMnZud8NNt3BYzAxTMg';
   function footerHTML(){
-    function lnk(href, label, cls){ return '<a href="' + href + '" class="hover:text-gold transition ' + (cls||'') + '">' + label + '</a>'; }
-    return '<footer class="bibly-footer bg-paper border-t border-ink/10 py-12 mt-16">'
-      + '<div class="max-w-6xl mx-auto px-5 flex flex-col md:flex-row justify-between gap-8">'
+    function lnk(href, label){ return '<a href="' + href + '" class="text-neutral-600 hover:text-gold transition">' + label + '</a>'; }
+    return '<footer class="bibly-footer bg-paper border-t border-neutral-200 pt-14 pb-10 mt-16">'
+      + '<div class="max-w-6xl mx-auto px-5 grid gap-10 md:grid-cols-[1.5fr_1fr]">'
       + '<div class="max-w-md">'
-      + '<p class="font-bold text-lg">BIBLY<span class="text-gold">.</span> <span class="text-neutral-900/50 text-sm font-normal">바이블 인사이트</span></p>'
-      + '<p class="text-sm mt-2 text-neutral-900/60 leading-relaxed">말씀으로 시대를 읽다 · 유튜브 「오광일의 인사이트 브리핑」 공식 강의 플랫폼</p>'
-      + '<p class="text-sm mt-3 text-neutral-900/50">✉ contact@biblynote.com</p>'
-      + '<p class="text-xs mt-3 text-neutral-900/35 leading-relaxed">본 사이트 강의 영상의 무단 다운로드·녹화·재배포를 금합니다.</p>'
+      + '<p class="font-bold text-xl tracking-tight text-neutral-900">BIBLY<span class="text-gold">.</span> <span class="text-neutral-500 text-sm font-medium">바이블 인사이트</span></p>'
+      + '<p class="text-sm mt-3 text-neutral-600 leading-relaxed">말씀으로 시대를 읽다 — 유튜브 「오광일의 인사이트 브리핑」 공식 강의 플랫폼</p>'
+      + '<p class="text-sm mt-4 text-neutral-800 font-medium">contact@biblynote.com</p>'
+      + '<p class="text-xs mt-4 text-neutral-400 leading-relaxed">본 사이트 강의 영상의 무단 다운로드·녹화·재배포를 금합니다.</p>'
       + '</div>'
-      + '<div class="grid grid-cols-2 gap-x-10 gap-y-2.5 text-sm text-neutral-900/60 shrink-0">'
+      + '<nav class="grid grid-cols-2 gap-x-8 gap-y-3 text-sm">'
       + lnk('curriculum.html', '커리큘럼') + lnk('academy.html', '정규 심화 과정')
       + lnk('about.html', '우리의 사명') + lnk('community.html', '질문·나눔')
       + lnk('resources.html', '자료실') + lnk('request.html', '강의 요청·건의')
-      + lnk('mylearning.html', '내 강의실') + lnk(YT, '▶ 유튜브 채널', '')
-      + lnk('support.html', '♥ 후원 안내') + lnk('terms.html', '이용약관·환불 규정')
+      + lnk('mylearning.html', '내 강의실') + lnk(YT, '유튜브 채널')
+      + lnk('support.html', '후원 안내') + lnk('terms.html', '이용약관·환불 규정')
+      + '</nav>'
       + '</div>'
-      + '</div>'
-      + '<p class="text-center text-neutral-900/30 text-xs mt-10">© 2026 BIBLY · 바이블 인사이트 (오광일의 인사이트 브리핑). All rights reserved.</p>'
+      + '<p class="text-center text-neutral-400 text-xs mt-12 pt-7 border-t border-neutral-200 max-w-6xl mx-auto px-5">© 2026 BIBLY · 바이블 인사이트 (오광일의 인사이트 브리핑). All rights reserved.</p>'
       + '</footer>';
   }
 
