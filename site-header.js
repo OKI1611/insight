@@ -83,9 +83,10 @@
   };
 
   var LOGO =
-    '<a href="index.html" onclick="return __biblyHome(event)" class="flex items-center shrink-0">'
-    + '<span class="leading-none text-center"><span class="block font-bold text-[18px] tracking-tight text-neutral-900">바이블 인사이트<span class="text-gold">.</span></span>'
-    + '<span class="inline-flex items-center gap-1.5 mt-0.5"><span class="h-px w-4 bg-gold/40"></span><span class="text-[9px] font-semibold text-gold tracking-[0.3em]">ACADEMY</span><span class="h-px w-4 bg-gold/40"></span></span></span></a>';
+    '<a href="index.html" onclick="return __biblyHome(event)" class="flex items-center gap-2 shrink-0">'
+    + '<img src="/images/logo-bible-insight.png" alt="바이블 인사이트 로고" class="h-9 md:h-10 w-auto shrink-0" />'
+    + '<span class="leading-none text-left"><span class="block font-bold text-[18px] tracking-tight text-neutral-900">바이블 인사이트<span class="text-gold">.</span></span>'
+    + '<span class="inline-flex items-center gap-1.5 mt-0.5"><span class="h-px w-4 bg-gold/40"></span><span class="text-[9px] font-semibold text-gold tracking-[0.3em]">ACADEMY</span></span></span></a>';
 
   var mount, active;
 
