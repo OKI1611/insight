@@ -72,7 +72,7 @@
       <button onclick="markDone()" id="doneBtn" class="bg-gold text-white font-bold px-6 py-3 rounded-full hover:opacity-90 transition shadow-soft">오늘 묵상 완료</button>
       <button onclick="share()" class="border border-ink/15 text-neutral-900/70 font-semibold px-5 py-3 rounded-full hover:bg-ink/5 transition">공유하기</button>
       <button onclick="openDevEditor()" id="devEditBtn" class="hidden border border-gold/50 text-gold font-semibold px-5 py-3 rounded-full hover:bg-gold/10 transition">이 묵상 편집</button>
-      <a href="bible.html" class="text-sm text-gold hover:underline">본문 전체 읽기 →</a>
+      <a id="readFullLink" href="bible.html" onclick="return __readFull(event)" class="text-sm text-gold hover:underline">본문 전체 읽기 →</a>
     </div>
     <p id="streak" class="text-center text-[12.5px] text-neutral-900/55 mt-3"></p>
 
@@ -113,6 +113,21 @@
   const esc=s=>String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
   const ADMIN_EMAIL='josephoh1611@gmail.com';
   let INDEX=[], CUR=null, USER=null, REF='', IS_ADMIN=false, EDITING=null, POSTS=[], CUR_DOC=null;
+
+  // '본문 전체 읽기' → 오늘 본문(d.ref)의 해당 성경·장으로 연결
+  let BOOKMAP=[];
+  fetch('bible/books.json').then(r=>r.json()).then(d=>{ BOOKMAP=d||[]; updateReadLink(); }).catch(()=>{});
+  function readUrl(ref){
+    if(!ref || !BOOKMAP.length) return 'bible.html';
+    ref=String(ref).trim();
+    let bk=BOOKMAP.filter(b=>ref.indexOf(b.ko)===0).sort((a,b)=>b.ko.length-a.ko.length)[0]
+        || BOOKMAP.filter(b=>ref.indexOf(b.ko)>=0).sort((a,b)=>b.ko.length-a.ko.length)[0];
+    const m=ref.match(/(\d+)/); const ch=m?m[1]:'';
+    return bk ? ('bible.html?b='+bk.file+(ch?('&c='+ch):'')) : 'bible.html';
+  }
+  function updateReadLink(){ const a=$('readFullLink'); if(a) a.href=readUrl(REF); }
+  // 클릭 시점에 현재 본문 기준으로 이동(타이밍 무관 보장)
+  window.__readFull=function(e){ if(e&&e.preventDefault) e.preventDefault(); location.href=readUrl(REF); return false; };
 
   // 한국시간(KST=UTC+9) 기준 — 발행/오늘 판단을 방문자 시간대와 무관하게 통일
   function kstDate(){ return new Date(Date.now() + 9*3600000); }   // UTC부재 메서드(getUTC*)로 읽으면 KST 벽시계
@@ -170,6 +185,7 @@
       ${d.prayer?`<div class="mt-5 bg-sand/40 border-l-2 border-gold/50 rounded-r-xl px-4 py-3"><p class="text-[12px] font-bold text-gold mb-1">오늘의 기도</p><p class="text-[14px] text-neutral-900/80 leading-relaxed">${esc(d.prayer)}</p></div>`:''}
       ${d.question?`<div class="mt-3 bg-ink/[0.03] rounded-xl px-4 py-3"><p class="text-[12px] font-bold text-neutral-900/50 mb-1">묵상 질문</p><p class="text-[14px] text-neutral-900/80 leading-relaxed">${esc(d.question)}</p></div>`:''}
       ${d.encouragement?`<p class="text-center text-[15px] font-bold text-neutral-900 mt-6 serif">${esc(d.encouragement)}</p>`:''}`;
+    updateReadLink();
     window.scrollTo({top:0,behavior:'smooth'});
   }
   function step(n){ const i=INDEX.indexOf(CUR); const j=i+n; if(j>=0&&j<INDEX.length) load(INDEX[j]); }
