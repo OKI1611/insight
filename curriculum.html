@@ -110,10 +110,10 @@
       <p class="text-neutral-900/60 text-base md:text-lg mt-4 max-w-2xl mx-auto leading-relaxed">처음 오신 분도 쉽게 — 관심 가는 <b class="text-neutral-900/80">주제를 고르고</b>, 바로 <b class="text-gold">무료로</b> 보실 수 있습니다.</p>
     </div>
 
-    <!-- 👋 처음 오신 분 안내 (자유 학습일 때만) -->
+    <!-- 처음 오신 분 안내 (자유 학습일 때만) -->
     <section id="onboard" class="bg-gradient-to-br from-ink to-navy text-paper rounded-3xl p-6 md:p-8 mb-7 shadow-card">
       <div class="flex items-center gap-2.5 mb-5">
-        <span class="text-3xl">👋</span>
+        <span class="text-3xl"></span>
         <h2 class="text-xl md:text-2xl font-bold">처음 오셨나요? 이렇게 보시면 됩니다</h2>
       </div>
       <div class="grid sm:grid-cols-3 gap-4">
@@ -127,19 +127,19 @@
         </div>
         <div class="bg-white/10 rounded-2xl p-5">
           <p class="text-gold font-bold text-lg mb-1.5">③ 차근차근</p>
-          <p class="text-paper/85 text-[15px] leading-relaxed">🌱기초 → 📗초급 → 📘중급 → 🎓고급 순서로 보시면 가장 쉽습니다.</p>
+          <p class="text-paper/85 text-[15px] leading-relaxed">기초 → 초급 → 중급 → 고급 순서로 보시면 가장 쉽습니다.</p>
         </div>
       </div>
       <div class="mt-5 bg-gold/15 border border-gold/30 rounded-2xl px-5 py-4 flex flex-col sm:flex-row sm:items-center gap-3">
         <p class="text-[15px] md:text-base flex-1 leading-relaxed"><span class="font-bold text-gold">신앙이 처음이신가요?</span> <span class="text-paper/90">어디서 시작할지 모르겠다면, 가장 쉬운 기초 과정부터 천천히 보세요.</span></p>
-        <button onclick="startBeginner()" class="shrink-0 bg-gold text-neutral-900 font-bold text-[15px] px-6 py-3.5 rounded-full hover:opacity-90 transition">🌱 기초 과정부터 시작하기 →</button>
+        <button onclick="startBeginner()" class="shrink-0 bg-gold text-neutral-900 font-bold text-[15px] px-6 py-3.5 rounded-full hover:opacity-90 transition">기초 과정부터 시작하기 →</button>
       </div>
     </section>
 
     <!-- 모바일 과정 탭 -->
     <div class="lg:hidden grid grid-cols-2 gap-2 mb-5">
-      <button id="mtab-free" onclick="showCourse('free')" class="mtab px-4 py-3 rounded-xl text-sm font-bold border">📺 자유 학습</button>
-      <button id="mtab-academy" onclick="showCourse('academy')" class="mtab-pro px-4 py-3 rounded-xl text-sm font-bold border flex items-center justify-center gap-1.5">🎓 인증 과정 <span class="text-[9px] font-bold text-neutral-900 bg-gold px-1.5 py-0.5 rounded-full">유료</span></button>
+      <button id="mtab-free" onclick="showCourse('free')" class="mtab px-4 py-3 rounded-xl text-sm font-bold border">자유 학습</button>
+      <button id="mtab-academy" onclick="showCourse('academy')" class="mtab-pro px-4 py-3 rounded-xl text-sm font-bold border flex items-center justify-center gap-1.5">인증 과정 <span class="text-[9px] font-bold text-neutral-900 bg-gold px-1.5 py-0.5 rounded-full">유료</span></button>
     </div>
 
     <div class="grid lg:grid-cols-[256px_1fr] gap-6">
@@ -147,14 +147,14 @@
       <aside class="hidden lg:block lg:sticky lg:top-20 h-fit space-y-3">
         <div class="space-y-2.5">
           <button id="tab-free" onclick="showCourse('free')" class="ctab w-full text-left bg-white rounded-2xl border border-ink/8 shadow-soft px-4 py-3.5 flex items-center gap-2.5">
-            <span class="text-xl shrink-0">📺</span>
+            <span class="text-xl shrink-0"></span>
             <span class="flex-1 min-w-0"><span class="block font-bold text-base">자유 학습</span><span class="sub block text-xs mt-0.5">무료 · 27개 주제 자유 시청</span></span>
           </button>
           <button id="tab-academy" onclick="showCourse('academy')" class="ctab-pro w-full text-left rounded-2xl border border-gold/45 bg-gradient-to-br from-ink to-navy text-paper shadow-card overflow-hidden relative">
             <span class="absolute right-0 top-0 w-20 h-20 rounded-full bg-gold/10 -mr-7 -mt-7"></span>
             <div class="px-4 py-4 relative">
               <div class="flex items-start gap-2 mb-2">
-                <span class="text-2xl leading-none">🎓</span>
+                <span class="text-2xl leading-none"></span>
                 <div class="flex-1 min-w-0">
                   <p class="font-bold text-sm leading-tight">아카데미 인증 과정</p>
                   <p class="text-[10px] text-gold font-semibold tracking-[0.15em] mt-0.5">CERTIFICATION</p>
@@ -167,22 +167,22 @@
           </button>
         </div>
         <div id="freeSide" class="bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden">
-          <p class="px-4 py-3 text-sm font-bold text-neutral-900/55 border-b border-ink/8">📚 주제를 골라보세요</p>
+          <p class="px-4 py-3 text-sm font-bold text-neutral-900/55 border-b border-ink/8">주제를 골라보세요</p>
           <div id="trackNav" class="max-h-[58vh] overflow-auto"></div>
         </div>
         <div id="academySide" class="hidden bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden">
-          <p class="px-4 py-3 text-sm font-bold text-neutral-900/55 border-b border-ink/8">🎓 등급별 과정</p>
+          <p class="px-4 py-3 text-sm font-bold text-neutral-900/55 border-b border-ink/8">등급별 과정</p>
           <div id="gradeNav"></div>
         </div>
       </aside>
 
       <!-- 오른쪽: 상세 -->
       <div class="min-w-0">
-        <!-- 📺 자유 학습 -->
+        <!-- 자유 학습 -->
         <section id="freeContent">
-          <div class="flex items-center gap-2 mb-1.5"><span class="text-2xl">📺</span><h2 class="text-2xl font-bold">자유 학습</h2><span class="text-xs font-bold text-neutral-900/55 bg-ink/[0.06] px-2.5 py-0.5 rounded-full">무료</span></div>
+          <div class="flex items-center gap-2 mb-1.5"><span class="text-2xl"></span><h2 class="text-2xl font-bold">자유 학습</h2><span class="text-xs font-bold text-neutral-900/55 bg-ink/[0.06] px-2.5 py-0.5 rounded-full">무료</span></div>
           <p class="text-neutral-900/60 text-base mb-4 leading-relaxed">27개 주제의 강의를 시험 없이 자유롭게 — 누구나 <b class="text-neutral-900/80">무료</b>로 보실 수 있습니다.</p>
-          <label class="lg:hidden block text-sm font-bold text-neutral-900/55 mb-1.5">📚 주제를 골라보세요</label>
+          <label class="lg:hidden block text-sm font-bold text-neutral-900/55 mb-1.5">주제를 골라보세요</label>
           <select id="trackSelect" onchange="selectTrack(+this.value)" class="lg:hidden w-full bg-white border border-ink/20 rounded-xl px-4 py-3.5 text-base font-semibold mb-4 outline-none focus:border-gold"></select>
           <p class="text-sm font-bold text-neutral-900/45 mb-2">난이도 단계</p>
           <div id="levelTabs" class="flex flex-wrap gap-2 mb-2.5"></div>
@@ -191,12 +191,12 @@
           <section id="trackDetail" class="min-h-[420px]"><p class="text-neutral-900/40 text-sm text-center py-20">커리큘럼을 불러오는 중…</p></section>
         </section>
 
-        <!-- 🎓 아카데미 인증 과정 -->
+        <!-- 아카데미 인증 과정 -->
         <section id="academyContent" class="hidden">
-          <div class="flex items-center gap-2 mb-1.5"><span class="text-2xl">🎓</span><h2 class="text-2xl font-bold">BIBLY 아카데미 인증 과정</h2><span class="text-xs font-bold text-neutral-900 bg-gold px-2.5 py-0.5 rounded-full">유료</span></div>
+          <div class="flex items-center gap-2 mb-1.5"><span class="text-2xl"></span><h2 class="text-2xl font-bold">BIBLY 아카데미 인증 과정</h2><span class="text-xs font-bold text-neutral-900 bg-gold px-2.5 py-0.5 rounded-full">유료</span></div>
           <p class="text-neutral-900/60 text-base mb-5 leading-relaxed">강의를 듣고 끝내는 것이 아니라, 직접 풀고 검증해 ‘스스로 분별하는 사람’으로 인증받는 과정입니다. 등급이 올라갈수록 더 깊이 들어갑니다.</p>
           <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-6 mb-6">
-            <p class="font-bold mb-4 flex items-center gap-2">📋 어떻게 진행되나요?</p>
+            <p class="font-bold mb-4 flex items-center gap-2">어떻게 진행되나요?</p>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center text-sm">
               <div><p class="text-sm font-bold text-gold mb-1">STEP 1</p><p class="font-semibold">강의 수강</p><p class="text-xs text-neutral-900/50 mt-1">과목의 강의를 듣습니다</p></div>
               <div><p class="text-sm font-bold text-gold mb-1">STEP 2</p><p class="font-semibold">강의별 시험</p><p class="text-xs text-neutral-900/50 mt-1">20문제·80점 통과(2회)</p></div>
@@ -219,26 +219,26 @@
     let LEVELS = [], STARTS = [], CUR = 0, FILTER = '전체';
     const LV_ORDER = ['기초','초급','중급','고급','교양'];
     const LV_INFO = {
-      '기초': { emoji:'🌱', desc:'신앙을 처음 시작하거나 기초를 다지는 단계' },
-      '초급': { emoji:'📗', desc:'성경을 스스로 읽고 삶에 적용하는 단계' },
-      '중급': { emoji:'📘', desc:'교리·세계관·예언의 기초를 세우는 단계' },
-      '고급': { emoji:'🎓', desc:'종말·예언을 깊이 파고드는 심화 단계' },
-      '교양': { emoji:'🎒', desc:'신앙 외 일반 교양·특강' },
+      '기초': { emoji:'', desc:'신앙을 처음 시작하거나 기초를 다지는 단계' },
+      '초급': { emoji:'', desc:'성경을 스스로 읽고 삶에 적용하는 단계' },
+      '중급': { emoji:'', desc:'교리·세계관·예언의 기초를 세우는 단계' },
+      '고급': { emoji:'', desc:'종말·예언을 깊이 파고드는 심화 단계' },
+      '교양': { emoji:'', desc:'신앙 외 일반 교양·특강' },
     };
     function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
     function ytId(u){ const m = String(u||'').match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/); return m ? m[1] : ''; }
 
-    // 🎓 아카데미 인증 과정 — program.json 등급별 소개
+    // 아카데미 인증 과정 — program.json 등급별 소개
     function renderAcademy(){
       const host = document.getElementById('academyGrades'); if(!host) return;
       const byName = {}; LEVELS.forEach(lv => { byName[lv.name] = (lv.lessons||[]).length; });
       fetch('content/program.json?t=' + Date.now()).then(r => r.json()).then(P => {
         const won = n => '₩' + (Number(n)||0).toLocaleString();
         const HIDE = !!P.hidePrice;
-        const EM = { 1:'🌱', 2:'📖', 3:'🔍', 4:'⚖️', 5:'🛡' };
+        const EM = { 1:'', 2:'', 3:'', 4:'', 5:'' };
         const SUBJ_EMOJI = (name)=>{ const n=String(name||'');
-          const map=[['종말|재림|천년|계시록|다니엘','🌅'],['창세|창조|기원','🌍'],['구원|복음|십자가','✝️'],['기도|영성|경건','🙏'],['교회|예배|성례','⛪'],['역사|교회사','📜'],['신학|교리|조직','📚'],['성경|통독|개관|원어','📖'],['예언|선지','🔭'],['은혜|믿음|칭의','🕊️'],['전도|선교|사명','📣'],['가정|결혼|자녀','🏠'],['상담|치유|회복','💬'],['윤리|제자|삶','🧭'],['시편|찬양|예배','🎵'],['지혜|잠언','💡']];
-          for(const [k,e] of map){ if(new RegExp(k).test(n)) return e; } return '📘'; };
+          const map=[['종말|재림|천년|계시록|다니엘',''],['창세|창조|기원',''],['구원|복음|십자가',''],['기도|영성|경건',''],['교회|예배|성례',''],['역사|교회사',''],['신학|교리|조직',''],['성경|통독|개관|원어',''],['예언|선지',''],['은혜|믿음|칭의',''],['전도|선교|사명',''],['가정|결혼|자녀',''],['상담|치유|회복',''],['윤리|제자|삶',''],['시편|찬양|예배',''],['지혜|잠언','']];
+          for(const [k,e] of map){ if(new RegExp(k).test(n)) return e; } return ''; };
         host.innerHTML = (P.ranks||[]).map(rk => {
           const tracks = (rk.tracks||[]).filter(t => byName[t] != null);
           const lessons = tracks.reduce((s,t) => s + byName[t], 0);
@@ -256,7 +256,7 @@
             </div></a>`).join('');
           const perks = (rk.perks||[]).map(p => `<li class="flex gap-1.5 text-sm text-neutral-900/65"><span class="text-gold shrink-0">✓</span><span>${esc(p)}</span></li>`).join('');
           const topTier = (rk.tier===5);
-          const tag = topTier ? '<span class="text-[10px] font-bold text-white border border-white/45 px-2 py-0.5 rounded-full">👑 최고 등급</span>'
+          const tag = topTier ? '<span class="text-[10px] font-bold text-white border border-white/45 px-2 py-0.5 rounded-full">최고 등급</span>'
                     : (rk.tier===1 ? '<span class="text-[10px] font-bold text-white bg-white/20 px-2 py-0.5 rounded-full">입문 추천</span>' : '');
           return `<div id="grade-${rk.tier}" class="bg-white rounded-2xl border ${topTier?'border-2':'border'} shadow-soft overflow-hidden scroll-mt-20" style="border-color:${rk.color}55">
             <div class="px-6 py-5 text-white relative overflow-hidden" style="background:linear-gradient(135deg, ${rk.color}, ${rk.color}cc)">
@@ -272,16 +272,16 @@
               <p class="relative mt-3">${HIDE ? '<span class="text-lg font-bold">가격 추후 안내</span>' : `<span class="text-2xl font-bold">${won(main)}</span>${rk.earlybird?` <span class="text-sm text-white/50 line-through">${won(rk.price)}</span> <span class="text-[11px] font-bold bg-white/20 px-1.5 py-0.5 rounded">얼리버드</span>`:''}`}<span class="text-white/55 text-xs ml-2">· ${tracks.length}과목 ${lessons}강</span></p>
             </div>
             <div class="px-6 pt-5">
-              <p class="text-xs font-bold text-gold mb-1.5">✦ 이 등급을 받으면</p>
+              <p class="text-xs font-bold text-gold mb-1.5">이 등급을 받으면</p>
               <p class="text-[14px] text-neutral-900/70 leading-relaxed">${esc(rk.outcome||'')}</p>
               ${(rk.able&&rk.able.length)?`<ul class="mt-3 grid sm:grid-cols-2 gap-x-5 gap-y-1.5">${rk.able.map(a=>`<li class="flex gap-1.5 text-[13.5px] text-neutral-900/65"><span class="text-gold shrink-0">✓</span><span>${esc(a)}</span></li>`).join('')}</ul>`:''}
             </div>
             <div class="px-6 pt-5">
-              <p class="text-xs font-bold text-neutral-900/45 mb-2.5">📚 포함 과목 <span class="text-neutral-900/30">${tracks.length}과목</span></p>
+              <p class="text-xs font-bold text-neutral-900/45 mb-2.5">포함 과목 <span class="text-neutral-900/30">${tracks.length}과목</span></p>
               ${tracks.length ? `<div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">${trackCards}</div>` : '<p class="text-sm text-neutral-900/40">과목 준비 중입니다.</p>'}
             </div>
             <div class="p-6">
-              <p class="text-xs font-bold text-neutral-900/45 mb-2">🎁 혜택</p>
+              <p class="text-xs font-bold text-neutral-900/45 mb-2">혜택</p>
               <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-1.5">${perks}</ul>
               ${rk.tier>1 ? '<p class="text-xs text-neutral-900/45 mt-3">※ 하위 등급 과목을 모두 포함합니다.</p>' : ''}
             </div>
@@ -292,7 +292,7 @@
       }).catch(() => { host.innerHTML = '<p class="text-neutral-900/40 text-sm text-center py-8">인증 과정 정보를 불러오지 못했습니다.</p>'; });
     }
 
-    // 🌱 "기초 과정부터 시작하기" — 자유 학습 + 기초 단계로 안내
+    // "기초 과정부터 시작하기" — 자유 학습 + 기초 단계로 안내
     function startBeginner(){
       showCourse('free');
       setFilter('기초');
@@ -349,7 +349,7 @@
         return `<button onclick="setFilter('${L}')" class="px-4 py-2 rounded-full text-sm font-semibold border transition ${ on ? 'bg-gold text-white border-ink' : 'bg-white text-neutral-900/60 border-ink/15 hover:bg-ink/5' }">${label} <span class="${ on ? 'text-paper/50' : 'text-neutral-900/30' }">${n}</span></button>`;
       }).join('');
       const d = document.getElementById('levelDesc');
-      if(d) d.textContent = FILTER === '전체' ? '🌱 기초 → 📗 초급 → 📘 중급 → 🎓 고급 순서로 차근차근 올라가세요.' : (LV_INFO[FILTER]?.desc || '');
+      if(d) d.textContent = FILTER === '전체' ? '기초 → 초급 → 중급 → 고급 순서로 차근차근 올라가세요.' : (LV_INFO[FILTER]?.desc || '');
     }
     function setFilter(L){
       FILTER = L; renderTabs(); renderNav();
@@ -396,7 +396,7 @@
         const chapters = (l.chapters || []);
         const chHtml = chapters.length ? `
           <details class="mt-2.5">
-            <summary class="inline-flex items-center gap-1 text-sm font-semibold text-neutral-900/55 hover:text-gold">📑 강의 목차 ${chapters.length}개 보기 <svg class="chev w-4 h-4 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary>
+            <summary class="inline-flex items-center gap-1 text-sm font-semibold text-neutral-900/55 hover:text-gold">강의 목차 ${chapters.length}개 보기 <svg class="chev w-4 h-4 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary>
             <ul class="mt-2.5 space-y-2 border-l-2 border-gold/20 pl-3.5">
               ${chapters.map(ch => `<li class="text-[13.5px] text-neutral-900/65 leading-snug">${ ch.t ? `<span class="text-gold/70 font-semibold mr-1">${esc(ch.t)}</span>` : '' }${esc(ch.label)}</li>`).join('')}
             </ul>
@@ -424,15 +424,15 @@
           ${ tagline ? `<p class="text-gold font-semibold text-lg mt-2.5">${tagline}</p>` : '' }
           ${ lv.desc ? `<p class="text-paper/75 text-[15px] mt-2.5 leading-relaxed">${esc(lv.desc)}</p>` : '' }
           <div class="flex flex-wrap items-center gap-x-5 gap-y-1 mt-4 text-[15px] text-paper/75">
-            <span>📚 총 ${ls.length}강</span><span>🆓 전체 무료 공개</span><span>♾️ 무제한 시청</span>
+            <span>총 ${ls.length}강</span><span>전체 무료 공개</span><span>무제한 시청</span>
           </div>
           <a href="watch.html?l=${start}" class="inline-block mt-5 bg-gold text-white font-bold text-base px-7 py-3.5 rounded-full hover:opacity-90 transition shadow-card">▶ 첫 강의부터 보기</a>
         </div>
         ${ highlights ? `<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 md:p-6 mb-5">
-          <p class="font-bold text-lg mb-3 flex items-center gap-2">⭐ 이 과정의 특장점</p>
+          <p class="font-bold text-lg mb-3 flex items-center gap-2">이 과정의 특장점</p>
           <ul class="space-y-2.5">${highlights}</ul>
         </div>` : '' }
-        <p class="font-bold text-lg mb-1 flex items-center gap-2">📑 강의 목록 <span class="text-neutral-900/45 text-sm font-normal">· 총 ${ls.length}강</span></p>
+        <p class="font-bold text-lg mb-1 flex items-center gap-2">강의 목록 <span class="text-neutral-900/45 text-sm font-normal">· 총 ${ls.length}강</span></p>
         <p class="text-[15px] text-neutral-900/55 mb-3.5">강의를 눌러 바로 무료로 보실 수 있습니다.</p>
         <div class="space-y-2.5">${lessons}</div>`;
       window.scrollTo({ top: 0, behavior: 'smooth' });

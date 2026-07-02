@@ -45,13 +45,13 @@
 
     <!-- 탭 -->
     <div class="inline-flex bg-ink/5 rounded-full p-1 mb-5">
-      <button id="tab-notice" onclick="setTab('notice')" class="px-5 py-2 rounded-full text-sm font-semibold transition">📢 공지사항</button>
-      <button id="tab-event"  onclick="setTab('event')"  class="px-5 py-2 rounded-full text-sm font-semibold transition">🎁 이벤트</button>
+      <button id="tab-notice" onclick="setTab('notice')" class="px-5 py-2 rounded-full text-sm font-semibold transition">공지사항</button>
+      <button id="tab-event"  onclick="setTab('event')"  class="px-5 py-2 rounded-full text-sm font-semibold transition">이벤트</button>
     </div>
 
     <!-- 관리자 작성 -->
     <div id="composeWrap" class="hidden bg-white rounded-2xl border border-gold/30 shadow-soft p-4 mb-5">
-      <p class="text-xs font-bold text-gold mb-2">✍️ 관리자 글쓰기 (<span id="composeKind">공지</span>)</p>
+      <p class="text-xs font-bold text-gold mb-2">관리자 글쓰기 (<span id="composeKind">공지</span>)</p>
       <input id="cTitle" placeholder="제목" class="w-full border border-ink/15 rounded-lg px-3 py-2 text-sm mb-2 outline-none focus:border-gold"/>
       <textarea id="cBody" rows="4" placeholder="내용" class="w-full border border-ink/15 rounded-lg px-3 py-2 text-sm mb-2 outline-none focus:border-gold"></textarea>
       <div class="flex items-center gap-2">
@@ -104,7 +104,7 @@
       if(!title){ m.style.color='#dc2626'; m.textContent='제목을 입력하세요.'; return; }
       m.style.color='#6b7280'; m.textContent='등록 중…';
       try{ const { error } = await sb.from('notices').insert({ kind:tab, title, body, pinned }); if(error) throw error;
-        m.style.color='#16a34a'; m.textContent='✅ 등록 완료'; document.getElementById('cTitle').value=''; document.getElementById('cBody').value=''; document.getElementById('cPinned').checked=false; load();
+        m.style.color='#16a34a'; m.textContent='등록 완료'; document.getElementById('cTitle').value=''; document.getElementById('cBody').value=''; document.getElementById('cPinned').checked=false; load();
       }catch(e){ m.style.color='#dc2626'; m.textContent='오류: '+(e.message||e); }
     }
     async function delNotice(id){ if(!confirm('이 글을 삭제할까요?')) return; try{ const { error } = await sb.from('notices').delete().eq('id',id); if(error) throw error; load(); }catch(e){ alert('오류: '+(e.message||e)); } }

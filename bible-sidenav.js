@@ -4,12 +4,12 @@
 (function(){
   if(window.__biblySideNav) return; window.__biblySideNav = true;
   var ITEMS = [
-    { l:'성경 읽기',        h:'bible.html',      i:'📖' },
-    { l:'매일 말씀과 함께', h:'daily.html',      i:'🌅' },
-    { l:'성경암송 365',     h:'memorize.html',   i:'✨' },
-    { l:'성경 통독표',      h:'bible-plan.html', i:'📅' },
-    { l:'주제별 성경',      h:'themes.html',     i:'📚' },
-    { l:'성경사전',         h:'dictionary.html', i:'🔎' }
+    { l:'성경 읽기',        h:'bible.html',      i:'' },
+    { l:'매일 말씀과 함께', h:'daily.html',      i:'' },
+    { l:'성경암송 365',     h:'memorize.html',   i:'' },
+    { l:'성경 통독표',      h:'bible-plan.html', i:'' },
+    { l:'주제별 성경',      h:'themes.html',     i:'' },
+    { l:'성경사전',         h:'dictionary.html', i:'' }
   ];
   var page = (location.pathname.split('/').pop() || 'index.html').toLowerCase() || 'index.html';
   if(page === '') page = 'index.html';
@@ -39,7 +39,7 @@
     var rail = document.createElement('nav');
     rail.id = 'bibleSideNav';
     rail.setAttribute('aria-label', '성경 메뉴');
-    var h = '<div class="hd">📖 <b>성경</b></div>';
+    var h = '<div class="hd"><b>성경</b></div>';
     ITEMS.forEach(function(x){
       var on = (x.h === page);
       h += '<a href="' + x.h + '" class="' + (on ? 'on' : '') + '" title="' + x.l + '">'

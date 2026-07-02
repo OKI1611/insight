@@ -93,7 +93,7 @@
       <div id="fEditor" class="mb-3"></div>
       <div class="grid sm:grid-cols-2 gap-3 mb-3">
         <label class="border border-dashed border-ink/20 rounded-lg px-3 py-2.5 text-sm text-neutral-900/60 cursor-pointer hover:bg-ink/5 text-center">
-          📎 파일 첨부 (PDF 등)
+          파일 첨부 (PDF 등)
           <input id="fFile" type="file" class="hidden" onchange="document.getElementById('fFileName').textContent=this.files[0]?this.files[0].name:''"/>
           <span id="fFileName" class="block text-xs text-gold mt-1"></span>
         </label>
@@ -178,7 +178,7 @@
         const hasBody = !!(r.description && r.description.trim());
         return `<div id="res-${r.id}" class="px-5 py-4 scroll-mt-24">
           <div class="flex items-center gap-4 ${hasBody?'cursor-pointer':''}" ${hasBody?`onclick="toggleRes('${r.id}')"`:''}>
-            <div class="w-10 h-10 rounded-lg bg-gold/15 text-gold flex items-center justify-center shrink-0">📄</div>
+            <div class="w-10 h-10 rounded-lg bg-gold/15 text-gold flex items-center justify-center shrink-0"></div>
             <div class="min-w-0 flex-1">
               ${ r.category ? `<span class="text-[11px] text-gold font-bold tracking-wide">${esc(r.category)}</span>` : '' }
               <p class="font-semibold leading-snug">${esc(r.title||'')}</p>
@@ -187,7 +187,7 @@
             ${ hasBody ? `<svg id="rchev-${r.id}" class="w-5 h-5 text-neutral-900/25 shrink-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>` : '' }
             ${ url ? `<a href="${encodeURI(url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="shrink-0 bg-gold text-white text-sm font-semibold px-4 py-2 rounded-full hover:opacity-90">받기</a>`
                    : (hasBody ? '' : `<span class="shrink-0 text-neutral-900/35 text-xs">준비 중</span>`) }
-            <button onclick="event.stopPropagation();shareRes(this)" data-id="${r.id}" data-t="${esc(r.title||'').replace(/"/g,'&quot;')}" class="shrink-0 text-neutral-900/35 hover:text-gold text-lg" title="공유하기">🔗</button>
+            <button onclick="event.stopPropagation();shareRes(this)" data-id="${r.id}" data-t="${esc(r.title||'').replace(/"/g,'&quot;')}" class="shrink-0 text-neutral-900/35 hover:text-gold text-lg" title="공유하기"></button>
             ${ isAdmin ? `<button onclick="event.stopPropagation();delResource('${r.id}')" class="shrink-0 text-neutral-900/30 hover:text-red-500 text-sm">삭제</button>` : '' }
           </div>
           ${ hasBody ? `<div id="resbody-${r.id}" class="hidden resbody text-sm text-neutral-900/70 mt-3 sm:pl-14 leading-relaxed border-t border-ink/5 pt-3">${bodyHTML(r.description)}</div>` : '' }
@@ -196,12 +196,12 @@
       openResFromHash();
     }
 
-    // 🔗 자료 공유 — 해당 자료로 바로 연결되는 링크 생성
+    // 자료 공유 — 해당 자료로 바로 연결되는 링크 생성
     function shareRes(el){
       const url = location.origin + location.pathname + '#res-' + el.dataset.id;
       const title = (el.dataset.t || '자료실') + ' — BIBLY 바이블 인사이트';
       if(window.biblyShare){ biblyShare(title, url); }
-      else { try{ navigator.clipboard.writeText(url); alert('🔗 링크가 복사되었어요!'); }catch(e){ prompt('링크 복사', url); } }
+      else { try{ navigator.clipboard.writeText(url); alert('링크가 복사되었어요!'); }catch(e){ prompt('링크 복사', url); } }
     }
     // 공유 링크(#res-id)로 들어오면 해당 자료를 펼치고 그 위치로 이동
     function openResFromHash(){

@@ -77,12 +77,12 @@
   <script>
     // 7개 분야(그룹) — course.json의 group 값과 정확히 일치해야 함
     const GROUPS = {
-      basic:     { name:'신앙의 기초',     emoji:'📘', tag:'입문',     why:'신앙을 처음 시작했거나 기초를 다지고 싶은 분께. 예수님·구원·교회 등 기독교의 핵심부터 차근차근.' },
-      bible:     { name:'성경으로 더 깊이', emoji:'📖', tag:'기초~중급', why:'성경 각 권과 핵심 주제(로마서·레위기·기도·성령)를 스스로 깊이 읽고 싶은 분께.' },
-      worldview: { name:'세계관과 분별',   emoji:'🧭', tag:'중급',     why:'세상을 성경의 눈으로 읽고, 이단·사이비·교리를 흔들림 없이 분별하고 싶은 분께.' },
-      endtime:   { name:'종말과 예언',     emoji:'🔮', tag:'중급~심화', why:'천년왕국·요한계시록·종말 예언의 큰 그림을 음모론 없이 잡고 싶은 분께. 채널의 대표 시리즈.' },
-      people:    { name:'인물에게 배우다', emoji:'👤', tag:'전체',     why:'사도 바울과 스펄전·로이드존스 등 위대한 신앙 인물의 삶에서 도전을 받고 싶은 분께.' },
-      life:      { name:'삶으로 살아내기', emoji:'🌱', tag:'전체',     why:'관계·회복·동기부여·문화 등 믿음을 일상으로 살아내는 지혜가 필요한 분께.' },
+      basic:     { name:'신앙의 기초',     emoji:'', tag:'입문',     why:'신앙을 처음 시작했거나 기초를 다지고 싶은 분께. 예수님·구원·교회 등 기독교의 핵심부터 차근차근.' },
+      bible:     { name:'성경으로 더 깊이', emoji:'', tag:'기초~중급', why:'성경 각 권과 핵심 주제(로마서·레위기·기도·성령)를 스스로 깊이 읽고 싶은 분께.' },
+      worldview: { name:'세계관과 분별',   emoji:'', tag:'중급',     why:'세상을 성경의 눈으로 읽고, 이단·사이비·교리를 흔들림 없이 분별하고 싶은 분께.' },
+      endtime:   { name:'종말과 예언',     emoji:'', tag:'중급~심화', why:'천년왕국·요한계시록·종말 예언의 큰 그림을 음모론 없이 잡고 싶은 분께. 채널의 대표 시리즈.' },
+      people:    { name:'인물에게 배우다', emoji:'', tag:'전체',     why:'사도 바울과 스펄전·로이드존스 등 위대한 신앙 인물의 삶에서 도전을 받고 싶은 분께.' },
+      life:      { name:'삶으로 살아내기', emoji:'', tag:'전체',     why:'관계·회복·동기부여·문화 등 믿음을 일상으로 살아내는 지혜가 필요한 분께.' },
     };
     // 학습 순서(기초→심화). '그 외' 분야는 추천에서 제외
     const GORDER = ['basic','bible','worldview','endtime','people','life'];
@@ -96,12 +96,12 @@
         { t:'오래 신앙생활했고 심화를 원해요', s:{endtime:2, worldview:1, bible:1}, lv:3 },
       ]},
       { q:'어떤 분야에 마음이 끌리세요?', sub:'여러 개 골라도 좋아요 (복수 선택).', multi:true, opts:[
-        { t:'📘 기독교 기초·신앙 입문', s:{basic:3} },
-        { t:'📖 성경 각 권·주제 깊이 공부', s:{bible:3} },
-        { t:'🧭 세계관·교리·이단 분별', s:{worldview:3} },
-        { t:'🔮 종말·천년왕국·예언', s:{endtime:3} },
-        { t:'👤 신앙 인물·위대한 설교자', s:{people:3} },
-        { t:'🌱 관계·동기부여·삶의 적용', s:{life:3} },
+        { t:'기독교 기초·신앙 입문', s:{basic:3} },
+        { t:'성경 각 권·주제 깊이 공부', s:{bible:3} },
+        { t:'세계관·교리·이단 분별', s:{worldview:3} },
+        { t:'종말·천년왕국·예언', s:{endtime:3} },
+        { t:'신앙 인물·위대한 설교자', s:{people:3} },
+        { t:'관계·동기부여·삶의 적용', s:{life:3} },
       ]},
       { q:'가장 먼저 풀고 싶은 질문은 무엇인가요?', sub:'끌리는 질문 하나만 골라주세요.', opts:[
         { t:'예수님은 누구시고, 구원이란 무엇인가', s:{basic:3} },
@@ -276,13 +276,13 @@
           <div class="px-2"><p class="text-xs text-paper/50">예상 기간</p><p class="font-bold mt-1">약 ${weeks}주</p></div>
         </div>
         <div class="bg-gold/10 border border-gold/30 rounded-xl p-4 mb-7 text-center text-sm text-neutral-900/75">
-          🎯 <b class="text-neutral-900">${firstG.emoji} ${firstG.name}</b> 분야의 「${firstEntry ? firstEntry.name : ''}」부터 시작하는 걸 추천해요.
+          <b class="text-neutral-900">${firstG.emoji} ${firstG.name}</b> 분야의 「${firstEntry ? firstEntry.name : ''}」부터 시작하는 걸 추천해요.
         </div>
-        <p class="font-bold mb-3 flex items-center gap-2">🗺️ 단계별 학습 플랜 <span class="text-neutral-900/40 text-xs font-normal">기초 → 심화</span></p>
+        <p class="font-bold mb-3 flex items-center gap-2">단계별 학습 플랜 <span class="text-neutral-900/40 text-xs font-normal">기초 → 심화</span></p>
         <div class="space-y-3">${ path.map((k, i) => planStep(k, i+1, i===0)).join('') }</div>
-        <div class="mt-4 bg-paper border border-gold/30 rounded-xl p-4 text-center text-sm text-neutral-900/70">💡 추천 페이스: <b class="text-neutral-900">주 ${perWeek}강</b> 기준 약 <b class="text-neutral-900">${weeks}주</b>면 시작 코스를 완주해요. 무리하지 말고 꾸준히!</div>
+        <div class="mt-4 bg-paper border border-gold/30 rounded-xl p-4 text-center text-sm text-neutral-900/70">추천 페이스: <b class="text-neutral-900">주 ${perWeek}강</b> 기준 약 <b class="text-neutral-900">${weeks}주</b>면 시작 코스를 완주해요. 무리하지 말고 꾸준히!</div>
         <a href="watch.html?l=${firstStart}" class="block text-center bg-gold text-white font-semibold px-8 py-4 rounded-full hover:opacity-90 transition shadow-card mt-6">▶ 「${firstEntry ? firstEntry.name : ''}」부터 시작하기</a>
-        ${ extras.length ? `<div class="mt-9"><p class="font-bold mb-3">📚 관심 있다면 이 분야도</p><div class="grid gap-3">${extras.map(secCard).join('')}</div></div>` : '' }
+        ${ extras.length ? `<div class="mt-9"><p class="font-bold mb-3">관심 있다면 이 분야도</p><div class="grid gap-3">${extras.map(secCard).join('')}</div></div>` : '' }
         <div class="flex flex-col sm:flex-row gap-3 justify-center mt-9">
           <button onclick="resetQuiz()" class="px-6 py-3 rounded-full border border-ink/15 text-neutral-900/60 font-semibold text-sm hover:bg-ink/5 transition">↺ 다시 진단하기</button>
           <a href="curriculum.html" class="px-6 py-3 rounded-full border border-ink/15 text-neutral-900/60 font-semibold text-sm hover:bg-ink/5 transition text-center">전체 커리큘럼 보기</a>

@@ -73,14 +73,14 @@
     <div class="text-center mb-7">
       <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">REQUEST · 강의 요청·건의함</p>
       <h1 class="text-2xl font-bold">강의 요청 · 건의함</h1>
-      <p class="text-neutral-900/55 text-sm mt-2">듣고 싶은 <b class="text-neutral-900">강의 주제</b>를 신청하거나, 사이트·강의에 대한 <b class="text-neutral-900">건의·피드백</b>을 남겨주세요.<br class="sm:hidden"/> 다른 분의 요청에 <b class="text-gold">추천 👍</b>을 누르면 우선순위가 올라가요.</p>
+      <p class="text-neutral-900/55 text-sm mt-2">듣고 싶은 <b class="text-neutral-900">강의 주제</b>를 신청하거나, 사이트·강의에 대한 <b class="text-neutral-900">건의·피드백</b>을 남겨주세요.<br class="sm:hidden"/> 다른 분의 요청에 <b class="text-gold">추천 </b>을 누르면 우선순위가 올라가요.</p>
     </div>
 
     <!-- 로그인 모달 -->
     <div id="loginView" class="hidden fixed inset-0 z-[70] bg-ink/50 backdrop-blur-sm items-center justify-center p-4" onclick="if(event.target===this)closeLoginModal()">
       <div class="bg-white rounded-3xl border border-ink/8 shadow-card p-8 max-w-sm w-full text-center relative">
         <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-neutral-900/30 hover:text-neutral-900 text-2xl leading-none">×</button>
-        <p class="text-3xl mb-3">📮</p>
+        <p class="text-3xl mb-3"></p>
         <h2 class="text-lg font-bold mb-1">로그인하고 요청하기</h2>
         <p class="text-sm text-neutral-900/55 mb-6">로그인하면 강의 요청·건의 작성과 추천에 참여할 수 있어요.</p>
         <button onclick="googleLogin()" class="w-full flex items-center justify-center gap-3 border border-ink/15 bg-white rounded-xl py-3 font-medium hover:bg-ink/5 transition mb-3">
@@ -98,9 +98,9 @@
     <div>
       <!-- 요청 유형 가로 탭 -->
       <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-2 mb-5 max-w-2xl grid grid-cols-3 gap-1.5">
-        <button id="rtab-all" onclick="setFilter('all')" class="boardBtn"><span>📋</span><span>전체 보기</span></button>
-        <button id="rtab-request" onclick="setFilter('request')" class="boardBtn"><span>🎓</span><span>강의 요청</span></button>
-        <button id="rtab-feedback" onclick="setFilter('feedback')" class="boardBtn"><span>💡</span><span>건의·피드백</span></button>
+        <button id="rtab-all" onclick="setFilter('all')" class="boardBtn"><span></span><span>전체 보기</span></button>
+        <button id="rtab-request" onclick="setFilter('request')" class="boardBtn"><span></span><span>강의 요청</span></button>
+        <button id="rtab-feedback" onclick="setFilter('feedback')" class="boardBtn"><span></span><span>건의·피드백</span></button>
       </div>
 
       <!-- 콘텐츠 -->
@@ -109,14 +109,14 @@
     <!-- 작성 폼 -->
     <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 mb-6">
       <div id="typeToggleRow" class="flex gap-2 mb-3">
-        <button id="type-request" onclick="setType('request')" class="flex-1 py-2.5 rounded-full text-sm font-semibold border transition">🎓 강의 요청</button>
-        <button id="type-feedback" onclick="setType('feedback')" class="flex-1 py-2.5 rounded-full text-sm font-semibold border transition">💡 건의 · 피드백</button>
+        <button id="type-request" onclick="setType('request')" class="flex-1 py-2.5 rounded-full text-sm font-semibold border transition">강의 요청</button>
+        <button id="type-feedback" onclick="setType('feedback')" class="flex-1 py-2.5 rounded-full text-sm font-semibold border transition">건의 · 피드백</button>
       </div>
       <p id="typeHint" class="hidden text-xs text-neutral-900/45 mb-3"></p>
       <input id="rTitle" type="text" maxlength="80" placeholder="제목 (예: 다니엘서 70이레를 자세히 다뤄주세요)" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold mb-2"/>
       <div id="rEditor"></div>
       <div class="flex items-center justify-between mt-3 pt-3 border-t border-ink/8">
-        <span class="text-xs text-neutral-900/40">✍️ 구체적으로 적을수록 강의로 만들어질 가능성이 높아요</span>
+        <span class="text-xs text-neutral-900/40">구체적으로 적을수록 강의로 만들어질 가능성이 높아요</span>
         <button id="submitBtn" onclick="submitRequest()" class="bg-gold text-white font-semibold text-sm px-5 py-2.5 rounded-full hover:opacity-90 transition shrink-0">등록하기</button>
       </div>
       <p id="formMsg" class="text-red-500 text-xs mt-2 min-h-[14px]"></p>
@@ -125,8 +125,8 @@
     <!-- 정렬 -->
     <div class="flex items-center justify-between mb-4">
       <div class="flex gap-2">
-        <button id="sort-votes" onclick="setSort('votes')" class="px-3.5 py-1.5 rounded-full text-xs font-semibold border transition">👍 추천순</button>
-        <button id="sort-recent" onclick="setSort('recent')" class="px-3.5 py-1.5 rounded-full text-xs font-semibold border transition">🕒 최신순</button>
+        <button id="sort-votes" onclick="setSort('votes')" class="px-3.5 py-1.5 rounded-full text-xs font-semibold border transition">추천순</button>
+        <button id="sort-recent" onclick="setSort('recent')" class="px-3.5 py-1.5 rounded-full text-xs font-semibold border transition">최신순</button>
       </div>
       <span id="reqCount" class="text-xs text-neutral-900/45"></span>
     </div>
@@ -250,7 +250,7 @@
       // 사이드바로 종류가 정해지면 작성폼 토글 숨김(중복 방지), '전체'면 토글 노출
       const tr = document.getElementById('typeToggleRow'), th = document.getElementById('typeHint');
       if(tr) tr.style.display = (f === 'all') ? 'flex' : 'none';
-      if(th){ if(f === 'all'){ th.className = 'hidden'; } else { th.className = 'text-xs text-neutral-900/45 mb-3'; th.innerHTML = (f === 'request' ? '🎓 <b class="text-neutral-900/70">강의 요청</b> 작성 중' : '💡 <b class="text-neutral-900/70">건의·피드백</b> 작성 중') + ' · <button onclick="setFilter(\'all\')" class="text-gold underline">종류 바꾸기</button>'; } }
+      if(th){ if(f === 'all'){ th.className = 'hidden'; } else { th.className = 'text-xs text-neutral-900/45 mb-3'; th.innerHTML = (f === 'request' ? '<b class="text-neutral-900/70">강의 요청</b> 작성 중' : '<b class="text-neutral-900/70">건의·피드백</b> 작성 중') + ' · <button onclick="setFilter(\'all\')" class="text-gold underline">종류 바꾸기</button>'; } }
       render();
     }
 
@@ -273,7 +273,7 @@
         return;
       }
       document.getElementById('rTitle').value = ''; reqQuill.setText('');
-      msg.style.color = '#15803d'; msg.textContent = '✅ 소중한 의견 감사합니다! 등록되었어요.';
+      msg.style.color = '#15803d'; msg.textContent = '소중한 의견 감사합니다! 등록되었어요.';
       setTimeout(() => { msg.textContent = ''; msg.style.color = ''; }, 2500);
       load();
     }
@@ -308,7 +308,7 @@
         ? ((VOTES[b.id]||0) - (VOTES[a.id]||0)) || (new Date(b.created_at) - new Date(a.created_at))
         : (new Date(b.created_at) - new Date(a.created_at)));
       document.getElementById('reqCount').textContent = `총 ${rows.length}건`;
-      if(!rows.length){ list.innerHTML = `<div class="text-center text-neutral-900/45 py-12"><p class="text-3xl mb-2">📮</p><p class="text-sm">아직 등록된 요청이 없어요.<br>가장 먼저 듣고 싶은 주제를 신청해 보세요!</p></div>`; return; }
+      if(!rows.length){ list.innerHTML = `<div class="text-center text-neutral-900/45 py-12"><p class="text-3xl mb-2"></p><p class="text-sm">아직 등록된 요청이 없어요.<br>가장 먼저 듣고 싶은 주제를 신청해 보세요!</p></div>`; return; }
       list.innerHTML = rows.map(cardHTML).join('');
     }
 
@@ -319,22 +319,22 @@
     function cardHTML(r){
       const votes = VOTES[r.id] || 0, voted = MYVOTES.has(r.id);
       const typeBadge = r.type === 'feedback'
-        ? '<span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-gold/15 text-gold">💡 건의</span>'
-        : '<span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-gold text-white">🎓 강의 요청</span>';
+        ? '<span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-gold/15 text-gold">건의</span>'
+        : '<span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-gold text-white">강의 요청</span>';
       const canDelete = currentUser && (isAdmin || currentUser.id === r.author_id);
       let adminCtl = '';
       if(isAdmin){
         adminCtl = `<div class="flex flex-wrap items-center gap-1.5 mt-3 pt-3 border-t border-ink/6">
           <span class="text-[11px] text-neutral-900/40 mr-1">상태변경:</span>
           ${STATUSES.map(s => `<button onclick="setStatus('${r.id}','${s}')" class="text-[11px] px-2 py-1 rounded-full border ${ (r.status||'접수')===s ? 'border-gold text-gold font-semibold' : 'border-ink/15 text-neutral-900/50 hover:bg-ink/5' }">${s}</button>`).join('')}
-          <button onclick="replyTo('${r.id}')" class="text-[11px] px-2 py-1 rounded-full border border-ink/15 text-neutral-900/50 hover:bg-ink/5 ml-1">✍️ 답변</button>
+          <button onclick="replyTo('${r.id}')" class="text-[11px] px-2 py-1 rounded-full border border-ink/15 text-neutral-900/50 hover:bg-ink/5 ml-1">답변</button>
         </div>`;
       }
-      const reply = r.admin_reply ? `<div class="mt-3 bg-gold/[0.07] border border-gold/25 rounded-xl p-3 text-sm"><p class="text-[11px] font-bold text-gold mb-1">👤 강사 답변</p><p class="text-neutral-900/80 leading-relaxed whitespace-pre-wrap">${esc(r.admin_reply)}</p></div>` : '';
+      const reply = r.admin_reply ? `<div class="mt-3 bg-gold/[0.07] border border-gold/25 rounded-xl p-3 text-sm"><p class="text-[11px] font-bold text-gold mb-1">강사 답변</p><p class="text-neutral-900/80 leading-relaxed whitespace-pre-wrap">${esc(r.admin_reply)}</p></div>` : '';
       return `<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5">
         <div class="flex gap-4">
           <button onclick="toggleVote('${r.id}')" class="shrink-0 flex flex-col items-center justify-center w-14 rounded-xl border ${ voted ? 'border-gold bg-gold/10 text-gold' : 'border-ink/12 text-neutral-900/50 hover:bg-ink/5' } py-2 transition" title="추천">
-            <span class="text-lg leading-none">👍</span>
+            <span class="text-lg leading-none"></span>
             <span class="font-bold text-sm mt-1">${votes}</span>
           </button>
           <div class="flex-1 min-w-0">
@@ -343,7 +343,7 @@
             ${ r.body ? `<div class="text-sm text-neutral-900/65 mt-1.5 leading-relaxed reqbody">${bodyHTML(r.body)}</div>` : '' }
             <div class="flex items-center gap-2 mt-2.5 text-xs text-neutral-900/40">
               <span>${esc(r.author_name || '회원')}</span><span>·</span><span>${fmtDate(r.created_at)}</span>
-              <span>·</span><button onclick="biblyShare(this.dataset.t)" data-t="${esc(r.title||'').replace(/"/g,'&quot;')}" class="hover:text-gold">🔗 공유</button>
+              <span>·</span><button onclick="biblyShare(this.dataset.t)" data-t="${esc(r.title||'').replace(/"/g,'&quot;')}" class="hover:text-gold">공유</button>
               ${ canDelete ? `<span>·</span><button onclick="del('${r.id}')" class="hover:text-red-500">삭제</button>` : '' }
             </div>
             ${reply}
@@ -386,7 +386,7 @@
 
     function setupNotice(){
       return `<div class="bg-white rounded-2xl border border-gold/30 p-5 text-sm text-neutral-900/70 leading-relaxed">
-        <p class="font-bold text-neutral-900 mb-1">📮 요청함을 준비하는 중이에요</p>
+        <p class="font-bold text-neutral-900 mb-1">요청함을 준비하는 중이에요</p>
         <p>관리자가 데이터베이스 설정을 마치면 바로 이용할 수 있어요. 잠시만 기다려 주세요.</p>
       </div>`;
     }

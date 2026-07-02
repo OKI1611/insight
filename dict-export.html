@@ -16,10 +16,10 @@
   <style>h1,h2{font-family:'Noto Serif KR',Pretendard,serif}</style>
 </head>
 <body class="font-sans bg-paper text-neutral-900 antialiased min-h-screen">
-  <header class="bg-gold text-white"><div class="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between"><a href="index.html" class="font-bold text-sm">BIBLY <span class="text-gold">바이블 인사이트</span></a><span class="text-[11px] text-paper/60">🔒 관리자 전용 · 비공개</span></div></header>
+  <header class="bg-gold text-white"><div class="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between"><a href="index.html" class="font-bold text-sm">BIBLY <span class="text-gold">바이블 인사이트</span></a><span class="text-[11px] text-paper/60">관리자 전용 · 비공개</span></div></header>
 
   <div id="lock" class="hidden max-w-md mx-auto px-4 py-24 text-center">
-    <div class="text-5xl mb-4">🔒</div>
+    <div class="text-5xl mb-4"></div>
     <h1 class="text-xl font-bold">준비 중인 페이지입니다</h1>
     <p class="text-neutral-900/55 text-sm mt-3 leading-relaxed">관리자 작업용 페이지입니다. 성경사전은 <a href="dictionary.html" class="text-gold underline">성경사전 코너</a>에서 검색해 보실 수 있어요.</p>
   </div>
@@ -33,8 +33,8 @@
     <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 md:p-6 text-center">
       <p class="text-3xl font-bold"><span id="cnt" class="text-gold">–</span><span class="text-base text-neutral-900/40 font-semibold"> 표제어</span></p>
       <div class="flex flex-wrap justify-center gap-2.5 mt-5">
-        <button onclick="doExport('doc')" class="bg-gold text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition">📄 Word(.doc) 내려받기</button>
-        <button onclick="doExport('pdf')" class="bg-gold text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition">📕 PDF 내려받기</button>
+        <button onclick="doExport('doc')" class="bg-gold text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition">Word(.doc) 내려받기</button>
+        <button onclick="doExport('pdf')" class="bg-gold text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition">PDF 내려받기</button>
       </div>
       <p id="msg" class="text-xs text-neutral-900/50 mt-3 min-h-[16px]"></p>
       <p class="text-[11px] text-neutral-900/40 mt-2">표제어를 추가한 뒤 이 페이지에서 다시 내보내면 최신본이 반영됩니다.</p>
@@ -79,7 +79,7 @@
       const sc=(e.scriptures||[]).length?`<div class="sc">▸ ${(e.scriptures||[]).map(esc).join(', ')}</div>`:'';
       const rl=(e.related||[]).length?`<div class="rl">관련: ${(e.related||[]).map(esc).join(', ')}</div>`:'';
       const o=e.original?`<div class="o">원어 · ${esc(e.original)}</div>`:'';
-      const m=e.note?`<div class="m">💡 ${esc(e.note)}</div>`:'';
+      const m=e.note?`<div class="m">${esc(e.note)}</div>`:'';
       return `<div class="e"><p class="h">${esc(e.term)} <span class="en">${esc(e.en||'')}</span> <span class="cat">${esc(e.category||'')}</span></p>${o}<div class="d">${esc(e.def||'')}</div>${m}${sc}${rl}</div>`;
     }
     function buildBody(){
@@ -112,10 +112,10 @@
         const head='<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><title>'+esc(title)+'</title><style>'+DOC_CSS+'</style></head><body>';
         const blob=new Blob(['﻿'+head+coverHTML()+body+'</body></html>'],{type:'application/msword'});
         const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=title+'.doc'; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),4000);
-        $('msg').textContent='✅ Word(.doc) 파일을 내려받았습니다.';
+        $('msg').textContent='Word(.doc) 파일을 내려받았습니다.';
       } else {
         printDoc(title, coverHTML()+body);
-        $('msg').textContent='✅ 인쇄창에서 대상을 “PDF로 저장”으로 선택하세요.';
+        $('msg').textContent='인쇄창에서 대상을 “PDF로 저장”으로 선택하세요.';
       }
     }
   </script>

@@ -1,7 +1,7 @@
 /* site-header.js — 공통 헤더 컴포넌트 (모든 하위 페이지 공용)
    사용법: 본문 맨 위에 <div id="siteHeader" data-active="community.html"></div> 를 두고,
            <head> 에서 <script src="/site-header.js"></script> 로 불러온다.
-   - 로고 + 메뉴(content/site.json, 없으면 기본값) + 인증영역(📚 내 강의실 · ♥ 후원 · 로그인/로그아웃)을 그린다.
+   - 로고 + 메뉴(content/site.json, 없으면 기본값) + 인증영역(내 강의실 · 후원 · 로그인/로그아웃)을 그린다.
    - 로그인 모달이 필요한 페이지는 window.biblyHeaderLogin 함수를 정의하면 '로그인' 클릭 시 그 함수가 호출된다(없으면 index.html 로 이동).
    - <head> 로드(=content-loader.js 와 동일)라 미리보기 환경에서도 실행됨. */
 (function(){
@@ -12,8 +12,8 @@
   var DEFAULT_MENU = [
     { label:'BIBLY 이야기', href:'about.html', children:[
       { label:'우리의 사명·소개', href:'about.html' },
-      { label:'🌱 무료로 시작하기', href:'welcome.html' },
-      { label:'🎖️ 1기 창립 멤버', href:'founding.html' }
+      { label:'무료로 시작하기', href:'welcome.html' },
+      { label:'1기 창립 멤버', href:'founding.html' }
     ]},
     { label:'강의·커리큘럼', href:'curriculum.html', children:[
       { label:'전체 커리큘럼', href:'curriculum.html' },
@@ -41,7 +41,7 @@
     ]},
     { label:'스토어', href:'booklet.html', children:[
       { label:'PDF 책자·이용권', href:'booklet.html' },
-      { label:'🎁 선물·후원 좌석', href:'gift.html' },
+      { label:'선물·후원 좌석', href:'gift.html' },
       { label:'고객센터(주문·배송·반품)', href:'store-help.html' },
       { label:'내 구매·자료', href:'mylearning.html' }
     ]}
@@ -107,21 +107,21 @@
   function mainCtaHTML(){
     return '<a href="search.html" aria-label="스마트 검색" title="스마트 검색" class="inline-flex items-center justify-center w-9 h-9 rounded-full hover:bg-ink/5 text-neutral-900/70"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></svg></a>'
       + '<a href="watch.html" class="inline-flex items-center gap-1 bg-gold text-white font-bold px-3.5 py-1.5 rounded-full hover:opacity-90 transition text-xs whitespace-nowrap shadow-soft">▶ 바로 수강</a>'
-      + '<a href="mylearning.html" class="hidden xl:inline-flex items-center gap-1 border border-gold/45 text-gold font-semibold px-3 py-1.5 rounded-full hover:bg-gold/10 transition text-xs whitespace-nowrap">📚 내 강의실</a>';
+      + '<a href="mylearning.html" class="hidden xl:inline-flex items-center gap-1 border border-gold/45 text-gold font-semibold px-3 py-1.5 rounded-full hover:bg-gold/10 transition text-xs whitespace-nowrap">내 강의실</a>';
   }
   // 상단 퀵바(유틸리티) — 수학싸부식: 공지·이벤트·후원 + 로그인 상태/마이메뉴
   function topbarHTML(){
     var sep = '<span class="sep hidden sm:inline">·</span>';
-    var common = '<a href="notices.html">📢 공지사항</a>' + sep
-      + '<a href="event.html" class="font-semibold">🎁 혜택 이벤트</a>' + sep
-      + '<a href="support.html" class="hidden sm:inline">♥ 후원</a>';
+    var common = '<a href="notices.html">공지사항</a>' + sep
+      + '<a href="event.html" class="font-semibold">혜택 이벤트</a>' + sep
+      + '<a href="support.html" class="hidden sm:inline">후원</a>';
     var s = readStored(), right;
     if(s && s.user){
       var nm = (s.user.user_metadata && (s.user.user_metadata.full_name || s.user.user_metadata.name)) || (s.user.email ? s.user.email.split('@')[0] : '회원');
-      var admin = (s.user.email === ADMIN) ? sep + '<a href="admin.html" class="!text-gold font-semibold">⚙ 관리자</a>' : '';
+      var admin = (s.user.email === ADMIN) ? sep + '<a href="admin.html" class="!text-gold font-semibold">관리자</a>' : '';
       right = '<span id="biblyAuthName" class="font-semibold !text-paper/90">' + esc(nm) + '님</span>' + sep
-        + '<a href="mylearning.html" class="hidden sm:inline">📚 마이</a>' + sep
-        + '<a href="bible-plan.html" class="hidden sm:inline">📖 성경 통독</a>' + sep
+        + '<a href="mylearning.html" class="hidden sm:inline">마이</a>' + sep
+        + '<a href="bible-plan.html" class="hidden sm:inline">성경 통독</a>' + sep
         + common + admin + sep
         + '<button onclick="__biblyLogout()">로그아웃</button>';
     } else {
@@ -140,9 +140,9 @@
       return head + sub;
     }).join('');
     return '<div class="max-w-6xl mx-auto px-4 py-1 flex flex-col text-[15px]">'
-      + '<a href="search.html" class="py-3 border-b border-ink/5 text-gold font-semibold">🔍 스마트 검색</a>' + items
-      + '<a href="mylearning.html" class="py-3 border-b border-ink/5 text-gold font-semibold">📚 내 강의실</a>'
-      + '<a href="index.html" onclick="return __biblyHome(event)" class="py-3 text-neutral-900/55">🏠 홈</a>'
+      + '<a href="search.html" class="py-3 border-b border-ink/5 text-gold font-semibold">스마트 검색</a>' + items
+      + '<a href="mylearning.html" class="py-3 border-b border-ink/5 text-gold font-semibold">내 강의실</a>'
+      + '<a href="index.html" onclick="return __biblyHome(event)" class="py-3 text-neutral-900/55">홈</a>'
       + '</div>';
   }
   window.__biblyToggleMenu = function(){ var m = document.getElementById('biblyMobMenu'); if(m) m.classList.toggle('hidden'); };
@@ -278,11 +278,11 @@
     var yt = (s && s.youtube && s.youtube.channel_url) || 'https://www.youtube.com/channel/UC82IOMnZud8NNt3BYzAxTMg';
     var items = [
       { ic:'▶', lb:'유튜브', href:yt, ext:true },
-      { ic:'📖', lb:'성경', href:'bible.html' },
-      { ic:'📚', lb:'사전', href:'dictionary.html' },
-      { ic:'🎓', lb:'강의', href:'curriculum.html' },
-      { ic:'🛒', lb:'스토어', href:'booklet.html' },
-      { ic:'♥', lb:'후원', href:'support.html' }
+      { ic:'', lb:'성경', href:'bible.html' },
+      { ic:'', lb:'사전', href:'dictionary.html' },
+      { ic:'', lb:'강의', href:'curriculum.html' },
+      { ic:'', lb:'스토어', href:'booklet.html' },
+      { ic:'', lb:'후원', href:'support.html' }
     ];
     if(!document.getElementById('biblyRailCSS')){
       var st = document.createElement('style'); st.id='biblyRailCSS';

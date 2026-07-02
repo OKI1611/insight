@@ -71,12 +71,12 @@
     <section class="py-12">
       <div class="grid sm:grid-cols-2 gap-4">
         <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-6">
-          <p class="text-2xl mb-2">🪑</p>
+          <p class="text-2xl mb-2"></p>
           <p class="font-bold text-lg">좌석 후원 (기증)</p>
           <p class="text-sm text-neutral-900/60 mt-2 leading-relaxed">형편이 어려운 분·청년·선교지에 BIBLY가 대신 전달합니다. 받는 분을 몰라도 됩니다 — <b class="text-neutral-900/70">"한 사람"</b>을 후원하는 거예요.</p>
         </div>
         <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-6">
-          <p class="text-2xl mb-2">🎁</p>
+          <p class="text-2xl mb-2"></p>
           <p class="font-bold text-lg">지인에게 선물</p>
           <p class="text-sm text-neutral-900/60 mt-2 leading-relaxed">가족·친구·교우에게 이용권·책자를 선물하세요. 받는 분께 <b class="text-neutral-900/70">선물 안내</b>를 보내드립니다.</p>
         </div>
@@ -108,8 +108,8 @@
       <div class="bg-white rounded-3xl border border-ink/10 shadow-card p-6 md:p-8 max-w-xl mx-auto">
         <!-- 모드 선택 -->
         <div class="grid grid-cols-2 gap-2 mb-6">
-          <button id="modeSponsor" onclick="setMode('sponsor')" class="modeBtn on border border-ink/15 rounded-xl py-3 text-sm font-bold transition">🪑 좌석 후원</button>
-          <button id="modeGift" onclick="setMode('gift')" class="modeBtn border border-ink/15 rounded-xl py-3 text-sm font-bold transition">🎁 선물하기</button>
+          <button id="modeSponsor" onclick="setMode('sponsor')" class="modeBtn on border border-ink/15 rounded-xl py-3 text-sm font-bold transition">좌석 후원</button>
+          <button id="modeGift" onclick="setMode('gift')" class="modeBtn border border-ink/15 rounded-xl py-3 text-sm font-bold transition">선물하기</button>
         </div>
 
         <!-- 좌석 후원: 금액 선택 -->
@@ -142,7 +142,7 @@
 
         <!-- 결제 안내 -->
         <div id="payBox" class="mt-5 bg-sand/50 border border-gold/20 rounded-2xl p-4 text-sm text-neutral-900/75 leading-relaxed">
-          <p class="font-bold text-neutral-900 mb-1.5">💳 입금 안내</p>
+          <p class="font-bold text-neutral-900 mb-1.5">입금 안내</p>
           <p id="payInfo" class="text-neutral-900/70">계좌 정보를 불러오는 중…</p>
           <p class="text-xs text-neutral-900/45 mt-2">신청 후 위 계좌로 입금해 주시면, 확인 후 좌석 전달(또는 선물 안내)을 진행해 드립니다. 신청만으로는 자동 결제되지 않습니다.</p>
         </div>
@@ -176,7 +176,7 @@
           method:'POST', headers:{ 'Content-Type':'application/json', Accept:'application/json' },
           body: JSON.stringify({
             access_key: NOTIFY_KEY,
-            subject: '[BIBLY 선물·후원좌석] 새 신청 🎁',
+            subject: '[BIBLY 선물·후원좌석] 새 신청 ',
             from_name: 'BIBLY 선물·후원좌석',
             '유형': d.interest || '', '금액/상품': d.amountOrProduct || '', '보내는 분': d.name || '',
             '보내는 분 이메일': d.email || '', '연락처': d.phone || '',
@@ -224,7 +224,7 @@
         const benefits = (p.benefits||[]).map(b => `<li class="flex gap-1.5 leading-snug"><span class="text-gold shrink-0">✓</span><span>${esc(b)}</span></li>`).join('');
         return `<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 flex flex-col">
           <div class="flex items-center gap-2">
-            <span class="text-2xl">${esc(p.icon||'🎁')}</span>
+            <span class="text-2xl">${esc(p.icon||'')}</span>
             <div><p class="font-bold leading-tight">${esc(p.name||'')}</p>${p.value?`<p class="text-[11px] font-bold text-gold mt-0.5">${esc(p.value)}</p>`:''}</div>
           </div>
           ${p.summary?`<p class="text-[12.5px] text-neutral-900/55 mt-2.5 leading-relaxed">${esc(p.summary)}</p>`:''}
@@ -274,14 +274,14 @@
       if (MODE === 'sponsor') {
         const amt = SEL_AMT || parseInt(document.getElementById('aAmtCustom').value, 10) || 0;
         if (!amt || amt < 1000) { msg.textContent = '후원 금액을 선택하거나 입력해 주세요.'; return; }
-        interest = '🪑 좌석 후원'; amountOrProduct = won(amt);
+        interest = '좌석 후원'; amountOrProduct = won(amt);
       } else {
         const product = document.getElementById('aProduct').value;
         if (!product) { msg.textContent = '선물할 상품을 선택해 주세요.'; return; }
         recvName = document.getElementById('aRecvName').value.trim();
         recvEmail = document.getElementById('aRecvEmail').value.trim();
         card = document.getElementById('aCard').value.trim();
-        interest = '🎁 선물하기'; amountOrProduct = product;
+        interest = '선물하기'; amountOrProduct = product;
       }
 
       const memo = [
@@ -307,7 +307,7 @@
         return;
       }
       notifyApplication({ interest, amountOrProduct, name, email, phone, recvName, recvEmail, card, motivation });
-      document.getElementById('give').innerHTML = '<div class="bg-white rounded-3xl border border-gold/30 shadow-card p-8 md:p-10 max-w-xl mx-auto text-center"><p class="text-4xl mb-3">💛</p><h2 class="text-xl md:text-2xl font-bold">신청이 접수됐어요!</h2><p class="text-neutral-900/60 text-sm mt-3 leading-relaxed">입금 안내를 입력하신 이메일로 보내드릴게요. 입금이 확인되면 좌석 전달(또는 선물 안내)을 진행합니다.<br/>한 사람을 세우는 일에 함께해 주셔서 감사합니다. 🙏</p><a href="index.html" class="inline-block mt-6 text-gold font-semibold hover:underline">홈으로 돌아가기 →</a></div>';
+      document.getElementById('give').innerHTML = '<div class="bg-white rounded-3xl border border-gold/30 shadow-card p-8 md:p-10 max-w-xl mx-auto text-center"><p class="text-4xl mb-3"></p><h2 class="text-xl md:text-2xl font-bold">신청이 접수됐어요!</h2><p class="text-neutral-900/60 text-sm mt-3 leading-relaxed">입금 안내를 입력하신 이메일로 보내드릴게요. 입금이 확인되면 좌석 전달(또는 선물 안내)을 진행합니다.<br/>한 사람을 세우는 일에 함께해 주셔서 감사합니다. </p><a href="index.html" class="inline-block mt-6 text-gold font-semibold hover:underline">홈으로 돌아가기 →</a></div>';
       document.getElementById('give').scrollIntoView({ behavior:'smooth', block:'center' });
     }
   </script>

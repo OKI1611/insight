@@ -52,7 +52,7 @@
         var bar = document.createElement('div');  // 입력 중이면 작성 내용 보호 위해 '탭하여 새로고침' 배너
         bar.id = 'biblyUpdateBar';
         bar.style.cssText = 'position:fixed;left:50%;transform:translateX(-50%);bottom:78px;z-index:2147483647;background:#213a6b;color:#ffffff;padding:11px 18px;border-radius:9999px;box-shadow:0 10px 34px rgba(0,0,0,.32);font-size:14px;display:flex;gap:10px;align-items:center;cursor:pointer;font-family:Pretendard,system-ui,sans-serif';
-        bar.innerHTML = '<span>🔄 새로운 내용이 있어요</span><b style="color:#e7d6ac">새로고침</b>';
+        bar.innerHTML = '<span>새로운 내용이 있어요</span><b style="color:#e7d6ac">새로고침</b>';
         bar.onclick = __biReload;
         if(document.body) document.body.appendChild(bar);
       };
@@ -99,10 +99,10 @@
         + '<button onclick="__biblyFont(1)" aria-label="글자 크게" class="rounded-full hover:bg-ink/5 text-neutral-900 font-bold" style="width:34px;height:34px;font-size:18px">가&#43;</button>'
         + '</div>'
         + '<div style="position:fixed;right:14px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:60" class="flex flex-col items-end gap-2.5">'
-        + '<button id="installBtn" onclick="__biblyOpenInstall()" aria-label="앱 설치" class="inline-flex items-center gap-1.5 bg-ink text-white font-bold rounded-full shadow-xl hover:bg-navy transition" style="display:none;padding:11px 18px;font-size:15px"><span style="font-size:18px">📱</span> 앱 설치</button>'
-        + '<a href="' + SUP + '" aria-label="후원하기" class="inline-flex items-center gap-1.5 bg-rose-500 text-white font-bold rounded-full shadow-xl hover:bg-rose-600 transition" style="padding:11px 18px;font-size:15px"><span style="font-size:17px">♥</span> 후원</a>'
+        + '<button id="installBtn" onclick="__biblyOpenInstall()" aria-label="앱 설치" class="inline-flex items-center gap-1.5 bg-ink text-white font-bold rounded-full shadow-xl hover:bg-navy transition" style="display:none;padding:11px 18px;font-size:15px"><span style="font-size:18px"></span> 앱 설치</button>'
+        + '<a href="' + SUP + '" aria-label="후원하기" class="inline-flex items-center gap-1.5 bg-rose-500 text-white font-bold rounded-full shadow-xl hover:bg-rose-600 transition" style="padding:11px 18px;font-size:15px"><span style="font-size:17px"></span> 후원</a>'
         + '<button onclick="__biblyChat()" aria-label="무엇이든 질문하기" class="inline-flex items-center gap-2 bg-gold text-white font-bold rounded-full shadow-xl hover:opacity-95 transition" style="border:none;cursor:pointer">'
-        + '<span style="padding:13px 0 13px 18px;font-size:20px">💬</span>'
+        + '<span style="padding:13px 0 13px 18px;font-size:20px"></span>'
         + '<span class="hidden sm:inline" style="padding-right:20px;font-size:15px">무엇이든 물어보세요</span>'
         + '<span class="sm:hidden" style="padding-right:16px;font-size:14px">질문</span>'
         + '</button>'
@@ -202,15 +202,15 @@
   };
   function render(){
     var loggedIn = !!readStored();
-    var support = '<a href="' + SUP + '" aria-label="후원하기" title="후원하기" class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-rose-500/10 text-rose-500 border border-rose-300 hover:bg-rose-500 hover:text-white transition shrink-0" style="font-size:15px">♥</a>';
+    var support = '<a href="' + SUP + '" aria-label="후원하기" title="후원하기" class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-rose-500/10 text-rose-500 border border-rose-300 hover:bg-rose-500 hover:text-white transition shrink-0" style="font-size:15px"></a>';
     if(loggedIn){
       el.innerHTML =
-        '<a href="mylearning.html" class="inline-flex items-center gap-1 bg-gold text-white font-semibold px-3 py-1.5 rounded-full hover:opacity-90 transition text-xs whitespace-nowrap">📚 내 강의실</a>'
+        '<a href="mylearning.html" class="inline-flex items-center gap-1 bg-gold text-white font-semibold px-3 py-1.5 rounded-full hover:opacity-90 transition text-xs whitespace-nowrap">내 강의실</a>'
       + support
       + '<button onclick="__biblyLogout()" class="text-neutral-900/45 hover:text-gold text-sm whitespace-nowrap">로그아웃</button>';
     } else {
       el.innerHTML =
-        '<a href="mylearning.html" class="inline-flex items-center gap-1 border border-gold/45 text-gold font-semibold px-3 py-1.5 rounded-full hover:bg-gold/10 transition text-xs whitespace-nowrap">📚 내 강의실</a>'
+        '<a href="mylearning.html" class="inline-flex items-center gap-1 border border-gold/45 text-gold font-semibold px-3 py-1.5 rounded-full hover:bg-gold/10 transition text-xs whitespace-nowrap">내 강의실</a>'
       + support
       + '<a href="index.html" class="bg-gold text-white font-semibold px-3 py-1.5 rounded-full hover:opacity-90 transition text-xs whitespace-nowrap">로그인</a>';
     }

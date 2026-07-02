@@ -56,8 +56,8 @@
         <div>
           <p class="text-[11px] font-bold text-gold tracking-[0.2em] mb-2 px-1">위대한 믿음</p>
           <div class="bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden">
-            <a href="preachers.html" class="flex items-center gap-2.5 px-4 py-3 text-sm font-semibold hover:bg-ink/[0.03] transition border-b border-ink/6"><span>🎙️</span> 위대한 설교자</a>
-            <a href="prayers.html" class="flex items-center gap-2.5 px-4 py-3 text-sm font-bold bg-gold/10 text-gold"><span>🙏</span> 위대한 기도자</a>
+            <a href="preachers.html" class="flex items-center gap-2.5 px-4 py-3 text-sm font-semibold hover:bg-ink/[0.03] transition border-b border-ink/6"><span></span> 위대한 설교자</a>
+            <a href="prayers.html" class="flex items-center gap-2.5 px-4 py-3 text-sm font-bold bg-gold/10 text-gold"><span></span> 위대한 기도자</a>
           </div>
         </div>
         <div id="sectionNav" class="hidden lg:block bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden"></div>
@@ -84,7 +84,7 @@
       $('content').innerHTML = secs.map(s=>`
         <section id="sec-${s.id}" class="scroll-mt-24">
           <div class="flex items-center gap-2 mb-1.5">
-            <span class="text-2xl">${esc(s.icon||'🙏')}</span>
+            <span class="text-2xl">${esc(s.icon||'')}</span>
             <h2 class="text-2xl font-bold">${esc(s.title)}</h2>
             <span class="text-neutral-900/35 text-xs ml-auto">${(s.items||[]).length}개</span>
           </div>

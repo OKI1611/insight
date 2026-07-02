@@ -20,17 +20,17 @@
     url = url || location.href;
     var eu=encodeURIComponent(url), et=encodeURIComponent(title), etxt=encodeURIComponent(title+' '+url);
     var rows = [
-      ['🟢','네이버 블로그', function(){ open('https://blog.naver.com/openapi/share?url='+eu+'&title='+et); }],
-      ['🔵','네이버 밴드',   function(){ open('https://www.band.us/plugin/share?body='+etxt+'&route='+eu); }],
-      ['🍃','네이버 카페',   function(){ copy(url); }],
-      ['💬','카카오톡',      function(){ copy(url); }],
-      ['✈️','텔레그램',      function(){ open('https://t.me/share/url?url='+eu+'&text='+et); }],
-      ['🧵','쓰레드(Threads)', function(){ open('https://www.threads.net/intent/post?text='+etxt); }],
-      ['📷','인스타그램',    function(){ copy(url); }],
+      ['','네이버 블로그', function(){ open('https://blog.naver.com/openapi/share?url='+eu+'&title='+et); }],
+      ['','네이버 밴드',   function(){ open('https://www.band.us/plugin/share?body='+etxt+'&route='+eu); }],
+      ['','네이버 카페',   function(){ copy(url); }],
+      ['','카카오톡',      function(){ copy(url); }],
+      ['','텔레그램',      function(){ open('https://t.me/share/url?url='+eu+'&text='+et); }],
+      ['','쓰레드(Threads)', function(){ open('https://www.threads.net/intent/post?text='+etxt); }],
+      ['','인스타그램',    function(){ copy(url); }],
       ['𝕏','X(트위터)',     function(){ open('https://twitter.com/intent/tweet?text='+et+'&url='+eu); }],
-      ['📘','페이스북',      function(){ open('https://www.facebook.com/sharer/sharer.php?u='+eu); }],
+      ['','페이스북',      function(){ open('https://www.facebook.com/sharer/sharer.php?u='+eu); }],
       ['SEP'],
-      ['🔗','링크 복사',     function(){ copy(url); }],
+      ['','링크 복사',     function(){ copy(url); }],
       ['⋯','기타(앱으로 공유)', function(){ if(navigator.share){ navigator.share({ title:title, url:url }).catch(function(){}); } else copy(url); }]
     ];
     var ov=document.createElement('div');

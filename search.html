@@ -47,7 +47,7 @@
   <!-- 검색 히어로 -->
   <section class="bg-gradient-to-br from-white via-white to-sky border-b border-ink/[0.06]">
     <div class="max-w-3xl mx-auto px-5 pt-12 pb-9 md:pt-16 md:pb-12 text-center">
-      <p class="inline-flex items-center gap-1.5 text-gold text-[11px] font-bold tracking-[0.18em] bg-gold/10 px-2.5 py-1 rounded-full mb-4">🔮 SMART SEARCH</p>
+      <p class="inline-flex items-center gap-1.5 text-gold text-[11px] font-bold tracking-[0.18em] bg-gold/10 px-2.5 py-1 rounded-full mb-4">SMART SEARCH</p>
       <h1 class="text-2xl md:text-[32px] font-bold leading-tight">무엇이 궁금하세요?</h1>
       <p class="text-neutral-900/60 text-sm md:text-[15px] mt-3 leading-relaxed">질문을 입력하면 <b class="text-neutral-900">몇 가지 되물어</b> 의도를 좁히고 —<br class="hidden sm:block"/> 영상·요약노트·성경사전·성경을 <b class="text-neutral-900">종합</b>해 딱 맞는 자료로 안내해요.</p>
       <div class="mt-7 relative max-w-2xl mx-auto">
@@ -67,15 +67,15 @@
     <!-- 초기 안내 -->
     <section id="intro">
       <div class="grid sm:grid-cols-3 gap-3 text-center">
-        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5"><p class="text-2xl mb-1.5">💬</p><p class="font-bold text-sm">물어보세요</p><p class="text-xs text-neutral-900/55 mt-1 leading-relaxed">정확한 키워드를 몰라도 돼요. 궁금한 걸 말하듯 적으세요.</p></div>
-        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5"><p class="text-2xl mb-1.5">🎯</p><p class="font-bold text-sm">되물어 좁혀요</p><p class="text-xs text-neutral-900/55 mt-1 leading-relaxed">몇 가지 선택지로 진짜 알고 싶은 부분을 함께 찾아요.</p></div>
-        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5"><p class="text-2xl mb-1.5">📚</p><p class="font-bold text-sm">종합해 안내</p><p class="text-xs text-neutral-900/55 mt-1 leading-relaxed">영상·노트·사전·성경에서 딱 맞는 자료로 이어드려요.</p></div>
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5"><p class="text-2xl mb-1.5"></p><p class="font-bold text-sm">물어보세요</p><p class="text-xs text-neutral-900/55 mt-1 leading-relaxed">정확한 키워드를 몰라도 돼요. 궁금한 걸 말하듯 적으세요.</p></div>
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5"><p class="text-2xl mb-1.5"></p><p class="font-bold text-sm">되물어 좁혀요</p><p class="text-xs text-neutral-900/55 mt-1 leading-relaxed">몇 가지 선택지로 진짜 알고 싶은 부분을 함께 찾아요.</p></div>
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5"><p class="text-2xl mb-1.5"></p><p class="font-bold text-sm">종합해 안내</p><p class="text-xs text-neutral-900/55 mt-1 leading-relaxed">영상·노트·사전·성경에서 딱 맞는 자료로 이어드려요.</p></div>
       </div>
     </section>
   </main>
 
   <script>
-  const TYPES = { video:{i:'🎬',n:'영상 강의',u:''}, note:{i:'📝',n:'강의 요약노트'}, dict:{i:'🔎',n:'성경사전'}, theme:{i:'📚',n:'주제별 성경'}, post:{i:'📰',n:'칼럼·글'}, bible:{i:'📖',n:'성경 본문'} };
+  const TYPES = { video:{i:'',n:'영상 강의',u:''}, note:{i:'',n:'강의 요약노트'}, dict:{i:'',n:'성경사전'}, theme:{i:'',n:'주제별 성경'}, post:{i:'',n:'칼럼·글'}, bible:{i:'',n:'성경 본문'} };
   // 핵심 주제 → 되묻기(부가질문) 지도. query에 키가 포함되면 그 부가질문 칩을 띄운다.
   const TOPIC_MAP = [
     { keys:['666','짐승의 표','짐승의표','베리칩','짐승표'], label:'짐승의 표(666)', subs:[
@@ -241,9 +241,9 @@
 
     // 성경 본문 핸드오프
     const bibleCard = `<div class="mb-7">
-      <h3 class="font-bold text-neutral-900 mb-3 flex items-center gap-2"><span>📖</span>성경 본문에서 찾기</h3>
+      <h3 class="font-bold text-neutral-900 mb-3 flex items-center gap-2"><span></span>성경 본문에서 찾기</h3>
       <a href="bible.html?q=${encodeURIComponent(CURQ)}" class="flex gap-3 items-center bg-sky border border-ink/8 rounded-2xl p-4 hover:shadow-card transition">
-        <span class="text-xl">📖</span>
+        <span class="text-xl"></span>
         <span class="flex-1 font-semibold text-neutral-900 text-[15px]">‘${esc(CURQ)}’ 성경 본문 검색 — KJV 새번역에서 직접 찾아보기</span>
         <span class="text-gold">→</span>
       </a>
@@ -252,7 +252,7 @@
     box.innerHTML = `
       <div class="bg-white rounded-3xl border border-ink/8 shadow-soft p-5 md:p-6 mb-7">
         <div class="flex items-start gap-3">
-          <span class="text-2xl">💡</span>
+          <span class="text-2xl"></span>
           <div class="flex-1">
             <p class="text-[15px] leading-relaxed text-neutral-900/85">${guide}</p>
             <div class="flex flex-wrap gap-1.5 mt-3">

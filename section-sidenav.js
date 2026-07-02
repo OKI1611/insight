@@ -10,12 +10,12 @@
   // site.json 로드 실패 시 사용할 내장 백업(헤더 DEFAULT_MENU와 동일 구조)
   var FALLBACK = [
     { label:'BIBLY 이야기', href:'about.html', children:[
-      { label:'우리의 사명·소개', href:'about.html' }, { label:'🌱 무료로 시작하기', href:'welcome.html' }, { label:'1기 창립 멤버', href:'founding.html' } ]},
+      { label:'우리의 사명·소개', href:'about.html' }, { label:'무료로 시작하기', href:'welcome.html' }, { label:'1기 창립 멤버', href:'founding.html' } ]},
     { label:'강의·커리큘럼', href:'curriculum.html', children:[
       { label:'전체 커리큘럼', href:'curriculum.html' }, { label:'정규 심화 과정(아카데미)', href:'academy.html' },
       { label:'나에게 맞는 강의 찾기', href:'find.html' } ]},
     { label:'스토어', href:'booklet.html', children:[
-      { label:'PDF 책자·이용권', href:'booklet.html' }, { label:'🎁 선물·후원 좌석', href:'gift.html' },
+      { label:'PDF 책자·이용권', href:'booklet.html' }, { label:'선물·후원 좌석', href:'gift.html' },
       { label:'고객센터(주문·배송·반품)', href:'store-help.html' }, { label:'내 구매·자료', href:'mylearning.html' } ]},
     { label:'성경', href:'bible.html', children:[
       { label:'성경 읽기', href:'bible.html' }, { label:'매일 말씀과 함께', href:'daily.html' },

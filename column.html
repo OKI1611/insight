@@ -84,7 +84,7 @@
           <h1 class="text-2xl md:text-3xl font-bold">인사이트 칼럼</h1>
           <p class="text-neutral-900/55 text-sm mt-2">유튜브에서 다 못한 이야기, 시대를 읽는 묵상을 글로 나눕니다.</p>
         </div>
-        <button id="writeBtn" onclick="openEditor()" class="hidden bg-gold text-white text-sm font-semibold px-4 py-2.5 rounded-full hover:opacity-90 transition shrink-0">✏️ 새 글 쓰기</button>
+        <button id="writeBtn" onclick="openEditor()" class="hidden bg-gold text-white text-sm font-semibold px-4 py-2.5 rounded-full hover:opacity-90 transition shrink-0">새 글 쓰기</button>
       </div>
       <div id="colList" class="space-y-4"><p class="text-neutral-900/40 text-sm text-center py-10">칼럼을 불러오는 중…</p></div>
     </div>
@@ -107,7 +107,7 @@
 
       <!-- 댓글 -->
       <section class="mt-12 pt-8 border-t border-ink/10">
-        <h2 class="font-bold text-xl mb-1">💬 댓글 <span id="cCount" class="text-neutral-900/40 text-base font-normal"></span></h2>
+        <h2 class="font-bold text-xl mb-1">댓글 <span id="cCount" class="text-neutral-900/40 text-base font-normal"></span></h2>
         <p class="text-neutral-900/50 text-sm mb-5">이 칼럼에 대한 생각을 자유롭게 나눠 주세요.</p>
         <div id="cForm" class="mb-6"></div>
         <div id="cList" class="space-y-4"><p class="text-neutral-900/40 text-sm text-center py-6">댓글을 불러오는 중…</p></div>
@@ -123,7 +123,7 @@
       <div class="rounded-xl">
         <div id="editor"></div>
       </div>
-      <p class="text-xs text-neutral-900/40 mt-2">💡 워드·한글 글을 복사해 붙여넣어도 깔끔하게 정리됩니다.</p>
+      <p class="text-xs text-neutral-900/40 mt-2">워드·한글 글을 복사해 붙여넣어도 깔끔하게 정리됩니다.</p>
       <div class="mt-5 flex gap-2 justify-end">
         <button onclick="showList()" class="border border-ink/15 rounded-full px-5 py-2.5 text-sm hover:bg-ink/5">취소</button>
         <button id="saveBtn" onclick="saveColumn()" class="bg-gold text-white font-semibold rounded-full px-6 py-2.5 text-sm hover:opacity-90">발행하기</button>
@@ -166,7 +166,7 @@
       const u=url||location.href;
       if(window.biblyShare){ biblyShare(title, u); return; }
       if(navigator.share){ navigator.share({title:title||document.title,url:u}).catch(()=>{}); }
-      else { try{ navigator.clipboard.writeText(u); alert('🔗 링크가 복사되었어요!'); }catch(e){ prompt('링크 복사', u); } }
+      else { try{ navigator.clipboard.writeText(u); alert('링크가 복사되었어요!'); }catch(e){ prompt('링크 복사', u); } }
     }
     // 목록 카드에서 칼럼 공유 (해당 칼럼으로 바로 연결)
     function shareCol(el){
@@ -200,7 +200,7 @@
             <p class="text-sm text-neutral-900/55 mt-1.5 line-clamp-2">${esc(c.excerpt||'')}</p>
             <div class="flex items-center gap-2 mt-2">
               <p class="text-xs text-neutral-900/40">${esc(c.author_name||'오광일')} · ${timeAgo(c.created_at)}</p>
-              <button onclick="event.stopPropagation();shareCol(this)" data-id="${c.id}" data-t="${esc(c.title||'').replace(/"/g,'&quot;')}" class="ml-auto text-neutral-900/35 hover:text-gold text-sm font-semibold" title="공유하기">🔗 공유</button>
+              <button onclick="event.stopPropagation();shareCol(this)" data-id="${c.id}" data-t="${esc(c.title||'').replace(/"/g,'&quot;')}" class="ml-auto text-neutral-900/35 hover:text-gold text-sm font-semibold" title="공유하기">공유</button>
             </div>
           </div>
         </div>`).join('');
@@ -213,7 +213,7 @@
       history.replaceState(null,'','#col-'+id);
       document.getElementById('rTitle').textContent = data.title||'';
       document.getElementById('rDate').textContent = 'COLUMN';
-      document.getElementById('rMeta').innerHTML = esc(data.author_name||'오광일') + ' · ' + new Date(data.created_at).toLocaleDateString('ko-KR') + ' · 👁 ' + ((Number(data.views)||0)+1).toLocaleString();
+      document.getElementById('rMeta').innerHTML = esc(data.author_name||'오광일') + ' · ' + new Date(data.created_at).toLocaleDateString('ko-KR') + ' · ' + ((Number(data.views)||0)+1).toLocaleString();
       document.getElementById('rBody').innerHTML = sanitize(data.body_html||'');
       const url = location.origin + location.pathname + '#col-' + id;
       document.getElementById('rShare').onclick = ()=>shareItem(data.title, url);

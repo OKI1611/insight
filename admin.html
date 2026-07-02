@@ -31,7 +31,7 @@
   <!-- ===== 로그인 게이트 ===== -->
   <div id="gate" class="fixed inset-0 z-50 bg-gold flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl shadow-2xl p-8 max-w-sm w-full text-center">
-      <p class="text-3xl mb-3">🔐</p>
+      <p class="text-3xl mb-3"></p>
       <h1 class="text-lg font-bold mb-1">관리자 콘솔</h1>
       <p id="gateMsg" class="text-sm text-neutral-900/55 mb-6">관리자 계정으로 로그인하세요.</p>
       <button onclick="googleLogin()" class="w-full flex items-center justify-center gap-3 border border-ink/15 rounded-xl py-3 font-medium hover:bg-ink/5 transition mb-3">
@@ -54,17 +54,17 @@
         <p id="adminWho" class="text-[11px] text-paper/45 mt-1"></p>
       </div>
       <nav id="nav" class="flex-1 px-3 py-4 space-y-1 text-sm overflow-auto">
-        <button data-sec="dash"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">📊 대시보드</button>
-        <button data-sec="curr"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">🎬 커리큘럼 편집</button>
-        <button data-sec="reqs"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">📮 강의 요청·건의</button>
-        <button data-sec="comm"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">💬 커뮤니티</button>
-        <button data-sec="mem"    class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">👥 회원</button>
-        <button data-sec="founding" class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">🏅 창립 멤버</button>
-        <button data-sec="apps"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">📩 등록 신청</button>
-        <button data-sec="cert"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">🎓 수강권(인증)</button>
-        <button data-sec="store"  class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">🛒 스토어 권한</button>
-        <button data-sec="cont"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">📝 노트·퀴즈 현황</button>
-        <button data-sec="site"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">⚙️ 사이트 설정</button>
+        <button data-sec="dash"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">대시보드</button>
+        <button data-sec="curr"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">커리큘럼 편집</button>
+        <button data-sec="reqs"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">강의 요청·건의</button>
+        <button data-sec="comm"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">커뮤니티</button>
+        <button data-sec="mem"    class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">회원</button>
+        <button data-sec="founding" class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">창립 멤버</button>
+        <button data-sec="apps"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">등록 신청</button>
+        <button data-sec="cert"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">수강권(인증)</button>
+        <button data-sec="store"  class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">스토어 권한</button>
+        <button data-sec="cont"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">노트·퀴즈 현황</button>
+        <button data-sec="site"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">사이트 설정</button>
       </nav>
       <div class="px-5 py-4 border-t border-white/10">
         <button onclick="logout()" class="text-xs text-paper/55 hover:text-gold">로그아웃</button>
@@ -92,9 +92,9 @@
           <h1 class="text-2xl font-bold">커리큘럼 편집</h1>
           <div class="flex gap-2">
             <button onclick="addTrack()" class="border border-ink/15 text-sm px-3 py-2 rounded-lg hover:bg-ink/5">+ 트랙 추가</button>
-            <button onclick="copyCourse()" class="border border-ink/15 text-sm px-3 py-2 rounded-lg hover:bg-ink/5">📋 복사</button>
-            <button onclick="exportCourse()" class="border border-ink/15 text-sm px-3 py-2 rounded-lg hover:bg-ink/5">💾 내보내기</button>
-            <button onclick="saveCourseLive()" class="bg-gold text-white text-sm font-semibold px-4 py-2 rounded-lg hover:opacity-90">⚡ 사이트에 저장(즉시 반영)</button>
+            <button onclick="copyCourse()" class="border border-ink/15 text-sm px-3 py-2 rounded-lg hover:bg-ink/5">복사</button>
+            <button onclick="exportCourse()" class="border border-ink/15 text-sm px-3 py-2 rounded-lg hover:bg-ink/5">내보내기</button>
+            <button onclick="saveCourseLive()" class="bg-gold text-white text-sm font-semibold px-4 py-2 rounded-lg hover:opacity-90">사이트에 저장(즉시 반영)</button>
           </div>
         </div>
         <p class="text-neutral-900/50 text-sm mb-4">강의 제목·길이·태그·공개여부를 고치고 순서를 바꾼 뒤, <b class="text-neutral-900">내보내기</b>로 받은 파일을 <code class="bg-ink/5 px-1 rounded">content/course.json</code>에 덮어쓰면 됩니다. (또는 복사해서 클로드에게 전달)</p>
@@ -128,10 +128,10 @@
       <!-- 창립 멤버 -->
       <section id="sec-founding" class="secPanel hidden">
         <div class="flex flex-wrap items-center justify-between gap-3 mb-1">
-          <h1 class="text-2xl font-bold">🏅 1기 창립 멤버</h1>
+          <h1 class="text-2xl font-bold">1기 창립 멤버</h1>
           <div class="flex gap-2">
             <button onclick="exportFoundingCSV()" class="border border-ink/15 text-sm px-3 py-2 rounded-lg hover:bg-ink/5">엑셀(CSV)</button>
-            <button onclick="loadFounding()" class="text-sm text-gold px-2 hover:underline">🔄 새로고침</button>
+            <button onclick="loadFounding()" class="text-sm text-gold px-2 hover:underline">새로고침</button>
           </div>
         </div>
         <p class="text-neutral-900/50 text-sm mb-6">홈에서 ‘1기 창립 멤버 되기’로 가입한 분들입니다. (가입 순서대로 멤버 번호 부여)</p>
@@ -175,7 +175,7 @@
         <p class="text-neutral-900/50 text-sm mb-6">입금을 확인한 뒤, <b>주문 알림 메일의 구매자 이메일</b>로 전체 이용권 또는 개별 교재를 부여하세요. 구매자가 그 이메일로 로그인하면 바로 열립니다.</p>
         <div class="grid lg:grid-cols-2 gap-4 max-w-3xl mb-8">
           <div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-5">
-            <h2 class="font-bold mb-3">🎫 전체 이용권 부여</h2>
+            <h2 class="font-bold mb-3">전체 이용권 부여</h2>
             <input id="passEmail" type="email" placeholder="구매자 이메일" class="w-full border border-ink/12 rounded-lg px-3 py-2 text-sm mb-2"/>
             <div class="flex gap-2">
               <select id="passType" class="flex-1 border border-ink/12 rounded-lg px-3 py-2 text-sm">
@@ -187,7 +187,7 @@
             <p id="passMsg" class="text-xs mt-2 min-h-[16px]"></p>
           </div>
           <div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-5">
-            <h2 class="font-bold mb-3">📕 개별 교재(책) 부여</h2>
+            <h2 class="font-bold mb-3">개별 교재(책) 부여</h2>
             <input id="bookEmail" type="email" placeholder="구매자 이메일" class="w-full border border-ink/12 rounded-lg px-3 py-2 text-sm mb-2"/>
             <div class="flex gap-2">
               <select id="bookTrack" class="flex-1 border border-ink/12 rounded-lg px-3 py-2 text-sm"><option value="">책(과정) 선택…</option></select>
@@ -196,13 +196,13 @@
             <p id="bookMsg" class="text-xs mt-2 min-h-[16px]"></p>
           </div>
         </div>
-        <div class="flex items-center gap-3 mb-3"><h2 class="font-bold">현재 이용권 보유자</h2><button onclick="loadStore()" class="text-xs text-gold hover:underline">🔄 새로고침</button></div>
+        <div class="flex items-center gap-3 mb-3"><h2 class="font-bold">현재 이용권 보유자</h2><button onclick="loadStore()" class="text-xs text-gold hover:underline">새로고침</button></div>
         <div id="passList" class="mb-8">불러오는 중…</div>
         <h2 class="font-bold mb-3">현재 개별 교재 권한</h2>
         <div id="bookList">불러오는 중…</div>
 
-        <div class="flex items-center gap-3 mt-8 mb-1"><h2 class="font-bold">최근 이용 기록 (열람·다운로드)</h2><button onclick="loadAccessLogs()" class="text-xs text-gold hover:underline">🔄 새로고침</button></div>
-        <p class="text-neutral-900/45 text-xs mb-3">⚖️ 환불 요청 시 참고 — 자료를 <b>다운로드·열람한 기록</b>은 「전자상거래법」상 청약철회를 제한할 수 있는 근거가 됩니다.</p>
+        <div class="flex items-center gap-3 mt-8 mb-1"><h2 class="font-bold">최근 이용 기록 (열람·다운로드)</h2><button onclick="loadAccessLogs()" class="text-xs text-gold hover:underline">새로고침</button></div>
+        <p class="text-neutral-900/45 text-xs mb-3">환불 요청 시 참고 — 자료를 <b>다운로드·열람한 기록</b>은 「전자상거래법」상 청약철회를 제한할 수 있는 근거가 됩니다.</p>
         <div id="accessList">불러오는 중…</div>
       </section>
 
@@ -218,9 +218,9 @@
         <div class="flex flex-wrap items-center justify-between gap-3 mb-1">
           <h1 class="text-2xl font-bold">사이트 설정</h1>
           <div class="flex gap-2">
-            <button onclick="copySite()" class="border border-ink/15 text-sm px-3 py-2 rounded-lg hover:bg-ink/5">📋 복사</button>
-            <button onclick="exportSite()" class="border border-ink/15 text-sm px-3 py-2 rounded-lg hover:bg-ink/5">💾 내보내기</button>
-            <button onclick="saveSiteLive()" class="bg-gold text-white text-sm font-semibold px-4 py-2 rounded-lg hover:opacity-90">⚡ 사이트에 저장(즉시 반영)</button>
+            <button onclick="copySite()" class="border border-ink/15 text-sm px-3 py-2 rounded-lg hover:bg-ink/5">복사</button>
+            <button onclick="exportSite()" class="border border-ink/15 text-sm px-3 py-2 rounded-lg hover:bg-ink/5">내보내기</button>
+            <button onclick="saveSiteLive()" class="bg-gold text-white text-sm font-semibold px-4 py-2 rounded-lg hover:opacity-90">사이트에 저장(즉시 반영)</button>
           </div>
         </div>
         <p class="text-neutral-900/50 text-sm mb-4">브랜드·후원 계좌·가입 선물 등을 수정한 뒤 내보내 <code class="bg-ink/5 px-1 rounded">content/site.json</code>에 덮어쓰세요.</p>
@@ -272,7 +272,7 @@
         return res.ok?0:'—';
       }catch(e){ clearTimeout(to); return '?'; }
     }
-    // ⚠️ 부트스트랩(applyAuth)은 스크립트 맨 끝에서 호출 — 여기서 부르면 COURSE·mkCard 등이
+    // 부트스트랩(applyAuth)은 스크립트 맨 끝에서 호출 — 여기서 부르면 COURSE·mkCard 등이
     //    아직 초기화되지 않아(TDZ) loadDash가 크래시하고 대시보드가 '불러오는 중'에 멈춤.
 
     // 구글 로그인 — OAuth 리디렉션(클라이언트 SDK 경유, 리디렉션만이라 hang 없음)
@@ -348,7 +348,7 @@
       // ① await 없이 즉시 실행 — contentSummary·statCards 바로 표시
       const c0=COURSE||{levels:[]}, t0=c0.levels.length, l0=c0.levels.reduce((s,l)=>s+(l.lessons||[]).length,0);
       document.getElementById('contentSummary').innerHTML = t0
-        ? `총 <b>${t0}개 트랙 / ${l0}개 강의</b>가 등록되어 있습니다. 각 강의의 노트·퀴즈 보유 현황은 <button onclick="show('cont')" class="text-gold underline">노트·퀴즈 현황</button> 탭에서, 강의 추가·수정은 <button onclick="show('curr')" class="text-gold underline">커리큘럼 편집</button> 탭에서 하세요.<span class="block mt-3 pt-3 border-t border-ink/5">✏️ <b>홈페이지 문구 수정</b>: 관리자로 로그인한 채 <a href="index.html" class="text-gold underline">홈</a>·<a href="about.html" class="text-gold underline">우리의 사명</a> 페이지를 열면 상단에 <b>「✏️ 글 편집」</b> 바가 나타납니다. 켜고 노란 점선 글자를 직접 고친 뒤 <b>저장</b>하면 모든 방문자에게 즉시 반영돼요.</span>`
+        ? `총 <b>${t0}개 트랙 / ${l0}개 강의</b>가 등록되어 있습니다. 각 강의의 노트·퀴즈 보유 현황은 <button onclick="show('cont')" class="text-gold underline">노트·퀴즈 현황</button> 탭에서, 강의 추가·수정은 <button onclick="show('curr')" class="text-gold underline">커리큘럼 편집</button> 탭에서 하세요.<span class="block mt-3 pt-3 border-t border-ink/5"><b>홈페이지 문구 수정</b>: 관리자로 로그인한 채 <a href="index.html" class="text-gold underline">홈</a>·<a href="about.html" class="text-gold underline">우리의 사명</a> 페이지를 열면 상단에 <b>「글 편집」</b> 바가 나타납니다. 켜고 노란 점선 글자를 직접 고친 뒤 <b>저장</b>하면 모든 방문자에게 즉시 반영돼요.</span>`
         : '<span class="text-neutral-900/40 text-sm">강의 목록 조회 중…</span>';
       document.getElementById('statCards').innerHTML=[
         mkCard('커리큘럼',t0?t0+'트랙 · '+l0+'강':'—','전체 강의'),
@@ -357,7 +357,7 @@
       // ② 백그라운드: course.json 로드 후 실제 수치 반영
       getCourse().then(c=>{
         const tracks=c.levels.length, lessons=c.levels.reduce((s,l)=>s+(l.lessons||[]).length,0);
-        document.getElementById('contentSummary').innerHTML=`총 <b>${tracks}개 트랙 / ${lessons}개 강의</b>가 등록되어 있습니다. 각 강의의 노트·퀴즈 보유 현황은 <button onclick="show('cont')" class="text-gold underline">노트·퀴즈 현황</button> 탭에서, 강의 추가·수정은 <button onclick="show('curr')" class="text-gold underline">커리큘럼 편집</button> 탭에서 하세요.<span class="block mt-3 pt-3 border-t border-ink/5">✏️ <b>홈페이지 문구 수정</b>: 관리자로 로그인한 채 <a href="index.html" class="text-gold underline">홈</a>·<a href="about.html" class="text-gold underline">우리의 사명</a> 페이지를 열면 상단에 <b>「✏️ 글 편집」</b> 바가 나타납니다. 켜고 노란 점선 글자를 직접 고친 뒤 <b>저장</b>하면 모든 방문자에게 즉시 반영돼요.</span>`;
+        document.getElementById('contentSummary').innerHTML=`총 <b>${tracks}개 트랙 / ${lessons}개 강의</b>가 등록되어 있습니다. 각 강의의 노트·퀴즈 보유 현황은 <button onclick="show('cont')" class="text-gold underline">노트·퀴즈 현황</button> 탭에서, 강의 추가·수정은 <button onclick="show('curr')" class="text-gold underline">커리큘럼 편집</button> 탭에서 하세요.<span class="block mt-3 pt-3 border-t border-ink/5"><b>홈페이지 문구 수정</b>: 관리자로 로그인한 채 <a href="index.html" class="text-gold underline">홈</a>·<a href="about.html" class="text-gold underline">우리의 사명</a> 페이지를 열면 상단에 <b>「글 편집」</b> 바가 나타납니다. 켜고 노란 점선 글자를 직접 고친 뒤 <b>저장</b>하면 모든 방문자에게 즉시 반영돼요.</span>`;
         document.getElementById('statCards').innerHTML=[
           mkCard('커리큘럼',tracks+'트랙 · '+lessons+'강','전체 강의'),
           mkCard('회원','…','집계 중'), mkCard('강의 요청·건의','…','집계 중'), mkCard('커뮤니티 글','…','집계 중'),
@@ -378,7 +378,7 @@
           ].join('');
           const trend=(label,emoji,a,b,c,d)=>`<div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-5 mb-4"><p class="font-bold mb-3">${emoji} ${label}</p><div class="grid grid-cols-4 gap-2 text-center"><div><p class="text-xl font-bold">${a}</p><p class="text-xs text-neutral-900/45 mt-0.5">오늘</p></div><div><p class="text-xl font-bold">${b}</p><p class="text-xs text-neutral-900/45 mt-0.5">최근 7일</p></div><div><p class="text-xl font-bold">${c}</p><p class="text-xs text-neutral-900/45 mt-0.5">최근 30일</p></div><div><p class="text-xl font-bold text-gold">${d}</p><p class="text-xs text-neutral-900/45 mt-0.5">누적</p></div></div></div>`;
           const vNote=(vAll==='—')?'<p class="text-xs text-neutral-900/40 mb-4">방문 통계 테이블이 아직 없습니다.</p>':'';
-          document.getElementById('trendWrap').innerHTML=vNote+trend('방문','👣',vToday,v7,v30,vAll)+trend('가입','✍️',sToday,s7,s30,members);
+          document.getElementById('trendWrap').innerHTML=vNote+trend('방문','',vToday,v7,v30,vAll)+trend('가입','',sToday,s7,s30,members);
         });
       }).catch(e=>{ document.getElementById('contentSummary').innerHTML='<p class="text-red-400 text-sm">대시보드 오류: '+esc(String(e))+'</p>'; });
     }
@@ -398,7 +398,7 @@
             <span class="text-[11px] text-neutral-900/30">${esc((l.youtube||'').split('/').pop())}</span>
             <button onclick="moveL(${ti},${li},-1)" class="text-neutral-900/40 hover:text-gold px-1">↑</button>
             <button onclick="moveL(${ti},${li},1)" class="text-neutral-900/40 hover:text-gold px-1">↓</button>
-            <button onclick="delL(${ti},${li})" class="text-neutral-900/40 hover:text-red-500 px-1">🗑</button>
+            <button onclick="delL(${ti},${li})" class="text-neutral-900/40 hover:text-red-500 px-1"></button>
           </div>`).join('');
         return `<div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-5">
           <div class="flex flex-wrap items-center gap-2 mb-2">
@@ -433,8 +433,8 @@
         return true;
       }catch(e){ alert('저장 오류: '+e); return false; }
     }
-    async function saveCourseLive(){ if(await saveLive('course',COURSE)) toast('⚡ 커리큘럼이 사이트에 즉시 반영되었습니다'); }
-    async function saveSiteLive(){ if(await saveLive('site',SITE)) toast('⚡ 설정이 사이트에 즉시 반영되었습니다'); }
+    async function saveCourseLive(){ if(await saveLive('course',COURSE)) toast('커리큘럼이 사이트에 즉시 반영되었습니다'); }
+    async function saveSiteLive(){ if(await saveLive('site',SITE)) toast('설정이 사이트에 즉시 반영되었습니다'); }
     function dl(name,text){ const b=new Blob([text],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=name; a.click(); toast(name+' 내려받음'); }
 
     // ===== 강의 요청 관리 =====
@@ -447,8 +447,8 @@
       if(!rows.length){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">아직 등록된 요청이 없습니다.</p>'; return; }
       wrap.innerHTML = rows.map(r=>`<div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-4 mb-3">
         <div class="flex items-center gap-2 flex-wrap mb-1">
-          <span class="text-[11px] font-bold px-2 py-0.5 rounded-full ${r.type==='feedback'?'bg-gold/15 text-gold':'bg-gold text-white'}">${r.type==='feedback'?'💡 건의':'🎓 요청'}</span>
-          <span class="text-[11px] text-neutral-900/40">👍 ${votes[r.id]||0}</span>
+          <span class="text-[11px] font-bold px-2 py-0.5 rounded-full ${r.type==='feedback'?'bg-gold/15 text-gold':'bg-gold text-white'}">${r.type==='feedback'?'건의':'요청'}</span>
+          <span class="text-[11px] text-neutral-900/40">${votes[r.id]||0}</span>
           <span class="text-[11px] text-neutral-900/35">${new Date(r.created_at).toLocaleDateString('ko')}</span>
           <span class="text-[11px] text-neutral-900/40 ml-auto">${esc(r.author_name||'')}</span>
         </div>
@@ -458,7 +458,7 @@
         <div class="flex flex-wrap items-center gap-1.5 mt-3 pt-2 border-t border-ink/5">
           <span class="text-[11px] text-neutral-900/40 mr-1">상태:</span>
           ${STATUSES.map(s=>`<button onclick="setReqStatus('${r.id}','${s}')" class="text-[11px] px-2 py-1 rounded-full border ${(r.status||'접수')===s?'border-gold text-gold font-semibold':'border-ink/15 text-neutral-900/50 hover:bg-ink/5'}">${s}</button>`).join('')}
-          <button onclick="replyReq('${r.id}')" class="text-[11px] px-2 py-1 rounded-full border border-ink/15 text-neutral-900/50 hover:bg-ink/5 ml-1">✍️ 답변</button>
+          <button onclick="replyReq('${r.id}')" class="text-[11px] px-2 py-1 rounded-full border border-ink/15 text-neutral-900/50 hover:bg-ink/5 ml-1">답변</button>
           <button onclick="delReq('${r.id}')" class="text-[11px] px-2 py-1 rounded-full border border-ink/15 text-red-500 hover:bg-red-50 ml-auto">삭제</button>
         </div>
       </div>`).join('');
@@ -517,7 +517,7 @@
     }
     function exportMembersCSV(){ if(!MEMBERS.length){ toast('회원 데이터 없음'); return; } const fd=d=>d?new Date(d).toLocaleDateString('ko'):''; const pv=p=>({google:'구글',kakao:'카카오',email:'이메일'}[p]||p||''); const rows=[['이름','전화번호','이메일','주소','가입일','가입경로','마케팅동의','창립번호','수강트랙','완료강의'],...MEMBERS.map(m=>[m.name,m.phone,m.email,m.address,fd(m.created),pv(m.provider),m.consent?'동의':'미동의',m.founding?('#'+String(m.founding).padStart(3,'0')):'',m.enr,m.done])]; const csv='﻿'+rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n'); const b=new Blob([csv],{type:'text/csv'}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='회원목록.csv'; a.click(); toast('CSV 내려받음'); }
 
-    // ===== 🏅 창립 멤버 =====
+    // ===== 창립 멤버 =====
     let FOUNDING=[];
     async function loadFounding(){
       const wrap=document.getElementById('foundingWrap'); if(!wrap) return;
@@ -564,7 +564,7 @@
       try{
         const data=await rpcFetch('grant_cert',{p_email:email,p_tier:tier,p_package:(CERT_TIERNAME[tier]||'').split(' ')[0]},9000);
         if(data==='NOT_FOUND'){ m.style.color='#dc2626'; m.textContent='해당 이메일의 회원을 찾지 못했어요. (수강생이 먼저 가입했는지 확인)'; return; }
-        m.style.color='#16a34a'; m.textContent='✅ 부여 완료'; document.getElementById('certEmail').value=''; loadCert();
+        m.style.color='#16a34a'; m.textContent='부여 완료'; document.getElementById('certEmail').value=''; loadCert();
       }catch(e){ m.style.color='#dc2626'; m.textContent=(/function|does not exist|schema cache/i.test(e.message||'')?'db/admin_grant.sql 을 먼저 실행하세요.':'오류: '+(e.message||e)); }
     }
     async function revokeCert(email){
@@ -573,7 +573,7 @@
       catch(e){ alert('오류: '+(e.message||e)); }
     }
 
-    // ===== 🛒 스토어 권한 (이용권·교재) =====
+    // ===== 스토어 권한 (이용권·교재) =====
     function passName(t){ return ({'pass-life':'평생소장','pass-1y':'1년'})[t] || t || '이용권'; }
     function _storeNeedSql(e){ return /function|does not exist|schema cache/i.test((e&&e.message)||''); }
     // RPC 직접 호출(클라이언트 우회) + 강제 타임아웃 — '불러오는 중' 멈춤 원천 차단
@@ -617,7 +617,7 @@
         +'<p style="font-size:15px;font-weight:600">'+esc(intro)+'</p>'
         +bodyLines.map(function(l){return '<p style="font-size:14px;color:#2a3a55">'+l+'</p>';}).join('')
         +'<div style="background:#eaf0f8;border-radius:10px;padding:12px 14px;margin:14px 0;font-size:13px"><b>로그인 계정</b><br>'+esc(to)+' 으로 <b>biblynote.com</b>에 로그인하세요.</div>'
-        +'<div style="font-size:13px;color:#3a4a66;background:#faf7ef;border:1px solid #ece3cc;border-radius:10px;padding:12px 14px;margin:12px 0"><b style="color:#9a7b30">📌 이용 방법</b><br>biblynote.com 로그인 → 상단 <b>스토어</b> 또는 <b>내 강의실 → 내 교재</b>에서 자료를 열람하고 PDF로 저장하실 수 있어요.</div>'
+        +'<div style="font-size:13px;color:#3a4a66;background:#faf7ef;border:1px solid #ece3cc;border-radius:10px;padding:12px 14px;margin:12px 0"><b style="color:#9a7b30">이용 방법</b><br>biblynote.com 로그인 → 상단 <b>스토어</b> 또는 <b>내 강의실 → 내 교재</b>에서 자료를 열람하고 PDF로 저장하실 수 있어요.</div>'
         +'<p style="font-size:12px;color:#8a93a6;line-height:1.65;margin:10px 0 0">※ 디지털 자료 특성상, 「전자상거래법」 및 구매 시 동의하신 약관에 따라 <b>PDF를 다운로드·열람하신 이후에는 청약철회(환불)가 제한</b>될 수 있습니다.</p>'
         +'<p style="font-size:13px;color:#5a6b88;margin-top:14px">문의: <a href="mailto:bibly.note@gmail.com" style="color:#b8923f">bibly.note@gmail.com</a></p>'
         +'<div style="border-top:1px solid #eef1f6;margin-top:16px;padding-top:14px">'
@@ -637,7 +637,7 @@
         if(!data||!data.length){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">아직 이용권 보유자가 없습니다.</p>'; return; }
         wrap.innerHTML=`<div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">
           <thead class="text-neutral-900/45 text-left border-b border-ink/5"><tr><th class="px-5 py-3 font-medium">이메일</th><th class="px-5 py-3 font-medium">종류</th><th class="px-5 py-3 font-medium">만료</th><th class="px-5 py-3 font-medium">부여일</th><th class="px-5 py-3"></th></tr></thead>
-          <tbody>${data.map(r=>`<tr class="border-b border-ink/5"><td class="px-5 py-3">${esc(r.email)}</td><td class="px-5 py-3 font-medium text-gold">${esc(passName(r.type))}</td><td class="px-5 py-3 text-neutral-900/55">${r.expires_at?new Date(r.expires_at).toLocaleDateString('ko'):'평생'}</td><td class="px-5 py-3 text-neutral-900/55">${r.created_at?new Date(r.created_at).toLocaleDateString('ko'):'-'}</td><td class="px-5 py-3 text-right whitespace-nowrap"><button onclick="showUserAccess(this.dataset.e)" data-e="${esc(r.email)}" class="text-xs text-neutral-900/60 hover:text-gold hover:underline mr-3">📄 기록보기</button><button onclick="revokePass(this.dataset.e)" data-e="${esc(r.email)}" class="text-xs text-red-500 hover:underline">회수</button></td></tr>`).join('')}</tbody></table></div>`;
+          <tbody>${data.map(r=>`<tr class="border-b border-ink/5"><td class="px-5 py-3">${esc(r.email)}</td><td class="px-5 py-3 font-medium text-gold">${esc(passName(r.type))}</td><td class="px-5 py-3 text-neutral-900/55">${r.expires_at?new Date(r.expires_at).toLocaleDateString('ko'):'평생'}</td><td class="px-5 py-3 text-neutral-900/55">${r.created_at?new Date(r.created_at).toLocaleDateString('ko'):'-'}</td><td class="px-5 py-3 text-right whitespace-nowrap"><button onclick="showUserAccess(this.dataset.e)" data-e="${esc(r.email)}" class="text-xs text-neutral-900/60 hover:text-gold hover:underline mr-3">기록보기</button><button onclick="revokePass(this.dataset.e)" data-e="${esc(r.email)}" class="text-xs text-red-500 hover:underline">회수</button></td></tr>`).join('')}</tbody></table></div>`;
       }catch(e){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">'+(_storeNeedSql(e)?'스토어 권한 기능 준비 중 — 관리자: <code class="bg-ink/5 px-1 rounded">supabase/store_grant.sql</code> 를 먼저 실행하세요.':'불러오기 오류: '+esc(e.message||e))+'</p>'; }
     }
     async function loadBookList(){
@@ -647,10 +647,10 @@
         if(!data||!data.length){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">아직 개별 교재 권한이 없습니다.</p>'; return; }
         wrap.innerHTML=`<div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">
           <thead class="text-neutral-900/45 text-left border-b border-ink/5"><tr><th class="px-5 py-3 font-medium">이메일</th><th class="px-5 py-3 font-medium">책(과정)</th><th class="px-5 py-3 font-medium">부여일</th><th class="px-5 py-3"></th></tr></thead>
-          <tbody>${data.map(r=>`<tr class="border-b border-ink/5"><td class="px-5 py-3">${esc(r.email)}</td><td class="px-5 py-3 font-medium">${esc(r.track)}</td><td class="px-5 py-3 text-neutral-900/55">${r.created_at?new Date(r.created_at).toLocaleDateString('ko'):'-'}</td><td class="px-5 py-3 text-right whitespace-nowrap"><button onclick="showUserAccess(this.dataset.e)" data-e="${esc(r.email)}" class="text-xs text-neutral-900/60 hover:text-gold hover:underline mr-3">📄 기록보기</button><button onclick="revokeBook(this.dataset.e,this.dataset.t)" data-e="${esc(r.email)}" data-t="${esc(r.track)}" class="text-xs text-red-500 hover:underline">회수</button></td></tr>`).join('')}</tbody></table></div>`;
+          <tbody>${data.map(r=>`<tr class="border-b border-ink/5"><td class="px-5 py-3">${esc(r.email)}</td><td class="px-5 py-3 font-medium">${esc(r.track)}</td><td class="px-5 py-3 text-neutral-900/55">${r.created_at?new Date(r.created_at).toLocaleDateString('ko'):'-'}</td><td class="px-5 py-3 text-right whitespace-nowrap"><button onclick="showUserAccess(this.dataset.e)" data-e="${esc(r.email)}" class="text-xs text-neutral-900/60 hover:text-gold hover:underline mr-3">기록보기</button><button onclick="revokeBook(this.dataset.e,this.dataset.t)" data-e="${esc(r.email)}" data-t="${esc(r.track)}" class="text-xs text-red-500 hover:underline">회수</button></td></tr>`).join('')}</tbody></table></div>`;
       }catch(e){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">'+(_storeNeedSql(e)?'스토어 권한 기능 준비 중 — <code class="bg-ink/5 px-1 rounded">supabase/store_grant.sql</code> 실행 필요.':'불러오기 오류: '+esc(e.message||e))+'</p>'; }
     }
-    const AC_LABEL={view:'👁️ 열람',download:'📥 다운로드'};
+    const AC_LABEL={view:'열람',download:'다운로드'};
     let _ACCESS_CACHE=[];
     async function loadAccessLogs(){
       const wrap=document.getElementById('accessList'); if(!wrap) return;
@@ -684,7 +684,7 @@
       const views=rows.filter(r=>r.action==='view').length, dls=rows.filter(r=>r.action==='download').length;
       const tracks=[...new Set(rows.map(r=>r.track).filter(Boolean))];
       const chip=(t)=>`<span style="display:inline-block;background:#f3f6fb;color:#5a6b88;font-size:12px;font-weight:600;padding:5px 11px;border-radius:999px">${t}</span>`;
-      const summary=`<div style="padding:16px 20px;display:flex;flex-wrap:wrap;gap:8px;border-bottom:1px solid #f3f6fb">${chip('👁️ 열람 '+views+'회')}${chip('📥 다운로드 '+dls+'회')}${chip('📚 자료 '+tracks.length+'종')}${chip('총 '+rows.length+'건')}</div>`;
+      const summary=`<div style="padding:16px 20px;display:flex;flex-wrap:wrap;gap:8px;border-bottom:1px solid #f3f6fb">${chip('열람 '+views+'회')}${chip('다운로드 '+dls+'회')}${chip('자료 '+tracks.length+'종')}${chip('총 '+rows.length+'건')}</div>`;
       const table=`<table style="width:100%;border-collapse:collapse;font-size:13.5px"><thead><tr style="color:#9aa6bd;text-align:left">
         <th style="padding:10px 20px;font-weight:500">일시</th><th style="padding:10px 12px;font-weight:500">행위</th><th style="padding:10px 20px;font-weight:500">자료</th></tr></thead><tbody>
         ${rows.map(r=>`<tr style="border-top:1px solid #f3f6fb"><td style="padding:10px 20px;color:#5a6b88;white-space:nowrap">${r.created_at?new Date(r.created_at).toLocaleString('ko'):'-'}</td><td style="padding:10px 12px;font-weight:600;color:${r.action==='download'?'#b8923f':'#41506e'};white-space:nowrap">${AC_LABEL[r.action]||esc(r.action)}</td><td style="padding:10px 20px;color:#41506e">${esc(r.track||'-')}</td></tr>`).join('')}
@@ -697,13 +697,13 @@
       m.style.color='#6b7280'; m.textContent='처리 중…';
       try{ const data=await rpcFetch('grant_pass',{p_email:email,p_type:type},9000);
         if(data==='NOT_ADMIN'){ m.style.color='#dc2626'; m.textContent='관리자 권한이 없습니다.'; return; }
-        m.style.color='#16a34a'; m.textContent='✅ 이용권 부여 완료'; document.getElementById('passEmail').value=''; loadPassList();
+        m.style.color='#16a34a'; m.textContent='이용권 부여 완료'; document.getElementById('passEmail').value=''; loadPassList();
         const subj='[BIBLY] 전체 이용권 등록 완료 안내';
-        const html=_mailHtml('전체 이용권 등록이 완료되었습니다 🎫',
+        const html=_mailHtml('전체 이용권 등록이 완료되었습니다 ',
           ['주문하신 <b>전체 이용권('+passName(type)+')</b> 입금이 확인되어 등록을 완료했습니다.','이제 모든 과정의 요약노트 책자를 무제한으로 읽고 PDF로 받아보실 수 있어요.'], email);
-        const text='BIBLY 전체 이용권('+passName(type)+') 등록이 완료되었습니다.\n주문하신 '+email+' 으로 biblynote.com 에 로그인하시면 모든 책자를 보실 수 있어요.\n감사합니다. 🙏';
+        const text='BIBLY 전체 이용권('+passName(type)+') 등록이 완료되었습니다.\n주문하신 '+email+' 으로 biblynote.com 에 로그인하시면 모든 책자를 보실 수 있어요.\n감사합니다. ';
         const r=await sendCustomerMail(email, subj, html, text);
-        m.textContent='✅ 이용권 부여 완료'+(r==='sent'?' · 확인 메일 발송됨':(r==='compose'?' · 메일 작성창 열림(보내기 클릭)':''));
+        m.textContent='이용권 부여 완료'+(r==='sent'?' · 확인 메일 발송됨':(r==='compose'?' · 메일 작성창 열림(보내기 클릭)':''));
       }catch(e){ m.style.color='#dc2626'; m.textContent=(_storeNeedSql(e)?'supabase/store_grant.sql 을 먼저 실행하세요.':'오류: '+(e.message||e)); }
     }
     async function revokePass(email){
@@ -718,13 +718,13 @@
       m.style.color='#6b7280'; m.textContent='처리 중…';
       try{ const data=await rpcFetch('grant_book',{p_email:email,p_track:track},9000);
         if(data==='NOT_ADMIN'){ m.style.color='#dc2626'; m.textContent='관리자 권한이 없습니다.'; return; }
-        m.style.color='#16a34a'; m.textContent='✅ 교재 권한 부여 완료'; document.getElementById('bookEmail').value=''; loadBookList();
+        m.style.color='#16a34a'; m.textContent='교재 권한 부여 완료'; document.getElementById('bookEmail').value=''; loadBookList();
         const subj='[BIBLY] 교재(자료) 등록 완료 안내';
-        const html=_mailHtml('교재 등록이 완료되었습니다 📕',
+        const html=_mailHtml('교재 등록이 완료되었습니다 ',
           ['주문하신 교재 <b>「'+esc(track)+'」</b> 입금이 확인되어 등록을 완료했습니다.','이제 해당 교재를 PDF로 받아보실 수 있어요.'], email);
-        const text='BIBLY 교재 「'+track+'」 등록이 완료되었습니다.\n주문하신 '+email+' 으로 biblynote.com 에 로그인하시면 받아보실 수 있어요.\n감사합니다. 🙏';
+        const text='BIBLY 교재 「'+track+'」 등록이 완료되었습니다.\n주문하신 '+email+' 으로 biblynote.com 에 로그인하시면 받아보실 수 있어요.\n감사합니다. ';
         const r=await sendCustomerMail(email, subj, html, text);
-        m.textContent='✅ 교재 권한 부여 완료'+(r==='sent'?' · 확인 메일 발송됨':(r==='compose'?' · 메일 작성창 열림(보내기 클릭)':''));
+        m.textContent='교재 권한 부여 완료'+(r==='sent'?' · 확인 메일 발송됨':(r==='compose'?' · 메일 작성창 열림(보내기 클릭)':''));
       }catch(e){ m.style.color='#dc2626'; m.textContent=(_storeNeedSql(e)?'supabase/store_grant.sql 을 먼저 실행하세요.':'오류: '+(e.message||e)); }
     }
     async function revokeBook(email,track){
@@ -747,10 +747,10 @@
       const rows=await Promise.all(ls.map(async l=>{ const id=(l.youtube||'').split('/').pop();
         const [hn,hq]=await Promise.all([ fetch('content/notes/'+id+'.json',{method:'HEAD'}).then(r=>r.ok).catch(()=>false), fetch('content/quiz/'+id+'.json',{method:'HEAD'}).then(r=>r.ok).catch(()=>false) ]);
         if(hn)n++; if(hq)q++;
-        return `<div class="flex items-center gap-2 py-1 border-t border-ink/5"><span class="w-10 shrink-0">${hn?'📝':'<span class=\"text-neutral-900/20\">·</span>'}${hq?'🧩':'<span class=\"text-neutral-900/20\">·</span>'}</span><span class="flex-1 truncate text-neutral-900/70">${esc(l.title)}</span><a href="watch.html?v=${id}" target="_blank" class="text-gold text-xs hover:underline shrink-0">보기</a></div>`;
+        return `<div class="flex items-center gap-2 py-1 border-t border-ink/5"><span class="w-10 shrink-0">${hn?'':'<span class=\"text-neutral-900/20\">·</span>'}${hq?'':'<span class=\"text-neutral-900/20\">·</span>'}</span><span class="flex-1 truncate text-neutral-900/70">${esc(l.title)}</span><a href="watch.html?v=${id}" target="_blank" class="text-gold text-xs hover:underline shrink-0">보기</a></div>`;
       }));
-      box.innerHTML = `<p class="text-xs text-neutral-900/45 mb-1">노트 ${n}/${ls.length} · 퀴즈 ${q}/${ls.length}  (📝=노트, 🧩=퀴즈)</p>`+rows.join('');
-      const stat=el.querySelector('.trkstat'); if(stat) stat.textContent=`· 📝${n} 🧩${q}`;
+      box.innerHTML = `<p class="text-xs text-neutral-900/45 mb-1">노트 ${n}/${ls.length} · 퀴즈 ${q}/${ls.length}  (=노트, =퀴즈)</p>`+rows.join('');
+      const stat=el.querySelector('.trkstat'); if(stat) stat.textContent=`· ${n} ${q}`;
     }
 
     // ===== 사이트 설정 =====
@@ -774,7 +774,7 @@
     function renderMenu(){ const box=document.getElementById('menuRows'); box.innerHTML=(SITE.menu||[]).map((m,i)=>`<div class="flex items-center gap-2">
       <input value="${esc(m.label)}" onchange="SITE.menu[${i}].label=this.value" placeholder="이름" class="w-32 border border-ink/12 rounded-lg px-2.5 py-1.5 text-sm"/>
       <input value="${esc(m.href)}" onchange="SITE.menu[${i}].href=this.value" placeholder="링크" class="flex-1 border border-ink/12 rounded-lg px-2.5 py-1.5 text-sm"/>
-      <button onclick="SITE.menu.splice(${i},1);renderMenu()" class="text-neutral-900/40 hover:text-red-500 px-1">🗑</button></div>`).join(''); }
+      <button onclick="SITE.menu.splice(${i},1);renderMenu()" class="text-neutral-900/40 hover:text-red-500 px-1"></button></div>`).join(''); }
     function addMenu(){ (SITE.menu=SITE.menu||[]).push({label:'',href:''}); renderMenu(); }
     function setSite(path,val){ const [a,b]=path.split('.'); SITE[a]=SITE[a]||{}; SITE[a][b]=val; }
     function exportSite(){ dl('site.json', JSON.stringify(SITE,null,2)); }

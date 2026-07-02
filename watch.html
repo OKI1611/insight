@@ -71,7 +71,7 @@
   <!-- 강의 헤더 -->
   <div class="border-b border-ink/[0.06] bg-gradient-to-br from-white via-white to-sky">
     <div class="max-w-7xl mx-auto px-4 py-6">
-      <p class="inline-flex items-center gap-1.5 text-gold text-[11px] font-bold tracking-[0.18em] bg-gold/10 px-2.5 py-1 rounded-full mb-2">🎬 CLASS</p>
+      <p class="inline-flex items-center gap-1.5 text-gold text-[11px] font-bold tracking-[0.18em] bg-gold/10 px-2.5 py-1 rounded-full mb-2">CLASS</p>
       <h1 id="courseTitle" class="text-xl md:text-2xl font-bold">강의를 불러오는 중…</h1>
       <p id="courseSub" class="text-neutral-900/55 text-sm mt-1"></p>
       <p id="courseMeta" class="text-neutral-900/45 text-xs mt-2"></p>
@@ -90,11 +90,11 @@
         <div id="player" class="aspect-video bg-navy rounded-2xl overflow-hidden shadow-soft"></div>
         <span id="wmark" class="pointer-events-none absolute top-2 right-3 text-[10px] font-semibold text-white/35 select-none" style="text-shadow:0 1px 3px rgba(0,0,0,.5)">오광일의 인사이트 브리핑</span>
       </div>
-      <p class="text-[11px] text-neutral-900/45 mt-2 flex items-center gap-1.5 leading-snug">🔒 본 강의 영상의 <b class="text-neutral-900/60">무단 다운로드·화면 녹화·재배포를 금합니다.</b> © 오광일의 인사이트 브리핑</p>
+      <p class="text-[11px] text-neutral-900/45 mt-2 flex items-center gap-1.5 leading-snug">본 강의 영상의 <b class="text-neutral-900/60">무단 다운로드·화면 녹화·재배포를 금합니다.</b> © 오광일의 인사이트 브리핑</p>
 
       <!-- 영상 시청 후 마무리 안내(영상이 끝나면 자동으로 진단평가·핵심요약이 열립니다) -->
       <div id="finishPrompt" class="mt-3" style="display:none">
-        <button onclick="revealPostLesson(true)" class="w-full flex items-center justify-center gap-2 bg-sky border border-ink/10 text-neutral-900/75 font-semibold text-sm py-3 rounded-2xl hover:bg-sand transition">✅ 영상을 다 보셨나요? <span class="text-gold">진단평가 풀고 핵심요약 확인하기 →</span></button>
+        <button onclick="revealPostLesson(true)" class="w-full flex items-center justify-center gap-2 bg-sky border border-ink/10 text-neutral-900/75 font-semibold text-sm py-3 rounded-2xl hover:bg-sand transition">영상을 다 보셨나요? <span class="text-gold">진단평가 풀고 핵심요약 확인하기 →</span></button>
       </div>
 
       <div class="mt-5 flex items-start justify-between gap-4">
@@ -118,24 +118,24 @@
 
       <!-- 학습 도구: 질문하기 / 요약 노트 / PDF / 공유 -->
       <div class="mt-4 flex flex-wrap gap-2">
-        <button onclick="askInstructor()" class="actBtn actBtn-primary">💬 강사에게 질문하기</button>
-        <button onclick="srchOpen()" class="actBtn actBtn-soft">🔎 사전·성경 검색</button>
-        <button onclick="toggleNote()" id="noteToggleBtn" class="actBtn actBtn-soft">📝 요약 노트 보기</button>
-        <button onclick="downloadNotePDF()" class="actBtn actBtn-ghost">⬇️ PDF로 저장</button>
+        <button onclick="askInstructor()" class="actBtn actBtn-primary">강사에게 질문하기</button>
+        <button onclick="srchOpen()" class="actBtn actBtn-soft">사전·성경 검색</button>
+        <button onclick="toggleNote()" id="noteToggleBtn" class="actBtn actBtn-soft">요약 노트 보기</button>
+        <button onclick="downloadNotePDF()" class="actBtn actBtn-ghost">PDF로 저장</button>
         <div class="relative inline-block">
-          <button onclick="toggleShareMenu(event)" class="actBtn actBtn-ghost">🔗 공유 ▾</button>
+          <button onclick="toggleShareMenu(event)" class="actBtn actBtn-ghost">공유 ▾</button>
           <div id="shareMenu" class="hidden absolute right-0 sm:left-0 mt-2 w-56 bg-white rounded-2xl border border-ink/10 shadow-card p-2 z-30">
-            <button class="shareItem" onclick="shareTo('blog')">🟢 네이버 블로그</button>
-            <button class="shareItem" onclick="shareTo('band')">🔵 네이버 밴드</button>
-            <button class="shareItem" onclick="shareTo('cafe')">🍃 네이버 카페</button>
-            <button class="shareItem" onclick="shareTo('kakao')">💬 카카오톡</button>
-            <button class="shareItem" onclick="shareTo('telegram')">✈️ 텔레그램</button>
-            <button class="shareItem" onclick="shareTo('threads')">🧵 쓰레드(Threads)</button>
-            <button class="shareItem" onclick="shareTo('insta')">📷 인스타그램</button>
+            <button class="shareItem" onclick="shareTo('blog')">네이버 블로그</button>
+            <button class="shareItem" onclick="shareTo('band')">네이버 밴드</button>
+            <button class="shareItem" onclick="shareTo('cafe')">네이버 카페</button>
+            <button class="shareItem" onclick="shareTo('kakao')">카카오톡</button>
+            <button class="shareItem" onclick="shareTo('telegram')">텔레그램</button>
+            <button class="shareItem" onclick="shareTo('threads')">쓰레드(Threads)</button>
+            <button class="shareItem" onclick="shareTo('insta')">인스타그램</button>
             <button class="shareItem" onclick="shareTo('x')">𝕏 &nbsp;X(트위터)</button>
-            <button class="shareItem" onclick="shareTo('facebook')">📘 페이스북</button>
+            <button class="shareItem" onclick="shareTo('facebook')">페이스북</button>
             <div class="border-t border-ink/8 my-1"></div>
-            <button class="shareItem" onclick="shareTo('copy')">🔗 링크 복사</button>
+            <button class="shareItem" onclick="shareTo('copy')">링크 복사</button>
             <button class="shareItem" onclick="shareNative()">⋯ 기타(앱으로 공유)</button>
           </div>
         </div>
@@ -143,10 +143,10 @@
 
       <!-- 학습 탭바 (클릭한 내용만 제자리에 표시 — 스크롤 점프 없음) -->
       <div id="learnTabs" class="mt-6 flex flex-wrap gap-1.5 border-b border-ink/10">
-        <button data-tab="info" onclick="showLearnTab('info')" class="learnTabBtn">ℹ️ 강의 안내</button>
-        <button data-tab="note" onclick="showLearnTab('note')" class="learnTabBtn">📝 요약 노트</button>
-        <button data-tab="quiz" onclick="showLearnTab('quiz')" class="learnTabBtn">🎯 진단평가·핵심요약</button>
-        <button data-tab="qa" onclick="showLearnTab('qa')" class="learnTabBtn">💬 질의응답</button>
+        <button data-tab="info" onclick="showLearnTab('info')" class="learnTabBtn">강의 안내</button>
+        <button data-tab="note" onclick="showLearnTab('note')" class="learnTabBtn">요약 노트</button>
+        <button data-tab="quiz" onclick="showLearnTab('quiz')" class="learnTabBtn">진단평가·핵심요약</button>
+        <button data-tab="qa" onclick="showLearnTab('qa')" class="learnTabBtn">질의응답</button>
       </div>
       <div id="learnHost" class="mt-4"></div>
 
@@ -173,7 +173,7 @@
   <div id="loginModal" class="hidden fixed inset-0 z-[60] bg-ink/50 backdrop-blur-sm items-center justify-center p-4">
     <div class="bg-white rounded-3xl shadow-card p-7 w-full max-w-sm relative">
       <button onclick="closeLogin()" class="absolute top-4 right-4 text-neutral-900/30 hover:text-neutral-900 text-2xl leading-none">×</button>
-      <p class="text-3xl text-center mb-2">🔐</p>
+      <p class="text-3xl text-center mb-2"></p>
       <h3 class="text-lg font-bold text-center mb-1">로그인</h3>
       <p class="text-sm text-neutral-900/55 text-center mb-5">로그인하면 수강신청·질문·학습 체크를 이용할 수 있어요.</p>
       <button onclick="googleLoginW()" class="w-full flex items-center justify-center gap-3 border border-ink/15 bg-white rounded-xl py-3 font-medium hover:bg-ink/5 transition mb-3">
@@ -192,7 +192,7 @@
   <section id="postLesson" class="max-w-7xl mx-auto px-4 pb-2" style="display:none">
     <div class="bg-gradient-to-br from-white to-sky border border-ink/[0.07] rounded-3xl shadow-soft p-6 lg:p-8">
       <div class="text-center mb-6">
-        <p class="text-3xl mb-1">🎉</p>
+        <p class="text-3xl mb-1"></p>
         <h3 class="font-bold text-xl">강의를 끝까지 보셨어요!</h3>
         <p class="text-neutral-900/55 text-sm mt-1.5">이제 <b class="text-neutral-900/75">진단평가</b>로 점검하고, <b class="text-neutral-900/75">핵심 요약</b>으로 정리해볼까요?</p>
       </div>
@@ -211,7 +211,7 @@
   <section id="qaSection" class="max-w-7xl mx-auto px-4 pb-14">
     <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 lg:p-7">
       <div class="flex items-center justify-between mb-2">
-        <h3 class="font-bold text-lg">💬 수강생 질의응답 · 토론</h3>
+        <h3 class="font-bold text-lg">수강생 질의응답 · 토론</h3>
         <span id="qaCount" class="text-sm text-neutral-900/45"></span>
       </div>
       <p class="text-sm text-neutral-900/55 mb-4"><b class="text-neutral-900">공개 질문</b>에는 강사뿐 아니라 <b class="text-neutral-900">수강생끼리도 댓글로 함께 토론</b>할 수 있어요. <b class="text-neutral-900">비밀 질문</b>은 강사만 볼 수 있습니다.</p>
@@ -281,18 +281,18 @@
     }
     function postSummaryHTML(l, n){
       let h = `<div class="border border-gold/25 rounded-2xl overflow-hidden">
-        <div class="bg-gold/10 px-5 py-3.5 flex items-center gap-2 border-b border-gold/20"><span class="text-xl">📌</span><h4 class="font-bold text-lg text-neutral-900">핵심 요약</h4><span class="text-xs text-neutral-900/45 ml-auto">${esc(l.title || '')}</span></div>
+        <div class="bg-gold/10 px-5 py-3.5 flex items-center gap-2 border-b border-gold/20"><span class="text-xl"></span><h4 class="font-bold text-lg text-neutral-900">핵심 요약</h4><span class="text-xs text-neutral-900/45 ml-auto">${esc(l.title || '')}</span></div>
         <div class="p-5 lg:p-6 bg-white">`;
       if(!n){
         h += `<p class="text-neutral-900/55 text-sm">이 강의의 핵심 요약을 준비 중이에요. 위 <b>요약 노트 보기</b>에서 전체 노트를 확인하실 수 있어요.</p>`;
       } else {
         if(n.thesis){ h += `<div class="bg-gradient-to-br from-[#fdfaf1] to-[#fbf6e7] border border-[#f0e4c6] border-l-4 border-l-gold rounded-xl px-4 py-3.5 mb-5"><p class="text-[11px] font-bold tracking-wide text-gold mb-1">핵심 한 문장</p><p class="text-neutral-900 font-semibold leading-relaxed">${esc(n.thesis)}</p></div>`; }
-        if(n.takeaways && n.takeaways.length){ h += `<p class="font-bold text-neutral-900 mb-2">✅ 한눈에 정리</p><ul class="space-y-1.5 mb-5">` + n.takeaways.map(t => `<li class="flex gap-2 text-[15px] text-neutral-900/80 leading-relaxed"><span class="text-gold shrink-0">·</span><span>${esc(t)}</span></li>`).join('') + `</ul>`; }
-        if(n.scriptures && n.scriptures.length){ h += `<p class="font-bold text-neutral-900 mb-2">📖 핵심 성구</p><div class="bg-sky rounded-xl px-4 py-3 space-y-1.5">` + n.scriptures.slice(0,4).map(s => `<p class="text-sm text-neutral-900/80 leading-relaxed"><b class="text-navy">${esc(s.ref)}</b>${ s.note ? ' — ' + esc(s.note) : '' }</p>`).join('') + `</div>`; }
+        if(n.takeaways && n.takeaways.length){ h += `<p class="font-bold text-neutral-900 mb-2">한눈에 정리</p><ul class="space-y-1.5 mb-5">` + n.takeaways.map(t => `<li class="flex gap-2 text-[15px] text-neutral-900/80 leading-relaxed"><span class="text-gold shrink-0">·</span><span>${esc(t)}</span></li>`).join('') + `</ul>`; }
+        if(n.scriptures && n.scriptures.length){ h += `<p class="font-bold text-neutral-900 mb-2">핵심 성구</p><div class="bg-sky rounded-xl px-4 py-3 space-y-1.5">` + n.scriptures.slice(0,4).map(s => `<p class="text-sm text-neutral-900/80 leading-relaxed"><b class="text-navy">${esc(s.ref)}</b>${ s.note ? ' — ' + esc(s.note) : '' }</p>`).join('') + `</div>`; }
       }
       h += `<div class="mt-5 pt-4 border-t border-ink/8 flex flex-wrap gap-2">
-        <button onclick="toggleNote(); document.getElementById('noteCard').scrollIntoView({behavior:'smooth'})" class="actBtn actBtn-soft">📝 전체 요약 노트 보기</button>
-        <button onclick="downloadNotePDF()" class="actBtn actBtn-ghost">⬇️ 요약노트 PDF</button>
+        <button onclick="toggleNote(); document.getElementById('noteCard').scrollIntoView({behavior:'smooth'})" class="actBtn actBtn-soft">전체 요약 노트 보기</button>
+        <button onclick="downloadNotePDF()" class="actBtn actBtn-ghost">요약노트 PDF</button>
       </div></div></div>`;
       return h;
     }
@@ -348,7 +348,7 @@
             <span class="num text-sm text-neutral-900/35 font-bold w-6 shrink-0">${String(dispNum).padStart(2,'0')}</span>
             <div class="min-w-0 flex-1">
               <p class="title text-sm font-medium leading-snug">${esc(l.title || '')}</p>
-              <p class="text-xs text-neutral-900/45 mt-1">${ l.duration ? '⏱ ' + esc(l.duration) + ' · ' : '' }${ l.free ? '<span class="text-green-600 font-semibold">무료</span>' : '<span class="text-neutral-900/40">🔒 오픈 예정</span>' }${ hasCh ? ` · <span class="text-neutral-900/40">목차 ${l.chapters.length}</span>` : '' }</p>
+              <p class="text-xs text-neutral-900/45 mt-1">${ l.duration ? '⏱ ' + esc(l.duration) + ' · ' : '' }${ l.free ? '<span class="text-green-600 font-semibold">무료</span>' : '<span class="text-neutral-900/40">오픈 예정</span>' }${ hasCh ? ` · <span class="text-neutral-900/40">목차 ${l.chapters.length}</span>` : '' }</p>
             </div>
             ${ hasCh ? `<button onclick="toggleChapters(${i}, event)" class="chToggle shrink-0 w-7 h-7 flex items-center justify-center rounded-full hover:bg-ink/5 text-neutral-900/40" aria-label="목차 펼치기">
                 <svg class="chevC w-4 h-4 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
@@ -390,9 +390,9 @@
       const tags = (l.tags || []).map(t => `<span style="display:inline-block;background:#f4eedd;color:#8a6d2f;font-size:12px;font-weight:600;padding:3px 11px;border-radius:999px;margin:3px 5px 3px 0">#${esc(t)}</span>`).join('');
       const chaps = (l.chapters || []).map(c => `<li style="margin:7px 0;color:#2b3550;line-height:1.5">${ c.t ? `<b style="color:#b8923f">${esc(c.t)}</b>&nbsp;&nbsp;` : '' }${esc(c.label)}</li>`).join('');
       return noteHeader() + titleBlock(l) +
-        ( l.summary ? `<div style="margin-bottom:18px"><p style="font-weight:700;color:#171717;margin:0 0 7px">📖 강의 소개</p><p style="color:#44506a;line-height:1.75;margin:0">${esc(l.summary)}</p></div>` : '' ) +
-        ( chaps ? `<div style="margin-bottom:18px"><p style="font-weight:700;color:#171717;margin:0 0 7px">📋 핵심 내용</p><ol style="margin:0;padding-left:20px">${chaps}</ol></div>` : '' ) +
-        ( tags ? `<div style="margin-bottom:6px"><p style="font-weight:700;color:#171717;margin:0 0 7px">🔑 키워드</p>${tags}</div>` : '' ) +
+        ( l.summary ? `<div style="margin-bottom:18px"><p style="font-weight:700;color:#171717;margin:0 0 7px">강의 소개</p><p style="color:#44506a;line-height:1.75;margin:0">${esc(l.summary)}</p></div>` : '' ) +
+        ( chaps ? `<div style="margin-bottom:18px"><p style="font-weight:700;color:#171717;margin:0 0 7px">핵심 내용</p><ol style="margin:0;padding-left:20px">${chaps}</ol></div>` : '' ) +
+        ( tags ? `<div style="margin-bottom:6px"><p style="font-weight:700;color:#171717;margin:0 0 7px">키워드</p>${tags}</div>` : '' ) +
         noteFooter();
     }
     // 여러 문단 렌더(\n 기준 분리)
@@ -408,14 +408,14 @@
           <p style="color:#2b3550;font-size:15px;font-weight:600;line-height:1.65;margin:0">${esc(n.thesis)}</p></div>`;
       }
       if(n.overview){
-        h += `<div style="margin-bottom:22px"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:15px">📘 강의 개요</p>${noteParas(n.overview)}</div>`;
+        h += `<div style="margin-bottom:22px"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:15px">강의 개요</p>${noteParas(n.overview)}</div>`;
       }
       if(n.background){
         h += `<div style="margin-bottom:22px;background:#f4f9ff;border:1px solid #e0ebfa;border-radius:14px;padding:16px 18px">
-          <p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">📜 배경 — 역사적·신학적 맥락</p>${noteParas(n.background)}</div>`;
+          <p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">배경 — 역사적·신학적 맥락</p>${noteParas(n.background)}</div>`;
       }
       if(n.sections && n.sections.length){
-        h += `<p style="font-weight:700;color:#171717;margin:0 0 10px;font-size:15px">📑 핵심 내용 정리</p>`;
+        h += `<p style="font-weight:700;color:#171717;margin:0 0 10px;font-size:15px">핵심 내용 정리</p>`;
         n.sections.forEach((s, i) => {
           const pts = (s.points || []).map(p => `<li style="margin:5px 0;color:#44506a;line-height:1.6">${esc(p)}</li>`).join('');
           h += `<div style="margin:0 0 16px;padding:0 0 0 2px">
@@ -427,39 +427,39 @@
       }
       if(n.scriptures && n.scriptures.length){
         h += `<div style="margin:20px 0;background:#f4f9ff;border:1px solid #e0ebfa;border-radius:14px;padding:15px 17px">
-          <p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">📖 핵심 성구</p>` +
+          <p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">핵심 성구</p>` +
           n.scriptures.map(s => `<p style="margin:7px 0;color:#44506a;line-height:1.6"><b style="color:#182c54">${esc(s.ref)}</b>${ s.note ? ` — ${esc(s.note)}` : '' }</p>`).join('') + `</div>`;
       }
       if(n.terms && n.terms.length){
-        h += `<div style="margin:20px 0"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">📚 핵심 용어</p>` +
+        h += `<div style="margin:20px 0"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">핵심 용어</p>` +
           n.terms.map(t => `<p style="margin:6px 0;color:#44506a;line-height:1.6"><b style="color:#8a6d2f">${esc(t.term)}</b> · ${esc(t.def)}</p>`).join('') + `</div>`;
       }
       if(n.misconceptions && n.misconceptions.length){
-        h += `<div style="margin:20px 0"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">⚠️ 흔한 오해 vs 바른 이해</p>` +
+        h += `<div style="margin:20px 0"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">흔한 오해 vs 바른 이해</p>` +
           n.misconceptions.map(m => `<div style="border:1px solid #eee;border-radius:10px;padding:10px 13px;margin:0 0 8px">
-            <p style="margin:0 0 4px;color:#b4453a;line-height:1.6"><b>❌ 오해</b> · ${esc(m.wrong)}</p>
-            <p style="margin:0;color:#2f7d4f;line-height:1.6"><b>✅ 바른 이해</b> · ${esc(m.right)}</p>
+            <p style="margin:0 0 4px;color:#b4453a;line-height:1.6"><b>오해</b> · ${esc(m.wrong)}</p>
+            <p style="margin:0;color:#2f7d4f;line-height:1.6"><b>바른 이해</b> · ${esc(m.right)}</p>
           </div>`).join('') + `</div>`;
       }
       if(n.takeaways && n.takeaways.length){
         h += `<div style="margin:20px 0;background:linear-gradient(135deg,#fdfaf1,#fbf6e7);border:1px solid #f1e6cb;border-radius:14px;padding:15px 17px">
-          <p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">✅ 한눈에 정리</p>
+          <p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">한눈에 정리</p>
           <ul style="margin:0;padding-left:20px">` + n.takeaways.map(t => `<li style="margin:5px 0;color:#2b3550;line-height:1.65">${esc(t)}</li>`).join('') + `</ul></div>`;
       }
       if(n.application && n.application.length){
-        h += `<div style="margin:20px 0"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">🌱 삶으로 가져가기</p>
+        h += `<div style="margin:20px 0"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">삶으로 가져가기</p>
           <ul style="margin:0;padding-left:20px">` + n.application.map(a => `<li style="margin:5px 0;color:#44506a;line-height:1.7">${esc(a)}</li>`).join('') + `</ul></div>`;
       }
       if(n.questions && n.questions.length){
-        h += `<div style="margin:20px 0"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">💬 묵상·토론 질문</p>
+        h += `<div style="margin:20px 0"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">묵상·토론 질문</p>
           <ol style="margin:0;padding-left:20px">` + n.questions.map(q => `<li style="margin:6px 0;color:#44506a;line-height:1.65">${esc(q)}</li>`).join('') + `</ol></div>`;
       }
       if(n.furtherStudy && n.furtherStudy.length){
-        h += `<div style="margin:20px 0;background:#f4f9ff;border:1px solid #e0ebfa;border-radius:14px;padding:15px 17px"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">📚 더 깊이 공부하려면</p>
+        h += `<div style="margin:20px 0;background:#f4f9ff;border:1px solid #e0ebfa;border-radius:14px;padding:15px 17px"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">더 깊이 공부하려면</p>
           <ul style="margin:0;padding-left:20px">` + n.furtherStudy.map(f => `<li style="margin:5px 0;color:#44506a;line-height:1.65">${esc(f)}</li>`).join('') + `</ul></div>`;
       }
       const tags = (l.tags || []).map(t => `<span style="display:inline-block;background:#f4eedd;color:#8a6d2f;font-size:12px;font-weight:600;padding:3px 11px;border-radius:999px;margin:3px 5px 3px 0">#${esc(t)}</span>`).join('');
-      if(tags){ h += `<div style="margin:18px 0 4px"><p style="font-weight:700;color:#171717;margin:0 0 7px;font-size:14px">🔑 키워드</p>${tags}</div>`; }
+      if(tags){ h += `<div style="margin:18px 0 4px"><p style="font-weight:700;color:#171717;margin:0 0 7px;font-size:14px">키워드</p>${tags}</div>`; }
       return h + noteFooter();
     }
     function renderNote(l){
@@ -481,7 +481,7 @@
     function refreshGatedTools(){ try { if(typeof lessons !== 'undefined' && lessons.length && lessons[cur]){ renderPreQuiz(lessons[cur]); renderQuiz(lessons[cur]); } } catch(e){} }
     function lockCard(title, desc){
       return `<div class="bg-white rounded-2xl border-2 border-dashed border-gold/45 shadow-soft p-6 text-center">
-        <p class="text-3xl mb-2">🔒</p>
+        <p class="text-3xl mb-2"></p>
         <p class="font-bold text-neutral-900 text-[17px]">${title}</p>
         <p class="text-sm text-neutral-900/55 mt-1.5 mb-4 leading-relaxed">${desc}</p>
         <button onclick="openLogin()" class="bg-gold text-white font-semibold px-7 py-3 rounded-full hover:opacity-90 transition">무료로 로그인하고 이용하기</button>
@@ -502,7 +502,7 @@
           QUIZ_CACHE[id] = quiz;
         }
         if(!quiz || !quiz.length || cur !== at) return;
-        if(!LUSER){ card.innerHTML = lockCard('🧩 확인 학습 퀴즈', '강의를 잘 이해했는지 점검하는 퀴즈예요. 로그인(무료)하면 바로 풀 수 있어요.'); card.style.display = ''; return; }
+        if(!LUSER){ card.innerHTML = lockCard('확인 학습 퀴즈', '강의를 잘 이해했는지 점검하는 퀴즈예요. 로그인(무료)하면 바로 풀 수 있어요.'); card.style.display = ''; return; }
         CURRENT_QUIZ = quiz; CURRENT_PICKS = new Array(quiz.length).fill(null);
         card.innerHTML = quizHTML(quiz); card.style.display = '';
       })();
@@ -510,7 +510,7 @@
     function quizHTML(quiz){
       let h = `<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 lg:p-7">
         <div class="flex items-center justify-between mb-1">
-          <h3 class="font-bold text-lg">🧩 확인 학습 <span class="text-neutral-900/40 text-sm font-normal">· ${quiz.length}문항</span></h3>
+          <h3 class="font-bold text-lg">확인 학습 <span class="text-neutral-900/40 text-sm font-normal">· ${quiz.length}문항</span></h3>
           <span id="quizScore" class="text-sm font-semibold text-gold"></span>
         </div>
         <p class="text-sm text-neutral-900/55 mb-5">강의를 잘 이해했는지 확인해 보세요. 보기를 누르면 정답과 해설이 나타나요.</p>`;
@@ -539,7 +539,7 @@
       });
       const right = oi === q.answer;
       const exp = document.getElementById('quizExp-' + qi);
-      if(exp){ exp.style.display = ''; exp.innerHTML = `<b style="color:${ right ? '#2f7d4f' : '#b4453a' }">${ right ? '✅ 정답!' : '❌ 오답' }</b> · ${esc(q.explanation)}`; }
+      if(exp){ exp.style.display = ''; exp.innerHTML = `<b style="color:${ right ? '#2f7d4f' : '#b4453a' }">${ right ? '정답!' : '오답' }</b> · ${esc(q.explanation)}`; }
       updateQuizScore();
     }
     function updateQuizScore(){
@@ -550,16 +550,16 @@
       if(answered === total){
         const done = document.getElementById('quizDone'); if(!done) return;
         const pct = Math.round(correct / total * 100);
-        const msg = pct === 100 ? '🎉 만점! 완벽하게 이해하셨어요.' : pct >= 60 ? '👍 잘하셨어요! 틀린 문항의 해설을 다시 읽어보세요.' : '📖 노트를 한 번 더 보고 다시 도전해 보세요!';
+        const msg = pct === 100 ? '만점! 완벽하게 이해하셨어요.' : pct >= 60 ? '잘하셨어요! 틀린 문항의 해설을 다시 읽어보세요.' : '노트를 한 번 더 보고 다시 도전해 보세요!';
         const pre = loadPre(curId());
         let growth = '';
         if(pre && typeof pre.score === 'number'){
           const delta = correct - pre.score;
-          const tag = delta > 0 ? `<b class="text-gold">+${delta}점 성장했어요! 📈</b>` : delta === 0 ? '꾸준히 유지했어요 👏' : '복습하면 더 오를 거예요 💪';
+          const tag = delta > 0 ? `<b class="text-gold">+${delta}점 성장했어요! </b>` : delta === 0 ? '꾸준히 유지했어요 ' : '복습하면 더 오를 거예요 ';
           growth = `<p class="text-sm text-neutral-900/70 mt-2 pt-2 border-t border-gold/20">강의 전 진단평가 <b>${pre.score}점</b> → 강의 후 <b>${correct}점</b> · ${tag}</p>`;
         }
         done.style.display = '';
-        done.innerHTML = `<div class="inline-block bg-gold/10 rounded-2xl px-6 py-4"><p class="text-xl font-bold text-gold mb-1">최종 ${correct} / ${total}점</p><p class="text-sm text-neutral-900/65">${msg}</p>${growth}<button type="button" onclick="retakeQuiz()" class="mt-3 inline-flex items-center gap-1.5 bg-gold text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition">🔄 다시 도전</button></div>`;
+        done.innerHTML = `<div class="inline-block bg-gold/10 rounded-2xl px-6 py-4"><p class="text-xl font-bold text-gold mb-1">최종 ${correct} / ${total}점</p><p class="text-sm text-neutral-900/65">${msg}</p>${growth}<button type="button" onclick="retakeQuiz()" class="mt-3 inline-flex items-center gap-1.5 bg-gold text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition">다시 도전</button></div>`;
         // 진단평가를 모두 풀면 핵심 요약을 자동으로 펼친다
         if(typeof revealSummary === 'function') setTimeout(revealSummary, 600);
       }
@@ -589,7 +589,7 @@
           QUIZ_CACHE[id] = quiz;
         }
         if(!quiz || !quiz.length || cur !== at) return;
-        if(!LUSER){ card.innerHTML = lockCard('🎯 강의 전 진단평가', '강의 전 5문항으로 학습 동기를 높여요. 로그인(무료)하면 이용할 수 있어요.'); wrap.style.display = ''; return; }
+        if(!LUSER){ card.innerHTML = lockCard('강의 전 진단평가', '강의 전 5문항으로 학습 동기를 높여요. 로그인(무료)하면 이용할 수 있어요.'); wrap.style.display = ''; return; }
         PRE_QUIZ = quiz.slice(0, 5); PRE_PICKS = new Array(PRE_QUIZ.length).fill(null);
         const prev = loadPre(id);
         card.innerHTML = prev ? preDoneBar(prev) : preHTML(PRE_QUIZ);
@@ -598,22 +598,22 @@
     }
     function preDoneBar(prev){
       return `<div class="bg-gold/[0.08] border border-gold/30 rounded-2xl px-5 py-3.5 flex items-center justify-between gap-3 flex-wrap">
-        <p class="text-sm text-neutral-900/75">🎯 <b class="text-neutral-900">강의 전 진단평가</b>를 마쳤어요 <span class="text-neutral-900/45">· 직감 적중 ${prev.score}/${prev.total}</span> — 강의를 보고 아래 <b class="text-neutral-900">확인 학습</b>에서 성장을 확인하세요!</p>
+        <p class="text-sm text-neutral-900/75"><b class="text-neutral-900">강의 전 진단평가</b>를 마쳤어요 <span class="text-neutral-900/45">· 직감 적중 ${prev.score}/${prev.total}</span> — 강의를 보고 아래 <b class="text-neutral-900">확인 학습</b>에서 성장을 확인하세요!</p>
         <button onclick="retakePre()" class="text-sm font-semibold text-gold hover:underline shrink-0">다시 풀기</button>
       </div>`;
     }
     function retakePre(){ const id = curId(); try { localStorage.removeItem(preKey(id)); } catch(e){} PRE_PICKS = new Array(PRE_QUIZ.length).fill(null); const card = document.getElementById('prequizCard'); if(card) card.innerHTML = preHTML(PRE_QUIZ); }
     function preHTML(quiz){
       let h = `<div class="bg-white rounded-2xl border-2 border-gold/35 shadow-soft p-5 lg:p-7">
-        <div class="flex items-center gap-2 mb-1"><h3 class="font-bold text-lg">🎯 강의 전 진단평가</h3><span class="text-neutral-900/40 text-sm">· ${quiz.length}문항</span></div>
-        <p class="text-sm text-neutral-900/55 mb-5">본격적인 학습 전, <b class="text-neutral-900">직감</b>으로 가볍게 풀어보세요. 정답은 알려드리지 않아요 — <b class="text-gold">그 궁금증이 강의에 집중하게 만드는 힘</b>이 됩니다 💪</p>`;
+        <div class="flex items-center gap-2 mb-1"><h3 class="font-bold text-lg">강의 전 진단평가</h3><span class="text-neutral-900/40 text-sm">· ${quiz.length}문항</span></div>
+        <p class="text-sm text-neutral-900/55 mb-5">본격적인 학습 전, <b class="text-neutral-900">직감</b>으로 가볍게 풀어보세요. 정답은 알려드리지 않아요 — <b class="text-gold">그 궁금증이 강의에 집중하게 만드는 힘</b>이 됩니다 </p>`;
       quiz.forEach((q, qi) => {
         h += `<div id="preQ-${qi}" class="mb-5 pb-5 ${ qi < quiz.length-1 ? 'border-b border-ink/6' : '' }">
           <p class="font-semibold text-neutral-900 mb-3 leading-snug"><span class="text-gold">Q${qi+1}.</span> ${esc(q.q)}</p>
           <div class="space-y-2">` +
           q.options.map((o, oi) => `<button type="button" class="preOpt w-full text-left px-4 py-2.5 rounded-xl border border-ink/12 hover:bg-gold/[0.07] transition text-[15px] flex gap-2.5 items-start" onclick="prePick(${qi},${oi})"><span class="font-bold text-neutral-900/40 shrink-0">${'ABCD'[oi]}</span><span class="flex-1">${esc(o)}</span></button>`).join('') +
           `</div>
-          <div id="preHint-${qi}" class="mt-2.5 text-sm text-gold/90 font-medium" style="display:none">🤔 정답이 궁금하다면 — 강의에서 확인하세요!</div>
+          <div id="preHint-${qi}" class="mt-2.5 text-sm text-gold/90 font-medium" style="display:none">정답이 궁금하다면 — 강의에서 확인하세요!</div>
         </div>`;
       });
       h += `<div id="preDone" class="text-center mt-1" style="display:none"></div></div>`;
@@ -636,8 +636,8 @@
       const done = document.getElementById('preDone'); if(!done) return;
       done.style.display = '';
       done.innerHTML = `<div class="bg-gold/10 rounded-2xl px-6 py-5">
-        <p class="text-lg font-bold text-gold mb-1">🔥 ${PRE_QUIZ.length}문항을 모두 마쳤어요!</p>
-        <p class="text-sm text-neutral-900/70 leading-relaxed">정답이 궁금하시죠? <b class="text-neutral-900">바로 그 마음</b>이 가장 좋은 학습 동기예요.<br>지금 강의를 끝까지 보면 모든 답이 풀리고, 아래 <b class="text-neutral-900">확인 학습</b>에서 <b class="text-neutral-900">얼마나 성장했는지</b> 점수로 보여드릴게요 📈</p>
+        <p class="text-lg font-bold text-gold mb-1">${PRE_QUIZ.length}문항을 모두 마쳤어요!</p>
+        <p class="text-sm text-neutral-900/70 leading-relaxed">정답이 궁금하시죠? <b class="text-neutral-900">바로 그 마음</b>이 가장 좋은 학습 동기예요.<br>지금 강의를 끝까지 보면 모든 답이 풀리고, 아래 <b class="text-neutral-900">확인 학습</b>에서 <b class="text-neutral-900">얼마나 성장했는지</b> 점수로 보여드릴게요 </p>
         <button onclick="document.getElementById('player').scrollIntoView({behavior:'smooth',block:'center'})" class="mt-4 bg-gold text-white font-semibold px-7 py-3 rounded-full hover:opacity-90 transition">▶ 이제 강의를 시작하세요</button>
       </div>`;
       done.scrollIntoView({ behavior:'smooth', block:'nearest' });
@@ -677,9 +677,9 @@
       }
     });
     function copyLink(url, kind){
-      const msg = kind === 'insta' ? '링크를 복사했어요! 📷 인스타그램 앱에서 프로필/스토리에 붙여넣어 공유하세요.'
-               : kind === 'cafe' ? '링크를 복사했어요! 🍃 원하는 네이버 카페 글쓰기에 붙여넣어 공유하세요.'
-               : kind === 'kakao' ? '링크를 복사했어요! 💬 카카오톡 대화창에 붙여넣어 공유하세요.'
+      const msg = kind === 'insta' ? '링크를 복사했어요! 인스타그램 앱에서 프로필/스토리에 붙여넣어 공유하세요.'
+               : kind === 'cafe' ? '링크를 복사했어요! 원하는 네이버 카페 글쓰기에 붙여넣어 공유하세요.'
+               : kind === 'kakao' ? '링크를 복사했어요! 카카오톡 대화창에 붙여넣어 공유하세요.'
                : '강의 링크를 복사했어요!';
       const done = () => alert(msg);
       if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(url).then(done).catch(()=>prompt('아래 링크를 복사하세요:', url)); }
@@ -768,7 +768,7 @@
       const id = ytId(l.youtube);
       if(!LUSER){
         player.innerHTML = `<div class="w-full h-full flex flex-col items-center justify-center text-paper gap-3 text-center px-6">
-          <span class="text-4xl">🔒</span>
+          <span class="text-4xl"></span>
           <p class="font-bold text-lg">로그인하고 강의를 시청하세요</p>
           <p class="text-paper/65 text-sm">무료 회원가입만 하면 모든 강의를 무료로 보실 수 있어요.</p>
           <button onclick="openLogin()" class="mt-2 bg-gold text-white font-semibold px-7 py-2.5 rounded-full text-sm hover:opacity-90 transition">무료로 로그인 · 회원가입</button>
@@ -777,7 +777,7 @@
         mountPlayer(id, l.title);
       } else {
         player.innerHTML = `<div class="w-full h-full flex flex-col items-center justify-center text-paper gap-3 text-center px-6">
-          <span class="text-4xl">🔒</span>
+          <span class="text-4xl"></span>
           <p class="font-semibold">정식 오픈 후 시청하실 수 있어요</p>
           <p class="text-paper/60 text-sm">미리 등록하면 출시 소식을 가장 먼저 받아보세요.</p>
           <a href="index.html#pricing" class="mt-2 bg-gold text-white font-semibold px-6 py-2.5 rounded-full text-sm hover:opacity-90">출시 알림 받기</a>
@@ -788,7 +788,7 @@
       const desc = document.getElementById('lessonDesc');
       if(l.summary){
         desc.style.display = '';
-        desc.innerHTML = '<p class="font-semibold text-neutral-900 mb-2">📖 강의 소개</p>' + esc(l.summary).replace(/\n/g,'<br>');
+        desc.innerHTML = '<p class="font-semibold text-neutral-900 mb-2">강의 소개</p>' + esc(l.summary).replace(/\n/g,'<br>');
       } else { desc.style.display = 'none'; }
 
       const tagBox = document.getElementById('lessonTags');
@@ -799,7 +799,7 @@
       const ch = document.getElementById('lessonChapters');
       if(l.chapters && l.chapters.length){
         ch.style.display = '';
-        ch.innerHTML = '<p class="font-semibold text-neutral-900 mb-3">📋 강의 목차</p><ol class="divide-y divide-ink/5">' +
+        ch.innerHTML = '<p class="font-semibold text-neutral-900 mb-3">강의 목차</p><ol class="divide-y divide-ink/5">' +
           l.chapters.map((c, idx) => {
             const sec = parseT(c.t);
             const numHtml = `<span class="text-neutral-900/35 font-bold text-sm w-6 shrink-0">${String(idx+1).padStart(2,'0')}</span>`;
@@ -813,7 +813,7 @@
 
       document.getElementById('lessonBadge').innerHTML = l.free
         ? '<span class="bg-green-100 text-green-700 text-xs font-semibold px-2.5 py-1 rounded-full">무료 공개</span>'
-        : '<span class="bg-ink/10 text-neutral-900/50 text-xs font-semibold px-2.5 py-1 rounded-full">🔒 오픈 예정</span>';
+        : '<span class="bg-ink/10 text-neutral-900/50 text-xs font-semibold px-2.5 py-1 rounded-full">오픈 예정</span>';
 
       renderNote(l);
       renderQuiz(l);
@@ -822,7 +822,7 @@
       const noteCard = document.getElementById('noteCard');
       const noteBtn = document.getElementById('noteToggleBtn');
       if(noteCard){ noteCard.style.display = ''; }   // 표시 여부는 학습 탭(panel-note)이 제어
-      if(noteBtn){ noteBtn.textContent = '📝 요약 노트 보기'; }
+      if(noteBtn){ noteBtn.textContent = '요약 노트 보기'; }
       // 영상 시청 후 단계 초기화: 진단평가·핵심요약은 영상이 끝나야(또는 탭/프롬프트 클릭) 열림
       const postLesson = document.getElementById('postLesson'); if(postLesson) postLesson.style.display = 'none';
       const postSumWrap = document.getElementById('postSummaryWrap'); if(postSumWrap) postSumWrap.style.display = 'none';
@@ -932,7 +932,7 @@
     function refreshLearningUI(){
       const bar = document.getElementById('learnBar');
       if(!bar || !lessons.length) return;
-      const myClass = '<a href="mylearning.html" class="inline-flex items-center gap-1.5 border border-ink/15 text-neutral-900/70 font-semibold px-4 py-2 rounded-full hover:bg-ink/5 transition">📚 내 강의실</a>';
+      const myClass = '<a href="mylearning.html" class="inline-flex items-center gap-1.5 border border-ink/15 text-neutral-900/70 font-semibold px-4 py-2 rounded-full hover:bg-ink/5 transition">내 강의실</a>';
       const msgEl = '<p id="learnMsg" class="basis-full w-full text-sm font-semibold mt-1" style="display:none"></p>';
       if(!LUSER){
         bar.innerHTML = '<span class="text-neutral-900/55">로그인하면 수강신청과 학습 체크를 이용할 수 있어요.</span>'
@@ -940,7 +940,7 @@
         return;
       }
       if(!TABLES_READY){
-        bar.innerHTML = '<span class="text-amber-600 font-medium">⚠️ 수강신청·학습 체크 기능을 준비 중이에요. (관리자: Supabase 테이블 생성이 필요합니다)</span>' + myClass + msgEl;
+        bar.innerHTML = '<span class="text-amber-600 font-medium">수강신청·학습 체크 기능을 준비 중이에요. (관리자: Supabase 테이블 생성이 필요합니다)</span>' + myClass + msgEl;
         return;
       }
       const enrolled = ENROLLED.has(curTrack());
@@ -949,10 +949,10 @@
         ? `<span class="inline-flex items-center gap-1.5 bg-green-600 text-white font-semibold px-4 py-2 rounded-full">✓ 수강 중 · ${esc(curTrack())}</span>`
         : `<button onclick="enrollTrack()" class="inline-flex items-center gap-1.5 bg-gold text-white font-semibold px-4 py-2 rounded-full hover:opacity-90 transition">＋ 이 과정 수강신청</button>`;
       const doneBtn = done
-        ? `<button onclick="toggleComplete()" class="inline-flex items-center gap-1.5 bg-green-600 text-white font-semibold px-4 py-2 rounded-full hover:opacity-90 transition">✅ 학습 완료됨</button>`
-        : `<button onclick="toggleComplete()" class="inline-flex items-center gap-1.5 border border-ink/20 text-neutral-900/80 font-semibold px-4 py-2 rounded-full hover:bg-ink/5 transition">⬜ 학습 완료 체크</button>`;
+        ? `<button onclick="toggleComplete()" class="inline-flex items-center gap-1.5 bg-green-600 text-white font-semibold px-4 py-2 rounded-full hover:opacity-90 transition">학습 완료됨</button>`
+        : `<button onclick="toggleComplete()" class="inline-flex items-center gap-1.5 border border-ink/20 text-neutral-900/80 font-semibold px-4 py-2 rounded-full hover:bg-ink/5 transition">학습 완료 체크</button>`;
       const examBtn = EXAM_SET.has(curId())
-        ? `<a href="exam.html?l=${cur}" class="inline-flex items-center gap-1.5 bg-gold text-white font-semibold px-4 py-2 rounded-full hover:opacity-90 transition">📝 수료 시험</a>`
+        ? `<a href="exam.html?l=${cur}" class="inline-flex items-center gap-1.5 bg-gold text-white font-semibold px-4 py-2 rounded-full hover:opacity-90 transition">수료 시험</a>`
         : '';
       bar.innerHTML = enrollBtn + doneBtn + examBtn + myClass + msgEl;
     }
@@ -989,14 +989,14 @@
       try { const res = await withTimeout(lsb.from('enrollments').insert({ user_id: LUSER.id, track: t }), 9000); error = res.error; }
       catch(e){ error = e; }
       if(error && error.code !== '23505'){
-        if(error.message === 'TIMEOUT'){ const m = document.getElementById('learnMsg'); if(m){ m.style.display=''; m.style.color='#dc2626'; m.innerHTML='⏳ 응답이 지연돼요. <button onclick="healAndReload()" class="underline font-bold text-gold">🔄 로그인 새로고침</button> 후 다시 시도해 주세요. (이 사이트의 다른 탭은 닫아주세요)'; } return; }
+        if(error.message === 'TIMEOUT'){ const m = document.getElementById('learnMsg'); if(m){ m.style.display=''; m.style.color='#dc2626'; m.innerHTML='⏳ 응답이 지연돼요. <button onclick="healAndReload()" class="underline font-bold text-gold">로그인 새로고침</button> 후 다시 시도해 주세요. (이 사이트의 다른 탭은 닫아주세요)'; } return; }
         if(tableErr(error)){ TABLES_READY = false; refreshLearningUI(); learnToast('수강신청 기능이 아직 켜지지 않았어요. (관리자: 테이블 생성 필요)', false); }
         else if(rlsErr(error)){ learnToast('수강신청 권한 설정이 필요해요. (관리자: enrollments INSERT 정책 확인 — 아래 SQL 재실행)', false); }
         else { learnToast('수강신청 오류: ' + (error.message || error.code || '알 수 없음'), false); }
         return;
       }
       ENROLLED.add(t); refreshLearningUI();
-      learnToast('✓ 「' + t + '」 수강신청 완료! 📚 내 강의실에서 확인하세요.', true);
+      learnToast('✓ 「' + t + '」 수강신청 완료! 내 강의실에서 확인하세요.', true);
     }
     async function toggleComplete(){
       if(!LUSER){ lLogin(); return; }
@@ -1014,8 +1014,8 @@
         }
         DONE.add(id);
         if(!ENROLLED.has(curTrack())){ try { await lsb.from('enrollments').insert({ user_id: LUSER.id, track: curTrack() }); ENROLLED.add(curTrack()); } catch(e){} }
-        let _pt=''; try{ const { data } = await lsb.rpc('award_points', { p_amount:20, p_reason:'강의 수강', p_ref:'lesson:'+id }); if(typeof data==='number') _pt=' · 🪙 +20P'; }catch(e){}
-        refreshLearningUI(); learnToast('✅ 학습 완료'+_pt+' · 📚 내 강의실에서 확인하세요.', true);
+        let _pt=''; try{ const { data } = await lsb.rpc('award_points', { p_amount:20, p_reason:'강의 수강', p_ref:'lesson:'+id }); if(typeof data==='number') _pt=' · +20P'; }catch(e){}
+        refreshLearningUI(); learnToast('학습 완료'+_pt+' · 내 강의실에서 확인하세요.', true);
       }
     }
 
@@ -1028,13 +1028,13 @@
           <textarea id="qaInput" rows="3" placeholder="이 강의에 대해 궁금한 점을 질문해 보세요…" class="w-full resize-none outline-none text-[15px] placeholder:text-neutral-900/35"></textarea>
           <div class="flex flex-wrap items-center justify-between gap-2 mt-2 pt-2 border-t border-ink/8">
             <div class="flex items-center gap-3 text-sm text-neutral-900/70">
-              <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="qaVis" value="public" checked class="accent-gold"> 🌐 공개 질문</label>
-              <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="qaVis" value="private" class="accent-gold"> 🔒 비밀 질문</label>
+              <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="qaVis" value="public" checked class="accent-gold"> 공개 질문</label>
+              <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="qaVis" value="private" class="accent-gold"> 비밀 질문</label>
             </div>
             <button onclick="submitQuestion()" id="qaBtn" class="bg-gold text-white font-semibold text-sm px-5 py-2 rounded-full hover:opacity-90 transition shrink-0">질문 등록</button>
           </div>
           <p id="qaMsg" class="text-red-500 text-xs mt-2 min-h-[14px]"></p>
-          ${ LUSER ? '' : '<p class="text-xs text-neutral-900/45 mt-1">✍️ 작성 후 등록을 누르면 로그인 창이 떠요. 로그인하면 바로 등록됩니다.</p>' }
+          ${ LUSER ? '' : '<p class="text-xs text-neutral-900/45 mt-1">작성 후 등록을 누르면 로그인 창이 떠요. 로그인하면 바로 등록됩니다.</p>' }
         </div>`;
     }
     let REPLIES_BY_Q = {};
@@ -1042,10 +1042,10 @@
       const mine = LUSER && q.user_id === LUSER.id;
       const canDel = mine || isAdminW();
       const badge = q.is_private
-        ? '<span class="text-[11px] bg-ink/8 text-neutral-900/55 px-2 py-0.5 rounded-full">🔒 비밀</span>'
-        : '<span class="text-[11px] bg-gold/15 text-gold px-2 py-0.5 rounded-full">🌐 공개 · 함께 토론</span>';
+        ? '<span class="text-[11px] bg-ink/8 text-neutral-900/55 px-2 py-0.5 rounded-full">비밀</span>'
+        : '<span class="text-[11px] bg-gold/15 text-gold px-2 py-0.5 rounded-full">공개 · 함께 토론</span>';
       const ans = q.answer
-        ? `<div class="mt-3 pl-3 border-l-2 border-gold bg-gold/[0.05] rounded-r-lg p-3"><p class="text-xs font-bold text-gold mb-1">🎓 강사 공식 답변</p><p class="text-sm text-neutral-900/80 whitespace-pre-wrap leading-relaxed">${escQ(q.answer)}</p></div>`
+        ? `<div class="mt-3 pl-3 border-l-2 border-gold bg-gold/[0.05] rounded-r-lg p-3"><p class="text-xs font-bold text-gold mb-1">강사 공식 답변</p><p class="text-sm text-neutral-900/80 whitespace-pre-wrap leading-relaxed">${escQ(q.answer)}</p></div>`
         : '';
       const adminAns = isAdminW()
         ? `<div class="mt-2 flex gap-2"><input id="ans-${q.id}" value="${q.answer ? escQ(q.answer).replace(/"/g,'&quot;') : ''}" placeholder="강사 공식 답변(상단 고정)…" class="flex-1 border border-ink/12 rounded-full px-3 py-1.5 text-sm outline-none focus:border-gold"/><button onclick="answerQ('${q.id}')" class="bg-gold text-white text-xs font-semibold px-3 py-1.5 rounded-full shrink-0">${q.answer ? '수정' : '답변'}</button></div>`
@@ -1062,7 +1062,7 @@
         : '';
       const discussion = canDiscuss
         ? `<div class="mt-3 pt-3 border-t border-ink/8">
-            <p class="text-xs font-semibold text-neutral-900/50 mb-2">💬 토론${ reps.length ? ' · ' + reps.length + '개' : '' }</p>
+            <p class="text-xs font-semibold text-neutral-900/50 mb-2">토론${ reps.length ? ' · ' + reps.length + '개' : '' }</p>
             <div class="space-y-2">${ thread || '<p class="text-xs text-neutral-900/35">아직 댓글이 없어요. 강사와 수강생이 함께 생각을 나눠요!</p>' }</div>
             ${composer}
           </div>`
@@ -1084,7 +1084,7 @@
         <div class="flex-1 min-w-0">
           <div class="flex items-center gap-1.5 mb-0.5">
             <span class="font-semibold text-[13px]">${escQ(r.author_name || '회원')}</span>
-            ${ instr ? '<span class="text-[10px] bg-gold text-white px-1.5 py-0.5 rounded-full font-bold">🎓 강사</span>' : '' }
+            ${ instr ? '<span class="text-[10px] bg-gold text-white px-1.5 py-0.5 rounded-full font-bold">강사</span>' : '' }
             <span class="text-neutral-900/35 text-[11px]">${ r.created_at ? new Date(r.created_at).toLocaleDateString('ko-KR') : '' }</span>
           </div>
           <p class="text-neutral-900/80 text-sm whitespace-pre-wrap leading-relaxed">${escQ(r.content)}</p>
@@ -1110,7 +1110,7 @@
         } catch(e){}
       }
       if(cnt) cnt.textContent = data.length ? data.length + '개의 질문' : '';
-      list.innerHTML = data.length ? data.map(renderQ).join('') : `<p class="text-neutral-900/40 text-sm text-center py-6">아직 질문이 없어요. 첫 질문을 남겨보세요! 🙋</p>`;
+      list.innerHTML = data.length ? data.map(renderQ).join('') : `<p class="text-neutral-900/40 text-sm text-center py-6">아직 질문이 없어요. 첫 질문을 남겨보세요! </p>`;
     }
     async function submitReply(qid){
       const ta = document.getElementById('rep-' + qid); const content = (ta ? ta.value : '').trim();
@@ -1199,16 +1199,16 @@
       var info=document.createElement('div'); info.id='panel-info'; info.className='tabPanel';
       info.innerHTML='<div class="bg-gradient-to-br from-sky to-white border border-ink/8 rounded-2xl p-5 md:p-6 shadow-soft">'
         +'<div class="flex items-start gap-3.5">'
-        +'<div class="shrink-0 w-11 h-11 rounded-full bg-gold/15 flex items-center justify-center text-xl">🎓</div>'
+        +'<div class="shrink-0 w-11 h-11 rounded-full bg-gold/15 flex items-center justify-center text-xl"></div>'
         +'<div><p class="font-bold text-neutral-900 text-[15px] mb-1">자유롭게 배우는 무료 강의</p>'
         +'<p class="text-[13.5px] text-neutral-900/65 leading-relaxed">모든 강의는 <b class="text-neutral-900/80">무료 회원가입</b>만 하면 시청할 수 있어요. 위 탭에서 원하는 학습 도구를 눌러 <b class="text-neutral-900/80">바로바로</b> 확인하세요.</p></div>'
         +'</div>'
         +'<div class="grid grid-cols-3 gap-2 mt-4">'
-        +'<button onclick="showLearnTab(\'quiz\')" class="bg-white/70 hover:bg-white rounded-xl py-3 text-center transition"><p class="text-xl">🎯</p><p class="text-[11.5px] font-bold text-neutral-900/60 mt-1">진단평가</p></button>'
-        +'<button onclick="showLearnTab(\'note\')" class="bg-white/70 hover:bg-white rounded-xl py-3 text-center transition"><p class="text-xl">📝</p><p class="text-[11.5px] font-bold text-neutral-900/60 mt-1">요약 노트</p></button>'
-        +'<button onclick="showLearnTab(\'qa\')" class="bg-white/70 hover:bg-white rounded-xl py-3 text-center transition"><p class="text-xl">💬</p><p class="text-[11.5px] font-bold text-neutral-900/60 mt-1">질의응답</p></button>'
+        +'<button onclick="showLearnTab(\'quiz\')" class="bg-white/70 hover:bg-white rounded-xl py-3 text-center transition"><p class="text-xl"></p><p class="text-[11.5px] font-bold text-neutral-900/60 mt-1">진단평가</p></button>'
+        +'<button onclick="showLearnTab(\'note\')" class="bg-white/70 hover:bg-white rounded-xl py-3 text-center transition"><p class="text-xl"></p><p class="text-[11.5px] font-bold text-neutral-900/60 mt-1">요약 노트</p></button>'
+        +'<button onclick="showLearnTab(\'qa\')" class="bg-white/70 hover:bg-white rounded-xl py-3 text-center transition"><p class="text-xl"></p><p class="text-[11.5px] font-bold text-neutral-900/60 mt-1">질의응답</p></button>'
         +'</div>'
-        +'<p class="text-[12px] text-neutral-900/45 mt-3.5 leading-relaxed">🔒 잠긴 강의는 정식 오픈 후 공개돼요. <a href="index.html#pricing" class="text-gold underline">출시 알림 받기</a></p>'
+        +'<p class="text-[12px] text-neutral-900/45 mt-3.5 leading-relaxed">잠긴 강의는 정식 오픈 후 공개돼요. <a href="index.html#pricing" class="text-gold underline">출시 알림 받기</a></p>'
         +'</div>';
       host.appendChild(info);
       // ② 요약 노트
@@ -1237,7 +1237,7 @@
   <!-- ===== 말씀 검색 드로어 (강의 중 사전·성경구절 바로 검색) ===== -->
   <button id="srchTab" onclick="srchOpen()" aria-label="말씀 검색 열기"
     class="fixed right-0 top-[40%] z-40 bg-gold text-white shadow-[0_6px_22px_-6px_rgba(184,146,63,.85)] rounded-l-2xl px-2.5 py-3.5 flex flex-col items-center gap-1 hover:opacity-95 transition">
-    <span class="text-lg leading-none">🔎</span>
+    <span class="text-lg leading-none"></span>
     <span class="text-[10px] font-bold leading-tight text-center">말씀<br>검색</span>
   </button>
 
@@ -1254,11 +1254,11 @@
         </div>
         <!-- 탭 -->
         <div class="grid grid-cols-2 gap-1.5 mt-4 bg-sand/60 rounded-xl p-1">
-          <button id="tabDict" onclick="srchTab('dict')" class="rounded-lg py-2 text-[13px] font-bold transition bg-white text-neutral-900 shadow-sm">📖 성경사전</button>
-          <button id="tabVerse" onclick="srchTab('verse')" class="rounded-lg py-2 text-[13px] font-bold transition text-neutral-900/55">📜 성경구절</button>
+          <button id="tabDict" onclick="srchTab('dict')" class="rounded-lg py-2 text-[13px] font-bold transition bg-white text-neutral-900 shadow-sm">성경사전</button>
+          <button id="tabVerse" onclick="srchTab('verse')" class="rounded-lg py-2 text-[13px] font-bold transition text-neutral-900/55">성경구절</button>
         </div>
         <div class="relative mt-3">
-          <span class="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-900/30 text-sm">🔍</span>
+          <span class="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-900/30 text-sm"></span>
           <input id="srchQ" type="text" autocomplete="off" oninput="srchDo()" placeholder="예: 칭의 · 휴거 · 666 · 침례"
             class="w-full bg-cloud border border-ink/12 rounded-full pl-10 pr-4 py-3 text-sm outline-none focus:border-gold focus:bg-white transition" />
         </div>
@@ -1323,9 +1323,9 @@
     }
     function emptyState(){
       if(MODE==='dict'){ var n=DICT?DICT.length:0;
-        $('srchResults').innerHTML='<div class="text-center py-12 px-4"><p class="text-4xl mb-3">📖</p><p class="text-sm text-neutral-900/50 leading-relaxed">궁금한 <b class="text-neutral-900/70">단어</b>를 검색해<br>사전에서 뜻을 확인하세요.</p><p class="text-xs text-neutral-900/35 mt-2">인물·지명·교리·종말론 등 '+(n?n.toLocaleString():'3,100여')+'개 항목</p></div>';
+        $('srchResults').innerHTML='<div class="text-center py-12 px-4"><p class="text-4xl mb-3"></p><p class="text-sm text-neutral-900/50 leading-relaxed">궁금한 <b class="text-neutral-900/70">단어</b>를 검색해<br>사전에서 뜻을 확인하세요.</p><p class="text-xs text-neutral-900/35 mt-2">인물·지명·교리·종말론 등 '+(n?n.toLocaleString():'3,100여')+'개 항목</p></div>';
       } else {
-        $('srchResults').innerHTML='<div class="text-center py-12 px-4"><p class="text-4xl mb-3">📜</p><p class="text-sm text-neutral-900/50 leading-relaxed">성경 <b class="text-neutral-900/70">구절</b>이나 <b class="text-neutral-900/70">단어</b>를 검색하세요.</p><p class="text-xs text-neutral-900/35 mt-2">예: 요한복음 3:16 · 시편 23 · "사랑"</p></div>';
+        $('srchResults').innerHTML='<div class="text-center py-12 px-4"><p class="text-4xl mb-3"></p><p class="text-sm text-neutral-900/50 leading-relaxed">성경 <b class="text-neutral-900/70">구절</b>이나 <b class="text-neutral-900/70">단어</b>를 검색하세요.</p><p class="text-xs text-neutral-900/35 mt-2">예: 요한복음 3:16 · 시편 23 · "사랑"</p></div>';
       }
     }
     window.srchDo=function(){ clearTimeout(timer); timer=setTimeout(runNow,150); };
@@ -1387,7 +1387,7 @@
       var sub = (ko && en) ? '<p class="text-[11.5px] text-neutral-900/40 italic leading-relaxed mt-1">'+hl(en,q)+'</p>' : '';
       return '<div class="bg-white rounded-2xl border border-ink/8 p-3.5 shadow-[0_2px_10px_-7px_rgba(21,32,58,.18)]"><p class="text-[11px] font-bold text-gold">'+esc(ref)+'</p>'+main+sub+'</div>';
     }
-    function noHit(raw){ $('srchResults').innerHTML='<div class="text-center py-12"><p class="text-3xl mb-2">🔍</p><p class="text-sm text-neutral-900/50">‘'+esc(raw)+'’ 결과가 없어요.</p><p class="text-xs text-neutral-900/35 mt-2">다른 검색어로 시도해 보세요.</p></div>'; }
+    function noHit(raw){ $('srchResults').innerHTML='<div class="text-center py-12"><p class="text-3xl mb-2"></p><p class="text-sm text-neutral-900/50">‘'+esc(raw)+'’ 결과가 없어요.</p><p class="text-xs text-neutral-900/35 mt-2">다른 검색어로 시도해 보세요.</p></div>'; }
   })();
   </script>
   <style>

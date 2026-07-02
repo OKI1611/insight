@@ -106,8 +106,8 @@
     <aside class="lg:sticky lg:top-20 mb-5 lg:mb-0">
       <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-3">
         <div class="grid grid-cols-2 lg:grid-cols-1 gap-2">
-          <button onclick="setMode('learn')" id="mLearn" class="mode-btn text-sm font-bold rounded-xl px-3 py-3 transition flex items-center justify-center gap-2"><span>📖</span> 암송 학습하기</button>
-          <button onclick="setMode('test')" id="mTest" class="mode-btn text-sm font-bold rounded-xl px-3 py-3 transition flex items-center justify-center gap-2"><span>✍️</span> 암송 테스트</button>
+          <button onclick="setMode('learn')" id="mLearn" class="mode-btn text-sm font-bold rounded-xl px-3 py-3 transition flex items-center justify-center gap-2"><span></span> 암송 학습하기</button>
+          <button onclick="setMode('test')" id="mTest" class="mode-btn text-sm font-bold rounded-xl px-3 py-3 transition flex items-center justify-center gap-2"><span></span> 암송 테스트</button>
         </div>
         <div class="mt-3 pt-3 border-t border-ink/8">
           <p class="text-[11px] font-bold text-neutral-900/40 px-1 mb-1.5">주제 선택</p>
@@ -119,14 +119,14 @@
             <div class="h-2 rounded-full bg-sand overflow-hidden"><div id="progBar" class="h-full bg-gold transition-all" style="width:0%"></div></div>
             <p id="progText" class="text-[11px] text-neutral-900/55 mt-1">– / –</p>
           </div>
-          <a href="mylearning.html" class="block text-center text-[12px] font-semibold text-gold hover:underline mt-2">📊 내 강의실에서 기록 보기 →</a>
+          <a href="mylearning.html" class="block text-center text-[12px] font-semibold text-gold hover:underline mt-2">내 강의실에서 기록 보기 →</a>
         </div>
       </div>
     </aside>
 
     <!-- 콘텐츠 -->
     <section>
-      <div id="loginHint" class="hidden mb-4 bg-gold/[0.08] border border-gold/25 rounded-xl px-4 py-2.5 text-[12.5px] text-neutral-900/70">🔐 <button onclick="location.href='index.html'" class="font-bold text-gold hover:underline">로그인</button>하면 암송 학습·테스트 기록이 계정에 저장되어 <b>내 강의실</b>에서 진도를 확인할 수 있어요. (지금은 이 기기에만 임시 저장됩니다.)</div>
+      <div id="loginHint" class="hidden mb-4 bg-gold/[0.08] border border-gold/25 rounded-xl px-4 py-2.5 text-[12.5px] text-neutral-900/70"><button onclick="location.href='index.html'" class="font-bold text-gold hover:underline">로그인</button>하면 암송 학습·테스트 기록이 계정에 저장되어 <b>내 강의실</b>에서 진도를 확인할 수 있어요. (지금은 이 기기에만 임시 저장됩니다.)</div>
 
       <!-- 학습 모드 -->
       <div id="learnView">
@@ -182,7 +182,7 @@
     THEMES=DATA.themes||[]; VERSES=DATA.verses||[];
     await loadRecords();
     buildThemeNav(); setMode('learn');
-    $('heroStat').innerHTML = `<span>📚 <b class="text-paper">${THEMES.length}</b> 주제</span><span class="opacity-40">·</span><span>✨ <b class="text-paper">${VERSES.length}</b> 구절</span>`;
+    $('heroStat').innerHTML = `<span><b class="text-paper">${THEMES.length}</b> 주제</span><span class="opacity-40">·</span><span><b class="text-paper">${VERSES.length}</b> 구절</span>`;
     const sp=new URLSearchParams(location.search); if(sp.get('mode')==='test') setMode('test');
   })();
 
@@ -228,18 +228,18 @@
             <div class="flex items-center gap-2 mb-2">
               <span class="text-[10px] font-bold text-gold bg-gold/10 px-2 py-0.5 rounded-full">${esc(themeTitle(v.theme))}</span>
               <span class="text-[12px] font-bold text-neutral-900/70">${esc(v.ref||'')}</span>
-              ${done?'<span class="ml-auto text-[11px] font-bold text-green-700 bg-green-50 px-2 py-0.5 rounded-full">✅ 외웠어요</span>':''}
+              ${done?'<span class="ml-auto text-[11px] font-bold text-green-700 bg-green-50 px-2 py-0.5 rounded-full">외웠어요</span>':''}
             </div>
             <p class="serif text-[18px] md:text-[19px] text-neutral-900 leading-[1.95]">${esc(v.kr||'')}</p>
             <p class="verse-en text-[14px] text-neutral-900/55 leading-relaxed mt-2.5">${esc(v.en||'')}</p>
             ${v.orig?`<p class="text-[12px] text-neutral-900/45 mt-2">원어 · ${esc(v.orig)}</p>`:''}
             <div class="flex gap-2 mt-4">
-              <button onclick="toggleLearned('${v.id}')" class="text-sm font-semibold px-4 py-2 rounded-full transition ${done?'bg-sand text-neutral-900/60 hover:bg-sand/70':'bg-gold text-white hover:opacity-90'}">${done?'외움 취소':'✅ 외웠어요'}</button>
-              <button onclick="quizThis('${v.id}')" class="text-sm font-semibold px-4 py-2 rounded-full border border-ink/15 text-neutral-900/70 hover:bg-ink/5 transition">✍️ 이 구절 테스트</button>
+              <button onclick="toggleLearned('${v.id}')" class="text-sm font-semibold px-4 py-2 rounded-full transition ${done?'bg-sand text-neutral-900/60 hover:bg-sand/70':'bg-gold text-white hover:opacity-90'}">${done?'외움 취소':'외웠어요'}</button>
+              <button onclick="quizThis('${v.id}')" class="text-sm font-semibold px-4 py-2 rounded-full border border-ink/15 text-neutral-900/70 hover:bg-ink/5 transition">이 구절 테스트</button>
             </div>
           </div>
           ${words?`<aside class="bg-sand/30 border-t lg:border-t-0 lg:border-l border-ink/8 p-4 lg:p-5">
-            <p class="text-[11px] font-bold text-gold mb-1.5">🔤 영어 표현·원어</p>
+            <p class="text-[11px] font-bold text-gold mb-1.5">영어 표현·원어</p>
             <div>${words}</div></aside>`:''}
         </div>
       </article>`;
@@ -264,7 +264,7 @@
           <label class="text-sm"><span class="block text-[11px] font-bold text-neutral-900/45 mb-1">유형</span>
             <select id="qType" class="border border-ink/15 rounded-lg px-3 py-2 text-sm bg-white"><option value="blank">빈칸 채우기</option><option value="full">통암송 적어보기</option></select></label>
           <button onclick="startQuiz()" class="bg-gold text-white font-bold text-sm px-5 py-2.5 rounded-full hover:opacity-90 transition">문제 풀기 →</button>
-          <button onclick="randomQuiz()" class="text-sm font-semibold px-4 py-2.5 rounded-full border border-ink/15 text-neutral-900/70 hover:bg-ink/5 transition">🎲 무작위</button>
+          <button onclick="randomQuiz()" class="text-sm font-semibold px-4 py-2.5 rounded-full border border-ink/15 text-neutral-900/70 hover:bg-ink/5 transition">무작위</button>
         </div>
       </div>
       <div id="quizArea"></div>`;
@@ -327,7 +327,7 @@
   function gradeFull(){
     const ans=Q.text, inp=$('fullInput').value;
     const sim=similarity(inp,ans); const score=Math.round(sim*100);
-    const verdict = score>=90?'완벽해요! 🎉':score>=70?'거의 다 외웠어요 👍':score>=40?'조금 더 연습해요 💪':'다시 천천히 외워봐요 📖';
+    const verdict = score>=90?'완벽해요! ':score>=70?'거의 다 외웠어요 ':score>=40?'조금 더 연습해요 ':'다시 천천히 외워봐요 ';
     finishQuiz(score, `정확도 <b>${score}%</b> — ${verdict}`, true);
   }
   function revealFull(){ const r=$('quizResult'); r.innerHTML=`<div class="bg-sand/50 rounded-xl p-3.5 ${Q.lang==='kr'?'serif':'verse-en'} text-[16px] text-neutral-900 leading-relaxed">${esc(Q.text)}</div>`; }
@@ -336,7 +336,7 @@
     const tone = score>=70?'bg-green-50 border-green-200 text-green-800':score>=40?'bg-amber-50 border-amber-200 text-amber-800':'bg-rose-50 border-rose-200 text-rose-800';
     let h=`<div class="rounded-xl border ${tone} px-4 py-3 text-sm">${msg} <b>(${score}점)</b></div>`;
     if(showAnswer) h+=`<div class="mt-2 bg-sand/50 rounded-xl p-3.5 ${Q.lang==='kr'?'serif':'verse-en'} text-[15px] text-neutral-900/80 leading-relaxed"><span class="text-[11px] font-bold text-neutral-900/45 block mb-1">정답</span>${esc(Q.text)}</div>`;
-    if(score>=80) h+=`<button onclick="markLearnedFromTest('${Q.v.id}')" class="mt-3 text-sm font-semibold text-gold hover:underline">✅ 이 구절 외움 처리하기</button>`;
+    if(score>=80) h+=`<button onclick="markLearnedFromTest('${Q.v.id}')" class="mt-3 text-sm font-semibold text-gold hover:underline">이 구절 외움 처리하기</button>`;
     $('quizResult').innerHTML=h;
     saveRecord(Q.v.id,{ test_best:score, bumpTest:true });
   }

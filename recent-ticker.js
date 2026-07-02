@@ -21,13 +21,13 @@
     wrap.innerHTML =
       '<a href="event.html" class="block bg-gradient-to-r from-gold to-[#caa24f] text-white">'
       + '<div class="max-w-6xl mx-auto px-5 py-3 flex items-center justify-center gap-2.5 text-center text-sm md:text-[15px] font-semibold flex-wrap">'
-      + '<span class="text-base">🎁</span>'
+      + '<span class="text-base"></span>'
       + '<span>오픈 기념 — <b>가입하면 누구나 무료!</b> 신규 5일 · 추천 3개월 · 창립 1년</span>'
       + '<span class="inline-flex items-center gap-1 bg-white/20 hover:bg-white/30 transition px-3 py-1 rounded-full text-[13px]">혜택 보기 →</span>'
       + '</div></a>'
       + '<div id="recentTicker" class="hidden bg-white border-b" style="border-color:rgba(33,58,107,.08)">'
       + '<div class="max-w-6xl mx-auto px-5 py-2.5 flex items-center gap-3">'
-      + '<span class="shrink-0 inline-flex items-center gap-1.5 text-[11px] font-bold px-3 py-1 rounded-full" style="background:#213a6b;color:#fff">📢 새 소식</span>'
+      + '<span class="shrink-0 inline-flex items-center gap-1.5 text-[11px] font-bold px-3 py-1 rounded-full" style="background:#213a6b;color:#fff">새 소식</span>'
       + '<div class="flex-1 min-w-0 relative h-5 overflow-hidden">'
       + '<a id="tkItem" href="#" class="absolute inset-0 flex items-center gap-2 transition-opacity duration-500">'
       + '<span id="tkCat" class="shrink-0 text-[10px] font-bold px-1.5 py-0.5 rounded" style="color:#b8923f;background:rgba(184,146,63,.1)"></span>'
@@ -36,7 +36,7 @@
       + '</a></div>'
       + '<div class="shrink-0 flex items-center gap-0.5" style="color:rgba(33,58,107,.4)">'
       + '<button onclick="biblyTkStep(-1)" title="이전" class="w-6 h-6 rounded-full hover:bg-ink/5 transition">‹</button>'
-      + '<button id="tkPlay" onclick="biblyTkToggle()" title="멈춤/재생" class="w-6 h-6 rounded-full hover:bg-ink/5 transition text-[11px]">❚❚</button>'
+      + '<button id="tkPlay" onclick="biblyTkToggle()" title="멈춤/재생" class="w-6 h-6 rounded-full hover:bg-ink/5 transition text-[11px]"></button>'
       + '<button onclick="biblyTkStep(1)" title="다음" class="w-6 h-6 rounded-full hover:bg-ink/5 transition">›</button>'
       + '</div></div></div>';
     return wrap;
@@ -72,7 +72,7 @@
     }
     function reset(){ clearInterval(timer); if(playing) timer=setInterval(function(){ i=(i+1)%TK.length; show(); }, 4200); }
     window.biblyTkStep=function(d){ if(!TK.length) return; i=(i+d+TK.length)%TK.length; show(); reset(); };
-    window.biblyTkToggle=function(){ playing=!playing; $('tkPlay').textContent=playing?'❚❚':'▶'; if(playing) reset(); else clearInterval(timer); };
+    window.biblyTkToggle=function(){ playing=!playing; $('tkPlay').textContent=playing?'':'▶'; if(playing) reset(); else clearInterval(timer); };
     Promise.allSettled([
       tsb.from('columns').select('id,title,created_at').order('created_at',{ascending:false}).limit(4),
       tsb.from('community_posts').select('id,content,board,created_at').order('created_at',{ascending:false}).limit(4),

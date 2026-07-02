@@ -28,8 +28,8 @@
     var bar=document.createElement('div');
     bar.style.cssText='position:fixed;top:8px;left:50%;transform:translateX(-50%);z-index:120;display:flex;gap:8px;align-items:center;background:#213a6b;color:#fff;padding:7px 12px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.25);font-size:13px';
     bar.innerHTML='<span style="opacity:.65">관리자 ·</span>'
-      +'<button id="cmsToggle" style="background:#b8923f;color:#fff;border:0;padding:6px 13px;border-radius:999px;font-weight:700;cursor:pointer">✏️ 글 편집</button>'
-      +'<button id="cmsSave" style="display:none;background:#fff;color:#171717;border:0;padding:6px 13px;border-radius:999px;font-weight:700;cursor:pointer">💾 저장</button>'
+      +'<button id="cmsToggle" style="background:#b8923f;color:#fff;border:0;padding:6px 13px;border-radius:999px;font-weight:700;cursor:pointer">글 편집</button>'
+      +'<button id="cmsSave" style="display:none;background:#fff;color:#171717;border:0;padding:6px 13px;border-radius:999px;font-weight:700;cursor:pointer">저장</button>'
       +'<button id="cmsCancel" style="display:none;background:transparent;color:#fff;border:0;padding:6px 8px;cursor:pointer;opacity:.8">취소</button>'
       +'<span id="cmsHint" style="opacity:.55"></span>';
     document.body.appendChild(bar);
@@ -52,14 +52,14 @@
     var sv=document.getElementById('cmsSave'), cn=document.getElementById('cmsCancel'), tg=document.getElementById('cmsToggle'), hn=document.getElementById('cmsHint');
     if(sv) sv.style.display=on?'':'none';
     if(cn) cn.style.display=on?'':'none';
-    if(tg) tg.textContent=on?'편집 중':'✏️ 글 편집';
+    if(tg) tg.textContent=on?'편집 중':'글 편집';
     if(hn) hn.textContent=on?'노란 점선 글자를 눌러 수정하세요':'';
   }
   function save(){
     var data={}; document.querySelectorAll('[data-cms]').forEach(function(el){ data[el.getAttribute('data-cms')]=el.innerHTML.trim(); });
     var s=session(); if(!s){ alert('로그인이 필요합니다'); return; }
     fetch(SB+'/rest/v1/site_content',{method:'POST',headers:{apikey:AK,Authorization:'Bearer '+(s.access_token||AK),'Content-Type':'application/json',Prefer:'resolution=merge-duplicates,return=minimal'},body:JSON.stringify({key:'cms',data:data,updated_at:new Date().toISOString()})})
-      .then(function(r){ if(r.ok){ overrides=data; setEdit(false); toast('✅ 저장 완료 — 모든 방문자에게 즉시 반영됩니다'); } else { return r.text().then(function(t){ alert('저장 오류: '+t+'\n\nsite_content 테이블/관리자 권한을 확인하세요.'); }); } })
+      .then(function(r){ if(r.ok){ overrides=data; setEdit(false); toast('저장 완료 — 모든 방문자에게 즉시 반영됩니다'); } else { return r.text().then(function(t){ alert('저장 오류: '+t+'\n\nsite_content 테이블/관리자 권한을 확인하세요.'); }); } })
       .catch(function(e){ alert('저장 오류: '+e); });
   }
 })();

@@ -26,13 +26,13 @@
   <header class="bg-gold text-white">
     <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
       <a href="index.html" class="font-bold text-sm tracking-tight">BIBLY <span class="text-gold">바이블 인사이트</span></a>
-      <span class="text-[11px] text-paper/60 flex items-center gap-1.5">🔒 관리자 전용 · 비공개</span>
+      <span class="text-[11px] text-paper/60 flex items-center gap-1.5">관리자 전용 · 비공개</span>
     </div>
   </header>
 
   <!-- 비관리자 잠금 화면 -->
   <div id="lock" class="hidden max-w-md mx-auto px-4 py-24 text-center">
-    <div class="text-5xl mb-4">🔒</div>
+    <div class="text-5xl mb-4"></div>
     <h1 class="text-xl font-bold">준비 중인 페이지입니다</h1>
     <p class="text-neutral-900/55 text-sm mt-3 leading-relaxed">이 페이지는 관리자 작업용으로 일반에 공개되지 않습니다.<br/>새로운 콘텐츠는 완성되는 대로 정식으로 안내드리겠습니다.</p>
     <a href="bible.html" class="inline-block mt-6 bg-gold text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition">성경 읽기로 가기 →</a>
@@ -67,14 +67,14 @@
 
     <!-- 내보내기 -->
     <section class="bg-white rounded-2xl border border-gold/30 shadow-soft p-5 md:p-6 mb-5">
-      <h2 class="font-bold text-base flex items-center gap-2">📤 원고 내보내기 <span class="text-[11px] font-normal text-neutral-900/45">(출간·판매 준비)</span></h2>
+      <h2 class="font-bold text-base flex items-center gap-2">원고 내보내기 <span class="text-[11px] font-normal text-neutral-900/45">(출간·판매 준비)</span></h2>
       <p class="text-neutral-900/55 text-sm mt-1.5 leading-relaxed">완성된 분량을 책 원고 형태로 내려받습니다. <b>Word(.doc)</b>는 편집·교정에, <b>PDF</b>는 인쇄·미리보기에 적합합니다. 번역이 모두 끝나면 이 원고로 책을 출간하고, <a href="booklet.html" class="text-gold underline">BIBLY 북스토어</a>에서 판매를 연결할 수 있습니다.</p>
       <div class="mt-4 flex flex-wrap items-center gap-2.5">
         <select id="exBook" class="border border-ink/20 rounded-full px-4 py-2 text-sm bg-white font-medium"></select>
         <label class="text-xs text-neutral-900/60 flex items-center gap-1.5"><input type="checkbox" id="exEn"/>영어 KJV 병기</label>
         <span class="flex-1"></span>
-        <button onclick="doExport('doc')" class="bg-gold text-white text-sm font-semibold px-4 py-2 rounded-full hover:opacity-90 transition">📄 Word(.doc)</button>
-        <button onclick="doExport('pdf')" class="bg-gold text-white text-sm font-semibold px-4 py-2 rounded-full hover:opacity-90 transition">📕 PDF</button>
+        <button onclick="doExport('doc')" class="bg-gold text-white text-sm font-semibold px-4 py-2 rounded-full hover:opacity-90 transition">Word(.doc)</button>
+        <button onclick="doExport('pdf')" class="bg-gold text-white text-sm font-semibold px-4 py-2 rounded-full hover:opacity-90 transition">PDF</button>
       </div>
       <p id="exMsg" class="text-xs text-neutral-900/50 mt-2.5 hidden"></p>
     </section>
@@ -200,11 +200,11 @@
           const blob = new Blob(['﻿'+head+coverHTML(title)+body+'</body></html>'], {type:'application/msword'});
           const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=title+'.doc'; a.click();
           setTimeout(()=>URL.revokeObjectURL(a.href),4000);
-          msg.textContent='✅ Word(.doc) 파일을 내려받았습니다. Word/한글에서 열어 편집하세요.';
+          msg.textContent='Word(.doc) 파일을 내려받았습니다. Word/한글에서 열어 편집하세요.';
         } else {
           // 인쇄(벡터) 방식 — 분량이 길어도 백지 없이, 진짜 글자로 출력(검색 가능)
           printDoc(title, coverHTML(title)+body);
-          msg.textContent='✅ 인쇄창이 열리면 대상(목적지)을 "PDF로 저장"으로 선택하세요.';
+          msg.textContent='인쇄창이 열리면 대상(목적지)을 "PDF로 저장"으로 선택하세요.';
         }
       }catch(e){ msg.textContent='내보내기 중 오류: '+(e.message||e); }
     }
