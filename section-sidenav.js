@@ -34,6 +34,10 @@
   if(!page) page = 'index.html';
   else if(page.indexOf('.') < 0) page += '.html'; // 클린 URL(/column) → column.html 보정
 
+  // 자체 좌측 메뉴가 있는 페이지는 섹션 사이드바를 띄우지 않는다(스토어 하위메뉴가 잘못 보이던 문제).
+  var SKIP_PAGES = ['mylearning.html'];
+  if(SKIP_PAGES.indexOf(page) >= 0) return;
+
   function base(h){ return String(h||'').split('#')[0].split('?')[0].toLowerCase(); }
 
   function pickSection(nav){

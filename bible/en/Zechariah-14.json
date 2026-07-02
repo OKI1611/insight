@@ -1,13 +1,424 @@
 [
- {"en": "Behold, the day of the Lord cometh", "ko": "보라, 여호와의 날이 이르리니", "note": "'여호와의 날(the day of the LORD)'은 선지서 전반을 관통하는 종말의 심판과 구원의 날이다. 14장은 그 날에 예루살렘을 둘러싸고 일어나는 최후의 전쟁과 하나님의 친림(親臨)을 그린다."},
- {"en": "I will gather all nations against Jerusalem to battle", "ko": "내가 모든 이방 나라를 모아 예루살렘과 싸우게 하리니", "note": "열방이 예루살렘을 치러 모이는 종말의 포위가 묘사된다. 성읍이 함락되고 절반이 사로잡히는 극한 가운데서도 '남은 백성'은 끊어지지 않으리라는 보존의 약속이 함께 주어진다."},
- {"en": "his feet shall stand in that day upon the mount of Olives ... shall cleave in the midst", "ko": "그의 발이 ... 감람산 위에 서실 것이요 ... 한가운데서 ... 갈라져", "note": "여호와께서 친히 감람산 위에 서시매 산이 동서로 갈라져 큰 골짜기가 된다. 사도행전 1:11~12에서 예수께서 승천하시고 다시 오시리라 한 그 산이기에, 전통적으로 재림의 현장으로 읽힌다."},
- {"en": "the Lord my God shall come, and all the saints with thee", "ko": "나의 하나님 여호와께서 임하시고 모든 거룩한 자들이 주와 함께 오시리라", "note": "지진을 피하듯 백성이 골짜기로 도망하는 가운데, 여호와께서 '모든 거룩한 자들'과 함께 강림하신다. 주께서 성도들과 더불어 오신다는 종말의 영광스러운 친림을 선포한다."},
- {"en": "at evening time it shall be light", "ko": "저물 때에 빛이 있으리라", "note": "낮도 밤도 아닌, 오직 여호와께만 알려진 한 날을 묘사한다. 어둠이 깊어 가는 저물녘에 도리어 빛이 비치리니, 절망의 끝에서 임하는 구원의 역설을 시적으로 그린다."},
- {"en": "living waters shall go out from Jerusalem", "ko": "생수가 예루살렘에서 흘러나와", "note": "예루살렘에서 솟아나 동·서 양쪽 바다로 흘러 여름에도 마르지 않는 '생수'다. 에스겔 47장의 성전에서 흐르는 강, 요한계시록 22장의 생명수 강과 같은 종말의 생명과 회복을 상징한다."},
- {"en": "the Lord shall be king over all the earth: in that day shall there be one Lord", "ko": "여호와께서 온 땅의 왕이 되시리니 ... 여호와께서 홀로 한 분이시요", "note": "14장의 신학적 정점이다. 온 땅의 왕이 되신 여호와께서 홀로 한 분으로 경배받으시리니, 신명기 6:4의 '여호와는 한 분이시라'는 고백이 온 세계의 현실로 성취되는 날이다."},
- {"en": "Jerusalem shall be safely inhabited", "ko": "예루살렘이 평안히 자리 잡으리라", "note": "온 땅이 평원처럼 변하되 예루살렘은 높이 솟아 본처에 든든히 선다. 다시는 저주가 없는 성읍으로, 종말의 평강 가운데 회복된 거룩한 도성을 보인다."},
- {"en": "Their flesh shall consume away while they stand upon their feet", "ko": "그들이 발로 선 채로 그 살이 썩으며", "note": "예루살렘을 친 열방에 임하는 재앙이다. 선 채로 살과 눈과 혀가 썩는 강렬한 형상으로, 거룩하신 왕을 대적한 자들의 자멸을 그린다. 13절은 그 혼란 중 서로를 치는 동족상잔으로 이어진다."},
- {"en": "they shall ... go up from year to year to worship the King ... and to keep the feast of tabernacles", "ko": "해마다 올라와 그 왕 만군의 여호와께 경배하며 초막절을 지키리라", "note": "심판에서 남은 열방이 해마다 예루살렘에 올라와 만군의 여호와께 경배하며 '초막절'을 지킨다. 광야의 임시 거처를 기념하던 절기가, 만국이 참 왕을 예배하는 보편적 경배로 확장된다."},
- {"en": "upon the bells of the horses, HOLINESS UNTO THE LORD", "ko": "말 방울에까지 '여호와께 성결'이라 새겨질 것이요", "note": "본래 대제사장의 관에만 새겨졌던 '여호와께 성결'(출 28:36)이 말 방울과 평범한 솥에까지 미친다. 거룩과 속됨의 경계가 사라지고 온 삶이 거룩으로 가득 차며, 다시는 가나안 사람(부정한 자)이 성전에 없으리라는 완성된 거룩의 비전으로 스가랴서가 닫힌다."}
+ {
+  "en": "Behold, the day of the Lord cometh",
+  "ko": "보라, 여호와의 날이 이르리니",
+  "note": "'여호와의 날(the day of the LORD)'은 선지서 전반을 관통하는 종말의 심판과 구원의 날이다. 14장은 그 날에 예루살렘을 둘러싸고 일어나는 최후의 전쟁과 하나님의 친림(親臨)을 그린다.",
+  "voc": [
+   [
+    "behold",
+    "interj.",
+    "보라"
+   ],
+   [
+    "day",
+    "n.",
+    "날"
+   ],
+   [
+    "cometh",
+    "v.",
+    "오다, comes의 고어"
+   ]
+  ],
+  "idi": [
+   [
+    "the day of the LORD",
+    "여호와의 날 — 종말의 심판·구원의 날"
+   ]
+  ],
+  "gra": [
+   [
+    "the day of the LORD cometh",
+    "고어 3인칭 단수 -eth — 여호와의 날이 이르리라"
+   ]
+  ]
+ },
+ {
+  "en": "I will gather all nations against Jerusalem to battle",
+  "ko": "내가 모든 이방 나라를 모아 예루살렘과 싸우게 하리니",
+  "note": "열방이 예루살렘을 치러 모이는 종말의 포위가 묘사된다. 성읍이 함락되고 절반이 사로잡히는 극한 가운데서도 '남은 백성'은 끊어지지 않으리라는 보존의 약속이 함께 주어진다.",
+  "voc": [
+   [
+    "gather",
+    "v.",
+    "모으다"
+   ],
+   [
+    "nations",
+    "n.",
+    "나라들, 이방"
+   ],
+   [
+    "against",
+    "prep.",
+    "~을 대적하여"
+   ],
+   [
+    "battle",
+    "n.",
+    "싸움, 전투"
+   ]
+  ],
+  "idi": [
+   [
+    "gather against",
+    "~을 치러 모으다"
+   ],
+   [
+    "to battle",
+    "싸우게 하려고"
+   ]
+  ],
+  "gra": [
+   [
+    "to battle",
+    "목적의 부정사(생략된 to fight의 명사형) — 싸우게 하려고"
+   ]
+  ]
+ },
+ {
+  "en": "his feet shall stand in that day upon the mount of Olives ... shall cleave in the midst",
+  "ko": "그의 발이 ... 감람산 위에 서실 것이요 ... 한가운데서 ... 갈라져",
+  "note": "여호와께서 친히 감람산 위에 서시매 산이 동서로 갈라져 큰 골짜기가 된다. 사도행전 1:11~12에서 예수께서 승천하시고 다시 오시리라 한 그 산이기에, 전통적으로 재림의 현장으로 읽힌다.",
+  "voc": [
+   [
+    "feet",
+    "n.",
+    "발"
+   ],
+   [
+    "stand",
+    "v.",
+    "서다"
+   ],
+   [
+    "mount",
+    "n.",
+    "산"
+   ],
+   [
+    "Olives",
+    "n.",
+    "감람(나무)"
+   ],
+   [
+    "cleave",
+    "v.",
+    "갈라지다, 쪼개지다"
+   ],
+   [
+    "midst",
+    "n.",
+    "한가운데"
+   ]
+  ],
+  "idi": [
+   [
+    "the mount of Olives",
+    "감람산"
+   ],
+   [
+    "in the midst",
+    "한가운데서"
+   ]
+  ],
+  "gra": [
+   [
+    "shall cleave in the midst",
+    "cleave는 '쪼개지다'의 자동사 — 한가운데서 갈라지리라"
+   ]
+  ]
+ },
+ {
+  "en": "the Lord my God shall come, and all the saints with thee",
+  "ko": "나의 하나님 여호와께서 임하시고 모든 거룩한 자들이 주와 함께 오시리라",
+  "note": "지진을 피하듯 백성이 골짜기로 도망하는 가운데, 여호와께서 '모든 거룩한 자들'과 함께 강림하신다. 주께서 성도들과 더불어 오신다는 종말의 영광스러운 친림을 선포한다.",
+  "voc": [
+   [
+    "come",
+    "v.",
+    "임하다, 오다"
+   ],
+   [
+    "saints",
+    "n.",
+    "거룩한 자들, 성도"
+   ],
+   [
+    "thee",
+    "pron.",
+    "주(고어 목적격)"
+   ]
+  ],
+  "idi": [
+   [
+    "the LORD my God",
+    "여호와 나의 하나님"
+   ]
+  ],
+  "gra": [
+   [
+    "all the saints with thee",
+    "동사 shall come 생략 + 전치사구 with thee — 모든 거룩한 자들이 주와 함께 (오시리라)"
+   ]
+  ]
+ },
+ {
+  "en": "at evening time it shall be light",
+  "ko": "저물 때에 빛이 있으리라",
+  "note": "낮도 밤도 아닌, 오직 여호와께만 알려진 한 날을 묘사한다. 어둠이 깊어 가는 저물녘에 도리어 빛이 비치리니, 절망의 끝에서 임하는 구원의 역설을 시적으로 그린다.",
+  "voc": [
+   [
+    "evening",
+    "n.",
+    "저녁, 저물녘"
+   ],
+   [
+    "time",
+    "n.",
+    "때"
+   ],
+   [
+    "light",
+    "n.",
+    "빛"
+   ]
+  ],
+  "idi": [
+   [
+    "at evening time",
+    "저물 때에"
+   ]
+  ],
+  "gra": [
+   [
+    "it shall be light",
+    "비인칭 주어 it + shall be — 빛이 있으리라"
+   ]
+  ]
+ },
+ {
+  "en": "living waters shall go out from Jerusalem",
+  "ko": "생수가 예루살렘에서 흘러나와",
+  "note": "예루살렘에서 솟아나 동·서 양쪽 바다로 흘러 여름에도 마르지 않는 '생수'다. 에스겔 47장의 성전에서 흐르는 강, 요한계시록 22장의 생명수 강과 같은 종말의 생명과 회복을 상징한다.",
+  "voc": [
+   [
+    "living",
+    "adj.",
+    "살아 있는, 생동하는"
+   ],
+   [
+    "waters",
+    "n.",
+    "물"
+   ],
+   [
+    "go out",
+    "phr.",
+    "흘러나오다, 나가다"
+   ]
+  ],
+  "idi": [
+   [
+    "living waters",
+    "생수 — 마르지 않는 생명의 물(겔 47장, 계 22장)"
+   ]
+  ],
+  "gra": [
+   [
+    "living waters",
+    "현재분사 living이 waters를 수식 — 살아 흐르는 물, 생수"
+   ]
+  ]
+ },
+ {
+  "en": "the Lord shall be king over all the earth: in that day shall there be one Lord",
+  "ko": "여호와께서 온 땅의 왕이 되시리니 ... 여호와께서 홀로 한 분이시요",
+  "note": "14장의 신학적 정점이다. 온 땅의 왕이 되신 여호와께서 홀로 한 분으로 경배받으시리니, 신명기 6:4의 '여호와는 한 분이시라'는 고백이 온 세계의 현실로 성취되는 날이다.",
+  "voc": [
+   [
+    "king",
+    "n.",
+    "왕"
+   ],
+   [
+    "earth",
+    "n.",
+    "땅, 세상"
+   ],
+   [
+    "one",
+    "num.",
+    "한, 하나"
+   ]
+  ],
+  "idi": [
+   [
+    "over all the earth",
+    "온 땅 위에"
+   ],
+   [
+    "in that day",
+    "그 날에"
+   ]
+  ],
+  "gra": [
+   [
+    "in that day shall there be one LORD",
+    "부사구 문두 도치(shall there be) — 그 날에 여호와께서 홀로 한 분이시리라(신 6:4)"
+   ]
+  ]
+ },
+ {
+  "en": "Jerusalem shall be safely inhabited",
+  "ko": "예루살렘이 평안히 자리 잡으리라",
+  "note": "온 땅이 평원처럼 변하되 예루살렘은 높이 솟아 본처에 든든히 선다. 다시는 저주가 없는 성읍으로, 종말의 평강 가운데 회복된 거룩한 도성을 보인다.",
+  "voc": [
+   [
+    "safely",
+    "adv.",
+    "안전히, 평안히"
+   ],
+   [
+    "inhabited",
+    "v.",
+    "거주되다"
+   ]
+  ],
+  "gra": [
+   [
+    "shall be safely inhabited",
+    "shall + 수동태 + 부사 safely — 평안히 거주되리라(자리 잡으리라)"
+   ]
+  ]
+ },
+ {
+  "en": "Their flesh shall consume away while they stand upon their feet",
+  "ko": "그들이 발로 선 채로 그 살이 썩으며",
+  "note": "예루살렘을 친 열방에 임하는 재앙이다. 선 채로 살과 눈과 혀가 썩는 강렬한 형상으로, 거룩하신 왕을 대적한 자들의 자멸을 그린다. 13절은 그 혼란 중 서로를 치는 동족상잔으로 이어진다.",
+  "voc": [
+   [
+    "flesh",
+    "n.",
+    "살, 육체"
+   ],
+   [
+    "consume",
+    "v.",
+    "썩다, 소진되다"
+   ],
+   [
+    "stand",
+    "v.",
+    "서다"
+   ],
+   [
+    "feet",
+    "n.",
+    "발"
+   ]
+  ],
+  "idi": [
+   [
+    "consume away",
+    "썩어 없어지다, 소멸되다"
+   ],
+   [
+    "upon their feet",
+    "발로, 선 채로"
+   ]
+  ],
+  "gra": [
+   [
+    "while they stand",
+    "동시 상황의 while절 — 그들이 서 있는 동안(선 채로)"
+   ]
+  ]
+ },
+ {
+  "en": "they shall ... go up from year to year to worship the King ... and to keep the feast of tabernacles",
+  "ko": "해마다 올라와 그 왕 만군의 여호와께 경배하며 초막절을 지키리라",
+  "note": "심판에서 남은 열방이 해마다 예루살렘에 올라와 만군의 여호와께 경배하며 '초막절'을 지킨다. 광야의 임시 거처를 기념하던 절기가, 만국이 참 왕을 예배하는 보편적 경배로 확장된다.",
+  "voc": [
+   [
+    "go up",
+    "phr.",
+    "올라가다"
+   ],
+   [
+    "worship",
+    "v.",
+    "경배하다"
+   ],
+   [
+    "feast",
+    "n.",
+    "절기, 명절"
+   ],
+   [
+    "tabernacles",
+    "n.",
+    "초막"
+   ]
+  ],
+  "idi": [
+   [
+    "from year to year",
+    "해마다"
+   ],
+   [
+    "the feast of tabernacles",
+    "초막절"
+   ],
+   [
+    "go up",
+    "(예루살렘으로) 올라가다"
+   ]
+  ],
+  "gra": [
+   [
+    "to worship ... and to keep",
+    "목적의 부정사 병렬 — 경배하며 지키려고"
+   ]
+  ]
+ },
+ {
+  "en": "upon the bells of the horses, HOLINESS UNTO THE LORD",
+  "ko": "말 방울에까지 '여호와께 성결'이라 새겨질 것이요",
+  "note": "본래 대제사장의 관에만 새겨졌던 '여호와께 성결'(출 28:36)이 말 방울과 평범한 솥에까지 미친다. 거룩과 속됨의 경계가 사라지고 온 삶이 거룩으로 가득 차며, 다시는 가나안 사람(부정한 자)이 성전에 없으리라는 완성된 거룩의 비전으로 스가랴서가 닫힌다.",
+  "voc": [
+   [
+    "bells",
+    "n.",
+    "방울"
+   ],
+   [
+    "horses",
+    "n.",
+    "말"
+   ],
+   [
+    "holiness",
+    "n.",
+    "성결, 거룩"
+   ],
+   [
+    "unto",
+    "prep.",
+    "~에게(고어)"
+   ]
+  ],
+  "idi": [
+   [
+    "HOLINESS UNTO THE LORD",
+    "여호와께 성결 — 본래 대제사장 관에 새긴 문구(출 28:36)"
+   ]
+  ],
+  "gra": [
+   [
+    "upon the bells of the horses",
+    "전치사 upon + 이중 소유격 — 말들의 방울 위에"
+   ]
+  ]
+ }
 ]

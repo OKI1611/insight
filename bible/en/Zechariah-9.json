@@ -1,14 +1,490 @@
 [
- {"en": "The burden of the word of the LORD in the land of Hadrach", "ko": "여호와의 말씀의 경고가 하드락 땅에 임하니", "note": "9장은 새로운 예언 묶음의 시작이다. '경고(massa)'는 무거운 선포를 뜻하며, 시리아·페니키아·블레셋을 향한 심판으로 열방을 다스리시는 하나님의 주권을 선언한다."},
- {"en": "Tyrus did build herself a strong hold, and heaped up silver as the dust", "ko": "두로가 견고한 산성을 쌓고 은을 티끌같이 쌓았으나", "note": "두로는 부와 견고한 요새를 자랑하던 해상 강국이었다. 그러나 인간의 부와 방벽이 하나님의 심판 앞에서는 무력함을, 이어지는 멸망의 선포가 드러낸다."},
- {"en": "the king shall perish from Gaza, and Ashkelon shall not be inhabited", "ko": "가사에서 왕이 끊어지며 아스글론에 거민이 없으리라", "note": "블레셋의 다섯 성읍을 향한 심판이다. 이스라엘의 오랜 대적이던 블레셋이 무너지고, 남은 자들은 도리어 하나님의 백성에 합하여지는 반전이 예고된다."},
- {"en": "he that remaineth ... shall be for our God ... as a governor in Judah", "ko": "그 남은 자도 우리 하나님께로 돌아와 유다의 한 두령같이 되며", "note": "심판 가운데서도 은혜가 빛난다. 정복당한 이방의 '남은 자'가 하나님의 백성으로 받아들여진다는 약속으로, 구원이 열방에까지 미침을 미리 보여 준다."},
- {"en": "behold, thy King cometh unto thee: he is just, and having salvation; lowly, and riding upon an ass", "ko": "보라, 네 왕이 임하시나니 ... 겸손하여 나귀를 타시니", "note": "스가랴의 가장 빛나는 메시아 예언이다. 군마가 아닌 나귀를 타고 임하시는 겸손한 왕 — 신약은 이를 예수께서 예루살렘에 입성하신 사건의 성취로 인용한다(마 21:5, 요 12:15)."},
- {"en": "he shall speak peace unto the heathen: and his dominion shall be from sea even to sea", "ko": "그가 이방에게 화평을 전하리라. 그의 다스림은 바다에서 바다까지", "note": "이 왕은 전쟁의 병기를 끊고 열방에 화평을 전파하신다. 그 통치가 온 땅 끝까지 미치리라는 선언은, 메시아 왕국의 보편적 평화를 내다본다."},
- {"en": "by the blood of thy covenant I have sent forth thy prisoners out of the pit", "ko": "네 언약의 피로 말미암아 내가 갇힌 자들을 구덩이에서 놓으리라", "note": "'언약의 피'는 백성의 구속의 근거다. 물 없는 구덩이에 갇힌 자를 풀어내심은, 장차 언약의 피로 사로잡힌 자를 자유케 하실 메시아의 구원을 가리킨다."},
- {"en": "Turn you to the strong hold, ye prisoners of hope", "ko": "소망을 품은 갇힌 자들아, 너희는 산성으로 돌아올지니라", "note": "'소망의 포로'라는 역설적 호칭이 아름답다. 갇혀 있으나 소망을 잃지 않은 자들에게, 하나님은 잃은 것의 갑절로 갚으시는 회복을 약속하신다."},
- {"en": "raised up thy sons, O Zion, against thy sons, O Greece", "ko": "시온아, 내가 네 아들들을 일으켜 헬라의 아들들을 치게 하며", "note": "시온과 헬라(그리스)의 대결 예언이다. 흔히 마카비 시대의 셀레우코스 헬라 세력에 대한 승리로 이해되며, 하나님의 백성이 친히 하나님의 손에 들린 무기가 됨을 그린다."},
- {"en": "the LORD shall be seen over them, and his arrow shall go forth as the lightning", "ko": "여호와께서 그들 위에 나타나시고 그의 화살이 번개같이 나가리니", "note": "거룩한 용사로 나타나시는 여호와의 모습이다. 번개 같은 화살과 나팔, 회오리바람은 하나님이 친히 백성을 위해 싸우시는 신현(神顯)의 장엄한 묘사다."},
- {"en": "the LORD their God shall save them in that day as the flock of his people", "ko": "그들의 하나님 여호와께서 자기 백성을 양 떼같이 구원하시리니", "note": "심판의 격렬함 끝에 목자의 부드러움이 등장한다. 구원받은 백성이 '면류관의 보석'같이 빛나리라는 비유는, 그들이 하나님의 영광스러운 소유임을 선포한다."},
- {"en": "how great is his goodness, and how great is his beauty!", "ko": "그의 형통함이 어찌 그리 크며 그의 아름다움이 어찌 그리 큰지!", "note": "감탄으로 장을 맺는다. 곡식과 새 포도주로 청년과 처녀가 무성히 자라는 풍요의 그림은, 메시아 왕국에 임할 생명과 번영의 충만함을 노래한다."}
+ {
+  "en": "The burden of the word of the LORD in the land of Hadrach",
+  "ko": "여호와의 말씀의 경고가 하드락 땅에 임하니",
+  "note": "9장은 새로운 예언 묶음의 시작이다. '경고(massa)'는 무거운 선포를 뜻하며, 시리아·페니키아·블레셋을 향한 심판으로 열방을 다스리시는 하나님의 주권을 선언한다.",
+  "voc": [
+   [
+    "burden",
+    "n.",
+    "경고, 무거운 선포"
+   ],
+   [
+    "word",
+    "n.",
+    "말씀"
+   ],
+   [
+    "land",
+    "n.",
+    "땅"
+   ],
+   [
+    "Hadrach",
+    "n.",
+    "하드락(지명)"
+   ]
+  ],
+  "idi": [
+   [
+    "the burden of the word of the LORD",
+    "여호와의 말씀의 경고 — 예언의 무거운 선포"
+   ]
+  ],
+  "gra": [
+   [
+    "The burden of the word",
+    "of가 겹친 소유격 연쇄 — 여호와의 / 말씀의 / 경고"
+   ]
+  ]
+ },
+ {
+  "en": "Tyrus did build herself a strong hold, and heaped up silver as the dust",
+  "ko": "두로가 견고한 산성을 쌓고 은을 티끌같이 쌓았으나",
+  "note": "두로는 부와 견고한 요새를 자랑하던 해상 강국이었다. 그러나 인간의 부와 방벽이 하나님의 심판 앞에서는 무력함을, 이어지는 멸망의 선포가 드러낸다.",
+  "voc": [
+   [
+    "Tyrus",
+    "n.",
+    "두로(도시)"
+   ],
+   [
+    "strong hold",
+    "n.",
+    "산성, 요새"
+   ],
+   [
+    "heaped",
+    "v.",
+    "쌓았다, heap의 과거"
+   ],
+   [
+    "silver",
+    "n.",
+    "은"
+   ],
+   [
+    "dust",
+    "n.",
+    "티끌, 먼지"
+   ]
+  ],
+  "idi": [
+   [
+    "strong hold",
+    "견고한 요새, 산성"
+   ],
+   [
+    "as the dust",
+    "티끌같이 — 셀 수 없이 많음"
+   ]
+  ],
+  "gra": [
+   [
+    "did build herself",
+    "강조의 did + 동사원형 + 재귀대명사 herself — 스스로 쌓았다"
+   ]
+  ]
+ },
+ {
+  "en": "the king shall perish from Gaza, and Ashkelon shall not be inhabited",
+  "ko": "가사에서 왕이 끊어지며 아스글론에 거민이 없으리라",
+  "note": "블레셋의 다섯 성읍을 향한 심판이다. 이스라엘의 오랜 대적이던 블레셋이 무너지고, 남은 자들은 도리어 하나님의 백성에 합하여지는 반전이 예고된다.",
+  "voc": [
+   [
+    "king",
+    "n.",
+    "왕"
+   ],
+   [
+    "perish",
+    "v.",
+    "끊어지다, 멸망하다"
+   ],
+   [
+    "Gaza",
+    "n.",
+    "가사(성읍)"
+   ],
+   [
+    "Ashkelon",
+    "n.",
+    "아스글론(성읍)"
+   ],
+   [
+    "inhabited",
+    "v.",
+    "거주되다"
+   ]
+  ],
+  "gra": [
+   [
+    "shall not be inhabited",
+    "shall + 수동태 부정 — 거민이 없으리라"
+   ]
+  ]
+ },
+ {
+  "en": "he that remaineth ... shall be for our God ... as a governor in Judah",
+  "ko": "그 남은 자도 우리 하나님께로 돌아와 유다의 한 두령같이 되며",
+  "note": "심판 가운데서도 은혜가 빛난다. 정복당한 이방의 '남은 자'가 하나님의 백성으로 받아들여진다는 약속으로, 구원이 열방에까지 미침을 미리 보여 준다.",
+  "voc": [
+   [
+    "remaineth",
+    "v.",
+    "남다, remains의 고어"
+   ],
+   [
+    "governor",
+    "n.",
+    "두령, 방백"
+   ],
+   [
+    "Judah",
+    "n.",
+    "유다"
+   ]
+  ],
+  "idi": [
+   [
+    "he that remaineth",
+    "남은 자, 살아남은 자"
+   ]
+  ],
+  "gra": [
+   [
+    "he that remaineth",
+    "that이 he를 받는 주격 관계절 — 남은 그 자"
+   ]
+  ]
+ },
+ {
+  "en": "behold, thy King cometh unto thee: he is just, and having salvation; lowly, and riding upon an ass",
+  "ko": "보라, 네 왕이 임하시나니 ... 겸손하여 나귀를 타시니",
+  "note": "스가랴의 가장 빛나는 메시아 예언이다. 군마가 아닌 나귀를 타고 임하시는 겸손한 왕 — 신약은 이를 예수께서 예루살렘에 입성하신 사건의 성취로 인용한다(마 21:5, 요 12:15).",
+  "voc": [
+   [
+    "behold",
+    "interj.",
+    "보라"
+   ],
+   [
+    "King",
+    "n.",
+    "왕"
+   ],
+   [
+    "cometh",
+    "v.",
+    "오다, comes의 고어"
+   ],
+   [
+    "just",
+    "adj.",
+    "의로운, 공의로운"
+   ],
+   [
+    "salvation",
+    "n.",
+    "구원"
+   ],
+   [
+    "lowly",
+    "adj.",
+    "겸손한, 낮은"
+   ],
+   [
+    "ass",
+    "n.",
+    "나귀"
+   ]
+  ],
+  "idi": [
+   [
+    "riding upon an ass",
+    "나귀를 타고 — 군마가 아닌 겸손한 왕의 표징(메시아 예언, 마 21:5)"
+   ]
+  ],
+  "gra": [
+   [
+    "having salvation ... riding upon an ass",
+    "현재분사구가 King을 수식 — 구원을 베푸시며 나귀를 타신 (왕)"
+   ]
+  ]
+ },
+ {
+  "en": "he shall speak peace unto the heathen: and his dominion shall be from sea even to sea",
+  "ko": "그가 이방에게 화평을 전하리라. 그의 다스림은 바다에서 바다까지",
+  "note": "이 왕은 전쟁의 병기를 끊고 열방에 화평을 전파하신다. 그 통치가 온 땅 끝까지 미치리라는 선언은, 메시아 왕국의 보편적 평화를 내다본다.",
+  "voc": [
+   [
+    "speak",
+    "v.",
+    "전하다, 말하다"
+   ],
+   [
+    "peace",
+    "n.",
+    "화평"
+   ],
+   [
+    "heathen",
+    "n.",
+    "이방, 열국"
+   ],
+   [
+    "dominion",
+    "n.",
+    "다스림, 통치"
+   ],
+   [
+    "sea",
+    "n.",
+    "바다"
+   ]
+  ],
+  "idi": [
+   [
+    "from sea even to sea",
+    "바다에서 바다까지 — 온 땅 끝까지, 보편적 통치"
+   ]
+  ],
+  "gra": [
+   [
+    "speak peace unto",
+    "speak + 목적어 + unto — ~에게 화평을 전하다"
+   ]
+  ]
+ },
+ {
+  "en": "by the blood of thy covenant I have sent forth thy prisoners out of the pit",
+  "ko": "네 언약의 피로 말미암아 내가 갇힌 자들을 구덩이에서 놓으리라",
+  "note": "'언약의 피'는 백성의 구속의 근거다. 물 없는 구덩이에 갇힌 자를 풀어내심은, 장차 언약의 피로 사로잡힌 자를 자유케 하실 메시아의 구원을 가리킨다.",
+  "voc": [
+   [
+    "blood",
+    "n.",
+    "피"
+   ],
+   [
+    "covenant",
+    "n.",
+    "언약"
+   ],
+   [
+    "sent forth",
+    "v.",
+    "보내어 놓다, send forth의 과거분사"
+   ],
+   [
+    "prisoners",
+    "n.",
+    "갇힌 자들"
+   ],
+   [
+    "pit",
+    "n.",
+    "구덩이"
+   ]
+  ],
+  "idi": [
+   [
+    "the blood of thy covenant",
+    "네 언약의 피 — 구속의 근거"
+   ],
+   [
+    "send forth ... out of",
+    "~에서 내보내다, 풀어주다"
+   ]
+  ],
+  "gra": [
+   [
+    "I have sent forth",
+    "현재완료 have sent — 이미 놓아준 일의 확정성"
+   ]
+  ]
+ },
+ {
+  "en": "Turn you to the strong hold, ye prisoners of hope",
+  "ko": "소망을 품은 갇힌 자들아, 너희는 산성으로 돌아올지니라",
+  "note": "'소망의 포로'라는 역설적 호칭이 아름답다. 갇혀 있으나 소망을 잃지 않은 자들에게, 하나님은 잃은 것의 갑절로 갚으시는 회복을 약속하신다.",
+  "voc": [
+   [
+    "turn",
+    "v.",
+    "돌아오다, 돌이키다"
+   ],
+   [
+    "strong hold",
+    "n.",
+    "산성, 요새"
+   ],
+   [
+    "prisoners",
+    "n.",
+    "갇힌 자들, 포로"
+   ],
+   [
+    "hope",
+    "n.",
+    "소망"
+   ]
+  ],
+  "idi": [
+   [
+    "prisoners of hope",
+    "소망을 품은 갇힌 자들 — 역설적 호칭"
+   ]
+  ],
+  "gra": [
+   [
+    "Turn you",
+    "고어 재귀 표현 you(=yourselves) — 너희 스스로 돌이키라(명령문)"
+   ]
+  ]
+ },
+ {
+  "en": "raised up thy sons, O Zion, against thy sons, O Greece",
+  "ko": "시온아, 내가 네 아들들을 일으켜 헬라의 아들들을 치게 하며",
+  "note": "시온과 헬라(그리스)의 대결 예언이다. 흔히 마카비 시대의 셀레우코스 헬라 세력에 대한 승리로 이해되며, 하나님의 백성이 친히 하나님의 손에 들린 무기가 됨을 그린다.",
+  "voc": [
+   [
+    "raised",
+    "v.",
+    "일으켰다, raise의 과거"
+   ],
+   [
+    "sons",
+    "n.",
+    "아들들"
+   ],
+   [
+    "against",
+    "prep.",
+    "~을 대적하여"
+   ],
+   [
+    "Greece",
+    "n.",
+    "헬라, 그리스"
+   ]
+  ],
+  "idi": [
+   [
+    "raise up ... against",
+    "~을 일으켜 ~을 치게 하다"
+   ]
+  ],
+  "gra": [
+   [
+    "O Zion ... O Greece",
+    "호격의 O — 시온아, 헬라야"
+   ]
+  ]
+ },
+ {
+  "en": "the LORD shall be seen over them, and his arrow shall go forth as the lightning",
+  "ko": "여호와께서 그들 위에 나타나시고 그의 화살이 번개같이 나가리니",
+  "note": "거룩한 용사로 나타나시는 여호와의 모습이다. 번개 같은 화살과 나팔, 회오리바람은 하나님이 친히 백성을 위해 싸우시는 신현(神顯)의 장엄한 묘사다.",
+  "voc": [
+   [
+    "seen",
+    "v.",
+    "보이다, see의 과거분사"
+   ],
+   [
+    "arrow",
+    "n.",
+    "화살"
+   ],
+   [
+    "go forth",
+    "phr.",
+    "나아가다"
+   ],
+   [
+    "lightning",
+    "n.",
+    "번개"
+   ]
+  ],
+  "idi": [
+   [
+    "as the lightning",
+    "번개같이 — 신속하고 강렬하게"
+   ]
+  ],
+  "gra": [
+   [
+    "shall be seen over them",
+    "shall + 수동태 be seen — 그들 위에 나타나시리라"
+   ]
+  ]
+ },
+ {
+  "en": "the LORD their God shall save them in that day as the flock of his people",
+  "ko": "그들의 하나님 여호와께서 자기 백성을 양 떼같이 구원하시리니",
+  "note": "심판의 격렬함 끝에 목자의 부드러움이 등장한다. 구원받은 백성이 '면류관의 보석'같이 빛나리라는 비유는, 그들이 하나님의 영광스러운 소유임을 선포한다.",
+  "voc": [
+   [
+    "save",
+    "v.",
+    "구원하다"
+   ],
+   [
+    "flock",
+    "n.",
+    "양 떼"
+   ],
+   [
+    "day",
+    "n.",
+    "날"
+   ]
+  ],
+  "idi": [
+   [
+    "in that day",
+    "그 날에 — 종말·심판·구원의 날"
+   ],
+   [
+    "as the flock of his people",
+    "자기 백성의 양 떼같이"
+   ]
+  ],
+  "gra": [
+   [
+    "the LORD their God",
+    "동격 — 여호와 곧 그들의 하나님"
+   ]
+  ]
+ },
+ {
+  "en": "how great is his goodness, and how great is his beauty!",
+  "ko": "그의 형통함이 어찌 그리 크며 그의 아름다움이 어찌 그리 큰지!",
+  "note": "감탄으로 장을 맺는다. 곡식과 새 포도주로 청년과 처녀가 무성히 자라는 풍요의 그림은, 메시아 왕국에 임할 생명과 번영의 충만함을 노래한다.",
+  "voc": [
+   [
+    "great",
+    "adj.",
+    "큰"
+   ],
+   [
+    "goodness",
+    "n.",
+    "선하심, 형통함"
+   ],
+   [
+    "beauty",
+    "n.",
+    "아름다움"
+   ]
+  ],
+  "gra": [
+   [
+    "how great is his goodness",
+    "How + 형용사 + 주어 동사(도치)의 감탄문 — 그 선하심이 어찌 그리 큰가!"
+   ]
+  ]
+ }
 ]

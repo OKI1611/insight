@@ -59,6 +59,9 @@
     .vact .hlchip.hy{background:rgba(250,204,21,.9)} .vact .hlchip.hg{background:rgba(52,199,89,.85)} .vact .hlchip.hb{background:rgba(56,132,255,.85)} .vact .hlchip.hp{background:rgba(255,64,129,.85)}
     .vact .hlchip.hx{background:#fff;color:rgba(33,58,107,.5)}
     .vact .hlchip:hover{transform:scale(1.12);background-clip:padding-box}
+    /* 책 선택 패널: 스크롤 위치와 무관하게 화면 중앙 모달로 */
+    #picker:not(.hidden){position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:80;width:min(700px,92vw);max-height:84vh;overflow:auto;margin:0;box-shadow:0 24px 64px -20px rgba(21,32,58,.55)}
+    #pickerBackdrop{position:fixed;inset:0;background:rgba(21,32,58,.45);z-index:79;backdrop-filter:blur(1.5px)}
   </style>
   <script type="application/ld+json">
 {
@@ -240,14 +243,22 @@
       selectBook(f, c);
     });
 
-    function togglePicker(){
-      const open=$('picker').classList.toggle('hidden')===false;
+    function togglePicker(force){
+      const p=$('picker');
+      const open = (force===undefined) ? p.classList.contains('hidden') : !!force;
+      p.classList.toggle('hidden', !open);
+      let bd=document.getElementById('pickerBackdrop');
+      if(open){
+        if(!bd){ bd=document.createElement('div'); bd.id='pickerBackdrop'; bd.onclick=function(){ togglePicker(false); }; document.body.appendChild(bd); }
+        document.body.style.overflow='hidden'; p.scrollTop=0;
+      } else {
+        if(bd) bd.remove(); document.body.style.overflow='';
+      }
       const c=$('bookBtnCaret'); if(c) c.style.transform = open ? 'rotate(180deg)' : '';
     }
     async function selectBook(file, c, tv){
       CUR=BOOKS.find(b=>b.file===file)||BOOKS.find(b=>b.file==='John');
-      $('picker').classList.add('hidden');
-      const cr=$('bookBtnCaret'); if(cr) cr.style.transform='';
+      togglePicker(false);
       $('bookBtnLabel').textContent = ''+CUR.ko;
       try{ BOOK=await (await fetch('bible/kjv/'+CUR.file+'.json?t='+Date.now())).json(); }catch(e){ BOOK={}; }
       $('chapSel').innerHTML = Array.from({length:CUR.ch},(_,i)=>`<option value="${i+1}">${i+1}장</option>`).join('');

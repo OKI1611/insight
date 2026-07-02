@@ -1,20 +1,504 @@
 [
-  { "en": "the king of the south / the king of the north", "ko": "남방 왕 / 북방 왕", "note": "예언의 핵심 표현. 헬라 제국 분열 후 이스라엘 남쪽의 애굽(프톨레마이오스)과 북쪽의 수리아(셀류코스) 세력을 가리킨다. 전통 표기 '남방 왕·북방 왕'으로 통일." },
-  { "en": "stir up all against the realm of Grecia", "ko": "모든 자를 충동하여 헬라 왕국을 치게 함", "note": "stir up = 선동·격동시키다. 바사의 네 번째 부유한 왕(크세르크세스)이 헬라를 향해 일어남을 가리킨다." },
-  { "en": "divided toward the four winds of heaven", "ko": "하늘의 네 바람을 향하여 나뉨", "note": "알렉산더 대왕의 제국이 그의 사후 네 장군에게 사방으로 분할된 일을 예언한다(단 8:8과 병행)." },
-  { "en": "she shall not retain the power of the arm", "ko": "팔의 힘을 보전하지 못함", "note": "arm = 힘·세력의 상징. 남방 왕의 딸이 정략결혼으로 맺은 영향력을 끝내 지키지 못함을 뜻한다." },
-  { "en": "a branch of her roots", "ko": "그 딸의 뿌리에서 난 한 가지", "note": "그 딸의 혈통에서 난 후손(형제)을 가리키는 은유. 식물 비유로 왕가의 계승을 표현한다." },
-  { "en": "overflow, and pass through", "ko": "물밀듯 쳐들어와 두루 지나감", "note": "overflow = 홍수처럼 범람하다. 군대가 강물 넘치듯 압도적으로 진격함을 묘사하는 예언서 상투 표현." },
-  { "en": "moved with choler", "ko": "크게 노하여", "note": "choler = 고어로 '분노·격노'(체액설의 황담즙). 'moved with choler' = 분이 격발하다." },
-  { "en": "the glorious land", "ko": "영화로운 땅", "note": "glorious land = '영화로운(아름다운) 땅' 곧 이스라엘. 41절 '영화로운 땅'과 동일(히브리어 '체비')." },
-  { "en": "a raiser of taxes", "ko": "세금을 징수하는 자(를 보내는 자)", "note": "왕국의 영광을 위해 무거운 조세를 거두는 관리를 보냄. 셀류코스 4세 치하의 과중한 징세를 가리키는 것으로 본다." },
-  { "en": "a vile person", "ko": "비천한 자", "note": "vile person = 멸시받을 만한 비열한 자. 정당한 계승권 없이 아첨으로 왕위를 찬탈한 인물(안티오쿠스 에피파네스)을 가리킨다." },
-  { "en": "obtain the kingdom by flatteries", "ko": "아첨으로 그 나라를 얻음", "note": "flatteries = 아첨·교묘한 술수. 무력이 아니라 간계와 아부로 권력을 차지함을 거듭 강조한다(11:32, 34)." },
-  { "en": "the prince of the covenant", "ko": "언약의 군주", "note": "거룩한 언약(이스라엘)과 결부된 지도자, 곧 대제사장을 가리키는 것으로 본다. 그가 휩쓸려 깨어진다." },
-  { "en": "the abomination that maketh desolate", "ko": "멸망케 하는 가증한 것", "note": "★예언 핵심 용어. 성소를 더럽히는 우상숭배의 가증함. 12:11과 동일하며, 예수께서도 인용하셨다(마 24:15). 전통 표기 통일." },
-  { "en": "the daily sacrifice", "ko": "매일 드리는 제사", "note": "성전에서 매일 드리던 상번제(常燔祭). 이것을 폐하고 가증한 것을 세우는 일이 단 8장·12장과 함께 핵심 표징이다." },
-  { "en": "the God of forces", "ko": "세력의 신", "note": "직역 '요새(전쟁)의 신'. 자기 조상의 신을 버리고 군사력·전쟁의 신을 섬기는 교만한 통치자의 우상숭배를 가리킨다." },
-  { "en": "tidings out of the east and out of the north", "ko": "동방과 북방에서 들리는 소식", "note": "tidings = 소식·기별. 동쪽과 북쪽에서 온 위협적 소식이 그를 번민케 한다. 종말의 마지막 출정 장면으로 이어진다." },
-  { "en": "the tabernacles of his palace", "ko": "그 궁궐의 장막", "note": "tabernacle = 장막·천막 궁전. 왕이 두 바다 사이 거룩한 산에 진을 치고 본영을 세움을 묘사한다." },
-  { "en": "he shall come to his end, and none shall help him", "ko": "그가 종말에 이르매 그를 도울 자가 없으리라", "note": "교만한 왕의 멸망 선언. 어떤 동맹도 그를 구하지 못한다. 12:1의 큰 환난과 구원으로 곧장 이어지는 결말." }
+ {
+  "en": "the king of the south / the king of the north",
+  "ko": "남방 왕 / 북방 왕",
+  "note": "예언의 핵심 표현. 헬라 제국 분열 후 이스라엘 남쪽의 애굽(프톨레마이오스)과 북쪽의 수리아(셀류코스) 세력을 가리킨다. 전통 표기 '남방 왕·북방 왕'으로 통일.",
+  "voc": [
+   [
+    "south",
+    "n.",
+    "남방"
+   ],
+   [
+    "north",
+    "n.",
+    "북방"
+   ],
+   [
+    "king",
+    "n.",
+    "왕"
+   ]
+  ],
+  "idi": [
+   [
+    "the king of the south",
+    "남방 왕 (애굽, 프톨레마이오스)"
+   ],
+   [
+    "the king of the north",
+    "북방 왕 (수리아, 셀류코스)"
+   ]
+  ]
+ },
+ {
+  "en": "stir up all against the realm of Grecia",
+  "ko": "모든 자를 충동하여 헬라 왕국을 치게 함",
+  "note": "stir up = 선동·격동시키다. 바사의 네 번째 부유한 왕(크세르크세스)이 헬라를 향해 일어남을 가리킨다.",
+  "voc": [
+   [
+    "stir up",
+    "phr.",
+    "충동하다, 선동하다"
+   ],
+   [
+    "realm",
+    "n.",
+    "왕국, 영토"
+   ],
+   [
+    "Grecia",
+    "n.",
+    "헬라"
+   ]
+  ],
+  "idi": [
+   [
+    "stir up all against",
+    "모든 자를 충동하여 ~를 치게 하다"
+   ]
+  ]
+ },
+ {
+  "en": "divided toward the four winds of heaven",
+  "ko": "하늘의 네 바람을 향하여 나뉨",
+  "note": "알렉산더 대왕의 제국이 그의 사후 네 장군에게 사방으로 분할된 일을 예언한다(단 8:8과 병행).",
+  "voc": [
+   [
+    "divided",
+    "v.",
+    "나뉜"
+   ],
+   [
+    "winds",
+    "n.",
+    "바람"
+   ],
+   [
+    "heaven",
+    "n.",
+    "하늘"
+   ]
+  ],
+  "idi": [
+   [
+    "toward the four winds of heaven",
+    "하늘의 네 바람을 향하여 (사방으로)"
+   ]
+  ],
+  "gra": [
+   [
+    "divided toward",
+    "수동태 분사 — (넷으로) 나뉘어 ~을 향하다"
+   ]
+  ]
+ },
+ {
+  "en": "she shall not retain the power of the arm",
+  "ko": "팔의 힘을 보전하지 못함",
+  "note": "arm = 힘·세력의 상징. 남방 왕의 딸이 정략결혼으로 맺은 영향력을 끝내 지키지 못함을 뜻한다.",
+  "voc": [
+   [
+    "retain",
+    "v.",
+    "보전하다, 유지하다"
+   ],
+   [
+    "power",
+    "n.",
+    "힘, 세력"
+   ],
+   [
+    "arm",
+    "n.",
+    "팔 (힘의 상징)"
+   ]
+  ],
+  "idi": [
+   [
+    "the power of the arm",
+    "팔의 힘 (세력)"
+   ]
+  ],
+  "gra": [
+   [
+    "she shall not retain",
+    "she = 그 딸, shall not = 미래 부정 — 보전하지 못하리라"
+   ]
+  ]
+ },
+ {
+  "en": "a branch of her roots",
+  "ko": "그 딸의 뿌리에서 난 한 가지",
+  "note": "그 딸의 혈통에서 난 후손(형제)을 가리키는 은유. 식물 비유로 왕가의 계승을 표현한다.",
+  "voc": [
+   [
+    "branch",
+    "n.",
+    "가지, 싹"
+   ],
+   [
+    "roots",
+    "n.",
+    "뿌리"
+   ]
+  ],
+  "idi": [
+   [
+    "a branch of her roots",
+    "그 뿌리에서 난 한 가지 (후손)"
+   ]
+  ]
+ },
+ {
+  "en": "overflow, and pass through",
+  "ko": "물밀듯 쳐들어와 두루 지나감",
+  "note": "overflow = 홍수처럼 범람하다. 군대가 강물 넘치듯 압도적으로 진격함을 묘사하는 예언서 상투 표현.",
+  "voc": [
+   [
+    "overflow",
+    "v.",
+    "물밀듯 넘치다, 범람하다"
+   ],
+   [
+    "pass through",
+    "phr.",
+    "두루 지나가다, 관통하다"
+   ]
+  ],
+  "idi": [
+   [
+    "overflow, and pass through",
+    "물밀듯 쳐들어와 두루 지나가다"
+   ]
+  ]
+ },
+ {
+  "en": "moved with choler",
+  "ko": "크게 노하여",
+  "note": "choler = 고어로 '분노·격노'(체액설의 황담즙). 'moved with choler' = 분이 격발하다.",
+  "voc": [
+   [
+    "moved",
+    "v.",
+    "격동된, 움직여진"
+   ],
+   [
+    "choler",
+    "n.",
+    "분노, 격노 (고어)"
+   ]
+  ],
+  "idi": [
+   [
+    "moved with choler",
+    "크게 노하여, 분이 격발하여"
+   ]
+  ],
+  "gra": [
+   [
+    "moved with choler",
+    "과거분사 + with = 감정의 원인 수동 표현 — 분노에 사로잡혀"
+   ]
+  ]
+ },
+ {
+  "en": "the glorious land",
+  "ko": "영화로운 땅",
+  "note": "glorious land = '영화로운(아름다운) 땅' 곧 이스라엘. 41절 '영화로운 땅'과 동일(히브리어 '체비').",
+  "voc": [
+   [
+    "glorious",
+    "adj.",
+    "영화로운, 아름다운"
+   ],
+   [
+    "land",
+    "n.",
+    "땅"
+   ]
+  ],
+  "idi": [
+   [
+    "the glorious land",
+    "영화로운 땅 (이스라엘, 히브리어 체비)"
+   ]
+  ]
+ },
+ {
+  "en": "a raiser of taxes",
+  "ko": "세금을 징수하는 자(를 보내는 자)",
+  "note": "왕국의 영광을 위해 무거운 조세를 거두는 관리를 보냄. 셀류코스 4세 치하의 과중한 징세를 가리키는 것으로 본다.",
+  "voc": [
+   [
+    "raiser",
+    "n.",
+    "징수하는 자, 일으키는 자"
+   ],
+   [
+    "taxes",
+    "n.",
+    "세금, 조세"
+   ]
+  ],
+  "idi": [
+   [
+    "a raiser of taxes",
+    "세금을 징수하는 자"
+   ]
+  ],
+  "gra": [
+   [
+    "a raiser of taxes",
+    "동사 raise의 행위자 명사 raiser — 거두는 자"
+   ]
+  ]
+ },
+ {
+  "en": "a vile person",
+  "ko": "비천한 자",
+  "note": "vile person = 멸시받을 만한 비열한 자. 정당한 계승권 없이 아첨으로 왕위를 찬탈한 인물(안티오쿠스 에피파네스)을 가리킨다.",
+  "voc": [
+   [
+    "vile",
+    "adj.",
+    "비천한, 비열한"
+   ],
+   [
+    "person",
+    "n.",
+    "사람, 자"
+   ]
+  ],
+  "idi": [
+   [
+    "a vile person",
+    "비천한 자, 멸시받을 자"
+   ]
+  ]
+ },
+ {
+  "en": "obtain the kingdom by flatteries",
+  "ko": "아첨으로 그 나라를 얻음",
+  "note": "flatteries = 아첨·교묘한 술수. 무력이 아니라 간계와 아부로 권력을 차지함을 거듭 강조한다(11:32, 34).",
+  "voc": [
+   [
+    "obtain",
+    "v.",
+    "얻다, 차지하다"
+   ],
+   [
+    "kingdom",
+    "n.",
+    "나라, 왕국"
+   ],
+   [
+    "flatteries",
+    "n.",
+    "아첨, 교묘한 술수"
+   ]
+  ],
+  "idi": [
+   [
+    "obtain the kingdom by flatteries",
+    "아첨으로 나라를 얻다"
+   ],
+   [
+    "by flatteries",
+    "아첨으로, 간계로"
+   ]
+  ]
+ },
+ {
+  "en": "the prince of the covenant",
+  "ko": "언약의 군주",
+  "note": "거룩한 언약(이스라엘)과 결부된 지도자, 곧 대제사장을 가리키는 것으로 본다. 그가 휩쓸려 깨어진다.",
+  "voc": [
+   [
+    "prince",
+    "n.",
+    "군주, 지도자"
+   ],
+   [
+    "covenant",
+    "n.",
+    "언약"
+   ]
+  ],
+  "idi": [
+   [
+    "the prince of the covenant",
+    "언약의 군주 (대제사장)"
+   ]
+  ]
+ },
+ {
+  "en": "the abomination that maketh desolate",
+  "ko": "멸망케 하는 가증한 것",
+  "note": "★예언 핵심 용어. 성소를 더럽히는 우상숭배의 가증함. 12:11과 동일하며, 예수께서도 인용하셨다(마 24:15). 전통 표기 통일.",
+  "voc": [
+   [
+    "abomination",
+    "n.",
+    "가증한 것, 혐오스러운 것"
+   ],
+   [
+    "desolate",
+    "adj.",
+    "황폐한, 멸망한"
+   ]
+  ],
+  "idi": [
+   [
+    "the abomination that maketh desolate",
+    "멸망케 하는 가증한 것"
+   ]
+  ],
+  "gra": [
+   [
+    "that maketh desolate",
+    "maketh = makes의 고어 3인칭, make + 목적보어 desolate = 황폐케 하다"
+   ]
+  ]
+ },
+ {
+  "en": "the daily sacrifice",
+  "ko": "매일 드리는 제사",
+  "note": "성전에서 매일 드리던 상번제(常燔祭). 이것을 폐하고 가증한 것을 세우는 일이 단 8장·12장과 함께 핵심 표징이다.",
+  "voc": [
+   [
+    "daily",
+    "adj.",
+    "매일의"
+   ],
+   [
+    "sacrifice",
+    "n.",
+    "제사, 제물"
+   ]
+  ],
+  "idi": [
+   [
+    "the daily sacrifice",
+    "매일 드리는 제사 (상번제)"
+   ]
+  ]
+ },
+ {
+  "en": "the God of forces",
+  "ko": "세력의 신",
+  "note": "직역 '요새(전쟁)의 신'. 자기 조상의 신을 버리고 군사력·전쟁의 신을 섬기는 교만한 통치자의 우상숭배를 가리킨다.",
+  "voc": [
+   [
+    "forces",
+    "n.",
+    "세력, 요새/전쟁의 힘"
+   ],
+   [
+    "God",
+    "n.",
+    "신"
+   ]
+  ],
+  "idi": [
+   [
+    "the God of forces",
+    "세력의 신 (요새·전쟁의 신)"
+   ]
+  ]
+ },
+ {
+  "en": "tidings out of the east and out of the north",
+  "ko": "동방과 북방에서 들리는 소식",
+  "note": "tidings = 소식·기별. 동쪽과 북쪽에서 온 위협적 소식이 그를 번민케 한다. 종말의 마지막 출정 장면으로 이어진다.",
+  "voc": [
+   [
+    "tidings",
+    "n.",
+    "소식, 기별 (고어)"
+   ],
+   [
+    "east",
+    "n.",
+    "동방"
+   ],
+   [
+    "north",
+    "n.",
+    "북방"
+   ]
+  ],
+  "idi": [
+   [
+    "tidings out of the east and out of the north",
+    "동방과 북방에서 들리는 소식"
+   ],
+   [
+    "out of",
+    "~에서 나온, ~로부터"
+   ]
+  ]
+ },
+ {
+  "en": "the tabernacles of his palace",
+  "ko": "그 궁궐의 장막",
+  "note": "tabernacle = 장막·천막 궁전. 왕이 두 바다 사이 거룩한 산에 진을 치고 본영을 세움을 묘사한다.",
+  "voc": [
+   [
+    "tabernacles",
+    "n.",
+    "장막, 천막"
+   ],
+   [
+    "palace",
+    "n.",
+    "궁궐"
+   ]
+  ],
+  "idi": [
+   [
+    "the tabernacles of his palace",
+    "그 궁궐의 장막 (본영, 진영)"
+   ]
+  ]
+ },
+ {
+  "en": "he shall come to his end, and none shall help him",
+  "ko": "그가 종말에 이르매 그를 도울 자가 없으리라",
+  "note": "교만한 왕의 멸망 선언. 어떤 동맹도 그를 구하지 못한다. 12:1의 큰 환난과 구원으로 곧장 이어지는 결말.",
+  "voc": [
+   [
+    "come to",
+    "phr.",
+    "~에 이르다"
+   ],
+   [
+    "end",
+    "n.",
+    "종말, 끝"
+   ],
+   [
+    "help",
+    "v.",
+    "돕다"
+   ],
+   [
+    "none",
+    "pron.",
+    "아무도 ~않다"
+   ]
+  ],
+  "idi": [
+   [
+    "come to one's end",
+    "종말에 이르다, 최후를 맞다"
+   ]
+  ],
+  "gra": [
+   [
+    "none shall help him",
+    "none = no one의 강조 부정 주어, 아무도 그를 돕지 못하리라"
+   ]
+  ]
+ }
 ]

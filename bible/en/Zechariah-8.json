@@ -1,14 +1,465 @@
 [
- {"en": "I was jealous for Zion with great jealousy", "ko": "내가 시온을 위하여 큰 질투로 질투하며", "note": "하나님의 '질투'는 자기 백성을 향한 뜨거운 언약적 사랑의 표현이다. 8장은 7장의 진노를 돌이켜, 시온을 향한 회복과 축복의 약속으로 가득 찬 장이다."},
- {"en": "Jerusalem shall be called a city of truth ... the holy mountain", "ko": "예루살렘은 진리의 성읍이라 일컬음을 받을 것이요 ... 거룩한 산이라", "note": "회복된 예루살렘에 주어질 새 이름이다. '진리의 성읍'과 '거룩한 산'은 그 도성이 하나님의 임재로 본질이 바뀜을 뜻하며, 종말에 완성될 거룩한 성을 미리 보여 준다."},
- {"en": "There shall yet old men and old women dwell in the streets", "ko": "늙은 남녀가 다시 예루살렘 거리에 앉을 것이며", "note": "노인이 평안히 거리에 앉고 아이들이 뛰노는 정경은 깊은 평화와 번영의 상징이다. 전쟁과 포로로 끊어졌던 일상이 회복되는 그림으로, 메시아 왕국의 안식을 내다본다."},
- {"en": "the streets ... shall be full of boys and girls playing", "ko": "그 성읍 거리에 소년 소녀가 가득하여 뛰놀리라", "note": "아이들의 놀이는 안전과 풍요의 가장 선명한 표지다. 무너졌던 도성이 다시 생명으로 채워지리라는 약속이 한 폭의 따스한 그림으로 주어진다."},
- {"en": "I will save my people from the east country, and from the west country", "ko": "내가 내 백성을 동방 땅에서와 서방 땅에서 구원하여 내고", "note": "동서 사방에 흩어진 백성을 다시 모으시는 약속이다. 포로기의 흩으심(7장)과 정확히 대비되어, 흩으신 분이 친히 모으시는 회복의 주권을 드러낸다."},
- {"en": "they shall be my people, and I will be their God, in truth and in righteousness", "ko": "그들은 내 백성이 되고 나는 진리와 의로 그들의 하나님이 되리라", "note": "언약의 핵심 공식이다. '진리와 의'라는 토대 위에서 맺어지는 이 관계는, 회복이 단지 외형의 복구가 아니라 하나님과의 참된 교제의 회복임을 선언한다."},
- {"en": "the vine shall give her fruit, and the ground shall give her increase", "ko": "포도나무가 그 열매를 맺으며 땅이 그 소산을 내며", "note": "황폐했던 땅이 다시 결실하는 약속이다. 순종에 따르는 창조 질서의 회복으로, 하늘과 땅이 함께 백성에게 복을 쏟아붓는 풍요의 시대를 그린다."},
- {"en": "ye were a curse among the heathen ... so will I save you, and ye shall be a blessing", "ko": "너희가 이방인 가운데서 저주가 되었던 것같이 ... 너희로 복이 되게 하리니", "note": "저주에서 복으로의 반전이다. 아브라함에게 주신 '땅의 모든 족속이 복을 받으리라'(창 12:3)는 약속이 회복된 백성을 통해 다시 흘러나갈 것을 가리킨다."},
- {"en": "execute the judgment of truth and peace in your gates", "ko": "너희 성문에서 진리와 화평의 재판을 베풀고", "note": "성문은 옛 이스라엘의 재판 자리였다. 회복된 백성에게 요구되는 것은 여전히 진실과 화평의 공의다. 받은 은혜는 거룩한 삶의 윤리로 응답되어야 한다."},
- {"en": "The fast ... shall be to the house of Judah joy and gladness", "ko": "금식이 유다 족속에게 기쁨과 즐거움이 되리니", "note": "7장에서 제기된 금식 물음에 대한 최종 답이다. 슬픔을 기념하던 네 차례의 금식이 도리어 기쁨의 절기로 바뀌리라 — 회복이 애통을 환희로 뒤집는다."},
- {"en": "many people and strong nations shall come to seek the LORD of hosts in Jerusalem", "ko": "많은 백성과 강대한 나라들이 예루살렘으로 와서 만군의 여호와를 찾으리라", "note": "이방 열국이 자발적으로 예루살렘에 나아와 하나님을 찾는 환상이다. 구원의 빛이 온 세계로 퍼져 만민이 한 하나님께 모여드는 종말의 그림이다."},
- {"en": "ten men shall take hold ... of the skirt of him that is a Jew ... God is with you", "ko": "열 명이 유다 사람 하나의 옷자락을 붙잡고 ... 하나님이 너희와 함께하심을 우리가 들었나니", "note": "'열 명'은 충만한 수다. 이방인들이 유대인의 옷자락을 붙잡는 장면은, 하나님이 함께하시는 백성을 통해 열방이 구원에 동참하려는 갈망을 생생히 드러낸다."}
+ {
+  "en": "I was jealous for Zion with great jealousy",
+  "ko": "내가 시온을 위하여 큰 질투로 질투하며",
+  "note": "하나님의 '질투'는 자기 백성을 향한 뜨거운 언약적 사랑의 표현이다. 8장은 7장의 진노를 돌이켜, 시온을 향한 회복과 축복의 약속으로 가득 찬 장이다.",
+  "voc": [
+   [
+    "jealous",
+    "adj.",
+    "질투하는, 열심을 내는"
+   ],
+   [
+    "Zion",
+    "n.",
+    "시온"
+   ],
+   [
+    "jealousy",
+    "n.",
+    "질투, 열정"
+   ],
+   [
+    "great",
+    "adj.",
+    "큰, 대단한"
+   ]
+  ],
+  "idi": [
+   [
+    "jealous with great jealousy",
+    "큰 질투로 질투하다 — 동족목적어로 강조하는 히브리식 표현"
+   ]
+  ],
+  "gra": [
+   [
+    "jealous for Zion with great jealousy",
+    "동일 어근의 명사(jealousy)를 목적어로 반복해 강조하는 '동족목적어(cognate object)' 구문"
+   ]
+  ]
+ },
+ {
+  "en": "Jerusalem shall be called a city of truth ... the holy mountain",
+  "ko": "예루살렘은 진리의 성읍이라 일컬음을 받을 것이요 ... 거룩한 산이라",
+  "note": "회복된 예루살렘에 주어질 새 이름이다. '진리의 성읍'과 '거룩한 산'은 그 도성이 하나님의 임재로 본질이 바뀜을 뜻하며, 종말에 완성될 거룩한 성을 미리 보여 준다.",
+  "voc": [
+   [
+    "Jerusalem",
+    "n.",
+    "예루살렘"
+   ],
+   [
+    "called",
+    "v.",
+    "불리다, call의 과거분사"
+   ],
+   [
+    "truth",
+    "n.",
+    "진리, 진실"
+   ],
+   [
+    "holy",
+    "adj.",
+    "거룩한"
+   ],
+   [
+    "mountain",
+    "n.",
+    "산"
+   ]
+  ],
+  "gra": [
+   [
+    "shall be called",
+    "조동사 shall + 수동태 be called — 미래의 확정된 일: 일컬음을 받으리라"
+   ]
+  ]
+ },
+ {
+  "en": "There shall yet old men and old women dwell in the streets",
+  "ko": "늙은 남녀가 다시 예루살렘 거리에 앉을 것이며",
+  "note": "노인이 평안히 거리에 앉고 아이들이 뛰노는 정경은 깊은 평화와 번영의 상징이다. 전쟁과 포로로 끊어졌던 일상이 회복되는 그림으로, 메시아 왕국의 안식을 내다본다.",
+  "voc": [
+   [
+    "yet",
+    "adv.",
+    "다시, 여전히"
+   ],
+   [
+    "dwell",
+    "v.",
+    "거하다, 머물다"
+   ],
+   [
+    "streets",
+    "n.",
+    "거리, 길거리"
+   ],
+   [
+    "old",
+    "adj.",
+    "나이 든, 늙은"
+   ]
+  ],
+  "gra": [
+   [
+    "There shall yet ... dwell",
+    "There + shall + 동사원형의 도치 존재 구문 — '~가 거하리라'"
+   ]
+  ]
+ },
+ {
+  "en": "the streets ... shall be full of boys and girls playing",
+  "ko": "그 성읍 거리에 소년 소녀가 가득하여 뛰놀리라",
+  "note": "아이들의 놀이는 안전과 풍요의 가장 선명한 표지다. 무너졌던 도성이 다시 생명으로 채워지리라는 약속이 한 폭의 따스한 그림으로 주어진다.",
+  "voc": [
+   [
+    "full",
+    "adj.",
+    "가득한"
+   ],
+   [
+    "boys",
+    "n.",
+    "소년들"
+   ],
+   [
+    "girls",
+    "n.",
+    "소녀들"
+   ],
+   [
+    "playing",
+    "v.",
+    "놀고 있는, play의 현재분사"
+   ]
+  ],
+  "idi": [
+   [
+    "be full of",
+    "~로 가득 차다"
+   ]
+  ],
+  "gra": [
+   [
+    "boys and girls playing",
+    "명사 뒤의 현재분사 playing이 boys and girls를 수식 — 뛰노는 소년 소녀"
+   ]
+  ]
+ },
+ {
+  "en": "I will save my people from the east country, and from the west country",
+  "ko": "내가 내 백성을 동방 땅에서와 서방 땅에서 구원하여 내고",
+  "note": "동서 사방에 흩어진 백성을 다시 모으시는 약속이다. 포로기의 흩으심(7장)과 정확히 대비되어, 흩으신 분이 친히 모으시는 회복의 주권을 드러낸다.",
+  "voc": [
+   [
+    "save",
+    "v.",
+    "구원하다"
+   ],
+   [
+    "people",
+    "n.",
+    "백성"
+   ],
+   [
+    "east",
+    "n.",
+    "동쪽"
+   ],
+   [
+    "country",
+    "n.",
+    "땅, 나라"
+   ],
+   [
+    "west",
+    "n.",
+    "서쪽"
+   ]
+  ],
+  "idi": [
+   [
+    "from the east ... from the west",
+    "동방에서 서방에서 — 사방 전체를 뜻하는 표현"
+   ]
+  ],
+  "gra": [
+   [
+    "I will save",
+    "will + 동사원형 — 미래 의지: 내가 구원하리라"
+   ]
+  ]
+ },
+ {
+  "en": "they shall be my people, and I will be their God, in truth and in righteousness",
+  "ko": "그들은 내 백성이 되고 나는 진리와 의로 그들의 하나님이 되리라",
+  "note": "언약의 핵심 공식이다. '진리와 의'라는 토대 위에서 맺어지는 이 관계는, 회복이 단지 외형의 복구가 아니라 하나님과의 참된 교제의 회복임을 선언한다.",
+  "voc": [
+   [
+    "truth",
+    "n.",
+    "진리"
+   ],
+   [
+    "righteousness",
+    "n.",
+    "의로움, 공의"
+   ],
+   [
+    "God",
+    "n.",
+    "하나님"
+   ],
+   [
+    "their",
+    "pron.",
+    "그들의"
+   ]
+  ],
+  "idi": [
+   [
+    "be my people ... be their God",
+    "내 백성이 되고 그들의 하나님이 되다 — 언약 공식"
+   ]
+  ],
+  "gra": [
+   [
+    "in truth and in righteousness",
+    "전치사 in의 병렬 — 진리와 의 안에서(토대 위에서)"
+   ]
+  ]
+ },
+ {
+  "en": "the vine shall give her fruit, and the ground shall give her increase",
+  "ko": "포도나무가 그 열매를 맺으며 땅이 그 소산을 내며",
+  "note": "황폐했던 땅이 다시 결실하는 약속이다. 순종에 따르는 창조 질서의 회복으로, 하늘과 땅이 함께 백성에게 복을 쏟아붓는 풍요의 시대를 그린다.",
+  "voc": [
+   [
+    "vine",
+    "n.",
+    "포도나무"
+   ],
+   [
+    "fruit",
+    "n.",
+    "열매"
+   ],
+   [
+    "ground",
+    "n.",
+    "땅, 토양"
+   ],
+   [
+    "increase",
+    "n.",
+    "소산, 산출"
+   ]
+  ],
+  "gra": [
+   [
+    "give her fruit",
+    "무생물(vine)을 her로 받는 고어적 의인화 — 그 열매를 내다"
+   ]
+  ]
+ },
+ {
+  "en": "ye were a curse among the heathen ... so will I save you, and ye shall be a blessing",
+  "ko": "너희가 이방인 가운데서 저주가 되었던 것같이 ... 너희로 복이 되게 하리니",
+  "note": "저주에서 복으로의 반전이다. 아브라함에게 주신 '땅의 모든 족속이 복을 받으리라'(창 12:3)는 약속이 회복된 백성을 통해 다시 흘러나갈 것을 가리킨다.",
+  "voc": [
+   [
+    "curse",
+    "n.",
+    "저주"
+   ],
+   [
+    "heathen",
+    "n.",
+    "이방인, 열국"
+   ],
+   [
+    "blessing",
+    "n.",
+    "복, 축복"
+   ],
+   [
+    "ye",
+    "pron.",
+    "너희(고어 주격)"
+   ]
+  ],
+  "idi": [
+   [
+    "as ... so ...",
+    "~한 것같이 그와 같이 — 대조·반전의 상관 구문"
+   ]
+  ],
+  "gra": [
+   [
+    "so will I save you",
+    "so 뒤의 도치(will I) — 강조된 결과절: 그같이 내가 구원하리라"
+   ]
+  ]
+ },
+ {
+  "en": "execute the judgment of truth and peace in your gates",
+  "ko": "너희 성문에서 진리와 화평의 재판을 베풀고",
+  "note": "성문은 옛 이스라엘의 재판 자리였다. 회복된 백성에게 요구되는 것은 여전히 진실과 화평의 공의다. 받은 은혜는 거룩한 삶의 윤리로 응답되어야 한다.",
+  "voc": [
+   [
+    "execute",
+    "v.",
+    "(재판을) 베풀다, 시행하다"
+   ],
+   [
+    "judgment",
+    "n.",
+    "재판, 심판"
+   ],
+   [
+    "peace",
+    "n.",
+    "화평, 평화"
+   ],
+   [
+    "gates",
+    "n.",
+    "성문"
+   ]
+  ],
+  "idi": [
+   [
+    "in your gates",
+    "너희 성문에서 — 고대의 재판 자리를 뜻함"
+   ]
+  ],
+  "gra": [
+   [
+    "execute the judgment",
+    "동사원형으로 시작하는 명령문 — 재판을 베풀라"
+   ]
+  ]
+ },
+ {
+  "en": "The fast ... shall be to the house of Judah joy and gladness",
+  "ko": "금식이 유다 족속에게 기쁨과 즐거움이 되리니",
+  "note": "7장에서 제기된 금식 물음에 대한 최종 답이다. 슬픔을 기념하던 네 차례의 금식이 도리어 기쁨의 절기로 바뀌리라 — 회복이 애통을 환희로 뒤집는다.",
+  "voc": [
+   [
+    "fast",
+    "n.",
+    "금식"
+   ],
+   [
+    "house",
+    "n.",
+    "집, 족속"
+   ],
+   [
+    "Judah",
+    "n.",
+    "유다"
+   ],
+   [
+    "joy",
+    "n.",
+    "기쁨"
+   ],
+   [
+    "gladness",
+    "n.",
+    "즐거움"
+   ]
+  ],
+  "gra": [
+   [
+    "shall be to the house of Judah joy",
+    "'A shall be to B joy' = A가 B에게 기쁨이 되리라 — 여격의 to"
+   ]
+  ]
+ },
+ {
+  "en": "many people and strong nations shall come to seek the LORD of hosts in Jerusalem",
+  "ko": "많은 백성과 강대한 나라들이 예루살렘으로 와서 만군의 여호와를 찾으리라",
+  "note": "이방 열국이 자발적으로 예루살렘에 나아와 하나님을 찾는 환상이다. 구원의 빛이 온 세계로 퍼져 만민이 한 하나님께 모여드는 종말의 그림이다.",
+  "voc": [
+   [
+    "strong",
+    "adj.",
+    "강한, 강대한"
+   ],
+   [
+    "nations",
+    "n.",
+    "나라들"
+   ],
+   [
+    "seek",
+    "v.",
+    "찾다, 구하다"
+   ],
+   [
+    "hosts",
+    "n.",
+    "만군, 군대"
+   ]
+  ],
+  "idi": [
+   [
+    "the LORD of hosts",
+    "만군의 여호와"
+   ]
+  ],
+  "gra": [
+   [
+    "shall come to seek",
+    "come to + 동사원형 — 찾으러 오다(목적의 부정사)"
+   ]
+  ]
+ },
+ {
+  "en": "ten men shall take hold ... of the skirt of him that is a Jew ... God is with you",
+  "ko": "열 명이 유다 사람 하나의 옷자락을 붙잡고 ... 하나님이 너희와 함께하심을 우리가 들었나니",
+  "note": "'열 명'은 충만한 수다. 이방인들이 유대인의 옷자락을 붙잡는 장면은, 하나님이 함께하시는 백성을 통해 열방이 구원에 동참하려는 갈망을 생생히 드러낸다.",
+  "voc": [
+   [
+    "take hold",
+    "phr.",
+    "붙잡다"
+   ],
+   [
+    "skirt",
+    "n.",
+    "옷자락"
+   ],
+   [
+    "Jew",
+    "n.",
+    "유대인"
+   ],
+   [
+    "with",
+    "prep.",
+    "~와 함께"
+   ]
+  ],
+  "idi": [
+   [
+    "take hold of",
+    "~을 붙잡다"
+   ],
+   [
+    "God is with you",
+    "하나님이 너희와 함께하시다 — 임마누엘의 고백"
+   ]
+  ],
+  "gra": [
+   [
+    "him that is a Jew",
+    "that이 him을 받는 관계절 — 유대인 된 그 사람"
+   ]
+  ]
+ }
 ]
