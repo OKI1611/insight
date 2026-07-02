@@ -39,7 +39,7 @@
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://biblynote.com/"},{"@type":"ListItem","position":2,"name":"위대한 믿음","item":"https://biblynote.com/preachers"},{"@type":"ListItem","position":3,"name":"위대한 기도자","item":"https://biblynote.com/prayers"}]}
   </script>
 </head>
-<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+<body class="font-sans bg-paper text-neutral-900 antialiased min-h-screen">
 
   <div id="siteHeader" data-active="prayers.html"></div>
 
@@ -47,7 +47,7 @@
     <div class="text-center mb-7">
       <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">GREAT FAITH · 위대한 믿음</p>
       <h1 class="text-3xl md:text-4xl font-bold leading-tight">위대한 기도자</h1>
-      <p id="introText" class="text-ink/60 text-base md:text-lg mt-4 max-w-2xl mx-auto leading-relaxed">삶의 굽이마다 드리는 성경의 기도 — 시편과 예수님의 기도, 그리고 기도의 사람들.</p>
+      <p id="introText" class="text-neutral-900/60 text-base md:text-lg mt-4 max-w-2xl mx-auto leading-relaxed">삶의 굽이마다 드리는 성경의 기도 — 시편과 예수님의 기도, 그리고 기도의 사람들.</p>
     </div>
 
     <div class="grid lg:grid-cols-[220px_1fr] gap-6">
@@ -65,7 +65,7 @@
 
       <!-- 본문 -->
       <div id="content" class="min-w-0 space-y-10">
-        <p class="text-ink/40 text-sm text-center py-16">불러오는 중…</p>
+        <p class="text-neutral-900/40 text-sm text-center py-16">불러오는 중…</p>
       </div>
     </div>
   </main>
@@ -78,7 +78,7 @@
       if(d.intro){ const t=$('introText'); if(t) t.textContent = d.intro; }
       const secs = d.sections || [];
       // 섹션 바로가기(좌측)
-      $('sectionNav').innerHTML = '<p class="px-4 py-2.5 text-xs font-bold text-ink/45 border-b border-ink/8">기도 모음</p>' + secs.map(s=>
+      $('sectionNav').innerHTML = '<p class="px-4 py-2.5 text-xs font-bold text-neutral-900/45 border-b border-ink/8">기도 모음</p>' + secs.map(s=>
         `<a href="#sec-${s.id}" onclick="event.preventDefault();var el=document.getElementById('sec-${s.id}');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});" class="block px-4 py-2.5 text-sm hover:bg-ink/[0.03] border-b border-ink/5 last:border-0">${esc(s.icon||'')} ${esc(s.title)}</a>`).join('');
       // 본문
       $('content').innerHTML = secs.map(s=>`
@@ -86,9 +86,9 @@
           <div class="flex items-center gap-2 mb-1.5">
             <span class="text-2xl">${esc(s.icon||'🙏')}</span>
             <h2 class="text-2xl font-bold">${esc(s.title)}</h2>
-            <span class="text-ink/35 text-xs ml-auto">${(s.items||[]).length}개</span>
+            <span class="text-neutral-900/35 text-xs ml-auto">${(s.items||[]).length}개</span>
           </div>
-          ${s.desc?`<p class="text-ink/55 text-[15px] mb-4 leading-relaxed">${esc(s.desc)}</p>`:''}
+          ${s.desc?`<p class="text-neutral-900/55 text-[15px] mb-4 leading-relaxed">${esc(s.desc)}</p>`:''}
           <div class="${s.id==='figures'?'grid sm:grid-cols-2 gap-3':'space-y-3'}">
             ${(s.items||[]).map(it=>itemCard(it, s.id)).join('')}
           </div>
@@ -96,10 +96,10 @@
     }).catch(()=>{ $('content').innerHTML = '<p class="text-red-500 text-sm text-center py-16">기도 콘텐츠를 불러오지 못했습니다.</p>'; });
 
     function itemCard(it, sid){
-      const meta = it.meta ? `<p class="text-xs text-ink/45 mt-0.5">${esc(it.meta)}</p>` : '';
+      const meta = it.meta ? `<p class="text-xs text-neutral-900/45 mt-0.5">${esc(it.meta)}</p>` : '';
       const ref  = it.ref ? `<span class="text-gold text-sm font-semibold shrink-0">${esc(it.ref)}</span>` : '';
-      const ko   = it.ko ? `<p class="${sid==='figures'?'text-[14.5px] text-ink/70 leading-relaxed mt-2':'serif text-[16.5px] text-ink/85 leading-[1.85] mt-2.5'}">${esc(it.ko)}</p>` : '';
-      const note = it.note ? `<p class="text-[13px] text-ink/55 mt-2.5 border-l-2 border-gold/30 pl-3 leading-relaxed">${esc(it.note)}</p>` : '';
+      const ko   = it.ko ? `<p class="${sid==='figures'?'text-[14.5px] text-neutral-900/70 leading-relaxed mt-2':'serif text-[16.5px] text-neutral-900/85 leading-[1.85] mt-2.5'}">${esc(it.ko)}</p>` : '';
+      const note = it.note ? `<p class="text-[13px] text-neutral-900/55 mt-2.5 border-l-2 border-gold/30 pl-3 leading-relaxed">${esc(it.note)}</p>` : '';
       return `<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5">
         <div class="flex items-baseline justify-between gap-2">
           <p class="font-bold text-[16px] leading-snug">${esc(it.label||'')}</p>

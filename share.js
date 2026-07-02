@@ -38,11 +38,11 @@
     ov.onclick=function(e){ if(e.target===ov) ov.remove(); };
     var sheet=document.createElement('div');
     sheet.style.cssText='background:#fff;width:100%;max-width:420px;border-radius:20px 20px 0 0;padding:14px 10px 24px;max-height:82vh;overflow:auto;box-shadow:0 -8px 40px rgba(0,0,0,.25)';
-    var h='<div style="text-align:center;font-weight:700;color:#213a6b;padding:6px 0 4px;font-size:15px">공유하기</div>';
+    var h='<div style="text-align:center;font-weight:700;color:#171717;padding:6px 0 4px;font-size:15px">공유하기</div>';
     h+='<p style="text-align:center;color:#9aa0ab;font-size:12px;margin:2px 0 10px;padding:0 18px;line-height:1.5;word-break:break-all">'+title.replace(/</g,'&lt;').slice(0,64)+'</p>';
     rows.forEach(function(r,i){
       if(r[0]==='SEP'){ h+='<div style="height:1px;background:rgba(21,32,58,.08);margin:6px 12px"></div>'; return; }
-      h+='<button data-i="'+i+'" style="width:100%;text-align:left;display:flex;align-items:center;gap:13px;padding:12px 18px;border:0;background:none;font-size:15px;color:#213a6b;cursor:pointer;border-radius:10px"><span style="width:22px;text-align:center">'+r[0]+'</span>'+r[1]+'</button>';
+      h+='<button data-i="'+i+'" style="width:100%;text-align:left;display:flex;align-items:center;gap:13px;padding:12px 18px;border:0;background:none;font-size:15px;color:#171717;cursor:pointer;border-radius:10px"><span style="width:22px;text-align:center">'+r[0]+'</span>'+r[1]+'</button>';
     });
     sheet.innerHTML=h;
     sheet.querySelectorAll('button[data-i]').forEach(function(b){

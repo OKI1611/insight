@@ -75,7 +75,7 @@
 }
   </script>
 </head>
-<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+<body class="font-sans bg-paper text-neutral-900 antialiased min-h-screen">
 
   <div id="siteHeader" data-active="dictionary.html"></div>
 
@@ -84,12 +84,12 @@
     <div class="max-w-3xl mx-auto px-5 py-12 md:py-14 text-center">
       <p class="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-3">Bible Dictionary · 성경사전</p>
       <h1 class="text-2xl md:text-[32px] font-bold leading-tight">비블리 <span class="text-gold">성경사전</span></h1>
-      <p class="text-ink/60 text-sm md:text-[15px] mt-3 leading-relaxed max-w-xl mx-auto">성경 속 단어를 <b class="text-ink">원어·영어 용어·관련 성구</b>와 함께 깊이 있게 찾아보세요. 궁금한 말씀, 언제든 검색하는 나만의 키워드 사전.</p>
+      <p class="text-neutral-900/60 text-sm md:text-[15px] mt-3 leading-relaxed max-w-xl mx-auto">성경 속 단어를 <b class="text-neutral-900">원어·영어 용어·관련 성구</b>와 함께 깊이 있게 찾아보세요. 궁금한 말씀, 언제든 검색하는 나만의 키워드 사전.</p>
       <div class="relative mt-6 max-w-lg mx-auto">
         <input id="q" type="search" autocomplete="off" placeholder="단어를 검색하세요 (예: 은혜, 언약, grace…)" oninput="render()" class="w-full border border-ink/15 rounded-full pl-12 pr-4 py-3.5 text-[15px] outline-none focus:border-gold shadow-soft bg-white" />
-        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-ink/35 text-lg">🔍</span>
+        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-900/35 text-lg">🔍</span>
       </div>
-      <p class="text-ink/40 text-xs mt-3"><span id="count">–</span>개의 표제어 · 원어와 성구로 깊이 있게</p>
+      <p class="text-neutral-900/40 text-xs mt-3"><span id="count">–</span>개의 표제어 · 원어와 성구로 깊이 있게</p>
     </div>
   </section>
 
@@ -100,14 +100,14 @@
     <div id="index" class="flex flex-wrap gap-1 mb-5 text-sm"></div>
 
     <div id="results" class="space-y-3"></div>
-    <div id="empty" class="hidden text-center text-ink/45 py-16">
+    <div id="empty" class="hidden text-center text-neutral-900/45 py-16">
       <p class="text-4xl mb-3">📖</p>
       <p class="font-semibold">찾으시는 단어가 아직 없어요.</p>
       <p class="text-sm mt-1">다른 검색어로 찾아보시거나, 곧 더 많은 표제어가 추가됩니다.</p>
     </div>
 
-    <p class="text-[11px] text-ink/35 text-center mt-10 leading-relaxed">
-      ※ 비블리 성경사전은 히브리어·헬라어 원어와 성경 본문을 직접 참고하여 <b class="text-ink/55">자체 집필</b>한 사전입니다.
+    <p class="text-[11px] text-neutral-900/35 text-center mt-10 leading-relaxed">
+      ※ 비블리 성경사전은 히브리어·헬라어 원어와 성경 본문을 직접 참고하여 <b class="text-neutral-900/55">자체 집필</b>한 사전입니다.
       뜻풀이·영어 용어·관련 성구를 함께 제공하며, 표제어는 계속 추가됩니다.
     </p>
   </main>
@@ -130,9 +130,9 @@
       const cards=FAQ_TOPICS.filter(t=>counts[t.n]).map(t=>
         `<button onclick="setFaqTopic('${t.n.replace(/'/g,"\\'")}')" class="group bg-white rounded-2xl border border-ink/8 shadow-soft p-5 text-left hover:-translate-y-0.5 hover:border-gold/40 hover:shadow-card transition">
           <div class="text-3xl mb-2.5">${t.ic}</div>
-          <p class="font-bold text-ink text-[15px] group-hover:text-gold transition">${esc(t.n)}</p>
-          <p class="text-xs text-ink/45 mt-1">질문 ${counts[t.n]}개 →</p></button>`).join('');
-      $('results').innerHTML=`<p class="text-sm text-ink/55 mb-4">궁금한 <b class="text-ink">주제를 선택</b>하면 관련 질문을 모아서 볼 수 있어요.</p>
+          <p class="font-bold text-neutral-900 text-[15px] group-hover:text-gold transition">${esc(t.n)}</p>
+          <p class="text-xs text-neutral-900/45 mt-1">질문 ${counts[t.n]}개 →</p></button>`).join('');
+      $('results').innerHTML=`<p class="text-sm text-neutral-900/55 mb-4">궁금한 <b class="text-neutral-900">주제를 선택</b>하면 관련 질문을 모아서 볼 수 있어요.</p>
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">${cards}</div>`;
     }
     // 한글 초성
@@ -140,7 +140,7 @@
     const IDX=['ㄱ','ㄴ','ㄷ','ㄹ','ㅁ','ㅂ','ㅅ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ','A-Z'];
     function initialOf(s){ const c=(s||'').charCodeAt(0); if(c>=0xAC00&&c<=0xD7A3){ return CHO[Math.floor((c-0xAC00)/588)].replace(/[ㄲ]/,'ㄱ').replace(/[ㄸ]/,'ㄷ').replace(/[ㅃ]/,'ㅂ').replace(/[ㅆ]/,'ㅅ').replace(/[ㅉ]/,'ㅈ'); } if(/[A-Za-z]/.test(s||'')) return 'A-Z'; return ''; }
 
-    $('results').innerHTML='<div class="text-center text-ink/40 py-16"><p class="text-3xl mb-3 animate-pulse">📖</p><p class="text-sm">성경사전을 불러오는 중…</p></div>';
+    $('results').innerHTML='<div class="text-center text-neutral-900/40 py-16"><p class="text-3xl mb-3 animate-pulse">📖</p><p class="text-sm">성경사전을 불러오는 중…</p></div>';
     // 캐시 무력화(?t=Date.now) 제거 — 서버의 ETag/304 재검증으로 변경 없으면 즉시 로딩, 변경 시 자동 최신화
     fetch('dictionary/entries.json').then(r=>r.json()).then(d=>{
       DATA=(Array.isArray(d)?d:[]).sort((a,b)=>(a.term||'').localeCompare(b.term||'','ko'));
@@ -149,18 +149,18 @@
       // ?q= 또는 #term 진입
       const sp=new URLSearchParams(location.search); const q=sp.get('q')||decodeURIComponent((location.hash||'').replace('#',''));
       if(q){ $('q').value=q; render(); }
-    }).catch(()=>{ $('results').innerHTML='<p class="text-center text-ink/40 py-10">사전을 불러오지 못했어요.</p>'; });
+    }).catch(()=>{ $('results').innerHTML='<p class="text-center text-neutral-900/40 py-10">사전을 불러오지 못했어요.</p>'; });
 
     function buildCats(){
       const present=new Set(DATA.map(e=>e.category).filter(Boolean));
       $('cats').innerHTML=CATS.filter(c=>c==='전체'||present.has(c)).map(c=>
-        `<button onclick="setCat('${c}')" data-cat="${c}" class="cat-btn text-xs font-semibold px-3.5 py-1.5 rounded-full border transition ${c===CAT?'bg-gold text-white border-ink':'bg-white text-ink/60 border-ink/15 hover:border-ink/30'}">${c}</button>`
+        `<button onclick="setCat('${c}')" data-cat="${c}" class="cat-btn text-xs font-semibold px-3.5 py-1.5 rounded-full border transition ${c===CAT?'bg-gold text-white border-ink':'bg-white text-neutral-900/60 border-ink/15 hover:border-ink/30'}">${c}</button>`
       ).join('');
     }
     function buildIndex(){
       const present=new Set(DATA.map(e=>initialOf(e.term)).filter(Boolean));
-      $('index').innerHTML='<button onclick="setInitial(\'\')" class="idx px-2 py-1 rounded font-semibold '+(INITIAL===''?'text-gold':'text-ink/45 hover:text-ink')+'">전체</button>'+
-        IDX.filter(i=>present.has(i)).map(i=>`<button onclick="setInitial('${i}')" class="idx px-2 py-1 rounded ${INITIAL===i?'text-gold font-bold':'text-ink/45 hover:text-ink'}">${i}</button>`).join('');
+      $('index').innerHTML='<button onclick="setInitial(\'\')" class="idx px-2 py-1 rounded font-semibold '+(INITIAL===''?'text-gold':'text-neutral-900/45 hover:text-neutral-900')+'">전체</button>'+
+        IDX.filter(i=>present.has(i)).map(i=>`<button onclick="setInitial('${i}')" class="idx px-2 py-1 rounded ${INITIAL===i?'text-gold font-bold':'text-neutral-900/45 hover:text-neutral-900'}">${i}</button>`).join('');
     }
     function setCat(c){ CAT=c; FAQ_TOPIC=''; INITIAL=''; buildCats(); buildIndex(); render(); }
     function setInitial(i){ INITIAL=i; $('q').value=''; buildIndex(); render(); }
@@ -179,7 +179,7 @@
         $('count').textContent=tl.length.toLocaleString(); $('empty').classList.add('hidden');
         const tm=FAQ_TOPICS.find(x=>x.n===FAQ_TOPIC)||{ic:'❓'};
         const head=`<button onclick="setFaqTopic('')" class="inline-flex items-center gap-1 text-sm font-semibold text-gold mb-3 hover:underline">← 주제 전체 보기</button>
-          <h2 class="text-xl font-bold mb-4 flex items-center gap-2">${tm.ic} ${esc(FAQ_TOPIC)} <span class="text-sm font-semibold text-ink/40">${tl.length}</span></h2>`;
+          <h2 class="text-xl font-bold mb-4 flex items-center gap-2">${tm.ic} ${esc(FAQ_TOPIC)} <span class="text-sm font-semibold text-neutral-900/40">${tl.length}</span></h2>`;
         $('results').innerHTML=head+tl.map(e=>card(e,'')).join('');
         return;
       }
@@ -202,19 +202,19 @@
       $('empty').classList.add('hidden');
       const cap=q?400:(INITIAL?400:120);
       const shown=list.slice(0,cap);
-      $('results').innerHTML=shown.map(e=>card(e,q)).join('') + (list.length>cap?`<p class="text-center text-ink/40 text-sm py-4">검색어를 입력하면 더 정확히 찾을 수 있어요 (${list.length.toLocaleString()}개 중 ${cap}개 표시)</p>`:'');
+      $('results').innerHTML=shown.map(e=>card(e,q)).join('') + (list.length>cap?`<p class="text-center text-neutral-900/40 text-sm py-4">검색어를 입력하면 더 정확히 찾을 수 있어요 (${list.length.toLocaleString()}개 중 ${cap}개 표시)</p>`:'');
     }
 
     function card(e,q){
-      const scr=(e.scriptures||[]).map(s=>`<button type="button" class="scrchip inline-block bg-sand/70 hover:bg-gold/20 text-ink/75 text-[11px] px-2 py-0.5 rounded mr-1 mb-1 transition" onclick="showScr(event,'${esc(s).replace(/'/g,"\\'")}')">${esc(s)} <span class="text-ink/30">🔍</span></button>`).join('');
+      const scr=(e.scriptures||[]).map(s=>`<button type="button" class="scrchip inline-block bg-sand/70 hover:bg-gold/20 text-neutral-900/75 text-[11px] px-2 py-0.5 rounded mr-1 mb-1 transition" onclick="showScr(event,'${esc(s).replace(/'/g,"\\'")}')">${esc(s)} <span class="text-neutral-900/30">🔍</span></button>`).join('');
       const rel=(e.related||[]).map(r=>`<button onclick="searchTerm('${esc(r).replace(/'/g,"\\'")}')" class="text-gold text-xs hover:underline mr-2">#${esc(r)}</button>`).join('');
       const isFaq=e.category==='자주 묻는 질문';
       // 상세 설명(deep): 다단락 펼침
       let deepHtml='';
       if(Array.isArray(e.deep)&&e.deep.length){
         const secs=e.deep.map(s=>{
-          if(s.misc){ return `<div class="bg-[#fbf3e6] border-l-2 border-gold/60 rounded-r-lg px-3.5 py-2.5"><p class="text-[12.5px] font-bold text-gold mb-0.5">⚠️ ${esc(s.h||'흔한 오해')}</p><p class="text-[13.5px] text-ink/80 leading-[1.9]">${esc(s.p||'')}</p></div>`; }
-          return `<div>${s.h?`<h4 class="font-bold text-ink text-[14px] mb-1">${esc(s.h)}</h4>`:''}<p class="text-[13.5px] text-ink/80 leading-[1.9]">${esc(s.p||'')}</p></div>`;
+          if(s.misc){ return `<div class="bg-[#fbf3e6] border-l-2 border-gold/60 rounded-r-lg px-3.5 py-2.5"><p class="text-[12.5px] font-bold text-gold mb-0.5">⚠️ ${esc(s.h||'흔한 오해')}</p><p class="text-[13.5px] text-neutral-900/80 leading-[1.9]">${esc(s.p||'')}</p></div>`; }
+          return `<div>${s.h?`<h4 class="font-bold text-neutral-900 text-[14px] mb-1">${esc(s.h)}</h4>`:''}<p class="text-[13.5px] text-neutral-900/80 leading-[1.9]">${esc(s.p||'')}</p></div>`;
         }).join('');
         deepHtml=`<details class="mt-3 deep">
           <summary class="cursor-pointer select-none inline-flex items-center gap-1.5 text-[13px] font-bold text-gold bg-gold/[0.07] hover:bg-gold/[0.12] rounded-full px-3.5 py-1.5 transition">📖 ${isFaq?'자세한 답변 보기':'더 깊이 알아보기'}<span class="caret transition">▾</span></summary>
@@ -224,13 +224,13 @@
       return `<article class="bg-white rounded-2xl border ${isFaq?'border-gold/25':'border-ink/8'} shadow-soft p-5">
         <div class="flex items-baseline flex-wrap gap-x-2.5 gap-y-1">
           ${isFaq?'<span class="text-gold font-bold text-lg shrink-0">Q.</span>':''}
-          <h2 class="text-lg font-bold text-ink ${isFaq?'leading-snug':''}">${hl(e.term||'',q)}</h2>
-          ${e.en&&!isFaq?`<span class="text-ink/45 text-sm font-medium" style="font-family:Georgia,serif">${hl(e.en,q)}</span>`:''}
+          <h2 class="text-lg font-bold text-neutral-900 ${isFaq?'leading-snug':''}">${hl(e.term||'',q)}</h2>
+          ${e.en&&!isFaq?`<span class="text-neutral-900/45 text-sm font-medium" style="font-family:Georgia,serif">${hl(e.en,q)}</span>`:''}
           ${e.category?`<span class="ml-auto text-[10px] font-bold text-gold bg-gold/10 px-2 py-0.5 rounded-full shrink-0">${esc(e.category)}</span>`:''}
         </div>
-        ${e.original?`<p class="text-[12px] text-ink/45 mt-1">원어 · ${esc(e.original)}</p>`:''}
-        <p class="text-[14px] text-ink/80 leading-[1.85] mt-2.5">${isFaq?'<b class="text-ink">한마디로 — </b>':''}${hl(e.def||'',q)}</p>
-        ${e.note?`<p class="text-[13px] text-ink/60 leading-relaxed mt-2 bg-sand/50 border-l-2 border-gold/50 rounded-r-lg px-3 py-2">💡 ${hl(e.note,q)}</p>`:''}
+        ${e.original?`<p class="text-[12px] text-neutral-900/45 mt-1">원어 · ${esc(e.original)}</p>`:''}
+        <p class="text-[14px] text-neutral-900/80 leading-[1.85] mt-2.5">${isFaq?'<b class="text-neutral-900">한마디로 — </b>':''}${hl(e.def||'',q)}</p>
+        ${e.note?`<p class="text-[13px] text-neutral-900/60 leading-relaxed mt-2 bg-sand/50 border-l-2 border-gold/50 rounded-r-lg px-3 py-2">💡 ${hl(e.note,q)}</p>`:''}
         ${deepHtml}
         ${scr?`<div class="mt-3">${scr}</div>`:''}
         ${rel?`<div class="mt-2">${rel}</div>`:''}

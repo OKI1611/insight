@@ -43,14 +43,14 @@
     .opt{transition:all .12s ease}
     .opt.sel{border-color:#b8923f;background:#b8923f24;box-shadow:0 0 0 2px #b8923f}
     .opt.sel>span:first-child{background:#b8923f;color:#fff;border-color:#b8923f}
-    .opt.sel>span:last-child{color:#213a6b;font-weight:600}
+    .opt.sel>span:last-child{color:#171717;font-weight:600}
     .opt.correct{border-color:#16a34a;background:#16a34a1c}
     .opt.correct>span:first-child{background:#16a34a;color:#fff;border-color:#16a34a}
     .opt.wrong{border-color:#dc2626;background:#dc262614}
     .opt.wrong>span:first-child{background:#dc2626;color:#fff;border-color:#dc2626}
   </style>
 </head>
-<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+<body class="font-sans bg-paper text-neutral-900 antialiased min-h-screen">
 
   <div id="siteHeader" data-active=""></div>
 
@@ -61,7 +61,7 @@
       <div class="bg-white rounded-3xl border border-ink/8 shadow-card p-8 max-w-sm mx-auto text-center">
         <p class="text-3xl mb-3">📝</p>
         <h2 class="text-lg font-bold mb-1">로그인하고 시험에 응시하세요</h2>
-        <p class="text-sm text-ink/55 mb-6">시험 결과와 학점은 로그인 후 저장됩니다.</p>
+        <p class="text-sm text-neutral-900/55 mb-6">시험 결과와 학점은 로그인 후 저장됩니다.</p>
         <button onclick="googleLogin()" class="w-full flex items-center justify-center gap-3 border border-ink/15 bg-white rounded-xl py-3 font-medium hover:bg-ink/5 transition mb-3">
           <svg class="w-5 h-5" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C39.9 36.5 44 31 44 24c0-1.3-.1-2.3-.4-3.5z"/></svg>
           구글로 로그인
@@ -120,7 +120,7 @@
 
     // ── 데이터 적재 ──
     async function boot(){
-      $('view').innerHTML = '<p class="text-ink/40 text-sm text-center py-16">불러오는 중…</p>';
+      $('view').innerHTML = '<p class="text-neutral-900/40 text-sm text-center py-16">불러오는 중…</p>';
       try{
         if(!COURSE)  COURSE  = await (await fetch('content/course.json?t='+Date.now())).json();
         if(!PROGRAM) PROGRAM = await (await fetch('content/program.json?t='+Date.now())).json();
@@ -160,7 +160,7 @@
       const priceHtml = HIDE ? '<span class="text-lg font-bold text-gold">가격 추후 안내</span>'
         : `<span class="text-2xl font-bold text-gold">${won(price)}</span>${founding?` <span class="text-sm text-paper/40 line-through">${won(base)}</span> <span class="text-[11px] font-bold text-rose-300">창립 20%↓</span>`:(rk.earlybird?` <span class="text-sm text-paper/40 line-through">${won(rk.price)}</span> <span class="text-[11px] font-bold text-rose-300">얼리버드</span>`:'')}`;
       $('view').innerHTML = `<div class="max-w-md mx-auto">
-        <a href="watch.html?l=${qparam('l')}" class="text-sm text-ink/45 hover:text-gold">← 강의로</a>
+        <a href="watch.html?l=${qparam('l')}" class="text-sm text-neutral-900/45 hover:text-gold">← 강의로</a>
         <div class="bg-ink text-paper rounded-3xl p-7 mt-3 text-center">
           <p class="text-4xl mb-3">🔒</p>
           <p class="text-gold text-xs font-bold tracking-[0.2em] mb-2">${esc(PROGRAM.brand||'BIBLY 아카데미')} · 인증 과정</p>
@@ -169,7 +169,7 @@
           <p class="mb-5">${priceHtml}</p>
           <a href="academy.html#packages" class="inline-block bg-gold text-white font-bold px-7 py-3 rounded-full hover:opacity-90 transition">${expiredFlow?'결제하고 계속 이용 →':'등록 신청하기 →'}</a>
         </div>
-        <a href="watch.html?l=${qparam('l')}" class="block text-center text-sm text-ink/50 mt-4 hover:text-gold">먼저 무료 강의로 학습하기</a>
+        <a href="watch.html?l=${qparam('l')}" class="block text-center text-sm text-neutral-900/50 mt-4 hover:text-gold">먼저 무료 강의로 학습하기</a>
       </div>`;
     }
 
@@ -178,7 +178,7 @@
       if(!EXAM){
         $('view').innerHTML = `<div class="bg-white rounded-2xl border border-ink/8 p-8 text-center">
           <p class="text-3xl mb-3">🛠️</p><p class="font-semibold mb-1">이 강의의 시험은 준비 중입니다</p>
-          <p class="text-sm text-ink/55 mb-5">${esc(LESSON.title||'')}</p>
+          <p class="text-sm text-neutral-900/55 mb-5">${esc(LESSON.title||'')}</p>
           <a href="watch.html?l=${qparam('l')}" class="inline-block bg-gold text-white font-semibold px-6 py-3 rounded-full hover:opacity-90 transition">강의로 돌아가기</a>
         </div>`; return;
       }
@@ -206,20 +206,20 @@
         action = `<button onclick="startExam(${nextAttempt})" class="w-full bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition text-[15px]">${nextAttempt===1?'시험 시작하기':'2차 시험 도전하기'} →</button>`;
       }
       let review = (RESULT && (RESULT.passed || RESULT.attempt2!=null))
-        ? `<button onclick="reviewAnswers()" class="w-full mt-2 border border-ink/15 text-ink/75 font-semibold py-3 rounded-xl hover:bg-ink/5 transition text-sm">정답·해설 다시 보기</button>` : '';
+        ? `<button onclick="reviewAnswers()" class="w-full mt-2 border border-ink/15 text-neutral-900/75 font-semibold py-3 rounded-xl hover:bg-ink/5 transition text-sm">정답·해설 다시 보기</button>` : '';
       let reset = canReset
         ? `<button onclick="resetExam()" class="w-full mt-2 text-rose-500/80 hover:text-rose-600 font-medium py-2 text-sm">처음부터 다시 도전 (기록 초기화)</button>` : '';
 
       $('view').innerHTML = `
         <div class="mb-5">
-          <a href="watch.html?l=${qparam('l')}" class="text-sm text-ink/45 hover:text-gold">← 강의로</a>
+          <a href="watch.html?l=${qparam('l')}" class="text-sm text-neutral-900/45 hover:text-gold">← 강의로</a>
           <p class="text-gold text-xs font-bold tracking-[0.3em] mt-3 mb-1">CERTIFICATION EXAM · ${esc(TRACK)}</p>
           <h1 class="text-xl font-bold leading-snug">${esc(EXAM.title||LESSON.title||'')}</h1>
         </div>
         ${state}
         <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-6 mb-4">
           <h2 class="font-bold mb-3">시험 안내</h2>
-          <ul class="text-sm text-ink/70 space-y-2 leading-relaxed">
+          <ul class="text-sm text-neutral-900/70 space-y-2 leading-relaxed">
             <li>📋 총 <b>${ex.perLesson}문제</b> (기본 ${ex.basic} + 심화 ${ex.advanced}) · 문항당 ${ex.pointPerQuestion}점</li>
             <li>⏱️ 제한시간 <b>${ex.timeLimitMin}분</b> · 시간이 끝나면 자동 제출됩니다</li>
             <li>🎯 <b>${ex.passScore}점 이상</b> 통과</li>
@@ -228,7 +228,7 @@
           </ul>
         </div>
         <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 mb-5 flex items-center justify-between gap-3">
-          <div><p class="font-semibold text-sm">📑 시험 대비 요약노트</p><p class="text-xs text-ink/50 mt-0.5">핵심 정리·성구·용어를 PDF로 저장해 복습하세요.</p></div>
+          <div><p class="font-semibold text-sm">📑 시험 대비 요약노트</p><p class="text-xs text-neutral-900/50 mt-0.5">핵심 정리·성구·용어를 PDF로 저장해 복습하세요.</p></div>
           <button onclick="downloadNote()" class="shrink-0 bg-gold text-white text-sm font-semibold px-4 py-2.5 rounded-xl hover:opacity-90 transition">PDF 저장</button>
         </div>
         ${action}${review}${reset}
@@ -260,7 +260,7 @@
       const el=$('timer'); if(!el) return;
       const m=Math.floor(timeLeft/60), s=timeLeft%60;
       el.textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-      el.className = timeLeft<=60 ? 'font-bold text-rose-600' : (timeLeft<=300 ? 'font-bold text-amber-600' : 'font-bold text-ink');
+      el.className = timeLeft<=60 ? 'font-bold text-rose-600' : (timeLeft<=300 ? 'font-bold text-amber-600' : 'font-bold text-neutral-900');
     }
     function renderExam(){
       const rows=RUN.map((it,i)=>`
@@ -272,20 +272,20 @@
           <div class="space-y-2">
             ${it.choices.map((c,ci)=>`
               <label class="opt flex items-start gap-3 border border-ink/12 rounded-xl px-4 py-3 cursor-pointer hover:bg-ink/[0.02]" data-q="${i}" data-c="${ci}" onclick="pick(${i},${ci})">
-                <span class="shrink-0 w-5 h-5 rounded-full border border-ink/25 flex items-center justify-center text-[11px] font-bold text-ink/45">${'ABCD'[ci]}</span>
-                <span class="text-sm text-ink/80">${esc(c)}</span>
+                <span class="shrink-0 w-5 h-5 rounded-full border border-ink/25 flex items-center justify-center text-[11px] font-bold text-neutral-900/45">${'ABCD'[ci]}</span>
+                <span class="text-sm text-neutral-900/80">${esc(c)}</span>
               </label>`).join('')}
           </div>
         </div>`).join('');
       $('view').innerHTML = `
         <div class="sticky top-0 -mx-4 px-4 py-3 bg-paper/95 backdrop-blur border-b border-ink/8 z-30 flex items-center justify-between mb-5">
           <p class="text-sm font-semibold">${curAttempt}차 시험 · ${esc(TRACK)}</p>
-          <p class="text-sm">남은 시간 <span id="timer" class="font-bold text-ink">--:--</span></p>
+          <p class="text-sm">남은 시간 <span id="timer" class="font-bold text-neutral-900">--:--</span></p>
         </div>
         <div class="space-y-4">${rows}</div>
-        <p id="progressTxt" class="text-center text-xs text-ink/45 mt-5">0 / ${RUN.length} 선택됨</p>
+        <p id="progressTxt" class="text-center text-xs text-neutral-900/45 mt-5">0 / ${RUN.length} 선택됨</p>
         <button onclick="submitExam(false)" class="w-full mt-2 bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition">제출하기</button>
-        <p class="text-center text-xs text-ink/40 mt-3">제출하면 채점됩니다. 시간이 다 되면 자동 제출돼요.</p>`;
+        <p class="text-center text-xs text-neutral-900/40 mt-3">제출하면 채점됩니다. 시간이 다 되면 자동 제출돼요.</p>`;
       updateTimer();
     }
     function pick(qi,ci){
@@ -330,16 +330,16 @@
       if(curAttempt===1 && passed){
         head=`<div class="text-center py-3"><p class="text-5xl mb-2">🎉</p>
           <p class="text-2xl font-bold text-green-600">통과! ${score}점</p>
-          <p class="text-sm text-ink/55 mt-1">최종 ${score}점 · 학점 ${letter(score)}</p></div>`;
+          <p class="text-sm text-neutral-900/55 mt-1">최종 ${score}점 · 학점 ${letter(score)}</p></div>`;
       } else if(curAttempt===1 && !passed){
         head=`<div class="text-center py-3"><p class="text-5xl mb-2">💪</p>
           <p class="text-2xl font-bold text-amber-600">1차 ${score}점 · 아쉽네요</p>
-          <p class="text-sm text-ink/55 mt-1">${PROGRAM.exam.passScore}점 이상이면 통과예요. 2차에 도전하세요!</p>
-          <p class="text-xs text-ink/40 mt-2">최종 점수 = 1차×${PROGRAM.exam.weight.attempt1} + 2차×${PROGRAM.exam.weight.attempt2}</p></div>`;
+          <p class="text-sm text-neutral-900/55 mt-1">${PROGRAM.exam.passScore}점 이상이면 통과예요. 2차에 도전하세요!</p>
+          <p class="text-xs text-neutral-900/40 mt-2">최종 점수 = 1차×${PROGRAM.exam.weight.attempt1} + 2차×${PROGRAM.exam.weight.attempt2}</p></div>`;
       } else {
         head=`<div class="text-center py-3"><p class="text-5xl mb-2">${passed?'🎓':'📌'}</p>
           <p class="text-2xl font-bold ${passed?'text-green-600':'text-rose-600'}">최종 ${finalScore}점 ${passed?'· 통과!':'· 미통과'}</p>
-          <p class="text-sm text-ink/55 mt-1">1차 ${RESULT.attempt1} · 2차 ${score} → 최종 ${finalScore}점${passed?' · 학점 '+letter(finalScore):''}</p></div>`;
+          <p class="text-sm text-neutral-900/55 mt-1">1차 ${RESULT.attempt1} · 2차 ${score} → 최종 ${finalScore}점${passed?' · 학점 '+letter(finalScore):''}</p></div>`;
       }
       let body;
       if(reveal){
@@ -350,9 +350,9 @@
               <p class="font-semibold leading-snug">${i+1}. ${esc(it.q)} ${ok?'<span class="text-green-600">✓</span>':'<span class="text-rose-600">✗</span>'}</p></div>
             <div class="space-y-1.5">${it.choices.map((c,ci)=>{
               let cls='border-ink/12'; if(ci===it.answer) cls='opt correct'; else if(ci===my && !ok) cls='opt wrong';
-              return `<div class="flex items-start gap-3 border rounded-xl px-4 py-2.5 ${cls}"><span class="shrink-0 w-5 h-5 rounded-full border border-ink/25 flex items-center justify-center text-[11px] font-bold text-ink/45">${'ABCD'[ci]}</span><span class="text-sm text-ink/80">${esc(c)}${ci===it.answer?' <b class="text-green-600">(정답)</b>':''}${(ci===my&&!ok)?' <b class="text-rose-600">(내 선택)</b>':''}</span></div>`;
+              return `<div class="flex items-start gap-3 border rounded-xl px-4 py-2.5 ${cls}"><span class="shrink-0 w-5 h-5 rounded-full border border-ink/25 flex items-center justify-center text-[11px] font-bold text-neutral-900/45">${'ABCD'[ci]}</span><span class="text-sm text-neutral-900/80">${esc(c)}${ci===it.answer?' <b class="text-green-600">(정답)</b>':''}${(ci===my&&!ok)?' <b class="text-rose-600">(내 선택)</b>':''}</span></div>`;
             }).join('')}</div>
-            <p class="text-xs text-ink/65 bg-ink/[0.03] rounded-lg px-3 py-2 mt-3 leading-relaxed">💡 ${esc(it.explain||'')}</p>
+            <p class="text-xs text-neutral-900/65 bg-ink/[0.03] rounded-lg px-3 py-2 mt-3 leading-relaxed">💡 ${esc(it.explain||'')}</p>
           </div>`; }).join('')}</div>`;
       } else {
         body=`<div class="bg-amber-50 border border-amber-200 rounded-2xl p-5 mt-4 text-center text-sm text-amber-800 leading-relaxed">
@@ -361,10 +361,10 @@
       let btns='';
       if(curAttempt===1 && !passed){
         btns=`<button onclick="startExam(2)" class="w-full mt-5 bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition">2차 시험 도전하기 →</button>
-              <button onclick="downloadNote()" class="w-full mt-2 border border-ink/15 text-ink/75 font-semibold py-3 rounded-xl hover:bg-ink/5 transition text-sm">📑 요약노트 PDF로 복습</button>`;
+              <button onclick="downloadNote()" class="w-full mt-2 border border-ink/15 text-neutral-900/75 font-semibold py-3 rounded-xl hover:bg-ink/5 transition text-sm">📑 요약노트 PDF로 복습</button>`;
       } else {
         btns=`<a href="mylearning.html" class="block text-center w-full mt-5 bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition">내 강의실에서 학점 보기 →</a>
-              <a href="watch.html?l=${qparam('l')}" class="block text-center w-full mt-2 border border-ink/15 text-ink/75 font-semibold py-3 rounded-xl hover:bg-ink/5 transition text-sm">강의로 돌아가기</a>`;
+              <a href="watch.html?l=${qparam('l')}" class="block text-center w-full mt-2 border border-ink/15 text-neutral-900/75 font-semibold py-3 rounded-xl hover:bg-ink/5 transition text-sm">강의로 돌아가기</a>`;
       }
       $('view').innerHTML = `<div class="bg-white rounded-3xl border border-ink/8 shadow-card p-6">${head}</div>${body}${btns}
         <div id="noteHidden" style="position:fixed;left:-9999px;top:0;width:720px"></div>`;
@@ -378,11 +378,11 @@
         <div class="bg-white rounded-2xl border border-green-200 p-5">
           <div class="flex items-start gap-2 mb-3"><span class="shrink-0 text-[11px] font-bold ${it.type==='심화'?'text-rose-500 bg-rose-50':'text-gold bg-gold/10'} px-2 py-0.5 rounded-full">${it.type}</span>
             <p class="font-semibold leading-snug">${i+1}. ${esc(it.q)}</p></div>
-          <div class="space-y-1.5">${it.choices.map((c,ci)=>`<div class="flex items-start gap-3 border rounded-xl px-4 py-2.5 ${ci===it.answer?'opt correct':'border-ink/12'}"><span class="shrink-0 w-5 h-5 rounded-full border border-ink/25 flex items-center justify-center text-[11px] font-bold text-ink/45">${'ABCD'[ci]}</span><span class="text-sm text-ink/80">${esc(c)}${ci===it.answer?' <b class="text-green-600">(정답)</b>':''}</span></div>`).join('')}</div>
-          <p class="text-xs text-ink/65 bg-ink/[0.03] rounded-lg px-3 py-2 mt-3 leading-relaxed">💡 ${esc(it.explain||'')}</p>
+          <div class="space-y-1.5">${it.choices.map((c,ci)=>`<div class="flex items-start gap-3 border rounded-xl px-4 py-2.5 ${ci===it.answer?'opt correct':'border-ink/12'}"><span class="shrink-0 w-5 h-5 rounded-full border border-ink/25 flex items-center justify-center text-[11px] font-bold text-neutral-900/45">${'ABCD'[ci]}</span><span class="text-sm text-neutral-900/80">${esc(c)}${ci===it.answer?' <b class="text-green-600">(정답)</b>':''}</span></div>`).join('')}</div>
+          <p class="text-xs text-neutral-900/65 bg-ink/[0.03] rounded-lg px-3 py-2 mt-3 leading-relaxed">💡 ${esc(it.explain||'')}</p>
         </div>`).join('')}</div>`;
-      $('view').innerHTML = `<div class="mb-4"><button onclick="renderIntro()" class="text-sm text-ink/45 hover:text-gold">← 돌아가기</button>
-        <h1 class="text-xl font-bold mt-2">정답 · 해설</h1><p class="text-sm text-ink/50 mt-1">${esc(EXAM.title||'')}</p></div>${body}`;
+      $('view').innerHTML = `<div class="mb-4"><button onclick="renderIntro()" class="text-sm text-neutral-900/45 hover:text-gold">← 돌아가기</button>
+        <h1 class="text-xl font-bold mt-2">정답 · 해설</h1><p class="text-sm text-neutral-900/50 mt-1">${esc(EXAM.title||'')}</p></div>${body}`;
     }
 
     async function resetExam(){
@@ -394,15 +394,15 @@
     // ── 요약노트 PDF ──
     function noteHTML(){
       const n=EXAM.studyNote||{};
-      const sec=(t,inner)=>inner?`<h3 style="font-size:15px;font-weight:700;color:#213a6b;margin:16px 0 7px">${t}</h3>${inner}`:'';
+      const sec=(t,inner)=>inner?`<h3 style="font-size:15px;font-weight:700;color:#171717;margin:16px 0 7px">${t}</h3>${inner}`:'';
       const kp=(n.keyPoints||[]).map(p=>`<li style="margin-bottom:6px;line-height:1.7">${esc(p)}</li>`).join('');
       const ks=(n.keyScriptures||[]).map(s=>`<li style="margin-bottom:6px;line-height:1.7"><b style="color:#b8923f">${esc(s.ref)}</b> — ${esc(s.note)}</li>`).join('');
       const kt=(n.keyTerms||[]).map(s=>`<li style="margin-bottom:6px;line-height:1.7"><b>${esc(s.term)}</b>: ${esc(s.def)}</li>`).join('');
       return `<div style="font-family:Pretendard,system-ui,sans-serif;color:#1a1a1a;padding:30px 32px;width:720px;box-sizing:border-box">
         <div style="border-bottom:2px solid #b8923f;padding-bottom:10px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:baseline">
-          <span style="font-weight:700;color:#213a6b;font-size:15px">시험 대비 요약노트</span>
+          <span style="font-weight:700;color:#171717;font-size:15px">시험 대비 요약노트</span>
           <span style="font-size:12px;color:#a7adba">BIBLY 바이블 인사이트 · 급수제</span></div>
-        <h2 style="font-size:18px;font-weight:700;color:#213a6b;margin:0 0 4px">${esc(EXAM.title||'')}</h2>
+        <h2 style="font-size:18px;font-weight:700;color:#171717;margin:0 0 4px">${esc(EXAM.title||'')}</h2>
         <p style="font-size:13px;color:#555;margin:0 0 6px">${esc(TRACK)}</p>
         ${n.thesis?`<p style="background:#f4f0e6;border-left:3px solid #b8923f;padding:10px 14px;border-radius:6px;font-size:13.5px;line-height:1.7;margin:12px 0">${esc(n.thesis)}</p>`:''}
         ${sec('핵심 정리', kp?`<ul style="padding-left:18px;font-size:13.5px;margin:0">${kp}</ul>`:'')}

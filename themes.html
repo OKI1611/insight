@@ -46,7 +46,7 @@
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://biblynote.com/"},{"@type":"ListItem","position":2,"name":"성경","item":"https://biblynote.com/bible"},{"@type":"ListItem","position":3,"name":"주제별 성경","item":"https://biblynote.com/themes"}]}
   </script>
 </head>
-<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+<body class="font-sans bg-paper text-neutral-900 antialiased min-h-screen">
 
   <div id="siteHeader" data-active="themes.html"></div>
 
@@ -57,24 +57,24 @@
       <div class="text-center mb-8">
         <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">THEMATIC SCRIPTURE · 주제별 성경 읽기</p>
         <h1 class="text-3xl md:text-4xl font-bold leading-tight">교리로 읽는 성경</h1>
-        <p class="text-ink/60 text-base md:text-lg mt-4 max-w-2xl mx-auto leading-relaxed">
-          기독교 핵심 교리를 <b class="text-ink/80">주제별</b>로 모았습니다. 한 절 한 절,
+        <p class="text-neutral-900/60 text-base md:text-lg mt-4 max-w-2xl mx-auto leading-relaxed">
+          기독교 핵심 교리를 <b class="text-neutral-900/80">주제별</b>로 모았습니다. 한 절 한 절,
           <b class="text-gold">원어(히브리어·헬라어)를 참고한 새 번역</b>과 <b class="text-gold">영어 학습 각주</b>로 함께 읽습니다.
         </p>
-        <div class="mt-5 inline-flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-sm text-ink/55 bg-white border border-ink/8 rounded-2xl px-5 py-3 shadow-soft">
+        <div class="mt-5 inline-flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-sm text-neutral-900/55 bg-white border border-ink/8 rounded-2xl px-5 py-3 shadow-soft">
           <span>🇰🇷 매끄러운 한국어 새 번역</span>
-          <span class="text-ink/20">·</span>
+          <span class="text-neutral-900/20">·</span>
           <span>🔤 원어 핵심 단어 풀이</span>
-          <span class="text-ink/20">·</span>
+          <span class="text-neutral-900/20">·</span>
           <span>🇬🇧 영어 표현 학습 각주</span>
         </div>
       </div>
 
       <div id="themeGrid" class="grid sm:grid-cols-2 gap-4">
-        <p class="text-ink/40 text-sm text-center py-16 col-span-2">불러오는 중…</p>
+        <p class="text-neutral-900/40 text-sm text-center py-16 col-span-2">불러오는 중…</p>
       </div>
 
-      <p class="text-xs text-ink/40 mt-8 leading-relaxed bg-ink/[0.03] rounded-xl p-4">
+      <p class="text-xs text-neutral-900/40 mt-8 leading-relaxed bg-ink/[0.03] rounded-xl p-4">
         ※ 한국어 본문은 개역·새번역 등 기존 저작권 번역을 옮기지 않고, <b>히브리어·헬라어 원어를 참고한 BIBLY 자체 번역</b>입니다.
         영어 본문은 <b>King James Version(KJV, 공유저작물)</b>이며, 주요 표현·숙어에 각주를 달아 <b>영어 공부에도 도움</b>이 되도록 구성했습니다.
       </p>
@@ -82,17 +82,17 @@
 
     <!-- ===== 테마 읽기 ===== -->
     <section id="readView" class="hidden">
-      <button onclick="showGrid()" class="text-sm text-ink/50 hover:text-gold mb-5">← 주제 목록으로</button>
+      <button onclick="showGrid()" class="text-sm text-neutral-900/50 hover:text-gold mb-5">← 주제 목록으로</button>
 
       <div id="themeHero" class="bg-gold text-white rounded-3xl p-6 md:p-8 mb-5"></div>
 
       <!-- 단계 탭(초급/중급/고급) -->
       <div id="levelTabs" class="hidden flex flex-wrap gap-2 mb-2"></div>
-      <p id="levelDesc" class="hidden text-[13px] text-ink/55 mb-4"></p>
+      <p id="levelDesc" class="hidden text-[13px] text-neutral-900/55 mb-4"></p>
 
       <!-- 보기 옵션 -->
       <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mb-5 text-sm bg-white border border-ink/8 rounded-2xl px-4 py-3 shadow-soft">
-        <span class="font-bold text-ink/55">보기</span>
+        <span class="font-bold text-neutral-900/55">보기</span>
         <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="optEn" checked onchange="renderVerses()"/> 🇬🇧 영어 원문</label>
         <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="optNote" checked onchange="renderVerses()"/> 💡 신학 설명</label>
       </div>
@@ -133,8 +133,8 @@
           <span class="min-w-0">
             <span class="block text-[10px] font-bold text-gold tracking-[0.18em] mb-0.5">THEME ${String(i+1).padStart(2,'0')}</span>
             <span class="block font-bold text-lg leading-snug">${esc(t.title)}</span>
-            <span class="block text-xs text-ink/45 mt-0.5">${esc(t.en||'')}</span>
-            <span class="block text-sm text-ink/60 mt-2 leading-relaxed line-clamp-2">${esc(t.intro||'')}</span>
+            <span class="block text-xs text-neutral-900/45 mt-0.5">${esc(t.en||'')}</span>
+            <span class="block text-sm text-neutral-900/60 mt-2 leading-relaxed line-clamp-2">${esc(t.intro||'')}</span>
             ${badge}
           </span>
         </button>`;}).join('');
@@ -170,26 +170,26 @@
       if(!CURRENT.levels){ tabs.classList.add('hidden'); desc.classList.add('hidden'); return; }
       tabs.classList.remove('hidden'); desc.classList.remove('hidden');
       tabs.innerHTML = levelOrder().map(k=>{ const on=k===CUR_LEVEL; const m=LVL_META[k];
-        return `<button onclick="setLevel('${k}')" class="px-4 py-2 rounded-full text-sm font-bold border transition ${on?'bg-ink text-white border-ink':'bg-white text-ink/55 border-ink/15 hover:border-gold/40'}">${m.l} <span class="text-[11px] ${on?'text-white/55':'text-ink/35'}">${CURRENT.levels[k].length}</span></button>`; }).join('');
+        return `<button onclick="setLevel('${k}')" class="px-4 py-2 rounded-full text-sm font-bold border transition ${on?'bg-ink text-white border-ink':'bg-white text-neutral-900/55 border-ink/15 hover:border-gold/40'}">${m.l} <span class="text-[11px] ${on?'text-white/55':'text-neutral-900/35'}">${CURRENT.levels[k].length}</span></button>`; }).join('');
       desc.textContent = LVL_META[CUR_LEVEL] ? LVL_META[CUR_LEVEL].d : '';
     }
     function renderVerses(){
       if(!CURRENT) return;
       const showEn = $('optEn').checked, showNote = $('optNote').checked;
       $('verseList').innerHTML = curVerses().map((v,i)=>{
-        const en = showEn && v.en ? `<p class="verse-en text-[15.5px] text-ink/70 leading-relaxed mt-3">${esc(v.en)}</p>` : '';
+        const en = showEn && v.en ? `<p class="verse-en text-[15.5px] text-neutral-900/70 leading-relaxed mt-3">${esc(v.en)}</p>` : '';
         let note='';
         if(showNote){
-          if(v.note){ note=`<div class="mt-3 bg-gold/[0.06] border-l-2 border-gold/50 rounded-r-xl px-4 py-3"><p class="text-[13.5px] text-ink/80 leading-[1.9]">${esc(v.note)}</p></div>`; }
+          if(v.note){ note=`<div class="mt-3 bg-gold/[0.06] border-l-2 border-gold/50 rounded-r-xl px-4 py-3"><p class="text-[13.5px] text-neutral-900/80 leading-[1.9]">${esc(v.note)}</p></div>`; }
           else {
-            const orig = v.orig ? `<p class="text-[13px] text-ink/55 mt-3 bg-gold/[0.07] rounded-lg px-3 py-2"><span class="text-gold font-bold mr-1">🔤 원어</span>${esc(v.orig)}</p>` : '';
-            const ens = (v.enNotes||[]).length ? `<div class="mt-2.5 border-l-2 border-ink/10 pl-3"><p class="text-[11px] font-bold text-ink/40 mb-1.5">🇬🇧 영어 표현 노트</p><ul class="space-y-1">${v.enNotes.map(n=>`<li class="text-[13px] leading-snug"><span class="verse-en font-semibold text-ink/80">${esc(n.term)}</span> <span class="text-ink/50">— ${esc(n.ko)}</span></li>`).join('')}</ul></div>` : '';
+            const orig = v.orig ? `<p class="text-[13px] text-neutral-900/55 mt-3 bg-gold/[0.07] rounded-lg px-3 py-2"><span class="text-gold font-bold mr-1">🔤 원어</span>${esc(v.orig)}</p>` : '';
+            const ens = (v.enNotes||[]).length ? `<div class="mt-2.5 border-l-2 border-ink/10 pl-3"><p class="text-[11px] font-bold text-neutral-900/40 mb-1.5">🇬🇧 영어 표현 노트</p><ul class="space-y-1">${v.enNotes.map(n=>`<li class="text-[13px] leading-snug"><span class="verse-en font-semibold text-neutral-900/80">${esc(n.term)}</span> <span class="text-neutral-900/50">— ${esc(n.ko)}</span></li>`).join('')}</ul></div>` : '';
             note = orig+ens;
           }
         }
         return `<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5">
           <p class="text-gold font-bold text-sm mb-2">${i+1}. ${esc(v.ref)}</p>
-          <p class="serif text-[18px] md:text-[19px] text-ink leading-[1.85]">${esc(v.ko)}</p>
+          <p class="serif text-[18px] md:text-[19px] text-neutral-900 leading-[1.85]">${esc(v.ko)}</p>
           ${en}${note}
         </div>`;
       }).join('');
@@ -199,13 +199,13 @@
       const sec=$('videoSec'); const vids=(CURRENT&&CURRENT.videos)||[];
       if(!vids.length){ sec.classList.add('hidden'); sec.innerHTML=''; return; }
       sec.classList.remove('hidden');
-      sec.innerHTML = `<h3 class="font-bold text-ink text-lg mb-1 flex items-center gap-2">▶ 관련 강의</h3>
-        <p class="text-sm text-ink/50 mb-4">이 주제를 더 깊이 — 유튜브 강의로 이어서 공부해 보세요.</p>
+      sec.innerHTML = `<h3 class="font-bold text-neutral-900 text-lg mb-1 flex items-center gap-2">▶ 관련 강의</h3>
+        <p class="text-sm text-neutral-900/50 mb-4">이 주제를 더 깊이 — 유튜브 강의로 이어서 공부해 보세요.</p>
         <div class="grid sm:grid-cols-2 gap-3">`
         + vids.map(v=>{ const id=ytId(v.youtube); const thumb=id?`https://img.youtube.com/vi/${id}/mqdefault.jpg`:'';
           return `<a href="${esc(v.youtube)}" target="_blank" rel="noopener" class="group flex gap-3 bg-white rounded-xl border border-ink/8 shadow-soft p-3 hover:border-gold/40 hover:shadow-card transition">
             ${thumb?`<span class="relative shrink-0"><img src="${thumb}" alt="" class="w-28 h-16 object-cover rounded-lg" loading="lazy"/><span class="absolute inset-0 flex items-center justify-center"><span class="bg-red-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-[11px]">▶</span></span></span>`:''}
-            <span class="min-w-0 flex-1"><span class="block text-[13px] font-bold text-ink leading-snug line-clamp-2 group-hover:text-gold transition">${esc(v.title)}</span><span class="block text-[11px] text-red-600 font-semibold mt-1">▶ YouTube에서 보기</span></span>
+            <span class="min-w-0 flex-1"><span class="block text-[13px] font-bold text-neutral-900 leading-snug line-clamp-2 group-hover:text-gold transition">${esc(v.title)}</span><span class="block text-[11px] text-red-600 font-semibold mt-1">▶ YouTube에서 보기</span></span>
           </a>`; }).join('')
         + `</div>`;
     }

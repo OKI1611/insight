@@ -70,7 +70,7 @@
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://biblynote.com/"},{"@type":"ListItem","position":2,"name":"소통·나눔","item":"https://biblynote.com/community"},{"@type":"ListItem","position":3,"name":"자료실","item":"https://biblynote.com/resources"}]}
   </script>
 </head>
-<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+<body class="font-sans bg-paper text-neutral-900 antialiased min-h-screen">
 
   <div id="siteHeader" data-active="resources.html"></div>
 
@@ -79,7 +79,7 @@
       <div>
         <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">LIBRARY</p>
         <h1 class="text-2xl md:text-3xl font-bold">자료실</h1>
-        <p class="text-ink/55 text-sm mt-2">강의와 함께 보는 자료 — 암송노트·강의노트·도표를 받아보세요.</p>
+        <p class="text-neutral-900/55 text-sm mt-2">강의와 함께 보는 자료 — 암송노트·강의노트·도표를 받아보세요.</p>
       </div>
       <button id="writeBtn" onclick="openForm()" class="hidden bg-gold text-white text-sm font-semibold px-4 py-2.5 rounded-full hover:opacity-90 transition shrink-0">＋ 자료 올리기</button>
     </div>
@@ -89,10 +89,10 @@
       <h2 class="font-bold mb-4">자료 올리기</h2>
       <input id="fTitle" placeholder="자료 제목" class="w-full border border-ink/15 rounded-lg px-3 py-2.5 mb-2 outline-none focus:border-gold"/>
       <input id="fCategory" placeholder="분류 (예: 암송노트·강의노트·도표)" class="w-full border border-ink/15 rounded-lg px-3 py-2.5 mb-2 outline-none focus:border-gold"/>
-      <label class="block text-xs font-semibold text-ink/50 mb-1">설명 · 본문 (블로그처럼 서식·사진 가능)</label>
+      <label class="block text-xs font-semibold text-neutral-900/50 mb-1">설명 · 본문 (블로그처럼 서식·사진 가능)</label>
       <div id="fEditor" class="mb-3"></div>
       <div class="grid sm:grid-cols-2 gap-3 mb-3">
-        <label class="border border-dashed border-ink/20 rounded-lg px-3 py-2.5 text-sm text-ink/60 cursor-pointer hover:bg-ink/5 text-center">
+        <label class="border border-dashed border-ink/20 rounded-lg px-3 py-2.5 text-sm text-neutral-900/60 cursor-pointer hover:bg-ink/5 text-center">
           📎 파일 첨부 (PDF 등)
           <input id="fFile" type="file" class="hidden" onchange="document.getElementById('fFileName').textContent=this.files[0]?this.files[0].name:''"/>
           <span id="fFileName" class="block text-xs text-gold mt-1"></span>
@@ -108,7 +108,7 @@
 
     <!-- 자료 리스트 -->
     <div id="resList" class="bg-white rounded-2xl border border-ink/8 shadow-soft divide-y divide-ink/5 overflow-hidden">
-      <p class="text-ink/40 text-sm text-center py-10">자료를 불러오는 중…</p>
+      <p class="text-neutral-900/40 text-sm text-center py-10">자료를 불러오는 중…</p>
     </div>
   </main>
 
@@ -171,8 +171,8 @@
     async function loadList(){
       const wrap = document.getElementById('resList');
       const { data, error } = await sb.from('resources').select('*').order('created_at',{ascending:false});
-      if(error){ wrap.innerHTML = `<p class="text-ink/40 text-sm text-center py-8">불러오기 오류: ${esc(error.message)}</p>`; return; }
-      if(!data.length){ wrap.innerHTML = '<p class="text-ink/40 text-sm text-center py-10">아직 자료가 없습니다.'+(isAdmin?' 첫 자료를 올려보세요!':'')+'</p>'; return; }
+      if(error){ wrap.innerHTML = `<p class="text-neutral-900/40 text-sm text-center py-8">불러오기 오류: ${esc(error.message)}</p>`; return; }
+      if(!data.length){ wrap.innerHTML = '<p class="text-neutral-900/40 text-sm text-center py-10">아직 자료가 없습니다.'+(isAdmin?' 첫 자료를 올려보세요!':'')+'</p>'; return; }
       wrap.innerHTML = data.map(r => {
         const url = (r.file_url || r.link || '').trim();
         const hasBody = !!(r.description && r.description.trim());
@@ -182,15 +182,15 @@
             <div class="min-w-0 flex-1">
               ${ r.category ? `<span class="text-[11px] text-gold font-bold tracking-wide">${esc(r.category)}</span>` : '' }
               <p class="font-semibold leading-snug">${esc(r.title||'')}</p>
-              <p class="text-xs text-ink/35 mt-0.5">${fmtDate(r.created_at)}${hasBody?' · 클릭하면 내용 보기':''}</p>
+              <p class="text-xs text-neutral-900/35 mt-0.5">${fmtDate(r.created_at)}${hasBody?' · 클릭하면 내용 보기':''}</p>
             </div>
-            ${ hasBody ? `<svg id="rchev-${r.id}" class="w-5 h-5 text-ink/25 shrink-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>` : '' }
+            ${ hasBody ? `<svg id="rchev-${r.id}" class="w-5 h-5 text-neutral-900/25 shrink-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>` : '' }
             ${ url ? `<a href="${encodeURI(url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="shrink-0 bg-gold text-white text-sm font-semibold px-4 py-2 rounded-full hover:opacity-90">받기</a>`
-                   : (hasBody ? '' : `<span class="shrink-0 text-ink/35 text-xs">준비 중</span>`) }
-            <button onclick="event.stopPropagation();shareRes(this)" data-id="${r.id}" data-t="${esc(r.title||'').replace(/"/g,'&quot;')}" class="shrink-0 text-ink/35 hover:text-gold text-lg" title="공유하기">🔗</button>
-            ${ isAdmin ? `<button onclick="event.stopPropagation();delResource('${r.id}')" class="shrink-0 text-ink/30 hover:text-red-500 text-sm">삭제</button>` : '' }
+                   : (hasBody ? '' : `<span class="shrink-0 text-neutral-900/35 text-xs">준비 중</span>`) }
+            <button onclick="event.stopPropagation();shareRes(this)" data-id="${r.id}" data-t="${esc(r.title||'').replace(/"/g,'&quot;')}" class="shrink-0 text-neutral-900/35 hover:text-gold text-lg" title="공유하기">🔗</button>
+            ${ isAdmin ? `<button onclick="event.stopPropagation();delResource('${r.id}')" class="shrink-0 text-neutral-900/30 hover:text-red-500 text-sm">삭제</button>` : '' }
           </div>
-          ${ hasBody ? `<div id="resbody-${r.id}" class="hidden resbody text-sm text-ink/70 mt-3 sm:pl-14 leading-relaxed border-t border-ink/5 pt-3">${bodyHTML(r.description)}</div>` : '' }
+          ${ hasBody ? `<div id="resbody-${r.id}" class="hidden resbody text-sm text-neutral-900/70 mt-3 sm:pl-14 leading-relaxed border-t border-ink/5 pt-3">${bodyHTML(r.description)}</div>` : '' }
         </div>`;
       }).join('');
       openResFromHash();

@@ -83,7 +83,7 @@
 
   var LOGO =
     '<a href="index.html" onclick="return __biblyHome(event)" class="flex items-center shrink-0">'
-    + '<span class="leading-none text-center"><span class="block font-bold text-[18px] tracking-tight text-ink">바이블 인사이트<span class="text-gold">.</span></span>'
+    + '<span class="leading-none text-center"><span class="block font-bold text-[18px] tracking-tight text-neutral-900">바이블 인사이트<span class="text-gold">.</span></span>'
     + '<span class="inline-flex items-center gap-1.5 mt-0.5"><span class="h-px w-4 bg-gold/40"></span><span class="text-[9px] font-semibold text-gold tracking-[0.3em]">ACADEMY</span><span class="h-px w-4 bg-gold/40"></span></span></span></a>';
 
   var mount, active;
@@ -105,7 +105,7 @@
 
   // 메인 헤더 우측 CTA — 두란노식 강조 '바로 수강' + 내 강의실(로그인/로그아웃은 상단 퀵바)
   function mainCtaHTML(){
-    return '<a href="search.html" aria-label="스마트 검색" title="스마트 검색" class="inline-flex items-center justify-center w-9 h-9 rounded-full hover:bg-ink/5 text-ink/70"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></svg></a>'
+    return '<a href="search.html" aria-label="스마트 검색" title="스마트 검색" class="inline-flex items-center justify-center w-9 h-9 rounded-full hover:bg-ink/5 text-neutral-900/70"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></svg></a>'
       + '<a href="watch.html" class="inline-flex items-center gap-1 bg-gold text-white font-bold px-3.5 py-1.5 rounded-full hover:opacity-90 transition text-xs whitespace-nowrap shadow-soft">▶ 바로 수강</a>'
       + '<a href="mylearning.html" class="hidden xl:inline-flex items-center gap-1 border border-gold/45 text-gold font-semibold px-3 py-1.5 rounded-full hover:bg-gold/10 transition text-xs whitespace-nowrap">📚 내 강의실</a>';
   }
@@ -134,15 +134,15 @@
   function mobileMenuHTML(menu){
     var items = menu.map(function(m){
       var href = _hrefOf(m.href), kids = m.children || [];
-      if(!kids.length) return '<a href="' + href + '" class="py-3 border-b border-ink/5 ' + (_isOn(m.href) ? 'text-gold font-semibold' : 'text-ink/75') + '">' + esc(m.label) + '</a>';
-      var head = '<a href="' + href + '" class="pt-3 pb-1 font-bold ' + (_isOn(m.href) ? 'text-gold' : 'text-ink/80') + '">' + esc(m.label) + '</a>';
-      var sub = kids.map(function(c){ return '<a href="' + _hrefOf(c.href) + '" class="py-2 pl-4 border-b border-ink/5 text-[14px] ' + (_isOn(c.href) ? 'text-gold font-semibold' : 'text-ink/60') + '">└ ' + esc(c.label) + '</a>'; }).join('');
+      if(!kids.length) return '<a href="' + href + '" class="py-3 border-b border-ink/5 ' + (_isOn(m.href) ? 'text-gold font-semibold' : 'text-neutral-900/75') + '">' + esc(m.label) + '</a>';
+      var head = '<a href="' + href + '" class="pt-3 pb-1 font-bold ' + (_isOn(m.href) ? 'text-gold' : 'text-neutral-900/80') + '">' + esc(m.label) + '</a>';
+      var sub = kids.map(function(c){ return '<a href="' + _hrefOf(c.href) + '" class="py-2 pl-4 border-b border-ink/5 text-[14px] ' + (_isOn(c.href) ? 'text-gold font-semibold' : 'text-neutral-900/60') + '">└ ' + esc(c.label) + '</a>'; }).join('');
       return head + sub;
     }).join('');
     return '<div class="max-w-6xl mx-auto px-4 py-1 flex flex-col text-[15px]">'
       + '<a href="search.html" class="py-3 border-b border-ink/5 text-gold font-semibold">🔍 스마트 검색</a>' + items
       + '<a href="mylearning.html" class="py-3 border-b border-ink/5 text-gold font-semibold">📚 내 강의실</a>'
-      + '<a href="index.html" onclick="return __biblyHome(event)" class="py-3 text-ink/55">🏠 홈</a>'
+      + '<a href="index.html" onclick="return __biblyHome(event)" class="py-3 text-neutral-900/55">🏠 홈</a>'
       + '</div>';
   }
   window.__biblyToggleMenu = function(){ var m = document.getElementById('biblyMobMenu'); if(m) m.classList.toggle('hidden'); };
@@ -152,9 +152,9 @@
       + '<header class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-ink/8">'
       + '<div class="max-w-7xl mx-auto px-4 h-14 flex items-center gap-3">'
       + LOGO
-      + '<nav id="navmenu" class="hidden xl:flex items-center gap-5 text-[14.5px] font-medium text-[#15223d] whitespace-nowrap pl-1">' + menuHTML(menu) + '</nav>'
+      + '<nav id="navmenu" class="hidden xl:flex items-center gap-5 text-[14.5px] font-medium text-neutral-900 whitespace-nowrap pl-1">' + menuHTML(menu) + '</nav>'
       + '<div class="ml-auto flex items-center gap-2 sm:gap-3 text-sm shrink-0">' + mainCtaHTML()
-      + '<button id="biblyHamb" aria-label="메뉴 열기" onclick="__biblyToggleMenu()" class="xl:hidden w-9 h-9 -mr-1 flex items-center justify-center rounded-lg hover:bg-ink/5 text-ink/70"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>'
+      + '<button id="biblyHamb" aria-label="메뉴 열기" onclick="__biblyToggleMenu()" class="xl:hidden w-9 h-9 -mr-1 flex items-center justify-center rounded-lg hover:bg-ink/5 text-neutral-900/70"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>'
       + '</div>'
       + '</div>'
       + '<div id="biblyMobMenu" class="xl:hidden hidden border-t border-ink/8 bg-paper/95 backdrop-blur shadow-sm max-h-[calc(100dvh-6.5rem)] overflow-y-auto overscroll-contain">' + mobileMenuHTML(menu) + '</div>'
@@ -182,12 +182,12 @@
     return '<footer class="bibly-footer bg-paper border-t border-ink/10 py-12 mt-16">'
       + '<div class="max-w-6xl mx-auto px-5 flex flex-col md:flex-row justify-between gap-8">'
       + '<div class="max-w-md">'
-      + '<p class="font-bold text-lg">BIBLY<span class="text-gold">.</span> <span class="text-ink/50 text-sm font-normal">바이블 인사이트</span></p>'
-      + '<p class="text-sm mt-2 text-ink/60 leading-relaxed">말씀으로 시대를 읽다 · 유튜브 「오광일의 인사이트 브리핑」 공식 강의 플랫폼</p>'
-      + '<p class="text-sm mt-3 text-ink/50">✉ contact@biblynote.com</p>'
-      + '<p class="text-xs mt-3 text-ink/35 leading-relaxed">본 사이트 강의 영상의 무단 다운로드·녹화·재배포를 금합니다.</p>'
+      + '<p class="font-bold text-lg">BIBLY<span class="text-gold">.</span> <span class="text-neutral-900/50 text-sm font-normal">바이블 인사이트</span></p>'
+      + '<p class="text-sm mt-2 text-neutral-900/60 leading-relaxed">말씀으로 시대를 읽다 · 유튜브 「오광일의 인사이트 브리핑」 공식 강의 플랫폼</p>'
+      + '<p class="text-sm mt-3 text-neutral-900/50">✉ contact@biblynote.com</p>'
+      + '<p class="text-xs mt-3 text-neutral-900/35 leading-relaxed">본 사이트 강의 영상의 무단 다운로드·녹화·재배포를 금합니다.</p>'
       + '</div>'
-      + '<div class="grid grid-cols-2 gap-x-10 gap-y-2.5 text-sm text-ink/60 shrink-0">'
+      + '<div class="grid grid-cols-2 gap-x-10 gap-y-2.5 text-sm text-neutral-900/60 shrink-0">'
       + lnk('curriculum.html', '커리큘럼') + lnk('academy.html', '정규 심화 과정')
       + lnk('about.html', '우리의 사명') + lnk('community.html', '질문·나눔')
       + lnk('resources.html', '자료실') + lnk('request.html', '강의 요청·건의')
@@ -195,7 +195,7 @@
       + lnk('support.html', '♥ 후원 안내') + lnk('terms.html', '이용약관·환불 규정')
       + '</div>'
       + '</div>'
-      + '<p class="text-center text-ink/30 text-xs mt-10">© 2026 BIBLY · 바이블 인사이트 (오광일의 인사이트 브리핑). All rights reserved.</p>'
+      + '<p class="text-center text-neutral-900/30 text-xs mt-10">© 2026 BIBLY · 바이블 인사이트 (오광일의 인사이트 브리핑). All rights reserved.</p>'
       + '</footer>';
   }
 
@@ -209,7 +209,7 @@
       + '.navDrop{position:absolute;left:0;top:100%;padding-top:12px;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .16s,transform .16s,visibility .16s;z-index:60}'
       + '.navItem:hover .navDrop{opacity:1;visibility:visible;transform:none}'
       + '.navDropCard{background:#fff;border:1px solid rgba(21,32,58,.08);border-radius:.9rem;box-shadow:0 18px 50px -20px rgba(21,32,58,.45);padding:.45rem;min-width:212px}'
-      + '.navDropCard a{display:flex;align-items:center;gap:.6rem;padding:.62rem .85rem;border-radius:.65rem;font-size:.9rem;font-weight:600;color:#15223d;white-space:nowrap;transition:background .15s,color .15s,transform .15s}'
+      + '.navDropCard a{display:flex;align-items:center;gap:.6rem;padding:.62rem .85rem;border-radius:.65rem;font-size:.9rem;font-weight:600;color:#171717;white-space:nowrap;transition:background .15s,color .15s,transform .15s}'
       + '.navDropCard a::before{content:"";width:6px;height:6px;border-radius:50%;background:rgba(184,146,63,.4);flex:none;transition:transform .15s,background .15s}'
       + '.navDropCard a:hover{background:#eef3fb;color:#b8923f;transform:translateX(2px)}'
       + '.navDropCard a:hover::before{background:#b8923f;transform:scale(1.4)}'
@@ -230,7 +230,7 @@
     fetch('content/site.json?t=' + Date.now()).then(function(r){ return r.json(); }).then(function(s){
       var mn = (s && s.nav && s.nav.length) ? s.nav : (s && s.menu);
       if(mn){
-        var nav = document.getElementById('navmenu'); if(nav){ nav.className = nav.className.replace('text-ink/90','text-[#15223d]'); nav.innerHTML = menuHTML(mn); }
+        var nav = document.getElementById('navmenu'); if(nav){ nav.className = nav.className.replace('text-neutral-900/90','text-neutral-900'); nav.innerHTML = menuHTML(mn); }
         var mob = document.getElementById('biblyMobMenu'); if(mob) mob.innerHTML = mobileMenuHTML(mn);
       }
       // 사업자 정보 공통 표기(전 페이지 하단 자동 · 이미 표기된 페이지는 건너뜀)

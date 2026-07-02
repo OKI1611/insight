@@ -52,7 +52,7 @@
     const kindLabel = window.biblyAccessLabel(st);
     if(!st.expired){
       if(st.daysLeft != null && st.daysLeft <= 21){
-        return '<div class="bg-gold/10 border border-gold/30 text-ink/80 rounded-xl px-4 py-2.5 text-sm">⏳ <b>'+kindLabel+'</b> 종료까지 <b class="text-gold">'+st.daysLeft+'일</b> 남았어요. 기간 안에 마음껏 누리세요!</div>';
+        return '<div class="bg-gold/10 border border-gold/30 text-neutral-900/80 rounded-xl px-4 py-2.5 text-sm">⏳ <b>'+kindLabel+'</b> 종료까지 <b class="text-gold">'+st.daysLeft+'일</b> 남았어요. 기간 안에 마음껏 누리세요!</div>';
       }
       return '';
     }

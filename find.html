@@ -37,13 +37,13 @@
     }}}
   </script>
   <style>h1,h2{font-family:'Noto Serif KR',Pretendard,serif}
-    .opt.sel{border-color:#b8923f;background:#faf6ea;color:#213a6b;font-weight:600}
+    .opt.sel{border-color:#b8923f;background:#faf6ea;color:#171717;font-weight:600}
   </style>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://biblynote.com/"},{"@type":"ListItem","position":2,"name":"강의·커리큘럼","item":"https://biblynote.com/curriculum"},{"@type":"ListItem","position":3,"name":"나에게 맞는 강의 찾기","item":"https://biblynote.com/find"}]}
   </script>
 </head>
-<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+<body class="font-sans bg-paper text-neutral-900 antialiased min-h-screen">
 
   <div id="siteHeader" data-active="find.html"></div>
 
@@ -51,12 +51,12 @@
     <div id="introHead" class="text-center mb-7">
       <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">COURSE FINDER · 수강 진단</p>
       <h1 class="text-2xl md:text-3xl font-bold">나에게 맞는 강의 찾기</h1>
-      <p class="text-ink/55 text-sm mt-3">6가지 질문에 답하면, 신앙 배경·관심·목표를 분석해 <b class="text-ink">당신에게 최적화된 코스와 학습 순서</b>를 추천해 드려요.</p>
+      <p class="text-neutral-900/55 text-sm mt-3">6가지 질문에 답하면, 신앙 배경·관심·목표를 분석해 <b class="text-neutral-900">당신에게 최적화된 코스와 학습 순서</b>를 추천해 드려요.</p>
     </div>
 
     <!-- 진행 막대 -->
     <div id="progressWrap" class="mb-5">
-      <div class="flex items-center justify-between text-xs text-ink/50 mb-1.5">
+      <div class="flex items-center justify-between text-xs text-neutral-900/50 mb-1.5">
         <span id="stepLabel">질문 1 / 6</span>
         <span id="stepPct">17%</span>
       </div>
@@ -66,7 +66,7 @@
     <!-- 진단 (스텝) -->
     <div id="step" class="min-h-[260px]"></div>
     <div id="stepNav" class="mt-6 flex items-center justify-between gap-3">
-      <button id="prevBtn" onclick="prevStep()" class="px-5 py-3 rounded-full border border-ink/15 text-ink/60 font-semibold text-sm hover:bg-ink/5 transition disabled:opacity-0">← 이전</button>
+      <button id="prevBtn" onclick="prevStep()" class="px-5 py-3 rounded-full border border-ink/15 text-neutral-900/60 font-semibold text-sm hover:bg-ink/5 transition disabled:opacity-0">← 이전</button>
       <button id="nextBtn" onclick="nextStep()" disabled class="flex-1 max-w-[280px] ml-auto bg-gold text-white font-semibold px-8 py-3.5 rounded-full hover:opacity-90 transition shadow-card disabled:opacity-40 disabled:cursor-not-allowed">다음 →</button>
     </div>
 
@@ -152,7 +152,7 @@
       document.getElementById('step').innerHTML = `
         <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 md:p-6">
           <p class="font-bold text-lg leading-snug"><span class="text-gold">Q${qi+1}.</span> ${Q.q}</p>
-          ${ Q.sub ? `<p class="text-ink/50 text-sm mt-1.5">${Q.sub}</p>` : '' }
+          ${ Q.sub ? `<p class="text-neutral-900/50 text-sm mt-1.5">${Q.sub}</p>` : '' }
           <div class="grid gap-2.5 mt-4">
             ${Q.opts.map((o, oi) => {
               const sel = Q.multi ? answers[qi].includes(oi) : answers[qi] === oi;
@@ -230,17 +230,17 @@
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-2 flex-wrap">
                 <p class="font-bold text-[17px]">${g.emoji} ${g.name}</p>
-                <span class="text-[11px] bg-ink/8 text-ink/60 px-2 py-0.5 rounded-full font-semibold">${g.tag}</span>
+                <span class="text-[11px] bg-ink/8 text-neutral-900/60 px-2 py-0.5 rounded-full font-semibold">${g.tag}</span>
                 ${ isFirst ? '<span class="text-[11px] bg-gold text-white px-2 py-0.5 rounded-full font-bold">여기서 시작</span>' : '' }
-                <span class="text-xs text-ink/40">적합도 ${fit(key)}%</span>
+                <span class="text-xs text-neutral-900/40">적합도 ${fit(key)}%</span>
               </div>
-              <p class="text-sm text-ink/60 mt-1.5 leading-relaxed">${g.why}</p>
+              <p class="text-sm text-neutral-900/60 mt-1.5 leading-relaxed">${g.why}</p>
               <div class="mt-3 bg-paper/70 border border-ink/8 rounded-xl px-3.5 py-2.5">
                 <p class="text-xs text-gold font-bold mb-0.5">먼저 들을 코스</p>
-                <p class="text-sm font-semibold">${entry ? entry.name : ''} <span class="text-ink/40 font-normal">· ${eCnt}강</span></p>
-                ${ first ? `<p class="text-xs text-ink/45 mt-0.5 truncate">첫 강의: ${first}</p>` : '' }
+                <p class="text-sm font-semibold">${entry ? entry.name : ''} <span class="text-neutral-900/40 font-normal">· ${eCnt}강</span></p>
+                ${ first ? `<p class="text-xs text-neutral-900/45 mt-0.5 truncate">첫 강의: ${first}</p>` : '' }
               </div>
-              <p class="text-xs text-ink/45 mt-2">이 분야 총 ${tracks.length}개 트랙 · ${totalCnt}강${ more ? ` (코스 ${more}개 더 있어요)` : '' }</p>
+              <p class="text-xs text-neutral-900/45 mt-2">이 분야 총 ${tracks.length}개 트랙 · ${totalCnt}강${ more ? ` (코스 ${more}개 더 있어요)` : '' }</p>
               <a href="watch.html?l=${start}" class="inline-block mt-2.5 text-sm font-semibold text-gold hover:underline">이 코스부터 보기 →</a>
             </div>
           </div>
@@ -251,7 +251,7 @@
         const start = (entry && entry.name in startOf) ? startOf[entry.name] : 0;
         return `<a href="watch.html?l=${start}" class="block bg-white rounded-2xl border border-ink/8 shadow-soft p-4 hover:shadow-card transition">
           <div class="flex items-center justify-between"><p class="font-bold text-sm">${g.emoji} ${g.name}</p><span class="text-xs text-gold font-semibold shrink-0">적합도 ${fit(key)}%</span></div>
-          <p class="text-sm text-ink/55 mt-1.5 leading-relaxed">${g.why}</p>
+          <p class="text-sm text-neutral-900/55 mt-1.5 leading-relaxed">${g.why}</p>
         </a>`;
       }
 
@@ -268,24 +268,24 @@
         <div class="text-center mb-6">
           <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">YOUR LEARNING PLAN · 맞춤 학습 플랜</p>
           <h1 class="text-2xl font-bold">당신을 위한 학습 플랜이 완성됐어요</h1>
-          <p class="text-ink/55 text-sm mt-2">답변을 분석해, <b class="text-ink">${levelLabel}</b> 단계에 맞는 분야와 순서로 설계했어요.</p>
+          <p class="text-neutral-900/55 text-sm mt-2">답변을 분석해, <b class="text-neutral-900">${levelLabel}</b> 단계에 맞는 분야와 순서로 설계했어요.</p>
         </div>
         <div class="bg-gold text-white rounded-2xl p-5 mb-6 grid grid-cols-3 divide-x divide-white/10 text-center">
           <div class="px-2"><p class="text-xs text-paper/50">추천 시작 단계</p><p class="font-bold mt-1">${levelLabel}</p></div>
           <div class="px-2"><p class="text-xs text-paper/50">시작 분량</p><p class="font-bold mt-1">총 ${planLessons}강</p></div>
           <div class="px-2"><p class="text-xs text-paper/50">예상 기간</p><p class="font-bold mt-1">약 ${weeks}주</p></div>
         </div>
-        <div class="bg-gold/10 border border-gold/30 rounded-xl p-4 mb-7 text-center text-sm text-ink/75">
-          🎯 <b class="text-ink">${firstG.emoji} ${firstG.name}</b> 분야의 「${firstEntry ? firstEntry.name : ''}」부터 시작하는 걸 추천해요.
+        <div class="bg-gold/10 border border-gold/30 rounded-xl p-4 mb-7 text-center text-sm text-neutral-900/75">
+          🎯 <b class="text-neutral-900">${firstG.emoji} ${firstG.name}</b> 분야의 「${firstEntry ? firstEntry.name : ''}」부터 시작하는 걸 추천해요.
         </div>
-        <p class="font-bold mb-3 flex items-center gap-2">🗺️ 단계별 학습 플랜 <span class="text-ink/40 text-xs font-normal">기초 → 심화</span></p>
+        <p class="font-bold mb-3 flex items-center gap-2">🗺️ 단계별 학습 플랜 <span class="text-neutral-900/40 text-xs font-normal">기초 → 심화</span></p>
         <div class="space-y-3">${ path.map((k, i) => planStep(k, i+1, i===0)).join('') }</div>
-        <div class="mt-4 bg-paper border border-gold/30 rounded-xl p-4 text-center text-sm text-ink/70">💡 추천 페이스: <b class="text-ink">주 ${perWeek}강</b> 기준 약 <b class="text-ink">${weeks}주</b>면 시작 코스를 완주해요. 무리하지 말고 꾸준히!</div>
+        <div class="mt-4 bg-paper border border-gold/30 rounded-xl p-4 text-center text-sm text-neutral-900/70">💡 추천 페이스: <b class="text-neutral-900">주 ${perWeek}강</b> 기준 약 <b class="text-neutral-900">${weeks}주</b>면 시작 코스를 완주해요. 무리하지 말고 꾸준히!</div>
         <a href="watch.html?l=${firstStart}" class="block text-center bg-gold text-white font-semibold px-8 py-4 rounded-full hover:opacity-90 transition shadow-card mt-6">▶ 「${firstEntry ? firstEntry.name : ''}」부터 시작하기</a>
         ${ extras.length ? `<div class="mt-9"><p class="font-bold mb-3">📚 관심 있다면 이 분야도</p><div class="grid gap-3">${extras.map(secCard).join('')}</div></div>` : '' }
         <div class="flex flex-col sm:flex-row gap-3 justify-center mt-9">
-          <button onclick="resetQuiz()" class="px-6 py-3 rounded-full border border-ink/15 text-ink/60 font-semibold text-sm hover:bg-ink/5 transition">↺ 다시 진단하기</button>
-          <a href="curriculum.html" class="px-6 py-3 rounded-full border border-ink/15 text-ink/60 font-semibold text-sm hover:bg-ink/5 transition text-center">전체 커리큘럼 보기</a>
+          <button onclick="resetQuiz()" class="px-6 py-3 rounded-full border border-ink/15 text-neutral-900/60 font-semibold text-sm hover:bg-ink/5 transition">↺ 다시 진단하기</button>
+          <a href="curriculum.html" class="px-6 py-3 rounded-full border border-ink/15 text-neutral-900/60 font-semibold text-sm hover:bg-ink/5 transition text-center">전체 커리큘럼 보기</a>
         </div>`;
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }

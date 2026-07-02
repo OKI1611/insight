@@ -15,31 +15,31 @@
   </script>
   <style>h1,h2{font-family:'Noto Serif KR',Pretendard,serif}</style>
 </head>
-<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+<body class="font-sans bg-paper text-neutral-900 antialiased min-h-screen">
   <header class="bg-gold text-white"><div class="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between"><a href="index.html" class="font-bold text-sm">BIBLY <span class="text-gold">바이블 인사이트</span></a><span class="text-[11px] text-paper/60">🔒 관리자 전용 · 비공개</span></div></header>
 
   <div id="lock" class="hidden max-w-md mx-auto px-4 py-24 text-center">
     <div class="text-5xl mb-4">🔒</div>
     <h1 class="text-xl font-bold">준비 중인 페이지입니다</h1>
-    <p class="text-ink/55 text-sm mt-3 leading-relaxed">관리자 작업용 페이지입니다. 성경사전은 <a href="dictionary.html" class="text-gold underline">성경사전 코너</a>에서 검색해 보실 수 있어요.</p>
+    <p class="text-neutral-900/55 text-sm mt-3 leading-relaxed">관리자 작업용 페이지입니다. 성경사전은 <a href="dictionary.html" class="text-gold underline">성경사전 코너</a>에서 검색해 보실 수 있어요.</p>
   </div>
 
   <main id="dash" class="hidden max-w-3xl mx-auto px-4 py-8">
     <div class="text-center mb-7">
       <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">ADMIN · 원고 내보내기</p>
       <h1 class="text-2xl font-bold">비블리 성경사전 — 책 원고</h1>
-      <p class="text-ink/55 text-sm mt-2.5">완성된 사전을 <b class="text-ink">Word·PDF 책 원고</b>로 내려받습니다. (출간·소장용)</p>
+      <p class="text-neutral-900/55 text-sm mt-2.5">완성된 사전을 <b class="text-neutral-900">Word·PDF 책 원고</b>로 내려받습니다. (출간·소장용)</p>
     </div>
     <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 md:p-6 text-center">
-      <p class="text-3xl font-bold"><span id="cnt" class="text-gold">–</span><span class="text-base text-ink/40 font-semibold"> 표제어</span></p>
+      <p class="text-3xl font-bold"><span id="cnt" class="text-gold">–</span><span class="text-base text-neutral-900/40 font-semibold"> 표제어</span></p>
       <div class="flex flex-wrap justify-center gap-2.5 mt-5">
         <button onclick="doExport('doc')" class="bg-gold text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition">📄 Word(.doc) 내려받기</button>
         <button onclick="doExport('pdf')" class="bg-gold text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition">📕 PDF 내려받기</button>
       </div>
-      <p id="msg" class="text-xs text-ink/50 mt-3 min-h-[16px]"></p>
-      <p class="text-[11px] text-ink/40 mt-2">표제어를 추가한 뒤 이 페이지에서 다시 내보내면 최신본이 반영됩니다.</p>
+      <p id="msg" class="text-xs text-neutral-900/50 mt-3 min-h-[16px]"></p>
+      <p class="text-[11px] text-neutral-900/40 mt-2">표제어를 추가한 뒤 이 페이지에서 다시 내보내면 최신본이 반영됩니다.</p>
     </div>
-    <p class="text-[11px] text-ink/35 text-center mt-6">PDF는 인쇄창에서 대상(목적지)을 “PDF로 저장”으로 선택하세요. Word(.doc)는 Word/한글에서 열어 편집·출간하세요.</p>
+    <p class="text-[11px] text-neutral-900/35 text-center mt-6">PDF는 인쇄창에서 대상(목적지)을 “PDF로 저장”으로 선택하세요. Word(.doc)는 Word/한글에서 열어 편집·출간하세요.</p>
   </main>
 
   <script>
@@ -65,10 +65,10 @@
     function initialOf(s){ const c=(s||'').charCodeAt(0); if(c>=0xAC00&&c<=0xD7A3){ return CHO[Math.floor((c-0xAC00)/588)].replace('ㄲ','ㄱ').replace('ㄸ','ㄷ').replace('ㅃ','ㅂ').replace('ㅆ','ㅅ').replace('ㅉ','ㅈ'); } return '#'; }
 
     const DOC_CSS=`body{font-family:'Noto Serif KR','맑은 고딕',serif;line-height:1.85;font-size:11pt;color:#1a1a1a}
-      .cover{text-align:center;padding:50pt 0 36pt;page-break-after:always}.cover .t{font-size:30pt;font-weight:700;color:#213a6b}.cover .s{font-size:11pt;color:#888;margin-top:10pt}
-      h2.sec{font-size:18pt;font-weight:700;color:#213a6b;border-bottom:2px solid #b8923f;padding-bottom:5pt;margin:22pt 0 10pt;page-break-before:always}
+      .cover{text-align:center;padding:50pt 0 36pt;page-break-after:always}.cover .t{font-size:30pt;font-weight:700;color:#171717}.cover .s{font-size:11pt;color:#888;margin-top:10pt}
+      h2.sec{font-size:18pt;font-weight:700;color:#171717;border-bottom:2px solid #b8923f;padding-bottom:5pt;margin:22pt 0 10pt;page-break-before:always}
       .e{margin:0 0 11pt;page-break-inside:avoid}
-      .e .h{font-size:12.5pt;font-weight:700;color:#213a6b}.e .en{font-size:9.5pt;color:#7a7f88;font-weight:400}.e .cat{font-size:8pt;color:#b8923f;font-weight:700}
+      .e .h{font-size:12.5pt;font-weight:700;color:#171717}.e .en{font-size:9.5pt;color:#7a7f88;font-weight:400}.e .cat{font-size:8pt;color:#b8923f;font-weight:700}
       .e .o{font-size:9pt;color:#8a7a55;margin:1pt 0}
       .e .d{font-size:10.5pt;margin:3pt 0;text-align:justify}
       .e .m{font-size:9.5pt;color:#555;background:#f3f1ea;border-left:2px solid #c8a455;padding:4pt 7pt;margin:3pt 0}

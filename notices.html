@@ -32,7 +32,7 @@
   </script>
   <style> h1,h2{font-family:'Noto Serif KR',Pretendard,serif} </style>
 </head>
-<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+<body class="font-sans bg-paper text-neutral-900 antialiased min-h-screen">
 
   <div id="siteHeader" data-active="notices.html"></div>
 
@@ -40,7 +40,7 @@
     <div class="mb-6">
       <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">NEWS</p>
       <h1 class="text-2xl md:text-3xl font-bold">공지사항 · 이벤트</h1>
-      <p class="text-ink/55 text-sm mt-2">BIBLY의 새 소식과 이벤트를 전해드립니다.</p>
+      <p class="text-neutral-900/55 text-sm mt-2">BIBLY의 새 소식과 이벤트를 전해드립니다.</p>
     </div>
 
     <!-- 탭 -->
@@ -55,13 +55,13 @@
       <input id="cTitle" placeholder="제목" class="w-full border border-ink/15 rounded-lg px-3 py-2 text-sm mb-2 outline-none focus:border-gold"/>
       <textarea id="cBody" rows="4" placeholder="내용" class="w-full border border-ink/15 rounded-lg px-3 py-2 text-sm mb-2 outline-none focus:border-gold"></textarea>
       <div class="flex items-center gap-2">
-        <label class="text-xs text-ink/60 flex items-center gap-1"><input type="checkbox" id="cPinned"/> 상단 고정</label>
+        <label class="text-xs text-neutral-900/60 flex items-center gap-1"><input type="checkbox" id="cPinned"/> 상단 고정</label>
         <button onclick="postNotice()" class="ml-auto bg-gold text-white text-sm font-semibold px-4 py-2 rounded-lg hover:opacity-90 transition">등록</button>
       </div>
       <p id="cMsg" class="text-xs mt-2"></p>
     </div>
 
-    <div id="list" class="space-y-3"><p class="text-ink/40 text-sm py-8 text-center">불러오는 중…</p></div>
+    <div id="list" class="space-y-3"><p class="text-neutral-900/40 text-sm py-8 text-center">불러오는 중…</p></div>
   </main>
 
   <script>
@@ -74,7 +74,7 @@
 
     function setTab(t){ tab=t; renderTabs(); load(); history.replaceState(null,'', 'notices.html'+(t==='event'?'?tab=event':'')); }
     function renderTabs(){
-      const on='bg-white text-ink shadow-soft', off='text-ink/50';
+      const on='bg-white text-neutral-900 shadow-soft', off='text-neutral-900/50';
       document.getElementById('tab-notice').className='px-5 py-2 rounded-full text-sm font-semibold transition '+(tab==='notice'?on:off);
       document.getElementById('tab-event').className='px-5 py-2 rounded-full text-sm font-semibold transition '+(tab==='event'?on:off);
       document.getElementById('composeWrap').classList.toggle('hidden', !IS_ADMIN);
@@ -82,22 +82,22 @@
     }
     function fdate(s){ try{ const d=new Date(s); return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`; }catch(e){ return ''; } }
     async function load(){
-      const box=document.getElementById('list'); box.innerHTML='<p class="text-ink/40 text-sm py-8 text-center">불러오는 중…</p>';
+      const box=document.getElementById('list'); box.innerHTML='<p class="text-neutral-900/40 text-sm py-8 text-center">불러오는 중…</p>';
       try{
         const { data, error } = await sb.from('notices').select('*').eq('kind',tab).order('pinned',{ascending:false}).order('created_at',{ascending:false}).limit(50);
         if(error) throw error;
-        if(!data||!data.length){ box.innerHTML=`<p class="text-ink/40 text-sm py-12 text-center">아직 ${tab==='event'?'이벤트':'공지'}가 없습니다.</p>`; return; }
+        if(!data||!data.length){ box.innerHTML=`<p class="text-neutral-900/40 text-sm py-12 text-center">아직 ${tab==='event'?'이벤트':'공지'}가 없습니다.</p>`; return; }
         box.innerHTML = data.map(n=>`
           <div class="bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden">
             <button onclick="this.nextElementSibling.classList.toggle('hidden')" class="w-full flex items-center gap-3 px-5 py-4 text-left">
               ${n.pinned?'<span class="shrink-0 text-[10px] font-bold text-white bg-gold px-1.5 py-0.5 rounded">고정</span>':''}
               <span class="font-bold flex-1 min-w-0">${esc(n.title)}</span>
-              <span class="text-xs text-ink/40 shrink-0">${fdate(n.created_at)}</span>
+              <span class="text-xs text-neutral-900/40 shrink-0">${fdate(n.created_at)}</span>
               ${IS_ADMIN?`<span onclick="event.stopPropagation();delNotice(${n.id})" class="shrink-0 text-xs text-red-400 hover:text-red-600 cursor-pointer">삭제</span>`:''}
             </button>
-            <div class="hidden px-5 pb-5 text-sm text-ink/75 leading-relaxed whitespace-pre-wrap border-t border-ink/5 pt-3">${esc(n.body||'')}</div>
+            <div class="hidden px-5 pb-5 text-sm text-neutral-900/75 leading-relaxed whitespace-pre-wrap border-t border-ink/5 pt-3">${esc(n.body||'')}</div>
           </div>`).join('');
-      }catch(e){ box.innerHTML='<p class="text-ink/50 text-sm py-8 text-center">'+( /relation|does not exist|schema cache/i.test(e.message||'') ? '게시판 준비 중 — 관리자: <code class="bg-ink/5 px-1 rounded">supabase/notices.sql</code> 를 실행하세요.' : '불러오기 오류: '+esc(e.message||e))+'</p>'; }
+      }catch(e){ box.innerHTML='<p class="text-neutral-900/50 text-sm py-8 text-center">'+( /relation|does not exist|schema cache/i.test(e.message||'') ? '게시판 준비 중 — 관리자: <code class="bg-ink/5 px-1 rounded">supabase/notices.sql</code> 를 실행하세요.' : '불러오기 오류: '+esc(e.message||e))+'</p>'; }
     }
     async function postNotice(){
       const title=document.getElementById('cTitle').value.trim(), body=document.getElementById('cBody').value.trim(), pinned=document.getElementById('cPinned').checked, m=document.getElementById('cMsg');

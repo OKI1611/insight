@@ -94,9 +94,9 @@
       var w = document.createElement('div'); w.id = 'biblyFab';
       w.innerHTML =
         '<div style="position:fixed;left:12px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:60" class="flex items-center gap-0.5 bg-white/95 backdrop-blur border border-ink/10 rounded-full shadow-lg px-1.5 py-1">'
-        + '<span style="font-size:11px" class="text-ink/45 px-1 select-none">글자</span>'
-        + '<button onclick="__biblyFont(-1)" aria-label="글자 작게" class="rounded-full hover:bg-ink/5 text-ink/60" style="width:34px;height:34px;font-size:13px">가&minus;</button>'
-        + '<button onclick="__biblyFont(1)" aria-label="글자 크게" class="rounded-full hover:bg-ink/5 text-ink font-bold" style="width:34px;height:34px;font-size:18px">가&#43;</button>'
+        + '<span style="font-size:11px" class="text-neutral-900/45 px-1 select-none">글자</span>'
+        + '<button onclick="__biblyFont(-1)" aria-label="글자 작게" class="rounded-full hover:bg-ink/5 text-neutral-900/60" style="width:34px;height:34px;font-size:13px">가&minus;</button>'
+        + '<button onclick="__biblyFont(1)" aria-label="글자 크게" class="rounded-full hover:bg-ink/5 text-neutral-900 font-bold" style="width:34px;height:34px;font-size:18px">가&#43;</button>'
         + '</div>'
         + '<div style="position:fixed;right:14px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:60" class="flex flex-col items-end gap-2.5">'
         + '<button id="installBtn" onclick="__biblyOpenInstall()" aria-label="앱 설치" class="inline-flex items-center gap-1.5 bg-ink text-white font-bold rounded-full shadow-xl hover:bg-navy transition" style="display:none;padding:11px 18px;font-size:15px"><span style="font-size:18px">📱</span> 앱 설치</button>'
@@ -121,14 +121,14 @@
           + '<div id="installAndroid" style="display:none"><p class="text-sm text-gray-600 mb-4">아래 버튼을 누르면 설치 창이 떠요. <b>‘설치’</b>를 선택하면 끝입니다!</p>'
           + '<button onclick="__biblyPwaInstall()" class="w-full py-3 rounded-xl font-semibold text-sm transition" style="background:#213a6b;color:#ffffff">지금 설치하기</button></div>'
           + '<div id="installAndroidManual" style="display:none"><ol class="text-sm text-gray-700 space-y-3">'
-          + '<li class="flex gap-2"><span style="color:#213a6b;font-weight:700">1.</span><span>브라우저 오른쪽 위 <b>⋮ 메뉴</b>(점 3개)를 누르세요.</span></li>'
-          + '<li class="flex gap-2"><span style="color:#213a6b;font-weight:700">2.</span><span><b>‘앱 설치’</b> 또는 <b>‘홈 화면에 추가’</b>를 누르세요.</span></li>'
-          + '<li class="flex gap-2"><span style="color:#213a6b;font-weight:700">3.</span><span><b>‘설치’</b>를 누르면 완료 — 홈 화면에 BIBLY 앱이 생겨요!</span></li>'
+          + '<li class="flex gap-2"><span style="color:#171717;font-weight:700">1.</span><span>브라우저 오른쪽 위 <b>⋮ 메뉴</b>(점 3개)를 누르세요.</span></li>'
+          + '<li class="flex gap-2"><span style="color:#171717;font-weight:700">2.</span><span><b>‘앱 설치’</b> 또는 <b>‘홈 화면에 추가’</b>를 누르세요.</span></li>'
+          + '<li class="flex gap-2"><span style="color:#171717;font-weight:700">3.</span><span><b>‘설치’</b>를 누르면 완료 — 홈 화면에 BIBLY 앱이 생겨요!</span></li>'
           + '</ol><p class="text-xs text-gray-400 mt-3">※ 삼성 인터넷·크롬에서 진행해 주세요.</p></div>'
           + '<div id="installIOS" style="display:none"><ol class="text-sm text-gray-700 space-y-3">'
-          + '<li class="flex gap-2"><span style="color:#213a6b;font-weight:700">1.</span><span>화면 아래(또는 위)의 <b>공유 버튼</b>(네모 상자에서 위로 향한 <b>↑ 화살표</b> 모양)을 누르세요.</span></li>'
-          + '<li class="flex gap-2"><span style="color:#213a6b;font-weight:700">2.</span><span>메뉴를 아래로 내려 <b>‘홈 화면에 추가’</b>를 누르세요.</span></li>'
-          + '<li class="flex gap-2"><span style="color:#213a6b;font-weight:700">3.</span><span>오른쪽 위 <b>‘추가’</b>를 누르면 완료 — 홈 화면에 BIBLY 앱이 생겨요!</span></li>'
+          + '<li class="flex gap-2"><span style="color:#171717;font-weight:700">1.</span><span>화면 아래(또는 위)의 <b>공유 버튼</b>(네모 상자에서 위로 향한 <b>↑ 화살표</b> 모양)을 누르세요.</span></li>'
+          + '<li class="flex gap-2"><span style="color:#171717;font-weight:700">2.</span><span>메뉴를 아래로 내려 <b>‘홈 화면에 추가’</b>를 누르세요.</span></li>'
+          + '<li class="flex gap-2"><span style="color:#171717;font-weight:700">3.</span><span>오른쪽 위 <b>‘추가’</b>를 누르면 완료 — 홈 화면에 BIBLY 앱이 생겨요!</span></li>'
           + '</ol><p class="text-xs text-gray-400 mt-3">※ 아이폰은 반드시 <b>사파리(Safari)</b> 브라우저에서 진행해 주세요.</p></div>'
           + '<div id="installOther" style="display:none"><p class="text-sm text-gray-600">브라우저 주소창의 <b>설치 아이콘(⊕)</b>을 누르거나, 메뉴에서 <b>‘앱 설치 / 페이지를 앱으로 설치’</b>를 선택하세요.</p></div>'
           + '<button onclick="document.getElementById(\'installModal\').style.display=\'none\'" class="mt-5 w-full py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 font-semibold text-sm">닫기</button>'
@@ -207,7 +207,7 @@
       el.innerHTML =
         '<a href="mylearning.html" class="inline-flex items-center gap-1 bg-gold text-white font-semibold px-3 py-1.5 rounded-full hover:opacity-90 transition text-xs whitespace-nowrap">📚 내 강의실</a>'
       + support
-      + '<button onclick="__biblyLogout()" class="text-ink/45 hover:text-gold text-sm whitespace-nowrap">로그아웃</button>';
+      + '<button onclick="__biblyLogout()" class="text-neutral-900/45 hover:text-gold text-sm whitespace-nowrap">로그아웃</button>';
     } else {
       el.innerHTML =
         '<a href="mylearning.html" class="inline-flex items-center gap-1 border border-gold/45 text-gold font-semibold px-3 py-1.5 rounded-full hover:bg-gold/10 transition text-xs whitespace-nowrap">📚 내 강의실</a>'

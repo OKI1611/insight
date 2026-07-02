@@ -45,9 +45,9 @@
   <style>
     h1,h2,.serif{font-family:'Noto Serif KR',Pretendard,serif}
     .article p{margin:.75em 0;line-height:1.9}
-    .article h3{font-size:1.15rem;font-weight:700;margin:1.1em 0 .35em;color:#213a6b}
+    .article h3{font-size:1.15rem;font-weight:700;margin:1.1em 0 .35em;color:#171717}
     .article blockquote{border-left:3px solid #b8923f;padding:.3em 1em;color:#5a6275;font-style:italic;margin:1.1em 0;background:#b8923f0d;border-radius:0 .4rem .4rem 0}
-    .article strong{font-weight:700;color:#213a6b}
+    .article strong{font-weight:700;color:#171717}
     .ql-container{font-family:'Pretendard',sans-serif;font-size:16px}
     .ql-editor{min-height:320px;font-size:16px;line-height:1.85}
     .ql-toolbar.ql-snow{border-color:rgba(21,32,58,.12);border-radius:.75rem .75rem 0 0;background:#fff}
@@ -57,7 +57,7 @@
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://biblynote.com/"},{"@type":"ListItem","position":2,"name":"위대한 믿음","item":"https://biblynote.com/preachers"},{"@type":"ListItem","position":3,"name":"위대한 설교자","item":"https://biblynote.com/preachers"}]}
   </script>
 </head>
-<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+<body class="font-sans bg-paper text-neutral-900 antialiased min-h-screen">
 
   <div id="siteHeader" data-active="preachers.html"></div>
 
@@ -68,8 +68,8 @@
       <div class="text-center mb-8">
         <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">GREAT PREACHERS · 위대한 설교자 시리즈</p>
         <h1 class="text-3xl md:text-4xl font-bold leading-tight">위대한 설교자 시리즈</h1>
-        <p class="text-ink/60 text-base md:text-lg mt-4 max-w-2xl mx-auto leading-relaxed">
-          시대를 깨운 위대한 설교자들의 명설교를 <b class="text-ink/80">칼럼식으로 요약</b>해 전합니다.
+        <p class="text-neutral-900/60 text-base md:text-lg mt-4 max-w-2xl mx-auto leading-relaxed">
+          시대를 깨운 위대한 설교자들의 명설교를 <b class="text-neutral-900/80">칼럼식으로 요약</b>해 전합니다.
           한 편씩 읽으며 은혜를 나누고, <b class="text-gold">댓글</b>로 묵상을 함께 나눠 보세요.
         </p>
       </div>
@@ -89,7 +89,7 @@
         </aside>
         <div class="min-w-0">
           <!-- 설교자 갤러리 -->
-          <div id="gallery" class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 mb-10"><p class="text-ink/40 text-sm text-center py-12 col-span-full">불러오는 중…</p></div>
+          <div id="gallery" class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 mb-10"><p class="text-neutral-900/40 text-sm text-center py-12 col-span-full">불러오는 중…</p></div>
           <!-- 선택한 설교자의 설교 목록 -->
           <div id="sermons"></div>
         </div>
@@ -98,27 +98,27 @@
 
     <!-- ===== 읽기 ===== -->
     <article id="readView" class="hidden max-w-3xl mx-auto">
-      <button onclick="showList()" class="text-sm text-ink/50 hover:text-gold mb-6">← 목록으로</button>
+      <button onclick="showList()" class="text-sm text-neutral-900/50 hover:text-gold mb-6">← 목록으로</button>
       <div id="rHead"></div>
-      <div id="rBody" class="article text-ink/85 text-[16px]"></div>
+      <div id="rBody" class="article text-neutral-900/85 text-[16px]"></div>
       <div id="rTakeaways"></div>
 
       <div id="rAdmin" class="hidden mt-8 pt-4 border-t border-ink/10 text-sm">
-        <button onclick="deleteCurrent()" class="text-ink/40 hover:text-red-500">🗑 이 글 삭제</button>
+        <button onclick="deleteCurrent()" class="text-neutral-900/40 hover:text-red-500">🗑 이 글 삭제</button>
       </div>
 
       <!-- 댓글 -->
       <section class="mt-12 pt-8 border-t border-ink/10">
-        <h2 class="font-bold text-xl mb-1">💬 묵상 나눔 <span id="cCount" class="text-ink/40 text-base font-normal"></span></h2>
-        <p class="text-ink/50 text-sm mb-5">이 설교를 읽고 받은 은혜와 적용을 자유롭게 나눠 주세요.</p>
+        <h2 class="font-bold text-xl mb-1">💬 묵상 나눔 <span id="cCount" class="text-neutral-900/40 text-base font-normal"></span></h2>
+        <p class="text-neutral-900/50 text-sm mb-5">이 설교를 읽고 받은 은혜와 적용을 자유롭게 나눠 주세요.</p>
         <div id="cForm" class="mb-6"></div>
-        <div id="cList" class="space-y-4"><p class="text-ink/40 text-sm text-center py-6">댓글을 불러오는 중…</p></div>
+        <div id="cList" class="space-y-4"><p class="text-neutral-900/40 text-sm text-center py-6">댓글을 불러오는 중…</p></div>
       </section>
     </article>
 
     <!-- ===== 관리자 글쓰기 ===== -->
     <div id="editView" class="hidden max-w-3xl mx-auto">
-      <button onclick="showList()" class="text-sm text-ink/50 hover:text-gold mb-6">← 취소</button>
+      <button onclick="showList()" class="text-sm text-neutral-900/50 hover:text-gold mb-6">← 취소</button>
       <h2 class="text-2xl font-bold mb-5">새 설교 글 쓰기</h2>
       <div class="space-y-3">
         <div class="grid sm:grid-cols-2 gap-3">
@@ -134,15 +134,15 @@
         <p id="fMsg" class="text-sm text-red-500"></p>
         <div class="flex gap-2">
           <button id="saveBtn" onclick="savePost()" class="bg-gold text-white font-bold px-6 py-3 rounded-full hover:opacity-90 transition">올리기</button>
-          <button onclick="showList()" class="text-ink/50 px-4">취소</button>
+          <button onclick="showList()" class="text-neutral-900/50 px-4">취소</button>
         </div>
       </div>
     </div>
 
     <!-- 설교자 사진 출처·라이선스 (자유 라이선스 의무 표기) -->
     <div class="mt-12 pt-6 border-t border-ink/10">
-      <details class="text-[11px] text-ink/45 leading-relaxed">
-        <summary class="cursor-pointer hover:text-ink/70 select-none font-semibold">📷 설교자 사진 출처 및 라이선스</summary>
+      <details class="text-[11px] text-neutral-900/45 leading-relaxed">
+        <summary class="cursor-pointer hover:text-neutral-900/70 select-none font-semibold">📷 설교자 사진 출처 및 라이선스</summary>
         <p class="mt-2">
           존 스토트 — Langham Partnership (CC BY 3.0) · 팀 켈러 — Frank Licorice (CC BY-SA 2.0) ·
           존 맥아더 — IslandsEnd (CC BY 3.0) · 한경직 — Ransah1963 (CC BY-SA 4.0) ·
@@ -241,7 +241,7 @@
           ${avatarHTML(g.name, m, 'w-full aspect-[4/5] text-4xl')}
           <div class="p-3 text-center">
             <p class="font-bold text-sm leading-tight">${esc(g.name)}</p>
-            <p class="text-[11px] text-ink/45 mt-0.5 leading-tight">${esc(m?m.role:(g.en||''))}</p>
+            <p class="text-[11px] text-neutral-900/45 mt-0.5 leading-tight">${esc(m?m.role:(g.en||''))}</p>
             <p class="text-[11px] text-gold font-semibold mt-1.5">📖 ${g.items.length}편</p>
           </div>
         </button>`;
@@ -259,8 +259,8 @@
         <div class="flex items-center gap-4 bg-white rounded-2xl border border-ink/8 shadow-soft p-4 sm:p-5 mb-4">
           ${avatarHTML(g.name, m, 'w-16 h-16 sm:w-20 sm:h-20 rounded-2xl text-2xl shrink-0')}
           <div class="min-w-0">
-            <h2 class="text-xl sm:text-2xl font-bold leading-tight">${esc(g.name)} <span class="text-ink/40 text-sm font-normal">${esc(g.en||'')}</span></h2>
-            ${m?`<p class="text-sm text-gold font-semibold mt-0.5">${esc(m.role)}</p><p class="text-xs text-ink/45 mt-0.5">${esc(m.era)} · 명설교 ${g.items.length}편</p>`:`<p class="text-xs text-ink/45 mt-0.5">명설교 ${g.items.length}편</p>`}
+            <h2 class="text-xl sm:text-2xl font-bold leading-tight">${esc(g.name)} <span class="text-neutral-900/40 text-sm font-normal">${esc(g.en||'')}</span></h2>
+            ${m?`<p class="text-sm text-gold font-semibold mt-0.5">${esc(m.role)}</p><p class="text-xs text-neutral-900/45 mt-0.5">${esc(m.era)} · 명설교 ${g.items.length}편</p>`:`<p class="text-xs text-neutral-900/45 mt-0.5">명설교 ${g.items.length}편</p>`}
           </div>
         </div>
         <div class="grid sm:grid-cols-2 gap-3">
@@ -269,7 +269,7 @@
               <span class="shrink-0 w-7 h-7 rounded-full bg-gold/12 text-gold font-bold text-xs flex items-center justify-center mt-0.5">${String(i+1).padStart(2,'0')}</span>
               <span class="min-w-0">
                 <span class="block font-bold text-[15px] leading-snug">${esc(p.title)}</span>
-                <span class="block text-xs text-ink/45 mt-1">${esc(p.sermon_title||'')}${p.scripture?` · ${esc(p.scripture)}`:''}</span>
+                <span class="block text-xs text-neutral-900/45 mt-1">${esc(p.sermon_title||'')}${p.scripture?` · ${esc(p.scripture)}`:''}</span>
               </span>
             </button>`).join('')}
         </div>`;
@@ -282,14 +282,14 @@
       $('rHead').innerHTML = `
         <span class="inline-block bg-gold/12 text-gold text-xs font-bold px-3 py-1 rounded-full mb-3">${esc(p.preacher)}${p.preacher_en?` · ${esc(p.preacher_en)}`:''}</span>
         <h1 class="text-2xl md:text-[30px] font-bold leading-snug">${esc(p.title)}</h1>
-        <p class="text-ink/50 text-sm mt-2.5 mb-6 pb-6 border-b border-ink/10">
-          ${p.sermon_title?`📖 <b class="text-ink/70">${esc(p.sermon_title)}</b>`:''}${p.scripture?` · ${esc(p.scripture)}`:''}
+        <p class="text-neutral-900/50 text-sm mt-2.5 mb-6 pb-6 border-b border-ink/10">
+          ${p.sermon_title?`📖 <b class="text-neutral-900/70">${esc(p.sermon_title)}</b>`:''}${p.scripture?` · ${esc(p.scripture)}`:''}
         </p>`;
       $('rBody').innerHTML = sanitize(p.html||'');
       $('rTakeaways').innerHTML = (p.takeaways&&p.takeaways.length) ? `
         <div class="bg-gold/[0.07] border border-gold/25 rounded-2xl p-5 mt-8">
           <p class="font-bold text-gold mb-2.5">✦ 오늘의 적용</p>
-          <ul class="space-y-1.5">${p.takeaways.map(t=>`<li class="flex gap-2 text-[15px] text-ink/75 leading-relaxed"><span class="text-gold shrink-0">✓</span><span>${esc(t)}</span></li>`).join('')}</ul>
+          <ul class="space-y-1.5">${p.takeaways.map(t=>`<li class="flex gap-2 text-[15px] text-neutral-900/75 leading-relaxed"><span class="text-gold shrink-0">✓</span><span>${esc(t)}</span></li>`).join('')}</ul>
         </div>` : '';
       $('rAdmin').classList.toggle('hidden', !(isAdmin && !p.seed));
       $('listView').classList.add('hidden'); $('editView').classList.add('hidden');
@@ -307,31 +307,31 @@
           <div class="bg-white border border-ink/12 rounded-2xl p-4">
             <textarea id="cInput" rows="3" placeholder="은혜 나눔을 남겨 주세요…" class="w-full text-sm outline-none resize-none"></textarea>
             <div class="flex items-center justify-between mt-2 pt-2 border-t border-ink/8">
-              <span class="text-xs text-ink/40">${esc(myName())}님으로 작성</span>
+              <span class="text-xs text-neutral-900/40">${esc(myName())}님으로 작성</span>
               <button onclick="addComment()" class="bg-gold text-white text-sm font-semibold px-4 py-2 rounded-full hover:opacity-90 transition">등록</button>
             </div>
           </div>`;
       } else {
-        $('cForm').innerHTML = `<div class="bg-ink/[0.03] border border-ink/8 rounded-2xl p-5 text-center text-sm text-ink/55">댓글을 남기려면 <a href="index.html" class="text-gold font-semibold hover:underline">로그인</a> 해 주세요.</div>`;
+        $('cForm').innerHTML = `<div class="bg-ink/[0.03] border border-ink/8 rounded-2xl p-5 text-center text-sm text-neutral-900/55">댓글을 남기려면 <a href="index.html" class="text-gold font-semibold hover:underline">로그인</a> 해 주세요.</div>`;
       }
     }
 
     async function loadComments(key){
       const { data, error } = await sb.from('preacher_comments').select('*').eq('post_key', key).order('created_at',{ascending:true});
-      if(error){ $('cList').innerHTML = `<p class="text-ink/40 text-sm text-center py-4">댓글을 불러오지 못했습니다. (관리자: db/preachers.sql 실행 필요)</p>`; $('cCount').textContent=''; return; }
+      if(error){ $('cList').innerHTML = `<p class="text-neutral-900/40 text-sm text-center py-4">댓글을 불러오지 못했습니다. (관리자: db/preachers.sql 실행 필요)</p>`; $('cCount').textContent=''; return; }
       const list = data||[];
       $('cCount').textContent = list.length ? `${list.length}` : '';
-      if(!list.length){ $('cList').innerHTML = '<p class="text-ink/35 text-sm text-center py-6">첫 번째 묵상 나눔을 남겨 보세요.</p>'; return; }
+      if(!list.length){ $('cList').innerHTML = '<p class="text-neutral-900/35 text-sm text-center py-6">첫 번째 묵상 나눔을 남겨 보세요.</p>'; return; }
       const myId = SESSION&&SESSION.user&&SESSION.user.id;
       $('cList').innerHTML = list.map(c=>{
         const canDel = isAdmin || (myId && c.user_id===myId);
         return `<div class="bg-white border border-ink/8 rounded-2xl px-4 py-3.5">
           <div class="flex items-center gap-2 mb-1.5">
             <span class="font-semibold text-sm">${esc(c.author_name||'회원')}</span>
-            <span class="text-xs text-ink/35">${timeAgo(c.created_at)}</span>
-            ${canDel?`<button onclick="delComment('${c.id}')" class="ml-auto text-xs text-ink/30 hover:text-red-500">삭제</button>`:''}
+            <span class="text-xs text-neutral-900/35">${timeAgo(c.created_at)}</span>
+            ${canDel?`<button onclick="delComment('${c.id}')" class="ml-auto text-xs text-neutral-900/30 hover:text-red-500">삭제</button>`:''}
           </div>
-          <p class="text-[15px] text-ink/80 leading-relaxed">${nl2(c.content)}</p>
+          <p class="text-[15px] text-neutral-900/80 leading-relaxed">${nl2(c.content)}</p>
         </div>`;
       }).join('');
     }

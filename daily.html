@@ -39,7 +39,7 @@
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://biblynote.com/"},{"@type":"ListItem","position":2,"name":"성경","item":"https://biblynote.com/bible"},{"@type":"ListItem","position":3,"name":"매일 말씀과 함께","item":"https://biblynote.com/daily"}]}
   </script>
 </head>
-<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+<body class="font-sans bg-paper text-neutral-900 antialiased min-h-screen">
 
   <div id="siteHeader" data-active="daily.html"></div>
 
@@ -57,38 +57,38 @@
     <div class="flex items-center justify-between gap-2 mb-5">
       <button onclick="step(-1)" id="prevBtn" class="text-sm border border-ink/15 rounded-full px-4 py-2 hover:bg-ink/5 transition">← 어제</button>
       <div class="text-center">
-        <p id="dDate" class="font-bold text-ink">—</p>
+        <p id="dDate" class="font-bold text-neutral-900">—</p>
         <button onclick="openArchive()" class="text-[12px] text-gold hover:underline mt-0.5">📅 지난 묵상 보기</button>
       </div>
       <button onclick="step(1)" id="nextBtn" class="text-sm border border-ink/15 rounded-full px-4 py-2 hover:bg-ink/5 transition">내일 →</button>
     </div>
 
     <article id="dev" class="bg-white rounded-2xl border border-ink/8 shadow-card p-6 md:p-8">
-      <p class="text-ink/40 text-center py-12">불러오는 중…</p>
+      <p class="text-neutral-900/40 text-center py-12">불러오는 중…</p>
     </article>
 
     <!-- 묵상 완료 / 공유 -->
     <div id="actions" class="hidden mt-5 flex flex-col sm:flex-row items-center justify-center gap-3">
       <button onclick="markDone()" id="doneBtn" class="bg-gold text-white font-bold px-6 py-3 rounded-full hover:opacity-90 transition shadow-soft">🙏 오늘 묵상 완료</button>
-      <button onclick="share()" class="border border-ink/15 text-ink/70 font-semibold px-5 py-3 rounded-full hover:bg-ink/5 transition">🔗 공유하기</button>
+      <button onclick="share()" class="border border-ink/15 text-neutral-900/70 font-semibold px-5 py-3 rounded-full hover:bg-ink/5 transition">🔗 공유하기</button>
       <button onclick="openDevEditor()" id="devEditBtn" class="hidden border border-gold/50 text-gold font-semibold px-5 py-3 rounded-full hover:bg-gold/10 transition">✏️ 이 묵상 편집</button>
       <a href="bible.html" class="text-sm text-gold hover:underline">📖 본문 전체 읽기 →</a>
     </div>
-    <p id="streak" class="text-center text-[12.5px] text-ink/55 mt-3"></p>
+    <p id="streak" class="text-center text-[12.5px] text-neutral-900/55 mt-3"></p>
 
     <!-- ===== 오늘의 묵상 나눔 (블로그식) ===== -->
     <section id="shareSection" class="mt-9">
       <div class="flex items-center justify-between gap-2 mb-2">
-        <h3 class="font-bold text-ink flex items-center gap-1.5">✍️ 오늘의 묵상 나눔 <span id="postCount" class="text-xs font-semibold text-gold bg-gold/10 px-2 py-0.5 rounded-full">0</span></h3>
+        <h3 class="font-bold text-neutral-900 flex items-center gap-1.5">✍️ 오늘의 묵상 나눔 <span id="postCount" class="text-xs font-semibold text-gold bg-gold/10 px-2 py-0.5 rounded-full">0</span></h3>
         <button onclick="toggleComposer()" id="writeBtn" class="text-sm font-semibold bg-gold text-white px-4 py-2 rounded-full hover:opacity-90 transition shadow-soft">✍️ 내 묵상 쓰기</button>
       </div>
-      <p class="text-[12px] text-ink/50 mb-3">오늘 본문(<span id="shareRef" class="text-ink/70 font-medium">—</span>)을 묵상하며 받은 은혜를 자유롭게 나눠보세요. 누구나 쓸 수 있어요.</p>
+      <p class="text-[12px] text-neutral-900/50 mb-3">오늘 본문(<span id="shareRef" class="text-neutral-900/70 font-medium">—</span>)을 묵상하며 받은 은혜를 자유롭게 나눠보세요. 누구나 쓸 수 있어요.</p>
       <div id="composer" class="hidden bg-white rounded-2xl border border-gold/30 shadow-soft p-4 mb-4">
         <input id="pTitle" type="text" maxlength="60" placeholder="제목 (선택)" class="w-full border border-ink/15 rounded-lg px-3 py-2 text-sm mb-2 outline-none focus:border-gold" />
         <textarea id="pContent" rows="5" maxlength="2000" placeholder="오늘 말씀에서 받은 은혜·깨달음·삶의 적용을 나눠주세요…" class="w-full border border-ink/15 rounded-lg px-3 py-2 text-[14px] outline-none focus:border-gold leading-relaxed"></textarea>
         <div class="flex items-center justify-end gap-2 mt-2">
           <span id="pMsg" class="text-xs text-red-500 mr-auto"></span>
-          <button onclick="toggleComposer()" class="text-sm text-ink/50 px-3 py-2">취소</button>
+          <button onclick="toggleComposer()" class="text-sm text-neutral-900/50 px-3 py-2">취소</button>
           <button onclick="submitPost()" id="pSubmit" class="text-sm font-bold bg-ink text-paper px-5 py-2 rounded-full hover:bg-navy transition">나눔 올리기</button>
         </div>
       </div>
@@ -97,11 +97,11 @@
 
     <!-- 보관함 -->
     <div id="archive" class="hidden mt-7 bg-white rounded-2xl border border-ink/8 shadow-soft p-5">
-      <div class="flex items-center justify-between mb-3"><p class="font-bold text-sm">📅 지난 묵상</p><button onclick="closeArchive()" class="text-xs text-ink/40 hover:text-ink">✕ 닫기</button></div>
+      <div class="flex items-center justify-between mb-3"><p class="font-bold text-sm">📅 지난 묵상</p><button onclick="closeArchive()" class="text-xs text-neutral-900/40 hover:text-neutral-900">✕ 닫기</button></div>
       <div id="archiveList" class="grid sm:grid-cols-2 gap-2"></div>
     </div>
 
-    <p class="text-[11px] text-ink/40 text-center mt-8 leading-relaxed">매일 새 묵상이 맥체인 읽기표에 따라 자동으로 발행됩니다. 본문은 KJV 새번역·원어 대조를 따릅니다.</p>
+    <p class="text-[11px] text-neutral-900/40 text-center mt-8 leading-relaxed">매일 새 묵상이 맥체인 읽기표에 따라 자동으로 발행됩니다. 본문은 KJV 새번역·원어 대조를 따릅니다.</p>
   </main>
 
   <script src="auth-header.js?v=20260619c"></script>
@@ -133,16 +133,16 @@
     const t=todayStr();
     // 공개된 것 중 오늘 것이 있으면 오늘, 없으면 가장 최근(=발행 기준일)
     let pick = INDEX.includes(t) ? t : INDEX.filter(d=>d<=t).pop() || INDEX[INDEX.length-1];
-    if(!pick){ $('dev').innerHTML='<p class="text-center text-ink/50 py-12">곧 첫 묵상이 발행됩니다. 잠시만 기다려 주세요 🙏</p>'; $('dDate').textContent=fmtK(t); return; }
+    if(!pick){ $('dev').innerHTML='<p class="text-center text-neutral-900/50 py-12">곧 첫 묵상이 발행됩니다. 잠시만 기다려 주세요 🙏</p>'; $('dDate').textContent=fmtK(t); return; }
     load(pick);
   })();
 
   async function load(date){
     CUR=date; $('dDate').textContent=fmtK(date);
-    $('dev').innerHTML='<p class="text-ink/40 text-center py-12">불러오는 중…</p>';
+    $('dev').innerHTML='<p class="text-neutral-900/40 text-center py-12">불러오는 중…</p>';
     $('actions').classList.add('hidden'); $('streak').textContent='';
     let d;
-    try{ d=await (await fetch('content/daily/'+date+'.json?t='+Date.now())).json(); }catch(e){ $('dev').innerHTML='<p class="text-center text-ink/50 py-12">이 날의 묵상을 불러오지 못했어요.</p>'; return; }
+    try{ d=await (await fetch('content/daily/'+date+'.json?t='+Date.now())).json(); }catch(e){ $('dev').innerHTML='<p class="text-center text-neutral-900/50 py-12">이 날의 묵상을 불러오지 못했어요.</p>'; return; }
     // 관리자 수정본(오버라이드)이 있으면 그것을 우선 노출
     try{ const { data:ov } = await sb.from('daily_overrides').select('data').eq('devo_date',date).maybeSingle(); if(ov&&ov.data) d=ov.data; }catch(e){}
     CUR_DOC=d;
@@ -157,26 +157,26 @@
     refreshDone(date);
   }
   function render(d){
-    const secs=(d.sections||[]).map(s=>`<div class="mb-4"><h3 class="font-bold text-ink text-[15px] mb-1.5 flex items-center gap-1.5">${esc(s.icon||'•')} ${esc(s.h)}</h3><p class="text-[14.5px] text-ink/80">${esc(s.p)}</p></div>`).join('');
+    const secs=(d.sections||[]).map(s=>`<div class="mb-4"><h3 class="font-bold text-neutral-900 text-[15px] mb-1.5 flex items-center gap-1.5">${esc(s.icon||'•')} ${esc(s.h)}</h3><p class="text-[14.5px] text-neutral-900/80">${esc(s.p)}</p></div>`).join('');
     $('dev').innerHTML=`
       <div class="text-center border-b border-ink/8 pb-5 mb-5">
         <span class="inline-block text-[11px] font-bold text-gold bg-gold/10 px-3 py-1 rounded-full mb-2">📖 ${esc(d.ref||'')}</span>
-        <h2 class="text-xl md:text-2xl font-bold leading-snug">${esc(d.title||'')}</h2>
-        ${d.verse_kr?`<p class="serif text-[16px] text-ink mt-3 leading-relaxed">"${esc(d.verse_kr)}"</p>`:''}
-        ${d.verse_en?`<p class="verse-en text-[13px] text-ink/45 mt-1.5 leading-relaxed">${esc(d.verse_en)}</p>`:''}
-        ${d.focus?`<p class="text-[12px] text-ink/40 mt-1.5">— ${esc(d.focus)}</p>`:''}
+        <h2 class="font-sans text-xl md:text-2xl font-bold leading-snug">${esc(d.title||'')}</h2>
+        ${d.verse_kr?`<p class="font-sans text-[16px] text-neutral-900 mt-3 leading-relaxed">"${esc(d.verse_kr)}"</p>`:''}
+        ${d.verse_en?`<p class="verse-en text-[13px] text-neutral-900/45 mt-1.5 leading-relaxed">${esc(d.verse_en)}</p>`:''}
+        ${d.focus?`<p class="text-[12px] text-neutral-900/40 mt-1.5">— ${esc(d.focus)}</p>`:''}
       </div>
       <div class="dev-body">${secs}</div>
-      ${d.prayer?`<div class="mt-5 bg-sand/40 border-l-2 border-gold/50 rounded-r-xl px-4 py-3"><p class="text-[12px] font-bold text-gold mb-1">🙏 오늘의 기도</p><p class="text-[14px] text-ink/80 leading-relaxed">${esc(d.prayer)}</p></div>`:''}
-      ${d.question?`<div class="mt-3 bg-ink/[0.03] rounded-xl px-4 py-3"><p class="text-[12px] font-bold text-ink/50 mb-1">💭 묵상 질문</p><p class="text-[14px] text-ink/80 leading-relaxed">${esc(d.question)}</p></div>`:''}
-      ${d.encouragement?`<p class="text-center text-[15px] font-bold text-ink mt-6 serif">✨ ${esc(d.encouragement)}</p>`:''}`;
+      ${d.prayer?`<div class="mt-5 bg-sand/40 border-l-2 border-gold/50 rounded-r-xl px-4 py-3"><p class="text-[12px] font-bold text-gold mb-1">🙏 오늘의 기도</p><p class="text-[14px] text-neutral-900/80 leading-relaxed">${esc(d.prayer)}</p></div>`:''}
+      ${d.question?`<div class="mt-3 bg-ink/[0.03] rounded-xl px-4 py-3"><p class="text-[12px] font-bold text-neutral-900/50 mb-1">💭 묵상 질문</p><p class="text-[14px] text-neutral-900/80 leading-relaxed">${esc(d.question)}</p></div>`:''}
+      ${d.encouragement?`<p class="text-center text-[15px] font-bold text-neutral-900 mt-6 serif">✨ ${esc(d.encouragement)}</p>`:''}`;
     window.scrollTo({top:0,behavior:'smooth'});
   }
   function step(n){ const i=INDEX.indexOf(CUR); const j=i+n; if(j>=0&&j<INDEX.length) load(INDEX[j]); }
 
   function openArchive(){
     const box=$('archiveList');
-    box.innerHTML=INDEX.slice().reverse().map(d=>`<button onclick="load('${d}');closeArchive()" class="text-left text-[13px] px-3 py-2 rounded-lg border border-ink/8 hover:border-gold/40 hover:bg-gold/5 transition ${d===CUR?'border-gold/50 bg-gold/5':''}">${fmtK(d)}</button>`).join('') || '<p class="text-xs text-ink/40">아직 보관된 묵상이 없어요.</p>';
+    box.innerHTML=INDEX.slice().reverse().map(d=>`<button onclick="load('${d}');closeArchive()" class="text-left text-[13px] px-3 py-2 rounded-lg border border-ink/8 hover:border-gold/40 hover:bg-gold/5 transition ${d===CUR?'border-gold/50 bg-gold/5':''}">${fmtK(d)}</button>`).join('') || '<p class="text-xs text-neutral-900/40">아직 보관된 묵상이 없어요.</p>';
     $('archive').classList.remove('hidden'); $('archive').scrollIntoView({behavior:'smooth',block:'nearest'});
   }
   function closeArchive(){ $('archive').classList.add('hidden'); }
@@ -213,11 +213,11 @@
   }
   async function loadPosts(date){
     $('shareRef').textContent = REF || '';
-    const list=$('postList'); list.innerHTML='<p class="text-ink/35 text-sm py-3 text-center">불러오는 중…</p>';
+    const list=$('postList'); list.innerHTML='<p class="text-neutral-900/35 text-sm py-3 text-center">불러오는 중…</p>';
     let posts=[];
     try{ const { data } = await sb.from('daily_posts').select('id,author_id,author_name,title,content,created_at').eq('devo_date',date).order('created_at',{ascending:false}); posts=data||[]; }catch(e){ posts=[]; }
     $('postCount').textContent=posts.length;
-    if(!posts.length){ list.innerHTML='<p class="text-ink/40 text-sm py-6 text-center bg-white rounded-2xl border border-ink/8">아직 이 날의 수강생 묵상이 없어요.<br/>첫 나눔을 남겨보세요 🙏</p>'; return; }
+    if(!posts.length){ list.innerHTML='<p class="text-neutral-900/40 text-sm py-6 text-center bg-white rounded-2xl border border-ink/8">아직 이 날의 수강생 묵상이 없어요.<br/>첫 나눔을 남겨보세요 🙏</p>'; return; }
     const ids=posts.map(p=>p.id); let likeRows=[];
     try{ const { data } = await sb.from('daily_post_likes').select('post_id,user_id').in('post_id',ids); likeRows=data||[]; }catch(e){}
     const lc={}, mine={}; likeRows.forEach(r=>{ lc[r.post_id]=(lc[r.post_id]||0)+1; if(USER&&r.user_id===USER.id) mine[r.post_id]=true; });
@@ -231,12 +231,12 @@
     // 편집 모드: 제목·내용을 직접 고칠 수 있는 폼
     if(EDITING===p.id){
       return `<article class="bg-white rounded-2xl border border-gold/40 shadow-soft p-4">
-        <p class="text-[12px] font-bold text-gold mb-2">✏️ 글 수정 ${IS_ADMIN&&!own?'<span class="text-ink/40 font-normal">(관리자)</span>':''}</p>
+        <p class="text-[12px] font-bold text-gold mb-2">✏️ 글 수정 ${IS_ADMIN&&!own?'<span class="text-neutral-900/40 font-normal">(관리자)</span>':''}</p>
         <input id="et_${p.id}" type="text" maxlength="60" value="${esc(p.title||'')}" placeholder="제목 (선택)" class="w-full border border-ink/15 rounded-lg px-3 py-2 text-sm mb-2 outline-none focus:border-gold" />
         <textarea id="ec_${p.id}" rows="5" maxlength="2000" class="w-full border border-ink/15 rounded-lg px-3 py-2 text-[14px] outline-none focus:border-gold leading-relaxed" style="white-space:pre-wrap">${esc(p.content)}</textarea>
         <div class="flex items-center justify-end gap-2 mt-2">
           <span id="em_${p.id}" class="text-xs text-red-500 mr-auto"></span>
-          <button onclick="cancelEdit()" class="text-sm text-ink/50 px-3 py-2">취소</button>
+          <button onclick="cancelEdit()" class="text-sm text-neutral-900/50 px-3 py-2">취소</button>
           <button onclick="saveEdit('${p.id}')" class="text-sm font-bold bg-ink text-paper px-5 py-2 rounded-full hover:bg-navy transition">💾 저장</button>
         </div>
       </article>`;
@@ -244,14 +244,14 @@
     return `<article class="bg-white rounded-2xl border border-ink/8 shadow-soft p-4">
       <div class="flex items-center gap-2.5 mb-2">
         <div class="w-9 h-9 rounded-full bg-gold/15 text-gold flex items-center justify-center font-bold text-xs shrink-0">${init}</div>
-        <div class="flex-1 min-w-0"><p class="font-bold text-sm text-ink truncate">${nm}${IS_ADMIN&&!own?' <span class="text-[10px] text-ink/35 font-normal">· 다른 회원</span>':''}</p><p class="text-[11px] text-ink/40">${fdt(p.created_at)}</p></div>
-        ${canEdit?`<button onclick="startEdit('${p.id}')" class="text-[11px] text-ink/40 hover:text-gold">✏️ 수정</button>
-        <button onclick="deletePost('${p.id}')" class="text-[11px] text-ink/35 hover:text-red-500">삭제</button>`:''}
+        <div class="flex-1 min-w-0"><p class="font-bold text-sm text-neutral-900 truncate">${nm}${IS_ADMIN&&!own?' <span class="text-[10px] text-neutral-900/35 font-normal">· 다른 회원</span>':''}</p><p class="text-[11px] text-neutral-900/40">${fdt(p.created_at)}</p></div>
+        ${canEdit?`<button onclick="startEdit('${p.id}')" class="text-[11px] text-neutral-900/40 hover:text-gold">✏️ 수정</button>
+        <button onclick="deletePost('${p.id}')" class="text-[11px] text-neutral-900/35 hover:text-red-500">삭제</button>`:''}
       </div>
-      ${p.title?`<p class="font-bold text-ink text-[15px] mb-1">${esc(p.title)}</p>`:''}
-      <p class="text-[14px] text-ink/80 leading-relaxed" style="white-space:pre-wrap">${esc(p.content)}</p>
+      ${p.title?`<p class="font-bold text-neutral-900 text-[15px] mb-1">${esc(p.title)}</p>`:''}
+      <p class="text-[14px] text-neutral-900/80 leading-relaxed" style="white-space:pre-wrap">${esc(p.content)}</p>
       <div class="flex items-center gap-4 mt-3 pt-2.5 border-t border-ink/5">
-        <button onclick="toggleLike('${p.id}')" class="flex items-center gap-1.5 text-[13px] ${liked?'text-gold font-bold':'text-ink/55'} hover:text-gold transition">❤️ <span>${likes}</span></button>
+        <button onclick="toggleLike('${p.id}')" class="flex items-center gap-1.5 text-[13px] ${liked?'text-gold font-bold':'text-neutral-900/55'} hover:text-gold transition">❤️ <span>${likes}</span></button>
       </div>
     </article>`;
   }
@@ -302,7 +302,7 @@
       <div class="flex items-center gap-2 mb-1.5">
         <input class="de-icon w-12 border border-ink/15 rounded px-2 py-1 text-sm text-center" value="${esc(s.icon||'•')}" title="아이콘/이모지" />
         <input class="de-h flex-1 border border-ink/15 rounded px-2 py-1 text-sm font-semibold" value="${esc(s.h||'')}" placeholder="소제목 (예: 본문 풀이)" />
-        <button type="button" onclick="this.closest('.de-sec').remove()" class="text-[11px] text-ink/35 hover:text-red-500 px-1">삭제</button>
+        <button type="button" onclick="this.closest('.de-sec').remove()" class="text-[11px] text-neutral-900/35 hover:text-red-500 px-1">삭제</button>
       </div>
       <textarea class="de-p w-full border border-ink/15 rounded px-2 py-1.5 text-[14px] leading-relaxed" rows="4" placeholder="단락 내용">${esc(s.p||'')}</textarea>
     </div>`;
@@ -312,15 +312,15 @@
     if(!CUR_DOC){ return; }
     const d=CUR_DOC;
     const fld=(label,id,val,ta)=> ta
-      ? `<label class="block text-[12px] font-bold text-ink/55 mt-3 mb-1">${label}</label><textarea id="${id}" rows="${ta}" class="w-full border border-ink/15 rounded-lg px-3 py-2 text-[14px] leading-relaxed">${esc(val||'')}</textarea>`
-      : `<label class="block text-[12px] font-bold text-ink/55 mt-3 mb-1">${label}</label><input id="${id}" class="w-full border border-ink/15 rounded-lg px-3 py-2 text-sm" value="${esc(val||'')}" />`;
+      ? `<label class="block text-[12px] font-bold text-neutral-900/55 mt-3 mb-1">${label}</label><textarea id="${id}" rows="${ta}" class="w-full border border-ink/15 rounded-lg px-3 py-2 text-[14px] leading-relaxed">${esc(val||'')}</textarea>`
+      : `<label class="block text-[12px] font-bold text-neutral-900/55 mt-3 mb-1">${label}</label><input id="${id}" class="w-full border border-ink/15 rounded-lg px-3 py-2 text-sm" value="${esc(val||'')}" />`;
     const ov=document.createElement('div');
     ov.id='devEditor';
     ov.style.cssText='position:fixed;inset:0;z-index:90;background:rgba(21,32,58,.45);display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:24px 12px';
     ov.innerHTML=`<div class="bg-white rounded-2xl shadow-card w-full max-w-2xl my-2" style="max-width:42rem">
       <div class="flex items-center justify-between px-5 py-3 border-b border-ink/10 sticky top-0 bg-white rounded-t-2xl">
-        <p class="font-bold text-ink">✏️ 묵상 편집 <span class="text-[12px] text-ink/45 font-normal">· ${esc(fmtK(CUR))}</span></p>
-        <button onclick="closeDevEditor()" class="text-ink/40 hover:text-ink text-lg leading-none">✕</button>
+        <p class="font-bold text-neutral-900">✏️ 묵상 편집 <span class="text-[12px] text-neutral-900/45 font-normal">· ${esc(fmtK(CUR))}</span></p>
+        <button onclick="closeDevEditor()" class="text-neutral-900/40 hover:text-neutral-900 text-lg leading-none">✕</button>
       </div>
       <div class="px-5 py-4">
         ${fld('성경 본문 (예: 요한계시록 13장)','de_ref',d.ref)}
@@ -328,7 +328,7 @@
         ${fld('핵심 말씀 — 한글','de_vkr',d.verse_kr,2)}
         ${fld('핵심 말씀 — 영문','de_ven',d.verse_en,2)}
         ${fld('출처 표기 (예: 요한계시록 13:8)','de_focus',d.focus)}
-        <label class="block text-[12px] font-bold text-ink/55 mt-4 mb-1">본문 단락</label>
+        <label class="block text-[12px] font-bold text-neutral-900/55 mt-4 mb-1">본문 단락</label>
         <div id="de_secs">${(d.sections||[]).map((s,i)=>secRow(s,i)).join('')}</div>
         <button type="button" onclick="document.getElementById('de_secs').insertAdjacentHTML('beforeend', secRow(null, Date.now()))" class="text-[12px] font-semibold text-gold border border-gold/40 rounded-full px-3 py-1.5 hover:bg-gold/10">＋ 단락 추가</button>
         ${fld('🙏 오늘의 기도','de_prayer',d.prayer,3)}
@@ -336,9 +336,9 @@
         ${fld('✨ 격려 한마디','de_enc',d.encouragement)}
       </div>
       <div class="flex items-center gap-2 px-5 py-3 border-t border-ink/10 sticky bottom-0 bg-white rounded-b-2xl">
-        <button onclick="revertDev()" class="text-[12px] text-ink/45 hover:text-red-500 mr-auto">↺ 원본으로 되돌리기</button>
+        <button onclick="revertDev()" class="text-[12px] text-neutral-900/45 hover:text-red-500 mr-auto">↺ 원본으로 되돌리기</button>
         <span id="de_msg" class="text-xs text-red-500"></span>
-        <button onclick="closeDevEditor()" class="text-sm text-ink/55 px-3 py-2">취소</button>
+        <button onclick="closeDevEditor()" class="text-sm text-neutral-900/55 px-3 py-2">취소</button>
         <button onclick="saveDev()" id="de_save" class="text-sm font-bold bg-gold text-white px-5 py-2 rounded-full hover:opacity-90 transition shadow-soft">💾 저장</button>
       </div>
     </div>`;

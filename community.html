@@ -63,16 +63,16 @@
     .post-body a{color:#b8923f;text-decoration:underline}
     .boardBtn{display:flex;align-items:center;gap:.55rem;width:100%;justify-content:center;padding:.64rem .75rem;border-radius:.75rem;font-size:.9rem;font-weight:700;color:rgba(21,32,58,.82);transition:all .15s}
     @media(min-width:1024px){.boardBtn{justify-content:center}}
-    .boardBtn:hover{background:rgba(184,146,63,.12);color:#213a6b}
+    .boardBtn:hover{background:rgba(184,146,63,.12);color:#171717}
     .boardBtn.on{background:#213a6b;color:#ffffff;box-shadow:0 6px 16px -6px rgba(33,58,107,.5)}
     .boardLink{display:flex;align-items:center;gap:.55rem;padding:.62rem .7rem;border-radius:.7rem;font-size:.875rem;font-weight:600;color:rgba(21,32,58,.72);transition:all .15s}
-    .boardLink:hover{background:rgba(184,146,63,.12);color:#213a6b}
+    .boardLink:hover{background:rgba(184,146,63,.12);color:#171717}
   </style>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://biblynote.com/"},{"@type":"ListItem","position":2,"name":"소통·나눔","item":"https://biblynote.com/community"},{"@type":"ListItem","position":3,"name":"질문·나눔·기도요청","item":"https://biblynote.com/community"}]}
   </script>
 </head>
-<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+<body class="font-sans bg-paper text-neutral-900 antialiased min-h-screen">
 
   <!-- 헤더 -->
   <div id="siteHeader" data-active="community.html"></div>
@@ -81,17 +81,17 @@
     <div class="text-center mb-7">
       <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">Q&amp;A · 질문·나눔</p>
       <h1 class="text-2xl md:text-3xl font-bold">무엇이든 편하게 물어보세요</h1>
-      <p class="text-ink/65 text-base mt-3 leading-relaxed">성경·신앙·삶의 고민까지 <b class="text-ink">어떤 질문이든 환영</b>해요. 정답을 몰라도 괜찮아요.<br class="hidden sm:block"/> 함께 성경을 읽고 답을 찾아가는 공간입니다. 글은 누구나 볼 수 있고, 참여는 로그인 후에 할 수 있어요.</p>
+      <p class="text-neutral-900/65 text-base mt-3 leading-relaxed">성경·신앙·삶의 고민까지 <b class="text-neutral-900">어떤 질문이든 환영</b>해요. 정답을 몰라도 괜찮아요.<br class="hidden sm:block"/> 함께 성경을 읽고 답을 찾아가는 공간입니다. 글은 누구나 볼 수 있고, 참여는 로그인 후에 할 수 있어요.</p>
       <a href="request.html" class="inline-flex items-center gap-1.5 mt-4 bg-gold/10 text-gold font-semibold text-sm px-4 py-2 rounded-full hover:bg-gold/20 transition">📮 듣고 싶은 강의가 있나요? 강의 요청·건의함 →</a>
     </div>
 
     <!-- 로그인 모달 (참여하려 할 때만 표시) -->
     <div id="loginView" class="hidden fixed inset-0 z-[70] bg-ink/50 backdrop-blur-sm items-center justify-center p-4" onclick="if(event.target===this)closeLoginModal()">
       <div class="bg-white rounded-3xl border border-ink/8 shadow-card p-8 max-w-sm w-full text-center relative">
-        <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-ink/30 hover:text-ink text-2xl leading-none">×</button>
+        <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-neutral-900/30 hover:text-neutral-900 text-2xl leading-none">×</button>
         <p class="text-3xl mb-3">💬</p>
         <h2 class="text-lg font-bold mb-1">로그인하고 함께해요</h2>
-        <p class="text-sm text-ink/55 mb-6">로그인하면 글·답글로 토론과 교제에 참여할 수 있어요.</p>
+        <p class="text-sm text-neutral-900/55 mb-6">로그인하면 글·답글로 토론과 교제에 참여할 수 있어요.</p>
         <button onclick="googleLogin()" class="w-full flex items-center justify-center gap-3 border border-ink/15 bg-white rounded-xl py-3 font-medium hover:bg-ink/5 transition mb-3">
           <svg class="w-5 h-5" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C39.9 36.5 44 31 44 24c0-1.3-.1-2.3-.4-3.5z"/></svg>
           구글로 로그인
@@ -100,7 +100,7 @@
         <input id="lp" type="password" placeholder="비밀번호" class="w-full border border-ink/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-gold mb-2"/>
         <button onclick="emailLogin()" class="w-full bg-gold text-white font-semibold rounded-xl py-3 hover:opacity-90 transition">이메일로 로그인</button>
         <p id="loginMsg" class="text-red-500 text-xs mt-2 min-h-[16px]"></p>
-        <p class="text-ink/45 text-xs mt-3">아직 회원이 아니신가요? <a href="index.html#pricing" class="text-gold underline">홈에서 가입</a></p>
+        <p class="text-neutral-900/45 text-xs mt-3">아직 회원이 아니신가요? <a href="index.html#pricing" class="text-gold underline">홈에서 가입</a></p>
       </div>
     </div>
 
@@ -122,13 +122,13 @@
         <!-- 글쓰기 -->
         <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-4 mb-6">
           <div id="privacyRow" class="hidden mb-3 pb-3 border-b border-ink/8 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm">
-            <span class="text-ink/60 font-semibold">공개 범위</span>
+            <span class="text-neutral-900/60 font-semibold">공개 범위</span>
             <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="prayerVis" value="public" checked/> 공개</label>
-            <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="prayerVis" value="private"/> 🔒 비공개 <span class="text-ink/40 text-xs">관리자만 봅니다</span></label>
+            <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="prayerVis" value="private"/> 🔒 비공개 <span class="text-neutral-900/40 text-xs">관리자만 봅니다</span></label>
           </div>
           <div id="postEditor"></div>
           <div class="flex items-center justify-between mt-3 pt-3 border-t border-ink/8">
-            <span class="text-xs text-ink/40">✍️ 글·색·사진·링크 자유롭게 — 툴바를 활용하세요</span>
+            <span class="text-xs text-neutral-900/40">✍️ 글·색·사진·링크 자유롭게 — 툴바를 활용하세요</span>
             <button id="postBtn" onclick="submitPost()" class="bg-gold text-white font-semibold text-sm px-5 py-2.5 rounded-full hover:opacity-90 transition shrink-0">올리기</button>
           </div>
           <p id="postMsg" class="text-red-500 text-xs mt-2 min-h-[14px]"></p>
@@ -230,19 +230,19 @@
     function renderBoardNotice(b){
       const el = document.getElementById('boardNotice'); if(!el) return;
       if(b === 'free'){
-        el.innerHTML = `<div class="bg-gold/[0.07] border border-gold/25 rounded-2xl p-4 mb-5 text-sm text-ink/70 leading-relaxed">
-          <p class="font-bold text-ink mb-1">🕊️ 자유게시판 이용 안내</p>
-          그리스도인 수강생으로서 <b class="text-ink">서로 존중하는 예의와 품격</b>에 맞는 글과 그림을 나눠 주세요.
-          <b class="text-ink">정치 선동이나 사업체 홍보</b> 등 공동체의 덕을 세우지 않는 글은
-          <b class="text-ink">관리자 권한으로 예고 없이 삭제</b>될 수 있는 점, 너른 마음으로 양해 부탁드립니다. 🙏</div>`;
+        el.innerHTML = `<div class="bg-gold/[0.07] border border-gold/25 rounded-2xl p-4 mb-5 text-sm text-neutral-900/70 leading-relaxed">
+          <p class="font-bold text-neutral-900 mb-1">🕊️ 자유게시판 이용 안내</p>
+          그리스도인 수강생으로서 <b class="text-neutral-900">서로 존중하는 예의와 품격</b>에 맞는 글과 그림을 나눠 주세요.
+          <b class="text-neutral-900">정치 선동이나 사업체 홍보</b> 등 공동체의 덕을 세우지 않는 글은
+          <b class="text-neutral-900">관리자 권한으로 예고 없이 삭제</b>될 수 있는 점, 너른 마음으로 양해 부탁드립니다. 🙏</div>`;
       } else if(b === 'counsel'){
-        el.innerHTML = `<div class="bg-ink/[0.04] border border-ink/12 rounded-2xl p-4 mb-5 text-sm text-ink/70 leading-relaxed">
-          <p class="font-bold text-ink mb-1">🔒 신앙상담 — 비공개 1:1</p>
-          이 코너의 글과 답변(댓글)은 <b class="text-ink">작성한 본인과 대표강사(관리자)만</b> 볼 수 있습니다.
-          다른 분의 상담 글은 보이지 않고, <b class="text-ink">내가 쓴 상담만</b> 보여요. 민감한 고민도 안심하고 나눠 주세요. 🙏</div>`;
+        el.innerHTML = `<div class="bg-ink/[0.04] border border-ink/12 rounded-2xl p-4 mb-5 text-sm text-neutral-900/70 leading-relaxed">
+          <p class="font-bold text-neutral-900 mb-1">🔒 신앙상담 — 비공개 1:1</p>
+          이 코너의 글과 답변(댓글)은 <b class="text-neutral-900">작성한 본인과 대표강사(관리자)만</b> 볼 수 있습니다.
+          다른 분의 상담 글은 보이지 않고, <b class="text-neutral-900">내가 쓴 상담만</b> 보여요. 민감한 고민도 안심하고 나눠 주세요. 🙏</div>`;
       } else if(b === 'prayer'){
-        el.innerHTML = `<div class="bg-ink/[0.03] border border-ink/8 rounded-2xl p-4 mb-5 text-sm text-ink/65 leading-relaxed">
-          🙏 함께 기도할 제목을 나눠 주세요. <b class="text-ink">🔒 비공개</b>로 올리면 <b class="text-ink">강사(관리자)만</b> 내용을 볼 수 있어, 민감한 기도제목도 안심하고 맡기실 수 있어요.</div>`;
+        el.innerHTML = `<div class="bg-ink/[0.03] border border-ink/8 rounded-2xl p-4 mb-5 text-sm text-neutral-900/65 leading-relaxed">
+          🙏 함께 기도할 제목을 나눠 주세요. <b class="text-neutral-900">🔒 비공개</b>로 올리면 <b class="text-neutral-900">강사(관리자)만</b> 내용을 볼 수 있어, 민감한 기도제목도 안심하고 맡기실 수 있어요.</div>`;
       } else { el.innerHTML = ''; }
     }
 
@@ -349,19 +349,19 @@
         <div class="flex items-center justify-between mb-2">
           <div class="flex items-center gap-2.5">
             <div class="w-9 h-9 rounded-full bg-gold/20 text-gold flex items-center justify-center font-bold">${esc((p.author_name||'?').slice(0,1))}</div>
-            <div><p class="font-semibold text-sm flex items-center gap-1.5">${esc(p.author_name||'회원')}${rankSeal(RANKS[p.author_id],16)}${ p.is_private ? ' <span class="text-[10px] bg-ink/10 text-ink/60 font-bold px-1.5 py-0.5 rounded-full align-middle">🔒 비공개</span>' : '' }</p><p class="text-ink/40 text-xs">${timeAgo(p.created_at)}</p></div>
+            <div><p class="font-semibold text-sm flex items-center gap-1.5">${esc(p.author_name||'회원')}${rankSeal(RANKS[p.author_id],16)}${ p.is_private ? ' <span class="text-[10px] bg-ink/10 text-neutral-900/60 font-bold px-1.5 py-0.5 rounded-full align-middle">🔒 비공개</span>' : '' }</p><p class="text-neutral-900/40 text-xs">${timeAgo(p.created_at)}</p></div>
           </div>
           <div class="flex items-center gap-2 shrink-0">
-            <button onclick="shareCommunityPost('${p.id}')" class="text-ink/40 hover:text-gold text-xs font-medium" title="이 글 공유하기">🔗 공유</button>
-            ${canDel ? `<button onclick="del('${p.id}', ${mine ? 0 : 1})" class="text-ink/30 hover:text-red-500 text-xs">${delLabel}</button>` : ''}
+            <button onclick="shareCommunityPost('${p.id}')" class="text-neutral-900/40 hover:text-gold text-xs font-medium" title="이 글 공유하기">🔗 공유</button>
+            ${canDel ? `<button onclick="del('${p.id}', ${mine ? 0 : 1})" class="text-neutral-900/30 hover:text-red-500 text-xs">${delLabel}</button>` : ''}
           </div>
         </div>
-        <div class="post-body text-ink/80 leading-relaxed text-[15px]">${ /<[a-z][\s\S]*>/i.test(p.content||'') ? sanitize(p.content) : esc(p.content).replace(/\n/g,'<br>') }</div>
+        <div class="post-body text-neutral-900/80 leading-relaxed text-[15px]">${ /<[a-z][\s\S]*>/i.test(p.content||'') ? sanitize(p.content) : esc(p.content).replace(/\n/g,'<br>') }</div>
         ${p.image_url ? `<img src="${p.image_url}" alt="게시글 첨부 이미지" class="mt-3 rounded-xl max-h-96 w-auto border border-ink/5" loading="lazy">` : ''}
         <div class="mt-3 flex items-center gap-2">
-          <button onclick="toggleReaction('${p.id}','love')" id="rxb-${p.id}-love" class="inline-flex items-center gap-1 text-sm border border-ink/12 rounded-full px-3 py-1 hover:border-gold transition">❤️ <span id="rxc-${p.id}-love" class="font-semibold text-ink/55">0</span></button>
-          <button onclick="toggleReaction('${p.id}','pray')" id="rxb-${p.id}-pray" class="inline-flex items-center gap-1 text-sm border border-ink/12 rounded-full px-3 py-1 hover:border-gold transition">🙏 <span id="rxc-${p.id}-pray" class="font-semibold text-ink/55">0</span></button>
-          <span class="ml-auto text-xs text-ink/35">💬 답글 <span id="cmtc-${p.id}">0</span></span>
+          <button onclick="toggleReaction('${p.id}','love')" id="rxb-${p.id}-love" class="inline-flex items-center gap-1 text-sm border border-ink/12 rounded-full px-3 py-1 hover:border-gold transition">❤️ <span id="rxc-${p.id}-love" class="font-semibold text-neutral-900/55">0</span></button>
+          <button onclick="toggleReaction('${p.id}','pray')" id="rxb-${p.id}-pray" class="inline-flex items-center gap-1 text-sm border border-ink/12 rounded-full px-3 py-1 hover:border-gold transition">🙏 <span id="rxc-${p.id}-pray" class="font-semibold text-neutral-900/55">0</span></button>
+          <span class="ml-auto text-xs text-neutral-900/35">💬 답글 <span id="cmtc-${p.id}">0</span></span>
         </div>
         <div class="mt-4 pt-4 border-t border-ink/5">
           <div id="comments-${p.id}" class="space-y-2.5 mb-3"></div>
@@ -412,20 +412,20 @@
       const cc = document.getElementById('cmtc-' + postId); if(cc) cc.textContent = comments.length;
       const box = document.getElementById('comments-' + postId);
       if(!box) return;
-      if(!comments.length){ box.innerHTML = '<p class="text-ink/35 text-xs pl-1">아직 답글이 없어요. 먼저 생각을 나눠보세요.</p>'; return; }
+      if(!comments.length){ box.innerHTML = '<p class="text-neutral-900/35 text-xs pl-1">아직 답글이 없어요. 먼저 생각을 나눠보세요.</p>'; return; }
       box.innerHTML = comments.map(c => {
         const mine = currentUser && c.author_id === currentUser.id;
         const canDel = mine || isAdmin;
         const adminBadge = c.is_admin ? ' <span class="text-[10px] bg-gold/15 text-gold px-1.5 py-0.5 rounded align-middle font-bold">강사</span>' : '';
         return `<div class="flex items-start gap-2.5">
-          <div class="w-7 h-7 rounded-full ${ c.is_admin ? 'bg-gold text-white' : 'bg-ink/10 text-ink/55' } flex items-center justify-center font-bold text-xs shrink-0">${esc((c.author_name||'?').slice(0,1))}</div>
+          <div class="w-7 h-7 rounded-full ${ c.is_admin ? 'bg-gold text-white' : 'bg-ink/10 text-neutral-900/55' } flex items-center justify-center font-bold text-xs shrink-0">${esc((c.author_name||'?').slice(0,1))}</div>
           <div class="flex-1 min-w-0 bg-paper rounded-2xl px-3.5 py-2">
             <div class="flex items-center gap-1.5">
               <span class="font-semibold text-[13px] ${ c.is_admin ? 'text-gold' : '' }">${esc(c.author_name || '회원')}${adminBadge}</span>${rankSeal(RANKS[c.author_id],13)}
-              <span class="text-ink/35 text-[11px]">${timeAgo(c.created_at)}</span>
-              ${canDel ? `<button onclick="delComment('${c.id}')" class="ml-auto text-ink/25 hover:text-red-500 text-sm leading-none shrink-0" title="삭제">×</button>` : ''}
+              <span class="text-neutral-900/35 text-[11px]">${timeAgo(c.created_at)}</span>
+              ${canDel ? `<button onclick="delComment('${c.id}')" class="ml-auto text-neutral-900/25 hover:text-red-500 text-sm leading-none shrink-0" title="삭제">×</button>` : ''}
             </div>
-            <p class="text-ink/80 text-sm mt-0.5 break-words whitespace-pre-wrap">${esc(c.content)}</p>
+            <p class="text-neutral-900/80 text-sm mt-0.5 break-words whitespace-pre-wrap">${esc(c.content)}</p>
           </div>
         </div>`;
       }).join('');
@@ -455,16 +455,16 @@
 
     async function loadPosts(){
       const feed = document.getElementById('feed');
-      feed.innerHTML = '<p class="text-ink/40 text-sm text-center py-8">불러오는 중…</p>';
+      feed.innerHTML = '<p class="text-neutral-900/40 text-sm text-center py-8">불러오는 중…</p>';
       let data, error;
       if(currentBoard === 'counsel' && !currentUser){
-        feed.innerHTML = '<div class="text-center py-12 text-sm text-ink/55 leading-relaxed">🔒 <b class="text-ink">신앙상담은 비공개</b>예요.<br>우측 상단에서 <b class="text-ink">로그인</b>하시면, 내가 작성한 상담만 보고 이어갈 수 있습니다.</div>';
+        feed.innerHTML = '<div class="text-center py-12 text-sm text-neutral-900/55 leading-relaxed">🔒 <b class="text-neutral-900">신앙상담은 비공개</b>예요.<br>우측 상단에서 <b class="text-neutral-900">로그인</b>하시면, 내가 작성한 상담만 보고 이어갈 수 있습니다.</div>';
         return;
       }
       try { const res = await withTimeout(sb.from('community_posts').select('*').eq('board', currentBoard).order('created_at', { ascending:false }).limit(100), 8000); data = res.data; error = res.error; }
-      catch(e){ feed.innerHTML = '<div class="text-center py-10 text-sm text-ink/60">⏳ 응답이 지연되고 있어요.<br>이 사이트의 <b class="text-ink">다른 탭을 모두 닫고</b> <button onclick="location.reload()" class="text-gold font-semibold underline">새로고침</button> 해주세요.<br><button onclick="healAndReload()" class="mt-3 text-xs text-ink/40 underline">그래도 안 되면 여기를 눌러 로그인 초기화 후 새로고침</button></div>'; return; }
+      catch(e){ feed.innerHTML = '<div class="text-center py-10 text-sm text-neutral-900/60">⏳ 응답이 지연되고 있어요.<br>이 사이트의 <b class="text-neutral-900">다른 탭을 모두 닫고</b> <button onclick="location.reload()" class="text-gold font-semibold underline">새로고침</button> 해주세요.<br><button onclick="healAndReload()" class="mt-3 text-xs text-neutral-900/40 underline">그래도 안 되면 여기를 눌러 로그인 초기화 후 새로고침</button></div>'; return; }
       if(error){ feed.innerHTML = `<p class="text-red-500 text-sm text-center py-8">불러오기 오류: ${esc(error.message)}</p>`; return; }
-      if(!data.length){ feed.innerHTML = `<p class="text-ink/40 text-sm text-center py-10">${ currentBoard === 'qna' ? '첫 질문을 남겨보세요! 🙋' : currentBoard === 'counsel' ? '아직 상담 글이 없어요. 비공개로 첫 상담을 남겨보세요 🙏' : currentBoard === 'prayer' ? '첫 기도 제목을 나눠보세요! 🙏' : '첫 글의 주인공이 되어보세요! ✍️' }</p>`; return; }
+      if(!data.length){ feed.innerHTML = `<p class="text-neutral-900/40 text-sm text-center py-10">${ currentBoard === 'qna' ? '첫 질문을 남겨보세요! 🙋' : currentBoard === 'counsel' ? '아직 상담 글이 없어요. 비공개로 첫 상담을 남겨보세요 🙏' : currentBoard === 'prayer' ? '첫 기도 제목을 나눠보세요! 🙏' : '첫 글의 주인공이 되어보세요! ✍️' }</p>`; return; }
       POSTS_BY_ID = {}; data.forEach(p => { POSTS_BY_ID[p.id] = p; });
       await loadRanks(data.map(p => p.author_id));   // 작성자 급수 휘장
       feed.innerHTML = data.map(renderPost).join('');
@@ -579,7 +579,7 @@
     <div class="bg-white rounded-3xl shadow-card p-6 w-full max-w-xs">
       <div class="flex items-center justify-between mb-4">
         <h3 class="font-bold text-base">🔗 이 글 공유하기</h3>
-        <button onclick="closeShareSheet()" class="text-ink/30 hover:text-ink text-2xl leading-none">×</button>
+        <button onclick="closeShareSheet()" class="text-neutral-900/30 hover:text-neutral-900 text-2xl leading-none">×</button>
       </div>
       <div class="grid grid-cols-2 gap-2 text-sm">
         <button onclick="shareCommExec('kakao')" class="shareB">💬 카카오톡</button>
@@ -592,7 +592,7 @@
         <button onclick="shareCommExec('native')" class="shareB">⋯ 기타(앱)</button>
       </div>
       <button onclick="shareCommExec('copy')" class="w-full mt-2 bg-gold text-white font-semibold rounded-xl py-2.5 text-sm hover:opacity-90 transition">🔗 링크 복사</button>
-      <p class="text-ink/40 text-[11px] mt-3 leading-relaxed">※ 커뮤니티는 멤버 전용이라, 링크를 받은 분은 로그인 후 글을 볼 수 있어요.</p>
+      <p class="text-neutral-900/40 text-[11px] mt-3 leading-relaxed">※ 커뮤니티는 멤버 전용이라, 링크를 받은 분은 로그인 후 글을 볼 수 있어요.</p>
     </div>
   </div>
   <style>.shareB{display:flex;align-items:center;justify-content:center;gap:4px;border:1px solid rgba(21,32,58,.12);border-radius:.75rem;padding:.6rem .4rem;font-weight:600;transition:.15s}.shareB:hover{background:rgba(184,146,63,.08);border-color:rgba(184,146,63,.4)}</style>

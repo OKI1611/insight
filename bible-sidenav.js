@@ -24,7 +24,7 @@
       + 'background:#fff;border-right:1px solid rgba(33,58,107,.1);box-shadow:2px 0 18px -10px rgba(21,32,58,.18);'
       + 'flex-direction:column;padding:14px 12px;overflow-y:auto}'
       + '#bibleSideNav .hd{font-size:12px;font-weight:800;color:#b8923f;letter-spacing:.04em;padding:6px 8px 10px;display:flex;align-items:center;gap:7px}'
-      + '#bibleSideNav .hd b{color:#213a6b;font-size:14px}'
+      + '#bibleSideNav .hd b{color:#171717;font-size:14px}'
       + '#bibleSideNav a{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:11px;'
       + 'text-decoration:none;margin-bottom:3px;white-space:nowrap;transition:background .15s}'
       + '#bibleSideNav .ic{font-size:17px;flex:0 0 auto;width:22px;text-align:center}'

@@ -20,7 +20,7 @@
   </script>
   <style>h1,h2,.serif{font-family:'Noto Serif KR',Pretendard,serif}</style>
 </head>
-<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+<body class="font-sans bg-paper text-neutral-900 antialiased min-h-screen">
 
   <!-- 상단 (간소 — 메뉴 비노출) -->
   <header class="bg-gold text-white">
@@ -34,7 +34,7 @@
   <div id="lock" class="hidden max-w-md mx-auto px-4 py-24 text-center">
     <div class="text-5xl mb-4">🔒</div>
     <h1 class="text-xl font-bold">준비 중인 페이지입니다</h1>
-    <p class="text-ink/55 text-sm mt-3 leading-relaxed">이 페이지는 관리자 작업용으로 일반에 공개되지 않습니다.<br/>새로운 콘텐츠는 완성되는 대로 정식으로 안내드리겠습니다.</p>
+    <p class="text-neutral-900/55 text-sm mt-3 leading-relaxed">이 페이지는 관리자 작업용으로 일반에 공개되지 않습니다.<br/>새로운 콘텐츠는 완성되는 대로 정식으로 안내드리겠습니다.</p>
     <a href="bible.html" class="inline-block mt-6 bg-gold text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition">성경 읽기로 가기 →</a>
   </div>
 
@@ -44,54 +44,54 @@
     <div class="text-center mb-6">
       <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">ADMIN WORKROOM · 비공개</p>
       <h1 class="text-2xl md:text-[1.7rem] font-bold tracking-tight">KJV <span class="text-gold">새번역</span> 작업실</h1>
-      <p class="text-ink/55 text-sm mt-2.5 leading-relaxed max-w-xl mx-auto">전체 번역 진행 상황을 한눈에 보고, 완성된 분량을 <b class="text-ink">Word·PDF 원고</b>로 내보냅니다. 이 화면은 <b class="text-ink">관리자(나)만</b> 볼 수 있으며 수강생에게는 노출되지 않습니다.</p>
+      <p class="text-neutral-900/55 text-sm mt-2.5 leading-relaxed max-w-xl mx-auto">전체 번역 진행 상황을 한눈에 보고, 완성된 분량을 <b class="text-neutral-900">Word·PDF 원고</b>로 내보냅니다. 이 화면은 <b class="text-neutral-900">관리자(나)만</b> 볼 수 있으며 수강생에게는 노출되지 않습니다.</p>
     </div>
 
     <!-- 전체 진행률 -->
     <section class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 md:p-6 mb-5">
       <div class="flex items-end justify-between mb-3">
         <div>
-          <p class="text-xs font-bold text-ink/45 tracking-wide">전체 번역 진행률</p>
-          <p class="text-3xl font-bold mt-1"><span id="pPct" class="text-gold">–</span><span class="text-base text-ink/40 font-semibold">%</span></p>
+          <p class="text-xs font-bold text-neutral-900/45 tracking-wide">전체 번역 진행률</p>
+          <p class="text-3xl font-bold mt-1"><span id="pPct" class="text-gold">–</span><span class="text-base text-neutral-900/40 font-semibold">%</span></p>
         </div>
-        <p class="text-sm text-ink/55 text-right leading-relaxed">
-          <span id="pDone" class="font-bold text-ink">–</span> / <span id="pTotal">–</span> 장 완료<br/>
-          <span class="text-xs text-ink/45">완간 <span id="pComplete">–</span>권 · 작업 중 <span id="pStarted">–</span>권 / 전 66권</span>
+        <p class="text-sm text-neutral-900/55 text-right leading-relaxed">
+          <span id="pDone" class="font-bold text-neutral-900">–</span> / <span id="pTotal">–</span> 장 완료<br/>
+          <span class="text-xs text-neutral-900/45">완간 <span id="pComplete">–</span>권 · 작업 중 <span id="pStarted">–</span>권 / 전 66권</span>
         </p>
       </div>
       <div class="h-3 rounded-full bg-ink/8 overflow-hidden">
         <div id="pBar" class="h-full bg-gradient-to-r from-ink to-gold rounded-full transition-all" style="width:0%"></div>
       </div>
-      <p class="text-[11px] text-ink/40 mt-3">우선순위: ① 채널 핵심(다니엘·요한계시록·스가랴) → ② 복음서·시편·창세기·로마서 → ③ 나머지. &nbsp;·&nbsp; 번역을 추가한 뒤 <code class="bg-ink/5 px-1 rounded">python tools/build_progress.py</code> 실행 후 <button onclick="location.reload()" class="text-gold underline">새로고침</button>하면 갱신됩니다.</p>
+      <p class="text-[11px] text-neutral-900/40 mt-3">우선순위: ① 채널 핵심(다니엘·요한계시록·스가랴) → ② 복음서·시편·창세기·로마서 → ③ 나머지. &nbsp;·&nbsp; 번역을 추가한 뒤 <code class="bg-ink/5 px-1 rounded">python tools/build_progress.py</code> 실행 후 <button onclick="location.reload()" class="text-gold underline">새로고침</button>하면 갱신됩니다.</p>
     </section>
 
     <!-- 내보내기 -->
     <section class="bg-white rounded-2xl border border-gold/30 shadow-soft p-5 md:p-6 mb-5">
-      <h2 class="font-bold text-base flex items-center gap-2">📤 원고 내보내기 <span class="text-[11px] font-normal text-ink/45">(출간·판매 준비)</span></h2>
-      <p class="text-ink/55 text-sm mt-1.5 leading-relaxed">완성된 분량을 책 원고 형태로 내려받습니다. <b>Word(.doc)</b>는 편집·교정에, <b>PDF</b>는 인쇄·미리보기에 적합합니다. 번역이 모두 끝나면 이 원고로 책을 출간하고, <a href="booklet.html" class="text-gold underline">BIBLY 북스토어</a>에서 판매를 연결할 수 있습니다.</p>
+      <h2 class="font-bold text-base flex items-center gap-2">📤 원고 내보내기 <span class="text-[11px] font-normal text-neutral-900/45">(출간·판매 준비)</span></h2>
+      <p class="text-neutral-900/55 text-sm mt-1.5 leading-relaxed">완성된 분량을 책 원고 형태로 내려받습니다. <b>Word(.doc)</b>는 편집·교정에, <b>PDF</b>는 인쇄·미리보기에 적합합니다. 번역이 모두 끝나면 이 원고로 책을 출간하고, <a href="booklet.html" class="text-gold underline">BIBLY 북스토어</a>에서 판매를 연결할 수 있습니다.</p>
       <div class="mt-4 flex flex-wrap items-center gap-2.5">
         <select id="exBook" class="border border-ink/20 rounded-full px-4 py-2 text-sm bg-white font-medium"></select>
-        <label class="text-xs text-ink/60 flex items-center gap-1.5"><input type="checkbox" id="exEn"/>영어 KJV 병기</label>
+        <label class="text-xs text-neutral-900/60 flex items-center gap-1.5"><input type="checkbox" id="exEn"/>영어 KJV 병기</label>
         <span class="flex-1"></span>
         <button onclick="doExport('doc')" class="bg-gold text-white text-sm font-semibold px-4 py-2 rounded-full hover:opacity-90 transition">📄 Word(.doc)</button>
         <button onclick="doExport('pdf')" class="bg-gold text-white text-sm font-semibold px-4 py-2 rounded-full hover:opacity-90 transition">📕 PDF</button>
       </div>
-      <p id="exMsg" class="text-xs text-ink/50 mt-2.5 hidden"></p>
+      <p id="exMsg" class="text-xs text-neutral-900/50 mt-2.5 hidden"></p>
     </section>
 
     <!-- 책별 현황 -->
     <section class="grid md:grid-cols-2 gap-5">
       <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5">
-        <p class="text-xs font-bold text-ink/45 mb-3">구약 (Old Testament)</p>
+        <p class="text-xs font-bold text-neutral-900/45 mb-3">구약 (Old Testament)</p>
         <div id="otList" class="space-y-1.5"></div>
       </div>
       <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5">
-        <p class="text-xs font-bold text-ink/45 mb-3">신약 (New Testament)</p>
+        <p class="text-xs font-bold text-neutral-900/45 mb-3">신약 (New Testament)</p>
         <div id="ntList" class="space-y-1.5"></div>
       </div>
     </section>
 
-    <p class="text-[11px] text-ink/35 text-center mt-7">BIBLY · KJV 새번역 작업실 — 이 페이지의 모든 내용은 비공개입니다.</p>
+    <p class="text-[11px] text-neutral-900/35 text-center mt-7">BIBLY · KJV 새번역 작업실 — 이 페이지의 모든 내용은 비공개입니다.</p>
   </main>
 
   <!-- 내보내기용 숨김 렌더 영역 -->
@@ -114,7 +114,7 @@
       if(!admin){ $('lock').classList.remove('hidden'); return; }
       $('dash').classList.remove('hidden');
       try{ PROG = await (await fetch('bible/progress.json?t='+Date.now())).json(); }
-      catch(e){ $('dash').innerHTML='<p class="text-center text-ink/50 py-20">진행현황(progress.json)을 불러오지 못했습니다.<br/><code>python tools/build_progress.py</code> 를 먼저 실행하세요.</p>'; return; }
+      catch(e){ $('dash').innerHTML='<p class="text-center text-neutral-900/50 py-20">진행현황(progress.json)을 불러오지 못했습니다.<br/><code>python tools/build_progress.py</code> 를 먼저 실행하세요.</p>'; return; }
       render();
     })();
 
@@ -128,12 +128,12 @@
 
       const row = b=>{
         const pct = Math.round(b.done/b.ch*100);
-        const state = b.done===0 ? 'text-ink/30'
+        const state = b.done===0 ? 'text-neutral-900/30'
           : b.done===b.ch ? 'text-gold font-bold'
-          : 'text-ink font-semibold';
+          : 'text-neutral-900 font-semibold';
         const badge = b.done===b.ch ? '<span class="text-[10px] bg-gold/15 text-gold font-bold px-1.5 py-0.5 rounded">완간</span>'
-          : b.done>0 ? `<span class="text-[10px] text-ink/45">${b.done}/${b.ch}</span>`
-          : '<span class="text-[10px] text-ink/25">대기</span>';
+          : b.done>0 ? `<span class="text-[10px] text-neutral-900/45">${b.done}/${b.ch}</span>`
+          : '<span class="text-[10px] text-neutral-900/25">대기</span>';
         return `<div class="flex items-center gap-2.5">
           <span class="w-20 shrink-0 text-sm ${state} truncate">${esc(b.ko)}</span>
           <div class="flex-1 h-2 rounded-full bg-ink/8 overflow-hidden"><div class="h-full ${b.done===b.ch?'bg-gold':'bg-ink/55'} rounded-full" style="width:${pct}%"></div></div>
@@ -166,9 +166,9 @@
     }
 
     const DOC_CSS = `body{font-family:'Noto Serif KR','맑은 고딕',serif;line-height:1.95;font-size:11.5pt;color:#1a1a1a}
-      .cover{text-align:center;padding:40pt 0 30pt}.cover .t{font-size:26pt;font-weight:700;color:#213a6b}.cover .s{font-size:11pt;color:#888;margin-top:8pt}
-      h1.bk{font-size:22pt;font-weight:700;text-align:center;color:#213a6b;margin:0 0 14pt;padding-top:10pt;page-break-before:always}
-      h2.ch{font-size:14pt;font-weight:700;color:#213a6b;margin:16pt 0 7pt;border-bottom:1px solid #e3e9f2;padding-bottom:3pt}
+      .cover{text-align:center;padding:40pt 0 30pt}.cover .t{font-size:26pt;font-weight:700;color:#171717}.cover .s{font-size:11pt;color:#888;margin-top:8pt}
+      h1.bk{font-size:22pt;font-weight:700;text-align:center;color:#171717;margin:0 0 14pt;padding-top:10pt;page-break-before:always}
+      h2.ch{font-size:14pt;font-weight:700;color:#171717;margin:16pt 0 7pt;border-bottom:1px solid #e3e9f2;padding-bottom:3pt}
       p.v{margin:0 0 5pt;text-align:justify}.n{color:#b8923f;font-weight:700;font-size:8pt;vertical-align:super;margin-right:3pt}
       p.en{margin:1pt 0 7pt 14pt;font-family:Georgia,serif;font-size:9.5pt;color:#7a7f88;font-style:italic}`;
 

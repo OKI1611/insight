@@ -49,16 +49,16 @@
     .book{font-family:'Noto Serif KR',Pretendard,serif;color:#1c2b46;line-height:1.75}
     .book .lesson{page-break-before:always}
     .book .ch-label{font-size:11.5px;font-weight:800;letter-spacing:.18em;color:#b8923f;margin:0 0 5px}
-    .book h2.bk-title{font-size:20px;font-weight:700;color:#213a6b;border-bottom:2px solid #b8923f;padding-bottom:9px;margin:0 0 16px;line-height:1.45}
-    .book h3.bk-h{font-size:15px;font-weight:700;color:#213a6b;margin:22px 0 8px}
+    .book h2.bk-title{font-size:20px;font-weight:700;color:#171717;border-bottom:2px solid #b8923f;padding-bottom:9px;margin:0 0 16px;line-height:1.45}
+    .book h3.bk-h{font-size:15px;font-weight:700;color:#171717;margin:22px 0 8px}
     .book p.bk-p{font-size:13.5px;line-height:2.05;margin:9px 0;color:#2a3a55}
-    .book .bk-thesis{background:#eaf0f8;border-left:3px solid #213a6b;border-radius:8px;padding:13px 16px;font-weight:600;color:#213a6b;font-size:14px;line-height:1.85;margin:4px 0 10px}
+    .book .bk-thesis{background:#eaf0f8;border-left:3px solid #213a6b;border-radius:8px;padding:13px 16px;font-weight:600;color:#171717;font-size:14px;line-height:1.85;margin:4px 0 10px}
     .book .bk-scr{background:#faf7ef;border:1px solid #e6dcc3;border-radius:8px;padding:11px 14px;margin:7px 0;font-size:12.5px;line-height:1.8}
     .book .bk-scr b{color:#9a7b30}
     .book ul.bk-ul{margin:7px 0 9px 2px;padding:0;list-style:none}
     .book ul.bk-ul li{font-size:13px;line-height:1.95;padding-left:16px;position:relative;color:#33415e;margin:3px 0}
     .book ul.bk-ul li::before{content:'·';position:absolute;left:3px;color:#b8923f;font-weight:700}
-    .book .bk-term{font-size:12.5px;line-height:1.85;margin:5px 0}.book .bk-term b{color:#213a6b}
+    .book .bk-term{font-size:12.5px;line-height:1.85;margin:5px 0}.book .bk-term b{color:#171717}
     .book .bk-mis{font-size:12.5px;line-height:1.8;margin:7px 0}.book .bk-mis .w{color:#b4524a}.book .bk-mis .r{color:#2f7d57}
     /* 목차(책 틀) */
     .book .toc-list{list-style:none;margin:6px 0 0;padding:0}
@@ -87,7 +87,7 @@
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://biblynote.com/"},{"@type":"ListItem","position":2,"name":"스토어","item":"https://biblynote.com/booklet"},{"@type":"ListItem","position":3,"name":"PDF 책자·이용권","item":"https://biblynote.com/booklet"}]}
   </script>
 </head>
-<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+<body class="font-sans bg-paper text-neutral-900 antialiased min-h-screen">
   <style>html.embed .bibly-topbar,html.embed header.sticky,html.embed .bibly-footer{display:none!important}html.embed body{padding:0!important}html.embed main{padding-top:.5rem!important;max-width:100%!important}</style>
   <script>if(new URLSearchParams(location.search).get('embed')==='1')document.documentElement.classList.add('embed');</script>
 
@@ -97,13 +97,13 @@
   <div id="storeBar" class="hidden sticky top-14 z-30 bg-white/95 backdrop-blur border-b border-ink/8 shadow-soft">
     <div class="max-w-5xl mx-auto px-4 py-2.5 flex items-center gap-2">
       <button onclick="showView('catalog')" class="font-bold text-sm shrink-0">🛍 BIBLY <span class="text-gold">스토어</span></button>
-      <nav class="hidden sm:flex items-center gap-0.5 text-sm text-ink/60 ml-2">
+      <nav class="hidden sm:flex items-center gap-0.5 text-sm text-neutral-900/60 ml-2">
         <button onclick="goStore('pass')" class="px-2.5 py-1 rounded hover:bg-ink/5">이용권</button>
         <button onclick="goStore('books')" class="px-2.5 py-1 rounded hover:bg-ink/5">책자</button>
         <a href="store-help.html" class="px-2.5 py-1 rounded hover:bg-ink/5">고객센터</a>
       </nav>
       <div class="ml-auto flex items-center gap-1.5">
-        <a href="store-help.html" class="sm:hidden text-ink/55 text-sm px-1.5">고객센터</a>
+        <a href="store-help.html" class="sm:hidden text-neutral-900/55 text-sm px-1.5">고객센터</a>
         <button onclick="showView('cart')" aria-label="장바구니" class="relative inline-flex items-center gap-1.5 bg-gold text-white text-sm font-bold pl-3.5 pr-4 py-2 rounded-full hover:opacity-90 transition">
           <span>🛒 장바구니</span>
           <span id="cartCount" class="bg-gold text-white text-[11px] font-bold rounded-full min-w-[18px] h-[18px] px-1 inline-flex items-center justify-center">0</span>
@@ -118,8 +118,8 @@
       <div class="max-w-4xl mx-auto px-5 py-14 md:py-16 text-center">
         <p class="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4">BIBLY Bookstore · 북스토어</p>
         <h1 class="text-2xl md:text-[34px] font-bold leading-[1.35]">한 과정을, <span class="text-gold">한 권의 책</span>으로</h1>
-        <p class="text-ink/65 text-[15px] md:text-base mt-5 leading-relaxed max-w-xl mx-auto">
-          과정별 <b class="text-ink">요약노트(대학원 강의안 수준)</b>에 <b class="text-ink">필기 공간</b>까지 더한 소장용 PDF 교재입니다. 강의를 들으며 메모하고 두고두고 참고하세요.
+        <p class="text-neutral-900/65 text-[15px] md:text-base mt-5 leading-relaxed max-w-xl mx-auto">
+          과정별 <b class="text-neutral-900">요약노트(대학원 강의안 수준)</b>에 <b class="text-neutral-900">필기 공간</b>까지 더한 소장용 PDF 교재입니다. 강의를 들으며 메모하고 두고두고 참고하세요.
         </p>
         <div class="flex flex-wrap justify-center gap-2.5 mt-6 text-sm">
           <span class="bg-ink/5 border border-ink/10 rounded-full px-4 py-1.5">📖 표지·목차·전 강의 노트</span>
@@ -133,15 +133,15 @@
     <section class="max-w-5xl mx-auto px-5 pt-12">
       <div class="grid md:grid-cols-2 gap-4">
         <div class="bg-white rounded-2xl border border-ink/10 shadow-soft p-6 flex flex-col">
-          <span class="self-start text-[11px] font-bold text-ink/50 bg-ink/[0.06] px-2.5 py-1 rounded-full">🆓 무료</span>
+          <span class="self-start text-[11px] font-bold text-neutral-900/50 bg-ink/[0.06] px-2.5 py-1 rounded-full">🆓 무료</span>
           <h3 class="font-bold text-lg mt-3">강의별 PDF 요약본</h3>
-          <p class="text-ink/60 text-sm mt-1.5 leading-relaxed flex-1">각 강의 페이지의 <b class="text-ink">‘PDF 요약본 보기’</b>로 그 강의의 핵심 요약을 <b class="text-ink">무료로</b> 보고 저장할 수 있어요. 가볍게 복습할 때 좋아요.</p>
+          <p class="text-neutral-900/60 text-sm mt-1.5 leading-relaxed flex-1">각 강의 페이지의 <b class="text-neutral-900">‘PDF 요약본 보기’</b>로 그 강의의 핵심 요약을 <b class="text-neutral-900">무료로</b> 보고 저장할 수 있어요. 가볍게 복습할 때 좋아요.</p>
           <a href="curriculum.html" class="inline-flex items-center gap-1 text-gold font-semibold text-sm mt-4 hover:underline">강의 보러 가기 →</a>
         </div>
         <div class="bg-white rounded-2xl border border-gold/30 ring-1 ring-gold/10 shadow-soft p-6 flex flex-col">
           <span class="self-start text-[11px] font-bold text-gold bg-gold/10 px-2.5 py-1 rounded-full">📘 유료</span>
           <h3 class="font-bold text-lg mt-3">과정 합본 책자 (PDF 교재)</h3>
-          <p class="text-ink/60 text-sm mt-1.5 leading-relaxed flex-1">한 과정의 <b class="text-ink">전 강의 요약노트 + 필기 공간</b>을 한 권으로 엮은 소장용 교재. 낱권 구매 또는 <b class="text-ink">전체 이용권</b>으로 만나보세요.</p>
+          <p class="text-neutral-900/60 text-sm mt-1.5 leading-relaxed flex-1">한 과정의 <b class="text-neutral-900">전 강의 요약노트 + 필기 공간</b>을 한 권으로 엮은 소장용 교재. 낱권 구매 또는 <b class="text-neutral-900">전체 이용권</b>으로 만나보세요.</p>
           <button onclick="scrollToBooks()" class="self-start inline-flex items-center gap-1 text-gold font-semibold text-sm mt-4 hover:underline">책자 둘러보기 ↓</button>
         </div>
       </div>
@@ -154,11 +154,11 @@
           <div class="text-center max-w-xl mx-auto">
             <span class="inline-flex items-center gap-1.5 bg-gold text-white text-[11px] font-bold tracking-[0.2em] px-3.5 py-1.5 rounded-full">🎫 BIBLY PASS</span>
             <h2 class="text-2xl md:text-[30px] font-bold mt-4 leading-tight">한 번 끊고, <span class="text-gold">전부 누리세요</span></h2>
-            <p class="text-ink/60 text-sm md:text-[15px] mt-3 leading-relaxed">지금 있는 <b class="text-ink">모든 책자</b>는 물론, 앞으로 나올 책자까지 — 이용권 하나로 무제한 열람·PDF 저장.</p>
+            <p class="text-neutral-900/60 text-sm md:text-[15px] mt-3 leading-relaxed">지금 있는 <b class="text-neutral-900">모든 책자</b>는 물론, 앞으로 나올 책자까지 — 이용권 하나로 무제한 열람·PDF 저장.</p>
           </div>
           <div id="passSavings" class="max-w-md mx-auto mt-6"></div>
           <div id="passCards" class="grid sm:grid-cols-2 gap-4 mt-5 max-w-2xl mx-auto"></div>
-          <p class="text-center text-ink/40 text-[11px] mt-5">결제(입금·송금) 확인 후 <b class="text-ink/55">로그인 계정 기준</b>으로 즉시 이용권이 부여됩니다.</p>
+          <p class="text-center text-neutral-900/40 text-[11px] mt-5">결제(입금·송금) 확인 후 <b class="text-neutral-900/55">로그인 계정 기준</b>으로 즉시 이용권이 부여됩니다.</p>
         </div>
       </div>
     </section>
@@ -169,9 +169,9 @@
         <div>
           <p class="text-gold text-xs font-bold tracking-[0.25em] uppercase mb-1">Books</p>
           <h2 class="text-xl md:text-2xl font-bold">개별 책자</h2>
-          <p class="text-ink/45 text-xs mt-1">필요한 한 권만 — 분량(쪽수)에 따라 합리적으로 책정했어요.</p>
+          <p class="text-neutral-900/45 text-xs mt-1">필요한 한 권만 — 분량(쪽수)에 따라 합리적으로 책정했어요.</p>
         </div>
-        <a href="store-help.html" class="text-sm text-ink/55 hover:text-gold">이용안내 →</a>
+        <a href="store-help.html" class="text-sm text-neutral-900/55 hover:text-gold">이용안내 →</a>
       </div>
       <div id="catGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-8">불러오는 중…</div>
     </div>
@@ -180,9 +180,9 @@
   <!-- ===================== 장바구니 ===================== -->
   <main id="cartView" class="hidden">
     <div class="max-w-2xl mx-auto px-5 py-10">
-      <button onclick="showView('catalog')" class="text-sm text-ink/55 hover:text-gold mb-4">← 계속 둘러보기</button>
+      <button onclick="showView('catalog')" class="text-sm text-neutral-900/55 hover:text-gold mb-4">← 계속 둘러보기</button>
       <h1 class="text-2xl font-bold mb-1">🛒 장바구니</h1>
-      <p class="text-ink/50 text-sm mb-6">담은 자료를 확인하고 한 번에 주문하세요.</p>
+      <p class="text-neutral-900/50 text-sm mb-6">담은 자료를 확인하고 한 번에 주문하세요.</p>
       <div id="cartList" class="space-y-3"></div>
       <div id="cartSummary" class="mt-6"></div>
     </div>
@@ -191,7 +191,7 @@
   <!-- ===================== 주문 / 결제 ===================== -->
   <main id="checkoutView" class="hidden">
     <div class="max-w-2xl mx-auto px-5 py-10">
-      <button onclick="showView('cart')" class="text-sm text-ink/55 hover:text-gold mb-4">← 장바구니</button>
+      <button onclick="showView('cart')" class="text-sm text-neutral-900/55 hover:text-gold mb-4">← 장바구니</button>
       <div class="bg-white rounded-3xl border border-ink/10 shadow-card p-6 md:p-8">
         <div class="text-center mb-6">
           <p class="text-gold text-xs font-bold tracking-[0.25em] uppercase mb-2">Order · 주문 / 결제</p>
@@ -207,18 +207,18 @@
 
           <!-- 상품 형태 (책자가 있을 때만) -->
           <div id="formatBox">
-            <p class="text-xs font-bold text-ink/55 mb-1.5">상품 형태</p>
+            <p class="text-xs font-bold text-neutral-900/55 mb-1.5">상품 형태</p>
             <div class="grid grid-cols-2 gap-2">
               <label class="flex items-center gap-2 border border-ink/15 rounded-xl px-3 py-2.5 text-sm cursor-pointer has-[:checked]:border-gold has-[:checked]:bg-gold/5"><input type="radio" name="oformat" value="PDF" checked onchange="toggleAddr()"/> 📄 PDF (이메일 발송)</label>
-              <label class="flex items-center gap-2 border border-ink/10 rounded-xl px-3 py-2.5 text-sm cursor-not-allowed bg-ink/[0.03] text-ink/35"><input type="radio" name="oformat" value="실물제본" disabled onchange="toggleAddr()"/> 📦 실물 제본 <span class="text-[11px] font-semibold">(준비중)</span></label>
+              <label class="flex items-center gap-2 border border-ink/10 rounded-xl px-3 py-2.5 text-sm cursor-not-allowed bg-ink/[0.03] text-neutral-900/35"><input type="radio" name="oformat" value="실물제본" disabled onchange="toggleAddr()"/> 📦 실물 제본 <span class="text-[11px] font-semibold">(준비중)</span></label>
             </div>
             <input id="bAddr" type="text" maxlength="120" placeholder="배송지 주소 (실물 제본 선택 시)" class="hidden w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold mt-2" />
-            <p id="addrNote" class="hidden text-xs text-ink/45 mt-1.5">실물 제본·배송은 현재 준비 중입니다. 지금은 PDF로 발송해 드려요.</p>
+            <p id="addrNote" class="hidden text-xs text-neutral-900/45 mt-1.5">실물 제본·배송은 현재 준비 중입니다. 지금은 PDF로 발송해 드려요.</p>
           </div>
 
           <!-- 결제 수단 -->
           <div>
-            <p class="text-xs font-bold text-ink/55 mb-1.5">결제 수단</p>
+            <p class="text-xs font-bold text-neutral-900/55 mb-1.5">결제 수단</p>
             <div class="space-y-2" id="payMethods">
               <label class="flex items-center gap-2 border border-ink/15 rounded-xl px-3 py-2.5 text-sm cursor-pointer has-[:checked]:border-gold has-[:checked]:bg-gold/5"><input type="radio" name="opay" value="무통장입금" checked/> 🏦 무통장입금 (계좌이체)</label>
               <label class="flex items-center gap-2 border border-ink/15 rounded-xl px-3 py-2.5 text-sm cursor-pointer has-[:checked]:border-gold has-[:checked]:bg-gold/5"><input type="radio" name="opay" value="카카오페이"/> 💛 카카오페이 송금</label>
@@ -227,13 +227,13 @@
           </div>
 
           <!-- 약관 동의 -->
-          <label class="flex items-start gap-2 text-xs text-ink/65 leading-relaxed px-1">
+          <label class="flex items-start gap-2 text-xs text-neutral-900/65 leading-relaxed px-1">
             <input id="bAgree" type="checkbox" class="mt-0.5"/> <span>[필수] <a href="store-help.html#refund" class="text-gold underline">구매조건·청약철회·환불 안내</a>와 <a href="privacy.html" class="text-gold underline">개인정보 수집·이용</a>에 동의합니다. (디지털 콘텐츠는 열람·다운로드 시 청약철회가 제한될 수 있습니다.)</span>
           </label>
           <input id="bHp" type="text" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
           <button id="bSubmit" onclick="placeOrder()" class="w-full bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition">결제하기</button>
           <p id="bMsg" class="text-center text-sm min-h-[18px]"></p>
-          <p class="text-center text-ink/40 text-xs leading-relaxed">주문 후 안내된 방법으로 결제(입금·송금)해 주시면, 확인 즉시 발송·이용권 부여해 드립니다.</p>
+          <p class="text-center text-neutral-900/40 text-xs leading-relaxed">주문 후 안내된 방법으로 결제(입금·송금)해 주시면, 확인 즉시 발송·이용권 부여해 드립니다.</p>
         </div>
       </div>
     </div>
@@ -243,7 +243,7 @@
   <main id="bookView" class="hidden">
     <div class="no-print sticky top-14 z-30 bg-paper/95 backdrop-blur border-b border-ink/8">
       <div class="max-w-3xl mx-auto px-4 py-2.5 flex items-center gap-2 flex-wrap">
-        <a href="booklet.html" class="text-sm text-ink/60 hover:text-gold">← 북스토어</a>
+        <a href="booklet.html" class="text-sm text-neutral-900/60 hover:text-gold">← 북스토어</a>
         <span id="bvTitle" class="font-bold text-sm truncate flex-1 min-w-0 text-center"></span>
         <button id="bvSelPdf" onclick="saveSelectedPDF()" class="hidden bg-gold text-white text-sm font-semibold px-3 py-2 rounded-full hover:opacity-90 transition shrink-0">📑 선택 강의 PDF</button>
         <button id="bvPdf" onclick="savePDF()" title="인쇄창이 열리면 대상(목적지)을 'PDF로 저장'으로 선택하세요" class="bg-gold text-white text-sm font-semibold px-4 py-2 rounded-full hover:opacity-90 transition shrink-0">📕 전체 PDF</button>
@@ -251,7 +251,7 @@
     </div>
     <div id="bvLock" class="hidden max-w-xl mx-auto px-5 py-6">
       <div class="bg-sand/60 border border-gold/30 rounded-2xl p-5 text-center">
-        <p class="text-sm text-ink/70 leading-relaxed">아래는 <b class="text-ink">맛보기 미리보기</b>예요. 전체 합본 책자는 <b class="text-gold">구매(결제)</b> 후 보내드립니다.</p>
+        <p class="text-sm text-neutral-900/70 leading-relaxed">아래는 <b class="text-neutral-900">맛보기 미리보기</b>예요. 전체 합본 책자는 <b class="text-gold">구매(결제)</b> 후 보내드립니다.</p>
         <a id="bvBuy" href="booklet.html#order" class="inline-block mt-3 bg-gold text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition">이 책 구매하기 →</a>
       </div>
     </div>
@@ -365,7 +365,7 @@
             </div>
           </a>
           <p class="font-bold text-[13px] leading-snug mt-3 line-clamp-2">${esc(t.name)}</p>
-          <p class="text-[11px] text-ink/45 mt-0.5">약 ${pages}쪽 · 전 ${n}강</p>
+          <p class="text-[11px] text-neutral-900/45 mt-0.5">약 ${pages}쪽 · 전 ${n}강</p>
           <div class="flex items-center justify-between mt-1.5 gap-2">
             <p class="text-gold font-bold text-[15px]">${won(price)}</p>
             <button onclick="addToCart('book','${nameAttr}')" class="bg-gold text-white text-xs font-bold px-3 py-1.5 rounded-full hover:opacity-90 transition whitespace-nowrap">🛒 담기</button>
@@ -379,7 +379,7 @@
       const cheapest=PASSES.length?Math.min(...PASSES.map(p=>p.price)):0;
       const sv=$('passSavings');
       if(sv){ sv.innerHTML=(indiv>cheapest&&cheapest>0)
-        ? `<div class="bg-white border border-gold/30 rounded-2xl px-5 py-3.5 text-center shadow-soft"><span class="text-ink/60 text-[13px]">개별로 다 사면 <s class="text-ink/40">${won(indiv)}</s> → <b class="text-gold">이용권 ${won(cheapest)}부터</b></span><span class="block text-[11px] text-ink/45 mt-0.5">최대 <b class="text-ink/70">${won(indiv-cheapest)}</b> 더 저렴하게, 게다가 새 책자까지 무제한</span></div>`
+        ? `<div class="bg-white border border-gold/30 rounded-2xl px-5 py-3.5 text-center shadow-soft"><span class="text-neutral-900/60 text-[13px]">개별로 다 사면 <s class="text-neutral-900/40">${won(indiv)}</s> → <b class="text-gold">이용권 ${won(cheapest)}부터</b></span><span class="block text-[11px] text-neutral-900/45 mt-0.5">최대 <b class="text-neutral-900/70">${won(indiv-cheapest)}</b> 더 저렴하게, 게다가 새 책자까지 무제한</span></div>`
         : ''; }
       const pc=$('passCards'); if(!pc) return;
       pc.innerHTML=PASSES.map((p,idx)=>{
@@ -394,8 +394,8 @@
         return `<div onclick="addToCart('pass','${p.id}')" class="pass-card relative bg-white rounded-2xl border ${best?'border-gold/50 ring-1 ring-gold/15':'border-ink/12'} shadow-soft p-5 pt-6 flex flex-col text-left cursor-pointer">
           ${badge}
           <p class="font-bold text-[15px]">${esc(p.name)}</p>
-          <div class="mt-2 mb-1 flex items-end gap-1.5"><span class="text-2xl font-bold text-ink">${won(p.price)}</span>${monthly?`<span class="text-[11px] text-ink/45 mb-1">월 ${won(monthly)}꼴</span>`:''}</div>
-          <ul class="text-xs text-ink/65 space-y-1.5 my-3 flex-1">${bullets.map(b=>`<li class="flex gap-1.5"><span class="text-gold shrink-0">✓</span><span>${esc(b)}</span></li>`).join('')}</ul>
+          <div class="mt-2 mb-1 flex items-end gap-1.5"><span class="text-2xl font-bold text-neutral-900">${won(p.price)}</span>${monthly?`<span class="text-[11px] text-neutral-900/45 mb-1">월 ${won(monthly)}꼴</span>`:''}</div>
+          <ul class="text-xs text-neutral-900/65 space-y-1.5 my-3 flex-1">${bullets.map(b=>`<li class="flex gap-1.5"><span class="text-gold shrink-0">✓</span><span>${esc(b)}</span></li>`).join('')}</ul>
           <button onclick="event.stopPropagation();addToCart('pass','${p.id}')" class="pass-cta w-full bg-gold text-white font-bold text-sm py-2.5 rounded-xl transition">🛒 이용권 담기</button>
         </div>`;
       }).join('');
@@ -406,19 +406,19 @@
     function renderCart(){
       const list=$('cartList'), sum=$('cartSummary'); if(!list) return;
       if(!CART.length){
-        list.innerHTML='<div class="bg-white rounded-2xl border border-ink/8 p-10 text-center"><p class="text-3xl mb-3">🛒</p><p class="font-semibold mb-1">장바구니가 비어 있어요</p><p class="text-sm text-ink/55 mb-5">마음에 드는 책자나 이용권을 담아보세요.</p><button onclick="showView(\'catalog\')" class="inline-block bg-gold text-white font-semibold px-6 py-3 rounded-full hover:opacity-90 transition">책자 둘러보기 →</button></div>';
+        list.innerHTML='<div class="bg-white rounded-2xl border border-ink/8 p-10 text-center"><p class="text-3xl mb-3">🛒</p><p class="font-semibold mb-1">장바구니가 비어 있어요</p><p class="text-sm text-neutral-900/55 mb-5">마음에 드는 책자나 이용권을 담아보세요.</p><button onclick="showView(\'catalog\')" class="inline-block bg-gold text-white font-semibold px-6 py-3 rounded-full hover:opacity-90 transition">책자 둘러보기 →</button></div>';
         if(sum) sum.innerHTML=''; return;
       }
       list.innerHTML=CART.map(it=>`<div class="bg-white rounded-2xl border border-ink/10 shadow-soft px-4 py-3.5 flex items-center gap-3">
         <span class="text-2xl shrink-0">${it.kind==='pass'?'🎫':'📕'}</span>
-        <div class="flex-1 min-w-0"><p class="font-bold text-sm truncate">${esc(it.name)}</p><p class="text-xs text-ink/45">${it.kind==='pass'?('전체 이용권 · '+esc(it.term||'')):('PDF 교재 · 전 '+it.lessons+'강 · 약 '+it.pages+'쪽')}</p></div>
+        <div class="flex-1 min-w-0"><p class="font-bold text-sm truncate">${esc(it.name)}</p><p class="text-xs text-neutral-900/45">${it.kind==='pass'?('전체 이용권 · '+esc(it.term||'')):('PDF 교재 · 전 '+it.lessons+'강 · 약 '+it.pages+'쪽')}</p></div>
         <p class="text-gold font-bold text-[15px] shrink-0">${won(it.price)}</p>
-        <button onclick="removeFromCart('${String(it.key).replace(/'/g,"\\'")}')" title="삭제" class="text-ink/30 hover:text-rose-500 shrink-0 text-xl leading-none">&times;</button>
+        <button onclick="removeFromCart('${String(it.key).replace(/'/g,"\\'")}')" title="삭제" class="text-neutral-900/30 hover:text-rose-500 shrink-0 text-xl leading-none">&times;</button>
       </div>`).join('');
       if(sum) sum.innerHTML=`<div class="bg-white rounded-2xl border border-ink/10 shadow-soft p-5">
-        <div class="flex items-center justify-between"><span class="text-xs text-ink/40">상품 ${CART.length}개 · 결제는 다음 단계에서</span><span class="text-2xl font-bold text-ink">${won(cartTotal())}</span></div>
+        <div class="flex items-center justify-between"><span class="text-xs text-neutral-900/40">상품 ${CART.length}개 · 결제는 다음 단계에서</span><span class="text-2xl font-bold text-neutral-900">${won(cartTotal())}</span></div>
         <button onclick="showView('checkout')" class="w-full bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition mt-4">주문서 작성 · 결제 →</button>
-        <button onclick="showView('catalog')" class="w-full text-ink/50 text-sm py-2 mt-1 hover:text-gold">+ 더 담으러 가기</button>
+        <button onclick="showView('catalog')" class="w-full text-neutral-900/50 text-sm py-2 mt-1 hover:text-gold">+ 더 담으러 가기</button>
       </div>`;
     }
 
@@ -428,7 +428,7 @@
       const co=$('coSummary');
       const hasBook=CART.some(c=>c.kind==='book');
       const fb=$('formatBox'); if(fb) fb.classList.toggle('hidden', !hasBook);
-      if(co) co.innerHTML=CART.map(it=>`<div class="flex items-center justify-between py-1"><span class="text-sm text-ink/80 truncate pr-3">${it.kind==='pass'?'🎫':'📕'} ${esc(it.name)}</span><span class="text-sm font-semibold text-ink shrink-0">${won(it.price)}</span></div>`).join('')
+      if(co) co.innerHTML=CART.map(it=>`<div class="flex items-center justify-between py-1"><span class="text-sm text-neutral-900/80 truncate pr-3">${it.kind==='pass'?'🎫':'📕'} ${esc(it.name)}</span><span class="text-sm font-semibold text-neutral-900 shrink-0">${won(it.price)}</span></div>`).join('')
         +`<div class="flex items-center justify-between border-t border-ink/10 mt-2 pt-2"><span class="font-bold">합계 (${CART.length}개)</span><span class="font-bold text-gold text-lg">${won(cartTotal())}</span></div>`;
       const m=$('bMsg'); if(m) m.textContent='';
     }
@@ -472,10 +472,10 @@
       showDone(done);
     }
     function payGuide(pay,price){
-      if(pay==='카카오페이'){ const u=PAY.kakaopay_url; return u?`<a href="${u}" target="_blank" rel="noopener" class="inline-block bg-[#FEE500] text-[#191600] font-bold px-5 py-2.5 rounded-xl">💛 카카오페이로 ${won(price)} 송금하기 →</a><p class="text-ink/45 text-xs mt-2">송금 후 메모에 <b>주문번호</b>를 적어주시면 빠릅니다.</p>`:'카카오페이 송금 안내를 이메일로 보내드릴게요.'; }
+      if(pay==='카카오페이'){ const u=PAY.kakaopay_url; return u?`<a href="${u}" target="_blank" rel="noopener" class="inline-block bg-[#FEE500] text-[#191600] font-bold px-5 py-2.5 rounded-xl">💛 카카오페이로 ${won(price)} 송금하기 →</a><p class="text-neutral-900/45 text-xs mt-2">송금 후 메모에 <b>주문번호</b>를 적어주시면 빠릅니다.</p>`:'카카오페이 송금 안내를 이메일로 보내드릴게요.'; }
       if(pay==='간편결제'){ const u=PAY.simplepay_url; return u?`<a href="${u}" target="_blank" rel="noopener" class="inline-block bg-gold text-white font-bold px-5 py-2.5 rounded-xl">⚡ 간편결제로 ${won(price)} 결제하기 →</a>`:'간편결제 안내를 이메일로 보내드릴게요.'; }
       const acct=PAY.bank_account, bn=PAY.bank_name, hd=PAY.bank_holder;
-      return acct?`<div class="bg-sand/70 border border-ink/10 rounded-xl p-4 text-left text-sm leading-relaxed"><p class="font-bold text-ink mb-1">입금 계좌</p><p>${esc(bn||'')} <b class="text-ink">${esc(acct)}</b> (예금주 ${esc(hd||'')})</p><p class="mt-1">입금액 <b class="text-gold">${won(price)}</b> · 입금자명에 <b>주문번호</b> 또는 <b>주문자 이름</b></p></div>`:'입금 계좌를 이메일로 보내드릴게요.';
+      return acct?`<div class="bg-sand/70 border border-ink/10 rounded-xl p-4 text-left text-sm leading-relaxed"><p class="font-bold text-neutral-900 mb-1">입금 계좌</p><p>${esc(bn||'')} <b class="text-neutral-900">${esc(acct)}</b> (예금주 ${esc(hd||'')})</p><p class="mt-1">입금액 <b class="text-gold">${won(price)}</b> · 입금자명에 <b>주문번호</b> 또는 <b>주문자 이름</b></p></div>`:'입금 계좌를 이메일로 보내드릴게요.';
     }
     function showDone(o){
       ['catalogView','cartView','bookView'].forEach(id=>{ const el=$(id); if(el) el.classList.add('hidden'); });
@@ -483,10 +483,10 @@
       const box=$('checkoutView').querySelector('.max-w-2xl');
       box.innerHTML='<div class="bg-white rounded-3xl border border-gold/30 shadow-card p-7 md:p-9 text-center">'
         +'<p class="text-4xl mb-3">🧾</p><h2 class="text-xl md:text-2xl font-bold">주문이 접수됐어요!</h2>'
-        +'<p class="text-ink/60 text-sm mt-2">주문번호 <b class="text-ink">'+o.no+'</b> · 상품 '+o.count+'개 · 합계 <b class="text-gold">'+won(o.price)+'</b></p>'
+        +'<p class="text-neutral-900/60 text-sm mt-2">주문번호 <b class="text-neutral-900">'+o.no+'</b> · 상품 '+o.count+'개 · 합계 <b class="text-gold">'+won(o.price)+'</b></p>'
         +'<div class="mt-5 text-center">'+payGuide(o.pay,o.price)+'</div>'
-        +'<p class="text-ink/55 text-sm mt-5 leading-relaxed">결제(입금·송금)가 확인되면 '+(o.hasPass?'<b class="text-ink">전체 이용권</b>과 함께 ':'')+'주문하신 <b class="text-ink">'+(o.format==='실물제본'?'책자를 제본 후 배송':'PDF를 이메일로 발송')+'</b>해 드려요. 🙏</p>'
-        +'<div class="flex gap-2 justify-center mt-6"><a href="store-help.html" class="text-gold font-semibold hover:underline text-sm">고객센터 →</a><span class="text-ink/20">·</span><a href="booklet.html" class="text-ink/50 hover:text-gold text-sm">계속 둘러보기</a></div></div>';
+        +'<p class="text-neutral-900/55 text-sm mt-5 leading-relaxed">결제(입금·송금)가 확인되면 '+(o.hasPass?'<b class="text-neutral-900">전체 이용권</b>과 함께 ':'')+'주문하신 <b class="text-neutral-900">'+(o.format==='실물제본'?'책자를 제본 후 배송':'PDF를 이메일로 발송')+'</b>해 드려요. 🙏</p>'
+        +'<div class="flex gap-2 justify-center mt-6"><a href="store-help.html" class="text-gold font-semibold hover:underline text-sm">고객센터 →</a><span class="text-neutral-900/20">·</span><a href="booklet.html" class="text-neutral-900/50 hover:text-gold text-sm">계속 둘러보기</a></div></div>';
       window.scrollTo(0,0);
     }
 
@@ -529,7 +529,7 @@
     async function renderBook(trackName){
       $('bookView').classList.remove('hidden');
       const t=TRACKS.find(x=>x.name===trackName)||TRACKS.find(x=>x.name.indexOf(trackName)===0);
-      if(!t){ $('book').innerHTML='<p class="text-center text-ink/40 py-10">책을 찾지 못했어요. <a href="booklet.html" class="text-gold underline">북스토어로</a></p>'; return; }
+      if(!t){ $('book').innerHTML='<p class="text-center text-neutral-900/40 py-10">책을 찾지 못했어요. <a href="booklet.html" class="text-gold underline">북스토어로</a></p>'; return; }
       $('bvTitle').textContent=t.name; document.title=t.name+' — BIBLY 북스토어';
       const buyLink='booklet.html?buy='+encodeURIComponent(t.name)+'#order';
       $('bvBuy').href=buyLink;
@@ -549,7 +549,7 @@
       window._curLessons=lessons;
       const loadList=unlocked?lessons:lessons.slice(0,1);
       const notes=await Promise.all(loadList.map(async l=>{try{const r=await fetch('content/notes/'+l.id+'.json?t='+Date.now());if(r.ok)return await r.json();}catch(e){}return null;}));
-      let h=`<div class="cover-page" style="text-align:center;padding:42px 0 34px;border-bottom:1px solid #e6e9f0"><p style="color:#b8923f;font-weight:700;letter-spacing:.28em;font-size:11px;margin:0 0 14px">BIBLY 바이블 인사이트 · 강의 노트</p><h1 style="font-size:29px;font-weight:700;color:#213a6b;line-height:1.4;margin:0 12px">${esc(t.name)}</h1><p style="color:#5a6b88;font-size:13px;margin:16px 0 0">요약노트 + 필기 공간 · 전 ${t.lessons.length}강</p><p style="color:#9aa6bd;font-size:11px;margin:20px 0 0">강의를 들으며 메모하고 참고하세요 · biblynote.com</p>${(CUR_BUYER&&CUR_EMAIL)?`<p style="color:#b8923f;font-size:10.5px;margin:18px 0 0;letter-spacing:.02em">📗 정품 · <b>${esc(CUR_EMAIL)}</b> 님께 발행 · 무단 복제·배포 금지</p>`:''}</div>`;
+      let h=`<div class="cover-page" style="text-align:center;padding:42px 0 34px;border-bottom:1px solid #e6e9f0"><p style="color:#b8923f;font-weight:700;letter-spacing:.28em;font-size:11px;margin:0 0 14px">BIBLY 바이블 인사이트 · 강의 노트</p><h1 style="font-size:29px;font-weight:700;color:#171717;line-height:1.4;margin:0 12px">${esc(t.name)}</h1><p style="color:#5a6b88;font-size:13px;margin:16px 0 0">요약노트 + 필기 공간 · 전 ${t.lessons.length}강</p><p style="color:#9aa6bd;font-size:11px;margin:20px 0 0">강의를 들으며 메모하고 참고하세요 · biblynote.com</p>${(CUR_BUYER&&CUR_EMAIL)?`<p style="color:#b8923f;font-size:10.5px;margin:18px 0 0;letter-spacing:.02em">📗 정품 · <b>${esc(CUR_EMAIL)}</b> 님께 발행 · 무단 복제·배포 금지</p>`:''}</div>`;
       // 목차 — 구매자에게는 체크박스·클릭·개별PDF 제공
       const tocRows=lessons.map((l,i)=>{
         if(unlocked){
@@ -558,7 +558,7 @@
         return `<li class="toc-row"><span class="toc-no">제${i+1}강</span><span class="toc-t">${esc(cleanTitle(l.title))}</span></li>`;
       }).join('');
       const allToggle=unlocked?`<button id="btnAllLessons" onclick="toggleAllLessons()" style="font-size:11px;color:#9aa6bd;background:none;border:none;cursor:pointer;margin-left:auto;padding:0">전체 해제</button>`:'';
-      h+=`<section style="padding:24px 2px 8px"><div style="display:flex;align-items:center;gap:6px;margin:0 0 3px"><p style="font-weight:700;color:#213a6b;font-size:17px;margin:0">목차</p>${allToggle}</div><p style="color:#9aa6bd;font-size:11px;margin:0 0 8px">전 ${lessons.length}강${unlocked?' · 클릭하면 해당 강의로 이동':''}${unlocked?' · 📥 강의별 PDF 저장 가능':''}</p><ul class="toc-list">${tocRows}</ul></section>`;
+      h+=`<section style="padding:24px 2px 8px"><div style="display:flex;align-items:center;gap:6px;margin:0 0 3px"><p style="font-weight:700;color:#171717;font-size:17px;margin:0">목차</p>${allToggle}</div><p style="color:#9aa6bd;font-size:11px;margin:0 0 8px">전 ${lessons.length}강${unlocked?' · 클릭하면 해당 강의로 이동':''}${unlocked?' · 📥 강의별 PDF 저장 가능':''}</p><ul class="toc-list">${tocRows}</ul></section>`;
       notes.forEach((n,i)=>{
         const body = n ? noteHTML(n,lessons[i].title,i+1)
           : `<div class="lesson" id="lesson-${i+1}"><p class="ch-label">제${i+1}강</p><h2 class="bk-title">${esc(cleanTitle(lessons[i].title))}</h2><p class="bk-p" style="color:#9aa6bd">이 강의의 요약노트는 준비 중입니다. 아래 공간에 직접 필기해 보세요.</p></div>`;
@@ -570,7 +570,7 @@
         if(selBtn) selBtn.classList.remove('hidden');
       } else {
         const expiredMsg = access.expired
-          ? `<div class="no-print" style="text-align:center;padding:22px 0 0"><p style="color:#213a6b;font-weight:700;font-size:14px">🔔 무료 이용 기간이 종료되었어요</p><p style="color:#5a6b88;font-size:12.5px;margin:6px 0 0">교재(PDF)를 계속 이용하시려면 결제가 필요합니다.${access.founding?' <b style="color:#b8923f">창립 멤버는 정가의 80%(20% 할인)</b>로 이어가실 수 있어요.':''}</p></div>`
+          ? `<div class="no-print" style="text-align:center;padding:22px 0 0"><p style="color:#171717;font-weight:700;font-size:14px">🔔 무료 이용 기간이 종료되었어요</p><p style="color:#5a6b88;font-size:12.5px;margin:6px 0 0">교재(PDF)를 계속 이용하시려면 결제가 필요합니다.${access.founding?' <b style="color:#b8923f">창립 멤버는 정가의 80%(20% 할인)</b>로 이어가실 수 있어요.':''}</p></div>`
           : '';
         h+= expiredMsg + `<div class="no-print" style="text-align:center;padding:26px 0 6px;border-top:1px dashed #d6ddea;margin-top:10px"><p style="color:#5a6b88;font-size:13px">… 이하 전체 ${t.lessons.length}강 합본은 구매(또는 <b style="color:#b8923f">전체 이용권</b>) 후 PDF로 받으실 수 있어요.</p></div>`;
         $('bvLock').classList.remove('hidden');
@@ -586,16 +586,16 @@
       .book .cover-page{page-break-after:always;break-after:page}
       .book .lesson{page-break-before:always;break-before:page}
       .book .ch-label{font-size:11.5px;font-weight:800;letter-spacing:.18em;color:#b8923f;margin:0 0 6px}
-      .book h2.bk-title{font-size:20px;font-weight:700;color:#213a6b;border-bottom:2px solid #b8923f;padding-bottom:9px;margin:0 0 16px;line-height:1.45}
-      .book h3.bk-h{font-size:15px;font-weight:700;color:#213a6b;margin:22px 0 8px}
+      .book h2.bk-title{font-size:20px;font-weight:700;color:#171717;border-bottom:2px solid #b8923f;padding-bottom:9px;margin:0 0 16px;line-height:1.45}
+      .book h3.bk-h{font-size:15px;font-weight:700;color:#171717;margin:22px 0 8px}
       .book p.bk-p{font-size:13px;line-height:2.1;margin:10px 0;color:#2a3a55}
-      .book .bk-thesis{background:#eaf0f8;border-left:3px solid #213a6b;border-radius:8px;padding:13px 16px;font-weight:600;color:#213a6b;font-size:13.5px;line-height:1.9;margin:4px 0 12px}
+      .book .bk-thesis{background:#eaf0f8;border-left:3px solid #213a6b;border-radius:8px;padding:13px 16px;font-weight:600;color:#171717;font-size:13.5px;line-height:1.9;margin:4px 0 12px}
       .book .bk-scr{background:#faf7ef;border:1px solid #e6dcc3;border-radius:8px;padding:11px 14px;margin:8px 0;font-size:12px;line-height:1.85}
       .book .bk-scr b{color:#9a7b30}
       .book ul.bk-ul{margin:8px 0 10px 2px;padding:0;list-style:none}
       .book ul.bk-ul li{font-size:12.5px;line-height:2;padding-left:16px;position:relative;color:#33415e;margin:4px 0}
       .book ul.bk-ul li::before{content:'·';position:absolute;left:3px;color:#b8923f;font-weight:700}
-      .book .bk-term{font-size:12px;line-height:1.9;margin:6px 0}.book .bk-term b{color:#213a6b}
+      .book .bk-term{font-size:12px;line-height:1.9;margin:6px 0}.book .bk-term b{color:#171717}
       .book .bk-mis{font-size:12px;line-height:1.85;margin:8px 0}.book .bk-mis .w{color:#b4524a}.book .bk-mis .r{color:#2f7d57}
       .book .toc-list{list-style:none;margin:6px 0 0;padding:0}
       .book .toc-row{display:flex;align-items:baseline;gap:12px;padding:9px 2px;border-bottom:1px dotted #d6ddea}
@@ -649,7 +649,7 @@
       const curL=(window._curLessons||[])[idx-1]; const lTitle=curL?cleanTitle(curL.title):'';
       let html=`<div class="cover-page" style="text-align:center;padding:30px 0 24px;border-bottom:1px solid #e6e9f0">
         <p style="color:#b8923f;font-weight:700;letter-spacing:.28em;font-size:11px">BIBLY 바이블 인사이트 · 강의 노트</p>
-        <h1 style="font-size:24px;font-weight:700;color:#213a6b;margin:10px 0 6px;line-height:1.4">${esc(trackTitle)}</h1>
+        <h1 style="font-size:24px;font-weight:700;color:#171717;margin:10px 0 6px;line-height:1.4">${esc(trackTitle)}</h1>
         <p style="font-size:13px;font-weight:700;color:#5a6b88">제${idx}강</p>
         <p style="font-size:13.5px;color:#2a3a55;margin:6px 0 0">${esc(lTitle)}</p>
         ${(CUR_BUYER&&CUR_EMAIL)?`<p style="color:#b8923f;font-size:10.5px;margin:16px 0 0">📗 정품 · <b>${esc(CUR_EMAIL)}</b> 님께 발행 · 무단 복제·배포 금지</p>`:''}
@@ -677,7 +677,7 @@
       const indices=checks.map(c=>Number(c.dataset.idx));
       let html=`<div class="cover-page" style="text-align:center;padding:42px 0 34px;border-bottom:1px solid #e6e9f0">
         <p style="color:#b8923f;font-weight:700;letter-spacing:.28em;font-size:11px;margin:0 0 14px">BIBLY 바이블 인사이트 · 강의 노트</p>
-        <h1 style="font-size:29px;font-weight:700;color:#213a6b;line-height:1.4;margin:0 12px">${esc(trackTitle)}</h1>
+        <h1 style="font-size:29px;font-weight:700;color:#171717;line-height:1.4;margin:0 12px">${esc(trackTitle)}</h1>
         <p style="color:#5a6b88;font-size:13px;margin:10px 0 0">선택된 강의 모음 · ${indices.length}강</p>
         ${(CUR_BUYER&&CUR_EMAIL)?`<p style="color:#b8923f;font-size:10.5px;margin:18px 0 0">📗 정품 · <b>${esc(CUR_EMAIL)}</b> 님께 발행 · 무단 복제·배포 금지</p>`:''}
       </div>`;

@@ -38,14 +38,14 @@
   </script>
   <style>
     h1,h2,.serif{font-family:'Noto Serif KR',Pretendard,serif} .verse-en{font-family:Georgia,'Times New Roman',serif}
-    mark.hl{background:rgba(184,146,63,.28);color:#213a6b;border-radius:3px;padding:0 1px;font-weight:600}
+    mark.hl{background:rgba(184,146,63,.28);color:#171717;border-radius:3px;padding:0 1px;font-weight:600}
     @keyframes vflash{0%{background:rgba(184,146,63,.32)}100%{background:transparent}}
     .verse-flash{animation:vflash 2.6s ease;border-radius:8px}
     #searchInput::-webkit-search-cancel-button{cursor:pointer}
     .vrow{cursor:pointer;border-radius:8px;transition:background .12s}
     .vrow:hover{background:rgba(184,146,63,.06)}
     .vact{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
-    .vact button{font-size:12px;font-weight:600;padding:5px 11px;border-radius:999px;border:1px solid rgba(33,58,107,.14);background:#fff;color:#213a6b;cursor:pointer;transition:background .12s}
+    .vact button{font-size:12px;font-weight:600;padding:5px 11px;border-radius:999px;border:1px solid rgba(33,58,107,.14);background:#fff;color:#171717;cursor:pointer;transition:background .12s}
     .vact button:hover{background:rgba(184,146,63,.12)}
     .vact .vclose{border:0;color:rgba(33,58,107,.35);padding:5px 8px}
     /* 구절 형광펜 하이라이트 */
@@ -105,7 +105,7 @@
 }
   </script>
 </head>
-<body class="font-sans bg-paper text-ink antialiased min-h-screen">
+<body class="font-sans bg-paper text-neutral-900 antialiased min-h-screen">
 
   <div id="siteHeader" data-active="bible.html"></div>
 
@@ -113,28 +113,28 @@
     <div class="text-center mb-5">
       <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">HOLY BIBLE · 성경 읽기</p>
       <h1 class="text-2xl md:text-[1.7rem] font-bold tracking-tight">KJV <span class="text-gold">새번역</span></h1>
-      <p class="text-ink/55 text-sm mt-3 leading-relaxed max-w-xl mx-auto">King James Version 영어 성경과 <b class="text-ink">히브리어·헬라어 원문</b>을 한 절 한 절 비교 대조하여, <b class="text-ink">표준 국어 어법</b>에 맞게 새로 옮긴 번역입니다. 영어 KJV 본문과 나란히 읽습니다.</p>
-      <p class="text-ink/40 text-[11px] mt-2.5 tracking-[0.12em]">KJV &middot; 히브리어 &middot; 헬라어 원문 대조 &middot; 표준 국어 어법</p>
+      <p class="text-neutral-900/55 text-sm mt-3 leading-relaxed max-w-xl mx-auto">King James Version 영어 성경과 <b class="text-neutral-900">히브리어·헬라어 원문</b>을 한 절 한 절 비교 대조하여, <b class="text-neutral-900">표준 국어 어법</b>에 맞게 새로 옮긴 번역입니다. 영어 KJV 본문과 나란히 읽습니다.</p>
+      <p class="text-neutral-900/40 text-[11px] mt-2.5 tracking-[0.12em]">KJV &middot; 히브리어 &middot; 헬라어 원문 대조 &middot; 표준 국어 어법</p>
     </div>
 
     <!-- ===== 본문 단어 검색 ===== -->
     <div class="mb-4">
       <div class="relative">
-        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-ink/35 text-lg pointer-events-none">🔍</span>
+        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-900/35 text-lg pointer-events-none">🔍</span>
         <input id="searchInput" type="search" inputmode="search" autocomplete="off" enterkeyhint="search"
           placeholder="성경 본문에서 단어를 검색하세요 — 예: 사랑, 믿음, 회개"
-          class="w-full pl-11 pr-[5.5rem] py-3.5 rounded-2xl border border-ink/15 bg-white shadow-soft text-[15px] placeholder:text-ink/35 focus:border-gold focus:ring-2 focus:ring-gold/25 outline-none transition" />
+          class="w-full pl-11 pr-[5.5rem] py-3.5 rounded-2xl border border-ink/15 bg-white shadow-soft text-[15px] placeholder:text-neutral-900/35 focus:border-gold focus:ring-2 focus:ring-gold/25 outline-none transition" />
         <button id="searchBtn" onclick="doSearch()" class="absolute right-2 top-1/2 -translate-y-1/2 bg-gold text-white font-semibold text-sm px-4 py-2 rounded-xl hover:opacity-90 active:scale-95 transition">검색</button>
       </div>
       <div class="flex items-center gap-1.5 mt-2 flex-wrap">
-        <span class="text-[11px] text-ink/45 mr-0.5">자주 찾는 단어</span>
-        <button class="text-[11px] px-2.5 py-1 rounded-full border border-ink/12 text-ink/70 hover:border-gold/50 hover:bg-gold/5 transition" onclick="quickSearch('사랑')">사랑</button>
-        <button class="text-[11px] px-2.5 py-1 rounded-full border border-ink/12 text-ink/70 hover:border-gold/50 hover:bg-gold/5 transition" onclick="quickSearch('믿음')">믿음</button>
-        <button class="text-[11px] px-2.5 py-1 rounded-full border border-ink/12 text-ink/70 hover:border-gold/50 hover:bg-gold/5 transition" onclick="quickSearch('은혜')">은혜</button>
-        <button class="text-[11px] px-2.5 py-1 rounded-full border border-ink/12 text-ink/70 hover:border-gold/50 hover:bg-gold/5 transition" onclick="quickSearch('회개')">회개</button>
-        <button class="text-[11px] px-2.5 py-1 rounded-full border border-ink/12 text-ink/70 hover:border-gold/50 hover:bg-gold/5 transition" onclick="quickSearch('구원')">구원</button>
-        <button class="text-[11px] px-2.5 py-1 rounded-full border border-ink/12 text-ink/70 hover:border-gold/50 hover:bg-gold/5 transition" onclick="quickSearch('왕국')">왕국</button>
-        <button id="searchEnBtn" type="button" onclick="toggleSearchEn()" aria-pressed="false" title="켜면 검색 결과에 영어 KJV 본문을 함께 보여주고, 영어 단어에도 형광펜이 칠해집니다" class="ml-auto inline-flex items-center gap-2 text-[13px] font-semibold text-ink/65 bg-white border border-ink/15 rounded-full pl-2 pr-3.5 py-1.5 hover:border-gold/50 transition">
+        <span class="text-[11px] text-neutral-900/45 mr-0.5">자주 찾는 단어</span>
+        <button class="text-[11px] px-2.5 py-1 rounded-full border border-ink/12 text-neutral-900/70 hover:border-gold/50 hover:bg-gold/5 transition" onclick="quickSearch('사랑')">사랑</button>
+        <button class="text-[11px] px-2.5 py-1 rounded-full border border-ink/12 text-neutral-900/70 hover:border-gold/50 hover:bg-gold/5 transition" onclick="quickSearch('믿음')">믿음</button>
+        <button class="text-[11px] px-2.5 py-1 rounded-full border border-ink/12 text-neutral-900/70 hover:border-gold/50 hover:bg-gold/5 transition" onclick="quickSearch('은혜')">은혜</button>
+        <button class="text-[11px] px-2.5 py-1 rounded-full border border-ink/12 text-neutral-900/70 hover:border-gold/50 hover:bg-gold/5 transition" onclick="quickSearch('회개')">회개</button>
+        <button class="text-[11px] px-2.5 py-1 rounded-full border border-ink/12 text-neutral-900/70 hover:border-gold/50 hover:bg-gold/5 transition" onclick="quickSearch('구원')">구원</button>
+        <button class="text-[11px] px-2.5 py-1 rounded-full border border-ink/12 text-neutral-900/70 hover:border-gold/50 hover:bg-gold/5 transition" onclick="quickSearch('왕국')">왕국</button>
+        <button id="searchEnBtn" type="button" onclick="toggleSearchEn()" aria-pressed="false" title="켜면 검색 결과에 영어 KJV 본문을 함께 보여주고, 영어 단어에도 형광펜이 칠해집니다" class="ml-auto inline-flex items-center gap-2 text-[13px] font-semibold text-neutral-900/65 bg-white border border-ink/15 rounded-full pl-2 pr-3.5 py-1.5 hover:border-gold/50 transition">
           <span id="searchEnSwitch" class="relative inline-block w-9 h-5 rounded-full bg-ink/15 transition-colors duration-200 shrink-0"><span id="searchEnKnob" class="absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform duration-200"></span></span>
           <span>영어 KJV 함께 보기</span>
         </button>
@@ -153,18 +153,18 @@
     <!-- 컨트롤 -->
     <div id="ctrlBar" class="sticky top-14 z-30 bg-paper/95 backdrop-blur py-2 -mx-4 px-4 border-b border-ink/8">
       <div class="flex items-center gap-2 flex-wrap">
-        <span class="text-[11px] font-bold text-ink/45 hidden sm:inline">성경 선택</span>
+        <span class="text-[11px] font-bold text-neutral-900/45 hidden sm:inline">성경 선택</span>
         <button onclick="togglePicker()" id="bookBtn" title="눌러서 다른 성경 책을 고르세요" class="inline-flex items-center gap-1.5 bg-gold text-white font-semibold text-sm pl-4 pr-3 py-2 rounded-full hover:opacity-90 transition shadow-soft">
           <span id="bookBtnLabel">📖 책 고르기</span>
           <svg id="bookBtnCaret" width="11" height="11" viewBox="0 0 24 24" fill="none" class="opacity-80"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-        <span class="text-ink/30 text-sm hidden sm:inline">›</span>
+        <span class="text-neutral-900/30 text-sm hidden sm:inline">›</span>
         <label class="relative">
           <select id="chapSel" onchange="loadChapter(+this.value)" class="appearance-none border border-ink/20 rounded-full pl-3.5 pr-8 py-2 text-sm bg-white font-medium cursor-pointer hover:border-ink/40 transition"></select>
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-ink/45"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-neutral-900/45"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </label>
-        <label class="text-xs text-ink/60 flex items-center gap-1.5 ml-1"><input type="checkbox" id="parallel" checked onchange="renderChapter()"/>한·영 병행</label>
-        <label class="text-xs text-ink/60 flex items-center gap-1.5 ml-1"><input type="checkbox" id="enToggle" checked onchange="toggleEn()"/>🔤 영어 표현</label>
+        <label class="text-xs text-neutral-900/60 flex items-center gap-1.5 ml-1"><input type="checkbox" id="parallel" checked onchange="renderChapter()"/>한·영 병행</label>
+        <label class="text-xs text-neutral-900/60 flex items-center gap-1.5 ml-1"><input type="checkbox" id="enToggle" checked onchange="toggleEn()"/>🔤 영어 표현</label>
         <div class="ml-auto flex gap-1.5">
           <button onclick="nav(-1)" title="이전 장" class="border border-ink/15 rounded-full px-3 py-2 text-sm hover:bg-ink/5">←</button>
           <button onclick="nav(1)" title="다음 장" class="border border-ink/15 rounded-full px-3 py-2 text-sm hover:bg-ink/5">→</button>
@@ -176,12 +176,12 @@
     <!-- 책 선택 패널 -->
     <div id="picker" class="hidden bg-white rounded-2xl border border-ink/8 shadow-card p-4 mt-3">
       <div class="flex items-center justify-between mb-3 pb-2.5 border-b border-ink/8">
-        <p class="text-sm font-bold text-ink">📖 읽을 성경 책을 선택하세요</p>
-        <button onclick="togglePicker()" class="text-xs text-ink/40 hover:text-ink">✕ 닫기</button>
+        <p class="text-sm font-bold text-neutral-900">📖 읽을 성경 책을 선택하세요</p>
+        <button onclick="togglePicker()" class="text-xs text-neutral-900/40 hover:text-neutral-900">✕ 닫기</button>
       </div>
-      <p class="text-xs font-bold text-ink/45 mb-2">구약 (Old Testament)</p>
+      <p class="text-xs font-bold text-neutral-900/45 mb-2">구약 (Old Testament)</p>
       <div id="otGrid" class="grid grid-cols-3 sm:grid-cols-5 gap-1.5 mb-4"></div>
-      <p class="text-xs font-bold text-ink/45 mb-2">신약 (New Testament)</p>
+      <p class="text-xs font-bold text-neutral-900/45 mb-2">신약 (New Testament)</p>
       <div id="ntGrid" class="grid grid-cols-3 sm:grid-cols-5 gap-1.5"></div>
     </div>
 
@@ -191,7 +191,7 @@
     <!-- 본문 + 영어 표현 사이드 -->
     <div id="readWrap" class="mt-5 lg:grid lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-5 lg:items-start">
       <article id="reader" class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 lg:p-7 min-h-[300px]">
-        <p class="text-ink/40 text-center py-10">불러오는 중…</p>
+        <p class="text-neutral-900/40 text-center py-10">불러오는 중…</p>
       </article>
       <aside id="enPanel" class="mt-4 lg:mt-0 lg:sticky lg:top-28 bg-white rounded-2xl border border-gold/25 shadow-soft p-4 lg:max-h-[78vh] lg:overflow-auto">
         <style>
@@ -203,7 +203,7 @@
           .seclbl-gra{background:#e3f1ea;color:#0f6e56}
           .secbtn{cursor:pointer;font-size:11.5px;font-weight:600;padding:3px 11px;border-radius:20px;border:0.5px solid;transition:all .15s}
         </style>
-        <p class="font-bold text-sm text-ink mb-2">🔤 영어로 읽는 말씀</p>
+        <p class="font-bold text-sm text-neutral-900 mb-2">🔤 영어로 읽는 말씀</p>
         <div class="flex gap-1.5 mb-3">
           <button id="tgLearn" type="button" onclick="togSec('learn')" class="secbtn" title="단어·숙어·어법 켜고 끄기">📘 영어 학습</button>
           <button id="tgTheo" type="button" onclick="togSec('theo')" class="secbtn" title="신학 해설 켜고 끄기">💡 신학 해설</button>
@@ -212,14 +212,14 @@
       </aside>
     </div>
 
-    <p id="copyHint" class="text-[11.5px] text-ink/40 mt-3 text-center">💡 구절을 <b class="text-ink/55">클릭</b>하면 복사·공유할 수 있고, <b class="text-ink/55">드래그해서 복사</b>하면 출처(책·장·절)가 자동으로 함께 붙습니다.</p>
+    <p id="copyHint" class="text-[11.5px] text-neutral-900/40 mt-3 text-center">💡 구절을 <b class="text-neutral-900/55">클릭</b>하면 복사·공유할 수 있고, <b class="text-neutral-900/55">드래그해서 복사</b>하면 출처(책·장·절)가 자동으로 함께 붙습니다.</p>
 
     <div id="bottomNav" class="flex justify-between mt-4">
       <button onclick="nav(-1)" class="text-sm text-gold hover:underline">← 이전 장</button>
       <button onclick="nav(1)" class="text-sm text-gold hover:underline">다음 장 →</button>
     </div>
 
-    <p id="footerNote" class="text-xs text-ink/40 mt-6 leading-relaxed bg-ink/[0.03] rounded-xl p-4">
+    <p id="footerNote" class="text-xs text-neutral-900/40 mt-6 leading-relaxed bg-ink/[0.03] rounded-xl p-4">
       ※ <b>영어 본문</b>은 King James Version(1611)으로 <b>공유저작물(Public Domain)</b>입니다.
       <b>한국어 「KJV 새번역」</b>은 기존 한국어 번역본을 옮기지 않고, <b>KJV·히브리어·헬라어 원문을 직접 대조해 표준 국어 어법으로 새로 옮긴 번역</b>으로 순차적으로 추가됩니다.
       아직 번역되지 않은 장은 영어만 표시됩니다.
@@ -280,20 +280,20 @@
     }
     function renderEn(){
       const box=$('enList'); if(!box) return;
-      if(!ENNOTES || !ENNOTES.length){ box.innerHTML='<p class="text-xs text-ink/40 leading-relaxed py-2">이 장의 영어 표현 노트는 준비 중입니다. (장별로 순차 추가)</p>'; return; }
+      if(!ENNOTES || !ENNOTES.length){ box.innerHTML='<p class="text-xs text-neutral-900/40 leading-relaxed py-2">이 장의 영어 표현 노트는 준비 중입니다. (장별로 순차 추가)</p>'; return; }
       box.innerHTML=ENNOTES.map((e,vi)=>{
-        const voc=(e.voc||[]).map(v=>`<div class="text-[12px] leading-tight"><span class="font-semibold text-ink">${esc(v[0]||'')}</span> <span class="text-ink/35 text-[10.5px]">${esc(v[1]||'')}</span><br><span class="text-ink/60">${esc(v[2]||'')}</span></div>`).join('');
+        const voc=(e.voc||[]).map(v=>`<div class="text-[12px] leading-tight"><span class="font-semibold text-neutral-900">${esc(v[0]||'')}</span> <span class="text-neutral-900/35 text-[10.5px]">${esc(v[1]||'')}</span><br><span class="text-neutral-900/60">${esc(v[2]||'')}</span></div>`).join('');
         const vocB=voc?`<div class="mt-2"><span class="seclbl seclbl-voc">단어</span><div class="grid grid-cols-2 gap-x-3 gap-y-1.5 mt-1.5">${voc}</div></div>`:'';
-        const idi=(e.idi||[]).map(x=>`<div class="text-[12px] text-ink/70 leading-snug"><span class="font-semibold text-ink">${esc(x[0]||'')}</span> — ${esc(x[1]||'')}</div>`).join('');
+        const idi=(e.idi||[]).map(x=>`<div class="text-[12px] text-neutral-900/70 leading-snug"><span class="font-semibold text-neutral-900">${esc(x[0]||'')}</span> — ${esc(x[1]||'')}</div>`).join('');
         const idiB=idi?`<div class="mt-2"><span class="seclbl seclbl-idi">숙어·표현</span><div class="mt-1 space-y-0.5">${idi}</div></div>`:'';
-        const gra=(e.gra||[]).map(x=>`<div class="text-[12px] text-ink/70 leading-snug"><span class="font-semibold" style="color:#0f6e56">${esc(x[0]||'')}</span> — ${esc(x[1]||'')}</div>`).join('');
+        const gra=(e.gra||[]).map(x=>`<div class="text-[12px] text-neutral-900/70 leading-snug"><span class="font-semibold" style="color:#0f6e56">${esc(x[0]||'')}</span> — ${esc(x[1]||'')}</div>`).join('');
         const graB=gra?`<div class="mt-2"><span class="seclbl seclbl-gra">어법</span><div class="mt-1 space-y-0.5">${gra}</div></div>`:'';
         const learn=(graB||idiB||vocB)?`<div class="sec-learn">${graB}${idiB}${vocB}</div>`:'';
-        const theo=e.note?`<div class="sec-theo mt-2 bg-gold/[0.06] border-l-2 border-gold/50 rounded-r px-2.5 py-2"><p class="text-[12px] text-ink/70 leading-relaxed">${esc(e.note)}</p></div>`:'';
+        const theo=e.note?`<div class="sec-theo mt-2 bg-gold/[0.06] border-l-2 border-gold/50 rounded-r px-2.5 py-2"><p class="text-[12px] text-neutral-900/70 leading-relaxed">${esc(e.note)}</p></div>`:'';
         return `<div class="border-b border-ink/[0.07] py-3 last:border-0">
           <div class="flex gap-1.5 items-baseline">
             <span class="text-[11px] font-bold text-gold shrink-0">${vi+1}</span>
-            <p class="verse-en font-bold text-[13.5px] text-ink leading-snug">${hlVoc(e.en||'', e)}</p>
+            <p class="verse-en font-bold text-[13.5px] text-neutral-900 leading-snug">${hlVoc(e.en||'', e)}</p>
           </div>
           <p class="text-[12.5px] text-gold font-semibold mt-0.5 ml-[18px]">${esc(e.ko||'')}</p>
           <div class="ml-[18px]">${learn}${theo}</div></div>`;
@@ -325,12 +325,12 @@
     function renderChapter(){
       const verses=(BOOK&&BOOK[CH])||[];
       const par=$('parallel').checked && KR;
-      let h=`<div class="flex items-baseline justify-between mb-4 pb-3 border-b border-ink/8"><h2 class="text-xl font-bold">${CUR.ko} <span class="text-gold">${CH}장</span></h2><span class="text-xs text-ink/40">${CUR.en} ${CH} · KJV</span></div>`;
-      if(!verses.length){ h+='<p class="text-ink/40 text-center py-8">본문을 불러오지 못했습니다.</p>'; $('reader').innerHTML=h; return; }
+      let h=`<div class="flex items-baseline justify-between mb-4 pb-3 border-b border-ink/8"><h2 class="text-xl font-bold">${CUR.ko} <span class="text-gold">${CH}장</span></h2><span class="text-xs text-neutral-900/40">${CUR.en} ${CH} · KJV</span></div>`;
+      if(!verses.length){ h+='<p class="text-neutral-900/40 text-center py-8">본문을 불러오지 못했습니다.</p>'; $('reader').innerHTML=h; return; }
       h+='<div class="space-y-3.5">';
       verses.forEach((en,i)=>{
-        const ko = (par && KR[i]) ? `<p class="serif text-[16px] text-ink leading-relaxed mt-0.5">${esc(KR[i])}</p>` : '';
-        h+=`<div id="v${i+1}" class="vrow flex gap-2.5 px-1.5 -mx-1.5 py-0.5"><span class="text-gold font-bold text-xs pt-1 w-5 shrink-0 text-right">${i+1}</span><div class="vbody flex-1">${ko}<p class="verse-en text-[15px] ${par?'text-ink/55':'text-ink/85'} leading-relaxed">${esc(en)}</p></div></div>`;
+        const ko = (par && KR[i]) ? `<p class="serif text-[16px] text-neutral-900 leading-relaxed mt-0.5">${esc(KR[i])}</p>` : '';
+        h+=`<div id="v${i+1}" class="vrow flex gap-2.5 px-1.5 -mx-1.5 py-0.5"><span class="text-gold font-bold text-xs pt-1 w-5 shrink-0 text-right">${i+1}</span><div class="vbody flex-1">${ko}<p class="verse-en text-[15px] ${par?'text-neutral-900/55':'text-neutral-900/85'} leading-relaxed">${esc(en)}</p></div></div>`;
       });
       h+='</div>';
       if($('parallel').checked && !KR){ h+='<p class="text-xs text-gold/80 mt-5 bg-gold/[0.07] rounded-lg p-3">🕊️ 이 장의 한국어 번역은 아직 준비 중입니다. (원어 기반 자체 번역으로 순차 추가)</p>'; }
@@ -388,14 +388,14 @@
         var on='onclick="event.stopPropagation();'+(x.href?("snsOpen('"+x.href.replace(/'/g,"\\'")+"');closeShareSheet()"):x.fn)+'"';
         return '<button type="button" '+on+' style="display:flex;flex-direction:column;align-items:center;gap:6px;border:0;background:transparent;cursor:pointer;padding:4px">'
           +'<span style="width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;background:'+x.bg+';color:'+x.fg+';box-shadow:0 2px 8px rgba(21,32,58,.12)">'+x.ic+'</span>'
-          +'<span style="font-size:11.5px;color:#213a6b;font-weight:600;white-space:nowrap">'+x.l+'</span></button>';
+          +'<span style="font-size:11.5px;color:#171717;font-weight:600;white-space:nowrap">'+x.l+'</span></button>';
       }).join('');
       var ov=document.createElement('div'); ov.id='shareSheet';
       ov.style.cssText='position:fixed;inset:0;z-index:130;background:rgba(21,32,58,.4);display:flex;align-items:flex-end;justify-content:center';
       ov.onclick=closeShareSheet;
       ov.innerHTML='<div onclick="event.stopPropagation()" style="background:#fff;width:100%;max-width:440px;border-radius:20px 20px 0 0;padding:18px 16px 24px;box-shadow:0 -8px 32px rgba(21,32,58,.2)">'
         +'<div style="width:38px;height:4px;border-radius:99px;background:#dde3ec;margin:0 auto 14px"></div>'
-        +'<p style="font-weight:700;color:#213a6b;font-size:14px;text-align:center;margin-bottom:4px">📖 '+verseRef(v)+' 공유</p>'
+        +'<p style="font-weight:700;color:#171717;font-size:14px;text-align:center;margin-bottom:4px">📖 '+verseRef(v)+' 공유</p>'
         +'<p style="font-size:11.5px;color:rgba(33,58,107,.5);text-align:center;margin-bottom:16px">구절과 출처가 함께 전달됩니다</p>'
         +'<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px 4px">'+cells+'</div>'
         +'<button type="button" onclick="closeShareSheet()" style="margin-top:18px;width:100%;padding:11px;border:0;border-radius:12px;background:#f3f5f9;color:rgba(33,58,107,.6);font-weight:600;font-size:14px;cursor:pointer">닫기</button>'
@@ -494,15 +494,15 @@
     }
     function studyPanel(ws){
       if(!ws) return '';
-      const refs=(ws.refs||[]).map(r=>`<span class="inline-block bg-sand/70 text-ink/70 text-[11px] px-2 py-0.5 rounded mr-1 mb-1">${esc(r)}</span>`).join('');
+      const refs=(ws.refs||[]).map(r=>`<span class="inline-block bg-sand/70 text-neutral-900/70 text-[11px] px-2 py-0.5 rounded mr-1 mb-1">${esc(r)}</span>`).join('');
       return `<div class="bg-white rounded-2xl border border-gold/30 shadow-soft p-5 mb-4">
         <div class="flex items-center flex-wrap gap-2 mb-1.5">
-          <h3 class="text-lg font-bold text-ink">‘${esc(ws.w)}’의 신학적 의미</h3>
-          ${ws.en?`<span class="text-ink/45 text-sm verse-en">${esc(ws.en)}</span>`:''}
+          <h3 class="text-lg font-bold text-neutral-900">‘${esc(ws.w)}’의 신학적 의미</h3>
+          ${ws.en?`<span class="text-neutral-900/45 text-sm verse-en">${esc(ws.en)}</span>`:''}
         </div>
-        ${ws.orig?`<p class="text-[12px] text-ink/45 mb-2.5">원어 · ${esc(ws.orig)}</p>`:''}
-        ${ws.theology?`<div class="mb-3"><h4 class="font-bold text-ink text-[13.5px] mb-1">📖 신학적 의미</h4><p class="text-[13.5px] text-ink/80 leading-[1.9]">${esc(ws.theology)}</p></div>`:''}
-        ${ws.context?`<div class="mb-2"><h4 class="font-bold text-ink text-[13.5px] mb-1">🧭 성경에서의 맥락</h4><p class="text-[13.5px] text-ink/80 leading-[1.9]">${esc(ws.context)}</p></div>`:''}
+        ${ws.orig?`<p class="text-[12px] text-neutral-900/45 mb-2.5">원어 · ${esc(ws.orig)}</p>`:''}
+        ${ws.theology?`<div class="mb-3"><h4 class="font-bold text-neutral-900 text-[13.5px] mb-1">📖 신학적 의미</h4><p class="text-[13.5px] text-neutral-900/80 leading-[1.9]">${esc(ws.theology)}</p></div>`:''}
+        ${ws.context?`<div class="mb-2"><h4 class="font-bold text-neutral-900 text-[13.5px] mb-1">🧭 성경에서의 맥락</h4><p class="text-[13.5px] text-neutral-900/80 leading-[1.9]">${esc(ws.context)}</p></div>`:''}
         ${refs?`<div class="mt-2.5">${refs}</div>`:''}
         <p class="text-[12px] text-gold/90 mt-3 pt-2.5 border-t border-ink/8">👇 아래는 성경 전체에서 <b>‘${esc(ws.w)}’</b>가 실제로 쓰인 구절입니다 — 맥락 속에서 직접 확인하며 학습해 보세요.</p>
       </div>`;
@@ -513,7 +513,7 @@
       sw.style.background = SEARCH_EN ? '#b8923f' : '';
       kn.style.transform = SEARCH_EN ? 'translateX(16px)' : '';
       b.setAttribute('aria-pressed', SEARCH_EN?'true':'false');
-      b.classList.toggle('border-gold', SEARCH_EN); b.classList.toggle('text-ink', SEARCH_EN); b.classList.toggle('text-ink/65', !SEARCH_EN);
+      b.classList.toggle('border-gold', SEARCH_EN); b.classList.toggle('text-neutral-900', SEARCH_EN); b.classList.toggle('text-neutral-900/65', !SEARCH_EN);
     }
     function toggleSearchEn(){ SEARCH_EN=!SEARCH_EN; paintEnToggle(); if(!$('searchView').classList.contains('hidden') && ($('searchInput').value||'').trim()) doSearch(true); }
     function quickSearch(w){ $('searchInput').value=w; doSearch(); }
@@ -534,7 +534,7 @@
       if(q.length<1){ closeSearch(); return; }
       if(!fromHistory){ try{ history.pushState({view:'search',q}, '', '?q='+encodeURIComponent(q)); }catch(e){} }
       setSearchMode(true);
-      view.innerHTML='<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-8 text-center text-ink/45">성경 전체에서 찾는 중…</div>';
+      view.innerHTML='<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-8 text-center text-neutral-900/45">성경 전체에서 찾는 중…</div>';
       const idx=await ensureIndex();
       await ensureWordStudy();
       const ws=findWordStudy(q);
@@ -556,14 +556,14 @@
     function verseRow(r, idx, q, enTerms){
       const bk=idx.books[r[0]], ref=bk.k+' '+r[1]+':'+r[2];
       const showEn = SEARCH_EN || !r[3];      // 토글 ON 또는 한글 미번역(구약)
-      const koHtml = r[3] ? `<p class="serif text-[15px] text-ink/90 leading-relaxed">${hl(r[3], q)}</p>`
-                          : `<p class="text-[12px] text-ink/40 mt-0.5">📖 한글 번역 준비 중 — 영어 KJV로 확인하세요</p>`;
-      const enHtml = (showEn && r[4]) ? `<p class="verse-en text-[13px] ${r[3]?'text-ink/50':'text-ink/85'} leading-relaxed mt-1">${hlEn(r[4], enTerms.length?enTerms:[q])}</p>` : '';
-      const tag = !r[3] ? '<span class="text-[10px] text-ink/40 bg-ink/5 rounded px-1.5 py-0.5 shrink-0">번역 준비중</span>' : '';
+      const koHtml = r[3] ? `<p class="serif text-[15px] text-neutral-900/90 leading-relaxed">${hl(r[3], q)}</p>`
+                          : `<p class="text-[12px] text-neutral-900/40 mt-0.5">📖 한글 번역 준비 중 — 영어 KJV로 확인하세요</p>`;
+      const enHtml = (showEn && r[4]) ? `<p class="verse-en text-[13px] ${r[3]?'text-neutral-900/50':'text-neutral-900/85'} leading-relaxed mt-1">${hlEn(r[4], enTerms.length?enTerms:[q])}</p>` : '';
+      const tag = !r[3] ? '<span class="text-[10px] text-neutral-900/40 bg-ink/5 rounded px-1.5 py-0.5 shrink-0">번역 준비중</span>' : '';
       return `<button onclick="gotoVerse(${r[0]},${r[1]},${r[2]})" class="w-full text-left bg-white rounded-xl border border-ink/8 hover:border-gold/45 hover:shadow-soft p-3.5 transition group">
         <div class="flex items-center gap-2 mb-1">
           <span class="text-[11px] font-bold text-gold bg-gold/10 rounded-full px-2.5 py-0.5 shrink-0">${esc(ref)}</span>${tag}
-          <span class="text-[11px] text-ink/30 group-hover:text-gold/70 ml-auto transition">펼쳐 읽기 →</span>
+          <span class="text-[11px] text-neutral-900/30 group-hover:text-gold/70 ml-auto transition">펼쳐 읽기 →</span>
         </div>${koHtml}${enHtml}</button>`;
     }
     function renderResults(q, hits, idx, ws, enTerms, koN, enN){
@@ -571,14 +571,14 @@
       const study=studyPanel(ws);
       const otN = hits.filter(h=>!h[0][3]).length;
       const head=`<div class="flex items-center justify-between gap-3 mb-3">
-        <p class="text-sm text-ink/70"><b class="text-ink">‘${esc(q)}’</b> 검색 결과 <b class="text-gold">${hits.length}</b>구절 <span class="text-ink/40 text-xs">${otN?`· 구약 등 미번역 ${otN}구절 포함`:''}</span></p>
-        <button onclick="closeSearch()" class="text-xs text-ink/55 hover:text-ink border border-ink/15 rounded-full px-3 py-1.5 hover:bg-ink/5 transition">✕ 읽기로 돌아가기</button>
+        <p class="text-sm text-neutral-900/70"><b class="text-neutral-900">‘${esc(q)}’</b> 검색 결과 <b class="text-gold">${hits.length}</b>구절 <span class="text-neutral-900/40 text-xs">${otN?`· 구약 등 미번역 ${otN}구절 포함`:''}</span></p>
+        <button onclick="closeSearch()" class="text-xs text-neutral-900/55 hover:text-neutral-900 border border-ink/15 rounded-full px-3 py-1.5 hover:bg-ink/5 transition">✕ 읽기로 돌아가기</button>
       </div>`;
       if(!hits.length){
         view.innerHTML=head+study+`<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-10 text-center">
           <p class="text-3xl mb-2">🔍</p>
-          <p class="text-ink/60 text-sm">성경 전체에서 <b>‘${esc(q)}’</b>에 해당하는 구절을 찾지 못했어요.</p>
-          <p class="text-ink/40 text-xs mt-2">맞춤법을 확인하거나 다른 단어로 검색해 보세요. (한글 번역 본문 + 전 성경 영어 KJV에서 검색합니다.)</p>
+          <p class="text-neutral-900/60 text-sm">성경 전체에서 <b>‘${esc(q)}’</b>에 해당하는 구절을 찾지 못했어요.</p>
+          <p class="text-neutral-900/40 text-xs mt-2">맞춤법을 확인하거나 다른 단어로 검색해 보세요. (한글 번역 본문 + 전 성경 영어 KJV에서 검색합니다.)</p>
         </div>`;
         return;
       }
@@ -589,17 +589,17 @@
         const refMap={}; senses.forEach((s,si)=>(s.refs||[]).forEach(rf=>{ refMap[norm(rf)]=si; }));
         const groups=senses.map(()=>[]); const other=[];
         hits.forEach(h=>{ const bk=idx.books[h[0][0]]; const ref=norm(bk.k+' '+h[0][1]+':'+h[0][2]); const si=refMap[ref]; if(si!=null) groups[si].push(h); else other.push(h); });
-        body+=`<p class="text-[12px] text-ink/55 mb-2">🔀 <b class="text-ink/75">‘${esc(q)}’</b>는 맥락에 따라 의미가 나뉩니다 — 의미 갈래별로 모았어요.</p>`;
+        body+=`<p class="text-[12px] text-neutral-900/55 mb-2">🔀 <b class="text-neutral-900/75">‘${esc(q)}’</b>는 맥락에 따라 의미가 나뉩니다 — 의미 갈래별로 모았어요.</p>`;
         senses.forEach((s,si)=>{
           const list=groups[si];
-          body+=`<details class="mb-2.5" open><summary class="cursor-pointer select-none flex items-center gap-2 bg-gradient-to-r from-gold/[0.12] to-transparent rounded-lg px-3.5 py-2.5"><span class="text-[14px] font-bold text-ink">${si+1}. ${esc(s.label)}</span><span class="hidden sm:inline text-[12px] text-ink/55">${esc(s.gloss||'')}</span><span class="ml-auto text-[11px] font-bold text-gold shrink-0">${list.length}구절</span></summary><div class="space-y-2 mt-2 pl-1">${list.length?list.map(h=>verseRow(h[0],idx,q,enTerms)).join(''):'<p class="text-xs text-ink/40 px-2 py-2">이 의미의 대표 구절이 현재 결과에 없습니다.</p>'}</div></details>`;
+          body+=`<details class="mb-2.5" open><summary class="cursor-pointer select-none flex items-center gap-2 bg-gradient-to-r from-gold/[0.12] to-transparent rounded-lg px-3.5 py-2.5"><span class="text-[14px] font-bold text-neutral-900">${si+1}. ${esc(s.label)}</span><span class="hidden sm:inline text-[12px] text-neutral-900/55">${esc(s.gloss||'')}</span><span class="ml-auto text-[11px] font-bold text-gold shrink-0">${list.length}구절</span></summary><div class="space-y-2 mt-2 pl-1">${list.length?list.map(h=>verseRow(h[0],idx,q,enTerms)).join(''):'<p class="text-xs text-neutral-900/40 px-2 py-2">이 의미의 대표 구절이 현재 결과에 없습니다.</p>'}</div></details>`;
         });
-        if(other.length){ body+=`<details class="mb-2.5" open><summary class="cursor-pointer select-none flex items-center gap-2 bg-ink/[0.03] rounded-lg px-3.5 py-2.5"><span class="text-[14px] font-bold text-ink/75">그 밖의 용례</span><span class="ml-auto text-[11px] font-bold text-ink/45 shrink-0">${other.length}구절</span></summary><div class="space-y-2 mt-2 pl-1">${other.map(h=>verseRow(h[0],idx,q,enTerms)).join('')}</div></details>`; }
+        if(other.length){ body+=`<details class="mb-2.5" open><summary class="cursor-pointer select-none flex items-center gap-2 bg-ink/[0.03] rounded-lg px-3.5 py-2.5"><span class="text-[14px] font-bold text-neutral-900/75">그 밖의 용례</span><span class="ml-auto text-[11px] font-bold text-neutral-900/45 shrink-0">${other.length}구절</span></summary><div class="space-y-2 mt-2 pl-1">${other.map(h=>verseRow(h[0],idx,q,enTerms)).join('')}</div></details>`; }
       } else {
         body=`<div class="space-y-2">${hits.map(h=>verseRow(h[0],idx,q,enTerms)).join('')}</div>`;
       }
       view.innerHTML=head+study+body
-        + ((koN>600||enN>500)?'<p class="text-[11px] text-ink/40 text-center mt-3">결과가 많아 일부만 표시합니다. 더 구체적인 단어로 좁혀 보세요.</p>':'');
+        + ((koN>600||enN>500)?'<p class="text-[11px] text-neutral-900/40 text-center mt-3">결과가 많아 일부만 표시합니다. 더 구체적인 단어로 좁혀 보세요.</p>':'');
       window.scrollTo({top:0,behavior:'smooth'});
     }
     function gotoVerse(bookIdx, c, v){
