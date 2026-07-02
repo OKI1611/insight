@@ -42,7 +42,27 @@
     const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
     const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
   </script>
-  <style>h1,h2,h3{font-family:'Noto Serif KR',Pretendard,serif}html{scroll-behavior:smooth}</style>
+  <style>
+    h1,h2,h3{font-family:'Noto Serif KR',Pretendard,serif}html{scroll-behavior:smooth}
+    /* 급수 패키지 카드 — 마우스 올리면 배경·테두리 변화 */
+    .pkg-card{position:relative;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease,background-color .2s ease}
+    .pkg-card::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;border-radius:16px 16px 0 0;background:var(--acc,#b8923f);opacity:.85}
+    .pkg-card:hover{transform:translateY(-5px);background:var(--accBg,rgba(184,146,63,.05));border-color:var(--accBorder,rgba(184,146,63,.45));box-shadow:0 20px 42px -20px rgba(24,32,58,.4)}
+    .pkg-title{display:inline-flex;align-items:center;gap:6px;cursor:pointer;border:0;background:none;padding:0;text-align:left}
+    .pkg-title h3{transition:color .12s}
+    .pkg-title:hover h3{color:var(--acc,#213a6b)}
+    .pkg-title .pkg-more{font-size:15px;color:#c4cad4;transition:color .12s,transform .15s}
+    .pkg-card:hover .pkg-more{color:var(--acc,#b8923f);transform:translateX(2px)}
+    .pkg-hint{font-size:10.5px;color:#9aa2af;font-weight:600;letter-spacing:.01em}
+    .pkg-card:hover .pkg-hint{color:#6b7280}
+    /* 급수 소개 모달 */
+    #pkgModal{position:fixed;inset:0;z-index:120;display:none}
+    #pkgModal.on{display:block}
+    #pkgModal .pm-bd{position:absolute;inset:0;background:rgba(21,32,58,.5);backdrop-filter:blur(3px)}
+    #pkgModal .pm-card{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(560px,92vw);max-height:88vh;overflow:auto;background:#fff;border-radius:22px;box-shadow:0 30px 70px -20px rgba(21,32,58,.55);padding:0}
+    #pkgModal .pm-x{position:absolute;top:14px;right:16px;font-size:20px;color:#b6bcc7;background:none;border:0;cursor:pointer;line-height:1;z-index:2}
+    #pkgModal .pm-x:hover{color:#4b5563}
+  </style>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://biblynote.com/"},{"@type":"ListItem","position":2,"name":"강의·커리큘럼","item":"https://biblynote.com/curriculum"},{"@type":"ListItem","position":3,"name":"정규 심화 과정(아카데미)","item":"https://biblynote.com/academy"}]}
   </script>
@@ -309,23 +329,66 @@
 
       if(grid) grid.innerHTML = ranks.map((rk,i) => {
         const main = rk.earlybird || rk.price || 0, rec = rk.tier === 1, top = i===N-1, HIDE = !!PROG.hidePrice;
-        const accent = rk.color || (top ? '#b8923f' : '#b8923f');
-        const perks = (rk.perks||[]).map(p => `<li class="flex gap-1.5"><span class="shrink-0" style="color:${accent}">✓</span><span>${p}</span></li>`).join('');
-        const tag = rec ? '<span class="ml-auto text-[10px] font-bold text-gold bg-gold/12 px-2 py-0.5 rounded-full">입문 추천</span>'
-                  : (top ? '<span class="ml-auto text-[10px] font-bold text-white px-2 py-0.5 rounded-full" style="background:#b8923f">최고 등급</span>' : '');
-        return `<div class="bg-white rounded-2xl border ${rec?'border-gold/50 shadow-card':(top?'shadow-card':'border-ink/10 shadow-soft')} p-6 flex flex-col" ${top?'style="border-color:rgba(184,146,63,.45)"':''}>
-          <div class="flex items-center gap-2 mb-2">${seal(rk.tier, accent, 34)}<div><div class="flex items-center gap-1.5"><span class="text-white text-[11px] font-bold px-2 py-0.5 rounded-full" style="background:${accent}">${rk.rank}</span><h3 class="font-bold text-lg leading-none">${rk.name}</h3></div><span class="text-[10px] font-bold tracking-wider" style="color:${accent}">${rk.en||''}</span></div>${tag}</div>
-          <p class="text-xs text-neutral-900/50 mb-3">${rk.tagline||''}</p>
-          <p class="text-[12.5px] text-neutral-900/65 leading-relaxed mb-3 bg-paper border border-ink/8 rounded-lg p-2.5"><b class="text-neutral-900/80">이 등급을 받으면 ›</b> ${rk.outcome||''}</p>
-          <p class="text-[11px] text-neutral-900/45 font-semibold mb-3">${(rk.tracks||[]).length}개 과목 과정</p>
-          <p class="mb-4">${HIDE ? '<span class="text-lg font-bold text-neutral-900">가격 추후 안내</span>' : `<span class="text-2xl font-bold">${won(main)}</span>${rk.earlybird?` <span class="text-sm text-neutral-900/40 line-through">${won(rk.price)}</span> <span class="text-[11px] font-bold text-rose-500">얼리버드</span>`:''}`}</p>
-          <ul class="text-sm text-neutral-900/65 space-y-1.5 mb-5 flex-1">${perks}</ul>
-          <a href="#apply" onclick="pickPkg('${rk.name} (${rk.rank})')" class="block text-center ${rec?'bg-gold text-white':'bg-gold text-white'} text-sm font-semibold py-2.5 rounded-xl hover:opacity-90 transition">이 패키지로 신청 →</a>
+        const accent = rk.color || '#b8923f';
+        const perks = (rk.perks||[]).map(p => `<li class="flex gap-2"><svg viewBox="0 0 20 20" class="w-4 h-4 shrink-0 mt-0.5" style="color:${accent}" fill="none"><path d="M5 10.5l3.2 3.2L15 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>${p}</span></li>`).join('');
+        const tag = rec ? '<span class="ml-auto text-[10px] font-bold text-neutral-700 bg-neutral-100 border border-neutral-200 px-2.5 py-0.5 rounded-full">입문 추천</span>'
+                  : (top ? '<span class="ml-auto text-[10px] font-bold text-white px-2.5 py-0.5 rounded-full" style="background:#1f2d4d">최고 등급</span>' : '');
+        const cssVars = `--acc:${accent};--accBg:${hexToRgba(accent,.055)};--accBorder:${hexToRgba(accent,.5)}`;
+        const btnStyle = rec ? 'background:#b8923f;color:#fff' : 'background:#1f2937;color:#fff';
+        return `<div class="pkg-card bg-white rounded-2xl border ${rec?'border-neutral-200 shadow-card':(top?'border-neutral-200 shadow-card':'border-neutral-200 shadow-soft')} p-6 pt-7 flex flex-col" style="${cssVars}">
+          <button type="button" class="pkg-title mb-1" onclick="openPkgModal(${i})" title="${rk.name} 과정 소개 보기">
+            ${seal(rk.tier, accent, 34)}
+            <span class="ml-0.5">
+              <span class="flex items-center gap-1.5"><span class="text-white text-[11px] font-bold px-2 py-0.5 rounded-full" style="background:${accent}">${rk.rank}</span><h3 class="font-bold text-lg leading-none text-neutral-900">${rk.name}</h3><span class="pkg-more">›</span></span>
+              <span class="block text-[10px] font-bold tracking-[.18em] text-neutral-400 mt-1">${rk.en||''}</span>
+            </span>
+            ${tag}
+          </button>
+          <p class="pkg-hint mb-2.5">제목을 탭하면 이 급수 소개·홍보를 볼 수 있어요</p>
+          <p class="text-xs text-neutral-500 mb-3">${rk.tagline||''}</p>
+          <p class="text-[12.5px] text-neutral-700 leading-relaxed mb-3 bg-neutral-50 border border-neutral-200/80 rounded-lg p-2.5"><b class="text-neutral-900">이 등급을 받으면 ›</b> ${rk.outcome||''}</p>
+          <p class="text-[11px] text-neutral-500 font-semibold mb-3">${(rk.tracks||[]).length}개 과목 과정</p>
+          <p class="mb-4">${HIDE ? '<span class="text-lg font-bold text-neutral-900">가격 추후 안내</span>' : `<span class="text-2xl font-bold text-neutral-900">${won(main)}</span>${rk.earlybird?` <span class="text-sm text-neutral-400 line-through">${won(rk.price)}</span> <span class="text-[11px] font-bold text-rose-500">얼리버드</span>`:''}`}</p>
+          <ul class="text-sm text-neutral-600 space-y-1.5 mb-5 flex-1">${perks}</ul>
+          <a href="#apply" onclick="pickPkg('${rk.name} (${rk.rank})')" class="block text-center text-sm font-semibold py-2.5 rounded-xl hover:opacity-90 transition" style="${btnStyle}">이 패키지로 신청 →</a>
         </div>`;
       }).join('');
       if(sel) sel.innerHTML = '<option value="">신청할 패키지를 골라주세요 *</option>' + ranks.map(rk => `<option>${rk.name} (${rk.rank})</option>`).join('');
     }
     function pickPkg(v){ const s = document.getElementById('aInterest'); if(s) s.value = v; }
+    function hexToRgba(hex, a){ const h=(hex||'#b8923f').replace('#',''); const n=h.length===3?h.split('').map(c=>c+c).join(''):h; const r=parseInt(n.slice(0,2),16), g=parseInt(n.slice(2,4),16), b=parseInt(n.slice(4,6),16); return `rgba(${r},${g},${b},${a})`; }
+    function pkgSeal(tier,color,size){ const RN=['Ⅰ','Ⅱ','Ⅲ','Ⅳ','Ⅴ']; return `<span class="inline-flex items-center justify-center rounded-full shrink-0" style="width:${size}px;height:${size}px;background:radial-gradient(circle at 32% 26%, rgba(255,255,255,.55), transparent 58%), linear-gradient(145deg,${color},${color}cc);box-shadow:0 6px 14px -6px ${color}, inset 0 0 0 2px rgba(255,255,255,.3)"><span style="font-size:${Math.round(size*0.44)}px;color:#fff;font-family:Georgia,serif;font-weight:700;text-shadow:0 1px 2px rgba(0,0,0,.28)">${RN[tier-1]||'Ⅰ'}</span></span>`; }
+    // 급수 제목 클릭 → 소개·홍보 + 수강신청 모달
+    function openPkgModal(i){
+      if(!PROG||!PROG.ranks) return; const rk=PROG.ranks[i]; if(!rk) return;
+      const accent=rk.color||'#b8923f', HIDE=!!PROG.hidePrice, main=rk.earlybird||rk.price||0;
+      const able=(rk.able||[]).map(a=>`<li class="flex gap-2.5"><svg viewBox="0 0 20 20" class="w-4 h-4 shrink-0 mt-0.5" style="color:${accent}" fill="none"><path d="M5 10.5l3.2 3.2L15 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>${a}</span></li>`).join('');
+      const tracks=(rk.tracks||[]).map(t=>`<li class="flex gap-2"><span class="shrink-0 text-neutral-300">•</span><span>${t}</span></li>`).join('');
+      const perks=(rk.perks||[]).map(p=>`<li class="flex gap-2"><svg viewBox="0 0 20 20" class="w-3.5 h-3.5 shrink-0 mt-0.5 text-neutral-400" fill="none"><path d="M5 10.5l3.2 3.2L15 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>${p}</span></li>`).join('');
+      let m=document.getElementById('pkgModal');
+      if(!m){ m=document.createElement('div'); m.id='pkgModal'; m.innerHTML='<div class="pm-bd" onclick="closePkgModal()"></div><div class="pm-card"><button type="button" class="pm-x" onclick="closePkgModal()">✕</button><div class="pm-body"></div></div>'; document.body.appendChild(m); }
+      m.querySelector('.pm-body').innerHTML=`
+        <div class="px-6 pt-7 pb-5 rounded-t-[22px]" style="background:linear-gradient(160deg,${hexToRgba(accent,.14)},${hexToRgba(accent,.03)})">
+          <div class="flex items-center gap-3">${pkgSeal(rk.tier,accent,46)}
+            <div><div class="flex items-center gap-2"><span class="text-white text-[11px] font-bold px-2 py-0.5 rounded-full" style="background:${accent}">${rk.rank}</span><h3 class="font-bold text-2xl text-neutral-900 leading-none">${rk.name}</h3></div>
+            <span class="block text-[10px] font-bold tracking-[.2em] text-neutral-500 mt-1.5">${rk.en||''}</span></div>
+          </div>
+          <p class="text-[13px] text-neutral-600 mt-3 leading-relaxed">${rk.tagline||''}</p>
+        </div>
+        <div class="px-6 py-5 space-y-5">
+          <div class="bg-neutral-50 border border-neutral-200/80 rounded-xl p-3.5"><p class="text-[13px] text-neutral-700 leading-relaxed"><b class="text-neutral-900">이 등급을 받으면 ›</b> ${rk.outcome||''}</p></div>
+          ${able?`<div><p class="text-[11px] font-bold tracking-wide text-neutral-500 uppercase mb-2">이 급수를 마치면</p><ul class="text-[13.5px] text-neutral-700 space-y-1.5">${able}</ul></div>`:''}
+          ${tracks?`<div><p class="text-[11px] font-bold tracking-wide text-neutral-500 uppercase mb-2">포함 과목 (${(rk.tracks||[]).length}과목)</p><ul class="text-[13px] text-neutral-600 space-y-1">${tracks}</ul></div>`:''}
+          ${perks?`<div><p class="text-[11px] font-bold tracking-wide text-neutral-500 uppercase mb-2">혜택</p><ul class="text-[13px] text-neutral-600 space-y-1">${perks}</ul></div>`:''}
+          <div class="flex items-end justify-between pt-1 border-t border-neutral-200">
+            <div class="pt-4">${HIDE?'<span class="text-lg font-bold text-neutral-900">가격 추후 안내</span>':`<span class="text-2xl font-bold text-neutral-900">${won(main)}</span>${rk.earlybird?` <span class="text-sm text-neutral-400 line-through">${won(rk.price)}</span><br/><span class="text-[11px] font-bold text-rose-500">얼리버드 특가</span>`:''}`}</div>
+          </div>
+          <a href="#apply" onclick="pickPkg('${rk.name} (${rk.rank})');closePkgModal()" class="block text-center text-white text-[15px] font-bold py-3.5 rounded-xl hover:opacity-90 transition" style="background:${accent==='#1f2d4d'?'#1f2d4d':'#b8923f'}">이 패키지로 수강 신청하기 →</a>
+        </div>`;
+      m.classList.add('on'); document.body.style.overflow='hidden';
+    }
+    function closePkgModal(){ const m=document.getElementById('pkgModal'); if(m) m.classList.remove('on'); document.body.style.overflow=''; }
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape') closePkgModal(); });
     function withTimeout(p, ms){ return Promise.race([ Promise.resolve(p), new Promise((_, rej) => setTimeout(() => rej(new Error('TIMEOUT')), ms)) ]); }
     async function submitApp(){
       const msg = document.getElementById('aMsg'); msg.style.color = '#dc2626'; msg.textContent = '';
