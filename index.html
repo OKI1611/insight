@@ -1516,16 +1516,14 @@
       document.body.style.overflow = '';
     }
 
-    // 구글/카카오 로그인
+    // 구글/카카오 로그인 (카카오는 사업자 비즈앱 전환 완료로 활성화)
     async function oauthLogin(provider){
       setMsg('authMsg','');
-      // 카카오: 사업자 인증(비즈앱) 전까지 이메일 권한을 받을 수 없어 준비 중 안내.
-      //  → 사업자등록 후 비즈앱 전환하면, 아래 3줄을 지우면 바로 활성화됩니다.
-      if(provider === 'kakao'){
-        setMsg('authMsg','카카오 로그인은 준비 중이에요. 구글 또는 이메일로 가입해 주세요 ');
-        return;
-      }
       const opts = { redirectTo: window.location.origin + window.location.pathname };
+      if(provider === 'kakao'){
+        // 비즈앱 전환 후 이메일 동의항목 요청(카카오 계정 이메일)
+        opts.scopes = 'account_email profile_nickname';
+      }
       const { error } = await sb.auth.signInWithOAuth({ provider, options: opts });
       if(error) setMsg('authMsg', '로그인 오류: ' + error.message);
     }
