@@ -54,6 +54,23 @@
     .vrow.hl-b{background:rgba(56,132,255,.20)}
     .vrow.hl-p{background:rgba(255,64,129,.18)}
     .vrow.hl-y:hover,.vrow.hl-g:hover,.vrow.hl-b:hover,.vrow.hl-p:hover{filter:brightness(.97)}
+    /* KJV 단어 클릭 → 웹스터 사전 */
+    .verse-en .wd{cursor:pointer;border-radius:3px;transition:background .1s,box-shadow .1s;-webkit-tap-highlight-color:transparent}
+    .verse-en .wd:hover{background:rgba(184,146,63,.13);box-shadow:inset 0 -1px 0 rgba(184,146,63,.55)}
+    .verse-en .wd.wd-on{background:rgba(184,146,63,.22)}
+    #wdPop{position:absolute;z-index:130;max-width:300px;width:max-content;background:#fff;border:1px solid rgba(184,146,63,.35);border-radius:14px;box-shadow:0 14px 38px rgba(24,32,58,.20);padding:12px 30px 13px 15px;opacity:0;transform:translateY(4px);transition:opacity .13s,transform .13s;pointer-events:none}
+    #wdPop.on{opacity:1;transform:none;pointer-events:auto}
+    #wdPop .wd-arrow{position:absolute;width:12px;height:12px;background:#fff;border:1px solid rgba(184,146,63,.35);border-width:1px 0 0 1px;transform:rotate(45deg)}
+    #wdPop .wd-x{position:absolute;top:7px;right:11px;font-size:15px;color:#b6bcc7;cursor:pointer;line-height:1}
+    #wdPop .wd-x:hover{color:#6b7280}
+    #wdPop .wd-word{font-family:Georgia,'Times New Roman',serif;font-weight:700;font-size:17px;color:#1f2937;letter-spacing:-.01em}
+    #wdPop .wd-label{font-size:10px;font-weight:800;letter-spacing:.05em;color:#b8923f;text-transform:uppercase;margin-top:7px}
+    #wdPop .wd-orig{font-size:13px;line-height:1.55;color:#374151;margin-top:3px}
+    #wdPop .wd-pos{font-size:10.5px;font-style:italic;color:#b8923f;font-weight:600}
+    #wdPop .wd-modern{font-size:12.5px;line-height:1.5;color:#4b5563;margin-top:3px}
+    #wdPop .wd-btn{margin-top:10px;font-size:11.5px;font-weight:700;color:#8a6d2f;background:rgba(184,146,63,.1);border:1px solid rgba(184,146,63,.28);border-radius:999px;padding:4px 12px;cursor:pointer;transition:background .12s}
+    #wdPop .wd-btn:hover{background:rgba(184,146,63,.2)}
+    #wdPop .wd-btn:disabled{opacity:.6;cursor:default}
     .vhl{display:inline-flex;gap:5px;align-items:center;margin-right:4px;padding-right:8px;border-right:1px solid rgba(33,58,107,.12)}
     .vact .hlchip{width:20px;height:20px;min-width:20px;padding:0;border-radius:50%;border:1px solid rgba(33,58,107,.18);cursor:pointer;font-size:11px;line-height:1;display:inline-flex;align-items:center;justify-content:center}
     .vact .hlchip.hy{background:rgba(250,204,21,.9)} .vact .hlchip.hg{background:rgba(52,199,89,.85)} .vact .hlchip.hb{background:rgba(56,132,255,.85)} .vact .hlchip.hp{background:rgba(255,64,129,.85)}
@@ -334,20 +351,95 @@
     initSec();
     function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
     function renderChapter(){
+      hideWdPop();
       const verses=(BOOK&&BOOK[CH])||[];
       const par=$('parallel').checked && KR;
       let h=`<div class="flex items-baseline justify-between mb-4 pb-3 border-b border-ink/8"><h2 class="text-xl font-bold">${CUR.ko} <span class="text-gold">${CH}장</span></h2><span class="text-xs text-neutral-900/40">${CUR.en} ${CH} · KJV</span></div>`;
       if(!verses.length){ h+='<p class="text-neutral-900/40 text-center py-8">본문을 불러오지 못했습니다.</p>'; $('reader').innerHTML=h; return; }
+      h+='<p class="text-[11.5px] text-gold/90 bg-gold/[0.07] rounded-lg px-3 py-2 mb-3 -mt-1">💡 영어 단어를 탭하면 <b>웹스터 사전</b>의 KJV 본래 뜻이 나옵니다.</p>';
       h+='<div class="space-y-3.5">';
       verses.forEach((en,i)=>{
         const ko = (par && KR[i]) ? `<p class="serif text-[16px] text-neutral-900 leading-relaxed mt-0.5">${esc(KR[i])}</p>` : '';
-        h+=`<div id="v${i+1}" class="vrow flex gap-2.5 px-1.5 -mx-1.5 py-0.5"><span class="text-gold font-bold text-xs pt-1 w-5 shrink-0 text-right">${i+1}</span><div class="vbody flex-1">${ko}<p class="verse-en text-[15px] ${par?'text-neutral-900/55':'text-neutral-900/85'} leading-relaxed">${esc(en)}</p></div></div>`;
+        h+=`<div id="v${i+1}" class="vrow flex gap-2.5 px-1.5 -mx-1.5 py-0.5"><span class="text-gold font-bold text-xs pt-1 w-5 shrink-0 text-right">${i+1}</span><div class="vbody flex-1">${ko}<p class="verse-en text-[15px] ${par?'text-neutral-900/55':'text-neutral-900/85'} leading-relaxed">${tokEn(en)}</p></div></div>`;
       });
       h+='</div>';
       if($('parallel').checked && !KR){ h+='<p class="text-xs text-gold/80 mt-5 bg-gold/[0.07] rounded-lg p-3">이 장의 한국어 번역은 아직 준비 중입니다. (원어 기반 자체 번역으로 순차 추가)</p>'; }
       $('reader').innerHTML=h;
       restoreHl();
     }
+
+    /* ===================== KJV 단어 클릭 → 웹스터 사전 말풍선 ===================== */
+    let WEB=null, WEBLOADING=null, wdCur=null; const MODERN_CACHE={};
+    function loadWebster(){ if(WEB) return Promise.resolve(WEB); if(WEBLOADING) return WEBLOADING;
+      WEBLOADING=fetch('bible/webster-kjv.json?t='+Date.now()).then(r=>r.json()).then(j=>{WEB=j;return j;}).catch(()=>{WEB={};return WEB;}); return WEBLOADING; }
+    // 영어 본문을 단어 단위로 감싸 클릭 가능하게 (구두점·공백은 그대로)
+    function tokEn(s){ s=s||''; let out=''; const re=/([A-Za-z][A-Za-z'’]*)|([^A-Za-z]+)/g, esc2=esc; let m;
+      while((m=re.exec(s))!==null){ if(m[1]) out+='<span class="wd">'+esc2(m[1])+'</span>'; else out+=esc2(m[2]); } return out; }
+    // 단어 → 표제어 조회 (KJV 어미 -eth/-est/-th 및 복수·과거형 등 축약형 대응)
+    function dictLookup(word){
+      let w=(word||'').toLowerCase().replace(/[’]/g,"'").replace(/[^a-z']/g,'').replace(/'s$/,'').replace(/'/g,'');
+      if(!w) return null;
+      if(WEB[w]) return {key:w, def:WEB[w]};
+      const tries=[]; const rules=[['ies','y'],['ied','y'],['es',''],['s',''],['ed',''],['ing',''],['eth',''],['est',''],['edst',''],['st',''],['th','']];
+      rules.forEach(([suf,rep])=>{ if(w.length-suf.length>=2 && w.endsWith(suf)){ const b=w.slice(0,w.length-suf.length)+rep; tries.push(b, b+'e'); }});
+      for(const t of tries){ if(WEB[t]) return {key:t, def:WEB[t]}; }
+      return null;
+    }
+    function ensureWdPop(){ let pop=document.getElementById('wdPop');
+      if(!pop){ pop=document.createElement('div'); pop.id='wdPop';
+        pop.innerHTML='<span class="wd-x" onclick="hideWdPop()">✕</span><span class="wd-arrow"></span><div class="wd-body"></div>';
+        document.body.appendChild(pop); } return pop; }
+    function showWdPop(span){
+      const word=span.textContent;
+      loadWebster().then(()=>{
+        const hit=dictLookup(word), pop=ensureWdPop(), body=pop.querySelector('.wd-body');
+        const wl=word.toLowerCase().replace(/[^a-z]/g,'');
+        if(hit){
+          body.innerHTML='<div class="wd-word">'+esc(word)+'</div>'
+            +'<div class="wd-label">KJV 본래 뜻 · Webster</div>'
+            +'<div class="wd-orig">'+esc(hit.def)+'</div>'
+            +'<button type="button" class="wd-btn" data-w="'+esc(wl)+'" onclick="loadModern(this)">현대 의미 보기 ▾</button>'
+            +'<div class="wd-modern-wrap"></div>';
+        } else {
+          body.innerHTML='<div class="wd-word">'+esc(word)+'</div>'
+            +'<div class="wd-orig" style="color:#6b7280">웹스터 사전에 이 단어 풀이가 없습니다.</div>'
+            +'<button type="button" class="wd-btn" data-w="'+esc(wl)+'" onclick="loadModern(this)">현대 사전에서 찾기 ▾</button>'
+            +'<div class="wd-modern-wrap"></div>';
+        }
+        document.querySelectorAll('.wd.wd-on').forEach(x=>x.classList.remove('wd-on'));
+        span.classList.add('wd-on'); wdCur=span;
+        positionWdPop(pop, span);
+        pop.classList.add('on');
+      });
+    }
+    function positionWdPop(pop, span){
+      // 요소는 opacity:0 상태에서도 크기 측정이 가능하므로 그대로 측정한다
+      const r=span.getBoundingClientRect(), pw=pop.offsetWidth, ph=pop.offsetHeight;
+      const sx=window.scrollX||window.pageXOffset, sy=window.scrollY||window.pageYOffset, vw=document.documentElement.clientWidth;
+      let left=sx+r.left+r.width/2-pw/2; left=Math.max(sx+8, Math.min(left, sx+vw-pw-8));
+      let top=sy+r.top-ph-10, below=false;
+      if(r.top-ph-10<4){ top=sy+r.bottom+10; below=true; }
+      pop.style.left=left+'px'; pop.style.top=top+'px';
+      const arrow=pop.querySelector('.wd-arrow'), ax=sx+r.left+r.width/2-left-6;
+      arrow.style.left=Math.max(10, Math.min(ax, pw-22))+'px';
+      arrow.style.top=below?'-7px':(ph-6)+'px';
+      arrow.style.borderWidth=below?'1px 0 0 1px':'0 1px 1px 0';
+    }
+    function loadModern(btn){
+      const w=btn.getAttribute('data-w'), wrap=btn.nextElementSibling;
+      const done=html=>{ wrap.innerHTML=html; btn.style.display='none'; const p=document.getElementById('wdPop'); if(p&&wdCur) positionWdPop(p, wdCur); };
+      if(MODERN_CACHE[w]!==undefined){ done(MODERN_CACHE[w]); return; }
+      btn.disabled=true; btn.textContent='불러오는 중…';
+      fetch('https://api.dictionaryapi.dev/api/v2/entries/en/'+encodeURIComponent(w))
+        .then(r=>r.ok?r.json():Promise.reject()).then(data=>{
+          const defs=[]; (data||[]).forEach(en=>(en.meanings||[]).forEach(mn=>{ (mn.definitions||[]).slice(0,1).forEach(d=>{ if(d.definition) defs.push({pos:mn.partOfSpeech||'', d:d.definition}); }); }));
+          let html; if(defs.length){ html='<div class="wd-label" style="margin-top:10px">현대 영어 · Modern</div>'
+            + defs.slice(0,2).map(x=>'<div class="wd-modern">'+(x.pos?'<span class="wd-pos">'+esc(x.pos)+'.</span> ':'')+esc(x.d)+'</div>').join('');
+          } else { html='<div class="wd-modern" style="margin-top:10px;color:#6b7280">현대 사전에 결과가 없습니다.</div>'; }
+          MODERN_CACHE[w]=html; done(html);
+        }).catch(()=>{ done('<div class="wd-modern" style="margin-top:10px;color:#9ca3af">현대 사전을 불러오지 못했습니다.</div>'); });
+    }
+    function hideWdPop(){ const p=document.getElementById('wdPop'); if(p) p.classList.remove('on'); if(wdCur){ wdCur.classList.remove('wd-on'); wdCur=null; } }
     function nav(d){
       let c=CH+d;
       if(c<1){ const i=BOOKS.indexOf(CUR); if(i>0){ const p=BOOKS[i-1]; selectBook(p.file, p.ch); } return; }
@@ -446,6 +538,8 @@
       const rd=$('reader'); if(!rd||rd.__vt) return; rd.__vt=1;
       // 클릭(탭) → 복사·공유 바. 단, 텍스트를 드래그 선택 중이면 무시.
       rd.addEventListener('click', e=>{
+        const wd=e.target.closest('.wd');
+        if(wd){ e.stopPropagation(); showWdPop(wd); return; }
         if(e.target.closest('.vact')) return;
         const sel=window.getSelection(); if(sel && !sel.isCollapsed) return;
         const v=vnumOf(e.target); if(v) toggleVerseActions(v);
@@ -459,6 +553,8 @@
         try{ e.clipboardData.setData('text/plain', txt.replace(/\s+$/,'')+'\n'+attrib(ref,true)); e.preventDefault(); }catch(_){}
       });
       document.addEventListener('click', e=>{ if(!e.target.closest('.vrow')) closeVerseActions(); });
+      // 말풍선 밖을 누르면 닫기 (단어 자체 클릭은 위에서 처리)
+      document.addEventListener('click', e=>{ if(!e.target.closest('#wdPop') && !e.target.closest('.wd')) hideWdPop(); });
     })();
 
     /* ===================== 본문 단어 검색 ===================== */
