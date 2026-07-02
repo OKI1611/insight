@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <script src="/content-loader.js"></script>
+  <script src="/site-header.js?v=20260702a"></script>
+  <script src="/section-sidenav.js?v=5"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>웹스터 영어성경 사전 — BIBLY 바이블 인사이트</title>
+  <meta name="description" content="KJV(흠정역) 성경 단어를 1913년 웹스터 무삭제 사전으로 찾아봅니다. 성경 영어의 본래 뜻을 먼저 보고 현대 뜻도 함께 확인하세요." />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#213a6b" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="canonical" href="https://biblynote.com/webster" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BIBLY 바이블 인사이트" />
+  <meta property="og:title" content="웹스터 영어성경 사전 — BIBLY 바이블 인사이트" />
+  <meta property="og:description" content="KJV 성경 단어의 본래 뜻을 웹스터 사전으로 찾아보세요." />
+  <meta property="og:url" content="https://biblynote.com/webster" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink:'#213a6b', navy:'#182c54', gold:'#b8923f', sand:'#eaf0f8', paper:'#ffffff' },
+      fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
+      boxShadow: { card:'0 14px 40px -18px rgba(21,32,58,.22)', soft:'0 2px 10px -4px rgba(21,32,58,.10)' }
+    }}}
+  </script>
+  <style>
+    h1,h2{font-family:'Noto Serif KR',Pretendard,serif}
+    .wserif{font-family:Georgia,'Times New Roman',serif}
+    .chip{font-size:12.5px;font-weight:600;color:#5a4423;background:#f7f1e3;border:1px solid #e7d3ac;border-radius:999px;padding:5px 12px;cursor:pointer;transition:background .12s}
+    .chip:hover{background:#efe3c9}
+  </style>
+</head>
+<body class="font-sans bg-paper text-neutral-900 antialiased min-h-screen">
+
+  <div id="siteHeader" data-active=""></div>
+
+  <main class="max-w-2xl mx-auto px-4 py-10">
+    <div class="text-center mb-6">
+      <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">WEBSTER'S DICTIONARY · 성경 영어사전</p>
+      <h1 class="text-2xl md:text-3xl font-bold">웹스터 영어성경 사전</h1>
+      <p class="text-neutral-900/55 text-sm mt-3 leading-relaxed">KJV(흠정역) 성경의 영어 단어를 찾아보세요. <b class="text-neutral-900">성경 영어의 본래 뜻</b>을 먼저 보여주고, 필요하면 <b class="text-neutral-900">현대 영어 뜻</b>도 함께 확인할 수 있어요.</p>
+    </div>
+
+    <!-- 검색 -->
+    <div class="relative">
+      <span class="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-900/30">
+        <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.2-3.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </span>
+      <input id="q" type="search" inputmode="latin" autocomplete="off" placeholder="영어 단어를 입력하세요 (예: charity, unto, let)"
+        class="w-full border border-ink/15 rounded-full pl-12 pr-28 py-3.5 text-[15px] focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition" />
+      <button id="go" class="absolute right-2 top-1/2 -translate-y-1/2 bg-gold text-white font-semibold text-sm px-5 py-2.5 rounded-full hover:opacity-90 active:scale-95 transition">찾기</button>
+    </div>
+
+    <!-- 추천 단어 -->
+    <div class="flex flex-wrap gap-2 mt-3 justify-center" id="samples"></div>
+
+    <!-- 결과 -->
+    <div id="result" class="mt-6 min-h-[120px]"></div>
+
+    <!-- 공신력 안내 -->
+    <div class="mt-8 bg-neutral-50 border border-neutral-200 rounded-xl p-4 text-[12.5px] text-neutral-500 leading-relaxed">
+      <b class="text-neutral-700">사전 출처</b> · 정의는 <b class="text-neutral-700">Webster's Unabridged Dictionary (1913, 퍼블릭 도메인)</b>을 KJV 성경 어휘(약 6,000여 단어)로 정리한 것입니다. KJV 흠정역이 번역되던 시대의 <b class="text-neutral-700">본래 어의(語義)</b>를 보존하므로 성경 원문을 정확히 읽는 데 도움이 됩니다. ‘현대 의미’는 오픈 사전(dictionaryapi.dev · Wiktionary)에서 실시간으로 불러옵니다.
+    </div>
+  </main>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    let WEB = null, WEBLOADING = null; const MODERN_CACHE = {};
+    function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    function loadWebster(){ if(WEB) return Promise.resolve(WEB); if(WEBLOADING) return WEBLOADING;
+      WEBLOADING = fetch('bible/webster-kjv.json?t=' + Date.now()).then(r=>r.json()).then(j=>{WEB=j;return j;}).catch(()=>{WEB={};return WEB;}); return WEBLOADING; }
+    // KJV 어미(-eth/-est/-th) 및 복수·과거형 등 축약형까지 표제어로 폴백 조회
+    function dictLookup(word){
+      let w = (word||'').toLowerCase().replace(/[’]/g,"'").replace(/[^a-z']/g,'').replace(/'s$/,'').replace(/'/g,'');
+      if(!w) return null;
+      if(WEB[w]) return { key:w, def:WEB[w] };
+      const tries = []; const rules = [['ies','y'],['ied','y'],['es',''],['s',''],['ed',''],['ing',''],['eth',''],['est',''],['edst',''],['st',''],['th','']];
+      rules.forEach(([suf,rep])=>{ if(w.length-suf.length>=2 && w.endsWith(suf)){ const b=w.slice(0,w.length-suf.length)+rep; tries.push(b, b+'e'); } });
+      for(const t of tries){ if(WEB[t]) return { key:t, def:WEB[t] }; }
+      return null;
+    }
+    async function lookup(raw){
+      const word = (raw||'').trim(); if(!word) return;
+      $('q').value = word;
+      const res = $('result'); res.innerHTML = '<p class="text-center text-neutral-900/40 text-sm py-8">사전을 불러오는 중…</p>';
+      await loadWebster();
+      const hit = dictLookup(word);
+      const wl = word.toLowerCase().replace(/[^a-z]/g,'');
+      if(hit){
+        res.innerHTML = `
+          <div class="bg-white border border-gold/30 rounded-2xl shadow-soft p-6">
+            <div class="flex items-baseline gap-2 flex-wrap">
+              <span class="wserif text-2xl font-bold text-neutral-900">${esc(word)}</span>
+              ${ hit.key !== wl ? `<span class="text-[12px] text-neutral-900/40">표제어: <span class="wserif">${esc(hit.key)}</span></span>` : '' }
+            </div>
+            <p class="text-[11px] font-extrabold tracking-wider text-gold uppercase mt-4">KJV 본래 뜻 · Webster (1913)</p>
+            <p class="text-[15px] text-neutral-800 leading-relaxed mt-1.5">${esc(hit.def)}</p>
+            <button id="modernBtn" data-w="${esc(wl)}" class="mt-5 text-[13px] font-semibold text-[#8a6d2f] bg-gold/10 border border-gold/25 rounded-full px-4 py-2 hover:bg-gold/20 transition">현대 의미 보기 ▾</button>
+            <div id="modernWrap" class="mt-3"></div>
+          </div>`;
+        $('modernBtn').addEventListener('click', loadModern);
+      } else {
+        res.innerHTML = `
+          <div class="bg-white border border-ink/10 rounded-2xl shadow-soft p-6 text-center">
+            <p class="wserif text-xl font-bold text-neutral-900">${esc(word)}</p>
+            <p class="text-sm text-neutral-900/55 mt-2">이 단어는 KJV 성경 어휘 사전에 없습니다. 현대 영어 사전에서 찾아볼까요?</p>
+            <button id="modernBtn" data-w="${esc(wl)}" class="mt-4 text-[13px] font-semibold text-[#8a6d2f] bg-gold/10 border border-gold/25 rounded-full px-4 py-2 hover:bg-gold/20 transition">현대 사전에서 찾기 ▾</button>
+            <div id="modernWrap" class="mt-3 text-left"></div>
+          </div>`;
+        $('modernBtn').addEventListener('click', loadModern);
+      }
+      window.scrollTo({ top:0, behavior:'smooth' });
+    }
+    function loadModern(e){
+      const btn = e.currentTarget, w = btn.getAttribute('data-w'), wrap = $('modernWrap');
+      const done = html => { wrap.innerHTML = html; btn.style.display='none'; };
+      if(MODERN_CACHE[w] !== undefined){ done(MODERN_CACHE[w]); return; }
+      btn.disabled = true; btn.textContent = '불러오는 중…';
+      fetch('https://api.dictionaryapi.dev/api/v2/entries/en/' + encodeURIComponent(w))
+        .then(r=>r.ok?r.json():Promise.reject()).then(data=>{
+          const defs = []; (data||[]).forEach(en=>(en.meanings||[]).forEach(mn=>{ (mn.definitions||[]).slice(0,1).forEach(d=>{ if(d.definition) defs.push({pos:mn.partOfSpeech||'', d:d.definition}); }); }));
+          let html;
+          if(defs.length){ html = '<p class="text-[11px] font-extrabold tracking-wider text-neutral-400 uppercase mb-1.5">현대 영어 · Modern</p>'
+            + defs.slice(0,3).map(x=>`<p class="text-[13.5px] text-neutral-600 leading-relaxed mt-1">${x.pos?`<span class="italic text-gold/90 font-semibold">${esc(x.pos)}.</span> `:''}${esc(x.d)}</p>`).join(''); }
+          else html = '<p class="text-[13px] text-neutral-500">현대 사전에 결과가 없습니다.</p>';
+          MODERN_CACHE[w] = html; done(html);
+        }).catch(()=>{ done('<p class="text-[13px] text-neutral-400">현대 사전을 불러오지 못했습니다.</p>'); });
+    }
+    // 추천 단어 칩
+    const SAMPLES = ['charity','let','suffer','unto','verily','conversation','peculiar','prevent','meat','quick','comfort'];
+    $('samples').innerHTML = SAMPLES.map(w=>`<button class="chip" data-w="${w}">${w}</button>`).join('');
+    $('samples').addEventListener('click', e=>{ const b=e.target.closest('.chip'); if(b) lookup(b.getAttribute('data-w')); });
+    $('go').addEventListener('click', ()=>lookup($('q').value));
+    $('q').addEventListener('keydown', e=>{ if(e.key==='Enter') lookup($('q').value); });
+    // URL ?w= 로 진입 시 자동 조회
+    const pw = new URLSearchParams(location.search).get('w'); if(pw) lookup(pw);
+  </script>
+
+  <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script src="auth-header.js?v=20260619c"></script>
+</body>
+</html>

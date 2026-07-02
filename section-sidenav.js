@@ -63,10 +63,10 @@
       + '#sectionSideNav a{display:block;padding:10px 14px;border-radius:10px;'
       + 'text-decoration:none;margin-bottom:2px;white-space:nowrap;transition:background .15s,transform .15s}'
       + '#sectionSideNav .lbl{font-size:13.5px}'
-      + '#sectionSideNav a.on{background:#b8923f;box-shadow:0 6px 16px -8px rgba(184,146,63,.8)}'
-      + '#sectionSideNav a.on .lbl{color:#fff;font-weight:800}'
-      + '#sectionSideNav a:not(.on) .lbl{color:#3a3a3a;font-weight:600}'
-      + '#sectionSideNav a:not(.on):hover{background:#eef3fb;transform:translateX(2px)}'
+      + '#sectionSideNav a.on{background:#f7f1e3;box-shadow:inset 3px 0 0 #b8923f}'
+      + '#sectionSideNav a.on .lbl{color:#5a4423;font-weight:800}'
+      + '#sectionSideNav a:not(.on) .lbl{color:#4a4a4a;font-weight:600}'
+      + '#sectionSideNav a:not(.on):hover{background:#f4f6fa;transform:translateX(2px)}'
       + '#sectionSideNav .foot{margin-top:auto;padding:12px 10px 2px;font-size:10.5px;color:rgba(33,58,107,.4);line-height:1.55;border-top:1px solid rgba(33,58,107,.06)}'
       + '@media(min-width:1024px){body{padding-left:' + W + 'px}#sectionSideNav{display:flex}}';
     document.head.appendChild(st);
@@ -78,20 +78,41 @@
     //  - 해시 링크는 현재 location.hash와 일치할 때만 활성(초기엔 아무것도 활성 아님)
     //  - 일반 링크는 현재 페이지와 일치할 때 활성
     var kids = sec.children || [];
-    var anchorMenu = kids.length > 1 && kids.every(function(c){ return base(c.href) === page; });
-    var curHash = (location.hash || '');
+    // 같은 페이지를 가리키는 하위 항목이 2개 이상이면 '앵커 메뉴'로 간주한다.
+    //  - 현재 해시(#)와 일치하는 항목만 활성
+    //  - 일치가 없으면 해시 없는 대표 항목이 활성(기본 랜딩)
+    //  → 예전엔 about.html 하위 3개가 모두 활성(골드)이 되던 버그를 해결.
+    function hashOf(href){ var i = String(href).indexOf('#'); return i >= 0 ? String(href).slice(i) : ''; }
+    var anchorMode = kids.filter(function(c){ return base(c.href) === page; }).length > 1;
+    function anyHashMatch(){ var cur = location.hash || ''; return kids.some(function(k){ return base(k.href) === page && hashOf(k.href) && cur === hashOf(k.href); }); }
+    function isOn(href){
+      var cb = base(href), hh = hashOf(href), cur = location.hash || '';
+      if(anchorMode){
+        if(cb !== page) return false;
+        return hh ? (cur === hh) : !anyHashMatch();
+      }
+      return cb === page;
+    }
     var h = '<div class="hd">' + sec.label + '</div>';
     kids.forEach(function(c){
-      var hasHash = String(c.href).indexOf('#') >= 0;
-      var on;
-      if(anchorMenu){ on = hasHash && curHash && String(c.href).slice(String(c.href).indexOf('#')) === curHash; }
-      else { on = base(c.href) === page; }
-      h += '<a href="' + c.href + '" class="' + (on ? 'on' : '') + '" title="' + c.label + '">'
+      h += '<a href="' + c.href + '" data-h="' + hashOf(c.href) + '" data-b="' + base(c.href) + '" class="' + (isOn(c.href) ? 'on' : '') + '" title="' + c.label + '">'
         + '<span class="lbl">' + c.label + '</span></a>';
     });
     h += '<div class="foot">말씀으로 시대를 읽다<br>BIBLY · 바이블 인사이트</div>';
     rail.innerHTML = h;
     document.body.appendChild(rail);
+    // 앵커 이동 시 활성 표시 실시간 갱신
+    if(anchorMode){
+      window.addEventListener('hashchange', function(){
+        var cur = location.hash || '', links = rail.querySelectorAll('a'), any = false;
+        links.forEach(function(a){ if(a.getAttribute('data-b') === page && a.getAttribute('data-h') && cur === a.getAttribute('data-h')) any = true; });
+        links.forEach(function(a){
+          var cb = a.getAttribute('data-b'), hh = a.getAttribute('data-h'), on;
+          if(cb !== page) on = false; else on = hh ? (cur === hh) : !any;
+          a.classList.toggle('on', on);
+        });
+      });
+    }
   }
 
   function start(){
