@@ -68,7 +68,11 @@
       + '#sectionSideNav a:not(.on) .lbl{color:#4a4a4a;font-weight:600}'
       + '#sectionSideNav a:not(.on):hover{background:#f4f6fa;transform:translateX(2px)}'
       + '#sectionSideNav .foot{margin-top:auto;padding:12px 10px 2px;font-size:10.5px;color:rgba(33,58,107,.4);line-height:1.55;border-top:1px solid rgba(33,58,107,.06)}'
-      + '@media(min-width:1024px){body{padding-left:' + W + 'px}#sectionSideNav{display:flex}}';
+      + '@media(min-width:1024px){'
+      + 'body{padding-left:calc(max(0px, (100vw - 1360px) / 2) + ' + W + 'px)}'
+      + '#sectionSideNav{display:flex;left:max(0px, calc((100vw - 1360px) / 2))}'
+      + 'body>.bibly-topbar,body>header{margin-left:calc(-1 * (max(0px, (100vw - 1360px) / 2) + ' + W + 'px));width:calc(100% + max(0px, (100vw - 1360px) / 2) + ' + W + 'px)}'
+      + '}';
     document.head.appendChild(st);
 
     var rail = document.createElement('nav');
