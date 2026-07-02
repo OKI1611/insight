@@ -1521,8 +1521,9 @@
       setMsg('authMsg','');
       const opts = { redirectTo: window.location.origin + window.location.pathname };
       if(provider === 'kakao'){
-        // 비즈앱 전환 후 이메일 동의항목 요청(카카오 계정 이메일)
-        opts.scopes = 'account_email profile_nickname';
+        // 닉네임만 요청(현재 '필수 동의'로 활성화된 항목). 이메일(account_email)은
+        // 카카오 콘솔에서 '추가 기능 신청' 승인 후 'account_email profile_nickname'으로 확장.
+        opts.scopes = 'profile_nickname';
       }
       const { error } = await sb.auth.signInWithOAuth({ provider, options: opts });
       if(error) setMsg('authMsg', '로그인 오류: ' + error.message);
