@@ -51,8 +51,8 @@
     var W = 212;
     var st = document.createElement('style');
     st.textContent =
-      '#sectionSideNav{display:none;position:fixed;top:0;left:0;bottom:0;width:' + W + 'px;z-index:45;'
-      + 'background:#fff;border-right:1px solid rgba(33,58,107,.1);box-shadow:2px 0 18px -10px rgba(21,32,58,.18);'
+      '#sectionSideNav{display:none;position:fixed;top:96px;left:0;bottom:0;width:' + W + 'px;z-index:35;'
+      + 'background:#fff;border-right:1px solid rgba(33,58,107,.08);'
       + 'flex-direction:column;padding:18px 12px;overflow-y:auto}'
       + '#sectionSideNav .hd{position:relative;font-size:15px;font-weight:800;color:#171717;letter-spacing:-.01em;padding:4px 10px 14px;margin-bottom:8px}'
       + '#sectionSideNav .hd:after{content:"";position:absolute;left:10px;bottom:0;width:20px;height:2px;background:#b8923f;border-radius:2px}'
@@ -70,9 +70,18 @@
     var rail = document.createElement('nav');
     rail.id = 'sectionSideNav';
     rail.setAttribute('aria-label', sec.label + ' 메뉴');
+    // 같은 페이지 앵커(#) 메뉴는 전부 base가 같아 모두 '활성'이 되던 버그 방지:
+    //  - 해시 링크는 현재 location.hash와 일치할 때만 활성(초기엔 아무것도 활성 아님)
+    //  - 일반 링크는 현재 페이지와 일치할 때 활성
+    var kids = sec.children || [];
+    var anchorMenu = kids.length > 1 && kids.every(function(c){ return base(c.href) === page; });
+    var curHash = (location.hash || '');
     var h = '<div class="hd">' + sec.label + '</div>';
-    (sec.children || []).forEach(function(c){
-      var ph = base(c.href), on = (ph === page);
+    kids.forEach(function(c){
+      var hasHash = String(c.href).indexOf('#') >= 0;
+      var on;
+      if(anchorMenu){ on = hasHash && curHash && String(c.href).slice(String(c.href).indexOf('#')) === curHash; }
+      else { on = base(c.href) === page; }
       h += '<a href="' + c.href + '" class="' + (on ? 'on' : '') + '" title="' + c.label + '">'
         + '<span class="lbl">' + c.label + '</span></a>';
     });
