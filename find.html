@@ -23,6 +23,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
   <script>
     tailwind.config = { theme: { extend: {
       colors: { ink:'#213a6b', navy:'#182c54', gold:'#b8923f', sand:'#eaf0f8', paper:'#ffffff' },
@@ -50,7 +52,7 @@
     <div id="introHead" class="text-center mb-7">
       <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">BIBLICAL LITERACY · 성경 해석 능력 진단</p>
       <h1 class="text-2xl md:text-3xl font-bold">나의 성경 문해력 진단</h1>
-      <p class="text-neutral-900/55 text-sm mt-3 leading-relaxed">배경 6문항과 <b class="text-neutral-900">실제 채점 12문항</b>으로 성경 지식·본문 이해·<b class="text-neutral-900">해석 능력</b>·교리 분별을 측정해, <b class="text-neutral-900">심리검사형 리포트</b>와 나에게 꼭 맞는 학습 설계를 만들어 드려요. (약 5분)</p>
+      <p class="text-neutral-900/55 text-sm mt-3 leading-relaxed">배경 6문항과 <b class="text-neutral-900">실제 채점 24문항</b>으로 성경 지식·본문 이해·<b class="text-neutral-900">해석 능력</b>·교리 분별을 정밀 측정해, <b class="text-neutral-900">심리검사형 리포트</b>와 나에게 꼭 맞는 학습 설계를 만들어 드려요. (총 30문항 · 약 10분)</p>
     </div>
 
     <!-- 지난 결과 재방문 배너 -->
@@ -146,37 +148,61 @@
     ]},
   ];
 
-  // ---------- PART B : 실제 채점 12문항 (dim별 3문항, 5지선다·고난도) ----------
+  // ---------- PART B : 실제 채점 24문항 (dim별 6문항, 5지선다·고난도) ----------
   // a = 정답 인덱스, dim = 측정 역량, ex = 해설
   const PART_B = [
-    // 성경 지식 — 정경 구조를 정확히 아는지
+    // ===== 성경 지식 (6) — 정경 구조·역사 =====
     { dim:'knowledge', q:'다음 중 ‘모세오경(율법서)’에 속하지 않는 책은?', c:['출애굽기','레위기','여호수아','민수기','신명기'], a:2,
       ex:'모세오경은 창세기·출애굽기·레위기·민수기·신명기입니다. 여호수아는 그 다음 역사서예요.' },
     { dim:'knowledge', q:'바울의 ‘옥중서신’으로 분류되지 않는 것은?', c:['에베소서','빌립보서','골로새서','데살로니가전서','빌레몬서'], a:3,
       ex:'옥중서신은 에베소·빌립보·골로새·빌레몬서 넷입니다. 데살로니가전서는 옥중서신이 아닙니다.' },
     { dim:'knowledge', q:'다음 중 구약의 ‘시가서(지혜서)’가 아닌 것은?', c:['욥기','시편','잠언','전도서','이사야'], a:4,
       ex:'시가서는 욥기·시편·잠언·전도서·아가입니다. 이사야는 대선지서(예언서)예요.' },
-    // 본문 이해 — 본문을 꼼꼼히 읽었는지
+    { dim:'knowledge', q:'‘공관복음(共觀福音)’에 해당하는 세 권은?', c:['마태·마가·누가','마태·마가·요한','마가·누가·요한','마태·누가·요한','네 복음서 전부'], a:0,
+      ex:'마태·마가·누가는 내용·구조가 비슷해 공관복음이라 부릅니다. 요한복음은 관점이 뚜렷이 다릅니다.' },
+    { dim:'knowledge', q:'다음 인물을 활동 시대가 이른 순서대로 바르게 나열한 것은?', c:['아브라함 → 모세 → 다윗 → 바울','모세 → 아브라함 → 다윗 → 바울','아브라함 → 다윗 → 모세 → 바울','다윗 → 아브라함 → 모세 → 바울','모세 → 아브라함 → 바울 → 다윗'], a:0,
+      ex:'족장 아브라함 → 출애굽의 모세 → 왕정의 다윗 → 신약의 바울 순입니다.' },
+    { dim:'knowledge', q:'다음 중 예수님의 ‘열두 제자’에 포함되지 않는 인물은?', c:['베드로','안드레','마태','바울','요한'], a:3,
+      ex:'바울(사울)은 부활·승천 이후 부르심을 받은 사도로, 지상 사역의 열두 제자에는 들지 않습니다.' },
+    // ===== 본문 이해 (6) — 본문을 정확히 읽는가 =====
     { dim:'comprehension', q:'“오직 성령의 열매는…”(갈 5:22-23)에 열매로 ‘나열되지 않은’ 것은?', c:['오래 참음','자비','충성','절제','지혜'], a:4,
       ex:'성령의 아홉 열매는 사랑·희락·화평·오래참음·자비·양선·충성·온유·절제입니다. ‘지혜’는 이 목록에 없습니다.' },
     { dim:'comprehension', q:'“너희가 거듭난 것은 썩지 아니할 씨로 된 것이니…”(벧전 1:23). 본문이 말하는 ‘썩지 아니할 씨’는?', c:['살아 있고 항상 있는 하나님의 말씀','세례의 물','사람의 선한 결심','육신의 혈통','교회의 전통'], a:0,
       ex:'바로 그 절이 “하나님의 말씀으로 되었느니라”고 밝힙니다. 씨는 곧 하나님의 말씀입니다.' },
     { dim:'comprehension', q:'“물과 성령으로 나지 아니하면 하나님의 나라에 들어갈 수 없느니라”(요 3:5). 니고데모에게 하신 이 말씀의 핵심은?', c:['율법을 온전히 지켜야 한다','물세례만 받으면 충분하다','거듭남(중생) 없이는 하나님 나라에 들어갈 수 없다','방언의 은사를 받아야 한다','어머니 태로 다시 들어가야 한다'], a:2,
       ex:'예수님은 육의 출생이 아니라 성령으로 인한 거듭남(중생)의 필요성을 말씀하십니다.' },
-    // 해석 능력 — 문맥·장르를 고려하는지
+    { dim:'comprehension', q:'“너희는 택하신 족속이요 왕 같은 제사장들이요…”(벧전 2:9)에서 ‘왕 같은 제사장’이 가리키는 대상은?', c:['구약의 레위 지파','모든 신자(성도)','교회의 목사만','이스라엘의 왕들','천사들'], a:1,
+      ex:'신약의 만인제사장 진리로, 그리스도를 믿는 모든 성도를 가리킵니다.' },
+    { dim:'comprehension', q:'“내가 그리스도와 함께 십자가에 못 박혔나니…”(갈 2:20). 바울이 말하려는 바는?', c:['옛 자아는 죽고 이제 그리스도께서 내 삶을 다스리신다','바울이 실제로 십자가에서 죽었다','이제 아무 일도 하지 않아도 된다','다시 율법 아래로 돌아간다','그리스도께서 떠나셨다'], a:0,
+      ex:'옛 사람은 그리스도와 함께 죽고, 이제 내 안에 그리스도께서 사시는 새 생명을 말합니다.' },
+    { dim:'comprehension', q:'“행함이 없는 믿음은 그 자체가 죽은 것이라”(약 2:17)가 뜻하는 바는?', c:['믿음은 필요 없다','행함으로 구원을 얻는다','믿음과 행함은 아무 상관이 없다','참된 믿음은 반드시 행함(열매)으로 나타난다','행함이 믿음보다 앞선다'], a:3,
+      ex:'야고보는 믿음을 부정하지 않고, 살아 있는 참믿음은 열매로 증명된다고 말합니다.' },
+    // ===== 해석 능력 (6) — 문맥·장르 =====
     { dim:'interpretation', q:'“구하라 그리하면 너희에게 주실 것이요”(마 7:7)를 성경 전체 맥락에서 바르게 해석한 것은?', c:['무엇이든 구하기만 하면 반드시 다 얻는다','응답은 전적으로 내 믿음의 크기에 달려 있다','하나님의 뜻 안에서 구할 때, 좋은 것으로 응답하신다','구하는 형식과 자세가 가장 중요하다','간절히 원하면 물질도 보장된다'], a:2,
       ex:'같은 문맥의 11절(좋은 것으로 주심)과 요일 5:14(뜻대로 구할 때)을 함께 보면, 하나님의 뜻 안에서의 기도입니다.' },
     { dim:'interpretation', q:'“안식일이 사람을 위하여 있는 것이요…”(막 2:27)의 문맥적 의미로 가장 옳은 것은?', c:['안식일 규례는 억압이 아니라 사람의 유익을 위한 것이며, 인자가 안식일의 주인이시다','안식일은 이제 완전히 폐지되었다','안식일에는 무슨 일이든 해도 된다','토요일을 지켜야만 구원을 받는다','안식일보다 사람의 말이 우선이다'], a:0,
       ex:'제자들의 밀 이삭 사건 문맥에서, 바리새인의 형식주의를 바로잡고 인자의 주권(28절)을 선언하신 것입니다.' },
     { dim:'interpretation', q:'요한계시록의 상징(짐승·바벨론·144,000 등)을 다루는 가장 건전한 해석 원칙은?', c:['오늘의 특정 정치 인물·사건에 문자 그대로 일대일 대입한다','숫자를 계산해 재림 날짜를 산출한다','읽는 사람 각자의 느낌대로 자유롭게 정한다','구약 예언의 상징 용례와 계시록 전체 맥락에 비추어 해석한다','이해할 수 없으니 무시한다'], a:3,
       ex:'계시록은 묵시문학입니다. 상징은 구약 예언의 용례와 책 전체의 맥락 안에서 절제 있게 해석해야 합니다.' },
-    // 교리 분별 — 정통과 이단을 가리는지
+    { dim:'interpretation', q:'“두세 사람이 내 이름으로 모인 곳에는 나도 그들 중에 있느니라”(마 18:20)를 문맥에 맞게 해석하면?', c:['교회의 권징·화해의 자리(15-19절)에 주님이 함께하신다','사람이 적으면 예배가 성립하지 않는다','소수의 모임만 참된 교회다','숫자 2·3에 신비한 능력이 있다','큰 모임에는 주님이 계시지 않는다'], a:0,
+      ex:'앞 문맥은 죄지은 형제를 권고하고 교회가 매고 푸는 장면입니다. 권징·화해의 자리에 주님이 함께하신다는 약속이에요.' },
+    { dim:'interpretation', q:'“너희 몸은 성령의 전인 줄을 알지 못하느냐”(고전 6:19)를 문맥에서 바르게 이해한 것은?', c:['건강식을 먹으라는 뜻이다','음행을 피하고 몸으로 하나님께 영광 돌리라는 뜻이다','교회 건물을 지으라는 뜻이다','문신을 금하라는 규정이다','운동을 열심히 하라는 권면이다'], a:1,
+      ex:'바로 앞(18절)이 “음행을 피하라”입니다. 몸이 성령의 전이므로 성적 순결로 하나님께 영광 돌리라는 문맥입니다.' },
+    { dim:'interpretation', q:'예수님의 비유(예: 씨 뿌리는 자)를 해석하는 바른 원칙은?', c:['비유의 중심 교훈을 문맥 안에서 파악한다','모든 세부 요소에 임의로 숨은 뜻을 부여한다','비유를 실제 역사 보도로 읽는다','각자 느낌대로 자유롭게 지어낸다','비유는 난해하니 건너뛴다'], a:0,
+      ex:'비유는 보통 하나의 중심 교훈을 전합니다. 세부마다 알레고리를 남발하면 본뜻을 벗어납니다.' },
+    // ===== 교리 분별 (6) — 정통과 이단 =====
     { dim:'discernment', q:'‘이신칭의(오직 믿음으로 의롭다 하심)’를 가장 정확히 설명한 것은?', c:['믿음에 선행의 공로를 더해야 의롭게 된다','그리스도를 믿는 믿음으로 값없이 의롭다 하심을 받으며, 참믿음은 반드시 행함의 열매로 나타난다','한 번 믿었다면 이후 어떻게 살든 상관없다','세례를 받아야 비로소 의롭게 된다','의는 결국 내 도덕적 노력의 총합이다'], a:1,
       ex:'구원은 은혜로 믿음을 통해 값없이 주어지며(엡 2:8-9), 참믿음은 열매로 증명됩니다(약 2:17). 율법주의도 방종도 아닙니다.' },
     { dim:'discernment', q:'예수 그리스도의 인격에 대한 성경적(정통) 이해는?', c:['완전한 하나님이시며 완전한 사람으로, 한 위격 안에 신성과 인성을 지니신다','실제 육신 없이 사람처럼 보이기만 하셨다','본래 사람이었으나 세례 때 신이 되셨다','성부께서 잠시 육신의 모습으로 나타나신 것이다','가장 높은 피조물일 뿐 하나님은 아니시다'], a:0,
       ex:'그리스도는 참 하나님이시자 참 사람이십니다. 가현설·양자설·양태론·아리우스주의는 모두 이단입니다.' },
     { dim:'discernment', q:'“예수님을 믿되, 그 위에 우리 단체의 특별한 계시와 규례를 지켜야 구원이 완성된다”는 가르침에 대한 바른 분별은?', c:['더 깊은 진리이므로 기꺼이 받아들인다','교단마다 다를 수 있는 강조점일 뿐이다','규례가 많을수록 더 경건한 신앙이다','그 단체의 계시자는 사도와 동등한 권위를 가진다','‘오직 그리스도’에 무엇을 더하면 다른 복음이므로 경계해야 한다'], a:4,
       ex:'복음에 인간의 공로·추가 계시를 더하는 것은 ‘다른 복음’이며 저주 아래 있습니다(갈 1:8-9). 이단의 전형적 표지입니다.' },
+    { dim:'discernment', q:'성경적 삼위일체 이해에 가장 부합하는 것은?', c:['서로 다른 세 신이 있다(삼신론)','한 분이 상황에 따라 세 모습으로 바뀐다(양태론)','성부·성자·성령 한 하나님 안에 세 위격이 계신다','성자·성령은 성부보다 낮은 존재다','위격의 구분은 존재하지 않는다'], a:2,
+      ex:'한 하나님 안에 성부·성자·성령 세 위격이 영원히 계십니다. 삼신론·양태론·종속설은 이단입니다.' },
+    { dim:'discernment', q:'신앙과 행위의 ‘최종 권위’에 대한 성경적 입장은?', c:['오직 성경이 신앙과 행위의 최종 권위다','성경과 교회 전통이 동등한 권위를 가진다','교회 지도자의 말이 성경 위에 있다','새로운 계시가 성경을 대체할 수 있다','개인의 체험이 최종 기준이다'], a:0,
+      ex:'성경은 하나님의 감동으로 된 완전한 계시로, 신앙과 삶의 최종 권위입니다(딤후 3:16).' },
+    { dim:'discernment', q:'다음 중 이단의 대표적 ‘표지’가 아닌 것은?', c:['그리스도의 신성을 부인함','구원에 인간의 공로·규례를 더함','교주의 새 계시를 성경과 동등하게 여김','오직 은혜·오직 믿음의 구원을 강조함','성경을 자의로 삭제·왜곡함'], a:3,
+      ex:'‘오직 은혜·오직 믿음’은 정통 복음의 핵심입니다. 나머지 넷은 이단의 전형적 특징이에요.' },
   ];
 
   const QUESTIONS = PART_A.map(q=>Object.assign({part:'A'},q))
@@ -252,12 +278,12 @@
       if(ok) correctByDim[Q.dim]++;
       review.push({ dim:Q.dim, q:Q.q, picked, correct:Q.a, ok, choices:Q.c, ex:Q.ex });
     });
-    const qScore = c => Math.round(15 + (c/3)*84);   // 0→15,1→43,2→71,3→99
+    const qScore = (c,tot) => Math.round(8 + (c/tot)*90);   // 6문항: 0→8 … 3→53 … 6→98
     const clamp = (v,lo,hi)=>Math.max(lo,Math.min(hi,Math.round(v)));
-    const knowledge     = clamp(qScore(correctByDim.knowledge) + train*3, 10, 99);
-    const comprehension = qScore(correctByDim.comprehension);
-    const interpretation= qScore(correctByDim.interpretation);
-    const discernment   = clamp(qScore(correctByDim.discernment) + train*2, 10, 99);
+    const knowledge     = clamp(qScore(correctByDim.knowledge,6) + train*2, 8, 100);
+    const comprehension = qScore(correctByDim.comprehension,6);
+    const interpretation= qScore(correctByDim.interpretation,6);
+    const discernment   = clamp(qScore(correctByDim.discernment,6) + train*2, 8, 100);
     const selfstudy     = clamp([34,54,74,90][ss] + (years>=2?4:0) + (train>=2?4:0), 20, 97);
     const goalBonus     = goal==='life'?18 : goal==='lead'?12 : 6;
     const application   = clamp(comprehension*0.4 + interpretation*0.25 + selfstudy*0.12 + goalBonus, 25, 96);
@@ -313,6 +339,10 @@
     const s = computeScores();
     const band = bandOf(s.overall);
     const type = typeOf(s);
+    // 추천 급수 → 아카데미 수강신청 연동 (예: "4급 Professional" → academy 옵션 "Professional (4급)")
+    const rp = band.rank.split(' ');
+    const applyOpt = rp.slice(1).join(' ') + ' (' + rp[0] + ')';
+    const applyURL = 'academy.html?apply=' + encodeURIComponent(applyOpt) + '#apply';
     // 강점/성장
     const sorted = DIMS.slice().sort((a,b)=> s.dims[b.k]-s.dims[a.k]);
     const strengths = sorted.slice(0,3), growth = sorted.slice(-3).reverse();
@@ -371,7 +401,7 @@
         ${!r.ok?`<p style="font-size:12px;color:#6b7280;margin-top:3px">내 선택: ${esc(r.choices[r.picked]||'-')} · 정답: <b style="color:#177a4a">${esc(r.choices[r.correct])}</b></p>`:''}
         <p style="font-size:12px;color:#8a6d2f;background:#faf6ea;border-radius:8px;padding:6px 9px;margin-top:5px;line-height:1.5">${esc(r.ex)}</p>
       </div>`).join('');
-      return `<details class="bg-white rounded-xl border border-ink/8 shadow-soft p-4"><summary class="list-none cursor-pointer flex items-center justify-between font-bold text-[13px]"><span>${dd.ko} <span class="text-neutral-900/40 font-semibold">${c} / 3 정답</span></span><span class="text-gold text-xs">해설 ▾</span></summary><div class="mt-1">${rows}</div></details>`;
+      return `<details class="bg-white rounded-xl border border-ink/8 shadow-soft p-4"><summary class="list-none cursor-pointer flex items-center justify-between font-bold text-[13px]"><span>${dd.ko} <span class="text-neutral-900/40 font-semibold">${c} / ${items.length} 정답</span></span><span class="text-gold text-xs">해설 ▾</span></summary><div class="mt-1">${rows}</div></details>`;
     }).join('');
 
     // 렌더
@@ -379,10 +409,11 @@
     $('step').classList.add('hidden'); $('stepNav').classList.add('hidden'); $('resumeBanner').classList.add('hidden');
     const res = $('result'); res.classList.remove('hidden');
     res.innerHTML = `
+      <div id="reportCapture" style="background:#fff">
       <div class="text-center mb-5">
         <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">BIBLICAL LITERACY REPORT · 성경 해석 능력 평가</p>
         <h1 class="serif text-2xl md:text-3xl font-bold">나의 성경 문해력 리포트</h1>
-        <p class="text-neutral-900/45 text-xs mt-2">진단일 ${report.date} · 자기보고 6문항 + 실제 채점 12문항</p>
+        <p class="text-neutral-900/45 text-xs mt-2">진단일 ${report.date} · 자기보고 6문항 + 실제 채점 24문항 · biblynote.com</p>
       </div>
 
       <!-- 종합 + 유형 -->
@@ -444,6 +475,7 @@
           <div class="text-center bg-white border border-[#eadfba] rounded-xl px-3 py-2 flex-1"><div class="font-bold text-gold text-lg">주 ${perWeek}강</div><div class="text-neutral-900/40 text-[11px]">페이스</div></div>
           <div class="text-center bg-white border border-[#eadfba] rounded-xl px-3 py-2 flex-1"><div class="font-bold text-gold text-lg">약 ${weeks}주</div><div class="text-neutral-900/40 text-[11px]">예상 기간</div></div>
         </div>
+        <a href="${applyURL}" data-nopdf class="mt-4 flex items-center justify-center gap-2 bg-ink text-white font-bold px-6 py-3.5 rounded-full hover:bg-navy transition shadow-card">🎓 ${band.rank} 과정 바로 수강 신청하기 →</a>
       </div>
 
       <!-- 단계별 학습 플랜 -->
@@ -453,10 +485,13 @@
 
       <!-- 채점 상세 -->
       <p class="font-bold mb-2.5">실제 채점 결과 <span class="text-neutral-900/40 text-xs font-normal">문항 해설로 복습해요</span></p>
-      <div class="grid gap-2.5 mb-6">${reviewByDim}</div>
+      <div class="grid gap-2.5 mb-2">${reviewByDim}</div>
+      </div><!-- /reportCapture -->
 
-      <div class="text-center text-[12px] text-neutral-900/45 mb-5" id="saveNote"></div>
+      <div class="text-center text-[12px] text-neutral-900/45 mt-5 mb-5" id="saveNote"></div>
+      <a href="${applyURL}" class="block text-center bg-gold text-white font-bold px-8 py-4 rounded-full hover:opacity-90 transition shadow-card mb-3">🎓 ${band.rank} 과정 수강 신청하기 →</a>
       <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <button onclick="downloadPDF(this)" class="px-6 py-3 rounded-full bg-ink text-white font-semibold text-sm hover:bg-navy transition">📄 리포트 PDF 저장</button>
         <button onclick="resetQuiz()" class="px-6 py-3 rounded-full border border-ink/15 text-neutral-900/60 font-semibold text-sm hover:bg-ink/5 transition">↺ 다시 진단하기</button>
         <a href="academy.html" class="px-6 py-3 rounded-full border border-ink/15 text-neutral-900/60 font-semibold text-sm hover:bg-ink/5 transition text-center">인증 급수 과정 보기</a>
       </div>`;
@@ -477,6 +512,41 @@
     vals.forEach((v,i)=>{ const p=pt(i,R*v/100); out+='<circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="3" fill="#b8923f"/>'; });
     labels.forEach((l,i)=>{ const p=pt(i,R+22), anc=Math.abs(p[0]-cx)<8?'middle':(p[0]<cx?'end':'start'); out+='<text x="'+p[0].toFixed(1)+'" y="'+(p[1]+4).toFixed(1)+'" font-size="11" font-weight="700" fill="#4b5563" text-anchor="'+anc+'">'+l+'</text>'; });
     svg.innerHTML=out;
+  }
+
+  /* ---------------- PDF 다운로드 ---------------- */
+  async function downloadPDF(btn){
+    const el = document.getElementById('reportCapture');
+    if(!el){ return; }
+    if(!window.html2canvas || !(window.jspdf && window.jspdf.jsPDF)){
+      alert('PDF 모듈을 아직 불러오는 중이에요. 잠시 후 다시 눌러 주세요.'); return;
+    }
+    const old = btn ? btn.textContent : '';
+    if(btn){ btn.disabled = true; btn.textContent = 'PDF 만드는 중…'; }
+    // 캡처 동안 해설 아코디언을 모두 펼침
+    const dets = [...el.querySelectorAll('details')]; const wasOpen = dets.map(d=>d.open); dets.forEach(d=>d.open=true);
+    try{
+      const canvas = await html2canvas(el, { scale:2, backgroundColor:'#ffffff', useCORS:true, logging:false, windowWidth: el.scrollWidth });
+      const img = canvas.toDataURL('image/jpeg', 0.92);
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF('p','mm','a4');
+      const pw = 210, ph = 297, m = 8;
+      const iw = pw - m*2, ih = canvas.height * iw / canvas.width;
+      let heightLeft = ih, position = m;
+      pdf.addImage(img, 'JPEG', m, position, iw, ih);
+      heightLeft -= (ph - m*2);
+      while(heightLeft > 0){
+        pdf.addPage();
+        position = m - (ih - heightLeft);
+        pdf.addImage(img, 'JPEG', m, position, iw, ih);
+        heightLeft -= (ph - m*2);
+      }
+      pdf.save('성경문해력_리포트_' + (LAST_REPORT ? LAST_REPORT.date : '') + '.pdf');
+    }catch(e){
+      alert('PDF 저장에 문제가 있었어요. 브라우저 인쇄(Ctrl+P) → “PDF로 저장”을 이용해 주세요.');
+    }
+    dets.forEach((d,i)=>d.open = wasOpen[i]);
+    if(btn){ btn.disabled = false; btn.textContent = old; }
   }
 
   /* ---------------- 저장 / 재방문 ---------------- */

@@ -296,7 +296,16 @@
     // 급수 패키지 — program.json에서 동적 렌더(단일 출처)
     let PROG = null;
     function won(n){ return '₩' + (Number(n)||0).toLocaleString(); }
-    (async () => { try { PROG = await (await fetch('content/program.json?t=' + Date.now())).json(); renderPkgs(); } catch(e){ const g=document.getElementById('pkgGrid'); if(g) g.innerHTML=''; } })();
+    (async () => { try { PROG = await (await fetch('content/program.json?t=' + Date.now())).json(); renderPkgs(); applyFromURL(); } catch(e){ const g=document.getElementById('pkgGrid'); if(g) g.innerHTML=''; } })();
+    // 진단(find.html)에서 ?apply=패키지명 으로 들어오면 해당 급수를 자동 선택하고 신청 폼으로 이동
+    function applyFromURL(){
+      const p = new URLSearchParams(location.search).get('apply');
+      if(!p) return;
+      const s = document.getElementById('aInterest');
+      if(s){ let matched=false; [...s.options].forEach(o=>{ if(o.value===p){ matched=true; } }); s.value = matched ? p : s.value; if(matched){ s.classList.add('ring-2','ring-gold'); } }
+      const ap = document.getElementById('apply');
+      if(ap) setTimeout(()=>ap.scrollIntoView({ behavior:'smooth', block:'start' }), 500);
+    }
     function renderPkgs(){
       const grid = document.getElementById('pkgGrid'), sel = document.getElementById('aInterest'), ladder = document.getElementById('pkgLadder');
       if(!PROG || !PROG.ranks){ if(grid) grid.innerHTML = ''; return; }
