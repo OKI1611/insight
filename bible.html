@@ -430,14 +430,29 @@
       const done=html=>{ wrap.innerHTML=html; btn.style.display='none'; const p=document.getElementById('wdPop'); if(p&&wdCur) positionWdPop(p, wdCur); };
       if(MODERN_CACHE[w]!==undefined){ done(MODERN_CACHE[w]); return; }
       btn.disabled=true; btn.textContent='불러오는 중…';
-      fetch('https://api.dictionaryapi.dev/api/v2/entries/en/'+encodeURIComponent(w))
-        .then(r=>r.ok?r.json():Promise.reject()).then(data=>{
+      // 영국식 철자(saviour·honour…)는 미국식으로도 시도
+      const amer=w.replace(/our(s|ed|ing|able)?$/,'or$1').replace(/ise(s|d|ing)?$/,'ize$1');
+      const queue = (amer!==w) ? [w, amer] : [w];
+      tryModern(queue, 0, 2, done, btn, w);
+    }
+    function tryModern(queue, i, tries, done, btn, cacheKey){
+      fetch('https://api.dictionaryapi.dev/api/v2/entries/en/'+encodeURIComponent(queue[i]))
+        .then(r=>{ if(!r.ok) throw 0; return r.json(); })
+        .then(data=>{
           const defs=[]; (data||[]).forEach(en=>(en.meanings||[]).forEach(mn=>{ (mn.definitions||[]).slice(0,1).forEach(d=>{ if(d.definition) defs.push({pos:mn.partOfSpeech||'', d:d.definition}); }); }));
-          let html; if(defs.length){ html='<div class="wd-label" style="margin-top:10px">현대 영어 · Modern</div>'
-            + defs.slice(0,2).map(x=>'<div class="wd-modern">'+(x.pos?'<span class="wd-pos">'+esc(x.pos)+'.</span> ':'')+esc(x.d)+'</div>').join('');
-          } else { html='<div class="wd-modern" style="margin-top:10px;color:#6b7280">현대 사전에 결과가 없습니다.</div>'; }
-          MODERN_CACHE[w]=html; done(html);
-        }).catch(()=>{ done('<div class="wd-modern" style="margin-top:10px;color:#9ca3af">현대 사전을 불러오지 못했습니다.</div>'); });
+          if(!defs.length && i+1<queue.length){ tryModern(queue, i+1, tries, done, btn, cacheKey); return; }
+          const html = defs.length
+            ? '<div class="wd-label" style="margin-top:10px">현대 영어 · Modern</div>'
+              + defs.slice(0,2).map(x=>'<div class="wd-modern">'+(x.pos?'<span class="wd-pos">'+esc(x.pos)+'.</span> ':'')+esc(x.d)+'</div>').join('')
+              + '<div style="color:#c2c7d0;font-size:10px;margin-top:5px">출처: Wiktionary (CC BY-SA)</div>'
+            : '<div class="wd-modern" style="margin-top:10px;color:#6b7280">현대 사전에 결과가 없습니다.</div>';
+          MODERN_CACHE[cacheKey]=html; done(html);
+        })
+        .catch(()=>{
+          if(i+1<queue.length){ tryModern(queue, i+1, tries, done, btn, cacheKey); return; }
+          if(tries>1){ setTimeout(()=>tryModern(queue, 0, tries-1, done, btn, cacheKey), 700); return; }
+          if(btn){ btn.disabled=false; btn.textContent='현대 의미 다시 시도 ↻'; }
+        });
     }
     function hideWdPop(){ const p=document.getElementById('wdPop'); if(p) p.classList.remove('on'); if(wdCur){ wdCur.classList.remove('wd-on'); wdCur=null; } }
     function nav(d){

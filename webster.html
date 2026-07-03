@@ -162,17 +162,20 @@
       const wrap = $('modernWrap'); if(!wrap) return;
       if(MODERN_CACHE[w] !== undefined){ wrap.innerHTML = MODERN_CACHE[w]; return; }
       wrap.innerHTML = '<p class="dict-label mod">현대 영어 · Modern</p><p class="mod-def text-neutral-400 mt-1.5">현대 사전에서 불러오는 중…</p>';
-      fetchModern(w, 2);
+      // 영국식 철자(saviour·honour…)는 미국식으로도 시도
+      const amer = w.replace(/our(s|ed|ing|able)?$/,'or$1').replace(/ise(s|d|ing)?$/,'ize$1');
+      fetchModern(w, (amer!==w ? [w, amer] : [w]), 0, 2);
     }
-    function fetchModern(w, tries){
-      fetch('https://api.dictionaryapi.dev/api/v2/entries/en/' + encodeURIComponent(w))
-        .then(r=>{ if(!r.ok) throw new Error('http ' + r.status); return r.json(); })
+    function fetchModern(cacheKey, queue, i, tries){
+      fetch('https://api.dictionaryapi.dev/api/v2/entries/en/' + encodeURIComponent(queue[i]))
+        .then(r=>{ if(!r.ok) throw new Error('http'); return r.json(); })
         .then(data=>{
           const groups = [];
           (data||[]).forEach(en=>(en.meanings||[]).forEach(mn=>{
             const ds = (mn.definitions||[]).map(d=>d.definition).filter(Boolean).slice(0,2);
             if(ds.length) groups.push({ pos: mn.partOfSpeech||'', ds });
           }));
+          if(!groups.length && i+1 < queue.length){ fetchModern(cacheKey, queue, i+1, tries); return; }
           let html = '<p class="dict-label mod">현대 영어 · Modern</p>';
           if(groups.length){
             html += '<div class="mt-2 space-y-2.5">'
@@ -183,11 +186,12 @@
           } else {
             html += '<p class="mod-def text-neutral-400 mt-1.5">현대 사전에 이 단어의 결과가 없습니다.</p>';
           }
-          MODERN_CACHE[w] = html;
+          MODERN_CACHE[cacheKey] = html;
           if($('modernWrap')) $('modernWrap').innerHTML = html;
         })
         .catch(()=>{
-          if(tries > 1){ setTimeout(()=>fetchModern(w, tries-1), 700); return; }
+          if(i+1 < queue.length){ fetchModern(cacheKey, queue, i+1, tries); return; }
+          if(tries > 1){ setTimeout(()=>fetchModern(cacheKey, queue, 0, tries-1), 700); return; }
           if($('modernWrap')) $('modernWrap').innerHTML = '<p class="dict-label mod">현대 영어 · Modern</p><p class="mod-def text-neutral-400 mt-1.5">지금은 현대 사전을 불러올 수 없어요. 잠시 후 다시 시도해 주세요. (KJV 본래 뜻·예문은 위에 있습니다)</p>';
         });
     }
