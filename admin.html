@@ -63,6 +63,7 @@
         <button data-sec="apps"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">등록 신청</button>
         <button data-sec="cert"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">수강권(인증)</button>
         <button data-sec="store"  class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">스토어 권한</button>
+        <button data-sec="orders" class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">주문 내역(카드)</button>
         <button data-sec="cont"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">노트·퀴즈 현황</button>
         <button data-sec="site"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">사이트 설정</button>
       </nav>
@@ -206,6 +207,14 @@
         <div id="accessList">불러오는 중…</div>
       </section>
 
+      <!-- 주문 내역 (카드결제 orders) -->
+      <section id="sec-orders" class="secPanel hidden">
+        <div class="flex items-center gap-3 mb-1"><h1 class="text-2xl font-bold">주문 내역 (카드결제)</h1><button onclick="loadOrders()" class="text-xs text-gold hover:underline">새로고침</button></div>
+        <p class="text-neutral-900/50 text-sm mb-6">토스페이먼츠 <b>카드결제</b> 주문 장부입니다. 결제 완료 건은 이용권이 <b>자동 부여</b>됩니다. (무통장·카카오페이 주문은 <button onclick="show('apps')" class="text-gold underline">등록 신청</button> 탭에서 확인 후 <button onclick="show('store')" class="text-gold underline">스토어 권한</button> 탭에서 수동 부여)</p>
+        <div id="ordersSummary" class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6"></div>
+        <div id="ordersWrap">불러오는 중…</div>
+      </section>
+
       <!-- 노트·퀴즈 현황 -->
       <section id="sec-cont" class="secPanel hidden">
         <h1 class="text-2xl font-bold mb-1">노트 · 퀴즈 현황</h1>
@@ -333,7 +342,7 @@
       document.querySelectorAll('.navItem').forEach(b=> b.className='navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg '+(b.dataset.sec===sec?'bg-white/10 text-paper font-medium':'hover:bg-white/5'));
       // 폼 섹션(curr·site)만 1회 로드 캐시, 데이터 섹션은 누를 때마다 새로고침(멈춤 방지)
       const formSec=(sec==='curr'||sec==='site');
-      if(!formSec || !LOADED[sec]){ LOADED[sec]=true; try{ ({dash:loadDash,curr:loadCurr,reqs:loadReqs,comm:loadComm,mem:loadMem,founding:loadFounding,apps:loadApps,cert:loadCert,store:loadStore,cont:loadCont,site:loadSite}[sec]||(()=>{}))(); }catch(e){} }
+      if(!formSec || !LOADED[sec]){ LOADED[sec]=true; try{ ({dash:loadDash,curr:loadCurr,reqs:loadReqs,comm:loadComm,mem:loadMem,founding:loadFounding,apps:loadApps,cert:loadCert,store:loadStore,orders:loadOrders,cont:loadCont,site:loadSite}[sec]||(()=>{}))(); }catch(e){} }
     }
 
     // ===== 대시보드 =====
@@ -731,6 +740,56 @@
       if(!confirm(email+' 님의 「'+track+'」 권한을 회수할까요?')) return;
       try{ await rpcFetch('revoke_book',{p_email:email,p_track:track},9000); toast('교재 권한 회수됨'); loadBookList(); }
       catch(e){ alert('오류: '+(e.message||e)); }
+    }
+
+    // ===== 주문 내역(카드결제 orders) — Worker /api/pay/admin/orders 로 안전 조회 =====
+    function _wonA(n){ return '₩'+Number(n||0).toLocaleString('ko'); }
+    function _orderBadge(s){
+      const m={paid:['결제완료','#16a34a','#dcfce7'],pending:['미결제(대기)','#b45309','#fef3c7'],failed:['실패','#dc2626','#fee2e2']};
+      const v=m[s]||[s||'-','#525252','#f5f5f5'];
+      return '<span style="color:'+v[1]+';background:'+v[2]+'" class="px-2 py-0.5 rounded-full text-[11px] font-bold">'+esc(v[0])+'</span>';
+    }
+    async function loadOrders(){
+      const wrap=document.getElementById('ordersWrap'), sum=document.getElementById('ordersSummary');
+      wrap.innerHTML='불러오는 중…'; sum.innerHTML='';
+      let d;
+      try{
+        const ctrl=new AbortController(); const t=setTimeout(()=>ctrl.abort(),12000);
+        const res=await fetch('/api/pay/admin/orders?limit=300',{ signal:ctrl.signal, headers:{ Authorization:'Bearer '+_authToken() } });
+        clearTimeout(t); d=await res.json();
+        if(!res.ok||d.error) throw new Error(d.error||('HTTP '+res.status));
+      }catch(e){
+        wrap.innerHTML='<p class="text-red-500 text-sm">주문 조회 오류: '+esc(e.message||e)+'</p>'
+          +'<p class="text-neutral-900/45 text-xs mt-2">결제 Worker(<code class="bg-ink/5 px-1 rounded">/api/pay</code>)와 <code class="bg-ink/5 px-1 rounded">SUPABASE_SERVICE_KEY</code> 환경변수가 설정돼 있어야 합니다. 403이 뜨면 관리자 계정으로 다시 로그인해 주세요.</p>';
+        return;
+      }
+      const rows=d.orders||[];
+      const paid=rows.filter(r=>r.status==='paid');
+      const revenue=paid.reduce((s,r)=>s+Number(r.amount||0),0);
+      sum.innerHTML=[
+        mkCard('총 주문',rows.length+'건','카드결제 전체'),
+        mkCard('결제 완료',paid.length+'건','이용권 자동부여'),
+        mkCard('매출(완료 합계)',_wonA(revenue),'테스트 포함'),
+        mkCard('대기·실패',(rows.length-paid.length)+'건','미완료'),
+      ].join('');
+      if(!rows.length){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">아직 카드결제 주문이 없습니다.</p>'; return; }
+      wrap.innerHTML='<div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">'
+        +'<thead class="text-neutral-900/45 text-left border-b border-ink/5"><tr>'
+        +'<th class="px-4 py-3 font-medium">일시</th><th class="px-4 py-3 font-medium">주문번호</th><th class="px-4 py-3 font-medium">구매자</th><th class="px-4 py-3 font-medium">상품</th><th class="px-4 py-3 font-medium text-right">금액</th><th class="px-4 py-3 font-medium">상태</th>'
+        +'</tr></thead><tbody>'
+        +rows.map(r=>{
+          const dt=r.paid_at||r.created_at; const when=dt?new Date(dt).toLocaleString('ko',{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}):'-';
+          const items=Array.isArray(r.items)?r.items.map(i=>i.name).join(', '):'-';
+          return '<tr class="border-b border-ink/5 align-top">'
+            +'<td class="px-4 py-3 text-neutral-900/60">'+esc(when)+'</td>'
+            +'<td class="px-4 py-3 font-mono text-[11px] text-neutral-900/55">'+esc(r.order_id||'')+'</td>'
+            +'<td class="px-4 py-3">'+esc(r.email||'-')+'</td>'
+            +'<td class="px-4 py-3 max-w-[260px] whitespace-normal">'+esc(items)+'</td>'
+            +'<td class="px-4 py-3 text-right font-bold">'+_wonA(r.amount)+'</td>'
+            +'<td class="px-4 py-3">'+_orderBadge(r.status)+'</td>'
+            +'</tr>';
+        }).join('')
+        +'</tbody></table></div>';
     }
 
     // ===== 노트·퀴즈 현황 =====

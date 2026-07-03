@@ -2,6 +2,8 @@
 // 정적 자산은 [assets] 바인딩(env.ASSETS)이 처리하고, 이 Worker는 /api/pay/* 만 담당한다.
 // 필수 환경변수(Worker Settings → Variables and secrets): SUPABASE_SERVICE_KEY (필수), TOSS_SECRET_KEY (실결제 시)
 const SUPABASE_URL = 'https://bmxkndkwefdgsomlznoo.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+const ADMIN_EMAIL = 'josephoh1611@gmail.com';
 const TOSS_TEST_SECRET = 'test_sk_zXLkKEypNArWmo50nX3lmeaxYG5R'; // 토스 문서 테스트 시크릿(실결제 아님)
 
 function json(o, s = 200) {
@@ -20,6 +22,29 @@ async function upsert(env, table, row, oc) {
 
 function ping(env) {
   return json({ ok: true, mode: 'worker', hasServiceKey: !!env.SUPABASE_SERVICE_KEY, hasTossSecret: !!env.TOSS_SECRET_KEY, time: new Date().toISOString() });
+}
+
+// 관리자 인증: 요청의 Bearer 토큰을 Supabase로 검증해 이메일이 관리자와 일치하는지 확인
+async function verifyAdmin(request) {
+  const token = (request.headers.get('Authorization') || '').replace(/^Bearer\s+/i, '');
+  if (!token) return null;
+  try {
+    const r = await fetch(SUPABASE_URL + '/auth/v1/user', { headers: { apikey: SUPABASE_ANON, Authorization: 'Bearer ' + token } });
+    if (!r.ok) return null;
+    const u = await r.json();
+    return (u && u.email && u.email.toLowerCase() === ADMIN_EMAIL) ? u : null;
+  } catch (e) { return null; }
+}
+
+// 관리자 전용 주문 장부 조회(카드결제 orders 테이블) — service_role로 읽어 안전하게 반환
+async function adminOrders(request, env) {
+  if (!(await verifyAdmin(request))) return json({ error: '관리자 인증 실패' }, 403);
+  if (!env.SUPABASE_SERVICE_KEY) return json({ error: 'SUPABASE_SERVICE_KEY 환경변수가 설정되지 않았습니다' }, 500);
+  const url = new URL(request.url);
+  const limit = Math.min(500, Number(url.searchParams.get('limit')) || 200);
+  const r = await fetch(SUPABASE_URL + '/rest/v1/orders?select=*&order=created_at.desc&limit=' + limit, { headers: sbH(env) });
+  if (!r.ok) return json({ error: '주문 조회 실패', detail: (await r.text()).slice(0, 200) }, 500);
+  return json({ ok: true, orders: await r.json() });
 }
 
 async function createOrder(request, env) {
@@ -126,6 +151,7 @@ export default {
       if (p === '/api/pay/ping') return ping(env);
       if (p === '/api/pay/create-order' && request.method === 'POST') return createOrder(request, env);
       if (p === '/api/pay/confirm' && request.method === 'POST') return confirmPay(request, env);
+      if (p === '/api/pay/admin/orders') return adminOrders(request, env);
       return json({ error: 'not found' }, 404);
     }
     // 그 외 모든 요청 → 정적 자산(사이트)
