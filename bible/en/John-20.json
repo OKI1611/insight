@@ -1,14 +1,1057 @@
 [
-  {"en": "the first day of the week", "ko": "그 주의 첫날", "note": "안식 후 첫날, 곧 주일. 부활의 날을 가리킨다.", "voc": [["first", "a.", "첫째의"], ["week", "n.", "주, 한 주간"]], "idi": [["the first day of the week", "그 주의 첫날, 주일"]], "gra": []},
-  {"en": "the stone taken away", "ko": "돌이 옮겨져", "note": "무덤 입구를 막았던 돌이 치워진 것 — 부활의 첫 표징.", "voc": [["stone", "n.", "돌"], ["sepulchre", "n.", "무덤"]], "idi": [["take away", "치우다, 옮겨 가다"]], "gra": [["the stone taken away", "명사 뒤에 과거분사를 붙인 축약 구문, '돌이 옮겨진 것을'"]]},
-  {"en": "Mary Magdalene", "ko": "막달라 마리아", "note": "부활하신 주님을 처음 목격한 증인.", "voc": [["Magdalene", "n.", "막달라 출신의 (마리아)"], ["weep", "v.", "울다"]], "idi": [], "gra": []},
-  {"en": "the linen clothes", "ko": "베로 싼 천", "note": "시신을 감쌌던 세마포. 그대로 놓여 있던 것이 부활의 증거가 된다.", "voc": [["linen", "n.", "베, 세마포"], ["napkin", "n.", "수건, 머리 싸개"]], "idi": [], "gra": [["clothes", "여기서는 '옷'이 아니라 시신을 싼 '천 조각들'을 뜻함"]]},
-  {"en": "he saw, and believed", "ko": "보고 믿더라", "note": "빈 무덤의 정황을 보고 부활을 믿게 된 첫 제자.", "voc": [["see", "v.", "보다"], ["believe", "v.", "믿다"]], "idi": [], "gra": []},
-  {"en": "Rabboni", "ko": "랍오니", "note": "아람어로 '나의 선생님' — 깊은 존경과 친밀함을 담은 호칭.", "voc": [["Rabboni", "n.", "랍오니, 나의 선생님"], ["master", "n.", "선생님, 주인"]], "idi": [], "gra": []},
-  {"en": "Touch me not", "ko": "나를 붙들지 말라", "note": "헬라어는 '계속 붙잡지 말라'의 뜻 — 승천을 앞둔 새 관계를 알리신다.", "voc": [["touch", "v.", "만지다, 붙들다"], ["ascend", "v.", "올라가다, 승천하다"]], "idi": [], "gra": [["Touch me not", "조동사 do 없이 동사 뒤에 not을 둔 고어 부정 명령, 현대어 do not touch me"]]},
-  {"en": "Peace be unto you", "ko": "너희에게 평강이 있을지어다", "note": "부활하신 주님의 인사 — 두려움 속의 제자들에게 주신 화평.", "voc": [["peace", "n.", "평강, 평화"], ["unto", "prep.", "~에게"]], "idi": [["peace be unto you", "너희에게 평강이 있기를"]], "gra": [["unto", "to(~에게)의 고어 전치사"], ["be", "기원·축복을 나타낸 가정법, '있을지어다'"]]},
-  {"en": "Receive ye the Holy Ghost", "ko": "성령을 받으라", "note": "제자들에게 성령을 약속·예표로 베푸신 말씀.", "voc": [["receive", "v.", "받다"], ["ghost", "n.", "영"]], "idi": [], "gra": [["Holy Ghost", "Holy Spirit(성령)의 고어 표현, ghost는 옛 영어로 '영'"], ["Receive ye", "명령문에서 주어 ye를 동사 뒤에 둔 고어 어순"]]},
-  {"en": "My LORD and my God", "ko": "나의 주님이시요 나의 하나님이시니이다", "note": "도마의 고백 — 예수의 신성을 명백히 선언한 절정의 신앙고백.", "voc": [["lord", "n.", "주, 주님"], ["god", "n.", "하나님"]], "idi": [], "gra": []},
-  {"en": "blessed are they that have not seen, and yet have believed", "ko": "보지 못하고도 믿는 자들은 복이 있도다", "note": "후대 모든 신자를 향한 복의 선언.", "voc": [["blessed", "a.", "복 있는"], ["yet", "adv.", "그럼에도, 도리어"]], "idi": [], "gra": [["blessed are they", "보어를 앞세운 도치 구문, '그들은 복이 있도다'"], ["they that", "those who(~하는 자들)의 고어 표현"]]},
-  {"en": "that ye might believe ... and ... have life", "ko": "믿게 ... 생명을 얻게", "note": "요한복음 기록의 목적 — 믿음을 통한 영생.", "voc": [["believe", "v.", "믿다"], ["life", "n.", "생명"]], "idi": [], "gra": [["that ye might believe", "목적을 나타내는 that절 + might, '믿게 하려고'"], ["ye", "you(너희)의 고어 주격"]]}
+ {
+  "en": "The first day of the week cometh Mary Magdalene early, when it was yet dark, unto the sepulchre, and seeth the stone taken away from the sepulchre.",
+  "ko": "그 주의 첫날 이른 새벽, 아직 어둑할 때에 막달라 마리아가 무덤에 이르러 보니, 무덤에서 돌이 옮겨져 있더라.",
+  "note": "안식 후 첫날 이른 새벽, 곧 주일이다. 헬라어 '프로이'(이른 아침)와 '스코티아'(어둠)가 겹쳐 아직 어둑함을 강조하니, 부활의 빛은 어둠 가운데서 밝아 온다. 돌이 옮겨진 것이 부활의 첫 표징이다.",
+  "voc": [
+   [
+    "sepulchre",
+    "n.",
+    "무덤"
+   ],
+   [
+    "seeth",
+    "v.",
+    "보다(고어)"
+   ],
+   [
+    "dark",
+    "a.",
+    "어두운"
+   ]
+  ],
+  "idi": [
+   [
+    "the first day of the week",
+    "그 주의 첫날, 주일"
+   ]
+  ],
+  "gra": [
+   [
+    "cometh, seeth",
+    "3인칭 단수에 -eth를 붙인 고어 동사형, comes·sees"
+   ],
+   [
+    "the stone taken away",
+    "명사+과거분사 축약, '돌이 옮겨진 것을'"
+   ]
+  ]
+ },
+ {
+  "en": "Then she runneth, and cometh to Simon Peter, and to the other disciple, whom Jesus loved, and saith unto them, They have taken away the LORD out of the sepulchre, and we know not where they have laid him.",
+  "ko": "이에 그가 달려가 시몬 베드로와 예수께서 사랑하시던 그 다른 제자에게 이르러 이르되, \"사람들이 주를 무덤에서 가져갔으니, 어디에 두었는지 우리가 알지 못하나이다\" 하니라.",
+  "note": "마리아가 달려가 베드로와 '예수께서 사랑하시던 그 다른 제자'(요한)에게 알린다. 헬라어 '에란'(가져갔다)은 복수 주어 '사람들이'를 함축하니, 그는 아직 부활이 아니라 도난을 생각하고 있다.",
+  "voc": [
+   [
+    "runneth",
+    "v.",
+    "달려가다(고어)"
+   ],
+   [
+    "disciple",
+    "n.",
+    "제자"
+   ],
+   [
+    "lay",
+    "v.",
+    "두다, 놓다"
+   ]
+  ],
+  "idi": [
+   [
+    "take away",
+    "가져가다, 치우다"
+   ]
+  ],
+  "gra": [
+   [
+    "saith unto them",
+    "say to them의 고어, unto=to"
+   ],
+   [
+    "we know not",
+    "조동사 없이 not을 둔 고어 부정, we do not know"
+   ]
+  ]
+ },
+ {
+  "en": "Peter therefore went forth, and that other disciple, and came to the sepulchre.",
+  "ko": "베드로와 그 다른 제자가 곧 나와 무덤으로 가더라.",
+  "note": "베드로와 그 다른 제자가 곧 무덤으로 향한다. 헬라어 미완료 '엑세르콘토'는 즉각적이고 서두르는 발걸음을 그리니, 소식을 들은 자의 마음이 그대로 움직임으로 드러난다.",
+  "voc": [
+   [
+    "went forth",
+    "v.",
+    "나아가다"
+   ],
+   [
+    "came",
+    "v.",
+    "이르다(come의 과거)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "went forth",
+    "forth=앞으로·밖으로, 고어 부사"
+   ]
+  ]
+ },
+ {
+  "en": "So they ran both together: and the other disciple did outrun Peter, and came first to the sepulchre.",
+  "ko": "둘이 함께 달음질하더니, 그 다른 제자가 베드로보다 앞서 달려가 먼저 무덤에 이르러,",
+  "note": "둘이 함께 달리되 그 다른 제자가 앞선다. 헬라어 '프로에드라멘'(앞서 달렸다)이 사실을 담담히 전하니, 이는 요한의 겸손한 자기 서술로 사랑이 발걸음을 재촉함을 보인다.",
+  "voc": [
+   [
+    "outrun",
+    "v.",
+    "앞질러 달리다"
+   ],
+   [
+    "first",
+    "adv.",
+    "먼저"
+   ]
+  ],
+  "idi": [
+   [
+    "outrun",
+    "앞질러 달리다, 앞서다"
+   ]
+  ],
+  "gra": [
+   [
+    "did outrun",
+    "did+동사원형, 강조·과거의 고어 표현"
+   ]
+  ]
+ },
+ {
+  "en": "And he stooping down, and looking in, saw the linen clothes lying; yet went he not in.",
+  "ko": "몸을 굽혀 들여다보매 베로 싼 천이 놓여 있는 것을 보았으되, 안으로는 들어가지 아니하더라.",
+  "note": "그가 몸을 굽혀 세마포가 놓인 것을 보되 들어가지 않는다. 헬라어 '오도니아'(세마포 조각들)가 그대로 남은 정황은, 시신을 훔친 자라면 그리하지 않을 부활의 증거가 된다.",
+  "voc": [
+   [
+    "stoop down",
+    "v.",
+    "몸을 굽히다"
+   ],
+   [
+    "linen",
+    "n.",
+    "베, 세마포"
+   ],
+   [
+    "clothes",
+    "n.",
+    "천 조각"
+   ]
+  ],
+  "idi": [
+   [
+    "stoop down",
+    "몸을 굽히다, 허리를 숙이다"
+   ]
+  ],
+  "gra": [
+   [
+    "yet went he not in",
+    "도치+not, '그러나 그는 들어가지 않았다'"
+   ]
+  ]
+ },
+ {
+  "en": "Then cometh Simon Peter following him, and went into the sepulchre, and seeth the linen clothes lie,",
+  "ko": "시몬 베드로가 그를 뒤따라 이르러 무덤 안으로 들어가 보니, 베로 싼 천이 놓여 있고,",
+  "note": "뒤따르던 베드로는 곧장 무덤 안으로 들어가 세마포를 살핀다. 헬라어 '테오레이'(자세히 보다)는 단순히 흘긋 봄이 아니라 유심히 관찰함이니, 빈 무덤의 정황을 하나하나 확인한다.",
+  "voc": [
+   [
+    "following",
+    "v.",
+    "뒤따르다"
+   ],
+   [
+    "went into",
+    "v.",
+    "~에 들어가다"
+   ],
+   [
+    "lie",
+    "v.",
+    "놓여 있다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "cometh",
+    "come의 -eth 고어형, comes"
+   ]
+  ]
+ },
+ {
+  "en": "And the napkin, that was about his head, not lying with the linen clothes, but wrapped together in a place by itself.",
+  "ko": "그분의 머리를 쌌던 수건은 그 베와 함께 있지 아니하고 따로 한곳에 개켜져 있더라.",
+  "note": "머리를 쌌던 수건이 세마포와 따로 개켜져 있다. 급히 시신을 옮긴 흔적이 아니라 질서 있게 정돈된 모습이니, 이 세밀한 정경이 부활의 조용한 위엄을 증언한다.",
+  "voc": [
+   [
+    "napkin",
+    "n.",
+    "수건, 머리 싸개"
+   ],
+   [
+    "wrapped",
+    "v.",
+    "싸다, 개키다"
+   ],
+   [
+    "itself",
+    "pron.",
+    "그 자체"
+   ]
+  ],
+  "idi": [
+   [
+    "by itself",
+    "따로, 그것만"
+   ]
+  ],
+  "gra": [
+   [
+    "that was about his head",
+    "that=관계대명사, '그의 머리를 둘렀던'"
+   ]
+  ]
+ },
+ {
+  "en": "Then went in also that other disciple, which came first to the sepulchre, and he saw, and believed.",
+  "ko": "그제야 먼저 무덤에 이르렀던 그 다른 제자도 들어가 보고 믿더라.",
+  "note": "먼저 이르렀던 그 다른 제자도 들어가 '보고 믿었다'. 헬라어 '에피스튜센'(믿었다)은 빈 무덤의 정황을 통해 부활을 처음으로 믿은 신앙이니, 성경 이해에 앞선 정황적 확신이다.",
+  "voc": [
+   [
+    "went in",
+    "v.",
+    "들어가다"
+   ],
+   [
+    "believed",
+    "v.",
+    "믿었다"
+   ],
+   [
+    "which",
+    "pron.",
+    "~한(고어 관계사)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "which came first",
+    "which=관계대명사, 사람에게 쓰인 고어 용법"
+   ]
+  ]
+ },
+ {
+  "en": "For as yet they knew not the scripture, that he must rise again from the dead.",
+  "ko": "이는 그분께서 죽은 자 가운데서 반드시 다시 살아나셔야 하리라 하신 성경을 그들이 아직 깨닫지 못하였음이라.",
+  "note": "그들이 아직 부활을 예언한 성경을 깨닫지 못했음을 밝힌다. 헬라어 '데이'(반드시 ~해야 한다)는 신적 필연을 뜻하니, 주의 다시 사심은 우연이 아니라 성경이 정한 하나님의 확정된 뜻이다.",
+  "voc": [
+   [
+    "as yet",
+    "adv.",
+    "아직"
+   ],
+   [
+    "scripture",
+    "n.",
+    "성경"
+   ],
+   [
+    "rise again",
+    "v.",
+    "다시 살아나다"
+   ]
+  ],
+  "idi": [
+   [
+    "as yet",
+    "아직, 지금까지"
+   ],
+   [
+    "rise again",
+    "다시 살아나다, 부활하다"
+   ]
+  ],
+  "gra": [
+   [
+    "knew not",
+    "조동사 없는 고어 부정, did not know"
+   ],
+   [
+    "from the dead",
+    "죽은 자 가운데서"
+   ]
+  ]
+ },
+ {
+  "en": "Then the disciples went away again unto their own home.",
+  "ko": "이에 그 제자들이 자기들의 집으로 다시 돌아가니라.",
+  "note": "두 제자가 자기 집으로 돌아간다. 아직 부활하신 주를 대면하지 못한 채 물러가니, 믿음의 첫걸음 뒤에도 온전한 이해는 부활의 주님과의 만남을 기다려야 함을 보인다.",
+  "voc": [
+   [
+    "went away",
+    "v.",
+    "돌아가다"
+   ],
+   [
+    "own",
+    "a.",
+    "자기의"
+   ],
+   [
+    "home",
+    "n.",
+    "집"
+   ]
+  ],
+  "idi": [
+   [
+    "go away",
+    "떠나가다, 돌아가다"
+   ]
+  ],
+  "gra": [
+   [
+    "unto their own home",
+    "unto=to의 고어; own=자기 자신의를 강조"
+   ]
+  ]
+ },
+ {
+  "en": "But Mary stood without at the sepulchre weeping: and as she wept, she stooped down, and looked into the sepulchre,",
+  "ko": "그러나 마리아는 무덤 밖에 서서 울고 있더니, 울면서 몸을 굽혀 무덤 안을 들여다보매,",
+  "note": "마리아는 무덤 밖에 서서 운다. 헬라어 '클라이우사'(계속 울다)는 그치지 않는 슬픔을 그리니, 사랑이 깊은 자의 애통이다. 그 눈물 속에서 몸을 굽혀 다시 무덤 안을 들여다본다.",
+  "voc": [
+   [
+    "without",
+    "adv.",
+    "밖에(고어)"
+   ],
+   [
+    "weep",
+    "v.",
+    "울다"
+   ],
+   [
+    "stoop down",
+    "v.",
+    "몸을 굽히다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "stood without",
+    "without=바깥에, 고어 부사"
+   ],
+   [
+    "as she wept",
+    "weep의 과거 wept, '울면서'"
+   ]
+  ]
+ },
+ {
+  "en": "And seeth two angels in white sitting, the one at the head, and the other at the feet, where the body of Jesus had lain.",
+  "ko": "흰옷 입은 두 천사가 예수의 몸이 뉘었던 자리에 앉아 있는데, 하나는 머리 편에, 하나는 발 편에 있더라.",
+  "note": "흰옷 입은 두 천사가 시신이 뉘었던 자리 머리 편과 발 편에 앉아 있다. 언약궤 속죄소 양편의 그룹을 떠올리게 하니, 이 자리가 곧 참된 화목이 이루어진 거룩한 곳임을 암시한다.",
+  "voc": [
+   [
+    "angel",
+    "n.",
+    "천사"
+   ],
+   [
+    "white",
+    "n.",
+    "흰옷"
+   ],
+   [
+    "lain",
+    "v.",
+    "뉘어 있다(lie의 과거분사)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "where the body of Jesus had lain",
+    "where=관계부사; had lain=과거완료 '뉘었던'"
+   ]
+  ]
+ },
+ {
+  "en": "And they say unto her, Woman, why weepest thou? She saith unto them, Because they have taken away my LORD, and I know not where they have laid him.",
+  "ko": "그들이 그에게 이르되, \"여자여, 어찌하여 우느냐?\" 하니, 그가 이르되, \"사람들이 나의 주를 가져갔으니, 어디에 두었는지 내가 알지 못함이니이다\" 하니라.",
+  "note": "천사가 '어찌하여 우느냐' 물으매 마리아는 여전히 '내 주를 가져갔다'고 답한다. 헬라어 '톤 퀴리온 무'(나의 주)는 개인적 애정을 드러내나, 아직 그 주께서 살아 계심을 알지 못한다.",
+  "voc": [
+   [
+    "weepest",
+    "v.",
+    "울다(2인칭 고어)"
+   ],
+   [
+    "taken away",
+    "v.",
+    "가져가다"
+   ],
+   [
+    "laid",
+    "v.",
+    "두다(lay의 과거)"
+   ]
+  ],
+  "idi": [
+   [
+    "take away",
+    "가져가다"
+   ]
+  ],
+  "gra": [
+   [
+    "why weepest thou",
+    "weepest=thou에 -est를 붙인 고어 2인칭; thou=너"
+   ],
+   [
+    "they have laid him",
+    "현재완료, '그들이 두었다'"
+   ]
+  ]
+ },
+ {
+  "en": "And when she had thus said, she turned herself back, and saw Jesus standing, and knew not that it was Jesus.",
+  "ko": "이 말을 하고 뒤로 돌이키매 예수께서 서 계신 것을 보았으나, 그가 예수이신 줄을 알지 못하더라.",
+  "note": "마리아가 뒤로 돌이켜 서 계신 예수를 보나 알아보지 못한다. 헬라어 '우크 에데이'(알지 못했다)는 눈이 가려진 상태이니, 부활하신 주를 아는 것은 시각이 아니라 그분의 부르심으로 열린다.",
+  "voc": [
+   [
+    "turned",
+    "v.",
+    "돌이키다"
+   ],
+   [
+    "standing",
+    "v.",
+    "서 있다"
+   ],
+   [
+    "knew",
+    "v.",
+    "알다(know의 과거)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "knew not that it was Jesus",
+    "knew not=고어 부정, did not know"
+   ]
+  ]
+ },
+ {
+  "en": "Jesus saith unto her, Woman, why weepest thou? whom seekest thou? She, supposing him to be the gardener, saith unto him, Sir, if thou have borne him hence, tell me where thou hast laid him, and I will take him away.",
+  "ko": "예수께서 그에게 이르시되, \"여자여, 어찌하여 우느냐? 누구를 찾느냐?\" 하시니, 그가 동산지기인 줄로 여겨 이르되, \"주여, 당신이 그분을 옮겨 갔거든 어디에 두었는지 내게 이르소서. 그리하면 내가 모셔 가리이다\" 하니라.",
+  "note": "예수께서 '누구를 찾느냐' 물으시매 마리아는 동산지기로 여긴다. 첫 사람 아담이 동산에서 타락했으나, 부활의 주는 참 '동산지기'로 새 창조를 여신 분이니 이 오해에 깊은 진리가 숨어 있다.",
+  "voc": [
+   [
+    "seekest",
+    "v.",
+    "찾다(2인칭 고어)"
+   ],
+   [
+    "gardener",
+    "n.",
+    "동산지기"
+   ],
+   [
+    "hence",
+    "adv.",
+    "여기서, 이곳에서"
+   ]
+  ],
+  "idi": [
+   [
+    "bear ... hence",
+    "~을 이곳에서 옮겨 가다"
+   ]
+  ],
+  "gra": [
+   [
+    "whom seekest thou",
+    "whom=목적격 관계사; seekest thou=고어 어순·2인칭"
+   ],
+   [
+    "if thou have borne him",
+    "have borne=bear의 완료, '옮겨 갔거든'"
+   ]
+  ]
+ },
+ {
+  "en": "Jesus saith unto her, Mary. She turned herself, and saith unto him, Rabboni; which is to say, Master.",
+  "ko": "예수께서 그에게 이르시되, \"마리아야\" 하시거늘, 그가 돌이켜 히브리 말로 이르되, \"랍오니\" 하니, 이는 곧 선생님이라는 말이라.",
+  "note": "예수께서 '마리아야' 이름을 부르시니 그가 돌이켜 '랍오니'라 한다. 아람어 '랍부니'는 '나의 선생님'으로 깊은 존경과 친밀을 담으니, 목자가 양의 이름을 부르매 양이 그 음성을 아는 장면이다(요 10:3).",
+  "voc": [
+   [
+    "turned",
+    "v.",
+    "돌이키다"
+   ],
+   [
+    "Rabboni",
+    "n.",
+    "랍오니, 나의 선생님"
+   ],
+   [
+    "master",
+    "n.",
+    "선생님, 주인"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "which is to say",
+    "which=관계사; is to say='곧 ~라는 뜻이라'"
+   ]
+  ]
+ },
+ {
+  "en": "Jesus saith unto her, Touch me not; for I am not yet ascended to my Father: but go to my brethren, and say unto them, I ascend unto my Father, and your Father; and to my God, and your God.",
+  "ko": "예수께서 그에게 이르시되, \"나를 붙들지 말라. 내가 아직 아버지께로 올라가지 아니하였노라. 다만 내 형제들에게 가서 이르기를, 내가 내 아버지 곧 너희 아버지, 내 하나님 곧 너희 하나님께로 올라간다 하라\" 하시니라.",
+  "note": "'나를 붙들지 말라' — 헬라어 '메 무 하프투'는 '계속 붙잡지 말라'는 현재 명령이다. 옛 방식으로 매달리지 말라 하심은, 승천 후 성령으로 임하실 새롭고 더 깊은 관계를 여시기 때문이다.",
+  "voc": [
+   [
+    "touch",
+    "v.",
+    "붙들다, 만지다"
+   ],
+   [
+    "ascend",
+    "v.",
+    "올라가다, 승천하다"
+   ],
+   [
+    "brethren",
+    "n.",
+    "형제들(고어 복수)"
+   ]
+  ],
+  "idi": [
+   [
+    "touch not",
+    "붙들지 말라"
+   ]
+  ],
+  "gra": [
+   [
+    "Touch me not",
+    "조동사 없는 고어 부정 명령, do not touch me"
+   ],
+   [
+    "my brethren",
+    "brother의 고어 복수형, 형제들"
+   ]
+  ]
+ },
+ {
+  "en": "Mary Magdalene came and told the disciples that she had seen the LORD, and that he had spoken these things unto her.",
+  "ko": "막달라 마리아가 가서 제자들에게 자기가 주를 뵈었다는 것과 그분께서 자기에게 이 말씀을 이르셨다는 것을 전하니라.",
+  "note": "마리아가 제자들에게 '내가 주를 뵈었다'고 전한다. 헬라어 완료 '헤오라카'(보아 왔다)는 그 봄이 지속되는 확신임을 드러내니, 부활의 첫 증인이자 첫 전달자로 세워진 여인의 사명이 여기 있다.",
+  "voc": [
+   [
+    "told",
+    "v.",
+    "전하다(tell의 과거)"
+   ],
+   [
+    "seen",
+    "v.",
+    "보다(see의 과거분사)"
+   ],
+   [
+    "spoken",
+    "v.",
+    "말하다(speak의 과거분사)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "that she had seen",
+    "had seen=과거완료, '보았다는 것'"
+   ]
+  ]
+ },
+ {
+  "en": "Then the same day at evening, being the first day of the week, when the doors were shut where the disciples were assembled for fear of the Jews, came Jesus and stood in the midst, and saith unto them, Peace be unto you.",
+  "ko": "그날 곧 그 주의 첫날 저녁때에, 제자들이 유대인들을 두려워하여 모인 곳의 문들을 닫아 두었더니, 예수께서 오사 그 가운데 서서 이르시되, \"너희에게 평강이 있을지어다\" 하시니라.",
+  "note": "주의 첫날 저녁, 문을 닫아건 방에 예수께서 오사 '너희에게 평강이 있을지어다' 하신다. 히브리 인사 '샬롬'이 부활의 주께 실려 오니, 두려움에 갇힌 제자들에게 임한 참된 화평이다.",
+  "voc": [
+   [
+    "shut",
+    "v.",
+    "닫다"
+   ],
+   [
+    "assembled",
+    "v.",
+    "모이다"
+   ],
+   [
+    "midst",
+    "n.",
+    "가운데"
+   ]
+  ],
+  "idi": [
+   [
+    "for fear of",
+    "~을 두려워하여"
+   ],
+   [
+    "in the midst",
+    "한가운데에"
+   ]
+  ],
+  "gra": [
+   [
+    "Peace be unto you",
+    "be=기원·축복의 가정법, '있을지어다'; unto=to의 고어"
+   ]
+  ]
+ },
+ {
+  "en": "And when he had so said, he shewed unto them his hands and his side. Then were the disciples glad, when they saw the LORD.",
+  "ko": "이 말씀을 하시고 그 손과 옆구리를 그들에게 보이시니, 제자들이 주를 뵙고 기뻐하더라.",
+  "note": "예수께서 못 자국 난 손과 창에 찔린 옆구리를 보이신다. 부활의 몸에 십자가의 흔적이 남았으니, 살아나신 이가 곧 죽으셨던 그분임을 확증한다. 제자들의 두려움이 기쁨으로 바뀐다.",
+  "voc": [
+   [
+    "shewed",
+    "v.",
+    "보이다(show의 고어 과거)"
+   ],
+   [
+    "side",
+    "n.",
+    "옆구리"
+   ],
+   [
+    "glad",
+    "a.",
+    "기뻐하는"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "he shewed unto them",
+    "shewed=showed의 고어 철자; unto=to"
+   ],
+   [
+    "Then were the disciples glad",
+    "도치, '그때 제자들이 기뻐하였다'"
+   ]
+  ]
+ },
+ {
+  "en": "Then said Jesus to them again, Peace be unto you: as my Father hath sent me, even so send I you.",
+  "ko": "예수께서 다시 그들에게 이르시되, \"너희에게 평강이 있을지어다. 아버지께서 나를 보내신 것같이 나도 너희를 보내노라\" 하시고,",
+  "note": "다시 평강을 선언하신 후 '아버지께서 나를 보내신 것같이 나도 너희를 보내노라' 하신다. 헬라어 '아페스탈켄'(파송하셨다)과 '펨포'(보내다)가 이어지니, 교회의 사명은 그리스도의 보내심에서 흘러나온다.",
+  "voc": [
+   [
+    "again",
+    "adv.",
+    "다시"
+   ],
+   [
+    "sent",
+    "v.",
+    "보내다(send의 과거)"
+   ],
+   [
+    "even so",
+    "adv.",
+    "꼭 그같이"
+   ]
+  ],
+  "idi": [
+   [
+    "even so",
+    "꼭 그와 같이"
+   ]
+  ],
+  "gra": [
+   [
+    "hath sent me",
+    "hath=has의 고어; 현재완료 '보내셨다'"
+   ],
+   [
+    "send I you",
+    "도치, I send you의 고어 어순"
+   ]
+  ]
+ },
+ {
+  "en": "And when he had said this, he breathed on them, and saith unto them, Receive ye the Holy Ghost:",
+  "ko": "이 말씀을 하신 뒤에 그들을 향하여 숨을 내쉬며 이르시되, \"성령을 받으라.",
+  "note": "예수께서 그들을 향해 숨을 내쉬며 '성령을 받으라' 하신다. 헬라어 '에네퓌세센'(숨을 불어넣다)은 창세기 2:7 하나님이 사람에게 생기를 불어넣으심을 반향하니, 부활의 주께서 새 창조의 생명을 베푸신다.",
+  "voc": [
+   [
+    "breathed on",
+    "v.",
+    "숨을 내쉬다"
+   ],
+   [
+    "receive",
+    "v.",
+    "받다"
+   ],
+   [
+    "ghost",
+    "n.",
+    "영(고어)"
+   ]
+  ],
+  "idi": [
+   [
+    "breathe on",
+    "~에게 숨을 내쉬다"
+   ]
+  ],
+  "gra": [
+   [
+    "Receive ye",
+    "명령문에 주어 ye를 둔 고어 어순, ye=너희"
+   ],
+   [
+    "Holy Ghost",
+    "Holy Spirit의 고어 표현, ghost=영"
+   ]
+  ]
+ },
+ {
+  "en": "Whose soever sins ye remit, they are remitted unto them; and whose soever sins ye retain, they are retained.",
+  "ko": "너희가 누구의 죄든지 사하면 그 죄가 사하여질 것이요, 누구의 죄든지 그대로 두면 그대로 있으리라\" 하시니라.",
+  "note": "'너희가 누구의 죄든지 사하면 사하여진다.' 헬라어 완료 수동 '아페온타이'(사하여진 상태다)는, 제자가 죄를 사하는 근원이 아니라 하늘에서 이미 이루신 용서를 복음으로 선포함을 뜻한다.",
+  "voc": [
+   [
+    "soever",
+    "adv.",
+    "무릇 ~든지(고어)"
+   ],
+   [
+    "remit",
+    "v.",
+    "사하다, 용서하다"
+   ],
+   [
+    "retain",
+    "v.",
+    "그대로 두다, 보유하다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Whose soever sins ye remit",
+    "whose soever=whosever, '누구의 죄든지'"
+   ],
+   [
+    "they are remitted",
+    "현재 수동, '사하여진다'"
+   ]
+  ]
+ },
+ {
+  "en": "But Thomas, one of the twelve, called Didymus, was not with them when Jesus came.",
+  "ko": "그러나 열둘 중 하나로서 디두모라 일컫는 도마는 예수께서 오셨을 때에 그들과 함께 있지 아니하였더라.",
+  "note": "열둘 중 하나인 디두모라 하는 도마는 그 자리에 없었다. 헬라어 '디뒤모스'는 '쌍둥이'라는 뜻이다. 함께 모인 자리에 없었던 그의 부재가, 뒤이어 나올 의심과 회복의 무대를 연다.",
+  "voc": [
+   [
+    "twelve",
+    "n.",
+    "열둘"
+   ],
+   [
+    "called",
+    "v.",
+    "일컫다"
+   ],
+   [
+    "Didymus",
+    "n.",
+    "디두모(쌍둥이)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "was not with them",
+    "단순 부정, '함께 있지 아니하였다'"
+   ]
+  ]
+ },
+ {
+  "en": "The other disciples therefore said unto him, We have seen the LORD. But he said unto them, Except I shall see in his hands the print of the nails, and put my finger into the print of the nails, and thrust my hand into his side, I will not believe.",
+  "ko": "다른 제자들이 그에게 이르되, \"우리가 주를 뵈었노라\" 하니, 그가 그들에게 이르되, \"내가 그 손에 박혔던 못 자국을 보고 그 못 자국에 내 손가락을 넣어 보며 그 옆구리에 내 손을 넣어 보지 아니하고는 결코 믿지 아니하겠노라\" 하더라.",
+  "note": "도마는 못 자국을 보고 만져 보지 않고는 결코 믿지 않겠다 한다. 헬라어 이중 부정 '우 메 피스튜소'는 강한 거절이니, 눈에 보이는 증거를 요구하는 인간 이성의 완고함을 드러낸다.",
+  "voc": [
+   [
+    "print",
+    "n.",
+    "자국, 흔적"
+   ],
+   [
+    "nail",
+    "n.",
+    "못"
+   ],
+   [
+    "thrust",
+    "v.",
+    "넣다, 찌르다"
+   ]
+  ],
+  "idi": [
+   [
+    "except ... I will not",
+    "~하지 아니하고는 결코 ~하지 않겠다"
+   ]
+  ],
+  "gra": [
+   [
+    "Except I shall see",
+    "Except=~하지 않는 한(고어); shall=강한 미래·의지"
+   ],
+   [
+    "I will not believe",
+    "will=의지의 미래, '결코 믿지 않겠다'"
+   ]
+  ]
+ },
+ {
+  "en": "And after eight days again his disciples were within, and Thomas with them: then came Jesus, the doors being shut, and stood in the midst, and said, Peace be unto you.",
+  "ko": "여드레 뒤에 제자들이 다시 안에 있을 때에 도마도 그들과 함께 있더니, 문들이 닫혀 있었으되 예수께서 오사 그 가운데 서서 이르시되, \"너희에게 평강이 있을지어다\" 하시고,",
+  "note": "여드레 뒤 도마도 함께한 자리에, 문이 닫혔으되 예수께서 다시 오사 평강을 선언하신다. 헬라어 '톤 뒤론 케클레이스메논'(문이 닫힌 채로)이 앞서와 같으니, 부활체는 닫힌 문에 매이지 않는다.",
+  "voc": [
+   [
+    "after",
+    "prep.",
+    "~후에"
+   ],
+   [
+    "within",
+    "adv.",
+    "안에"
+   ],
+   [
+    "midst",
+    "n.",
+    "가운데"
+   ]
+  ],
+  "idi": [
+   [
+    "in the midst",
+    "한가운데에"
+   ]
+  ],
+  "gra": [
+   [
+    "the doors being shut",
+    "분사구문, '문들이 닫혀 있었으되'"
+   ],
+   [
+    "Peace be unto you",
+    "be=축복의 가정법; unto=to의 고어"
+   ]
+  ]
+ },
+ {
+  "en": "Then saith he to Thomas, Reach hither thy finger, and behold my hands; and reach hither thy hand, and thrust it into my side: and be not faithless, but believing.",
+  "ko": "이어 도마에게 이르시되, \"네 손가락을 이리 내밀어 내 손을 보고 네 손을 이리 내밀어 내 옆구리에 넣어 보라. 믿지 않는 자가 되지 말고 믿는 자가 되라\" 하시니라.",
+  "note": "예수께서 도마의 요구를 그대로 아시고 손과 옆구리를 내미신다. '믿지 않는 자가 되지 말고 믿는 자가 되라' 하시니, 의심을 정죄하기보다 친히 다가와 믿음으로 부르시는 긍휼이 넘친다.",
+  "voc": [
+   [
+    "reach hither",
+    "v.",
+    "이리 내밀다"
+   ],
+   [
+    "behold",
+    "v.",
+    "보라"
+   ],
+   [
+    "faithless",
+    "a.",
+    "믿지 않는"
+   ]
+  ],
+  "idi": [
+   [
+    "reach hither",
+    "이리로 내밀다"
+   ]
+  ],
+  "gra": [
+   [
+    "be not faithless, but believing",
+    "be+형용사 명령; not A but B, 'A 말고 B가 되라'"
+   ],
+   [
+    "hither",
+    "여기로, 이쪽으로(고어 부사)"
+   ]
+  ]
+ },
+ {
+  "en": "And Thomas answered and said unto him, My LORD and my God.",
+  "ko": "도마가 대답하여 그분께 이르되, \"나의 주님이시요 나의 하나님이시니이다\" 하니,",
+  "note": "도마가 '나의 주님이시요 나의 하나님이시니이다' 고백한다. 헬라어 '호 퀴리오스 무 카이 호 테오스 무'는 예수의 신성을 명백히 선언하니, 이는 요한복음 전체 신앙고백의 절정이다.",
+  "voc": [
+   [
+    "answered",
+    "v.",
+    "대답하다"
+   ],
+   [
+    "lord",
+    "n.",
+    "주, 주님"
+   ],
+   [
+    "god",
+    "n.",
+    "하나님"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "said unto him",
+    "unto=to의 고어, '그에게 이르되'"
+   ]
+  ]
+ },
+ {
+  "en": "Jesus saith unto him, Thomas, because thou hast seen me, thou hast believed: blessed are they that have not seen, and yet have believed.",
+  "ko": "예수께서 그에게 이르시되, \"도마야, 네가 나를 보았으므로 믿느냐? 보지 못하고도 믿는 자들은 복이 있도다\" 하시니라.",
+  "note": "'보지 못하고도 믿는 자들은 복이 있도다.' 헬라어 부정과거 분사 '메 이돈테스'(보지 아니한)와 완료 '페피스튜코테스'(믿어 온)가 대조되니, 후대 모든 신자를 향한 복의 선언이다.",
+  "voc": [
+   [
+    "because",
+    "conj.",
+    "~때문에"
+   ],
+   [
+    "blessed",
+    "a.",
+    "복 있는"
+   ],
+   [
+    "yet",
+    "adv.",
+    "그럼에도, 도리어"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "thou hast seen ... thou hast believed",
+    "hast=has의 2인칭 고어; 현재완료"
+   ],
+   [
+    "blessed are they that",
+    "도치+they that=those who, '~하는 자들은 복이 있도다'"
+   ]
+  ]
+ },
+ {
+  "en": "And many other signs truly did Jesus in the presence of his disciples, which are not written in this book:",
+  "ko": "예수께서 제자들 앞에서 이 책에 기록되지 아니한 다른 표적도 참으로 많이 행하셨으나,",
+  "note": "예수께서 이 책에 기록되지 않은 다른 표적도 많이 행하셨다. 헬라어 '세메이아'(표적)는 단순한 기적이 아니라 그분이 누구이신지를 가리키는 표징이니, 기록은 그 표적의 선별된 증언이다.",
+  "voc": [
+   [
+    "many",
+    "a.",
+    "많은"
+   ],
+   [
+    "sign",
+    "n.",
+    "표적, 표징"
+   ],
+   [
+    "presence",
+    "n.",
+    "앞, 면전"
+   ]
+  ],
+  "idi": [
+   [
+    "in the presence of",
+    "~앞에서, ~면전에서"
+   ]
+  ],
+  "gra": [
+   [
+    "did Jesus",
+    "did+주어, 도치된 고어 어순 '예수께서 행하셨다'"
+   ],
+   [
+    "which are not written",
+    "which=관계대명사, '기록되지 아니한'"
+   ]
+  ]
+ },
+ {
+  "en": "But these are written, that ye might believe that Jesus is the Christ, the Son of God; and that believing ye might have life through his name.",
+  "ko": "오직 이것들을 기록함은 너희로 예수께서 그리스도시요 하나님의 아들이심을 믿게 하려 함이요, 또 너희가 믿어 그분의 이름으로 생명을 얻게 하려 함이라.",
+  "note": "기록의 목적은 예수께서 그리스도요 하나님의 아들이심을 믿어 그 이름으로 생명을 얻게 함이다. 헬라어 '조엔'(생명)은 영생을 뜻하니, 요한복음 전체가 믿음을 통한 영생으로 향한다.",
+  "voc": [
+   [
+    "written",
+    "v.",
+    "기록되다"
+   ],
+   [
+    "Christ",
+    "n.",
+    "그리스도"
+   ],
+   [
+    "life",
+    "n.",
+    "생명"
+   ]
+  ],
+  "idi": [
+   [
+    "through his name",
+    "그의 이름으로"
+   ]
+  ],
+  "gra": [
+   [
+    "that ye might believe",
+    "that+might=목적, '믿게 하려'; ye=너희"
+   ],
+   [
+    "believing ye might have life",
+    "분사구문 believing='믿어'"
+   ]
+  ]
+ }
 ]
