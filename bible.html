@@ -369,9 +369,22 @@
     }
 
     /* ===================== KJV 단어 클릭 → 웹스터 사전 말풍선 ===================== */
-    let WEB=null, WEBLOADING=null, wdCur=null; const MODERN_CACHE={};
+    let WEB=null, WEBLOADING=null, KOR=null, KORLOADING=null, wdCur=null; const MODERN_CACHE={};
     function loadWebster(){ if(WEB) return Promise.resolve(WEB); if(WEBLOADING) return WEBLOADING;
       WEBLOADING=fetch('bible/webster-kjv.json?t='+Date.now()).then(r=>r.json()).then(j=>{WEB=j;return j;}).catch(()=>{WEB={};return WEB;}); return WEBLOADING; }
+    // 한글 뜻 사전(사장님 성경 voc 데이터에서 생성 · 저작권 문제 없음). 없으면 {}로 폴백.
+    function loadKorean(){ if(KOR) return Promise.resolve(KOR); if(KORLOADING) return KORLOADING;
+      KORLOADING=fetch('bible/kjv-korean.json').then(r=>r.ok?r.json():{}).then(j=>{KOR=j||{};return KOR;}).catch(()=>{KOR={};return KOR;}); return KORLOADING; }
+    // 단어 → 한글 뜻 조회(웹스터 표제어 키 우선 + KJV 어미 폴백)
+    function korLookup(word, webKey){
+      let w=(word||'').toLowerCase().replace(/[’]/g,"'").replace(/[^a-z']/g,'').replace(/'s$/,'').replace(/'/g,'');
+      if(!KOR) return null;
+      if(KOR[w]) return KOR[w];
+      if(webKey && KOR[webKey]) return KOR[webKey];
+      const rules=[['ies','y'],['ied','y'],['es',''],['s',''],['ed',''],['ing',''],['eth',''],['est',''],['edst',''],['st',''],['th','']];
+      for(const [suf,rep] of rules){ if(w.length-suf.length>=2 && w.endsWith(suf)){ const b=w.slice(0,w.length-suf.length)+rep; if(KOR[b]) return KOR[b]; if(KOR[b+'e']) return KOR[b+'e']; } }
+      return null;
+    }
     // 영어 본문을 단어 단위로 감싸 클릭 가능하게 (구두점·공백은 그대로)
     function tokEn(s){ s=s||''; let out=''; const re=/([A-Za-z][A-Za-z'’]*)|([^A-Za-z]+)/g, esc2=esc; let m;
       while((m=re.exec(s))!==null){ if(m[1]) out+='<span class="wd">'+esc2(m[1])+'</span>'; else out+=esc2(m[2]); } return out; }
@@ -391,21 +404,23 @@
         document.body.appendChild(pop); } return pop; }
     function showWdPop(span){
       const word=span.textContent;
-      loadWebster().then(()=>{
+      Promise.all([loadWebster(), loadKorean()]).then(()=>{
         const hit=dictLookup(word), pop=ensureWdPop(), body=pop.querySelector('.wd-body');
-        const wl=word.toLowerCase().replace(/[^a-z]/g,'');
-        if(hit){
-          body.innerHTML='<div class="wd-word">'+esc(word)+'</div>'
-            +'<div class="wd-label">KJV 본래 뜻 · Webster</div>'
-            +'<div class="wd-orig">'+esc(hit.def)+'</div>'
-            +'<button type="button" class="wd-btn" data-w="'+esc(wl)+'" onclick="loadModern(this)">현대 의미 보기 ▾</button>'
-            +'<div class="wd-modern-wrap"></div>';
-        } else {
-          body.innerHTML='<div class="wd-word">'+esc(word)+'</div>'
-            +'<div class="wd-orig" style="color:#6b7280">웹스터 사전에 이 단어 풀이가 없습니다.</div>'
-            +'<button type="button" class="wd-btn" data-w="'+esc(wl)+'" onclick="loadModern(this)">현대 사전에서 찾기 ▾</button>'
-            +'<div class="wd-modern-wrap"></div>';
+        const kor=korLookup(word, hit?hit.key:null);
+        let inner='<div class="wd-word">'+esc(word)+'</div>';
+        // 한글 뜻(사장님 데이터 기반 · 항상 즉시 · 외부 API 불필요)
+        if(kor){
+          inner+='<div class="wd-label">뜻 · 한글</div>'
+            +'<div class="wd-orig" style="color:#1c2b46;font-weight:600">'+esc(kor)+'</div>';
         }
+        // KJV 본래 뜻(웹스터 1913 · 영어)
+        if(hit){
+          inner+='<div class="wd-label"'+(kor?' style="margin-top:10px"':'')+'>KJV 본래 뜻 · Webster</div>'
+            +'<div class="wd-orig" style="color:#5a6b88">'+esc(hit.def)+'</div>';
+        } else if(!kor){
+          inner+='<div class="wd-orig" style="color:#6b7280">이 단어의 뜻 풀이가 아직 없습니다.</div>';
+        }
+        body.innerHTML=inner;
         document.querySelectorAll('.wd.wd-on').forEach(x=>x.classList.remove('wd-on'));
         span.classList.add('wd-on'); wdCur=span;
         positionWdPop(pop, span);

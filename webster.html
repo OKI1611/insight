@@ -95,6 +95,19 @@
     // 현대 뜻 로컬 번들(외부 API 의존 제거 — 항상 즉시·안정) · 없으면 {}로 폴백
     function loadModernIdx(){ if(MOD) return Promise.resolve(MOD); if(MODLOADING) return MODLOADING;
       MODLOADING = fetch('bible/webster-modern.json').then(r=>r.ok?r.json():{}).then(j=>{MOD=j||{};return MOD;}).catch(()=>{MOD={};return MOD;}); return MODLOADING; }
+    // 한글 뜻 사전(사장님 성경 voc 데이터 기반 · 저작권 문제 없음)
+    let KOR = null, KORLOADING = null;
+    function loadKoreanIdx(){ if(KOR) return Promise.resolve(KOR); if(KORLOADING) return KORLOADING;
+      KORLOADING = fetch('bible/kjv-korean.json').then(r=>r.ok?r.json():{}).then(j=>{KOR=j||{};return KOR;}).catch(()=>{KOR={};return KOR;}); return KORLOADING; }
+    function korLookup(word, webKey){
+      let w=(word||'').toLowerCase().replace(/[’]/g,"'").replace(/[^a-z']/g,'').replace(/'s$/,'').replace(/'/g,'');
+      if(!KOR) return null;
+      if(KOR[w]) return KOR[w];
+      if(webKey && KOR[webKey]) return KOR[webKey];
+      const rules=[['ies','y'],['ied','y'],['es',''],['s',''],['ed',''],['ing',''],['eth',''],['est',''],['edst',''],['st',''],['th','']];
+      for(const [suf,rep] of rules){ if(w.length-suf.length>=2 && w.endsWith(suf)){ const b=w.slice(0,w.length-suf.length)+rep; if(KOR[b]) return KOR[b]; if(KOR[b+'e']) return KOR[b+'e']; } }
+      return null;
+    }
 
     // KJV 어미(-eth/-est/-th)·복수·과거형 등 축약형까지 표제어로 폴백 조회
     function dictLookup(word){
@@ -121,10 +134,11 @@
       const word = (raw||'').trim(); if(!word) return;
       $('q').value = word;
       const res = $('result'); res.innerHTML = '<p class="text-center text-neutral-900/40 text-sm py-8">사전을 불러오는 중…</p>';
-      await loadWebster();
+      await Promise.all([loadWebster(), loadKoreanIdx()]);
       const hit = dictLookup(word);
       const wl = word.toLowerCase().replace(/[^a-z]/g,'');
       const key = hit ? hit.key : wl;
+      const kor = korLookup(word, hit ? hit.key : null);
 
       let html = `<article class="dict-card p-6">
         <div class="flex items-center gap-2.5 flex-wrap">
@@ -132,6 +146,12 @@
           <button class="pron" onclick="pronounce('${esc(wl)}')" title="발음 듣기" aria-label="발음 듣기"><svg viewBox="0 0 24 24" class="w-4 h-4" fill="none"><path d="M11 5 6 9H3v6h3l5 4V5z" fill="currentColor"/><path d="M16 8.5a4 4 0 0 1 0 7M18.5 6a7.5 7.5 0 0 1 0 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
           ${ hit && hit.key !== wl ? `<span class="text-[12px] text-neutral-900/40">표제어 <b class="wserif text-neutral-600">${esc(hit.key)}</b></span>` : '' }
         </div>`;
+      if(kor){
+        html += `<div class="mt-4">
+          <p class="dict-label">뜻 · 한글</p>
+          <p class="dict-def mt-1.5" style="font-weight:600">${esc(kor)}</p>
+        </div>`;
+      }
       if(hit){
         html += `<div class="mt-5">
           <p class="dict-label">KJV 본래 뜻 · Webster 1913</p>
