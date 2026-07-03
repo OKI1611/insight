@@ -1,13 +1,1144 @@
 [
-  {"en": "wash the disciples' feet", "ko": "제자들의 발을 씻기시다", "note": "예수께서 친히 종의 일을 하시며 섬김의 본을 보이신 장면.", "voc": [["wash", "v.", "씻다, 씻기다"], ["disciple", "n.", "제자"], ["feet", "n.", "발(foot의 복수)"]], "idi": [], "gra": []},
-  {"en": "loved them unto the end", "ko": "끝까지 사랑하시니라", "note": "'end'(헬, telos)는 마지막 순간까지, 또 완전하게라는 이중 의미.", "voc": [["love", "v.", "사랑하다"], ["end", "n.", "끝, 마지막"]], "idi": [["unto the end", "끝까지, 마지막까지"]], "gra": [["unto", "unto=현대영어 to/until에 해당하는 고어 전치사"]]},
-  {"en": "girded himself", "ko": "허리에 수건을 두르시니라", "note": "당시 종이 발을 씻길 때의 차림으로, 낮아지심을 상징.", "voc": [["gird", "v.", "(허리에) 두르다, 매다"], ["towel", "n.", "수건"]], "idi": [], "gra": [["girded himself", "gird의 과거형 girded + 재귀대명사(himself)=스스로 두르다"]]},
-  {"en": "no part with me", "ko": "나와 상관이 없느니라", "note": "씻김을 받지 않으면 그분과의 교제와 몫이 없음을 뜻함.", "voc": [["part", "n.", "몫, 상관"], ["wash", "v.", "씻다"]], "idi": [["have no part with", "~와 상관이 없다, ~와 몫을 나누지 못하다"]], "gra": []},
-  {"en": "clean every whit", "ko": "온몸이 깨끗하니라", "note": "이미 목욕한 자는 발만 씻으면 된다는 비유로, 거듭난 자의 상태를 가리킴.", "voc": [["clean", "adj.", "깨끗한"], ["whit", "n.", "조금, 티끌만큼"]], "idi": [["every whit", "온전히, 모두 다"]], "gra": [["whit", "whit=아주 작은 양을 뜻하는 고어 명사(현대영어에서는 거의 쓰이지 않음)"]]},
-  {"en": "I have given you an example", "ko": "내가 너희에게 본을 보였으니", "note": "'example'(헬, hypodeigma)은 따라 행할 모범.", "voc": [["example", "n.", "본, 모범"], ["follow", "v.", "따르다"]], "idi": [], "gra": []},
-  {"en": "the servant is not greater", "ko": "종이 주인보다 크지 못하니라", "note": "섬김의 본을 제자들이 따라야 할 근거로 제시됨.", "voc": [["servant", "n.", "종, 하인"], ["greater", "adj.", "더 큰(great의 비교급)"], ["lord", "n.", "주인"]], "idi": [], "gra": []},
-  {"en": "a new commandment", "ko": "새 계명", "note": "'서로 사랑하라'—그분의 사랑을 본으로 삼은 새로운 명령.", "voc": [["commandment", "n.", "계명, 명령"], ["new", "adj.", "새로운"]], "idi": [], "gra": []},
-  {"en": "Satan entered into him", "ko": "사탄이 그에게 들어가니", "note": "유다가 배신을 실행에 옮기는 결정적 순간.", "voc": [["Satan", "n.", "사탄"], ["enter", "v.", "들어가다"]], "idi": [["enter into", "~ 안으로 들어가다"]], "gra": []},
-  {"en": "it was night", "ko": "때는 밤이더라", "note": "어둠은 유다의 행위와 영적 상태를 함께 가리키는 표현.", "voc": [["night", "n.", "밤"]], "idi": [], "gra": [["it was night", "it=시간·상황을 나타내는 비인칭 주어"]]},
-  {"en": "deny me thrice", "ko": "세 번 나를 모른다 하리라", "note": "'thrice'는 세 번. 베드로의 부인을 미리 알리신 예고.", "voc": [["deny", "v.", "부인하다, 모른다 하다"], ["thrice", "adv.", "세 번"]], "idi": [], "gra": [["thrice", "thrice=세 번을 뜻하는 고어 부사(현대영어 three times)"]]}
+ {
+  "en": "Now before the feast of the passover, when Jesus knew that his hour was come that he should depart out of this world unto the Father, having loved his own which were in the world, he loved them unto the end.",
+  "ko": "유월절 명절을 앞두고, 예수께서는 이 세상을 떠나 아버지께로 가실 자기의 때가 이른 줄을 아시니라. 세상에 있는 자기 사람들을 사랑하시되, 끝까지 사랑하시니라.",
+  "note": "헬라어 '에이스 텔로스'(unto the end)는 '끝까지', 나아가 '극진히'를 함께 담는다. 십자가를 앞둔 마지막 밤, 주는 자기 사람들을 남김없이 사랑하시니 이 장 전체가 그 사랑의 실물이다.",
+  "voc": [
+   [
+    "depart",
+    "v.",
+    "떠나다"
+   ],
+   [
+    "own",
+    "n.",
+    "자기 사람들"
+   ],
+   [
+    "unto the end",
+    "",
+    "끝까지, 극진히"
+   ]
+  ],
+  "idi": [
+   [
+    "unto the end",
+    "끝까지, 남김없이"
+   ]
+  ],
+  "gra": [
+   [
+    "which were in the world",
+    "which=관계대명사(옛 용법, 사람을 가리킴)"
+   ]
+  ]
+ },
+ {
+  "en": "And supper being ended, the devil having now put into the heart of Judas Iscariot, Simon’s son, to betray him;",
+  "ko": "저녁을 잡수실 때에, 마귀가 이미 시몬의 아들 가룟 유다의 마음속에 예수를 팔려는 뜻을 넣었더라.",
+  "note": "저녁 식사 중에 이미 마귀가 유다의 마음에 배반의 뜻을 넣었다. 가장 거룩한 교제의 자리에서 배반이 싹트니, 악은 밖이 아니라 마음 안에서 자란다.",
+  "voc": [
+   [
+    "supper",
+    "n.",
+    "저녁 식사"
+   ],
+   [
+    "put into the heart",
+    "",
+    "마음속에 넣다"
+   ],
+   [
+    "betray",
+    "v.",
+    "팔다, 배반하다"
+   ]
+  ],
+  "idi": [
+   [
+    "put into the heart",
+    "마음속에 (뜻을) 심다"
+   ]
+  ],
+  "gra": [
+   [
+    "the devil having now put",
+    "분사구문(having put) — 완료된 정황 '이미 넣었으므로'"
+   ]
+  ]
+ },
+ {
+  "en": "Jesus knowing that the Father had given all things into his hands, and that he was come from God, and went to God;",
+  "ko": "예수께서는 아버지께서 모든 것을 자기 손에 맡기신 것과, 자기가 하나님께로부터 와서 하나님께로 돌아갈 것을 아시고,",
+  "note": "예수는 모든 권세를 손에 쥔 분이심을 아시고서 종의 일을 택하신다. 헬라어 흐름은 '아셨기에' 낮아지셨음을 드러내니, 참된 권위는 섬김으로 나타난다.",
+  "voc": [
+   [
+    "given",
+    "v.",
+    "맡기다, 주다"
+   ],
+   [
+    "all things",
+    "",
+    "모든 것"
+   ],
+   [
+    "come from",
+    "v.",
+    "~에게서 오다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "that the Father had given all things",
+    "that=~라는 것을(명사절)"
+   ]
+  ]
+ },
+ {
+  "en": "He riseth from supper, and laid aside his garments; and took a towel, and girded himself.",
+  "ko": "저녁 자리에서 일어나사 겉옷을 벗어 두시고, 수건을 가져다가 허리에 두르시니라.",
+  "note": "주께서 겉옷을 벗고 수건을 두르심은 종의 차림이다. 이 낮아지심은 빌립보서 2장의 '자기를 비워 종의 형체를 취하심'을 눈앞에 그려 보인다.",
+  "voc": [
+   [
+    "rise",
+    "v.",
+    "일어나다"
+   ],
+   [
+    "lay aside",
+    "v.",
+    "벗어 두다"
+   ],
+   [
+    "garment",
+    "n.",
+    "겉옷"
+   ],
+   [
+    "gird",
+    "v.",
+    "(허리에) 두르다"
+   ]
+  ],
+  "idi": [
+   [
+    "lay aside",
+    "벗어 두다, 내려놓다"
+   ]
+  ],
+  "gra": [
+   [
+    "He riseth ... and laid aside",
+    "riseth=고어 3인칭 -eth(현재); girded=과거"
+   ]
+  ]
+ },
+ {
+  "en": "After that he poureth water into a bason, and began to wash the disciples’ feet, and to wipe them with the towel wherewith he was girded.",
+  "ko": "그 후에 대야에 물을 부으시고, 제자들의 발을 씻기시며, 두르신 수건으로 닦기 시작하시니라.",
+  "note": "발을 씻김은 당시 가장 천한 종의 몫이었다. 주가 친히 대야를 드심으로, 섬김이란 지위를 내려놓고 몸을 굽히는 구체적 사랑임을 가르치신다.",
+  "voc": [
+   [
+    "pour",
+    "v.",
+    "붓다"
+   ],
+   [
+    "bason",
+    "n.",
+    "대야(basin의 고어)"
+   ],
+   [
+    "wash",
+    "v.",
+    "씻다"
+   ],
+   [
+    "wipe",
+    "v.",
+    "닦다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "the towel wherewith he was girded",
+    "wherewith=with which '그것으로 두르신 수건'"
+   ]
+  ]
+ },
+ {
+  "en": "Then cometh he to Simon Peter: and Peter saith unto him, Lord, dost thou wash my feet?",
+  "ko": "이윽고 시몬 베드로에게 이르시니, 베드로가 여짜오되 \"주여, 주께서 제 발을 씻기시나이까?\" 하니라.",
+  "note": "베드로의 물음에는 놀람과 거부가 섞여 있다. '주께서 제 발을?'이라는 반응은, 낮아지시는 사랑 앞에서 자주 머뭇거리는 사람의 마음을 비춘다.",
+  "voc": [
+   [
+    "cometh",
+    "v.",
+    "오시다(come의 고어)"
+   ],
+   [
+    "dost",
+    "v.",
+    "(thou) do의 고어 형태"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "dost thou wash my feet?",
+    "dost=(thou) do의 고어형; thou=너(2인칭 주격)"
+   ]
+  ]
+ },
+ {
+  "en": "Jesus answered and said unto him, What I do thou knowest not now; but thou shalt know hereafter.",
+  "ko": "예수께서 대답하여 이르시되 \"내가 하는 일을 네가 지금은 알지 못하나, 이후에는 알게 되리라\" 하시니라.",
+  "note": "'이후에 알게 되리라'는 십자가와 부활 뒤에야 이 섬김의 참뜻이 밝혀짐을 가리킨다. 지금은 알 수 없어도 순종하는 믿음이 요구된다.",
+  "voc": [
+   [
+    "hereafter",
+    "adv.",
+    "이후에, 나중에"
+   ],
+   [
+    "knowest",
+    "v.",
+    "알다(know의 2인칭 고어)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "thou knowest not now; but thou shalt know",
+    "knowest=know의 -est(2인칭); shalt know=미래 '알게 되리라'"
+   ]
+  ]
+ },
+ {
+  "en": "Peter saith unto him, Thou shalt never wash my feet. Jesus answered him, If I wash thee not, thou hast no part with me.",
+  "ko": "베드로가 여짜오되 \"결코 제 발을 씻기지 못하시리이다\" 하거늘, 예수께서 대답하시되 \"내가 너를 씻기지 아니하면, 네가 나와 상관이 없느니라\" 하시니라.",
+  "note": "'상관이 없느니라'(우크 에케이스 메로스)는 '내게 몫이 없다'는 뜻이다. 씻김을 받지 않으면 주와의 교제도 없으니, 은혜는 받아들여야 누리는 것이다.",
+  "voc": [
+   [
+    "never",
+    "adv.",
+    "결코 ~않다"
+   ],
+   [
+    "part",
+    "n.",
+    "몫, 상관"
+   ]
+  ],
+  "idi": [
+   [
+    "have no part with",
+    "~와 상관이 없다, 몫이 없다"
+   ]
+  ],
+  "gra": [
+   [
+    "Thou shalt never wash my feet",
+    "shalt=미래·강한 의지; 여기선 강한 부정 '결코'"
+   ]
+  ]
+ },
+ {
+  "en": "Simon Peter saith unto him, Lord, not my feet only, but also my hands and my head.",
+  "ko": "시몬 베드로가 여짜오되 \"주여, 제 발뿐 아니라 손과 머리까지도 씻겨 주소서\" 하니라.",
+  "note": "베드로는 거부에서 지나친 열심으로 급히 돌아선다. 손과 머리까지 구하는 그 조급함에도, 사랑받으려는 진심이 서툴게 담겨 있다.",
+  "voc": [
+   [
+    "only",
+    "adv.",
+    "오직, ~만"
+   ],
+   [
+    "also",
+    "adv.",
+    "또한"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "not my feet only, but also my hands",
+    "not ... only, but also='~뿐 아니라 ~도'"
+   ]
+  ]
+ },
+ {
+  "en": "Jesus saith to him, He that is washed needeth not save to wash his feet, but is clean every whit: and ye are clean, but not all.",
+  "ko": "예수께서 그에게 이르시되 \"이미 목욕한 자는 발 외에는 씻을 필요가 없으니, 온몸이 깨끗하니라. 너희도 깨끗하나, 다는 아니니라\" 하시니라.",
+  "note": "'목욕한 자'(레루메노스)는 이미 온몸을 씻은 상태를 가리킨다. 거듭남으로 한 번 깨끗해진 자는 날마다 발의 티끌만 씻으면 되니, 칭의와 성화가 나뉜다.",
+  "voc": [
+   [
+    "washed",
+    "v.",
+    "씻긴, 목욕한"
+   ],
+   [
+    "needeth",
+    "v.",
+    "필요로 하다(need의 고어)"
+   ],
+   [
+    "clean",
+    "adj.",
+    "깨끗한"
+   ],
+   [
+    "every whit",
+    "",
+    "온전히, 전부"
+   ]
+  ],
+  "idi": [
+   [
+    "every whit",
+    "온통, 완전히"
+   ]
+  ],
+  "gra": [
+   [
+    "needeth not save to wash his feet",
+    "needeth=need의 -eth; save=except '~외에는'"
+   ]
+  ]
+ },
+ {
+  "en": "For he knew who should betray him; therefore said he, Ye are not all clean.",
+  "ko": "이는 자기를 팔 자가 누구인지 아셨음이라. 그러므로 \"너희가 다 깨끗한 것은 아니니라\" 하셨더라.",
+  "note": "주는 배반자를 미리 아셨다. '다 깨끗한 것은 아니라'는 말씀은 겉의 씻음이 마음의 정결을 보장하지 않음을 드러내니, 유다는 그 자리에 있어도 깨끗지 못했다.",
+  "voc": [
+   [
+    "knew",
+    "v.",
+    "알았다(know의 과거)"
+   ],
+   [
+    "betray",
+    "v.",
+    "팔다, 배반하다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "he knew who should betray him",
+    "should=(과거 시점의) ~할 자 '팔 자'"
+   ]
+  ]
+ },
+ {
+  "en": "So after he had washed their feet, and had taken his garments, and was set down again, he said unto them, Know ye what I have done to you?",
+  "ko": "그리하여 그들의 발을 씻기시고, 겉옷을 다시 입으시고, 자리에 앉으사 그들에게 이르시되 \"내가 너희에게 행한 일을 너희가 아느냐?",
+  "note": "주는 행하신 뒤 그 뜻을 물으신다. 섬김의 모범을 보인 것으로 끝내지 않고 '너희가 아느냐' 물으심으로, 본 것을 깨닫고 따라 행하기를 이끄신다.",
+  "voc": [
+   [
+    "set down",
+    "v.",
+    "앉다"
+   ],
+   [
+    "again",
+    "adv.",
+    "다시"
+   ]
+  ],
+  "idi": [
+   [
+    "set down",
+    "자리에 앉다"
+   ]
+  ],
+  "gra": [
+   [
+    "Know ye what I have done",
+    "Know ye=너희가 아느냐(ye=2인칭 복수 주격); 의문 어순"
+   ]
+  ]
+ },
+ {
+  "en": "Ye call me Master and Lord: and ye say well; for so I am.",
+  "ko": "너희가 나를 선생이라 또 주라 부르니, 옳도다. 내가 그러하니라.",
+  "note": "'선생'과 '주'라는 부름을 주는 옳다 인정하신다. 그 높으신 분이 발을 씻기셨으니, 참 권위는 섬김과 어긋나지 않고 오히려 섬김에서 빛난다.",
+  "voc": [
+   [
+    "Master",
+    "n.",
+    "선생, 스승"
+   ],
+   [
+    "Lord",
+    "n.",
+    "주"
+   ],
+   [
+    "say well",
+    "",
+    "옳게 말하다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "ye say well; for so I am",
+    "ye=너희; for=왜냐하면; so I am='내가 그러하다'"
+   ]
+  ]
+ },
+ {
+  "en": "If I then, your Lord and Master, have washed your feet; ye also ought to wash one another’s feet.",
+  "ko": "그러므로 주와 선생 된 내가 너희의 발을 씻겼은즉, 너희도 마땅히 서로의 발을 씻겨 주어야 하리라.",
+  "note": "'주와 선생 된 내가' 씻겼으니 '너희도 마땅히' 씻기라 하신다. 높은 자의 낮아짐이 낮은 자들이 서로 섬길 근거가 되니, 사랑은 흘러 내려 서로에게 이른다.",
+  "voc": [
+   [
+    "ought",
+    "조동사",
+    "마땅히 ~해야 한다"
+   ],
+   [
+    "one another",
+    "",
+    "서로"
+   ]
+  ],
+  "idi": [
+   [
+    "one another",
+    "서로서로"
+   ]
+  ],
+  "gra": [
+   [
+    "ye also ought to wash one another's feet",
+    "ought to=마땅히 ~해야; ye=너희"
+   ]
+  ]
+ },
+ {
+  "en": "For I have given you an example, that ye should do as I have done to you.",
+  "ko": "내가 너희에게 본을 보였으니, 이는 내가 너희에게 행한 것같이 너희도 행하게 하려 함이라.",
+  "note": "'본'(휘포데이그마)은 따라 그리도록 주어진 밑그림이다. 주의 섬김은 감탄할 구경거리가 아니라 그대로 살아 낼 삶의 본이다.",
+  "voc": [
+   [
+    "example",
+    "n.",
+    "본, 모범"
+   ],
+   [
+    "as",
+    "접속사",
+    "~같이"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "that ye should do as I have done",
+    "that ye should=목적 '너희로 행하게'; as=~같이"
+   ]
+  ]
+ },
+ {
+  "en": "Verily, verily, I say unto you, The servant is not greater than his lord; neither he that is sent greater than he that sent him.",
+  "ko": "진실로 진실로 너희에게 이르노니, 종이 그 주인보다 크지 못하고, 보냄을 받은 자가 보낸 이보다 크지 못하니라.",
+  "note": "종이 주인보다 크지 못하다는 진리는 섬김을 마다할 핑계를 없앤다. 주가 낮아지셨거늘 제자가 어찌 섬김을 부끄러워하랴.",
+  "voc": [
+   [
+    "verily",
+    "adv.",
+    "진실로"
+   ],
+   [
+    "servant",
+    "n.",
+    "종"
+   ],
+   [
+    "greater",
+    "adj.",
+    "더 큰"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "The servant is not greater than his lord",
+    "비교급 greater than '~보다 크다'; he that is sent=보냄받은 자"
+   ]
+  ]
+ },
+ {
+  "en": "If ye know these things, happy are ye if ye do them.",
+  "ko": "너희가 이것을 알고 행하면, 너희에게 복이 있으리라.",
+  "note": "복은 아는 데 있지 않고 행하는 데 있다. 발 씻기신 사랑을 머리로 이해함을 넘어 손과 발로 살아 낼 때 참 복이 임한다.",
+  "voc": [
+   [
+    "happy",
+    "adj.",
+    "복 있는"
+   ],
+   [
+    "do",
+    "v.",
+    "행하다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "happy are ye if ye do them",
+    "happy are ye=주어·보어 도치 '너희가 복되다'; ye=너희"
+   ]
+  ]
+ },
+ {
+  "en": "I speak not of you all: I know whom I have chosen: but that the scripture may be fulfilled, He that eateth bread with me hath lifted up his heel against me.",
+  "ko": "내가 너희 모두를 두고 말하는 것이 아니니, 나는 내가 택한 자들을 아노라. 그러나 '내 떡을 먹는 자가 내게 발꿈치를 들었도다' 하신 성경 말씀이 이루어지게 하려 함이라.",
+  "note": "'내 떡을 먹는 자가 발꿈치를 들었다'는 시편 41편의 성취다. 함께 떡을 나눈 벗의 배반이니, 그 아픔조차 성경대로 이루어질 구원의 길 안에 있다.",
+  "voc": [
+   [
+    "chosen",
+    "v.",
+    "택한(choose의 과거분사)"
+   ],
+   [
+    "fulfil",
+    "v.",
+    "이루다, 성취하다"
+   ],
+   [
+    "heel",
+    "n.",
+    "발꿈치"
+   ]
+  ],
+  "idi": [
+   [
+    "lift up the heel against",
+    "~에게 발꿈치를 들다(배반하다)"
+   ]
+  ],
+  "gra": [
+   [
+    "that the scripture may be fulfilled",
+    "that ~ may=목적 '성경이 이루어지도록'"
+   ]
+  ]
+ },
+ {
+  "en": "Now I tell you before it come, that, when it is come to pass, ye may believe that I am he.",
+  "ko": "일이 일어나기 전에 내가 지금 너희에게 이르는 것은, 그 일이 이루어질 때에 너희로 내가 그인 줄을 믿게 하려 함이라.",
+  "note": "미리 알리심은 일이 이루어질 때 '내가 그(에고 에이미)인 줄'을 믿게 하려 하심이다. 예언의 성취는 예수가 곧 스스로 계신 분이심을 드러낸다.",
+  "voc": [
+   [
+    "before",
+    "접속사",
+    "~하기 전에"
+   ],
+   [
+    "come to pass",
+    "",
+    "이루어지다"
+   ],
+   [
+    "believe",
+    "v.",
+    "믿다"
+   ]
+  ],
+  "idi": [
+   [
+    "come to pass",
+    "일어나다, 이루어지다"
+   ]
+  ],
+  "gra": [
+   [
+    "before it come",
+    "before+동사원형(가정법 현재) '일어나기 전에'"
+   ]
+  ]
+ },
+ {
+  "en": "Verily, verily, I say unto you, He that receiveth whomsoever I send receiveth me; and he that receiveth me receiveth him that sent me.",
+  "ko": "진실로 진실로 너희에게 이르노니, 내가 보내는 자를 영접하는 이는 곧 나를 영접하는 것이요, 나를 영접하는 이는 곧 나를 보내신 분을 영접하는 것이니라.",
+  "note": "주가 보내신 자를 영접함이 곧 주를, 나아가 아버지를 영접함이다. 보내심의 사슬로 제자는 그리스도와, 그리스도는 아버지와 하나로 이어진다.",
+  "voc": [
+   [
+    "receive",
+    "v.",
+    "영접하다, 받다"
+   ],
+   [
+    "whomsoever",
+    "대명사",
+    "누구든지"
+   ],
+   [
+    "send",
+    "v.",
+    "보내다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "He that receiveth whomsoever I send",
+    "He that=~하는 자; receiveth=-eth(3인칭); whomsoever=누구든지"
+   ]
+  ]
+ },
+ {
+  "en": "When Jesus had thus said, he was troubled in spirit, and testified, and said, Verily, verily, I say unto you, that one of you shall betray me.",
+  "ko": "예수께서 이 말씀을 하시고 심령이 괴로우사, 증언하여 이르시되 \"진실로 진실로 너희에게 이르노니, 너희 가운데 한 사람이 나를 팔리라\" 하시니라.",
+  "note": "'심령이 괴로우사'는 헬라어 '에타라크테'로 깊이 흔들리심을 나타낸다. 배반을 아시는 주의 마음이 요동하니, 그 사랑이 얼마나 진실했는지를 드러낸다.",
+  "voc": [
+   [
+    "troubled",
+    "adj.",
+    "괴로운, 흔들린"
+   ],
+   [
+    "spirit",
+    "n.",
+    "심령"
+   ],
+   [
+    "testify",
+    "v.",
+    "증언하다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "one of you shall betray me",
+    "shall betray=미래 '팔리라'; one of you=너희 중 하나"
+   ]
+  ]
+ },
+ {
+  "en": "Then the disciples looked one on another, doubting of whom he spake.",
+  "ko": "제자들이 서로 바라보며, 누구를 두고 하시는 말씀인지 의아해하니라.",
+  "note": "제자들은 서로를 바라보며 누구인지 몰라 당황한다. 배반자가 겉으로 드러나지 않았음이니, 사람의 눈은 마음을 읽지 못한다.",
+  "voc": [
+   [
+    "look one on another",
+    "",
+    "서로 바라보다"
+   ],
+   [
+    "doubting",
+    "v.",
+    "의아해하는"
+   ],
+   [
+    "spake",
+    "v.",
+    "말하였다(speak의 과거)"
+   ]
+  ],
+  "idi": [
+   [
+    "one on another",
+    "서로"
+   ]
+  ],
+  "gra": [
+   [
+    "doubting of whom he spake",
+    "doubting=분사 '의아해하며'; of whom=누구를 두고"
+   ]
+  ]
+ },
+ {
+  "en": "Now there was leaning on Jesus’ bosom one of his disciples, whom Jesus loved.",
+  "ko": "그때에 예수의 품에 기대어 있던 제자 하나가 있었으니, 곧 예수께서 사랑하시는 자라.",
+  "note": "'예수께서 사랑하시는 자'는 이 복음서의 기록자 요한을 가리키는 겸손한 표현이다. 주의 품에 기댄 그 자리는 친밀한 사랑의 교제를 그려 보인다.",
+  "voc": [
+   [
+    "leaning",
+    "v.",
+    "기대어 있는"
+   ],
+   [
+    "bosom",
+    "n.",
+    "품, 가슴"
+   ],
+   [
+    "disciple",
+    "n.",
+    "제자"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "one of his disciples, whom Jesus loved",
+    "whom=관계대명사 목적격 '예수께서 사랑하신'"
+   ]
+  ]
+ },
+ {
+  "en": "Simon Peter therefore beckoned to him, that he should ask who it should be of whom he spake.",
+  "ko": "시몬 베드로가 그에게 머리를 끄덕여, 그가 누구를 두고 하시는 말씀인지 여쭈어 보게 하니,",
+  "note": "베드로는 사랑받는 제자를 통해 물음을 전한다. 주께 가장 가까이 있는 자가 마음을 여쭙는 통로가 되니, 친밀함은 물음의 길을 연다.",
+  "voc": [
+   [
+    "beckon",
+    "v.",
+    "(몸짓으로) 신호하다"
+   ],
+   [
+    "ask",
+    "v.",
+    "묻다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "that he should ask who it should be",
+    "that he should=목적; it should be='누구일까'(간접의문)"
+   ]
+  ]
+ },
+ {
+  "en": "He then lying on Jesus’ breast saith unto him, Lord, who is it?",
+  "ko": "그가 예수의 가슴에 기대어 여짜오되 \"주여, 그가 누구이니이까?\" 하니라.",
+  "note": "가슴에 기댄 채 '주여, 누구입니까' 묻는다. 가장 가까이서만 들을 수 있는 나직한 물음이니, 은밀한 앎은 가까움에서 온다.",
+  "voc": [
+   [
+    "lying",
+    "v.",
+    "기대어 누운"
+   ],
+   [
+    "breast",
+    "n.",
+    "가슴"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "He then lying on Jesus' breast",
+    "lying=분사 '기대어'; Jesus'=소유격(가슴)"
+   ]
+  ]
+ },
+ {
+  "en": "Jesus answered, He it is, to whom I shall give a sop, when I have dipped it. And when he had dipped the sop, he gave it to Judas Iscariot, the son of Simon.",
+  "ko": "예수께서 대답하시되 \"내가 한 조각을 적셔 주는 자가 곧 그니라\" 하시고, 한 조각을 적셔서 시몬의 아들 가룟 유다에게 주시니라.",
+  "note": "조각을 적셔 주심은 손님을 향한 각별한 대접의 몸짓이었다. 배반자에게조차 마지막까지 정을 내미시니, 사랑은 유다에게도 문을 닫지 않았다.",
+  "voc": [
+   [
+    "sop",
+    "n.",
+    "(적신) 빵 조각"
+   ],
+   [
+    "dip",
+    "v.",
+    "적시다, 담그다"
+   ],
+   [
+    "give",
+    "v.",
+    "주다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "to whom I shall give a sop",
+    "to whom=관계대명사 '~에게 줄'; shall give=미래"
+   ]
+  ]
+ },
+ {
+  "en": "And after the sop Satan entered into him. Then said Jesus unto him, That thou doest, do quickly.",
+  "ko": "그 조각을 받은 후에 사탄이 그에게 들어가니, 예수께서 그에게 이르시되 \"네가 하려는 일을 속히 하라\" 하시니라.",
+  "note": "조각을 받은 뒤 사탄이 유다에게 들어갔다. 은혜의 손길을 끝내 물리칠 때 어둠이 그 자리를 차지하니, 거절된 사랑은 완악함을 굳힌다.",
+  "voc": [
+   [
+    "Satan",
+    "n.",
+    "사탄"
+   ],
+   [
+    "enter into",
+    "v.",
+    "들어가다"
+   ],
+   [
+    "quickly",
+    "adv.",
+    "속히"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "That thou doest, do quickly",
+    "That thou doest='네가 하는 것을'(도치·강조); doest=-est(2인칭)"
+   ]
+  ]
+ },
+ {
+  "en": "Now no man at the table knew for what intent he spake this unto him.",
+  "ko": "그러나 상에 앉은 자들 가운데 어찌하여 그에게 이 말씀을 하셨는지 아는 이가 없더라.",
+  "note": "상에 앉은 이들은 주의 말씀 뜻을 몰랐다. 배반의 순간조차 겉으로는 평범해 보였으니, 하나님의 일은 종종 사람의 눈에 감추인 채 진행된다.",
+  "voc": [
+   [
+    "intent",
+    "n.",
+    "뜻, 의도"
+   ],
+   [
+    "spake",
+    "v.",
+    "말하였다"
+   ]
+  ],
+  "idi": [
+   [
+    "for what intent",
+    "무슨 뜻으로, 어떤 의도로"
+   ]
+  ],
+  "gra": [
+   [
+    "no man at the table knew",
+    "no man=아무도 ~않다; knew=know의 과거"
+   ]
+  ]
+ },
+ {
+  "en": "For some of them thought, because Judas had the bag, that Jesus had said unto him, Buy those things that we have need of against the feast; or, that he should give something to the poor.",
+  "ko": "어떤 이들은 유다가 돈주머니를 맡았으므로, 예수께서 명절에 쓸 것을 사라 하셨거나, 가난한 자들에게 무엇을 주라 하신 줄로 여겼더라.",
+  "note": "제자들은 유다가 돈주머니를 맡았기에 심부름으로 여겼다. 배반은 일상의 얼굴을 하고 다가오니, 악은 낯익은 자리에서 자란다.",
+  "voc": [
+   [
+    "bag",
+    "n.",
+    "돈주머니"
+   ],
+   [
+    "against the feast",
+    "",
+    "명절에 대비하여"
+   ],
+   [
+    "poor",
+    "n.",
+    "가난한 자"
+   ]
+  ],
+  "idi": [
+   [
+    "against the feast",
+    "명절을 위하여, 명절에 대비해"
+   ]
+  ],
+  "gra": [
+   [
+    "Buy those things that we have need of",
+    "that=관계대명사 '우리에게 필요한 것'"
+   ]
+  ]
+ },
+ {
+  "en": "He then having received the sop went immediately out: and it was night.",
+  "ko": "그가 그 조각을 받고 곧바로 나가니, 때는 밤이더라.",
+  "note": "'때는 밤이더라'는 시간이자 상징이다. 유다가 빛이신 주를 떠나 어둠 속으로 나갔으니, 이 짧은 한마디에 영적 어둠의 깊이가 담긴다.",
+  "voc": [
+   [
+    "received",
+    "v.",
+    "받은"
+   ],
+   [
+    "immediately",
+    "adv.",
+    "곧, 즉시"
+   ],
+   [
+    "night",
+    "n.",
+    "밤"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "having received the sop went",
+    "having received=분사구문 '받고서'; went=go의 과거"
+   ]
+  ]
+ },
+ {
+  "en": "Therefore, when he was gone out, Jesus said, Now is the Son of man glorified, and God is glorified in him.",
+  "ko": "그가 나간 후에 예수께서 이르시되 \"이제 인자가 영광을 받았고, 하나님께서도 그로 말미암아 영광을 받으셨도다.",
+  "note": "유다가 나가자 곧 영광을 말씀하신다. 십자가로 향하는 배반의 밤이 도리어 인자가 영화롭게 되는 때이니, 하나님의 영광은 낮아짐의 길을 지난다.",
+  "voc": [
+   [
+    "glorify",
+    "v.",
+    "영화롭게 하다"
+   ],
+   [
+    "Son of man",
+    "",
+    "인자"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Now is the Son of man glorified",
+    "Now is ~ glorified=수동·도치 '이제 영광을 받았도다'"
+   ]
+  ]
+ },
+ {
+  "en": "If God be glorified in him, God shall also glorify him in himself, and shall straightway glorify him.",
+  "ko": "하나님께서 그로 말미암아 영광을 받으셨은즉, 하나님께서도 친히 그를 영화롭게 하시리니, 곧 그를 영화롭게 하시리라.",
+  "note": "아버지와 아들이 서로 영화롭게 하신다. '즉시'(유쒸스) 영화롭게 하시리라는 말씀은 십자가와 부활이 곧 그 영광의 성취임을 가리킨다.",
+  "voc": [
+   [
+    "glorify",
+    "v.",
+    "영화롭게 하다"
+   ],
+   [
+    "straightway",
+    "adv.",
+    "즉시, 곧"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "If God be glorified in him",
+    "If ~ be=가정법 현재 '영광을 받으셨은즉'; shall glorify=미래"
+   ]
+  ]
+ },
+ {
+  "en": "Little children, yet a little while I am with you. Ye shall seek me: and as I said unto the Jews, Whither I go, ye cannot come; so now I say to you.",
+  "ko": "어린 자녀들아, 내가 아직 잠시 너희와 함께 있으리라. 너희가 나를 찾으려니와, 내가 유대인들에게 '내가 가는 곳에 너희가 올 수 없다' 한 것같이, 이제 너희에게도 이르노라.",
+  "note": "'어린 자녀들아'(테크니아)는 이 복음서에 단 한 번 나오는 다정한 부름이다. 떠나심을 알리시되 자녀를 어루만지듯 말씀하시니, 이별의 말에도 사랑이 흐른다.",
+  "voc": [
+   [
+    "little children",
+    "",
+    "어린 자녀들"
+   ],
+   [
+    "a little while",
+    "",
+    "잠시 동안"
+   ],
+   [
+    "seek",
+    "v.",
+    "찾다"
+   ],
+   [
+    "whither",
+    "adv.",
+    "어디로"
+   ]
+  ],
+  "idi": [
+   [
+    "a little while",
+    "잠시, 얼마 동안"
+   ]
+  ],
+  "gra": [
+   [
+    "Whither I go, ye cannot come",
+    "Whither=어디로(관계·의문 부사); ye=너희"
+   ]
+  ]
+ },
+ {
+  "en": "A new commandment I give unto you, That ye love one another; as I have loved you, that ye also love one another.",
+  "ko": "새 계명을 너희에게 주노니, 서로 사랑하라. 내가 너희를 사랑한 것같이 너희도 서로 사랑하라.",
+  "note": "'새 계명'은 사랑 자체가 아니라 '내가 사랑한 것같이'라는 척도에서 새롭다. 주의 자기희생적 사랑이 서로 사랑함의 새 기준이 된다.",
+  "voc": [
+   [
+    "new",
+    "adj.",
+    "새로운"
+   ],
+   [
+    "commandment",
+    "n.",
+    "계명"
+   ],
+   [
+    "love",
+    "v.",
+    "사랑하다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "That ye love one another; as I have loved you",
+    "That ye=~하라(명령 내용); as=~같이; one another=서로"
+   ]
+  ]
+ },
+ {
+  "en": "By this shall all men know that ye are my disciples, if ye have love one to another.",
+  "ko": "너희가 서로 사랑하면, 이로써 모든 사람이 너희가 내 제자인 줄을 알리라.",
+  "note": "제자의 표는 능력이나 지식이 아니라 서로 사랑함이다. 세상은 사랑으로 그리스도의 사람을 알아보니, 사랑이 곧 살아 있는 증거다.",
+  "voc": [
+   [
+    "by this",
+    "",
+    "이로써"
+   ],
+   [
+    "all men",
+    "",
+    "모든 사람"
+   ],
+   [
+    "one to another",
+    "",
+    "서로"
+   ]
+  ],
+  "idi": [
+   [
+    "one to another",
+    "서로에게, 피차"
+   ]
+  ],
+  "gra": [
+   [
+    "By this shall all men know",
+    "By this=이로써; shall all men know=미래·도치 '알리라'"
+   ]
+  ]
+ },
+ {
+  "en": "Simon Peter said unto him, Lord, whither goest thou? Jesus answered him, Whither I go, thou canst not follow me now; but thou shalt follow me afterwards.",
+  "ko": "시몬 베드로가 여짜오되 \"주여, 어디로 가시나이까?\" 하니, 예수께서 대답하시되 \"내가 가는 곳에 네가 지금은 따라올 수 없으나, 후에는 따라오리라\" 하시니라.",
+  "note": "베드로의 '어디로 가시나이까'에 주는 '지금은 못 오나 후에 따라오리라' 하신다. 순교로 주의 길을 뒤따를 것을 미리 내다보신 사랑의 예고다.",
+  "voc": [
+   [
+    "whither",
+    "adv.",
+    "어디로"
+   ],
+   [
+    "canst",
+    "조동사",
+    "(thou) can의 고어"
+   ],
+   [
+    "follow",
+    "v.",
+    "따르다"
+   ],
+   [
+    "afterwards",
+    "adv.",
+    "나중에"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "thou canst not follow me now",
+    "canst=can의 2인칭 고어; thou=너"
+   ]
+  ]
+ },
+ {
+  "en": "Peter said unto him, Lord, why cannot I follow thee now? I will lay down my life for thy sake.",
+  "ko": "베드로가 여짜오되 \"주여, 어찌하여 지금은 따라갈 수 없나이까? 주를 위하여 제 목숨이라도 버리겠나이다\" 하니라.",
+  "note": "베드로는 목숨을 버리겠다 장담한다. 그 열심은 진실하나 자기 힘을 과신함이니, 사람의 결심은 시련 앞에서 얼마나 약한지가 곧 드러난다.",
+  "voc": [
+   [
+    "lay down",
+    "v.",
+    "버리다, 내려놓다"
+   ],
+   [
+    "life",
+    "n.",
+    "목숨"
+   ],
+   [
+    "for thy sake",
+    "",
+    "너를 위하여"
+   ]
+  ],
+  "idi": [
+   [
+    "lay down one's life",
+    "목숨을 버리다"
+   ]
+  ],
+  "gra": [
+   [
+    "I will lay down my life for thy sake",
+    "will=강한 의지 '반드시 ~하겠다'; thy=너의"
+   ]
+  ]
+ },
+ {
+  "en": "Jesus answered him, Wilt thou lay down thy life for my sake? Verily, verily, I say unto thee, The cock shall not crow, till thou hast denied me thrice.",
+  "ko": "예수께서 대답하시되 \"네가 나를 위하여 네 목숨을 버리겠느냐? 진실로 진실로 네게 이르노니, 닭이 울기 전에 네가 세 번 나를 모른다 하리라\" 하시니라.",
+  "note": "주는 닭 울기 전 세 번 부인할 것을 밝히신다. 장담하는 자의 연약을 아시면서도 끝까지 품으시니, 이 예고에는 책망과 함께 회복의 여지가 담겨 있다.",
+  "voc": [
+   [
+    "lay down",
+    "v.",
+    "버리다"
+   ],
+   [
+    "cock",
+    "n.",
+    "닭, 수탉"
+   ],
+   [
+    "crow",
+    "v.",
+    "울다"
+   ],
+   [
+    "thrice",
+    "adv.",
+    "세 번"
+   ]
+  ],
+  "idi": [
+   [
+    "lay down one's life",
+    "목숨을 버리다"
+   ]
+  ],
+  "gra": [
+   [
+    "The cock shall not crow, till thou hast denied me thrice",
+    "shall not=미래 부정; till+현재완료(hast denied) '부인하기까지'; thrice=세 번"
+   ]
+  ]
+ }
 ]
