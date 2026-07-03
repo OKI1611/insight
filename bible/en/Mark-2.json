@@ -1,388 +1,453 @@
 [
  {
-  "en": "sick of the palsy",
-  "ko": "중풍 병자",
-  "note": "'palsy'는 고어로 마비(paralysis)를 뜻한다. 'sick of the palsy'는 '중풍에 걸린/마비된'이라는 뜻으로, 'sick of(싫증 난)'의 현대적 의미가 아니다.",
+  "en": "And again he entered into Capernaum after some days; and it was noised that he was in the house.",
+  "ko": "며칠 후에 예수께서 다시 가버나움으로 들어가시니, 그분이 집에 계시다는 소문이 퍼졌더라.",
+  "note": "'was noised'는 '소문이 났다'는 뜻의 고어 수동태다. 헬라어 '에쿠스테(ἠκούσθη)'는 '들려졌다'로, 예수의 임재 소식이 저절로 온 성읍에 번져 감을 드러낸다.",
   "voc": [
-   [
-    "palsy",
-    "n.",
-    "중풍, 마비(고어)"
-   ],
-   [
-    "sick",
-    "adj.",
-    "병든"
-   ]
-  ],
-  "idi": [
-   [
-    "sick of the palsy",
-    "중풍(마비)에 걸린"
-   ]
-  ],
-  "gra": [
-   [
-    "sick of the palsy",
-    "여기서 of는 '~병에 걸린'을 뜻하며, 현대 sick of(싫증 난)와 다름"
-   ]
-  ]
- },
- {
-  "en": "which was borne of four",
-  "ko": "네 사람이 메고 온",
-  "note": "'borne'은 'bear(나르다, 들다)'의 과거분사. '네 사람에 의해 들려 온'이라는 뜻이다.",
-  "voc": [
-   [
-    "borne",
-    "v.",
-    "나르다(bear의 과거분사)"
-   ],
-   [
-    "four",
-    "num.",
-    "넷, 네 사람"
-   ]
+   ["enter", "v.", "들어가다"],
+   ["noise", "v.", "소문내다(고어)"],
+   ["Capernaum", "n.", "가버나움(지명)"]
   ],
   "idi": [],
   "gra": [
-   [
-    "which was borne of four",
-    "수동태(was borne) + of=by(고어 행위자): '네 사람에 의해 들려 온'"
-   ]
+   ["it was noised", "was+과거분사 수동태; noise가 여기서는 '소문내다'라는 동사로 쓰인 고어법"]
   ]
  },
  {
-  "en": "thy sins be forgiven thee",
-  "ko": "네 죄를 사함받았느니라",
-  "note": "고어 가정법/선언 어법. 'be forgiven'은 죄 사함(forgive sins)의 선언으로, 예수의 권세 있는 사죄 선포다.",
+  "en": "And straightway many were gathered together, insomuch that there was no room to receive them, no, not so much as about the door: and he preached the word unto them.",
+  "ko": "곧 많은 사람이 모여드니, 문 앞까지도 더 들어설 자리가 없을 지경이라. 예수께서 그들에게 말씀을 전하시더라.",
+  "note": "'straightway(곧, 즉시)'는 마가복음의 특징적 부사로 헬라어 '유쒸스(εὐθύς)'를 옮긴 말이다. 마가는 이 말을 거듭 써서 예수의 사역을 숨 가쁘게 전개한다.",
   "voc": [
-   [
-    "forgive",
-    "v.",
-    "용서하다, 사하다"
-   ],
-   [
-    "thee",
-    "pron.",
-    "너에게(고어)"
-   ]
+   ["straightway", "adv.", "곧, 즉시(고어)"],
+   ["gather", "v.", "모이다"],
+   ["preach", "v.", "전파하다, 전하다"]
+  ],
+  "idi": [
+   ["insomuch that", "~할 정도로"],
+   ["not so much as", "~조차 (없다)"]
+  ],
+  "gra": [
+   ["there was no room to receive them", "no room to+동사원형: '~할 자리가 없다'"]
+  ]
+ },
+ {
+  "en": "And they come unto him, bringing one sick of the palsy, which was borne of four.",
+  "ko": "그때에 네 사람이 한 중풍 병자를 메고 예수께 나아오니라.",
+  "note": "'sick of the palsy'는 '중풍(마비)에 걸린'이라는 고어 표현으로, 'palsy'는 마비(paralysis)를 뜻한다. 'borne of four'는 '네 사람에 의해 들려 온'이란 수동 표현이다.",
+  "voc": [
+   ["palsy", "n.", "중풍, 마비(고어)"],
+   ["borne", "v.", "나르다(bear의 과거분사)"],
+   ["four", "num.", "넷, 네 사람"]
+  ],
+  "idi": [
+   ["sick of the palsy", "중풍(마비)에 걸린"]
+  ],
+  "gra": [
+   ["which was borne of four", "which=관계대명사; was borne=수동태; of=by(고어 행위자) '네 사람에 의해 들려 온'"]
+  ]
+ },
+ {
+  "en": "And when they could not come nigh unto him for the press, they uncovered the roof where he was: and when they had broken it up, they let down the bed wherein the sick of the palsy lay.",
+  "ko": "그러나 무리에 막혀 그분께 가까이 갈 수 없으매, 예수께서 계신 곳의 지붕을 벗기고, 구멍을 뚫어 그 중풍 병자가 누운 자리째 달아 내리니라.",
+  "note": "'nigh'는 near의 고어, 'the press'는 '빽빽한 무리(군중)'를 뜻하는 고어다. 네 사람의 담대한 믿음이 지붕을 뜯는 행동으로 나타나니, 마가는 이 열심을 생생히 기록한다.",
+  "voc": [
+   ["nigh", "adv.", "가까이(고어)"],
+   ["press", "n.", "무리, 군중(고어)"],
+   ["uncover", "v.", "벗기다, 걷어내다"],
+   ["let down", "phr.", "달아 내리다"]
+  ],
+  "idi": [
+   ["come nigh unto", "~에게 가까이 가다"],
+   ["for the press", "무리 때문에"]
+  ],
+  "gra": [
+   ["the bed wherein the sick ... lay", "wherein=in which(고어 관계부사) '그 위에 누운 자리'"]
+  ]
+ },
+ {
+  "en": "When Jesus saw their faith, he said unto the sick of the palsy, Son, thy sins be forgiven thee.",
+  "ko": "예수께서 그들의 믿음을 보시고 중풍 병자에게 이르시되, \"아들아, 네 죄를 사함받았느니라\" 하시니라.",
+  "note": "예수께서 몸의 병보다 죄 문제를 먼저 다루신다. 'thy sins be forgiven thee'는 고어 선언형으로, 하나님만이 하실 수 있는 사죄를 예수께서 권위 있게 선포하심을 드러낸다.",
+  "voc": [
+   ["faith", "n.", "믿음"],
+   ["forgive", "v.", "용서하다, 사하다"],
+   ["thee", "pron.", "너에게(고어)"]
   ],
   "idi": [],
   "gra": [
-   [
-    "thy sins be forgiven thee",
-    "가정법/선언형 be + 수동태: '네 죄가 사하여졌다'는 권위 있는 선포"
-   ]
+   ["thy sins be forgiven thee", "thy=your(고어); 선언형 be+수동태: '네 죄가 사하여졌다'는 권위 있는 선포"]
   ]
  },
  {
-  "en": "reasoning in their hearts",
-  "ko": "마음속으로 따져 생각하되",
-  "note": "'reason'은 여기서 '추론하다, 속으로 따지다'의 뜻. 서기관들이 입 밖에 내지 않고 속으로 의심하며 헤아린 것을 가리킨다.",
+  "en": "But there were certain of the scribes sitting there, and reasoning in their hearts,",
+  "ko": "그런데 거기 앉아 있던 서기관 몇이 마음속으로 따져 생각하되,",
+  "note": "'reason'은 여기서 '속으로 따지다, 추론하다'의 뜻이다. 헬라어 '디알로기조마이(διαλογίζομαι)'는 속으로 이리저리 헤아림을 가리키니, 서기관들이 입 밖에 내지 않고 의심한 것이다.",
   "voc": [
-   [
-    "reason",
-    "v.",
-    "따져 생각하다, 추론하다"
-   ],
-   [
-    "heart",
-    "n.",
-    "마음"
-   ]
+   ["certain", "adj.", "어떤, 몇몇의"],
+   ["scribe", "n.", "서기관"],
+   ["reason", "v.", "따져 생각하다, 추론하다"]
   ],
   "idi": [
-   [
-    "reason in one's heart",
-    "마음속으로 따지다"
-   ]
+   ["reason in one's heart", "마음속으로 따지다"]
   ],
   "gra": [
-   [
-    "reasoning",
-    "분사구문: '~하면서/따지면서'의 동시 동작"
-   ]
+   ["reasoning in their hearts", "분사구문: '~하면서 따지면서'의 동시 동작"]
   ]
  },
  {
-  "en": "the Son of man hath power on earth to forgive sins",
-  "ko": "인자가 땅에서 죄를 사하는 권세가 있음",
-  "note": "'Son of man(인자)'는 다니엘 7장의 메시아 칭호. 예수께서 하나님만이 하실 수 있는 사죄의 권세를 자신이 지녔음을 선언하신 핵심 구절이다.",
+  "en": "Why doth this man thus speak blasphemies? who can forgive sins but God only?",
+  "ko": "\"이 사람이 어찌하여 이렇게 모독하는 말을 하는가? 하나님 한 분 외에 누가 죄를 사할 수 있으랴?\" 하더라.",
+  "note": "'blasphemies(신성모독)'는 하나님의 고유한 특권을 사람이 참칭할 때 성립한다. 서기관들의 이 반문은 역설적으로 참되니, 오직 하나님만 죄를 사하실 수 있으매 예수가 곧 하나님이심을 드러낸다.",
   "voc": [
-   [
-    "power",
-    "n.",
-    "권세, 능력"
-   ],
-   [
-    "earth",
-    "n.",
-    "땅"
-   ],
-   [
-    "hath",
-    "v.",
-    "가지다(has의 고어)"
-   ]
+   ["doth", "v.", "~하다(does의 고어)"],
+   ["blasphemy", "n.", "신성모독"],
+   ["but", "prep.", "~외에는"]
   ],
   "idi": [
-   [
-    "the Son of man",
-    "인자(메시아 칭호)"
-   ]
+   ["but God only", "오직 하나님 외에는"]
   ],
   "gra": [
-   [
-    "hath power to forgive",
-    "hath=has의 고어; power to+동사원형: '~할 권세'"
-   ]
+   ["Why doth this man thus speak", "doth=does의 고어; thus=이렇게"]
   ]
  },
  {
-  "en": "sat at meat",
-  "ko": "음식을 잡수실 때에",
-  "note": "'sit at meat'는 고어 숙어로 '식탁에 앉아 식사하다'의 뜻. 'meat'는 고기가 아니라 음식 전반(food)을 가리킨다.",
+  "en": "And immediately when Jesus perceived in his spirit that they so reasoned within themselves, he said unto them, Why reason ye these things in your hearts?",
+  "ko": "예수께서 그들이 속으로 그같이 따지는 것을 곧 영으로 아시고 그들에게 이르시되, \"어찌하여 너희가 마음속으로 이런 것을 따지느냐?",
+  "note": "'perceived in his spirit'는 예수께서 사람의 속마음을 꿰뚫어 아셨음을 뜻한다. 사람의 은밀한 생각까지 아심은 하나님의 속성이니(시 139편), 이는 그분의 신성을 드러내는 표징이다.",
   "voc": [
-   [
-    "meat",
-    "n.",
-    "음식(고어, 음식 전반)"
-   ],
-   [
-    "sat",
-    "v.",
-    "앉았다(sit의 과거)"
-   ]
+   ["perceive", "v.", "감지하다, 알아채다"],
+   ["spirit", "n.", "영"],
+   ["ye", "pron.", "너희(고어)"]
   ],
   "idi": [
-   [
-    "sit at meat",
-    "식탁에 앉아 식사하다"
-   ]
+   ["within themselves", "속으로, 마음속으로"]
   ],
   "gra": [
-   [
-    "meat",
-    "고어에서 meat은 고기가 아니라 음식 전반(food)을 뜻함"
-   ]
+   ["Why reason ye these things", "ye=you(고어 주격 복수); 의문문 어순 reason ye"]
   ]
  },
  {
-  "en": "publicans and sinners",
-  "ko": "세리와 죄인들",
-  "note": "'publican'은 로마를 위해 세금을 걷던 세리로, 유대 사회에서 멸시받던 부류였다. 죄인들과 함께 묶여 천대받았다.",
+  "en": "Whether is it easier to say to the sick of the palsy, Thy sins be forgiven thee; or to say, Arise, and take up thy bed, and walk?",
+  "ko": "중풍 병자에게 '네 죄를 사함받았느니라' 하는 것과 '일어나 네 자리를 들고 걸어가라' 하는 것, 어느 것이 더 쉽겠느냐?",
+  "note": "말로 하기는 사죄 선언이 더 쉽지만, 눈에 보이는 증거로 확인되지 않는다. 예수께서 보이는 치유를 행하심으로 보이지 않는 사죄의 권세를 입증하려 하신다.",
   "voc": [
-   [
-    "publican",
-    "n.",
-    "세리(고어)"
-   ],
-   [
-    "sinner",
-    "n.",
-    "죄인"
-   ]
+   ["whether", "conj.", "어느 쪽이(고어 의문)"],
+   ["arise", "v.", "일어나다"],
+   ["bed", "n.", "자리, 침상"]
   ],
   "idi": [
-   [
-    "publicans and sinners",
-    "세리와 죄인들(멸시받던 부류)"
-   ]
+   ["take up", "들다, 집어 올리다"]
+  ],
+  "gra": [
+   ["Whether is it easier ... or", "Whether=둘 중 어느 것; 고어 선택 의문문 어순"]
+  ]
+ },
+ {
+  "en": "But that ye may know that the Son of man hath power on earth to forgive sins, (he saith to the sick of the palsy,)",
+  "ko": "그러나 인자가 땅에서 죄를 사하는 권세가 있음을 너희로 알게 하려 하노라\" 하시고, 중풍 병자에게 이르시되,",
+  "note": "'Son of man(인자)'는 다니엘 7장의 메시아 칭호다. 예수께서 하나님만이 하실 수 있는 사죄의 권세를 자신이 지녔음을 땅 위에서 선언하신 핵심 구절이다.",
+  "voc": [
+   ["power", "n.", "권세, 능력"],
+   ["hath", "v.", "가지다(has의 고어)"],
+   ["saith", "v.", "말하다(says의 고어)"]
+  ],
+  "idi": [
+   ["the Son of man", "인자(메시아 칭호)"]
+  ],
+  "gra": [
+   ["that ye may know", "that+may=목적 '너희로 알게 하려'"],
+   ["hath power to forgive", "hath=has의 고어; power to+동사원형: '~할 권세'"]
+  ]
+ },
+ {
+  "en": "I say unto thee, Arise, and take up thy bed, and go thy way into thine house.",
+  "ko": "\"네게 이르노니, 일어나 네 자리를 들고 네 집으로 가라\" 하시니,",
+  "note": "'go thy way'는 '네 길을 가라, 가거라'라는 고어 명령이다. 예수의 말씀 한마디가 곧 능력이 되니, 명하신 대로 병자가 즉시 온전케 된다.",
+  "voc": [
+   ["thee", "pron.", "너에게(고어)"],
+   ["thine", "pron.", "너의(모음 앞 고어)"],
+   ["house", "n.", "집"]
+  ],
+  "idi": [
+   ["go thy way", "네 길을 가다, 가거라"]
+  ],
+  "gra": [
+   ["thine house", "thine=thy(모음 앞에 쓰는 고어 소유격)"]
+  ]
+ },
+ {
+  "en": "And immediately he arose, took up the bed, and went forth before them all; insomuch that they were all amazed, and glorified God, saying, We never saw it on this fashion.",
+  "ko": "그가 곧 일어나 자리를 들고 모든 사람 앞에서 걸어 나가매, 그들이 다 놀라 하나님께 영광을 돌리며 이르되, \"이런 일은 일찍이 보지 못하였노라\" 하더라.",
+  "note": "'on this fashion'은 '이런 식으로, 이 모양으로'라는 고어 표현이다. 무리가 놀라 하나님께 영광을 돌리니, 참된 이적은 사람을 예수께서 아니라 하나님께로 이끈다.",
+  "voc": [
+   ["arise", "v.", "일어나다"],
+   ["amaze", "v.", "놀라게 하다"],
+   ["glorify", "v.", "영광을 돌리다"],
+   ["fashion", "n.", "방식, 모양(고어)"]
+  ],
+  "idi": [
+   ["go forth", "나아가다, 걸어 나가다"],
+   ["on this fashion", "이런 식으로"]
+  ],
+  "gra": [
+   ["We never saw it on this fashion", "on this fashion=in this way(고어 관용)"]
+  ]
+ },
+ {
+  "en": "And he went forth again by the sea side; and all the multitude resorted unto him, and he taught them.",
+  "ko": "예수께서 다시 바닷가로 나가시니, 온 무리가 그분께 나아오매 그들을 가르치시더라.",
+  "note": "'resort unto'는 '~에게로 모여들다'라는 고어 표현이다. 예수의 사역은 병 고침에 그치지 않고 가르침으로 이어지니, 몸을 고치심과 함께 진리로 영혼을 먹이신다.",
+  "voc": [
+   ["go forth", "phr.", "나가다"],
+   ["multitude", "n.", "무리, 군중"],
+   ["resort", "v.", "모여들다, 자주 가다(고어)"]
+  ],
+  "idi": [
+   ["by the sea side", "바닷가에서"],
+   ["resort unto", "~에게 모여들다"]
   ],
   "gra": []
  },
  {
-  "en": "They that are whole have no need of the physician",
-  "ko": "건강한 자에게는 의원이 쓸데없으나",
-  "note": "'whole'은 '온전한, 건강한'의 뜻. 예수께서 자신을 영혼의 의원에 비유하며 죄인을 부르러 오셨음을 밝히신 비유다.",
+  "en": "And as he passed by, he saw Levi the son of Alphaeus sitting at the receipt of custom, and said unto him, Follow me. And he arose and followed him.",
+  "ko": "예수께서 지나가시다가 알패오의 아들 레위가 세관에 앉아 있는 것을 보시고 그에게 이르시되, \"나를 따르라\" 하시니, 그가 일어나 예수를 따르니라.",
+  "note": "'receipt of custom'은 '세관, 세금 걷는 자리'를 뜻하는 고어다. 레위(마태)는 멸시받던 세리였으나 예수의 부르심에 즉시 응하니, 은혜의 부르심 앞에 신분과 과거는 걸림돌이 되지 못한다.",
   "voc": [
-   [
-    "whole",
-    "adj.",
-    "온전한, 건강한"
-   ],
-   [
-    "physician",
-    "n.",
-    "의원, 의사"
-   ],
-   [
-    "need",
-    "n.",
-    "필요"
-   ]
+   ["pass by", "phr.", "지나가다"],
+   ["receipt", "n.", "받는 곳(고어)"],
+   ["custom", "n.", "세금, 관세(고어)"],
+   ["follow", "v.", "따르다"]
   ],
   "idi": [
-   [
-    "have no need of",
-    "~이 필요 없다"
-   ]
-  ],
-  "gra": [
-   [
-    "They that are whole",
-    "that=관계대명사(고어 who): '건강한 자들'"
-   ]
-  ]
- },
- {
-  "en": "the children of the bridechamber",
-  "ko": "혼인집 손님들",
-  "note": "직역하면 '신방의 자녀들'이나, 신랑의 친구·혼인 잔치 하객을 가리키는 히브리식 관용 표현이다.",
-  "voc": [
-   [
-    "bridechamber",
-    "n.",
-    "신방, 혼인방"
-   ],
-   [
-    "children",
-    "n.",
-    "자녀들, 무리"
-   ]
-  ],
-  "idi": [
-   [
-    "children of the bridechamber",
-    "혼인집 손님들(신랑의 친구)"
-   ]
+   ["the receipt of custom", "세관, 세금 걷는 자리"]
   ],
   "gra": []
  },
  {
-  "en": "the bridegroom shall be taken away",
-  "ko": "신랑을 빼앗길",
-  "note": "'신랑'은 예수 자신을 가리키며, '빼앗김'은 그분의 죽음을 예고하는 표현이다. 그때 비로소 제자들이 금식하리라 하셨다.",
+  "en": "And it came to pass, that, as Jesus sat at meat in his house, many publicans and sinners sat also together with Jesus and his disciples: for there were many, and they followed him.",
+  "ko": "예수께서 그의 집에서 음식을 잡수실 때에, 많은 세리와 죄인들도 예수와 그분의 제자들과 함께 자리에 앉았으니, 이는 그런 자들이 많이 있어 그분을 따랐음이라.",
+  "note": "'sat at meat'는 '식탁에 앉아 식사하다'라는 고어 숙어로, 'meat'는 고기가 아니라 음식 전반(food)을 가리킨다. '세리와 죄인들'은 유대 사회에서 멸시받던 부류였으나 예수는 그들과 함께 상을 나누신다.",
   "voc": [
-   [
-    "bridegroom",
-    "n.",
-    "신랑"
-   ],
-   [
-    "take away",
-    "phr.",
-    "데려가다, 빼앗다"
-   ]
+   ["meat", "n.", "음식(고어, 음식 전반)"],
+   ["publican", "n.", "세리(고어)"],
+   ["sinner", "n.", "죄인"],
+   ["disciple", "n.", "제자"]
   ],
   "idi": [
-   [
-    "take away",
-    "데려가다, 빼앗아 가다"
-   ]
+   ["it came to pass", "~한 일이 일어나다(고어)"],
+   ["sit at meat", "식탁에 앉아 식사하다"]
   ],
   "gra": [
-   [
-    "shall be taken away",
-    "shall + 수동태: 미래의 일을 예고하는 '빼앗기리라'"
-   ]
+   ["meat", "고어에서 meat은 고기가 아니라 음식 전반(food)을 뜻함"]
   ]
  },
  {
-  "en": "new wine into old bottles",
-  "ko": "새 포도주를 낡은 가죽 부대에",
-  "note": "'bottles'는 유리병이 아니라 가죽으로 만든 술부대(wineskin)다. 새 포도주가 발효하며 팽창하면 굳은 낡은 부대는 터진다. 새 시대와 옛 관습의 비유다.",
+  "en": "And when the scribes and Pharisees saw him eat with publicans and sinners, they said unto his disciples, How is it that he eateth and drinketh with publicans and sinners?",
+  "ko": "서기관들과 바리새인들이 예수께서 세리와 죄인들과 함께 잡수시는 것을 보고 그분의 제자들에게 이르되, \"어찌하여 그가 세리와 죄인들과 더불어 먹고 마시느냐?\" 하니,",
+  "note": "'eateth', 'drinketh'는 -eth 어미가 붙은 고어 3인칭 단수형이다. 바리새인들은 죄인과 함께 먹는 것을 부정하게 여겼으나, 예수는 그 상에서 죄인을 향한 하나님의 긍휼을 나타내신다.",
   "voc": [
-   [
-    "wine",
-    "n.",
-    "포도주"
-   ],
-   [
-    "bottle",
-    "n.",
-    "가죽 부대(고어)"
-   ]
-  ],
-  "idi": [],
-  "gra": [
-   [
-    "bottles",
-    "고어 bottle은 유리병이 아니라 가죽 술부대(wineskin)를 뜻함"
-   ]
-  ]
- },
- {
-  "en": "to pluck the ears of corn",
-  "ko": "이삭을 자르기",
-  "note": "'corn'은 영국식 영어로 옥수수가 아니라 곡식(밀 등)을 뜻한다. 'ears of corn'은 '곡식의 이삭'이다.",
-  "voc": [
-   [
-    "pluck",
-    "v.",
-    "따다, 자르다"
-   ],
-   [
-    "corn",
-    "n.",
-    "곡식(영국식, 밀 등)"
-   ],
-   [
-    "ear",
-    "n.",
-    "이삭"
-   ]
+   ["Pharisee", "n.", "바리새인"],
+   ["eateth", "v.", "먹다(eats의 고어)"],
+   ["drinketh", "v.", "마시다(drinks의 고어)"]
   ],
   "idi": [
-   [
-    "ears of corn",
-    "곡식의 이삭"
-   ]
+   ["How is it that", "어찌하여 ~하느냐"]
   ],
   "gra": [
-   [
-    "corn",
-    "영국식 영어에서 corn은 옥수수가 아니라 곡식 전반을 뜻함"
-   ]
+   ["he eateth and drinketh", "-eth=3인칭 단수 현재의 고어 어미(=eats, drinks)"]
   ]
  },
  {
-  "en": "the shewbread",
-  "ko": "진설병",
-  "note": "'shewbread(showbread)'는 성소 상에 차려 놓던 거룩한 떡으로, 제사장만 먹을 수 있었다(레위기 24장). 다윗의 일화에서 인용된다.",
+  "en": "When Jesus heard it, he saith unto them, They that are whole have no need of the physician, but they that are sick: I came not to call the righteous, but sinners to repentance.",
+  "ko": "예수께서 들으시고 그들에게 이르시되, \"건강한 자에게는 의원이 쓸데없으나 병든 자에게는 쓸데 있느니라. 나는 의인을 부르러 온 것이 아니요 죄인을 불러 회개시키러 왔노라\" 하시니라.",
+  "note": "'whole'은 '온전한, 건강한'의 뜻이다. 예수께서 자신을 영혼의 의원에 비유하시니, 스스로 의롭다 여기는 자가 아니라 죄를 아는 자를 회개(repentance)로 부르러 오셨음을 밝히신다.",
   "voc": [
-   [
-    "shewbread",
-    "n.",
-    "진설병(고어 표기)"
-   ],
-   [
-    "bread",
-    "n.",
-    "떡, 빵"
-   ]
+   ["whole", "adj.", "온전한, 건강한"],
+   ["physician", "n.", "의원, 의사"],
+   ["righteous", "adj.", "의로운"],
+   ["repentance", "n.", "회개"]
   ],
-  "idi": [],
+  "idi": [
+   ["have no need of", "~이 필요 없다"]
+  ],
   "gra": [
-   [
-    "shewbread",
-    "shew=show의 고어 철자; '차려 보이는 떡'이라는 뜻"
-   ]
+   ["They that are whole", "that=관계대명사(고어 who) '건강한 자들'"]
   ]
  },
  {
-  "en": "The sabbath was made for man, and not man for the sabbath",
-  "ko": "안식일이 사람을 위하여 있는 것이요 사람이 안식일을 위하여 있는 것이 아니니",
-  "note": "안식일 제도의 본래 목적이 사람의 유익에 있음을 선언한 구절. 이어 인자가 안식일의 주인(Lord of the sabbath)이심을 밝히신다.",
+  "en": "And the disciples of John and of the Pharisees used to fast: and they come and say unto him, Why do the disciples of John and of the Pharisees fast, but thy disciples fast not?",
+  "ko": "요한의 제자들과 바리새인들은 금식하더라. 사람들이 와서 예수께 이르되, \"어찌하여 요한의 제자들과 바리새인의 제자들은 금식하는데 당신의 제자들은 금식하지 아니하나이까?\" 하니,",
+  "note": "'used to fast'는 '금식하곤 했다'는 습관을 나타낸다. 금식은 경건의 표였으나, 예수는 참된 경건이 형식이 아니라 신랑 되신 그분과의 관계에 매여 있음을 이어서 밝히신다.",
   "voc": [
-   [
-    "sabbath",
-    "n.",
-    "안식일"
-   ],
-   [
-    "man",
-    "n.",
-    "사람"
-   ]
+   ["fast", "v.", "금식하다"],
+   ["disciple", "n.", "제자"],
+   ["thy", "pron.", "너의, 당신의(고어)"]
+  ],
+  "idi": [
+   ["used to", "~하곤 했다"]
+  ],
+  "gra": [
+   ["thy disciples fast not", "고어 부정: 조동사 do 없이 'fast not'='금식하지 아니하다'"]
+  ]
+ },
+ {
+  "en": "And Jesus said unto them, Can the children of the bridechamber fast, while the bridegroom is with them? as long as they have the bridegroom with them, they cannot fast.",
+  "ko": "예수께서 그들에게 이르시되, \"신랑이 함께 있는 동안에 혼인집 손님들이 금식할 수 있겠느냐? 신랑이 그들과 함께 있는 한 그들은 금식할 수 없느니라.",
+  "note": "'children of the bridechamber'는 직역하면 '신방의 자녀들'이나, 혼인 잔치 하객을 가리키는 히브리식 관용 표현이다. 예수께서 자신을 신랑에 비유하시니, 그분과 함께함이 곧 기쁨의 잔치다.",
+  "voc": [
+   ["bridechamber", "n.", "신방, 혼인방"],
+   ["bridegroom", "n.", "신랑"],
+   ["children", "n.", "자녀들, 무리"]
+  ],
+  "idi": [
+   ["children of the bridechamber", "혼인집 손님들(신랑의 친구)"],
+   ["as long as", "~하는 한"]
+  ],
+  "gra": []
+ },
+ {
+  "en": "But the days will come, when the bridegroom shall be taken away from them, and then shall they fast in those days.",
+  "ko": "그러나 신랑을 그들에게서 빼앗길 날이 이르리니, 그날에는 그들이 금식하리라.",
+  "note": "'신랑을 빼앗김'은 예수의 죽음을 예고하는 표현이다. 그분이 떠나신 후에 제자들이 금식하리라 하시니, 금식은 신랑을 그리는 사모의 표현이 될 것이다.",
+  "voc": [
+   ["bridegroom", "n.", "신랑"],
+   ["take away", "phr.", "데려가다, 빼앗다"],
+   ["fast", "v.", "금식하다"]
+  ],
+  "idi": [
+   ["take away", "데려가다, 빼앗아 가다"]
+  ],
+  "gra": [
+   ["shall be taken away", "shall+수동태: 미래의 일을 예고하는 '빼앗기리라'"],
+   ["then shall they fast", "then+shall+they=도치 어순(고어 강조)"]
+  ]
+ },
+ {
+  "en": "No man also seweth a piece of new cloth on an old garment: else the new piece that filled it up taketh away from the old, and the rent is made worse.",
+  "ko": "생베 조각을 낡은 옷에 깁는 자가 없나니, 그리하면 기운 새 조각이 낡은 옷을 당기어 그 해어짐이 더 심하게 되느니라.",
+  "note": "'seweth'는 sew(깁다)의 고어형, 'rent'는 '해어진 곳, 찢어진 틈'을 뜻하는 고어다. 새 천과 낡은 옷의 비유로, 복음의 새 시대는 낡은 율법 형식에 덧대어질 수 없음을 가르치신다.",
+  "voc": [
+   ["sew", "v.", "깁다, 꿰매다"],
+   ["garment", "n.", "옷, 의복"],
+   ["rent", "n.", "해어진 곳, 찢어진 틈(고어)"]
+  ],
+  "idi": [
+   ["fill up", "메우다, 채우다"]
+  ],
+  "gra": [
+   ["seweth ... taketh", "-eth=3인칭 단수 현재 고어 어미(=sews, takes)"]
+  ]
+ },
+ {
+  "en": "And no man putteth new wine into old bottles: else the new wine doth burst the bottles, and the wine is spilled, and the bottles will be marred: but new wine must be put into new bottles.",
+  "ko": "또 새 포도주를 낡은 가죽 부대에 넣는 자가 없나니, 그리하면 새 포도주가 부대를 터뜨려 포도주도 쏟아지고 부대도 못 쓰게 되느니라. 오직 새 포도주는 새 부대에 넣어야 하느니라\" 하시니라.",
+  "note": "'bottles'는 유리병이 아니라 가죽 술부대(wineskin)다. 새 포도주가 발효하며 팽창하면 굳은 낡은 부대는 터지니, 새 시대와 옛 관습이 서로 담길 수 없음을 보이는 비유다.",
+  "voc": [
+   ["wine", "n.", "포도주"],
+   ["bottle", "n.", "가죽 부대(고어)"],
+   ["burst", "v.", "터지다, 터뜨리다"],
+   ["mar", "v.", "못 쓰게 만들다, 상하게 하다"]
   ],
   "idi": [],
   "gra": [
-   [
-    "not man for the sabbath",
-    "반복되는 was made가 생략된 대구 구문: '사람이 안식일을 위해 (지어진 것이) 아니다'"
-   ]
+   ["doth burst", "doth=does의 고어; 강조 조동사 '터뜨리다'"],
+   ["bottles", "고어 bottle은 유리병이 아니라 가죽 술부대(wineskin)를 뜻함"]
   ]
+ },
+ {
+  "en": "And it came to pass, that he went through the corn fields on the sabbath day; and his disciples began, as they went, to pluck the ears of corn.",
+  "ko": "안식일에 예수께서 밀밭 사이로 지나가실새, 그분의 제자들이 길을 가며 이삭을 자르기 시작하니라.",
+  "note": "'corn'은 영국식 영어로 옥수수가 아니라 곡식(밀 등)을 뜻한다. 안식일에 이삭을 훑는 행위가 바리새인에게는 '일'로 여겨져 논쟁의 불씨가 된다.",
+  "voc": [
+   ["corn field", "n.", "곡식밭, 밀밭(영국식)"],
+   ["pluck", "v.", "따다, 자르다"],
+   ["ear", "n.", "이삭"],
+   ["sabbath", "n.", "안식일"]
+  ],
+  "idi": [
+   ["it came to pass", "~한 일이 일어나다(고어)"],
+   ["ears of corn", "곡식의 이삭"]
+  ],
+  "gra": [
+   ["corn", "영국식 영어에서 corn은 옥수수가 아니라 곡식 전반을 뜻함"]
+  ]
+ },
+ {
+  "en": "And the Pharisees said unto him, Behold, why do they on the sabbath day that which is not lawful?",
+  "ko": "바리새인들이 예수께 이르되, \"보소서, 어찌하여 그들이 안식일에 옳지 않은 일을 하나이까?\" 하니,",
+  "note": "'Behold'는 '보라'라는 고어 감탄사, 'that which is not lawful'은 '율법에 어긋난 것'을 뜻한다. 바리새인들은 안식일 규례의 문자에 매여, 규례의 본래 목적을 잊고 정죄한다.",
+  "voc": [
+   ["behold", "v.", "보라(고어 감탄사)"],
+   ["lawful", "adj.", "율법에 합당한, 옳은"],
+   ["sabbath", "n.", "안식일"]
+  ],
+  "idi": [
+   ["that which", "~하는 것(고어)"]
+  ],
+  "gra": [
+   ["that which is not lawful", "that which=the thing which '옳지 않은 그것'"]
+  ]
+ },
+ {
+  "en": "And he said unto them, Have ye never read what David did, when he had need, and was an hungred, he, and they that were with him?",
+  "ko": "예수께서 그들에게 이르시되, \"다윗이 궁핍하여 자기와 함께한 자들과 더불어 주릴 때에 한 일을 너희가 읽어 본 적이 없느냐?",
+  "note": "'was an hungred'는 '주렸다, 굶주렸다'는 고어 표현이다. 예수께서 다윗의 일화(삼상 21장)를 들어, 긍휼이 의식을 앞선다는 성경의 원리로 바리새인의 정죄에 답하신다.",
+  "voc": [
+   ["ye", "pron.", "너희(고어)"],
+   ["need", "n.", "궁핍, 필요"],
+   ["an hungred", "adj.", "주린, 굶주린(고어)"]
+  ],
+  "idi": [
+   ["be an hungred", "주리다, 굶주리다(고어)"]
+  ],
+  "gra": [
+   ["Have ye never read", "ye=you(고어 주격); 현재완료 의문문"]
+  ]
+ },
+ {
+  "en": "How he went into the house of God in the days of Abiathar the high priest, and did eat the shewbread, which is not lawful to eat but for the priests, and gave also to them which were with him?",
+  "ko": "그가 대제사장 아비아달 때에 하나님의 집에 들어가, 제사장 외에는 먹는 것이 옳지 않은 진설병을 먹고 함께한 자들에게도 주지 아니하였느냐\" 하시니라.",
+  "note": "'shewbread(showbread)'는 성소 상에 차려 놓던 거룩한 떡으로, 제사장만 먹을 수 있었다(레 24장). 다윗도 궁핍 중에 이를 먹었으니, 하나님은 의식보다 사람의 절박한 필요를 살피신다.",
+  "voc": [
+   ["shewbread", "n.", "진설병(고어 표기)"],
+   ["high priest", "n.", "대제사장"],
+   ["lawful", "adj.", "율법에 합당한, 옳은"]
+  ],
+  "idi": [
+   ["but for the priests", "제사장 외에는"]
+  ],
+  "gra": [
+   ["shewbread", "shew=show의 고어 철자 '차려 보이는 떡'"],
+   ["them which were with him", "which=관계대명사(고어, 사람에게도 씀)"]
+  ]
+ },
+ {
+  "en": "And he said unto them, The sabbath was made for man, and not man for the sabbath:",
+  "ko": "또 그들에게 이르시되, \"안식일이 사람을 위하여 있는 것이요 사람이 안식일을 위하여 있는 것이 아니니,",
+  "note": "안식일 제도의 본래 목적이 사람의 유익에 있음을 선언하신 구절이다. 규례가 사람을 짓누르는 멍에가 될 때, 예수는 그 규례를 주신 하나님의 본심으로 돌아가게 하신다.",
+  "voc": [
+   ["sabbath", "n.", "안식일"],
+   ["make", "v.", "만들다, 짓다"],
+   ["man", "n.", "사람"]
+  ],
+  "idi": [],
+  "gra": [
+   ["not man for the sabbath", "반복되는 was made가 생략된 대구 구문: '사람이 안식일을 위해 (지어진 것이) 아니다'"]
+  ]
+ },
+ {
+  "en": "Therefore the Son of man is Lord also of the sabbath.",
+  "ko": "그러므로 인자는 안식일의 주인이기도 하니라\" 하시니라.",
+  "note": "'Lord of the sabbath(안식일의 주인)'는 예수께서 안식일을 제정하신 분이심을 뜻한다. 인자가 안식일의 참뜻을 해석하고 다스릴 권위를 지니셨으니, 이는 그분의 신적 주권을 드러내는 선언이다.",
+  "voc": [
+   ["therefore", "adv.", "그러므로"],
+   ["Lord", "n.", "주인, 주"],
+   ["sabbath", "n.", "안식일"]
+  ],
+  "idi": [
+   ["the Son of man", "인자(메시아 칭호)"],
+   ["Lord of the sabbath", "안식일의 주인"]
+  ],
+  "gra": []
  }
 ]
