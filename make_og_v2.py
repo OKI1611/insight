@@ -92,9 +92,9 @@ d.rectangle([m + 7, m + 7, W - m - 7, H - m - 7], outline=(FRAME[0], FRAME[1], F
 for (ax, ay) in [(m, m), (W - m, m), (m, H - m), (W - m, H - m)]:
     pass
 
-# ---- 5) 실제 로고(펼친 책)를 흰 라운드 뱃지 위에 ----
-bcx, bcy, bs = CX, 118, 78
-d.rounded_rectangle([bcx - bs, bcy - bs, bcx + bs, bcy + bs], radius=26, fill=(255, 255, 255))
+# ---- 5) 실제 로고(펼친 책)를 흰 라운드 뱃지 위에 (상단) ----
+bcx, bcy, bs = CX, 108, 68
+d.rounded_rectangle([bcx - bs, bcy - bs, bcx + bs, bcy + bs], radius=24, fill=(255, 255, 255))
 try:
     _bk = Image.open("_book_t.png").convert("RGBA")
     _th = int(bs * 1.5); _bw, _bh = _bk.size; _sc = _th / _bh
@@ -103,24 +103,22 @@ try:
 except Exception:
     pass
 
-# ---- 6) eyebrow ----
-text_center(d, 212, "유튜브 「오광일의 인사이트 브리핑」 공식 강의 플랫폼", f_eye, MUTED, ls=2)
+# ---- 6) 바이블 인사이트 워드마크 (한글 볼드) — 로고와 충분한 간격 ----
+f_wm = F(KB, 94)
+text_center(d, 262, "바이블 인사이트", f_wm, IVORY, ls=2)
 
-# ---- 7) 바이블 인사이트 워드마크 (한글 볼드) ----
-f_wm = F(KB, 92)
-text_center(d, 250, "바이블 인사이트", f_wm, IVORY, ls=2)
-
-# ---- 8) 초록 구분선 (가운데 점) ----
-dy = 384
-d.line([(CX - 132, dy), (CX - 34, dy)], fill=(FRAME[0], FRAME[1], FRAME[2]), width=2)
-d.line([(CX + 34, dy), (CX + 132, dy)], fill=(FRAME[0], FRAME[1], FRAME[2]), width=2)
+# ---- 7) 초록 구분선 (가운데 점) ----
+dy = 396
+d.line([(CX - 136, dy), (CX - 34, dy)], fill=(FRAME[0], FRAME[1], FRAME[2]), width=2)
+d.line([(CX + 34, dy), (CX + 136, dy)], fill=(FRAME[0], FRAME[1], FRAME[2]), width=2)
 d.ellipse([CX - 6, dy - 6, CX + 6, dy + 6], fill=GOLD)
 
-# ---- 9) main tagline ----
-text_center(d, 406, "말씀으로 시대를 읽다", f_tag, IVORY, ls=1)
+# ---- 8) main tagline ----
+text_center(d, 420, "말씀으로 시대를 읽다", f_tag, IVORY, ls=1)
 
-# ---- 10) footer keywords ----
-text_center(d, 528, "천년왕국 · 종말론 · 성경적 세계관   |   기초부터 100% 무료", f_foot, MUTED, ls=1)
+# ---- 9) 하단 소개 + 키워드 ----
+text_center(d, 512, "유튜브 「오광일의 인사이트 브리핑」 공식 강의 플랫폼", f_eye, MUTED, ls=2)
+text_center(d, 550, "천년왕국 · 종말론 · 성경적 세계관   |   기초부터 100% 무료", f_foot, MUTED, ls=1)
 
 out = "images/og-cover.png"
 img.save(out, "PNG")
