@@ -7,7 +7,7 @@
   <script src="/section-sidenav.js?v=5"></script>
   <script src="/protect.js?v=1"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>비블리 성경사전 — 원어로 읽는 말씀 키워드 · BIBLY</title>
+  <title>바이블 인사이트 성경사전 — 원어로 읽는 말씀 키워드 · BIBLY</title>
   <meta name="description" content="성경 속 핵심 단어를 원어·영어 용어·관련 성구와 함께 깊이 있게 찾아보세요. 언제든 검색하는 나만의 성경 키워드 사전." />
   <meta name="theme-color" content="#213a6b" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -15,7 +15,7 @@
   <link rel="canonical" href="https://biblynote.com/dictionary" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="BIBLY 바이블 인사이트" />
-  <meta property="og:title" content="비블리 성경사전 — 원어로 읽는 말씀 키워드" />
+  <meta property="og:title" content="바이블 인사이트 성경사전 — 원어로 읽는 말씀 키워드" />
   <meta property="og:description" content="성경 속 핵심 단어를 원어·영어 용어·관련 성구와 함께 깊이 있게 찾아보세요. 언제든 검색하는 나만의 성경 키워드 사전." />
   <meta property="og:image" content="https://biblynote.com/images/og-cover.png?v=3" />
   <link rel="manifest" href="/manifest.json" />
@@ -42,7 +42,7 @@
       "@type": "WebPage",
       "@id": "https://biblynote.com/dictionary#webpage",
       "url": "https://biblynote.com/dictionary",
-      "name": "비블리 성경사전 — 원어로 읽는 말씀 키워드",
+      "name": "바이블 인사이트 성경사전 — 원어로 읽는 말씀 키워드",
       "inLanguage": "ko",
       "isPartOf": {
         "@id": "https://biblynote.com/#org"
@@ -50,7 +50,7 @@
       "description": "히브리어·헬라어 원어와 성경 본문을 직접 참고해 자체 집필한 성경 용어·인물·지명·교리 사전. 600여 표제어를 검색·학습.",
       "about": {
         "@type": "DefinedTermSet",
-        "name": "비블리 성경사전",
+        "name": "바이블 인사이트 성경사전",
         "inLanguage": "ko"
       }
     },
@@ -82,8 +82,9 @@
   <!-- 히어로 + 검색 -->
   <section class="bg-white border-b border-ink/8">
     <div class="max-w-3xl mx-auto px-5 py-12 md:py-14 text-center">
+      <img src="/images/bible-insight-emblem.png" alt="Bible Insight" style="height:46px;width:auto;margin:0 auto 12px;display:block" />
       <p class="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-3">Bible Dictionary · 성경사전</p>
-      <h1 class="text-2xl md:text-[32px] font-bold leading-tight">비블리 <span class="text-gold">성경사전</span></h1>
+      <h1 class="text-2xl md:text-[32px] font-bold leading-tight">바이블 인사이트 <span class="text-gold">성경사전</span></h1>
       <p class="text-neutral-900/60 text-sm md:text-[15px] mt-3 leading-relaxed max-w-xl mx-auto">성경 속 단어를 <b class="text-neutral-900">원어·영어 용어·관련 성구</b>와 함께 깊이 있게 찾아보세요. 궁금한 말씀, 언제든 검색하는 나만의 키워드 사전.</p>
       <div class="relative mt-6 max-w-lg mx-auto">
         <input id="q" type="search" autocomplete="off" placeholder="단어를 검색하세요 (예: 은혜, 언약, grace…)" oninput="render()" class="w-full border border-ink/15 rounded-full pl-12 pr-4 py-3.5 text-[15px] outline-none focus:border-gold shadow-soft bg-white" />
@@ -107,7 +108,7 @@
     </div>
 
     <p class="text-[11px] text-neutral-900/35 text-center mt-10 leading-relaxed">
-      ※ 비블리 성경사전은 히브리어·헬라어 원어와 성경 본문을 직접 참고하여 <b class="text-neutral-900/55">자체 집필</b>한 사전입니다.
+      ※ 바이블 인사이트 성경사전은 히브리어·헬라어 원어와 성경 본문을 직접 참고하여 <b class="text-neutral-900/55">자체 집필</b>한 사전입니다.
       뜻풀이·영어 용어·관련 성구를 함께 제공하며, 표제어는 계속 추가됩니다.
     </p>
   </main>
@@ -116,6 +117,8 @@
     const $=id=>document.getElementById(id);
     const esc=s=>String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
     let DATA=[], CAT='전체', INITIAL='', FAQ_TOPIC='';
+    let BROWSE=24, LASTSIG='';   // '전체' 둘러보기 시 24개씩 '더 보기'로 점진 표시(스크롤 단축)
+    function showMore(){ BROWSE+=24; render(); }
     const CATS=['전체','자주 묻는 질문','교리','인물','지명','사물·자연','절기·제도','종말론','기타'];
     const FAQ_TOPICS=[
       {n:'구원·믿음', ic:''},{n:'종말·예언', ic:'⏳'},{n:'죽음·천국·지옥', ic:''},
@@ -200,9 +203,18 @@
       $('count').textContent=list.length.toLocaleString();
       if(!list.length){ $('results').innerHTML=''; $('empty').classList.remove('hidden'); return; }
       $('empty').classList.add('hidden');
-      const cap=q?400:(INITIAL?400:120);
+      // 필터(카테고리·초성·검색어)가 바뀌면 '더 보기' 개수 초기화
+      const sig=CAT+'|'+INITIAL+'|'+q;
+      if(sig!==LASTSIG){ BROWSE=24; LASTSIG=sig; }
+      const cap = q ? 400 : (INITIAL ? 400 : BROWSE);
       const shown=list.slice(0,cap);
-      $('results').innerHTML=shown.map(e=>card(e,q)).join('') + (list.length>cap?`<p class="text-center text-neutral-900/40 text-sm py-4">검색어를 입력하면 더 정확히 찾을 수 있어요 (${list.length.toLocaleString()}개 중 ${cap}개 표시)</p>`:'');
+      let moreHtml='';
+      if(list.length>cap){
+        moreHtml = (!q && !INITIAL)
+          ? `<div class="text-center py-6"><button onclick="showMore()" class="bg-gold/10 text-gold border border-gold/30 font-semibold text-sm px-8 py-3 rounded-full hover:bg-gold/20 transition">더 보기 <span class="text-neutral-900/40 font-normal ml-1">${cap.toLocaleString()} / ${list.length.toLocaleString()}</span></button><p class="text-neutral-900/35 text-xs mt-3">위 검색창이나 초성(ㄱㄴㄷ)으로 더 빠르게 찾을 수 있어요</p></div>`
+          : `<p class="text-center text-neutral-900/40 text-sm py-4">검색어를 입력하면 더 정확히 찾을 수 있어요 (${list.length.toLocaleString()}개 중 ${cap}개 표시)</p>`;
+      }
+      $('results').innerHTML=shown.map(e=>card(e,q)).join('') + moreHtml;
     }
 
     function card(e,q){

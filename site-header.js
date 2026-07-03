@@ -289,7 +289,7 @@
     if(!document.getElementById('biblyRailCSS')){
       var st = document.createElement('style'); st.id='biblyRailCSS';
       st.textContent =
-        '#biblyRail{position:fixed;left:12px;top:50%;transform:translateY(-50%);z-index:44;display:flex;flex-direction:column;gap:1px;background:#fff;border:1px solid rgba(33,58,107,.1);border-radius:16px;box-shadow:0 12px 34px -14px rgba(21,32,58,.35);padding:6px}'
+        '#biblyRail{position:fixed;right:12px;top:50%;transform:translateY(-50%);z-index:44;display:flex;flex-direction:column;gap:1px;background:#fff;border:1px solid rgba(33,58,107,.1);border-radius:16px;box-shadow:0 12px 34px -14px rgba(21,32,58,.35);padding:6px}'
         + '#biblyRail a{display:flex;flex-direction:column;align-items:center;gap:2px;width:48px;padding:9px 0;border-radius:12px;text-decoration:none;color:#42506c;transition:background .15s,color .15s;cursor:pointer}'
         + '#biblyRail a:hover{background:#f4f7fc;color:#b8923f}'
         + '#biblyRail .ic{font-size:17px;line-height:1}'
@@ -305,18 +305,8 @@
     html += '<a class="rtop" title="맨 위로" onclick="window.scrollTo({top:0,behavior:\'smooth\'});return false;"><span class="ic">⤴</span><span class="lb">TOP</span></a>';
     rail.innerHTML = html;
     document.body.appendChild(rail);
-    // 데스크톱(≥1024)에서 좌측 섹션 사이드바가 있으면 겹치므로 숨기는 대신 오른쪽으로 이동
-    // (퀵바는 항상 보이고, 좌측 섹션 메뉴도 그대로 보이도록 위치만 조정)
-    function fit(){
-      var side=document.getElementById('sectionSideNav');
-      var withSide = !!side && window.innerWidth>=1024;
-      if(withSide){ rail.style.left='auto'; rail.style.right='12px'; }
-      else { rail.style.right='auto'; rail.style.left='12px'; }
-      rail.style.display='';
-    }
-    fit(); window.addEventListener('resize', fit);
-    [300,800,1500,2500].forEach(function(t){ setTimeout(fit,t); });   // 섹션 사이드바 비동기 렌더 대응
-    try{ new MutationObserver(fit).observe(document.body,{childList:true}); }catch(e){}
+    // 퀵바는 모든 페이지에서 항상 우측에 고정(좌↔우로 튀지 않게) — 좌측 섹션 메뉴와도 겹치지 않음
+    rail.style.right = '12px'; rail.style.left = 'auto';
   }
 
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
