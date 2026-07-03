@@ -218,7 +218,11 @@
       if(s.bank_account){ bank.innerHTML = (s.bank_name||'') + ' <b class="text-neutral-900">' + s.bank_account + '</b> (예금주 ' + (s.bank_holder||'') + ')'; }
       else { bank.textContent = '주문 접수 후 입금 계좌를 이메일로 안내해 드립니다.'; }
       const links = document.getElementById('payLinks');
-      if(s.kakaopay_url) links.insertAdjacentHTML('beforeend','<a href="'+s.kakaopay_url+'" target="_blank" rel="noopener" class="bg-[#FEE500] text-[#191600] font-bold px-4 py-2 rounded-lg text-sm">카카오페이 송금</a>');
+      if(s.kakaopay_url){
+        const isMobile=/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        if(isMobile){ links.insertAdjacentHTML('beforeend','<a href="'+s.kakaopay_url+'" target="_blank" rel="noopener" class="bg-[#FEE500] text-[#191600] font-bold px-4 py-2 rounded-lg text-sm">카카오페이 송금</a>'); }
+        else { links.insertAdjacentHTML('beforeend','<button type="button" onclick="openKakaoQR(\''+s.kakaopay_url.replace(/'/g,"\\'")+'\')" class="bg-[#FEE500] text-[#191600] font-bold px-4 py-2 rounded-lg text-sm">카카오페이 송금 (QR)</button>'); }
+      }
       if(s.simplepay_url) links.insertAdjacentHTML('beforeend','<a href="'+s.simplepay_url+'" target="_blank" rel="noopener" class="bg-gold text-white font-bold px-4 py-2 rounded-lg text-sm">간편결제</a>');
       const ppc=document.getElementById('payPaypal'), ppSec=document.getElementById('ppSection');
       if(s.paypal_url && ppc){
@@ -227,7 +231,29 @@
       document.getElementById('refundMail').href = 'mailto:'+mail+'?subject=' + encodeURIComponent('[BIBLY 북스토어] 환불/반품 문의');
       document.getElementById('contactMail').href = 'mailto:'+mail+'?subject=' + encodeURIComponent('[BIBLY 북스토어] 문의');
     })();
+    // 카카오페이 QR 모달 (PC) — 카카오페이 송금 링크는 앱 전용이라 PC 브라우저에선 404가 나므로 QR로 스캔
+    window.openKakaoQR = function(url){
+      const modal=document.getElementById('kakaoQrModal'), box=document.getElementById('kakaoQrBox'); if(!modal||!box) return;
+      const render=()=>{ try{ const qr=qrcode(0,'M'); qr.addData(url); qr.make(); box.innerHTML=qr.createImgTag(6,8);
+          const img=box.querySelector('img'); if(img){ img.style.width='220px'; img.style.height='220px'; img.style.imageRendering='pixelated'; } }
+        catch(e){ box.innerHTML='<a href="'+url+'" target="_blank" rel="noopener" class="text-blue-600 underline break-all text-sm">'+url+'</a>'; }
+        modal.style.display='flex'; };
+      if(window.qrcode){ render(); return; }
+      const sc=document.createElement('script'); sc.src='https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js'; sc.onload=render;
+      sc.onerror=()=>{ box.innerHTML='<a href="'+url+'" target="_blank" rel="noopener" class="text-blue-600 underline break-all text-sm">'+url+'</a>'; modal.style.display='flex'; };
+      document.head.appendChild(sc);
+    };
   </script>
+
+  <!-- 카카오페이 QR 모달 (PC 송금용) -->
+  <div id="kakaoQrModal" style="display:none" class="fixed inset-0 z-[100] items-center justify-center bg-black/60 p-4" onclick="if(event.target===this)this.style.display='none'">
+    <div class="bg-white rounded-2xl p-6 max-w-xs w-full text-center shadow-2xl" style="color:#1a1a1a">
+      <h2 class="font-bold text-lg mb-1">카카오페이로 송금</h2>
+      <p class="text-sm text-gray-500 mb-4">카카오페이 송금은 <b>휴대폰 앱 전용</b>이에요.<br>폰 카메라·카카오페이로 아래 QR을 스캔해 주세요.</p>
+      <div id="kakaoQrBox" class="flex items-center justify-center mx-auto" style="min-height:220px"></div>
+      <button onclick="document.getElementById('kakaoQrModal').style.display='none'" class="mt-5 w-full py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 font-semibold text-sm">닫기</button>
+    </div>
+  </div>
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
   <script src="auth-header.js?v=20260619c"></script>
