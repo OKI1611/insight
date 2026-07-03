@@ -141,7 +141,10 @@
 
       <!-- 등록 신청 -->
       <section id="sec-apps" class="secPanel hidden">
-        <h1 class="text-2xl font-bold mb-1">인증 과정 등록 신청</h1>
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-1">
+          <h1 class="text-2xl font-bold">인증 과정 등록 신청</h1>
+          <button onclick="exportAppsCSV()" class="border border-ink/15 text-sm px-3 py-2 rounded-lg hover:bg-ink/5">엑셀(CSV) 내보내기</button>
+        </div>
         <p class="text-neutral-900/50 text-sm mb-6">수강생이 academy 페이지에서 신청한 목록입니다. 입금 확인 후 <button onclick="show('cert')" class="text-gold underline">수강권(인증)</button> 탭에서 수강권을 부여하세요.</p>
         <div id="appsWrap">불러오는 중…</div>
       </section>
@@ -166,7 +169,7 @@
           <p id="certMsg" class="text-xs mt-2 min-h-[16px]"></p>
           <p class="text-[11px] text-neutral-900/40 mt-1">※ 수강생이 먼저 사이트에 <b>가입(로그인)</b>한 뒤 이메일로 부여할 수 있어요.</p>
         </div>
-        <h2 class="font-bold mb-3">현재 수강권 보유자</h2>
+        <div class="flex items-center gap-3 mb-3"><h2 class="font-bold">현재 수강권 보유자</h2><button onclick="exportCertCSV()" class="border border-ink/15 text-xs px-2.5 py-1.5 rounded-lg hover:bg-ink/5">엑셀(CSV)</button><button onclick="loadCert()" class="text-xs text-gold hover:underline">새로고침</button></div>
         <div id="certList">불러오는 중…</div>
       </section>
 
@@ -197,7 +200,7 @@
             <p id="bookMsg" class="text-xs mt-2 min-h-[16px]"></p>
           </div>
         </div>
-        <div class="flex items-center gap-3 mb-3"><h2 class="font-bold">현재 이용권 보유자</h2><button onclick="loadStore()" class="text-xs text-gold hover:underline">새로고침</button></div>
+        <div class="flex items-center gap-3 mb-3"><h2 class="font-bold">현재 이용권 보유자</h2><button onclick="exportStoreCSV()" class="border border-ink/15 text-xs px-2.5 py-1.5 rounded-lg hover:bg-ink/5">엑셀(CSV) · 이용권+교재</button><button onclick="loadStore()" class="text-xs text-gold hover:underline">새로고침</button></div>
         <div id="passList" class="mb-8">불러오는 중…</div>
         <h2 class="font-bold mb-3">현재 개별 교재 권한</h2>
         <div id="bookList">불러오는 중…</div>
@@ -209,7 +212,7 @@
 
       <!-- 주문 내역 (카드결제 orders) -->
       <section id="sec-orders" class="secPanel hidden">
-        <div class="flex items-center gap-3 mb-1"><h1 class="text-2xl font-bold">주문 내역 (카드결제)</h1><button onclick="loadOrders()" class="text-xs text-gold hover:underline">새로고침</button></div>
+        <div class="flex flex-wrap items-center gap-3 mb-1"><h1 class="text-2xl font-bold">주문 내역 (카드결제)</h1><button onclick="exportOrdersCSV()" class="border border-ink/15 text-sm px-3 py-2 rounded-lg hover:bg-ink/5">엑셀(CSV) 내보내기</button><button onclick="loadOrders()" class="text-xs text-gold hover:underline">새로고침</button></div>
         <p class="text-neutral-900/50 text-sm mb-6">토스페이먼츠 <b>카드결제</b> 주문 장부입니다. 결제 완료 건은 이용권이 <b>자동 부여</b>됩니다. (무통장·카카오페이 주문은 <button onclick="show('apps')" class="text-gold underline">등록 신청</button> 탭에서 확인 후 <button onclick="show('store')" class="text-gold underline">스토어 권한</button> 탭에서 수동 부여)</p>
         <div id="ordersSummary" class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6"></div>
         <div id="ordersWrap">불러오는 중…</div>
@@ -540,12 +543,27 @@
     }
     function exportFoundingCSV(){ if(!FOUNDING.length){ toast('창립 멤버 없음'); return; } const fd=d=>d?new Date(d).toLocaleDateString('ko'):''; const rows=[['번호','이름','이메일','가입일'],...FOUNDING.map(r=>['#'+String(r.member_no).padStart(3,'0'),r.name||'',r.email,fd(r.joined_at)])]; const csv='﻿'+rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n'); const b=new Blob([csv],{type:'text/csv'}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='창립멤버.csv'; a.click(); toast('CSV 내려받음'); }
 
+    // ===== 공통 CSV(엑셀) 내보내기 — UTF-8 BOM으로 엑셀에서 한글 정상 표시 =====
+    let APPS=[], CERT=[], PASSHOLDERS=[], BOOKHOLDERS=[], ORDERS=[];
+    function _kd(d){ return d ? new Date(d).toLocaleDateString('ko') : ''; }
+    function downloadCSV(filename, rows){
+      const csv='﻿'+rows.map(r=>r.map(c=>`"${String(c==null?'':c).replace(/"/g,'""')}"`).join(',')).join('\r\n');
+      const b=new Blob([csv],{type:'text/csv;charset=utf-8;'});
+      const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=filename; document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(()=>URL.revokeObjectURL(a.href),1500); toast('엑셀(CSV) 내려받음 · '+filename);
+    }
+    function exportAppsCSV(){ if(!APPS.length){ toast('등록 신청 없음'); return; } downloadCSV('인증과정_등록신청.csv',[['신청일','패키지','이름','이메일','연락처','메모'],...APPS.map(r=>[_kd(r.created_at),r.interest||'',r.name||'',r.email||'',r.phone||'',r.motivation||''])]); }
+    function exportCertCSV(){ if(!CERT.length){ toast('수강권 보유자 없음'); return; } downloadCSV('수강권_보유자.csv',[['이메일','등급','부여일'],...CERT.map(r=>[r.email||'',CERT_TIERNAME[r.tier]||r.tier,_kd(r.granted_at)])]); }
+    function exportStoreCSV(){ const rows=[['구분','이메일','상품/종류','만료','부여일']]; PASSHOLDERS.forEach(r=>rows.push(['이용권',r.email||'',passName(r.type),r.expires_at?_kd(r.expires_at):'평생',_kd(r.created_at)])); BOOKHOLDERS.forEach(r=>rows.push(['교재',r.email||'',r.track||'','',_kd(r.created_at)])); if(rows.length<2){ toast('스토어 권한 데이터 없음'); return; } downloadCSV('스토어_권한.csv',rows); }
+    function exportOrdersCSV(){ if(!ORDERS.length){ toast('주문 내역 없음'); return; } downloadCSV('카드결제_주문내역.csv',[['일시','주문번호','구매자','상품','금액','상태'],...ORDERS.map(r=>[ (r.paid_at||r.created_at)?new Date(r.paid_at||r.created_at).toLocaleString('ko'):'', r.order_id||'', r.email||'', (Array.isArray(r.items)?r.items.map(i=>i.name).join(' / '):''), r.amount||0, r.status||'' ])]); }
+
     // ===== 등록 신청(course_applications) =====
     async function loadApps(){
       const wrap=document.getElementById('appsWrap');
       let rows,err;
       try{ rows=await rest('course_applications?select=*&order=created_at.desc&limit=300'); }catch(e){ err=e; }
       if(err){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">'+(tableMissing(err)?'신청 테이블이 아직 없습니다. (course_applications — setup.sql 5번 실행 필요)':'불러오기 오류: '+esc(err.message||err))+'</p>'; return; }
+      APPS=rows||[];
       if(!rows||!rows.length){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">아직 등록 신청이 없습니다.</p>'; return; }
       wrap.innerHTML = '<p class="text-sm text-neutral-900/50 mb-3">총 <b class="text-neutral-900">'+rows.length+'</b>건 · 최신순</p>'
         + '<div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">'
@@ -559,7 +577,7 @@
     async function loadCert(){
       const wrap=document.getElementById('certList');
       try{
-        const data=await rpcFetch('list_cert',{});
+        const data=await rpcFetch('list_cert',{}); CERT=data||[];
         if(!data||!data.length){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">아직 수강권 보유자가 없습니다.</p>'; return; }
         wrap.innerHTML = `<div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">
           <thead class="text-neutral-900/45 text-left border-b border-ink/5"><tr><th class="px-5 py-3 font-medium">이메일</th><th class="px-5 py-3 font-medium">등급</th><th class="px-5 py-3 font-medium">부여일</th><th class="px-5 py-3"></th></tr></thead>
@@ -642,7 +660,7 @@
     async function loadPassList(){
       const wrap=document.getElementById('passList');
       try{
-        const data=await rpcFetch('list_pass',{});
+        const data=await rpcFetch('list_pass',{}); PASSHOLDERS=data||[];
         if(!data||!data.length){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">아직 이용권 보유자가 없습니다.</p>'; return; }
         wrap.innerHTML=`<div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">
           <thead class="text-neutral-900/45 text-left border-b border-ink/5"><tr><th class="px-5 py-3 font-medium">이메일</th><th class="px-5 py-3 font-medium">종류</th><th class="px-5 py-3 font-medium">만료</th><th class="px-5 py-3 font-medium">부여일</th><th class="px-5 py-3"></th></tr></thead>
@@ -652,7 +670,7 @@
     async function loadBookList(){
       const wrap=document.getElementById('bookList');
       try{
-        const data=await rpcFetch('list_book',{});
+        const data=await rpcFetch('list_book',{}); BOOKHOLDERS=data||[];
         if(!data||!data.length){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">아직 개별 교재 권한이 없습니다.</p>'; return; }
         wrap.innerHTML=`<div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">
           <thead class="text-neutral-900/45 text-left border-b border-ink/5"><tr><th class="px-5 py-3 font-medium">이메일</th><th class="px-5 py-3 font-medium">책(과정)</th><th class="px-5 py-3 font-medium">부여일</th><th class="px-5 py-3"></th></tr></thead>
@@ -763,7 +781,7 @@
           +'<p class="text-neutral-900/45 text-xs mt-2">결제 Worker(<code class="bg-ink/5 px-1 rounded">/api/pay</code>)와 <code class="bg-ink/5 px-1 rounded">SUPABASE_SERVICE_KEY</code> 환경변수가 설정돼 있어야 합니다. 403이 뜨면 관리자 계정으로 다시 로그인해 주세요.</p>';
         return;
       }
-      const rows=d.orders||[];
+      const rows=d.orders||[]; ORDERS=rows;
       const paid=rows.filter(r=>r.status==='paid');
       const revenue=paid.reduce((s,r)=>s+Number(r.amount||0),0);
       sum.innerHTML=[
