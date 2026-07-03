@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>결제 확인 중 — 바이블 인사이트</title>
+  <script src="https://cdn.tailwindcss.com?v=3"></script>
+  <script>tailwind.config={theme:{extend:{colors:{gold:'#b8923f',ink:'#213a6b',paper:'#ffffff'}}}}</script>
+  <link rel="icon" href="/images/favicon-32.png?v=6" />
+</head>
+<body class="bg-paper text-neutral-900 antialiased min-h-screen flex items-center justify-center px-5">
+  <div id="box" class="w-full max-w-md text-center">
+    <div id="loading">
+      <div class="w-12 h-12 mx-auto border-4 border-gold/25 border-t-gold rounded-full animate-spin"></div>
+      <p class="mt-5 text-neutral-900/60 text-sm">결제를 확인하고 있어요…</p>
+      <p class="mt-1 text-neutral-900/40 text-xs">창을 닫지 말고 잠시만 기다려 주세요.</p>
+    </div>
+  </div>
+
+  <script>
+    const qs = new URLSearchParams(location.search);
+    const paymentKey = qs.get('paymentKey');
+    const orderId = qs.get('orderId');
+    const amount = qs.get('amount');
+    const box = document.getElementById('box');
+    const won = v => '₩' + (Number(v)||0).toLocaleString();
+
+    function done(html){ box.innerHTML = html; }
+
+    async function confirm(){
+      if(!paymentKey || !orderId || !amount){ return fail('결제 정보가 올바르지 않습니다.'); }
+      try{
+        const r = await fetch('/api/pay/confirm', {
+          method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ paymentKey, orderId, amount: Number(amount) })
+        });
+        const d = await r.json();
+        if(r.ok && d.ok){ return success(d); }
+        return fail(d.error || '결제 승인에 실패했습니다.', d.code);
+      }catch(e){ return fail('결제 확인 중 오류가 발생했습니다. ' + (e.message||'')); }
+    }
+
+    function success(d){
+      const items = (d.items||[]).map(it=>'<li class="flex justify-between gap-3 py-1"><span class="text-neutral-900/70">'+(it.name||'')+'</span><span class="font-semibold">'+won(it.amount)+'</span></li>').join('');
+      done(
+        '<div class="w-16 h-16 mx-auto rounded-full bg-emerald-500/12 flex items-center justify-center">'
+        +'<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>'
+        +'<h1 class="text-2xl font-bold mt-5">결제가 완료되었어요</h1>'
+        +'<p class="text-neutral-900/55 text-sm mt-2">이용권·수강권이 <b class="text-neutral-900">로그인 계정 기준으로 바로 열렸습니다.</b></p>'
+        +'<div class="bg-neutral-50 border border-neutral-200 rounded-2xl p-5 mt-6 text-left">'
+          +'<ul class="text-sm space-y-0.5">'+items+'</ul>'
+          +'<div class="border-t border-neutral-200 mt-3 pt-3 flex justify-between font-bold"><span>결제 금액</span><span class="text-gold">'+won(d.amount)+'</span></div>'
+          +'<p class="text-[11px] text-neutral-400 mt-2">결제수단 '+(d.method||'카드')+'</p>'
+        +'</div>'
+        +'<div class="flex gap-2 mt-6">'
+          +'<a href="/mylearning.html" class="flex-1 bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition">내 구매·자료 보기</a>'
+          +(d.receipt?'<a href="'+d.receipt+'" target="_blank" rel="noopener" class="px-5 py-3.5 rounded-xl border border-neutral-300 font-semibold text-sm hover:bg-neutral-50 transition">영수증</a>':'')
+        +'</div>'
+        +'<a href="/index.html" class="inline-block mt-4 text-neutral-900/40 text-sm hover:text-gold">홈으로</a>'
+      );
+    }
+
+    function fail(msg, code){
+      done(
+        '<div class="w-16 h-16 mx-auto rounded-full bg-rose-500/12 flex items-center justify-center">'
+        +'<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></div>'
+        +'<h1 class="text-2xl font-bold mt-5">결제를 확인하지 못했어요</h1>'
+        +'<p class="text-neutral-900/60 text-sm mt-2 leading-relaxed">'+msg+'</p>'
+        +(code?'<p class="text-[11px] text-neutral-400 mt-1">코드: '+code+'</p>':'')
+        +'<p class="text-neutral-900/45 text-xs mt-3">결제가 이미 이루어졌는데 이 화면이 보인다면, 카드는 <b>자동 취소</b>됩니다(승인 전 단계). 다시 시도하거나 고객센터로 문의해 주세요.</p>'
+        +'<div class="flex gap-2 mt-6">'
+          +'<a href="/booklet.html" class="flex-1 bg-ink text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition">스토어로 돌아가기</a>'
+          +'<a href="/store-help.html" class="px-5 py-3.5 rounded-xl border border-neutral-300 font-semibold text-sm hover:bg-neutral-50 transition">고객센터</a>'
+        +'</div>'
+      );
+    }
+
+    confirm();
+  </script>
+</body>
+</html>

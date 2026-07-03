@@ -38,6 +38,7 @@
     }}}
   </script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://js.tosspayments.com/v1/payment"></script>
   <script>
     const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
     const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
@@ -248,7 +249,8 @@
             <span>위 안내(수강료의 <b class="text-neutral-900">미디어 선교 후원 사용</b> · 기부금 영수증 미발행)를 확인하였으며 이에 동의합니다. *</span>
           </label>
           <input id="aHp" type="text" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
-          <button id="aSubmit" onclick="submitApp()" class="w-full bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition">등록 신청하기</button>
+          <button id="aCard" onclick="payCardAcademy()" class="w-full bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition flex items-center justify-center gap-2">카드로 결제하고 바로 수강 <span class="text-[10.5px] font-bold text-gold bg-white/90 px-2 py-0.5 rounded-full">즉시 개설</span></button>
+          <button id="aSubmit" onclick="submitApp()" class="w-full mt-2 bg-white border border-ink/20 text-neutral-900/70 font-semibold py-3 rounded-xl hover:bg-neutral-50 transition text-sm">계좌이체로 신청 (입금 확인 후 개설)</button>
           <p id="aMsg" class="text-center text-sm min-h-[18px]"></p>
           <p class="text-center text-neutral-900/40 text-xs leading-relaxed">신청 정보는 정규 과정 안내 목적으로만 사용되며, 원치 않으시면 언제든 삭제 요청하실 수 있어요.</p>
         </div>
@@ -399,6 +401,30 @@
     function closePkgModal(){ const m=document.getElementById('pkgModal'); if(m) m.classList.remove('on'); document.body.style.overflow=''; }
     document.addEventListener('keydown', e=>{ if(e.key==='Escape') closePkgModal(); });
     function withTimeout(p, ms){ return Promise.race([ Promise.resolve(p), new Promise((_, rej) => setTimeout(() => rej(new Error('TIMEOUT')), ms)) ]); }
+    // ── 카드결제(토스페이먼츠) — 급수 수강권은 로그인 계정에 부여 ──
+    const TOSS_CLIENT_KEY_A = 'test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq'; // 토스 테스트 클라이언트키(실결제 전 교체)
+    async function payCardAcademy(){
+      const msg = document.getElementById('aMsg'); msg.style.color = '#dc2626'; msg.textContent = '';
+      if (document.getElementById('aHp').value) return;
+      const email = document.getElementById('aEmail').value.trim();
+      const name  = document.getElementById('aName').value.trim();
+      const interest = document.getElementById('aInterest').value;
+      if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.textContent = '이메일을 정확히 입력해 주세요.'; return; }
+      if (!interest) { msg.textContent = '신청할 패키지를 선택해 주세요.'; return; }
+      if (!document.getElementById('aAgree').checked) { msg.textContent = '수강료 사용·기부금 영수증 안내에 동의해 주세요.'; return; }
+      const btn = document.getElementById('aCard'); btn.disabled = true; btn.textContent = '결제창 여는 중…';
+      try {
+        let userId=null; try{ const {data}=await sb.auth.getUser(); userId=(data&&data.user&&data.user.id)||null; }catch(e){}
+        if(!userId){ msg.innerHTML='카드 결제는 <b>로그인 후</b> 이용 가능해요 (수강권이 계정에 연결됩니다). <a href="index.html" class="text-gold underline">로그인하기</a>'; btn.disabled=false; btn.textContent='카드로 결제하고 바로 수강'; return; }
+        const rankCode = ((interest.match(/\(([^)]+)\)/)||[])[1]) || interest;   // "Associate (5급)" → "5급"
+        const r = await fetch('/api/pay/create-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items:[{kind:'cert',itemId:rankCode,earlybird:true}],email,userId})});
+        const o = await r.json();
+        if(!r.ok||o.error){ msg.textContent='주문 생성 실패: '+(o.error||('오류 '+r.status)); btn.disabled=false; btn.textContent='카드로 결제하고 바로 수강'; return; }
+        if(typeof TossPayments!=='function'){ msg.textContent='결제 모듈을 불러오지 못했어요. 새로고침 후 다시 시도해 주세요.'; btn.disabled=false; btn.textContent='카드로 결제하고 바로 수강'; return; }
+        const toss = TossPayments(TOSS_CLIENT_KEY_A);
+        await toss.requestPayment('카드',{ amount:o.amount, orderId:o.orderId, orderName:o.orderName, customerName:name||'수강생', customerEmail:email, successUrl:location.origin+'/pay-success.html', failUrl:location.origin+'/pay-fail.html' });
+      } catch(e){ const m=(e&&e.message)||''; if(!/취소|cancel|USER_CANCEL/i.test(m)) msg.textContent='결제 진행 중 문제가 발생했어요. '+m; btn.disabled=false; btn.textContent='카드로 결제하고 바로 수강'; }
+    }
     async function submitApp(){
       const msg = document.getElementById('aMsg'); msg.style.color = '#dc2626'; msg.textContent = '';
       if (document.getElementById('aHp').value) return;            // 봇 차단(허니팟)

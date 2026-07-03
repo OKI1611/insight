@@ -30,6 +30,7 @@
   </script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js"></script>
+  <script src="https://js.tosspayments.com/v1/payment"></script>
   <script>
     const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
     const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
@@ -229,9 +230,9 @@
           <div>
             <p class="text-xs font-bold text-neutral-900/55 mb-1.5">결제 수단</p>
             <div class="space-y-2" id="payMethods">
-              <label class="flex items-center gap-2 border border-ink/15 rounded-xl px-3 py-2.5 text-sm cursor-pointer has-[:checked]:border-gold has-[:checked]:bg-gold/5"><input type="radio" name="opay" value="무통장입금" checked/> 무통장입금 (계좌이체)</label>
+              <label class="flex items-center gap-2 border border-ink/15 rounded-xl px-3 py-2.5 text-sm cursor-pointer has-[:checked]:border-gold has-[:checked]:bg-gold/5"><input type="radio" name="opay" value="카드결제" checked/> <span class="flex-1">신용·체크카드 <span class="text-gold font-semibold">즉시 이용권 부여</span></span> <span class="text-[10.5px] font-bold text-white bg-gold px-2 py-0.5 rounded-full">추천</span></label>
+              <label class="flex items-center gap-2 border border-ink/15 rounded-xl px-3 py-2.5 text-sm cursor-pointer has-[:checked]:border-gold has-[:checked]:bg-gold/5"><input type="radio" name="opay" value="무통장입금"/> 무통장입금 (계좌이체)</label>
               <label class="flex items-center gap-2 border border-ink/15 rounded-xl px-3 py-2.5 text-sm cursor-pointer has-[:checked]:border-gold has-[:checked]:bg-gold/5"><input type="radio" name="opay" value="카카오페이"/> 카카오페이 송금</label>
-              <label class="flex items-center gap-2 border border-ink/15 rounded-xl px-3 py-2.5 text-sm cursor-pointer has-[:checked]:border-gold has-[:checked]:bg-gold/5"><input type="radio" name="opay" value="간편결제"/> 간편결제(링크)</label>
             </div>
           </div>
 
@@ -513,6 +514,31 @@
         body:JSON.stringify({access_key:NOTIFY_KEY,subject:'[BIBLY 북스토어] 새 주문 '+o.no,from_name:'BIBLY 북스토어',
           '주문번호':o.no,'상품':o.items,'합계':won(o.price),'형태':o.format,'결제수단':o.pay,'이름':o.name,'이메일':o.email,'연락처':o.phone,'배송지':o.addr||'-'})});}catch(e){} }
 
+    // ── 카드결제(토스페이먼츠) ──
+    const TOSS_CLIENT_KEY = 'test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq'; // 토스 테스트 클라이언트키(실결제 전 교체)
+    async function payByCard(name, email, phone){
+      const msg=$('bMsg'); msg.style.color='#dc2626'; msg.textContent='';
+      const btn=$('bSubmit'); btn.disabled=true; btn.textContent='결제창 여는 중…';
+      try{
+        let userId=null; try{ const {data}=await sb.auth.getUser(); userId=(data&&data.user&&data.user.id)||null; }catch(e){}
+        const items=CART.map(c=>({ kind:c.kind, itemId: c.kind==='pass' ? String(c.key).split(':')[1] : c.name }));
+        const r=await fetch('/api/pay/create-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items,email,userId})});
+        const o=await r.json();
+        if(!r.ok||o.error){ msg.textContent='주문 생성 실패: '+(o.error||('오류 '+r.status)); btn.disabled=false; btn.textContent='결제하기'; return; }
+        if(typeof TossPayments!=='function'){ msg.textContent='결제 모듈을 불러오지 못했어요. 새로고침 후 다시 시도해 주세요.'; btn.disabled=false; btn.textContent='결제하기'; return; }
+        const toss=TossPayments(TOSS_CLIENT_KEY);
+        await toss.requestPayment('카드',{
+          amount:o.amount, orderId:o.orderId, orderName:o.orderName,
+          customerName:name||'고객', customerEmail:email,
+          successUrl:location.origin+'/pay-success.html',
+          failUrl:location.origin+'/pay-fail.html'
+        });
+      }catch(e){
+        const m=(e&&e.message)||'';
+        if(!/취소|cancel|USER_CANCEL/i.test(m)) msg.textContent='결제 진행 중 문제가 발생했어요. '+m;
+        btn.disabled=false; btn.textContent='결제하기';
+      }
+    }
     async function placeOrder(){
       const msg=$('bMsg'); msg.style.color='#dc2626'; msg.textContent='';
       if($('bHp').value) return;
@@ -528,6 +554,7 @@
       if(!phone){ msg.textContent='연락처를 입력해 주세요.'; return; }
       if(hasBook&&format==='실물제본'&&!addr){ msg.textContent='실물 제본은 배송지 주소가 필요해요.'; return; }
       if(!$('bAgree').checked){ msg.textContent='구매조건·환불 안내에 동의해 주세요.'; return; }
+      if(pay==='카드결제'){ return payByCard(name, email, phone); }
       const price=cartTotal();
       const itemsStr=CART.map(it=>it.name+'('+won(it.price)+')').join(', ');
       const no=orderNo();
