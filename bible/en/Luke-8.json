@@ -1,16 +1,450 @@
 [
-  {"en": "the kingdom of God", "ko": "하나님의 왕국", "note": "하나님의 통치 전반을 가리키는 핵심 신학 용어. 누가복음에서 예수의 전파 주제.", "voc":[["kingdom","n.","왕국, 나라"],["God","n.","하나님"]], "idi":[], "gra":[]},
-  {"en": "the twelve were with him", "ko": "열두 제자가 함께함", "note": "예수를 따르며 사역을 배우던 열두 사도. 사역의 동행자.", "voc":[["twelve","n.","열둘, 열두 제자"]], "idi":[["the twelve","열두 제자(the+수사로 그 무리를 가리킴)"]], "gra":[]},
-  {"en": "ministered unto him of their substance", "ko": "자기 재물로 섬기다", "note": "여인들이 자기 소유로 예수 일행을 후원함. 초기 사역의 물질적 지원.", "voc":[["minister","v.","섬기다, 봉사하다"],["substance","n.","재물, 소유"]], "idi":[], "gra":[["unto him","unto=to의 옛말, '그에게'"],["of their substance","of=with(수단)의 옛 용법, '자기 재물로'"]]},
-  {"en": "a sower went out to sow", "ko": "씨 뿌리는 자가 나가다", "note": "씨 뿌리는 비유의 도입. 씨는 하나님의 말씀, 밭은 사람의 마음.", "voc":[["sower","n.","씨 뿌리는 자"],["sow","v.","(씨를) 뿌리다"]], "idi":[["go out","나가다"]], "gra":[]},
-  {"en": "an hundredfold", "ko": "백 배", "note": "좋은 땅에 떨어진 씨가 맺은 풍성한 열매. 말씀을 받은 결실.", "voc":[["hundredfold","n.","백 배"]], "idi":[], "gra":[["an hundredfold","현대영어 a hundredfold, h를 발음 안 하던 옛 관습으로 an을 씀"]]},
-  {"en": "the mysteries of the kingdom of God", "ko": "하나님의 왕국의 비밀", "note": "제자들에게 허락된 깨달음. 비유의 참뜻을 아는 은혜.", "voc":[["mystery","n.","비밀, 신비"],["kingdom","n.","왕국"]], "idi":[], "gra":[]},
-  {"en": "bring forth fruit with patience", "ko": "인내로 열매를 맺다", "note": "정직하고 선한 마음의 특징. 끝까지 견디는 믿음의 결실.", "voc":[["fruit","n.","열매"],["patience","n.","인내"]], "idi":[["bring forth fruit","열매를 맺다"]], "gra":[]},
-  {"en": "Master, master, we perish", "ko": "선생님이여, 우리가 죽겠나이다", "note": "풍랑 중 제자들의 다급한 외침. 두려움과 미약한 믿음을 드러냄.", "voc":[["master","n.","선생, 주인"],["perish","v.","죽다, 멸망하다"]], "idi":[], "gra":[]},
-  {"en": "he rebuked the wind", "ko": "바람을 꾸짖으시다", "note": "예수께서 자연을 명하여 잠잠케 하심. 그의 신적 권능을 보임.", "voc":[["rebuke","v.","꾸짖다, 책망하다"],["wind","n.","바람"]], "idi":[], "gra":[]},
-  {"en": "My name is Legion", "ko": "내 이름은 군대라", "note": "거라사 귀신 들린 자 속의 많은 귀신을 가리킴. '레기온'은 로마 군단.", "voc":[["name","n.","이름"],["legion","n.","군대, 로마 군단"]], "idi":[], "gra":[]},
-  {"en": "clothed, and in his right mind", "ko": "옷을 입고 정신이 온전함", "note": "귀신에게서 해방된 사람의 회복된 모습. 예수의 권능의 증거.", "voc":[["clothe","v.","옷을 입히다"],["mind","n.","정신, 마음"]], "idi":[["in one's right mind","정신이 온전한"]], "gra":[]},
-  {"en": "thy faith hath made thee whole", "ko": "네 믿음이 너를 낫게 하였다", "note": "혈루증 여인에게 하신 말씀. 믿음으로 받은 치유.", "voc":[["faith","n.","믿음"],["whole","a.","온전한, 성한"]], "idi":[["make whole","낫게 하다, 온전케 하다"]], "gra":[["thy faith hath made thee","현대영어 your faith has made you, thy=your·hath=has·thee=you의 옛말"]]},
-  {"en": "she is not dead, but sleepeth", "ko": "죽은 것이 아니라 잠들었다", "note": "야이로의 딸에 대한 예수의 선언. 죽음을 잠으로 이기시는 권세.", "voc":[["dead","a.","죽은"],["sleep","v.","자다"]], "idi":[], "gra":[["sleepeth","현대영어 sleeps, -eth는 3인칭 단수 동사의 옛 어미"]]},
-  {"en": "Maid, arise", "ko": "아이야, 일어나라", "note": "예수께서 죽은 소녀를 살리신 말씀. 생명을 주관하시는 능력.", "voc":[["maid","n.","소녀, 처녀"],["arise","v.","일어나다"]], "idi":[], "gra":[]}
+ {
+  "en": "And it came to pass afterward, that he went throughout every city and village, preaching and shewing the glad tidings of the kingdom of God: and the twelve were with him,",
+  "ko": "그 후에 예수께서 각 성과 마을을 두루 다니시며 하나님의 왕국의 기쁜 소식을 전파하시고 알리시니, 열두 제자가 그와 함께하였더라.",
+  "note": "누가는 예수의 사역을 '하나님의 왕국의 기쁜 소식'을 전하는 순회로 요약한다. '기쁜 소식'(유앙겔리온)은 곧 복음이니, 그의 다니심 자체가 왕국의 선포였다.",
+  "voc": [["city","n.","성, 도시"],["village","n.","마을"],["preach","v.","전파하다"],["glad tidings","","기쁜 소식, 복음"]],
+  "idi": [["come to pass","일어나다, 되다"],["glad tidings","복음, 기쁜 소식"]],
+  "gra": [["the twelve were with him","the twelve=열두 제자(the+수사로 그 무리를 가리킴)"]]
+ },
+ {
+  "en": "And certain women, which had been healed of evil spirits and infirmities, Mary called Magdalene, out of whom went seven devils,",
+  "ko": "또 악한 영과 질병에서 고침을 받은 몇몇 여자도 함께하였으니, 일곱 귀신이 떠나간 막달라라 하는 마리아와,",
+  "note": "예수를 따른 무리에 고침 받은 여인들이 있었다. 막달라 마리아에게서 '일곱 귀신'이 떠났다 하니, 온전한 속박에서 온전히 놓임 받은 은혜를 드러낸다.",
+  "voc": [["heal","v.","고치다, 낫게 하다"],["evil spirit","","악한 영"],["infirmity","n.","질병, 연약함"],["devil","n.","귀신, 마귀"]],
+  "idi": [],
+  "gra": [["which had been healed","which=관계대명사(who의 옛 용법) '고침 받은 여자들'"],["out of whom went seven devils","out of whom=관계사 '그에게서 …이 떠나갔다'"]]
+ },
+ {
+  "en": "And Joanna the wife of Chuza Herod’s steward, and Susanna, and many others, which ministered unto him of their substance.",
+  "ko": "헤롯의 청지기 구사의 아내 요안나와 수산나와 그 밖의 많은 여자라. 이들이 자기 재물로 예수와 그 일행을 섬기더라.",
+  "note": "여인들이 자기 소유로 예수 일행을 후원했다. 왕국의 사역은 이렇게 헌신한 이들의 물질적 섬김으로 뒷받침되었으니, 섬김도 복음의 한 몫이다.",
+  "voc": [["wife","n.","아내"],["steward","n.","청지기"],["minister","v.","섬기다, 봉사하다"],["substance","n.","재물, 소유"]],
+  "idi": [],
+  "gra": [["which ministered unto him","which=who의 옛 용법; unto him=to him '그에게'"],["of their substance","of=with(수단)의 옛 용법 '자기 재물로'"]]
+ },
+ {
+  "en": "And when much people were gathered together, and were come to him out of every city, he spake by a parable:",
+  "ko": "큰 무리가 모여들고 각 성에서 사람들이 예수께로 나아오매, 그가 비유로 일러 이르시되,",
+  "note": "예수는 큰 무리 앞에서 '비유'(파라볼레)로 가르치셨다. 비유는 마음이 열린 자에게는 진리를 밝히고 닫힌 자에게는 감추는, 왕국의 이중적 가르침의 방식이다.",
+  "voc": [["gather","v.","모으다, 모이다"],["people","n.","무리, 백성"],["spake","v.","말하였다(speak의 과거)"],["parable","n.","비유"]],
+  "idi": [["gather together","함께 모이다"]],
+  "gra": [["much people were gathered","much people=많은 무리(집합적 단수)"],["were come to him","were come=현재완료의 옛 형태(had come) '그에게 나아왔다'"]]
+ },
+ {
+  "en": "A sower went out to sow his seed: and as he sowed, some fell by the way side; and it was trodden down, and the fowls of the air devoured it.",
+  "ko": "\"씨 뿌리는 자가 그 씨를 뿌리러 나갔더라. 뿌릴 때에 더러는 길가에 떨어지매 발에 밟히고 공중의 새들이 와서 먹어 버렸으며,",
+  "note": "씨 뿌리는 비유의 도입이다. 씨는 하나님의 말씀, 밭은 사람의 마음이니, 같은 말씀이 마음의 상태에 따라 다른 결실을 맺음을 가르친다.",
+  "voc": [["sower","n.","씨 뿌리는 자"],["sow","v.","(씨를) 뿌리다"],["seed","n.","씨"],["fowl","n.","새"],["devour","v.","삼키다, 먹어 치우다"]],
+  "idi": [["by the way side","길가에"],["go out","나가다"]],
+  "gra": [["it was trodden down","trodden=tread(밟다)의 과거분사; 수동 '밟히다'"]]
+ },
+ {
+  "en": "And some fell upon a rock; and as soon as it was sprung up, it withered away, because it lacked moisture.",
+  "ko": "더러는 바위 위에 떨어지매 싹이 났으나 물기가 없으므로 곧 말라 버렸고,",
+  "note": "바위 위에 떨어진 씨는 뿌리를 내리지 못한다. 겉으로는 빨리 자라도 속에 깊이가 없으면, 시련의 볕 아래 이내 시들고 마는 얕은 믿음을 가리킨다.",
+  "voc": [["rock","n.","바위"],["spring up","v.","싹이 나다, 돋아나다"],["wither","v.","시들다, 마르다"],["moisture","n.","물기, 습기"]],
+  "idi": [["spring up","싹트다, 돋아나다"],["wither away","말라 죽다"]],
+  "gra": [["as soon as it was sprung up","was sprung up=현재완료 수동의 옛 형태 '싹이 나자마자'"]]
+ },
+ {
+  "en": "And some fell among thorns; and the thorns sprang up with it, and choked it.",
+  "ko": "더러는 가시덤불 가운데 떨어지매 가시가 함께 자라서 그 기운을 막아 버렸으며,",
+  "note": "가시 가운데 떨어진 씨는 자라기는 하나 눌려 열매를 맺지 못한다. 세상 염려와 재물이 말씀의 기운을 막으니, 함께 자란 가시가 결실을 질식시킨다.",
+  "voc": [["thorn","n.","가시, 가시덤불"],["spring","v.","자라다, 돋다"],["choke","v.","막다, 질식시키다"]],
+  "idi": [["among thorns","가시덤불 가운데"]],
+  "gra": [["the thorns sprang up","sprang=spring(돋다)의 과거"]]
+ },
+ {
+  "en": "And other fell on good ground, and sprang up, and bare fruit an hundredfold. And when he had said these things, he cried, He that hath ears to hear, let him hear.",
+  "ko": "더러는 좋은 땅에 떨어지매 싹이 나서 백 배의 열매를 맺었느니라.\" 이 말씀을 하시고 외쳐 이르시되, \"들을 귀 있는 자는 들을지어다.\"",
+  "note": "좋은 땅은 '백 배'의 풍성한 열매를 맺는다. '들을 귀 있는 자는 들으라' 하심은, 겉으로 듣는 것을 넘어 마음으로 받아 순종하라는 왕국의 부르심이다.",
+  "voc": [["good ground","","좋은 땅"],["bare","v.","맺었다(bear의 과거)"],["hundredfold","n.","백 배"],["cry","v.","외치다"]],
+  "idi": [["bare fruit","열매를 맺다"],["he that hath ears to hear","들을 귀 있는 자"]],
+  "gra": [["an hundredfold","현대영어 a hundredfold, h를 발음 안 하던 옛 관습으로 an을 씀"],["He that hath ears","he that=he who; hath=has의 옛말"],["let him hear","let+목적어+동사원형 '그로 듣게 하라'"]]
+ },
+ {
+  "en": "And his disciples asked him, saying, What might this parable be?",
+  "ko": "그 제자들이 이 비유가 무슨 뜻인지 물으니,",
+  "note": "제자들이 비유의 뜻을 묻는다. 무리는 듣고 흩어졌으나 제자들은 나아와 물으니, 진리를 사모하여 캐묻는 태도가 왕국의 비밀을 여는 문이다.",
+  "voc": [["disciple","n.","제자"],["ask","v.","묻다"],["parable","n.","비유"]],
+  "idi": [],
+  "gra": [["What might this parable be?","might be=~일 수 있는가(정중한 물음의 옛 어법) '무슨 뜻인가'"]]
+ },
+ {
+  "en": "And he said, Unto you it is given to know the mysteries of the kingdom of God: but to others in parables; that seeing they might not see, and hearing they might not understand.",
+  "ko": "그가 이르시되, \"하나님의 왕국의 비밀을 아는 것이 너희에게는 허락되었으나, 다른 이들에게는 비유로 하나니, 이는 그들이 보아도 보지 못하고 들어도 깨닫지 못하게 하려 함이라.",
+  "note": "왕국의 '비밀'(뮈스테리온)은 은혜로 열리는 계시다. 비유는 완악한 자에게 심판이 되어 보아도 못 보게 하니(사 6:9), 듣는 태도가 깨달음을 가른다.",
+  "voc": [["mystery","n.","비밀, 신비"],["kingdom","n.","왕국"],["understand","v.","깨닫다, 이해하다"]],
+  "idi": [],
+  "gra": [["Unto you it is given","unto you=to you '너희에게'; it is given=허락되다(수동)"],["that seeing they might not see","that ~ might=목적 '보아도 보지 못하도록'"]]
+ },
+ {
+  "en": "Now the parable is this: The seed is the word of God.",
+  "ko": "이 비유는 이러하니, 그 씨는 하나님의 말씀이라.",
+  "note": "예수께서 친히 비유를 푸신다. '씨는 하나님의 말씀'이니, 이 한 문장이 온 비유의 열쇠다. 뿌려지는 것은 사람의 지혜가 아니라 살아 있는 하나님의 말씀이다.",
+  "voc": [["parable","n.","비유"],["seed","n.","씨"],["word","n.","말씀"]],
+  "idi": [],
+  "gra": [["the parable is this","this=다음에 이어지는 설명을 가리킴 '이러하니'"]]
+ },
+ {
+  "en": "Those by the way side are they that hear; then cometh the devil, and taketh away the word out of their hearts, lest they should believe and be saved.",
+  "ko": "길가에 떨어진 것은 말씀을 듣는 자들이니, 그 후에 마귀가 와서 그들이 믿어 구원에 이르지 못하게 하려고 그 마음에서 말씀을 빼앗아 가느니라.",
+  "note": "길가 같은 마음은 말씀을 흘려듣는다. 마귀가 그 말씀을 빼앗는 목적이 '믿어 구원받지 못하게' 함이니, 곧 믿음이 구원에 이르는 길임을 역으로 증언한다.",
+  "voc": [["hear","v.","듣다"],["devil","n.","마귀"],["take away","v.","빼앗다"],["believe","v.","믿다"],["save","v.","구원하다"]],
+  "idi": [["by the way side","길가에"],["take away","빼앗아 가다"]],
+  "gra": [["they that hear","they that=those who '듣는 자들'"],["then cometh the devil","cometh=comes의 옛말; 주어 도치"],["lest they should believe","lest ~ should=~하지 못하도록"]]
+ },
+ {
+  "en": "They on the rock are they, which, when they hear, receive the word with joy; and these have no root, which for a while believe, and in time of temptation fall away.",
+  "ko": "바위 위에 있는 것은 말씀을 들을 때에 기쁨으로 받으나 뿌리가 없어 잠시 믿다가 시험을 당할 때에 떨어져 나가는 자들이라.",
+  "note": "기쁨으로 받되 뿌리가 없는 믿음이다. 감정의 열심은 있으나 속에 깊이가 없어, 시험(페이라스모스)의 볕이 들면 이내 떨어져 나간다. 참 믿음은 뿌리로 판가름된다.",
+  "voc": [["rock","n.","바위"],["receive","v.","받다"],["root","n.","뿌리"],["temptation","n.","시험, 유혹"],["fall away","v.","떨어져 나가다, 배교하다"]],
+  "idi": [["for a while","잠시 동안"],["fall away","떨어져 나가다, 배신하다"]],
+  "gra": [["which, when they hear","which=who의 옛 용법"],["for a while believe","for a while=잠시 '잠깐 믿다가'"]]
+ },
+ {
+  "en": "And that which fell among thorns are they, which, when they have heard, go forth, and are choked with cares and riches and pleasures of this life, and bring no fruit to perfection.",
+  "ko": "가시덤불에 떨어진 것은 말씀을 들었으나 살아가며 염려와 재물과 향락에 막혀서 그 열매를 온전히 맺지 못하는 자들이라.",
+  "note": "가시는 '염려와 재물과 향락'이다. 이 셋이 함께 자라 말씀을 질식시키니, 죄뿐 아니라 세상의 좋아 보이는 것들도 열매를 온전히 맺지 못하게 하는 가시가 된다.",
+  "voc": [["thorn","n.","가시"],["choke","v.","막다, 질식시키다"],["care","n.","염려, 근심"],["riches","n.","재물"],["pleasure","n.","향락, 쾌락"]],
+  "idi": [["go forth","나아가다, 살아가다"],["bring fruit to perfection","열매를 온전히 맺다"]],
+  "gra": [["that which fell","that which=~한 것(관계대명사)"],["when they have heard","현재완료 '들은 뒤에'"]]
+ },
+ {
+  "en": "But that on the good ground are they, which in an honest and good heart, having heard the word, keep it, and bring forth fruit with patience.",
+  "ko": "좋은 땅에 떨어진 것은 정직하고 선한 마음으로 말씀을 듣고 그것을 지키어 인내로 열매를 맺는 자들이니라.",
+  "note": "좋은 땅은 '정직하고 선한 마음'이다. 듣고 지키어 '인내로'(휘포모네) 열매 맺으니, 참 결실은 순간의 감격이 아니라 끝까지 견디는 믿음에서 온다.",
+  "voc": [["honest","a.","정직한"],["keep","v.","지키다"],["fruit","n.","열매"],["patience","n.","인내"]],
+  "idi": [["bring forth fruit","열매를 맺다"],["with patience","인내로"]],
+  "gra": [["which in an honest and good heart","which=who의 옛 용법"],["having heard the word","분사구문 '말씀을 들은 뒤'"]]
+ },
+ {
+  "en": "No man, when he hath lighted a candle, covereth it with a vessel, or putteth it under a bed; but setteth it on a candlestick, that they which enter in may see the light.",
+  "ko": "누구든지 등불을 켜서 그것을 그릇으로 덮거나 침상 아래에 두지 아니하고 등잔대 위에 두나니, 이는 들어오는 자들이 그 빛을 보게 하려 함이라.",
+  "note": "등불은 비추기 위해 켠다. 받은 말씀의 빛을 감추지 말고 드러내라 하심이니, 왕국의 진리는 숨겨 두는 보물이 아니라 온 집을 밝히는 등불이다.",
+  "voc": [["light","v.","켜다"],["candle","n.","등불, 초"],["vessel","n.","그릇"],["candlestick","n.","등잔대, 촛대"]],
+  "idi": [["enter in","들어오다"]],
+  "gra": [["No man ... covereth it","covereth=covers의 옛말(-eth 3인칭 단수)"],["hath lighted","hath=has; 현재완료 '켜서'"],["that they which enter in may see","that ~ may=목적 '보게 하려'; they which=those who"]]
+ },
+ {
+  "en": "For nothing is secret, that shall not be made manifest; neither any thing hid, that shall not be known and come abroad.",
+  "ko": "감추인 것이 드러나지 아니할 것이 없고, 숨긴 것이 알려지고 밝히 나타나지 아니할 것이 없느니라.",
+  "note": "감춘 것은 언젠가 드러난다. 사람의 속과 말씀에 대한 반응이 마침내 밝히 나타나리니, 이 경고는 진실하게 듣고 살라는 왕국의 촉구다.",
+  "voc": [["secret","a.","감추인, 비밀의"],["manifest","a.","드러난, 명백한"],["hid","a.","숨겨진"],["come abroad","v.","널리 알려지다"]],
+  "idi": [["make manifest","드러내다"],["come abroad","널리 퍼지다, 알려지다"]],
+  "gra": [["that shall not be made manifest","that=관계대명사; be made manifest=드러나게 되다(수동)"]]
+ },
+ {
+  "en": "Take heed therefore how ye hear: for whosoever hath, to him shall be given; and whosoever hath not, from him shall be taken even that which he seemeth to have.",
+  "ko": "그러므로 너희가 어떻게 듣는가를 삼가라. 무릇 있는 자는 받을 것이요, 없는 자는 그 가진 줄로 여기는 것까지도 빼앗기리라.\"",
+  "note": "'어떻게 듣는가'가 관건이다. 받은 진리를 붙드는 자는 더 받고 흘려버리는 자는 있던 것마저 잃으니, 들음의 태도가 곧 영적 풍성함과 빈곤을 가른다.",
+  "voc": [["take heed","","삼가다, 주의하다"],["whosoever","pron.","누구든지"],["seem","v.","~인 듯하다, 여기다"]],
+  "idi": [["take heed","조심하다, 유의하다"]],
+  "gra": [["whosoever hath, to him shall be given","hath=has; 도치 '있는 자에게는 주어지리라'(수동)"],["that which he seemeth to have","that which=~한 것; seemeth=seems의 옛말"]]
+ },
+ {
+  "en": "Then came to him his mother and his brethren, and could not come at him for the press.",
+  "ko": "그때에 예수의 어머니와 그 형제들이 그에게 왔으나 무리로 인하여 가까이 나아오지 못하니,",
+  "note": "예수의 육신의 가족이 무리에 막혀 다가오지 못한다. 이 장면은 곧이어 참 가족의 정의로 이어지니, 혈연보다 말씀에 대한 순종이 더 가까운 관계임을 예비한다.",
+  "voc": [["mother","n.","어머니"],["brethren","n.","형제들"],["press","n.","무리, 인파"]],
+  "idi": [["come at","~에게 다가가다"]],
+  "gra": [["Then came to him his mother","주어 도치(고어체) '그에게 왔다'"],["brethren","brother의 옛 복수형 '형제들'"],["for the press","for=때문에; press=몰려든 무리"]]
+ },
+ {
+  "en": "And it was told him by certain which said, Thy mother and thy brethren stand without, desiring to see thee.",
+  "ko": "어떤 이가 그에게 알리어 이르되, \"당신의 어머니와 형제들이 당신을 보고자 하여 밖에 서 있나이다\" 하매,",
+  "note": "가족이 '밖에' 서 있다는 전갈이 전해진다. '밖'이라는 자리가 상징적이니, 예수는 이를 계기로 누가 참으로 '안에' 있는 가족인지를 밝히신다.",
+  "voc": [["tell","v.","알리다, 말하다"],["certain","pron.","어떤 이"],["without","adv.","밖에"],["desire","v.","원하다, 바라다"]],
+  "idi": [["stand without","밖에 서 있다"]],
+  "gra": [["by certain which said","certain=어떤 사람들; which=who의 옛 용법"],["Thy mother ... desiring to see thee","thy=your·thee=you의 옛말"]]
+ },
+ {
+  "en": "And he answered and said unto them, My mother and my brethren are these which hear the word of God, and do it.",
+  "ko": "그가 대답하여 이르시되, \"내 어머니와 내 형제들은 곧 하나님의 말씀을 듣고 행하는 이들이니라\" 하시니라.",
+  "note": "예수는 참 가족을 '말씀을 듣고 행하는 자'로 정의하신다. 왕국의 가족됨은 태생이 아니라 순종에 있으니, 듣기만 하고 행치 않으면 밖에 선 자와 같다.",
+  "voc": [["answer","v.","대답하다"],["brethren","n.","형제들"],["word","n.","말씀"],["do","v.","행하다"]],
+  "idi": [["hear the word of God","하나님의 말씀을 듣다"]],
+  "gra": [["said unto them","unto them=to them '그들에게'"],["these which hear ... and do it","these which=these who '듣고 행하는 이들'"]]
+ },
+ {
+  "en": "Now it came to pass on a certain day, that he went into a ship with his disciples: and he said unto them, Let us go over unto the other side of the lake. And they launched forth.",
+  "ko": "어느 날 예수께서 제자들과 함께 배에 오르사 그들에게 이르시되, \"호수 저편으로 건너가자\" 하시매 그들이 출발하니라.",
+  "note": "풍랑 사건의 도입이다. '저편으로 건너가자'는 예수의 말씀이 곧이어 닥칠 폭풍 속에서도 반드시 이루어질 약속이 되니, 그의 명령에는 반드시 도달함이 담겨 있다.",
+  "voc": [["ship","n.","배"],["disciple","n.","제자"],["lake","n.","호수"],["launch forth","v.","출발하다, 배를 띄우다"]],
+  "idi": [["come to pass","일어나다"],["go over","건너가다"],["launch forth","출항하다"]],
+  "gra": [["said unto them","unto them=to them"],["Let us go over unto the other side","unto=to '저편으로'"]]
+ },
+ {
+  "en": "But as they sailed he fell asleep: and there came down a storm of wind on the lake; and they were filled with water, and were in jeopardy.",
+  "ko": "그들이 항해할 때에 예수께서 잠이 드셨더니, 광풍이 호수로 내리치매 배에 물이 가득하여 위태롭게 되었더라.",
+  "note": "예수는 폭풍 속에서 주무신다. 그 잠은 무관심이 아니라 아버지를 향한 온전한 신뢰의 안식이니, 제자들의 두려움과 극명히 대비된다.",
+  "voc": [["sail","v.","항해하다"],["fall asleep","v.","잠들다"],["storm","n.","폭풍, 광풍"],["jeopardy","n.","위험, 위태로움"]],
+  "idi": [["fall asleep","잠들다"],["in jeopardy","위태로운, 위험에 처한"]],
+  "gra": [["there came down a storm","there came=존재·발생 도치 '내리쳤다'"],["they were filled with water","수동 '물이 가득 찼다'"]]
+ },
+ {
+  "en": "And they came to him, and awoke him, saying, Master, master, we perish. Then he arose, and rebuked the wind and the raging of the water: and they ceased, and there was a calm.",
+  "ko": "제자들이 나아와 그를 깨워 이르되, \"선생님이여, 선생님이여, 우리가 죽겠나이다\" 하니, 그가 일어나사 바람과 사나운 물결을 꾸짖으시매 그것들이 그치고 잔잔하여졌더라.",
+  "note": "예수께서 바람을 '꾸짖으시니'(에피티마오) 곧 잠잠해진다. 이는 귀신을 꾸짖으실 때와 같은 말이니, 창조주의 권세가 자연 위에 온전히 미침을 드러낸다.",
+  "voc": [["awoke","v.","깨웠다(awake의 과거)"],["perish","v.","죽다, 멸망하다"],["rebuke","v.","꾸짖다"],["raging","n.","사나움, 격노"],["cease","v.","그치다"]],
+  "idi": [["there was a calm","잔잔해졌다, 고요해졌다"]],
+  "gra": [["Master, master, we perish","master=선생/주인; perish=현재형으로 임박한 위험"],["he arose","arose=arise(일어나다)의 과거"]]
+ },
+ {
+  "en": "And he said unto them, Where is your faith? And they being afraid wondered, saying one to another, What manner of man is this! for he commandeth even the winds and water, and they obey him.",
+  "ko": "그가 그들에게 이르시되, \"너희 믿음이 어디 있느냐?\" 하시니, 그들이 두려워하고 놀라 서로 이르되, \"이분이 어떤 분이시기에 바람과 물도 명하시매 그것들이 순종하는가?\" 하더라.",
+  "note": "'너희 믿음이 어디 있느냐' 하심은 믿음의 부재를 드러낸다. 제자들의 '이분이 어떤 분인가'라는 물음이 곧 이 장의 중심이니, 자연을 명하시는 이는 다름 아닌 하나님이시다.",
+  "voc": [["faith","n.","믿음"],["afraid","a.","두려워하는"],["wonder","v.","놀라다, 이상히 여기다"],["command","v.","명하다"],["obey","v.","순종하다"]],
+  "idi": [["one to another","서로"],["what manner of man","어떤 사람인가"]],
+  "gra": [["said unto them","unto them=to them"],["he commandeth","commandeth=commands의 옛말(-eth)"]]
+ },
+ {
+  "en": "And they arrived at the country of the Gadarenes, which is over against Galilee.",
+  "ko": "그들이 갈릴리 맞은편에 있는 거라사인의 지방에 이르렀더니,",
+  "note": "예수 일행이 이방 지경 거라사에 이른다. 폭풍을 지나 도착한 곳에서 곧 귀신 들린 자를 만나시니, 왕국의 권능이 유대의 경계를 넘어 이방에까지 미친다.",
+  "voc": [["arrive","v.","이르다, 도착하다"],["country","n.","지방, 지역"],["Gadarenes","n.","거라사인(그 지방 사람들)"]],
+  "idi": [["over against","맞은편에"]],
+  "gra": [["which is over against Galilee","which=관계대명사; over against=맞은편의(옛 표현)"]]
+ },
+ {
+  "en": "And when he went forth to land, there met him out of the city a certain man, which had devils long time, and ware no clothes, neither abode in any house, but in the tombs.",
+  "ko": "예수께서 뭍에 내리시매, 그 성에서 나온 한 사람이 그를 만났으니, 이 사람은 오랫동안 귀신 들려 옷도 입지 아니하고 집에도 거하지 아니하며 무덤 사이에서 지내더라.",
+  "note": "귀신 들린 자는 옷도 집도 없이 무덤에 산다. 죄와 사귀에 사로잡힌 인생의 처참한 형상이니, 산 자가 죽은 자의 처소에 갇힌 그 자리에 예수께서 친히 찾아오신다.",
+  "voc": [["go forth","v.","나아가다, 내리다"],["devil","n.","귀신"],["ware","v.","입었다(wear의 옛 과거)"],["abide","v.","거하다, 머물다"],["tomb","n.","무덤"]],
+  "idi": [["go forth","나가다"],["long time","오랫동안"]],
+  "gra": [["there met him ... a certain man","there met=도치 '한 사람이 그를 만났다'"],["which had devils","which=who의 옛 용법"],["ware no clothes","ware=wore(입었다)의 옛 형태"],["neither abode in any house","abode=abide의 과거 '거하지 않았다'"]]
+ },
+ {
+  "en": "When he saw Jesus, he cried out, and fell down before him, and with a loud voice said, What have I to do with thee, Jesus, thou Son of God most high? I beseech thee, torment me not.",
+  "ko": "그가 예수를 보고 부르짖으며 그 앞에 엎드려 큰 소리로 이르되, \"지극히 높으신 하나님의 아들 예수여, 당신이 나와 무슨 상관이 있나이까? 간구하오니 나를 괴롭히지 마소서\" 하니,",
+  "note": "귀신들도 예수를 '지극히 높으신 하나님의 아들'로 알아 떤다(약 2:19). 사람은 몰라보는 그의 신분을 사귀는 아니, 그 앞에 엎드림은 이미 그의 권세에 굴복함이다.",
+  "voc": [["cry out","v.","부르짖다"],["fall down","v.","엎드리다"],["beseech","v.","간구하다"],["torment","v.","괴롭히다"]],
+  "idi": [["cry out","부르짖다, 소리치다"],["fall down before","~앞에 엎드리다"]],
+  "gra": [["What have I to do with thee","What have I to do with~=너와 무슨 상관인가(관용 반문); thee=you"],["thou Son of God most high","thou=너(호격); most high=지극히 높으신"],["I beseech thee, torment me not","torment me not=명령 부정 '괴롭히지 말라'"]]
+ },
+ {
+  "en": "(For he had commanded the unclean spirit to come out of the man. For oftentimes it had caught him: and he was kept bound with chains and in fetters; and he brake the bands, and was driven of the devil into the wilderness.)",
+  "ko": "이는 예수께서 그 더러운 영에게 그 사람에게서 나오라 명하셨음이라. 그 영이 여러 번 그를 사로잡았으므로, 사람들이 그를 쇠사슬과 고랑으로 매어 지켰으나 그가 그 결박을 끊고 귀신에게 몰려 광야로 쫓겨 가곤 하였더라.",
+  "note": "쇠사슬로도 그를 매어 둘 수 없었다. 사람의 힘으로는 사귀의 속박을 풀 수 없음을 보이니, 오직 예수의 한 마디 명령만이 이 결박을 끊으실 수 있다.",
+  "voc": [["unclean spirit","","더러운 영"],["oftentimes","adv.","여러 번, 자주"],["fetter","n.","고랑, 족쇄"],["band","n.","결박, 매인 것"],["wilderness","n.","광야"]],
+  "idi": [["come out of","~에게서 나오다"],["be driven of","~에게 몰리다"]],
+  "gra": [["he had commanded","과거완료 '명하셨었다'"],["was kept bound","수동 '매여 지켜졌다'"],["he brake the bands","brake=break(끊다)의 옛 과거"],["was driven of the devil","of=by(행위자)의 옛 용법 '귀신에게 몰려'"]]
+ },
+ {
+  "en": "And Jesus asked him, saying, What is thy name? And he said, Legion: because many devils were entered into him.",
+  "ko": "예수께서 그에게 물어 이르시되, \"네 이름이 무엇이냐?\" 하시니, 그가 이르되, \"군대니이다\" 하니, 이는 많은 귀신이 그 속에 들어갔음이라.",
+  "note": "'레기온'(군대)은 로마의 군단으로 수천을 뜻한다. 한 사람 안에 그토록 많은 귀신이 들었으니, 죄의 속박이 얼마나 깊은지를 드러내며 예수의 권능은 그보다 크심을 예비한다.",
+  "voc": [["ask","v.","묻다"],["name","n.","이름"],["legion","n.","군대, 로마 군단"],["devil","n.","귀신"]],
+  "idi": [],
+  "gra": [["What is thy name?","thy=your의 옛말 '네 이름'"],["many devils were entered into him","were entered=현재완료 수동의 옛 형태 '들어갔다'"]]
+ },
+ {
+  "en": "And they besought him that he would not command them to go out into the deep.",
+  "ko": "그것들이 자기들을 명하여 무저갱으로 들어가게 하지 마시기를 예수께 간구하더라.",
+  "note": "귀신들이 '무저갱'(아뷔소스)에 들어가지 않기를 간구한다. 그것들조차 예수의 말씀 한 마디에 자기 운명이 달렸음을 아니, 그의 명령이 사귀의 세계를 다스린다.",
+  "voc": [["beseech","v.","간구하다"],["command","v.","명하다"],["deep","n.","무저갱, 깊은 곳"]],
+  "idi": [["go out into the deep","무저갱으로 들어가다"]],
+  "gra": [["besought him that he would not command","besought=beseech의 과거; that ~ would not=~하지 않으시기를"]]
+ },
+ {
+  "en": "And there was there an herd of many swine feeding on the mountain: and they besought him that he would suffer them to enter into them. And he suffered them.",
+  "ko": "마침 그곳 산에서 많은 돼지 떼가 먹고 있었으니, 귀신들이 그 돼지들 속으로 들어가게 허락하시기를 간구하매 예수께서 허락하시니라.",
+  "note": "귀신들이 돼지 떼로 들어가기를 구하니 예수께서 허락하신다. 사귀는 스스로는 아무것도 할 수 없어 허락을 구하니, 모든 권세가 오직 예수의 손 안에 있음을 보인다.",
+  "voc": [["herd","n.","떼, 무리"],["swine","n.","돼지"],["feed","v.","먹다, 풀을 뜯다"],["suffer","v.","허락하다"]],
+  "idi": [["suffer to","~하도록 허락하다"]],
+  "gra": [["there was there an herd","there was there=거기 있었다(존재 도치); an herd=a herd(옛 관습)"],["that he would suffer them to enter","suffer=허락하다(옛 뜻) '들어가게 하시기를'"]]
+ },
+ {
+  "en": "Then went the devils out of the man, and entered into the swine: and the herd ran violently down a steep place into the lake, and were choked.",
+  "ko": "이에 귀신들이 그 사람에게서 나와 돼지들 속으로 들어가니, 그 떼가 비탈을 내리달아 호수에 빠져 몰사하니라.",
+  "note": "귀신의 목적은 언제나 파멸이다. 돼지 떼가 물에 빠져 몰사함은 사귀가 붙드는 곳마다 멸망이 따름을 드러내니, 그 손아귀에서 건짐 받은 사람의 회복이 더욱 빛난다.",
+  "voc": [["devil","n.","귀신"],["swine","n.","돼지"],["violently","adv.","맹렬히, 세차게"],["steep","a.","가파른"],["choke","v.","빠져 죽다, 질식하다"]],
+  "idi": [["run down","내리달리다"]],
+  "gra": [["Then went the devils out","주어 도치 '귀신들이 나갔다'"],["down a steep place","steep place=가파른 비탈"],["were choked","수동 '몰사하였다'"]]
+ },
+ {
+  "en": "When they that fed them saw what was done, they fled, and went and told it in the city and in the country.",
+  "ko": "치던 자들이 그 일어난 일을 보고 도망하여 성과 마을에 알리매,",
+  "note": "돼지 치던 자들이 이 일을 성읍에 알린다. 예수의 능력의 소문은 빠르게 퍼지나, 사람들의 반응은 믿음이 아니라 곧이어 나올 두려움이었다.",
+  "voc": [["feed","v.","치다, 먹이다"],["flee","v.","도망하다"],["tell","v.","알리다"],["country","n.","마을, 지방"]],
+  "idi": [],
+  "gra": [["they that fed them","they that=those who '치던 자들'"],["what was done","수동 '일어난 일'"]]
+ },
+ {
+  "en": "Then they went out to see what was done; and came to Jesus, and found the man, out of whom the devils were departed, sitting at the feet of Jesus, clothed, and in his right mind: and they were afraid.",
+  "ko": "사람들이 그 일을 보려고 나와 예수께 이르러, 귀신 떠나간 그 사람이 옷을 입고 정신이 온전하여 예수의 발치에 앉아 있는 것을 보고 두려워하더라.",
+  "note": "무덤에 미쳐 날뛰던 자가 '옷을 입고 정신이 온전하여' 예수의 발치에 앉았다. 이 회복된 모습이야말로 왕국 권능의 증거이니, 예수 앞에 앉음이 참 자유의 자리다.",
+  "voc": [["depart","v.","떠나다"],["clothed","a.","옷을 입은"],["right mind","","온전한 정신"],["afraid","a.","두려워하는"]],
+  "idi": [["sit at the feet of","~의 발치에 앉다"],["in one's right mind","정신이 온전한"]],
+  "gra": [["out of whom the devils were departed","out of whom=관계사 '그에게서 귀신이 떠났다'; were departed=옛 현재완료"],["what was done","수동 '일어난 일'"]]
+ },
+ {
+  "en": "They also which saw it told them by what means he that was possessed of the devils was healed.",
+  "ko": "또 그 일을 본 자들이 귀신 들렸던 사람이 어떻게 고침을 받았는지를 그들에게 일러 주니라.",
+  "note": "목격자들이 치유의 경위를 전한다. 예수의 일하심은 증언되어 퍼지나, 다음 절에서 보듯 그 증언이 반드시 믿음으로 이어지는 것은 아니다.",
+  "voc": [["means","n.","방법, 수단"],["possess","v.","(귀신이) 들리다"],["heal","v.","고치다"]],
+  "idi": [["by what means","어떤 방법으로"],["be possessed of","~에게 들리다, 사로잡히다"]],
+  "gra": [["they also which saw it","which=who의 옛 용법"],["he that was possessed","he that=he who; was possessed=수동 '들렸던 자'"]]
+ },
+ {
+  "en": "Then the whole multitude of the country of the Gadarenes round about besought him to depart from them; for they were taken with great fear: and he went up into the ship, and returned back again.",
+  "ko": "이에 거라사 지방의 온 무리가 크게 두려움에 사로잡혀 예수께 자기들을 떠나시기를 간구하매, 예수께서 배에 오르사 다시 돌아가시니라.",
+  "note": "거라사 사람들은 은혜의 주를 떠나시라 간구한다. 돼지의 손실을 아까워하여 구원의 주를 물리치니, 세상의 이익에 매인 마음은 왕국을 알아보지 못한다.",
+  "voc": [["multitude","n.","무리"],["besought","v.","간구하였다"],["depart","v.","떠나다"],["fear","n.","두려움"]],
+  "idi": [["round about","주위의, 인근의"],["be taken with","~에 사로잡히다"]],
+  "gra": [["besought him to depart","besought=beseech의 과거"],["they were taken with great fear","수동 '두려움에 사로잡혔다'"]]
+ },
+ {
+  "en": "Now the man out of whom the devils were departed besought him that he might be with him: but Jesus sent him away, saying,",
+  "ko": "귀신 떠나간 그 사람이 예수와 함께 있기를 간구하되 예수께서 그를 보내시며 이르시되,",
+  "note": "고침 받은 자는 예수와 함께 있기를 원한다. 그러나 예수는 그를 돌려보내 증인 삼으시니, 때로 주와 함께함은 그의 은혜를 자기 삶의 자리에서 전하는 것이다.",
+  "voc": [["depart","v.","떠나다"],["beseech","v.","간구하다"],["send away","v.","보내다, 떠나보내다"]],
+  "idi": [["send away","돌려보내다"]],
+  "gra": [["out of whom the devils were departed","out of whom=관계사; were departed=옛 현재완료"],["that he might be with him","that ~ might=~하기를(간구의 내용)"]]
+ },
+ {
+  "en": "Return to thine own house, and shew how great things God hath done unto thee. And he went his way, and published throughout the whole city how great things Jesus had done unto him.",
+  "ko": "\"네 집으로 돌아가서 하나님께서 네게 행하신 큰일을 알리라\" 하시니, 그가 가서 예수께서 자기에게 행하신 큰일을 온 성에 두루 전파하니라.",
+  "note": "예수는 '하나님께서 행하신 큰일'을 알리라 하셨으나, 그는 '예수께서 행하신 큰일'을 전한다. 그 회복된 자에게 예수와 하나님은 하나이시니, 첫 이방 전도자가 여기서 난다.",
+  "voc": [["return","v.","돌아가다"],["shew","v.","알리다, 보이다"],["publish","v.","전파하다, 널리 알리다"],["throughout","prep.","두루, 온"]],
+  "idi": [["go one's way","제 갈 길을 가다"],["great things","큰일"]],
+  "gra": [["Return to thine own house","thine=thy(your)의 옛말(모음 앞)"],["God hath done unto thee","hath=has; unto thee=to you '네게'"],["Jesus had done unto him","과거완료 '행하셨던'"]]
+ },
+ {
+  "en": "And it came to pass, that, when Jesus was returned, the people gladly received him: for they were all waiting for him.",
+  "ko": "예수께서 돌아오시매 무리가 그를 기쁘게 맞이하니, 이는 그들이 다 그를 기다리고 있었음이라.",
+  "note": "거라사와 달리 갈릴리 무리는 예수를 기쁘게 맞는다. 같은 주를 두고 어떤 이는 물리치고 어떤 이는 기다리니, 왕국은 그를 사모하는 자에게 열린다.",
+  "voc": [["return","v.","돌아오다"],["gladly","adv.","기쁘게"],["receive","v.","맞이하다, 영접하다"],["wait","v.","기다리다"]],
+  "idi": [["come to pass","일어나다"],["wait for","~을 기다리다"]],
+  "gra": [["when Jesus was returned","was returned=옛 현재완료 '돌아오셨을 때'"]]
+ },
+ {
+  "en": "And, behold, there came a man named Jairus, and he was a ruler of the synagogue: and he fell down at Jesus’ feet, and besought him that he would come into his house:",
+  "ko": "보라, 야이로라 하는 회당장이 와서 예수의 발 앞에 엎드려 자기 집으로 와 주시기를 간구하니,",
+  "note": "회당장 야이로가 예수의 발 앞에 엎드린다. 유대 사회의 존귀한 자가 신분을 내려놓고 간구하니, 참된 절박함은 사람을 겸손히 주 앞에 엎드리게 한다.",
+  "voc": [["behold","interj.","보라"],["ruler","n.","관원, 우두머리"],["synagogue","n.","회당"],["beseech","v.","간구하다"]],
+  "idi": [["fall down at one's feet","~의 발 앞에 엎드리다"],["ruler of the synagogue","회당장"]],
+  "gra": [["there came a man","there came=존재·발생 도치 '한 사람이 왔다'"],["besought him that he would come","besought=beseech의 과거; that ~ would=~하시기를"]]
+ },
+ {
+  "en": "For he had one only daughter, about twelve years of age, and she lay a dying. But as he went the people thronged him.",
+  "ko": "이는 그에게 열두 살쯤 된 외딸이 있어 죽어 가고 있었음이라. 예수께서 가실 때에 무리가 그를 에워싸 밀더라.",
+  "note": "열두 살 외딸이 죽어 간다. 곧이어 열두 해 혈루증 여인과 나란히 놓이니, 누가는 이 '열둘'의 대비로 절망의 인생마다 예수의 능력이 닿음을 엮어 보인다.",
+  "voc": [["only","a.","유일한, 외(딸)"],["daughter","n.","딸"],["lie","v.","누워 있다"],["throng","v.","에워싸 밀다, 몰려들다"]],
+  "idi": [["lay a dying","죽어 가고 있었다"]],
+  "gra": [["he had one only daughter","only=단 하나의 '외딸'"],["she lay a dying","a dying=진행의 옛 표현(a+동명사) '죽어 가고 있었다'"]]
+ },
+ {
+  "en": "And a woman having an issue of blood twelve years, which had spent all her living upon physicians, neither could be healed of any,",
+  "ko": "열두 해 동안 혈루증을 앓아 가진 것을 다 의원들에게 허비하였으나 누구에게서도 고침을 받지 못한 한 여자가 있어,",
+  "note": "열두 해 혈루증은 그를 부정하게 하고 가난하게 했다. 사람의 모든 방법이 다한 자리, 곧 절망의 끝에서 예수를 만나니, 그가 인생의 마지막 소망이 되신다.",
+  "voc": [["issue of blood","","혈루증, 하혈"],["spend","v.","쓰다, 허비하다"],["living","n.","가진 것, 재산"],["physician","n.","의원, 의사"]],
+  "idi": [["issue of blood","혈루증"],["all her living","가진 것 전부"]],
+  "gra": [["which had spent all her living","which=who의 옛 용법; had spent=과거완료"],["neither could be healed of any","of any=by any '누구에게서도'(수동)"]]
+ },
+ {
+  "en": "Came behind him, and touched the border of his garment: and immediately her issue of blood stanched.",
+  "ko": "예수의 뒤로 다가와 그 옷자락에 손을 대니 즉시 혈루의 근원이 그쳤더라.",
+  "note": "옷자락 한 번 만짐에 열두 해 병이 즉시 그친다. 능력은 옷에 있지 않고 그를 만진 믿음에 있으니, 예수께 대는 작은 믿음의 손길이 큰 치유를 이끈다.",
+  "voc": [["behind","prep.","뒤에"],["touch","v.","만지다, 대다"],["border","n.","옷자락, 가장자리"],["garment","n.","옷"],["stanch","v.","(피가) 그치다, 멎다"]],
+  "idi": [["border of his garment","옷자락"]],
+  "gra": [["her issue of blood stanched","stanched=피가 멎었다(옛 자동사 용법)"]]
+ },
+ {
+  "en": "And Jesus said, Who touched me? When all denied, Peter and they that were with him said, Master, the multitude throng thee and press thee, and sayest thou, Who touched me?",
+  "ko": "예수께서 이르시되, \"내게 손을 댄 자가 누구냐?\" 하시니 모두 아니라 할 때에, 베드로와 함께 있던 자들이 이르되, \"선생님이여, 무리가 둘러싸 밀치거늘 어찌하여 누가 내게 손을 대었느냐 하시나이까?\" 하니,",
+  "note": "무리가 밀치는 중에도 예수는 믿음의 손길 하나를 아신다. 뭇 사람의 스침과 한 사람의 믿음이 다르니, 주는 형식적 접촉이 아니라 믿음으로 나아옴을 분별하신다.",
+  "voc": [["touch","v.","만지다"],["deny","v.","아니라 하다, 부인하다"],["throng","v.","둘러싸 밀다"],["press","v.","밀치다"]],
+  "idi": [["they that were with him","그와 함께 있던 자들"]],
+  "gra": [["they that were with him","they that=those who"],["the multitude throng thee and press thee","thee=you '너를'"],["sayest thou","sayest=say의 2인칭 옛 어미; thou=you"]]
+ },
+ {
+  "en": "And Jesus said, Somebody hath touched me: for I perceive that virtue is gone out of me.",
+  "ko": "예수께서 이르시되, \"누군가가 내게 손을 대었도다. 능력이 내게서 나간 것을 내가 아노라\" 하시더라.",
+  "note": "'능력'(뒤나미스)이 나간 것을 예수께서 아신다. 치유는 우연이 아니라 그에게서 흘러나온 하나님의 권능이니, 믿음이 이 능력을 이끌어 낸다.",
+  "voc": [["somebody","pron.","누군가"],["perceive","v.","알다, 감지하다"],["virtue","n.","능력, 힘(고어)"]],
+  "idi": [["go out of","~에게서 나가다"]],
+  "gra": [["Somebody hath touched me","hath=has; 현재완료 '손을 대었다'"],["virtue is gone out of me","is gone out=옛 현재완료 '나갔다'; virtue=권능(고어)"]]
+ },
+ {
+  "en": "And when the woman saw that she was not hid, she came trembling, and falling down before him, she declared unto him before all the people for what cause she had touched him, and how she was healed immediately.",
+  "ko": "그 여자가 자기의 숨긴 일이 드러난 줄을 알고 떨며 나아와 그 앞에 엎드려, 무슨 까닭으로 그에게 손을 대었는지와 어떻게 곧 나았는지를 모든 백성 앞에서 그에게 고하니,",
+  "note": "숨어 나은 여인을 예수는 굳이 드러나게 하신다. 몰래 받은 은혜를 공개된 고백으로 이끄시니, 믿음은 감춤에 머물지 않고 뭇 사람 앞에서 증언되어야 한다.",
+  "voc": [["hid","a.","숨겨진"],["tremble","v.","떨다"],["declare","v.","고하다, 밝히다"],["cause","n.","까닭, 이유"],["heal","v.","낫게 하다"]],
+  "idi": [["fall down before","~앞에 엎드리다"],["for what cause","무슨 까닭으로"]],
+  "gra": [["she was not hid","수동 '숨겨지지 않았다'"],["she declared unto him","unto him=to him"],["how she was healed","수동 '나았다'"]]
+ },
+ {
+  "en": "And he said unto her, Daughter, be of good comfort: thy faith hath made thee whole; go in peace.",
+  "ko": "그가 그 여자에게 이르시되, \"딸아, 안심하라. 네 믿음이 너를 낫게 하였으니 평안히 가라\" 하시더라.",
+  "note": "예수는 그를 '딸아'라 부르시며 '네 믿음이 너를 낫게 하였다' 하신다. 병만이 아니라 관계가 회복되니, '평안히 가라'는 온전한 구원(샬롬)의 선언이다.",
+  "voc": [["comfort","n.","위로, 안심"],["faith","n.","믿음"],["whole","a.","온전한, 성한"],["peace","n.","평안"]],
+  "idi": [["be of good comfort","안심하라, 위로를 받으라"],["make whole","낫게 하다, 온전케 하다"],["go in peace","평안히 가라"]],
+  "gra": [["said unto her","unto her=to her"],["thy faith hath made thee whole","thy=your·hath=has·thee=you '네 믿음이 너를 온전케 하였다'"]]
+ },
+ {
+  "en": "While he yet spake, there cometh one from the ruler of the synagogue’s house, saying to him, Thy daughter is dead; trouble not the Master.",
+  "ko": "예수께서 아직 말씀하실 때에 회당장의 집에서 한 사람이 와서 이르되, \"당신의 딸이 죽었으니 선생님을 더 괴롭히지 마소서\" 하거늘,",
+  "note": "혈루증 여인을 돌보시는 사이 야이로의 딸은 죽고 만다. 사람의 눈에는 늦으심이나, 주의 지체 뒤에는 더 큰 능력이 예비되어 있으니 죽음조차 그의 길을 막지 못한다.",
+  "voc": [["spake","v.","말씀하셨다"],["ruler","n.","관원, 회당장"],["dead","a.","죽은"],["trouble","v.","괴롭히다, 수고롭게 하다"]],
+  "idi": [["ruler of the synagogue","회당장"]],
+  "gra": [["while he yet spake","yet=아직; spake=spoke의 옛말"],["there cometh one","there cometh=존재 도치; cometh=comes의 옛말"],["Thy daughter is dead","thy=your"],["trouble not the Master","명령 부정 '괴롭히지 말라'"]]
+ },
+ {
+  "en": "But when Jesus heard it, he answered him, saying, Fear not: believe only, and she shall be made whole.",
+  "ko": "예수께서 이를 들으시고 그에게 대답하여 이르시되, \"두려워하지 말고 믿기만 하라. 그리하면 그가 낫게 되리라\" 하시고,",
+  "note": "'두려워 말고 믿기만 하라' 하심은 절망을 믿음으로 바꾸라는 부르심이다. 죽음의 소식 앞에서 예수는 오직 믿음을 요구하시니, 그 믿음이 다시 살림의 문이 된다.",
+  "voc": [["hear","v.","듣다"],["answer","v.","대답하다"],["believe","v.","믿다"],["whole","a.","온전한, 성한"]],
+  "idi": [["fear not","두려워 말라"],["make whole","낫게 하다"]],
+  "gra": [["Fear not","명령 부정(고어) '두려워 말라'"],["believe only","only=오직 '믿기만 하라'"],["she shall be made whole","shall be made=수동 미래 '낫게 되리라'"]]
+ },
+ {
+  "en": "And when he came into the house, he suffered no man to go in, save Peter, and James, and John, and the father and the mother of the maiden.",
+  "ko": "그 집에 이르사 베드로와 야고보와 요한과 그 아이의 아버지와 어머니 외에는 아무도 들어가지 못하게 하시니라.",
+  "note": "예수는 세 제자와 부모만 들이신다. 이 은밀한 자리에서 죽음을 이기시는 권능이 증언되니, 가장 큰 이적은 믿는 소수의 눈앞에서 조용히 이루어진다.",
+  "voc": [["suffer","v.","허락하다"],["save","prep.","~외에는"],["maiden","n.","소녀, 처녀"]],
+  "idi": [["go in","들어가다"]],
+  "gra": [["he suffered no man to go in","suffer=허락하다(옛 뜻) '아무도 들이지 않으셨다'"],["save Peter","save=except(~외에)의 옛말"]]
+ },
+ {
+  "en": "And all wept, and bewailed her: but he said, Weep not; she is not dead, but sleepeth.",
+  "ko": "모두가 그 아이를 위하여 울며 슬피 통곡하거늘, 그가 이르시되, \"울지 말라. 그가 죽은 것이 아니라 잠들었느니라\" 하시니,",
+  "note": "예수는 죽음을 '잠'이라 부르신다. 그에게 죽음은 영원한 끝이 아니라 깨우실 잠이니(요 11:11), 이 한 마디에 부활 신앙의 소망이 담겨 있다.",
+  "voc": [["weep","v.","울다"],["bewail","v.","슬피 통곡하다"],["dead","a.","죽은"],["sleep","v.","자다, 잠들다"]],
+  "idi": [["weep not","울지 말라"]],
+  "gra": [["all wept","wept=weep(울다)의 과거"],["Weep not","명령 부정(고어) '울지 말라'"],["she is not dead, but sleepeth","sleepeth=sleeps의 옛말(-eth 3인칭 단수)"]]
+ },
+ {
+  "en": "And they laughed him to scorn, knowing that she was dead.",
+  "ko": "그들이 그 아이가 죽은 줄을 아는지라 예수를 비웃더라.",
+  "note": "사람들은 예수를 비웃는다. 죽음이 끝임을 아는 이성이 부활의 주를 조롱하니, 세상의 지혜는 하나님의 능력 앞에서 도리어 어리석음이 된다.",
+  "voc": [["laugh to scorn","","비웃다, 조롱하다"],["scorn","n.","조롱, 멸시"],["dead","a.","죽은"]],
+  "idi": [["laugh to scorn","비웃다, 조소하다"]],
+  "gra": [["knowing that she was dead","분사구문 '죽은 줄 알고'"]]
+ },
+ {
+  "en": "And he put them all out, and took her by the hand, and called, saying, Maid, arise.",
+  "ko": "그가 그들을 다 내보내시고 그 아이의 손을 잡아 부르며 이르시되, \"아이야, 일어나라\" 하시니,",
+  "note": "예수는 손을 잡고 '아이야, 일어나라' 부르신다. 죽은 자를 살리심에 긴 주문이 필요 없으니, 생명을 주관하시는 그의 말 한 마디가 곧 명령이요 권능이다.",
+  "voc": [["put out","v.","내보내다"],["take by the hand","","손을 잡다"],["maid","n.","소녀, 처녀"],["arise","v.","일어나다"]],
+  "idi": [["put out","내보내다"],["take by the hand","손을 잡다"]],
+  "gra": [["Maid, arise","maid=소녀(호격); arise=일어나라(명령)"]]
+ },
+ {
+  "en": "And her spirit came again, and she arose straightway: and he commanded to give her meat.",
+  "ko": "그 영이 돌아와 그가 곧 일어나거늘, 예수께서 그에게 먹을 것을 주라 명하시니라.",
+  "note": "소녀의 영이 돌아오고 예수는 먹을 것을 주라 하신다. 되살린 생명이 참으로 온전함을 살피시니, 큰 이적을 행하신 주가 작은 필요까지 세심히 돌보신다.",
+  "voc": [["spirit","n.","영, 생명"],["arise","v.","일어나다"],["straightway","adv.","곧, 즉시"],["meat","n.","먹을 것, 음식(고어)"]],
+  "idi": [["come again","돌아오다"]],
+  "gra": [["she arose straightway","arose=arise의 과거; straightway=즉시(고어)"],["he commanded to give her meat","meat=음식(고어); commanded to give=주라 명하시니라"]]
+ },
+ {
+  "en": "And her parents were astonished: but he charged them that they should tell no man what was done.",
+  "ko": "그 부모가 놀라니, 예수께서 그 된 일을 아무에게도 이르지 말라 명하시니라.",
+  "note": "예수는 이적을 알리지 말라 명하신다. 사람들의 얕은 이적 추구를 경계하심이니, 그의 참 영광은 소문이 아니라 십자가와 부활을 통해 드러날 것이다.",
+  "voc": [["parents","n.","부모"],["astonished","a.","놀란"],["charge","v.","명하다, 당부하다"]],
+  "idi": [["tell no man","아무에게도 말하지 말라"]],
+  "gra": [["were astonished","수동 '놀랐다'"],["he charged them that they should tell no man","that ~ should=~하라고(명령의 내용)"],["what was done","수동 '된 일'"]]
+ }
 ]

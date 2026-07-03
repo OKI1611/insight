@@ -1,14 +1,474 @@
 [
-  {"en": "Beware ye of the leaven", "ko": "누룩을 삼가라", "note": "바리새인의 외식(hypocrisy)을 빵을 부풀리는 누룩에 빗댄 경고. 숨은 위선이 전체로 퍼짐.", "voc":[["beware","v.","조심하다, 삼가다"],["leaven","n.","누룩"]], "idi":[["beware of","~을 조심하다, 경계하다"]], "gra":[["Beware ye","ye=you(주격)의 옛말, 명령문에 주어를 둔 옛 어법"]]},
-  {"en": "nothing covered shall not be revealed", "ko": "덮인 것은 드러나리라", "note": "감춰진 모든 것이 결국 폭로된다는 진리. 위선이 통할 수 없음을 선언.", "voc":[["cover","v.","덮다, 가리다"],["reveal","v.","드러내다, 나타내다"]], "idi":[], "gra":[["shall ... be revealed","shall은 예언·확언의 옛 용법, '반드시 드러나리라'"]]},
-  {"en": "Fear not them that kill the body", "ko": "몸을 죽이는 자를 두려워 말라", "note": "박해자보다 영혼을 심판하시는 하나님을 두려워하라는 가르침.", "voc":[["fear","v.","두려워하다"],["kill","v.","죽이다"],["body","n.","몸, 육신"]], "idi":[], "gra":[["Fear not","현대영어 Do not fear, not을 동사 뒤에 둔 옛 부정 어순"],["them that kill","that=관계대명사 who, '죽이는 자들을'"]]},
-  {"en": "the hairs of your head are numbered", "ko": "머리털까지 세신 바 되었다", "note": "하나님의 세밀한 돌보심. 참새보다 귀한 제자들을 향한 위로.", "voc":[["hair","n.","머리털"],["number","v.","세다, 헤아리다"]], "idi":[], "gra":[["are numbered","수동태, '낱낱이 세어져 있다'"]]},
-  {"en": "blasphemy against the Holy Ghost", "ko": "성령 모독은 사함 없다", "note": "인자를 거스른 말은 용서받으나 성령을 모독함은 용서받지 못함.", "voc":[["blasphemy","n.","모독, 신성모독"],["Holy Ghost","n.","성령"]], "idi":[], "gra":[["Holy Ghost","현대영어 Holy Spirit의 옛 표현"]]},
-  {"en": "Thou fool, this night thy soul", "ko": "어리석은 자여, 오늘 밤", "note": "어리석은 부자 비유. 재물을 쌓되 하나님께 부요하지 못한 자의 결말.", "voc":[["fool","n.","어리석은 자"],["soul","n.","영혼"]], "idi":[], "gra":[["Thou ... thy","thou=you(주격)·thy=your의 옛말"]]},
-  {"en": "Take no thought for your life", "ko": "생명을 위하여 염려 말라", "note": "'염려하지 말라' 가르침의 핵심. 먹고 입을 것을 근심하지 말라는 명령.", "voc":[["thought","n.","생각, 염려"],["life","n.","생명, 삶"]], "idi":[["take no thought for","~을 염려하지 말라"]], "gra":[["take no thought","현대영어 do not worry에 해당하는 옛 표현"]]},
-  {"en": "Consider the ravens / lilies", "ko": "까마귀와 백합화를 보라", "note": "새와 꽃을 먹이고 입히시는 하나님께서 제자를 더 돌보심을 논증.", "voc":[["consider","v.","생각하다, 살펴보다"],["raven","n.","까마귀"],["lily","n.","백합화"]], "idi":[], "gra":[]},
-  {"en": "seek ye the kingdom of God", "ko": "하나님의 왕국을 구하라", "note": "염려 대신 왕국을 우선 구하면 필요가 더해진다는 약속.", "voc":[["seek","v.","구하다, 찾다"],["kingdom","n.","왕국"]], "idi":[], "gra":[["seek ye","ye=you(주격)의 옛말, 명령문에 주어를 둔 옛 어법"]]},
-  {"en": "Let your loins be girded", "ko": "허리에 띠를 띠라", "note": "깨어 있으라는 종말 권면. 주인을 맞을 준비된 종의 자세.", "voc":[["loins","n.","허리"],["gird","v.","띠를 띠다, 동이다"]], "idi":[["gird up one's loins","허리를 동이다, 준비를 갖추다"]], "gra":[["Let ... be girded","let+목적어+수동, '~이 띠어지게 하라'"]]},
-  {"en": "the Son of man cometh", "ko": "인자가 오시리라", "note": "인자께서 예상치 못한 시각에 오시니 항상 예비하라는 경고.", "voc":[["Son of man","n.","인자(人子)"],["come","v.","오다"]], "idi":[["the Son of man","인자, 예수의 자기 칭호"]], "gra":[["cometh","현대영어 comes, -eth는 3인칭 단수 동사의 옛 어미"]]},
-  {"en": "I am come to send fire", "ko": "불을 던지러 왔노라", "note": "그리스도의 오심이 가져오는 분쟁과 분열. 화평 아닌 결단을 요구.", "voc":[["come","v.","오다"],["send","v.","보내다, 던지다"],["fire","n.","불"]], "idi":[], "gra":[["I am come","현대영어 I have come, 옛 영어는 이동 동사에 be동사로 완료를 표현"]]}
+ {
+  "en": "In the mean time, when there were gathered together an innumerable multitude of people, insomuch that they trode one upon another, he began to say unto his disciples first of all, Beware ye of the leaven of the Pharisees, which is hypocrisy.",
+  "ko": "그 무렵 무수한 무리가 모여들어 서로 밟힐 지경이 되매, 예수께서 먼저 제자들에게 이르시되, 바리새인의 누룩을 삼가라, 이는 곧 외식이니라.",
+  "note": "예수께서 위선을 '누룩'(헬. 쥐메, ζύμη)에 비하신다. 적은 누룩이 온 덩이를 부풀리듯, 외식은 은밀히 사람의 속을 물들여 전체를 부패시킨다. 무리 앞에서 먼저 제자를 향해 경고하심에 그 절박함이 배어 있다.",
+  "voc": [["mean time","","그 사이, 그 무렵"],["innumerable","adj.","무수한, 셀 수 없는"],["multitude","n.","무리, 군중"],["hypocrisy","n.","외식, 위선"]],
+  "idi": [["beware of","~을 조심하다, 경계하다"],["one upon another","서로 겹쳐, 밟힐 지경으로"]],
+  "gra": [["Beware ye of the leaven","ye=you(주격)의 옛말, 명령문에 주어를 둔 옛 어법"],["they trode one upon another","trode=trod(tread의 옛 과거형) '서로 밟았다'"]]
+ },
+ {
+  "en": "For there is nothing covered, that shall not be revealed; neither hid, that shall not be known.",
+  "ko": "덮여 있어도 드러나지 아니할 것이 없고, 숨겨져 있어도 알려지지 아니할 것이 없느니라.",
+  "note": "감춰진 모든 것이 마침내 폭로된다는 진리. 헬라어 '아포칼립토'(ἀποκαλύπτω, 드러내다)는 벗겨 밝힘을 뜻하니, 위선은 결코 하나님의 빛 앞에 숨을 수 없다.",
+  "voc": [["cover","v.","덮다, 가리다"],["reveal","v.","드러내다, 나타내다"],["hid","v.","숨겨진(hide의 옛 과거분사)"]],
+  "idi": [],
+  "gra": [["that shall not be revealed","that=관계대명사 which; shall은 예언·확언의 옛 용법 '반드시 드러나리라'"]]
+ },
+ {
+  "en": "Therefore whatsoever ye have spoken in darkness shall be heard in the light; and that which ye have spoken in the ear in closets shall be proclaimed upon the housetops.",
+  "ko": "그러므로 너희가 어둠 가운데서 말한 바가 밝은 데서 들리겠고, 너희가 골방에서 귀에 대고 속삭인 바가 지붕 위에서 외쳐지리라.",
+  "note": "어둠과 빛, 골방과 지붕이 대조된다. 은밀히 행한 모든 말과 행실이 공개적으로 선포되리니, 이는 심판의 공평함과 진리의 승리를 확언하는 것이다.",
+  "voc": [["whatsoever","pron.","무엇이든지"],["darkness","n.","어둠"],["closet","n.","골방, 밀실"],["proclaim","v.","외치다, 선포하다"]],
+  "idi": [["upon the housetops","지붕 위에서, 공공연히"],["in the ear","귀에 대고, 은밀히"]],
+  "gra": [["whatsoever ye have spoken","ye=you(주격)의 옛말; have spoken=현재완료"],["that which ye have spoken","that which=관계대명사 what '~한 것'"]]
+ },
+ {
+  "en": "And I say unto you my friends, Be not afraid of them that kill the body, and after that have no more that they can do.",
+  "ko": "내 벗 된 너희에게 이르노니, 몸은 죽여도 그 후에는 더 어찌하지 못하는 자들을 두려워하지 말라.",
+  "note": "예수께서 제자를 '벗'(헬. 필로스, φίλος)이라 부르신다. 박해자는 육신만 해할 뿐 영혼에는 미치지 못하니, 몸을 죽이는 자를 향한 두려움을 내려놓으라는 위로이다.",
+  "voc": [["friend","n.","벗, 친구"],["afraid","adj.","두려워하는"],["kill","v.","죽이다"],["body","n.","몸, 육신"]],
+  "idi": [["be afraid of","~을 두려워하다"]],
+  "gra": [["Be not afraid","현대영어 Do not be afraid, not을 동사 뒤에 둔 옛 부정 어순"],["them that kill","them that=those who '죽이는 자들을'"]]
+ },
+ {
+  "en": "But I will forewarn you whom ye shall fear: Fear him, which after he hath killed hath power to cast into hell; yea, I say unto you, Fear him.",
+  "ko": "마땅히 누구를 두려워할지를 내가 너희에게 미리 일러 주노니, 죽인 후에 또한 지옥에 던질 권세를 가지신 그분을 두려워하라. 참으로 내가 너희에게 이르노니, 그분을 두려워하라.",
+  "note": "참된 경외의 대상은 오직 하나님이시다. 육신과 영혼을 다 다스리시고 지옥(헬. 게엔나, γέεννα)에 던질 권세를 지니신 분을 두려워함이 지혜의 근본이다. '두려워하라'는 반복으로 강조하신다.",
+  "voc": [["forewarn","v.","미리 경고하다"],["cast","v.","던지다"],["hell","n.","지옥"],["power","n.","권세, 능력"]],
+  "idi": [["cast into hell","지옥에 던지다"]],
+  "gra": [["him, which after he hath killed","which=관계대명사 who(하나님을 가리킨 옛 용법); hath killed=현재완료"]]
+ },
+ {
+  "en": "Are not five sparrows sold for two farthings, and not one of them is forgotten before God?",
+  "ko": "참새 다섯 마리가 두 앗사리온에 팔리지 아니하느냐? 그러나 그 가운데 한 마리도 하나님 앞에서 잊혀지지 아니하느니라.",
+  "note": "값없는 참새 한 마리도 하나님의 시야에서 벗어나지 않는다. 작은 피조물까지 기억하시는 세밀한 섭리로써, 제자를 향한 아버지의 돌보심을 논증하신다.",
+  "voc": [["sparrow","n.","참새"],["farthing","n.","앗사리온(작은 동전)"],["forget","v.","잊다"]],
+  "idi": [],
+  "gra": [["Are not five sparrows sold","not을 도입한 수사의문문 '~하지 아니하느냐'; sold=수동태"]]
+ },
+ {
+  "en": "But even the very hairs of your head are all numbered. Fear not therefore: ye are of more value than many sparrows.",
+  "ko": "도리어 너희 머리털까지도 다 세신 바 되었나니, 그러므로 두려워하지 말라. 너희는 많은 참새보다 더 귀하니라.",
+  "note": "머리털까지 낱낱이 세시는 하나님의 지극한 돌보심. 참새보다 귀한 제자들을 향한 위로이니, 두려움이 아니라 신뢰로 나아가라 하신다.",
+  "voc": [["hair","n.","머리털"],["number","v.","세다, 헤아리다"],["value","n.","가치"]],
+  "idi": [["of more value than","~보다 더 귀한"]],
+  "gra": [["are all numbered","수동태 '낱낱이 세어져 있다'"],["Fear not","현대영어 Do not fear, 옛 부정 어순"]]
+ },
+ {
+  "en": "Also I say unto you, Whosoever shall confess me before men, him shall the Son of man also confess before the angels of God:",
+  "ko": "또한 내가 너희에게 이르노니, 누구든지 사람들 앞에서 나를 시인하면, 인자도 하나님의 천사들 앞에서 그를 시인할 것이요,",
+  "note": "사람 앞의 신앙 고백이 하늘의 인정으로 이어진다. 헬라어 '호몰로게오'(ὁμολογέω, 시인하다)는 공개적으로 편들어 고백함을 뜻하니, 인자께서 하나님의 천사들 앞에서 그를 자기 편으로 선언하신다.",
+  "voc": [["whosoever","pron.","누구든지"],["confess","v.","시인하다, 고백하다"],["Son of man","n.","인자(人子)"]],
+  "idi": [["the Son of man","인자, 예수의 자기 칭호"]],
+  "gra": [["him shall the Son of man also confess","목적어(him)를 앞세운 강조 도치 어순"]]
+ },
+ {
+  "en": "But he that denieth me before men shall be denied before the angels of God.",
+  "ko": "사람들 앞에서 나를 부인하는 자는 하나님의 천사들 앞에서 부인을 당하리라.",
+  "note": "고백과 부인이 극명히 대조된다. 사람 앞에서 그리스도를 부인함은 하늘 앞에서 부인당함으로 되돌아오니, 신앙의 공적 고백이 지닌 무게를 드러낸다.",
+  "voc": [["deny","v.","부인하다, 부정하다"],["before","prep.","~ 앞에서"],["angel","n.","천사"]],
+  "idi": [],
+  "gra": [["he that denieth me","he that=he who '부인하는 자'; denieth=-eth는 3인칭 단수 옛 어미"]]
+ },
+ {
+  "en": "And whosoever shall speak a word against the Son of man, it shall be forgiven him: but unto him that blasphemeth against the Holy Ghost it shall not be forgiven.",
+  "ko": "누구든지 인자를 거슬러 말하는 자는 사함을 받으려니와, 성령을 모독하는 자는 사함을 받지 못하리라.",
+  "note": "인자를 거스른 말은 용서받으나 성령 모독은 사함이 없다. 헬라어 '블라스페메오'(βλασφημέω)는 성령의 명백한 증거를 알면서도 완악히 대적함을 가리키니, 이는 회개를 끝까지 거부하는 마음의 굳음이다.",
+  "voc": [["blaspheme","v.","모독하다, 훼방하다"],["forgive","v.","사하다, 용서하다"],["Holy Ghost","n.","성령"]],
+  "idi": [["Holy Ghost","성령(현대영어 Holy Spirit의 옛 표현)"]],
+  "gra": [["him that blasphemeth","him that=him who '모독하는 자'; blasphemeth=-eth 옛 어미"]]
+ },
+ {
+  "en": "And when they bring you unto the synagogues, and unto magistrates, and powers, take ye no thought how or what thing ye shall answer, or what ye shall say:",
+  "ko": "사람들이 너희를 회당과 관원과 권세 있는 자들 앞에 끌고 갈 때에, 어떻게 또는 무엇으로 대답할지, 무엇을 말할지 염려하지 말라.",
+  "note": "박해의 법정 앞에서도 염려하지 말라 하신다. 변론의 준비를 인간의 지혜에 두지 말라는 명령이니, 다음 절에서 성령의 도우심이 약속된다.",
+  "voc": [["synagogue","n.","회당"],["magistrate","n.","관원, 위정자"],["power","n.","권세 있는 자, 권력자"]],
+  "idi": [["take no thought","염려하지 말라, 근심하지 말라"]],
+  "gra": [["take ye no thought","ye=you(주격) 옛말; take no thought=현대영어 do not worry의 옛 표현"]]
+ },
+ {
+  "en": "For the Holy Ghost shall teach you in the same hour what ye ought to say.",
+  "ko": "이는 마땅히 할 말을 바로 그때에 성령께서 너희에게 가르치시리라.",
+  "note": "성령께서 '바로 그 시각에' 가르치신다. 헬라어 '디다스코'(διδάσκω, 가르치다)는 즉각적 인도를 뜻하니, 제자는 자기 언변이 아니라 성령의 임재를 의지하여 담대히 증언한다.",
+  "voc": [["teach","v.","가르치다"],["hour","n.","때, 시각"],["ought","v.","마땅히 ~해야 하다"]],
+  "idi": [["in the same hour","바로 그때에"]],
+  "gra": [["what ye ought to say","ye=you(주격) 옛말; ought to=마땅히 ~해야 하다"]]
+ },
+ {
+  "en": "And one of the company said unto him, Master, speak to my brother, that he divide the inheritance with me.",
+  "ko": "무리 가운데 한 사람이 그분께 이르되, 선생님이여, 내 형에게 명하여 유산을 나와 나누게 하소서.",
+  "note": "한 사람이 세상 재물의 분배를 청한다. 영원한 진리를 가르치시는 주께 물질의 다툼을 들고 나오니, 이어지는 탐심 경계의 발단이 된다.",
+  "voc": [["company","n.","무리"],["Master","n.","선생님, 스승"],["inheritance","n.","유산, 상속"]],
+  "idi": [["divide with","~와 나누다"]],
+  "gra": [["that he divide the inheritance","that+동사원형(가정법)='~하도록/나누게'(목적)"]]
+ },
+ {
+  "en": "And he said unto him, Man, who made me a judge or a divider over you?",
+  "ko": "예수께서 그에게 이르시되, 이 사람아, 누가 나를 너희를 다스리는 재판관이나 분배하는 자로 세웠느냐?",
+  "note": "예수는 재산 중재를 거절하신다. 자신의 사명이 세속의 분쟁 해결이 아니라 하나님 나라의 선포에 있음을 밝히시며, 문제의 뿌리인 마음을 겨누신다.",
+  "voc": [["judge","n.","재판관"],["divider","n.","분배하는 자"],["make","v.","세우다, 삼다"]],
+  "idi": [],
+  "gra": [["who made me a judge","make+목적어+명사(보어) '~을 …로 삼다'"]]
+ },
+ {
+  "en": "And he said unto them, Take heed, and beware of covetousness: for a man's life consisteth not in the abundance of the things which he possesseth.",
+  "ko": "또 그들에게 이르시되, 삼가 탐심을 조심하라. 사람의 생명은 그 소유의 넉넉함에 있지 아니하니라.",
+  "note": "탐심(헬. 플레오넥시아, πλεονεξία, 더 많이 가지려는 욕심)을 경계하신다. 생명의 가치는 소유의 많음에 있지 않으니, 참된 풍요는 하나님과의 관계에 있다.",
+  "voc": [["take heed","","삼가다, 주의하다"],["covetousness","n.","탐심, 탐욕"],["abundance","n.","넉넉함, 풍부"],["possess","v.","소유하다"]],
+  "idi": [["take heed","조심하다, 유의하다"],["beware of","~을 조심하다"]],
+  "gra": [["consisteth not in","consisteth=-eth 옛 어미; consist in='~에 있다'"],["things which he possesseth","which=관계대명사; possesseth=-eth 옛 어미"]]
+ },
+ {
+  "en": "And he spake a parable unto them, saying, The ground of a certain rich man brought forth plentifully:",
+  "ko": "이에 그들에게 한 비유를 베풀어 이르시되, 어떤 부자의 밭에 소출이 풍성하게 났더라.",
+  "note": "어리석은 부자 비유가 시작된다. 풍성한 소출 자체는 하나님의 복이나, 그것을 받아 누리는 부자의 태도가 문제의 초점이 된다.",
+  "voc": [["parable","n.","비유"],["ground","n.","밭, 땅"],["plentifully","adv.","풍성하게"]],
+  "idi": [["bring forth","산출하다, 내다"]],
+  "gra": [["spake a parable","spake=spoke(speak의 옛 과거형)"]]
+ },
+ {
+  "en": "And he thought within himself, saying, What shall I do, because I have no room where to bestow my fruits?",
+  "ko": "그가 속으로 생각하여 이르되, 내 소출을 쌓아 둘 곳이 없으니 어찌할꼬?",
+  "note": "부자의 독백에 하나님도 이웃도 없다. 오직 '나'만 반복되는 자기중심의 사고이니, 넘치는 복을 나눔이 아니라 축적의 고민으로만 받는다.",
+  "voc": [["think within","","속으로 생각하다"],["room","n.","공간, 자리"],["bestow","v.","쌓아 두다, 두다"]],
+  "idi": [["within himself","속으로, 마음속으로"]],
+  "gra": [["room where to bestow","where to+동사='~할 곳'(장소 부정사)"]]
+ },
+ {
+  "en": "And he said, This will I do: I will pull down my barns, and build greater; and there will I bestow all my fruits and my goods.",
+  "ko": "또 이르되, 내가 이렇게 하리라. 내 곳간을 헐고 더 크게 지어, 거기에 내 모든 소출과 재물을 쌓아 두리라.",
+  "note": "더 큰 곳간을 계획하나 하루의 생명은 헤아리지 않는다. '내 곳간, 내 소출, 내 재물' — 모든 것을 자기 것으로 여기는 자만이 다음 절에서 무너진다.",
+  "voc": [["pull down","","헐다, 무너뜨리다"],["barn","n.","곳간, 창고"],["goods","n.","재물, 재산"]],
+  "idi": [["pull down","헐다, 철거하다"]],
+  "gra": [["This will I do","목적어(This)를 앞세운 강조 도치"],["there will I bestow","부사(there)를 앞세운 도치 어순"]]
+ },
+ {
+  "en": "And I will say to my soul, Soul, thou hast much goods laid up for many years; take thine ease, eat, drink, and be merry.",
+  "ko": "그리고 내 영혼에게 이르되, 영혼아, 여러 해 동안 쓸 많은 재물이 너를 위하여 쌓였으니, 편히 쉬고 먹고 마시며 즐거워하라 하리라.",
+  "note": "부자는 재물에서 영혼의 안식을 구한다. 그러나 물질은 영혼을 만족시킬 수 없으니, '먹고 마시고 즐거워하라'는 안일함이 곧 심판을 부른다.",
+  "voc": [["soul","n.","영혼"],["lay up","","쌓아 두다"],["ease","n.","안일, 편안함"],["merry","adj.","즐거운"]],
+  "idi": [["take one's ease","편히 쉬다, 안일하게 지내다"],["eat, drink, and be merry","먹고 마시며 즐기다"]],
+  "gra": [["thou hast much goods laid up","thou=you(주격) 옛말; hast=have의 2인칭 옛 형태; laid up=쌓아 둔"]]
+ },
+ {
+  "en": "But God said unto him, Thou fool, this night thy soul shall be required of thee: then whose shall those things be, which thou hast provided?",
+  "ko": "그러나 하나님께서 그에게 이르시되, 어리석은 자여, 오늘 밤에 네 영혼을 네게서 도로 찾으리니, 그러면 네가 예비한 것이 누구의 것이 되겠느냐?",
+  "note": "'어리석은 자'(헬. 아프론, ἄφρων)는 하나님을 계산에서 뺀 자다. 그날 밤 영혼을 도로 찾으시니, 쌓아둔 것은 누구의 것도 되지 못한 채 남는다. 재물의 허무함을 극명히 드러낸다.",
+  "voc": [["fool","n.","어리석은 자"],["require","v.","찾다, 요구하다"],["provide","v.","예비하다, 마련하다"]],
+  "idi": [["be required of","~에게서 도로 찾다, 되돌려 요구되다"]],
+  "gra": [["Thou fool ... thy soul","thou=you(주격)·thy=your의 옛말"],["things ... which thou hast provided","which=관계대명사; hast provided=현재완료 2인칭"]]
+ },
+ {
+  "en": "So is he that layeth up treasure for himself, and is not rich toward God.",
+  "ko": "자기를 위하여 재물을 쌓아 두고 하나님께 대하여 부요하지 못한 자가 이와 같으니라.",
+  "note": "비유의 결론이다. 자기를 위한 축적과 하나님을 향한 부요가 대조되니, 참된 부는 소유가 아니라 하나님과의 관계에 있다.",
+  "voc": [["lay up","","쌓아 두다"],["treasure","n.","재물, 보물"],["rich","adj.","부요한"]],
+  "idi": [["rich toward God","하나님께 대하여 부요한"]],
+  "gra": [["he that layeth up treasure","he that=he who '쌓아 두는 자'; layeth=-eth 옛 어미"]]
+ },
+ {
+  "en": "And he said unto his disciples, Therefore I say unto you, Take no thought for your life, what ye shall eat; neither for the body, what ye shall put on.",
+  "ko": "또 제자들에게 이르시되, 그러므로 내가 너희에게 이르노니, 무엇을 먹을까 하여 너희 생명을 위하여 염려하지 말며, 무엇을 입을까 하여 몸을 위하여 염려하지 말라.",
+  "note": "탐심 경계에서 염려 금지로 이어진다. 헬라어 '메림나오'(μεριμνάω, 근심하다)는 마음이 분열되어 애태움을 뜻하니, 먹고 입을 것을 위한 염려는 아버지를 신뢰하지 못함에서 온다.",
+  "voc": [["thought","n.","염려, 근심"],["life","n.","생명, 삶"],["put on","","입다"]],
+  "idi": [["take no thought for","~을 염려하지 말라"],["put on","(옷을) 입다"]],
+  "gra": [["Take no thought","현대영어 do not worry의 옛 표현"],["what ye shall eat","ye=you(주격) 옛말"]]
+ },
+ {
+  "en": "The life is more than meat, and the body is more than raiment.",
+  "ko": "생명이 음식보다 중하고 몸이 의복보다 중하니라.",
+  "note": "생명을 주신 분이 음식을, 몸을 지으신 분이 의복을 채우신다는 큰 것에서 작은 것으로의 논증. 더 큰 선물을 주신 하나님이 작은 필요를 외면하시겠는가.",
+  "voc": [["meat","n.","음식, 양식"],["raiment","n.","의복, 옷"],["more than","","~보다 중한"]],
+  "idi": [],
+  "gra": [["meat","현대영어에서 '고기'지만 KJV에서는 '음식 전반'을 뜻하는 옛 용법"]]
+ },
+ {
+  "en": "Consider the ravens: for they neither sow nor reap; which neither have storehouse nor barn; and God feedeth them: how much more are ye better than the fowls?",
+  "ko": "까마귀를 보라. 심지도 아니하고 거두지도 아니하며 곳간도 창고도 없으되, 하나님께서 그것들을 먹이시나니, 하물며 너희는 새보다 얼마나 더 귀하냐?",
+  "note": "까마귀조차 하나님이 먹이신다. 곳간을 짓던 부자와 달리 새는 저장하지 않아도 먹이시니, 새보다 귀한 제자를 향한 아버지의 공급을 논증하신다.",
+  "voc": [["consider","v.","살펴보다, 생각하다"],["raven","n.","까마귀"],["sow","v.","(씨를) 심다"],["reap","v.","거두다"],["fowl","n.","새, 날짐승"]],
+  "idi": [["how much more","하물며 얼마나 더"]],
+  "gra": [["they neither sow nor reap","neither ... nor='~도 ~도 아니하다'"],["God feedeth them","feedeth=-eth 옛 3인칭 단수 어미"]]
+ },
+ {
+  "en": "And which of you with taking thought can add to his stature one cubit?",
+  "ko": "또 너희 가운데 누가 염려함으로 자기 키를 한 자라도 더할 수 있겠느냐?",
+  "note": "염려는 아무것도 이루지 못한다. 한 자(큐빗)의 키조차 더할 수 없는 인간의 무력함을 지적하시니, 근심은 헛되고 신뢰만이 참되다.",
+  "voc": [["stature","n.","키, 신장"],["cubit","n.","자, 큐빗(길이 단위)"],["add","v.","더하다"]],
+  "idi": [["take thought","염려하다, 근심하다"]],
+  "gra": [["which of you ... can add","which of you=수사의문문 '너희 중 누가'"]]
+ },
+ {
+  "en": "If ye then be not able to do that thing which is least, why take ye thought for the rest?",
+  "ko": "그러므로 너희가 지극히 작은 일도 능히 하지 못하거든, 어찌 그 나머지 일을 염려하느냐?",
+  "note": "가장 작은 일도 하지 못하면서 큰 일을 염려함이 어리석다. 자기 능력의 한계를 인정하고 근심을 아버지께 맡기라는 권면이다.",
+  "voc": [["able","adj.","능히 할 수 있는"],["least","adj.","지극히 작은"],["rest","n.","나머지"]],
+  "idi": [["take thought for","~을 염려하다"]],
+  "gra": [["If ye then be not able","ye=you(주격) 옛말; be=현대영어 are의 옛 가정법"],["that thing which is least","which=관계대명사"]]
+ },
+ {
+  "en": "Consider the lilies how they grow: they toil not, they spin not; and yet I say unto you, that Solomon in all his glory was not arrayed like one of these.",
+  "ko": "백합화가 어떻게 자라는지 살펴보라. 수고도 아니하고 길쌈도 아니하느니라. 그러나 내가 너희에게 이르노니, 솔로몬이 그 모든 영화 가운데서도 이 꽃 하나만큼 차려입지 못하였느니라.",
+  "note": "들꽃의 아름다움이 솔로몬의 영화를 능가한다. 수고 없이 하나님이 입히신 꽃 하나가 인간 최고의 화려함보다 뛰어나니, 하나님의 돌보심이 얼마나 세밀한가.",
+  "voc": [["lily","n.","백합화"],["toil","v.","수고하다"],["spin","v.","길쌈하다, 실을 잣다"],["array","v.","차려입히다, 단장하다"]],
+  "idi": [["in all his glory","그 모든 영화 가운데서"]],
+  "gra": [["they toil not, they spin not","not을 동사 뒤에 둔 옛 부정 어순"],["was not arrayed","수동태 '차려입혀지지 못하였다'"]]
+ },
+ {
+  "en": "If then God so clothe the grass, which is to day in the field, and to morrow is cast into the oven; how much more will he clothe you, O ye of little faith?",
+  "ko": "오늘 들에 있다가 내일 아궁이에 던져지는 풀도 하나님께서 이같이 입히시거든, 하물며 너희일까 보냐, 믿음이 적은 자들아!",
+  "note": "덧없이 사라질 풀도 아름답게 입히시는 하나님. 하물며 영원한 제자를 어찌 입히지 않으시랴. '믿음이 적은 자'(헬. 올리고피스토스, ὀλιγόπιστος)라는 책망 속에 사랑이 담겼다.",
+  "voc": [["clothe","v.","입히다"],["grass","n.","풀"],["oven","n.","아궁이, 화덕"],["faith","n.","믿음"]],
+  "idi": [["how much more","하물며 얼마나 더"],["of little faith","믿음이 적은"]],
+  "gra": [["which is to day in the field","which=관계대명사 '~한 풀'"],["O ye of little faith","O ye=호격의 옛 표현 '~자들아'"]]
+ },
+ {
+  "en": "And seek not ye what ye shall eat, or what ye shall drink, neither be ye of doubtful mind.",
+  "ko": "그러므로 너희는 무엇을 먹을까 무엇을 마실까 구하지 말고, 의심하는 마음을 품지도 말라.",
+  "note": "먹을 것을 구하는 염려와 흔들리는 마음을 함께 금하신다. 헬라어 '메테오리조'(μετεωρίζω)는 불안에 붕 떠 흔들림을 뜻하니, 참된 신자는 아버지를 신뢰하여 마음이 안정된다.",
+  "voc": [["seek","v.","구하다, 찾다"],["drink","v.","마시다"],["doubtful","adj.","의심하는, 흔들리는"]],
+  "idi": [["of doubtful mind","의심하는 마음의"]],
+  "gra": [["seek not ye","ye=you(주격) 옛말, 명령문 주어 도치"],["neither be ye of doubtful mind","neither=~도 (말라)"]]
+ },
+ {
+  "en": "For all these things do the nations of the world seek after: and your Father knoweth that ye have need of these things.",
+  "ko": "이 모든 것은 세상 민족들이 구하는 바라. 너희에게 이것들이 필요한 줄을 너희 아버지께서 아시느니라.",
+  "note": "세상 민족은 먹고 입을 것을 좇으나 제자는 다르다. 하나님을 '아버지'라 부를 수 있는 자는 그분이 이미 필요를 아심을 신뢰하니, 구함의 방향이 근본부터 다르다.",
+  "voc": [["nation","n.","민족, 이방"],["seek after","","좇다, 추구하다"],["need","n.","필요"]],
+  "idi": [["seek after","~을 추구하다, 좇다"],["have need of","~이 필요하다"]],
+  "gra": [["do the nations ... seek after","do+주어+동사=강조·도치 어순"],["your Father knoweth","knoweth=-eth 옛 3인칭 단수 어미"]]
+ },
+ {
+  "en": "But rather seek ye the kingdom of God; and all these things shall be added unto you.",
+  "ko": "오직 너희는 하나님의 왕국을 구하라. 그리하면 이 모든 것을 너희에게 더하시리라.",
+  "note": "염려 대신 하나님의 왕국을 먼저 구하라는 핵심 명령. 우선순위를 바로 세우면 필요한 모든 것이 뒤따라 더해지리라는 약속이니, 왕국이 곧 참된 부요이다.",
+  "voc": [["seek","v.","구하다, 찾다"],["kingdom","n.","왕국"],["add","v.","더하다"]],
+  "idi": [["the kingdom of God","하나님의 왕국"]],
+  "gra": [["seek ye the kingdom","ye=you(주격) 옛말, 명령문 주어 도치"],["shall be added","shall은 확언의 옛 용법; 수동태 '더해지리라'"]]
+ },
+ {
+  "en": "Fear not, little flock; for it is your Father's good pleasure to give you the kingdom.",
+  "ko": "두려워하지 말라, 작은 양 떼여. 너희 아버지께서 그 왕국을 너희에게 주시기를 기뻐하시느니라.",
+  "note": "'작은 양 떼'라는 다정한 부름 속에 아버지의 마음이 드러난다. 왕국은 우리가 쟁취하는 것이 아니라 아버지께서 기쁨으로 주시는 선물이니, 두려움은 신뢰에 자리를 내어준다.",
+  "voc": [["flock","n.","양 떼"],["good pleasure","","기뻐하심, 선하신 뜻"],["give","v.","주다"]],
+  "idi": [["little flock","작은 양 떼(제자들을 향한 애칭)"]],
+  "gra": [["Fear not, little flock","Fear not=현대영어 do not fear 옛 부정 어순"],["your Father's good pleasure","'s=소유격 '아버지의'"]]
+ },
+ {
+  "en": "Sell that ye have, and give alms; provide yourselves bags which wax not old, a treasure in the heavens that faileth not, where no thief approacheth, neither moth corrupteth.",
+  "ko": "너희 소유를 팔아 자선을 베풀고, 낡지 아니하는 주머니와 하늘에 둔 다함이 없는 보물을 너희를 위하여 예비하라. 거기는 도둑이 가까이하지 못하고 좀이 먹지도 못하느니라.",
+  "note": "땅의 재물을 나누어 하늘에 보물을 쌓으라. 도둑도 좀도 미치지 못하는 하늘의 창고는 결코 낡거나 사라지지 않으니, 자선은 영원한 투자이다.",
+  "voc": [["alms","n.","자선, 구제"],["bag","n.","주머니, 전대"],["wax","v.","되다, 자라다"],["moth","n.","좀"],["corrupt","v.","먹다, 부패시키다"]],
+  "idi": [["give alms","자선을 베풀다, 구제하다"],["wax old","낡다, 오래되다"]],
+  "gra": [["bags which wax not old","which=관계대명사; wax not=옛 부정 어순 '낡지 아니하는'"],["no thief approacheth, neither moth corrupteth","-eth 옛 3인칭 단수 어미"]]
+ },
+ {
+  "en": "For where your treasure is, there will your heart be also.",
+  "ko": "너희 보물이 있는 곳에 너희 마음도 있으리라.",
+  "note": "보물과 마음은 하나로 묶여 있다. 재물을 하늘에 두면 마음도 하늘을 향하니, 무엇을 소중히 여기는가가 곧 그 사람의 방향을 정한다.",
+  "voc": [["treasure","n.","보물"],["heart","n.","마음"],["also","adv.","또한, ~도"]],
+  "idi": [],
+  "gra": [["where your treasure is, there will your heart be","where ... there=관계부사 상관구문; 도치 어순"]]
+ },
+ {
+  "en": "Let your loins be girded about, and your lights burning;",
+  "ko": "너희 허리에 띠를 띠고 등불을 켜 두라.",
+  "note": "깨어 준비하라는 종말의 권면. 허리에 띠를 동임은 언제든 일할 태세를, 켜 둔 등불은 밤새 기다리는 각오를 뜻하니, 주인을 맞을 종의 자세이다.",
+  "voc": [["loins","n.","허리"],["gird","v.","띠를 띠다, 동이다"],["light","n.","등불"],["burn","v.","타다, 켜지다"]],
+  "idi": [["gird up one's loins","허리를 동이다, 준비를 갖추다"]],
+  "gra": [["Let your loins be girded","let+목적어+수동 '~이 띠어지게 하라'"]]
+ },
+ {
+  "en": "And ye yourselves like unto men that wait for their lord, when he will return from the wedding; that when he cometh and knocketh, they may open unto him immediately.",
+  "ko": "또 너희 자신은 혼인 잔치에서 돌아오는 주인을 기다리는 사람들과 같이 하여, 그가 와서 문을 두드릴 때에 곧 열어 드리게 하라.",
+  "note": "혼인 잔치에서 돌아오는 주인을 기다리는 종의 모습. 주인이 언제 오실지 모르나 문을 두드리시면 '곧' 열어 드리니, 깨어 있음의 본질은 즉각적인 순종의 준비이다.",
+  "voc": [["wait for","","기다리다"],["lord","n.","주인"],["wedding","n.","혼인 잔치"],["knock","v.","두드리다"]],
+  "idi": [["wait for","~을 기다리다"],["like unto","~와 같이"]],
+  "gra": [["men that wait for their lord","that=관계대명사 who"],["when he cometh and knocketh","-eth 옛 3인칭 단수 어미"]]
+ },
+ {
+  "en": "Blessed are those servants, whom the lord when he cometh shall find watching: verily I say unto you, that he shall gird himself, and make them to sit down to meat, and will come forth and serve them.",
+  "ko": "주인이 와서 깨어 있는 것을 볼 그 종들은 복이 있도다. 진실로 내가 너희에게 이르노니, 주인이 친히 띠를 띠고 그들을 식탁에 앉힌 후에 나아와 그들을 섬기리라.",
+  "note": "깨어 있는 종이 받는 복이 놀랍다. 주인이 도리어 띠를 띠고 종을 섬기시니, 이는 겸손히 종의 자리에 서시는 그리스도의 사랑을 예표한다(눅 22:27).",
+  "voc": [["blessed","adj.","복 있는"],["watch","v.","깨어 있다"],["verily","adv.","진실로"],["serve","v.","섬기다"]],
+  "idi": [["sit down to meat","식탁에 앉다, 상에 앉다"]],
+  "gra": [["whom the lord ... shall find watching","whom=관계대명사(목적격)"],["he cometh","cometh=-eth 옛 3인칭 단수 어미"]]
+ },
+ {
+  "en": "And if he shall come in the second watch, or come in the third watch, and find them so, blessed are those servants.",
+  "ko": "주인이 이경에 오든지 삼경에 오든지, 그같이 하는 것을 볼진대 그 종들은 복이 있도다.",
+  "note": "밤의 어느 경(更)에 오시든 깨어 있는 종은 복되다. 주인의 오심이 늦어질수록 깨어 있음은 더 값지니, 인내하며 기다리는 신실함을 요구하신다.",
+  "voc": [["watch","n.","경(밤 시각)"],["second watch","","이경"],["third watch","","삼경"]],
+  "idi": [["second watch / third watch","이경/삼경(밤을 나눈 시각)"]],
+  "gra": [["if he shall come","shall은 미래·조건의 옛 용법"],["blessed are those servants","보어(blessed)를 앞세운 도치 강조"]]
+ },
+ {
+  "en": "And this know, that if the goodman of the house had known what hour the thief would come, he would have watched, and not have suffered his house to be broken through.",
+  "ko": "이것을 알라. 집주인이 도둑이 어느 시각에 올지 알았더라면, 깨어 있어 자기 집이 뚫리도록 버려두지 아니하였으리라.",
+  "note": "도둑의 비유로 인자의 오심을 예고하신다. 시각을 몰랐기에 집이 뚫린 집주인처럼, 방심은 화를 부르니 언제나 깨어 있으라는 경계이다.",
+  "voc": [["goodman","n.","집주인, 가장"],["thief","n.","도둑"],["watch","v.","깨어 있다, 지키다"],["suffer","v.","버려두다, 허락하다"]],
+  "idi": [["break through","뚫고 들어오다, 침입하다"]],
+  "gra": [["if ... had known ... he would have watched","가정법 과거완료(had known / would have) '알았더라면 ~하였으리라'"]]
+ },
+ {
+  "en": "Be ye therefore ready also: for the Son of man cometh at an hour when ye think not.",
+  "ko": "그러므로 너희도 예비하고 있으라. 너희가 생각하지 아니하는 시각에 인자가 오리라.",
+  "note": "인자께서 예상치 못한 때에 오신다. 그 시각을 알 수 없기에 늘 예비하라 하시니, 깨어 있음은 두려움이 아니라 준비된 자의 소망이다.",
+  "voc": [["ready","adj.","예비된, 준비된"],["Son of man","n.","인자"],["hour","n.","때, 시각"]],
+  "idi": [["the Son of man","인자, 예수의 자기 칭호"]],
+  "gra": [["Be ye therefore ready","ye=you(주격) 옛말, 명령문 주어 도치"],["cometh","-eth 옛 3인칭 단수 어미"]]
+ },
+ {
+  "en": "Then Peter said unto him, Lord, speakest thou this parable unto us, or even to all?",
+  "ko": "이에 베드로가 이르되, 주여, 이 비유를 우리에게 말씀하시나이까, 아니면 모든 사람에게도 하시나이까?",
+  "note": "베드로가 비유의 대상을 묻는다. 이 물음에 답하여 주는 다음 절부터 청지기의 책임을 말씀하시니, 특별히 맡겨진 자의 몫을 밝히신다.",
+  "voc": [["speak","v.","말하다"],["parable","n.","비유"],["all","pron.","모든 사람"]],
+  "idi": [],
+  "gra": [["speakest thou","thou=you(주격) 옛말; speakest=-est 2인칭 단수 옛 어미"]]
+ },
+ {
+  "en": "And the Lord said, Who then is that faithful and wise steward, whom his lord shall make ruler over his household, to give them their portion of meat in due season?",
+  "ko": "주께서 이르시되, 그러면 누가 신실하고 지혜로운 청지기리요? 주인이 그를 세워 자기 집안을 다스리게 하고 때를 따라 양식을 나누어 주게 한 자라.",
+  "note": "청지기(헬. 오이코노모스, οἰκονόμος)는 주인의 소유를 맡아 다스리는 자다. 신실함과 지혜로 때를 따라 양식을 나눔이 그 직분이니, 맡은 자의 충성이 관건이다.",
+  "voc": [["faithful","adj.","신실한"],["steward","n.","청지기"],["ruler","n.","다스리는 자"],["portion","n.","몫, 분깃"]],
+  "idi": [["in due season","때를 따라, 제때에"]],
+  "gra": [["whom his lord shall make ruler","whom=관계대명사(목적격); make+목적어+명사 '~을 …로 삼다'"]]
+ },
+ {
+  "en": "Blessed is that servant, whom his lord when he cometh shall find so doing.",
+  "ko": "주인이 와서 그 종이 그같이 하는 것을 볼진대, 그 종은 복이 있도다.",
+  "note": "맡은 일에 충성하는 종이 복되다. 주인이 오실 때 그 직분을 신실히 행하고 있음이 발견되는 것, 그것이 청지기의 상급이다.",
+  "voc": [["blessed","adj.","복 있는"],["servant","n.","종"],["find","v.","보다, 발견하다"]],
+  "idi": [["so doing","그같이 행하는, 그렇게 하고 있는"]],
+  "gra": [["whom his lord ... shall find so doing","whom=관계대명사; cometh=-eth 옛 어미"]]
+ },
+ {
+  "en": "Of a truth I say unto you, that he will make him ruler over all that he hath.",
+  "ko": "진실로 내가 너희에게 이르노니, 주인이 자기의 모든 소유를 그에게 맡겨 다스리게 하리라.",
+  "note": "작은 일에 충성한 종에게 더 큰 것이 맡겨진다. 신실함의 상급은 더 큰 책임과 신뢰이니, 하나님 나라의 원리는 충성을 따라 확장된다.",
+  "voc": [["of a truth","","진실로"],["ruler","n.","다스리는 자"],["all that he hath","","그의 모든 소유"]],
+  "idi": [["of a truth","참으로, 진실로"]],
+  "gra": [["all that he hath","that=관계대명사; hath=have의 3인칭 옛 형태 '가진 모든 것'"]]
+ },
+ {
+  "en": "But and if that servant say in his heart, My lord delayeth his coming; and shall begin to beat the menservants and maidens, and to eat and drink, and to be drunken;",
+  "ko": "그러나 만일 그 종이 마음속으로 이르되, 내 주인이 더디 오리라 하고, 남종과 여종을 때리며 먹고 마시고 취하기 시작하면,",
+  "note": "'주인이 더디 오리라' 하는 마음이 악의 출발이다. 심판이 지연된다는 착각이 방종과 학대를 부르니, 종말의 지연을 방심의 핑계로 삼는 자를 경계하신다.",
+  "voc": [["delay","v.","더디게 하다, 미루다"],["beat","v.","때리다"],["menservant","n.","남종"],["drunken","adj.","취한"]],
+  "idi": [["say in one's heart","마음속으로 이르다"]],
+  "gra": [["My lord delayeth his coming","delayeth=-eth 옛 3인칭 단수 어미"],["But and if","if를 강조하는 옛 관용 어법 '그러나 만일'"]]
+ },
+ {
+  "en": "The lord of that servant will come in a day when he looketh not for him, and at an hour when he is not aware, and will cut him in sunder, and will appoint him his portion with the unbelievers.",
+  "ko": "생각하지 아니한 날, 알지 못하는 시각에 그 종의 주인이 이르러, 그를 둘로 베어 믿지 아니하는 자들과 함께 그 몫을 정하리라.",
+  "note": "악한 종의 최후는 준엄하다. 예상치 못한 때에 임하시는 심판으로 그 몫이 불신자와 함께 정해지니, 맡은 자의 배신은 가장 무겁게 다루어진다.",
+  "voc": [["aware","adj.","알고 있는"],["cut in sunder","","둘로 베다, 쪼개다"],["appoint","v.","정하다"],["unbeliever","n.","믿지 않는 자"]],
+  "idi": [["cut in sunder","둘로 베다, 갈라놓다"],["look for","기다리다, 예상하다"]],
+  "gra": [["when he looketh not ... he is not aware","looketh=-eth 옛 어미; not을 뒤에 둔 옛 부정 어순"]]
+ },
+ {
+  "en": "And that servant, which knew his lord's will, and prepared not himself, neither did according to his will, shall be beaten with many stripes.",
+  "ko": "주인의 뜻을 알고도 예비하지 아니하며 그 뜻대로 행하지 아니한 그 종은 많이 매를 맞을 것이요,",
+  "note": "주인의 뜻을 알고도 행하지 않은 종은 더 무겁게 벌받는다. 알면서 순종하지 않음은 책임이 크니, 받은 빛만큼 요구되는 순종의 무게를 드러낸다.",
+  "voc": [["will","n.","뜻, 의지"],["prepare","v.","예비하다"],["stripe","n.","매, 채찍질"]],
+  "idi": [["according to his will","그 뜻대로"]],
+  "gra": [["which knew his lord's will","which=관계대명사 who; lord's=소유격"],["prepared not himself, neither did","not/neither 반복 옛 부정 어순"]]
+ },
+ {
+  "en": "But he that knew not, and did commit things worthy of stripes, shall be beaten with few stripes. For unto whomsoever much is given, of him shall be much required: and to whom men have committed much, of him they will ask the more.",
+  "ko": "알지 못하고 매 맞을 일을 행한 자는 적게 맞으리라. 무릇 많이 받은 자에게는 많이 찾을 것이요, 사람들이 많이 맡긴 자에게는 더 많이 요구하리라.",
+  "note": "심판은 받은 빛에 비례한다. 모르고 지은 죄는 가벼우나, 많이 받은 자에게는 많이 요구되니, 은혜와 지식의 분량만큼 책임도 커진다는 하나님 나라의 공평한 원리이다.",
+  "voc": [["commit","v.","행하다, 저지르다"],["worthy","adj.","~에 마땅한"],["whomsoever","pron.","누구에게든지"],["require","v.","요구하다, 찾다"]],
+  "idi": [["much is given ... much required","많이 받은 자에게 많이 요구된다"]],
+  "gra": [["he that knew not","he that=he who; knew not=옛 부정 어순"],["unto whomsoever much is given, of him shall be much required","도치 강조; 수동태"]]
+ },
+ {
+  "en": "I am come to send fire on the earth; and what will I, if it be already kindled?",
+  "ko": "내가 불을 땅에 던지러 왔노니, 그 불이 이미 붙었으면 내가 무엇을 더 바라리요?",
+  "note": "'불'은 그리스도의 오심이 가져오는 심판과 정결, 그리고 성령의 임재를 상징한다. 그 불이 붙기를 갈망하시니, 주의 사명은 세상에 결단을 일으키는 것이다.",
+  "voc": [["fire","n.","불"],["send","v.","보내다, 던지다"],["kindle","v.","붙다, 타오르다"]],
+  "idi": [],
+  "gra": [["I am come","현대영어 I have come; 옛 영어는 이동 동사에 be동사로 완료를 표현"],["if it be already kindled","be=옛 가정법; kindled=수동 '붙었으면'"]]
+ },
+ {
+  "en": "But I have a baptism to be baptized with; and how am I straitened till it be accomplished!",
+  "ko": "그러나 내가 받아야 할 침례가 있으니, 그것이 이루어지기까지 내가 얼마나 답답하랴!",
+  "note": "예수께서 받으실 '침례'는 십자가의 고난과 죽음을 뜻한다. 헬라어 '쉬네코마이'(συνέχομαι, 답답하다)는 그 사명을 이루기까지 짓눌린 절박함을 드러내니, 주의 마음이 고난을 향해 있음을 보인다.",
+  "voc": [["baptism","n.","침례"],["baptize","v.","침례를 주다/받다"],["straiten","v.","답답하게 하다, 죄어 오다"],["accomplish","v.","이루다, 완성하다"]],
+  "idi": [["baptized with","(고난·죽음의) 침례를 받다"]],
+  "gra": [["how am I straitened","how+형용사/동사=감탄 어순 '얼마나 답답하랴'"],["till it be accomplished","be=옛 가정법; accomplished=수동 '이루어지기까지'"]]
+ },
+ {
+  "en": "Suppose ye that I am come to give peace on earth? I tell you, Nay; but rather division:",
+  "ko": "내가 땅에 화평을 주러 온 줄로 너희가 생각하느냐? 내가 너희에게 이르노니, 아니라. 도리어 분쟁이니라.",
+  "note": "그리스도의 오심은 값싼 화평이 아니라 진리로 인한 분열을 가져온다. 그분 앞에서 사람은 편을 정해야 하니, 참된 평화는 이 결단을 지난 뒤에 온다.",
+  "voc": [["suppose","v.","생각하다, 추측하다"],["peace","n.","화평, 평화"],["nay","adv.","아니라"],["division","n.","분쟁, 분열"]],
+  "idi": [],
+  "gra": [["Suppose ye","ye=you(주격) 옛말, 의문문 주어 도치"],["I am come","현대영어 I have come, 옛 완료 표현"]]
+ },
+ {
+  "en": "For from henceforth there shall be five in one house divided, three against two, and two against three.",
+  "ko": "이제부터 한 집에 다섯이 갈라져, 셋이 둘을, 둘이 셋을 대적하리라.",
+  "note": "복음은 가장 가까운 가정마저 갈라놓는다. 그리스도를 향한 믿음과 불신이 한 집 안에서 갈리니, 주를 따름은 때로 혈육의 유대보다 앞서는 결단을 요구한다.",
+  "voc": [["henceforth","adv.","이제부터"],["divide","v.","갈라지다, 나뉘다"],["against","prep.","~을 대적하여"]],
+  "idi": [["from henceforth","이제부터, 이후로"]],
+  "gra": [["there shall be five ... divided","shall은 예언의 옛 용법; divided=수동 '갈라져'"]]
+ },
+ {
+  "en": "The father shall be divided against the son, and the son against the father; the mother against the daughter, and the daughter against the mother; the mother in law against her daughter in law, and the daughter in law against her mother in law.",
+  "ko": "아버지가 아들을, 아들이 아버지를 대적하고, 어머니가 딸을, 딸이 어머니를 대적하며, 시어머니가 며느리를, 며느리가 시어머니를 대적하여 갈라지리라.",
+  "note": "부모와 자녀, 시어머니와 며느리까지 갈라진다(미 7:6의 성취). 그리스도가 삶의 중심이 될 때 옛 관계마저 재편되니, 이 분열은 복음의 진정성이 요구하는 대가이다.",
+  "voc": [["divide","v.","갈라지다, 나뉘다"],["mother in law","","시어머니"],["daughter in law","","며느리"]],
+  "idi": [["mother in law / daughter in law","시어머니/며느리"]],
+  "gra": [["shall be divided against","shall은 예언의 옛 용법; be divided=수동태"]]
+ },
+ {
+  "en": "And he said also to the people, When ye see a cloud rise out of the west, straightway ye say, There cometh a shower; and so it is.",
+  "ko": "또 무리에게 이르시되, 너희가 서쪽에서 구름이 일어나는 것을 보면 곧 이르기를 소나기가 오리라 하나니, 과연 그러하니라.",
+  "note": "서쪽(지중해) 구름을 보고 비를 예측하는 무리의 분별을 예로 드신다. 자연의 징조는 잘 읽으면서 영적 때는 분별하지 못함을 다음 절에서 책망하시려는 것이다.",
+  "voc": [["cloud","n.","구름"],["rise","v.","일어나다, 솟다"],["west","n.","서쪽"],["shower","n.","소나기"]],
+  "idi": [],
+  "gra": [["When ye see","ye=you(주격) 옛말"],["There cometh a shower","cometh=-eth 옛 3인칭 단수 어미; there+동사 도치"]]
+ },
+ {
+  "en": "And when ye see the south wind blow, ye say, There will be heat; and it cometh to pass.",
+  "ko": "남풍이 부는 것을 보면 이르기를 더우리라 하나니, 과연 그렇게 되느니라.",
+  "note": "남풍(광야에서 부는 뜨거운 바람)을 보고 더위를 아는 것처럼, 무리는 날씨는 정확히 읽는다. 이 익숙한 분별을 영적 무지와 대비시키신다.",
+  "voc": [["south wind","","남풍"],["blow","v.","불다"],["heat","n.","더위, 열기"]],
+  "idi": [["come to pass","일어나다, 이루어지다"]],
+  "gra": [["it cometh to pass","cometh=-eth 옛 3인칭 단수 어미"]]
+ },
+ {
+  "en": "Ye hypocrites, ye can discern the face of the sky and of the earth; but how is it that ye do not discern this time?",
+  "ko": "외식하는 자들아, 너희가 하늘과 땅의 기색은 분별할 줄 알면서, 어찌하여 이 시대는 분별하지 못하느냐?",
+  "note": "'외식하는 자들'이라는 책망이 날카롭다. 하늘의 기색은 읽으면서 메시아가 오신 이 결정적 때(헬. 카이로스, καιρός)는 분별하지 못하니, 영적 무지가 곧 위선의 열매이다.",
+  "voc": [["hypocrite","n.","외식하는 자, 위선자"],["discern","v.","분별하다"],["sky","n.","하늘"],["time","n.","시대, 때"]],
+  "idi": [["discern the face of","~의 기색을 분별하다"]],
+  "gra": [["Ye hypocrites","ye=you(주격) 옛말, 호격"],["how is it that ye do not discern","how is it that=옛 관용구 '어찌하여 ~하느냐'"]]
+ },
+ {
+  "en": "Yea, and why even of yourselves judge ye not what is right?",
+  "ko": "어찌하여 너희 스스로도 무엇이 옳은지를 판단하지 못하느냐?",
+  "note": "분별의 책임은 각자에게 있다. 외부의 권위를 기다릴 것 없이 스스로 옳은 것을 판단하라 하시니, 진리 앞에서 회피할 수 없는 개인의 책임을 촉구하신다.",
+  "voc": [["yea","adv.","참으로, 그렇다"],["judge","v.","판단하다"],["right","adj.","옳은"]],
+  "idi": [["of yourselves","너희 스스로"]],
+  "gra": [["judge ye not","ye=you(주격) 옛말; not을 뒤에 둔 옛 부정 어순"]]
+ },
+ {
+  "en": "When thou goest with thine adversary to the magistrate, as thou art in the way, give diligence that thou mayest be delivered from him; lest he hale thee to the judge, and the judge deliver thee to the officer, and the officer cast thee into prison.",
+  "ko": "네가 너를 고소하는 자와 함께 관원에게 갈 때에, 길에서 그에게서 벗어나기를 힘쓰라. 그가 너를 재판관에게 끌고 가고, 재판관이 너를 옥리에게 넘기고, 옥리가 너를 옥에 가둘까 하노라.",
+  "note": "재판정에 이르기 전 길에서 화해하라는 비유. 심판의 날이 이르기 전 하나님과 화목할 기회가 지금이니, 회개를 미루는 것의 위험을 경고하신다.",
+  "voc": [["adversary","n.","고소하는 자, 대적"],["magistrate","n.","관원"],["hale","v.","끌고 가다"],["officer","n.","옥리, 관리"],["prison","n.","옥, 감옥"]],
+  "idi": [["give diligence","힘쓰다, 애쓰다"],["in the way","길에서, 가는 도중에"]],
+  "gra": [["When thou goest with thine adversary","thou=you(주격)·thine=your(모음 앞) 옛말; goest=-est 2인칭 옛 어미"],["lest he hale thee","lest=~할까 하여, ~하지 않도록"]]
+ },
+ {
+  "en": "I tell thee, thou shalt not depart thence, till thou hast paid the very last mite.",
+  "ko": "내가 네게 이르노니, 마지막 한 푼까지 다 갚기 전에는 거기서 결코 나오지 못하리라.",
+  "note": "'마지막 한 푼'(렙톤, 가장 작은 동전)까지 갚아야 한다는 준엄한 결말. 미룬 죄값은 반드시 치러지니, 지금 화해의 은혜를 붙잡으라는 절박한 호소이다.",
+  "voc": [["depart","v.","떠나다, 나오다"],["thence","adv.","거기서"],["mite","n.","한 푼(가장 작은 동전)"]],
+  "idi": [["the last mite","마지막 한 푼"]],
+  "gra": [["I tell thee, thou shalt not depart","thee=you(목적격)·thou=you(주격) 옛말; shalt not=강한 부정 '결코 ~못하리라'"],["till thou hast paid","thou hast=현재완료 2인칭 옛 형태"]]
+ }
 ]
