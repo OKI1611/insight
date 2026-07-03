@@ -1,14 +1,258 @@
 [
-  {"en": "publicans and sinners", "ko": "세리와 죄인들", "note": "세금을 걷던 세리는 동족에게 멸시받았고, 죄인은 율법을 지키지 못하는 자로 여겨졌다. 예수께서 바로 이들을 맞으셨다.", "voc": [["publican", "n.", "세리(세금 징수원)"], ["sinner", "n.", "죄인"], ["draw near", "v.", "가까이 나아오다"]], "idi": [], "gra": []},
-  {"en": "murmured", "ko": "수군거리다", "note": "바리새인과 서기관들이 드러내 놓고 항의하지 않고 불평하며 비난한 모습을 가리킨다.", "voc": [["murmur", "v.", "수군거리다, 불평하다"], ["receive", "v.", "맞아들이다, 영접하다"]], "idi": [], "gra": [["murmured", "murmured는 단순과거. 주어 they가 생략된 옛 서술 어법"]]},
-  {"en": "which was lost", "ko": "잃었던", "note": "이 장의 핵심어로, 잃은 양·잃은 은전·잃은 아들 세 비유를 하나로 묶는다.", "voc": [["lost", "adj.", "잃은, 잃어버린"], ["find", "v.", "찾다"]], "idi": [], "gra": [["which was lost", "which는 사물을 받는 관계대명사, was lost는 수동태(잃어버려진)"]]},
-  {"en": "joy in heaven", "ko": "하늘에서의 기쁨", "note": "한 죄인의 회개가 하늘에 일으키는 기쁨을 강조하는 표현이다.", "voc": [["joy", "n.", "기쁨"], ["repent", "v.", "회개하다"]], "idi": [], "gra": []},
-  {"en": "pieces of silver", "ko": "은전", "note": "헬라어 '드라크마'로, 노동자의 하루 품삯에 해당하는 은화다.", "voc": [["silver", "n.", "은, 은화"], ["piece", "n.", "조각, (화폐의) 한 닢"], ["candle", "n.", "등불, 촛불"]], "idi": [], "gra": []},
-  {"en": "the portion of goods", "ko": "재산의 몫", "note": "유산 가운데 자기에게 돌아올 몫으로, 작은아들이 아버지 생전에 미리 청한 것이다.", "voc": [["portion", "n.", "몫, 분깃"], ["goods", "n.", "재산, 재물"], ["younger", "adj.", "더 어린, 작은"]], "idi": [], "gra": [["the portion of goods", "goods는 '재산·재물'을 뜻할 때 항상 복수형으로 쓰이는 명사"]]},
-  {"en": "riotous living", "ko": "방탕한 생활", "note": "절제 없이 흥청거리며 재산을 탕진하는 삶을 가리킨다.", "voc": [["riotous", "adj.", "방탕한, 무절제한"], ["living", "n.", "생활, 살림"], ["waste", "v.", "탕진하다, 허비하다"]], "idi": [], "gra": []},
-  {"en": "husks that the swine did eat", "ko": "돼지가 먹는 쥐엄 열매", "note": "가장 천한 처지로 떨어진 작은아들의 비참함을 드러낸다. 돼지는 유대인에게 부정한 짐승이었다.", "voc": [["husk", "n.", "쥐엄 열매, 껍질"], ["swine", "n.", "돼지"], ["fill", "v.", "채우다"]], "idi": [], "gra": [["the swine did eat", "did eat는 'ate'의 옛 강조 어법으로, do+동사원형의 과거형"]]},
-  {"en": "came to himself", "ko": "정신이 들다", "note": "작은아들이 본래의 자신과 아버지의 집을 깨닫고 돌이키는 회개의 전환점이다.", "voc": [["arise", "v.", "일어나다"], ["hired", "adj.", "고용된, 품꾼의"], ["servant", "n.", "종, 일꾼"]], "idi": [["come to oneself", "정신이 들다, 제정신을 차리다"]], "gra": []},
-  {"en": "had compassion", "ko": "측은히 여기다", "note": "아버지가 돌아오는 아들을 멀리서 보고 깊이 긍휼히 여겨 달려 나간 사랑을 보여 준다.", "voc": [["compassion", "n.", "긍휼, 측은히 여김"], ["ran", "v.", "달려갔다(run의 과거)"], ["kiss", "v.", "입맞추다"]], "idi": [["have compassion", "긍휼히 여기다, 측은히 여기다"]], "gra": []},
-  {"en": "the best robe", "ko": "가장 좋은 옷", "note": "돌아온 아들을 종이 아니라 아들로, 존엄하게 회복시키는 표징이다. 반지와 신도 같은 회복을 뜻한다.", "voc": [["robe", "n.", "긴 옷, 예복"], ["ring", "n.", "반지"], ["merry", "adj.", "즐거운, 기쁜"]], "idi": [["be merry", "즐거워하다, 기뻐하다"]], "gra": []},
-  {"en": "was dead, and is alive again", "ko": "죽었다가 다시 살아났으며", "note": "잃었던 아들의 회복을 죽음에서 생명으로의 부활에 견주는 표현이다.", "voc": [["dead", "adj.", "죽은"], ["alive", "adj.", "살아 있는"], ["again", "adv.", "다시"]], "idi": [], "gra": [["was dead, and is alive again", "과거시제(was)와 현재시제(is)를 대조해 죽음에서 생명으로의 변화를 강조"]]}
+  {
+    "en": "Then drew near unto him all the publicans and sinners for to hear him.",
+    "ko": "이때에 모든 세리와 죄인들이 그의 말씀을 들으려 그에게 가까이 나아오니라.",
+    "note": "세금을 걷던 세리는 동족에게 멸시받았고, 죄인은 율법을 지키지 못하는 자로 여겨졌다. '나아오다'로 옮긴 헬라어 엥기조는 계속 가까이 다가옴을 뜻하니, 바로 이들이 그리스도께로 밀려들었다.",
+    "voc": [["draw near", "v.", "가까이 나아오다"], ["publican", "n.", "세리(세금 징수원)"], ["sinner", "n.", "죄인"]],
+    "idi": [["draw near", "가까이 다가오다"]],
+    "gra": [["for to hear him", "for to+동사원형='~하려고'라는 옛 목적 어법(=to hear him)"]]
+  },
+  {
+    "en": "And the Pharisees and scribes murmured, saying, This man receiveth sinners, and eateth with them.",
+    "ko": "이에 바리새인과 서기관들이 수군거려 이르되, \"이 사람이 죄인들을 맞아들이고 그들과 함께 먹는도다\" 하더라.",
+    "note": "'수군거리다'로 옮긴 헬라어 디아공귀조는 무리가 낮게 웅얼거리며 불평함을 뜻한다. 함께 먹음은 곧 받아들임과 사귐이니, 죄인과 겸상하신 것 자체가 그들에게는 걸림이 되었다.",
+    "voc": [["murmur", "v.", "수군거리다, 불평하다"], ["scribe", "n.", "서기관"], ["receive", "v.", "맞아들이다, 영접하다"]],
+    "idi": [],
+    "gra": [["receiveth ... eateth", "-eth는 3인칭 단수 현재 어미(=receives, eats)"]]
+  },
+  {
+    "en": "And he spake this parable unto them, saying,",
+    "ko": "예수께서 그들에게 이 비유를 들어 이르시되,",
+    "note": "'비유'로 옮긴 헬라어 파라볼레는 곁에 나란히 던져 비추어 보게 함을 뜻한다. 이어지는 세 비유는 잃음과 찾음이라는 한 주제로 묶여, 죄인을 찾으시는 하나님의 마음을 드러낸다.",
+    "voc": [["spake", "v.", "말하였다(speak의 옛 과거)"], ["parable", "n.", "비유"]],
+    "idi": [],
+    "gra": [["he spake", "spake는 spoke의 옛 과거형"]]
+  },
+  {
+    "en": "What man of you, having an hundred sheep, if he lose one of them, doth not leave the ninety and nine in the wilderness, and go after that which is lost, until he find it?",
+    "ko": "\"너희 가운데 어떤 사람이 양 백 마리를 가졌다가 그중 하나를 잃으면, 아흔아홉 마리를 들에 두고 잃은 그 하나를 찾기까지 좇아가지 아니하겠느냐?",
+    "note": "'잃은'으로 옮긴 헬라어 아폴뤼미는 완전히 사라져 파멸에 이름을 뜻한다. 목자는 아흔아홉을 세지 않고 잃은 하나를 위해 나아가니, 하나님은 한 영혼을 결코 헤아려 버리지 않으신다.",
+    "voc": [["sheep", "n.", "양"], ["lose", "v.", "잃다"], ["wilderness", "n.", "들, 광야"]],
+    "idi": [["go after", "~을 좇아가다, 찾아 나서다"]],
+    "gra": [["doth not leave", "doth=does의 옛 형태(3인칭 단수 현재)"], ["that which is lost", "that which=관계대명사 '~한 그것'; which need no repentance식 옛 어법"]]
+  },
+  {
+    "en": "And when he hath found it, he layeth it on his shoulders, rejoicing.",
+    "ko": "그러다가 찾으면 기뻐하며 그 양을 자기 어깨에 메고,",
+    "note": "목자는 지친 양을 꾸짖어 몰지 않고 어깨에 메고 온다. '기뻐하며'로 옮긴 헬라어 카이론은 찾음의 기쁨이 수고를 덮음을 보이니, 잃은 자를 찾으신 하나님의 기쁨이 여기 있다.",
+    "voc": [["lay", "v.", "메다, 얹다"], ["shoulder", "n.", "어깨"], ["rejoice", "v.", "기뻐하다"]],
+    "idi": [],
+    "gra": [["he hath found", "hath=has의 옛 형태; hath found=현재완료"], ["layeth", "-eth=3인칭 단수 현재 어미"]]
+  },
+  {
+    "en": "And when he cometh home, he calleth together his friends and neighbours, saying unto them, Rejoice with me; for I have found my sheep which was lost.",
+    "ko": "집에 돌아와 벗들과 이웃들을 불러 모아 이르되, '나와 함께 기뻐하라. 잃었던 내 양을 찾았노라' 하리라.",
+    "note": "기쁨은 홀로 누리지 않고 나눈다. '나와 함께 기뻐하라'는 부름은 하늘의 잔치를 미리 비추니, 한 영혼의 회복은 온 공동체가 함께 즐거워할 일이다.",
+    "voc": [["neighbour", "n.", "이웃"], ["find", "v.", "찾다"], ["lost", "adj.", "잃은, 잃어버린"]],
+    "idi": [["call together", "불러 모으다"]],
+    "gra": [["cometh ... calleth", "-eth=3인칭 단수 현재 어미"], ["which was lost", "which=관계대명사(사물); was lost=수동태"]]
+  },
+  {
+    "en": "I say unto you, that likewise joy shall be in heaven over one sinner that repenteth, more than over ninety and nine just persons, which need no repentance.",
+    "ko": "내가 너희에게 이르노니, 이와 같이 회개할 것이 없는 의인 아흔아홉으로 말미암는 것보다, 회개하는 한 죄인으로 말미암아 하늘에서 더 큰 기쁨이 있으리라.",
+    "note": "'회개하다'로 옮긴 헬라어 메타노에오는 마음을 돌이켜 방향을 바꿈을 뜻한다. 스스로 의롭다 여겨 회개할 것이 없다는 자보다, 돌이키는 한 죄인이 하늘의 기쁨이 되니 중생의 시작은 회개다.",
+    "voc": [["likewise", "adv.", "이와 같이"], ["repent", "v.", "회개하다"], ["repentance", "n.", "회개"]],
+    "idi": [],
+    "gra": [["that repenteth", "that=관계대명사(사람); -eth=3인칭 단수 현재"], ["joy shall be in heaven", "shall=미래·확정을 나타내는 옛 조동사"]]
+  },
+  {
+    "en": "Either what woman having ten pieces of silver, if she lose one piece, doth not light a candle, and sweep the house, and seek diligently till she find it?",
+    "ko": "또 어떤 여인이 은전 열 닢을 가졌다가 그중 한 닢을 잃으면, 등불을 켜고 집을 쓸며 찾을 때까지 부지런히 살피지 아니하겠느냐?",
+    "note": "'은전'으로 옮긴 헬라어 드라크마는 노동자의 하루 품삯에 해당하는 은화다. 여인이 등불을 켜고 온 집을 샅샅이 쓰는 부지런함은, 잃은 자를 찾으시는 하나님의 간절함을 그린다.",
+    "voc": [["piece of silver", "", "은전(드라크마)"], ["candle", "n.", "등불, 촛불"], ["diligently", "adv.", "부지런히"]],
+    "idi": [],
+    "gra": [["doth not light", "doth=does의 옛 형태"], ["till she find it", "가정·미래를 나타내는 옛 가정법(=until she finds)"]]
+  },
+  {
+    "en": "And when she hath found it, she calleth her friends and her neighbours together, saying, Rejoice with me; for I have found the piece which I had lost.",
+    "ko": "그러다가 찾으면 벗들과 이웃들을 불러 모아 이르되, '나와 함께 기뻐하라. 잃었던 그 은전을 찾았노라' 하리라.",
+    "note": "여인 또한 홀로 기뻐하지 않고 이웃을 부른다. 앞의 목자와 같은 부름이 되풀이되니, 잃음을 슬퍼하고 찾음을 함께 기뻐함이 하나님 나라의 마음이다.",
+    "voc": [["find", "v.", "찾다"], ["neighbour", "n.", "이웃"], ["rejoice", "v.", "기뻐하다"]],
+    "idi": [["call together", "불러 모으다"]],
+    "gra": [["hath found ... had lost", "hath found=현재완료, had lost=과거완료(더 앞선 과거)"], ["which I had lost", "which=관계대명사(사물)"]]
+  },
+  {
+    "en": "Likewise, I say unto you, there is joy in the presence of the angels of God over one sinner that repenteth.",
+    "ko": "내가 너희에게 이르노니, 이와 같이 회개하는 한 죄인으로 말미암아 하나님의 천사들 앞에 기쁨이 있느니라.\"",
+    "note": "'천사들 앞에'라는 표현은 곧 하나님 앞에서라는 겸손한 대유법이다. 한 죄인의 회개가 하늘 궁정에 기쁨을 일으키니, 사람의 눈에 하찮은 회심이 하나님의 왕국에서는 잔치의 이유가 된다.",
+    "voc": [["presence", "n.", "앞, 임재"], ["angel", "n.", "천사"], ["repent", "v.", "회개하다"]],
+    "idi": [["in the presence of", "~ 앞에서"]],
+    "gra": [["that repenteth", "that=관계대명사(사람); -eth=3인칭 단수 현재"]]
+  },
+  {
+    "en": "And he said, A certain man had two sons:",
+    "ko": "또 이르시되, \"어떤 사람에게 두 아들이 있더니,",
+    "note": "셋째 비유가 열린다. 두 아들은 각각 드러난 죄인과 스스로 의롭다 여기는 자를 상징하니, 아버지의 사랑은 둘 모두를 향한다. 여기 아버지는 곧 하늘 아버지의 모습이다.",
+    "voc": [["certain", "adj.", "어떤"], ["son", "n.", "아들"]],
+    "idi": [],
+    "gra": [["a certain man", "certain=막연한 '어떤' — 특정인을 밝히지 않는 옛 관사적 용법"]]
+  },
+  {
+    "en": "And the younger of them said to his father, Father, give me the portion of goods that falleth to me. And he divided unto them his living.",
+    "ko": "그중 작은아들이 아버지에게 이르되, '아버지여, 제게 돌아올 재산의 몫을 주소서' 하니, 그가 자기 살림을 그들에게 나누어 주었더라.",
+    "note": "아버지 생전에 유산을 청함은 아버지의 죽음을 앞당겨 바라는 무례였다. 그럼에도 아버지는 억지로 붙들지 않고 나누어 주시니, 사랑은 떠남의 자유마저 존중한다.",
+    "voc": [["younger", "adj.", "더 어린, 작은"], ["portion", "n.", "몫, 분깃"], ["goods", "n.", "재산, 재물"], ["living", "n.", "살림, 재산"]],
+    "idi": [["fall to", "~에게 돌아가다, ~의 몫이 되다"]],
+    "gra": [["that falleth to me", "that=관계대명사; -eth=3인칭 단수 현재"], ["the portion of goods", "goods는 '재산'의 뜻일 때 항상 복수형"]]
+  },
+  {
+    "en": "And not many days after the younger son gathered all together, and took his journey into a far country, and there wasted his substance with riotous living.",
+    "ko": "며칠이 지나지 아니하여 작은아들이 제 몫을 모두 거두어 먼 나라로 떠나, 거기서 방탕한 생활로 그 재산을 허비하더라.",
+    "note": "'허비하다'로 옮긴 헬라어 디아스코르피조는 사방으로 흩어 버림을 뜻한다. 아버지를 떠난 '먼 나라'는 하나님을 등진 인생의 자리를 그리니, 죄는 언제나 흩어짐과 낭비로 흐른다.",
+    "voc": [["far country", "", "먼 나라"], ["waste", "v.", "허비하다, 탕진하다"], ["substance", "n.", "재산, 재물"], ["riotous", "adj.", "방탕한, 무절제한"]],
+    "idi": [["take one's journey", "길을 떠나다, 여행하다"]],
+    "gra": [["riotous living", "living=명사 '생활'(=way of living)"]]
+  },
+  {
+    "en": "And when he had spent all, there arose a mighty famine in that land; and he began to be in want.",
+    "ko": "그가 모든 것을 다 써 버린 뒤에 그 땅에 심한 흉년이 들매, 비로소 궁핍하기 시작하니라.",
+    "note": "재물이 다하자 흉년까지 겹친다. 죄가 약속한 자유는 오래가지 못하고 궁핍으로 끝나니, 하나님을 떠난 삶은 스스로 채울 수 없는 빈 곳을 드러낸다.",
+    "voc": [["spend", "v.", "쓰다, 다 소비하다"], ["mighty", "adj.", "심한, 큰"], ["famine", "n.", "흉년, 기근"], ["want", "n.", "궁핍, 결핍"]],
+    "idi": [["be in want", "궁핍하다, 부족하다"]],
+    "gra": [["there arose a mighty famine", "there+동사+주어=존재·발생 구문; arose=arise의 과거"]]
+  },
+  {
+    "en": "And he went and joined himself to a citizen of that country; and he sent him into his fields to feed swine.",
+    "ko": "이에 가서 그 나라 한 주민에게 몸을 의탁하니, 그가 그를 들로 보내어 돼지를 치게 하였더라.",
+    "note": "유대인에게 돼지는 부정한 짐승이었으니, 돼지치기는 가장 밑바닥으로 떨어진 처지였다. 아버지의 아들이 이방인의 종이 되었으니, 죄는 사람을 존엄에서 노예로 끌어내린다.",
+    "voc": [["join oneself to", "", "~에게 몸을 의탁하다"], ["citizen", "n.", "주민, 시민"], ["feed", "v.", "먹이다, 치다"], ["swine", "n.", "돼지"]],
+    "idi": [["join oneself to", "~에게 붙어 의탁하다"]],
+    "gra": [["joined himself", "himself=재귀대명사 '자기 자신을'"]]
+  },
+  {
+    "en": "And he would fain have filled his belly with the husks that the swine did eat: and no man gave unto him.",
+    "ko": "그는 돼지가 먹는 쥐엄 열매로라도 주린 배를 채우고자 하였으나, 그에게 주는 자가 아무도 없더라.",
+    "note": "돼지 먹이조차 탐낼 만큼 비참함이 극에 달한다. '주는 자가 없더라'는 말은 죄가 약속한 벗들이 정작 곤궁 중에 등을 돌림을 보이니, 세상의 사귐은 결국 그를 홀로 버려둔다.",
+    "voc": [["fain", "adv.", "기꺼이, 간절히"], ["belly", "n.", "배"], ["husk", "n.", "쥐엄 열매, 껍질"], ["swine", "n.", "돼지"]],
+    "idi": [],
+    "gra": [["would fain have filled", "would fain='기꺼이 ~하려 하다'; fain=옛말 '기꺼이'"], ["the swine did eat", "did eat=강조의 옛 과거(=ate)"]]
+  },
+  {
+    "en": "And when he came to himself, he said, How many hired servants of my father's have bread enough and to spare, and I perish with hunger!",
+    "ko": "그가 마침내 정신이 들어 이르되, '내 아버지의 품꾼이 얼마나 많아 양식이 넉넉하고도 남거늘, 나는 여기서 주려 죽는구나.",
+    "note": "'정신이 들어'로 옮긴 헬라어 에이스 헤아우톤 엘톤은 제정신으로 돌아옴을 뜻한다. 이 깨달음이 회개의 첫걸음이니, 죄는 사람을 자기 밖으로 내몰지만 은혜는 참 자아와 아버지의 집을 기억나게 한다.",
+    "voc": [["come to oneself", "", "정신이 들다"], ["hired servant", "", "품꾼, 고용된 종"], ["spare", "v.", "남다, 여분이 있다"], ["perish", "v.", "죽다, 멸망하다"]],
+    "idi": [["come to oneself", "정신이 들다, 제정신을 차리다"], ["to spare", "남을 만큼 넉넉하게"]],
+    "gra": [["of my father's", "이중 소유격 '내 아버지의' — of+소유격을 겹쳐 씀"]]
+  },
+  {
+    "en": "I will arise and go to my father, and will say unto him, Father, I have sinned against heaven, and before thee,",
+    "ko": "내가 일어나 아버지께 돌아가 그분께 아뢰되, 아버지여, 제가 하늘에 죄를 짓고 또 아버지 앞에 죄를 지었사오니,",
+    "note": "'하늘에 죄를 지었다'는 고백은 모든 죄가 결국 하나님을 거스름임을 안다는 뜻이다. 참 회개는 자기 연민이 아니라 죄를 죄로 시인함이니, 이 돌이킴이 아버지께로 가는 길을 연다.",
+    "voc": [["arise", "v.", "일어나다"], ["sin", "v.", "죄를 짓다"], ["against", "prep.", "~을 거슬러"]],
+    "idi": [["sin against", "~에게 죄를 짓다"]],
+    "gra": [["I will arise", "will=의지·결단을 나타내는 조동사"], ["before thee", "thee=너를/너에게(2인칭 단수 목적격)"]]
+  },
+  {
+    "en": "And am no more worthy to be called thy son: make me as one of thy hired servants.",
+    "ko": "이제부터 아버지의 아들이라 일컬음 받기에 합당치 못하오니, 저를 품꾼 가운데 하나처럼 삼아 주소서, 하리라' 하고,",
+    "note": "아들은 아들의 자리를 요구하지 않고 품꾼의 자리를 청한다. 이 겸손이 참 회개의 표지이니, 스스로 아무 자격 없음을 알 때 비로소 값없는 은혜를 받을 준비가 된다.",
+    "voc": [["no more", "", "더 이상 ~아니한"], ["worthy", "adj.", "합당한, 자격 있는"], ["hired servant", "", "품꾼"]],
+    "idi": [],
+    "gra": [["thy son", "thy=너의(2인칭 단수 소유격)"], ["make me as one of", "make+목적어+as='~로 삼다'"]]
+  },
+  {
+    "en": "And he arose, and came to his father. But when he was yet a great way off, his father saw him, and had compassion, and ran, and fell on his neck, and kissed him.",
+    "ko": "일어나 그 아버지께로 돌아가니라. 그가 아직도 멀리 있을 때에 그 아버지가 그를 보고 측은히 여겨, 달려가 그 목을 끌어안고 입을 맞추니라.",
+    "note": "'측은히 여기다'로 옮긴 헬라어 스플랑크니조마이는 창자가 뒤틀리도록 깊이 긍휼히 여김을 뜻한다. 아버지는 아들이 멀리 있을 때 먼저 달려가시니, 회개의 걸음보다 앞서 달려오시는 사랑이 복음이다.",
+    "voc": [["a great way off", "", "멀리 떨어져"], ["compassion", "n.", "긍휼, 측은히 여김"], ["neck", "n.", "목"]],
+    "idi": [["have compassion", "긍휼히 여기다, 측은히 여기다"], ["fall on one's neck", "목을 끌어안다"]],
+    "gra": [["when he was yet a great way off", "yet=아직도; a great way off=멀리 떨어져"]]
+  },
+  {
+    "en": "And the son said unto him, Father, I have sinned against heaven, and in thy sight, and am no more worthy to be called thy son.",
+    "ko": "아들이 그에게 아뢰되, '아버지여, 제가 하늘에 죄를 짓고 또 아버지 앞에 죄를 지었사오니, 이제부터 아버지의 아들이라 일컬음 받기에 합당치 못하나이다' 하나,",
+    "note": "아들은 준비한 고백을 그대로 아뢰나, '품꾼 삼아 주소서'라는 뒷말은 미처 잇지 못한다. 아버지의 포옹이 그 청을 앞질렀으니, 은혜는 우리의 흥정을 넘어 아들의 자리를 먼저 회복시킨다.",
+    "voc": [["sin", "v.", "죄를 짓다"], ["sight", "n.", "앞, 보는 곳"], ["worthy", "adj.", "합당한"]],
+    "idi": [["in one's sight", "~ 앞에서, ~ 보기에"]],
+    "gra": [["in thy sight", "thy=너의(2인칭 단수 소유격)"], ["to be called", "수동 부정사 '일컬음 받기에'"]]
+  },
+  {
+    "en": "But the father said to his servants, Bring forth the best robe, and put it on him; and put a ring on his hand, and shoes on his feet:",
+    "ko": "아버지는 종들에게 이르되, '어서 가장 좋은 옷을 내어다가 그에게 입히고, 그 손에 반지를 끼우며 발에 신을 신기라.",
+    "note": "가장 좋은 옷과 반지와 신은 각각 존귀와 권위와 자유민의 신분을 뜻한다. 아버지는 아들을 종이 아니라 아들로 회복시키니, 칭의는 죄인을 죄 없다 선언하고 온전한 아들의 지위를 입힌다.",
+    "voc": [["bring forth", "v.", "내어오다"], ["robe", "n.", "긴 옷, 예복"], ["ring", "n.", "반지"], ["shoe", "n.", "신"]],
+    "idi": [["bring forth", "내어오다, 가져오다"]],
+    "gra": [["put it on him", "put on='입히다'; 목적어를 사이에 둔 어순"]]
+  },
+  {
+    "en": "And bring hither the fatted calf, and kill it; and let us eat, and be merry:",
+    "ko": "그리고 살진 송아지를 끌어다가 잡으라. 우리가 먹고 즐기리니,",
+    "note": "살진 송아지는 가장 귀한 날을 위해 아껴 두는 짐승이었다. 아버지가 이를 잡게 하심은 아들의 귀환이 최고의 잔치가 될 만큼 큰 기쁨임을 보이니, 회복은 언제나 잔치로 이어진다.",
+    "voc": [["hither", "adv.", "이리로"], ["fatted calf", "", "살진 송아지"], ["merry", "adj.", "즐거운, 기쁜"]],
+    "idi": [["be merry", "즐거워하다, 기뻐하다"]],
+    "gra": [["let us eat", "let us=권유 '우리 ~하자'"], ["hither", "옛말 '이리로'(=here, to this place)"]]
+  },
+  {
+    "en": "For this my son was dead, and is alive again; he was lost, and is found. And they began to be merry.",
+    "ko": "이는 내 이 아들이 죽었다가 다시 살아났으며, 잃었다가 다시 찾았음이라' 하니, 그들이 즐거워하기 시작하니라.",
+    "note": "'죽었다가 다시 살아났다'는 말은 아들의 회복을 부활에 견준다. 아버지를 떠남이 죽음이요 돌아옴이 생명이니, 이것이 곧 중생의 그림이다. 하나님을 떠난 자는 죽은 자요, 돌아온 자는 산 자다.",
+    "voc": [["dead", "adj.", "죽은"], ["alive", "adj.", "살아 있는"], ["lost", "adj.", "잃은"], ["found", "adj.", "찾은"]],
+    "idi": [["be merry", "즐거워하다, 기뻐하다"]],
+    "gra": [["was dead, and is alive again", "과거(was)와 현재(is)를 대조해 죽음에서 생명으로의 변화를 강조"]]
+  },
+  {
+    "en": "Now his elder son was in the field: and as he came and drew nigh to the house, he heard musick and dancing.",
+    "ko": "그때에 맏아들은 밭에 있었더니, 그가 와서 집에 가까이 이르매 풍악과 춤추는 소리를 듣고,",
+    "note": "이제 비유의 초점이 맏아들로 옮겨진다. 그는 밖에서 수고하고 있었으나 정작 아버지의 기쁨과는 거리가 멀었으니, 겉으로 순종하면서도 아버지의 마음을 알지 못하는 자의 모습이다.",
+    "voc": [["elder", "adj.", "맏, 손위의"], ["draw nigh", "v.", "가까이 가다"], ["musick", "n.", "풍악, 음악"]],
+    "idi": [["draw nigh", "가까이 가다, 다가가다"]],
+    "gra": [["musick", "music의 옛 철자"], ["drew nigh", "nigh=near의 옛말; drew nigh=가까이 갔다"]]
+  },
+  {
+    "en": "And he called one of the servants, and asked what these things meant.",
+    "ko": "종 하나를 불러 이 일이 무슨 일이냐고 물으니,",
+    "note": "맏아들은 잔치의 까닭을 직접 알지 못해 종에게 묻는다. 집 안의 기쁨에 함께하지 못하고 밖에서 캐물어야 하는 그의 처지가, 아버지와 멀어진 마음의 거리를 드러낸다.",
+    "voc": [["call", "v.", "부르다"], ["servant", "n.", "종"], ["mean", "v.", "뜻하다, 의미하다"]],
+    "idi": [],
+    "gra": [["what these things meant", "간접의문문(의문사+주어+동사 어순); meant=mean의 과거"]]
+  },
+  {
+    "en": "And he said unto him, Thy brother is come; and thy father hath killed the fatted calf, because he hath received him safe and sound.",
+    "ko": "그가 그에게 이르되, '아우님이 돌아오매, 아버님이 그를 탈 없이 건강하게 맞으셨으므로 살진 송아지를 잡으셨나이다' 하니,",
+    "note": "종은 '탈 없이 건강하게'라며 잔치의 까닭이 아우의 무사한 귀환임을 전한다. 아버지의 기쁨은 아들이 이룬 공로가 아니라 그가 돌아온 사실 자체에 있으니, 은혜는 자격이 아니라 관계의 회복을 기뻐한다.",
+    "voc": [["brother", "n.", "형제, 아우"], ["fatted calf", "", "살진 송아지"], ["safe and sound", "", "탈 없이 건강하게"]],
+    "idi": [["safe and sound", "무사히, 탈 없이 건강하게"]],
+    "gra": [["thy brother is come", "is come=완료의 옛 표현(=has come)"], ["hath killed ... hath received", "hath=has의 옛 형태; 현재완료"]]
+  },
+  {
+    "en": "And he was angry, and would not go in: therefore came his father out, and intreated him.",
+    "ko": "그가 노하여 들어가려 하지 아니하거늘, 이에 그 아버지가 나와서 그를 타이르니라.",
+    "note": "작은아들을 향해 달려 나가신 아버지가 이제 맏아들에게도 나와 타이르신다. 아버지의 사랑은 방탕한 아들과 성난 아들 모두를 향해 문밖으로 나서니, 은혜는 두 종류의 잃은 자를 다 찾으신다.",
+    "voc": [["angry", "adj.", "노한, 화난"], ["intreat", "v.", "타이르다, 간청하다"]],
+    "idi": [["go in", "들어가다"]],
+    "gra": [["would not go in", "would not='~하려 하지 않았다'(의지의 부정)"], ["therefore came his father out", "부사가 앞서며 동사+주어로 도치된 어순"]]
+  },
+  {
+    "en": "And he answering said to his father, Lo, these many years do I serve thee, neither transgressed I at any time thy commandment: and yet thou never gavest me a kid, that I might make merry with my friends:",
+    "ko": "그가 대답하여 아버지에게 이르되, '보소서, 이 여러 해를 제가 아버지를 섬겨 아버지의 명을 한 번도 어긴 적이 없거늘, 아버지께서는 제게 염소 새끼 한 마리도 주어 제 벗들과 즐기게 하신 적이 없나이다.",
+    "note": "맏아들은 자신을 '섬긴' 자로, 아버지를 부리는 주인으로 여긴다. 순종을 공로로 셈하여 상을 흥정하는 이 마음은, 아버지의 아들이면서도 품꾼처럼 사는 종교의 병폐를 드러낸다.",
+    "voc": [["serve", "v.", "섬기다"], ["transgress", "v.", "어기다, 범하다"], ["commandment", "n.", "명령, 계명"], ["kid", "n.", "염소 새끼"]],
+    "idi": [["at any time", "한 번이라도, 언제고"]],
+    "gra": [["do I serve thee", "do+주어 도치=강조(=I do serve you)"], ["neither transgressed I", "부정어가 앞서 주어·동사가 도치됨"], ["thou never gavest", "thou=너; gavest=give의 2인칭 단수 옛 과거"]]
+  },
+  {
+    "en": "But as soon as this thy son was come, which hath devoured thy living with harlots, thou hast killed for him the fatted calf.",
+    "ko": "그런데 아버지의 살림을 창기들과 함께 삼켜 버린 이 아들이 돌아오매, 아버지께서는 그를 위하여 살진 송아지를 잡으셨나이다' 하니,",
+    "note": "맏아들은 '내 아우'라 하지 않고 '아버지의 이 아들'이라 부르며 형제됨을 부인한다. 그의 성남은 아버지의 긍휼을 낭비로 여기니, 은혜를 못마땅히 여기는 마음이야말로 또 하나의 잃음이다.",
+    "voc": [["as soon as", "", "~하자마자"], ["devour", "v.", "삼키다, 먹어 치우다"], ["harlot", "n.", "창기, 매춘부"], ["fatted calf", "", "살진 송아지"]],
+    "idi": [["as soon as", "~하자마자"]],
+    "gra": [["this thy son", "this+thy=지시사와 소유격을 겹쳐 씀(옛 어법)"], ["hath devoured ... hast killed", "hath/hast=has/have의 옛 형태; 현재완료"]]
+  },
+  {
+    "en": "And he said unto him, Son, thou art ever with me, and all that I have is thine.",
+    "ko": "아버지가 그에게 이르되, '아들아, 너는 늘 나와 함께 있으니, 내게 있는 모든 것이 다 네 것이로다.",
+    "note": "아버지는 맏아들의 성남을 나무라지 않고 '아들아'라 부르며 품으신다. '내게 있는 모든 것이 다 네 것'이라 하시니, 품꾼처럼 상을 흥정할 필요가 없었음을 일깨우신다. 아들의 복은 소유가 아니라 아버지와 함께 있음에 있다.",
+    "voc": [["ever", "adv.", "늘, 항상"], ["all that I have", "", "내게 있는 모든 것"]],
+    "idi": [],
+    "gra": [["thou art ever with me", "thou art=너는 ~이다(2인칭 단수)"], ["all that I have is thine", "that=관계대명사; thine=너의 것(2인칭 단수 소유대명사)"]]
+  },
+  {
+    "en": "It was meet that we should make merry, and be glad: for this thy brother was dead, and is alive again; and was lost, and is found.",
+    "ko": "이 네 아우는 죽었다가 다시 살아났으며 잃었다가 다시 찾았으니, 우리가 즐거워하고 기뻐하는 것이 마땅하지 아니하냐?'\"",
+    "note": "아버지는 맏아들이 부인한 형제됨을 '네 아우'라 되돌려 놓으신다. 잔치는 마땅한 일이니, 죽었던 자가 살아나고 잃었던 자를 찾았기 때문이다. 비유는 맏아들의 응답을 열어 둔 채 끝나, 은혜 앞에 선 우리 각자에게 되묻는다.",
+    "voc": [["meet", "adj.", "마땅한, 합당한"], ["glad", "adj.", "기쁜"], ["brother", "n.", "형제, 아우"]],
+    "idi": [["make merry", "즐거워하다, 잔치하다"]],
+    "gra": [["It was meet that", "meet=옛말 '마땅한, 합당한'(형용사)"], ["this thy brother", "this+thy=지시사와 소유격을 겹쳐 씀; was dead ... is alive=과거와 현재의 대조"]]
+  }
 ]
