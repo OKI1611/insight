@@ -4,6 +4,39 @@
    반드시 페이지의 다른 스크립트보다 먼저(<head>) 로드되어야 함. */
 (function(){
   if(window.__biblyLoaderReady) return; window.__biblyLoaderReady = true;
+  // FOUC(전체 화면 깜빡임) 제거 — Tailwind CDN이 커스텀 색을 입히기 전 '무스타일' 화면이
+  //  잠깐 보였다가 스타일이 입혀지며 번쩍이는 현상 차단. 본문을 아주 잠깐 숨겼다가
+  //  스타일 준비되면 부드럽게 표시. (무슨 일이 있어도 최대 650ms 후엔 반드시 보이게 안전장치)
+  try{
+    var __de = document.documentElement, __revealed = false;
+    // reveal = 숨김 클래스 제거만(→ body는 기본 opacity:1로 즉시 복귀). transition·animation은
+    //  탭이 비활성일 때 타임라인이 멈춰 숨김 상태로 고착될 수 있어 쓰지 않는다.
+    //  본문은 reveal 시점에 이미 스타일이 다 입혀져 있으므로 즉시 표시해도 깜빡임이 없다.
+    function __reveal(){ if(__revealed) return; __revealed = true; try{ __de.classList.remove('bibly-fouc'); }catch(e){} }
+    var __fst = document.createElement('style'); __fst.id = 'biblyFoucStyle';
+    __fst.textContent = 'html.bibly-fouc body{opacity:0!important}';
+    (document.head || __de).appendChild(__fst);
+    __de.classList.add('bibly-fouc');
+    setTimeout(__reveal, 650);   // 최우선 하드 안전장치(예외가 나도 반드시 표시)
+    var __whenStyled = function(){
+      // Tailwind가 커스텀 색(ink=#213a6b)을 실제로 입혔는지 프로브로 확인 후 표시
+      try{
+        var p = document.createElement('div');
+        p.className = 'bg-ink';
+        p.style.cssText = 'position:fixed;left:-9999px;top:-9999px;width:1px;height:1px;pointer-events:none';
+        document.body.appendChild(p);
+        var tries = 0;
+        (function chk(){
+          tries++;
+          var bg = getComputedStyle(p).backgroundColor;
+          if(bg === 'rgb(33, 58, 107)' || tries > 34){ try{ p.remove(); }catch(e){} __reveal(); }
+          else requestAnimationFrame(chk);
+        })();
+      }catch(e){ __reveal(); }
+    };
+    if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', __whenStyled);
+    else __whenStyled();
+  }catch(e){ try{ document.documentElement.classList.remove('bibly-fouc'); }catch(_){} }
   // 접근성 — 저장된(또는 기본 17px) 글자 크기를 깜빡임 없이 즉시 적용
   try{ var __fs = localStorage.getItem('biblyFont') || '17px'; document.documentElement.style.fontSize = __fs; }catch(e){}
   // 한글 줄바꿈을 어절 단위로(단어 중간에서 끊기지 않게) — 전 페이지 공통 타이포 개선
