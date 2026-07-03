@@ -1,14 +1,474 @@
 [
-  {"en": "taken in adultery", "ko": "간음하다가 잡힌", "note": "현장에서 붙잡힌 여인을 끌고 와 예수를 시험하려 한 장면이다.", "voc": [["take", "v.", "잡다, 붙잡다"], ["adultery", "n.", "간음"], ["accuse", "v.", "고발하다"]], "idi": [["taken in (the act)", "현행범으로 붙잡힌"]], "gra": []},
-  {"en": "He that is without sin", "ko": "죄 없는 자가", "note": "고발하는 자들 자신의 죄를 먼저 돌아보게 하신 말씀이다.", "voc": [["without", "prep.", "~ 없이"], ["sin", "n.", "죄"]], "idi": [], "gra": [["He that is without sin", "He that=현대영어의 He who(관계대명사 that이 사람을 가리킴)"]]},
-  {"en": "cast the first stone", "ko": "먼저 돌을 던지라", "note": "정죄에 앞서 자기 양심을 보라는 도전으로, 모두 물러갔다.", "voc": [["cast", "v.", "던지다"], ["stone", "n.", "돌"], ["first", "adj.", "첫째의, 먼저"]], "idi": [["cast the first stone", "먼저 비난하다, 가장 먼저 정죄하다"]], "gra": []},
-  {"en": "Neither do I condemn thee", "ko": "나도 너를 정죄하지 아니하노니", "note": "용서와 함께 '다시는 죄를 짓지 말라' 하신 회복의 명령이다.", "voc": [["neither", "adv.", "~도 아니다"], ["condemn", "v.", "정죄하다, 단죄하다"], ["thee", "pron.", "너를(thou의 목적격)"]], "idi": [], "gra": [["thee", "thee=현대영어 you의 목적격 고어"]]},
-  {"en": "the light of the world", "ko": "세상의 빛", "note": "예수의 '나는 ~이다' 선언 중 하나로 생명의 빛을 약속하신다.", "voc": [["light", "n.", "빛"], ["world", "n.", "세상"]], "idi": [], "gra": []},
-  {"en": "the light of life", "ko": "생명의 빛", "note": "그분을 따르는 자가 어둠을 걷지 않음을 가리킨다.", "voc": [["life", "n.", "생명"], ["darkness", "n.", "어둠"]], "idi": [], "gra": []},
-  {"en": "the truth shall make you free", "ko": "진리가 너희를 자유롭게 하리라", "note": "내 말 안에 거하는 참 제자에게 주어지는 자유다.", "voc": [["truth", "n.", "진리"], ["free", "adj.", "자유로운"]], "idi": [], "gra": [["shall make you free", "shall=미래·약속을 나타내는 고어 조동사(현대영어 will)"]]},
-  {"en": "the servant of sin", "ko": "죄의 종", "note": "죄를 짓는 자는 누구든 죄에 매인 종이라는 선언이다.", "voc": [["servant", "n.", "종, 하인"], ["commit", "v.", "(죄를) 짓다, 범하다"]], "idi": [["servant of sin", "죄에 매인 종, 죄의 노예"]], "gra": []},
-  {"en": "free indeed", "ko": "참으로 자유로우리라", "note": "아들이 자유롭게 하는 자만이 누리는 참 자유다.", "voc": [["indeed", "adv.", "참으로, 진실로"], ["Son", "n.", "아들"]], "idi": [["free indeed", "참으로 자유로운, 진정 자유로운"]], "gra": []},
-  {"en": "Ye are of your father the devil", "ko": "너희 아비 마귀", "note": "마귀를 처음부터 살인한 자요 거짓의 아비로 규정하신다.", "voc": [["devil", "n.", "마귀"], ["father", "n.", "아비, 아버지"], ["lust", "n.", "욕심, 정욕"]], "idi": [], "gra": [["Ye are", "Ye=현대영어 you의 주격 복수 고어형"]]},
-  {"en": "the father of it", "ko": "거짓의 아비", "note": "거짓을 말하는 자의 근원이 마귀임을 밝히신다.", "voc": [["lie", "n.", "거짓말"], ["liar", "n.", "거짓말쟁이"]], "idi": [], "gra": []},
-  {"en": "Before Abraham was, I am", "ko": "아브라함이 나기 전부터 내가 있느니라", "note": "자신의 영원한 선재(先在)를 '내가 있다'로 선언하신 절정이다.", "voc": [["before", "prep.", "~ 전에"], ["was", "v.", "있었다, 존재했다"]], "idi": [], "gra": [["Before Abraham was, I am", "과거(was)와 현재(I am)의 대비로 영원한 존재를 표현—현대영어로는 시제 충돌처럼 보이나 신학적 강조"]]}
+ {
+  "en": "Jesus went unto the mount of Olives.",
+  "ko": "예수께서는 올리브 산으로 가시니라.",
+  "note": "무리를 가르치신 낮이 지나면 예수께서는 홀로 감람 산으로 물러가 기도하시곤 하셨다. '올리브'로 옮긴 헬라어 엘라이온은 그분이 자주 찾으신 기도의 처소를 가리킨다.",
+  "voc": [["mount", "n.", "산"], ["unto", "prep.", "~로, ~에게"]],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And early in the morning he came again into the temple, and all the people came unto him; and he sat down, and taught them.",
+  "ko": "이른 아침에 다시 성전으로 들어오시니, 온 백성이 그분께로 나아오는지라, 이에 앉으사 그들을 가르치시더라.",
+  "note": "예수께서 앉으사 가르치심은 당시 랍비의 정식 교수 자세였다. '가르치다'로 옮긴 헬라어 디다스코는 권위 있는 스승의 지속적 교훈을 뜻하니, 온 백성이 그분께 나아온 것이 마땅하다.",
+  "voc": [["early", "adv.", "일찍이"], ["temple", "n.", "성전"], ["teach", "v.", "가르치다"]],
+  "idi": [["sit down", "앉다, 자리에 앉다"]],
+  "gra": []
+ },
+ {
+  "en": "And the scribes and Pharisees brought unto him a woman taken in adultery; and when they had set her in the midst,",
+  "ko": "그때에 서기관들과 바리새인들이 간음하다가 잡힌 한 여인을 끌고 와서 무리 가운데 세우고",
+  "note": "서기관과 바리새인은 율법의 수호자를 자처하던 무리다. 여인을 '가운데' 세움은 그를 구경거리로 삼아 예수를 옭아매려는 계략의 무대였다.",
+  "voc": [["scribe", "n.", "서기관"], ["Pharisee", "n.", "바리새인"], ["adultery", "n.", "간음"], ["midst", "n.", "가운데"]],
+  "idi": [["taken in adultery", "간음하다가 붙잡힌, 현행범으로 잡힌"]],
+  "gra": []
+ },
+ {
+  "en": "They say unto him, Master, this woman was taken in adultery, in the very act.",
+  "ko": "예수께 이르되 \"선생이여, 이 여인이 간음하다가 현장에서 붙잡혔나이다.",
+  "note": "'현장에서'로 옮긴 표현은 변명할 여지 없는 명백한 죄를 강조한다. 그러나 율법대로라면 상간한 남자도 함께 있어야 하니(레 20:10), 그들의 고발은 처음부터 공정하지 못하였다.",
+  "voc": [["Master", "n.", "선생님, 랍비"], ["act", "n.", "행위, 현장"], ["very", "adj.", "바로 그"]],
+  "idi": [["in the very act", "바로 그 현장에서, 현행범으로"]],
+  "gra": []
+ },
+ {
+  "en": "Now Moses in the law commanded us, that such should be stoned: but what sayest thou?",
+  "ko": "모세는 율법에서 이런 자를 돌로 치라 우리에게 명하였거니와, 당신은 무어라 말씀하시겠나이까?\" 하니",
+  "note": "그들은 모세를 방패 삼아 예수를 궁지로 몬다. 자비를 말하면 율법을 어기는 자가 되고, 처형을 말하면 로마의 사형권을 침범하니, 어느 쪽이든 걸려들게 하려는 덫이었다.",
+  "voc": [["command", "v.", "명하다"], ["stone", "v.", "돌로 치다"], ["law", "n.", "율법"]],
+  "idi": [],
+  "gra": [["what sayest thou", "sayest=say의 2인칭 단수 고어(-est 어미); thou=너(주격 고어)"]]
+ },
+ {
+  "en": "This they said, tempting him, that they might have to accuse him. But Jesus stooped down, and with his finger wrote on the ground, as though he heard them not.",
+  "ko": "이는 그분을 시험하여 고발할 구실을 얻고자 함이라. 그러나 예수께서는 몸을 굽히사 손가락으로 땅에 무엇인가를 쓰시며 그들의 말을 듣지 아니하시는 듯하시더라.",
+  "note": "'시험하여'로 옮긴 헬라어 페이라조는 악의로 걸어 넘어뜨리려는 유혹을 뜻한다. 하나님이 손가락으로 돌판에 율법을 쓰셨듯이(출 31:18), 예수께서 땅에 쓰심은 율법의 주인이 누구인지를 조용히 드러낸다.",
+  "voc": [["tempt", "v.", "시험하다, 꾀다"], ["accuse", "v.", "고발하다"], ["stoop", "v.", "몸을 굽히다"], ["ground", "n.", "땅"]],
+  "idi": [["as though", "마치 ~인 듯이"]],
+  "gra": [["stooped down ... heard them not", "not이 동사 뒤에 온 고어 어순(현대영어 did not hear them)"]]
+ },
+ {
+  "en": "So when they continued asking him, he lifted up himself, and said unto them, He that is without sin among you, let him first cast a stone at her.",
+  "ko": "그들이 계속하여 묻기를 그치지 아니하매, 예수께서 몸을 일으키사 그들에게 이르시되 \"너희 가운데 죄 없는 자가 먼저 그 여인에게 돌을 던지라\" 하시고",
+  "note": "예수께서는 율법을 폐하지 않으시되 고발자의 양심을 겨누신다. 죄 없는 자만이 돌을 던지라 하심은 정죄에 앞서 자신을 돌아보게 하시는 하나님의 지혜다.",
+  "voc": [["continue", "v.", "계속하다"], ["without", "prep.", "~ 없이"], ["cast", "v.", "던지다"]],
+  "idi": [["cast a stone at", "~에게 돌을 던지다, 비난하다"]],
+  "gra": [["He that is without sin", "He that=현대영어 he who(관계대명사 that이 사람을 가리킴)"]]
+ },
+ {
+  "en": "And again he stooped down, and wrote on the ground.",
+  "ko": "다시 몸을 굽히사 땅에 무엇인가를 쓰시니라.",
+  "note": "예수께서 다시 몸을 굽혀 쓰심은 그들에게 스스로 물러갈 여유를 주신 자비다. 정죄의 손가락을 들지 아니하시고 침묵으로 회개의 자리를 여신다.",
+  "voc": [["again", "adv.", "다시"], ["write", "v.", "쓰다"], ["ground", "n.", "땅, 바닥"]],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And they which heard it, being convicted by their own conscience, went out one by one, beginning at the eldest, even unto the last: and Jesus was left alone, and the woman standing in the midst.",
+  "ko": "이 말씀을 들은 자들이 자기 양심에 가책을 받아 어른으로부터 시작하여 마지막 사람에 이르기까지 하나씩 하나씩 물러가고, 오직 예수만 남으시며 그 여인은 가운데 서 있더라.",
+  "note": "'가책을 받아'로 옮긴 헬라어 엘렝코는 죄가 드러나 부끄러움에 이름을 뜻한다. 나이 든 자부터 먼저 떠남은 오래 산 만큼 감출 죄도 많았음을 은연중 보여 준다.",
+  "voc": [["convict", "v.", "가책을 주다, 유죄를 깨닫게 하다"], ["conscience", "n.", "양심"], ["eldest", "n.", "가장 나이 많은 자"]],
+  "idi": [["one by one", "하나씩, 차례로"]],
+  "gra": [["they which heard", "which=사람을 가리키는 고어 관계대명사(현대영어 who)"]]
+ },
+ {
+  "en": "When Jesus had lifted up himself, and saw none but the woman, he said unto her, Woman, where are those thine accusers? hath no man condemned thee?",
+  "ko": "예수께서 몸을 일으키사 그 여인 외에 아무도 없음을 보시고 그에게 이르시되 \"여인이여, 너를 고발하던 자들이 어디 있느냐? 너를 정죄한 자가 없느냐?\" 하시니",
+  "note": "고발자가 모두 떠난 자리에 예수와 여인만 남았다. 아우구스티누스의 말처럼 '비참'과 '긍휼'이 마주 선 순간이니, 죄인은 심판자가 아니라 구주 앞에 홀로 섰다.",
+  "voc": [["accuser", "n.", "고발자"], ["condemn", "v.", "정죄하다"], ["none", "pron.", "아무도 ~ 아니"]],
+  "idi": [["none but", "~ 외에는 아무도"]],
+  "gra": [["thine accusers ... hath no man condemned thee", "thine=너의(고어 소유격); hath=has 고어; thee=너를(목적격 고어)"]]
+ },
+ {
+  "en": "She said, No man, Lord. And Jesus said unto her, Neither do I condemn thee: go, and sin no more.",
+  "ko": "그 여인이 이르되 \"주여, 아무도 없나이다\" 하더라. 이에 예수께서 그에게 이르시되 \"나도 너를 정죄하지 아니하노니, 가서 다시는 죄를 짓지 말라\" 하시니라.",
+  "note": "죄를 눈감으심이 아니라 용서하시고 새 삶으로 부르심이다. '다시는 죄를 짓지 말라'는 값싼 은혜가 아니라 회복을 향한 거룩한 명령이니, 사죄와 성화가 함께 간다.",
+  "voc": [["neither", "adv.", "~도 아니다"], ["condemn", "v.", "정죄하다"], ["sin", "v.", "죄를 짓다"]],
+  "idi": [["sin no more", "다시는 죄를 짓지 말라"]],
+  "gra": [["Neither do I condemn thee", "thee=너를(목적격 고어); Neither ~ 강조 도치"]]
+ },
+ {
+  "en": "Then spake Jesus again unto them, saying, I am the light of the world: he that followeth me shall not walk in darkness, but shall have the light of life.",
+  "ko": "그때에 예수께서 다시 그들에게 말씀하여 이르시되 \"나는 세상의 빛이니, 나를 따르는 자는 어둠 속을 걷지 아니하고 도리어 생명의 빛을 얻으리라\" 하시니",
+  "note": "'나는 ~이다'(에고 에이미)는 요한복음의 위대한 선언 중 하나로 신적 자기 계시다. 초막절 성전의 등불 예식을 배경으로, 그 임시 불빛이 아니라 자신이 참 빛임을 밝히신다.",
+  "voc": [["light", "n.", "빛"], ["follow", "v.", "따르다"], ["darkness", "n.", "어둠"]],
+  "idi": [["the light of the world", "세상의 빛"]],
+  "gra": [["he that followeth me", "he that=he who; followeth=follow의 3인칭 단수 고어(-eth 어미)"]]
+ },
+ {
+  "en": "The Pharisees therefore said unto him, Thou bearest record of thyself; thy record is not true.",
+  "ko": "이에 바리새인들이 그분께 이르되 \"당신이 스스로 자신을 증언하니, 당신의 증언은 참되지 아니하도다\" 하더라.",
+  "note": "바리새인들은 홀로 하는 증언은 무효라는 율법 원칙을 든다(신 19:15). 그러나 그들은 증언하시는 이가 하나님의 아들이심을 헤아리지 못하니, 빛을 보고도 어둠으로 대꾸한다.",
+  "voc": [["record", "n.", "증언, 기록"], ["true", "adj.", "참된"], ["thyself", "pron.", "너 자신"]],
+  "idi": [["bear record of", "~을 증언하다, 증거하다"]],
+  "gra": [["Thou bearest record of thyself; thy record", "bearest=bear의 2인칭 단수 고어; thyself/thy=너 자신/너의(고어)"]]
+ },
+ {
+  "en": "Jesus answered and said unto them, Though I bear record of myself, yet my record is true: for I know whence I came, and whither I go; but ye cannot tell whence I come, and whither I go.",
+  "ko": "예수께서 대답하여 그들에게 이르시되 \"내가 비록 나 자신을 증언할지라도 내 증언은 참되니, 이는 내가 어디서 왔으며 어디로 가는지를 앎이라. 그러나 너희는 내가 어디서 왔으며 어디로 가는지를 알지 못하느니라.",
+  "note": "예수의 자기 증언이 참된 것은 그분이 자신의 기원과 목적지, 곧 아버지께로부터 오고 아버지께로 감을 아시기 때문이다. 하늘의 실상을 아는 이의 증언은 땅의 무지와 견줄 수 없다.",
+  "voc": [["though", "conj.", "비록 ~일지라도"], ["whence", "adv.", "어디서, 어디로부터"], ["whither", "adv.", "어디로"]],
+  "idi": [],
+  "gra": [["ye cannot tell whence I come", "ye=너희(주격 복수 고어); whence/whither=어디서/어디로(고어 의문부사)"]]
+ },
+ {
+  "en": "Ye judge after the flesh; I judge no man.",
+  "ko": "너희는 육신을 따라 판단하거니와, 나는 아무도 판단하지 아니하노라.",
+  "note": "'육신을 따라'(카타 텐 사르카) 판단함은 겉모습과 인간적 기준에 매인 판단이다. 예수의 초림은 정죄가 아니라 구원을 위함이니(요 3:17), 그 심판은 아직 유보되어 있다.",
+  "voc": [["judge", "v.", "판단하다"], ["flesh", "n.", "육신"]],
+  "idi": [["after the flesh", "육신을 따라, 인간적 기준으로"]],
+  "gra": [["Ye judge after the flesh", "Ye=너희(주격 복수 고어)"]]
+ },
+ {
+  "en": "And yet if I judge, my judgment is true: for I am not alone, but I and the Father that sent me.",
+  "ko": "또 내가 판단할지라도 내 판단은 참되니, 이는 내가 홀로 있지 아니하고 나와 나를 보내신 아버지께서 함께 계심이라.",
+  "note": "예수의 판단이 참된 까닭은 그것이 아버지와 하나 된 판단이기 때문이다. 아들과 아버지의 온전한 연합이 그 증언과 심판에 신적 권위를 부여한다.",
+  "voc": [["judgment", "n.", "판단, 심판"], ["alone", "adj.", "홀로인"], ["Father", "n.", "아버지"]],
+  "idi": [],
+  "gra": [["the Father that sent me", "that=관계대명사(현대영어 who)"]]
+ },
+ {
+  "en": "It is also written in your law, that the testimony of two men is true.",
+  "ko": "또한 너희 율법에도 두 사람의 증언은 참되다 기록되어 있느니라.",
+  "note": "예수께서는 그들 자신의 율법으로 답하신다(신 17:6). '너희 율법'이라 하심은 율법을 자랑하면서도 그 증언의 참 의미를 놓친 그들을 향한 완곡한 책망이다.",
+  "voc": [["testimony", "n.", "증언"], ["written", "adj.", "기록된"], ["law", "n.", "율법"]],
+  "idi": [],
+  "gra": [["It is also written in your law", "It is written=성경 인용의 관용적 수동태 '기록되어 있다'"]]
+ },
+ {
+  "en": "I am one that bear witness of myself, and the Father that sent me beareth witness of me.",
+  "ko": "나는 나 자신을 증언하는 자요, 또한 나를 보내신 아버지께서 나를 증언하시느니라\" 하시니",
+  "note": "율법이 요구한 두 증인이 여기 있으니, 아들과 아버지시다. 예수의 사역 전체와 아버지의 인정하심이 함께 그분이 그리스도이심을 증언한다.",
+  "voc": [["witness", "n.", "증언, 증인"], ["bear", "v.", "(증언을) 하다"]],
+  "idi": [["bear witness of", "~을 증언하다"]],
+  "gra": [["that bear witness ... beareth witness", "bear(1인칭)/beareth(3인칭 -eth 고어)=증언하다"]]
+ },
+ {
+  "en": "Then said they unto him, Where is thy Father? Jesus answered, Ye neither know me, nor my Father: if ye had known me, ye should have known my Father also.",
+  "ko": "그들이 그분께 이르되 \"당신의 아버지가 어디 있느냐?\" 하니, 예수께서 대답하시되 \"너희는 나도 알지 못하고 내 아버지도 알지 못하는도다. 너희가 만일 나를 알았더라면 내 아버지도 알았으리라\" 하시니라.",
+  "note": "아버지를 아는 길은 오직 아들을 통함이다(요 14:9). 예수를 거절하는 자는 하나님을 안다 할 수 없으니, 아들을 아는 것과 아버지를 아는 것은 나뉘지 않는다.",
+  "voc": [["know", "v.", "알다"], ["neither ... nor", "conj.", "~도 ~도 아니다"], ["also", "adv.", "또한"]],
+  "idi": [],
+  "gra": [["if ye had known me, ye should have known", "가정법 과거완료(had known / should have known)로 이루지 못한 조건 '알았더라면 알았으리라'"]]
+ },
+ {
+  "en": "These words spake Jesus in the treasury, as he taught in the temple: and no man laid hands on him; for his hour was not yet come.",
+  "ko": "예수께서 성전에서 가르치실 때에 헌금함 곁에서 이 말씀을 하셨으나 아무도 그분을 붙잡지 아니하였으니, 이는 그분의 때가 아직 이르지 아니하였음이라.",
+  "note": "'헌금함'(가조필라키온)은 성전 여인의 뜰에 있어 사람이 많이 오가던 곳이다. '그분의 때'는 아버지께서 정하신 십자가의 시각이니, 그 전에는 아무도 그분을 해할 수 없었다.",
+  "voc": [["treasury", "n.", "헌금함, 보물고"], ["temple", "n.", "성전"], ["hour", "n.", "때, 시각"]],
+  "idi": [["lay hands on", "~을 붙잡다, 손을 대다"]],
+  "gra": [["These words spake Jesus", "목적어 도치(These words) + spake=speak의 과거 고어"]]
+ },
+ {
+  "en": "Then said Jesus again unto them, I go my way, and ye shall seek me, and shall die in your sins: whither I go, ye cannot come.",
+  "ko": "그때에 예수께서 다시 그들에게 이르시되 \"내가 나의 길을 가리니, 너희가 나를 찾다가 너희 죄 가운데서 죽으리라. 내가 가는 곳에 너희는 올 수 없느니라\" 하시니",
+  "note": "'죄 가운데서 죽으리라'는 회개 없이 불신에 머무는 자의 엄중한 종국이다. 예수를 거절함은 곧 유일한 구원의 길을 거절함이니, 그분이 가시는 아버지의 처소에 이르지 못한다.",
+  "voc": [["seek", "v.", "찾다"], ["die", "v.", "죽다"], ["whither", "adv.", "어디로, ~하는 곳으로"]],
+  "idi": [["go one's way", "자기 길을 가다"]],
+  "gra": [["ye shall seek me, and shall die", "ye=너희; shall=~하리라(고어 미래 조동사); whither=~하는 곳(관계부사 고어)"]]
+ },
+ {
+  "en": "Then said the Jews, Will he kill himself? because he saith, Whither I go, ye cannot come.",
+  "ko": "이에 유대인들이 이르되 \"내가 가는 곳에 너희는 올 수 없다 하니, 그가 스스로 목숨을 끊으려는 것인가?\" 하더라.",
+  "note": "그들은 예수의 하늘 말씀을 땅의 뜻으로 오해한다. 스스로 목숨을 끊는 자는 가장 어두운 곳에 간다고 여겼으니, 예수를 조롱하는 그 물음이 도리어 자기 무지를 드러낸다.",
+  "voc": [["kill", "v.", "죽이다"], ["himself", "pron.", "자기 자신"]],
+  "idi": [["kill oneself", "스스로 목숨을 끊다, 자살하다"]],
+  "gra": [["because he saith, Whither I go", "saith=say의 3인칭 단수 고어(-eth 어미); Whither=어디로(고어)"]]
+ },
+ {
+  "en": "And he said unto them, Ye are from beneath; I am from above: ye are of this world; I am not of this world.",
+  "ko": "그러자 예수께서 그들에게 이르시되 \"너희는 아래에서 났고 나는 위에서 났으며, 너희는 이 세상에 속하였으나 나는 이 세상에 속하지 아니하였느니라.",
+  "note": "'아래'와 '위'는 두 영역의 근본적 대비다. 예수는 하늘에서 오신 분이요 그들은 땅에 매인 자들이니, 이 기원의 차이가 서로 통하지 못함의 뿌리다.",
+  "voc": [["beneath", "adv.", "아래에"], ["above", "adv.", "위에"], ["world", "n.", "세상"]],
+  "idi": [["be of this world", "이 세상에 속하다"]],
+  "gra": [["Ye are from beneath ... ye are of this world", "Ye=너희(주격 복수 고어)"]]
+ },
+ {
+  "en": "I said therefore unto you, that ye shall die in your sins: for if ye believe not that I am he, ye shall die in your sins.",
+  "ko": "그러므로 내가 너희에게 이르기를 너희가 너희 죄 가운데서 죽으리라 하였노니, 만일 내가 그인 줄을 너희가 믿지 아니하면 너희가 너희 죄 가운데서 죽으리라\" 하시니",
+  "note": "'내가 그인 줄'(에고 에이미)은 출애굽기 3:14의 '스스로 있는 자'를 울리는 신적 자기 선언이다. 이 정체를 믿음이 생사를 가르니, 그분을 하나님으로 영접하는 것이 곧 죄에서 벗어나는 길이다.",
+  "voc": [["therefore", "adv.", "그러므로"], ["believe", "v.", "믿다"], ["sin", "n.", "죄"]],
+  "idi": [["die in one's sins", "죄 가운데서 죽다"]],
+  "gra": [["if ye believe not that I am he", "ye=너희; believe not=현대영어 do not believe(부정어 후치 고어)"]]
+ },
+ {
+  "en": "Then said they unto him, Who art thou? And Jesus saith unto them, Even the same that I said unto you from the beginning.",
+  "ko": "그들이 그분께 이르되 \"네가 누구냐?\" 하매, 예수께서 그들에게 이르시되 \"나는 처음부터 너희에게 말하여 온 바로 그 사람이니라.",
+  "note": "예수의 정체는 처음부터 그분의 말씀과 사역 속에 이미 드러나 있었다. 새로운 답을 요구하는 그들에게, 답은 이미 주어졌으니 들을 귀가 없었을 뿐이라 하신다.",
+  "voc": [["who", "pron.", "누구"], ["beginning", "n.", "처음, 시작"], ["same", "n.", "바로 그것"]],
+  "idi": [["from the beginning", "처음부터"]],
+  "gra": [["Who art thou ... the same that I said", "art=are의 2인칭 단수 고어; thou=너; that=관계대명사"]]
+ },
+ {
+  "en": "I have many things to say and to judge of you: but he that sent me is true; and I speak to the world those things which I have heard of him.",
+  "ko": "내가 너희에 관하여 말하고 판단할 것이 많으나, 나를 보내신 이는 참되시니, 나는 그분께 들은 것을 세상에 말하노라\" 하시되",
+  "note": "예수의 말씀은 자의가 아니라 참되신 아버지께 들은 것을 전하심이다. 아들의 메시지의 근원이 하나님이시니, 그 말씀에는 하늘의 진리 그대로가 담겨 있다.",
+  "voc": [["judge", "v.", "판단하다"], ["true", "adj.", "참된"], ["speak", "v.", "말하다"]],
+  "idi": [["hear of", "~에게서 듣다"]],
+  "gra": [["he that sent me ... which I have heard of him", "he that=he who; which=관계대명사; heard of=~에게서 들었다(고어 용법)"]]
+ },
+ {
+  "en": "They understood not that he spake to them of the Father.",
+  "ko": "그들은 그분이 아버지에 관하여 말씀하시는 줄을 깨닫지 못하더라.",
+  "note": "'깨닫지 못하더라'는 요한복음에 자주 나오는 영적 몰이해다. 육에 속한 마음은 하늘의 일을 헤아릴 수 없으니(고전 2:14), 아버지를 아는 눈이 그들에게는 아직 열리지 않았다.",
+  "voc": [["understand", "v.", "깨닫다, 이해하다"], ["Father", "n.", "아버지"]],
+  "idi": [],
+  "gra": [["They understood not ... he spake", "understood not=현대영어 did not understand; spake=speak의 과거 고어"]]
+ },
+ {
+  "en": "Then said Jesus unto them, When ye have lifted up the Son of man, then shall ye know that I am he, and that I do nothing of myself; but as my Father hath taught me, I speak these things.",
+  "ko": "이에 예수께서 그들에게 이르시되 \"너희가 인자를 들어 올린 후에야 내가 그인 줄을 알 것이요, 또 내가 스스로는 아무것도 하지 아니하고 오직 아버지께서 나를 가르치신 그대로 이것들을 말하는 줄을 알리라.",
+  "note": "'들어 올린다'(휘프소오)는 십자가에 달림과 높이 들리심을 함께 가리키는 요한의 이중 표현이다. 그 십자가가 곧 예수께서 '스스로 있는 자'이심을 드러내는 결정적 표적이 된다.",
+  "voc": [["lift up", "v.", "들어 올리다"], ["Son of man", "n.", "인자"], ["teach", "v.", "가르치다"]],
+  "idi": [["lift up", "들어 올리다, 높이다"]],
+  "gra": [["When ye have lifted up ... my Father hath taught me", "ye=너희; hath=has 고어; shall ye know=너희가 알리라(고어 도치 미래)"]]
+ },
+ {
+  "en": "And he that sent me is with me: the Father hath not left me alone; for I do always those things that please him.",
+  "ko": "또 나를 보내신 이가 나와 함께 계시니, 아버지께서 나를 홀로 버려두지 아니하셨으니, 이는 내가 항상 그분을 기쁘시게 하는 일을 행함이라\" 하시니라.",
+  "note": "아버지와 아들의 끊임없는 교제가 예수의 사역을 떠받친다. '항상 기쁘시게 하는 일을 행한다'는 죄 없으신 아들의 완전한 순종이니, 여기에 그 사귐의 근거가 있다.",
+  "voc": [["always", "adv.", "항상"], ["please", "v.", "기쁘게 하다"], ["alone", "adj.", "홀로인"]],
+  "idi": [["leave alone", "홀로 두다, 내버려두다"]],
+  "gra": [["he that sent me ... the Father hath not left me", "he that=he who; hath=has 고어; those things that=관계대명사"]]
+ },
+ {
+  "en": "As he spake these words, many believed on him.",
+  "ko": "예수께서 이 말씀을 하실 때에 많은 사람이 그분을 믿더라.",
+  "note": "'그분을 믿었다'로 옮긴 표현은 그분께 온전히 의탁함을 뜻한다. 그러나 이어지는 대화가 보이듯 이 믿음은 아직 얕으니, 참 믿음은 시련 속에서 그 진위가 드러난다.",
+  "voc": [["believe", "v.", "믿다"], ["many", "n.", "많은 사람"]],
+  "idi": [["believe on", "~을 믿다, ~께 의탁하다"]],
+  "gra": [["As he spake these words", "spake=speak의 과거 고어"]]
+ },
+ {
+  "en": "Then said Jesus to those Jews which believed on him, If ye continue in my word, then are ye my disciples indeed;",
+  "ko": "그때에 예수께서 자기를 믿은 그 유대인들에게 이르시되 \"너희가 내 말 안에 거하면 참으로 내 제자가 되리니,",
+  "note": "'거하다'(메노)는 흔들림 없이 머무름을 뜻하니, 참 제자는 감정의 순간이 아니라 지속되는 순종으로 판별된다. 시작한 믿음이 계속될 때 비로소 참 제자다.",
+  "voc": [["continue", "v.", "거하다, 계속하다"], ["disciple", "n.", "제자"], ["indeed", "adv.", "참으로"]],
+  "idi": [["continue in", "~ 안에 거하다, 계속 머물다"]],
+  "gra": [["If ye continue ... then are ye my disciples", "ye=너희; then are ye=then ye are(도치 고어); which=관계대명사"]]
+ },
+ {
+  "en": "And ye shall know the truth, and the truth shall make you free.",
+  "ko": "너희가 진리를 알지니, 진리가 너희를 자유롭게 하리라\" 하시니",
+  "note": "여기 진리는 추상 개념이 아니라 진리 되신 예수 자신이다(요 14:6). 그분을 알고 그 말씀에 거함이 죄의 속박에서 벗어나는 참 자유의 길이다.",
+  "voc": [["truth", "n.", "진리"], ["free", "adj.", "자유로운"], ["know", "v.", "알다"]],
+  "idi": [["make free", "자유롭게 하다"]],
+  "gra": [["ye shall know ... the truth shall make you free", "ye=너희; shall=~하리라(고어 미래 조동사)"]]
+ },
+ {
+  "en": "They answered him, We be Abraham's seed, and were never in bondage to any man: how sayest thou, Ye shall be made free?",
+  "ko": "그들이 그분께 대답하되 \"우리는 아브라함의 후손이라, 아무에게도 종 노릇 한 적이 없거늘 어찌하여 너희가 자유롭게 되리라 하느냐?\" 하더라.",
+  "note": "혈통을 자랑하는 그들은 애굽과 바벨론의 종살이를 잊었고, 더욱이 로마의 지배 아래 있었다. 겉의 자유를 내세우나 정작 죄에 매인 속의 종살이는 보지 못한다.",
+  "voc": [["seed", "n.", "후손, 씨"], ["bondage", "n.", "종살이, 속박"], ["free", "adj.", "자유로운"]],
+  "idi": [["in bondage to", "~에게 매인, ~의 종이 된"]],
+  "gra": [["We be Abraham's seed ... how sayest thou", "be=are의 고어; sayest=say의 2인칭 단수 고어; thou/Ye=너/너희"]]
+ },
+ {
+  "en": "Jesus answered them, Verily, verily, I say unto you, Whosoever committeth sin is the servant of sin.",
+  "ko": "예수께서 그들에게 대답하시되 \"진실로 진실로 너희에게 이르노니, 죄를 짓는 자마다 죄의 종이니라.",
+  "note": "'진실로 진실로'(아멘 아멘)는 예수 특유의 엄숙한 서두다. 참 종살이는 정치적 예속이 아니라 죄에 매임이니, 죄를 습관으로 짓는 자는 그 죄의 노예임을 밝히신다.",
+  "voc": [["verily", "adv.", "진실로"], ["commit", "v.", "(죄를) 짓다"], ["servant", "n.", "종"]],
+  "idi": [["servant of sin", "죄의 종, 죄의 노예"]],
+  "gra": [["Whosoever committeth sin", "Whosoever=~하는 자는 누구든지(고어); committeth=commit의 3인칭 단수 고어(-eth)"]]
+ },
+ {
+  "en": "And the servant abideth not in the house for ever: but the Son abideth ever.",
+  "ko": "종은 집에 영원히 거하지 못하되 아들은 영원히 거하나니,",
+  "note": "종은 언제든 내쫓길 수 있으나 아들은 집에 영구한 지위를 가진다. 죄의 종은 하나님의 집에 참 자리가 없으니, 오직 아들의 은혜로만 그 집의 아들이 될 수 있다.",
+  "voc": [["abide", "v.", "거하다, 머물다"], ["house", "n.", "집"], ["for ever", "adv.", "영원히"]],
+  "idi": [["for ever", "영원히"]],
+  "gra": [["the servant abideth not ... the Son abideth ever", "abideth=abide의 3인칭 단수 고어(-eth); ever=영원히(고어)"]]
+ },
+ {
+  "en": "If the Son therefore shall make you free, ye shall be free indeed.",
+  "ko": "그러므로 아들이 너희를 자유롭게 하면 너희가 참으로 자유로우리라.",
+  "note": "참 자유는 오직 아들에게서 온다. '참으로'(온토스)는 겉치레가 아닌 진정한 자유를 강조하니, 아들이 풀어 주신 자만이 죄와 사망의 사슬에서 온전히 놓인다.",
+  "voc": [["free", "adj.", "자유로운"], ["indeed", "adv.", "참으로"], ["Son", "n.", "아들"]],
+  "idi": [["free indeed", "참으로 자유로운"]],
+  "gra": [["If the Son ... shall make you free, ye shall be free", "ye=너희; shall=미래·강조 고어 조동사"]]
+ },
+ {
+  "en": "I know that ye are Abraham's seed; but ye seek to kill me, because my word hath no place in you.",
+  "ko": "나는 너희가 아브라함의 후손인 줄을 아노라. 그러나 너희가 나를 죽이려 하니, 이는 내 말이 너희 안에 들어설 자리가 없음이라.",
+  "note": "혈통상 아브라함의 자손임은 인정하시되, 그들의 행실이 그 조상과 딴판임을 지적하신다. 말씀이 '자리가 없다' 함은 그 마음이 진리를 받아들이지 못하도록 굳어 있음을 뜻한다.",
+  "voc": [["seed", "n.", "후손, 씨"], ["seek", "v.", "~하려 하다, 꾀하다"], ["place", "n.", "자리, 여지"]],
+  "idi": [["have no place in", "~ 안에 자리가 없다, 받아들여지지 않다"]],
+  "gra": [["ye are ... ye seek ... my word hath no place", "ye=너희; hath=has 고어"]]
+ },
+ {
+  "en": "I speak that which I have seen with my Father: and ye do that which ye have seen with your father.",
+  "ko": "나는 내 아버지와 함께 본 것을 말하고, 너희는 너희 아비에게서 본 것을 행하는도다\" 하시니",
+  "note": "'아버지'라는 한 말이 두 다른 근원을 겨눈다. 예수의 근원은 하늘 아버지요, 그들의 근원은 곧 밝혀질 마귀이니, 각자의 행실이 그 참 아비의 정체를 드러낸다.",
+  "voc": [["speak", "v.", "말하다"], ["seen", "v.", "본(see의 과거분사)"], ["father", "n.", "아버지, 아비"]],
+  "idi": [],
+  "gra": [["that which I have seen ... ye have seen", "that which=~한 것(관계대명사 the thing which); ye=너희"]]
+ },
+ {
+  "en": "They answered and said unto him, Abraham is our father. Jesus saith unto them, If ye were Abraham's children, ye would do the works of Abraham.",
+  "ko": "그들이 대답하여 그분께 이르되 \"우리 아버지는 아브라함이라\" 하니, 예수께서 그들에게 이르시되 \"너희가 아브라함의 자녀라면 아브라함의 일을 행하였으리라.",
+  "note": "참 자녀 됨은 혈통이 아니라 믿음과 행실로 판별된다(롬 4장). 아브라함은 하나님의 말씀을 믿고 순종했으나, 그들은 하나님의 말씀 되신 이를 죽이려 하니 그 자녀일 수 없다.",
+  "voc": [["children", "n.", "자녀"], ["works", "n.", "일, 행위"], ["father", "n.", "아버지"]],
+  "idi": [],
+  "gra": [["If ye were Abraham's children, ye would do", "가정법(were / would do)로 사실과 반대되는 조건; ye=너희; saith=3인칭 단수 고어"]]
+ },
+ {
+  "en": "But now ye seek to kill me, a man that hath told you the truth, which I have heard of God: this did not Abraham.",
+  "ko": "그러나 이제 너희가 하나님께 들은 진리를 너희에게 말한 사람인 나를 죽이려 하나니, 아브라함은 이렇게 하지 아니하였느니라.",
+  "note": "진리를 전하는 자를 죽이려 함은 아브라함의 길과 정반대다. 아브라함은 하나님의 사자를 영접하였으나(창 18장), 그들은 하나님께서 보내신 진리의 사자를 대적한다.",
+  "voc": [["seek", "v.", "~하려 하다"], ["truth", "n.", "진리"], ["heard", "v.", "들은(hear의 과거)"]],
+  "idi": [["hear of", "~에게서 듣다"]],
+  "gra": [["a man that hath told ... which I have heard of God", "that/which=관계대명사; hath=has 고어; this did not Abraham=도치(Abraham did not do this)"]]
+ },
+ {
+  "en": "Ye do the deeds of your father. Then said they to him, We be not born of fornication; we have one Father, even God.",
+  "ko": "너희는 너희 아비의 행위를 행하는도다\" 하시니, 그들이 그분께 이르되 \"우리는 음행으로 나지 아니하였으니, 우리에게는 한 분 아버지 곧 하나님이 계시니라\" 하더라.",
+  "note": "'음행으로 나지 아니하였다'는 말에는 예수의 출생을 겨냥한 은근한 모욕이 담겼을 수 있다. 그들은 하나님을 아버지라 자처하나, 곧 예수께서 그 참 아비가 누구인지를 밝히신다.",
+  "voc": [["deeds", "n.", "행위"], ["fornication", "n.", "음행"], ["born", "v.", "태어난"]],
+  "idi": [["be born of", "~에게서 나다, ~의 소생이다"]],
+  "gra": [["Ye do the deeds ... We be not born", "Ye=너희; be=are의 고어; even God=곧 하나님(강조의 even)"]]
+ },
+ {
+  "en": "Jesus said unto them, If God were your Father, ye would love me: for I proceeded forth and came from God; neither came I of myself, but he sent me.",
+  "ko": "예수께서 그들에게 이르시되 \"하나님이 너희 아버지였다면 너희가 나를 사랑하였으리니, 이는 내가 하나님께로부터 나와 왔음이라. 나는 스스로 온 것이 아니요 그분이 나를 보내셨느니라.",
+  "note": "하나님을 아버지로 둔 자는 그 아버지께서 보내신 아들을 사랑하기 마련이다. 예수를 미워함이 곧 하나님이 그들의 아버지가 아님을 증명하니, 아들 사랑이 참 자녀 됨의 시금석이다.",
+  "voc": [["proceed", "v.", "나오다"], ["forth", "adv.", "밖으로, 앞으로"], ["send", "v.", "보내다"]],
+  "idi": [["proceed forth from", "~로부터 나오다"]],
+  "gra": [["If God were your Father, ye would love me", "가정법(were / would love)로 사실과 반대되는 조건; ye=너희; neither came I=도치 부정(고어)"]]
+ },
+ {
+  "en": "Why do ye not understand my speech? even because ye cannot hear my word.",
+  "ko": "어찌하여 너희가 내 말을 깨닫지 못하느냐? 이는 너희가 내 말을 들을 수 없음이로다.",
+  "note": "'말'(랄리아)과 '말씀'(로고스)이 구별된다. 그들이 예수의 말뜻을 못 깨닫는 까닭은 그 근원의 말씀 자체를 받아들일 수 없기 때문이니, 마음의 병이 귀의 병으로 나타난다.",
+  "voc": [["understand", "v.", "깨닫다"], ["speech", "n.", "말, 말투"], ["word", "n.", "말씀"]],
+  "idi": [],
+  "gra": [["Why do ye not ... ye cannot hear", "ye=너희; even because=바로 ~ 때문에(강조의 even)"]]
+ },
+ {
+  "en": "Ye are of your father the devil, and the lusts of your father ye will do. He was a murderer from the beginning, and abode not in the truth, because there is no truth in him. When he speaketh a lie, he speaketh of his own: for he is a liar, and the father of it.",
+  "ko": "너희는 너희 아비 마귀에게 속하였으니, 너희 아비의 욕심을 따라 행하고자 하는도다. 그는 처음부터 살인한 자요 진리 안에 서지 못하였으니, 이는 그 안에 진리가 없음이라. 그가 거짓을 말할 때에는 자기 것으로 말하나니, 이는 그가 거짓말쟁이요 거짓의 아비임이라.",
+  "note": "마귀의 두 본성이 드러난다 — 처음부터 '살인한 자'요 '거짓의 아비'다. 에덴에서 거짓으로 사망을 불러들인 그 성품을 따르는 자는 그를 아비로 둔 자이니, 예수를 죽이려는 그들의 뜻이 그 혈통을 증언한다.",
+  "voc": [["devil", "n.", "마귀"], ["lust", "n.", "욕심, 정욕"], ["murderer", "n.", "살인자"], ["liar", "n.", "거짓말쟁이"]],
+  "idi": [["be of", "~에게 속하다"]],
+  "gra": [["Ye are of your father ... abode not ... speaketh a lie", "Ye=너희; abode=abide의 과거 고어; speaketh=speak의 3인칭 단수 고어(-eth)"]]
+ },
+ {
+  "en": "And because I tell you the truth, ye believe me not.",
+  "ko": "그러나 내가 너희에게 진리를 말하므로 너희가 나를 믿지 아니하는도다.",
+  "note": "거짓의 아비를 따르는 자에게 진리는 도리어 걸림돌이 된다. 진리이기 때문에 믿지 못하니, 어둠에 익숙한 자에게 빛이 불편함을 여실히 드러낸다.",
+  "voc": [["truth", "n.", "진리"], ["believe", "v.", "믿다"], ["tell", "v.", "말하다"]],
+  "idi": [],
+  "gra": [["ye believe me not", "ye=너희; believe me not=현대영어 do not believe me(부정어 후치 고어)"]]
+ },
+ {
+  "en": "Which of you convinceth me of sin? And if I say the truth, why do ye not believe me?",
+  "ko": "너희 가운데 누가 나를 죄로 책망하겠느냐? 내가 진리를 말하거늘 어찌하여 너희가 나를 믿지 아니하느냐?",
+  "note": "'죄로 책망하다'(엘렝코)는 죄를 입증함을 뜻하니, 예수는 자신의 무죄를 담대히 도전으로 내미신다. 죄 없으신 이만이 이렇게 물을 수 있으니, 그 흠 없으심이 그 말씀의 참됨을 뒷받침한다.",
+  "voc": [["convince", "v.", "책망하다, (죄를) 입증하다"], ["sin", "n.", "죄"], ["truth", "n.", "진리"]],
+  "idi": [["convince of sin", "죄를 입증하다, 죄로 책망하다"]],
+  "gra": [["Which of you convinceth me ... why do ye not believe", "convinceth=convince의 3인칭 단수 고어(-eth); ye=너희"]]
+ },
+ {
+  "en": "He that is of God heareth God's words: ye therefore hear them not, because ye are not of God.",
+  "ko": "하나님께 속한 자는 하나님의 말씀을 듣나니, 너희가 듣지 아니함은 너희가 하나님께 속하지 아니하였음이라\" 하시니",
+  "note": "말씀을 듣는 능력은 곧 하나님께 속했다는 증표다. 그들이 예수의 말씀을 거부함은 논리의 문제가 아니라 그 영적 소속의 문제이니, 진리를 향한 귀는 하나님께로부터 온다.",
+  "voc": [["hear", "v.", "듣다"], ["therefore", "adv.", "그러므로"], ["of God", "prep.", "하나님께 속한"]],
+  "idi": [["be of God", "하나님께 속하다"]],
+  "gra": [["He that is of God heareth ... ye hear them not", "He that=he who; heareth=hear의 3인칭 단수 고어; ye=너희; hear them not=부정어 후치"]]
+ },
+ {
+  "en": "Then answered the Jews, and said unto him, Say we not well that thou art a Samaritan, and hast a devil?",
+  "ko": "이에 유대인들이 대답하여 그분께 이르되 \"우리가 너를 사마리아 사람이요 마귀가 들렸다 하는 말이 옳지 아니하냐?\" 하더라.",
+  "note": "진리에 대꾸할 말이 없자 그들은 인신공격으로 돌아선다. '사마리아 사람'은 이단·혼혈의 멸시요 '마귀 들렸다'는 극한의 모욕이니, 마귀의 아들이라 불린 자들이 도리어 진리를 마귀의 것이라 뒤집어씌운다.",
+  "voc": [["Samaritan", "n.", "사마리아 사람"], ["devil", "n.", "마귀"], ["well", "adv.", "옳게, 잘"]],
+  "idi": [["have a devil", "마귀가 들리다, 귀신 들리다"]],
+  "gra": [["Say we not well that thou art ... and hast a devil", "Say we not=도치 의문(고어); thou art=너는 ~이다; hast=have의 2인칭 단수 고어"]]
+ },
+ {
+  "en": "Jesus answered, I have not a devil; but I honour my Father, and ye do dishonour me.",
+  "ko": "예수께서 대답하시되 \"나는 마귀가 들린 것이 아니요 도리어 내 아버지를 공경하거늘, 너희가 나를 모욕하는도다.",
+  "note": "예수께서는 모욕에 모욕으로 응하지 않으시고 아버지를 공경하는 자리로 답하신다. 아들을 욕되게 함이 곧 아버지를 욕되게 함이니, 그분을 모욕하는 자들의 행위가 그 불경건을 드러낸다.",
+  "voc": [["honour", "v.", "공경하다"], ["dishonour", "v.", "모욕하다, 욕되게 하다"], ["devil", "n.", "마귀"]],
+  "idi": [],
+  "gra": [["I have not a devil ... ye do dishonour me", "have not=현대영어 do not have(부정어 후치); ye=너희"]]
+ },
+ {
+  "en": "And I seek not mine own glory: there is one that seeketh and judgeth.",
+  "ko": "나는 내 영광을 구하지 아니하노라. 구하시고 판단하시는 이가 따로 계시니라.",
+  "note": "예수는 자기 영광을 구하지 않으시니 그 겸손이 참됨의 증거다. 아들의 영광을 지키시고 대적하는 자를 심판하시는 분은 아버지이시니, 아들은 아버지의 판단에 자신을 맡기신다.",
+  "voc": [["seek", "v.", "구하다"], ["glory", "n.", "영광"], ["judge", "v.", "판단하다, 심판하다"]],
+  "idi": [],
+  "gra": [["I seek not mine own glory ... that seeketh and judgeth", "seek not=부정어 후치; mine own=나 자신의(고어); seeketh/judgeth=3인칭 단수 고어(-eth)"]]
+ },
+ {
+  "en": "Verily, verily, I say unto you, If a man keep my saying, he shall never see death.",
+  "ko": "진실로 진실로 너희에게 이르노니, 누구든지 내 말을 지키면 영원히 죽음을 보지 아니하리라\" 하시니",
+  "note": "'죽음을 보지 아니한다' 함은 육의 죽음이 아니라 영원한 사망을 겪지 않음이다(요 11:26). 예수의 말씀을 지키는 자는 영생에 참여하니, 그분의 말씀에 생명을 주는 능력이 있음을 선언하신다.",
+  "voc": [["keep", "v.", "지키다"], ["saying", "n.", "말씀"], ["death", "n.", "죽음, 사망"]],
+  "idi": [["see death", "죽음을 겪다, 죽음을 보다"]],
+  "gra": [["If a man keep my saying, he shall never see", "keep=가정법 현재(고어, 현대영어 keeps); shall=~하리라(고어 미래)"]]
+ },
+ {
+  "en": "Then said the Jews unto him, Now we know that thou hast a devil. Abraham is dead, and the prophets; and thou sayest, If a man keep my saying, he shall never taste of death.",
+  "ko": "그때에 유대인들이 그분께 이르되 \"이제야 우리가 네게 마귀가 들린 줄을 아노라. 아브라함도 죽었고 선지자들도 죽었거늘, 네가 말하기를 누구든지 내 말을 지키면 영원히 죽음을 맛보지 아니하리라 하는도다.",
+  "note": "그들은 예수의 말씀을 다시 육신의 죽음으로만 이해한다. 아브라함과 선지자도 죽었는데 어찌 죽음을 면하게 하느냐며, 자기들의 좁은 이해로 도리어 그분을 미쳤다 판단한다.",
+  "voc": [["dead", "adj.", "죽은"], ["prophet", "n.", "선지자"], ["taste", "v.", "맛보다"]],
+  "idi": [["taste of death", "죽음을 맛보다, 죽음을 경험하다"]],
+  "gra": [["thou hast a devil ... thou sayest ... If a man keep", "thou=너; hast/sayest=2인칭 단수 고어; keep=가정법 현재 고어"]]
+ },
+ {
+  "en": "Art thou greater than our father Abraham, which is dead? and the prophets are dead: whom makest thou thyself?",
+  "ko": "네가 우리 조상 아브라함보다 크냐? 그도 죽었고 선지자들도 죽었거늘, 네가 너 자신을 누구로 여기느냐?\" 하니",
+  "note": "'네가 너 자신을 누구로 여기느냐'는 조롱이 뜻밖에 핵심을 찌른다. 예수는 참으로 아브라함보다 크신 분이시니, 이어지는 '내가 있다'는 선언이 그 물음에 신적 답을 준다.",
+  "voc": [["greater", "adj.", "더 큰"], ["dead", "adj.", "죽은"], ["thyself", "pron.", "너 자신"]],
+  "idi": [],
+  "gra": [["Art thou greater ... which is dead ... makest thou thyself", "Art thou=너는 ~이냐; which=관계대명사(고어, 사람 지칭); makest=make의 2인칭 단수 고어"]]
+ },
+ {
+  "en": "Jesus answered, If I honour myself, my honour is nothing: it is my Father that honoureth me; of whom ye say, that he is your God:",
+  "ko": "예수께서 대답하시되 \"내가 나 자신을 영화롭게 하면 내 영광은 아무것도 아니니라. 나를 영화롭게 하시는 이는 내 아버지시니, 곧 너희가 너희 하나님이라 일컫는 분이라.",
+  "note": "예수의 영광은 자화자찬이 아니라 아버지께서 주시는 것이다. 그들이 '우리 하나님'이라 부르는 바로 그분이 아들을 높이시니, 아들을 배척함으로 그들은 자기 하나님을 배척하는 자가 된다.",
+  "voc": [["honour", "v.", "영화롭게 하다, 공경하다"], ["nothing", "pron.", "아무것도 아닌 것"], ["God", "n.", "하나님"]],
+  "idi": [],
+  "gra": [["it is my Father that honoureth me; of whom ye say", "it is ~ that=강조 구문; honoureth=3인칭 단수 고어; ye=너희"]]
+ },
+ {
+  "en": "Yet ye have not known him; but I know him: and if I should say, I know him not, I shall be a liar like unto you: but I know him, and keep his saying.",
+  "ko": "너희는 그분을 알지 못하나 나는 그분을 아노니, 만일 내가 그분을 알지 못한다 말하면 나도 너희와 같은 거짓말쟁이가 되려니와, 나는 그분을 알고 그분의 말씀을 지키노라.",
+  "note": "예수와 유대인의 결정적 차이는 아버지를 아느냐에 있다. 그들은 하나님을 안다 하면서 알지 못하나, 아들은 참으로 아시고 그 말씀을 지키시니, 앎과 순종이 함께 참 관계를 이룬다.",
+  "voc": [["known", "v.", "안(know의 과거분사)"], ["liar", "n.", "거짓말쟁이"], ["keep", "v.", "지키다"]],
+  "idi": [["like unto", "~와 같은"]],
+  "gra": [["ye have not known ... if I should say, I know him not", "ye=너희; know him not=부정어 후치(고어); like unto you=~와 같은(고어)"]]
+ },
+ {
+  "en": "Your father Abraham rejoiced to see my day: and he saw it, and was glad.",
+  "ko": "너희 조상 아브라함은 나의 날을 보리라고 즐거워하였고, 또 그날을 보고 기뻐하였느니라\" 하시니",
+  "note": "'나의 날'은 그리스도로 말미암은 구원의 날이다. 아브라함은 약속을 믿어 멀리서 그날을 바라보고 기뻐했으니(히 11:13), 참 믿음의 조상은 예수를 죽이려는 그 후손과 정반대의 자리에 선다.",
+  "voc": [["rejoice", "v.", "즐거워하다"], ["glad", "adj.", "기뻐하는"], ["day", "n.", "날"]],
+  "idi": [],
+  "gra": [["Your father Abraham rejoiced to see my day", "to see=목적의 부정사 '보려고, 볼 것을'"]]
+ },
+ {
+  "en": "Then said the Jews unto him, Thou art not yet fifty years old, and hast thou seen Abraham?",
+  "ko": "그때에 유대인들이 그분께 이르되 \"네가 아직 쉰 살도 되지 못하였거늘 아브라함을 보았느냐?\" 하니",
+  "note": "그들은 또 예수의 말씀을 시간의 틀에 가둔다. 아브라함이 이천 년 전 사람인데 어찌 보았느냐며, 예수께서 시간을 초월한 영원한 분이심을 도무지 헤아리지 못한다.",
+  "voc": [["fifty", "num.", "쉰, 오십"], ["years old", "phr.", "~살"], ["seen", "v.", "본(see의 과거분사)"]],
+  "idi": [["years old", "~살, ~세"]],
+  "gra": [["Thou art not yet ... hast thou seen Abraham", "Thou art=너는 ~이다; hast thou=너는 보았느냐(have의 2인칭 단수 고어, 도치 의문)"]]
+ },
+ {
+  "en": "Jesus said unto them, Verily, verily, I say unto you, Before Abraham was, I am.",
+  "ko": "예수께서 그들에게 이르시되 \"진실로 진실로 너희에게 이르노니, 아브라함이 나기 전부터 내가 있느니라\" 하시니",
+  "note": "'있었다'가 아니라 '내가 있다'(에고 에이미)라 하심은 출애굽기 3:14의 여호와 이름을 스스로 취하심이다. 과거의 아브라함과 대비되는 영원한 현재로써 자신의 신성과 선재를 선언하시는 요한복음의 절정이다.",
+  "voc": [["before", "prep.", "~ 전에"], ["was", "v.", "있었다, 태어났다"], ["I am", "phr.", "내가 있다(신적 자기 선언)"]],
+  "idi": [],
+  "gra": [["Before Abraham was, I am", "과거(was)와 현재(I am)의 대비로 영원한 존재를 표현—시제 충돌처럼 보이나 신성의 신학적 강조"]]
+ },
+ {
+  "en": "Then took they up stones to cast at him: but Jesus hid himself, and went out of the temple, going through the midst of them, and so passed by.",
+  "ko": "이에 그들이 돌을 들어 그분께 던지려 하거늘, 예수께서 몸을 숨기시고 그들 가운데로 지나 성전에서 나가시니라.",
+  "note": "그들이 돌을 든 것은 예수의 말씀을 신성모독으로, 곧 스스로 하나님이라 하신 것으로 알아들었기 때문이다. 그러나 그분의 '때'가 아직 이르지 않았으니, 무리 가운데로 유유히 지나가심에 그 주권이 드러난다.",
+  "voc": [["stone", "n.", "돌"], ["cast", "v.", "던지다"], ["hide", "v.", "숨기다"]],
+  "idi": [["take up stones", "돌을 (집어) 들다"], ["pass by", "지나가다"]],
+  "gra": [["Then took they up stones", "Then took they=도치(고어 어순, 현대영어 they took up)"]]
+ }
 ]

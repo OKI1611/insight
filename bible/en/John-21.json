@@ -1,14 +1,202 @@
 [
-  {"en": "the sea of Tiberias", "ko": "디베랴 호수", "note": "갈릴리 호수의 또 다른 이름. 부활하신 예수께서 제자들에게 자신을 나타내신 장소다.", "voc": [["sea", "n.", "바다, 호수"], ["shew", "v.", "나타내다, 보이다"]], "idi": [], "gra": [["shew", "show(보이다)의 고어 철자, 발음과 뜻은 동일"]]},
-  {"en": "I go a fishing", "ko": "나는 고기를 잡으러 가노라", "note": "베드로가 옛 생업으로 돌아가는 장면. 밤새 수고했으나 아무것도 잡지 못했다.", "voc": [["fish", "v.", "고기를 잡다"], ["night", "n.", "밤"]], "idi": [["go fishing", "고기를 잡으러 가다"]], "gra": [["a fishing", "동명사 앞의 옛 접두사 a-, 현대어 go fishing"]]},
-  {"en": "Children, have ye any meat?", "ko": "얘들아, 너희에게 먹을 것이 좀 있느냐", "note": "여기 'meat'는 일반적인 음식, 곧 잡은 고기를 뜻하는 옛 영어 표현이다.", "voc": [["children", "n.", "얘들아, 자녀들"], ["meat", "n.", "음식, 먹을 것"]], "idi": [], "gra": [["meat", "'고기'가 아니라 '음식 일반'을 뜻하는 옛 용법"], ["ye", "you(너희)의 고어 주격"]]},
-  {"en": "Cast the net on the right side", "ko": "그물을 오른편에 던지라", "note": "주님의 말씀에 순종하자 그물이 가득 찬 만선의 기적이 일어난다.", "voc": [["cast", "v.", "던지다"], ["net", "n.", "그물"], ["right", "a.", "오른쪽의"]], "idi": [], "gra": []},
-  {"en": "It is the Lord", "ko": "주님이시라", "note": "사랑받던 제자가 먼저 부활하신 주님을 알아본다. 사랑은 영적 분별의 눈을 연다.", "voc": [["lord", "n.", "주, 주님"], ["gird", "v.", "옷을 두르다"]], "idi": [], "gra": []},
-  {"en": "an hundred and fifty and three", "ko": "백쉰세 마리", "note": "그토록 많아도 그물이 찢어지지 않은 것은 교회의 충만함을 보여 주는 표징으로 풀이된다.", "voc": [["hundred", "n.", "백"], ["fifty", "n.", "쉰, 오십"]], "idi": [], "gra": [["an hundred", "h를 묵음으로 보아 a 대신 an을 쓴 고어 관사 용법"], ["fifty and three", "and로 잇는 옛 숫자 표기, 현대어 fifty-three"]]},
-  {"en": "Come and dine", "ko": "와서 아침을 먹으라", "note": "부활하신 주님이 친히 숯불을 피우고 제자들과 식탁을 나누신다.", "voc": [["dine", "v.", "식사하다"], ["bread", "n.", "빵, 떡"]], "idi": [["come and dine", "와서 식사하라"]], "gra": [["dine", "여기서는 아침 식사를 함께함을 뜻함"]]},
-  {"en": "lovest thou me more than these?", "ko": "네가 이들보다 나를 더 사랑하느냐", "note": "세 번 부인했던 베드로에게 세 번 물으심으로 그의 회복을 이루신다.", "voc": [["love", "v.", "사랑하다"], ["more", "adv.", "더, 더욱"]], "idi": [["more than", "~보다 더"]], "gra": [["lovest thou", "do you love(너는 사랑하느냐)의 고어 의문 어순"], ["thou", "you(너)의 고어 주격"]]},
-  {"en": "Feed my lambs / Feed my sheep", "ko": "내 어린양을 먹이라 / 내 양을 먹이라", "note": "사랑의 고백은 곧 목양의 사명으로 이어진다. 베드로는 양 떼를 치는 목자로 세워진다.", "voc": [["feed", "v.", "먹이다, 치다"], ["lamb", "n.", "어린양"], ["sheep", "n.", "양"]], "idi": [], "gra": [["sheep", "단수와 복수의 형태가 같은 명사"]]},
-  {"en": "another shall gird thee", "ko": "남이 네게 띠를 띠우리라", "note": "베드로가 장차 순교로 하나님께 영광을 돌릴 것을 미리 일러 주시는 말씀이다.", "voc": [["another", "pron.", "다른 이, 남"], ["gird", "v.", "띠를 두르다, 띠우다"]], "idi": [], "gra": [["shall gird", "shall + 동사로 미래·예언을 나타낸 고어"], ["thee", "you(너를)의 고어 목적격"]]},
-  {"en": "Follow me", "ko": "나를 따르라", "note": "회복된 베드로에게 주시는 부르심. 다른 이의 길이 아니라 자기 길을 끝까지 따르라는 명령이다.", "voc": [["follow", "v.", "따르다"], ["me", "pron.", "나를"]], "idi": [["follow me", "나를 따르라"]], "gra": []},
-  {"en": "his testimony is true", "ko": "그의 증언이 참되니라", "note": "이 복음서를 기록한 사랑받던 제자가 직접 본 증인임을 확증하는 맺음말이다.", "voc": [["testimony", "n.", "증언"], ["true", "a.", "참된"]], "idi": [], "gra": []}
+ {
+  "en": "After these things Jesus shewed himself again to the disciples at the sea of Tiberias; and on this wise shewed he himself.",
+  "ko": "이 일들이 있은 후에 예수께서 디베랴 호숫가에서 다시 제자들에게 자신을 나타내셨으니, 나타내신 모양은 이러하니라.",
+  "note": "부활하신 예수께서 갈릴리 호수(디베랴 호수)에서 제자들에게 자신을 나타내신다. '나타내다'(파네로오)는 감추어졌던 것을 드러냄을 뜻하니, 부활의 주님은 스스로 자신을 보이심으로 알려지신다.",
+  "voc": [["shew", "v.", "나타내다, 보이다"], ["sea", "n.", "바다, 호수"], ["disciple", "n.", "제자"]],
+  "idi": [["on this wise", "이런 방식으로, 이러하니라"]],
+  "gra": [["shew", "show(보이다)의 고어 철자, 발음과 뜻은 동일"], ["shewed he himself", "he shewed의 도치 어순, 옛 문어체"]]
+ },
+ {
+  "en": "There were together Simon Peter, and Thomas called Didymus, and Nathanael of Cana in Galilee, and the sons of Zebedee, and two other of his disciples.",
+  "ko": "시몬 베드로와 디두모라 하는 도마와 갈릴리 가나 출신 나다나엘과 세베대의 두 아들과 다른 두 제자가 한자리에 있더라.",
+  "note": "일곱 제자가 한자리에 모였다. '디두모'(디뒤모스)는 '쌍둥이'라는 뜻이니 도마의 별칭이다. 부활의 증인들이 함께 모인 자리에서 주님의 나타나심이 준비된다.",
+  "voc": [["together", "adv.", "함께, 한자리에"], ["called", "v.", "~라 불리는"], ["sons", "n.", "아들들"]],
+  "idi": [],
+  "gra": [["two other of his disciples", "two others의 옛 표기, other가 복수 없이 쓰인 고어법"]]
+ },
+ {
+  "en": "Simon Peter saith unto them, I go a fishing. They say unto him, We also go with thee. They went forth, and entered into a ship immediately; and that night they caught nothing.",
+  "ko": "시몬 베드로가 그들에게 이르되 \"나는 고기를 잡으러 가노라\" 하니, 그들이 이르되 \"우리도 그대와 함께 가리라\" 하고, 곧 나아가 배에 올랐으나 그 밤에 아무것도 잡지 못하니라.",
+  "note": "베드로가 옛 생업으로 돌아간다. 밤새 수고했으나 아무것도 잡지 못하니, 주님을 떠난 사람의 수고가 얼마나 헛된지를 보여 주는 장면이다.",
+  "voc": [["fish", "v.", "고기를 잡다"], ["ship", "n.", "배"], ["night", "n.", "밤"], ["caught", "v.", "잡았다"]],
+  "idi": [["go a fishing", "고기를 잡으러 가다"], ["go forth", "나아가다"]],
+  "gra": [["saith", "says(말하다)의 3인칭 단수 고어형(-eth)"], ["a fishing", "동명사 앞의 옛 접두사 a-, 현대어 go fishing"]]
+ },
+ {
+  "en": "But when the morning was now come, Jesus stood on the shore: but the disciples knew not that it was Jesus.",
+  "ko": "이미 동이 트매 예수께서 물가에 서 계셨으나, 제자들은 그가 예수이신 줄을 알지 못하더라.",
+  "note": "새벽녘 주님이 물가에 서 계신다. 제자들이 알아보지 못함은, 부활하신 몸이 낯설었기 때문이자 그들의 눈이 아직 열리지 않았기 때문이다. 주님은 알려지기 전에도 이미 곁에 계신다.",
+  "voc": [["morning", "n.", "아침, 새벽"], ["shore", "n.", "물가, 해안"], ["knew", "v.", "알았다"]],
+  "idi": [["be come", "이르다, 오다(완료의 뜻)"]],
+  "gra": [["was now come", "be동사+과거분사로 완료를 나타낸 고어(현대어 had now come)"], ["knew not", "did not know의 고어 부정, 조동사 없이 not을 뒤에 둠"]]
+ },
+ {
+  "en": "Then Jesus saith unto them, Children, have ye any meat? They answered him, No.",
+  "ko": "이에 예수께서 그들에게 이르시되 \"얘들아, 너희에게 먹을 것이 좀 있느냐\" 하시니, 그들이 대답하되 \"없나이다\" 하더라.",
+  "note": "여기 'meat'는 고기가 아니라 일반적인 음식, 곧 잡은 물고기를 뜻하는 옛 영어다. 주님은 그들의 빈손을 아시면서도 친히 물으시며 대화를 여신다.",
+  "voc": [["children", "n.", "얘들아, 자녀들"], ["meat", "n.", "음식, 먹을 것"], ["answer", "v.", "대답하다"]],
+  "idi": [],
+  "gra": [["ye", "you(너희)의 고어 주격"], ["meat", "'고기'가 아니라 '음식 일반'을 뜻하는 옛 용법"]]
+ },
+ {
+  "en": "And he said unto them, Cast the net on the right side of the ship, and ye shall find. They cast therefore, and now they were not able to draw it for the multitude of fishes.",
+  "ko": "그가 그들에게 이르시되 \"그물을 배 오른편에 던지라. 그리하면 잡으리라\" 하시니, 이에 그들이 던졌더니 고기가 어찌나 많은지 그물을 끌어 올릴 수조차 없더라.",
+  "note": "주님의 말씀에 순종하자 만선의 기적이 일어난다. 밤새 헛되던 수고가 한마디 말씀으로 넘치도록 채워지니, 열매는 사람의 재주가 아니라 주님의 명령을 따름에 달려 있다.",
+  "voc": [["cast", "v.", "던지다"], ["net", "n.", "그물"], ["draw", "v.", "끌어당기다"], ["multitude", "n.", "많음, 무리"]],
+  "idi": [["be able to", "~할 수 있다"]],
+  "gra": [["ye shall find", "shall이 미래·약속을 나타낸 고어"], ["for the multitude", "for=때문에(원인)의 고어 용법"]]
+ },
+ {
+  "en": "Therefore that disciple whom Jesus loved saith unto Peter, It is the Lord. Now when Simon Peter heard that it was the Lord, he girt his fisher’s coat unto him, (for he was naked,) and did cast himself into the sea.",
+  "ko": "그러므로 예수께서 사랑하시던 그 제자가 베드로에게 이르되 \"주님이시라\" 하니, 시몬 베드로가 주님이신 줄을 듣고 벗고 있던지라 겉옷을 둘러 묶고 바다로 뛰어들더라.",
+  "note": "사랑받던 제자가 먼저 주님을 알아보고, 베드로는 먼저 주님께로 뛰어든다. 사랑은 영적 분별의 눈을 열고, 그 앎은 곧 주님을 향한 열정으로 이어진다.",
+  "voc": [["lord", "n.", "주, 주님"], ["girt", "v.", "둘러 묶었다"], ["coat", "n.", "겉옷"], ["naked", "a.", "벗은"]],
+  "idi": [["cast oneself into", "~에 몸을 던지다, 뛰어들다"]],
+  "gra": [["whom Jesus loved", "whom=목적격 관계대명사 '예수께서 사랑하신 (그 제자)'"], ["girt", "gird(띠를 두르다)의 과거형, 고어"]]
+ },
+ {
+  "en": "And the other disciples came in a little ship; (for they were not far from land, but as it were two hundred cubits,) dragging the net with fishes.",
+  "ko": "그러나 다른 제자들은 작은 배를 타고 왔으니, 이는 그들이 뭍에서 멀지 아니하여 한 이백 규빗쯤 떨어져 있었음이라, 고기 든 그물을 끌고 오니라.",
+  "note": "다른 제자들은 무거운 그물을 끌며 배로 나아온다. 베드로의 뜨거운 뛰어듦과 묵묵히 그물을 끄는 이들의 수고가 나란히 그려지니, 주님을 향하는 걸음에는 여러 모양이 있다.",
+  "voc": [["little", "a.", "작은"], ["land", "n.", "뭍, 육지"], ["cubit", "n.", "규빗(길이 단위)"], ["drag", "v.", "끌다"]],
+  "idi": [["as it were", "말하자면, ~쯤"]],
+  "gra": [["as it were two hundred cubits", "as it were=대략·말하자면을 뜻한 고어 관용"]]
+ },
+ {
+  "en": "As soon then as they were come to land, they saw a fire of coals there, and fish laid thereon, and bread.",
+  "ko": "그들이 뭍에 올라와 보니 거기 숯불이 피어 있고 그 위에 생선이 놓였으며 빵도 있더라.",
+  "note": "주님이 친히 숯불을 피우고 아침을 예비하셨다. '숯불'(안트라키아)은 베드로가 주님을 부인하던 그 밤의 숯불(요 18:18)을 떠올리게 하니, 회복의 자리가 조용히 마련된다.",
+  "voc": [["fire", "n.", "불"], ["coals", "n.", "숯"], ["laid", "v.", "놓인"], ["bread", "n.", "빵, 떡"]],
+  "idi": [["a fire of coals", "숯불"]],
+  "gra": [["were come to land", "be동사+과거분사로 완료를 나타낸 고어"], ["thereon", "on it(그 위에)의 고어"]]
+ },
+ {
+  "en": "Jesus saith unto them, Bring of the fish which ye have now caught.",
+  "ko": "예수께서 그들에게 이르시되 \"이제 너희가 잡은 생선을 좀 가져오라\" 하시니라.",
+  "note": "주님은 이미 아침을 마련하셨으면서도 제자들이 잡은 것을 가져오라 하신다. 모든 것을 예비하신 분이 우리의 수고까지 그 상 위에 더하게 하시니, 주님의 일에 우리를 참여시키신다.",
+  "voc": [["bring", "v.", "가져오다"], ["fish", "n.", "생선, 고기"], ["caught", "v.", "잡은"]],
+  "idi": [],
+  "gra": [["ye have now caught", "ye=you의 고어 주격, 현재완료 '너희가 잡은'"], ["which", "관계대명사 '~한 (생선)'"]]
+ },
+ {
+  "en": "Simon Peter went up, and drew the net to land full of great fishes, an hundred and fifty and three: and for all there were so many, yet was not the net broken.",
+  "ko": "시몬 베드로가 올라가 그물을 뭍으로 끌어 올리니 큰 고기가 가득하여 백쉰세 마리라, 이같이 많아도 그물이 찢어지지 아니하였더라.",
+  "note": "백쉰세 마리라는 많은 수에도 그물이 찢어지지 않았다. 이 온전함은 흔히 교회의 충만함을, 곧 주님이 부르시는 자들을 하나도 잃지 않으심을 보여 주는 표징으로 풀이된다.",
+  "voc": [["drew", "v.", "끌어당겼다"], ["full", "a.", "가득한"], ["hundred", "n.", "백"], ["broken", "a.", "찢어진, 깨진"]],
+  "idi": [["for all", "~에도 불구하고"]],
+  "gra": [["an hundred", "h를 묵음으로 보아 a 대신 an을 쓴 고어 관사"], ["was not the net broken", "the net was not broken의 도치 어순"]]
+ },
+ {
+  "en": "Jesus saith unto them, Come and dine. And none of the disciples durst ask him, Who art thou? knowing that it was the Lord.",
+  "ko": "예수께서 그들에게 이르시되 \"와서 아침을 먹으라\" 하시니, 제자들 가운데 아무도 감히 \"당신은 누구시니이까\" 하고 묻지 못하였으니, 이는 그가 주님이신 줄을 앎이러라.",
+  "note": "부활하신 주님이 친히 제자들과 식탁을 나누신다. 아무도 감히 '누구시니이까' 묻지 못한 것은 두려움이 아니라 거룩한 경외, 곧 주님이심을 이미 아는 확신에서 나온 침묵이다.",
+  "voc": [["dine", "v.", "식사하다"], ["durst", "v.", "감히 ~하였다"], ["ask", "v.", "묻다"]],
+  "idi": [["come and dine", "와서 식사하라"]],
+  "gra": [["durst", "dare(감히 ~하다)의 과거형, 고어"], ["Who art thou?", "art=are(2인칭 be동사), thou=you의 고어 주격 '너는 누구냐'"]]
+ },
+ {
+  "en": "Jesus then cometh, and taketh bread, and giveth them, and fish likewise.",
+  "ko": "예수께서 다가오사 빵을 가져다가 그들에게 주시고 생선도 그와 같이 하시니라.",
+  "note": "주님이 친히 빵과 생선을 나눠 주신다. 오병이어(요 6장)와 성찬을 떠올리게 하는 이 나눔에서, 부활의 주님은 여전히 자기 백성을 먹이시는 목자로 서 계신다.",
+  "voc": [["cometh", "v.", "오다"], ["taketh", "v.", "가지다"], ["giveth", "v.", "주다"], ["likewise", "adv.", "그와 같이"]],
+  "idi": [],
+  "gra": [["cometh / taketh / giveth", "come/take/give의 3인칭 단수 고어형(-eth)"]]
+ },
+ {
+  "en": "This is now the third time that Jesus shewed himself to his disciples, after that he was risen from the dead.",
+  "ko": "예수께서 죽은 자 가운데서 살아나신 후에 제자들에게 자신을 나타내심이 이것이 벌써 세 번째라.",
+  "note": "요한이 세 번째 나타나심임을 밝힌다. '살아나신'(에게이로)은 하나님이 그를 일으키셨음을 뜻하니, 거듭된 나타나심은 부활이 환상이 아니라 확실한 사실임을 증언한다.",
+  "voc": [["third", "a.", "세 번째의"], ["shewed", "v.", "나타냈다"], ["risen", "v.", "살아난"], ["dead", "n.", "죽은 자"]],
+  "idi": [["rise from the dead", "죽은 자 가운데서 살아나다"]],
+  "gra": [["after that he was risen", "after that=~한 후에(고어), was risen=be+과거분사 완료 '살아나셨다'"]]
+ },
+ {
+  "en": "So when they had dined, Jesus saith to Simon Peter, Simon, son of Jonas, lovest thou me more than these? He saith unto him, Yea, Lord; thou knowest that I love thee. He saith unto him, Feed my lambs.",
+  "ko": "그들이 아침을 먹은 후에 예수께서 시몬 베드로에게 이르시되 \"요나의 아들 시몬아, 네가 이들보다 나를 더 사랑하느냐\" 하시니, 그가 이르되 \"그러하나이다 주님, 내가 주님을 사랑하는 줄을 주님께서 아시나이다\" 하니, 예수께서 그에게 이르시되 \"내 어린양들을 먹이라\" 하시니라.",
+  "note": "세 번 부인했던 베드로에게 세 번 물으심으로 그의 회복을 이루신다. 여기서 주님은 아가파오(온전한 사랑)로 물으시나, 사랑의 고백은 곧 '내 어린양을 먹이라'는 목양의 사명으로 이어진다.",
+  "voc": [["love", "v.", "사랑하다"], ["feed", "v.", "먹이다, 치다"], ["lamb", "n.", "어린양"]],
+  "idi": [["more than", "~보다 더"]],
+  "gra": [["lovest thou me", "do you love me의 고어 의문 어순, thou=you 주격"], ["knowest", "know의 2인칭 단수 고어형(-est)"]]
+ },
+ {
+  "en": "He saith to him again the second time, Simon, son of Jonas, lovest thou me? He saith unto him, Yea, Lord; thou knowest that I love thee. He saith unto him, Feed my sheep.",
+  "ko": "예수께서 두 번째로 다시 그에게 이르시되 \"요나의 아들 시몬아, 네가 나를 사랑하느냐\" 하시니, 그가 이르되 \"그러하나이다 주님, 내가 주님을 사랑하는 줄을 주님께서 아시나이다\" 하니, 예수께서 그에게 이르시되 \"내 양들을 치라\" 하시니라.",
+  "note": "두 번째 물으심에는 '이들보다'라는 비교가 사라진다. 주님은 베드로를 다른 이와 견주지 않으시고 오직 그의 마음만 물으시니, 참 사랑은 남과의 비교가 아니라 주님을 향한 온전함에 있다.",
+  "voc": [["again", "adv.", "다시"], ["second", "a.", "두 번째의"], ["feed", "v.", "치다, 먹이다"], ["sheep", "n.", "양"]],
+  "idi": [],
+  "gra": [["lovest thou me", "do you love me의 고어 의문 어순"], ["sheep", "단수와 복수의 형태가 같은 명사"]]
+ },
+ {
+  "en": "He saith unto him the third time, Simon, son of Jonas, lovest thou me? Peter was grieved because he said unto him the third time, Lovest thou me? And he said unto him, Lord, thou knowest all things; thou knowest that I love thee. Jesus saith unto him, Feed my sheep.",
+  "ko": "예수께서 세 번째로 그에게 이르시되 \"요나의 아들 시몬아, 네가 나를 사랑하느냐\" 하시니, 베드로가 세 번째로 \"네가 나를 사랑하느냐\" 하고 물으심을 인하여 근심하여 그에게 이르되 \"주님, 주님께서는 모든 것을 아시오니 내가 주님을 사랑하는 줄을 주님께서 아시나이다\" 하니, 예수께서 그에게 이르시되 \"내 양들을 먹이라\" 하시니라.",
+  "note": "세 번째 물으심에 베드로가 근심한다. 세 번 부인한 그 아픔을 세 번의 회복으로 덮으시니, 베드로는 자기 마음이 아니라 '주님께서 아시나이다' 하며 전지하신 주님께 자신을 맡긴다.",
+  "voc": [["grieved", "a.", "근심하는, 슬퍼하는"], ["all things", "n.", "모든 것"], ["feed", "v.", "먹이다"]],
+  "idi": [],
+  "gra": [["was grieved", "수동태 '근심하게 되었다'"], ["thou knowest all things", "knowest=know의 2인칭 단수 고어형(-est)"]]
+ },
+ {
+  "en": "Verily, verily, I say unto thee, When thou wast young, thou girdedst thyself, and walkedst whither thou wouldest: but when thou shalt be old, thou shalt stretch forth thy hands, and another shall gird thee, and carry thee whither thou wouldest not.",
+  "ko": "\"진실로 진실로 네게 이르노니, 네가 젊었을 때에는 스스로 띠를 띠고 원하는 곳으로 다녔거니와, 늙어서는 네 두 손을 벌리리니 남이 네게 띠를 띠우고 네가 원하지 아니하는 곳으로 데려가리라\" 하시니라.",
+  "note": "베드로가 장차 순교로 하나님께 영광을 돌릴 것을 미리 일러 주신다. '진실로 진실로'(아멘 아멘)는 주님의 엄중한 확언이니, 회복된 목자의 길 끝에 십자가가 놓여 있음을 알리신다.",
+  "voc": [["verily", "adv.", "진실로"], ["gird", "v.", "띠를 두르다, 띠우다"], ["stretch forth", "v.", "펴다, 벌리다"], ["another", "pron.", "다른 이, 남"]],
+  "idi": [["stretch forth one's hands", "손을 뻗다, 벌리다"]],
+  "gra": [["girdedst / walkedst", "gird/walk의 2인칭 단수 과거 고어형(-edst/-est)"], ["whither thou wouldest", "whither=~하는 곳으로, wouldest=would의 고어; thou shalt=미래·예언"]]
+ },
+ {
+  "en": "This spake he, signifying by what death he should glorify God. And when he had spoken this, he saith unto him, Follow me.",
+  "ko": "이 말씀은 그가 어떠한 죽음으로 하나님께 영광을 돌릴 것인가를 가리켜 이르심이러라. 이 말씀을 하신 후에 그에게 이르시되 \"나를 따르라\" 하시니라.",
+  "note": "베드로의 죽음조차 하나님께 영광이 된다. 순교의 예고 뒤에 '나를 따르라'는 부르심이 이어지니, 십자가의 길을 아신 후에도 그 길을 따르라 하시는 것이 제자도의 핵심이다.",
+  "voc": [["spake", "v.", "말하였다"], ["signify", "v.", "가리키다, 뜻하다"], ["glorify", "v.", "영광을 돌리다"], ["follow", "v.", "따르다"]],
+  "idi": [["follow me", "나를 따르라"]],
+  "gra": [["This spake he", "he spake this의 도치 어순, spake=spoke의 고어"], ["he should glorify God", "should=~할 것이다(미래·예정)의 고어"]]
+ },
+ {
+  "en": "Then Peter, turning about, seeth the disciple whom Jesus loved following; which also leaned on his breast at supper, and said, Lord, which is he that betrayeth thee?",
+  "ko": "베드로가 돌이켜 예수께서 사랑하시던 그 제자가 따라오는 것을 보니, 그는 또한 만찬 때에 예수의 품에 기대어 \"주님, 주님을 파는 자가 누구이니이까\" 하던 자라.",
+  "note": "요한복음을 기록한 사랑받던 제자가 소개된다. 최후의 만찬 때 주님의 품에 기대던 그가 여기서도 주님을 따르니, 그는 이 복음의 신뢰할 만한 목격 증인으로 확증된다.",
+  "voc": [["turn about", "v.", "돌이키다"], ["leaned", "v.", "기대었다"], ["breast", "n.", "가슴, 품"], ["betray", "v.", "팔다, 배신하다"]],
+  "idi": [["turn about", "돌아서다, 돌이키다"]],
+  "gra": [["seeth", "sees(보다)의 3인칭 단수 고어형(-eth)"], ["he that betrayeth thee", "he that=~하는 자, betrayeth=betrays의 고어형(-eth); which=사람을 가리킨 옛 관계사"]]
+ },
+ {
+  "en": "Peter seeing him saith to Jesus, Lord, and what shall this man do?",
+  "ko": "베드로가 그를 보고 예수께 이르되 \"주님, 이 사람은 어찌 되겠나이까\" 하니,",
+  "note": "베드로가 자기 앞날을 들은 뒤 다른 제자의 앞날을 묻는다. 남의 길에 마음을 쓰는 것은 사람의 본성이나, 주님은 곧 각자에게 주어진 자기 길을 따르라 이르실 것이다.",
+  "voc": [["seeing", "v.", "보고"], ["what", "pron.", "무엇, 어찌"], ["shall", "aux.", "~하겠는가"]],
+  "idi": [],
+  "gra": [["what shall this man do", "shall이 미래·예정을 나타낸 의문문 '어찌 되겠나이까'"]]
+ },
+ {
+  "en": "Jesus saith unto him, If I will that he tarry till I come, what is that to thee? follow thou me.",
+  "ko": "예수께서 그에게 이르시되 \"내가 올 때까지 그를 머물게 하고자 할지라도 그것이 네게 무슨 상관이냐. 너는 나를 따르라\" 하시니라.",
+  "note": "주님은 다른 이의 길을 베드로의 관심에서 거두신다. '너는 나를 따르라'는 강조된 부르심이니, 남과 견주지 말고 각자에게 맡겨진 자기 길을 끝까지 따르라는 명령이다.",
+  "voc": [["will", "v.", "원하다, 뜻하다"], ["tarry", "v.", "머물다"], ["till", "prep.", "~까지"], ["follow", "v.", "따르다"]],
+  "idi": [["what is that to thee", "그것이 네게 무슨 상관이냐"]],
+  "gra": [["If I will that he tarry", "will=원하다(옛 용법), tarry=가정법 현재 '머물기를'"], ["follow thou me", "follow you me의 강조 어순, thou=you 주격"]]
+ },
+ {
+  "en": "Then went this saying abroad among the brethren, that that disciple should not die: yet Jesus said not unto him, He shall not die; but, If I will that he tarry till I come, what is that to thee?",
+  "ko": "이러므로 그 제자가 죽지 아니하리라는 말이 형제들 가운데 퍼졌으나, 예수께서 그가 죽지 아니하리라 하신 것이 아니요, 다만 \"내가 올 때까지 그를 머물게 하고자 할지라도 그것이 네게 무슨 상관이냐\" 하신 것이라.",
+  "note": "제자들 사이에 오해가 퍼졌다. 요한은 주님의 말씀을 정확히 바로잡으니, 소문과 말씀을 구별하는 이 세심함이 곧 그가 참된 증인임을 드러낸다.",
+  "voc": [["saying", "n.", "말, 소문"], ["abroad", "adv.", "널리, 두루"], ["brethren", "n.", "형제들"], ["die", "v.", "죽다"]],
+  "idi": [["go abroad", "널리 퍼지다"]],
+  "gra": [["went this saying abroad", "this saying went abroad의 도치 어순"], ["said not", "did not say의 고어 부정, 조동사 없이 not(brethren=brothers의 고어 복수)"]]
+ },
+ {
+  "en": "This is the disciple which testifieth of these things, and wrote these things: and we know that his testimony is true.",
+  "ko": "이 사람이 곧 이 일들을 증언하고 이 일들을 기록한 그 제자라. 그의 증언이 참된 줄을 우리가 아노라.",
+  "note": "이 복음서를 기록한 사랑받던 제자가 직접 본 증인임을 확증하는 맺음말이다. '증언'(마르튀리아)은 법정의 목격 진술을 뜻하니, 요한복음은 눈으로 본 자의 참된 증언이다.",
+  "voc": [["testify", "v.", "증언하다"], ["wrote", "v.", "기록했다"], ["testimony", "n.", "증언"], ["true", "a.", "참된"]],
+  "idi": [["testify of", "~을 증언하다"]],
+  "gra": [["the disciple which testifieth", "which=관계대명사(사람을 가리킨 옛 용법), testifieth=testifies의 고어형(-eth)"]]
+ },
+ {
+  "en": "And there are also many other things which Jesus did, the which, if they should be written every one, I suppose that even the world itself could not contain the books that should be written. Amen.",
+  "ko": "예수께서 행하신 다른 일들도 많으니, 만일 그것을 낱낱이 기록한다면 이 세상이라도 그 기록할 책을 다 담지 못하리라고 나는 생각하노라. 아멘.",
+  "note": "복음서는 주님이 행하신 일의 일부일 뿐이다. 온 세상도 다 담지 못할 만큼 크신 분을 다 기록할 수 없으니, 이 과장된 표현은 예수의 무한하신 위대하심 앞에 붓을 내려놓는 경외의 고백이다.",
+  "voc": [["many", "a.", "많은"], ["suppose", "v.", "생각하다, 여기다"], ["contain", "v.", "담다, 수용하다"], ["Amen", "int.", "아멘, 진실로"]],
+  "idi": [["every one", "낱낱이, 하나하나"]],
+  "gra": [["the which", "which(그것을)에 the를 덧붙인 고어 관계사"], ["should be written", "should=~한다면(가정)의 고어, 수동태 '기록된다면'"]]
+ }
 ]
