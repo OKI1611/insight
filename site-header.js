@@ -285,7 +285,8 @@
       { ic:'', lb:'성경', href:'bible.html' },
       { ic:'', lb:'사전', href:'dictionary.html' },
       { ic:'', lb:'강의', href:'curriculum.html' },
-      { ic:'', lb:'스토어', href:'booklet.html' },
+      { ic:'', lb:'교재구매', href:'booklet.html' },
+      { ic:'', lb:'장바구니', href:'booklet.html#cart' },
       { ic:'', lb:'후원', href:'support.html' }
     ];
     if(!document.getElementById('biblyRailCSS')){
