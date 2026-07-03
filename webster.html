@@ -86,12 +86,15 @@
 
   <script>
     const $ = id => document.getElementById(id);
-    let WEB = null, WEBLOADING = null, EXA = null, EXALOADING = null; const MODERN_CACHE = {};
+    let WEB = null, WEBLOADING = null, EXA = null, EXALOADING = null, MOD = null, MODLOADING = null; const MODERN_CACHE = {};
     function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
     function loadWebster(){ if(WEB) return Promise.resolve(WEB); if(WEBLOADING) return WEBLOADING;
       WEBLOADING = fetch('bible/webster-kjv.json?t=' + Date.now()).then(r=>r.json()).then(j=>{WEB=j;return j;}).catch(()=>{WEB={};return WEB;}); return WEBLOADING; }
     function loadExamplesIdx(){ if(EXA) return Promise.resolve(EXA); if(EXALOADING) return EXALOADING;
       EXALOADING = fetch('bible/webster-examples.json?t=' + Date.now()).then(r=>r.json()).then(j=>{EXA=j;return j;}).catch(()=>{EXA={};return EXA;}); return EXALOADING; }
+    // 현대 뜻 로컬 번들(외부 API 의존 제거 — 항상 즉시·안정) · 없으면 {}로 폴백
+    function loadModernIdx(){ if(MOD) return Promise.resolve(MOD); if(MODLOADING) return MODLOADING;
+      MODLOADING = fetch('bible/webster-modern.json').then(r=>r.ok?r.json():{}).then(j=>{MOD=j||{};return MOD;}).catch(()=>{MOD={};return MOD;}); return MODLOADING; }
 
     // KJV 어미(-eth/-est/-th)·복수·과거형 등 축약형까지 표제어로 폴백 조회
     function dictLookup(word){
@@ -158,13 +161,36 @@
       });
     }
 
+    // groups=[{pos, ds:[...]}] → 현대 뜻 HTML(로컬 번들·API 공용)
+    function modernHTML(groups){
+      let html = '<p class="dict-label mod">현대 영어 · Modern</p>';
+      if(groups && groups.length){
+        html += '<div class="mt-2 space-y-2.5">'
+          + groups.slice(0,3).map(g=>`<div>${g.pos?`<span class="mod-pos">${esc(g.pos)}</span>`:''}`
+              + g.ds.map((d,i)=>`<p class="mod-def mt-0.5">${g.ds.length>1?`<span class="text-neutral-400 mr-1">${i+1}.</span>`:''}${esc(d)}</p>`).join('')
+              + `</div>`).join('')
+          + '</div><p class="attr mt-2.5">현대 뜻 출처: Wiktionary (CC BY-SA)</p>';
+      } else {
+        html += '<p class="mod-def text-neutral-400 mt-1.5">현대 사전에 이 단어의 결과가 없습니다.</p>';
+      }
+      return html;
+    }
     function loadModern(w){
       const wrap = $('modernWrap'); if(!wrap) return;
       if(MODERN_CACHE[w] !== undefined){ wrap.innerHTML = MODERN_CACHE[w]; return; }
       wrap.innerHTML = '<p class="dict-label mod">현대 영어 · Modern</p><p class="mod-def text-neutral-400 mt-1.5">현대 사전에서 불러오는 중…</p>';
-      // 영국식 철자(saviour·honour…)는 미국식으로도 시도
-      const amer = w.replace(/our(s|ed|ing|able)?$/,'or$1').replace(/ise(s|d|ing)?$/,'ize$1');
-      fetchModern(w, (amer!==w ? [w, amer] : [w]), 0, 3);
+      // ① 로컬 번들 우선(외부 API 불필요 · 항상 즉시 · 요청제한 영향 없음)
+      loadModernIdx().then(idx=>{
+        if(idx && idx[w]){
+          const html = modernHTML(idx[w]);
+          MODERN_CACHE[w] = html;
+          if($('modernWrap')) $('modernWrap').innerHTML = html;
+          return;
+        }
+        // ② 번들에 없을 때만 외부 API로 폴백. 영국식 철자는 미국식으로도 시도.
+        const amer = w.replace(/our(s|ed|ing|able)?$/,'or$1').replace(/ise(s|d|ing)?$/,'ize$1');
+        fetchModern(w, (amer!==w ? [w, amer] : [w]), 0, 3);
+      });
     }
     function fetchModern(cacheKey, queue, i, tries){
       // 무료 API(dictionaryapi.dev)가 가끔 느리거나 응답이 없어 멈추는 걸 대비해 6초 타임아웃
@@ -179,16 +205,7 @@
             if(ds.length) groups.push({ pos: mn.partOfSpeech||'', ds });
           }));
           if(!groups.length && i+1 < queue.length){ fetchModern(cacheKey, queue, i+1, tries); return; }
-          let html = '<p class="dict-label mod">현대 영어 · Modern</p>';
-          if(groups.length){
-            html += '<div class="mt-2 space-y-2.5">'
-              + groups.slice(0,3).map(g=>`<div>${g.pos?`<span class="mod-pos">${esc(g.pos)}</span>`:''}`
-                  + g.ds.map((d,i)=>`<p class="mod-def mt-0.5">${g.ds.length>1?`<span class="text-neutral-400 mr-1">${i+1}.</span>`:''}${esc(d)}</p>`).join('')
-                  + `</div>`).join('')
-              + '</div><p class="attr mt-2.5">현대 뜻 출처: Wiktionary (CC BY-SA) · dictionaryapi.dev</p>';
-          } else {
-            html += '<p class="mod-def text-neutral-400 mt-1.5">현대 사전에 이 단어의 결과가 없습니다.</p>';
-          }
+          const html = modernHTML(groups);
           MODERN_CACHE[cacheKey] = html;
           if($('modernWrap')) $('modernWrap').innerHTML = html;
         })
