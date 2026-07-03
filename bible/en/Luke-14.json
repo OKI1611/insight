@@ -1,14 +1,282 @@
 [
-  {"en": "watched him", "ko": "그를 엿보더라", "note": "안식일에 예수의 행동을 트집 잡으려 주시함", "voc": [["watch", "v.", "주시하다, 엿보다"], ["lawyer", "n.", "율법사"]], "idi": [], "gra": [["watched him", "watched는 단순과거. they가 생략된 옛 서술 어법으로 '그들이 그를 엿보았다'"]]},
-  {"en": "the dropsy", "ko": "수종병", "note": "몸에 물이 차 붓는 병; 헬라어 hydrōpikos", "voc": [["dropsy", "n.", "수종병(몸에 물이 차는 병)"], ["heal", "v.", "고치다"]], "idi": [], "gra": []},
-  {"en": "Is it lawful to heal", "ko": "고침이 옳으냐", "note": "안식일 율법 논쟁의 핵심 질문", "voc": [["lawful", "adj.", "율법에 맞는, 옳은"], ["heal", "v.", "고치다"]], "idi": [], "gra": [["Is it lawful to heal", "It은 가주어, to heal이 진주어인 'It is ... to부정사' 구문"]]},
-  {"en": "sit not down in the highest room", "ko": "높은 자리에 앉지 말라", "note": "겸손에 관한 잔치 비유의 교훈", "voc": [["highest", "adj.", "가장 높은"], ["room", "n.", "자리(여기서는 좌석)"], ["wedding", "n.", "혼인 잔치"]], "idi": [["the highest room", "윗자리, 가장 높은 좌석 - 명예로운 자리를 뜻함"]], "gra": [["sit not down", "옛 영어의 부정 명령문. 현대어로는 do not sit down"]]},
-  {"en": "exalteth himself shall be abased", "ko": "높이는 자는 낮아지고", "note": "자기 높임과 낮춤의 역전 원리", "voc": [["exalt", "v.", "높이다"], ["abase", "v.", "낮추다, 비천하게 하다"]], "idi": [], "gra": [["exalteth himself", "exalteth는 exalts의 옛 3인칭 단수형(-eth 어미)"]]},
-  {"en": "a great supper", "ko": "큰 잔치", "note": "하나님 왕국 초대를 가리키는 비유", "voc": [["supper", "n.", "잔치, 만찬"], ["bid", "v.", "청하다, 초대하다"]], "idi": [], "gra": []},
-  {"en": "began to make excuse", "ko": "사양하기를 시작하더라", "note": "초대를 거절하는 핑계들", "voc": [["excuse", "n.", "핑계, 변명"], ["consent", "n.", "동의, 합의"]], "idi": [["make excuse", "핑계를 대다, 사양하다"]], "gra": []},
-  {"en": "compel them to come in", "ko": "억지로라도 들어오게 하라", "note": "간곡히 권하여 잔치를 채우게 함", "voc": [["compel", "v.", "강권하다, 억지로 ~하게 하다"], ["highway", "n.", "큰길"], ["hedge", "n.", "울타리"]], "idi": [], "gra": [["compel them to come in", "compel+목적어+to부정사: '~가 …하도록 강권하다' 구문"]]},
-  {"en": "hate not his father", "ko": "부모를 미워하지 아니하면", "note": "히브리적 비교 표현; 그리스도를 더 사랑함", "voc": [["hate", "v.", "미워하다"], ["disciple", "n.", "제자"]], "idi": [], "gra": [["hate not his father", "옛 부정 어법. 여기서 hate는 '덜 사랑하다'를 뜻하는 히브리적 비교 표현"]]},
-  {"en": "bear his cross", "ko": "자기 십자가를 지고", "note": "제자도의 대가", "voc": [["bear", "v.", "지다, 짊어지다"], ["cross", "n.", "십자가"]], "idi": [["bear one's cross", "자기 십자가를 지다 - 고난과 헌신을 감당함"]], "gra": []},
-  {"en": "intending to build a tower", "ko": "망대를 세우려 할진대", "note": "비용을 먼저 계산하라는 제자도 비유", "voc": [["intend", "v.", "~하려고 하다"], ["tower", "n.", "망대, 탑"], ["count", "v.", "계산하다, 헤아리다"]], "idi": [["count the cost", "비용을 헤아리다 - 미리 손익을 따져 보다"]], "gra": []},
-  {"en": "salt have lost his savour", "ko": "소금이 맛을 잃으면", "note": "쓸모를 잃은 제자에 대한 경고", "voc": [["salt", "n.", "소금"], ["savour", "n.", "맛, 풍미"], ["season", "v.", "맛을 내다, 간하다"]], "idi": [], "gra": [["have lost his savour", "his는 무생물 salt를 가리키는 옛 소유격으로, 현대어 its에 해당"]]}
+ {
+  "en": "And it came to pass, as he went into the house of one of the chief Pharisees to eat bread on the sabbath day, that they watched him.",
+  "ko": "안식일에 예수께서 한 바리새인 지도자의 집에 들어가사 떡을 잡수시게 되니, 그들이 그를 엿보더라.",
+  "note": "안식일 식탁이 함정으로 변한다. '엿보더라'(파라테레오)는 곁눈질로 트집을 잡으려 지켜봄이니, 그들의 관심은 병자가 아니라 예수를 고발할 구실에 있었다.",
+  "voc": [["chief", "adj.", "우두머리의, 지도적인"], ["watch", "v.", "엿보다, 주시하다"], ["sabbath", "n.", "안식일"]],
+  "idi": [["it came to pass", "~한 일이 있었다 (KJV의 옛 서사 도입 표현)"]],
+  "gra": [["they watched him", "watched는 파라테레오의 번역으로, 여기서는 적의를 품고 엿봄을 뜻함"]]
+ },
+ {
+  "en": "And, behold, there was a certain man before him which had the dropsy.",
+  "ko": "보라, 그 앞에 수종병 든 사람이 하나 있었더라.",
+  "note": "수종병(헬라어 hydrōpikos)은 몸에 물이 차 붓는 병이다. 마셔도 갈증이 가시지 않는 이 병은 채워도 만족 없는 탐심의 그림자로도 읽힌다.",
+  "voc": [["behold", "interj.", "보라"], ["certain", "adj.", "어떤"], ["dropsy", "n.", "수종병(몸에 물이 차는 병)"]],
+  "idi": [],
+  "gra": [["which had the dropsy", "which=관계대명사(사람을 가리킨 옛 용법), 현대어 who에 해당"]]
+ },
+ {
+  "en": "And Jesus answering spake unto the lawyers and Pharisees, saying, Is it lawful to heal on the sabbath day?",
+  "ko": "예수께서 율법사들과 바리새인들에게 일러 이르시되, \"안식일에 병을 고침이 옳으냐, 옳지 아니하냐?\" 하시니,",
+  "note": "예수는 그들의 속마음을 먼저 드러내신다. 안식일의 참뜻은 금지가 아니라 긍휼이니, 사람을 살리는 일이 어찌 거룩한 날을 범하겠는가.",
+  "voc": [["lawyer", "n.", "율법사"], ["lawful", "adj.", "율법에 맞는, 옳은"], ["heal", "v.", "고치다"]],
+  "idi": [],
+  "gra": [["Is it lawful to heal", "It은 가주어, to heal이 진주어인 'It is ... to부정사' 구문"]]
+ },
+ {
+  "en": "And they held their peace. And he took him, and healed him, and let him go;",
+  "ko": "그들이 잠잠하거늘, 예수께서 그 사람을 붙드사 고쳐 보내시고,",
+  "note": "그들의 침묵은 대답할 말이 없음이 아니라 인정하기 싫음이다. 예수는 논쟁을 끝내지 않고 곧바로 고치심으로 진리를 몸소 보이신다.",
+  "voc": [["hold one's peace", "phr.", "잠잠하다"], ["take", "v.", "붙들다"], ["let go", "phr.", "보내다, 놓아주다"]],
+  "idi": [["held their peace", "잠잠하였다, 입을 다물었다"]],
+  "gra": [["he took him, and healed him, and let him go", "and로 이은 연속 동작 서술은 히브리·헬라 서사를 옮긴 KJV 특유의 문체"]]
+ },
+ {
+  "en": "And answered them, saying, Which of you shall have an ass or an ox fallen into a pit, and will not straightway pull him out on the sabbath day?",
+  "ko": "그들에게 대답하여 이르시되, \"너희 중에 누가 자기 나귀나 소가 우물에 빠지면 안식일이라도 곧 끌어내지 아니하겠느냐?\" 하시니,",
+  "note": "그들도 짐승은 안식일에 건진다. 짐승 하나도 아끼면서 하나님의 형상인 사람은 외면하려 하니, 그들의 율법 해석이 얼마나 뒤틀렸는지 드러난다.",
+  "voc": [["ass", "n.", "나귀"], ["ox", "n.", "소"], ["pit", "n.", "구덩이, 우물"], ["straightway", "adv.", "곧, 즉시"]],
+  "idi": [["pull out", "끌어내다, 건져내다"]],
+  "gra": [["will not ... pull him out", "수사 의문문의 부정형으로 '건지지 않겠느냐(반드시 건진다)'는 강한 긍정을 뜻함"]]
+ },
+ {
+  "en": "And they could not answer him again to these things.",
+  "ko": "그들이 이 말씀에 능히 대답하지 못하더라.",
+  "note": "진리 앞에 반박의 말이 막힌다. 그들의 침묵은 첫 침묵(4절)과 달리 완전한 패배이니, 예수의 지혜가 사람의 궤계를 무색케 한다.",
+  "voc": [["answer again", "phr.", "대꾸하다, 응수하다"], ["these things", "phr.", "이 일들, 이 말씀"]],
+  "idi": [],
+  "gra": [["could not answer him again", "again은 '되받아, 응수하여'의 뜻으로 쓰인 옛 용법"]]
+ },
+ {
+  "en": "And he put forth a parable to those which were bidden, when he marked how they chose out the chief rooms; saying unto them,",
+  "ko": "예수께서 청함을 받은 자들이 높은 자리를 골라 앉음을 보시고, 그들에게 비유를 베풀어 이르시되,",
+  "note": "'보시고'(에페콘)는 유심히 관찰하심이다. 자리를 다투는 손님들의 모습에서 예수는 인간 마음의 교만을 읽으시고 겸손의 비유를 여신다.",
+  "voc": [["put forth", "phr.", "베풀다, 내놓다"], ["bid", "v.", "청하다, 초대하다"], ["mark", "v.", "눈여겨보다, 주목하다"], ["chief room", "n.", "높은 자리, 상석"]],
+  "idi": [["chief rooms", "윗자리, 상석 - 명예로운 좌석"]],
+  "gra": [["those which were bidden", "which=관계대명사(사람 지칭 옛 용법); were bidden=수동 '청함을 받은'"]]
+ },
+ {
+  "en": "When thou art bidden of any man to a wedding, sit not down in the highest room; lest a more honourable man than thou be bidden of him;",
+  "ko": "\"네가 누구에게 혼인 잔치에 청함을 받거든 높은 자리에 앉지 말라. 너보다 더 존귀한 자가 청함을 받았을까 하노니,",
+  "note": "스스로 높이는 자리를 택하지 말라 하신다. 자기를 앞세우는 자는 도리어 물러날 위험을 지니, 겸손은 지혜로운 처신이자 하나님 왕국의 도리다.",
+  "voc": [["wedding", "n.", "혼인 잔치"], ["highest", "adj.", "가장 높은"], ["room", "n.", "자리(여기서는 좌석)"], ["honourable", "adj.", "존귀한"]],
+  "idi": [["the highest room", "윗자리, 가장 높은 좌석 - 명예로운 자리를 뜻함"]],
+  "gra": [["sit not down", "옛 영어의 부정 명령문. 현대어로는 do not sit down"], ["lest ... be bidden", "lest+동사원형='~할까 하여, ~하지 않도록'"]]
+ },
+ {
+  "en": "And he that bade thee and him come and say to thee, Give this man place; and thou begin with shame to take the lowest room.",
+  "ko": "너와 그를 청한 자가 와서 네게 이르되 '이 사람에게 자리를 내주라' 하면, 그때에 네가 부끄러워하며 끝자리로 물러앉게 되리라.",
+  "note": "높이려던 자가 도리어 낮아진다. 뭇사람 앞에서 자리를 내어주는 수치는 자기 높임의 필연적 결말이니, 교만은 스스로를 부끄럽게 한다.",
+  "voc": [["bade", "v.", "청하였다(bid의 과거)"], ["place", "n.", "자리"], ["shame", "n.", "부끄러움, 수치"], ["lowest", "adj.", "가장 낮은"]],
+  "idi": [["with shame", "부끄러워하며, 수치스럽게"]],
+  "gra": [["he that bade thee", "he that=he who '~한 자'; bade=bid의 과거형"]]
+ },
+ {
+  "en": "But when thou art bidden, go and sit down in the lowest room; that when he that bade thee cometh, he may say unto thee, Friend, go up higher: then shalt thou have worship in the presence of them that sit at meat with thee.",
+  "ko": "오직 너는 청함을 받거든 가서 끝자리에 앉으라. 그리하면 너를 청한 자가 와서 네게 이르되 '벗이여, 더 높은 데로 올라앉으라' 하리니, 그때에 너와 함께 앉은 모든 자 앞에서 네가 영광을 얻으리라.",
+  "note": "낮은 자리를 택함이 참 높임의 길이다. 주인이 손수 올려 세우는 영광은 스스로 취한 자리와 비할 수 없으니, 하나님이 높이시는 자가 참으로 높다.",
+  "voc": [["lowest", "adj.", "가장 낮은"], ["worship", "n.", "영광, 존귀"], ["presence", "n.", "앞, 면전"], ["sit at meat", "phr.", "함께 식탁에 앉다"]],
+  "idi": [["go up higher", "더 높은 자리로 올라가다"]],
+  "gra": [["he that bade thee cometh", "cometh=comes의 옛 3인칭 단수형(-eth 어미)"], ["then shalt thou have worship", "shalt thou=주어·동사 도치; worship은 옛 뜻 '존귀·영예'"]]
+ },
+ {
+  "en": "For whosoever exalteth himself shall be abased; and he that humbleth himself shall be exalted.",
+  "ko": "무릇 자기를 높이는 자는 낮아지고, 자기를 낮추는 자는 높아지리라.\"",
+  "note": "높임과 낮춤의 자리가 뒤바뀐다. 이는 잔치의 예절을 넘어 하나님 왕국의 근본 법칙이니, 그리스도 자신이 낮아지심으로 높아지신 길을 앞서 보이셨다(빌 2:8-9).",
+  "voc": [["whosoever", "pron.", "누구든지"], ["exalt", "v.", "높이다"], ["abase", "v.", "낮추다, 비천하게 하다"], ["humble", "v.", "낮추다, 겸손하게 하다"]],
+  "idi": [],
+  "gra": [["exalteth himself", "exalteth는 exalts의 옛 3인칭 단수형(-eth 어미)"], ["shall be abased", "shall be+과거분사=수동 미래 '낮아지리라'"]]
+ },
+ {
+  "en": "Then said he also to him that bade him, When thou makest a dinner or a supper, call not thy friends, nor thy brethren, neither thy kinsmen, nor thy rich neighbours; lest they also bid thee again, and a recompence be made thee.",
+  "ko": "예수께서 또한 자기를 청한 자에게 이르시되, \"네가 점심이나 저녁을 베풀거든 네 벗이나 네 형제나 네 친척이나 부유한 이웃을 부르지 말라. 그들도 너를 도로 청하여 네게 갚음이 될까 하노라.",
+  "note": "갚음을 바라는 나눔은 사실 거래다. 되돌려 받을 이를 부르는 것은 이미 이 세상에서 보상을 챙김이니, 참 사랑은 값을 계산하지 않는다.",
+  "voc": [["dinner", "n.", "점심, 오찬"], ["supper", "n.", "저녁, 만찬"], ["kinsmen", "n.", "친척"], ["recompence", "n.", "갚음, 보답"]],
+  "idi": [["bid again", "도로 청하다, 답례로 초대하다"]],
+  "gra": [["when thou makest", "makest=makes의 옛 2인칭 단수형(-est 어미)"], ["lest ... a recompence be made thee", "lest+동사원형='~할까 하여'; be made=수동"]]
+ },
+ {
+  "en": "But when thou makest a feast, call the poor, the maimed, the lame, the blind:",
+  "ko": "오직 너는 잔치를 베풀거든 가난한 자와 불구자와 다리 저는 자와 눈먼 자를 부르라.",
+  "note": "갚을 수 없는 이들을 부르라 하신다. 이 넷은 세상이 밀어낸 자들이니, 하나님 나라의 잔치는 바로 이런 이들을 향한 값없는 은혜의 그림이다.",
+  "voc": [["feast", "n.", "잔치"], ["maimed", "adj.", "불구가 된"], ["lame", "adj.", "다리 저는"], ["blind", "adj.", "눈먼"]],
+  "idi": [],
+  "gra": [["the poor, the maimed, the lame, the blind", "the+형용사=그러한 사람들 전체 '~한 자들'"]]
+ },
+ {
+  "en": "And thou shalt be blessed; for they cannot recompense thee: for thou shalt be recompensed at the resurrection of the just.",
+  "ko": "그리하면 네가 복을 받으리니, 이는 그들이 네게 갚을 것이 없음이라. 의인들의 부활 때에 네가 갚음을 받으리라.\"",
+  "note": "갚을 수 없는 이를 섬긴 자는 하나님이 친히 갚으신다. 그 보상은 이 세상이 아니라 '의인들의 부활' 때에 있으니, 참 복은 미룬 값으로 하늘에 쌓인다.",
+  "voc": [["blessed", "adj.", "복 있는"], ["recompense", "v.", "갚다, 보답하다"], ["resurrection", "n.", "부활"], ["just", "n.", "의인"]],
+  "idi": [["the resurrection of the just", "의인들의 부활"]],
+  "gra": [["thou shalt be recompensed", "shalt be+과거분사=수동 미래 '갚음을 받으리라'"]]
+ },
+ {
+  "en": "And when one of them that sat at meat with him heard these things, he said unto him, Blessed is he that shall eat bread in the kingdom of God.",
+  "ko": "함께 앉아 잡수던 자 중 하나가 이 말씀을 듣고 예수께 이르되, \"하나님의 왕국에서 떡을 먹는 자는 복이 있나이다\" 하니,",
+  "note": "한 손님이 하나님의 왕국 잔치를 경건히 되뇐다. 그러나 이어지는 비유는, 정작 청함 받은 자들이 그 잔치를 가벼이 여겨 놓칠 수 있음을 경고한다.",
+  "voc": [["sit at meat", "phr.", "함께 식탁에 앉다"], ["blessed", "adj.", "복 있는"], ["kingdom of God", "n.", "하나님의 왕국"]],
+  "idi": [["eat bread", "떡을 먹다, 잔치에 참여하다"]],
+  "gra": [["he that shall eat bread", "he that=he who '~할 자'"]]
+ },
+ {
+  "en": "Then said he unto him, A certain man made a great supper, and bade many:",
+  "ko": "예수께서 그에게 이르시되, \"어떤 사람이 큰 잔치를 베풀고 많은 사람을 청하였더니,",
+  "note": "'큰 잔치'는 하나님이 그리스도 안에서 여신 구원의 초대다. 주인은 이미 준비를 마치고 많은 이를 부르셨으니, 은혜는 값없이 먼저 베풀어진다.",
+  "voc": [["certain", "adj.", "어떤"], ["supper", "n.", "잔치, 만찬"], ["bade", "v.", "청하였다(bid의 과거)"]],
+  "idi": [["a great supper", "큰 잔치, 성대한 만찬"]],
+  "gra": [["bade many", "bade=bid의 과거형 '많은 이를 청하였다'"]]
+ },
+ {
+  "en": "And sent his servant at supper time to say to them that were bidden, Come; for all things are now ready.",
+  "ko": "잔치 때에 그 종을 보내어 청함을 받은 자들에게 이르되 '오소서, 이제 모든 것이 준비되었나이다' 하매,",
+  "note": "'모든 것이 준비되었다'는 복음의 핵심이다. 사람이 이룰 것은 없고 다만 나아오면 되니, 종을 보내심은 복음을 전하는 부르심의 그림이다.",
+  "voc": [["servant", "n.", "종"], ["supper time", "n.", "잔치 때, 만찬 시각"], ["ready", "adj.", "준비된"]],
+  "idi": [["all things are now ready", "모든 것이 이미 준비되었다"]],
+  "gra": [["them that were bidden", "them that=those who; were bidden=수동 '청함을 받은 자들'"]]
+ },
+ {
+  "en": "And they all with one consent began to make excuse. The first said unto him, I have bought a piece of ground, and I must needs go and see it: I pray thee have me excused.",
+  "ko": "그들이 다 한 마음으로 사양하기를 시작하더라. 첫째가 이르되 '내가 밭을 샀으매 부득불 나가 보아야 하겠으니, 청컨대 나를 양해하소서' 하고,",
+  "note": "'한 마음으로'의 핑계가 이어진다. 밭, 소, 아내 — 세상의 소유와 관계가 하나님의 부르심보다 앞서니, 거절은 무관심이 아니라 다른 것을 더 사랑함에서 온다.",
+  "voc": [["consent", "n.", "동의, 합의"], ["excuse", "n.", "핑계, 변명"], ["a piece of ground", "n.", "밭 한 뙈기"], ["needs", "adv.", "부득불, 반드시"]],
+  "idi": [["with one consent", "한 마음으로, 이구동성으로"], ["make excuse", "핑계를 대다, 사양하다"]],
+  "gra": [["I must needs go", "needs=반드시(부사적 옛 용법); must needs='부득불 ~해야 한다'"], ["have me excused", "have+목적어+과거분사='나를 양해받게 하라'"]]
+ },
+ {
+  "en": "And another said, I have bought five yoke of oxen, and I go to prove them: I pray thee have me excused.",
+  "ko": "또 하나는 이르되 '내가 소 다섯 겨리를 샀으매 시험하러 가는 길이니, 청컨대 나를 양해하소서' 하고,",
+  "note": "둘째도 재물을 이유로 삼는다. 이미 산 소를 굳이 그때 시험하려 함은 급할 것 없는 일이니, 핑계란 본래 마음이 없을 때 지어내는 것이다.",
+  "voc": [["yoke", "n.", "겨리(소 한 쌍의 단위)"], ["oxen", "n.", "소들(ox의 복수)"], ["prove", "v.", "시험하다, 검증하다"]],
+  "idi": [["five yoke of oxen", "소 다섯 겨리(열 마리)"]],
+  "gra": [["I go to prove them", "to prove=목적 부정사 '시험하려'"]]
+ },
+ {
+  "en": "And another said, I have married a wife, and therefore I cannot come.",
+  "ko": "또 하나는 이르되 '내가 아내를 맞이하였으니 그러므로 갈 수 없나이다' 하더라.",
+  "note": "셋째는 양해조차 구하지 않고 단호히 못 온다 한다. 가장 가까운 관계마저 부르심 앞에 걸림돌이 될 수 있으니, 어떤 좋은 것도 하나님보다 앞서면 우상이 된다.",
+  "voc": [["marry", "v.", "결혼하다, 맞이하다"], ["wife", "n.", "아내"], ["therefore", "adv.", "그러므로"]],
+  "idi": [],
+  "gra": [["I cannot come", "cannot='~할 수 없다'; 여기서는 '오지 않겠다'는 완곡한 거절"]]
+ },
+ {
+  "en": "So that servant came, and shewed his lord these things. Then the master of the house being angry said to his servant, Go out quickly into the streets and lanes of the city, and bring in hither the poor, and the maimed, and the halt, and the blind.",
+  "ko": "그 종이 돌아와 이 일을 주인에게 고하니, 집주인이 노하여 그 종에게 이르되 '어서 성내 거리와 골목으로 나가서 가난한 자와 불구자와 다리 저는 자와 눈먼 자를 이리로 데려오라' 하니,",
+  "note": "청함 받은 자들이 물러나자 잔치는 성 안 낮은 자들에게로 향한다. 앞서 13절의 그 넷이 다시 부름 받으니, 하나님 왕국은 스스로 의롭다 하는 자가 아니라 자기 부족을 아는 자를 채운다.",
+  "voc": [["shew", "v.", "고하다, 알리다"], ["lane", "n.", "골목"], ["halt", "adj.", "다리 저는"], ["hither", "adv.", "이리로, 여기로"]],
+  "idi": [["the master of the house", "집주인, 가장"]],
+  "gra": [["shewed his lord these things", "shewed=showed의 옛 철자 '고하였다'"], ["bring in hither", "hither='이리로'(옛 방향 부사)"]]
+ },
+ {
+  "en": "And the servant said, Lord, it is done as thou hast commanded, and yet there is room.",
+  "ko": "그 종이 이르되 '주여, 명하신 대로 하였으되 아직도 자리가 있나이다' 하매,",
+  "note": "'아직도 자리가 있다'는 은혜의 넉넉함을 드러낸다. 하나님의 잔치는 좁지 않으니, 초대는 아직도 열려 있고 문은 닫히지 않았다.",
+  "voc": [["command", "v.", "명하다"], ["yet", "adv.", "아직, 여전히"], ["room", "n.", "자리, 여지"]],
+  "idi": [["there is room", "자리가 있다, 여지가 남아 있다"]],
+  "gra": [["as thou hast commanded", "hast=have의 옛 2인칭 단수형; 현재완료 '명하신 대로'"]]
+ },
+ {
+  "en": "And the lord said unto the servant, Go out into the highways and hedges, and compel them to come in, that my house may be filled.",
+  "ko": "주인이 종에게 이르되 '큰길과 울타리 가로 나가서 사람들을 억지로라도 들어오게 하여 내 집을 채우게 하라.",
+  "note": "이제 성 밖 이방의 자리까지 부르심이 미친다. '억지로라도'(아낭카조)는 폭력이 아니라 간곡한 강권이니, 하나님의 집이 가득 차기까지 은혜는 멀리까지 손을 뻗는다.",
+  "voc": [["highway", "n.", "큰길"], ["hedge", "n.", "울타리"], ["compel", "v.", "강권하다, 억지로 ~하게 하다"], ["fill", "v.", "채우다"]],
+  "idi": [["highways and hedges", "큰길과 울타리 가 - 성 밖 변두리"]],
+  "gra": [["compel them to come in", "compel+목적어+to부정사: '~가 …하도록 강권하다' 구문"], ["that my house may be filled", "that+may=목적 '내 집이 채워지도록'"]]
+ },
+ {
+  "en": "For I say unto you, That none of those men which were bidden shall taste of my supper.",
+  "ko": "내가 너희에게 이르노니, 청함을 받았던 그 사람들은 하나도 내 잔치를 맛보지 못하리라' 하였느니라.\"",
+  "note": "핑계로 물러난 자들은 잔치를 영영 맛보지 못한다. 은혜의 초대를 가벼이 여긴 결과는 스스로 그 복에서 제외됨이니, 부르심에는 응답의 때가 있다.",
+  "voc": [["bidden", "v.", "청함을 받은(bid의 과거분사)"], ["taste", "v.", "맛보다"], ["supper", "n.", "잔치, 만찬"]],
+  "idi": [["taste of my supper", "내 잔치를 맛보다, 그 복에 참여하다"]],
+  "gra": [["those men which were bidden", "which=관계대명사(사람 지칭 옛 용법); were bidden=수동"]]
+ },
+ {
+  "en": "And there went great multitudes with him: and he turned, and said unto them,",
+  "ko": "큰 무리가 예수와 함께 가더니, 예수께서 돌이켜 그들에게 이르시되,",
+  "note": "무리가 많을수록 예수는 값을 분명히 하신다. 돌이켜 말씀하심은, 그저 따르는 군중이 아니라 대가를 아는 제자를 구하심이다.",
+  "voc": [["multitude", "n.", "무리, 군중"], ["turn", "v.", "돌이키다, 돌아서다"]],
+  "idi": [["great multitudes", "큰 무리, 많은 군중"]],
+  "gra": [["there went great multitudes", "there+동사+주어=도치 구문 '큰 무리가 갔다'"]]
+ },
+ {
+  "en": "If any man come to me, and hate not his father, and mother, and wife, and children, and brethren, and sisters, yea, and his own life also, he cannot be my disciple.",
+  "ko": "\"누구든지 내게 오면서 자기 부모와 아내와 자식과 형제와 자매와 더욱이 자기 목숨까지 미워하지 아니하면 능히 내 제자가 되지 못하느니라.",
+  "note": "여기 '미워하다'(미세오)는 히브리적 비교 표현으로 '덜 사랑하다'를 뜻한다. 가족을 버리라 함이 아니라, 그리스도를 그 무엇보다 앞세우라는 절대적 우선의 요구다.",
+  "voc": [["hate", "v.", "미워하다(여기서는 덜 사랑하다)"], ["brethren", "n.", "형제들"], ["disciple", "n.", "제자"], ["yea", "adv.", "참으로, 더욱이"]],
+  "idi": [],
+  "gra": [["hate not his father", "옛 부정 어법(=hate not). 여기 hate는 '덜 사랑하다'를 뜻하는 히브리적 비교 표현"], ["he cannot be my disciple", "cannot='능히 ~ 못한다'는 자격의 부정"]]
+ },
+ {
+  "en": "And whosoever doth not bear his cross, and come after me, cannot be my disciple.",
+  "ko": "누구든지 자기 십자가를 지고 나를 따라오지 아니하면 능히 내 제자가 되지 못하느니라.",
+  "note": "십자가는 죽음의 도구이니, 자기를 지고 따름은 곧 자기 목숨을 내려놓음이다. 제자도는 감정의 열심이 아니라 날마다 자기를 부인하는 헌신이다.",
+  "voc": [["whosoever", "pron.", "누구든지"], ["bear", "v.", "지다, 짊어지다"], ["cross", "n.", "십자가"], ["come after", "phr.", "뒤따르다"]],
+  "idi": [["bear one's cross", "자기 십자가를 지다 - 고난과 헌신을 감당함"]],
+  "gra": [["doth not bear", "doth=does의 옛 3인칭 단수형; doth not bear='지지 아니하면'"]]
+ },
+ {
+  "en": "For which of you, intending to build a tower, sitteth not down first, and counteth the cost, whether he have sufficient to finish it?",
+  "ko": "너희 중에 누가 망대를 세우려 할진대, 먼저 앉아 그 비용을 헤아려 능히 이룰 만한지 보지 아니하겠느냐?",
+  "note": "제자 되는 길에는 값 계산이 필요하다. 시작만 하고 끝내지 못하면 도리어 조롱거리가 되니, 그리스도를 따르려는 자는 그 대가를 미리 헤아려야 한다.",
+  "voc": [["intend", "v.", "~하려고 하다"], ["tower", "n.", "망대, 탑"], ["count", "v.", "계산하다, 헤아리다"], ["sufficient", "adj.", "충분한"]],
+  "idi": [["count the cost", "비용을 헤아리다 - 미리 손익을 따져 보다"]],
+  "gra": [["sitteth not down ... and counteth", "sitteth/counteth=-eth 어미의 옛 3인칭 단수형"], ["whether he have sufficient", "whether+가정법 have='능히 ~할 만한지'"]]
+ },
+ {
+  "en": "Lest haply, after he hath laid the foundation, and is not able to finish it, all that behold it begin to mock him,",
+  "ko": "두렵건대 기초만 놓고 능히 이루지 못하면 보는 자가 다 그를 비웃기 시작하여,",
+  "note": "기초만 놓고 그친 자는 뭇사람의 조롱을 받는다. 어설픈 시작은 아니 시작함만 못하니, 제자도는 끝까지 견디는 자에게 이루어진다.",
+  "voc": [["haply", "adv.", "혹시, 어쩌면"], ["foundation", "n.", "기초, 터"], ["behold", "v.", "보다"], ["mock", "v.", "비웃다, 조롱하다"]],
+  "idi": [["lay the foundation", "기초를 놓다"]],
+  "gra": [["lest haply", "lest='~할까 하여'; haply=혹시(옛 부사)"], ["all that behold it", "that behold=관계대명사절 '보는 자들이 다'"]]
+ },
+ {
+  "en": "Saying, This man began to build, and was not able to finish.",
+  "ko": "이르되 '이 사람이 짓기를 시작하고 능히 이루지 못하였다' 하리라.",
+  "note": "조롱의 말이 그대로 인용된다. 완성하지 못한 신앙은 세상 앞에 조소거리가 되니, 이는 값을 헤아리지 않고 뛰어든 자의 부끄러운 결말이다.",
+  "voc": [["begin", "v.", "시작하다"], ["build", "v.", "짓다, 건축하다"], ["finish", "v.", "완성하다, 이루다"]],
+  "idi": [],
+  "gra": [["was not able to finish", "be able to+동사원형='능히 ~하다'의 과거형"]]
+ },
+ {
+  "en": "Or what king, going to make war against another king, sitteth not down first, and consulteth whether he be able with ten thousand to meet him that cometh against him with twenty thousand?",
+  "ko": "또 어느 임금이 다른 임금과 싸우러 갈진대, 먼저 앉아 일만으로 능히 이만을 거느리고 오는 자를 대적할 만한지 헤아려 보지 아니하겠느냐?",
+  "note": "두 번째 비유는 전쟁의 셈이다. 군세를 헤아리지 않고 나선 왕은 패망하니, 제자의 길도 자기 힘을 정직히 살펴 결단할 것을 요구한다.",
+  "voc": [["make war", "phr.", "전쟁하다"], ["consult", "v.", "헤아리다, 숙고하다"], ["ten thousand", "n.", "일만"], ["twenty thousand", "n.", "이만"]],
+  "idi": [["make war against", "~와 전쟁을 벌이다"]],
+  "gra": [["consulteth whether he be able", "consulteth=-eth 옛 3인칭 단수; whether+가정법 be able"], ["him that cometh against him", "that cometh=관계대명사 '오는 자'; cometh=-eth 옛 형"]]
+ },
+ {
+  "en": "Or else, while the other is yet a great way off, he sendeth an ambassage, and desireth conditions of peace.",
+  "ko": "만일 못 할 것 같으면, 그가 아직 멀리 있을 때에 사자를 보내어 화친을 청하리라.",
+  "note": "이길 수 없음을 아는 왕은 화친을 구한다. 자기 무력함을 인정하고 낮아짐이 지혜이니, 제자도의 셈은 결국 자기를 온전히 그리스도께 굴복시킴에 이른다.",
+  "voc": [["a great way off", "phr.", "멀리 떨어져"], ["ambassage", "n.", "사절, 사자"], ["desire", "v.", "청하다, 구하다"], ["conditions of peace", "n.", "화친의 조건"]],
+  "idi": [["conditions of peace", "화친의 조건, 강화 조건"]],
+  "gra": [["sendeth an ambassage, and desireth", "sendeth/desireth=-eth 어미의 옛 3인칭 단수형"], ["while the other is yet a great way off", "yet='아직'; a great way off='멀리 떨어진'"]]
+ },
+ {
+  "en": "So likewise, whosoever he be of you that forsaketh not all that he hath, he cannot be my disciple.",
+  "ko": "이와 같이 너희 중에 누구든지 자기의 모든 소유를 버리지 아니하면 능히 내 제자가 되지 못하느니라.",
+  "note": "두 비유의 결론이 여기 모인다. 제자도의 값은 '모든 소유'를 내려놓음이니, 그리스도의 주권 아래 자기 전부를 드리지 않는 자는 그 제자일 수 없다.",
+  "voc": [["likewise", "adv.", "이와 같이, 마찬가지로"], ["whosoever", "pron.", "누구든지"], ["forsake", "v.", "버리다, 포기하다"], ["all that he hath", "phr.", "그의 모든 소유"]],
+  "idi": [["forsake all", "모든 것을 버리다"]],
+  "gra": [["forsaketh not all that he hath", "forsaketh=-eth 옛 3인칭 단수; hath=has의 옛 형"], ["whosoever he be of you that", "whosoever ... that=관계 강조 '너희 중 누구든지 ~한 자'"]]
+ },
+ {
+  "en": "Salt is good: but if the salt have lost his savour, wherewith shall it be seasoned?",
+  "ko": "소금은 좋은 것이로되, 만일 소금이 그 맛을 잃으면 무엇으로 짜게 하리요?",
+  "note": "맛 잃은 소금은 소금이 아니다. 값을 치르지 않는 제자는 세상에 아무 영향을 끼치지 못하니, 짠맛 잃은 신앙은 회복할 길이 없음을 경고하신다.",
+  "voc": [["salt", "n.", "소금"], ["savour", "n.", "맛, 풍미"], ["wherewith", "adv.", "무엇으로"], ["season", "v.", "맛을 내다, 간하다"]],
+  "idi": [["lose one's savour", "맛을 잃다, 본래의 기능을 상실하다"]],
+  "gra": [["have lost his savour", "his는 무생물 salt를 가리키는 옛 소유격으로 현대어 its에 해당"], ["wherewith shall it be seasoned", "wherewith='무엇으로'(옛 의문부사); be seasoned=수동"]]
+ },
+ {
+  "en": "It is neither fit for the land, nor yet for the dunghill; but men cast it out. He that hath ears to hear, let him hear.",
+  "ko": "땅에도, 거름더미에도 쓸데없어 사람이 내버리느니라. 들을 귀 있는 자는 들을지어다.\"",
+  "note": "쓸모 잃은 소금은 거름더미에조차 못 쓰여 버려진다. '들을 귀 있는 자는 들으라'는 엄중한 부르심이니, 이 제자도의 값을 진지하게 헤아리라는 마지막 촉구다.",
+  "voc": [["fit", "adj.", "합당한, 쓸모 있는"], ["dunghill", "n.", "거름더미"], ["cast out", "phr.", "내버리다"], ["hath", "v.", "가지다(has의 옛 형)"]],
+  "idi": [["He that hath ears to hear, let him hear", "들을 귀 있는 자는 들을지어다 - 깊이 새겨들으라는 부름"]],
+  "gra": [["neither ... nor yet", "neither A nor yet B='A에도 B에도 아니'(부정 열거)"], ["He that hath ears", "he that=he who; hath=has의 옛 형"]]
+ }
 ]
