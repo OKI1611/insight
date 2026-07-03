@@ -1,1 +1,764 @@
-[{"en":"caught up to the third heaven","ko":"셋째 하늘에까지 이끌려 갔노라","note":"'이끌려 가다(ἁρπάζω, 하르파조)'는 갑자기 낚아채어 들어 올림을 뜻한다. '셋째 하늘'은 유대 사상에서 하나님이 거하시는 가장 높은 하늘 곧 낙원을 가리키니, 다음 절의 낙원과 같다.","voc":[["catch up","v.","이끌어 올리다, 낚아채다"],["heaven","n.","하늘"]],"idi":[["caught up","이끌려 올라감, 들려 올림"]],"gra":[["caught up","catch up의 과거분사형이 수동의 뜻으로 쓰임('이끌려 올려졌다'); caught는 catch의 불규칙 과거분사다"]]},{"en":"caught up into paradise","ko":"낙원으로 이끌려 가서","note":"'낙원(παράδεισος, 파라데이소스)'은 본래 왕의 정원을 뜻하는 페르시아어에서 온 말로, 칠십인역에서 에덴동산에 쓰였다. 여기서는 하나님의 임재가 있는 복된 처소를 가리킨다.","voc":[["paradise","n.","낙원"],["into","prep.","~안으로"]],"idi":[],"gra":[["into paradise","into=내부로의 이동을 나타내는 전치사; 앞 절의 to the third heaven과 짝을 이뤄 '~안으로 들려 감'을 표현한다"]]},{"en":"a thorn in the flesh, the messenger of Satan","ko":"내 육체에 가시 곧 사탄의 사자","note":"'가시(σκόλοψ, 스콜롭스)'는 박힌 말뚝·가시를 뜻한다. 그 정체는 밝히지 않으나, 바울을 '치는(κολαφίζω, 주먹질하는)' 사탄의 사자로서 그를 겸손하게 지키는 고난임을 보인다.","voc":[["thorn","n.","가시"],["flesh","n.","육체"],["messenger","n.","사자, 심부름꾼"]],"idi":[["a thorn in the flesh","육체의 가시(끊임없이 괴롭히는 고통)"]],"gra":[]},{"en":"My grace is sufficient for thee","ko":"내 은혜가 네게 족하도다","note":"주께서 가시를 제거하지 않으시고 주신 응답이다. '족하다(ἀρκέω, 아르케오)'는 넉넉히 충분함을 뜻하니, 고난 중에도 은혜가 부족함 없이 채움을 선언하는 위로의 말씀이다.","voc":[["grace","n.","은혜"],["sufficient","adj.","족한, 충분한"],["thee","pron.","너에게(you의 옛 목적격)"]],"idi":[["be sufficient for","~에게 족하다, ~에 충분하다"]],"gra":[["for thee","thee=2인칭 단수 목적격의 옛말로 현대영어 you에 해당; 주격은 thou, 소유격은 thy/thine이다"]]},{"en":"my strength is made perfect in weakness","ko":"내 능력이 약한 데서 온전하여짐이라","note":"'온전하여지다(τελέω, 텔레오)'는 완성·성취를 뜻한다. 하나님의 능력(δύναμις)이 인간의 약함(ἀσθένεια)을 무대 삼아 가장 온전히 나타남을 역설로 선포한다.","voc":[["strength","n.","능력, 힘"],["perfect","adj.","온전한"],["weakness","n.","약함"]],"idi":[],"gra":[["is made perfect","make+목적격보어 구문의 수동태: '온전하게 되어진다'; in weakness=장소·상황의 전치사구('약함 속에서')"]]},{"en":"when I am weak, then am I strong","ko":"내가 약할 그때에 곧 강함이라","note":"이 서신의 절정인 역설이다. 자기 힘이 다할 때 비로소 그리스도의 능력이 머물러(ἐπισκηνόω, 장막을 침) 강하게 됨을 고백하니, 약함이 곧 능력의 통로가 된다.","voc":[["weak","adj.","약한"],["strong","adj.","강한"]],"idi":[],"gra":[["then am I strong","then을 문두에 두어 주어와 동사가 도치됨(am I); 현대영어 어순은 then I am strong이며, 도치는 강조의 옛 어법이다"]]},{"en":"the signs of an apostle","ko":"사도의 표","note":"'표적(σημεῖον, 세메이온)·기사(τέρας)·능력(δύναμις)'은 참 사도직을 입증하는 표지다. 거짓 사도와 달리 바울의 사도됨이 하나님의 능력으로 확증되었음을 든다.","voc":[["sign","n.","표, 표적"],["apostle","n.","사도"]],"idi":[],"gra":[["the signs of an apostle","of=소속·특징을 나타내는 전치사('사도에게 속한/사도를 입증하는 표')"]]},{"en":"I seek not yours, but you","ko":"너희의 것을 구하지 아니하고 너희를 구함이라","note":"'구하다(ζητέω, 제테오)'를 대조하여 참 목자의 마음을 드러낸다. 거짓 사도가 양의 재물을 탐할 때, 바울은 재물이 아니라 영혼 자체를 구함을 부모의 사랑에 빗댄다.","voc":[["seek","v.","구하다, 찾다"],["yours","pron.","너희의 것"]],"idi":[],"gra":[["not yours, but you","not A but B 구문('A가 아니라 B'); yours=소유대명사(너희의 것), you=인칭대명사(너희 자신)를 대조한다"]]}]
+[
+ {
+  "en": "It is not expedient for me doubtless to glory. I will come to visions and revelations of the Lord.",
+  "ko": "내가 자랑하는 것이 유익하지 못할지라도, 부득불 자랑하노니 이제 주의 환상과 계시를 말하리라.",
+  "note": "'환상(옵타시아)'과 '계시(아포칼륍시스)'는 하나님이 친히 열어 보이심을 뜻한다. 바울은 자랑이 무익함을 알면서도, 대적에 맞서 부득이 주께 받은 계시를 언급하려 한다.",
+  "voc": [
+   [
+    "expedient",
+    "adj.",
+    "유익한, 마땅한"
+   ],
+   [
+    "glory",
+    "v.",
+    "자랑하다"
+   ],
+   [
+    "revelation",
+    "n.",
+    "계시"
+   ]
+  ],
+  "idi": [
+   [
+    "visions and revelations",
+    "환상과 계시"
+   ]
+  ],
+  "gra": [
+   [
+    "It is not expedient ... to glory",
+    "가주어 It, 진주어 to glory('자랑하는 것')"
+   ]
+  ]
+ },
+ {
+  "en": "I knew a man in Christ above fourteen years ago, (whether in the body, I cannot tell; or whether out of the body, I cannot tell: God knoweth;) such an one caught up to the third heaven.",
+  "ko": "내가 그리스도 안에 있는 한 사람을 아노니, 그가 십사 년 전에 셋째 하늘에까지 이끌려 갔노라. 몸 안에서인지 나는 알지 못하고, 몸 밖에서인지도 나는 알지 못하나 하나님은 아시느니라.",
+  "note": "'이끌려 가다(하르파조, ἁρπάζω)'는 갑자기 낚아채어 들어 올림을 뜻한다. '셋째 하늘'은 하나님이 거하시는 가장 높은 하늘 곧 낙원을 가리킨다. 바울은 자신을 삼인칭으로 낮추어 겸손히 말한다.",
+  "voc": [
+   [
+    "above",
+    "adv.",
+    "~이상, 넘어"
+   ],
+   [
+    "tell",
+    "v.",
+    "알다, 분간하다"
+   ],
+   [
+    "catch up",
+    "v.",
+    "이끌어 올리다, 낚아채다"
+   ]
+  ],
+  "idi": [
+   [
+    "caught up",
+    "이끌려 올라감, 들려 올림"
+   ],
+   [
+    "out of the body",
+    "몸 밖에서"
+   ]
+  ],
+  "gra": [
+   [
+    "caught up",
+    "catch up의 과거분사형이 수동의 뜻('이끌려 올려졌다'), knoweth=knows"
+   ]
+  ]
+ },
+ {
+  "en": "And I knew such a man, (whether in the body, or out of the body, I cannot tell: God knoweth;)",
+  "ko": "내가 이러한 사람을 아노니, 몸 안에서인지 몸 밖에서인지 나는 알지 못하나 하나님은 아시느니라.",
+  "note": "앞 절을 반복하며 이 체험의 신비를 거듭 강조한다. 그 방식이 몸 안이었는지 밖이었는지는 오직 하나님만 아시니, 바울은 알 수 없는 것을 겸손히 하나님께 맡긴다.",
+  "voc": [
+   [
+    "such a man",
+    "phr.",
+    "이러한 사람"
+   ],
+   [
+    "whether",
+    "conj.",
+    "~인지"
+   ],
+   [
+    "cannot tell",
+    "phr.",
+    "알 수 없다, 분간 못 하다"
+   ]
+  ],
+  "idi": [
+   [
+    "out of the body",
+    "몸 밖에서"
+   ]
+  ],
+  "gra": [
+   [
+    "God knoweth",
+    "knoweth=knows, 옛 3인칭 단수 어미 -eth"
+   ]
+  ]
+ },
+ {
+  "en": "How that he was caught up into paradise, and heard unspeakable words, which it is not lawful for a man to utter.",
+  "ko": "그가 낙원으로 이끌려 가서 말할 수 없는 말을 들었으니, 이는 사람이 가히 이르지 못할 것이라.",
+  "note": "'낙원(파라데이소스, παράδεισος)'은 본래 왕의 정원을 뜻하는 말로, 칠십인역에서 에덴동산에 쓰였다. 그가 들은 말은 사람이 옮길 수 없는 신비이니, 바울은 그 내용을 자랑거리로 삼지 않는다.",
+  "voc": [
+   [
+    "paradise",
+    "n.",
+    "낙원"
+   ],
+   [
+    "unspeakable",
+    "adj.",
+    "말할 수 없는"
+   ],
+   [
+    "utter",
+    "v.",
+    "말하다, 발설하다"
+   ]
+  ],
+  "idi": [
+   [
+    "unspeakable words",
+    "말할 수 없는 말"
+   ],
+   [
+    "not lawful",
+    "가히 하지 못할, 허락되지 않은"
+   ]
+  ],
+  "gra": [
+   [
+    "it is not lawful for a man to utter",
+    "가주어 it, for a man=to부정사의 의미상 주어"
+   ]
+  ]
+ },
+ {
+  "en": "Of such an one will I glory: yet of myself I will not glory, but in mine infirmities.",
+  "ko": "내가 이러한 사람을 위하여 자랑하려니와, 나 자신을 위하여는 나의 약한 것 외에 자랑하지 아니하리라.",
+  "note": "놀라운 계시를 받은 '그 사람'은 자랑하되, 정작 자기 자신은 오직 '약함'만을 자랑하겠다 한다. 이 미묘한 구분이 바울의 겸손과 역설적 자랑의 핵심을 드러낸다.",
+  "voc": [
+   [
+    "glory",
+    "v.",
+    "자랑하다"
+   ],
+   [
+    "myself",
+    "pron.",
+    "나 자신"
+   ],
+   [
+    "infirmity",
+    "n.",
+    "약함, 연약함"
+   ]
+  ],
+  "idi": [
+   [
+    "mine infirmities",
+    "나의 약한 것들"
+   ]
+  ],
+  "gra": [
+   [
+    "will I glory",
+    "의문·강조의 옛 어순, 주어와 동사 도치 / 'I will glory' / mine=모음 앞의 옛 소유격"
+   ]
+  ]
+ },
+ {
+  "en": "For though I would desire to glory, I shall not be a fool; for I will say the truth: but now I forbear, lest any man should think of me above that which he seeth me to be, or that he heareth of me.",
+  "ko": "내가 자랑하고자 할지라도 어리석은 자가 되지 아니하리니, 이는 내가 참된 것을 말함이라. 그러나 내가 참노니, 이는 아무도 보고 듣는 것 이상으로 나를 평가하지 못하게 하려 함이라.",
+  "note": "'참다(페이도마이, φείδομαι)'는 삼가 아낌을 뜻한다. 바울이 계시를 더 자랑할 수 있었으나 절제하는 이유는, 사람들이 그를 실제 이상으로 높이 여겨 사람을 우상 삼지 않게 하려 함이다.",
+  "voc": [
+   [
+    "desire",
+    "v.",
+    "원하다, 바라다"
+   ],
+   [
+    "fool",
+    "n.",
+    "어리석은 자"
+   ],
+   [
+    "forbear",
+    "v.",
+    "참다, 삼가다"
+   ]
+  ],
+  "idi": [
+   [
+    "say the truth",
+    "참된 것을 말하다"
+   ]
+  ],
+  "gra": [
+   [
+    "that which he seeth me to be",
+    "that which=관계대명사 '~한 것', seeth=sees"
+   ]
+  ]
+ },
+ {
+  "en": "And lest I should be exalted above measure through the abundance of the revelations, there was given to me a thorn in the flesh, the messenger of Satan to buffet me, lest I should be exalted above measure.",
+  "ko": "계시가 지극히 크므로 내가 지나치게 높아지지 않게 하시려고, 내 육체에 가시 곧 사탄의 사자를 주사 나를 치게 하셨으니, 이는 내가 지나치게 높아지지 않게 하려 하심이라.",
+  "note": "'가시(스콜롭스, σκόλοψ)'는 박힌 말뚝·가시를 뜻한다. 그 정체는 밝히지 않으나, 바울을 '치는(콜라피조, 주먹질하는)' 사탄의 사자로서 그를 겸손하게 지키는 고난임을 보인다.",
+  "voc": [
+   [
+    "exalt",
+    "v.",
+    "높이다"
+   ],
+   [
+    "thorn",
+    "n.",
+    "가시"
+   ],
+   [
+    "buffet",
+    "v.",
+    "치다, 주먹질하다"
+   ]
+  ],
+  "idi": [
+   [
+    "a thorn in the flesh",
+    "육체의 가시(끊임없이 괴롭히는 고통)"
+   ],
+   [
+    "above measure",
+    "지나치게, 분에 넘치게"
+   ]
+  ],
+  "gra": [
+   [
+    "lest I should be exalted",
+    "lest+should=옛 부정 목적절('높아지지 않도록'), 앞뒤로 반복해 강조"
+   ]
+  ]
+ },
+ {
+  "en": "For this thing I besought the Lord thrice, that it might depart from me.",
+  "ko": "이것이 내게서 떠나게 하시려고 내가 주께 세 번 간구하였더니,",
+  "note": "'간구하다(파라칼레오, παρακαλέω)'는 곁에 불러 간청함이다. 바울도 겟세마네의 주님처럼 '세 번' 이 고난을 거두어 주시길 구했으나, 하나님의 응답은 제거가 아니라 은혜였다.",
+  "voc": [
+   [
+    "beseech",
+    "v.",
+    "간구하다 (besought=과거)"
+   ],
+   [
+    "thrice",
+    "adv.",
+    "세 번"
+   ],
+   [
+    "depart",
+    "v.",
+    "떠나다"
+   ]
+  ],
+  "idi": [
+   [
+    "depart from me",
+    "내게서 떠나다"
+   ]
+  ],
+  "gra": [
+   [
+    "I besought the Lord",
+    "besought=beseech의 옛 과거형 / that it might depart=목적절"
+   ]
+  ]
+ },
+ {
+  "en": "And he said unto me, My grace is sufficient for thee: for my strength is made perfect in weakness. Most gladly therefore will I rather glory in my infirmities, that the power of Christ may rest upon me.",
+  "ko": "내게 이르시되 \"내 은혜가 네게 족하도다. 이는 내 능력이 약한 데서 온전하여짐이라\" 하시니, 그러므로 도리어 크게 기뻐함으로 나의 약한 것들을 자랑하리니, 이는 그리스도의 능력이 내게 머물게 하려 함이라.",
+  "note": "'족하다(아르케오, ἀρκέω)'는 넉넉히 충분함을, '온전하여지다(텔레오)'는 완성을 뜻한다. 하나님의 능력이 인간의 약함을 무대 삼아 가장 온전히 나타나니, '머물다(에피스케노오)'는 장막을 침을 뜻한다.",
+  "voc": [
+   [
+    "grace",
+    "n.",
+    "은혜"
+   ],
+   [
+    "sufficient",
+    "adj.",
+    "족한, 충분한"
+   ],
+   [
+    "rest upon",
+    "phr.",
+    "머물다, 임하다"
+   ]
+  ],
+  "idi": [
+   [
+    "be sufficient for",
+    "~에게 족하다"
+   ],
+   [
+    "most gladly",
+    "크게 기뻐함으로"
+   ]
+  ],
+  "gra": [
+   [
+    "for thee",
+    "thee=2인칭 단수 목적격의 옛말(=you), is made perfect=수동태 '온전하게 되다'"
+   ]
+  ]
+ },
+ {
+  "en": "Therefore I take pleasure in infirmities, in reproaches, in necessities, in persecutions, in distresses for Christ’s sake: for when I am weak, then am I strong.",
+  "ko": "그러므로 내가 그리스도를 위하여 약한 것들과 능욕과 궁핍과 박해와 곤란을 기뻐하노니, 이는 내가 약할 그때에 곧 강함이라.",
+  "note": "이 서신의 절정인 역설이다. 자기 힘이 다할 때 비로소 그리스도의 능력이 머물러 강하게 됨을 고백하니, 약함이 곧 능력의 통로가 된다. 그리스도를 위한 고난이 기쁨이 된다.",
+  "voc": [
+   [
+    "take pleasure in",
+    "phr.",
+    "~을 기뻐하다"
+   ],
+   [
+    "reproach",
+    "n.",
+    "능욕, 비난"
+   ],
+   [
+    "distress",
+    "n.",
+    "곤란, 곤고"
+   ]
+  ],
+  "idi": [
+   [
+    "take pleasure in",
+    "~을 기뻐하다"
+   ],
+   [
+    "for Christ's sake",
+    "그리스도를 위하여"
+   ]
+  ],
+  "gra": [
+   [
+    "then am I strong",
+    "then을 문두에 두어 주어와 동사 도치(am I), 강조의 옛 어법"
+   ]
+  ]
+ },
+ {
+  "en": "I am become a fool in glorying; ye have compelled me: for I ought to have been commended of you: for in nothing am I behind the very chiefest apostles, though I be nothing.",
+  "ko": "내가 자랑함으로 어리석은 자가 되었으나, 너희가 나를 억지로 시킨 것이라. 나는 마땅히 너희에게 칭찬을 받아야 할 자라. 내가 아무것도 아니나, 지극히 크다는 사도들보다 조금도 부족하지 아니하니라.",
+  "note": "'억지로 시키다(아낭카조, ἀναγκάζω)'는 강권함을 뜻한다. 바울이 부득이 자랑한 것은 성도가 그를 변호하지 않아 스스로 나선 탓이니, 그 책임을 성도에게 돌리며 어리석은 자랑을 마무리한다.",
+  "voc": [
+   [
+    "compel",
+    "v.",
+    "억지로 시키다, 강권하다"
+   ],
+   [
+    "commend",
+    "v.",
+    "칭찬하다"
+   ],
+   [
+    "chiefest",
+    "adj.",
+    "으뜸가는, 지극히 큰"
+   ]
+  ],
+  "idi": [
+   [
+    "the very chiefest apostles",
+    "지극히 크다는 사도들"
+   ]
+  ],
+  "gra": [
+   [
+    "I am become a fool",
+    "be+과거분사로 완료를 나타낸 옛 어법 / 'I have become' / commended of you='of=by'"
+   ]
+  ]
+ },
+ {
+  "en": "Truly the signs of an apostle were wrought among you in all patience, in signs, and wonders, and mighty deeds.",
+  "ko": "사도의 표가 너희 가운데서 모든 참음과 표적과 기사와 능력으로 이루어졌느니라.",
+  "note": "'표적(세메이온)·기사(테라스)·능력(뒤나미스)'은 참 사도직을 입증하는 표지다. 거짓 사도와 달리 바울의 사도됨이 하나님의 능력으로 확증되었음을, 성도가 직접 목격한 사실로 든다.",
+  "voc": [
+   [
+    "sign",
+    "n.",
+    "표적, 표"
+   ],
+   [
+    "wonder",
+    "n.",
+    "기사, 놀라운 일"
+   ],
+   [
+    "mighty deed",
+    "phr.",
+    "능력, 권능의 일"
+   ]
+  ],
+  "idi": [
+   [
+    "signs of an apostle",
+    "사도의 표"
+   ],
+   [
+    "signs, and wonders",
+    "표적과 기사"
+   ]
+  ],
+  "gra": [
+   [
+    "were wrought",
+    "wrought=work의 옛 과거분사, 수동태 '이루어졌다'"
+   ]
+  ]
+ },
+ {
+  "en": "For what is it wherein ye were inferior to other churches, except it be that I myself was not burdensome to you? forgive me this wrong.",
+  "ko": "내 자신이 너희에게 짐이 되지 아니한 것 외에, 너희가 다른 교회들보다 못한 것이 무엇이냐? 너희는 나의 이 잘못을 용서하라.",
+  "note": "반어적 사죄다. 바울이 삯을 받지 않아 고린도 교회가 다른 교회보다 못할 것이 없었으니, 그 '짐 지우지 않음'을 도리어 '잘못'이라 비꼬아 성도의 오해를 꼬집는다.",
+  "voc": [
+   [
+    "inferior",
+    "adj.",
+    "못한, 열등한"
+   ],
+   [
+    "except",
+    "conj.",
+    "~을 제외하고"
+   ],
+   [
+    "burdensome",
+    "adj.",
+    "짐이 되는"
+   ]
+  ],
+  "idi": [
+   [
+    "forgive me this wrong",
+    "나의 이 잘못을 용서하라"
+   ]
+  ],
+  "gra": [
+   [
+    "wherein ye were inferior",
+    "wherein=in which('그 점에서'), 옛 관계부사 / except it be=가정법"
+   ]
+  ]
+ },
+ {
+  "en": "Behold, the third time I am ready to come to you; and I will not be burdensome to you: for I seek not yours, but you: for the children ought not to lay up for the parents, but the parents for the children.",
+  "ko": "보라, 내가 이제 세 번째 너희에게 가기를 준비하였으나 너희에게 짐이 되지 아니하리니, 이는 내가 너희의 것을 구하지 아니하고 너희를 구함이라. 자녀가 부모를 위하여 재물을 쌓는 것이 아니요 부모가 자녀를 위하여 쌓는 것이니라.",
+  "note": "'구하다(제테오, ζητέω)'를 대조하여 참 목자의 마음을 드러낸다. 거짓 사도가 양의 재물을 탐할 때, 바울은 재물이 아니라 영혼 자체를 구함을 부모의 사랑에 빗댄다.",
+  "voc": [
+   [
+    "ready",
+    "adj.",
+    "준비된"
+   ],
+   [
+    "seek",
+    "v.",
+    "구하다, 찾다"
+   ],
+   [
+    "lay up",
+    "phr.",
+    "쌓다, 저축하다"
+   ]
+  ],
+  "idi": [
+   [
+    "I seek not yours, but you",
+    "너희의 것이 아니라 너희를 구하다"
+   ],
+   [
+    "lay up for",
+    "~을 위하여 쌓다"
+   ]
+  ],
+  "gra": [
+   [
+    "not yours, but you",
+    "not A but B 구문, yours=소유대명사(너희의 것) / you=인칭대명사(너희 자신)"
+   ]
+  ]
+ },
+ {
+  "en": "And I will very gladly spend and be spent for you; though the more abundantly I love you, the less I be loved.",
+  "ko": "내가 너희 영혼을 위하여 크게 기뻐함으로 허비하고 또 허비함을 받으리니, 내가 너희를 더욱 사랑할수록 너희에게 사랑을 덜 받는다 한들 어떠하랴.",
+  "note": "'허비하다(다파나오)'와 '허비함을 받다(엑다파나오마이)'는 자신을 남김없이 소진함을 뜻한다. 사랑할수록 덜 사랑받는 아픔조차 감수하는 것이 참 목자의 희생적 사랑이다.",
+  "voc": [
+   [
+    "gladly",
+    "adv.",
+    "기꺼이, 기뻐함으로"
+   ],
+   [
+    "spend",
+    "v.",
+    "허비하다, 쓰다"
+   ],
+   [
+    "abundantly",
+    "adv.",
+    "더욱, 풍성히"
+   ]
+  ],
+  "idi": [
+   [
+    "spend and be spent",
+    "허비하고 허비함을 받다(온전히 자신을 쏟다)"
+   ]
+  ],
+  "gra": [
+   [
+    "the more ... the less",
+    "the+비교급 ... the+비교급 구문 '~할수록 더욱 ~하다', I be loved=가정법"
+   ]
+  ]
+ },
+ {
+  "en": "But be it so, I did not burden you: nevertheless, being crafty, I caught you with guile.",
+  "ko": "그렇다 하자. 내가 너희에게 짐을 지우지 아니하였으나, 교활한 자라 속임수로 너희를 취하였다 하는도다.",
+  "note": "대적들의 또 다른 비방을 인용한다. 바울이 직접은 삯을 안 받았으나 동역자를 통해 교묘히 이득을 챙겼다는 중상이니, 다음 절들이 이를 조목조목 반박한다.",
+  "voc": [
+   [
+    "be it so",
+    "phr.",
+    "그렇다 하자"
+   ],
+   [
+    "crafty",
+    "adj.",
+    "교활한"
+   ],
+   [
+    "guile",
+    "n.",
+    "속임수, 간계"
+   ]
+  ],
+  "idi": [
+   [
+    "be it so",
+    "그렇다 치자, 그렇다 하자"
+   ],
+   [
+    "caught you with guile",
+    "속임수로 너희를 취하다"
+   ]
+  ],
+  "gra": [
+   [
+    "being crafty",
+    "분사구문 '교활한 자라', 대적의 주장을 인용"
+   ]
+  ]
+ },
+ {
+  "en": "Did I make a gain of you by any of them whom I sent unto you?",
+  "ko": "내가 너희에게 보낸 자들 가운데 누구로 말미암아 너희에게서 이득을 취하였느냐?",
+  "note": "'이득을 취하다(플레오넥테오, πλεονεκτέω)'는 착취함을 뜻한다. 바울은 자기가 보낸 동역자 중 누구도 성도를 착취하지 않았음을 반문으로 강하게 부인한다.",
+  "voc": [
+   [
+    "make a gain of",
+    "phr.",
+    "~에게서 이득을 취하다"
+   ],
+   [
+    "any",
+    "pron.",
+    "누구, 아무"
+   ],
+   [
+    "send",
+    "v.",
+    "보내다"
+   ]
+  ],
+  "idi": [
+   [
+    "make a gain of you",
+    "너희에게서 이득을 취하다"
+   ]
+  ],
+  "gra": [
+   [
+    "Did I make a gain",
+    "수사의문문, '내가 이득을 취하였느냐(결코 아니다)'"
+   ]
+  ]
+ },
+ {
+  "en": "I desired Titus, and with him I sent a brother. Did Titus make a gain of you? walked we not in the same spirit? walked we not in the same steps?",
+  "ko": "내가 디도를 권하고 한 형제를 그와 함께 보내었으니, 디도가 너희에게서 무엇을 취하였느냐? 우리가 같은 영으로 행하지 아니하였느냐? 같은 발자취로 행하지 아니하였느냐?",
+  "note": "'같은 발자취(이크노스)'는 같은 삶의 걸음을 뜻한다. 디도 역시 성도를 착취하지 않았고, 바울과 디도가 한 영과 한 길을 걸었음을 반문으로 증명하여 비방을 무너뜨린다.",
+  "voc": [
+   [
+    "desire",
+    "v.",
+    "권하다, 청하다"
+   ],
+   [
+    "make a gain",
+    "phr.",
+    "이득을 취하다"
+   ],
+   [
+    "step",
+    "n.",
+    "발자취, 걸음"
+   ]
+  ],
+  "idi": [
+   [
+    "in the same spirit",
+    "같은 영으로"
+   ],
+   [
+    "in the same steps",
+    "같은 발자취로"
+   ]
+  ],
+  "gra": [
+   [
+    "walked we not",
+    "수사의문문의 옛 어순, 주어와 동사 도치 / 'did we not walk'"
+   ]
+  ]
+ },
+ {
+  "en": "Again, think ye that we excuse ourselves unto you? we speak before God in Christ: but we do all things, dearly beloved, for your edifying.",
+  "ko": "너희는 우리가 너희에게 변명하는 줄로 여기느냐? 우리는 하나님 앞에서 그리스도 안에서 말하노라. 사랑하는 자들아, 이 모든 것은 너희를 세우려 함이라.",
+  "note": "'세움(오이코도메, οἰκοδομή)'은 건물을 세우듯 신앙을 세움을 뜻한다. 바울의 모든 변호는 자기 방어가 아니라, 하나님 앞에서 성도를 세우기 위한 것임을 사랑으로 밝힌다.",
+  "voc": [
+   [
+    "excuse",
+    "v.",
+    "변명하다"
+   ],
+   [
+    "dearly beloved",
+    "phr.",
+    "사랑하는 자들아"
+   ],
+   [
+    "edifying",
+    "n.",
+    "세움, 덕 세움"
+   ]
+  ],
+  "idi": [
+   [
+    "dearly beloved",
+    "사랑하는 자들"
+   ],
+   [
+    "for your edifying",
+    "너희를 세우기 위하여"
+   ]
+  ],
+  "gra": [
+   [
+    "think ye",
+    "의문문의 옛 어순, 주어와 동사 도치 / 'do you think'"
+   ]
+  ]
+ },
+ {
+  "en": "For I fear, lest, when I come, I shall not find you such as I would, and that I shall be found unto you such as ye would not: lest there be debates, envyings, wraths, strifes, backbitings, whisperings, swellings, tumults:",
+  "ko": "내가 두려워하는 것은, 혹 내가 갈 때에 너희를 내가 원하는 대로 보지 못하고, 또 너희도 나를 너희가 원치 않는 대로 볼까 함이요, 혹 다툼과 시기와 분냄과 분쟁과 비방과 수군거림과 거만함과 소란이 있을까 함이라.",
+  "note": "'거만함(퓌시오시스, φυσίωσις)'은 부풀어 오른 교만을 뜻한다. 바울이 방문 전에 두려워하는 것은, 회개하지 않은 성도의 여러 죄와 그로 인해 자신이 엄히 대해야 할 상황이다.",
+  "voc": [
+   [
+    "debate",
+    "n.",
+    "다툼, 논쟁"
+   ],
+   [
+    "backbiting",
+    "n.",
+    "비방, 험담"
+   ],
+   [
+    "swelling",
+    "n.",
+    "거만함, 우쭐함"
+   ]
+  ],
+  "idi": [
+   [
+    "such as I would",
+    "내가 원하는 대로"
+   ],
+   [
+    "envyings, wraths, strifes",
+    "시기와 분냄과 분쟁"
+   ]
+  ],
+  "gra": [
+   [
+    "lest there be debates",
+    "lest+be=가정법('~이 있을까 하여'), 옛 부정 목적절"
+   ]
+  ]
+ },
+ {
+  "en": "And lest, when I come again, my God will humble me among you, and that I shall bewail many which have sinned already, and have not repented of the uncleanness and fornication and lasciviousness which they have committed.",
+  "ko": "또 내가 다시 갈 때에 내 하나님이 너희 앞에서 나를 낮추실까 하며, 또 전에 죄를 짓고 그 행한 바 더러움과 음행과 호색을 회개하지 아니한 많은 사람으로 인하여 내가 슬퍼할까 두려워하노라.",
+  "note": "'슬퍼하다(펜테오, πενθέω)'는 애곡함을 뜻한다. 바울의 가장 큰 두려움은 자신의 굴욕이 아니라, 회개하지 않은 성도를 목자로서 애통해야 하는 슬픔이니, 그의 마음은 끝까지 양 떼를 향한다.",
+  "voc": [
+   [
+    "humble",
+    "v.",
+    "낮추다, 겸손케 하다"
+   ],
+   [
+    "bewail",
+    "v.",
+    "슬퍼하다, 애곡하다"
+   ],
+   [
+    "fornication",
+    "n.",
+    "음행"
+   ]
+  ],
+  "idi": [
+   [
+    "repent of",
+    "~을 회개하다"
+   ],
+   [
+    "uncleanness and fornication",
+    "더러움과 음행"
+   ]
+  ],
+  "gra": [
+   [
+    "many which have sinned",
+    "which=관계대명사(사람을 가리킨 옛 용법) / 현대 영어는 who"
+   ]
+  ]
+ }
+]
