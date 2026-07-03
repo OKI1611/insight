@@ -1,1 +1,434 @@
-[{"en":"laying wait in the way to kill him","ko":"길에 매복하였다가 그를 죽이려 함이라","note":"유대 지도자들이 바울을 예루살렘으로 옮겨 달라 청한 속셈은 호송 도중 매복하여 암살하려는 것이었다. 24장의 음모(23:12 이하)가 두 해 뒤에도 이어지고 있음을 보여 준다.","voc":[["lay wait","","매복하다"],["kill","v.","죽이다"]],"idi":[["laying wait in the way","길에 매복하여"]],"gra":[]},{"en":"sitting on the judgment seat","ko":"재판석에 앉아","note":"'재판석(judgment seat, 베마 βῆμα)'은 로마 총독이 공식 판결을 내리던 단상이다. 베스도가 부임 직후 정식 법정 절차를 따랐음을 나타낸다.","voc":[["judgment seat","","재판석"],["sit","v.","앉다"]],"idi":[["judgment seat","재판석(베마)"]],"gra":[]},{"en":"neither against Caesar, have I offended","ko":"가이사에게나 도무지 죄를 범한 일이 없노라","note":"바울의 변론 요지. 율법·성전·황제 어느 쪽에도 죄가 없다고 단언하여, 종교적 고발과 정치적 고발을 함께 반박한다.","voc":[["Caesar","고유명사","가이사, 황제"],["offend","v.","죄를 범하다"]],"idi":[],"gra":[]},{"en":"I appeal unto Caesar","ko":"내가 가이사께 상소하나이다","note":"'가이사께 상소(appeal unto Caesar)'는 로마 시민의 법적 권리로, 황제 직속 재판을 요청하는 것이다. 이 한마디가 바울을 로마로 인도하는 결정적 전환점이 된다.","voc":[["appeal","v.","상소하다"],["unto","전치사","~에게(to의 옛말)"]],"idi":[["appeal unto Caesar","가이사께 상소하다"]],"gra":[]},{"en":"unto Caesar shalt thou go","ko":"가이사에게 갈 것이라","note":"베스도의 이 선언으로 바울의 로마행이 확정된다. 사도행전이 그리던 '땅끝까지'(1:8)의 증인 사명이 제국의 심장으로 향함을 예고한다.","voc":[["go","v.","가다"],["shalt","조동사","~하리라(shall의 옛 2인칭 단수형)"]],"idi":[],"gra":[["unto Caesar shalt thou go","shalt=shall의 옛 2인칭 단수형, thou와 호응한 단정적 미래"]]},{"en":"king Agrippa and Bernice came unto Caesarea","ko":"아그립바 왕과 버니게가 가이사랴에 이르러","note":"헤롯 아그립바 2세와 그의 누이 버니게다. 헤롯 가문의 마지막 왕이 바울 앞에 등장하여, 복음이 '왕들 앞에서'(9:15) 증언되리라는 예언이 성취된다.","voc":[["king","n.","왕"],["come unto","","~에 이르다"]],"idi":[],"gra":[]},{"en":"one Jesus, which was dead, whom Paul affirmed to be alive","ko":"죽은 예수라 하는 어떤 사람, 바울은 그가 살아 있다고 주장하더이다","note":"로마 관리 베스도의 눈에 비친 논쟁의 핵심을 무심코 요약한 말이다. 그가 사소하게 여긴 '예수의 부활'이야말로 기독교 신앙의 심장임을 역설적으로 드러낸다.","voc":[["affirm","v.","주장하다, 단언하다"],["alive","a.","살아 있는"]],"idi":[],"gra":[["whom Paul affirmed to be alive","whom=관계대명사 목적격, affirm A to be B='A가 B라고 단언하다'"]]},{"en":"appealed to be reserved unto the hearing of Augustus","ko":"황제의 판결을 받으려고 상소하기로","note":"'아구스도(Augustus, 세바스토스 Σεβαστός)'는 당시 로마 황제 네로를 가리키는 존칭이다. 바울이 황제 법정의 심리를 요청했음을 베스도가 아그립바에게 보고한다.","voc":[["reserve","v.","남겨 두다, 유보하다"],["hearing","n.","심리, 청문"],["Augustus","고유명사","아구스도(황제 존칭)"]],"idi":[["reserved unto the hearing","심리에 부쳐지다"]],"gra":[]},{"en":"I would also hear the man myself","ko":"나도 그 사람의 말을 직접 듣고 싶노라","note":"아그립바의 호기심 어린 요청. 그러나 이 자리는 단순한 청문이 아니라, 복음이 유대 왕에게 직접 선포되는 섭리의 무대가 된다.","voc":[["hear","v.","듣다"],["myself","대명사","나 자신이, 직접"]],"idi":[["hear the man myself","그 사람의 말을 직접 듣다"]],"gra":[]},{"en":"no certain thing to write unto my lord","ko":"내 주께 확실히 써 보낼 것이 없으므로","note":"'내 주(my lord)'는 황제를 가리킨다. 베스도는 바울에게서 구체적 죄목을 찾지 못해, 황제에게 보낼 고발 내용을 작성하지 못하는 곤경을 토로한다.","voc":[["certain","a.","확실한"],["lord","n.","주(여기서는 황제)"]],"idi":[],"gra":[["to write unto my lord","unto=to의 옛말, my lord=황제를 가리킨 경칭"]]}]
+[
+ {
+  "en": "Now when Festus was come into the province, after three days he ascended from Caesarea to Jerusalem.",
+  "ko": "베스도가 그 도(道)에 부임한 지 사흘 만에 가이사랴에서 예루살렘으로 올라가니,",
+  "note": "새 총독 베스도가 부임하자마자 예루살렘으로 향한다. 헬라어 '에파르케이아'(province, 관할 지역)를 다스리는 자로서, 로마의 통치가 하나님의 섭리 안에서 바울의 증언을 로마 황제 앞까지 이끄는 통로가 된다.",
+  "voc": [
+   ["province", "n.", "관할 지역, 도(道)"],
+   ["ascend", "v.", "올라가다"],
+   ["after three days", "", "사흘 후에"]
+  ],
+  "gra": [
+   ["Now when Festus was come", "was come=현재완료의 옛 be동사 용법 '왔을 때'"]
+  ]
+ },
+ {
+  "en": "Then the high priest and the chief of the Jews informed him against Paul, and besought him,",
+  "ko": "대제사장들과 유대인의 지도자들이 바울을 고발하며, 그에게 청하되,",
+  "note": "이 년이 지났으나(24:27) 유대 지도자들의 살의는 조금도 식지 않았다. 헬라어 '엔에파니산'(informed against, 정식으로 고발하다)은 법적 고소를 뜻하나, 그 속마음은 다음 절의 매복 음모에 있었다.",
+  "voc": [
+   ["high priest", "", "대제사장"],
+   ["chief", "n.", "지도자, 우두머리"],
+   ["inform against", "", "~을 고발하다"],
+   ["beseech", "v.", "간청하다"]
+  ],
+  "idi": [
+   ["inform against", "~을 고발하다, 밀고하다"]
+  ],
+  "gra": [
+   ["besought", "beseech(간청하다)의 과거형, 고어체"]
+  ]
+ },
+ {
+  "en": "And desired favour against him, that he would send for him to Jerusalem, laying wait in the way to kill him.",
+  "ko": "호의를 베풀어 바울을 예루살렘으로 옮겨 달라 하니, 이는 길에 매복하였다가 그를 죽이려 함이라.",
+  "note": "유대 지도자들이 바울을 예루살렘으로 옮겨 달라 청한 속셈은 호송 도중 매복하여 암살하려는 것이었다. 겉으로는 재판을 청하나 속으로는 살해를 꾀하니, 종교의 이름으로 살인을 도모하는 어둠이 드러난다. 그러나 하나님은 악한 계략마저 자기 뜻을 이루는 데 쓰신다.",
+  "voc": [
+   ["desire favour", "", "호의를 구하다"],
+   ["send for", "", "~을 부르다, 데려오게 하다"],
+   ["lay wait", "", "매복하다"]
+  ],
+  "idi": [
+   ["laying wait in the way", "길에 매복하여"]
+  ],
+  "gra": [
+   ["that he would send for him", "that+would=목적절 '~하여 달라고'"]
+  ]
+ },
+ {
+  "en": "But Festus answered, that Paul should be kept at Caesarea, and that he himself would depart shortly thither.",
+  "ko": "베스도가 대답하되, \"바울은 가이사랴에 갇혀 있고 나도 곧 그리로 떠나려 하노라.",
+  "note": "베스도는 유대인의 청을 물리치고 로마의 재판 절차를 지킨다. 하나님의 손이 이방 관원의 신중함을 통해 바울을 매복의 위험에서 지키시니, 세상 권세도 그분의 도구다(롬 13:1).",
+  "voc": [
+   ["keep", "v.", "가두어 두다, 지키다"],
+   ["depart", "v.", "떠나다"],
+   ["shortly", "adv.", "곧, 머지않아"],
+   ["thither", "adv.", "그리로"]
+  ],
+  "gra": [
+   ["he himself would depart shortly thither", "thither=그곳으로(고어 부사)"]
+  ]
+ },
+ {
+  "en": "Let them therefore, said he, which among you are able, go down with me, and accuse this man, if there be any wickedness in him.",
+  "ko": "그러므로 너희 가운데 권세 있는 자들이 나와 함께 내려가서, 만일 그 사람에게 무슨 잘못이 있거든 그를 고발하라\" 하니라.",
+  "note": "베스도는 고발자들이 직접 가이사랴로 내려와 정식으로 고소하도록 요구한다. 헬라어 '아토폰'(wickedness, 부당한 것)은 '이치에 맞지 않는 잘못'을 뜻하니, 로마법의 공정한 절차가 바울의 무죄를 도리어 밝혀 준다.",
+  "voc": [
+   ["be able", "", "권세 있다, 유력하다"],
+   ["go down with", "", "~와 함께 내려가다"],
+   ["accuse", "v.", "고발하다"],
+   ["wickedness", "n.", "잘못, 악행"]
+  ],
+  "gra": [
+   ["which are able", "which=관계대명사(사람을 가리킨 옛 용법) '~한 자들'"],
+   ["if there be any wickedness", "be=가정법 현재 '있거든'"]
+  ]
+ },
+ {
+  "en": "And when he had tarried among them more than ten days, he went down unto Caesarea; and the next day sitting on the judgment seat commanded Paul to be brought.",
+  "ko": "베스도가 그들 가운데 열흘 남짓 머문 후에 가이사랴로 내려가, 이튿날 재판석에 앉아 바울을 데려오라 명하니,",
+  "note": "'재판석'(judgment seat, 헬라어 '베마' βῆμα)은 로마 총독이 공식 판결을 내리던 단상이다. 베스도가 부임 직후 정식 법정 절차를 따랐음을 나타내며, 바울이 이 베마 앞에 서니 훗날 모든 사람이 서게 될 그리스도의 심판대(고후 5:10, 같은 단어 '베마')를 어렴풋이 비춘다.",
+  "voc": [
+   ["tarry", "v.", "머물다, 지체하다"],
+   ["judgment seat", "", "재판석"],
+   ["command", "v.", "명하다"],
+   ["be brought", "", "데려와지다"]
+  ],
+  "idi": [
+   ["judgment seat", "재판석(베마)"]
+  ],
+  "gra": [
+   ["when he had tarried", "had tarried=과거완료 '머문 후에'"]
+  ]
+ },
+ {
+  "en": "And when he was come, the Jews which came down from Jerusalem stood round about, and laid many and grievous complaints against Paul, which they could not prove.",
+  "ko": "바울이 나오매 예루살렘에서 내려온 유대인들이 둘러서서 여러 가지 무거운 죄목을 들어 고발하였으나, 능히 증명하지 못하더라.",
+  "note": "고발은 요란하나 증거는 없다. 헬라어 '바레아'(grievous, 무거운)는 짐처럼 짓누르는 죄목을 뜻하나, 하나마다 근거가 없으니 진리 위에 선 자를 거짓으로 무너뜨릴 수 없음이 드러난다.",
+  "voc": [
+   ["stand round about", "", "둘러서다"],
+   ["grievous", "adj.", "무거운, 심각한"],
+   ["complaint", "n.", "죄목, 고소"],
+   ["prove", "v.", "증명하다"]
+  ],
+  "gra": [
+   ["which they could not prove", "which=관계대명사 '그것들을'; could not prove=증명할 수 없었다"]
+  ]
+ },
+ {
+  "en": "While he answered for himself, Neither against the law of the Jews, neither against the temple, nor yet against Caesar, have I offended any thing at all.",
+  "ko": "바울이 스스로 변명하여 이르되, \"내가 유대인의 율법이나 성전이나 가이사에게나 도무지 죄를 범한 일이 없노라\" 하니,",
+  "note": "바울의 변론 요지는 율법·성전·황제 어느 쪽에도 죄가 없다는 것이다. 그의 복음은 유대 신앙을 뒤엎지 않고 완성하며(마 5:17), 로마의 질서를 거스르지 않으니, 참 그리스도인은 하나님과 사람 앞에 거리낌 없는 양심을 지닌다(행 24:16).",
+  "voc": [
+   ["answer for oneself", "", "스스로 변명하다"],
+   ["law", "n.", "율법"],
+   ["temple", "n.", "성전"],
+   ["offend", "v.", "죄를 범하다"]
+  ],
+  "idi": [
+   ["answer for oneself", "스스로 변호하다"]
+  ],
+  "gra": [
+   ["Neither ... neither ... nor yet", "부정 열거 '~도 ~도 ~도 (아니)'"]
+  ]
+ },
+ {
+  "en": "But Festus, willing to do the Jews a pleasure, answered Paul, and said, Wilt thou go up to Jerusalem, and there be judged of these things before me?",
+  "ko": "베스도가 유대인의 환심을 사고자 하여 바울에게 대답하여 이르되, \"네가 예루살렘에 올라가 거기서 내 앞에서 이 일들로 재판을 받겠느냐\" 하니,",
+  "note": "베스도 역시 벨릭스처럼 사람의 환심(헬. '카린', pleasure)을 얻으려 정의를 흔든다. 정치적 계산이 재판을 흐리게 하니, 사람을 두려워함이 하나님을 두려워함을 밀어낼 때 공의는 뒤로 밀린다.",
+  "voc": [
+   ["willing", "adj.", "~하고자 하는"],
+   ["do a pleasure", "", "환심을 사다"],
+   ["go up", "", "올라가다"],
+   ["be judged", "", "재판을 받다"]
+  ],
+  "idi": [
+   ["do (one) a pleasure", "~의 환심을 사다, 비위를 맞추다"]
+  ],
+  "gra": [
+   ["Wilt thou go up", "Wilt thou=Will you(2인칭 고어) '~하겠느냐'"],
+   ["be judged of these things", "of=by(행위자) '이 일들로 재판받다'"]
+  ]
+ },
+ {
+  "en": "Then said Paul, I stand at Caesar’s judgment seat, where I ought to be judged: to the Jews have I done no wrong, as thou very well knowest.",
+  "ko": "바울이 이르되, \"내가 가이사의 재판석 앞에 섰으니, 마땅히 여기서 재판을 받아야 할 것이라. 각하께서도 잘 아시는 바와 같이 내가 유대인에게 아무 잘못한 일이 없나이다.",
+  "note": "바울은 로마 시민의 권리로 정당한 재판을 요구한다. '가이사의 재판석'은 곧 로마의 공적 법정이니, 그는 감정이 아니라 법에 호소한다. 신자는 지혜롭게 세상의 정당한 제도를 활용할 자유가 있다.",
+  "voc": [
+   ["stand at", "", "~앞에 서다"],
+   ["ought to", "", "마땅히 ~해야 한다"],
+   ["do wrong", "", "잘못하다, 해를 끼치다"]
+  ],
+  "idi": [
+   ["do (one) no wrong", "~에게 아무 잘못도 하지 않다"]
+  ],
+  "gra": [
+   ["where I ought to be judged", "where=관계부사 '재판받아야 할 곳'"],
+   ["as thou very well knowest", "knowest=know의 2인칭 -est 어미 '네가 아느니라'"]
+  ]
+ },
+ {
+  "en": "For if I be an offender, or have committed any thing worthy of death, I refuse not to die: but if there be none of these things whereof these accuse me, no man may deliver me unto them. I appeal unto Caesar.",
+  "ko": "만일 내가 죄를 범하여 죽을 만한 일을 행하였으면 죽기를 사양하지 아니하려니와, 만일 이 사람들이 나를 고발하는 일들이 사실이 아니라면 아무도 나를 그들에게 내줄 수 없나이다. 내가 가이사께 상소하나이다\" 하니,",
+  "note": "'가이사께 상소(appeal unto Caesar)'는 로마 시민의 법적 권리로, 황제 직속 재판을 요청하는 것이다. 바울은 죽음조차 두려워하지 않으나(빌 1:21) 거짓에 넘겨지기를 거부하니, 이 한마디로 그의 발걸음은 로마로 정해진다—주께서 이미 약속하신 그 길이다(행 23:11).",
+  "voc": [
+   ["offender", "n.", "죄인, 범죄자"],
+   ["commit", "v.", "(죄를) 범하다"],
+   ["worthy of death", "", "죽을 만한"],
+   ["appeal unto", "", "~께 상소하다"]
+  ],
+  "idi": [
+   ["appeal unto Caesar", "가이사께 상소하다(로마 시민의 권리)"]
+  ],
+  "gra": [
+   ["if I be an offender", "be=가정법 '내가 죄인이라면'"],
+   ["whereof these accuse me", "whereof=of which '그것으로 나를 고발하는'"]
+  ]
+ },
+ {
+  "en": "Then Festus, when he had conferred with the council, answered, Hast thou appealed unto Caesar? unto Caesar shalt thou go.",
+  "ko": "이에 베스도가 배석자들과 의논한 후에 대답하되, \"네가 가이사께 상소하였으니 가이사에게 갈 것이라\" 하니라.",
+  "note": "베스도의 이 선언으로 바울의 로마행이 확정된다. 사도행전이 그리던 '땅끝까지'(1:8)의 증인 사명이 제국의 심장으로 향함을 예고하니, 사람의 무심한 판결 뒤에 보이지 않는 하나님의 손이 일하신다.",
+  "voc": [
+   ["confer with", "", "~와 의논하다"],
+   ["council", "n.", "배석자들, 자문단"],
+   ["appeal", "v.", "상소하다"]
+  ],
+  "gra": [
+   ["Hast thou appealed", "Hast thou=Have you(현재완료 2인칭 고어) '상소하였느냐'"],
+   ["unto Caesar shalt thou go", "shalt=shall의 옛 2인칭 단수형, thou와 호응한 단정적 미래"]
+  ]
+ },
+ {
+  "en": "And after certain days king Agrippa and Bernice came unto Caesarea to salute Festus.",
+  "ko": "수일 후에 아그립바 왕과 버니게가 베스도에게 문안하러 가이사랴에 이르러,",
+  "note": "헤롯 아그립바 2세와 그의 누이 버니게다. 헤롯 가문의 마지막 왕이 바울 앞에 등장하여, 복음이 '왕들 앞에서'(9:15) 증언되리라는 예언이 성취된다.",
+  "voc": [
+   ["certain days", "", "수일, 며칠"],
+   ["king", "n.", "왕"],
+   ["salute", "v.", "문안하다, 인사하다"]
+  ],
+  "gra": [
+   ["to salute Festus", "to salute=목적 부정사 '문안하러'"]
+  ]
+ },
+ {
+  "en": "And when they had been there many days, Festus declared Paul’s cause unto the king, saying, There is a certain man left in bonds by Felix:",
+  "ko": "여러 날을 거기 머무는 동안 베스도가 바울의 일을 왕에게 아뢰어 이르되, \"벨릭스가 결박하여 둔 한 사람이 있는데,",
+  "note": "벨릭스는 임기 내내 바울을 결박해 두었다(24:27). '결박에 매인'(헬. '데스미오스') 바울은 그러나 복음을 매지는 못하니(딤후 2:9), 그의 쇠사슬조차 왕과 총독에게 그리스도를 전하는 자리가 된다.",
+  "voc": [
+   ["declare", "v.", "아뢰다, 알리다"],
+   ["cause", "n.", "사건, 일"],
+   ["leave in bonds", "", "결박하여 두다"]
+  ],
+  "idi": [
+   ["leave in bonds", "결박한 채로 두다, 옥에 매어 두다"]
+  ],
+  "gra": [
+   ["a certain man left in bonds", "left=과거분사 '남겨진, 매인'"]
+  ]
+ },
+ {
+  "en": "About whom, when I was at Jerusalem, the chief priests and the elders of the Jews informed me, desiring to have judgment against him.",
+  "ko": "내가 예루살렘에 있을 때에 유대인의 대제사장들과 장로들이 그를 고발하며 정죄해 달라 청하였나이다.",
+  "note": "'정죄'(헬. '디켄', judgment/sentence)를 구하는 그들의 요청은 재판이 아니라 이미 정해진 유죄 선고였다. 참 재판을 원하지 않고 사형을 원하니, 그 마음이 빌라도 앞에서 예수를 넘긴 무리와 같다.",
+  "voc": [
+   ["chief priests", "", "대제사장들"],
+   ["elder", "n.", "장로"],
+   ["inform", "v.", "고발하다, 알리다"],
+   ["judgment", "n.", "정죄, 판결"]
+  ],
+  "idi": [
+   ["have judgment against", "~에 대한 정죄(유죄 판결)를 받아내다"]
+  ],
+  "gra": [
+   ["About whom", "whom=관계대명사(전치사+관계사) '그에 관하여'"]
+  ]
+ },
+ {
+  "en": "To whom I answered, It is not the manner of the Romans to deliver any man to die, before that he which is accused have the accusers face to face, and have licence to answer for himself concerning the crime laid against him.",
+  "ko": "내가 그들에게 대답하기를, 피고가 원고들과 대면하여 자기를 고발하는 일에 대하여 변명할 기회를 얻기 전에 누구든지 내주는 것은 로마인의 관례가 아니라 하였나이다.",
+  "note": "'대면하여'(face to face)는 공정한 재판의 근본 원칙이다. 이방인 베스도의 입에서 나온 이 정의는, 하나님이 사람의 양심 속에 심어 두신 공의의 빛을 보여 준다(롬 2:14-15). 진리는 고발자와 마주 서기를 두려워하지 않는다.",
+  "voc": [
+   ["manner", "n.", "관례, 방식"],
+   ["deliver ... to die", "", "죽도록 내주다"],
+   ["face to face", "", "대면하여"],
+   ["licence", "n.", "기회, 허락"]
+  ],
+  "idi": [
+   ["face to face", "얼굴을 마주 대하여, 대면하여"]
+  ],
+  "gra": [
+   ["he which is accused have", "which=관계대명사; have=가정법 '~하기 전에는'"],
+   ["before that he ... have", "before that=~하기 전에(고어 접속)"]
+  ]
+ },
+ {
+  "en": "Therefore, when they were come hither, without any delay on the morrow I sat on the judgment seat, and commanded the man to be brought forth.",
+  "ko": "그러므로 그들이 여기 함께 왔을 때에 내가 조금도 지체하지 아니하고 이튿날 재판석에 앉아 그 사람을 데려오라 명하였더니,",
+  "note": "베스도는 신속하고 절차대로 재판을 열었음을 강조한다. 그러나 그 공정한 절차마저 진실을 밝혀낼 뿐, 정죄할 근거를 찾지 못하니(다음 절), 바울의 무죄가 로마 관원의 입으로 거듭 확증된다.",
+  "voc": [
+   ["hither", "adv.", "여기로"],
+   ["without delay", "", "지체 없이"],
+   ["on the morrow", "", "이튿날"],
+   ["bring forth", "", "데려오다"]
+  ],
+  "idi": [
+   ["without any delay", "조금도 지체하지 않고"]
+  ],
+  "gra": [
+   ["when they were come hither", "were come=현재완료 옛 용법; hither=이리로"]
+  ]
+ },
+ {
+  "en": "Against whom when the accusers stood up, they brought none accusation of such things as I supposed:",
+  "ko": "원고들이 일어섰으나 내가 짐작하던 그런 죄목은 하나도 들지 못하고,",
+  "note": "베스도가 예상한 정치적·형사적 범죄는 하나도 없었다. 헬라어 '휘페노운'(supposed, 짐작하다)이 드러내듯 그의 예상은 완전히 빗나갔으니, 이는 다툼이 실은 신앙과 부활에 관한 것임을 밝히는 발판이 된다.",
+  "voc": [
+   ["accuser", "n.", "원고, 고발자"],
+   ["stand up", "", "일어서다"],
+   ["bring accusation", "", "죄목을 들다, 고발하다"],
+   ["suppose", "v.", "짐작하다, 생각하다"]
+  ],
+  "gra": [
+   ["Against whom", "whom=관계대명사 '그를 거슬러'"],
+   ["such things as I supposed", "such ... as=~와 같은(상관 관계) '내가 짐작한 그런 것들'"]
+  ]
+ },
+ {
+  "en": "But had certain questions against him of their own superstition, and of one Jesus, which was dead, whom Paul affirmed to be alive.",
+  "ko": "다만 자기들의 종교에 관한 몇 가지 문제와, 죽은 예수라 하는 어떤 사람에 관한 일로 그와 다투었는데, 바울은 그가 살아 있다고 주장하더이다.",
+  "note": "로마 관리 베스도의 눈에 비친 논쟁의 핵심을 무심코 요약한 말이다. 그가 사소하게 여긴 '예수의 부활'(헬. '에파스켄', affirmed, 확증하다)이야말로 기독교 신앙의 심장이니, 그리스도의 부활이 산 자와 죽은 자를 가른다(고전 15:17).",
+  "voc": [
+   ["question", "n.", "문제, 논쟁"],
+   ["superstition", "n.", "종교(경멸조), 미신"],
+   ["affirm", "v.", "주장하다, 단언하다"],
+   ["be alive", "", "살아 있다"]
+  ],
+  "gra": [
+   ["one Jesus, which was dead", "one=어떤(막연한 지시); which=관계대명사"],
+   ["whom Paul affirmed to be alive", "whom=관계대명사 목적격, affirm A to be B='A가 B라고 단언하다'"]
+  ]
+ },
+ {
+  "en": "And because I doubted of such manner of questions, I asked him whether he would go to Jerusalem, and there be judged of these matters.",
+  "ko": "내가 이런 문제들을 어떻게 심리할지 몰라, 바울에게 예루살렘에 올라가 거기서 이 일들로 재판을 받겠느냐 물었더니,",
+  "note": "베스도는 신학적 물음 앞에 어찌할 바를 몰라 한다(헬. '아포루메노스', doubted, 난감해하다). 세상의 지혜로는 부활의 진리를 가늠할 수 없으니, 하나님의 일은 성령으로만 분별된다(고전 2:14).",
+  "voc": [
+   ["doubt of", "", "난감해하다, 갈피를 못 잡다"],
+   ["manner", "n.", "종류, 부류"],
+   ["matter", "n.", "문제, 일"]
+  ],
+  "gra": [
+   ["whether he would go", "whether=~인지 아닌지(간접의문)"],
+   ["such manner of questions", "manner of=~같은 종류의"]
+  ]
+ },
+ {
+  "en": "But when Paul had appealed to be reserved unto the hearing of Augustus, I commanded him to be kept till I might send him to Caesar.",
+  "ko": "바울이 황제의 판결을 받으려고 상소하기로, 내가 그를 가이사께 보낼 때까지 지키라 명하였나이다\" 하니,",
+  "note": "'아구스도(Augustus, 세바스토스 Σεβαστός)'는 당시 로마 황제를 가리키는 존칭이다. 사람들은 황제를 지존으로 우러르나, 바울이 참으로 우러러 나아가는 왕은 하나님의 왕국의 주시니, 그는 가이사 앞에서도 그 왕을 증언할 것이다.",
+  "voc": [
+   ["appeal", "v.", "상소하다"],
+   ["reserve", "v.", "남겨 두다, 유보하다"],
+   ["hearing", "n.", "심리, 청문"],
+   ["Augustus", "", "아구스도(황제 존칭)"]
+  ],
+  "idi": [
+   ["reserved unto the hearing", "심리에 부쳐지다"]
+  ],
+  "gra": [
+   ["till I might send him", "might=목적·시점의 조동사 '보낼 때까지'"]
+  ]
+ },
+ {
+  "en": "Then Agrippa said unto Festus, I would also hear the man myself. To morrow, said he, thou shalt hear him.",
+  "ko": "아그립바가 베스도에게 이르되, \"나도 그 사람의 말을 직접 듣고 싶노라\" 하니, 베스도가 이르되 \"내일 들으시리이다\" 하더라.",
+  "note": "아그립바의 호기심 어린 요청이 하나님의 섭리에 쓰인다. 그러나 이 자리는 단순한 청문이 아니라, 유대 관습에 밝은 왕 앞에서 복음이 온전히 선포되는 섭리의 무대가 된다(26장).",
+  "voc": [
+   ["would", "", "~하고 싶다"],
+   ["hear", "v.", "듣다"],
+   ["myself", "pron.", "직접, 나 자신이"],
+   ["to morrow", "", "내일"]
+  ],
+  "idi": [
+   ["hear the man myself", "그 사람의 말을 직접 듣다"]
+  ],
+  "gra": [
+   ["I would also hear the man myself", "would=~하고 싶다(소원의 조동사)"],
+   ["thou shalt hear him", "shalt=shall 2인칭(약속·확언) '들으리라'"]
+  ]
+ },
+ {
+  "en": "And on the morrow, when Agrippa was come, and Bernice, with great pomp, and was entered into the place of hearing, with the chief captains, and principal men of the city, at Festus' commandment Paul was brought forth.",
+  "ko": "이튿날 아그립바와 버니게가 크게 위엄을 갖추고 와서 천부장들과 성중의 고관들과 더불어 심문하는 자리에 들어오매, 베스도가 명하여 바울을 데려오니라.",
+  "note": "'큰 위엄'(헬. '판타시아스', pomp, 화려한 행렬)을 갖춘 왕과 고관들 앞에 결박된 바울이 선다. 세상의 광채와 복음의 죄수가 마주하니, 참된 영광은 겉치레가 아니라 매인 자가 붙든 진리에 있다(고후 4:7).",
+  "voc": [
+   ["pomp", "n.", "위엄, 화려함"],
+   ["place of hearing", "", "심문하는 자리"],
+   ["chief captain", "", "천부장"],
+   ["principal men", "", "고관, 유력자"]
+  ],
+  "idi": [
+   ["with great pomp", "크게 위엄을 갖추어, 성대한 행렬로"]
+  ],
+  "gra": [
+   ["when Agrippa was come", "was come=현재완료 옛 용법 '왔을 때'"],
+   ["at Festus' commandment", "at ... commandment=~의 명령으로"]
+  ]
+ },
+ {
+  "en": "And Festus said, King Agrippa, and all men which are here present with us, ye see this man, about whom all the multitude of the Jews have dealt with me, both at Jerusalem, and also here, crying that he ought not to live any longer.",
+  "ko": "베스도가 이르되, \"아그립바 왕과 또 우리와 함께 여기 있는 여러분이여, 이 사람을 보소서. 예루살렘과 또 여기에서 모든 유대 무리가 나에게 호소하며, 그가 더 이상 살아서는 안 된다고 외친 자라.",
+  "note": "'더 이상 살아서는 안 된다'는 외침은 빌라도 앞의 '십자가에 못 박으소서'와 메아리친다. 주를 따르는 자는 주와 같은 미움을 받으니(요 15:20), 무리의 격정이 진리를 이기지 못함이 곧 드러날 것이다.",
+  "voc": [
+   ["here present", "", "여기 있는"],
+   ["deal with", "", "호소하다, 상대하다"],
+   ["multitude", "n.", "무리"],
+   ["cry", "v.", "외치다"]
+  ],
+  "idi": [
+   ["deal with", "~에게 호소하다, ~을 상대하다"]
+  ],
+  "gra": [
+   ["all men which are here present", "which=관계대명사(사람) '여기 있는 모든 이들'"],
+   ["ought not to live any longer", "ought not to=~해서는 안 된다"]
+  ]
+ },
+ {
+  "en": "But when I found that he had committed nothing worthy of death, and that he himself hath appealed to Augustus, I have determined to send him.",
+  "ko": "그러나 내가 살펴본즉 그가 죽을 만한 일을 행한 것이 없고, 또 그 자신이 황제께 상소하였으므로 내가 그를 보내기로 결정하였나이다.",
+  "note": "'죽을 만한 일을 행한 것이 없다'—이방 총독의 이 무죄 선언은 세 번째다(23:29; 25:18). 하나님은 원수의 입으로도 자기 종의 결백을 증언하게 하시니, 의인의 무고함은 끝내 밝히 드러난다(시 37:6).",
+  "voc": [
+   ["commit", "v.", "(죄를) 범하다, 행하다"],
+   ["worthy of death", "", "죽을 만한"],
+   ["appeal", "v.", "상소하다"],
+   ["determine", "v.", "결정하다"]
+  ],
+  "gra": [
+   ["he himself hath appealed", "hath=has(3인칭 고어) '상소하였다'"],
+   ["I have determined to send him", "have determined=현재완료 '결정하였다'"]
+  ]
+ },
+ {
+  "en": "Of whom I have no certain thing to write unto my lord. Wherefore I have brought him forth before you, and specially before thee, O king Agrippa, that, after examination had, I might have somewhat to write.",
+  "ko": "그에 관하여 내 주(主)께 확실히 써 보낼 것이 없으므로, 여러분 앞에, 특히 아그립바 왕이여 왕 앞에 그를 데려왔으니, 이는 심문한 후에 써 보낼 무언가를 얻고자 함이라.",
+  "note": "베스도가 황제를 '내 주'(my lord)라 부른다. 세상은 가이사를 주라 하나 참 주는 오직 한 분 예수 그리스도시다(고전 8:6). 베스도는 확실한 죄목을 찾지 못해 곤경에 빠지나, 그 곤경마저 바울에게 왕 앞에서 그리스도를 증언할 무대를 열어 준다.",
+  "voc": [
+   ["certain thing", "", "확실한 것"],
+   ["my lord", "", "내 주(황제)"],
+   ["examination", "n.", "심문"],
+   ["somewhat", "pron.", "무언가, 얼마간"]
+  ],
+  "gra": [
+   ["Of whom I have no certain thing", "Of whom=그에 관하여(전치사+관계사)"],
+   ["after examination had", "had=과거분사 독립분사구 '심문한 후에'"]
+  ]
+ },
+ {
+  "en": "For it seemeth to me unreasonable to send a prisoner, and not withal to signify the crimes laid against him.",
+  "ko": "죄수를 보내면서 그에게 씌운 죄목을 함께 적어 보내지 아니함은 부당한 일로 내게 여겨지나이다\" 하니라.",
+  "note": "베스도는 죄목 없이 죄수를 보내는 것을 '부당하다'(헬. '알로곤', unreasonable, 이치에 맞지 않음) 여긴다. 아이러니하게도 그가 정한 죄목 없음이야말로 바울의 결백을 증언하니, 사람의 곤혹이 하나님의 뜻—바울을 로마로 보내심—을 이루는 통로가 된다.",
+  "voc": [
+   ["seem", "v.", "~로 여겨지다"],
+   ["unreasonable", "adj.", "부당한, 이치에 맞지 않는"],
+   ["prisoner", "n.", "죄수"],
+   ["signify", "v.", "적어 알리다, 밝히다"],
+   ["withal", "adv.", "함께, 아울러"]
+  ],
+  "gra": [
+   ["it seemeth to me", "seemeth=seems(3인칭 -eth 어미) '여겨지다'"],
+   ["not withal to signify", "withal=게다가, 함께(고어 부사)"]
+  ]
+ }
+]
