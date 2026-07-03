@@ -41,7 +41,9 @@
     /* 책 표지 */
     .cover{position:relative;aspect-ratio:3/4;border-radius:3px 8px 8px 3px;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:15px 13px 13px 19px;color:#fff;box-shadow:0 10px 26px -10px rgba(21,32,58,.55)}
     .cover::before{content:'';position:absolute;left:0;top:0;bottom:0;width:7px;background:rgba(0,0,0,.20)}
-    .cover .cbrand{font-size:10.5px;font-weight:800;letter-spacing:.18em;color:#ecca77}
+    .cover .cbrand{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:800;letter-spacing:.03em;color:#eef2f7}
+    .cover .cbrand .cchip{background:#fff;border-radius:5px;padding:3px 5px;display:inline-flex;align-items:center;box-shadow:0 1px 3px rgba(0,0,0,.18)}
+    .cover .cbrand .cchip img{height:15px;width:auto;display:block}
     .cover .ctitle{font-family:'Noto Serif KR',serif;font-weight:700;font-size:16.5px;line-height:1.32;text-shadow:0 1px 6px rgba(0,0,0,.25)}
     .cover .crule{width:32px;height:3px;background:#c8a455;border-radius:2px;margin:7px 0}
     .cover .cmeta{font-size:10.5px;opacity:.82}
@@ -359,7 +361,7 @@
         return `<div class="flex flex-col">
           <a href="booklet.html?track=${encodeURIComponent(t.name)}" class="block group">
             <div class="cover transition group-hover:-translate-y-1" style="background:linear-gradient(150deg,${cg[0]},${cg[1]})">
-              <div><p class="cbrand">BIBLY</p><div class="crule"></div></div>
+              <div><div class="cbrand"><span class="cchip"><img src="/images/bible-insight-emblem.png" alt=""/></span>Bible Insight</div><div class="crule"></div></div>
               <div><p class="ctitle">${esc(t.name)}</p></div>
               <p class="cmeta">요약노트 합본 · 전 ${n}강</p>
             </div>
