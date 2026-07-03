@@ -418,8 +418,11 @@
         if(!userId){ msg.innerHTML='카드 결제는 <b>로그인 후</b> 이용 가능해요 (수강권이 계정에 연결됩니다). <a href="index.html" class="text-gold underline">로그인하기</a>'; btn.disabled=false; btn.textContent='카드로 결제하고 바로 수강'; return; }
         const rankCode = ((interest.match(/\(([^)]+)\)/)||[])[1]) || interest;   // "Associate (5급)" → "5급"
         const r = await fetch('/api/pay/create-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items:[{kind:'cert',itemId:rankCode,earlybird:true}],email,userId})});
-        const o = await r.json();
-        if(!r.ok||o.error){ msg.textContent='주문 생성 실패: '+(o.error||('오류 '+r.status)); btn.disabled=false; btn.textContent='카드로 결제하고 바로 수강'; return; }
+        const raw = await r.text();
+        let o={}; try{ o=raw?JSON.parse(raw):{}; }catch(e){ o={}; }
+        if(!r.ok||o.error||!o.orderId){
+          const detail = o.error || (r.status===404||r.status===405 ? '결제 서버(함수)가 아직 배포되지 않았어요. 잠시 후 다시 시도해 주세요.' : ('결제 서버 응답 오류 ('+r.status+')'));
+          msg.textContent='주문 생성 실패: '+detail; btn.disabled=false; btn.textContent='카드로 결제하고 바로 수강'; return; }
         if(typeof TossPayments!=='function'){ msg.textContent='결제 모듈을 불러오지 못했어요. 새로고침 후 다시 시도해 주세요.'; btn.disabled=false; btn.textContent='카드로 결제하고 바로 수강'; return; }
         const toss = TossPayments(TOSS_CLIENT_KEY_A);
         await toss.requestPayment('카드',{ amount:o.amount, orderId:o.orderId, orderName:o.orderName, customerName:name||'수강생', customerEmail:email, successUrl:location.origin+'/pay-success.html', failUrl:location.origin+'/pay-fail.html' });

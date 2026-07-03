@@ -523,8 +523,11 @@
         let userId=null; try{ const {data}=await sb.auth.getUser(); userId=(data&&data.user&&data.user.id)||null; }catch(e){}
         const items=CART.map(c=>({ kind:c.kind, itemId: c.kind==='pass' ? String(c.key).split(':')[1] : c.name }));
         const r=await fetch('/api/pay/create-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items,email,userId})});
-        const o=await r.json();
-        if(!r.ok||o.error){ msg.textContent='주문 생성 실패: '+(o.error||('오류 '+r.status)); btn.disabled=false; btn.textContent='결제하기'; return; }
+        const raw=await r.text();
+        let o={}; try{ o=raw?JSON.parse(raw):{}; }catch(e){ o={}; }
+        if(!r.ok||o.error||!o.orderId){
+          const detail = o.error || (r.status===404||r.status===405 ? '결제 서버(함수)가 아직 배포되지 않았어요. 잠시 후 다시 시도해 주세요.' : ('결제 서버 응답 오류 ('+r.status+')'));
+          msg.textContent='주문 생성 실패: '+detail; btn.disabled=false; btn.textContent='결제하기'; return; }
         if(typeof TossPayments!=='function'){ msg.textContent='결제 모듈을 불러오지 못했어요. 새로고침 후 다시 시도해 주세요.'; btn.disabled=false; btn.textContent='결제하기'; return; }
         const toss=TossPayments(TOSS_CLIENT_KEY);
         await toss.requestPayment('카드',{
