@@ -1,14 +1,1365 @@
 [
-  {"en": "the brook Cedron", "ko": "기드론 시내", "note": "예루살렘 동쪽, 성전산과 감람산 사이를 흐르는 골짜기 시내. 예수께서 동산으로 가시며 건너신 곳.", "voc": [["brook", "n.", "시내, 개울"], ["over", "prep.", "건너편으로, ~을 건너"]], "idi": [], "gra": [["brook", "현대 영어에서는 stream이 더 흔히 쓰이는 옛 어휘"]]},
-  {"en": "a garden", "ko": "동산", "note": "겟세마네 동산을 가리킴. 예수께서 자주 제자들과 모이시던 기도의 장소.", "voc": [["garden", "n.", "동산, 정원"], ["entered", "v.", "들어갔다"]], "idi": [], "gra": []},
-  {"en": "I am he", "ko": "내가 그니라", "note": "헬라어 '에고 에이미'. 출애굽기의 '스스로 있는 자'를 떠올리게 하는 표현으로, 듣는 자들이 뒤로 물러나 엎드러짐.", "voc": [["he", "pron.", "그, 그 사람"], ["backward", "adv.", "뒤로"]], "idi": [["I am he", "내가 그니라, 바로 나다"]], "gra": [["I am he", "보어 he를 붙여 신원을 밝히는 구문, 헬라어 ἐγώ εἰμι의 직역"]]},
-  {"en": "the cup which my Father hath given me", "ko": "아버지께서 내게 주신 잔", "note": "고난과 죽음을 가리키는 '잔'. 예수께서 아버지의 뜻에 온전히 순종하심을 보이심.", "voc": [["cup", "n.", "잔"], ["drink", "v.", "마시다"]], "idi": [["the cup", "마실 잔, 곧 정해진 고난과 운명"]], "gra": [["hath given", "has given(주셨다)의 고어 3인칭 완료형"]]},
-  {"en": "Annas first", "ko": "먼저 안나스에게로", "note": "안나스는 전직 대제사장이자 가야바의 장인. 비공식 예비 심문이 그 집에서 이루어짐.", "voc": [["first", "adv.", "먼저, 처음에"], ["led", "v.", "끌고 갔다"]], "idi": [], "gra": []},
-  {"en": "Art not thou also one of this man's disciples?", "ko": "너도 이 사람의 제자 중 하나가 아니냐?", "note": "문 지키는 여종의 질문. 베드로의 첫 번째 부인을 이끌어 냄.", "voc": [["disciple", "n.", "제자"], ["also", "adv.", "또한, ~도"]], "idi": [], "gra": [["Art not thou", "Aren't you(너는 아니냐)의 고어 의문 어순"], ["thou", "you(너)의 고어 주격"]]},
-  {"en": "the cock crew", "ko": "닭이 울더라", "note": "베드로의 세 번째 부인 직후 닭이 욺. 예수의 예언이 그대로 이루어진 순간.", "voc": [["cock", "n.", "수탉"], ["crow", "v.", "(닭이) 울다"]], "idi": [], "gra": [["crew", "crow(울다)의 고어 과거형, 현대어 crowed"]]},
-  {"en": "the hall of judgment", "ko": "관정", "note": "로마 총독의 관저이자 재판정(프라이토리온). 유대인들은 부정을 탈까 안에 들어가지 않음.", "voc": [["hall", "n.", "건물, 청사"], ["judgment", "n.", "재판, 심판"]], "idi": [["hall of judgment", "재판정, 관정"]], "gra": []},
-  {"en": "Art thou the King of the Jews?", "ko": "네가 유대인의 왕이냐?", "note": "빌라도의 핵심 심문. 정치적 반역 혐의와 연결되는 물음.", "voc": [["king", "n.", "왕"], ["Jew", "n.", "유대인"]], "idi": [], "gra": [["Art thou", "Are you(너는 ~이냐)의 고어 의문 어순"]]},
-  {"en": "My kingdom is not of this world", "ko": "내 왕국은 이 세상에 속한 것이 아니니라", "note": "예수의 왕국은 무력과 정치 권력에 의존하지 않는, 본질이 다른 통치임을 선언하심.", "voc": [["kingdom", "n.", "왕국, 나라"], ["world", "n.", "세상"]], "idi": [["of this world", "이 세상에 속한"]], "gra": [["is not of", "여기 of는 '~에 속한·~에서 비롯된'의 뜻"]]},
-  {"en": "What is truth?", "ko": "진리가 무엇이냐?", "note": "빌라도의 냉소적 반문. 진리이신 분을 앞에 두고도 그것을 알아보지 못한 아이러니.", "voc": [["truth", "n.", "진리"], ["what", "pron.", "무엇"]], "idi": [], "gra": []},
-  {"en": "Not this man, but Barabbas", "ko": "이 사람이 아니라 바라바라", "note": "무리가 강도 바라바의 석방을 택함. 의로운 분을 버리고 죄인을 택한 비극.", "voc": [["but", "conj.", "~이 아니라, 도리어"], ["robber", "n.", "강도"]], "idi": [["not A but B", "A가 아니라 B"]], "gra": []}
+ {
+  "en": "When Jesus had spoken these words, he went forth with his disciples over the brook Cedron, where was a garden, into the which he entered, and his disciples.",
+  "ko": "예수께서 이 말씀을 마치시고 제자들과 함께 기드론 시내 건너편으로 나아가시니, 그곳에 한 동산이 있는지라, 예수와 그 제자들이 거기로 들어가시니라.",
+  "note": "예수께서 마지막 강화를 마치고 겟세마네로 나아가심. '기드론 시내'는 예루살렘과 감람산 사이의 골짜기로, 옛 다윗이 압살롬을 피해 건넜던 길(삼하 15:23)을 예수께서 스스로 밟으심이니, 참 왕이 배신을 향해 나아가시는 발걸음이라.",
+  "voc": [
+   [
+    "forth",
+    "adv.",
+    "앞으로, 나아가"
+   ],
+   [
+    "brook",
+    "n.",
+    "시내, 개울"
+   ],
+   [
+    "garden",
+    "n.",
+    "동산, 정원"
+   ]
+  ],
+  "idi": [
+   [
+    "over the brook",
+    "시내 건너편으로"
+   ]
+  ],
+  "gra": [
+   [
+    "into the which he entered",
+    "the which=which의 고어 관계사 '그 안으로 들어가시니'"
+   ]
+  ]
+ },
+ {
+  "en": "And Judas also, which betrayed him, knew the place: for Jesus ofttimes resorted thither with his disciples.",
+  "ko": "그를 팔아넘긴 유다도 그곳을 알고 있었으니, 이는 예수께서 제자들과 더불어 자주 그리로 모이셨음이라.",
+  "note": "'자주 모이셨음이라'(헬 폴라키스)는 예수께서 그 장소를 늘 쓰셨음을 보이거니와, 예수는 숨지 아니하시고 익히 아는 곳에서 잡히시니, 그 죽음은 붙잡히심이 아니라 스스로 내어 주심이라.",
+  "voc": [
+   [
+    "betray",
+    "v.",
+    "팔아넘기다, 배신하다"
+   ],
+   [
+    "knew",
+    "v.",
+    "알고 있었다(know의 과거)"
+   ],
+   [
+    "resort",
+    "v.",
+    "자주 모이다, 드나들다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "which betrayed him",
+    "which=관계대명사(사람을 가리킨 옛 용법) '그를 판'"
+   ],
+   [
+    "ofttimes",
+    "often의 고어 '자주'"
+   ]
+  ]
+ },
+ {
+  "en": "Judas then, having received a band of men and officers from the chief priests and Pharisees, cometh thither with lanterns and torches and weapons.",
+  "ko": "이에 유다가 대제사장들과 바리새인들에게서 한 무리의 군사와 관원들을 데리고, 등과 횃불과 무기를 가지고 그리로 오니라.",
+  "note": "'한 무리의 군사'(헬 스페이라)는 로마 보병대를 가리키는 큰 병력이라. 세상 권세가 총동원되어 한 분을 잡으러 왔으되, 정작 붙잡히실 이는 그 모든 일을 미리 아시고 기다리시더라.",
+  "voc": [
+   [
+    "band",
+    "n.",
+    "무리, 부대"
+   ],
+   [
+    "officer",
+    "n.",
+    "관원, 하급 관리"
+   ],
+   [
+    "lantern",
+    "n.",
+    "등, 등불"
+   ],
+   [
+    "weapon",
+    "n.",
+    "무기"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "having received",
+    "분사구문 '데리고, 받아서'"
+   ],
+   [
+    "cometh",
+    "comes(오다)의 고어 3인칭"
+   ]
+  ]
+ },
+ {
+  "en": "Jesus therefore, knowing all things that should come upon him, went forth, and said unto them, Whom seek ye?",
+  "ko": "예수께서 자기에게 닥쳐올 모든 일을 아시고 나아가 그들에게 이르시되 \"너희가 누구를 찾느냐?\" 하시니,",
+  "note": "'닥쳐올 모든 일을 아시고'는 예수의 온전한 예지를 드러냄이라. '누구를 찾느냐'는 물음은 무지에서가 아니라 주도권을 쥐신 자의 물음이니, 심문받는 자가 도리어 심문하시더라.",
+  "voc": [
+   [
+    "knowing",
+    "v.",
+    "아시고(know의 분사)"
+   ],
+   [
+    "come upon",
+    "phr.",
+    "닥쳐오다"
+   ],
+   [
+    "seek",
+    "v.",
+    "찾다"
+   ]
+  ],
+  "idi": [
+   [
+    "Whom seek ye?",
+    "너희가 누구를 찾느냐?"
+   ]
+  ],
+  "gra": [
+   [
+    "Whom seek ye?",
+    "ye=you(너희) 고어 주격; 의문 어순 '너희가 누구를 찾느냐'"
+   ]
+  ]
+ },
+ {
+  "en": "They answered him, Jesus of Nazareth. Jesus saith unto them, I am he. And Judas also, which betrayed him, stood with them.",
+  "ko": "그들이 대답하되 \"나사렛 예수라\" 하거늘, 예수께서 그들에게 이르시되 \"내가 그니라\" 하시니라. 그를 팔아넘긴 유다도 그들과 함께 서 있더라.",
+  "note": "'내가 그니라'(헬 에고 에이미)는 단순한 신원 확인을 넘어 출애굽기의 '스스로 있는 자'(출 3:14)를 울리는 신적 자기 계시라. 배신자 유다가 그들과 함께 서 있는 장면이 비극의 무게를 더하더라.",
+  "voc": [
+   [
+    "answer",
+    "v.",
+    "대답하다"
+   ],
+   [
+    "saith",
+    "v.",
+    "이르시되(say의 고어)"
+   ],
+   [
+    "stood",
+    "v.",
+    "서 있었다(stand의 과거)"
+   ]
+  ],
+  "idi": [
+   [
+    "I am he",
+    "내가 그니라, 바로 나다"
+   ]
+  ],
+  "gra": [
+   [
+    "saith",
+    "says(이르다)의 고어 3인칭"
+   ],
+   [
+    "which betrayed him",
+    "which=관계대명사 '그를 판'"
+   ]
+  ]
+ },
+ {
+  "en": "As soon then as he had said unto them, I am he, they went backward, and fell to the ground.",
+  "ko": "예수께서 \"내가 그니라\" 이르시매, 그들이 곧 뒤로 물러가 땅에 엎드러지더라.",
+  "note": "'에고 에이미' 한 마디에 무장한 무리가 뒤로 물러가 엎드러짐은, 잡으러 온 자들이 도리어 그 신적 위엄 앞에 무릎 꿇음이라. 예수를 잡음은 오직 그가 허락하실 때에만 가능함을 보이심이라.",
+  "voc": [
+   [
+    "as soon as",
+    "conj.",
+    "~하자마자"
+   ],
+   [
+    "backward",
+    "adv.",
+    "뒤로"
+   ],
+   [
+    "fell",
+    "v.",
+    "엎드러졌다(fall의 과거)"
+   ]
+  ],
+  "idi": [
+   [
+    "went backward",
+    "뒤로 물러가다"
+   ]
+  ],
+  "gra": [
+   [
+    "as soon then as he had said",
+    "had said=과거완료 '말씀하시자'"
+   ]
+  ]
+ },
+ {
+  "en": "Then asked he them again, Whom seek ye? And they said, Jesus of Nazareth.",
+  "ko": "예수께서 다시 그들에게 물어 이르시되 \"너희가 누구를 찾느냐?\" 하시니, 그들이 이르되 \"나사렛 예수라\" 하거늘,",
+  "note": "예수께서 다시 물으심은 무리에게서 답을 받아 제자들을 놓아주게 하려 하심이라. 자신을 내어 주시되 양들은 지키시니, 이는 선한 목자의 마음이라.",
+  "voc": [
+   [
+    "again",
+    "adv.",
+    "다시"
+   ],
+   [
+    "asked",
+    "v.",
+    "물었다"
+   ],
+   [
+    "seek",
+    "v.",
+    "찾다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "asked he them",
+    "의문·강조 도치 '그가 그들에게 물었다'"
+   ]
+  ]
+ },
+ {
+  "en": "Jesus answered, I have told you that I am he: if therefore ye seek me, let these go their way:",
+  "ko": "예수께서 대답하시되 \"내가 그라고 너희에게 이미 일렀거니와, 너희가 나를 찾거든 이 사람들은 가게 하라\" 하시니,",
+  "note": "'이 사람들은 가게 하라'는 제자들을 향한 보호의 명령이라. 예수는 자기 목숨을 내어 주심으로 제자들의 안전을 사시니, 대속의 그림자가 여기 비치더라.",
+  "voc": [
+   [
+    "let go",
+    "phr.",
+    "가게 하다, 놓아주다"
+   ],
+   [
+    "therefore",
+    "adv.",
+    "그러므로"
+   ],
+   [
+    "their way",
+    "phr.",
+    "제 갈 길로"
+   ]
+  ],
+  "idi": [
+   [
+    "let these go their way",
+    "이 사람들은 제 갈 길로 가게 하라"
+   ]
+  ],
+  "gra": [
+   [
+    "let these go their way",
+    "let+목적어+동사원형 '~로 가게 하라'"
+   ]
+  ]
+ },
+ {
+  "en": "That the saying might be fulfilled, which he spake, Of them which thou gavest me have I lost none.",
+  "ko": "이는 \"아버지께서 내게 주신 자들 중에서 나는 하나도 잃지 아니하였나이다\" 하신 그 말씀을 이루려 하심이러라.",
+  "note": "9절은 요한복음 17:12의 성취를 명시함이라. '하나도 잃지 아니하였나이다'는 영적 구원의 약속이나, 여기서는 제자들의 실제 보호로도 이루어지니, 주의 말씀은 반드시 성취되느니라.",
+  "voc": [
+   [
+    "saying",
+    "n.",
+    "말씀, 한 말"
+   ],
+   [
+    "fulfil",
+    "v.",
+    "이루다, 성취하다"
+   ],
+   [
+    "gavest",
+    "v.",
+    "주셨다(give의 고어 2인칭)"
+   ]
+  ],
+  "idi": [
+   [
+    "lost none",
+    "하나도 잃지 않았다"
+   ]
+  ],
+  "gra": [
+   [
+    "which thou gavest me",
+    "thou gavest=you gave '네가 내게 주신'; which=관계대명사"
+   ]
+  ]
+ },
+ {
+  "en": "Then Simon Peter having a sword drew it, and smote the high priest’s servant, and cut off his right ear. The servant’s name was Malchus.",
+  "ko": "이때 시몬 베드로가 칼을 가졌더니 그것을 빼어, 대제사장의 종을 쳐서 그 오른쪽 귀를 베어 버리니라. 그 종의 이름은 말고더라.",
+  "note": "베드로가 칼로 말고의 귀를 벰. 육의 열심이 하나님의 뜻을 앞지르려 한 순간이라. 요한만이 '말고'라는 이름을 밝히니, 목격자의 생생한 증언이 드러나더라.",
+  "voc": [
+   [
+    "sword",
+    "n.",
+    "칼"
+   ],
+   [
+    "smote",
+    "v.",
+    "쳤다(smite의 과거)"
+   ],
+   [
+    "cut off",
+    "phr.",
+    "베어 버리다"
+   ],
+   [
+    "servant",
+    "n.",
+    "종"
+   ]
+  ],
+  "idi": [
+   [
+    "cut off",
+    "베어 버리다, 잘라 내다"
+   ]
+  ],
+  "gra": [
+   [
+    "smote",
+    "smite(치다)의 고어 과거"
+   ]
+  ]
+ },
+ {
+  "en": "Then said Jesus unto Peter, Put up thy sword into the sheath: the cup which my Father hath given me, shall I not drink it?",
+  "ko": "예수께서 베드로에게 이르시되 \"네 칼을 칼집에 꽂으라. 아버지께서 내게 주신 잔을 내가 어찌 마시지 아니하겠느냐?\" 하시니라.",
+  "note": "'잔'(헬 포테리온)은 성경에서 하나님의 진노와 정하신 고난을 상징함이라. 예수께서 그 잔을 마시겠다 하심은 아버지의 뜻에 온전히 순복하심이니, 십자가는 강요가 아니라 순종의 잔이라.",
+  "voc": [
+   [
+    "put up",
+    "phr.",
+    "(칼을) 꽂다, 거두다"
+   ],
+   [
+    "sheath",
+    "n.",
+    "칼집"
+   ],
+   [
+    "cup",
+    "n.",
+    "잔"
+   ]
+  ],
+  "idi": [
+   [
+    "put up thy sword",
+    "네 칼을 거두라"
+   ],
+   [
+    "shall I not drink it?",
+    "내가 어찌 마시지 아니하겠느냐?"
+   ]
+  ],
+  "gra": [
+   [
+    "hath given",
+    "has given(주셨다)의 고어 3인칭 완료"
+   ],
+   [
+    "shall I not drink it?",
+    "shall+I 의문 '내가 마시지 않겠느냐'"
+   ]
+  ]
+ },
+ {
+  "en": "Then the band and the captain and officers of the Jews took Jesus, and bound him,",
+  "ko": "이에 그 군사들과 천부장과 유대인의 관원들이 예수를 붙잡아 결박하고,",
+  "note": "'천부장'(헬 킬리아르코스)은 로마 군대의 지휘관이라. 유대와 로마의 권세가 함께 예수를 결박하나, 결박당하신 이가 실은 온 세상을 붙드시는 분이라.",
+  "voc": [
+   [
+    "captain",
+    "n.",
+    "천부장, 지휘관"
+   ],
+   [
+    "took",
+    "v.",
+    "붙잡았다(take의 과거)"
+   ],
+   [
+    "bound",
+    "v.",
+    "결박하였다(bind의 과거)"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And led him away to Annas first; for he was father in law to Caiaphas, which was the high priest that same year.",
+  "ko": "먼저 안나스에게로 끌고 가니, 이는 그가 그해의 대제사장 된 가야바의 장인이었음이라.",
+  "note": "안나스는 전직 대제사장이자 실권자라. 예수를 먼저 그에게 끌고 감은 비공식 예비 심문이니, 형식과 절차를 앞세운 재판이 실은 정해진 결말을 향해 달려가더라.",
+  "voc": [
+   [
+    "led",
+    "v.",
+    "끌고 갔다(lead의 과거)"
+   ],
+   [
+    "father in law",
+    "n.",
+    "장인"
+   ],
+   [
+    "that same year",
+    "phr.",
+    "그해에"
+   ]
+  ],
+  "idi": [
+   [
+    "father in law",
+    "장인"
+   ]
+  ],
+  "gra": [
+   [
+    "led him away",
+    "lead의 과거 led '끌고 갔다'"
+   ],
+   [
+    "which was the high priest",
+    "which=관계대명사 '대제사장이던'"
+   ]
+  ]
+ },
+ {
+  "en": "Now Caiaphas was he, which gave counsel to the Jews, that it was expedient that one man should die for the people.",
+  "ko": "가야바는 한 사람이 백성을 위하여 죽는 것이 유익하다고 유대인들에게 권고하던 자더라.",
+  "note": "14절은 요한복음 11:50을 다시 상기시킴이라. 가야바가 정치적 계산으로 뱉은 말이 도리어 대속의 예언이 되었으니, 한 사람이 백성을 위하여 죽음은 곧 그리스도의 대속이라.",
+  "voc": [
+   [
+    "counsel",
+    "n.",
+    "권고, 조언"
+   ],
+   [
+    "expedient",
+    "adj.",
+    "유익한, 형편에 맞는"
+   ],
+   [
+    "die for",
+    "phr.",
+    "~을 위하여 죽다"
+   ]
+  ],
+  "idi": [
+   [
+    "die for the people",
+    "백성을 위하여 죽다"
+   ]
+  ],
+  "gra": [
+   [
+    "Now Caiaphas was he, which gave counsel",
+    "which gave=관계절 '권고하던 (그 사람)'"
+   ]
+  ]
+ },
+ {
+  "en": "And Simon Peter followed Jesus, and so did another disciple: that disciple was known unto the high priest, and went in with Jesus into the palace of the high priest.",
+  "ko": "시몬 베드로가 예수를 뒤따르고 또 다른 한 제자도 그리하니, 그 제자는 대제사장과 아는 사이라, 예수와 함께 대제사장의 뜰 안으로 들어가되,",
+  "note": "'다른 한 제자'는 흔히 사도 요한으로 여겨짐이라. 대제사장과 아는 사이라 뜰 안으로 들어가니, 이 인연이 베드로를 시험의 자리로 이끄는 통로가 되더라.",
+  "voc": [
+   [
+    "follow",
+    "v.",
+    "뒤따르다"
+   ],
+   [
+    "another",
+    "adj.",
+    "다른"
+   ],
+   [
+    "palace",
+    "n.",
+    "뜰, 관저"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "that disciple was known unto",
+    "unto=to(에게)의 고어; was known=수동 '알려진 사이'"
+   ]
+  ]
+ },
+ {
+  "en": "But Peter stood at the door without. Then went out that other disciple, which was known unto the high priest, and spake unto her that kept the door, and brought in Peter.",
+  "ko": "베드로는 문 밖에 서 있더라. 그리하여 대제사장과 아는 사이인 그 다른 제자가 나가서 문 지키는 여자에게 말하고 베드로를 데리고 들어오니,",
+  "note": "요한이 베드로를 문 안으로 데려옴. 선의에서 나온 인도였으나, 베드로가 서게 된 그 자리가 곧 세 번 부인할 시험의 무대가 되니, 사람의 호의도 하나님의 섭리 안에 있더라.",
+  "voc": [
+   [
+    "without",
+    "adv.",
+    "밖에"
+   ],
+   [
+    "kept the door",
+    "phr.",
+    "문을 지키던"
+   ],
+   [
+    "brought in",
+    "phr.",
+    "데리고 들어오다"
+   ]
+  ],
+  "idi": [
+   [
+    "stood at the door without",
+    "문 밖에 서 있었다"
+   ]
+  ],
+  "gra": [
+   [
+    "her that kept the door",
+    "her that=she who '문 지키던 여자'"
+   ]
+  ]
+ },
+ {
+  "en": "Then saith the damsel that kept the door unto Peter, Art not thou also one of this man’s disciples? He saith, I am not.",
+  "ko": "문 지키는 여종이 베드로에게 이르되 \"너도 이 사람의 제자 중 하나가 아니냐?\" 하니, 그가 이르되 \"나는 아니라\" 하더라.",
+  "note": "'너도 ~ 아니냐'(헬 메 카이 쉬)는 부정의 답을 기대하는 물음이라. 문 지키는 여종의 가벼운 물음 앞에 베드로가 첫 번째로 무너지니, 큰 용기를 자랑하던 자가 작은 물음에 넘어지더라.",
+  "voc": [
+   [
+    "damsel",
+    "n.",
+    "여종, 소녀"
+   ],
+   [
+    "also",
+    "adv.",
+    "~도, 또한"
+   ],
+   [
+    "disciple",
+    "n.",
+    "제자"
+   ]
+  ],
+  "idi": [
+   [
+    "Art not thou also",
+    "너도 ~이 아니냐"
+   ]
+  ],
+  "gra": [
+   [
+    "Art not thou also",
+    "Aren't you의 고어 의문 어순; thou=you(너)"
+   ]
+  ]
+ },
+ {
+  "en": "And the servants and officers stood there, who had made a fire of coals; for it was cold: and they warmed themselves: and Peter stood with them, and warmed himself.",
+  "ko": "날이 추운 고로 종들과 관원들이 숯불을 피우고 서서 쬐고 있더니, 베드로도 그들과 함께 서서 불을 쬐더라.",
+  "note": "숯불 곁에서 몸을 녹이는 장면이 은근한 긴장을 더함이라. 원수들과 한자리에서 불을 쬐는 베드로의 처지가, 세상과 어정쩡하게 섞인 신앙의 위태로움을 보이더라.",
+  "voc": [
+   [
+    "fire of coals",
+    "phr.",
+    "숯불"
+   ],
+   [
+    "cold",
+    "adj.",
+    "추운"
+   ],
+   [
+    "warm",
+    "v.",
+    "(불을) 쬐다, 덥히다"
+   ]
+  ],
+  "idi": [
+   [
+    "a fire of coals",
+    "숯불"
+   ],
+   [
+    "warmed themselves",
+    "불을 쬐었다"
+   ]
+  ],
+  "gra": [
+   [
+    "who had made a fire",
+    "had made=과거완료 '피워 놓았던'"
+   ]
+  ]
+ },
+ {
+  "en": "The high priest then asked Jesus of his disciples, and of his doctrine.",
+  "ko": "대제사장이 예수께 그의 제자들과 그의 가르침에 관하여 물으니,",
+  "note": "대제사장의 심문이 시작됨이라. 예수의 '제자들과 가르침'을 캐물음은 그를 선동가로 몰려는 의도이나, 예수의 사역은 은밀한 음모가 아니라 공개된 진리였더라.",
+  "voc": [
+   [
+    "asked",
+    "v.",
+    "물었다"
+   ],
+   [
+    "doctrine",
+    "n.",
+    "가르침, 교훈"
+   ],
+   [
+    "disciple",
+    "n.",
+    "제자"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "Jesus answered him, I spake openly to the world; I ever taught in the synagogue, and in the temple, whither the Jews always resort; and in secret have I said nothing.",
+  "ko": "예수께서 그에게 대답하시되 \"내가 드러내 놓고 세상에 말하였노라. 나는 유대인들이 늘 모이는 회당과 성전에서 항상 가르쳤고, 은밀히는 아무것도 말하지 아니하였거늘,",
+  "note": "'드러내 놓고'(헬 파레시아)는 담대한 공개성을 뜻함이라. 예수께서 회당과 성전에서 공공연히 가르치셨음을 밝히시니, 참 진리는 어둠을 두려워하지 않느니라.",
+  "voc": [
+   [
+    "openly",
+    "adv.",
+    "드러내 놓고, 공공연히"
+   ],
+   [
+    "ever",
+    "adv.",
+    "항상, 늘"
+   ],
+   [
+    "resort",
+    "v.",
+    "모이다, 드나들다"
+   ],
+   [
+    "in secret",
+    "phr.",
+    "은밀히"
+   ]
+  ],
+  "idi": [
+   [
+    "in secret",
+    "은밀히"
+   ]
+  ],
+  "gra": [
+   [
+    "whither the Jews always resort",
+    "whither=where(어디로)의 고어 관계부사"
+   ]
+  ]
+ },
+ {
+  "en": "Why askest thou me? ask them which heard me, what I have said unto them: behold, they know what I said.",
+  "ko": "어찌하여 내게 묻느냐? 내가 무엇을 말하였는지 들은 자들에게 물어보라. 보라, 그들이 내가 한 말을 아느니라\" 하시니,",
+  "note": "예수께서 증인 심문의 정당한 절차를 요구하심이라. 들은 자에게 물으라 하심은 율법의 공정을 촉구함이니, 불법한 재판 앞에서도 진리는 논리로 맞서더라.",
+  "voc": [
+   [
+    "askest",
+    "v.",
+    "묻느냐(ask의 고어 2인칭)"
+   ],
+   [
+    "heard",
+    "v.",
+    "들었다(hear의 과거)"
+   ],
+   [
+    "behold",
+    "interj.",
+    "보라"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "askest thou me",
+    "askest=ask의 고어 2인칭; thou=너"
+   ]
+  ]
+ },
+ {
+  "en": "And when he had thus spoken, one of the officers which stood by struck Jesus with the palm of his hand, saying, Answerest thou the high priest so?",
+  "ko": "예수께서 이렇게 말씀하시매, 곁에 서 있던 관원 중 하나가 손바닥으로 예수를 치며 이르되 \"네가 대제사장에게 그같이 대답하느냐?\" 하거늘,",
+  "note": "관원이 손바닥으로 예수를 침. 정당한 항변에 폭력으로 답함은 이 재판의 불의를 드러냄이라. 진리를 말한 입이 매를 맞으니, 세상이 빛을 대하는 방식이 이러하더라.",
+  "voc": [
+   [
+    "struck",
+    "v.",
+    "쳤다(strike의 과거)"
+   ],
+   [
+    "palm",
+    "n.",
+    "손바닥"
+   ],
+   [
+    "answerest",
+    "v.",
+    "대답하느냐(answer의 고어 2인칭)"
+   ]
+  ],
+  "idi": [
+   [
+    "with the palm of his hand",
+    "손바닥으로"
+   ]
+  ],
+  "gra": [
+   [
+    "Answerest thou the high priest so?",
+    "answerest=answer의 고어 2인칭; 의문 어순"
+   ]
+  ]
+ },
+ {
+  "en": "Jesus answered him, If I have spoken evil, bear witness of the evil: but if well, why smitest thou me?",
+  "ko": "예수께서 그에게 대답하시되 \"내가 그릇 말하였거든 그 그릇됨을 증언하라. 그러나 옳게 말하였거든 어찌하여 나를 치느냐?\" 하시니라.",
+  "note": "예수께서 폭력에 폭력으로 갚지 아니하시고 이치로 물으심이라. '잘못을 증언하라'는 말씀은 온유 가운데 굽히지 않는 위엄이니, 고난받으시되 진리를 놓지 아니하시더라.",
+  "voc": [
+   [
+    "evil",
+    "n.",
+    "악, 그릇됨"
+   ],
+   [
+    "bear witness",
+    "phr.",
+    "증언하다"
+   ],
+   [
+    "smitest",
+    "v.",
+    "치느냐(smite의 고어 2인칭)"
+   ]
+  ],
+  "idi": [
+   [
+    "bear witness of",
+    "~을 증언하다"
+   ]
+  ],
+  "gra": [
+   [
+    "smitest thou me",
+    "smitest=smite의 고어 2인칭 '나를 치느냐'"
+   ]
+  ]
+ },
+ {
+  "en": "Now Annas had sent him bound unto Caiaphas the high priest.",
+  "ko": "안나스가 예수를 결박한 그대로 대제사장 가야바에게로 보내었더라.",
+  "note": "안나스가 예수를 결박한 채로 가야바에게 보냄이라. 예비 심문에서 공식 심문으로 넘어가는 절차이나, 실은 미리 정해진 판결을 향해 예수를 떠밀 뿐이더라.",
+  "voc": [
+   [
+    "sent",
+    "v.",
+    "보내었다(send의 과거)"
+   ],
+   [
+    "bound",
+    "adj.",
+    "결박된"
+   ],
+   [
+    "high priest",
+    "n.",
+    "대제사장"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "had sent him bound",
+    "had sent=과거완료 '보내었더라'; bound=결박된 채(분사)"
+   ]
+  ]
+ },
+ {
+  "en": "And Simon Peter stood and warmed himself. They said therefore unto him, Art not thou also one of his disciples? He denied it, and said, I am not.",
+  "ko": "시몬 베드로가 서서 불을 쬐고 있더니, 사람들이 그에게 이르되 \"너도 그의 제자 중 하나가 아니냐?\" 하니, 베드로가 부인하여 이르되 \"나는 아니라\" 하더라.",
+  "note": "베드로의 두 번째 부인이라. '너도 ~ 아니냐'는 물음에 다시 '나는 아니라' 하니, 한 번의 무너짐이 다음의 무너짐을 부르는 죄의 미끄러운 길이 여기 있더라.",
+  "voc": [
+   [
+    "warmed",
+    "v.",
+    "(불을) 쬐었다"
+   ],
+   [
+    "deny",
+    "v.",
+    "부인하다"
+   ],
+   [
+    "disciple",
+    "n.",
+    "제자"
+   ]
+  ],
+  "idi": [
+   [
+    "He denied it",
+    "그가 부인하였다"
+   ]
+  ],
+  "gra": [
+   [
+    "Art not thou also",
+    "Aren't you의 고어 의문 어순; thou=너"
+   ]
+  ]
+ },
+ {
+  "en": "One of the servants of the high priest, being his kinsman whose ear Peter cut off, saith, Did not I see thee in the garden with him?",
+  "ko": "대제사장의 종 가운데 하나로서 베드로에게 귀를 잘린 자의 친척이 이르되 \"내가 동산에서 너를 그와 함께 보지 아니하였느냐?\" 하니,",
+  "note": "말고의 친척이 베드로를 알아봄이라. 동산에서의 일이 증거로 되돌아오니, 도망하려는 자를 옥죄는 궁지라. 세 번째 부인이 임박한 절정의 순간이더라.",
+  "voc": [
+   [
+    "kinsman",
+    "n.",
+    "친척"
+   ],
+   [
+    "ear",
+    "n.",
+    "귀"
+   ],
+   [
+    "garden",
+    "n.",
+    "동산"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "whose ear Peter cut off",
+    "whose=소유 관계대명사 '그의 귀를'"
+   ],
+   [
+    "Did not I see thee",
+    "thee=you(너) 고어 목적격"
+   ]
+  ]
+ },
+ {
+  "en": "Peter then denied again: and immediately the cock crew.",
+  "ko": "베드로가 또다시 부인하니, 곧 닭이 울더라.",
+  "note": "'곧 닭이 울더라'는 예수의 예언(요 13:38)이 그대로 이루어진 순간이라. 세 번의 부인 뒤 울린 닭소리는 베드로를 통회로 이끄는 은혜의 종소리가 되더라.",
+  "voc": [
+   [
+    "deny",
+    "v.",
+    "부인하다"
+   ],
+   [
+    "immediately",
+    "adv.",
+    "곧, 즉시"
+   ],
+   [
+    "crew",
+    "v.",
+    "울었다(crow의 고어 과거)"
+   ]
+  ],
+  "idi": [
+   [
+    "the cock crew",
+    "닭이 울었다"
+   ]
+  ],
+  "gra": [
+   [
+    "the cock crew",
+    "crew=crow(울다)의 고어 과거, 현대어 crowed"
+   ]
+  ]
+ },
+ {
+  "en": "Then led they Jesus from Caiaphas unto the hall of judgment: and it was early; and they themselves went not into the judgment hall, lest they should be defiled; but that they might eat the passover.",
+  "ko": "그들이 예수를 가야바에게서 관정으로 끌고 가니, 때는 이른 새벽이라. 그들 자신은 더럽혀지지 아니하고 유월절 음식을 먹고자 하여 관정 안으로 들어가지 아니하더라.",
+  "note": "'관정'(헬 프라이토리온)은 로마 총독의 관저요 재판정이라. 유월절을 지키려 부정을 피해 안에 들지 아니함이, 사람을 죽이려 하면서 예법에 매인 위선을 드러내더라.",
+  "voc": [
+   [
+    "hall of judgment",
+    "phr.",
+    "관정, 재판정"
+   ],
+   [
+    "early",
+    "adj.",
+    "이른 (때)"
+   ],
+   [
+    "defile",
+    "v.",
+    "더럽히다"
+   ],
+   [
+    "passover",
+    "n.",
+    "유월절"
+   ]
+  ],
+  "idi": [
+   [
+    "lest they should be defiled",
+    "더럽혀질까 하여"
+   ],
+   [
+    "eat the passover",
+    "유월절 음식을 먹다"
+   ]
+  ],
+  "gra": [
+   [
+    "lest they should be defiled",
+    "lest ~ should=~할까 하여(부정 목적)"
+   ]
+  ]
+ },
+ {
+  "en": "Pilate then went out unto them, and said, What accusation bring ye against this man?",
+  "ko": "이에 빌라도가 그들에게로 나아와 이르되 \"너희가 이 사람을 무슨 일로 고발하느냐?\" 하니,",
+  "note": "빌라도가 밖으로 나와 고발 내용을 물음이라. 로마 총독이 유대인의 예법에 맞추어 밖으로 나옴은, 예수의 재판이 종교와 정치가 얽힌 자리임을 보이더라.",
+  "voc": [
+   [
+    "went out",
+    "phr.",
+    "나아가다, 나가다"
+   ],
+   [
+    "accusation",
+    "n.",
+    "고발, 고소"
+   ],
+   [
+    "against",
+    "prep.",
+    "~을 거슬러, ~에 대하여"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "They answered and said unto him, If he were not a malefactor, we would not have delivered him up unto thee.",
+  "ko": "그들이 대답하여 이르되 \"이 사람이 악을 행하는 자가 아니었더라면 우리가 그를 당신에게 넘기지 아니하였으리이다\" 하거늘,",
+  "note": "'악을 행하는 자'(헬 카콘 포이온)라는 막연한 고발에 구체적 죄목이 없음이라. 정죄는 이미 정해졌고 죄목은 뒤따르니, 이 재판의 불의가 여실히 드러나더라.",
+  "voc": [
+   [
+    "malefactor",
+    "n.",
+    "악을 행하는 자, 범죄자"
+   ],
+   [
+    "deliver up",
+    "phr.",
+    "넘기다"
+   ],
+   [
+    "unto",
+    "prep.",
+    "~에게(to의 고어)"
+   ]
+  ],
+  "idi": [
+   [
+    "deliver up",
+    "~을 넘기다"
+   ]
+  ],
+  "gra": [
+   [
+    "If he were not a malefactor, we would not have delivered",
+    "가정법 과거완료 '~아니었더라면 넘기지 않았으리라'"
+   ]
+  ]
+ },
+ {
+  "en": "Then said Pilate unto them, Take ye him, and judge him according to your law. The Jews therefore said unto him, It is not lawful for us to put any man to death:",
+  "ko": "이에 빌라도가 그들에게 이르되 \"너희가 그를 데려다가 너희 율법대로 재판하라\" 하니, 유대인들이 그에게 이르되 \"우리에게는 사람을 죽이는 것이 법에 합당하지 아니하니이다\" 하더라.",
+  "note": "빌라도가 사형 권한을 유대인에게 미룸이라. '사람을 죽이는 것이 법에 합당하지 아니하니이다'는 말이 도리어 다음 절의 예언 성취를 예비하더라.",
+  "voc": [
+   [
+    "judge",
+    "v.",
+    "재판하다"
+   ],
+   [
+    "according to",
+    "phr.",
+    "~에 따라"
+   ],
+   [
+    "lawful",
+    "adj.",
+    "합법한, 법에 합당한"
+   ],
+   [
+    "put to death",
+    "phr.",
+    "죽이다, 사형에 처하다"
+   ]
+  ],
+  "idi": [
+   [
+    "put to death",
+    "~을 죽이다, 사형에 처하다"
+   ]
+  ],
+  "gra": [
+   [
+    "Take ye him",
+    "ye=you(너희) 고어; 명령 어순 '너희가 그를 데려가라'"
+   ]
+  ]
+ },
+ {
+  "en": "That the saying of Jesus might be fulfilled, which he spake, signifying what death he should die.",
+  "ko": "이는 예수께서 자기가 어떠한 죽음으로 죽으실지를 가리켜 하신 그 말씀을 이루려 하심이러라.",
+  "note": "32절은 예수께서 자기 죽음의 방식을 가리켜 하신 말씀(요 12:32-33)의 성취라. 십자가는 로마의 형벌이니, 유대인이 사형권을 잃음으로 도리어 '들리심'의 예언이 이루어지더라.",
+  "voc": [
+   [
+    "saying",
+    "n.",
+    "말씀"
+   ],
+   [
+    "signify",
+    "v.",
+    "가리켜 말하다, 뜻하다"
+   ],
+   [
+    "death",
+    "n.",
+    "죽음"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "signifying what death he should die",
+    "should die=~하실지(예정·운명)"
+   ]
+  ]
+ },
+ {
+  "en": "Then Pilate entered into the judgment hall again, and called Jesus, and said unto him, Art thou the King of the Jews?",
+  "ko": "이에 빌라도가 다시 관정 안으로 들어가 예수를 불러 그에게 이르되 \"네가 유대인의 왕이냐?\" 하니,",
+  "note": "빌라도가 예수께 '유대인의 왕이냐' 물음이라. 정치적 반역 혐의를 겨눈 물음이나, 이 심문이 도리어 예수의 참된 왕 되심을 드러내는 무대가 되더라.",
+  "voc": [
+   [
+    "entered",
+    "v.",
+    "들어갔다"
+   ],
+   [
+    "called",
+    "v.",
+    "불렀다"
+   ],
+   [
+    "king",
+    "n.",
+    "왕"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Art thou the King of the Jews?",
+    "Art thou=Are you의 고어 의문 어순"
+   ]
+  ]
+ },
+ {
+  "en": "Jesus answered him, Sayest thou this thing of thyself, or did others tell it thee of me?",
+  "ko": "예수께서 그에게 대답하시되 \"네가 스스로 이 말을 하느냐, 아니면 다른 사람들이 나에 관하여 네게 일러 준 것이냐?\" 하시니,",
+  "note": "예수께서 빌라도의 물음의 출처를 되물으심이라. 심문받는 이가 도리어 심문자의 마음을 살피시니, 빌라도로 하여금 스스로 진리 앞에 서게 하시더라.",
+  "voc": [
+   [
+    "sayest",
+    "v.",
+    "말하느냐(say의 고어 2인칭)"
+   ],
+   [
+    "of thyself",
+    "phr.",
+    "네 스스로"
+   ],
+   [
+    "tell",
+    "v.",
+    "일러 주다"
+   ]
+  ],
+  "idi": [
+   [
+    "of thyself",
+    "네 스스로"
+   ]
+  ],
+  "gra": [
+   [
+    "Sayest thou this thing of thyself",
+    "sayest=say의 고어 2인칭; thyself=너 자신"
+   ]
+  ]
+ },
+ {
+  "en": "Pilate answered, Am I a Jew? Thine own nation and the chief priests have delivered thee unto me: what hast thou done?",
+  "ko": "빌라도가 대답하되 \"내가 유대인이냐? 네 동족과 대제사장들이 너를 내게 넘겼으니, 네가 무엇을 행하였느냐?\" 하거늘,",
+  "note": "'내가 유대인이냐'는 빌라도의 냉소라. 자기와 무관한 일에 얽힌 짜증이나, '네가 무엇을 행하였느냐'는 물음 속에 예수의 무죄를 어렴풋이 감지하는 총독의 흔들림이 비치더라.",
+  "voc": [
+   [
+    "nation",
+    "n.",
+    "동족, 나라"
+   ],
+   [
+    "chief priest",
+    "n.",
+    "대제사장"
+   ],
+   [
+    "done",
+    "v.",
+    "행하였다(do의 분사)"
+   ]
+  ],
+  "idi": [
+   [
+    "Am I a Jew?",
+    "내가 유대인이냐?"
+   ]
+  ],
+  "gra": [
+   [
+    "what hast thou done?",
+    "hast thou=have you의 고어 완료 의문"
+   ]
+  ]
+ },
+ {
+  "en": "Jesus answered, My kingdom is not of this world: if my kingdom were of this world, then would my servants fight, that I should not be delivered to the Jews: but now is my kingdom not from hence.",
+  "ko": "예수께서 대답하시되 \"내 왕국은 이 세상에 속한 것이 아니니라. 만일 내 왕국이 이 세상에 속한 것이었더라면 내 종들이 싸워 나로 하여금 유대인들에게 넘겨지지 않게 하였으리라. 그러나 이제 내 왕국은 여기에 속한 것이 아니니라\" 하시니,",
+  "note": "'내 왕국은 이 세상에 속한 것이 아니니라'는 예수 왕권의 본질 선언이라. 무력과 정치로 세우는 나라가 아니요 진리로 다스리는 하나님의 왕국이니, 그 통치의 근원이 하늘에 있더라.",
+  "voc": [
+   [
+    "kingdom",
+    "n.",
+    "왕국, 나라"
+   ],
+   [
+    "fight",
+    "v.",
+    "싸우다"
+   ],
+   [
+    "deliver",
+    "v.",
+    "넘기다, 넘겨주다"
+   ],
+   [
+    "from hence",
+    "phr.",
+    "여기에서, 여기에 속한"
+   ]
+  ],
+  "idi": [
+   [
+    "of this world",
+    "이 세상에 속한"
+   ],
+   [
+    "from hence",
+    "여기에 속한, 여기에서 난"
+   ]
+  ],
+  "gra": [
+   [
+    "if my kingdom were of this world, then would my servants fight",
+    "가정법 과거 '~이었더라면 싸웠으리라'; would 도치"
+   ]
+  ]
+ },
+ {
+  "en": "Pilate therefore said unto him, Art thou a king then? Jesus answered, Thou sayest that I am a king. To this end was I born, and for this cause came I into the world, that I should bear witness unto the truth. Every one that is of the truth heareth my voice.",
+  "ko": "빌라도가 이에 그에게 이르되 \"그러면 네가 왕이냐?\" 하니, 예수께서 대답하시되 \"내가 왕이라고 네가 말하는도다. 나는 진리를 증언하려고 태어났으며 이를 위하여 세상에 왔노니, 무릇 진리에 속한 자는 내 음성을 듣느니라\" 하시니라.",
+  "note": "'진리를 증언하려고 태어났으며'는 예수 오심의 목적을 밝힘이라. 그의 왕권은 진리 위에 서고, '진리에 속한 자는 내 음성을 듣느니라' 하심은 참 백성의 표지가 순종하는 들음임을 보이더라.",
+  "voc": [
+   [
+    "born",
+    "v.",
+    "태어났다"
+   ],
+   [
+    "to this end",
+    "phr.",
+    "이 목적을 위하여"
+   ],
+   [
+    "bear witness",
+    "phr.",
+    "증언하다"
+   ],
+   [
+    "voice",
+    "n.",
+    "음성"
+   ]
+  ],
+  "idi": [
+   [
+    "to this end",
+    "이 목적을 위하여"
+   ],
+   [
+    "of the truth",
+    "진리에 속한"
+   ]
+  ],
+  "gra": [
+   [
+    "Every one that is of the truth",
+    "that is=who is '진리에 속한 자마다'"
+   ],
+   [
+    "heareth",
+    "hears(듣다)의 고어 3인칭"
+   ]
+  ]
+ },
+ {
+  "en": "Pilate saith unto him, What is truth? And when he had said this, he went out again unto the Jews, and saith unto them, I find in him no fault at all.",
+  "ko": "빌라도가 그에게 이르되 \"진리가 무엇이냐?\" 하더라. 이 말을 하고 다시 유대인들에게로 나아가 그들에게 이르되 \"나는 그에게서 아무 허물도 찾지 못하노라.",
+  "note": "'진리가 무엇이냐'는 빌라도의 냉소적 반문이라. 진리이신 분을 앞에 두고도 알아보지 못하는 비극이라. '아무 허물도 찾지 못하노라'는 무죄 선언이 이어지니, 재판관 스스로 피고의 무죄를 증언하더라.",
+  "voc": [
+   [
+    "truth",
+    "n.",
+    "진리"
+   ],
+   [
+    "fault",
+    "n.",
+    "허물, 잘못"
+   ],
+   [
+    "at all",
+    "phr.",
+    "전혀, 조금도"
+   ]
+  ],
+  "idi": [
+   [
+    "no fault at all",
+    "아무 허물도 전혀 없다"
+   ]
+  ],
+  "gra": [
+   [
+    "What is truth?",
+    "현재시제 의문 '진리가 무엇이냐'"
+   ]
+  ]
+ },
+ {
+  "en": "But ye have a custom, that I should release unto you one at the passover: will ye therefore that I release unto you the King of the Jews?",
+  "ko": "그러나 유월절이 되면 내가 너희에게 한 사람을 놓아주는 관례가 있으니, 그런즉 너희는 내가 유대인의 왕을 너희에게 놓아주기를 원하느냐?\" 하니,",
+  "note": "'유월절에 한 사람을 놓아주는 관례'를 빌라도가 이용함이라. 예수를 풀어 주려는 술책이나, '유대인의 왕'이라 부름 속에 은근한 조롱이 섞였더라.",
+  "voc": [
+   [
+    "custom",
+    "n.",
+    "관례, 관습"
+   ],
+   [
+    "release",
+    "v.",
+    "놓아주다, 석방하다"
+   ],
+   [
+    "will ye",
+    "phr.",
+    "원하느냐"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "will ye therefore that I release",
+    "will ye=원하느냐(2인칭 고어); that I release=~하기를"
+   ]
+  ]
+ },
+ {
+  "en": "Then cried they all again, saying, Not this man, but Barabbas. Now Barabbas was a robber.",
+  "ko": "그들이 다 다시 소리 질러 이르되 \"이 사람이 아니라 바라바라\" 하니, 바라바는 강도더라.",
+  "note": "무리가 강도 바라바의 석방을 택함이라. 생명의 왕을 버리고 강도를 택한 이 선택 속에, 도리어 대속의 진리가 비치나니, 죄인이 풀려나고 의로우신 분이 대신 매이시더라.",
+  "voc": [
+   [
+    "cried",
+    "v.",
+    "소리 질렀다"
+   ],
+   [
+    "not but",
+    "phr.",
+    "~이 아니라 …"
+   ],
+   [
+    "robber",
+    "n.",
+    "강도"
+   ]
+  ],
+  "idi": [
+   [
+    "not A but B",
+    "A가 아니라 B"
+   ]
+  ],
+  "gra": [
+   [
+    "Not this man, but Barabbas",
+    "not A but B 구문 'A가 아니라 B'"
+   ]
+  ]
+ }
 ]
