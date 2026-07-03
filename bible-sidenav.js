@@ -23,15 +23,15 @@
       '#bibleSideNav{display:none;position:fixed;top:0;left:0;bottom:0;width:' + W + 'px;z-index:45;'
       + 'background:#fff;border-right:1px solid rgba(33,58,107,.1);box-shadow:2px 0 18px -10px rgba(21,32,58,.18);'
       + 'flex-direction:column;padding:14px 12px;overflow-y:auto}'
-      + '#bibleSideNav .hd{font-size:12px;font-weight:800;color:#0f766e;letter-spacing:.04em;padding:6px 8px 10px;display:flex;align-items:center;gap:7px}'
+      + '#bibleSideNav .hd{font-size:12px;font-weight:800;color:#00704a;letter-spacing:.04em;padding:6px 8px 10px;display:flex;align-items:center;gap:7px}'
       + '#bibleSideNav .hd b{color:#171717;font-size:14px}'
       + '#bibleSideNav a{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:11px;'
       + 'text-decoration:none;margin-bottom:3px;white-space:nowrap;transition:background .15s}'
       + '#bibleSideNav .ic{font-size:17px;flex:0 0 auto;width:22px;text-align:center}'
       + '#bibleSideNav .lbl{font-size:13.5px}'
-      + '#bibleSideNav a.on{background:#0f766e}#bibleSideNav a.on .lbl{color:#fff;font-weight:700}'
+      + '#bibleSideNav a.on{background:#00704a}#bibleSideNav a.on .lbl{color:#fff;font-weight:700}'
       + '#bibleSideNav a:not(.on) .lbl{color:rgba(33,58,107,.82);font-weight:600}'
-      + '#bibleSideNav a:not(.on):hover{background:rgba(15,118,110,.1)}'
+      + '#bibleSideNav a:not(.on):hover{background:rgba(0,112,74,.1)}'
       + '#bibleSideNav .foot{margin-top:auto;padding:10px 8px 4px;font-size:10.5px;color:rgba(33,58,107,.35);line-height:1.5}'
       + '@media(min-width:1024px){body{padding-left:' + W + 'px}#bibleSideNav{display:flex}}';
     document.head.appendChild(st);

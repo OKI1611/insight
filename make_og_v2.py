@@ -10,11 +10,11 @@ CX = W // 2
 TOP    = (16, 27, 52)     # deep navy top
 BOT    = (8, 16, 32)      # darker bottom
 GLOW   = (44, 62, 104)    # warm center glow
-GOLD   = (216, 194, 138)  # refined muted gold
-GOLD_BR= (233, 214, 166)  # brighter gold accent
+GOLD   = (116, 198, 157)  # 스타벅스 그린 계열(밝은 초록 · 네이비 위 강조)
+GOLD_BR= (150, 215, 180)  # brighter green accent
 IVORY  = (244, 241, 234)  # near-white warm
 MUTED  = (150, 168, 198)  # cool blue-grey
-FRAME  = (198, 170, 110)  # frame gold
+FRAME  = (70, 150, 110)   # frame green
 
 # ---- 1) vertical gradient base ----
 base = Image.new("RGB", (W, H), TOP)

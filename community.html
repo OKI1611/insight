@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <script src="/content-loader.js?v=20260703f"></script>
-  <script src="/site-header.js?v=20260703d"></script>
-  <script src="/section-sidenav.js?v=6"></script>
+  <script src="/site-header.js?v=20260703e"></script>
+  <script src="/section-sidenav.js?v=7"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>커뮤니티 — BIBLY 바이블 인사이트</title>
   <meta name="description" content="성경·신앙·삶의 질문을 나누고 함께 답을 찾는 커뮤니티 · 자유게시판 · 기도요청." />
@@ -20,11 +20,11 @@
   <meta property="og:title" content="질문·나눔·기도요청 — BIBLY 바이블 인사이트" />
   <meta property="og:description" content="성경·신앙·삶의 질문을 나누고 함께 답을 찾는 커뮤니티 · 자유게시판 · 기도요청." />
   <meta property="og:url" content="https://biblynote.com/community" />
-  <meta property="og:image" content="https://biblynote.com/images/og-cover.png?v=3" />
+  <meta property="og:image" content="https://biblynote.com/images/og-cover.png?v=4" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="질문·나눔·기도요청 — BIBLY 바이블 인사이트" />
   <meta name="twitter:description" content="성경·신앙·삶의 질문을 나누고 함께 답을 찾는 커뮤니티 · 자유게시판 · 기도요청." />
-  <meta name="twitter:image" content="https://biblynote.com/images/og-cover.png?v=3" />
+  <meta name="twitter:image" content="https://biblynote.com/images/og-cover.png?v=4" />
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6" />
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
@@ -34,7 +34,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { theme: { extend: {
-      colors: { ink:'#213a6b', navy:'#182c54', gold:'#0f766e', sand:'#eaf0f8', paper:'#ffffff' },
+      colors: { ink:'#213a6b', navy:'#182c54', gold:'#00704a', sand:'#eaf0f8', paper:'#ffffff' },
       fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['Pretendard','system-ui','sans-serif'] },
       boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
     }}}
@@ -59,14 +59,14 @@
     .post-body p{margin:.4em 0}
     .post-body ul{list-style:disc;padding-left:1.3em;margin:.4em 0}
     .post-body ol{list-style:decimal;padding-left:1.3em;margin:.4em 0}
-    .post-body blockquote{border-left:3px solid #0f766e;padding-left:.8em;color:#5a6275;margin:.6em 0;font-style:italic}
-    .post-body a{color:#0f766e;text-decoration:underline}
+    .post-body blockquote{border-left:3px solid #00704a;padding-left:.8em;color:#5a6275;margin:.6em 0;font-style:italic}
+    .post-body a{color:#00704a;text-decoration:underline}
     .boardBtn{display:flex;align-items:center;gap:.55rem;width:100%;justify-content:center;padding:.64rem .75rem;border-radius:.75rem;font-size:.9rem;font-weight:700;color:rgba(21,32,58,.82);transition:all .15s}
     @media(min-width:1024px){.boardBtn{justify-content:center}}
-    .boardBtn:hover{background:rgba(15,118,110,.12);color:#171717}
+    .boardBtn:hover{background:rgba(0,112,74,.12);color:#171717}
     .boardBtn.on{background:#213a6b;color:#ffffff;box-shadow:0 6px 16px -6px rgba(33,58,107,.5)}
     .boardLink{display:flex;align-items:center;gap:.55rem;padding:.62rem .7rem;border-radius:.7rem;font-size:.875rem;font-weight:600;color:rgba(21,32,58,.72);transition:all .15s}
-    .boardLink:hover{background:rgba(15,118,110,.12);color:#171717}
+    .boardLink:hover{background:rgba(0,112,74,.12);color:#171717}
   </style>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://biblynote.com/"},{"@type":"ListItem","position":2,"name":"소통·나눔","item":"https://biblynote.com/community"},{"@type":"ListItem","position":3,"name":"질문·나눔·기도요청","item":"https://biblynote.com/community"}]}
@@ -326,7 +326,7 @@
 
     // ===== 작성자 급수 휘장 =====
     const RANKS = {};
-    const RANK_C = {1:['#d4c08e','#c7b07a'],2:['#cba968','#c2a050'],3:['#c2a050','#0f766e'],4:['#a98a3e','#9a7a34'],5:['#2a3c66','#1f2d4d']};
+    const RANK_C = {1:['#d4c08e','#c7b07a'],2:['#cba968','#c2a050'],3:['#c2a050','#00704a'],4:['#a98a3e','#9a7a34'],5:['#2a3c66','#1f2d4d']};
     const RANK_RN = {1:'Ⅰ',2:'Ⅱ',3:'Ⅲ',4:'Ⅳ',5:'Ⅴ'};
     const RANK_NM = {1:'Associate',2:'Professional',3:'Expert',4:'Master',5:'Laureate'};
     function rankSeal(tier, size){
@@ -595,7 +595,7 @@
       <p class="text-neutral-900/40 text-[11px] mt-3 leading-relaxed">※ 커뮤니티는 멤버 전용이라, 링크를 받은 분은 로그인 후 글을 볼 수 있어요.</p>
     </div>
   </div>
-  <style>.shareB{display:flex;align-items:center;justify-content:center;gap:4px;border:1px solid rgba(21,32,58,.12);border-radius:.75rem;padding:.6rem .4rem;font-weight:600;transition:.15s}.shareB:hover{background:rgba(15,118,110,.08);border-color:rgba(15,118,110,.4)}</style>
+  <style>.shareB{display:flex;align-items:center;justify-content:center;gap:4px;border:1px solid rgba(21,32,58,.12);border-radius:.75rem;padding:.6rem .4rem;font-weight:600;transition:.15s}.shareB:hover{background:rgba(0,112,74,.08);border-color:rgba(0,112,74,.4)}</style>
 
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>

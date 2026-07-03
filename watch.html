@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <script src="/content-loader.js?v=20260703f"></script>
-  <script src="/site-header.js?v=20260703d"></script>
-  <script src="/section-sidenav.js?v=6"></script>
+  <script src="/site-header.js?v=20260703e"></script>
+  <script src="/section-sidenav.js?v=7"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>강의실 — BIBLY 바이블 인사이트</title>
   <meta name="description" content="BIBLY 강의실 — 천년왕국·종말론·성경적 세계관 무료 강의. 영상과 함께 강의 소개·목차·요약노트·확인 퀴즈·질의응답까지 한 곳에서." />
@@ -12,10 +12,10 @@
   <meta property="og:site_name" content="BIBLY 바이블 인사이트" />
   <meta property="og:title" content="BIBLY 강의실 — 말씀으로 시대를 읽다" />
   <meta property="og:description" content="천년왕국·종말론·성경적 세계관 무료 강의. 영상+요약노트+확인 퀴즈+질의응답까지." />
-  <meta property="og:image" content="https://biblynote.com/images/og-cover.png?v=3" />
+  <meta property="og:image" content="https://biblynote.com/images/og-cover.png?v=4" />
   <meta property="og:locale" content="ko_KR" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://biblynote.com/images/og-cover.png?v=3" />
+  <meta name="twitter:image" content="https://biblynote.com/images/og-cover.png?v=4" />
   <link rel="canonical" href="https://biblynote.com/watch" />
   <link rel="manifest" href="/manifest.json" />
   <meta name="theme-color" content="#213a6b" />
@@ -36,7 +36,7 @@
   </script>
   <script>
     tailwind.config = { theme: { extend: {
-      colors: { ink:'#213a6b', navy:'#182c54', gold:'#0f766e', sand:'#eaf0f8', sky:'#eef5fe', cloud:'#f6f9fe', paper:'#ffffff' },
+      colors: { ink:'#213a6b', navy:'#182c54', gold:'#00704a', sand:'#eaf0f8', sky:'#eef5fe', cloud:'#f6f9fe', paper:'#ffffff' },
       fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['Pretendard','system-ui','sans-serif'] },
       boxShadow: { soft:'0 2px 16px -8px rgba(21,32,58,.12)', card:'0 20px 54px -26px rgba(21,32,58,.22)' }
     }}}
@@ -50,7 +50,7 @@
     .shareItem:hover{background:#eef5fe}
     /* 산뜻한 액션 버튼 */
     .actBtn{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:14px;padding:10px 16px;border-radius:9999px;transition:all .15s;border:1px solid transparent}
-    .actBtn-primary{background:linear-gradient(135deg,#c79a44,#0f766e);color:#fff;box-shadow:0 8px 18px -8px rgba(15,118,110,.55)}
+    .actBtn-primary{background:linear-gradient(135deg,#c79a44,#00704a);color:#fff;box-shadow:0 8px 18px -8px rgba(0,112,74,.55)}
     .actBtn-primary:hover{filter:brightness(1.05);transform:translateY(-1px)}
     .actBtn-soft{background:#fbf4e3;color:#9a7726;border-color:#efe2c2}
     .actBtn-soft:hover{background:#f7eccf}
@@ -58,7 +58,7 @@
     .actBtn-ghost:hover{background:#eef5fe;border-color:#cfe0f6}
     .learnTabBtn{position:relative;font-weight:700;font-size:14px;color:#8a93a6;padding:10px 14px;border:0;background:none;cursor:pointer;transition:color .15s;border-bottom:2.5px solid transparent;margin-bottom:-1.5px}
     .learnTabBtn:hover{color:#42506c}
-    .learnTabBtn.on{color:#0f766e;border-bottom-color:#0f766e}
+    .learnTabBtn.on{color:#00704a;border-bottom-color:#00704a}
     .tabPanel{animation:tabfade .2s ease}
     @keyframes tabfade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
   </style>
@@ -373,7 +373,7 @@
     // ===== 요약 노트 / PDF / 공유 =====
     let NOTE_CACHE = {};
     function noteHeader(){
-      return `<div style="border-bottom:2px solid #0f766e;padding-bottom:10px;margin-bottom:20px;display:flex;align-items:center;gap:10px">
+      return `<div style="border-bottom:2px solid #00704a;padding-bottom:10px;margin-bottom:20px;display:flex;align-items:center;gap:10px">
         <img src="/images/logo-bible-insight.png?v=2" alt="바이블 인사이트" style="height:34px;width:auto;flex:none"/>
         <span style="font-weight:700;color:#171717;font-size:14px">바이블 인사이트 · 강의 노트</span>
         <span style="margin-left:auto;font-size:12px;color:#a7adba">biblynote.com</span>
@@ -389,7 +389,7 @@
     // 기본(자동) 노트 — 풍성한 노트 파일이 없을 때 폴백
     function basicNoteHTML(l){
       const tags = (l.tags || []).map(t => `<span style="display:inline-block;background:#f4eedd;color:#8a6d2f;font-size:12px;font-weight:600;padding:3px 11px;border-radius:999px;margin:3px 5px 3px 0">#${esc(t)}</span>`).join('');
-      const chaps = (l.chapters || []).map(c => `<li style="margin:7px 0;color:#2b3550;line-height:1.5">${ c.t ? `<b style="color:#0f766e">${esc(c.t)}</b>&nbsp;&nbsp;` : '' }${esc(c.label)}</li>`).join('');
+      const chaps = (l.chapters || []).map(c => `<li style="margin:7px 0;color:#2b3550;line-height:1.5">${ c.t ? `<b style="color:#00704a">${esc(c.t)}</b>&nbsp;&nbsp;` : '' }${esc(c.label)}</li>`).join('');
       return noteHeader() + titleBlock(l) +
         ( l.summary ? `<div style="margin-bottom:18px"><p style="font-weight:700;color:#171717;margin:0 0 7px">강의 소개</p><p style="color:#44506a;line-height:1.75;margin:0">${esc(l.summary)}</p></div>` : '' ) +
         ( chaps ? `<div style="margin-bottom:18px"><p style="font-weight:700;color:#171717;margin:0 0 7px">핵심 내용</p><ol style="margin:0;padding-left:20px">${chaps}</ol></div>` : '' ) +
@@ -405,7 +405,7 @@
       let h = noteHeader() + titleBlock(l);
       if(n.thesis){
         h += `<div style="background:linear-gradient(135deg,#fdfaf1,#fbf6e7);border:1px solid #f0e4c6;border-left:4px solid #c79a44;border-radius:14px;padding:15px 18px;margin-bottom:22px">
-          <p style="font-size:11px;font-weight:700;letter-spacing:.06em;color:#0f766e;margin:0 0 4px">핵심 한 문장</p>
+          <p style="font-size:11px;font-weight:700;letter-spacing:.06em;color:#00704a;margin:0 0 4px">핵심 한 문장</p>
           <p style="color:#2b3550;font-size:15px;font-weight:600;line-height:1.65;margin:0">${esc(n.thesis)}</p></div>`;
       }
       if(n.overview){
@@ -1237,7 +1237,7 @@
 
   <!-- ===== 말씀 검색 드로어 (강의 중 사전·성경구절 바로 검색) ===== -->
   <button id="srchTab" onclick="srchOpen()" aria-label="말씀 검색 열기"
-    class="fixed right-0 top-[40%] z-40 bg-gold text-white shadow-[0_6px_22px_-6px_rgba(15,118,110,.85)] rounded-l-2xl px-2.5 py-3.5 flex flex-col items-center gap-1 hover:opacity-95 transition">
+    class="fixed right-0 top-[40%] z-40 bg-gold text-white shadow-[0_6px_22px_-6px_rgba(0,112,74,.85)] rounded-l-2xl px-2.5 py-3.5 flex flex-col items-center gap-1 hover:opacity-95 transition">
     <span class="text-lg leading-none"></span>
     <span class="text-[10px] font-bold leading-tight text-center">말씀<br>검색</span>
   </button>
@@ -1393,7 +1393,7 @@
   </script>
   <style>
     #srchPanel .srchDeep[open] .dcaret{transform:rotate(180deg);display:inline-block}
-    #srchPanel mark{background:rgba(15,118,110,.22);color:inherit;border-radius:3px;padding:0 1px}
+    #srchPanel mark{background:rgba(0,112,74,.22);color:inherit;border-radius:3px;padding:0 1px}
     #srchResults::-webkit-scrollbar{width:8px}
     #srchResults::-webkit-scrollbar-thumb{background:rgba(33,58,107,.15);border-radius:8px}
   </style>

@@ -28,7 +28,7 @@
     var bar=document.createElement('div');
     bar.style.cssText='position:fixed;top:8px;left:50%;transform:translateX(-50%);z-index:120;display:flex;gap:8px;align-items:center;background:#213a6b;color:#fff;padding:7px 12px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.25);font-size:13px';
     bar.innerHTML='<span style="opacity:.65">관리자 ·</span>'
-      +'<button id="cmsToggle" style="background:#0f766e;color:#fff;border:0;padding:6px 13px;border-radius:999px;font-weight:700;cursor:pointer">글 편집</button>'
+      +'<button id="cmsToggle" style="background:#00704a;color:#fff;border:0;padding:6px 13px;border-radius:999px;font-weight:700;cursor:pointer">글 편집</button>'
       +'<button id="cmsSave" style="display:none;background:#fff;color:#171717;border:0;padding:6px 13px;border-radius:999px;font-weight:700;cursor:pointer">저장</button>'
       +'<button id="cmsCancel" style="display:none;background:transparent;color:#fff;border:0;padding:6px 8px;cursor:pointer;opacity:.8">취소</button>'
       +'<span id="cmsHint" style="opacity:.55"></span>';
@@ -44,7 +44,7 @@
     editing=on;
     document.querySelectorAll('[data-cms]').forEach(function(el){
       el.contentEditable=on?'true':'false';
-      el.style.outline=on?'2px dashed #0f766e':'';
+      el.style.outline=on?'2px dashed #00704a':'';
       el.style.outlineOffset=on?'3px':'';
       el.style.cursor=on?'text':'';
       el.title=on?('편집: '+el.getAttribute('data-cms')):'';

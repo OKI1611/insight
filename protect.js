@@ -42,7 +42,7 @@
 
   // 콘솔 경고(개발자도구 통한 수집 억제)
   try{
-    console.log('%c저작권 보호 콘텐츠','color:#0f766e;font-size:18px;font-weight:bold');
+    console.log('%c저작권 보호 콘텐츠','color:#00704a;font-size:18px;font-weight:bold');
     console.log('%cBIBLY 바이블 인사이트의 「KJV 새번역」·영어/신학 학습 자료는 저작권 보호 대상입니다.\n무단 복제·자동 수집(크롤링·스크래핑)·배포 시 민·형사상 책임을 질 수 있습니다.','color:#171717;font-size:13px');
   }catch(_){}
 
