@@ -305,21 +305,8 @@
     html += '<a class="rtop" title="맨 위로" onclick="window.scrollTo({top:0,behavior:\'smooth\'});return false;"><span class="ic">⤴</span><span class="lb">TOP</span></a>';
     rail.innerHTML = html;
     document.body.appendChild(rail);
-    // 퀵바는 항상 '왼쪽'에 둔다. 좌측 섹션 메뉴가 있는 페이지(데스크톱)에서는
-    // 메뉴 바로 오른쪽에 붙여, 둘 다 왼쪽에서 보이고 겹치지 않게 한다.
-    function fit(){
-      var side = document.getElementById('sectionSideNav');
-      if(side && window.innerWidth >= 1024){
-        var right = side.getBoundingClientRect().right;
-        rail.style.left = (Math.round(right) + 10) + 'px'; rail.style.right = 'auto';
-      } else {
-        rail.style.left = '12px'; rail.style.right = 'auto';
-      }
-      rail.style.display = '';
-    }
-    fit(); window.addEventListener('resize', fit);
-    [300, 800, 1500, 2500].forEach(function(t){ setTimeout(fit, t); });   // 섹션 사이드바 비동기 렌더 대응
-    try{ new MutationObserver(fit).observe(document.body, { childList:true }); }catch(e){}
+    // 퀵바는 항상 화면 맨 왼쪽 가장자리에 고정
+    rail.style.left = '12px'; rail.style.right = 'auto';
   }
 
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
