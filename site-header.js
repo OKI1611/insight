@@ -239,19 +239,21 @@
       try{
         var biz = s && s.business;
         if(biz && biz.reg_no && document.body.innerText.indexOf(biz.reg_no) < 0){
-          var L = function(t){ return '<span style="color:rgba(33,58,107,.32)">' + t + '</span> '; };
-          var V = function(t){ return '<span style="color:rgba(33,58,107,.62)">' + t + '</span>'; };
-          var S = '<span style="color:rgba(33,58,107,.16);margin:0 9px">│</span>';
+          var L = function(t){ return '<span style="color:#9ca3af">' + t + '</span> '; };
+          var V = function(t){ return '<span style="color:#404040">' + t + '</span>'; };
+          var S = '<span style="color:#d4d4d4;margin:0 10px">│</span>';
           var eco = biz.ecommerce_no ? ('신고 ' + biz.ecommerce_no) : '신고 준비 중';
+          var addr = String(biz.address || '').replace('강남구', '<span style="color:#b8923f;font-weight:600">강남구</span>');
           var bl = document.createElement('div');
           bl.setAttribute('data-bibly-bizinfo','');
-          bl.style.cssText = 'max-width:1080px;margin:0 auto;padding:24px 20px 6px;text-align:center;border-top:1px solid rgba(33,58,107,.07)';
+          bl.style.cssText = 'max-width:1120px;margin:36px auto 0;padding:30px 20px 4px;text-align:center;border-top:1px solid #e5e5e5';
           bl.innerHTML =
-            '<div style="width:30px;height:2px;background:#b8923f;opacity:.55;border-radius:2px;margin:0 auto 15px"></div>'
-            + '<div style="font-weight:700;font-size:12.5px;letter-spacing:.02em;color:rgba(33,58,107,.72);margin-bottom:11px">BIBLY <span style="color:#b8923f">·</span> 바이블 인사이트</div>'
-            + '<div style="font-size:11px;line-height:2.05;color:rgba(33,58,107,.5)">'
+            '<img src="/images/logo-bible-insight.png?v=2" alt="바이블 인사이트" style="height:34px;width:auto;display:block;margin:0 auto 13px"/>'
+            + '<span style="display:inline-flex;align-items:center;gap:6px;border-radius:999px;background:rgba(184,146,63,.1);border:1px solid rgba(184,146,63,.25);padding:4px 14px;margin-bottom:13px;font-size:11px;font-weight:600;letter-spacing:.02em;color:#b8923f">서울 강남 본부 · GANGNAM, SEOUL</span>'
+            + '<div style="font-weight:700;font-size:13px;letter-spacing:.02em;color:#404040;margin-bottom:11px">BIBLY <span style="color:#b8923f">·</span> 바이블 인사이트</div>'
+            + '<div style="font-size:11.5px;line-height:2.05;color:#737373">'
             +   L('상호') + V(biz.name) + S + L('대표') + V(biz.ceo) + S + L('사업자등록번호') + V(biz.reg_no)
-            +   '<br>' + L('통신판매업') + V(eco) + S + L('주소') + V(biz.address)
+            +   '<br>' + L('통신판매업') + V(eco) + S + L('주소') + '<span style="color:#404040">' + addr + '</span>'
             +   (biz.contact_email ? '<br>' + L('문의') + V(biz.contact_email) : '')
             + '</div>';
           var f = document.querySelector('footer');
