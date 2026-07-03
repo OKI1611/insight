@@ -206,6 +206,7 @@
             <input id="bPhone" type="tel" maxlength="30" placeholder="연락처 *" class="border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold" />
           </div>
           <input id="bEmail" type="email" maxlength="120" placeholder="이메일 * (이 계정으로 자료·이용권을 드려요)" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold" />
+          <p id="prefillHint" class="hidden text-[12px] text-gold/90 -mt-1.5 px-1">로그인 정보로 자동 입력했어요 · 필요하면 수정하세요.</p>
 
           <!-- 상품 형태 (책자가 있을 때만) -->
           <div id="formatBox">
@@ -433,6 +434,23 @@
       if(co) co.innerHTML=CART.map(it=>`<div class="flex items-center justify-between py-1"><span class="text-sm text-neutral-900/80 truncate pr-3">${it.kind==='pass'?'':''} ${esc(it.name)}</span><span class="text-sm font-semibold text-neutral-900 shrink-0">${won(it.price)}</span></div>`).join('')
         +`<div class="flex items-center justify-between border-t border-ink/10 mt-2 pt-2"><span class="font-bold">합계 (${CART.length}개)</span><span class="font-bold text-gold text-lg">${won(cartTotal())}</span></div>`;
       const m=$('bMsg'); if(m) m.textContent='';
+      prefillOrderForm();   // 로그인 시 이름·이메일·연락처 자동 입력(수정 가능)
+    }
+
+    // 로그인한 경우 주문서에 개인정보를 기본값으로 채운다(고객이 수정 가능)
+    async function prefillOrderForm(){
+      const email = await currentEmail(); if(!email) return;
+      let name='', phone='';
+      try{ for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); if(!/auth-token/.test(k)) continue;
+        const v=JSON.parse(localStorage.getItem(k)); const s=(v&&v.user)?v:(v&&v.currentSession)?v.currentSession:null;
+        if(s&&s.user){ const md=s.user.user_metadata||{}; name=md.full_name||md.name||''; phone=md.phone||md.phone_number||''; break; } }
+      }catch(e){}
+      try{ const {data}=await sb.from('profiles').select('*').eq('email',email).maybeSingle();
+        if(data){ name=name||data.full_name||data.name||''; phone=phone||data.phone||data.phone_number||''; } }catch(e){}
+      const be=$('bEmail'); if(be&&!be.value){ be.value=email; }
+      const bn=$('bName'); if(bn&&!bn.value&&name){ bn.value=name; }
+      const bp=$('bPhone'); if(bp&&!bp.value&&phone){ bp.value=phone; }
+      const hint=$('prefillHint'); if(hint) hint.classList.remove('hidden');
     }
 
     function orderNo(){ const d=new Date(), p=x=>String(x).padStart(2,'0');
@@ -474,7 +492,12 @@
       showDone(done);
     }
     function payGuide(pay,price){
-      if(pay==='카카오페이'){ const u=PAY.kakaopay_url; return u?`<a href="${u}" target="_blank" rel="noopener" class="inline-block bg-[#FEE500] text-[#191600] font-bold px-5 py-2.5 rounded-xl">카카오페이로 ${won(price)} 송금하기 →</a><p class="text-neutral-900/45 text-xs mt-2">송금 후 메모에 <b>주문번호</b>를 적어주시면 빠릅니다.</p>`:'카카오페이 송금 안내를 이메일로 보내드릴게요.'; }
+      if(pay==='카카오페이'){ const u=PAY.kakaopay_url; if(!u) return '카카오페이 송금 안내를 이메일로 보내드릴게요.';
+        const isMobile=/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        const btn = isMobile
+          ? `<a href="${esc(u)}" target="_blank" rel="noopener" class="inline-block bg-[#FEE500] text-[#191600] font-bold px-5 py-2.5 rounded-xl">카카오페이로 ${won(price)} 송금하기 →</a>`
+          : `<button type="button" onclick="openKakaoQR('${esc(u).replace(/'/g,"\\'")}')" class="inline-block bg-[#FEE500] text-[#191600] font-bold px-5 py-2.5 rounded-xl">카카오페이로 ${won(price)} 송금하기 →</button><p class="text-neutral-900/45 text-xs mt-2">PC에서는 <b>QR코드</b>가 떠요 · 휴대폰 카카오페이로 스캔해 송금하세요.</p>`;
+        return btn+`<p class="text-neutral-900/45 text-xs mt-2">송금 후 메모에 <b>주문번호</b>를 적어주시면 빠릅니다.</p>`; }
       if(pay==='간편결제'){ const u=PAY.simplepay_url; return u?`<a href="${u}" target="_blank" rel="noopener" class="inline-block bg-gold text-white font-bold px-5 py-2.5 rounded-xl">간편결제로 ${won(price)} 결제하기 →</a>`:'간편결제 안내를 이메일로 보내드릴게요.'; }
       const acct=PAY.bank_account, bn=PAY.bank_name, hd=PAY.bank_holder;
       return acct?`<div class="bg-sand/70 border border-ink/10 rounded-xl p-4 text-left text-sm leading-relaxed"><p class="font-bold text-neutral-900 mb-1">입금 계좌</p><p>${esc(bn||'')} <b class="text-neutral-900">${esc(acct)}</b> (예금주 ${esc(hd||'')})</p><p class="mt-1">입금액 <b class="text-gold">${won(price)}</b> · 입금자명에 <b>주문번호</b> 또는 <b>주문자 이름</b></p></div>`:'입금 계좌를 이메일로 보내드릴게요.';
@@ -695,8 +718,31 @@
       setTimeout(()=>{ if(pdfBtn){ pdfBtn.disabled=false; pdfBtn.textContent='전체 PDF'; } }, 1600);
     }
 
+    // 카카오페이 QR 모달 (PC) — 링크를 QR로 만들어 휴대폰으로 스캔하게 함(브라우저 직접 열면 404)
+    window.openKakaoQR = function(url){
+      const modal=$('kakaoQrModal'), box=$('kakaoQrBox'); if(!modal||!box) return;
+      const render=()=>{ try{ const qr=qrcode(0,'M'); qr.addData(url); qr.make(); box.innerHTML=qr.createImgTag(6,8);
+          const img=box.querySelector('img'); if(img){ img.style.width='220px'; img.style.height='220px'; img.style.imageRendering='pixelated'; } }
+        catch(e){ box.innerHTML='<a href="'+url+'" target="_blank" rel="noopener" class="text-blue-600 underline break-all text-sm">'+url+'</a>'; }
+        modal.style.display='flex'; };
+      if(window.qrcode){ render(); return; }
+      const sc=document.createElement('script'); sc.src='https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js'; sc.onload=render;
+      sc.onerror=()=>{ box.innerHTML='<a href="'+url+'" target="_blank" rel="noopener" class="text-blue-600 underline break-all text-sm">'+url+'</a>'; modal.style.display='flex'; };
+      document.head.appendChild(sc);
+    };
+
     boot();
   </script>
+
+  <!-- 카카오페이 QR 모달 (PC 송금용) -->
+  <div id="kakaoQrModal" style="display:none" class="fixed inset-0 z-[100] items-center justify-center bg-black/60 p-4" onclick="if(event.target===this)this.style.display='none'">
+    <div class="bg-white rounded-2xl p-6 max-w-xs w-full text-center shadow-2xl" style="color:#1a1a1a">
+      <h2 class="font-bold text-lg mb-1">카카오페이로 송금</h2>
+      <p class="text-sm text-gray-500 mb-4">휴대폰 카메라 또는 카카오페이로<br>아래 QR을 스캔해 주세요</p>
+      <div id="kakaoQrBox" class="flex items-center justify-center mx-auto" style="min-height:220px"></div>
+      <button onclick="document.getElementById('kakaoQrModal').style.display='none'" class="mt-5 w-full py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 font-semibold text-sm">닫기</button>
+    </div>
+  </div>
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
   <script src="/access.js?v=1"></script>
