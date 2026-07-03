@@ -1,16 +1,1349 @@
 [
-  {"en":"blind from his birth","ko":"날 때부터 맹인 된","note":"태어날 때부터 앞을 보지 못하던 사람. 인간의 노력으로는 고칠 수 없는 상태를 가리킨다.","voc":[["blind","adj.","눈먼, 맹인의"],["birth","n.","출생, 태어남"]],"idi":[["from his birth","태어날 때부터, 날 때부터"]],"gra":[]},
-  {"en":"who did sin","ko":"누구의 죄로","note":"제자들은 모든 고난을 특정한 죄의 결과로 여기는 당시 통념을 따라 물었다.","voc":[["sin","v.","죄를 짓다"],["parents","n.","부모"]],"idi":[],"gra":[["who did sin","did=동사를 강조하는 고어 용법(현대영어 who sinned)"]]},
-  {"en":"the works of God should be made manifest","ko":"하나님의 일이 드러나게","note":"이 사람의 시각 장애는 형벌이 아니라 하나님의 능력이 나타날 통로였다.","voc":[["works","n.","일, 행하신 일"],["manifest","adj.","드러난, 명백한"]],"idi":[],"gra":[["should be made manifest","be made manifest=드러나게 되다(make+형용사 사역구문)"]]},
-  {"en":"the night cometh","ko":"밤이 오면","note":"일할 수 있는 때가 제한되어 있음을 비유한 표현으로, 사역의 긴급함을 말한다.","voc":[["night","n.","밤"],["work","v.","일하다"]],"idi":[],"gra":[["cometh","cometh=동사 come의 3인칭 단수 고어형(현대영어 comes)"]]},
-  {"en":"the light of the world","ko":"세상의 빛","note":"예수께서 자신을 영적 어둠을 밝히는 빛으로 선언하신다.","voc":[["light","n.","빛"],["world","n.","세상"]],"idi":[],"gra":[]},
-  {"en":"made clay of the spittle","ko":"침으로 진흙을 이겨","note":"창세기의 흙으로 사람을 지으심을 떠올리게 하는 창조의 행위를 연상시킨다.","voc":[["clay","n.","진흙"],["spittle","n.","침"],["anoint","v.","바르다"]],"idi":[["make clay of","~으로 진흙을 이기다"]],"gra":[]},
-  {"en":"the pool of Siloam","ko":"실로암 못","note":"히브리어로 '보냄을 받았다'는 뜻. 보냄받은 자 예수를 가리키는 상징이다.","voc":[["pool","n.","못, 웅덩이"],["wash","v.","씻다"]],"idi":[],"gra":[]},
-  {"en":"came seeing","ko":"보게 되어 돌아오니라","note":"씻으라는 명령에 순종한 결과로 시력을 얻었다.","voc":[["seeing","v.","보면서(see의 분사)"],["return","v.","돌아오다"]],"idi":[],"gra":[["came seeing","come+현재분사(seeing)=보는 상태로 돌아왔다는 결과 표현"]]},
-  {"en":"I am he","ko":"내가 그로다","note":"맹인이던 자가 자신이 바로 그 사람임을 분명히 밝힌다.","voc":[["he","pron.","그, 그 사람"]],"idi":[],"gra":[]},
-  {"en":"one thing I know","ko":"한 가지 아는 것","note":"신학 논쟁에 휘말리지 않고 자기가 직접 경험한 변화만을 증언한다.","voc":[["know","v.","알다"],["thing","n.","것, 일"]],"idi":[],"gra":[["one thing I know","목적어(one thing)를 앞세운 도치—강조 어순"]]},
-  {"en":"whereas I was blind, now I see","ko":"맹인으로 있다가 지금 보는 것","note":"본 장의 핵심 증언. 단순하나 반박할 수 없는 회심의 고백이다.","voc":[["whereas","conj.","~인 반면에"],["now","adv.","지금, 이제"]],"idi":[],"gra":[["whereas","whereas=대조를 나타내는 접속사(~이었던 데 반하여)"]]},
-  {"en":"put out of the synagogue","ko":"회당에서 쫓아냄","note":"공동체에서 추방되는 무거운 처벌로, 부모가 두려워한 이유였다.","voc":[["synagogue","n.","회당"],["confess","v.","고백하다, 시인하다"]],"idi":[["put out of","~에서 내쫓다, 추방하다"]],"gra":[]},
-  {"en":"he worshipped him","ko":"그에게 절하더라","note":"고침받은 자가 예수를 하나님의 아들로 믿고 경배한다.","voc":[["worship","v.","경배하다, 절하다"],["believe","v.","믿다"]],"idi":[],"gra":[]},
-  {"en":"that they which see might be made blind","ko":"보는 자들이 맹인이 되게","note":"스스로 본다고 자부하는 자들의 영적 완고함에 대한 심판을 가리킨다.","voc":[["judgment","n.","심판"],["blind","adj.","눈먼"]],"idi":[],"gra":[["they which see","which=사람을 가리키는 고어 관계대명사(현대영어 who)"]]}
+ {
+  "en": "And as Jesus passed by, he saw a man which was blind from his birth.",
+  "ko": "예수께서 길을 가시다가, 날 때부터 맹인 된 한 사람을 보시니라.",
+  "note": "요한복음 9장은 '보는 것'과 '보지 못하는 것'의 표적이다. 예수께서 먼저 이 사람을 '보셨으니', 구원은 사람이 찾기 전에 하나님이 먼저 찾으심에서 시작된다.",
+  "voc": [
+   [
+    "pass by",
+    "v.",
+    "지나가다"
+   ],
+   [
+    "blind",
+    "adj.",
+    "눈먼, 맹인의"
+   ],
+   [
+    "birth",
+    "n.",
+    "출생, 태어남"
+   ]
+  ],
+  "idi": [
+   [
+    "from his birth",
+    "날 때부터, 태어날 때부터"
+   ]
+  ],
+  "gra": [
+   [
+    "a man which was blind",
+    "which=사람을 가리키는 고어 관계대명사(현대영어 who)"
+   ]
+  ]
+ },
+ {
+  "en": "And his disciples asked him, saying, Master, who did sin, this man, or his parents, that he was born blind?",
+  "ko": "제자들이 그에게 여쭈어 이르되, \"선생님, 이 사람이 맹인으로 태어난 것은 누구의 죄로 말미암음이니이까? 자기의 죄이니이까, 그 부모의 죄이니이까?\"",
+  "note": "제자들은 모든 고난을 특정한 죄의 결과로 여기던 당시 통념을 따라 물었다. 헬라어 '하마르타노'(죄를 짓다)는 과녁을 빗나감을 뜻하니, 그들은 원인을 인과응보에서만 찾으려 했다.",
+  "voc": [
+   [
+    "sin",
+    "v.",
+    "죄를 짓다"
+   ],
+   [
+    "parents",
+    "n.",
+    "부모"
+   ],
+   [
+    "born",
+    "adj.",
+    "태어난"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "who did sin",
+    "did sin=did+원형으로 강조·의문을 만든 고어 용법(현대영어 who sinned)"
+   ]
+  ]
+ },
+ {
+  "en": "Jesus answered, Neither hath this man sinned, nor his parents: but that the works of God should be made manifest in him.",
+  "ko": "예수께서 대답하시되, \"이 사람의 죄도 아니요, 그 부모의 죄도 아니라. 다만 하나님의 일이 그에게서 드러나게 하려 함이니라.",
+  "note": "예수는 고난의 원인을 죄가 아니라 하나님의 영광을 위한 목적으로 돌리신다. 헬라어 '파네로오'(드러나다)는 감춰진 것이 환히 나타남을 뜻하니, 이 시각 장애는 형벌이 아니라 하나님의 능력이 나타날 통로였다.",
+  "voc": [
+   [
+    "neither",
+    "conj.",
+    "~도 아니고"
+   ],
+   [
+    "works",
+    "n.",
+    "일, 행하신 일"
+   ],
+   [
+    "manifest",
+    "adj.",
+    "드러난, 명백한"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Neither hath this man sinned",
+    "hath sinned=현재완료의 고어형(현대영어 has sinned); Neither가 문두에 와 도치"
+   ]
+  ]
+ },
+ {
+  "en": "I must work the works of him that sent me, while it is day: the night cometh, when no man can work.",
+  "ko": "아직 낮일 동안에 나는 나를 보내신 이의 일을 행하여야 하리니, 밤이 오면 아무도 일할 수 없느니라.",
+  "note": "'밤이 오면'은 일할 수 있는 때가 제한됨을 비유하여 사역의 긴급함을 말한다. 헬라어 '에르가조마이'(일하다)가 반복되니, 보내신 이의 뜻을 낮 동안에 이루는 것이 예수의 사명이었다.",
+  "voc": [
+   [
+    "work",
+    "v.",
+    "일하다"
+   ],
+   [
+    "day",
+    "n.",
+    "낮, 날"
+   ],
+   [
+    "night",
+    "n.",
+    "밤"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "him that sent me",
+    "him that=그를 가리키는 관계대명사 용법(현대영어 the one who)"
+   ],
+   [
+    "the night cometh",
+    "cometh=come의 3인칭 단수 고어형(현대영어 comes)"
+   ]
+  ]
+ },
+ {
+  "en": "As long as I am in the world, I am the light of the world.",
+  "ko": "내가 세상에 있는 동안은 내가 세상의 빛이니라.\"",
+  "note": "예수께서 자신을 영적 어둠을 밝히는 '세상의 빛'으로 선언하신다. 헬라어 '포스'(빛)는 요한복음의 핵심 상징으로, 곧 태어날 때부터 어둠에 있던 자에게 육신과 영혼의 빛을 함께 주실 것을 예고한다.",
+  "voc": [
+   [
+    "light",
+    "n.",
+    "빛"
+   ],
+   [
+    "world",
+    "n.",
+    "세상"
+   ]
+  ],
+  "idi": [
+   [
+    "as long as",
+    "~하는 동안은"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "When he had thus spoken, he spat on the ground, and made clay of the spittle, and he anointed the eyes of the blind man with the clay,",
+  "ko": "이 말씀을 하시고 땅에 침을 뱉어 그것으로 진흙을 이기시고, 그 진흙을 맹인의 두 눈에 바르신 후,",
+  "note": "침으로 진흙을 이겨 바르심은 창세기에서 흙으로 사람을 지으신 창조의 행위를 연상시킨다. 새 창조의 주가 친히 손으로 만드시니, 고침은 곧 다시 지으심이다.",
+  "voc": [
+   [
+    "spit",
+    "v.",
+    "침을 뱉다"
+   ],
+   [
+    "ground",
+    "n.",
+    "땅, 바닥"
+   ],
+   [
+    "clay",
+    "n.",
+    "진흙"
+   ],
+   [
+    "anoint",
+    "v.",
+    "바르다"
+   ]
+  ],
+  "idi": [
+   [
+    "make clay of",
+    "~으로 진흙을 이기다"
+   ]
+  ],
+  "gra": [
+   [
+    "when he had thus spoken",
+    "had spoken=과거완료; thus=이같이(고어투 부사)"
+   ]
+  ]
+ },
+ {
+  "en": "And said unto him, Go, wash in the pool of Siloam, (which is by interpretation, Sent.) He went his way therefore, and washed, and came seeing.",
+  "ko": "그에게 이르시되, \"실로암 못으로 가서 씻으라\" 하시니, (실로암은 번역하면 보냄을 받았다는 뜻이라.) 이에 그가 가서 씻고 보게 되어 돌아오니라.",
+  "note": "'실로암'은 히브리어로 '보냄을 받았다'는 뜻이니, 요한은 이를 보냄받은 자 예수를 가리키는 상징으로 풀이한다. 순종하여 씻은 자리에서 시력을 얻으니, 믿음의 순종이 은혜를 받는 통로다.",
+  "voc": [
+   [
+    "wash",
+    "v.",
+    "씻다"
+   ],
+   [
+    "pool",
+    "n.",
+    "못, 웅덩이"
+   ],
+   [
+    "interpretation",
+    "n.",
+    "해석, 번역"
+   ]
+  ],
+  "idi": [
+   [
+    "go one's way",
+    "가던 길을 가다, 떠나다"
+   ]
+  ],
+  "gra": [
+   [
+    "came seeing",
+    "come+현재분사(seeing)=보는 상태로 돌아왔다는 결과 표현"
+   ]
+  ]
+ },
+ {
+  "en": "The neighbours therefore, and they which before had seen him that he was blind, said, Is not this he that sat and begged?",
+  "ko": "그러므로 이웃 사람들과 전에 그가 맹인으로 구걸하던 것을 보았던 자들이 이르되, \"이는 앉아서 구걸하던 그 사람이 아니냐?\"",
+  "note": "이웃과 옛 이웃들이 그를 알아보지 못한다. 변화가 얼마나 컸던지 사람들이 그의 정체를 두고 논쟁하니, 은혜로 새로워진 삶은 주위가 놀랄 만큼 뚜렷하다.",
+  "voc": [
+   [
+    "neighbour",
+    "n.",
+    "이웃"
+   ],
+   [
+    "beg",
+    "v.",
+    "구걸하다"
+   ],
+   [
+    "blind",
+    "adj.",
+    "눈먼"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "they which before had seen him",
+    "which=사람 관계대명사(현대영어 who); had seen=과거완료"
+   ],
+   [
+    "he that sat and begged",
+    "he that=그 사람(현대영어 the one who)"
+   ]
+  ]
+ },
+ {
+  "en": "Some said, This is he: others said, He is like him: but he said, I am he.",
+  "ko": "어떤 이들은 \"이 사람이라\" 하고, 또 어떤 이들은 \"아니라, 그와 닮았을 뿐이라\" 하되, 그가 이르기를 \"내가 그로다\" 하더라.",
+  "note": "의견이 갈리는 가운데 당사자는 '내가 그로다'라고 분명히 밝힌다. 헬라어 '에고 에이미'(내가 그다)는 단순한 신원 확인이나, 논쟁 앞에서 자기 정체를 감추지 않는 담대함을 보여 준다.",
+  "voc": [
+   [
+    "some",
+    "pron.",
+    "어떤 이들"
+   ],
+   [
+    "like",
+    "adj.",
+    "닮은, 비슷한"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "I am he",
+    "he=바로 그 사람(현대영어에서도 문어체로 쓰는 표현)"
+   ]
+  ]
+ },
+ {
+  "en": "Therefore said they unto him, How were thine eyes opened?",
+  "ko": "그러므로 그들이 그에게 이르되, \"그러면 네 눈이 어떻게 뜨이게 되었느냐?\"",
+  "note": "사람들이 눈이 어떻게 뜨였는지 방법을 캐묻는다. '뜨이다'로 옮긴 헬라어 '아노이고'(열다)는 이 장에서 거듭 쓰이니, 닫혔던 눈이 열림은 곧 닫힌 영혼이 열림의 그림자다.",
+  "voc": [
+   [
+    "open",
+    "v.",
+    "열다, 뜨게 하다"
+   ],
+   [
+    "eyes",
+    "n.",
+    "눈"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "said they unto him",
+    "said they=주어·동사 도치(고어 어순); unto=to의 고어형"
+   ],
+   [
+    "thine eyes",
+    "thine=your의 고어형(모음 앞)"
+   ]
+  ]
+ },
+ {
+  "en": "He answered and said, A man that is called Jesus made clay, and anointed mine eyes, and said unto me, Go to the pool of Siloam, and wash: and I went and washed, and I received sight.",
+  "ko": "그가 대답하여 이르되, \"예수라 하는 그 사람이 진흙을 이겨 내 눈에 바르고 내게 이르되 '실로암 못으로 가서 씻으라' 하기로, 내가 가서 씻으니 곧 보게 되었노라.\"",
+  "note": "고침받은 자가 사건의 경위를 사실 그대로 증언한다. '보게 되었노라'로 옮긴 '아나블레포'는 시력을 되찾음을 뜻하니, 그는 아직 예수를 온전히 알지 못하나 받은 은혜만은 또렷이 안다.",
+  "voc": [
+   [
+    "called",
+    "adj.",
+    "~라 하는, 불리는"
+   ],
+   [
+    "receive",
+    "v.",
+    "받다"
+   ],
+   [
+    "sight",
+    "n.",
+    "시력, 봄"
+   ]
+  ],
+  "idi": [
+   [
+    "receive sight",
+    "시력을 얻다, 보게 되다"
+   ]
+  ],
+  "gra": [
+   [
+    "a man that is called Jesus",
+    "that=관계대명사(현대영어 who); mine eyes=my eyes의 고어형(모음 앞)"
+   ]
+  ]
+ },
+ {
+  "en": "Then said they unto him, Where is he? He said, I know not.",
+  "ko": "그들이 그에게 이르되, \"그가 어디 있느냐?\" 하니, 그가 이르되 \"내가 알지 못하노라\" 하더라.",
+  "note": "'그가 어디 있느냐'는 물음에 그는 '알지 못하노라'고 답한다. 아는 것과 모르는 것을 정직히 나누는 이 태도가, 뒤에 이어질 그의 담대한 증언의 바탕이 된다.",
+  "voc": [
+   [
+    "where",
+    "adv.",
+    "어디에"
+   ],
+   [
+    "know",
+    "v.",
+    "알다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "said they unto him",
+    "said they=주어·동사 도치(고어 어순)"
+   ],
+   [
+    "I know not",
+    "동사+not의 고어 부정(현대영어 I do not know)"
+   ]
+  ]
+ },
+ {
+  "en": "They brought to the Pharisees him that aforetime was blind.",
+  "ko": "그들이 전에 맹인이던 그 사람을 바리새인들에게 데려가니라.",
+  "note": "사람들이 그를 바리새인들에게 데려간다. 개인의 회복이 이제 종교 지도자들의 심문 대상이 되니, 은혜의 사건이 곧 진리를 둘러싼 대결의 자리로 옮겨 간다.",
+  "voc": [
+   [
+    "bring",
+    "v.",
+    "데려가다"
+   ],
+   [
+    "Pharisee",
+    "n.",
+    "바리새인"
+   ],
+   [
+    "aforetime",
+    "adv.",
+    "전에, 이전에"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "him that aforetime was blind",
+    "him that=그 사람(현대영어 the one who); aforetime=이전에(고어 부사)"
+   ]
+  ]
+ },
+ {
+  "en": "And it was the sabbath day when Jesus made the clay, and opened his eyes.",
+  "ko": "예수께서 진흙을 이겨 그의 눈을 뜨게 하신 날은 안식일이었더라.",
+  "note": "고침이 일어난 날이 안식일이었음이 밝혀진다. 바리새인들에게 이는 안식일 규정 위반이었으나, 예수께는 사람을 살리는 일이 곧 안식의 참뜻을 이루는 것이었다.",
+  "voc": [
+   [
+    "sabbath",
+    "n.",
+    "안식일"
+   ],
+   [
+    "clay",
+    "n.",
+    "진흙"
+   ],
+   [
+    "open",
+    "v.",
+    "뜨게 하다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "it was the sabbath day when Jesus made the clay",
+    "when=관계부사(그 날에); made=만들다(과거)"
+   ]
+  ]
+ },
+ {
+  "en": "Then again the Pharisees also asked him how he had received his sight. He said unto them, He put clay upon mine eyes, and I washed, and do see.",
+  "ko": "그러므로 바리새인들도 다시 그에게 어떻게 보게 되었는지 물으니, 그가 그들에게 이르되 \"그가 내 눈에 진흙을 바르매 내가 씻었더니 이제 보나이다\" 하더라.",
+  "note": "바리새인들이 다시 방법을 묻자 그는 '이제 보나이다'라고 간결히 답한다. 군더더기 없는 이 증언은 부인할 수 없는 사실이니, 진리는 꾸밈보다 단순함에서 힘을 얻는다.",
+  "voc": [
+   [
+    "again",
+    "adv.",
+    "다시"
+   ],
+   [
+    "receive",
+    "v.",
+    "받다"
+   ],
+   [
+    "see",
+    "v.",
+    "보다"
+   ]
+  ],
+  "idi": [
+   [
+    "receive one's sight",
+    "시력을 얻다"
+   ]
+  ],
+  "gra": [
+   [
+    "do see",
+    "do+원형(see)으로 동사를 강조한 고어 용법(현대영어 I see)"
+   ],
+   [
+    "mine eyes",
+    "mine=my의 고어형(모음 앞)"
+   ]
+  ]
+ },
+ {
+  "en": "Therefore said some of the Pharisees, This man is not of God, because he keepeth not the sabbath day. Others said, How can a man that is a sinner do such miracles? And there was a division among them.",
+  "ko": "바리새인 중 어떤 이들이 이르되, \"이 사람은 안식일을 지키지 아니하니 하나님께로부터 온 자가 아니라\" 하고, 다른 이들은 \"죄인이 어찌 이런 표적을 행할 수 있으리요?\" 하여, 그들 가운데 분쟁이 생기니라.",
+  "note": "바리새인들 사이에 분쟁이 생긴다. 헬라어 '스키스마'(분열)는 찢어짐을 뜻하니, 예수는 그를 만나는 자마다 결단을 요구하는 분이시라 사람들을 갈라 세우신다.",
+  "voc": [
+   [
+    "keep",
+    "v.",
+    "지키다"
+   ],
+   [
+    "sinner",
+    "n.",
+    "죄인"
+   ],
+   [
+    "miracle",
+    "n.",
+    "표적, 기적"
+   ],
+   [
+    "division",
+    "n.",
+    "분쟁, 분열"
+   ]
+  ],
+  "idi": [
+   [
+    "of God",
+    "하나님께로부터 온"
+   ]
+  ],
+  "gra": [
+   [
+    "he keepeth not the sabbath day",
+    "keepeth=keep의 3인칭 단수 고어형; not이 동사 뒤에 온 고어 부정"
+   ],
+   [
+    "a man that is a sinner",
+    "that=관계대명사(현대영어 who)"
+   ]
+  ]
+ },
+ {
+  "en": "They say unto the blind man again, What sayest thou of him, that he hath opened thine eyes? He said, He is a prophet.",
+  "ko": "그들이 맹인이던 자에게 다시 이르되, \"그가 네 눈을 뜨게 하였으니, 너는 그를 어떤 자라 하느냐?\" 하니, 그가 이르되 \"선지자니이다\" 하더라.",
+  "note": "고침받은 자가 예수를 '선지자'라 부른다. 그의 인식이 '예수라 하는 사람'에서 한 걸음 나아갔으니, 은혜를 깊이 헤아릴수록 그리스도를 더 크게 알아 가는 여정이 시작된다.",
+  "voc": [
+   [
+    "say",
+    "v.",
+    "말하다"
+   ],
+   [
+    "prophet",
+    "n.",
+    "선지자"
+   ],
+   [
+    "open",
+    "v.",
+    "뜨게 하다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "What sayest thou of him",
+    "sayest=say의 2인칭 단수 고어형; thou=너(주격)"
+   ],
+   [
+    "thine eyes",
+    "thine=your의 고어형(모음 앞)"
+   ]
+  ]
+ },
+ {
+  "en": "But the Jews did not believe concerning him, that he had been blind, and received his sight, until they called the parents of him that had received his sight.",
+  "ko": "유대인들이 그가 맹인이었다가 보게 된 것을 믿지 아니하고, 마침내 보게 된 자의 부모를 불러",
+  "note": "유대인들이 그가 본래 맹인이었음조차 믿으려 하지 않는다. 헬라어 '아피스테오'(믿지 않다)는 마음의 완고함을 드러내니, 증거보다 선입견이 앞서면 사실도 부정하게 된다.",
+  "voc": [
+   [
+    "believe",
+    "v.",
+    "믿다"
+   ],
+   [
+    "concerning",
+    "prep.",
+    "~에 관하여"
+   ],
+   [
+    "call",
+    "v.",
+    "부르다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "him that had received his sight",
+    "him that=그 사람(현대영어 the one who); had received=과거완료"
+   ]
+  ]
+ },
+ {
+  "en": "And they asked them, saying, Is this your son, who ye say was born blind? how then doth he now see?",
+  "ko": "그들에게 물어 이르되, \"너희가 맹인으로 태어났다 하는 너희 아들이 이 사람이냐? 그러면 이제 어떻게 보게 되었느냐?\"",
+  "note": "부모를 불러 아들의 정체와 회복의 경위를 캐묻는다. 두 질문을 한꺼번에 던짐은 어떻게든 흠을 잡으려는 의도이니, 진리를 구함이 아니라 반박거리를 찾는 심문이었다.",
+  "voc": [
+   [
+    "son",
+    "n.",
+    "아들"
+   ],
+   [
+    "born",
+    "adj.",
+    "태어난"
+   ],
+   [
+    "see",
+    "v.",
+    "보다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "who ye say was born blind",
+    "ye=너희(주격 복수 고어형)"
+   ],
+   [
+    "how then doth he now see",
+    "doth=do의 3인칭 단수 고어형(현대영어 does)"
+   ]
+  ]
+ },
+ {
+  "en": "His parents answered them and said, We know that this is our son, and that he was born blind:",
+  "ko": "그의 부모가 대답하여 이르되, \"이가 우리 아들인 것과 맹인으로 태어난 것은 우리가 아나이다.",
+  "note": "부모는 아는 것만 인정한다. 아들인 것과 나면서 맹인이던 것은 확실히 안다 하니, 이는 그가 참으로 회복되었다는 사실을 대적조차 부인할 수 없게 만드는 확고한 증언이다.",
+  "voc": [
+   [
+    "answer",
+    "v.",
+    "대답하다"
+   ],
+   [
+    "know",
+    "v.",
+    "알다"
+   ],
+   [
+    "born",
+    "adj.",
+    "태어난"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "We know that this is our son",
+    "that=명사절 접속사(~라는 것을)"
+   ]
+  ]
+ },
+ {
+  "en": "But by what means he now seeth, we know not; or who hath opened his eyes, we know not: he is of age; ask him: he shall speak for himself.",
+  "ko": "그러나 지금 어떻게 보게 되었는지, 또 누가 그의 눈을 뜨게 하였는지는 우리가 알지 못하나이다. 그가 장성하였으니 그에게 물어 보소서. 자기 일은 자기가 말하리이다\" 하니,",
+  "note": "부모는 회복의 경위는 모른다며 아들에게 물으라고 미룬다. '장성하였다'는 스스로 책임질 나이임을 뜻하니, 이 회피 뒤에는 뒤이어 밝혀질 두려움이 숨어 있다.",
+  "voc": [
+   [
+    "means",
+    "n.",
+    "방법, 수단"
+   ],
+   [
+    "age",
+    "n.",
+    "나이, 장성함"
+   ],
+   [
+    "himself",
+    "pron.",
+    "자기 자신"
+   ]
+  ],
+  "idi": [
+   [
+    "be of age",
+    "장성하다, 성인이 되다"
+   ]
+  ],
+  "gra": [
+   [
+    "he now seeth",
+    "seeth=see의 3인칭 단수 고어형(현대영어 sees)"
+   ],
+   [
+    "who hath opened his eyes",
+    "hath opened=현재완료의 고어형(현대영어 has opened)"
+   ]
+  ]
+ },
+ {
+  "en": "These words spake his parents, because they feared the Jews: for the Jews had agreed already, that if any man did confess that he was Christ, he should be put out of the synagogue.",
+  "ko": "그의 부모가 이렇게 말한 것은 유대인들을 두려워함이라. 이는 누구든지 예수를 그리스도라 시인하면 회당에서 쫓아내기로 유대인들이 이미 결의하였음이더라.",
+  "note": "부모의 회피가 유대인을 두려워함에서 나왔음이 드러난다. 예수를 그리스도라 시인하면 회당에서 쫓겨나니, '아포쉬나고고스'(출교)는 공동체에서 끊어지는 무거운 형벌이었다.",
+  "voc": [
+   [
+    "fear",
+    "v.",
+    "두려워하다"
+   ],
+   [
+    "agree",
+    "v.",
+    "결의하다, 합의하다"
+   ],
+   [
+    "confess",
+    "v.",
+    "시인하다, 고백하다"
+   ],
+   [
+    "synagogue",
+    "n.",
+    "회당"
+   ]
+  ],
+  "idi": [
+   [
+    "put out of",
+    "~에서 내쫓다, 추방하다"
+   ]
+  ],
+  "gra": [
+   [
+    "These words spake his parents",
+    "spake=speak의 과거 고어형(현대영어 spoke); 목적어 도치"
+   ],
+   [
+    "that he was Christ",
+    "that=명사절 접속사(~라고)"
+   ]
+  ]
+ },
+ {
+  "en": "Therefore said his parents, He is of age; ask him.",
+  "ko": "그러므로 그의 부모가 \"그가 장성하였으니 그에게 물어 보소서\" 하였더라.",
+  "note": "부모가 거듭 아들에게 미룬다. 진리 앞에서 값을 치르기를 꺼려 책임을 넘기니, 두려움에 사로잡힌 마음은 마땅히 고백해야 할 것조차 남에게 떠넘기게 된다.",
+  "voc": [
+   [
+    "therefore",
+    "adv.",
+    "그러므로"
+   ],
+   [
+    "age",
+    "n.",
+    "나이, 장성함"
+   ],
+   [
+    "ask",
+    "v.",
+    "묻다"
+   ]
+  ],
+  "idi": [
+   [
+    "be of age",
+    "장성하다, 성인이 되다"
+   ]
+  ],
+  "gra": [
+   [
+    "said his parents",
+    "said his parents=주어·동사 도치(고어 어순)"
+   ]
+  ]
+ },
+ {
+  "en": "Then again called they the man that was blind, and said unto him, Give God the praise: we know that this man is a sinner.",
+  "ko": "그러므로 그들이 맹인이던 그 사람을 다시 불러 이르되, \"너는 하나님께 영광을 돌리라. 우리는 이 사람이 죄인인 줄 아노라\" 하니,",
+  "note": "'하나님께 영광을 돌리라'는 진실을 말하라 다그치는 관용 어법이나, 정작 그들은 결론을 미리 정해 놓았다. 헬라어 '독사'(영광)를 앞세우면서 실은 예수를 죄인으로 몰려 하니, 경건의 말이 완고함의 도구가 되었다.",
+  "voc": [
+   [
+    "call",
+    "v.",
+    "부르다"
+   ],
+   [
+    "praise",
+    "n.",
+    "영광, 찬양"
+   ],
+   [
+    "sinner",
+    "n.",
+    "죄인"
+   ]
+  ],
+  "idi": [
+   [
+    "give God the praise",
+    "하나님께 영광을 돌리다"
+   ]
+  ],
+  "gra": [
+   [
+    "called they the man that was blind",
+    "called they=주어·동사 도치; that=관계대명사(현대영어 who)"
+   ]
+  ]
+ },
+ {
+  "en": "He answered and said, Whether he be a sinner or no, I know not: one thing I know, that, whereas I was blind, now I see.",
+  "ko": "그가 대답하여 이르되, \"그가 죄인인지 아닌지 나는 알지 못하나이다. 다만 한 가지 아는 것은, 내가 맹인으로 있다가 지금 보는 그것이니이다\" 하더라.",
+  "note": "본 장의 핵심 증언이다. 신학 논쟁에 휘말리지 않고 '맹인으로 있다가 지금 본다'는 자기 경험만을 말하니, 단순하나 반박할 수 없는 이 고백이 곧 참된 회심의 모습이다.",
+  "voc": [
+   [
+    "whether",
+    "conj.",
+    "~인지 아닌지"
+   ],
+   [
+    "whereas",
+    "conj.",
+    "~인 반면에"
+   ],
+   [
+    "now",
+    "adv.",
+    "지금, 이제"
+   ]
+  ],
+  "idi": [
+   [
+    "one thing I know",
+    "한 가지 아는 것은"
+   ]
+  ],
+  "gra": [
+   [
+    "Whether he be a sinner or no",
+    "be=가정법 현재의 고어형; or no=or not의 고어 표현"
+   ],
+   [
+    "I know not",
+    "동사+not의 고어 부정(현대영어 I do not know)"
+   ]
+  ]
+ },
+ {
+  "en": "Then said they to him again, What did he to thee? how opened he thine eyes?",
+  "ko": "그러므로 그들이 그에게 다시 이르되, \"그가 네게 무엇을 하였느냐? 어떻게 네 눈을 뜨게 하였느냐?\"",
+  "note": "그들이 같은 질문을 되풀이한다. 답을 얻으려 함이 아니라 진술의 틈을 찾으려는 심문이니, 진리를 거부하기로 한 마음은 같은 물음을 끝없이 되뇌게 된다.",
+  "voc": [
+   [
+    "again",
+    "adv.",
+    "다시"
+   ],
+   [
+    "do",
+    "v.",
+    "행하다, 하다"
+   ],
+   [
+    "open",
+    "v.",
+    "뜨게 하다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "said they to him",
+    "said they=주어·동사 도치(고어 어순)"
+   ],
+   [
+    "how opened he thine eyes",
+    "opened he=의문 도치(고어 어순); thine=your의 고어형"
+   ]
+  ]
+ },
+ {
+  "en": "He answered them, I have told you already, and ye did not hear: wherefore would ye hear it again? will ye also be his disciples?",
+  "ko": "그가 그들에게 대답하되, \"내가 이미 너희에게 일렀으되 너희가 듣지 아니하였거늘, 어찌하여 다시 듣고자 하느냐? 너희도 그의 제자가 되려 하느냐?\"",
+  "note": "고침받은 자가 도리어 그들에게 되묻는다. '너희도 제자가 되려 하느냐'는 물음은 담대한 반격이니, 은혜를 체험한 자는 진리 앞에서 점점 대담해진다.",
+  "voc": [
+   [
+    "already",
+    "adv.",
+    "이미"
+   ],
+   [
+    "hear",
+    "v.",
+    "듣다"
+   ],
+   [
+    "wherefore",
+    "adv.",
+    "어찌하여, 왜"
+   ],
+   [
+    "disciple",
+    "n.",
+    "제자"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "ye did not hear",
+    "ye=너희(주격 복수 고어형)"
+   ],
+   [
+    "wherefore would ye hear it again",
+    "wherefore=왜(고어 의문부사); would ye=의문 도치"
+   ]
+  ]
+ },
+ {
+  "en": "Then they reviled him, and said, Thou art his disciple; but we are Moses’ disciples.",
+  "ko": "그들이 그를 욕하며 이르되, \"너는 그의 제자이나, 우리는 모세의 제자라.",
+  "note": "그들이 그를 욕하며 '모세의 제자'를 자처한다. 헬라어 '로이도레오'(욕하다)는 모욕을 퍼부음을 뜻하니, 답할 말이 궁해질 때 사람은 논리 대신 비방으로 돌아선다.",
+  "voc": [
+   [
+    "revile",
+    "v.",
+    "욕하다, 비방하다"
+   ],
+   [
+    "disciple",
+    "n.",
+    "제자"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Thou art his disciple",
+    "art=are의 2인칭 단수 고어형; Thou=너(주격)"
+   ]
+  ]
+ },
+ {
+  "en": "We know that God spake unto Moses: as for this fellow, we know not from whence he is.",
+  "ko": "하나님께서 모세에게 말씀하신 줄은 우리가 알거니와, 이 사람은 어디서 왔는지 우리가 알지 못하노라\" 하니,",
+  "note": "그들은 모세는 알되 예수는 '어디서 왔는지' 모른다고 한다. 그러나 요한복음 전체가 예수의 근본을 하늘에 두니, 참 기원을 보지 못하는 눈멂이 곧 그들의 영적 상태였다.",
+  "voc": [
+   [
+    "speak",
+    "v.",
+    "말하다"
+   ],
+   [
+    "fellow",
+    "n.",
+    "자, 사람(낮춤말)"
+   ],
+   [
+    "whence",
+    "adv.",
+    "어디서, 어디로부터"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "God spake unto Moses",
+    "spake=speak의 과거 고어형(현대영어 spoke); unto=to의 고어형"
+   ],
+   [
+    "from whence he is",
+    "whence=어디서(고어 의문부사)"
+   ]
+  ]
+ },
+ {
+  "en": "The man answered and said unto them, Why herein is a marvellous thing, that ye know not from whence he is, and yet he hath opened mine eyes.",
+  "ko": "그 사람이 대답하여 이르되, \"이상하도다. 그가 내 눈을 뜨게 하였으되 너희가 그 오신 곳을 알지 못한다 하니,",
+  "note": "고침받은 자가 그들의 모순을 날카롭게 짚는다. 큰 표적을 행한 이의 근본을 모른다 하니 '이상하도다'라며 반문하는데, 배우지 못한 이의 이 단순한 논리가 지도자들의 완고함을 무너뜨린다.",
+  "voc": [
+   [
+    "marvellous",
+    "adj.",
+    "이상한, 놀라운"
+   ],
+   [
+    "whence",
+    "adv.",
+    "어디서, 어디로부터"
+   ],
+   [
+    "yet",
+    "adv.",
+    "그런데도"
+   ]
+  ],
+  "idi": [
+   [
+    "a marvellous thing",
+    "이상한 일, 놀라운 일"
+   ]
+  ],
+  "gra": [
+   [
+    "ye know not",
+    "ye=너희(주격 복수 고어형); know not=동사+not 고어 부정"
+   ],
+   [
+    "he hath opened mine eyes",
+    "hath opened=현재완료 고어형; mine=my의 고어형(모음 앞)"
+   ]
+  ]
+ },
+ {
+  "en": "Now we know that God heareth not sinners: but if any man be a worshipper of God, and doeth his will, him he heareth.",
+  "ko": "우리가 알거니와 하나님은 죄인의 말을 듣지 아니하시고, 누구든지 하나님을 경외하며 그 뜻대로 행하는 자의 말은 들으시느니라.",
+  "note": "그는 '하나님은 경외하며 그 뜻대로 행하는 자의 말을 들으신다'는 원리를 든다. 헬라어 '테오세베스'(하나님을 경외하는)는 경건한 삶을 뜻하니, 응답받은 예수의 표적이 곧 그분이 하나님께로부터 왔음의 증거였다.",
+  "voc": [
+   [
+    "worshipper",
+    "n.",
+    "경배하는 자"
+   ],
+   [
+    "will",
+    "n.",
+    "뜻, 의지"
+   ],
+   [
+    "hear",
+    "v.",
+    "듣다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "God heareth not sinners",
+    "heareth=hear의 3인칭 단수 고어형; not이 동사 뒤에 온 고어 부정"
+   ],
+   [
+    "doeth his will",
+    "doeth=do의 3인칭 단수 고어형(현대영어 does)"
+   ]
+  ]
+ },
+ {
+  "en": "Since the world began was it not heard that any man opened the eyes of one that was born blind.",
+  "ko": "창세 이래로 맹인으로 태어난 자의 눈을 뜨게 하였다는 말은 들어 본 적이 없거늘,",
+  "note": "창세 이래 나면서 맹인 된 자의 눈을 뜨게 한 일은 없었다고 그는 단언한다. 헬라어 '엑 투 아이오노스'(세상이 시작된 이래)는 전례 없음을 강조하니, 이 표적의 유례없음이 곧 예수의 신적 권능을 증언한다.",
+  "voc": [
+   [
+    "since",
+    "conj.",
+    "~이래로"
+   ],
+   [
+    "begin",
+    "v.",
+    "시작되다"
+   ],
+   [
+    "hear",
+    "v.",
+    "듣다"
+   ]
+  ],
+  "idi": [
+   [
+    "the world began",
+    "세상이 시작되다, 창세"
+   ]
+  ],
+  "gra": [
+   [
+    "was it not heard",
+    "의문 도치의 고어 어순(현대영어 it was not heard)"
+   ],
+   [
+    "one that was born blind",
+    "one that=~한 자(현대영어 one who)"
+   ]
+  ]
+ },
+ {
+  "en": "If this man were not of God, he could do nothing.",
+  "ko": "이 사람이 하나님께로부터 온 자가 아니라면 아무 일도 할 수 없었으리이다\" 하니,",
+  "note": "그는 결론을 내린다 — 하나님께로부터 온 자가 아니면 아무 일도 못 한다. 표적에서 그 근원을 바로 읽어 내니, 배움 없는 자의 이 단순한 신앙이 지도자들의 학식보다 진리에 가까웠다.",
+  "voc": [
+   [
+    "were",
+    "v.",
+    "~이라면(가정법)"
+   ],
+   [
+    "nothing",
+    "pron.",
+    "아무것도"
+   ],
+   [
+    "do",
+    "v.",
+    "하다, 행하다"
+   ]
+  ],
+  "idi": [
+   [
+    "of God",
+    "하나님께로부터 온"
+   ]
+  ],
+  "gra": [
+   [
+    "If this man were not of God, he could do nothing",
+    "were=가정법 과거(현실 반대 가정); could=~할 수 있었으리라"
+   ]
+  ]
+ },
+ {
+  "en": "They answered and said unto him, Thou wast altogether born in sins, and dost thou teach us? And they cast him out.",
+  "ko": "그들이 대답하여 그에게 이르되, \"네가 온전히 죄 가운데서 태어났거늘, 네가 우리를 가르치느냐?\" 하고 그를 밖으로 내쫓으니라.",
+  "note": "그들은 그를 '온전히 죄 가운데 태어난 자'라 멸시하며 내쫓는다. 헬라어 '엑발로'(내쫓다)는 회당 출교를 가리키니, 진리를 증언한 자가 세상에서 버림받으나 곧 예수께서 그를 찾아오신다.",
+  "voc": [
+   [
+    "altogether",
+    "adv.",
+    "온전히, 전적으로"
+   ],
+   [
+    "teach",
+    "v.",
+    "가르치다"
+   ],
+   [
+    "cast out",
+    "v.",
+    "내쫓다"
+   ]
+  ],
+  "idi": [
+   [
+    "cast out",
+    "내쫓다, 추방하다"
+   ]
+  ],
+  "gra": [
+   [
+    "Thou wast altogether born in sins",
+    "wast=was의 2인칭 단수 고어형; Thou=너"
+   ],
+   [
+    "dost thou teach us",
+    "dost=do의 2인칭 단수 고어형; 의문 도치"
+   ]
+  ]
+ },
+ {
+  "en": "Jesus heard that they had cast him out; and when he had found him, he said unto him, Dost thou believe on the Son of God?",
+  "ko": "예수께서 그들이 그를 내쫓은 것을 들으시고, 그를 만나사 이르시되 \"네가 하나님의 아들을 믿느냐?\"",
+  "note": "쫓겨난 자를 예수께서 친히 찾아오신다. 세상이 버린 자를 목자가 먼저 찾으시니, '하나님의 아들을 믿느냐'는 물음으로 그를 더 깊은 믿음으로 이끄신다.",
+  "voc": [
+   [
+    "hear",
+    "v.",
+    "듣다"
+   ],
+   [
+    "find",
+    "v.",
+    "만나다, 찾다"
+   ],
+   [
+    "believe on",
+    "v.",
+    "~을 믿다"
+   ]
+  ],
+  "idi": [
+   [
+    "cast out",
+    "내쫓다, 추방하다"
+   ]
+  ],
+  "gra": [
+   [
+    "Dost thou believe on the Son of God",
+    "Dost=do의 2인칭 단수 고어형; thou=너; believe on=~을 믿다(고어 어법)"
+   ]
+  ]
+ },
+ {
+  "en": "He answered and said, Who is he, Lord, that I might believe on him?",
+  "ko": "그가 대답하여 이르되, \"주여, 그가 누구시니이까? 내가 그를 믿고자 하나이다\" 하니,",
+  "note": "그는 '주여, 그가 누구시니이까'라며 믿고자 하는 갈망을 드러낸다. 헬라어 '퀴리오스'(주)를 부르는 이 열린 마음이, 참된 믿음이 자라날 좋은 토양이 된다.",
+  "voc": [
+   [
+    "who",
+    "pron.",
+    "누구"
+   ],
+   [
+    "Lord",
+    "n.",
+    "주(님)"
+   ],
+   [
+    "believe on",
+    "v.",
+    "~을 믿다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "that I might believe on him",
+    "might=~할 수 있도록(목적); believe on=~을 믿다(고어 어법)"
+   ]
+  ]
+ },
+ {
+  "en": "And Jesus said unto him, Thou hast both seen him, and it is he that talketh with thee.",
+  "ko": "예수께서 그에게 이르시되, \"네가 이미 그를 보았거니와, 지금 너와 말하는 이가 곧 그니라\" 하시니,",
+  "note": "예수께서 자신을 계시하신다. '네가 이미 보았고 지금 말하는 이가 곧 그'라 하시니, 육신의 눈이 열린 자에게 이제 영혼의 눈까지 열어 하나님의 아들을 알아보게 하신다.",
+  "voc": [
+   [
+    "both",
+    "adv.",
+    "둘 다, ~도 ~도"
+   ],
+   [
+    "see",
+    "v.",
+    "보다"
+   ],
+   [
+    "talk",
+    "v.",
+    "말하다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Thou hast both seen him",
+    "hast seen=현재완료 고어형; Thou=너"
+   ],
+   [
+    "it is he that talketh with thee",
+    "talketh=talk의 3인칭 단수 고어형; that=관계대명사; thee=너(목적격 고어형)"
+   ]
+  ]
+ },
+ {
+  "en": "And he said, Lord, I believe. And he worshipped him.",
+  "ko": "그가 이르되, \"주여, 내가 믿나이다\" 하고 그에게 절하더라.",
+  "note": "그가 '주여, 내가 믿나이다' 고백하고 절한다. 헬라어 '프로스퀴네오'(경배하다)는 하나님께 드리는 예배를 뜻하니, 육신의 시력에서 시작된 여정이 마침내 예수를 하나님으로 경배함에 이른다.",
+  "voc": [
+   [
+    "believe",
+    "v.",
+    "믿다"
+   ],
+   [
+    "worship",
+    "v.",
+    "경배하다, 절하다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "he worshipped him",
+    "worshipped=경배하였다(과거); 대상이 예수임을 분명히 함"
+   ]
+  ]
+ },
+ {
+  "en": "And Jesus said, For judgment I am come into this world, that they which see not might see; and that they which see might be made blind.",
+  "ko": "예수께서 이르시되, \"내가 심판하러 이 세상에 왔노니, 이는 보지 못하는 자들은 보게 하고 보는 자들은 맹인이 되게 하려 함이라\" 하시니,",
+  "note": "예수께서 오심의 목적을 심판으로 밝히신다. 헬라어 '크리마'(심판·분별)는 사람을 갈라 나눔을 뜻하니, 보지 못한다 인정하는 자는 보게 되고 스스로 본다 자부하는 자는 도리어 눈멀게 된다.",
+  "voc": [
+   [
+    "judgment",
+    "n.",
+    "심판, 분별"
+   ],
+   [
+    "come",
+    "v.",
+    "오다"
+   ],
+   [
+    "blind",
+    "adj.",
+    "눈먼"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "I am come into this world",
+    "am come=현재완료의 고어형(현대영어 have come)"
+   ],
+   [
+    "they which see not",
+    "which=사람 관계대명사(현대영어 those who)"
+   ]
+  ]
+ },
+ {
+  "en": "And some of the Pharisees which were with him heard these words, and said unto him, Are we blind also?",
+  "ko": "예수와 함께 있던 바리새인 중 어떤 이들이 이 말씀을 듣고 그에게 이르되, \"우리도 맹인이냐?\"",
+  "note": "바리새인들이 '우리도 맹인이냐'고 되묻는다. 헬라어 '메'(부정 기대의 의문)로 물으니 '설마 우리가'라는 자만이 배어 있어, 스스로 본다 여기는 그 확신이 곧 그들의 눈멂이었다.",
+  "voc": [
+   [
+    "Pharisee",
+    "n.",
+    "바리새인"
+   ],
+   [
+    "hear",
+    "v.",
+    "듣다"
+   ],
+   [
+    "blind",
+    "adj.",
+    "눈먼"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "some of the Pharisees which were with him",
+    "which=사람 관계대명사(현대영어 who)"
+   ],
+   [
+    "Are we blind also",
+    "의문 도치; also=~도(문미에 옴)"
+   ]
+  ]
+ },
+ {
+  "en": "Jesus said unto them, If ye were blind, ye should have no sin: but now ye say, We see; therefore your sin remaineth.",
+  "ko": "예수께서 그들에게 이르시되, \"너희가 맹인이었더라면 죄가 없으려니와, 이제 너희가 본다 하니 너희 죄가 그대로 있느니라.\"",
+  "note": "예수께서 그들의 죄가 그대로 있다 하신다. 자기 눈멂을 인정하면 용서의 길이 열리나, '우리가 본다'는 교만이 도리어 죄를 붙들어 두니, 스스로 의롭다 여김이 은혜를 가로막는 벽이 된다.",
+  "voc": [
+   [
+    "blind",
+    "adj.",
+    "눈먼"
+   ],
+   [
+    "sin",
+    "n.",
+    "죄"
+   ],
+   [
+    "remain",
+    "v.",
+    "남아 있다, 그대로 있다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "If ye were blind, ye should have no sin",
+    "ye=너희(주격 복수 고어형); were=가정법 과거; should have=~이 없으리라"
+   ],
+   [
+    "your sin remaineth",
+    "remaineth=remain의 3인칭 단수 고어형(현대영어 remains)"
+   ]
+  ]
+ }
 ]
