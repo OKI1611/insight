@@ -164,11 +164,14 @@
       wrap.innerHTML = '<p class="dict-label mod">현대 영어 · Modern</p><p class="mod-def text-neutral-400 mt-1.5">현대 사전에서 불러오는 중…</p>';
       // 영국식 철자(saviour·honour…)는 미국식으로도 시도
       const amer = w.replace(/our(s|ed|ing|able)?$/,'or$1').replace(/ise(s|d|ing)?$/,'ize$1');
-      fetchModern(w, (amer!==w ? [w, amer] : [w]), 0, 2);
+      fetchModern(w, (amer!==w ? [w, amer] : [w]), 0, 3);
     }
     function fetchModern(cacheKey, queue, i, tries){
-      fetch('https://api.dictionaryapi.dev/api/v2/entries/en/' + encodeURIComponent(queue[i]))
-        .then(r=>{ if(!r.ok) throw new Error('http'); return r.json(); })
+      // 무료 API(dictionaryapi.dev)가 가끔 느리거나 응답이 없어 멈추는 걸 대비해 6초 타임아웃
+      const ctrl = new AbortController();
+      const to = setTimeout(()=>{ try{ ctrl.abort(); }catch(e){} }, 6000);
+      fetch('https://api.dictionaryapi.dev/api/v2/entries/en/' + encodeURIComponent(queue[i]), { signal: ctrl.signal })
+        .then(r=>{ clearTimeout(to); if(!r.ok) throw new Error('http'); return r.json(); })
         .then(data=>{
           const groups = [];
           (data||[]).forEach(en=>(en.meanings||[]).forEach(mn=>{
@@ -190,9 +193,13 @@
           if($('modernWrap')) $('modernWrap').innerHTML = html;
         })
         .catch(()=>{
+          clearTimeout(to);
           if(i+1 < queue.length){ fetchModern(cacheKey, queue, i+1, tries); return; }
-          if(tries > 1){ setTimeout(()=>fetchModern(cacheKey, queue, 0, tries-1), 700); return; }
-          if($('modernWrap')) $('modernWrap').innerHTML = '<p class="dict-label mod">현대 영어 · Modern</p><p class="mod-def text-neutral-400 mt-1.5">지금은 현대 사전을 불러올 수 없어요. 잠시 후 다시 시도해 주세요. (KJV 본래 뜻·예문은 위에 있습니다)</p>';
+          if(tries > 1){ setTimeout(()=>fetchModern(cacheKey, queue, 0, tries-1), 800); return; }
+          // 최종 실패 — 막다른 메시지 대신 '다시 시도' 버튼 제공(무료 API 일시 오류 대비)
+          if($('modernWrap')) $('modernWrap').innerHTML = '<p class="dict-label mod">현대 영어 · Modern</p>'
+            + '<p class="mod-def text-neutral-400 mt-1.5">지금 현대 사전 응답이 느려 불러오지 못했어요. (KJV 본래 뜻·예문은 위에 있습니다)</p>'
+            + '<button onclick="loadModern(\'' + String(cacheKey).replace(/[^a-z0-9]/gi,'') + '\')" class="mt-2.5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold border border-gold/40 rounded-full px-4 py-1.5 hover:bg-gold/10 transition">다시 시도 ↻</button>';
         });
     }
 
