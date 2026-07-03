@@ -205,7 +205,20 @@
     .concat(PART_B.map(q=>Object.assign({part:'B'},q)));
   const N = QUESTIONS.length;                 // 18
   const answers = QUESTIONS.map(q => q.multi ? [] : -1);
-  let stepIdx = 0, COURSE = null, LAST_REPORT = null;
+  let stepIdx = 0, COURSE = null, LAST_REPORT = null, PRICES = null, PROGRAM = null;
+
+  // 교재 PDF 가격(booklet.html과 동일 공식) · 급수가 조회 헬퍼
+  function estPages(n){ return Math.max(8, Math.round(n*2.6)+3); }
+  function bookPriceOf(track){
+    const tiers=(PRICES&&PRICES.tiers)||[[12,2900],[24,4900],[40,7900],[70,12900],[100000,17900]];
+    const ov=(PRICES&&PRICES.overrides&&PRICES.overrides[track.name])||{};
+    if(typeof ov.price==='number') return ov.price;
+    const pages=ov.pages||estPages((track.lessons||[]).length);
+    for(const t of tiers){ if(pages<=t[0]) return t[1]; }
+    return tiers[tiers.length-1][1];
+  }
+  function bookPagesOf(track){ const ov=(PRICES&&PRICES.overrides&&PRICES.overrides[track.name])||{}; return ov.pages||estPages((track.lessons||[]).length); }
+  function wonF(v){ return '₩'+(Number(v)||0).toLocaleString(); }
 
   function answered(i){ const Q=QUESTIONS[i]; return Q.multi ? answers[i].length>0 : answers[i]>=0; }
 
@@ -344,6 +357,8 @@
     const strengths = sorted.slice(0,3), growth = sorted.slice(-3).reverse();
 
     if(!COURSE){ try{ COURSE = await (await fetch('content/course.json?t='+Date.now())).json(); }catch(e){ COURSE = { levels:[] }; } }
+    if(!PRICES){ try{ PRICES = await (await fetch('content/booklet-prices.json?t='+Date.now())).json(); }catch(e){ PRICES = {}; } }
+    if(!PROGRAM){ try{ PROGRAM = await (await fetch('content/program.json?t='+Date.now())).json(); }catch(e){ PROGRAM = { ranks:[] }; } }
     const levels = COURSE.levels||[];
     let acc=0; const startOf={}; levels.forEach(lv=>{ startOf[lv.name]=acc; acc+=(lv.lessons||[]).length; });
     const tracksOf = k => levels.filter(lv=>lv.group===GROUPS[k].name);
@@ -366,6 +381,46 @@
     const report = { date: new Date().toISOString().slice(0,10), overall:s.overall, topPct:s.topPct, dims:s.dims,
       stage:band.stage, rank:band.rank, type:type.name, typeEn:type.en };
     LAST_REPORT = report;
+
+    // ── 결과 기반 결제 유도: 맞춤 교재 PDF + 인증과정 ──
+    const recTrack = firstEntry;                          // 1순위 추천 코스 = 맞춤 교재
+    const recPrice = recTrack ? bookPriceOf(recTrack) : 0;
+    const recPages = recTrack ? bookPagesOf(recTrack) : 0;
+    const recLessons = recTrack ? (recTrack.lessons||[]).length : 0;
+    const passLite = (PRICES && PRICES.passes && PRICES.passes[0]) || { price:29000 };
+    const rankCode = rp[0];                               // 예: "4급"
+    const rankObj = ((PROGRAM && PROGRAM.ranks) || []).find(r => String(r.rank) === String(rankCode)) || null;
+    const growNext = `
+      <div class="rounded-2xl border-2 mb-5 overflow-hidden" style="border-color:#cfe3d7">
+        <div class="px-5 pt-5 pb-3" style="background:linear-gradient(180deg,#f2f8f4,#ffffff)">
+          <p class="text-gold text-xs font-bold tracking-[0.22em] mb-1">GROW NEXT · 진단 결과에 맞춘 다음 단계</p>
+          <p class="text-neutral-900/65 text-[13px] leading-relaxed">지금은 <b class="text-neutral-900">${band.stage} 수준</b>이에요. 가장 빠르게 성장하는 두 가지 길을 준비했어요 — <b>혼자 복습할 교재</b>와 <b>체계적으로 인증받는 과정</b>.</p>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-3 p-4 pt-2">
+          ${recTrack ? `
+          <div class="bg-white rounded-2xl border border-ink/10 shadow-soft p-4 flex flex-col">
+            <div class="text-[11px] font-bold text-gold mb-1.5">📘 맞춤 교재 PDF · 즉시 소장</div>
+            <p class="font-bold text-[15px] leading-snug">「${esc(recTrack.name)}」 요약노트</p>
+            <p class="text-neutral-900/50 text-[12px] mt-1 mb-3 leading-relaxed">전 ${recLessons}강 합본 · 약 ${recPages}쪽 · 언제든 복습·인쇄해 소장하세요. 진단에서 <b class="text-neutral-900/70">여기서 시작</b>으로 추천된 코스예요.</p>
+            <div class="mt-auto">
+              <div class="flex items-baseline gap-1.5 mb-2"><span class="text-xl font-extrabold text-neutral-900">${wonF(recPrice)}</span><span class="text-[11px] text-neutral-900/40">1회 결제 · 평생 소장</span></div>
+              <a href="booklet.html?buy=${encodeURIComponent(recTrack.name)}" data-nopdf class="block text-center bg-ink text-white font-bold text-sm px-4 py-2.5 rounded-full hover:bg-navy transition shadow-card">이 교재 담고 결제하기 →</a>
+              <a href="booklet.html#pass" data-nopdf class="block text-center text-[11.5px] text-gold hover:underline mt-1.5">모든 교재를 보는 전체 이용권 · ${wonF(passLite.price)}~</a>
+            </div>
+          </div>` : ''}
+          <div class="bg-white rounded-2xl border border-ink/10 shadow-soft p-4 flex flex-col">
+            <div class="text-[11px] font-bold text-gold mb-1.5">🎓 인증과정 · 공식 수료증</div>
+            <p class="font-bold text-[15px] leading-snug">바이블 인사이트 ${rankObj ? esc(rankObj.name) : ''} 인증 <span class="text-neutral-900/45 font-semibold">(${esc(rankCode)})</span></p>
+            <p class="text-neutral-900/50 text-[12px] mt-1 mb-3 leading-relaxed">${rankObj && rankObj.tagline ? esc(rankObj.tagline) : '단계별 커리큘럼으로 배우고, 인증 시험을 통과하면 공식 수료증을 받아요.'} 진단 결과 <b class="text-neutral-900/70">${esc(band.rank)}</b>부터 도전하기 좋아요.</p>
+            <div class="mt-auto">
+              ${rankObj ? `<div class="flex items-baseline gap-2 mb-2 flex-wrap">${rankObj.earlybird ? `<span class="text-xl font-extrabold text-gold">${wonF(rankObj.earlybird)}</span><span class="text-[12px] text-neutral-900/40 line-through">${wonF(rankObj.price)}</span><span class="text-[10px] font-bold text-white bg-gold px-1.5 py-0.5 rounded-full">얼리버드</span>` : `<span class="text-xl font-extrabold text-neutral-900">${wonF(rankObj.price)}</span>`}</div>` : ''}
+              <a href="${applyURL}" data-nopdf class="block text-center bg-gold text-white font-bold text-sm px-4 py-2.5 rounded-full hover:opacity-90 transition shadow-card">${esc(rankCode)} 인증 도전하기 →</a>
+              <a href="academy.html" data-nopdf class="block text-center text-[11.5px] text-gold hover:underline mt-1.5">전체 인증 단계 살펴보기</a>
+            </div>
+          </div>
+        </div>
+        <p class="text-center text-neutral-900/40 text-[11px] px-4 pb-4" data-nopdf>카드·간편결제 즉시 등록 · 결제 후 로그인 계정으로 바로 열려요</p>
+      </div>`;
 
     const dimBars = DIMS.map(d=>{ const v=s.dims[d.k], t=levelTag(v); return `
       <div>
@@ -473,6 +528,8 @@
         </div>
         <a href="${applyURL}" data-nopdf class="mt-4 flex items-center justify-center gap-2 bg-ink text-white font-bold px-6 py-3.5 rounded-full hover:bg-navy transition shadow-card">🎓 ${band.rank} 과정 바로 수강 신청하기 →</a>
       </div>
+
+      ${growNext}
 
       <!-- 단계별 학습 플랜 -->
       <p class="font-bold mb-2.5 flex items-center gap-2">단계별 학습 플랜 <span class="text-neutral-900/40 text-xs font-normal">기초 → 심화</span></p>
