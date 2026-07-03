@@ -24,7 +24,7 @@
   <script>
     tailwind.config = { theme: { extend: {
       colors: { ink:'#213a6b', navy:'#182c54', gold:'#b8923f', sand:'#eaf0f8', paper:'#ffffff' },
-      fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['"Noto Serif KR"','Pretendard','serif'] },
+      fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['Pretendard','system-ui','sans-serif'] },
       boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
     }}}
   </script>
@@ -37,7 +37,7 @@
     const NOTIFY_KEY  = '8de9d22a-81a8-411d-99e2-90b38d21a062';
   </script>
   <style>
-    h1,h2,h3,.serif{font-family:'Noto Serif KR',Pretendard,serif}
+    h1,h2,h3,.serif{font-family:'Pretendard',system-ui,sans-serif}
     /* 책 표지 */
     .cover{position:relative;aspect-ratio:3/4;border-radius:3px 8px 8px 3px;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:15px 13px 13px 19px;color:#fff;box-shadow:0 10px 26px -10px rgba(21,32,58,.55)}
     .cover::before{content:'';position:absolute;left:0;top:0;bottom:0;width:7px;background:rgba(0,0,0,.20)}
