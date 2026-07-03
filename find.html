@@ -417,7 +417,7 @@
       </div>
 
       <!-- 종합 + 유형 -->
-      <div class="bg-white border border-ink/8 rounded-2xl shadow-soft p-5 mb-4 flex gap-5 items-center flex-wrap">
+      <div class="bg-white border border-ink/8 rounded-2xl shadow-soft p-5 mb-4 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5">
         <div style="position:relative;width:126px;height:126px;flex:none">
           <svg viewBox="0 0 126 126" width="126" height="126">
             <circle cx="63" cy="63" r="50" fill="none" stroke="#eef0f4" stroke-width="12"/>
@@ -427,7 +427,7 @@
             <div style="font-size:32px;font-weight:800;line-height:1;color:#213a6b">${s.overall}</div><div class="text-neutral-900/40" style="font-size:11px">/ 100</div>
           </div>
         </div>
-        <div style="flex:1;min-width:210px">
+        <div style="flex:1;min-width:0">
           <div class="text-neutral-900/40" style="font-size:11px;font-weight:700">성경 문해 지수 (Biblical Literacy Index)</div>
           <div class="flex items-center gap-2 mt-1 mb-2 flex-wrap">
             <span class="serif" style="font-size:18px;font-weight:800">${band.stage} 수준</span>
@@ -443,9 +443,9 @@
       <!-- 레이더 + 역량 바 -->
       <div class="bg-white border border-ink/8 rounded-2xl shadow-soft p-5 mb-4">
         <div class="font-bold text-sm mb-1">6가지 역량 프로파일</div>
-        <div class="flex gap-4 items-center flex-wrap">
-          <svg id="radar" viewBox="0 0 300 260" width="280" style="flex:none;max-width:100%"></svg>
-          <div class="grid gap-2.5" style="flex:1;min-width:250px">${dimBars}</div>
+        <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+          <svg id="radar" viewBox="0 0 300 260" style="width:100%;max-width:260px;height:auto;flex:none;margin:0 auto"></svg>
+          <div class="grid gap-2.5 w-full" style="flex:1;min-width:0">${dimBars}</div>
         </div>
       </div>
 
@@ -525,8 +525,11 @@
     if(btn){ btn.disabled = true; btn.textContent = 'PDF 만드는 중…'; }
     // 캡처 동안 해설 아코디언을 모두 펼침
     const dets = [...el.querySelectorAll('details')]; const wasOpen = dets.map(d=>d.open); dets.forEach(d=>d.open=true);
+    // 기기 폭과 무관하게 일관된 A4 출력을 위해 캡처 동안 고정 폭 적용(모바일 잘림 방지)
+    const prevW = el.style.width, prevMax = el.style.maxWidth;
+    el.style.width = '640px'; el.style.maxWidth = '640px';
     try{
-      const canvas = await html2canvas(el, { scale:2, backgroundColor:'#ffffff', useCORS:true, logging:false, windowWidth: el.scrollWidth });
+      const canvas = await html2canvas(el, { scale:2, backgroundColor:'#ffffff', useCORS:true, logging:false, width:640, windowWidth:680 });
       const img = canvas.toDataURL('image/jpeg', 0.92);
       const { jsPDF } = window.jspdf;
       const pdf = new jsPDF('p','mm','a4');
@@ -545,6 +548,7 @@
     }catch(e){
       alert('PDF 저장에 문제가 있었어요. 브라우저 인쇄(Ctrl+P) → “PDF로 저장”을 이용해 주세요.');
     }
+    el.style.width = prevW; el.style.maxWidth = prevMax;
     dets.forEach((d,i)=>d.open = wasOpen[i]);
     if(btn){ btn.disabled = false; btn.textContent = old; }
   }
@@ -586,7 +590,7 @@
     $('step').classList.add('hidden'); $('stepNav').classList.add('hidden'); $('resumeBanner').classList.add('hidden');
     const res=$('result'); res.classList.remove('hidden');
     res.innerHTML=`<div class="text-center mb-5"><p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">SAVED REPORT · 지난 진단</p><h1 class="serif text-2xl font-bold">지난 성경 문해력 리포트</h1><p class="text-neutral-900/45 text-xs mt-2">진단일 ${r.date}</p></div>
-      <div class="bg-white border border-ink/8 rounded-2xl shadow-soft p-6 mb-4 flex gap-5 items-center flex-wrap">
+      <div class="bg-white border border-ink/8 rounded-2xl shadow-soft p-6 mb-4 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5">
         <div style="position:relative;width:120px;height:120px;flex:none"><svg viewBox="0 0 126 126" width="120" height="120"><circle cx="63" cy="63" r="50" fill="none" stroke="#eef0f4" stroke-width="12"/><circle id="gauge" cx="63" cy="63" r="50" fill="none" stroke="#b8923f" stroke-width="12" stroke-linecap="round" transform="rotate(-90 63 63)" stroke-dasharray="314.2" stroke-dashoffset="314.2"/></svg><div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-size:30px;font-weight:800;color:#213a6b">${r.overall}</div><div class="text-neutral-900/40" style="font-size:11px">/ 100</div></div></div>
         <div style="flex:1;min-width:200px"><div class="serif text-lg font-bold">${r.stage} 수준 · ${r.rank}</div><div class="text-gold text-sm font-bold mt-1">${r.type}</div><div class="text-neutral-900/50 text-xs mt-1">상위 약 ${r.topPct}%</div></div>
       </div>
