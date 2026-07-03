@@ -1,8 +1,13 @@
 {
+  // 바이블 인사이트 = Cloudflare Worker(정적 자산 + 결제 API 코드)
+  // main 이 추가되면서 "자산 전용 Worker" → "자산 + 코드 Worker"로 승격됩니다.
+  //   1) 사이트는 그대로 서빙(env.ASSETS)  2) /api/pay/* 결제 동작  3) 환경변수 사용 가능
   "name": "insight",
+  "main": "worker/index.js",
   "compatibility_date": "2024-09-23",
   "assets": {
     "directory": "./",
+    "binding": "ASSETS",
     "not_found_handling": "404-page"
   }
 }
