@@ -69,9 +69,10 @@
       + '#sectionSideNav a:not(.on):hover{background:#f4f6fa;transform:translateX(2px)}'
       + '#sectionSideNav .foot{margin-top:auto;padding:12px 10px 2px;font-size:10.5px;color:rgba(33,58,107,.4);line-height:1.55;border-top:1px solid rgba(33,58,107,.06)}'
       + '@media(min-width:1024px){'
-      + 'body{padding-left:calc(max(0px, (100vw - 1360px) / 2) + ' + W + 'px)}'
+      // 좌우 대칭 패딩 → 본문이 화면 정중앙에 오도록(좌측 메뉴로 인한 우측 쏠림 방지)
+      + 'body{padding-left:calc(max(0px, (100vw - 1360px) / 2) + ' + W + 'px);padding-right:calc(max(0px, (100vw - 1360px) / 2) + ' + W + 'px)}'
       + '#sectionSideNav{display:flex;left:max(0px, calc((100vw - 1360px) / 2))}'
-      + 'body>.bibly-topbar,body>header{margin-left:calc(-1 * (max(0px, (100vw - 1360px) / 2) + ' + W + 'px));width:calc(100% + max(0px, (100vw - 1360px) / 2) + ' + W + 'px)}'
+      + 'body>.bibly-topbar,body>header{margin-left:calc(-1 * (max(0px, (100vw - 1360px) / 2) + ' + W + 'px));width:calc(100% + 2 * (max(0px, (100vw - 1360px) / 2) + ' + W + 'px))}'
       + '}';
     document.head.appendChild(st);
 
