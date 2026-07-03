@@ -8,15 +8,14 @@
 
   // 아이콘 없이 타이포그래피 중심의 깔끔한 메뉴(이모지 제거 — 현재 항목은 골드 알약으로 강조)
   // site.json 로드 실패 시 사용할 내장 백업(헤더 DEFAULT_MENU와 동일 구조)
+  // site.json nav와 100% 동일하게 유지(불일치 시 깜빡임·엉뚱한 메뉴 노출 방지)
   var FALLBACK = [
-    { label:'BIBLY 이야기', href:'about.html', children:[
-      { label:'우리의 사명·소개', href:'about.html' }, { label:'무료로 시작하기', href:'welcome.html' }, { label:'1기 창립 멤버', href:'founding.html' } ]},
+    { label:'소개', href:'about.html', children:[
+      { label:'우리의 사명·소개', href:'about.html' }, { label:'강사 소개', href:'about.html#instructor' },
+      { label:'설립 이야기 · 간증', href:'about.html#story' }, { label:'1기 창립 멤버', href:'founding.html' } ]},
     { label:'강의·커리큘럼', href:'curriculum.html', children:[
-      { label:'전체 커리큘럼', href:'curriculum.html' }, { label:'정규 심화 과정(아카데미)', href:'academy.html' },
-      { label:'나에게 맞는 강의 찾기', href:'find.html' } ]},
-    { label:'스토어', href:'booklet.html', children:[
-      { label:'PDF 책자·이용권', href:'booklet.html' }, { label:'선물·후원 좌석', href:'gift.html' },
-      { label:'고객센터(주문·배송·반품)', href:'store-help.html' }, { label:'내 구매·자료', href:'mylearning.html' } ]},
+      { label:'전체 커리큘럼', href:'curriculum.html' }, { label:'나에게 맞는 강의 찾기', href:'find.html' },
+      { label:'무료로 시작하기', href:'welcome.html' } ]},
     { label:'성경', href:'bible.html', children:[
       { label:'성경 읽기', href:'bible.html' }, { label:'매일 말씀과 함께', href:'daily.html' },
       { label:'성경암송 365', href:'memorize.html' }, { label:'성경 통독표 (1년 1독)', href:'bible-plan.html' },
@@ -26,7 +25,13 @@
     { label:'소통·나눔', href:'community.html', children:[
       { label:'질문·나눔·기도요청', href:'community.html' }, { label:'신앙상담', href:'counsel.html' },
       { label:'강의 요청·건의함', href:'request.html' }, { label:'자료실', href:'resources.html' },
-      { label:'칼럼', href:'column.html' } ]}
+      { label:'칼럼', href:'column.html' } ]},
+    { label:'스토어', href:'booklet.html', children:[
+      { label:'PDF 책자·이용권', href:'booklet.html' }, { label:'선물·후원 좌석', href:'gift.html' },
+      { label:'고객센터(주문·배송·반품)', href:'store-help.html' }, { label:'내 구매·자료', href:'mylearning.html' } ]},
+    { label:'아카데미 인증과정', href:'academy.html', children:[
+      { label:'과정 소개', href:'academy.html' }, { label:'급수 패키지·수강료', href:'academy.html#packages' },
+      { label:'등록 신청', href:'academy.html#apply' } ]}
   ];
 
   var page = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
@@ -54,6 +59,7 @@
     if(document.getElementById('bibleSideNav') || document.getElementById('sectionSideNav')) return;
     var W = 212;
     var st = document.createElement('style');
+    st.id = '__sectionNavStyle';
     st.textContent =
       '#sectionSideNav{display:none;position:fixed;top:96px;left:0;bottom:0;width:' + W + 'px;z-index:35;'
       + 'background:#fff;border-right:1px solid rgba(33,58,107,.08);'
@@ -120,15 +126,33 @@
     }
   }
 
+  function sig(sec){ try{ return JSON.stringify(sec); }catch(e){ return ''; } }
+
   function start(){
+    // 1) 즉시(동기) 렌더 — 캐시된 nav가 있으면 그것으로, 없으면 내장 FALLBACK으로.
+    //    fetch를 기다리지 않으므로 페이지 전환 때 사이드바가 사라졌다 나타나는 깜빡임이 없다.
+    var rendered = '';
+    var cached = null;
+    try{ cached = JSON.parse(sessionStorage.getItem('bibly_nav') || 'null'); }catch(e){}
+    var sec0 = (cached && pickSection(cached)) || pickSection(FALLBACK);
+    if(sec0){ render(sec0); rendered = sig(sec0); }
+
+    // 2) 백그라운드로 site.json 최신본을 받아 캐시 갱신. 메뉴 구조가 실제로 바뀐
+    //    경우에만 재렌더(평상시엔 동일 → 재렌더 없음 → 깜빡임 없음).
     fetch('content/site.json', { cache:'no-cache' })
       .then(function(r){ return r.ok ? r.json() : null; })
       .then(function(d){
-        var nav = (d && d.nav) ? d.nav : FALLBACK;
-        var sec = pickSection(nav) || pickSection(FALLBACK);
-        if(sec) render(sec);
+        if(!d || !d.nav) return;
+        try{ sessionStorage.setItem('bibly_nav', JSON.stringify(d.nav)); }catch(e){}
+        var sec = pickSection(d.nav);
+        if(sec && sig(sec) !== rendered){
+          var st = document.getElementById('__sectionNavStyle');
+          var old = document.getElementById('sectionSideNav');
+          if(old) old.remove(); if(st) st.remove();
+          render(sec); rendered = sig(sec);
+        }
       })
-      .catch(function(){ var sec = pickSection(FALLBACK); if(sec) render(sec); });
+      .catch(function(){});
   }
 
   if(document.body) start();

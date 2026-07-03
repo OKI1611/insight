@@ -1522,11 +1522,10 @@
     async function oauthLogin(provider){
       setMsg('authMsg','');
       const opts = { redirectTo: window.location.origin + window.location.pathname };
-      if(provider === 'kakao'){
-        // 닉네임만 요청(현재 '필수 동의'로 활성화된 항목). 이메일(account_email)은
-        // 카카오 콘솔에서 '추가 기능 신청' 승인 후 'account_email profile_nickname'으로 확장.
-        opts.scopes = 'profile_nickname';
-      }
+      // 참고: Supabase(GoTrue) Kakao 공급자는 'account_email profile_image profile_nickname'을
+      //  항상 강제로 요청한다(클라이언트 scopes는 덮어쓰기가 아니라 뒤에 append됨 → 중복만 발생).
+      //  KOE205를 없애려면 카카오 콘솔 '동의항목'에서 account_email·profile_image·
+      //  profile_nickname 3개를 모두 활성화해야 한다. 코드로는 우회 불가라 override는 제거.
       const { error } = await sb.auth.signInWithOAuth({ provider, options: opts });
       if(error) setMsg('authMsg', '로그인 오류: ' + error.message);
     }
