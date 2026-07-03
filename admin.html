@@ -14,7 +14,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { theme: { extend: {
-      colors: { ink:'#213a6b', navy:'#182c54', gold:'#b8923f', paper:'#ffffff', sand:'#eaf0f8' },
+      colors: { ink:'#213a6b', navy:'#182c54', gold:'#0f766e', paper:'#ffffff', sand:'#eaf0f8' },
       fontFamily: { sans: ['Pretendard','system-ui','sans-serif'] }
     }}}
   </script>
@@ -619,7 +619,7 @@
         +'<div style="background:#eaf0f8;border-radius:10px;padding:12px 14px;margin:14px 0;font-size:13px"><b>로그인 계정</b><br>'+esc(to)+' 으로 <b>biblynote.com</b>에 로그인하세요.</div>'
         +'<div style="font-size:13px;color:#3a4a66;background:#faf7ef;border:1px solid #ece3cc;border-radius:10px;padding:12px 14px;margin:12px 0"><b style="color:#9a7b30">이용 방법</b><br>biblynote.com 로그인 → 상단 <b>스토어</b> 또는 <b>내 강의실 → 내 교재</b>에서 자료를 열람하고 PDF로 저장하실 수 있어요.</div>'
         +'<p style="font-size:12px;color:#8a93a6;line-height:1.65;margin:10px 0 0">※ 디지털 자료 특성상, 「전자상거래법」 및 구매 시 동의하신 약관에 따라 <b>PDF를 다운로드·열람하신 이후에는 청약철회(환불)가 제한</b>될 수 있습니다.</p>'
-        +'<p style="font-size:13px;color:#5a6b88;margin-top:14px">문의: <a href="mailto:bibly.note@gmail.com" style="color:#b8923f">bibly.note@gmail.com</a></p>'
+        +'<p style="font-size:13px;color:#5a6b88;margin-top:14px">문의: <a href="mailto:bibly.note@gmail.com" style="color:#0f766e">bibly.note@gmail.com</a></p>'
         +'<div style="border-top:1px solid #eef1f6;margin-top:16px;padding-top:14px">'
         +'<p style="font-size:13.5px;color:#2a3a55;margin:0">주님은 늘 선하십니다. 감사합니다.</p>'
         +'<p style="font-size:12.5px;color:#9aa6bd;margin:8px 0 0"><b style="color:#171717">BIBLY</b> · 말씀으로 시대를 읽다<br>오광일 드림</p></div>'
@@ -687,7 +687,7 @@
       const summary=`<div style="padding:16px 20px;display:flex;flex-wrap:wrap;gap:8px;border-bottom:1px solid #f3f6fb">${chip('열람 '+views+'회')}${chip('다운로드 '+dls+'회')}${chip('자료 '+tracks.length+'종')}${chip('총 '+rows.length+'건')}</div>`;
       const table=`<table style="width:100%;border-collapse:collapse;font-size:13.5px"><thead><tr style="color:#9aa6bd;text-align:left">
         <th style="padding:10px 20px;font-weight:500">일시</th><th style="padding:10px 12px;font-weight:500">행위</th><th style="padding:10px 20px;font-weight:500">자료</th></tr></thead><tbody>
-        ${rows.map(r=>`<tr style="border-top:1px solid #f3f6fb"><td style="padding:10px 20px;color:#5a6b88;white-space:nowrap">${r.created_at?new Date(r.created_at).toLocaleString('ko'):'-'}</td><td style="padding:10px 12px;font-weight:600;color:${r.action==='download'?'#b8923f':'#41506e'};white-space:nowrap">${AC_LABEL[r.action]||esc(r.action)}</td><td style="padding:10px 20px;color:#41506e">${esc(r.track||'-')}</td></tr>`).join('')}
+        ${rows.map(r=>`<tr style="border-top:1px solid #f3f6fb"><td style="padding:10px 20px;color:#5a6b88;white-space:nowrap">${r.created_at?new Date(r.created_at).toLocaleString('ko'):'-'}</td><td style="padding:10px 12px;font-weight:600;color:${r.action==='download'?'#0f766e':'#41506e'};white-space:nowrap">${AC_LABEL[r.action]||esc(r.action)}</td><td style="padding:10px 20px;color:#41506e">${esc(r.track||'-')}</td></tr>`).join('')}
         </tbody></table>`;
       ov.innerHTML=shell(summary+table);
     }

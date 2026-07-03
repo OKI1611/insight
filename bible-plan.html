@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <script src="/content-loader.js?v=20260703f"></script>
-  <script src="/site-header.js?v=20260703c"></script>
-  <script src="/section-sidenav.js?v=5"></script>
+  <script src="/site-header.js?v=20260703d"></script>
+  <script src="/section-sidenav.js?v=6"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>성경 통독표 · 1년 1독 / 맥체인 — BIBLY 바이블 인사이트</title>
   <meta name="description" content="달력으로 한눈에 보는 성경 통독 진도. 순차 통독(1~5독)과 맥체인 신구약 병행 중 선택." />
@@ -19,7 +19,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { theme: { extend: {
-      colors: { ink:'#213a6b', navy:'#182c54', gold:'#b8923f', sand:'#eaf0f8', paper:'#ffffff' },
+      colors: { ink:'#213a6b', navy:'#182c54', gold:'#0f766e', sand:'#eaf0f8', paper:'#ffffff' },
       fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['Pretendard','system-ui','sans-serif'] },
       boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
     }}}
@@ -274,7 +274,7 @@
     }
     function pointToast(txt){
       let t=document.getElementById('ptToast');
-      if(!t){ t=document.createElement('div'); t.id='ptToast'; t.style.cssText='position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:#b8923f;color:#fff;font-weight:800;padding:9px 18px;border-radius:999px;box-shadow:0 12px 30px -8px rgba(0,0,0,.4);opacity:0;transition:all .3s;z-index:200;font-size:15px'; document.body.appendChild(t); }
+      if(!t){ t=document.createElement('div'); t.id='ptToast'; t.style.cssText='position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:#0f766e;color:#fff;font-weight:800;padding:9px 18px;border-radius:999px;box-shadow:0 12px 30px -8px rgba(0,0,0,.4);opacity:0;transition:all .3s;z-index:200;font-size:15px'; document.body.appendChild(t); }
       t.textContent=''+txt; requestAnimationFrame(()=>{ t.style.opacity='1'; t.style.transform='translateX(-50%) translateY(0)'; });
       clearTimeout(t._h); t._h=setTimeout(()=>{ t.style.opacity='0'; t.style.transform='translateX(-50%) translateY(20px)'; }, 1400);
     }

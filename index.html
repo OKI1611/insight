@@ -91,7 +91,7 @@
   <script>
     tailwind.config = { theme: { extend: {
       colors: {
-        ink:'#213a6b', navy:'#182c54', gold:'#b8923f', goldsoft:'#e7d6ac',
+        ink:'#213a6b', navy:'#182c54', gold:'#0f766e', goldsoft:'#e7d6ac',
         sand:'#eaf0f8', paper:'#ffffff'
       },
       fontFamily: {
@@ -113,7 +113,7 @@
     .eyebrow{letter-spacing:.34em; text-transform:uppercase}
     .blob{display:none}
     .star{width:14px;height:14px;display:inline-block;color:#cB9a4a;color:#c79a4a}
-    .hairline{height:1px;background:linear-gradient(90deg,transparent,rgba(184,146,63,.5),transparent)}
+    .hairline{height:1px;background:linear-gradient(90deg,transparent,rgba(15,118,110,.5),transparent)}
     details>summary{list-style:none;cursor:pointer}
     details>summary::-webkit-details-marker{display:none}
     details[open] .chev{transform:rotate(180deg)}
@@ -123,7 +123,7 @@
     #postBody p{margin:.6em 0}
     #postBody ul{list-style:disc;padding-left:1.2em;margin:.6em 0}
     #postBody li{margin:.25em 0}
-    #postBody blockquote{border-left:3px solid #b8923f;padding-left:1em;color:#5a6275;font-style:italic;margin:.9em 0}
+    #postBody blockquote{border-left:3px solid #0f766e;padding-left:1em;color:#5a6275;font-style:italic;margin:.9em 0}
     #postBody strong{font-weight:700;color:#171717}
   </style>
   <script type="application/ld+json">
@@ -133,7 +133,7 @@
 
 <body class="font-sans text-neutral-900 bg-paper antialiased">
 
-  <style>.biShine{color:#b8923f}</style>
+  <style>.biShine{color:#0f766e}</style>
 
 
   <!-- ===== 상단 유틸바 ===== -->
@@ -195,7 +195,7 @@
       <p data-cms="home.heroSub" class="mt-2 text-neutral-900/55 text-[14px] md:text-[15px] leading-relaxed">천년왕국·종말론·성경적 세계관, 기초부터 완주까지 — <b class="text-neutral-900/75">전 강의 무료</b></p>
       <form onsubmit="event.preventDefault();var v=document.getElementById('homeSearchQ').value.trim();location.href='search.html'+(v?('?q='+encodeURIComponent(v)):'');" class="mt-5 max-w-xl mx-auto relative">
         <input id="homeSearchQ" type="text" autocomplete="off" aria-label="스마트 검색" placeholder="궁금한 걸 물어보세요 — 666? 휴거? 죽으면 어디로?"
-          class="w-full rounded-full pl-6 pr-28 py-4 text-[15px] text-neutral-900 bg-white border border-neutral-300 outline-none shadow-[0_1px_6px_rgba(21,32,58,0.06)] placeholder:text-neutral-400 hover:border-neutral-400 hover:shadow-[0_2px_12px_rgba(21,32,58,0.10)] focus:border-gold focus:shadow-[0_2px_14px_rgba(184,146,63,0.18)] transition" />
+          class="w-full rounded-full pl-6 pr-28 py-4 text-[15px] text-neutral-900 bg-white border border-neutral-300 outline-none shadow-[0_1px_6px_rgba(21,32,58,0.06)] placeholder:text-neutral-400 hover:border-neutral-400 hover:shadow-[0_2px_12px_rgba(21,32,58,0.10)] focus:border-gold focus:shadow-[0_2px_14px_rgba(15,118,110,0.18)] transition" />
         <button type="submit" class="absolute right-2 top-1/2 -translate-y-1/2 bg-gold text-white font-bold text-sm px-5 py-2.5 rounded-xl hover:opacity-90 transition">물어보기</button>
       </form>
     </div>
@@ -245,10 +245,10 @@
   <script>
   (function(){
     var S=[
-      {bg:'#213a6b',bt:'#213a6b',ct:'#213a6b',href:'watch.html',tab:'무료로 시작하기',badge:'누구나 무료',title:'말씀으로<br><span style="color:#e7c874">시대를 읽다</span>',sub:'천년왕국·종말론 강의 310편, 전부 무료로 정주행',cta:'무료로 강의 듣기'},
-      {bg:'#2b5fb0',bt:'#1c4a86',ct:'#1c4a86',href:'curriculum.html',tab:'대표 시리즈',badge:'대표 시리즈',title:'천년왕국 세미나<br><span style="color:#e7c874">시즌 1</span>',sub:'8주 완주 커리큘럼 · 유튜브 147만+ 조회',cta:'지금 정주행하기'},
+      {bg:'#213a6b',bt:'#213a6b',ct:'#213a6b',href:'watch.html',tab:'무료로 시작하기',badge:'누구나 무료',title:'말씀으로<br><span style="color:#5eead4">시대를 읽다</span>',sub:'천년왕국·종말론 강의 310편, 전부 무료로 정주행',cta:'무료로 강의 듣기'},
+      {bg:'#2b5fb0',bt:'#1c4a86',ct:'#1c4a86',href:'curriculum.html',tab:'대표 시리즈',badge:'대표 시리즈',title:'천년왕국 세미나<br><span style="color:#5eead4">시즌 1</span>',sub:'8주 완주 커리큘럼 · 유튜브 147만+ 조회',cta:'지금 정주행하기'},
       {bg:'#147d63',bt:'#0d5645',ct:'#0d5645',href:'welcome.html',tab:'5일 무료 체험',badge:'지금 가입하면',title:'5일 <span style="color:#ffe08a">무료 체험</span>',sub:'인증 과정 유료 자료를 5일간 무료로 열어드려요',cta:'무료 체험 시작'},
-      {bg:'#b8923f',bt:'#7a642c',ct:'#7a642c',href:'founding.html',tab:'1기 창립멤버',badge:'선착순 1기',title:'1기 <span style="color:#fff">창립 멤버</span> 혜택',sub:'정가 20% 평생 할인 · 한정 모집 마감 임박',cta:'창립 혜택 받기'}
+      {bg:'#0f766e',bt:'#7a642c',ct:'#7a642c',href:'founding.html',tab:'1기 창립멤버',badge:'선착순 1기',title:'1기 <span style="color:#fff">창립 멤버</span> 혜택',sub:'정가 20% 평생 할인 · 한정 모집 마감 임박',cta:'창립 혜택 받기'}
     ];
     var hero=document.getElementById('hpHero'); if(!hero) return;
     var tabs=document.getElementById('hpTabs'), dots=document.getElementById('hpDots'), idx=0, timer;
@@ -552,9 +552,9 @@
           <p class="text-[10.5px] font-semibold text-neutral-900/40 mt-3">중급 · 4과목</p>
         </a>
         <!-- 3급 -->
-        <a href="curriculum.html?tab=academy" class="snap-start shrink-0 w-[210px] md:w-auto bg-white rounded-2xl border border-ink/8 shadow-soft p-4 flex flex-col hover:-translate-y-0.5 hover:shadow-card hover:bg-[#f7f0e1] hover:border-[#b8923f]/50 transition" style="border-top:3px solid #b8923f">
+        <a href="curriculum.html?tab=academy" class="snap-start shrink-0 w-[210px] md:w-auto bg-white rounded-2xl border border-ink/8 shadow-soft p-4 flex flex-col hover:-translate-y-0.5 hover:shadow-card hover:bg-[#f7f0e1] hover:border-[#0f766e]/50 transition" style="border-top:3px solid #0f766e">
           <div class="flex items-center justify-between mb-2">
-            <span class="text-xs font-bold px-2 py-0.5 rounded-full" style="background:#b8923f26;color:#7a5f24">3급</span>
+            <span class="text-xs font-bold px-2 py-0.5 rounded-full" style="background:#0f766e26;color:#7a5f24">3급</span>
             <span class="text-[10px] text-neutral-900/35 font-semibold tracking-wider">STEP 3</span>
           </div>
           <p class="font-display text-[15px] font-bold text-neutral-900">Expert</p>
@@ -572,7 +572,7 @@
           <p class="text-[10.5px] font-semibold text-neutral-900/40 mt-3">고급 · 6과목</p>
         </a>
         <!-- 1급 -->
-        <a href="curriculum.html?tab=academy" class="snap-start shrink-0 w-[210px] md:w-auto bg-gradient-to-br from-ink to-navy text-paper rounded-2xl border border-gold/40 shadow-card p-4 flex flex-col hover:-translate-y-0.5 hover:from-[#28406d] hover:to-[#1d325c] hover:border-gold/70 transition" style="border-top:3px solid #b8923f">
+        <a href="curriculum.html?tab=academy" class="snap-start shrink-0 w-[210px] md:w-auto bg-gradient-to-br from-ink to-navy text-paper rounded-2xl border border-gold/40 shadow-card p-4 flex flex-col hover:-translate-y-0.5 hover:from-[#28406d] hover:to-[#1d325c] hover:border-gold/70 transition" style="border-top:3px solid #0f766e">
           <div class="flex items-center justify-between mb-2">
             <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-gold text-neutral-900">1급</span>
             <span class="text-[10px] text-paper/40 font-semibold tracking-wider">STEP 5</span>
@@ -733,7 +733,7 @@
         <!-- 사진 + 약력 카드 -->
         <div class="md:col-span-2">
           <div id="instructorPhoto" class="aspect-[4/5] rounded-3xl bg-gradient-to-br from-navy to-ink border border-ink/10 flex flex-col items-center justify-center gap-3 relative overflow-hidden">
-            <div class="absolute inset-0 opacity-15" style="background-image:radial-gradient(circle at 50% 30%, #b8923f 0, transparent 55%)"></div>
+            <div class="absolute inset-0 opacity-15" style="background-image:radial-gradient(circle at 50% 30%, #0f766e 0, transparent 55%)"></div>
             <span class="relative font-display text-5xl text-gold/80">吳</span>
             <span class="relative text-neutral-900/40 text-xs tracking-[0.3em]">OH KWANG-IL</span>
             <span class="relative text-neutral-900/25 text-[11px]">강사 사진이 들어갈 자리</span>
@@ -1129,14 +1129,14 @@
     function renderMenu(menu){
       if(!document.getElementById('biblyNavCSS')){
         var st=document.createElement('style'); st.id='biblyNavCSS';
-        st.textContent='.navItem{position:relative}.navItem>a{cursor:pointer}.biblyTop{position:relative;padding:6px 2px;letter-spacing:-.005em;transition:color .18s}.biblyTop::after{content:"";position:absolute;left:2px;right:2px;bottom:0;height:2px;background:linear-gradient(90deg,#b8923f,#dcb866);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .22s cubic-bezier(.4,0,.2,1)}.biblyTop:hover::after,.navItem:hover>.biblyTop::after,.biblyOn::after{transform:scaleX(1)}.navDrop{position:absolute;left:0;top:100%;padding-top:12px;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .16s,transform .16s,visibility .16s;z-index:60}.navItem:hover .navDrop{opacity:1;visibility:visible;transform:none}.navDropCard{background:#fff;border:1px solid rgba(21,32,58,.08);border-radius:.9rem;box-shadow:0 18px 50px -20px rgba(21,32,58,.45);padding:.45rem;min-width:212px}.navDropCard a{display:flex;align-items:center;gap:.6rem;padding:.62rem .85rem;border-radius:.65rem;font-size:.9rem;font-weight:600;color:#171717;white-space:nowrap;transition:background .15s,color .15s,transform .15s}.navDropCard a::before{content:"";width:6px;height:6px;border-radius:50%;background:rgba(184,146,63,.4);flex:none;transition:transform .15s,background .15s}.navDropCard a:hover{background:#eef3fb;color:#b8923f;transform:translateX(2px)}.navDropCard a:hover::before{background:#b8923f;transform:scale(1.4)}';
+        st.textContent='.navItem{position:relative}.navItem>a{cursor:pointer}.biblyTop{position:relative;padding:6px 2px;letter-spacing:-.005em;transition:color .18s}.biblyTop::after{content:"";position:absolute;left:2px;right:2px;bottom:0;height:2px;background:linear-gradient(90deg,#0f766e,#dcb866);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .22s cubic-bezier(.4,0,.2,1)}.biblyTop:hover::after,.navItem:hover>.biblyTop::after,.biblyOn::after{transform:scaleX(1)}.navDrop{position:absolute;left:0;top:100%;padding-top:12px;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .16s,transform .16s,visibility .16s;z-index:60}.navItem:hover .navDrop{opacity:1;visibility:visible;transform:none}.navDropCard{background:#fff;border:1px solid rgba(21,32,58,.08);border-radius:.9rem;box-shadow:0 18px 50px -20px rgba(21,32,58,.45);padding:.45rem;min-width:212px}.navDropCard a{display:flex;align-items:center;gap:.6rem;padding:.62rem .85rem;border-radius:.65rem;font-size:.9rem;font-weight:600;color:#171717;white-space:nowrap;transition:background .15s,color .15s,transform .15s}.navDropCard a::before{content:"";width:6px;height:6px;border-radius:50%;background:rgba(15,118,110,.4);flex:none;transition:transform .15s,background .15s}.navDropCard a:hover{background:#eef3fb;color:#0f766e;transform:translateX(2px)}.navDropCard a:hover::before{background:#0f766e;transform:scale(1.4)}';
         document.head.appendChild(st);
       }
       document.getElementById('mainmenu').innerHTML = (menu || []).map(m => {
         const href=_hrefI(m.href), kids=m.children||[];
         const gold = (m.label||'').indexOf('아카데미')>=0;
         const goldCls = gold ? ' text-gold' : '';
-        const label = m.label + (gold ? ' <span style="font-size:9px;background:#b8923f;color:#fff;border-radius:4px;padding:2px 5px;vertical-align:2px;font-weight:700">NEW</span>' : '');
+        const label = m.label + (gold ? ' <span style="font-size:9px;background:#0f766e;color:#fff;border-radius:4px;padding:2px 5px;vertical-align:2px;font-weight:700">NEW</span>' : '');
         if(!kids.length) return `<a href="${href}" class="biblyTop hover:text-gold transition whitespace-nowrap${goldCls}">${label}</a>`;
         const caret='<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="ml-0.5 opacity-60"><path d="M6 9l6 6 6-6"/></svg>';
         const sub=kids.map(c=>`<a href="${_hrefI(c.href)}">${c.label}</a>`).join('');
@@ -1606,7 +1606,7 @@
     function showFoundingWelcome(no, gaveGift){
       const noLine = no ? '당신은 <b>BIBLY 1기 창립 멤버 #'+String(no).padStart(3,'0')+'</b> 입니다 '
                         : '1기 창립 멤버로 함께해 주셔서 감사합니다 ';
-      const giftLine = gaveGift ? '<p style="color:#b8923f;font-size:13px;margin-top:8px">가입 선물을 새 창에서 열었어요.</p>' : '';
+      const giftLine = gaveGift ? '<p style="color:#0f766e;font-size:13px;margin-top:8px">가입 선물을 새 창에서 열었어요.</p>' : '';
       const ov=document.createElement('div'); ov.id='foundingOv';
       ov.style.cssText='position:fixed;inset:0;z-index:140;background:rgba(21,32,58,.6);display:flex;align-items:center;justify-content:center;padding:16px';
       ov.innerHTML='<div style="background:#fff;border-radius:20px;max-width:380px;width:100%;padding:28px 24px;text-align:center;box-shadow:0 30px 80px -20px rgba(0,0,0,.5)">'
@@ -1886,7 +1886,7 @@
     var st=document.createElement('style'); st.id='biblyRailCSS';
     st.textContent='#biblyRail{position:fixed;left:12px;top:50%;transform:translateY(-50%);z-index:44;display:flex;flex-direction:column;gap:1px;background:#fff;border:1px solid rgba(33,58,107,.1);border-radius:16px;box-shadow:0 12px 34px -14px rgba(21,32,58,.35);padding:6px}'
       +'#biblyRail a{display:flex;flex-direction:column;align-items:center;gap:2px;width:48px;padding:9px 0;border-radius:12px;text-decoration:none;color:#42506c;transition:background .15s,color .15s;cursor:pointer}'
-      +'#biblyRail a:hover{background:#f4f7fc;color:#b8923f}#biblyRail .ic{font-size:17px;line-height:1}#biblyRail .lb{font-size:10px;font-weight:700;letter-spacing:-.02em}'
+      +'#biblyRail a:hover{background:#f4f7fc;color:#0f766e}#biblyRail .ic{font-size:17px;line-height:1}#biblyRail .lb{font-size:10px;font-weight:700;letter-spacing:-.02em}'
       +'#biblyRail .rtop{border-top:1px solid rgba(33,58,107,.08);margin-top:3px;padding-top:9px;color:rgba(33,58,107,.45)}'
       +'@media(max-width:767px){#biblyRail{display:none}}';
     document.head.appendChild(st);

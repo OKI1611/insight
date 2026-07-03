@@ -30,7 +30,7 @@
       + '<span class="shrink-0 inline-flex items-center gap-1.5 text-[11px] font-bold px-3 py-1 rounded-full" style="background:#213a6b;color:#fff">새 소식</span>'
       + '<div class="flex-1 min-w-0 relative h-5 overflow-hidden">'
       + '<a id="tkItem" href="#" class="absolute inset-0 flex items-center gap-2 transition-opacity duration-500">'
-      + '<span id="tkCat" class="shrink-0 text-[10px] font-bold px-1.5 py-0.5 rounded" style="color:#b8923f;background:rgba(184,146,63,.1)"></span>'
+      + '<span id="tkCat" class="shrink-0 text-[10px] font-bold px-1.5 py-0.5 rounded" style="color:#0f766e;background:rgba(15,118,110,.1)"></span>'
       + '<span id="tkTitle" class="flex-1 min-w-0 text-sm truncate" style="color:rgba(33,58,107,.8)"></span>'
       + '<span id="tkDate" class="shrink-0 text-xs hidden sm:inline" style="color:rgba(33,58,107,.35)"></span>'
       + '</a></div>'

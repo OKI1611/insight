@@ -52,7 +52,7 @@
       '.ql-editor img,.post-body img,.article img,.col-read img,.res-body img,.req-body img,.community-content img{max-width:100%;height:auto;border-radius:8px}',
       // ③ 이미지 선택 표시
       '.ql-editor img{cursor:pointer}',
-      '.ql-editor img.bibly-sel{outline:3px solid #b8923f;outline-offset:2px}',
+      '.ql-editor img.bibly-sel{outline:3px solid #0f766e;outline-offset:2px}',
       // ③ 크기조절 바
       '#biblyImgBar{position:absolute;z-index:99999;background:#213a6b;border-radius:9999px;box-shadow:0 8px 22px rgba(0,0,0,.35);display:flex;gap:2px;padding:4px}',
       '#biblyImgBar button{color:#ffffff;font-size:12px;font-weight:700;padding:6px 12px;border-radius:9999px;border:0;background:transparent;cursor:pointer;white-space:nowrap}',

@@ -206,15 +206,15 @@
     var st = document.createElement('style'); st.id = 'biblyNavCSS';
     st.textContent = '.navItem{position:relative}.navItem>a{cursor:pointer}'
       + '.biblyTop{position:relative;padding:6px 2px;letter-spacing:-.005em;transition:color .18s}'
-      + '.biblyTop::after{content:"";position:absolute;left:2px;right:2px;bottom:0;height:2px;background:linear-gradient(90deg,#b8923f,#dcb866);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .22s cubic-bezier(.4,0,.2,1)}'
+      + '.biblyTop::after{content:"";position:absolute;left:2px;right:2px;bottom:0;height:2px;background:linear-gradient(90deg,#0f766e,#dcb866);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .22s cubic-bezier(.4,0,.2,1)}'
       + '.biblyTop:hover::after,.navItem:hover>.biblyTop::after,.biblyOn::after{transform:scaleX(1)}'
       + '.navDrop{position:absolute;left:0;top:100%;padding-top:12px;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .16s,transform .16s,visibility .16s;z-index:60}'
       + '.navItem:hover .navDrop{opacity:1;visibility:visible;transform:none}'
       + '.navDropCard{background:#fff;border:1px solid rgba(21,32,58,.08);border-radius:.9rem;box-shadow:0 18px 50px -20px rgba(21,32,58,.45);padding:.45rem;min-width:212px}'
       + '.navDropCard a{display:flex;align-items:center;gap:.6rem;padding:.62rem .85rem;border-radius:.65rem;font-size:.9rem;font-weight:600;color:#171717;white-space:nowrap;transition:background .15s,color .15s,transform .15s}'
-      + '.navDropCard a::before{content:"";width:6px;height:6px;border-radius:50%;background:rgba(184,146,63,.4);flex:none;transition:transform .15s,background .15s}'
-      + '.navDropCard a:hover{background:#eef3fb;color:#b8923f;transform:translateX(2px)}'
-      + '.navDropCard a:hover::before{background:#b8923f;transform:scale(1.4)}'
+      + '.navDropCard a::before{content:"";width:6px;height:6px;border-radius:50%;background:rgba(15,118,110,.4);flex:none;transition:transform .15s,background .15s}'
+      + '.navDropCard a:hover{background:#eef3fb;color:#0f766e;transform:translateX(2px)}'
+      + '.navDropCard a:hover::before{background:#0f766e;transform:scale(1.4)}'
       + '.bibly-topbar a,.bibly-topbar button{color:rgba(247,249,252,.72);white-space:nowrap;transition:color .15s}'
       + '.bibly-topbar a:hover,.bibly-topbar button:hover{color:#dcb866}'
       + '.bibly-topbar .sep{color:rgba(247,249,252,.22)}'
@@ -243,14 +243,14 @@
           var V = function(t){ return '<span style="color:#404040">' + t + '</span>'; };
           var S = '<span style="color:#d4d4d4;margin:0 10px">│</span>';
           var eco = biz.ecommerce_no ? ('신고 ' + biz.ecommerce_no) : '신고 준비 중';
-          var addr = String(biz.address || '').replace('강남구', '<span style="color:#b8923f;font-weight:600">강남구</span>');
+          var addr = String(biz.address || '').replace('강남구', '<span style="color:#0f766e;font-weight:600">강남구</span>');
           var bl = document.createElement('div');
           bl.setAttribute('data-bibly-bizinfo','');
           bl.style.cssText = 'max-width:1120px;margin:36px auto 0;padding:30px 20px 4px;text-align:center;border-top:1px solid #e5e5e5';
           bl.innerHTML =
             '<img src="/images/logo-bible-insight.png?v=2" alt="바이블 인사이트" style="height:34px;width:auto;display:block;margin:0 auto 13px"/>'
-            + '<span style="display:inline-flex;align-items:center;gap:6px;border-radius:999px;background:rgba(184,146,63,.1);border:1px solid rgba(184,146,63,.25);padding:4px 14px;margin-bottom:13px;font-size:11px;font-weight:600;letter-spacing:.02em;color:#b8923f">서울 강남 본부 · GANGNAM, SEOUL</span>'
-            + '<div style="font-weight:700;font-size:13px;letter-spacing:.02em;color:#404040;margin-bottom:11px">BIBLY <span style="color:#b8923f">·</span> 바이블 인사이트</div>'
+            + '<span style="display:inline-flex;align-items:center;gap:6px;border-radius:999px;background:rgba(15,118,110,.1);border:1px solid rgba(15,118,110,.25);padding:4px 14px;margin-bottom:13px;font-size:11px;font-weight:600;letter-spacing:.02em;color:#0f766e">서울 강남 본부 · GANGNAM, SEOUL</span>'
+            + '<div style="font-weight:700;font-size:13px;letter-spacing:.02em;color:#404040;margin-bottom:11px">BIBLY <span style="color:#0f766e">·</span> 바이블 인사이트</div>'
             + '<div style="font-size:11.5px;line-height:2.05;color:#737373">'
             +   L('상호') + V(biz.name) + S + L('대표') + V(biz.ceo) + S + L('사업자등록번호') + V(biz.reg_no)
             +   '<br>' + L('통신판매업') + V(eco) + S + L('주소') + '<span style="color:#404040">' + addr + '</span>'
@@ -294,7 +294,7 @@
       st.textContent =
         '#biblyRail{position:fixed;left:12px;top:50%;transform:translateY(-50%);z-index:44;display:flex;flex-direction:column;gap:1px;background:#fff;border:1px solid rgba(33,58,107,.1);border-radius:16px;box-shadow:0 12px 34px -14px rgba(21,32,58,.35);padding:6px}'
         + '#biblyRail a{display:flex;flex-direction:column;align-items:center;gap:2px;width:48px;padding:9px 0;border-radius:12px;text-decoration:none;color:#42506c;transition:background .15s,color .15s;cursor:pointer}'
-        + '#biblyRail a:hover{background:#f4f7fc;color:#b8923f}'
+        + '#biblyRail a:hover{background:#f4f7fc;color:#0f766e}'
         + '#biblyRail .ic{font-size:17px;line-height:1}'
         + '#biblyRail .lb{font-size:10px;font-weight:700;letter-spacing:-.02em}'
         + '#biblyRail .rtop{border-top:1px solid rgba(33,58,107,.08);margin-top:3px;padding-top:9px;color:rgba(33,58,107,.45)}'

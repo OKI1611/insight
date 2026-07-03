@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <script src="/content-loader.js?v=20260703f"></script>
-  <script src="/site-header.js?v=20260703c"></script>
-  <script src="/section-sidenav.js?v=5"></script>
+  <script src="/site-header.js?v=20260703d"></script>
+  <script src="/section-sidenav.js?v=6"></script>
   <script src="/protect.js?v=1"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>KJV 새번역 — 원문 대조 한국어 성경 · BIBLY 바이블 인사이트</title>
@@ -31,22 +31,22 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { theme: { extend: {
-      colors: { ink:'#213a6b', navy:'#182c54', gold:'#b8923f', sand:'#eaf0f8', paper:'#ffffff' },
+      colors: { ink:'#213a6b', navy:'#182c54', gold:'#0f766e', sand:'#eaf0f8', paper:'#ffffff' },
       fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['Pretendard','system-ui','sans-serif'] },
       boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
     }}}
   </script>
   <style>
     h1,h2,.serif{font-family:'Pretendard',system-ui,sans-serif} .verse-en{font-family:Georgia,'Times New Roman',serif}
-    mark.hl{background:rgba(184,146,63,.28);color:#171717;border-radius:3px;padding:0 1px;font-weight:600}
-    @keyframes vflash{0%{background:rgba(184,146,63,.32)}100%{background:transparent}}
+    mark.hl{background:rgba(15,118,110,.28);color:#171717;border-radius:3px;padding:0 1px;font-weight:600}
+    @keyframes vflash{0%{background:rgba(15,118,110,.32)}100%{background:transparent}}
     .verse-flash{animation:vflash 2.6s ease;border-radius:8px}
     #searchInput::-webkit-search-cancel-button{cursor:pointer}
     .vrow{cursor:pointer;border-radius:8px;transition:background .12s}
-    .vrow:hover{background:rgba(184,146,63,.06)}
+    .vrow:hover{background:rgba(15,118,110,.06)}
     .vact{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
     .vact button{font-size:12px;font-weight:600;padding:5px 11px;border-radius:999px;border:1px solid rgba(33,58,107,.14);background:#fff;color:#171717;cursor:pointer;transition:background .12s}
-    .vact button:hover{background:rgba(184,146,63,.12)}
+    .vact button:hover{background:rgba(15,118,110,.12)}
     .vact .vclose{border:0;color:rgba(33,58,107,.35);padding:5px 8px}
     /* 구절 형광펜 하이라이트 */
     .vrow.hl-y{background:rgba(250,204,21,.30)}
@@ -56,20 +56,20 @@
     .vrow.hl-y:hover,.vrow.hl-g:hover,.vrow.hl-b:hover,.vrow.hl-p:hover{filter:brightness(.97)}
     /* KJV 단어 클릭 → 웹스터 사전 */
     .verse-en .wd{cursor:pointer;border-radius:3px;transition:background .1s,box-shadow .1s;-webkit-tap-highlight-color:transparent}
-    .verse-en .wd:hover{background:rgba(184,146,63,.13);box-shadow:inset 0 -1px 0 rgba(184,146,63,.55)}
-    .verse-en .wd.wd-on{background:rgba(184,146,63,.22)}
-    #wdPop{position:absolute;z-index:130;max-width:300px;width:max-content;background:#fff;border:1px solid rgba(184,146,63,.35);border-radius:14px;box-shadow:0 14px 38px rgba(24,32,58,.20);padding:12px 30px 13px 15px;opacity:0;transform:translateY(4px);transition:opacity .13s,transform .13s;pointer-events:none}
+    .verse-en .wd:hover{background:rgba(15,118,110,.13);box-shadow:inset 0 -1px 0 rgba(15,118,110,.55)}
+    .verse-en .wd.wd-on{background:rgba(15,118,110,.22)}
+    #wdPop{position:absolute;z-index:130;max-width:300px;width:max-content;background:#fff;border:1px solid rgba(15,118,110,.35);border-radius:14px;box-shadow:0 14px 38px rgba(24,32,58,.20);padding:12px 30px 13px 15px;opacity:0;transform:translateY(4px);transition:opacity .13s,transform .13s;pointer-events:none}
     #wdPop.on{opacity:1;transform:none;pointer-events:auto}
-    #wdPop .wd-arrow{position:absolute;width:12px;height:12px;background:#fff;border:1px solid rgba(184,146,63,.35);border-width:1px 0 0 1px;transform:rotate(45deg)}
+    #wdPop .wd-arrow{position:absolute;width:12px;height:12px;background:#fff;border:1px solid rgba(15,118,110,.35);border-width:1px 0 0 1px;transform:rotate(45deg)}
     #wdPop .wd-x{position:absolute;top:7px;right:11px;font-size:15px;color:#b6bcc7;cursor:pointer;line-height:1}
     #wdPop .wd-x:hover{color:#6b7280}
     #wdPop .wd-word{font-family:Georgia,'Times New Roman',serif;font-weight:700;font-size:17px;color:#1f2937;letter-spacing:-.01em}
-    #wdPop .wd-label{font-size:10px;font-weight:800;letter-spacing:.05em;color:#b8923f;text-transform:uppercase;margin-top:7px}
+    #wdPop .wd-label{font-size:10px;font-weight:800;letter-spacing:.05em;color:#0f766e;text-transform:uppercase;margin-top:7px}
     #wdPop .wd-orig{font-size:13px;line-height:1.55;color:#374151;margin-top:3px}
-    #wdPop .wd-pos{font-size:10.5px;font-style:italic;color:#b8923f;font-weight:600}
+    #wdPop .wd-pos{font-size:10.5px;font-style:italic;color:#0f766e;font-weight:600}
     #wdPop .wd-modern{font-size:12.5px;line-height:1.5;color:#4b5563;margin-top:3px}
-    #wdPop .wd-btn{margin-top:10px;font-size:11.5px;font-weight:700;color:#8a6d2f;background:rgba(184,146,63,.1);border:1px solid rgba(184,146,63,.28);border-radius:999px;padding:4px 12px;cursor:pointer;transition:background .12s}
-    #wdPop .wd-btn:hover{background:rgba(184,146,63,.2)}
+    #wdPop .wd-btn{margin-top:10px;font-size:11.5px;font-weight:700;color:#8a6d2f;background:rgba(15,118,110,.1);border:1px solid rgba(15,118,110,.28);border-radius:999px;padding:4px 12px;cursor:pointer;transition:background .12s}
+    #wdPop .wd-btn:hover{background:rgba(15,118,110,.2)}
     #wdPop .wd-btn:disabled{opacity:.6;cursor:default}
     .vhl{display:inline-flex;gap:5px;align-items:center;margin-right:4px;padding-right:8px;border-right:1px solid rgba(33,58,107,.12)}
     .vact .hlchip{width:20px;height:20px;min-width:20px;padding:0;border-radius:50%;border:1px solid rgba(33,58,107,.18);cursor:pointer;font-size:11px;line-height:1;display:inline-flex;align-items:center;justify-content:center}
@@ -301,7 +301,7 @@
     function hlVoc(en, e){
       let s=esc(en); const terms=[];
       (e.idi||[]).forEach(x=>{ if(x&&x[0]) terms.push([x[0],'#1c3c74']); });
-      (e.voc||[]).forEach(v=>{ if(v&&v[0]) terms.push([v[0],'#b8923f']); });
+      (e.voc||[]).forEach(v=>{ if(v&&v[0]) terms.push([v[0],'#0f766e']); });
       terms.sort((a,b)=>b[0].length-a[0].length);
       terms.forEach(([t,c])=>{ try{ const re=new RegExp('\\b('+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')\\b','i'); s=s.replace(re,'<u style="text-decoration:none;border-bottom:1.5px solid '+c+'">$1</u>'); }catch(_){} });
       return s;
@@ -647,7 +647,7 @@
     let SEARCH_EN=false;
     function paintEnToggle(){
       const sw=$('searchEnSwitch'), kn=$('searchEnKnob'), b=$('searchEnBtn'); if(!sw) return;
-      sw.style.background = SEARCH_EN ? '#b8923f' : '';
+      sw.style.background = SEARCH_EN ? '#0f766e' : '';
       kn.style.transform = SEARCH_EN ? 'translateX(16px)' : '';
       b.setAttribute('aria-pressed', SEARCH_EN?'true':'false');
       b.classList.toggle('border-gold', SEARCH_EN); b.classList.toggle('text-neutral-900', SEARCH_EN); b.classList.toggle('text-neutral-900/65', !SEARCH_EN);
