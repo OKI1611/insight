@@ -92,48 +92,35 @@ d.rectangle([m + 7, m + 7, W - m - 7, H - m - 7], outline=(FRAME[0], FRAME[1], F
 for (ax, ay) in [(m, m), (W - m, m), (m, H - m), (W - m, H - m)]:
     pass
 
-# ---- 5) open-book emblem (monoline gold) centered near top ----
-ebx, eby = CX, 132          # emblem center
-hw = 60                      # half width
-# spine
-d.line([(ebx, eby - 16), (ebx, eby + 14)], fill=GOLD, width=3)
-# left page outline
-d.line([(ebx, eby + 14), (ebx - hw, eby + 2)], fill=GOLD, width=3)     # bottom edge
-d.line([(ebx - hw, eby + 2), (ebx - hw + 4, eby - 18)], fill=GOLD, width=3)  # outer edge
-d.line([(ebx - hw + 4, eby - 18), (ebx, eby - 16)], fill=GOLD, width=3)      # top edge
-# right page outline (mirror)
-d.line([(ebx, eby + 14), (ebx + hw, eby + 2)], fill=GOLD, width=3)
-d.line([(ebx + hw, eby + 2), (ebx + hw - 4, eby - 18)], fill=GOLD, width=3)
-d.line([(ebx + hw - 4, eby - 18), (ebx, eby - 16)], fill=GOLD, width=3)
-# subtle page lines
-for i, dy in enumerate((-6, 2)):
-    d.line([(ebx - hw + 16, eby + dy), (ebx - 10, eby + dy - 2)], fill=(GOLD[0], GOLD[1], GOLD[2]), width=1)
-    d.line([(ebx + 10, eby + dy - 2), (ebx + hw - 16, eby + dy)], fill=(GOLD[0], GOLD[1], GOLD[2]), width=1)
+# ---- 5) 실제 로고(펼친 책)를 흰 라운드 뱃지 위에 ----
+bcx, bcy, bs = CX, 118, 78
+d.rounded_rectangle([bcx - bs, bcy - bs, bcx + bs, bcy + bs], radius=26, fill=(255, 255, 255))
+try:
+    _bk = Image.open("_book_t.png").convert("RGBA")
+    _th = int(bs * 1.5); _bw, _bh = _bk.size; _sc = _th / _bh
+    _bk = _bk.resize((max(1, int(_bw * _sc)), _th), Image.LANCZOS)
+    img.paste(_bk, (int(bcx - _bk.width / 2), int(bcy - _bk.height / 2)), _bk)
+except Exception:
+    pass
 
 # ---- 6) eyebrow ----
-text_center(d, 174, "유튜브 「오광일의 인사이트 브리핑」 공식 강의 플랫폼", f_eye, MUTED, ls=2)
+text_center(d, 212, "유튜브 「오광일의 인사이트 브리핑」 공식 강의 플랫폼", f_eye, MUTED, ls=2)
 
-# ---- 7) BIBLY wordmark (serif, wide tracking) ----
-text_center(d, 222, "BIBLY", f_bibly, IVORY, ls=14)
+# ---- 7) 바이블 인사이트 워드마크 (한글 볼드) ----
+f_wm = F(KB, 92)
+text_center(d, 250, "바이블 인사이트", f_wm, IVORY, ls=2)
 
-# ---- 8) subtitle with side dots ----
-sub = "바이블 인사이트"
-bb = d.textbbox((0, 0), sub, font=f_sub)
-sw = bb[2] - bb[0]
-sy = 382
-text_center(d, sy, sub, f_sub, GOLD)
-# side dots / rules
-gap = sw / 2 + 26
-d.line([(CX - gap - 46, sy + 24), (CX - gap, sy + 24)], fill=(FRAME[0], FRAME[1], FRAME[2]), width=2)
-d.line([(CX + gap, sy + 24), (CX + gap + 46, sy + 24)], fill=(FRAME[0], FRAME[1], FRAME[2]), width=2)
-d.ellipse([CX - gap - 60, sy + 19, CX - gap - 50, sy + 29], fill=GOLD)
-d.ellipse([CX + gap + 50, sy + 19, CX + gap + 60, sy + 29], fill=GOLD)
+# ---- 8) 초록 구분선 (가운데 점) ----
+dy = 384
+d.line([(CX - 132, dy), (CX - 34, dy)], fill=(FRAME[0], FRAME[1], FRAME[2]), width=2)
+d.line([(CX + 34, dy), (CX + 132, dy)], fill=(FRAME[0], FRAME[1], FRAME[2]), width=2)
+d.ellipse([CX - 6, dy - 6, CX + 6, dy + 6], fill=GOLD)
 
 # ---- 9) main tagline ----
-text_center(d, 440, "말씀으로 시대를 읽다", f_tag, IVORY, ls=1)
+text_center(d, 406, "말씀으로 시대를 읽다", f_tag, IVORY, ls=1)
 
 # ---- 10) footer keywords ----
-text_center(d, 540, "천년왕국 · 종말론 · 성경적 세계관   |   기초부터 100% 무료", f_foot, MUTED, ls=1)
+text_center(d, 528, "천년왕국 · 종말론 · 성경적 세계관   |   기초부터 100% 무료", f_foot, MUTED, ls=1)
 
 out = "images/og-cover.png"
 img.save(out, "PNG")
