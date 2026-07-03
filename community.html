@@ -416,10 +416,13 @@
       box.innerHTML = comments.map(c => {
         const mine = currentUser && c.author_id === currentUser.id;
         const canDel = mine || isAdmin;
-        const adminBadge = c.is_admin ? ' <span class="text-[10px] bg-gold/15 text-gold px-1.5 py-0.5 rounded align-middle font-bold">강사</span>' : '';
+        const adminBadge = c.is_admin ? ' <span class="ml-1 inline-flex items-center gap-0.5 text-[10px] bg-gradient-to-r from-gold to-[#0a3d2b] text-white px-2 py-0.5 rounded-full align-middle font-bold shadow-sm">✓ 대표</span>' : '';
+        const cAvatar = c.is_admin
+          ? `<img src="images/apple-touch-icon.png?v=6" alt="대표" class="w-7 h-7 rounded-full object-cover ring-2 ring-gold/50 bg-white shrink-0">`
+          : `<div class="w-7 h-7 rounded-full bg-ink/10 text-neutral-900/55 flex items-center justify-center font-bold text-xs shrink-0">${esc((c.author_name||'?').slice(0,1))}</div>`;
         return `<div class="flex items-start gap-2.5">
-          <div class="w-7 h-7 rounded-full ${ c.is_admin ? 'bg-gold text-white' : 'bg-ink/10 text-neutral-900/55' } flex items-center justify-center font-bold text-xs shrink-0">${esc((c.author_name||'?').slice(0,1))}</div>
-          <div class="flex-1 min-w-0 bg-paper rounded-2xl px-3.5 py-2">
+          ${cAvatar}
+          <div class="flex-1 min-w-0 ${ c.is_admin ? 'bg-gold/[0.06] ring-1 ring-gold/20' : 'bg-paper' } rounded-2xl px-3.5 py-2">
             <div class="flex items-center gap-1.5">
               <span class="font-semibold text-[13px] ${ c.is_admin ? 'text-gold' : '' }">${esc(c.author_name || '회원')}${adminBadge}</span>${rankSeal(RANKS[c.author_id],13)}
               <span class="text-neutral-900/35 text-[11px]">${timeAgo(c.created_at)}</span>

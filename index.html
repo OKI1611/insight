@@ -267,6 +267,25 @@
   })();
   </script>
 
+  <!-- ===== 새 소식 티커 (대표 시리즈 바로 아래) ===== -->
+  <div id="recentTicker" class="hidden bg-white border-b border-ink/8">
+    <div class="max-w-6xl mx-auto px-5 py-2.5 flex items-center gap-3">
+      <span class="shrink-0 inline-flex items-center gap-1.5 bg-ink text-paper text-[11px] font-bold px-3 py-1 rounded-full">새 소식</span>
+      <div class="flex-1 min-w-0 relative h-5 overflow-hidden">
+        <a id="tkItem" href="#" class="absolute inset-0 flex items-center gap-2 transition-opacity duration-500">
+          <span id="tkCat" class="shrink-0 text-[10px] font-bold text-gold bg-gold/10 px-1.5 py-0.5 rounded"></span>
+          <span id="tkTitle" class="flex-1 min-w-0 text-sm text-neutral-900/80 truncate"></span>
+          <span id="tkDate" class="shrink-0 text-xs text-neutral-900/35 hidden sm:inline"></span>
+        </a>
+      </div>
+      <div class="shrink-0 flex items-center gap-0.5 text-neutral-900/40">
+        <button onclick="tkStep(-1)" title="이전" class="w-6 h-6 rounded-full hover:bg-ink/5 hover:text-neutral-900 transition">‹</button>
+        <button id="tkPlay" onclick="tkToggle()" title="멈춤/재생" class="w-6 h-6 rounded-full hover:bg-ink/5 hover:text-neutral-900 transition text-[11px]"></button>
+        <button onclick="tkStep(1)" title="다음" class="w-6 h-6 rounded-full hover:bg-ink/5 hover:text-neutral-900 transition">›</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ===== 주요 바로가기 (메가스터디식 원형 아이콘 퀵링크) — 대표 시리즈 바로 아래 ===== -->
   <section class="bg-paper border-b border-ink/8 py-7 md:py-9">
     <div class="max-w-5xl mx-auto px-5">
@@ -432,25 +451,6 @@
       <span class="inline-flex items-center gap-1 bg-white/20 hover:bg-white/30 transition px-3 py-1 rounded-full text-[13px]">혜택 보기 →</span>
     </div>
   </a>
-
-  <!-- ===== 새 소식 티커 (최근 글·강의가 시간 간격으로 회전) ===== -->
-  <div id="recentTicker" class="hidden bg-white border-b border-ink/8">
-    <div class="max-w-6xl mx-auto px-5 py-2.5 flex items-center gap-3">
-      <span class="shrink-0 inline-flex items-center gap-1.5 bg-ink text-paper text-[11px] font-bold px-3 py-1 rounded-full">새 소식</span>
-      <div class="flex-1 min-w-0 relative h-5 overflow-hidden">
-        <a id="tkItem" href="#" class="absolute inset-0 flex items-center gap-2 transition-opacity duration-500">
-          <span id="tkCat" class="shrink-0 text-[10px] font-bold text-gold bg-gold/10 px-1.5 py-0.5 rounded"></span>
-          <span id="tkTitle" class="flex-1 min-w-0 text-sm text-neutral-900/80 truncate"></span>
-          <span id="tkDate" class="shrink-0 text-xs text-neutral-900/35 hidden sm:inline"></span>
-        </a>
-      </div>
-      <div class="shrink-0 flex items-center gap-0.5 text-neutral-900/40">
-        <button onclick="tkStep(-1)" title="이전" class="w-6 h-6 rounded-full hover:bg-ink/5 hover:text-neutral-900 transition">‹</button>
-        <button id="tkPlay" onclick="tkToggle()" title="멈춤/재생" class="w-6 h-6 rounded-full hover:bg-ink/5 hover:text-neutral-900 transition text-[11px]"></button>
-        <button onclick="tkStep(1)" title="다음" class="w-6 h-6 rounded-full hover:bg-ink/5 hover:text-neutral-900 transition">›</button>
-      </div>
-    </div>
-  </div>
 
   <!-- ===== 최근 추가된 강의 (신규 업데이트 · 수강생 알림) ===== -->
   <section id="newLessonsSec" class="hidden bg-white border-b border-ink/8 py-9">
