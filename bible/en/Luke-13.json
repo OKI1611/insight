@@ -1,14 +1,1152 @@
 [
-  {"en": "blood Pilate had mingled", "ko": "빌라도가 섞은 피", "note": "빌라도가 갈릴리 사람들을 성전 제사 중에 학살한 사건을 가리킨다.", "voc": [["blood", "n.", "피"], ["mingle", "v.", "섞다"], ["sacrifice", "n.", "제사, 희생제물"]], "idi": [], "gra": [["had mingled", "had+과거분사는 과거완료로, 다른 과거 시점보다 앞선 일을 나타낸다"]]},
-  {"en": "except ye repent", "ko": "회개하지 아니하면", "note": "예수의 핵심 부르심. 재난을 죄의 크기로 판단하지 말고 모두가 회개해야 함을 선언하신다.", "voc": [["except", "conj.", "~하지 아니하면"], ["repent", "v.", "회개하다"], ["likewise", "adv.", "이와 같이"]], "idi": [], "gra": [["except ye repent", "except는 여기서 unless(~하지 않으면)의 옛 용법, ye는 you의 옛 주격"]]},
-  {"en": "ye shall all likewise perish", "ko": "다 이와 같이 멸망하리라", "note": "회개하지 않는 자에게 임할 영적 멸망을 경고하신 말씀.", "voc": [["perish", "v.", "멸망하다"], ["likewise", "adv.", "마찬가지로"]], "idi": [], "gra": [["ye shall ... perish", "shall은 여기서 단순미래·예고를 나타내는 옛 어법"]]},
-  {"en": "a fig tree", "ko": "무화과나무", "note": "열매 없는 무화과나무는 회개의 열매가 없는 이스라엘을 빗댄 비유다.", "voc": [["fig", "n.", "무화과"], ["tree", "n.", "나무"], ["vineyard", "n.", "포도원"], ["fruit", "n.", "열매"]], "idi": [], "gra": []},
-  {"en": "why cumbereth it the ground", "ko": "어찌 땅만 버리게 두겠느냐", "note": "'cumber'는 쓸데없이 자리를 차지해 땅을 헛되이 만든다는 옛 표현이다.", "voc": [["cumber", "v.", "쓸데없이 차지하다, 방해하다"], ["ground", "n.", "땅"]], "idi": [], "gra": [["why cumbereth it", "cumbereth는 cumbers의 옛 3인칭 단수형(-eth 어미)"]]},
-  {"en": "thou art loosed", "ko": "네가 풀려났느니라", "note": "사탄에게 매여 몸이 굽은 여인을 향한 예수의 선언적 치유. 곧바로 여인의 몸이 펴진다.", "voc": [["loose", "v.", "풀다, 놓아주다"], ["infirmity", "n.", "병약함, 질환"]], "idi": [], "gra": [["thou art loosed", "thou art는 you are의 옛말, art loosed는 수동태(풀려나다)"]]},
-  {"en": "Thou hypocrite", "ko": "외식하는 자여", "note": "안식일에 짐승은 풀어 물 먹이면서 사람의 치유는 막는 회당장의 위선을 책망하신다.", "voc": [["hypocrite", "n.", "외식하는 자, 위선자"], ["sabbath", "n.", "안식일"]], "idi": [], "gra": [["Thou hypocrite", "thou는 you의 옛 단수 주격, 호격으로 상대를 직접 부르는 표현"]]},
-  {"en": "a grain of mustard seed", "ko": "겨자씨 한 알", "note": "지극히 작게 시작해 크게 자라는 하나님의 왕국을 보여 주는 비유다.", "voc": [["grain", "n.", "낟알, 한 알"], ["mustard", "n.", "겨자"], ["seed", "n.", "씨"]], "idi": [], "gra": []},
-  {"en": "the strait gate", "ko": "좁은 문", "note": "'strait'는 좁다는 뜻의 옛말로, '하나님의 왕국'에 이르는 길의 좁음을 강조하신 말씀이다.", "voc": [["strait", "adj.", "좁은(옛말)"], ["gate", "n.", "문"], ["strive", "v.", "힘쓰다, 애쓰다"]], "idi": [], "gra": [["the strait gate", "strait는 narrow(좁은)의 옛 형용사로, 직선의 straight와 다른 단어"]]},
-  {"en": "weeping and gnashing of teeth", "ko": "슬피 울며 이를 갊", "note": "왕국 밖으로 쫓겨난 자들의 통한과 절망을 그린 표현이다.", "voc": [["weep", "v.", "울다"], ["gnash", "v.", "이를 갈다"], ["teeth", "n.", "이(tooth의 복수)"]], "idi": [["gnashing of teeth", "이를 갊 - 극심한 분노와 통한을 나타내는 표현"]], "gra": []},
-  {"en": "tell that fox", "ko": "그 여우에게 이르라", "note": "예수께서 헤롯의 교활함을 '여우'에 비유해 그 위협에 굴하지 않으심을 보이신다.", "voc": [["fox", "n.", "여우"], ["tell", "v.", "이르다, 말하다"]], "idi": [["that fox", "그 여우 - 교활한 자를 빗대는 비유적 표현"]], "gra": []},
-  {"en": "O Jerusalem, Jerusalem", "ko": "오 예루살렘아, 예루살렘아", "note": "선지자를 죽인 성을 향한 예수의 탄식. 모으려는 사랑과 거부당한 슬픔이 담겨 있다.", "voc": [["gather", "v.", "모으다"], ["prophet", "n.", "선지자"], ["desolate", "adj.", "황폐한, 버려진"]], "idi": [], "gra": [["O Jerusalem", "O는 강한 감정·탄식을 나타내는 호격 감탄사, 이름을 거듭하여 간절함을 강조"]]}
+ {
+  "en": "There were present at that season some that told him of the Galilaeans, whose blood Pilate had mingled with their sacrifices.",
+  "ko": "바로 그때에 거기 있던 어떤 이들이 예수께 갈릴리 사람들의 일을 아뢰니, 곧 빌라도가 그들의 피를 그들의 제물에 섞은 일이더라.",
+  "note": "'섞다'(믹뉘미)는 두 피가 뒤엉킴을 뜻한다. 빌라도가 성전 제사 중 갈릴리 사람들을 학살하여 그 피가 제물의 피와 섞인 참극을 아뢴 것이다.",
+  "voc": [
+   [
+    "blood",
+    "n.",
+    "피"
+   ],
+   [
+    "mingle",
+    "v.",
+    "섞다"
+   ],
+   [
+    "sacrifice",
+    "n.",
+    "제사, 제물"
+   ],
+   [
+    "season",
+    "n.",
+    "때, 시기"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "blood ... had mingled",
+    "had+과거분사(과거완료)로 다른 과거보다 앞선 일을 나타냄"
+   ]
+  ]
+ },
+ {
+  "en": "And Jesus answering said unto them, Suppose ye that these Galilaeans were sinners above all the Galilaeans, because they suffered such things?",
+  "ko": "예수께서 대답하여 이르시되 \"너희는 이 갈릴리 사람들이 이런 일을 당하였으므로 다른 모든 갈릴리 사람보다 더한 죄인인 줄로 여기느냐?",
+  "note": "예수는 되물으심(휘폴람바노)으로 재난과 죄를 곧바로 잇는 통념을 흔드신다. 큰 화를 당한 자가 더 큰 죄인이라는 판단은 옳지 않다.",
+  "voc": [
+   [
+    "suppose",
+    "v.",
+    "여기다, 생각하다"
+   ],
+   [
+    "sinner",
+    "n.",
+    "죄인"
+   ],
+   [
+    "suffer",
+    "v.",
+    "(고난을) 당하다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Suppose ye",
+    "의문의 옛 어순(=Do ye suppose), ye는 you의 옛 주격"
+   ]
+  ]
+ },
+ {
+  "en": "I tell you, Nay: but, except ye repent, ye shall all likewise perish.",
+  "ko": "내가 너희에게 이르노니, 그렇지 아니하니라. 너희도 회개하지 아니하면 다 이와 같이 멸망하리라.",
+  "note": "'회개하다'(메타노에오)는 마음과 방향을 돌이킴이다. 재난은 남을 정죄할 근거가 아니라 모두가 돌이켜야 함을 일깨우는 부르심이다.",
+  "voc": [
+   [
+    "except",
+    "conj.",
+    "~하지 아니하면"
+   ],
+   [
+    "repent",
+    "v.",
+    "회개하다"
+   ],
+   [
+    "perish",
+    "v.",
+    "멸망하다"
+   ],
+   [
+    "likewise",
+    "adv.",
+    "이와 같이"
+   ]
+  ],
+  "idi": [
+   [
+    "except ye repent",
+    "회개하지 아니하면 - 조건을 나타내는 옛 표현"
+   ]
+  ],
+  "gra": [
+   [
+    "except ye repent",
+    "except는 unless(~하지 않으면)의 옛 용법; ye shall ... perish에서 shall은 미래를 나타내는 옛 어법"
+   ]
+  ]
+ },
+ {
+  "en": "Or those eighteen, upon whom the tower in Siloam fell, and slew them, think ye that they were sinners above all men that dwelt in Jerusalem?",
+  "ko": "또 실로암에서 망대가 무너져 깔려 죽은 그 열여덟 사람을 너희는 예루살렘에 사는 모든 사람보다 더한 죄인인 줄로 여기느냐?",
+  "note": "실로암 망대 사고 역시 죄의 크기로 헤아릴 수 없다. 우연한 재난에서 죄의 등급을 읽으려는 시도를 예수는 다시 물리치신다.",
+  "voc": [
+   [
+    "tower",
+    "n.",
+    "망대, 탑"
+   ],
+   [
+    "slay",
+    "v.",
+    "죽이다"
+   ],
+   [
+    "dwell",
+    "v.",
+    "거하다, 살다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "think ye",
+    "의문의 옛 어순(=think ye that ~), ye는 you의 옛 주격"
+   ]
+  ]
+ },
+ {
+  "en": "I tell you, Nay: but, except ye repent, ye shall all likewise perish.",
+  "ko": "내가 너희에게 이르노니, 그렇지 아니하니라. 너희도 회개하지 아니하면 다 이와 같이 멸망하리라\" 하시니라.",
+  "note": "같은 경고가 되풀이됨은 그 절박함을 드러낸다. '멸망하다'(아폴뤼미)는 영원한 파멸을 가리키니, 회개는 미룰 수 없는 일이다.",
+  "voc": [
+   [
+    "nay",
+    "adv.",
+    "아니(옛말)"
+   ],
+   [
+    "repent",
+    "v.",
+    "회개하다"
+   ],
+   [
+    "perish",
+    "v.",
+    "멸망하다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "ye shall all likewise perish",
+    "shall은 단순미래·예고를 나타내는 옛 어법, ye는 you의 옛 주격"
+   ]
+  ]
+ },
+ {
+  "en": "He spake also this parable; A certain man had a fig tree planted in his vineyard; and he came and sought fruit thereon, and found none.",
+  "ko": "또 이 비유를 말씀하시되 \"어떤 사람이 자기 포도원에 무화과나무 한 그루를 심어 두고, 와서 그 열매를 찾았으나 얻지 못하였더라.",
+  "note": "무화과나무는 이스라엘을 상징한다(호 9:10). 열매를 찾으나 없음은 하나님의 오랜 기다림과 백성의 무익함을 함께 보여 준다.",
+  "voc": [
+   [
+    "parable",
+    "n.",
+    "비유"
+   ],
+   [
+    "fig tree",
+    "",
+    "무화과나무"
+   ],
+   [
+    "vineyard",
+    "n.",
+    "포도원"
+   ],
+   [
+    "fruit",
+    "n.",
+    "열매"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "He spake",
+    "spake는 spoke의 옛 과거형"
+   ]
+  ]
+ },
+ {
+  "en": "Then said he unto the dresser of his vineyard, Behold, these three years I come seeking fruit on this fig tree, and find none: cut it down; why cumbereth it the ground?",
+  "ko": "이에 포도원지기에게 이르되 '보라, 내가 이 삼 년을 이 무화과나무에 열매를 찾으러 왔으되 얻지 못하였으니, 찍어 버리라. 어찌 땅만 버리게 두겠느냐?'",
+  "note": "'삼 년'은 주인의 오랜 인내를 뜻한다. '어찌 땅만 버리게 두겠느냐'(카타르게오)는 열매 없는 삶이 자리만 헛되이 차지함을 꾸짖는다.",
+  "voc": [
+   [
+    "dresser",
+    "n.",
+    "(포도원)지기, 가꾸는 자"
+   ],
+   [
+    "cumber",
+    "v.",
+    "헛되이 차지하다, 방해하다"
+   ],
+   [
+    "ground",
+    "n.",
+    "땅"
+   ]
+  ],
+  "idi": [
+   [
+    "cut it down",
+    "찍어 버리다 - 심판·제거를 뜻하는 표현"
+   ]
+  ],
+  "gra": [
+   [
+    "why cumbereth it the ground",
+    "cumbereth는 cumbers의 옛 3인칭 단수형(-eth 어미)"
+   ]
+  ]
+ },
+ {
+  "en": "And he answering said unto him, Lord, let it alone this year also, till I shall dig about it, and dung it:",
+  "ko": "포도원지기가 대답하여 이르되 '주인이여, 금년에도 그대로 두소서. 내가 그 둘레를 파고 거름을 주리니,",
+  "note": "포도원지기의 간청은 중보의 모습이다. '둘레를 파고 거름을 줌'은 은혜의 마지막 기회를 베푸시는 하나님의 자비를 그린다.",
+  "voc": [
+   [
+    "let alone",
+    "",
+    "그대로 두다"
+   ],
+   [
+    "dig",
+    "v.",
+    "파다"
+   ],
+   [
+    "dung",
+    "v.",
+    "거름을 주다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "till I shall dig about it",
+    "shall은 미래를 나타내는 옛 어법"
+   ]
+  ]
+ },
+ {
+  "en": "And if it bear fruit, well: and if not, then after that thou shalt cut it down.",
+  "ko": "이후로 열매를 맺으면 좋으려니와, 만일 맺지 못하면 그때에 찍어 버리소서' 하였느니라\" 하시니라.",
+  "note": "은혜에는 마감이 있다. 유예는 무한하지 않으니, 거듭 베푸신 기회 뒤에도 열매가 없으면 심판이 임함을 엄히 경고하신다.",
+  "voc": [
+   [
+    "bear fruit",
+    "",
+    "열매를 맺다"
+   ],
+   [
+    "cut down",
+    "",
+    "찍어 버리다"
+   ],
+   [
+    "well",
+    "adv.",
+    "좋게"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "thou shalt cut it down",
+    "thou shalt는 you shall의 옛말, 명령·예고를 나타냄"
+   ]
+  ]
+ },
+ {
+  "en": "And he was teaching in one of the synagogues on the sabbath.",
+  "ko": "안식일에 예수께서 한 회당에서 가르치고 계시더니,",
+  "note": "예수의 안식일 회당 가르침은 그분의 관행이었다(눅 4:16). 이 배경에서 곧이어 안식일 치유 논쟁이 벌어진다.",
+  "voc": [
+   [
+    "teach",
+    "v.",
+    "가르치다"
+   ],
+   [
+    "synagogue",
+    "n.",
+    "회당"
+   ],
+   [
+    "sabbath",
+    "n.",
+    "안식일"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And, behold, there was a woman which had a spirit of infirmity eighteen years, and was bowed together, and could in no wise lift up herself.",
+  "ko": "보라, 거기에 열여덟 해 동안 병약하게 하는 영에 사로잡힌 한 여인이 있어, 몸이 꼬부라져 도무지 펴지 못하더라.",
+  "note": "'병약하게 하는 영'(프뉴마 아스데네이아스)에 매인 여인이다. 열여덟 해의 굽은 몸은 사탄의 속박 아래 눌린 인생을 보여 준다.",
+  "voc": [
+   [
+    "infirmity",
+    "n.",
+    "병약함, 질환"
+   ],
+   [
+    "bowed together",
+    "",
+    "꼬부라진"
+   ],
+   [
+    "lift up",
+    "",
+    "펴다, 일으키다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "could in no wise lift up herself",
+    "in no wise=결코 ~ 못하다(옛말)"
+   ]
+  ]
+ },
+ {
+  "en": "And when Jesus saw her, he called her to him, and said unto her, Woman, thou art loosed from thine infirmity.",
+  "ko": "예수께서 그 여인을 보시고 가까이 부르사 이르시되 \"여인아, 네가 네 병약함에서 풀려났느니라\" 하시고,",
+  "note": "'풀려났느니라'(아폴뤼오)는 완료된 해방의 선언이다. 예수께서 먼저 부르시고 선언하시니, 구원은 언제나 그분의 주도로 임한다.",
+  "voc": [
+   [
+    "call",
+    "v.",
+    "부르다"
+   ],
+   [
+    "loose",
+    "v.",
+    "풀다, 놓아주다"
+   ],
+   [
+    "infirmity",
+    "n.",
+    "병약함"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "thou art loosed from thine infirmity",
+    "thou art는 you are의 옛말, thine은 모음 앞 thy의 옛 형태"
+   ]
+  ]
+ },
+ {
+  "en": "And he laid his hands on her: and immediately she was made straight, and glorified God.",
+  "ko": "그 여인에게 손을 얹으시니, 곧 몸이 펴지며 하나님께 영광을 돌리더라.",
+  "note": "안수는 하나님의 긍휼이 몸에 닿는 통로다. 여인은 곧 펴져 하나님께 영광을 돌리니, 참된 치유는 찬양으로 열매 맺는다.",
+  "voc": [
+   [
+    "lay hands on",
+    "",
+    "손을 얹다"
+   ],
+   [
+    "immediately",
+    "adv.",
+    "곧, 즉시"
+   ],
+   [
+    "glorify",
+    "v.",
+    "영광을 돌리다"
+   ]
+  ],
+  "idi": [
+   [
+    "lay hands on",
+    "~에게 손을 얹다(안수하다)"
+   ]
+  ],
+  "gra": [
+   [
+    "he laid his hands on her",
+    "laid는 lay(놓다)의 과거형"
+   ]
+  ]
+ },
+ {
+  "en": "And the ruler of the synagogue answered with indignation, because that Jesus had healed on the sabbath day, and said unto the people, There are six days in which men ought to work: in them therefore come and be healed, and not on the sabbath day.",
+  "ko": "그런데 회당장이 분개하니, 이는 예수께서 안식일에 병을 고치셨음이라. 무리에게 일러 이르되 \"일할 날이 엿새가 있으니, 그날에 와서 고침을 받을 것이요, 안식일에는 그리하지 말 것이니라\" 하거늘,",
+  "note": "회당장의 '분개'(아가낙테오)는 규례를 사람보다 앞세운 마음이다. 그는 병 고침의 은혜보다 안식일 규정의 위반을 먼저 보았다.",
+  "voc": [
+   [
+    "ruler",
+    "n.",
+    "회당장, 관원"
+   ],
+   [
+    "indignation",
+    "n.",
+    "분개, 노함"
+   ],
+   [
+    "heal",
+    "v.",
+    "고치다"
+   ],
+   [
+    "ought",
+    "v.",
+    "마땅히 ~하다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "there are six days in which men ought to work",
+    "in which=관계사절 '그 안에서 일할'"
+   ]
+  ]
+ },
+ {
+  "en": "The Lord then answered him, and said, Thou hypocrite, doth not each one of you on the sabbath loose his ox or his ass from the stall, and lead him away to watering?",
+  "ko": "주께서 그에게 대답하여 이르시되 \"외식하는 자여, 너희가 각기 안식일에 자기 소나 나귀를 외양간에서 풀어 끌고 가서 물을 먹이지 아니하느냐?",
+  "note": "'외식하는 자'(휘포크리테스)는 본디 배우를 뜻한다. 짐승은 풀어 물 먹이면서 사람의 해방은 막는 이중 잣대를 예수께서 폭로하신다.",
+  "voc": [
+   [
+    "hypocrite",
+    "n.",
+    "외식하는 자, 위선자"
+   ],
+   [
+    "ox",
+    "n.",
+    "소"
+   ],
+   [
+    "ass",
+    "n.",
+    "나귀"
+   ],
+   [
+    "stall",
+    "n.",
+    "외양간"
+   ]
+  ],
+  "idi": [
+   [
+    "Thou hypocrite",
+    "외식하는 자여 - 위선자를 책망하는 호격 표현"
+   ]
+  ],
+  "gra": [
+   [
+    "Thou hypocrite, doth not each one",
+    "thou는 you의 옛 단수 주격; doth는 does의 옛 3인칭 단수형"
+   ]
+  ]
+ },
+ {
+  "en": "And ought not this woman, being a daughter of Abraham, whom Satan hath bound, lo, these eighteen years, be loosed from this bond on the sabbath day?",
+  "ko": "그러하거든 아브라함의 딸인 이 여인이 열여덟 해 동안 사탄에게 매여 있었으니, 안식일에 이 매임에서 풀려남이 마땅하지 아니하냐?\" 하시니,",
+  "note": "'아브라함의 딸'은 여인의 존귀함을 세운다. 짐승도 푸는 안식일에 하물며 언약 백성의 딸을 사탄의 매임에서 푸심이 마땅하다.",
+  "voc": [
+   [
+    "daughter",
+    "n.",
+    "딸"
+   ],
+   [
+    "bind",
+    "v.",
+    "매다, 결박하다"
+   ],
+   [
+    "bond",
+    "n.",
+    "매임, 결박"
+   ]
+  ],
+  "idi": [
+   [
+    "daughter of Abraham",
+    "아브라함의 딸 - 언약 백성에 속함을 나타내는 표현"
+   ]
+  ],
+  "gra": [
+   [
+    "ought not this woman ... be loosed",
+    "ought not ~ be는 '풀려남이 마땅하지 아니하냐'의 옛 어순"
+   ]
+  ]
+ },
+ {
+  "en": "And when he had said these things, all his adversaries were ashamed: and all the people rejoiced for all the glorious things that were done by him.",
+  "ko": "예수께서 이 말씀을 하시매 그를 대적하던 자들이 다 부끄러워하고, 온 무리는 그가 행하신 모든 영화로운 일로 인하여 기뻐하니라.",
+  "note": "대적자는 부끄러워하고 무리는 기뻐한다. '영화로운 일'(엔독소스)은 예수의 행하심이 곧 하나님의 영광을 드러냄을 보여 준다.",
+  "voc": [
+   [
+    "adversary",
+    "n.",
+    "대적자"
+   ],
+   [
+    "ashamed",
+    "adj.",
+    "부끄러워하는"
+   ],
+   [
+    "rejoice",
+    "v.",
+    "기뻐하다"
+   ],
+   [
+    "glorious",
+    "adj.",
+    "영화로운"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "all his adversaries were ashamed",
+    "were+형용사(수동적 상태) '부끄러워하였다'"
+   ]
+  ]
+ },
+ {
+  "en": "Then said he, Unto what is the kingdom of God like? and whereunto shall I resemble it?",
+  "ko": "이에 예수께서 이르시되 \"하나님의 왕국은 무엇과 같으며, 내가 무엇에 비하랴?",
+  "note": "치유의 승리에 이어 왕국 비유가 나온다. '무엇에 비하랴'는 하나님의 왕국이 어떻게 자라는지를 그림으로 열어 보이신다.",
+  "voc": [
+   [
+    "kingdom",
+    "n.",
+    "왕국"
+   ],
+   [
+    "resemble",
+    "v.",
+    "비기다, 견주다"
+   ],
+   [
+    "liken",
+    "v.",
+    "비유하다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "whereunto shall I resemble it",
+    "whereunto=무엇에(옛말); shall은 의지·미래의 옛 어법"
+   ]
+  ]
+ },
+ {
+  "en": "It is like a grain of mustard seed, which a man took, and cast into his garden; and it grew, and waxed a great tree; and the fowls of the air lodged in the branches of it.",
+  "ko": "그것은 마치 한 사람이 가져다가 자기 동산에 심은 겨자씨 한 알과 같으니, 자라서 큰 나무가 되매 공중의 새들이 그 가지에 깃들였느니라\" 하시니라.",
+  "note": "겨자씨는 지극히 작으나 큰 나무가 된다. 하나님의 왕국은 미미하게 시작하나 결국 만민이 깃드는 크기로 자란다.",
+  "voc": [
+   [
+    "grain",
+    "n.",
+    "낟알, 한 알"
+   ],
+   [
+    "mustard",
+    "n.",
+    "겨자"
+   ],
+   [
+    "wax",
+    "v.",
+    "자라다, ~하게 되다"
+   ],
+   [
+    "lodge",
+    "v.",
+    "깃들이다, 머물다"
+   ]
+  ],
+  "idi": [
+   [
+    "fowls of the air",
+    "공중의 새들"
+   ]
+  ],
+  "gra": [
+   [
+    "waxed a great tree",
+    "wax는 '자라다, ~이 되다'의 옛 동사, waxed는 그 과거형"
+   ]
+  ]
+ },
+ {
+  "en": "And again he said, Whereunto shall I liken the kingdom of God?",
+  "ko": "또다시 이르시되 \"내가 하나님의 왕국을 무엇에 비하랴?",
+  "note": "예수께서 비유를 거듭하심은 왕국의 신비를 여러 각도로 비추기 위함이다. 앞의 자람에 이어 이제 스며듦을 말씀하신다.",
+  "voc": [
+   [
+    "again",
+    "adv.",
+    "다시"
+   ],
+   [
+    "liken",
+    "v.",
+    "비유하다"
+   ],
+   [
+    "kingdom",
+    "n.",
+    "왕국"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Whereunto shall I liken",
+    "whereunto=무엇에(옛말); shall I liken=내가 비유하랴"
+   ]
+  ]
+ },
+ {
+  "en": "It is like leaven, which a woman took and hid in three measures of meal, till the whole was leavened.",
+  "ko": "그것은 마치 누룩과 같으니, 한 여인이 가져다가 가루 서 말 속에 넣어 두매 온 덩이가 다 부풀었느니라\" 하시니라.",
+  "note": "'누룩'(뒤메)은 흔히 악을 뜻하나 여기서는 왕국의 감춰진 능력을 가리킨다. 온 덩이를 부풀리듯, 왕국은 속에서 온전히 퍼진다.",
+  "voc": [
+   [
+    "leaven",
+    "n.",
+    "누룩"
+   ],
+   [
+    "measure",
+    "n.",
+    "되, 측량 단위"
+   ],
+   [
+    "meal",
+    "n.",
+    "가루"
+   ],
+   [
+    "leaven",
+    "v.",
+    "부풀리다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "till the whole was leavened",
+    "was leavened=수동태 '부풀려졌다'"
+   ]
+  ]
+ },
+ {
+  "en": "And he went through the cities and villages, teaching, and journeying toward Jerusalem.",
+  "ko": "예수께서 예루살렘을 향하여 가시며, 여러 성읍과 마을을 두루 다니며 가르치시더라.",
+  "note": "예수의 발걸음은 예루살렘, 곧 십자가를 향한다. 가르치며 나아가심은 그 길이 사명의 성취를 향한 결단임을 보여 준다.",
+  "voc": [
+   [
+    "city",
+    "n.",
+    "성읍"
+   ],
+   [
+    "village",
+    "n.",
+    "마을"
+   ],
+   [
+    "journey",
+    "v.",
+    "여행하다, 나아가다"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "Then said one unto him, Lord, are there few that be saved? And he said unto them,",
+  "ko": "어떤 이가 예수께 여짜오되 \"주여, 구원을 받는 자가 적으니이까?\" 하니, 그들에게 이르시되",
+  "note": "'구원받는 자가 적으니이까'라는 물음에 예수는 숫자가 아니라 각자의 태도로 답을 돌리신다. 구원은 관망이 아니라 결단의 문제다.",
+  "voc": [
+   [
+    "few",
+    "adj.",
+    "적은"
+   ],
+   [
+    "save",
+    "v.",
+    "구원하다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "are there few that be saved",
+    "that be saved=관계사절 '구원받는', be는 are의 옛 접속법 형태"
+   ]
+  ]
+ },
+ {
+  "en": "Strive to enter in at the strait gate: for many, I say unto you, will seek to enter in, and shall not be able.",
+  "ko": "\"좁은 문으로 들어가기를 힘쓰라. 내가 너희에게 이르노니, 들어가기를 구하여도 능히 들어가지 못하는 자가 많으리라.",
+  "note": "'힘쓰라'(아고니조마이)는 사력을 다한 분투를 뜻한다. '좁은 문'은 편한 길이 아니니, 구원은 진지한 헌신을 요구한다.",
+  "voc": [
+   [
+    "strive",
+    "v.",
+    "힘쓰다, 분투하다"
+   ],
+   [
+    "strait",
+    "adj.",
+    "좁은(옛말)"
+   ],
+   [
+    "gate",
+    "n.",
+    "문"
+   ],
+   [
+    "able",
+    "adj.",
+    "할 수 있는"
+   ]
+  ],
+  "idi": [
+   [
+    "strait gate",
+    "좁은 문 - 구원에 이르는 좁은 길을 뜻하는 표현"
+   ]
+  ],
+  "gra": [
+   [
+    "Strive to enter in at the strait gate",
+    "strait는 narrow(좁은)의 옛 형용사, straight와 다른 단어"
+   ]
+  ]
+ },
+ {
+  "en": "When once the master of the house is risen up, and hath shut to the door, and ye begin to stand without, and to knock at the door, saying, Lord, Lord, open unto us; and he shall answer and say unto you, I know you not whence ye are:",
+  "ko": "집주인이 일어나 문을 닫은 후에 너희가 밖에 서서 문을 두드리며 '주여, 주여, 우리에게 열어 주소서' 하기 시작하리니, 그가 대답하여 너희에게 이르되 '나는 너희가 어디서 온 자인지 알지 못하노라' 하리라.",
+  "note": "'문을 닫음'은 기회의 마감이다. 때를 놓치면 아무리 두드려도 늦으니, 응답의 시기가 있음을 엄히 일깨우신다.",
+  "voc": [
+   [
+    "master",
+    "n.",
+    "주인"
+   ],
+   [
+    "shut to",
+    "",
+    "닫다"
+   ],
+   [
+    "knock",
+    "v.",
+    "두드리다"
+   ],
+   [
+    "whence",
+    "adv.",
+    "어디서(옛말)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "hath shut to the door",
+    "hath는 has의 옛 3인칭; shut to=닫다(옛 표현)"
+   ]
+  ]
+ },
+ {
+  "en": "Then shall ye begin to say, We have eaten and drunk in thy presence, and thou hast taught in our streets.",
+  "ko": "그때에 너희가 말하기를 시작하여 '우리가 주 앞에서 먹고 마셨으며, 주께서 우리 거리에서 가르치셨나이다' 하리라.",
+  "note": "함께 먹고 들었다는 것만으로는 부족하다. 예수 곁에 있었던 외형이 구원을 보증하지 못하니, 참된 관계가 관건이다.",
+  "voc": [
+   [
+    "eat",
+    "v.",
+    "먹다"
+   ],
+   [
+    "drink",
+    "v.",
+    "마시다"
+   ],
+   [
+    "presence",
+    "n.",
+    "앞, 임재"
+   ],
+   [
+    "street",
+    "n.",
+    "거리"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Then shall ye begin to say",
+    "shall ye=의문·미래의 옛 어순, ye는 you의 옛 주격"
+   ]
+  ]
+ },
+ {
+  "en": "But he shall say, I tell you, I know you not whence ye are; depart from me, all ye workers of iniquity.",
+  "ko": "그러나 그가 이르되 '내가 너희에게 이르노니, 나는 너희가 어디서 온 자인지 알지 못하노라. 불의를 행하는 모든 자들아, 내게서 떠나가라' 하리라.",
+  "note": "'불의를 행하는 자'(에르가테스 아디키아스)는 주를 안다 하면서도 삶으로 부인한 자다. 아는 것과 사는 것이 갈라질 때 배척이 임한다.",
+  "voc": [
+   [
+    "depart",
+    "v.",
+    "떠나다"
+   ],
+   [
+    "worker",
+    "n.",
+    "행하는 자"
+   ],
+   [
+    "iniquity",
+    "n.",
+    "불의, 죄악"
+   ]
+  ],
+  "idi": [
+   [
+    "workers of iniquity",
+    "불의를 행하는 자들"
+   ]
+  ],
+  "gra": [
+   [
+    "depart from me, all ye workers of iniquity",
+    "ye는 호격에 쓰인 you의 옛말"
+   ]
+  ]
+ },
+ {
+  "en": "There shall be weeping and gnashing of teeth, when ye shall see Abraham, and Isaac, and Jacob, and all the prophets, in the kingdom of God, and you yourselves thrust out.",
+  "ko": "너희가 아브라함과 이삭과 야곱과 모든 선지자는 하나님의 왕국 안에 있고 너희 자신은 밖으로 쫓겨난 것을 볼 때에, 거기서 슬피 울며 이를 갈리라.",
+  "note": "'슬피 울며 이를 갊'은 후회와 분노의 극한이다. 족장들은 왕국 안에, 자신은 밖에 있는 광경이 그 통한을 더욱 사무치게 한다.",
+  "voc": [
+   [
+    "weeping",
+    "n.",
+    "슬피 욺"
+   ],
+   [
+    "gnash",
+    "v.",
+    "이를 갈다"
+   ],
+   [
+    "prophet",
+    "n.",
+    "선지자"
+   ],
+   [
+    "thrust out",
+    "",
+    "쫓아내다"
+   ]
+  ],
+  "idi": [
+   [
+    "gnashing of teeth",
+    "이를 갊 - 극심한 통한과 분노를 나타내는 표현"
+   ]
+  ],
+  "gra": [
+   [
+    "when ye shall see Abraham",
+    "ye shall see=너희가 볼 때(미래의 옛 어법)"
+   ]
+  ]
+ },
+ {
+  "en": "And they shall come from the east, and from the west, and from the north, and from the south, and shall sit down in the kingdom of God.",
+  "ko": "사람들이 동에서 서에서 북에서 남에서 와서 하나님의 왕국 안에 앉으리라.",
+  "note": "동서남북에서 몰려옴은 이방인의 유입을 예고한다. 하나님의 왕국은 혈통이 아니라 은혜로 열리는 만민의 잔치다.",
+  "voc": [
+   [
+    "east",
+    "n.",
+    "동쪽"
+   ],
+   [
+    "west",
+    "n.",
+    "서쪽"
+   ],
+   [
+    "north",
+    "n.",
+    "북쪽"
+   ],
+   [
+    "sit down",
+    "",
+    "앉다"
+   ]
+  ],
+  "idi": [
+   [
+    "from the east ... west ... north ... south",
+    "동서남북에서 - 사방 만민을 뜻하는 표현"
+   ]
+  ],
+  "gra": [
+   [
+    "they shall come from the east",
+    "shall은 미래를 나타내는 옛 어법"
+   ]
+  ]
+ },
+ {
+  "en": "And, behold, there are last which shall be first, and there are first which shall be last.",
+  "ko": "보라, 나중 된 자로서 먼저 될 자가 있고, 먼저 된 자로서 나중 될 자가 있느니라\" 하시니라.",
+  "note": "'나중 된 자가 먼저 됨'은 하나님 왕국의 뒤집힌 질서다. 인간의 서열과 특권이 그분 앞에서 역전됨을 선언하신다.",
+  "voc": [
+   [
+    "last",
+    "n.",
+    "나중 된 자"
+   ],
+   [
+    "first",
+    "n.",
+    "먼저 된 자"
+   ]
+  ],
+  "idi": [
+   [
+    "the last ... first",
+    "나중 된 자와 먼저 된 자 - 뒤집힌 질서를 뜻하는 표현"
+   ]
+  ],
+  "gra": [
+   [
+    "there are last which shall be first",
+    "which=관계대명사(사람을 가리킨 옛 용법)"
+   ]
+  ]
+ },
+ {
+  "en": "The same day there came certain of the Pharisees, saying unto him, Get thee out, and depart hence: for Herod will kill thee.",
+  "ko": "바로 그날에 어떤 바리새인들이 와서 예수께 이르되 \"여기서 나가 떠나소서. 헤롯이 당신을 죽이고자 하나이다\" 하니,",
+  "note": "바리새인이 헤롯의 위협을 전한다. 진심 어린 경고인지 예수를 예루살렘에서 몰아내려는 술책인지 모호하나, 예수는 흔들리지 않으신다.",
+  "voc": [
+   [
+    "Pharisee",
+    "n.",
+    "바리새인"
+   ],
+   [
+    "get out",
+    "",
+    "나가다"
+   ],
+   [
+    "depart",
+    "v.",
+    "떠나다"
+   ],
+   [
+    "kill",
+    "v.",
+    "죽이다"
+   ]
+  ],
+  "idi": [
+   [
+    "Get thee out",
+    "나가라 - 떠나라는 명령의 옛 표현"
+   ]
+  ],
+  "gra": [
+   [
+    "Get thee out, and depart hence",
+    "get thee=재귀의 옛 표현(=get yourself); hence=여기서(옛말)"
+   ]
+  ]
+ },
+ {
+  "en": "And he said unto them, Go ye, and tell that fox, Behold, I cast out devils, and I do cures to day and to morrow, and the third day I shall be perfected.",
+  "ko": "예수께서 그들에게 이르시되 \"가서 그 여우에게 이르라. 보라, 내가 오늘과 내일은 귀신을 쫓아내며 병을 고치고, 사흘째 되는 날에는 내 일을 완수하리라.",
+  "note": "'그 여우'는 헤롯의 교활함과 하찮음을 함께 꼬집는다. '완수하리라'(텔레이오오)는 예수의 사역이 정한 때까지 반드시 이루어짐을 뜻한다.",
+  "voc": [
+   [
+    "fox",
+    "n.",
+    "여우"
+   ],
+   [
+    "cast out",
+    "",
+    "쫓아내다"
+   ],
+   [
+    "cure",
+    "n.",
+    "고침, 치유"
+   ],
+   [
+    "perfect",
+    "v.",
+    "완수하다, 온전케 하다"
+   ]
+  ],
+  "idi": [
+   [
+    "that fox",
+    "그 여우 - 교활한 자를 빗대는 비유"
+   ]
+  ],
+  "gra": [
+   [
+    "tell that fox ... I shall be perfected",
+    "shall be perfected=수동 미래 '완수되리라'"
+   ]
+  ]
+ },
+ {
+  "en": "Nevertheless I must walk to day, and to morrow, and the day following: for it cannot be that a prophet perish out of Jerusalem.",
+  "ko": "그러할지라도 내가 오늘과 내일과 그다음 날에도 걸어가야 하리니, 이는 선지자가 예루살렘 밖에서 죽는 법이 없음이니라.",
+  "note": "선지자가 예루살렘 밖에서 죽지 않는다는 말씀은 반어적 통찰이다. 그 성이 곧 예수를 배척하고 죽일 자리임을 내다보신다.",
+  "voc": [
+   [
+    "nevertheless",
+    "adv.",
+    "그러할지라도"
+   ],
+   [
+    "walk",
+    "v.",
+    "걷다, 나아가다"
+   ],
+   [
+    "perish",
+    "v.",
+    "죽다, 멸망하다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "it cannot be that a prophet perish",
+    "perish=접속법 현재(옛 어법) '죽는다는 것'"
+   ]
+  ]
+ },
+ {
+  "en": "O Jerusalem, Jerusalem, which killest the prophets, and stonest them that are sent unto thee; how often would I have gathered thy children together, as a hen doth gather her brood under her wings, and ye would not!",
+  "ko": "오 예루살렘아, 예루살렘아, 선지자들을 죽이고 네게 보내신 자들을 돌로 치는 자여! 암탉이 그 새끼를 날개 아래 모음같이, 내가 네 자녀를 모으려 한 일이 몇 번이더냐. 그러나 너희가 원치 아니하였도다.",
+  "note": "'모으려 함'(에피쉬나고)은 암탉이 새끼를 품는 그림이다. 거듭 품으려 하신 사랑과 '너희가 원치 아니하였도다'라는 거부의 슬픔이 사무친다.",
+  "voc": [
+   [
+    "stone",
+    "v.",
+    "돌로 치다"
+   ],
+   [
+    "gather",
+    "v.",
+    "모으다"
+   ],
+   [
+    "hen",
+    "n.",
+    "암탉"
+   ],
+   [
+    "brood",
+    "n.",
+    "새끼(들)"
+   ]
+  ],
+  "idi": [
+   [
+    "under her wings",
+    "날개 아래에 - 보호와 품음을 나타내는 표현"
+   ]
+  ],
+  "gra": [
+   [
+    "which killest the prophets, and stonest them",
+    "killest·stonest는 2인칭 단수의 옛 어미(-est)"
+   ]
+  ]
+ },
+ {
+  "en": "Behold, your house is left unto you desolate: and verily I say unto you, Ye shall not see me, until the time come when ye shall say, Blessed is he that cometh in the name of the Lord.",
+  "ko": "보라, 너희 집이 너희에게 버려진 채 황폐하게 되리라. 진실로 내가 너희에게 이르노니, '주의 이름으로 오시는 이여, 복되도다' 할 때가 이르기까지 너희가 나를 보지 못하리라\" 하시니라.",
+  "note": "'집이 버려짐'은 성전과 성의 황폐를 예고한다. 그러나 '복되도다' 할 때까지라는 말씀에, 훗날의 회복을 향한 여운이 남아 있다.",
+  "voc": [
+   [
+    "house",
+    "n.",
+    "집"
+   ],
+   [
+    "desolate",
+    "adj.",
+    "황폐한, 버려진"
+   ],
+   [
+    "verily",
+    "adv.",
+    "진실로(옛말)"
+   ]
+  ],
+  "idi": [
+   [
+    "Blessed is he that cometh in the name of the Lord",
+    "주의 이름으로 오시는 이여 복되도다 - 메시아를 맞는 찬송(시 118:26)"
+   ]
+  ],
+  "gra": [
+   [
+    "Ye shall not see me, until the time come",
+    "ye shall not=너희가 못하리라(옛 어법); come=접속법 '이를 때'"
+   ]
+  ]
+ }
 ]
