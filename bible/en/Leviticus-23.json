@@ -1,164 +1,1173 @@
 [
-  {
-    "en": "the feasts of the LORD",
-    "ko": "여호와의 절기",
-    "note": "히브리어 '모아데'(מוֹעֲדֵי, moʿade)는 '정한 때·만남의 약속'을 뜻하는 '모에드'의 복수형이다. 단순한 축제가 아니라 하나님이 자기 백성과 만나려 '정하신 때'다. 이 장에 안식일·유월절·무교절·초실절·칠칠절·나팔절·속죄일·초막절이 차례로 나온다.",
-    "voc": [
-      ["feast", "n.", "절기, 축제"],
-      ["LORD", "n.", "주(여호와)"]
-    ],
-    "gra": [
-      ["the feasts of the LORD", "「the + 명사 + of + 명사」 소유·소속 구조로, of가 '여호와께 속한/여호와의' 절기임을 나타낸다."]
-    ]
-  },
-  {
-    "en": "holy convocations",
-    "ko": "거룩한 모임",
-    "note": "'미크라에 코데쉬'(מִקְרָאֵי קֹדֶשׁ, miqraʾe qodesh)는 '거룩하게 불러 모음'을 뜻한다. '미크라'는 '소리쳐 부름'에서 나온 말로, 백성을 불러 모아 예배하게 하는 거룩한 집회를 가리킨다.",
-    "voc": [
-      ["holy", "adj.", "거룩한"],
-      ["convocation", "n.", "(부름받은) 모임, 집회"]
-    ],
-    "gra": [
-      ["holy convocations", "「형용사 + 복수명사」로, 정해진 모임이 여러 번 반복됨을 복수형으로 나타낸다."]
-    ]
-  },
-  {
-    "en": "the sabbath of rest",
-    "ko": "안식할 안식일",
-    "note": "'샤바트 샤바톤'(שַׁבַּת שַׁבָּתוֹן, shabbat shabbaton)은 '안식 중의 안식', 곧 완전한 쉼을 강조하는 강조형 표현이다. 안식일은 모든 절기에 앞서는 으뜸 절기로 제시된다.",
-    "voc": [
-      ["sabbath", "n.", "안식일"],
-      ["rest", "n.", "쉼, 안식"]
-    ],
-    "idi": [
-      ["the sabbath of rest", "안식할 안식일, 온전한 쉼의 날"]
-    ],
-    "gra": [
-      ["sabbath of rest", "「명사 of 명사」 동족 강조 구조로, 히브리어 강조형을 그대로 옮겨 '쉼 중의 쉼'을 표현한다."]
-    ]
-  },
-  {
-    "en": "the LORD's passover",
-    "ko": "여호와의 유월절",
-    "note": "'페사흐'(פֶּסַח, pesaḥ)는 어근 '파사흐'(넘어가다·건너뛰다)에서 나온 말로, 애굽에서 죽음의 사자가 어린양의 피를 바른 집을 '넘어간' 사건을 기념한다. 그리스도는 '우리의 유월절 양'이시다(고전 5:7).",
-    "voc": [
-      ["passover", "n.", "유월절"],
-      ["LORD", "n.", "주(여호와)"]
-    ],
-    "gra": [
-      ["the LORD's passover", "「명사's + 명사」 소유격(아포스트로피 s)으로 '여호와의 유월절'을 나타낸다. of 구문과 같은 소유 의미다."]
-    ]
-  },
-  {
-    "en": "the feast of unleavened bread",
-    "ko": "무교절",
-    "note": "'마초트'(מַצּוֹת, matsot)는 '누룩 없는 떡'을 뜻한다. 누룩(하메츠)은 흔히 죄와 부패를 상징하며, 무교절은 구속받은 백성이 죄를 제거하고 거룩히 살아야 함을 가르친다.",
-    "voc": [
-      ["feast", "n.", "절기"],
-      ["unleavened", "adj.", "누룩 없는, 무교의"],
-      ["bread", "n.", "떡, 빵"]
-    ],
-    "gra": [
-      ["unleavened bread", "un-(부정 접두사) + leavened(누룩을 넣은)로 만든 형용사가 bread를 꾸민다. '누룩을 넣지 않은 빵'이라는 뜻이다."]
-    ]
-  },
-  {
-    "en": "a sheaf of the firstfruits",
-    "ko": "첫 이삭 한 단",
-    "note": "'오메르 레쉬트'(עֹמֶר רֵאשִׁית, ʿomer reshit). '오메르'는 곡식 한 단, '레쉬트'는 '처음·첫 열매'다. 초실절의 첫 단은 부활하신 그리스도 곧 '잠자는 자들의 첫 열매'를 예표한다(고전 15:20).",
-    "voc": [
-      ["sheaf", "n.", "(곡식) 단, 묶음"],
-      ["firstfruits", "n.", "첫 열매, 첫 소산"]
-    ],
-    "idi": [
-      ["a sheaf of", "~의 한 단"]
-    ],
-    "gra": [
-      ["a sheaf of the firstfruits", "「a + 단위명사 + of + 명사」 분량 표현으로, sheaf가 firstfruits를 세는 단위 노릇을 한다."]
-    ]
-  },
-  {
-    "en": "he shall wave the sheaf before the LORD",
-    "ko": "그 단을 여호와 앞에 흔들다",
-    "note": "'테누파'(תְּנוּפָה, tenufah)는 제물을 앞뒤로 '흔들어' 여호와께 드렸다가 받는 요제(搖祭)의 동작이다. 소산의 첫 부분을 하나님께 돌려 드림으로 모든 것이 그분께로부터 왔음을 고백한다.",
-    "voc": [
-      ["wave", "v.", "흔들다"],
-      ["sheaf", "n.", "(곡식) 단"],
-      ["before", "prep.", "~ 앞에서"]
-    ],
-    "gra": [
-      ["he shall wave", "명령·규정의 shall로 '흔들지니라(흔들어야 한다)'는 의무를 나타낸다."],
-      ["before the LORD", "여기서 before는 시간이 아니라 장소·임재를 뜻해 '여호와 앞에서'로 옮긴다."]
-    ]
-  },
-  {
-    "en": "seven sabbaths shall be complete ... fifty days",
-    "ko": "일곱 안식일 ... 오십 일",
-    "note": "초실절 이튿날부터 오십 일을 세어 지키는 칠칠절(샤부오트, שָׁבֻעוֹת)이다. 헬라어로 '오순절'(펜테코스테, 50)이라 불리며, 성령 강림이 이날 이루어졌다(행 2:1). 보리 추수에서 밀 추수로 이어지는 첫 열매의 절기다.",
-    "voc": [
-      ["seven", "num.", "일곱"],
-      ["sabbath", "n.", "안식일, 주간"],
-      ["complete", "adj.", "온전한, 다 찬"],
-      ["fifty", "num.", "오십"]
-    ],
-    "gra": [
-      ["shall be complete", "「shall be + 형용사」로 '온전히 채워져야 한다'는 규정을 나타낸다. complete는 보어로 상태를 서술한다."]
-    ]
-  },
-  {
-    "en": "ye shall afflict your souls",
-    "ko": "스스로 괴롭게 하다",
-    "note": "'이니탬 나프쇼테켐'(עִנִּיתֶם נַפְשֹׁתֵיכֶם). '아나'(עָנָה, 낮추다·괴롭게 하다)와 '네페쉬'(영혼·생명)가 결합되어, 속죄일에 금식하며 자기를 낮추어 죄를 회개함을 뜻한다.",
-    "voc": [
-      ["ye", "pron.", "너희 (you의 고어)"],
-      ["afflict", "v.", "괴롭게 하다, 고통을 주다"],
-      ["soul", "n.", "영혼, 자신"]
-    ],
-    "gra": [
-      ["ye shall afflict", "ye는 you의 옛 주격 복수형이다. 현대 영어로는 'you shall afflict'에 해당한다."],
-      ["afflict your souls", "재귀적 의미로 '너희 자신을 괴롭게 하라' 곧 '스스로 괴롭게 하라(금식하라)'는 뜻이다."]
-    ]
-  },
-  {
-    "en": "a day of atonement",
-    "ko": "속죄일",
-    "note": "'욤 하키푸림'(יוֹם הַכִּפֻּרִים, yom hakkippurim). '카파르'(덮다·속죄하다)에서 나온 '키푸림'은 온 백성의 죄를 일 년에 한 번 총체적으로 덮어 속하는 가장 엄숙한 날이다(레 16장).",
-    "voc": [
-      ["day", "n.", "날"],
-      ["atonement", "n.", "속죄, 화목"]
-    ],
-    "idi": [
-      ["a day of atonement", "속죄의 날, 속죄일"]
-    ],
-    "gra": [
-      ["a day of atonement", "「a + 명사 + of + 추상명사」 구조로, of가 '속죄를 위한/속죄의 성격을 지닌' 날임을 나타낸다."]
-    ]
-  },
-  {
-    "en": "the feast of tabernacles",
-    "ko": "초막절",
-    "note": "'하그 하수코트'(חַג הַסֻּכּוֹת, ḥag hassukkot). '수카'(초막·장막)에서 나온 말로, 광야에서 초막에 거하던 출애굽의 은혜를 기념한다. 수확을 마친 기쁨의 절기이자 장차 하나님이 백성과 함께 거하실 영원한 안식을 내다보게 한다.",
-    "voc": [
-      ["feast", "n.", "절기"],
-      ["tabernacle", "n.", "초막, 장막"]
-    ],
-    "gra": [
-      ["the feast of tabernacles", "tabernacles는 복수형으로, of가 '초막들과 관련된/초막을 짓고 지키는' 절기임을 나타낸다."]
-    ]
-  },
-  {
-    "en": "Ye shall dwell in booths",
-    "ko": "초막에 거할지니라",
-    "note": "'수코트'(סֻכֹּת, sukkot)는 나뭇가지로 엮은 임시 거처다. 견고한 집을 떠나 초막에 거함으로, 이스라엘이 광야에서 오직 여호와의 보호로 살았음을 해마다 몸으로 되새기게 한다.",
-    "voc": [
-      ["ye", "pron.", "너희 (you의 고어)"],
-      ["dwell", "v.", "거하다, 살다"],
-      ["booth", "n.", "초막, 임시 거처"]
-    ],
-    "gra": [
-      ["Ye shall dwell", "ye는 you의 옛 주격이며, shall은 명령조로 '거할지니라(거해야 한다)'는 규정을 나타낸다."],
-      ["dwell in booths", "자동사 dwell는 전치사 in과 함께 '~ 안에 거하다'로 쓰인다."]
-    ]
-  }
+ {
+  "en": "And the LORD spake unto Moses, saying,",
+  "ko": "여호와께서 모세에게 말씀하여 이르시되,",
+  "note": "여호와께서 모세에게 말씀하신다. 여호와의 절기에 관한 규례가 선포되려 한다. 이 장은 이스라엘의 거룩한 절기 전체를 아우르는 예배의 달력이다.",
+  "voc": [
+   [
+    "spake",
+    "v.",
+    "말씀하셨다"
+   ],
+   [
+    "saying",
+    "v.",
+    "이르시되"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "spake",
+    "speak의 KJV 과거형"
+   ]
+  ]
+ },
+ {
+  "en": "Speak unto the children of Israel, and say unto them, Concerning the feasts of the LORD, which ye shall proclaim to be holy convocations, even these are my feasts.",
+  "ko": "\"너는 이스라엘 자손에게 일러 이르라. 너희가 거룩한 모임으로 선포할 여호와의 절기들, 곧 나의 절기들은 이러하니라.",
+  "note": "여호와의 절기 곧 너희가 거룩한 모임으로 선포할 나의 절기가 이러하다 하신다. '거룩한 모임(holy convocation, 히브리어 미크라 코데쉬)'은 하나님께 소집된 성회다. 절기는 사람의 축제가 아니라 하나님이 정하신 거룩한 만남이다.",
+  "voc": [
+   [
+    "feasts",
+    "n.",
+    "절기"
+   ],
+   [
+    "proclaim",
+    "v.",
+    "선포하다"
+   ],
+   [
+    "convocation",
+    "n.",
+    "성회·모임"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "holy convocations",
+    "거룩한 성회(미크라 코데쉬)"
+   ]
+  ]
+ },
+ {
+  "en": "Six days shall work be done: but the seventh day is the sabbath of rest, an holy convocation; ye shall do no work therein: it is the sabbath of the LORD in all your dwellings.",
+  "ko": "엿새 동안은 일할 것이나, 일곱째 날은 안식할 안식일이요 거룩한 모임의 날이니, 너희는 아무 일도 하지 말지니라. 이는 너희 모든 거처에서 지킬 여호와의 안식일이니라.",
+  "note": "엿새는 일하고 일곱째 날은 안식의 안식일 곧 거룩한 모임이니 아무 일도 하지 말라 하신다. 안식일은 모든 절기의 기초가 되는 주간의 거룩이다. 창조의 리듬을 따라 한 주에 한 번 하나님 안에서 쉼을 누린다.",
+  "voc": [
+   [
+    "sabbath",
+    "n.",
+    "안식일"
+   ],
+   [
+    "rest",
+    "n.",
+    "안식"
+   ],
+   [
+    "dwellings",
+    "n.",
+    "거처"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "sabbath of rest",
+    "엄숙한 안식(샤바트 샤바톤)"
+   ]
+  ]
+ },
+ {
+  "en": "These are the feasts of the LORD, even holy convocations, which ye shall proclaim in their seasons.",
+  "ko": "너희가 그 정한 때에 거룩한 모임으로 선포할 여호와의 절기들은 이러하니라.",
+  "note": "이것이 너희가 그 정한 때에 선포할 여호와의 절기 곧 거룩한 모임이라 하신다. 절기는 각기 정해진 계절에 지켜져야 한다. 하나님의 시간표를 따라 예배의 절기가 이어진다.",
+  "voc": [
+   [
+    "seasons",
+    "n.",
+    "정한 때·계절"
+   ],
+   [
+    "holy",
+    "adj.",
+    "거룩한"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "in their seasons",
+    "그 정한 때에"
+   ]
+  ]
+ },
+ {
+  "en": "In the fourteenth day of the first month at even is the LORD’s passover.",
+  "ko": "첫째 달 열나흗날 저녁은 여호와의 유월절이요,",
+  "note": "첫째 달 열넷째 날 저녁은 여호와의 유월절이라 하신다. '유월절(passover, 히브리어 페사흐)'은 애굽에서 건지신 구원을 기념한다. 어린양의 피로 죽음을 넘기신 대속의 은혜가 절기의 시작이다.",
+  "voc": [
+   [
+    "fourteenth",
+    "adj.",
+    "열넷째"
+   ],
+   [
+    "passover",
+    "n.",
+    "유월절"
+   ],
+   [
+    "even",
+    "n.",
+    "저녁"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "the LORD passover",
+    "여호와의 유월절(페사흐, 구원의 기념)"
+   ]
+  ]
+ },
+ {
+  "en": "And on the fifteenth day of the same month is the feast of unleavened bread unto the LORD: seven days ye must eat unleavened bread.",
+  "ko": "그달 열닷샛날은 여호와께 드리는 무교절이니, 이레 동안 너희는 무교병을 먹을지니라.",
+  "note": "같은 달 열다섯째 날은 여호와의 무교절이니 이레 동안 무교병을 먹으라 하신다. '무교병(unleavened bread)'은 누룩 없는 떡으로 죄의 정결을 상징한다. 누룩을 제거함은 죄를 버리고 거룩을 좇는 삶을 예표한다.",
+  "voc": [
+   [
+    "fifteenth",
+    "adj.",
+    "열다섯째"
+   ],
+   [
+    "unleavened",
+    "adj.",
+    "누룩 없는"
+   ],
+   [
+    "bread",
+    "n.",
+    "떡"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "feast of unleavened bread",
+    "무교절(누룩 없는 떡의 절기)"
+   ]
+  ]
+ },
+ {
+  "en": "In the first day ye shall have an holy convocation: ye shall do no servile work therein.",
+  "ko": "그 첫날에는 너희가 거룩한 모임을 가질지니, 아무 노동도 하지 말지며,",
+  "note": "첫날에는 거룩한 모임을 갖고 아무 노동도 하지 말라 하신다. 무교절 첫날은 성회의 날이다. 절기의 시작은 일을 멈추고 하나님께 모이는 날이다.",
+  "voc": [
+   [
+    "convocation",
+    "n.",
+    "성회"
+   ],
+   [
+    "servile",
+    "adj.",
+    "노동의·종의"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "servile work",
+    "고된 노동(servile=종의) KJV 표현"
+   ]
+  ]
+ },
+ {
+  "en": "But ye shall offer an offering made by fire unto the LORD seven days: in the seventh day is an holy convocation: ye shall do no servile work therein.",
+  "ko": "이레 동안 여호와께 화제를 드릴지니라. 그 이렛날에도 거룩한 모임이 있으리니 아무 노동도 하지 말지니라.",
+  "note": "이레 동안 화제를 드리고 일곱째 날에도 거룩한 모임을 갖고 노동하지 말라 하신다. 무교절은 첫날과 끝날에 성회로 봉인된다. 절기의 처음과 끝이 거룩한 모임으로 구별된다.",
+  "voc": [
+   [
+    "offering",
+    "n.",
+    "제물"
+   ],
+   [
+    "seventh",
+    "adj.",
+    "일곱째"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "made by fire",
+    "화제(불로 드리는 제사)"
+   ]
+  ]
+ },
+ {
+  "en": "And the LORD spake unto Moses, saying,",
+  "ko": "여호와께서 모세에게 말씀하여 이르시되,",
+  "note": "여호와께서 모세에게 말씀하신다. 첫 이삭 요제에 관한 규례가 이어진다. 추수의 첫 열매를 하나님께 드리는 절기가 시작된다.",
+  "voc": [
+   [
+    "spake",
+    "v.",
+    "말씀하셨다"
+   ],
+   [
+    "saying",
+    "v.",
+    "이르시되"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "spake",
+    "speak의 KJV 과거형"
+   ]
+  ]
+ },
+ {
+  "en": "Speak unto the children of Israel, and say unto them, When ye be come into the land which I give unto you, and shall reap the harvest thereof, then ye shall bring a sheaf of the firstfruits of your harvest unto the priest:",
+  "ko": "\"너는 이스라엘 자손에게 일러 이르라. 너희가 내가 너희에게 주는 땅에 들어가 그 곡식을 거둘 때에는, 너희 곡식의 첫 이삭 한 단을 제사장에게로 가져갈지니라.",
+  "note": "그 땅에 들어가 추수하거든 첫 이삭 한 단을 제사장에게 가져오라 하신다. '첫 이삭(firstfruits, 히브리어 레쉬트)'은 추수의 처음 소산이다. 첫 열매를 드림은 모든 소산이 하나님께 속함을 고백함이다.",
+  "voc": [
+   [
+    "reap",
+    "v.",
+    "추수하다"
+   ],
+   [
+    "sheaf",
+    "n.",
+    "단·묶음"
+   ],
+   [
+    "firstfruits",
+    "n.",
+    "첫 열매"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "a sheaf of the firstfruits",
+    "첫 이삭 한 단(레쉬트, 첫 소산)"
+   ]
+  ]
+ },
+ {
+  "en": "And he shall wave the sheaf before the LORD, to be accepted for you: on the morrow after the sabbath the priest shall wave it.",
+  "ko": "그가 너희를 위하여 기쁘게 받으심이 되도록 그 단을 여호와 앞에 흔들지니, 안식일 이튿날에 제사장이 그것을 흔들지니라.",
+  "note": "제사장이 안식일 이튿날에 그 단을 여호와 앞에 흔들어 너희를 위해 받으시게 하라 하신다. '요제(wave offering)'는 하나님께 바쳐 흔드는 제사다. 첫 이삭의 요제는 부활의 첫 열매를 예표한다.",
+  "voc": [
+   [
+    "wave",
+    "v.",
+    "흔들다"
+   ],
+   [
+    "accepted",
+    "v.",
+    "받으신"
+   ],
+   [
+    "morrow",
+    "n.",
+    "이튿날"
+   ]
+  ],
+  "idi": [
+   [
+    "on the morrow after the sabbath",
+    "안식일 이튿날에(요제의 날)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And ye shall offer that day when ye wave the sheaf an he lamb without blemish of the first year for a burnt offering unto the LORD.",
+  "ko": "너희가 그 단을 흔드는 날에 일 년 된 흠 없는 숫양 어린것 하나를 여호와께 번제로 드릴지며,",
+  "note": "그 단을 흔드는 날에 일 년 된 흠 없는 숫양을 번제로 드리라 하신다. 요제와 함께 흠 없는 번제가 드려진다. 첫 소산의 헌신은 온전한 번제와 함께 완성된다.",
+  "voc": [
+   [
+    "lamb",
+    "n.",
+    "어린양"
+   ],
+   [
+    "without blemish",
+    "숙어",
+    "흠 없는"
+   ],
+   [
+    "burnt offering",
+    "숙어",
+    "번제"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "of the first year",
+    "일 년 된(어린 제물)"
+   ]
+  ]
+ },
+ {
+  "en": "And the meat offering thereof shall be two tenth deals of fine flour mingled with oil, an offering made by fire unto the LORD for a sweet savour: and the drink offering thereof shall be of wine, the fourth part of an hin.",
+  "ko": "그 소제로는 기름 섞은 고운 가루 십분의 이 에바를 여호와께 향기로운 화제로 드릴지며, 그 전제로는 포도주 사분의 일 힌을 드릴지니라.",
+  "note": "그 소제는 기름 섞은 고운 가루 십분의 이이며 전제는 포도주 사분의 일 힌이라 하신다. 소제와 전제가 번제에 곁들여진다. 곡식과 포도주까지 온전히 드려지는 예배의 풍성함이다.",
+  "voc": [
+   [
+    "meat offering",
+    "숙어",
+    "소제"
+   ],
+   [
+    "deals",
+    "n.",
+    "분량"
+   ],
+   [
+    "drink offering",
+    "숙어",
+    "전제"
+   ],
+   [
+    "hin",
+    "n.",
+    "힌(부피 단위)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "two tenth deals",
+    "십분의 이(소제의 분량)"
+   ]
+  ]
+ },
+ {
+  "en": "And ye shall eat neither bread, nor parched corn, nor green ears, until the selfsame day that ye have brought an offering unto your God: it shall be a statute for ever throughout your generations in all your dwellings.",
+  "ko": "너희가 너희 하나님께 그 예물을 가져오는 바로 그날까지는 너희가 떡이나 볶은 곡식이나 푸른 이삭을 먹지 말지니, 이는 너희 모든 거처에서 대대로 지킬 영원한 규례니라.",
+  "note": "이 예물을 하나님께 드리기까지 떡이나 볶은 곡식이나 생 이삭을 먹지 말라 이는 영원한 규례라 하신다. 첫 소산을 드리기 전에는 추수한 것을 먹지 못한다. 하나님께 먼저 드림이 소산을 누리는 순서다.",
+  "voc": [
+   [
+    "parched",
+    "adj.",
+    "볶은"
+   ],
+   [
+    "green ears",
+    "숙어",
+    "생 이삭"
+   ],
+   [
+    "selfsame",
+    "adj.",
+    "바로 그"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "the selfsame day",
+    "바로 그날(selfsame=그 자체) KJV 강조"
+   ]
+  ]
+ },
+ {
+  "en": "And ye shall count unto you from the morrow after the sabbath, from the day that ye brought the sheaf of the wave offering; seven sabbaths shall be complete:",
+  "ko": "안식일 이튿날 곧 너희가 흔들 제물의 단을 가져온 날부터 너희를 위하여 세어, 일곱 안식일이 차게 할지니,",
+  "note": "안식일 이튿날 곧 요제의 단을 가져온 날부터 일곱 안식일을 세라 하신다. 오순절을 향한 오십일의 계수가 시작된다. 첫 소산의 날부터 새 소산의 날까지 시간이 거룩히 헤아려진다.",
+  "voc": [
+   [
+    "count",
+    "v.",
+    "세다"
+   ],
+   [
+    "complete",
+    "adj.",
+    "완전한"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "seven sabbaths shall be complete",
+    "일곱 안식일이 차기까지(오십일 계수)"
+   ]
+  ]
+ },
+ {
+  "en": "Even unto the morrow after the seventh sabbath shall ye number fifty days; and ye shall offer a new meat offering unto the LORD.",
+  "ko": "일곱째 안식일 이튿날까지 오십 일을 세어, 새 소제를 여호와께 드릴지니라.",
+  "note": "일곱째 안식일 이튿날까지 오십일을 세고 새 소제를 여호와께 드리라 하신다. 오십일째가 오순절이며 새 소산을 드리는 날이다. 첫 소산의 절기가 오십일 후 새 소제의 절기로 이어진다.",
+  "voc": [
+   [
+    "number",
+    "v.",
+    "세다"
+   ],
+   [
+    "fifty",
+    "num.",
+    "오십"
+   ],
+   [
+    "new",
+    "adj.",
+    "새로운"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "fifty days",
+    "오십일(오순절 계수)"
+   ]
+  ]
+ },
+ {
+  "en": "Ye shall bring out of your habitations two wave loaves of two tenth deals: they shall be of fine flour; they shall be baken with leaven; they are the firstfruits unto the LORD.",
+  "ko": "너희 거처에서 십분의 이 에바로 만든 흔들 떡 두 개를 가져올지니, 그것은 고운 가루에 누룩을 넣어 구운 것으로 여호와께 드리는 첫 열매니라.",
+  "note": "너희 처소에서 십분의 이로 만든 요제의 떡 두 개를 가져오되 누룩을 넣어 구운 첫 열매라 하신다. 오순절의 떡은 누룩을 넣어 구운 두 덩이다. 일상의 양식이 된 소산을 첫 열매로 드리는 감사의 절기다.",
+  "voc": [
+   [
+    "loaves",
+    "n.",
+    "떡 덩이"
+   ],
+   [
+    "baken",
+    "v.",
+    "구워진"
+   ],
+   [
+    "leaven",
+    "n.",
+    "누룩"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "baken with leaven",
+    "누룩을 넣어 구운(bake의 KJV 과거분사 baken)"
+   ]
+  ]
+ },
+ {
+  "en": "And ye shall offer with the bread seven lambs without blemish of the first year, and one young bullock, and two rams: they shall be for a burnt offering unto the LORD, with their meat offering, and their drink offerings, even an offering made by fire, of sweet savour unto the LORD.",
+  "ko": "또 너희는 그 떡과 함께 일 년 된 흠 없는 어린 양 일곱과 어린 수소 하나와 숫양 둘을 드릴지니, 이것들은 그 소제와 전제와 더불어 여호와께 드리는 번제요 여호와께 향기로운 화제니라.",
+  "note": "그 떡과 함께 일 년 된 흠 없는 어린양 일곱과 수송아지 하나와 숫양 둘을 번제로 드리라 하신다. 오순절에는 풍성한 번제가 함께 드려진다. 감사의 절기는 넉넉한 헌신으로 채워진다.",
+  "voc": [
+   [
+    "lambs",
+    "n.",
+    "어린양들"
+   ],
+   [
+    "bullock",
+    "n.",
+    "수송아지"
+   ],
+   [
+    "rams",
+    "n.",
+    "숫양들"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "sweet savour",
+    "향기로운 냄새(하나님이 흠향하시는 제물)"
+   ]
+  ]
+ },
+ {
+  "en": "Then ye shall sacrifice one kid of the goats for a sin offering, and two lambs of the first year for a sacrifice of peace offerings.",
+  "ko": "그 다음 너희는 숫염소 하나를 속죄제로, 일 년 된 어린 양 둘을 화목제물로 드릴지니라.",
+  "note": "또 숫염소 하나를 속죄제로, 일 년 된 어린양 둘을 화목제로 드리라 하신다. 속죄제와 화목제가 오순절 제사에 더해진다. 감사의 절기에도 속죄와 화평의 제사가 함께한다.",
+  "voc": [
+   [
+    "kid",
+    "n.",
+    "새끼 염소"
+   ],
+   [
+    "sin offering",
+    "숙어",
+    "속죄제"
+   ],
+   [
+    "peace offerings",
+    "숙어",
+    "화목제"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And the priest shall wave them with the bread of the firstfruits for a wave offering before the LORD, with the two lambs: they shall be holy to the LORD for the priest.",
+  "ko": "제사장은 첫 열매의 떡과 그 두 어린 양을 여호와 앞에 흔들 제물로 흔들지니, 이것들은 여호와께 거룩히 구별되어 제사장에게 돌아갈지니라.",
+  "note": "제사장이 그 첫 열매의 떡과 두 어린양을 여호와 앞에 요제로 흔드니 이는 여호와께 거룩하여 제사장에게 돌린다 하신다. 요제로 드린 것은 제사장의 거룩한 몫이 된다. 하나님께 흔들어 바친 것이 봉사하는 자의 양식이 된다.",
+  "voc": [
+   [
+    "wave offering",
+    "숙어",
+    "요제"
+   ],
+   [
+    "holy",
+    "adj.",
+    "거룩한"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And ye shall proclaim on the selfsame day, that it may be an holy convocation unto you: ye shall do no servile work therein: it shall be a statute for ever in all your dwellings throughout your generations.",
+  "ko": "너희는 바로 그날에 거룩한 모임을 선포할지니, 아무 노동도 하지 말지며, 이는 너희 모든 거처에서 대대로 지킬 영원한 규례니라.",
+  "note": "그날에 거룩한 모임을 선포하고 아무 노동도 하지 말라 이는 영원한 규례라 하신다. 오순절 당일은 성회의 날이다. 새 소산의 절기도 노동을 멈추고 하나님께 모인다.",
+  "voc": [
+   [
+    "proclaim",
+    "v.",
+    "선포하다"
+   ],
+   [
+    "statute",
+    "n.",
+    "규례"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "it shall be a statute for ever",
+    "영원한 규례가 되리라"
+   ]
+  ]
+ },
+ {
+  "en": "And when ye reap the harvest of your land, thou shalt not make clean riddance of the corners of thy field when thou reapest, neither shalt thou gather any gleaning of thy harvest: thou shalt leave them unto the poor, and to the stranger: I am the LORD your God.",
+  "ko": "너희가 너희 땅의 곡식을 거둘 때에는 밭모퉁이까지 다 거두지 말며 거둔 후에 떨어진 이삭을 줍지 말고, 그것을 가난한 자와 나그네를 위하여 남겨 둘지니라. 나는 너희 하나님 여호와니라\" 하시니라.",
+  "note": "추수할 때 밭모퉁이까지 다 거두지 말고 떨어진 이삭도 줍지 말며 가난한 자와 나그네를 위해 남기라 나는 너희 하나님 여호와라 하신다. 절기의 기쁨 가운데 약자를 위한 나눔이 명해진다. 하나님께 드리는 감사는 이웃 사랑으로 흘러넘친다.",
+  "voc": [
+   [
+    "harvest",
+    "n.",
+    "추수"
+   ],
+   [
+    "riddance",
+    "n.",
+    "치움·거둠"
+   ],
+   [
+    "gleaning",
+    "n.",
+    "떨어진 이삭"
+   ],
+   [
+    "poor",
+    "n.",
+    "가난한 자"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "make clean riddance",
+    "깨끗이 다 거두다(모퉁이까지)"
+   ]
+  ]
+ },
+ {
+  "en": "And the LORD spake unto Moses, saying,",
+  "ko": "여호와께서 모세에게 말씀하여 이르시되,",
+  "note": "여호와께서 모세에게 말씀하신다. 나팔절에 관한 규례가 이어진다. 일곱째 달의 거룩한 절기가 시작된다.",
+  "voc": [
+   [
+    "spake",
+    "v.",
+    "말씀하셨다"
+   ],
+   [
+    "saying",
+    "v.",
+    "이르시되"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "spake",
+    "speak의 KJV 과거형"
+   ]
+  ]
+ },
+ {
+  "en": "Speak unto the children of Israel, saying, In the seventh month, in the first day of the month, shall ye have a sabbath, a memorial of blowing of trumpets, an holy convocation.",
+  "ko": "\"너는 이스라엘 자손에게 일러 이르라. 일곱째 달 첫날은 너희에게 안식하는 날이 되리니, 나팔을 불어 기념하는 거룩한 모임의 날이니라.",
+  "note": "일곱째 달 첫날은 안식일이니 나팔을 불어 기념할 거룩한 모임이라 하신다. '나팔절(blowing of trumpets, 히브리어 테루아)'은 나팔 소리로 백성을 소집하는 날이다. 나팔 소리는 하나님 앞에 나아오라는 거룩한 부름이다.",
+  "voc": [
+   [
+    "seventh month",
+    "숙어",
+    "일곱째 달"
+   ],
+   [
+    "memorial",
+    "n.",
+    "기념"
+   ],
+   [
+    "trumpets",
+    "n.",
+    "나팔"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "blowing of trumpets",
+    "나팔을 붊(테루아, 소집의 부름)"
+   ]
+  ]
+ },
+ {
+  "en": "Ye shall do no servile work therein: but ye shall offer an offering made by fire unto the LORD.",
+  "ko": "너희는 아무 노동도 하지 말고, 여호와께 화제를 드릴지니라\" 하시니라.",
+  "note": "아무 노동도 하지 말고 화제를 여호와께 드리라 하신다. 나팔절도 노동을 멈추고 제사를 드리는 날이다. 새 달의 시작이 하나님께 드리는 예배로 성별된다.",
+  "voc": [
+   [
+    "servile",
+    "adj.",
+    "노동의"
+   ],
+   [
+    "offering",
+    "n.",
+    "제물"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And the LORD spake unto Moses, saying,",
+  "ko": "여호와께서 모세에게 말씀하여 이르시되,",
+  "note": "여호와께서 모세에게 말씀하신다. 속죄일에 관한 규례가 이어진다. 일곱째 달의 가장 엄숙한 날이 선포된다.",
+  "voc": [
+   [
+    "spake",
+    "v.",
+    "말씀하셨다"
+   ],
+   [
+    "saying",
+    "v.",
+    "이르시되"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "spake",
+    "speak의 KJV 과거형"
+   ]
+  ]
+ },
+ {
+  "en": "Also on the tenth day of this seventh month there shall be a day of atonement: it shall be an holy convocation unto you; and ye shall afflict your souls, and offer an offering made by fire unto the LORD.",
+  "ko": "\"이 일곱째 달 열흘날은 속죄일이니, 너희에게 거룩한 모임의 날이 되리라. 너희는 스스로 괴롭게 하고 여호와께 화제를 드릴지며,",
+  "note": "일곱째 달 열흘째 날은 속죄일이니 거룩한 모임을 갖고 스스로를 괴롭게 하며 화제를 드리라 하신다. '속죄일(day of atonement, 히브리어 욤 키푸르)'은 온 백성의 죄를 속하는 날이다. 스스로를 낮추는 겸비 속에 대속의 은혜가 임한다.",
+  "voc": [
+   [
+    "atonement",
+    "n.",
+    "속죄"
+   ],
+   [
+    "afflict",
+    "v.",
+    "괴롭게 하다"
+   ],
+   [
+    "souls",
+    "n.",
+    "영혼"
+   ]
+  ],
+  "idi": [
+   [
+    "afflict your souls",
+    "스스로를 괴롭게 하다(금식·회개)"
+   ]
+  ],
+  "gra": [
+   [
+    "day of atonement",
+    "속죄일(욤 키푸르)"
+   ]
+  ]
+ },
+ {
+  "en": "And ye shall do no work in that same day: for it is a day of atonement, to make an atonement for you before the LORD your God.",
+  "ko": "그날에는 아무 일도 하지 말지니, 이는 너희 하나님 여호와 앞에서 너희를 위하여 속죄할 속죄일이 됨이니라.",
+  "note": "그날에는 아무 일도 하지 말라 이는 너희 하나님 여호와 앞에서 너희를 위해 속죄하는 속죄일이라 하신다. 속죄일은 노동을 완전히 그치는 날이다. 하나님 앞에서 죄를 속하는 거룩한 안식의 날이다.",
+  "voc": [
+   [
+    "work",
+    "n.",
+    "일"
+   ],
+   [
+    "atonement",
+    "n.",
+    "속죄"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "make an atonement for you",
+    "너희를 위해 속죄하다(카파르)"
+   ]
+  ]
+ },
+ {
+  "en": "For whatsoever soul it be that shall not be afflicted in that same day, he shall be cut off from among his people.",
+  "ko": "그날에 스스로 괴롭게 하지 아니하는 자는 누구든지 그의 백성 중에서 끊어질 것이요,",
+  "note": "그날에 스스로를 괴롭게 하지 않는 자는 백성 중에서 끊어지리라 하신다. 속죄일의 겸비를 거부하는 자는 언약에서 단절된다. 회개의 낮춤은 속죄에 참여하는 필수 조건이다.",
+  "voc": [
+   [
+    "afflicted",
+    "v.",
+    "괴롭게 된"
+   ],
+   [
+    "cut off",
+    "숙어",
+    "끊어지다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "shall not be afflicted",
+    "스스로를 괴롭게 하지 않는(회개 거부)"
+   ]
+  ]
+ },
+ {
+  "en": "And whatsoever soul it be that doeth any work in that same day, the same soul will I destroy from among his people.",
+  "ko": "그날에 무슨 일이든 하는 자는 누구든지 내가 그의 백성 중에서 멸하리라.",
+  "note": "그날에 어떤 일이라도 하는 자를 내가 백성 중에서 멸하리라 하신다. 속죄일의 안식을 어기는 자는 하나님이 친히 멸하신다. 이날의 거룩은 어떤 노동으로도 침범될 수 없다.",
+  "voc": [
+   [
+    "doeth",
+    "v.",
+    "행하다"
+   ],
+   [
+    "destroy",
+    "v.",
+    "멸하다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "will I destroy",
+    "내가 멸하리라(KJV 강조 어순)"
+   ]
+  ]
+ },
+ {
+  "en": "Ye shall do no manner of work: it shall be a statute for ever throughout your generations in all your dwellings.",
+  "ko": "너희는 아무 일도 하지 말지니, 이는 너희 모든 거처에서 대대로 지킬 영원한 규례니라.",
+  "note": "아무 일도 하지 말라 이는 영원한 규례라 하신다. 속죄일의 안식은 대대로 지켜질 규례다. 속죄의 날은 세대를 이어 거룩히 보존된다.",
+  "voc": [
+   [
+    "manner",
+    "n.",
+    "종류"
+   ],
+   [
+    "generations",
+    "n.",
+    "대·세대"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "no manner of work",
+    "어떤 일도(전면적 금지)"
+   ]
+  ]
+ },
+ {
+  "en": "It shall be unto you a sabbath of rest, and ye shall afflict your souls: in the ninth day of the month at even, from even unto even, shall ye celebrate your sabbath.",
+  "ko": "그날은 너희에게 안식할 안식일이 되리니, 너희는 스스로 괴롭게 할지니라. 그달 아흐렛날 저녁부터 이튿날 저녁까지 너희는 너희 안식일을 지킬지니라\" 하시니라.",
+  "note": "이날은 너희에게 엄숙한 안식일이니 아흐레 저녁부터 이튿날 저녁까지 스스로를 괴롭게 하며 안식일을 지키라 하신다. 속죄일의 안식은 저녁부터 저녁까지다. 하루의 온전한 경계 안에서 겸비와 안식이 지켜진다.",
+  "voc": [
+   [
+    "sabbath",
+    "n.",
+    "안식일"
+   ],
+   [
+    "ninth",
+    "adj.",
+    "아흐레의"
+   ],
+   [
+    "celebrate",
+    "v.",
+    "지키다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "from even unto even",
+    "저녁부터 저녁까지(하루의 경계)"
+   ]
+  ]
+ },
+ {
+  "en": "And the LORD spake unto Moses, saying,",
+  "ko": "여호와께서 모세에게 말씀하여 이르시되,",
+  "note": "여호와께서 모세에게 말씀하신다. 초막절에 관한 규례가 이어진다. 일곱째 달의 마지막 큰 절기가 선포된다.",
+  "voc": [
+   [
+    "spake",
+    "v.",
+    "말씀하셨다"
+   ],
+   [
+    "saying",
+    "v.",
+    "이르시되"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "spake",
+    "speak의 KJV 과거형"
+   ]
+  ]
+ },
+ {
+  "en": "Speak unto the children of Israel, saying, The fifteenth day of this seventh month shall be the feast of tabernacles for seven days unto the LORD.",
+  "ko": "\"너는 이스라엘 자손에게 일러 이르라. 이 일곱째 달 열닷샛날은 여호와께 드리는 초막절이니 이레 동안 지킬지니라.",
+  "note": "일곱째 달 열다섯째 날은 이레 동안의 여호와의 초막절이라 하신다. '초막절(feast of tabernacles, 히브리어 수코트)'은 광야 장막 생활을 기념한다. 초막에 거함으로 하나님의 인도하심을 기억하는 감사의 절기다.",
+  "voc": [
+   [
+    "feast of tabernacles",
+    "숙어",
+    "초막절"
+   ],
+   [
+    "seven days",
+    "숙어",
+    "이레 동안"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "feast of tabernacles",
+    "초막절(수코트)"
+   ]
+  ]
+ },
+ {
+  "en": "On the first day shall be an holy convocation: ye shall do no servile work therein.",
+  "ko": "그 첫날에는 거룩한 모임을 가질지니, 아무 노동도 하지 말지니라.",
+  "note": "첫날에는 거룩한 모임을 갖고 아무 노동도 하지 말라 하신다. 초막절 첫날은 성회의 날이다. 감사의 절기도 노동을 멈추고 하나님께 모인다.",
+  "voc": [
+   [
+    "convocation",
+    "n.",
+    "성회"
+   ],
+   [
+    "servile",
+    "adj.",
+    "노동의"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "Seven days ye shall offer an offering made by fire unto the LORD: on the eighth day shall be an holy convocation unto you; and ye shall offer an offering made by fire unto the LORD: it is a solemn assembly; and ye shall do no servile work therein.",
+  "ko": "이레 동안 여호와께 화제를 드릴지며, 여드레째 날에도 너희가 거룩한 모임을 가지고 여호와께 화제를 드릴지니, 이는 거룩한 성회라. 너희는 아무 노동도 하지 말지니라.",
+  "note": "이레 동안 화제를 드리고 여덟째 날에도 거룩한 모임을 갖고 화제를 드리니 이는 성회라 아무 노동도 하지 말라 하신다. '성회(solemn assembly, 히브리어 아체레트)'는 절기를 마무리하는 엄숙한 모임이다. 초막절은 여덟째 날의 성회로 봉인된다.",
+  "voc": [
+   [
+    "eighth",
+    "adj.",
+    "여덟째"
+   ],
+   [
+    "solemn",
+    "adj.",
+    "엄숙한"
+   ],
+   [
+    "assembly",
+    "n.",
+    "모임·집회"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "solemn assembly",
+    "성회(아체레트, 마무리 모임)"
+   ]
+  ]
+ },
+ {
+  "en": "These are the feasts of the LORD, which ye shall proclaim to be holy convocations, to offer an offering made by fire unto the LORD, a burnt offering, and a meat offering, a sacrifice, and drink offerings, every thing upon his day:",
+  "ko": "이것들은 너희가 거룩한 모임으로 선포할 여호와의 절기들이니, 각각 그날에 여호와께 화제 곧 번제와 소제와 희생제물과 전제를 드릴지니라.",
+  "note": "이것이 여호와의 절기이니 거룩한 모임으로 선포하여 각 날에 정한 화제와 번제와 소제와 희생과 전제를 드리라 하신다. 절기마다 정해진 제사가 각 날에 드려진다. 하나님의 절기는 정한 예물로 온전히 채워진다.",
+  "voc": [
+   [
+    "feasts",
+    "n.",
+    "절기"
+   ],
+   [
+    "sacrifice",
+    "n.",
+    "희생"
+   ],
+   [
+    "drink offerings",
+    "숙어",
+    "전제"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "every thing upon his day",
+    "각 날에 정한 것(각 절기의 제물)"
+   ]
+  ]
+ },
+ {
+  "en": "Beside the sabbaths of the LORD, and beside your gifts, and beside all your vows, and beside all your freewill offerings, which ye give unto the LORD.",
+  "ko": "이는 여호와의 안식일들과 너희의 예물들과 너희의 모든 서원제물과 너희가 여호와께 드리는 모든 자원제물 외에 드리는 것이니라.",
+  "note": "이는 여호와의 안식일과 너희의 예물과 서원과 자원제 외에 드리는 것이라 하신다. 절기의 제사는 안식일과 다른 헌물에 더해진다. 정규 예배 위에 절기의 특별한 헌신이 쌓인다.",
+  "voc": [
+   [
+    "beside",
+    "prep.",
+    "외에"
+   ],
+   [
+    "gifts",
+    "n.",
+    "예물"
+   ],
+   [
+    "vows",
+    "n.",
+    "서원"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "beside the sabbaths",
+    "안식일 외에(더하여)"
+   ]
+  ]
+ },
+ {
+  "en": "Also in the fifteenth day of the seventh month, when ye have gathered in the fruit of the land, ye shall keep a feast unto the LORD seven days: on the first day shall be a sabbath, and on the eighth day shall be a sabbath.",
+  "ko": "또한 너희가 그 땅의 소산을 거두어들인 후 일곱째 달 열닷샛날부터 이레 동안 여호와의 절기를 지킬지니, 첫날에도 안식하고 여드레째 날에도 안식할지니라.",
+  "note": "일곱째 달 열다섯째 날 땅의 소산을 거둔 후 이레 동안 절기를 지키되 첫날과 여덟째 날은 안식일이라 하신다. 초막절은 추수를 마친 감사의 절기다. 소산을 거둔 기쁨을 하나님 앞에서 이레 동안 누린다.",
+  "voc": [
+   [
+    "gathered",
+    "v.",
+    "거둔"
+   ],
+   [
+    "fruit",
+    "n.",
+    "소산"
+   ],
+   [
+    "sabbath",
+    "n.",
+    "안식일"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "gathered in the fruit",
+    "소산을 거두다(추수 후)"
+   ]
+  ]
+ },
+ {
+  "en": "And ye shall take you on the first day the boughs of goodly trees, branches of palm trees, and the boughs of thick trees, and willows of the brook; and ye shall rejoice before the LORD your God seven days.",
+  "ko": "너희는 첫날에 아름다운 나무의 열매와 종려나무 가지와 무성한 나무의 가지와 시냇가 버드나무를 취하여, 이레 동안 너희 하나님 여호와 앞에서 즐거워할지니라.",
+  "note": "첫날에 아름다운 나무 열매와 종려나무 가지와 무성한 나무 가지와 시내 버들을 취하여 이레 동안 여호와 앞에서 즐거워하라 하신다. 초막절은 나뭇가지를 들고 기뻐하는 절기다. 하나님의 은혜를 기억하며 온 마음으로 즐거워하는 예배다.",
+  "voc": [
+   [
+    "boughs",
+    "n.",
+    "가지"
+   ],
+   [
+    "palm",
+    "n.",
+    "종려나무"
+   ],
+   [
+    "willows",
+    "n.",
+    "버들"
+   ],
+   [
+    "rejoice",
+    "v.",
+    "즐거워하다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "willows of the brook",
+    "시내 버들(초막절 나뭇가지)"
+   ]
+  ]
+ },
+ {
+  "en": "And ye shall keep it a feast unto the LORD seven days in the year. It shall be a statute for ever in your generations: ye shall celebrate it in the seventh month.",
+  "ko": "너희는 해마다 이레 동안 여호와께 이 절기를 지킬지니, 이는 너희 대대로 지킬 영원한 규례라. 너희는 일곱째 달에 이를 지킬지니라.",
+  "note": "이레 동안 여호와께 절기를 지키라 이는 영원한 규례이니 일곱째 달에 지키라 하신다. 초막절은 대대로 지켜질 영원한 규례다. 감사의 절기는 세대를 이어 이어진다.",
+  "voc": [
+   [
+    "keep",
+    "v.",
+    "지키다"
+   ],
+   [
+    "celebrate",
+    "v.",
+    "지키다"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "Ye shall dwell in booths seven days; all that are Israelites born shall dwell in booths:",
+  "ko": "너희는 이레 동안 초막에 거할지니, 이스라엘에서 태어난 자는 다 초막에 거할지니라.",
+  "note": "이레 동안 초막에 거하라 이스라엘에서 난 자는 다 초막에 거하라 하신다. 초막 거주는 광야의 장막 생활을 재현한다. 안락한 집을 떠나 초막에 거함으로 하나님의 인도하심을 몸으로 기억한다.",
+  "voc": [
+   [
+    "dwell",
+    "v.",
+    "거하다"
+   ],
+   [
+    "booths",
+    "n.",
+    "초막"
+   ],
+   [
+    "Israelites",
+    "n.",
+    "이스라엘 사람"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "dwell in booths",
+    "초막에 거하다(광야 생활 재현)"
+   ]
+  ]
+ },
+ {
+  "en": "That your generations may know that I made the children of Israel to dwell in booths, when I brought them out of the land of Egypt: I am the LORD your God.",
+  "ko": "이는 내가 이스라엘 자손을 애굽 땅에서 인도하여 낼 때에 그들을 초막에 거하게 하였음을 너희 대대가 알게 하려 함이니라. 나는 너희 하나님 여호와니라\" 하시니라.",
+  "note": "이는 내가 이스라엘을 애굽에서 인도할 때 초막에 거하게 한 것을 너희 대대로 알게 하려 함이라 나는 너희 하나님 여호와라 하신다. 초막절의 목적은 구원의 역사를 기억하게 함이다. 광야에서 지키신 은혜를 잊지 않는 것이 감사의 뿌리다.",
+  "voc": [
+   [
+    "generations",
+    "n.",
+    "대·세대"
+   ],
+   [
+    "know",
+    "v.",
+    "알다"
+   ],
+   [
+    "Egypt",
+    "n.",
+    "애굽"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "that your generations may know",
+    "너희 대대로 알게 하려 함(기억의 목적)"
+   ]
+  ]
+ },
+ {
+  "en": "And Moses declared unto the children of Israel the feasts of the LORD.",
+  "ko": "이같이 모세가 여호와의 절기들을 이스라엘 자손에게 선포하니라.",
+  "note": "모세가 여호와의 절기를 이스라엘 자손에게 전하였다. 절기의 모든 규례가 온 백성에게 선포된다. 하나님의 거룩한 절기가 언약 공동체에 온전히 전해진다.",
+  "voc": [
+   [
+    "declared",
+    "v.",
+    "전하였다"
+   ],
+   [
+    "feasts",
+    "n.",
+    "절기"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "declared unto",
+    "~에게 전하다(선포하다)"
+   ]
+  ]
+ }
 ]

@@ -1,160 +1,796 @@
 [
-  {
-    "en": "Write thee all the words that I have spoken unto thee in a book",
-    "ko": "내가 네게 이른 모든 말을 한 책에 기록하라",
-    "note": "히브리어 '카타브'(katab, כָּתַב)는 '기록하다, 새기다'. 30~33장은 흔히 '위로의 책'(Book of Consolation)으로 불리며, 예레미야의 심판 예언 가운데 회복의 약속이 집중된 단락이다. '책'(세페르, sepher)에 기록하라는 명령은 이 약속이 반드시 성취될 영구한 증거로 남도록 함이다.",
-    "voc": [["write", "v.", "기록하다, 쓰다"], ["words", "n.", "말, 말씀들"], ["spoken", "v.", "speak의 과거분사, 말하였다"], ["book", "n.", "책, 두루마리"]],
-    "idi": [["write thee", "너를 위하여 기록하라(고어 재귀적 명령)"]],
-    "gra": [["that I have spoken unto thee", "현재완료 관계절 — 내가 네게 말한 (모든 말)"]]
-  },
-  {
-    "en": "I will bring again the captivity of my people Israel and Judah",
-    "ko": "내가 내 백성 이스라엘과 유다의 사로잡힘을 돌이키리라",
-    "note": "'바르다 슈부트'(shub shebut, שׁוּב שְׁבוּת)는 '사로잡힘을 돌이키다, 운명을 회복시키다'라는 정형 표현이다. 단순한 포로 귀환을 넘어 하나님의 백성의 형통을 온전히 되돌리심을 가리킨다. 북왕국(이스라엘)과 남왕국(유다)이 함께 언급되어 분열된 민족의 통일된 회복을 예고한다.",
-    "voc": [["bring again", "phr.", "다시 가져오다, 돌이키다"], ["captivity", "n.", "사로잡힘, 포로 됨"], ["people", "n.", "백성"], ["return", "v.", "돌아오다"], ["possess", "v.", "차지하다, 소유하다"]],
-    "idi": [["bring again the captivity", "사로잡힘을 돌이키다 — 운명·형통을 회복시키다"]]
-  },
-  {
-    "en": "We have heard a voice of trembling, of fear, and not of peace",
-    "ko": "우리가 떨리는 소리를 들었으니 두려움이요 평강이 아니로다",
-    "note": "'하라다'(charadah, חֲרָדָה)는 '떨림, 전율'. '평강'은 히브리어 '샬롬'(shalom, שָׁלוֹם)으로, 온전함·안녕을 뜻한다. 두려움과 샬롬의 대조가 임박한 환난의 공포를 드러낸다. 회복의 약속에 앞서 먼저 닥칠 고난의 무게를 그린다.",
-    "voc": [["heard", "v.", "들었다"], ["voice", "n.", "소리, 음성"], ["trembling", "n.", "떨림, 전율"], ["fear", "n.", "두려움"], ["peace", "n.", "평강, 평안"]],
-    "gra": [["We have heard", "현재완료 — 우리가 (이미) 들었다"]]
-  },
-  {
-    "en": "Wherefore do I see every man with his hands on his loins, as a woman in travail",
-    "ko": "어찌하여 내가 보매 모든 장정이 해산하는 여인같이 손을 그 허리에 대고",
-    "note": "'해산하는 여인'(여올레다, yoledah)의 진통은 예언서에서 극심한 고통과 두려움의 전형적 비유다. 강한 사내(게베르, gever)조차 산모처럼 허리를 붙잡고 얼굴이 창백해진다는 묘사가 공포의 극대화를 보여준다. '허리'(할라침)는 힘의 중심으로, 그곳을 움켜쥠은 무력함의 표징이다.",
-    "voc": [["wherefore", "adv.", "어찌하여, 무슨 까닭으로"], ["loins", "n.", "허리"], ["travail", "n.", "해산의 진통, 산고"], ["paleness", "n.", "창백함, 핏기 없음"]],
-    "idi": [["a woman in travail", "해산하는 여인 — 극심한 고통과 공포의 비유"], ["turned into paleness", "새파랗게 질리다, 핏기를 잃다"]]
-  },
-  {
-    "en": "Alas! for that day is great, so that none is like it: it is even the time of Jacob's trouble",
-    "ko": "슬프다, 그 날이여, 크고 커서 그같은 날이 없으리니, 이는 곧 야곱의 환난의 때라",
-    "note": "'야곱의 환난의 때'(에트 차라 르야아콥)는 종말론적으로 중요한 표현으로, 이스라엘 민족이 겪을 전무후무한 대환난을 가리킨다(단 12:1 참조). '슬프다'(호이, hoy)는 탄식의 감탄사. 그러나 같은 절이 '그가 거기서 구원을 얻으리라'로 끝나 환난 중의 구원을 약속한다.",
-    "voc": [["alas", "interj.", "슬프다, 아아"], ["great", "adj.", "큰, 위대한"], ["trouble", "n.", "환난, 고난"], ["saved", "v.", "구원받은"]],
-    "idi": [["the time of Jacob's trouble", "야곱의 환난의 때 — 이스라엘이 겪을 전무후무한 대환난"]],
-    "gra": [["so that none is like it", "결과절(so that) — 그같은 날이 없을 만큼 (크다)"]]
-  },
-  {
-    "en": "I will break his yoke from off thy neck, and will burst thy bonds",
-    "ko": "내가 그의 멍에를 네 목에서 꺾고 네 결박을 끊으리니",
-    "note": "'멍에'(올, ol, עֹל)는 압제와 속박의 상징으로, 여기서는 바벨론의 굴레를 가리킨다. '꺾다'(샤바르)와 '끊다'(나타크)가 평행을 이루며 완전한 해방을 선포한다. 28장에서 거짓 선지자 하나냐가 멍에를 꺾는 시늉을 했던 것과 달리, 여기서는 여호와께서 친히 멍에를 꺾으심을 약속하신다.",
-    "voc": [["break", "v.", "꺾다, 부수다"], ["yoke", "n.", "멍에"], ["neck", "n.", "목"], ["burst", "v.", "끊다, 터뜨리다"], ["bonds", "n.", "결박, 줄"], ["strangers", "n.", "이방인들, 낯선 자들"]],
-    "idi": [["serve themselves of him", "그를 부려 자기 종으로 삼다(고어 표현)"]]
-  },
-  {
-    "en": "But they shall serve the LORD their God, and David their king, whom I will raise up unto them",
-    "ko": "오직 그들이 그들의 하나님 여호와와 내가 그들을 위하여 일으킬 그들의 왕 다윗을 섬기리라",
-    "note": "'다윗 그들의 왕'은 다윗 자신이 아니라 다윗의 후손으로 오실 메시아를 가리키는 예언이다(겔 34:23~24; 호 3:5 참조). '일으키다'(쿰, qum의 사역형)는 하나님이 친히 세우심을 뜻한다. 회복의 절정은 메시아 왕의 통치 아래 여호와를 섬기는 데 있다.",
-    "voc": [["serve", "v.", "섬기다"], ["king", "n.", "왕"], ["raise up", "phr.", "일으키다, 세우다"]],
-    "gra": [["whom I will raise up", "관계대명사 whom(목적격) — 내가 일으킬 (다윗)"]]
-  },
-  {
-    "en": "Fear thou not, O my servant Jacob ... neither be dismayed, O Israel",
-    "ko": "너 내 종 야곱아, 두려워하지 말라 ... 오 이스라엘아, 놀라지 말라",
-    "note": "'두려워하지 말라'(알 티라)와 '놀라지 말라'(알 테하트)는 구원 신탁의 전형적 도입구다(사 41:10 참조). '내 종 야곱'은 택함받은 백성에 대한 애정 어린 호칭이다. '안전하리라'(샤아난)와 '평온하리라'(샤카트)가 회복된 안식을 그린다.",
-    "voc": [["fear", "v.", "두려워하다"], ["servant", "n.", "종, 사환"], ["dismayed", "adj.", "놀란, 낙담한"], ["afar", "adv.", "먼 곳에서"], ["seed", "n.", "씨, 후손"], ["rest", "n.", "평온, 안식"], ["quiet", "adj.", "안전한, 고요한"]],
-    "idi": [["from afar", "먼 곳에서, 멀리서"], ["none shall make him afraid", "그를 두렵게 할 자가 없으리라"]]
-  },
-  {
-    "en": "I will not make a full end of thee: but I will correct thee in measure",
-    "ko": "너는 진멸하지 아니하고, 다만 내가 너를 공의로 징계하며",
-    "note": "'진멸하다'(칼라, kalah, 완전히 끝장내다)와 '공의로 징계하다'(미슈파트, 분량에 맞게)의 대조가 핵심이다. 하나님은 이방 민족은 진멸하시되 자기 백성은 멸하지 않으시고 절제된 징계로 다루신다. '공의로'(베미슈파트, b'mishpat)는 '정당한 분량에 맞추어'라는 뜻으로, 징계가 무절제한 진노가 아니라 측량된 사랑임을 보인다.",
-    "voc": [["full end", "phr.", "진멸, 완전한 끝"], ["nations", "n.", "민족들, 이방"], ["scattered", "v.", "흩었다"], ["correct", "v.", "징계하다, 바로잡다"], ["measure", "n.", "분량, 절제"], ["unpunished", "adj.", "형벌받지 않은"]],
-    "idi": [["make a full end of", "~을 진멸하다, 완전히 끝장내다"], ["in measure", "분량에 맞게, 절제하여"]]
-  },
-  {
-    "en": "Thy bruise is incurable, and thy wound is grievous",
-    "ko": "네 상처는 고칠 수 없고 네 부상은 중하도다",
-    "note": "'상처'(셰베르, sheber, 부서짐)와 '부상'(막카, makkah, 타격으로 인한 상처)이 평행을 이룬다. '고칠 수 없는'(아누쉬, 절망적인)은 죄로 인한 형벌의 심각성을 강조한다. 인간의 눈에는 절망적인 상처지만, 17절에서 여호와께서 친히 치유를 약속하심으로 반전된다.",
-    "voc": [["bruise", "n.", "상처, 부서짐"], ["incurable", "adj.", "고칠 수 없는, 불치의"], ["wound", "n.", "상처, 부상"], ["grievous", "adj.", "중한, 극심한"]],
-    "gra": [["is incurable", "be동사 + 형용사 — 고칠 수 없다(상태)"]]
-  },
-  {
-    "en": "There is none to plead thy cause, that thou mayest be bound up",
-    "ko": "네 송사를 변호하여 네 상처를 싸매어 줄 자가 없으니",
-    "note": "'송사를 변호하다'(딘 딘, 법정에서 변론하다)와 '싸매다'(상처 치료)가 결합된 이중 비유다. 아무도 그 송사를 맡아 줄 변호자가 없고 상처를 동여매 줄 의원이 없다는 것은 완전한 고립을 뜻한다. 그러나 이 절망이 13~14절을 거쳐 여호와의 직접 개입(17절)으로 해소된다.",
-    "voc": [["plead", "v.", "변호하다, 호소하다"], ["cause", "n.", "송사, 사정"], ["bound up", "phr.", "싸맨, 동여맨"], ["healing", "adj.", "낫게 하는, 치유의"], ["medicines", "n.", "약, 치료제"]],
-    "idi": [["plead thy cause", "네 송사를 변호하다 — 법정에서 대변하다"]]
-  },
-  {
-    "en": "All thy lovers have forgotten thee; they seek thee not",
-    "ko": "네 모든 정인이 너를 잊고 너를 찾지 아니하나니",
-    "note": "'정인'(메아하브, 연인들)은 유다가 의지하던 동맹국들(애굽·앗수르 등)을 가리키는 비유다. 영적 간음으로 좇던 이방 우방들이 환난의 때에 등을 돌린다. 여호와께서 '원수의 상함'으로 치셨다는 것은, 징계의 주체가 우방이 아니라 하나님 자신이심을 분명히 한다.",
-    "voc": [["lovers", "n.", "정인들, 연인들"], ["forgotten", "v.", "forget의 과거분사, 잊었다"], ["wounded", "v.", "상하게 했다, 쳤다"], ["enemy", "n.", "원수"], ["chastisement", "n.", "징계, 징벌"], ["cruel", "adj.", "잔혹한"], ["iniquity", "n.", "허물, 죄악"]],
-    "idi": [["the wound of an enemy", "원수의 상함 — 원수를 치듯 가혹한 징계"]]
-  },
-  {
-    "en": "Why criest thou for thine affliction? thy sorrow is incurable",
-    "ko": "어찌하여 네 환난으로 부르짖느냐. 네 슬픔은 고칠 수 없도다",
-    "note": "'부르짖다'(자아크)는 고통의 절규. '환난'(셰베르)과 '슬픔'(케에브, 아픔)이 평행한다. 수사 의문문은 책망과 함께 그 고통의 원인이 자신의 죄에 있음을 일깨운다. '내가 이 일들을 네게 행하였노라'는 징계가 우연이 아니라 여호와의 의로운 행하심임을 못박는다.",
-    "voc": [["criest", "v.", "cry의 고어 2인칭, 부르짖다"], ["affliction", "n.", "환난, 고난"], ["sorrow", "n.", "슬픔, 아픔"], ["increased", "v.", "더하였다, 늘어났다"]],
-    "gra": [["Why criest thou", "고어 2인칭 의문(thou + -est) — 어찌하여 네가 부르짖느냐"]]
-  },
-  {
-    "en": "Therefore all they that devour thee shall be devoured ... they that spoil thee shall be a spoil",
-    "ko": "그러므로 너를 삼키는 모든 자가 삼킴을 당하며 ... 너를 노략하는 자가 노략거리가 되리라",
-    "note": "동해보복(同害報復)의 원리가 시적 반전으로 표현된다. '삼키다'(아칼)·'노략하다'(샤사)·'약탈하다'(바자즈)를 행한 자가 그대로 그 대상이 된다. 유다를 징계한 도구였던 열국이 이제 심판의 대상이 됨을 선언하며, 이는 회복 약속의 다른 한 면이다.",
-    "voc": [["devour", "v.", "삼키다, 집어삼키다"], ["adversaries", "n.", "대적들"], ["spoil", "v.", "노략하다 / n. 노략물"], ["prey", "n.", "약탈물, 먹이"]],
-    "gra": [["all they that devour thee shall be devoured", "they that = those who, 주어절 + 수동태 미래 — 너를 삼키는 자들이 삼킴을 당하리라"]]
-  },
-  {
-    "en": "I will restore health unto thee, and I will heal thee of thy wounds",
-    "ko": "내가 네게 건강을 회복시켜 주고 네 상처를 낫게 하리니",
-    "note": "12절의 '고칠 수 없는 상처'와 정반대로, 여호와께서 친히 의원이 되어 치유하신다. '낫게 하다'(라파, rapha)는 여호와의 치유 속성(출 15:26 '치료하는 여호와')을 드러낸다. '쫓겨난 자'(니다하)·'찾는 자 없는 시온'이라는 멸시가 도리어 회복의 계기가 된다.",
-    "voc": [["restore", "v.", "회복시키다"], ["health", "n.", "건강"], ["heal", "v.", "낫게 하다, 치유하다"], ["wounds", "n.", "상처들"], ["Outcast", "n.", "쫓겨난 자, 버림받은 자"], ["seeketh", "v.", "seeks의 고어, 찾다"]],
-    "idi": [["whom no man seeketh after", "찾는 자가 없는 — 아무도 돌아보지 않는"]]
-  },
-  {
-    "en": "The city shall be builded upon her own heap, and the palace shall remain after the manner thereof",
-    "ko": "그 성읍은 그 폐허 위에 다시 세워지고 그 궁궐은 본래대로 자리하리라",
-    "note": "'폐허'(텔, tel, 무너진 잔해 더미)는 고대 근동에서 성읍이 거듭 세워지며 쌓인 언덕을 가리킨다. 멸망한 자리(폐허) 위에 성읍이 재건된다는 것은 회복의 구체적 약속이다. '본래대로'(알 미슈파토)는 '마땅한 자리·옛 질서대로'를 뜻하여 옛 영광의 회복을 그린다.",
-    "voc": [["builded", "v.", "build의 고어 과거분사, 세워진"], ["heap", "n.", "폐허 더미, 무더기"], ["palace", "n.", "궁궐, 왕궁"], ["remain", "v.", "자리하다, 남다"], ["dwellingplaces", "n.", "거처들, 처소"]],
-    "idi": [["after the manner thereof", "본래대로, 마땅한 자리대로"]]
-  },
-  {
-    "en": "Out of them shall proceed thanksgiving and the voice of them that make merry",
-    "ko": "그들 가운데서 감사함과 즐거워하는 자들의 소리가 나오리라",
-    "note": "환난의 통곡(5~7절)과 정반대로 감사와 기쁨의 소리가 울려 퍼진다. '감사'(토다, todah)는 감사 제사와도 연결되는 말이다. '번성하게 하다'(라바)와 '영화롭게 하다'(카바드, 무겁게·존귀하게)가 짝을 이뤄, 수적 번성과 영적 존귀를 함께 약속한다.",
-    "voc": [["proceed", "v.", "나오다, 나아가다"], ["thanksgiving", "n.", "감사, 감사의 노래"], ["make merry", "phr.", "즐거워하다, 기뻐하다"], ["multiply", "v.", "번성하게 하다"], ["glorify", "v.", "영화롭게 하다"], ["few", "adj.", "적은"], ["small", "adj.", "미약한, 작은"]],
-    "idi": [["make merry", "즐거워하다, 흥겨워하다"]]
-  },
-  {
-    "en": "Their congregation shall be established before me, and I will punish all that oppress them",
-    "ko": "그들의 회중은 내 앞에 굳게 서리니, 그들을 학대하는 모든 자를 내가 벌하리라",
-    "note": "'회중'(에다, edah)은 언약 공동체로서의 회집을 가리킨다. '굳게 서다'(쿤, 확립되다)는 흔들리지 않는 안정을 뜻한다. '옛적과 같이'는 다윗·솔로몬 시대의 견고함으로의 회복을 함축하며, 압제자에 대한 심판이 그 회복을 보장한다.",
-    "voc": [["children", "n.", "자녀들"], ["aforetime", "adv.", "옛적, 이전에"], ["congregation", "n.", "회중, 회집"], ["established", "v.", "굳게 선, 확립된"], ["punish", "v.", "벌하다"], ["oppress", "v.", "학대하다, 압제하다"]],
-    "gra": [["shall be established", "수동태 미래 — 굳게 서리라(세워지리라)"]]
-  },
-  {
-    "en": "Their nobles shall be of themselves, and their governor shall proceed from the midst of them",
-    "ko": "그들의 귀인들은 그들 가운데서 나오겠고 그들의 통치자는 그들 중에서 나오리니",
-    "note": "'그들 가운데서'(밈멘누)는 외세의 통치자가 아니라 동족 가운데서 지도자가 세워짐을 강조한다. '통치자'(모셸)가 백성 중에서 나온다는 약속은 메시아적 통치(미 5:2; 슥 9:9 참조)와 연결된다. '마음을 다하여 나아오다'(아라브, 자기 마음을 담보로 내어 가까이함)는 제사장적·중보적 접근을 가리키는 진귀한 표현이다.",
-    "voc": [["nobles", "n.", "귀인들, 존귀한 자들"], ["governor", "n.", "통치자, 다스리는 자"], ["midst", "n.", "가운데, 중앙"], ["draw near", "phr.", "가까이 나아오다"], ["approach", "v.", "나아오다, 다가오다"], ["engaged", "v.", "(마음을) 담보로 내건, 작정한"]],
-    "idi": [["from the midst of them", "그들 중에서, 그들 가운데서"], ["engaged his heart to approach", "마음을 다하여 나아오다 — 자기 마음을 담보로 가까이함"]]
-  },
-  {
-    "en": "And ye shall be my people, and I will be your God",
-    "ko": "너희는 내 백성이 되겠고 나는 너희 하나님이 되리라",
-    "note": "언약 정형구(covenant formula)의 정수다(레 26:12; 겔 36:28 참조). 히브리어 '암'(am, 백성)과 '엘로힘'(하나님)이 짝을 이뤄 여호와와 이스라엘의 언약 관계의 핵심을 압축한다. 31장의 새 언약 약속으로 이어지는 다리 역할을 한다.",
-    "voc": [["people", "n.", "백성"], ["God", "n.", "하나님"]],
-    "idi": [["ye shall be my people, and I will be your God", "너희는 내 백성이 되고 나는 너희 하나님이 되리라 — 언약 정형구"]],
-    "gra": [["ye shall be ... I will be", "ye는 you의 고어 복수 — 미래 단언 '되리라'"]]
-  },
-  {
-    "en": "Behold, the whirlwind of the LORD goeth forth with fury, a continuing whirlwind",
-    "ko": "보라, 여호와의 회오리바람이 분노로 나아가나니, 곧 휘몰아치는 회오리바람이라",
-    "note": "'회오리바람'(사아르, sa'ar)은 여호와의 진노의 심판을 상징하는 강렬한 폭풍의 이미지다. '분노'(헤마, 끓어오르는 격분)와 결합되어 악인을 향한 거센 심판을 그린다. 23~24절은 위로의 책 가운데 삽입된 심판 선언으로, 회복은 악인에 대한 심판과 함께 이루어짐을 보인다.",
-    "voc": [["behold", "v.", "보라"], ["whirlwind", "n.", "회오리바람, 폭풍"], ["goeth forth", "phr.", "나아가다(goes forth의 고어)"], ["fury", "n.", "분노, 격분"], ["continuing", "adj.", "휘몰아치는, 계속되는"], ["wicked", "n.", "악인"]],
-    "idi": [["goeth forth with fury", "분노로 나아가다 — 격렬한 진노로 임하다"]]
-  },
-  {
-    "en": "The fierce anger of the LORD shall not return, until he have done it ... in the latter days ye shall consider it",
-    "ko": "여호와의 맹렬한 진노가 그 마음의 뜻을 이루고 행하시기까지는 돌이키지 아니하리니, 너희가 마지막 날에 이를 깨달으리라",
-    "note": "'맹렬한 진노'(하론 아프, charon aph, 타오르는 코의 분노)는 멈추지 않고 그 목적을 이루신다. '마지막 날'(베아하리트 하야밈, 'in the latter days')은 종말론적 어구로, 이 예언의 온전한 성취가 마지막 때에 깨달아질 것임을 가리킨다(30:7의 '야곱의 환난'과 호응). 31장의 새 언약 약속을 향한 도입이 된다.",
-    "voc": [["fierce", "adj.", "맹렬한, 사나운"], ["anger", "n.", "진노, 분노"], ["return", "v.", "돌이키다, 되돌아가다"], ["performed", "v.", "이루었다, 행하였다"], ["intents", "n.", "뜻, 의도"], ["latter days", "phr.", "마지막 날, 말일"], ["consider", "v.", "깨닫다, 헤아리다"]],
-    "idi": [["the intents of his heart", "그 마음의 뜻, 그분의 작정"], ["in the latter days", "마지막 날에, 말일에 — 종말론적 어구"]],
-    "gra": [["until he have done it", "고어 가정법(until + have done) — 그가 다 이루실 때까지"]]
-  }
+ {
+  "en": "The word that came to Jeremiah from the LORD, saying,",
+  "ko": "여호와께로부터 예레미야에게 임한 말씀이라, 이르시되,",
+  "note": "본 장의 서두를 여는 표제절이다. 히브리어 '하다바르'(haddabar, 그 말씀)는 정관사가 붙어 특정한 계시를 가리킨다. 30~33장은 예레미야서의 '위로의 책'(Book of Consolation)으로 불리는 회복 예언의 서막이다.",
+  "voc": [
+   [
+    "word",
+    "n.",
+    "말씀"
+   ],
+   [
+    "came",
+    "v.",
+    "임하다(come의 과거)"
+   ],
+   [
+    "saying",
+    "v.",
+    "이르시되"
+   ]
+  ],
+  "idi": [
+   [
+    "came to ... from the LORD",
+    "여호와께로부터 ~에게 임하다"
+   ]
+  ],
+  "gra": [
+   [
+    "saith",
+    "say의 3인칭 고어형 — 이르시느니라"
+   ]
+  ]
+ },
+ {
+  "en": "Thus speaketh the LORD God of Israel, saying, Write thee all the words that I have spoken unto thee in a book.",
+  "ko": "이스라엘의 하나님 여호와가 이같이 말하여 이르노라. 내가 네게 이른 모든 말을 한 책에 기록하라.",
+  "note": "히브리어 '카타브'(kathav, 기록하라)는 계시의 영속성을 보증하는 명령이다. '한 책'(sepher)에 기록하라 하심은 이 회복의 약속이 세대를 넘어 증거로 남아야 함을 뜻한다.",
+  "voc": [
+   [
+    "speaketh",
+    "v.",
+    "말씀하시다(speak 고어형)"
+   ],
+   [
+    "written",
+    "v.",
+    "기록된"
+   ],
+   [
+    "book",
+    "n.",
+    "책, 두루마리"
+   ]
+  ],
+  "idi": [
+   [
+    "Write thee",
+    "너를 위하여 기록하라(재귀적 명령)"
+   ]
+  ],
+  "gra": [
+   [
+    "Thus speaketh the LORD",
+    "도치·speak 고어형 — 여호와가 이같이 말씀하시느니라"
+   ]
+  ]
+ },
+ {
+  "en": "For, lo, the days come, saith the LORD, that I will bring again the captivity of my people Israel and Judah, saith the LORD: and I will cause them to return to the land that I gave to their fathers, and they shall possess it.",
+  "ko": "보라, 날이 이르리니, 여호와의 말이니라, 내가 내 백성 이스라엘과 유다의 사로잡힘을 돌이키리라, 여호와의 말이니라. 내가 그들을 그 조상들에게 준 땅으로 돌아오게 하리니 그들이 그것을 차지하리라.",
+  "note": "히브리어 '슈브 슈부트'(shuv shevuth, 사로잡힘을 돌이키다)는 포로 귀환의 관용 표현이다. '이스라엘과 유다'를 함께 언급함은 분열되었던 남북 왕국이 한 백성으로 회복될 것을 예고한다.",
+  "voc": [
+   [
+    "captivity",
+    "n.",
+    "사로잡힘, 포로 됨"
+   ],
+   [
+    "return",
+    "v.",
+    "돌아오다"
+   ],
+   [
+    "possess",
+    "v.",
+    "차지하다, 소유하다"
+   ]
+  ],
+  "idi": [
+   [
+    "bring again the captivity",
+    "사로잡힘을 돌이키다, 포로를 회복시키다"
+   ]
+  ],
+  "gra": [
+   [
+    "lo",
+    "보라(고어 감탄사)"
+   ]
+  ]
+ },
+ {
+  "en": "And these are the words that the LORD spake concerning Israel and concerning Judah.",
+  "ko": "여호와께서 이스라엘과 유다에 대하여 이르신 말씀이 이러하니라.",
+  "note": "앞 절들을 매듭짓고 다음 신탁을 여는 연결절이다. 히브리어 전치사 '엘'(el, ~에 대하여)이 반복되어 이스라엘과 유다 양쪽 모두가 이 말씀의 대상임을 강조한다.",
+  "voc": [
+   [
+    "spake",
+    "v.",
+    "이르셨다(speak 과거 고어형)"
+   ],
+   [
+    "concerning",
+    "prep.",
+    "~에 대하여"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "spake",
+    "speak의 고어 과거형 — 이르셨다"
+   ]
+  ]
+ },
+ {
+  "en": "For thus saith the LORD; We have heard a voice of trembling, of fear, and not of peace.",
+  "ko": "여호와께서 이같이 이르시느니라. 우리가 떨리는 소리를 들었으니 두려움이요 평강이 아니로다.",
+  "note": "히브리어 '하라다'(charadah, 떨림)는 극심한 공포로 인한 전율을 뜻한다. '평강이 아니로다'는 하나님의 심판이 임하기 직전의 절망적 정황을 묘사한다.",
+  "voc": [
+   [
+    "trembling",
+    "n.",
+    "떨림, 전율"
+   ],
+   [
+    "fear",
+    "n.",
+    "두려움"
+   ],
+   [
+    "peace",
+    "n.",
+    "평강, 화평"
+   ]
+  ],
+  "idi": [
+   [
+    "a voice of trembling",
+    "떨리는 소리, 공포의 외침"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Ask ye now, and see whether a man doth travail with child? wherefore do I see every man with his hands on his loins, as a woman in travail, and all faces are turned into paleness?",
+  "ko": "너희는 이제 물어 보라, 사내가 해산하는 일이 있더냐. 어찌하여 내가 보매 모든 장정이 해산하는 여인같이 손을 그 허리에 대고 모든 얼굴빛이 새파랗게 질렸는고.",
+  "note": "히브리어 '할라차임'(chalatsayim, 허리)에 손을 대는 모습은 해산의 진통을 비유한 것이다. 남자 장정마저 산모처럼 몸부림친다는 역설은 심판의 고통이 얼마나 극심한지를 드러낸다.",
+  "voc": [
+   [
+    "travail",
+    "v.",
+    "해산하다, 산고를 겪다"
+   ],
+   [
+    "loins",
+    "n.",
+    "허리"
+   ],
+   [
+    "paleness",
+    "n.",
+    "창백함, 새파랗게 질림"
+   ]
+  ],
+  "idi": [
+   [
+    "travail with child",
+    "해산의 진통을 겪다"
+   ]
+  ],
+  "gra": [
+   [
+    "doth travail",
+    "do 조동사 고어형 — 해산하더냐"
+   ]
+  ]
+ },
+ {
+  "en": "Alas! for that day is great, so that none is like it: it is even the time of Jacob’s trouble, but he shall be saved out of it.",
+  "ko": "슬프다, 그 날이여, 크고 커서 그같은 날이 없으리니, 이는 곧 야곱의 환난의 때라. 그러나 그가 거기서 구원을 얻으리로다.",
+  "note": "'야곱의 환난'(the time of Jacob's trouble)은 종말론적 대환난을 예표하는 핵심 구절이다. 히브리어 '에트 차라'(eth tsarah)는 극한의 고난을 뜻하나, 같은 절에서 '구원을 얻으리로다'로 반전된다.",
+  "voc": [
+   [
+    "alas",
+    "interj.",
+    "슬프다"
+   ],
+   [
+    "trouble",
+    "n.",
+    "환난, 고난"
+   ],
+   [
+    "saved",
+    "v.",
+    "구원받다"
+   ]
+  ],
+  "idi": [
+   [
+    "the time of Jacob's trouble",
+    "야곱의 환난의 때"
+   ]
+  ],
+  "gra": [
+   [
+    "none is like it",
+    "그같은 것이 없으리라(고어 부정)"
+   ]
+  ]
+ },
+ {
+  "en": "For it shall come to pass in that day, saith the LORD of hosts, that I will break his yoke from off thy neck, and will burst thy bonds, and strangers shall no more serve themselves of him:",
+  "ko": "만군의 여호와의 말이니라, 그 날에 이르러 내가 그의 멍에를 네 목에서 꺾고 네 결박을 끊으리니, 이방인들이 다시는 그를 부려 종으로 삼지 못하리라.",
+  "note": "히브리어 '올'(ol, 멍에)과 '모세라'(moserah, 결박)는 이방의 압제를 상징한다. 만군의 여호와가 친히 멍에를 꺾으심은 신적 해방의 확실성을 보증한다.",
+  "voc": [
+   [
+    "yoke",
+    "n.",
+    "멍에"
+   ],
+   [
+    "burst",
+    "v.",
+    "끊다, 터뜨리다"
+   ],
+   [
+    "bonds",
+    "n.",
+    "결박, 속박"
+   ]
+  ],
+  "idi": [
+   [
+    "serve themselves of him",
+    "그를 부려 종으로 삼다"
+   ]
+  ],
+  "gra": [
+   [
+    "from off thy neck",
+    "네 목에서(중복 전치사 고어법)"
+   ]
+  ]
+ },
+ {
+  "en": "But they shall serve the LORD their God, and David their king, whom I will raise up unto them.",
+  "ko": "오직 그들이 그들의 하나님 여호와와 내가 그들을 위하여 일으킬 그들의 왕 다윗을 섬기리라.",
+  "note": "'다윗 그들의 왕'은 메시아 예언이다. 히브리어 문맥에서 이는 다윗의 후손으로 오실 메시아, 곧 참된 목자 왕을 가리킨다. 하나님을 섬김과 다윗을 섬김이 하나로 결합된다.",
+  "voc": [
+   [
+    "serve",
+    "v.",
+    "섬기다"
+   ],
+   [
+    "king",
+    "n.",
+    "왕"
+   ],
+   [
+    "raise up",
+    "v.",
+    "일으키다"
+   ]
+  ],
+  "idi": [
+   [
+    "raise up unto them",
+    "그들을 위하여 일으키다"
+   ]
+  ],
+  "gra": [
+   [
+    "whom I will raise up",
+    "관계대명사 whom + 미래형"
+   ]
+  ]
+ },
+ {
+  "en": "Therefore fear thou not, O my servant Jacob, saith the LORD; neither be dismayed, O Israel: for, lo, I will save thee from afar, and thy seed from the land of their captivity; and Jacob shall return, and shall be in rest, and be quiet, and none shall make him afraid.",
+  "ko": "그러므로 너 내 종 야곱아, 두려워하지 말라, 여호와의 말이니라. 오 이스라엘아, 놀라지 말라. 보라, 내가 너를 먼 곳에서 구원하며 네 씨를 그 사로잡힌 땅에서 구원하리니, 야곱이 돌아와 평온하고 안전하리라. 그를 두렵게 할 자가 없으리라.",
+  "note": "히브리어 '알 티라'(al tira, 두려워 말라)는 언약적 위로 공식이다. '내 종 야곱'은 하나님의 소유된 언약 백성을 가리키며, '먼 곳에서' 구원하심은 흩어진 포로의 귀환을 확증한다.",
+  "voc": [
+   [
+    "dismayed",
+    "v.",
+    "놀라다, 낙담하다"
+   ],
+   [
+    "afar",
+    "adv.",
+    "먼 곳에서"
+   ],
+   [
+    "seed",
+    "n.",
+    "씨, 후손"
+   ]
+  ],
+  "idi": [
+   [
+    "be in rest and be quiet",
+    "평온하고 안전하다"
+   ]
+  ],
+  "gra": [
+   [
+    "fear thou not",
+    "2인칭 대명사 강조 명령 고어법"
+   ]
+  ]
+ },
+ {
+  "en": "For I am with thee, saith the LORD, to save thee: though I make a full end of all nations whither I have scattered thee, yet will I not make a full end of thee: but I will correct thee in measure, and will not leave thee altogether unpunished.",
+  "ko": "여호와의 말이니라, 이는 내가 너와 함께하여 너를 구원함이라. 내가 너를 흩은 모든 민족을 진멸할지라도 너는 진멸하지 아니하고, 다만 내가 너를 공의로 징계하며 결코 형벌 없이 두지는 아니하리라.",
+  "note": "히브리어 '칼라'(kalah, 진멸)의 대조가 핵심이다. 열방은 진멸되나 언약 백성은 보존된다. '공의로 징계하며'(bemishpat)는 심판이 파멸이 아니라 교정을 목적함을 보여 준다.",
+  "voc": [
+   [
+    "scattered",
+    "v.",
+    "흩다"
+   ],
+   [
+    "correct",
+    "v.",
+    "징계하다, 바로잡다"
+   ],
+   [
+    "unpunished",
+    "adj.",
+    "형벌 없는"
+   ]
+  ],
+  "idi": [
+   [
+    "make a full end",
+    "진멸하다, 완전히 끝내다"
+   ],
+   [
+    "in measure",
+    "공의로, 적절히"
+   ]
+  ],
+  "gra": [
+   [
+    "whither I have scattered",
+    "whither(어디로든) 고어 관계부사"
+   ]
+  ]
+ },
+ {
+  "en": "For thus saith the LORD, Thy bruise is incurable, and thy wound is grievous.",
+  "ko": "여호와께서 이같이 이르시느니라. 네 상처는 고칠 수 없고 네 부상은 중하도다.",
+  "note": "히브리어 '샤바르'(shavar, 부서지다)에서 온 '상처'는 죄로 인한 치명상을 뜻한다. 인간적으로는 고칠 수 없는 상처임을 인정함으로써 다음에 이어질 신적 치유의 은혜를 부각한다.",
+  "voc": [
+   [
+    "bruise",
+    "n.",
+    "상처, 타박상"
+   ],
+   [
+    "incurable",
+    "adj.",
+    "고칠 수 없는"
+   ],
+   [
+    "grievous",
+    "adj.",
+    "중한, 심한"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Thy bruise is incurable",
+    "고어 소유격 Thy — 네 상처"
+   ]
+  ]
+ },
+ {
+  "en": "There is none to plead thy cause, that thou mayest be bound up: thou hast no healing medicines.",
+  "ko": "네 송사를 변호하여 네 상처를 싸매어 줄 자가 없으니, 네게는 낫게 할 약이 없도다.",
+  "note": "히브리어 '리브'(riv, 송사)를 변호할 자가 없다는 것은 백성이 스스로를 구할 수 없는 무력한 처지임을 드러낸다. '낫게 할 약이 없도다'는 오직 하나님만이 치유자이심을 예비하는 선언이다.",
+  "voc": [
+   [
+    "plead",
+    "v.",
+    "변호하다, 호소하다"
+   ],
+   [
+    "cause",
+    "n.",
+    "송사, 소송"
+   ],
+   [
+    "medicines",
+    "n.",
+    "약"
+   ]
+  ],
+  "idi": [
+   [
+    "plead thy cause",
+    "네 송사를 변호하다"
+   ],
+   [
+    "bound up",
+    "싸매어지다(상처를)"
+   ]
+  ],
+  "gra": [
+   [
+    "that thou mayest be bound up",
+    "목적절 that + mayest 고어법"
+   ]
+  ]
+ },
+ {
+  "en": "All thy lovers have forgotten thee; they seek thee not; for I have wounded thee with the wound of an enemy, with the chastisement of a cruel one, for the multitude of thine iniquity; because thy sins were increased.",
+  "ko": "네 모든 정인이 너를 잊고 너를 찾지 아니하나니, 이는 네 허물이 많고 네 죄가 더하였으므로 내가 원수의 상함으로, 잔혹한 자의 징계로 너를 쳤음이라.",
+  "note": "히브리어 '메아하빔'(me'ahavim, 정인들)은 유다가 의지했던 이방 동맹을 우상 숭배적 애정에 비유한 것이다. '원수의 상함으로' 치심은 하나님이 심판의 도구를 사용하셨음을 밝힌다.",
+  "voc": [
+   [
+    "lovers",
+    "n.",
+    "정인들, 연인들"
+   ],
+   [
+    "wounded",
+    "v.",
+    "상하게 하다"
+   ],
+   [
+    "chastisement",
+    "n.",
+    "징계"
+   ]
+  ],
+  "idi": [
+   [
+    "for the multitude of thine iniquity",
+    "네 허물이 많으므로"
+   ]
+  ],
+  "gra": [
+   [
+    "thine iniquity",
+    "모음 앞 thine 고어법 — 네 허물"
+   ]
+  ]
+ },
+ {
+  "en": "Why criest thou for thine affliction? thy sorrow is incurable for the multitude of thine iniquity: because thy sins were increased, I have done these things unto thee.",
+  "ko": "어찌하여 네 환난으로 부르짖느냐. 네 슬픔은 고칠 수 없도다. 네 허물이 많고 네 죄가 더하였으므로 내가 이 일들을 네게 행하였노라.",
+  "note": "히브리어 '자아크'(za'aq, 부르짖다)로 시작하는 수사적 질문이다. 백성의 고통이 스스로 초래한 죄의 결과임을 하나님이 친히 확인하신다. 심판의 정당성을 강조하는 절이다.",
+  "voc": [
+   [
+    "criest",
+    "v.",
+    "부르짖다(cry 고어형)"
+   ],
+   [
+    "affliction",
+    "n.",
+    "환난, 고통"
+   ],
+   [
+    "sorrow",
+    "n.",
+    "슬픔"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Why criest thou",
+    "2인칭 cry 고어 의문형"
+   ]
+  ]
+ },
+ {
+  "en": "Therefore all they that devour thee shall be devoured; and all thine adversaries, every one of them, shall go into captivity; and they that spoil thee shall be a spoil, and all that prey upon thee will I give for a prey.",
+  "ko": "그러므로 너를 삼키는 모든 자가 삼킴을 당하며 네 모든 대적은 다 사로잡혀 가고, 너를 노략하는 자가 노략거리가 되며 너를 약탈하는 모든 자를 내가 약탈거리로 주리라.",
+  "note": "심판의 반전이 시작되는 절이다. 히브리어 '오켈라임'(okelayim, 삼키는 자들)이 도리어 삼킴을 당한다. 언약 백성을 압제한 자들에게 동해보복(同害報復)의 원리가 적용된다.",
+  "voc": [
+   [
+    "devour",
+    "v.",
+    "삼키다"
+   ],
+   [
+    "adversaries",
+    "n.",
+    "대적들"
+   ],
+   [
+    "spoil",
+    "n./v.",
+    "노략(거리), 약탈하다"
+   ]
+  ],
+  "idi": [
+   [
+    "they that prey upon thee",
+    "너를 약탈하는 자들"
+   ]
+  ],
+  "gra": [
+   [
+    "all they that devour thee",
+    "they that ~ (~하는 자들) 고어 관계구문"
+   ]
+  ]
+ },
+ {
+  "en": "For I will restore health unto thee, and I will heal thee of thy wounds, saith the LORD; because they called thee an Outcast, saying, This is Zion, whom no man seeketh after.",
+  "ko": "여호와의 말이니라, 내가 네게 건강을 회복시켜 주고 네 상처를 낫게 하리니, 이는 그들이 너를 일컬어 쫓겨난 자라 하며 이르기를, 이는 시온이니 찾는 자가 없도다 하였음이라.",
+  "note": "히브리어 '아루카'(arukhah, 건강 회복)는 새살이 돋는 치유를 뜻한다. '쫓겨난 자 시온'이라 조롱받던 자를 하나님이 친히 회복시키심으로, 인간이 버린 자를 하나님은 찾으심을 보여 준다.",
+  "voc": [
+   [
+    "restore",
+    "v.",
+    "회복시키다"
+   ],
+   [
+    "health",
+    "n.",
+    "건강"
+   ],
+   [
+    "Outcast",
+    "n.",
+    "쫓겨난 자"
+   ]
+  ],
+  "idi": [
+   [
+    "restore health unto thee",
+    "네게 건강을 회복시키다"
+   ]
+  ],
+  "gra": [
+   [
+    "whom no man seeketh after",
+    "seek 고어형 + after"
+   ]
+  ]
+ },
+ {
+  "en": "Thus saith the LORD; Behold, I will bring again the captivity of Jacob’s tents, and have mercy on his dwellingplaces; and the city shall be builded upon her own heap, and the palace shall remain after the manner thereof.",
+  "ko": "여호와께서 이같이 이르시느니라. 보라, 내가 야곱의 장막의 사로잡힘을 돌이키고 그 거처를 긍휼히 여기리니, 그 성읍은 그 폐허 위에 다시 세워지고 그 궁궐은 본래대로 자리하리라.",
+  "note": "히브리어 '텔'(tel, 폐허 언덕) 위에 성읍이 재건된다는 표현은 회복의 구체성을 드러낸다. '본래대로 자리하리라'는 하나님이 무너진 것을 원형 그대로 세우시는 신실하심을 증거한다.",
+  "voc": [
+   [
+    "mercy",
+    "n.",
+    "긍휼, 자비"
+   ],
+   [
+    "dwellingplaces",
+    "n.",
+    "거처, 거주지"
+   ],
+   [
+    "palace",
+    "n.",
+    "궁궐"
+   ]
+  ],
+  "idi": [
+   [
+    "upon her own heap",
+    "그 폐허 위에"
+   ]
+  ],
+  "gra": [
+   [
+    "after the manner thereof",
+    "본래대로, 그 방식대로(고어)"
+   ]
+  ]
+ },
+ {
+  "en": "And out of them shall proceed thanksgiving and the voice of them that make merry: and I will multiply them, and they shall not be few; I will also glorify them, and they shall not be small.",
+  "ko": "그들 가운데서 감사함과 즐거워하는 자들의 소리가 나오리라. 내가 그들을 번성하게 하리니 그들이 적지 아니하겠고, 내가 또 그들을 영화롭게 하리니 그들이 미약하지 아니하리라.",
+  "note": "히브리어 '토다'(todah, 감사)와 즐거움의 소리가 폐허를 대신한다. '번성'과 '영화'는 회복된 공동체의 이중 복을 나타내며, 하나님이 친히 영광스럽게 하신다는 약속이다.",
+  "voc": [
+   [
+    "thanksgiving",
+    "n.",
+    "감사"
+   ],
+   [
+    "merry",
+    "adj.",
+    "즐거워하는"
+   ],
+   [
+    "multiply",
+    "v.",
+    "번성하게 하다"
+   ]
+  ],
+  "idi": [
+   [
+    "make merry",
+    "즐거워하다, 기뻐하다"
+   ]
+  ],
+  "gra": [
+   [
+    "they shall not be few",
+    "고어 미래 부정 구문"
+   ]
+  ]
+ },
+ {
+  "en": "Their children also shall be as aforetime, and their congregation shall be established before me, and I will punish all that oppress them.",
+  "ko": "그들의 자녀들도 옛적과 같겠고 그들의 회중은 내 앞에 굳게 서리니, 그들을 학대하는 모든 자를 내가 벌하리라.",
+  "note": "히브리어 '에다'(edah, 회중)가 하나님 앞에 굳게 선다는 것은 언약 공동체의 회복을 뜻한다. '옛적과 같이'는 다윗 시대의 영광스러운 회복을 지향한다.",
+  "voc": [
+   [
+    "children",
+    "n.",
+    "자녀들"
+   ],
+   [
+    "congregation",
+    "n.",
+    "회중"
+   ],
+   [
+    "oppress",
+    "v.",
+    "학대하다, 압제하다"
+   ]
+  ],
+  "idi": [
+   [
+    "as aforetime",
+    "옛적과 같이"
+   ]
+  ],
+  "gra": [
+   [
+    "all that oppress them",
+    "all that ~ 고어 관계구문"
+   ]
+  ]
+ },
+ {
+  "en": "And their nobles shall be of themselves, and their governor shall proceed from the midst of them; and I will cause him to draw near, and he shall approach unto me: for who is this that engaged his heart to approach unto me? saith the LORD.",
+  "ko": "그들의 귀인들은 그들 가운데서 나오겠고 그들의 통치자는 그들 중에서 나오리니, 내가 그를 가까이 이끌어 그가 내게 나아오게 하리라. 누가 마음을 다하여 내게 나아올 자뇨, 여호와의 말이니라.",
+  "note": "'통치자가 그들 중에서 나오리라'는 메시아적 왕권 예언이다. 히브리어 '나가시'(nagas, 가까이 나아가다)는 제사장적 접근을 함의하여, 이 통치자가 왕이자 중보자임을 시사한다.",
+  "voc": [
+   [
+    "nobles",
+    "n.",
+    "귀인들"
+   ],
+   [
+    "governor",
+    "n.",
+    "통치자"
+   ],
+   [
+    "approach",
+    "v.",
+    "나아가다, 접근하다"
+   ]
+  ],
+  "idi": [
+   [
+    "engaged his heart",
+    "마음을 다하다, 마음을 쏟다"
+   ]
+  ],
+  "gra": [
+   [
+    "who is this that engaged",
+    "의문사 + that 강조 고어법"
+   ]
+  ]
+ },
+ {
+  "en": "And ye shall be my people, and I will be your God.",
+  "ko": "너희는 내 백성이 되겠고 나는 너희 하나님이 되리라.",
+  "note": "언약 공식(covenant formula)의 정수이다. 히브리어 '아템 리 레암'(너희는 내 백성)은 시내산 언약의 핵심 문구로, 회복의 절정이 하나님과 백성의 온전한 관계 회복임을 선언한다.",
+  "voc": [
+   [
+    "people",
+    "n.",
+    "백성"
+   ],
+   [
+    "God",
+    "n.",
+    "하나님"
+   ]
+  ],
+  "idi": [
+   [
+    "ye shall be my people",
+    "너희는 내 백성이 되리라(언약 공식)"
+   ]
+  ],
+  "gra": [
+   [
+    "ye",
+    "너희(2인칭 복수 고어)"
+   ]
+  ]
+ },
+ {
+  "en": "Behold, the whirlwind of the LORD goeth forth with fury, a continuing whirlwind: it shall fall with pain upon the head of the wicked.",
+  "ko": "보라, 여호와의 회오리바람이 분노로 나아가나니, 곧 휘몰아치는 회오리바람이라. 그것이 악인의 머리 위에 아프게 떨어지리라.",
+  "note": "히브리어 '사아르'(sa'ar, 회오리바람)는 하나님의 진노를 상징하는 신현(神現) 심상이다. 회복의 약속 가운데서도 악인에 대한 심판은 확실히 임한다는 균형을 보여 준다.",
+  "voc": [
+   [
+    "whirlwind",
+    "n.",
+    "회오리바람"
+   ],
+   [
+    "fury",
+    "n.",
+    "분노, 맹렬함"
+   ],
+   [
+    "wicked",
+    "n./adj.",
+    "악인, 악한"
+   ]
+  ],
+  "idi": [
+   [
+    "goeth forth with fury",
+    "분노로 나아가다"
+   ]
+  ],
+  "gra": [
+   [
+    "goeth forth",
+    "go 3인칭 고어형 — 나아가느니라"
+   ]
+  ]
+ },
+ {
+  "en": "The fierce anger of the LORD shall not return, until he have done it, and until he have performed the intents of his heart: in the latter days ye shall consider it.",
+  "ko": "여호와의 맹렬한 진노가 그 마음의 뜻을 이루고 행하시기까지는 돌이키지 아니하리니, 너희가 마지막 날에 이를 깨달으리라.",
+  "note": "히브리어 '메짐마'(mezimmah, 뜻·계획)를 하나님이 반드시 이루신다는 확언이다. '마지막 날에'(be'acharith hayyamim)는 종말론적 지평을 열어, 이 예언의 완성이 미래에 있음을 가리킨다.",
+  "voc": [
+   [
+    "fierce",
+    "adj.",
+    "맹렬한"
+   ],
+   [
+    "performed",
+    "v.",
+    "이루다, 행하다"
+   ],
+   [
+    "intents",
+    "n.",
+    "뜻, 의도"
+   ]
+  ],
+  "idi": [
+   [
+    "in the latter days",
+    "마지막 날에, 후일에"
+   ]
+  ],
+  "gra": [
+   [
+    "until he have done it",
+    "완료 가정 have 고어법"
+   ]
+  ]
+ }
 ]
