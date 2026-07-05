@@ -1,132 +1,851 @@
 [
  {
-  "en": "when the LORD would take up Elijah into heaven by a whirlwind",
-  "ko": "여호와께서 회오리바람으로 엘리야를 하늘로 올리려 하실 때에",
-  "note": "'올리다'로 옮긴 히브리어 '알라'(עָלָה, 올라가다)와 '회오리바람'을 뜻하는 '세아라'(סְעָרָה)가 쓰였다. 엘리야는 죽음을 거치지 않고 들림 받은 두 사람 중 하나이니(에녹과 더불어), 본문은 '데려가심'을 죽음이 아니라 산 채로 올리심으로 분명히 말한다.",
+  "en": "And it came to pass, when the LORD would take up Elijah into heaven by a whirlwind, that Elijah went with Elisha from Gilgal.",
+  "ko": "여호와께서 회오리바람으로 엘리야를 하늘로 올리려 하실 때에, 엘리야가 엘리사와 더불어 길갈을 떠나니라.",
+  "note": "'회오리바람으로 하늘로 올리려 하실 때'는 엘리야가 죽음을 보지 않고 옮겨지는 특별한 승천을 예고한다. 엘리사가 스승과 동행함은 예언자의 직임이 끊이지 않고 이어짐을 상징한다.",
   "voc": [
-   ["take up", "", "들어 올리다, 데려가다"],
-   ["heaven", "n.", "하늘"],
-   ["whirlwind", "n.", "회오리바람"]
+   [
+    "whirlwind",
+    "n.",
+    "회오리바람"
+   ],
+   [
+    "take up",
+    "",
+    "올려 데려가다"
+   ],
+   [
+    "went",
+    "v.",
+    "갔다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "it came to pass",
+    "'~한 일이 일어나다'를 뜻하는 히브리어 서사 관용구(바예히)의 직역"
+   ],
+   [
+    "would take up",
+    "would는 의도·예정을 나타내는 고어 조동사"
+   ]
+  ]
+ },
+ {
+  "en": "And Elijah said unto Elisha, Tarry here, I pray thee; for the LORD hath sent me to Bethel. And Elisha said unto him, As the LORD liveth, and as thy soul liveth, I will not leave thee. So they went down to Bethel.",
+  "ko": "엘리야가 엘리사에게 이르되 \"청하건대 너는 여기 머물라. 여호와께서 나를 벧엘로 보내셨느니라\" 하니, 엘리사가 이르되 \"여호와께서 살아 계심과 당신의 혼이 살아 있음을 두고 맹세하노니, 내가 당신을 떠나지 아니하리이다\" 하매, 두 사람이 벧엘로 내려가니라.",
+  "note": "엘리사의 '여호와께서 살아 계심과 당신의 혼이 살아 있음을 두고 맹세하노니'는 스승을 끝까지 따르려는 결단의 맹세다. 세 번 반복되는 이 다짐은 갑절의 영을 받기 위한 신실한 순종의 시험이다.",
+  "voc": [
+   [
+    "tarry",
+    "v.",
+    "머물다"
+   ],
+   [
+    "liveth",
+    "v.",
+    "살아 계시다"
+   ],
+   [
+    "leave",
+    "v.",
+    "떠나다"
+   ],
+   [
+    "soul",
+    "n.",
+    "혼, 영혼"
+   ]
   ],
   "idi": [
-   ["take up", "들어 올리다, 위로 거두어 가다"]
+   [
+    "As the LORD liveth",
+    "여호와의 살아 계심을 두고 (맹세하노니)"
+   ],
+   [
+    "I pray thee",
+    "청하건대"
+   ]
   ],
   "gra": [
-   ["when the LORD would take up Elijah", "would=과거의 의지/예정 '~하려 하실 때에'"]
+   [
+    "the LORD liveth",
+    "liveth는 3인칭 단수 고어 어미(-eth); '살아 계시다'"
+   ],
+   [
+    "hath sent",
+    "hath sent는 완료형; '보내셨다'"
+   ]
   ]
  },
  {
-  "en": "As the LORD liveth, and as thy soul liveth, I will not leave thee",
-  "ko": "여호와께서 살아 계심과 당신의 혼이 살아 있음을 두고 맹세하노니, 내가 당신을 떠나지 아니하리이다",
-  "note": "'아스 여호와 하이'(חַי־יְהוָה, 여호와의 살아 계심으로)는 가장 엄숙한 히브리식 맹세 형식이다. '네페쉬'(נֶפֶשׁ)는 혼·생명을 뜻하니(§5), 엘리사가 스승을 끝까지 따르겠다는 결단을 살아 계신 하나님과 산 목숨을 걸어 다짐한다.",
+  "en": "And the sons of the prophets that were at Bethel came forth to Elisha, and said unto him, Knowest thou that the LORD will take away thy master from thy head to day? And he said, Yea, I know it; hold ye your peace.",
+  "ko": "벧엘에 있던 선지자의 제자들이 엘리사에게 나아와 이르되 \"여호와께서 오늘 당신의 스승을 당신의 머리 위에서 데려가실 줄을 아시나이까?\" 하니, 그가 이르되 \"그러하다, 나도 아노니 너희는 잠잠하라\" 하니라.",
+  "note": "선지자의 제자들이 스승의 떠남을 미리 알림에, 엘리사는 '나도 아노니 잠잠하라' 답한다. 그 앎을 조용히 감내함은 슬픔을 절제하며 하나님의 뜻에 순복하는 성숙의 표지다.",
   "voc": [
-   ["liveth", "v.", "살아 있다(고어 3인칭)"],
-   ["soul", "n.", "혼, 생명"],
-   ["leave", "v.", "떠나다, 버려두다"]
+   [
+    "sons of the prophets",
+    "",
+    "선지자의 제자들"
+   ],
+   [
+    "master",
+    "n.",
+    "스승"
+   ],
+   [
+    "hold your peace",
+    "",
+    "잠잠하라"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Knowest thou",
+    "Knowest는 thou에 대응하는 2인칭 단수 동사(-est); 의문 도치"
+   ],
+   [
+    "Yea",
+    "yes의 고어 형태; '그러하다'"
+   ]
+  ]
+ },
+ {
+  "en": "And Elijah said unto him, Elisha, tarry here, I pray thee; for the LORD hath sent me to Jericho. And he said, As the LORD liveth, and as thy soul liveth, I will not leave thee. So they came to Jericho.",
+  "ko": "엘리야가 그에게 이르되 \"엘리사야, 청하건대 너는 여기 머물라. 여호와께서 나를 여리고로 보내셨느니라\" 하니, 그가 이르되 \"여호와께서 살아 계심과 당신의 혼이 살아 있음을 두고 맹세하노니, 내가 당신을 떠나지 아니하리이다\" 하매, 그들이 여리고에 이르니라.",
+  "note": "벧엘에서와 똑같은 시험이 여리고에서 반복된다. 머물라는 권유를 물리치고 끝까지 동행하는 엘리사의 한결같음이 계승자의 자격을 다진다.",
+  "voc": [
+   [
+    "tarry",
+    "v.",
+    "머물다"
+   ],
+   [
+    "Jericho",
+    "n.",
+    "여리고"
+   ],
+   [
+    "came",
+    "v.",
+    "이르렀다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "thy soul liveth",
+    "thy는 your의 고어 소유격; liveth는 3인칭 단수 고어형"
+   ]
+  ]
+ },
+ {
+  "en": "And the sons of the prophets that were at Jericho came to Elisha, and said unto him, Knowest thou that the LORD will take away thy master from thy head to day? And he answered, Yea, I know it; hold ye your peace.",
+  "ko": "여리고에 있던 선지자의 제자들이 엘리사에게 나아와 이르되 \"여호와께서 오늘 당신의 스승을 당신의 머리 위에서 데려가실 줄을 아시나이까?\" 하니, 그가 대답하되 \"그러하다, 나도 아노니 너희는 잠잠하라\" 하니라.",
+  "note": "여리고의 제자들도 같은 말을 전하고, 엘리사는 같은 대답으로 침묵을 명한다. 반복되는 예고와 절제된 반응이 이별의 순간을 향해 서사를 고조시킨다.",
+  "voc": [
+   [
+    "answered",
+    "v.",
+    "대답하였다"
+   ],
+   [
+    "take away",
+    "",
+    "데려가다"
+   ],
+   [
+    "to day",
+    "",
+    "오늘"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "hold ye your peace",
+    "ye는 you의 고어 복수 주격; '너희는 잠잠하라'"
+   ]
+  ]
+ },
+ {
+  "en": "And Elijah said unto him, Tarry, I pray thee, here; for the LORD hath sent me to Jordan. And he said, As the LORD liveth, and as thy soul liveth, I will not leave thee. And they two went on.",
+  "ko": "엘리야가 그에게 이르되 \"청하건대 너는 여기 머물라. 여호와께서 나를 요단으로 보내셨느니라\" 하니, 그가 이르되 \"여호와께서 살아 계심과 당신의 혼이 살아 있음을 두고 맹세하노니, 내가 당신을 떠나지 아니하리이다\" 하매, 두 사람이 함께 나아가니라.",
+  "note": "세 번째로 요단까지 동행이 이어진다. '두 사람이 함께 나아가니라'는 스승과 제자의 하나 된 걸음이 곧 승계의 문턱임을 보여 준다.",
+  "voc": [
+   [
+    "Jordan",
+    "n.",
+    "요단 (강)"
+   ],
+   [
+    "went on",
+    "",
+    "나아가다"
+   ],
+   [
+    "two",
+    "n.",
+    "두 사람"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "they two went on",
+    "they two는 '그 둘이'를 뜻하는 고어 강조 어순"
+   ]
+  ]
+ },
+ {
+  "en": "And fifty men of the sons of the prophets went, and stood to view afar off: and they two stood by Jordan.",
+  "ko": "선지자의 제자들 중 오십 명이 가서 멀리 마주 서서 바라보고, 두 사람은 요단 가에 서니라.",
+  "note": "오십 명의 제자들이 멀리서 지켜보니, 승천의 이적은 은밀하되 증인이 있는 사건이다. 하나님의 큰 일은 목격자를 통해 다음 세대에 전해진다.",
+  "voc": [
+   [
+    "afar off",
+    "",
+    "멀리"
+   ],
+   [
+    "view",
+    "v.",
+    "바라보다"
+   ],
+   [
+    "stood",
+    "v.",
+    "서다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "to view afar off",
+    "to+동사원형은 목적을 나타내는 부정사; '바라보려고'"
+   ]
+  ]
+ },
+ {
+  "en": "And Elijah took his mantle, and wrapped it together, and smote the waters, and they were divided hither and thither, so that they two went over on dry ground.",
+  "ko": "엘리야가 자기 겉옷을 취하여 말아 물을 치니, 물이 이리저리 갈라지매 두 사람이 마른 땅 위로 건너가니라.",
+  "note": "엘리야가 겉옷으로 요단 물을 갈라 마른 땅으로 건넘은 홍해와 요단 도하(수 3장)를 잇는 구속사적 이적이다. 겉옷(맨틀)은 곧 예언자 권능의 표징으로, 엘리사에게 넘겨질 유업이다.",
+  "voc": [
+   [
+    "mantle",
+    "n.",
+    "겉옷"
+   ],
+   [
+    "wrapped",
+    "v.",
+    "말았다"
+   ],
+   [
+    "smote",
+    "v.",
+    "쳤다"
+   ],
+   [
+    "divided",
+    "v.",
+    "갈라졌다"
+   ]
   ],
   "idi": [
-   ["as the LORD liveth", "여호와께서 살아 계심을 두고(맹세 형식)"]
+   [
+    "hither and thither",
+    "이리저리"
+   ]
   ],
   "gra": [
-   ["the LORD liveth ... thy soul liveth", "liveth=고어 3인칭 단수 현재(=lives)"]
+   [
+    "smote the waters",
+    "smote는 smite(치다)의 고어 과거형"
+   ],
+   [
+    "went over on dry ground",
+    "dry ground(마른 땅)는 출애굽 도하 모티프의 반복"
+   ]
   ]
  },
  {
-  "en": "Knowest thou that the LORD will take away thy master from thy head to day?",
-  "ko": "여호와께서 오늘 당신의 스승을 당신의 머리 위에서 데려가실 줄을 아시나이까?",
-  "note": "'머리 위에서'(메알 로쉬)는 스승이 제자보다 위에 있는 권위와 가까이 거함을 함께 그린다. 선지자의 제자들도 엘리야의 떠남을 미리 알았으나, 엘리사는 '잠잠하라' 하며 슬픔을 입에 담기조차 꺼린다.",
+  "en": "And it came to pass, when they were gone over, that Elijah said unto Elisha, Ask what I shall do for thee, before I be taken away from thee. And Elisha said, I pray thee, let a double portion of thy spirit be upon me.",
+  "ko": "그들이 건너간 후에 엘리야가 엘리사에게 이르되 \"내가 네게서 데려감을 입기 전에 내가 너를 위하여 무엇을 하랴? 구하라\" 하니, 엘리사가 이르되 \"청하건대 당신의 영의 갑절을 내게 있게 하소서\" 하니라.",
+  "note": "엘리사가 '당신의 영의 갑절'을 구함은, 히브리어로 맏아들의 상속분(신 21:17)을 뜻하는 표현이다. 이는 스승보다 큰 능력이 아니라 예언자 유업의 정당한 계승을 간구함이다.",
   "voc": [
-   ["knowest", "v.", "아느냐(고어 2인칭)"],
-   ["take away", "", "데려가다, 거두어 가다"],
-   ["master", "n.", "스승, 주인"],
-   ["to day", "", "오늘(=today)"]
+   [
+    "ask",
+    "v.",
+    "구하다"
+   ],
+   [
+    "double portion",
+    "",
+    "갑절, 두 몫"
+   ],
+   [
+    "spirit",
+    "n.",
+    "영"
+   ]
   ],
   "idi": [
-   ["hold your peace", "잠잠하라, 조용히 하라"]
+   [
+    "a double portion",
+    "맏아들의 상속분, 갑절의 몫"
+   ]
   ],
   "gra": [
-   ["Knowest thou that ...?", "Knowest thou=고어 의문문(=Do you know); that절=목적어"]
+   [
+    "before I be taken away",
+    "be taken은 가정법 수동; '내가 데려감을 입기 전에'"
+   ]
   ]
  },
  {
-  "en": "Elijah took his mantle, and wrapped it together, and smote the waters",
-  "ko": "엘리야가 자기 겉옷을 취하여 말아 물을 치니",
-  "note": "'아데레트'(אַדֶּרֶת)는 선지자의 겉옷으로, 엘리야가 엘리사를 부를 때 그에게 던졌던 그 옷이다(왕상 19:19). 모세가 홍해를, 여호수아가 요단을 가른 것처럼 물이 갈라지니, 이는 엘리야 위에 임한 하나님의 권능을 드러낸다.",
+  "en": "And he said, Thou hast asked a hard thing: nevertheless, if thou see me when I am taken from thee, it shall be so unto thee; but if not, it shall not be so.",
+  "ko": "그가 이르되 \"네가 어려운 일을 구하는도다. 그러나 내가 네게서 데려감을 입을 때에 네가 나를 보면 네게 그같이 되려니와, 그렇지 아니하면 그같이 되지 아니하리라\" 하니라.",
+  "note": "'네가 나를 보면'이라는 조건은 갑절의 영이 사람의 요구가 아니라 하나님의 주권적 허락에 달렸음을 보인다. 어려운 일일수록 하늘의 은혜로만 성취됨을 일깨운다.",
   "voc": [
-   ["mantle", "n.", "겉옷, 망토"],
-   ["wrap together", "", "말다, 한데 감다"],
-   ["smote", "v.", "쳤다(smite의 과거)"],
-   ["waters", "n.", "물(강물)"]
+   [
+    "hard",
+    "adj.",
+    "어려운"
+   ],
+   [
+    "nevertheless",
+    "adv.",
+    "그러나"
+   ],
+   [
+    "taken",
+    "v.",
+    "데려감을 입은"
+   ]
   ],
+  "idi": [],
   "gra": [
-   ["smote the waters, and they were divided", "they were divided=수동태 '물이 갈라졌다'"]
+   [
+    "if thou see me",
+    "see는 가정법 현재; '만일 네가 나를 보면'"
+   ],
+   [
+    "it shall be so unto thee",
+    "shall은 확정 미래; unto는 to의 고어형"
+   ]
   ]
  },
  {
-  "en": "I pray thee, let a double portion of thy spirit be upon me",
-  "ko": "청하건대 당신의 영의 갑절을 내게 있게 하소서",
-  "note": "'피 셰나임'(פִּי שְׁנַיִם, 두 몫의 입)은 갑절을 뜻하되, 율법에서 장자가 받는 상속의 몫이다(신 21:17). 엘리사는 엘리야보다 두 배 큰 능력이 아니라, 그의 영적 후계자 곧 장자의 자리와 사명을 구한 것이다.",
+  "en": "And it came to pass, as they still went on, and talked, that, behold, there appeared a chariot of fire, and horses of fire, and parted them both asunder; and Elijah went up by a whirlwind into heaven.",
+  "ko": "그들이 계속 가며 이야기하더니, 보라, 불 병거와 불 말들이 나타나 두 사람을 갈라놓으매 엘리야가 회오리바람을 타고 하늘로 올라가니라.",
+  "note": "불 병거와 불 말들, 회오리바람은 하나님의 임재와 권능을 드러내는 신현(神現)의 상징이다. 엘리야는 죽음을 보지 않고 옮겨지니, 이는 에녹과 더불어 부활 소망의 예표가 된다.",
   "voc": [
-   ["I pray thee", "", "청하건대, 부디"],
-   ["double portion", "", "갑절의 몫"],
-   ["spirit", "n.", "영"],
-   ["upon", "prep.", "~위에"]
+   [
+    "chariot",
+    "n.",
+    "병거"
+   ],
+   [
+    "horses",
+    "n.",
+    "말들"
+   ],
+   [
+    "parted",
+    "v.",
+    "갈라놓았다"
+   ],
+   [
+    "asunder",
+    "adv.",
+    "둘로"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "parted them both asunder",
+    "asunder는 '따로, 둘로'를 뜻하는 고어 부사"
+   ],
+   [
+    "went up by a whirlwind",
+    "by는 수단을 나타내는 전치사; '회오리바람을 타고'"
+   ]
+  ]
+ },
+ {
+  "en": "And Elisha saw it, and he cried, My father, my father, the chariot of Israel, and the horsemen thereof. And he saw him no more: and he took hold of his own clothes, and rent them in two pieces.",
+  "ko": "엘리사가 이를 보고 부르짖어 이르되 \"내 아버지여, 내 아버지여, 이스라엘의 병거와 그 마병이여\" 하더니, 다시는 그를 보지 못한지라. 이에 자기 옷을 잡아 둘로 찢고,",
+  "note": "'내 아버지여'는 엘리사가 스승을 영적 아버지로 부르는 애곡이며, '이스라엘의 병거와 마병'은 엘리야가 군대보다 강한 나라의 방패였음을 뜻한다. 옷을 찢음은 깊은 애도의 표현이다.",
+  "voc": [
+   [
+    "cried",
+    "v.",
+    "부르짖었다"
+   ],
+   [
+    "horsemen",
+    "n.",
+    "마병"
+   ],
+   [
+    "rent",
+    "v.",
+    "찢었다"
+   ],
+   [
+    "no more",
+    "",
+    "다시는 ~않다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "the horsemen thereof",
+    "thereof는 '그것의'를 뜻하는 고어 대명사"
+   ],
+   [
+    "rent them in two pieces",
+    "rent는 rend(찢다)의 고어 과거형"
+   ]
+  ]
+ },
+ {
+  "en": "He took up also the mantle of Elijah that fell from him, and went back, and stood by the bank of Jordan;",
+  "ko": "또 엘리야의 몸에서 떨어진 그 겉옷을 집어 들고 돌아와 요단 언덕에 서서,",
+  "note": "떨어진 겉옷을 집어 든 엘리사의 행위는 예언자 유업을 이어받는 상징적 취임이다. 스승이 남긴 맨틀은 곧 하나님이 그에게 위임하시는 능력의 표적이다.",
+  "voc": [
+   [
+    "took up",
+    "",
+    "집어 들다"
+   ],
+   [
+    "fell",
+    "v.",
+    "떨어졌다"
+   ],
+   [
+    "bank",
+    "n.",
+    "언덕, 물가"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "that fell from him",
+    "that은 관계대명사; '그에게서 떨어진'"
+   ]
+  ]
+ },
+ {
+  "en": "And he took the mantle of Elijah that fell from him, and smote the waters, and said, Where is the LORD God of Elijah? and when he also had smitten the waters, they parted hither and thither: and Elisha went over.",
+  "ko": "엘리야의 몸에서 떨어진 그 겉옷을 가지고 물을 치며 이르되 \"엘리야의 하나님 여호와는 어디 계시니이까?\" 하고, 그도 물을 치매 물이 이리저리 갈라지니, 엘리사가 건너니라.",
+  "note": "'엘리야의 하나님 여호와는 어디 계시니이까'는 능력의 근원이 겉옷이 아니라 하나님이심을 아는 신앙의 외침이다. 물이 갈라짐으로 엘리사에게 임한 갑절의 영이 즉시 확증된다.",
+  "voc": [
+   [
+    "mantle",
+    "n.",
+    "겉옷"
+   ],
+   [
+    "smote",
+    "v.",
+    "쳤다"
+   ],
+   [
+    "parted",
+    "v.",
+    "갈라졌다"
+   ],
+   [
+    "went over",
+    "",
+    "건너갔다"
+   ]
   ],
   "idi": [
-   ["I pray thee", "청하건대, 간청하노니"],
-   ["a double portion", "갑절의 몫, 장자의 상속분"]
+   [
+    "Where is the LORD God of Elijah",
+    "엘리야의 하나님이 어디 계시냐 (능력의 근원을 구하는 외침)"
+   ]
   ],
   "gra": [
-   ["let a double portion ... be upon me", "let+목적어+동사원형=사역 '~가 …하게 하소서'"]
+   [
+    "when he also had smitten",
+    "had smitten은 과거완료; smitten은 smite의 과거분사"
+   ]
   ]
  },
  {
-  "en": "there appeared a chariot of fire, and horses of fire, ... and Elijah went up by a whirlwind into heaven",
-  "ko": "불 병거와 불 말들이 나타나 ... 엘리야가 회오리바람을 타고 하늘로 올라가니라",
-  "note": "'레케브 에쉬'(רֶכֶב אֵשׁ, 불의 병거)는 하나님의 임재와 호위를 나타낸다. 엘리야를 올린 것은 병거가 아니라 회오리바람이니, 불 병거는 그를 데려가려 보내신 하늘 군대의 표징이다. 엘리사는 곧 이를 '이스라엘의 병거와 마병'이라 부른다.",
+  "en": "And when the sons of the prophets which were to view at Jericho saw him, they said, The spirit of Elijah doth rest on Elisha. And they came to meet him, and bowed themselves to the ground before him.",
+  "ko": "여리고에서 마주 바라보던 선지자의 제자들이 그를 보고 이르되 \"엘리야의 영이 엘리사 위에 머무는도다\" 하고, 그를 맞으러 와서 땅에 엎드려 그에게 절하니라.",
+  "note": "제자들이 '엘리야의 영이 엘리사 위에 머무는도다' 고백하며 절함은, 갈라진 물을 보고 계승을 공적으로 인정함이다. 하나님의 능력은 사람의 인정에 앞서 이적으로 스스로를 증언한다.",
   "voc": [
-   ["appear", "v.", "나타나다"],
-   ["chariot", "n.", "병거, 전차"],
-   ["part asunder", "", "갈라놓다, 떼어 놓다"],
-   ["go up", "", "올라가다"]
+   [
+    "rest on",
+    "",
+    "위에 머물다"
+   ],
+   [
+    "bowed",
+    "v.",
+    "절하였다"
+   ],
+   [
+    "ground",
+    "n.",
+    "땅"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "doth rest on Elisha",
+    "doth는 does의 고어형; 강조의 조동사"
+   ]
+  ]
+ },
+ {
+  "en": "And they said unto him, Behold now, there be with thy servants fifty strong men; let them go, we pray thee, and seek thy master: lest peradventure the Spirit of the LORD hath taken him up, and cast him upon some mountain, or into some valley. And he said, Ye shall not send.",
+  "ko": "그들이 그에게 이르되 \"보소서, 이제 당신의 종들에게 용맹한 자 오십 명이 있으니, 청하건대 그들을 보내어 당신의 스승을 찾게 하소서. 혹시 여호와의 영이 그를 들어다가 어느 산이나 어느 골짜기에 던지셨을까 하나이다\" 하니, 그가 이르되 \"보내지 말라\" 하니라.",
+  "note": "제자들이 엘리야를 산이나 골짜기에서 찾으려 함은 승천의 실상을 온전히 깨닫지 못한 인간적 미련이다. 엘리사의 '보내지 말라'는 하나님이 하신 일을 사람의 수색으로 되돌릴 수 없음을 안다.",
+  "voc": [
+   [
+    "strong men",
+    "",
+    "용맹한 자들"
+   ],
+   [
+    "seek",
+    "v.",
+    "찾다"
+   ],
+   [
+    "peradventure",
+    "adv.",
+    "혹시"
+   ],
+   [
+    "valley",
+    "n.",
+    "골짜기"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "lest peradventure...hath taken",
+    "lest는 '~할까 하여'; peradventure는 '혹시'를 뜻하는 고어 부사"
+   ]
+  ]
+ },
+ {
+  "en": "And when they urged him till he was ashamed, he said, Send. They sent therefore fifty men; and they sought three days, but found him not.",
+  "ko": "그러나 그들이 그가 부끄러워하기까지 간청하매, 그가 이르되 \"보내라\" 하니라. 이에 그들이 오십 명을 보내어 사흘을 찾되 그를 찾지 못하고,",
+  "note": "제자들의 간청에 엘리사가 마지못해 허락하나, 사흘의 수색은 헛되이 끝난다. 이는 엘리야가 참으로 하늘로 옮겨졌음을 반증하는 확인 절차가 된다.",
+  "voc": [
+   [
+    "urged",
+    "v.",
+    "간청하였다"
+   ],
+   [
+    "ashamed",
+    "adj.",
+    "부끄러운"
+   ],
+   [
+    "sought",
+    "v.",
+    "찾았다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "till he was ashamed",
+    "till은 '~할 때까지'; '부끄러워하기까지'"
+   ]
+  ]
+ },
+ {
+  "en": "And when they came again to him, (for he tarried at Jericho,) he said unto them, Did I not say unto you, Go not?",
+  "ko": "엘리사가 여리고에 머물러 있을 때에 그들이 그에게로 돌아오니, 그가 그들에게 이르되 \"내가 너희에게 가지 말라 하지 아니하였느냐?\" 하니라.",
+  "note": "'내가 가지 말라 하지 아니하였느냐'는 엘리사의 예언자적 통찰이 옳았음을 드러낸다. 승계자의 말이 이미 하나님의 뜻과 일치했음을 보이는 확증이다.",
+  "voc": [
+   [
+    "came again",
+    "",
+    "돌아오다"
+   ],
+   [
+    "tarried",
+    "v.",
+    "머물렀다"
+   ],
+   [
+    "Go not",
+    "",
+    "가지 말라"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Did I not say",
+    "수사 의문문; '내가 말하지 아니하였느냐'"
+   ],
+   [
+    "Go not",
+    "Go not은 부정 명령의 고어 어순"
+   ]
+  ]
+ },
+ {
+  "en": "And the men of the city said unto Elisha, Behold, I pray thee, the situation of this city is pleasant, as my lord seeth: but the water is naught, and the ground barren.",
+  "ko": "그 성읍 사람들이 엘리사에게 이르되 \"보소서, 청하건대 이 성읍의 위치는 좋으나 내 주께서 보시는 바와 같이 물이 나쁘고 토지가 열매를 맺지 못하나이다\" 하니,",
+  "note": "여리고 사람들이 좋은 위치에도 나쁜 물과 열매 없는 땅을 호소함은, 이 성읍에 임한 여호수아의 저주(수 6:26)의 그늘을 떠올린다. 엘리사의 첫 이적이 저주받은 땅의 회복으로 향한다.",
+  "voc": [
+   [
+    "situation",
+    "n.",
+    "위치"
+   ],
+   [
+    "pleasant",
+    "adj.",
+    "좋은, 아름다운"
+   ],
+   [
+    "naught",
+    "adj.",
+    "나쁜, 쓸모없는"
+   ],
+   [
+    "barren",
+    "adj.",
+    "열매 맺지 못하는"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "the water is naught",
+    "naught은 '나쁜, 무익한'을 뜻하는 고어 형용사"
+   ],
+   [
+    "as my lord seeth",
+    "seeth는 3인칭 단수 고어형; '보시는 바와 같이'"
+   ]
+  ]
+ },
+ {
+  "en": "And he said, Bring me a new cruse, and put salt therein. And they brought it to him.",
+  "ko": "그가 이르되 \"새 그릇을 내게 가져다가 그 안에 소금을 담으라\" 하매, 그들이 그것을 그에게로 가져오니라.",
+  "note": "새 그릇과 소금을 명함은 이적이 물질의 힘이 아니라 하나님의 말씀에 있음을 보이는 상징적 준비다. 정결한 새 그릇은 오직 여호와께서 행하실 새 일을 담는 표징이다.",
+  "voc": [
+   [
+    "cruse",
+    "n.",
+    "그릇, 병"
+   ],
+   [
+    "salt",
+    "n.",
+    "소금"
+   ],
+   [
+    "therein",
+    "adv.",
+    "그 안에"
+   ],
+   [
+    "brought",
+    "v.",
+    "가져왔다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "put salt therein",
+    "therein은 '그 안에'를 뜻하는 고어 부사"
+   ]
+  ]
+ },
+ {
+  "en": "And he went forth unto the spring of the waters, and cast the salt in there, and said, Thus saith the LORD, I have healed these waters; there shall not be from thence any more death or barren land.",
+  "ko": "그가 물 근원으로 나아가 거기에 소금을 던지며 이르되 \"여호와께서 이같이 말씀하시되, 내가 이 물을 고쳤으니 이제부터는 여기서 다시는 죽음이나 열매 맺지 못함이 없으리라 하셨느니라\" 하니,",
+  "note": "'내가 이 물을 고쳤으니'는 소금이 아니라 여호와께서 친히 치유하심을 선언한다. 죽음과 열매 없음을 생명과 결실로 바꾸시는 이 이적은 창조주의 회복 능력을 계시한다.",
+  "voc": [
+   [
+    "spring",
+    "n.",
+    "근원, 샘"
+   ],
+   [
+    "healed",
+    "v.",
+    "고쳤다"
+   ],
+   [
+    "thence",
+    "adv.",
+    "거기서부터"
+   ],
+   [
+    "barren land",
+    "",
+    "열매 맺지 못하는 땅"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "there shall not be from thence",
+    "thence는 '거기서부터'를 뜻하는 고어 부사; shall은 확정 미래"
+   ]
+  ]
+ },
+ {
+  "en": "So the waters were healed unto this day, according to the saying of Elisha which he spake.",
+  "ko": "엘리사가 이른 말과 같이 그 물이 고쳐져 오늘에 이르렀더라.",
+  "note": "'오늘에 이르렀더라'는 이적의 지속적 효력을 저자가 증언하는 확인이다. 하나님의 치유는 일시적 기적이 아니라 세대를 넘어 이어지는 항구적 은혜다.",
+  "voc": [
+   [
+    "healed",
+    "v.",
+    "고쳐졌다"
+   ],
+   [
+    "unto this day",
+    "",
+    "오늘에 이르기까지"
+   ],
+   [
+    "spake",
+    "v.",
+    "말하였다"
+   ]
   ],
   "idi": [
-   ["part asunder", "둘로 갈라놓다, 떼어 놓다"]
+   [
+    "unto this day",
+    "오늘날까지"
+   ]
   ],
   "gra": [
-   ["there appeared a chariot of fire", "there+동사+주어=존재·출현 구문 '~이 나타났다'"]
+   [
+    "which he spake",
+    "spake는 speak(말하다)의 고어 과거형"
+   ]
   ]
  },
  {
-  "en": "My father, my father, the chariot of Israel, and the horsemen thereof",
-  "ko": "내 아버지여, 내 아버지여, 이스라엘의 병거와 그 마병이여",
-  "note": "엘리사는 엘리야를 '내 아버지'라 부르며 '이스라엘의 병거와 마병'이라 외친다. 한 선지자의 기도와 영향력이 군대보다 더 든든히 나라를 지킨다는 고백이니, 참된 능력은 무기가 아니라 하나님의 사람에게 있음을 드러낸다(왕하 13:14에서 요아스가 같은 말을 반복한다).",
+  "en": "And he went up from thence unto Bethel: and as he was going up by the way, there came forth little children out of the city, and mocked him, and said unto him, Go up, thou bald head; go up, thou bald head.",
+  "ko": "그가 거기서 벧엘로 올라가더니, 길로 올라갈 때에 젊은 아이들이 성읍에서 나와 그를 조롱하여 이르되 \"대머리여 올라가라, 대머리여 올라가라\" 하는지라.",
+  "note": "벧엘의 젊은이들이 '대머리여 올라가라' 조롱함은, 엘리야의 승천을 비웃으며 하나님의 선지자를 멸시하는 배교 성읍의 태도다. 이는 예언자를 향한 것을 넘어 하나님을 향한 도전이다.",
   "voc": [
-   ["father", "n.", "아버지(스승에 대한 존칭)"],
-   ["chariot", "n.", "병거"],
-   ["horsemen", "n.", "마병, 기마병"],
-   ["thereof", "adv.", "그것의(고어)"]
+   [
+    "mocked",
+    "v.",
+    "조롱하였다"
+   ],
+   [
+    "bald head",
+    "",
+    "대머리"
+   ],
+   [
+    "came forth",
+    "",
+    "나오다"
+   ],
+   [
+    "little children",
+    "",
+    "젊은 아이들"
+   ]
   ],
+  "idi": [],
   "gra": [
-   ["the horsemen thereof", "thereof=of it/them '그(이스라엘)의 마병'(고어 부사)"]
+   [
+    "Go up, thou bald head",
+    "thou는 호격 고어 대명사; 조롱의 부름"
+   ]
   ]
  },
  {
-  "en": "there came forth two she bears out of the wood, and tare forty and two children",
-  "ko": "암곰 두 마리가 수풀에서 나와 ... 사십이 명을 찢었더라",
-  "note": "조롱한 자들을 가리킨 '네아림 케탄님'(נְעָרִים קְטַנִּים)은 어린아이가 아니라 함께 떼 지어 선지자를 멸시한 젊은 무리를 뜻한다. '대머리여 올라가라'는 말은 단지 외모를 비웃음이 아니라, 엘리야가 '올라간' 사실과 하나님의 선지자 자체를 능멸한 것이다. 그 저주는 하나님을 멸시한 자에게 임한 심판이다.",
+  "en": "And he turned back, and looked on them, and cursed them in the name of the LORD. And there came forth two she bears out of the wood, and tare forty and two children of them.",
+  "ko": "그가 돌이켜 그들을 보고 여호와의 이름으로 그들을 저주하매, 암곰 두 마리가 수풀에서 나와 그들 중 사십이 명을 찢었더라.",
+  "note": "'여호와의 이름으로' 내린 저주와 암곰의 심판은, 하나님의 종을 멸시함이 곧 하나님을 멸시함임을 엄중히 경고한다. 이는 사사로운 분풀이가 아니라 언약의 하나님이 시행하시는 거룩한 심판이다.",
   "voc": [
-   ["come forth", "", "나오다"],
-   ["she bear", "", "암곰"],
-   ["wood", "n.", "수풀, 숲"],
-   ["tare", "v.", "찢었다(tear의 고어 과거)"],
-   ["bald head", "", "대머리"]
+   [
+    "cursed",
+    "v.",
+    "저주하였다"
+   ],
+   [
+    "she bears",
+    "",
+    "암곰들"
+   ],
+   [
+    "tare",
+    "v.",
+    "찢었다"
+   ],
+   [
+    "wood",
+    "n.",
+    "수풀"
+   ]
   ],
-  "idi": [
-   ["come forth", "나오다, 나타나다"]
-  ],
+  "idi": [],
   "gra": [
-   ["forty and two children", "forty and two=42(고어 수 표기 '마흔과 둘')"]
+   [
+    "cursed them in the name of the LORD",
+    "in the name of는 '~의 이름(권위)으로'"
+   ],
+   [
+    "tare forty and two",
+    "tare는 tear(찢다)의 고어 과거형; forty and two는 '사십이'"
+   ]
+  ]
+ },
+ {
+  "en": "And he went from thence to mount Carmel, and from thence he returned to Samaria.",
+  "ko": "그가 거기서 갈멜 산으로 갔다가 거기서 사마리아로 돌아가니라.",
+  "note": "엘리사가 갈멜 산과 사마리아로 돌아감은, 스승의 발자취를 따라 이스라엘 한복판에서 예언 사역을 이어감을 뜻한다. 승계는 은둔이 아니라 백성 가운데로 나아가는 사명으로 완성된다.",
+  "voc": [
+   [
+    "mount Carmel",
+    "",
+    "갈멜 산"
+   ],
+   [
+    "returned",
+    "v.",
+    "돌아갔다"
+   ],
+   [
+    "thence",
+    "adv.",
+    "거기서"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "from thence he returned",
+    "thence는 '거기서'를 뜻하는 고어 부사"
+   ]
   ]
  }
 ]
