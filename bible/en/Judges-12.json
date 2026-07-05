@@ -1,137 +1,487 @@
 [
  {
-  "en": "the men of Ephraim gathered themselves together, and went northward ... we will burn thine house upon thee with fire.",
-  "ko": "에브라임 사람들이 함께 모여 북으로 건너가 ... \"우리가 네 집을 너와 함께 불로 사르리라\" 하니,",
-  "note": "에브라임이 위협한 말 '북으로 건너가'의 히브리어는 차포나(tsaphonah)인데, 70인역 등은 이를 지명 '사본(Zaphon)'으로 읽기도 한다. 큰 승리 뒤에 도우러 오지 않았던 지파가 시기로 칼을 드니, 형제 사이의 다툼이 외적과의 싸움보다 더 쓰라리다.",
+  "en": "And the men of Ephraim gathered themselves together, and went northward, and said unto Jephthah, Wherefore passedst thou over to fight against the children of Ammon, and didst not call us to go with thee? we will burn thine house upon thee with fire.",
+  "ko": "에브라임 사람들이 함께 모여 북으로 건너가 입다에게 이르되 \"네가 어찌하여 건너가 암몬 자손과 싸우면서 우리를 불러 너와 함께 가게 하지 아니하였느냐? 우리가 네 집을 너와 함께 불로 사르리라\" 하니,",
+  "note": "에브라임이 '왜 우리를 부르지 않았느냐, 네 집을 불사르리라'(burn thine house) 위협한다. 기드온 때(8:1)와 같은 다툼이나 이번엔 위협으로 격화되니, 승리 뒤에도 지파의 시기가 분열을 일으킴을 보인다.",
   "voc": [
-   ["gather together", "", "함께 모이다"],
-   ["northward", "adv.", "북쪽으로"],
-   ["wherefore", "adv.", "어찌하여, 무슨 까닭으로"],
-   ["pass over", "v.", "건너가다"],
-   ["burn", "v.", "불사르다"]
+   [
+    "gather",
+    "v.",
+    "모이다"
+   ],
+   [
+    "northward",
+    "adv.",
+    "북으로"
+   ],
+   [
+    "burn",
+    "v.",
+    "불사르다"
+   ]
   ],
   "idi": [
-   ["gather oneself together", "함께 모이다, 집결하다"],
-   ["burn ... with fire", "~을 불로 사르다"]
+   [
+    "burn thine house upon thee",
+    "네 집을 너와 함께 불사르다"
+   ]
   ],
   "gra": [
-   ["Wherefore passedst thou over", "passedst=pass의 2인칭 단수 과거(고어) '네가 건너갔느냐'"]
+   [
+    "Wherefore passedst thou over",
+    "passedst는 passed의 2인칭 고어형"
+   ]
   ]
  },
  {
-  "en": "when I called you, ye delivered me not out of their hands.",
-  "ko": "내가 너희를 불렀으나, 너희가 나를 그들의 손에서 건져 내지 아니하였느니라.",
-  "note": "입다가 답하되 '내가 불렀다(히, 자아크)'고 한다. 그 부름은 도움을 청하는 외침이니, 정작 필요할 때 외면한 자들이 승리 후에야 몫을 다투려 함을 꾸짖는다.",
+  "en": "And Jephthah said unto them, I and my people were at great strife with the children of Ammon; and when I called you, ye delivered me not out of their hands.",
+  "ko": "입다가 그들에게 이르되 \"나와 내 백성이 암몬 자손과 크게 다툴 때에 내가 너희를 불렀으나, 너희가 나를 그들의 손에서 건져 내지 아니하였느니라.",
+  "note": "입다가 '내가 불렀으나 너희가 건지지 아니하였다'(ye delivered me not) 반박한다. 사실로 상대의 주장을 뒤엎으니, 그의 변론이 기드온의 온유한 대응과 달리 단호함을 보인다.",
   "voc": [
-   ["call", "v.", "부르다"],
-   ["deliver", "v.", "건져 내다, 구원하다"],
-   ["out of one's hands", "", "~의 손에서"],
-   ["strife", "n.", "다툼, 분쟁"]
+   [
+    "strife",
+    "n.",
+    "다툼"
+   ],
+   [
+    "call",
+    "v.",
+    "부르다"
+   ],
+   [
+    "deliver",
+    "v.",
+    "건지다"
+   ]
   ],
   "idi": [
-   ["deliver out of one's hand", "~의 손에서 건져 내다"]
+   [
+    "at great strife with",
+    "~와 크게 다투는"
+   ]
   ],
   "gra": [
-   ["ye delivered me not", "고어 부정 어순(=ye did not deliver me) '너희가 건져 내지 아니하였다'"]
+   [
+    "ye delivered me not",
+    "ye ... not으로 부정을 강조"
+   ]
   ]
  },
  {
-  "en": "I put my life in my hands, and passed over against the children of Ammon ...",
-  "ko": "내 목숨을 내 손에 걸고 건너가 암몬 자손을 치매 ...",
-  "note": "'목숨을 내 손에 걸다(히, 나페쉬 베카프)'는 죽음을 무릅쓰는 결단의 관용구다(삼상 19:5, 28:21). 입다는 자기 목숨을 걸고 싸웠음을 들어, 싸우지 않은 자들의 시비를 물리친다.",
+  "en": "And when I saw that ye delivered me not, I put my life in my hands, and passed over against the children of Ammon, and the LORD delivered them into my hand: wherefore then are ye come up unto me this day, to fight against me?",
+  "ko": "너희가 나를 건지지 아니함을 내가 보고 내 목숨을 내 손에 걸고 건너가 암몬 자손을 치매, 여호와께서 그들을 내 손에 넘기셨거늘, 너희가 어찌하여 오늘 내게 올라와 나와 싸우려 하느냐?\" 하고,",
+  "note": "입다가 '내 목숨을 손에 걸고'(put my life in my hands) 싸웠음을 상기시킨다. 홀로 위험을 무릅쓴 자신과 방관한 에브라임을 대비하니, 그들의 뒤늦은 항의가 부당함을 드러낸다.",
   "voc": [
-   ["put", "v.", "두다, 걸다"],
-   ["life", "n.", "목숨, 생명"],
-   ["pass over against", "", "~을 향해 건너가다, 맞서 진격하다"],
-   ["come up unto", "", "~에게 올라오다"]
+   [
+    "deliver",
+    "v.",
+    "건지다"
+   ],
+   [
+    "life",
+    "n.",
+    "목숨"
+   ],
+   [
+    "fight",
+    "v.",
+    "싸우다"
+   ]
   ],
   "idi": [
-   ["put one's life in one's hands", "목숨을 걸다, 위험을 무릅쓰다"]
+   [
+    "put my life in my hands",
+    "목숨을 손에 걸다 (위험을 무릅쓰다)"
+   ]
   ],
   "gra": [
-   ["wherefore then are ye come up", "be+과거분사(come)=완료의 옛 용법 '너희가 올라왔느냐'"]
+   [
+    "wherefore then are ye come up",
+    "are ye come up으로 항의의 부당함을 물음"
+   ]
   ]
  },
  {
-  "en": "the men of Gilead smote Ephraim, because they said, Ye Gileadites are fugitives of Ephraim ...",
-  "ko": "길르앗 사람들이 에브라임을 친 것은 그들이 이르기를 \"너희 길르앗 사람은 ... 도망한 자들이라\" 하였음이라.",
-  "note": "에브라임이 길르앗을 '도망자(히, 펠리팀)'라 멸시한 말이 싸움의 불씨가 되었다. 형제를 천히 여기는 교만한 혀가 결국 동족상잔의 피를 부르니, 말 한마디의 무게가 가볍지 않다.",
+  "en": "Then Jephthah gathered together all the men of Gilead, and fought with Ephraim: and the men of Gilead smote Ephraim, because they said, Ye Gileadites are fugitives of Ephraim among the Ephraimites, and among the Manassites.",
+  "ko": "입다가 길르앗 사람을 다 모아 에브라임과 싸웠으니, 길르앗 사람들이 에브라임을 친 것은 그들이 이르기를 \"너희 길르앗 사람은 에브라임 가운데서 에브라임과 므낫세 가운데서 도망한 자들이라\" 하였음이라.",
+  "note": "입다가 길르앗 사람을 모아 에브라임과 싸운다. 에브라임이 길르앗을 '도망한 자들'이라 조롱한 것이 화근이 되니, 형제 지파 간의 내전이라는 비극이 벌어진다.",
   "voc": [
-   ["smite", "v.", "치다 (과거 smote)"],
-   ["fugitive", "n.", "도망자"],
-   ["Gileadite", "n.", "길르앗 사람"],
-   ["Ephraimite", "n.", "에브라임 사람"]
+   [
+    "gather",
+    "v.",
+    "모으다"
+   ],
+   [
+    "fugitive",
+    "n.",
+    "도망한 자"
+   ],
+   [
+    "smite",
+    "v.",
+    "치다"
+   ]
+  ],
+  "idi": [
+   [
+    "fugitives of Ephraim",
+    "에브라임에서 도망한 자들 (모욕)"
+   ]
   ],
   "gra": [
-   ["the men of Gilead smote Ephraim", "smote=smite의 과거형 '쳤다'"],
-   ["Ye Gileadites are fugitives of Ephraim", "are=2인칭 복수 현재 '너희는 ~이다'(멸시의 단정)"]
+   [
+    "because they said",
+    "because로 전쟁의 원인을 설명"
+   ]
   ]
  },
  {
-  "en": "the Gileadites took the passages of Jordan before the Ephraimites ... Art thou an Ephraimite? If he said, Nay;",
-  "ko": "길르앗 사람들이 ... 요단 나루를 점령하니 ... \"네가 에브라임 사람이냐?\" 하여 그가 \"아니라\" 하면,",
-  "note": "'나루(히, 마아베로트)'는 강을 건너는 길목이니, 도망자가 반드시 지나야 할 관문이다. 길르앗이 이 길목을 막아 신문하니, 한 사람도 정체를 숨기고 빠져나갈 수 없게 되었다.",
+  "en": "And the Gileadites took the passages of Jordan before the Ephraimites: and it was so, that when those Ephraimites which were escaped said, Let me go over; that the men of Gilead said unto him, Art thou an Ephraimite? If he said, Nay;",
+  "ko": "길르앗 사람들이 에브라임 사람보다 앞서 요단 나루를 점령하니, 도망하는 에브라임 사람이 \"나를 건너가게 하라\" 하면 길르앗 사람이 그에게 묻되 \"네가 에브라임 사람이냐?\" 하여 그가 \"아니라\" 하면,",
+  "note": "길르앗이 요단 나루를 막고 '네가 에브라임 사람이냐' 묻는다. 도망하는 자를 가려내는 검문은, 형제 지파를 향한 칼이 되어 사사기의 어두운 분열을 극명히 드러낸다.",
   "voc": [
-   ["passages", "n.", "나루, 건널목"],
-   ["before", "prep.", "~보다 앞서, ~을 막아"],
-   ["escape", "v.", "도망하다, 피하다"],
-   ["nay", "adv.", "아니라 (고어 부정)"]
+   [
+    "passage",
+    "n.",
+    "나루, 여울"
+   ],
+   [
+    "Ephraimite",
+    "n.",
+    "에브라임 사람"
+   ],
+   [
+    "escape",
+    "v.",
+    "도망하다"
+   ]
   ],
   "idi": [
-   ["take the passages of", "~의 나루(길목)를 점령하다"]
+   [
+    "Art thou an Ephraimite",
+    "네가 에브라임 사람이냐"
+   ]
   ],
   "gra": [
-   ["Art thou an Ephraimite?", "Art thou=Are you(고어 의문) '네가 ~이냐'"]
+   [
+    "If he said, Nay",
+    "Nay는 '아니라'는 고어 부정 응답"
+   ]
   ]
  },
  {
-  "en": "Say now Shibboleth: and he said Sibboleth: for he could not frame to pronounce it right.",
-  "ko": "\"이제 십볼렛이라 말하라\" 하여, 그가 ... 십볼렛을 시볼렛이라 하면 ...",
-  "note": "히브리어 쉽볼레트(shibboleth, 이삭·흐르는 물)의 첫소리 'sh'(שׁ)를 에브라임 방언은 's'(ס)로밖에 내지 못하였다. 발음 하나가 곧 생사의 시험이 되었으니, 입에서 나오는 한 음절이 그 사람의 출신을 드러내었다. 오늘날 '시볼레스'가 집단을 가르는 암호를 뜻하는 말로 남았다.",
+  "en": "Then said they unto him, Say now Shibboleth: and he said Sibboleth: for he could not frame to pronounce it right. Then they took him, and slew him at the passages of Jordan: and there fell at that time of the Ephraimites forty and two thousand.",
+  "ko": "그들이 그에게 이르기를 \"이제 십볼렛이라 말하라\" 하여, 그가 능히 바르게 발음하지 못하여 십볼렛을 시볼렛이라 하면, 그들이 그를 붙잡아 요단 나루에서 죽였더라. 그때에 에브라임 사람 중 죽임을 당한 자가 사만 이천 명이었더라.",
+  "note": "'십볼렛'(Shibboleth)을 발음하지 못하면 죽였으니 사만 이천이 쓰러졌다. 방언의 차이로 형제를 죽이는 이 참극은, 왕이 없어 각자 소견대로 행하던 시대의 비극을 상징한다.",
   "voc": [
-   ["frame", "v.", "(소리를) 내려고 하다, 꾀하다"],
-   ["pronounce", "v.", "발음하다"],
-   ["right", "adv.", "바르게, 정확히"],
-   ["slay", "v.", "죽이다 (과거 slew)"]
+   [
+    "Shibboleth",
+    "n.",
+    "십볼렛"
+   ],
+   [
+    "pronounce",
+    "v.",
+    "발음하다"
+   ],
+   [
+    "slay",
+    "v.",
+    "죽이다"
+   ]
   ],
   "idi": [
-   ["could not frame to", "능히 ~하지 못하였다"]
+   [
+    "could not frame to pronounce it right",
+    "바르게 발음하지 못하였다"
+   ]
   ],
   "gra": [
-   ["he could not frame to pronounce it right", "could not+동사원형='~할 수 없었다'; to pronounce=부정사(목적)"]
+   [
+    "there fell ... forty and two thousand",
+    "there fell로 사망자 수를 강조"
+   ]
   ]
  },
  {
-  "en": "there fell at that time of the Ephraimites forty and two thousand.",
-  "ko": "그때에 에브라임 사람 중 죽임을 당한 자가 사만 이천 명이었더라.",
-  "note": "'쓰러지다(fall)'는 전사함을 가리키는 성경의 흔한 표현이다. 사만 이천이라는 막대한 수가 한 지파의 교만과 시기에서 비롯되었으니, 외적이 아니라 형제의 칼에 무너진 비극이 무겁게 다가온다.",
+  "en": "And Jephthah judged Israel six years. Then died Jephthah the Gileadite, and was buried in one of the cities of Gilead.",
+  "ko": "입다가 이스라엘을 육 년 동안 다스렸더라. 길르앗 사람 입다가 죽으매 길르앗의 한 성읍에 장사되니라.",
+  "note": "입다가 육 년 다스리고 죽어 길르앗 성읍에 장사된다. 사사의 죽음 기록은, 그의 생애에 매인 구원이 끝나고 다음 사사로 이어짐을 보인다.",
   "voc": [
-   ["fall", "v.", "쓰러지다, 전사하다 (과거 fell)"],
-   ["at that time", "", "그때에"],
-   ["forty and two thousand", "", "사만 이천"]
+   [
+    "judge",
+    "v.",
+    "다스리다"
+   ],
+   [
+    "die",
+    "v.",
+    "죽다"
+   ],
+   [
+    "bury",
+    "v.",
+    "장사하다"
+   ]
   ],
   "idi": [
-   ["there fell ... of the Ephraimites", "에브라임 사람 중 ~이 쓰러졌다(전사했다)"]
+   [
+    "one of the cities of Gilead",
+    "길르앗의 한 성읍"
+   ]
   ],
   "gra": [
-   ["forty and two thousand", "and로 잇는 옛 수 표현(=forty-two thousand) '사만 이천'"]
+   [
+    "Then died Jephthah",
+    "Then died 도치로 죽음을 서술"
+   ]
   ]
  },
  {
-  "en": "Jephthah judged Israel six years. Then died Jephthah the Gileadite, and was buried ...",
-  "ko": "입다가 이스라엘을 육 년 동안 다스렸더라. 길르앗 사람 입다가 죽으매 ... 장사되니라.",
-  "note": "'다스리다(히, 샤파트)'는 단지 재판함이 아니라 백성을 구원하고 이끄는 사사의 직무를 뜻한다. 입다에 이어 입산·엘론·압돈의 짧은 기록이 이어지니, 큰 사건 없이 백성을 지킨 사사들도 하나님의 섭리 안에 있었다.",
+  "en": "And after him Ibzan of Bethlehem judged Israel.",
+  "ko": "그 뒤에 베들레헴 사람 입산이 이스라엘을 다스렸더라.",
+  "note": "입다 뒤에 베들레헴 사람 입산이 이스라엘을 다스린다. 이른바 소사사들의 계승이 시작되니, 큰 사건 없이도 하나님이 지도자를 세워 백성을 이어 가심을 보인다.",
   "voc": [
-   ["judge", "v.", "다스리다, 재판하다"],
-   ["bury", "v.", "장사하다, 묻다 (과거 buried)"],
-   ["nephew", "n.", "손자 (고어), 후손"],
-   ["ass colt", "", "어린 나귀"]
+   [
+    "Ibzan",
+    "n.",
+    "입산"
+   ],
+   [
+    "Bethlehem",
+    "n.",
+    "베들레헴"
+   ],
+   [
+    "judge",
+    "v.",
+    "다스리다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "And after him Ibzan ... judged",
+    "after him으로 계승을 표현"
+   ]
+  ]
+ },
+ {
+  "en": "And he had thirty sons, and thirty daughters, whom he sent abroad, and took in thirty daughters from abroad for his sons. And he judged Israel seven years.",
+  "ko": "그에게 아들 삼십 명과 딸 삼십 명이 있었으니, 그가 딸들을 밖으로 시집보내고 아들들을 위하여는 밖에서 딸 삼십 명을 데려왔더라. 그가 이스라엘을 칠 년 동안 다스렸더라.",
+  "note": "입산에게 아들 삼십, 딸 삼십이 있어 밖에서 며느리를 데려왔다. 많은 자녀와 혼인의 번성은 그의 세속적 영화를 보이나, 사사기는 이런 풍요를 담담히 기록할 뿐이다.",
+  "voc": [
+   [
+    "son",
+    "n.",
+    "아들"
+   ],
+   [
+    "daughter",
+    "n.",
+    "딸"
+   ],
+   [
+    "abroad",
+    "adv.",
+    "밖으로"
+   ]
   ],
   "idi": [
-   ["judge Israel ... years", "이스라엘을 ~년 동안 다스리다"]
+   [
+    "sent ... abroad",
+    "밖으로 시집보내다"
+   ]
   ],
   "gra": [
-   ["Then died Jephthah", "주어·동사 도치(=Then Jephthah died) '그때 입다가 죽으매'"]
+   [
+    "took in thirty daughters from abroad",
+    "took in ... from abroad로 며느리를 들임을 표현"
+   ]
+  ]
+ },
+ {
+  "en": "Then died Ibzan, and was buried at Bethlehem.",
+  "ko": "입산이 죽으매 베들레헴에 장사되니라.",
+  "note": "입산이 죽어 베들레헴에 장사된다. 소사사의 죽음 기록은, 사사의 시대가 지도자의 생애를 따라 잇달아 흘러감을 담담히 보인다.",
+  "voc": [
+   [
+    "die",
+    "v.",
+    "죽다"
+   ],
+   [
+    "bury",
+    "v.",
+    "장사하다"
+   ],
+   [
+    "Bethlehem",
+    "n.",
+    "베들레헴"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Then died Ibzan",
+    "Then died 도치로 죽음을 서술"
+   ]
+  ]
+ },
+ {
+  "en": "And after him Elon, a Zebulonite, judged Israel; and he judged Israel ten years.",
+  "ko": "그 뒤에 스불론 사람 엘론이 이스라엘을 다스렸으니, 그가 이스라엘을 십 년 동안 다스렸더라.",
+  "note": "스불론 사람 엘론이 십 년 다스린다. 행적의 상술 없이 이름과 기간만 남은 기록은, 하나님이 조용한 시대에도 백성을 지키셨음을 보인다.",
+  "voc": [
+   [
+    "Elon",
+    "n.",
+    "엘론"
+   ],
+   [
+    "Zebulonite",
+    "n.",
+    "스불론 사람"
+   ],
+   [
+    "ten",
+    "num.",
+    "열"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "he judged Israel ten years",
+    "judged ... ten years로 통치 기간을 명시"
+   ]
+  ]
+ },
+ {
+  "en": "And Elon the Zebulonite died, and was buried in Aijalon in the country of Zebulun.",
+  "ko": "스불론 사람 엘론이 죽으매 스불론 땅 아얄론에 장사되니라.",
+  "note": "엘론이 죽어 스불론 땅 아얄론에 장사된다. 사사의 계승이 이어짐은, 왕이 없던 시대에도 하나님이 지도자를 세워 오셨음을 담담히 증언한다.",
+  "voc": [
+   [
+    "die",
+    "v.",
+    "죽다"
+   ],
+   [
+    "bury",
+    "v.",
+    "장사하다"
+   ],
+   [
+    "Aijalon",
+    "n.",
+    "아얄론"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "was buried in Aijalon",
+    "was buried로 매장을 서술"
+   ]
+  ]
+ },
+ {
+  "en": "And after him Abdon the son of Hillel, a Pirathonite, judged Israel.",
+  "ko": "그 뒤에 비라돈 사람 힐렐의 아들 압돈이 이스라엘을 다스렸더라.",
+  "note": "비라돈 사람 힐렐의 아들 압돈이 이스라엘을 다스린다. 마지막 소사사의 등장은, 삼손 이야기로 이어지기 전 사사 계승의 마무리를 이룬다.",
+  "voc": [
+   [
+    "Abdon",
+    "n.",
+    "압돈"
+   ],
+   [
+    "Hillel",
+    "n.",
+    "힐렐"
+   ],
+   [
+    "Pirathonite",
+    "n.",
+    "비라돈 사람"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "after him Abdon ... judged Israel",
+    "after him으로 계승을 표현"
+   ]
+  ]
+ },
+ {
+  "en": "And he had forty sons and thirty nephews, that rode on threescore and ten ass colts: and he judged Israel eight years.",
+  "ko": "그에게 아들 사십 명과 손자 삼십 명이 있어 어린 나귀 칠십 마리를 탔더라. 그가 이스라엘을 팔 년 동안 다스렸더라.",
+  "note": "압돈에게 아들 사십과 손자 삼십이 나귀를 탔다. 자손의 번성과 나귀를 탄 위세는 그의 영화를 보이니, 소사사들의 세속적 번영이 잇달아 기록된다.",
+  "voc": [
+   [
+    "son",
+    "n.",
+    "아들"
+   ],
+   [
+    "nephew",
+    "n.",
+    "손자"
+   ],
+   [
+    "ass colt",
+    "",
+    "어린 나귀"
+   ]
+  ],
+  "idi": [
+   [
+    "threescore and ten ass colts",
+    "어린 나귀 칠십 마리"
+   ]
+  ],
+  "gra": [
+   [
+    "that rode on threescore and ten ass colts",
+    "that rode로 자손의 위세를 수식"
+   ]
+  ]
+ },
+ {
+  "en": "And Abdon the son of Hillel the Pirathonite died, and was buried in Pirathon in the land of Ephraim, in the mount of the Amalekites.",
+  "ko": "비라돈 사람 힐렐의 아들 압돈이 죽으매 에브라임 땅 아말렉 사람의 산지 비라돈에 장사되니라.",
+  "note": "압돈이 죽어 에브라임 땅 비라돈에 장사됨으로 장을 맺는다. 소사사들의 계보가 마무리되니, 이제 사사기는 삼손이라는 마지막 큰 사사의 이야기로 나아간다.",
+  "voc": [
+   [
+    "die",
+    "v.",
+    "죽다"
+   ],
+   [
+    "bury",
+    "v.",
+    "장사하다"
+   ],
+   [
+    "Amalekites",
+    "n.",
+    "아말렉 사람"
+   ]
+  ],
+  "idi": [
+   [
+    "in the mount of the Amalekites",
+    "아말렉 사람의 산지에"
+   ]
+  ],
+  "gra": [
+   [
+    "was buried in Pirathon",
+    "was buried로 매장을 서술"
+   ]
   ]
  }
 ]
