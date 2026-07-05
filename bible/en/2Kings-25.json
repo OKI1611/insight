@@ -1,145 +1,857 @@
 [
  {
-  "en": "Nebuchadnezzar king of Babylon came ... and pitched against it; and they built forts against it round about.",
-  "ko": "바벨론 왕 느부갓네살이 와서 그 성을 마주하여 진을 치고 사방으로 토성을 쌓으니라.",
-  "note": "히브리어 '차르'(צוּר, 에워싸다)와 '다예크'(דָּיֵק, 공성 토성)가 함께 쓰여 포위의 철저함을 드러낸다. 예루살렘 멸망은 우연이 아니라, 언약을 저버린 백성에게 선지자들이 거듭 경고한 심판의 성취다.",
+  "en": "And it came to pass in the ninth year of his reign, in the tenth month, in the tenth day of the month, that Nebuchadnezzar king of Babylon came, he, and all his host, against Jerusalem, and pitched against it; and they built forts against it round about.",
+  "ko": "시드기야 통치 제구년 열째 달 십일에 바벨론 왕 느부갓네살이 그의 온 군대를 거느리고 예루살렘을 치러 와서 그 성을 마주하여 진을 치고 사방으로 그것을 에워싸 토성을 쌓으니라.",
+  "note": "시드기야 구년, 느부갓네살이 예루살렘을 에워싸고 토성을 쌓았다. 열째 달 십일이라는 정밀한 날짜 기록은 이 심판이 실제 역사임을 못 박는다.",
   "voc": [
-   ["host", "n.", "군대"],
-   ["pitch against", "", "마주하여 진을 치다"],
-   ["fort", "n.", "토성, 공성 보루"],
-   ["round about", "", "사방으로"]
+   [
+    "ninth year",
+    "",
+    "제구년"
+   ],
+   [
+    "host",
+    "n.",
+    "군대"
+   ],
+   [
+    "pitched",
+    "v.",
+    "진을 쳤다"
+   ],
+   [
+    "forts",
+    "n.",
+    "토성, 요새"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "built forts against it round about",
+    "'사방으로 토성을 쌓다'—포위 공격의 관용 표현"
+   ]
+  ]
+ },
+ {
+  "en": "And the city was besieged unto the eleventh year of king Zedekiah.",
+  "ko": "이같이 그 성이 시드기야 왕 제십일년까지 에워싸인 바 되었더니,",
+  "note": "성이 시드기야 십일 년까지 에워싸였다. 이 년 가까운 포위는 성안의 기근과 절망을 깊게 하였으니, 유다의 마지막 저항은 서서히 무너져 갔다.",
+  "voc": [
+   [
+    "city",
+    "n.",
+    "성"
+   ],
+   [
+    "besieged",
+    "v.",
+    "에워싸인"
+   ],
+   [
+    "eleventh year",
+    "",
+    "제십일년"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And on the ninth day of the fourth month the famine prevailed in the city, and there was no bread for the people of the land.",
+  "ko": "넷째 달 구일에 성중에 기근이 심하여 그 땅 백성을 위한 양식이 떨어졌더라.",
+  "note": "기근이 심하여 양식이 떨어졌다. 포위의 참혹함이 굶주림으로 극에 달하니, 이는 언약 저주의 성취(레 26장, 신 28장)였다.",
+  "voc": [
+   [
+    "ninth day",
+    "",
+    "구일"
+   ],
+   [
+    "famine",
+    "n.",
+    "기근"
+   ],
+   [
+    "prevailed",
+    "v.",
+    "심하였다, 만연하였다"
+   ],
+   [
+    "bread",
+    "n.",
+    "양식, 떡"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And the city was broken up, and all the men of war fled by night by the way of the gate between two walls, which is by the king’s garden: (now the Chaldees were against the city round about:) and the king went the way toward the plain.",
+  "ko": "마침내 성벽이 헐리매 모든 군사가 밤을 타서 두 성벽 사이 왕의 동산 곁에 있는 문 길로 도망하니, 갈대아 사람들이 사방으로 그 성을 에워쌌더라. 왕은 평지로 가는 길을 향하여 가니라.",
+  "note": "성벽이 헐리자 군사들이 밤에 도망하였다. 왕과 군대의 야반도주는 다윗 성의 최후이니, 한때 견고하던 예루살렘이 뚫린 것이다.",
+  "voc": [
+   [
+    "broken up",
+    "",
+    "헐리다, 무너지다"
+   ],
+   [
+    "fled",
+    "v.",
+    "도망하였다"
+   ],
+   [
+    "two walls",
+    "",
+    "두 성벽"
+   ],
+   [
+    "plain",
+    "n.",
+    "평지"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And the army of the Chaldees pursued after the king, and overtook him in the plains of Jericho: and all his army were scattered from him.",
+  "ko": "갈대아 군대가 왕의 뒤를 쫓아 여리고 평지에서 그를 따라잡으매, 그의 온 군대가 그를 떠나 흩어졌더라.",
+  "note": "갈대아 군대가 여리고 평지에서 시드기야를 따라잡았다. 온 군대가 흩어져 왕은 홀로 남으니, 도망치던 마지막 왕은 붙잡히고 만다.",
+  "voc": [
+   [
+    "army",
+    "n.",
+    "군대"
+   ],
+   [
+    "pursued",
+    "v.",
+    "쫓았다"
+   ],
+   [
+    "overtook",
+    "v.",
+    "따라잡았다"
+   ],
+   [
+    "scattered",
+    "v.",
+    "흩어졌다"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "So they took the king, and brought him up to the king of Babylon to Riblah; and they gave judgment upon him.",
+  "ko": "이에 그들이 왕을 사로잡아 립나에 있는 바벨론 왕에게로 끌어올리니, 그들이 그를 심문하여 판결하니라.",
+  "note": "시드기야가 립나의 바벨론 왕에게 끌려가 심문받았다. 왕이 이방의 법정에 서서 판결을 받으니, 유다 주권의 완전한 종말이다.",
+  "voc": [
+   [
+    "took",
+    "v.",
+    "사로잡았다"
+   ],
+   [
+    "brought up",
+    "",
+    "끌어올렸다"
+   ],
+   [
+    "gave judgment",
+    "",
+    "판결하였다, 심문하였다"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And they slew the sons of Zedekiah before his eyes, and put out the eyes of Zedekiah, and bound him with fetters of brass, and carried him to Babylon.",
+  "ko": "그들이 시드기야의 아들들을 그의 눈앞에서 죽이고 시드기야의 두 눈을 빼며 놋사슬로 그를 결박하여 바벨론으로 끌고 가니라.",
+  "note": "아들들이 눈앞에서 죽고 시드기야의 눈이 뽑혔다. 마지막으로 본 것이 아들의 죽음이니, 이 잔혹한 형벌은 배교한 왕조의 참담한 끝을 보여 준다.",
+  "voc": [
+   [
+    "slew",
+    "v.",
+    "죽였다 (slay의 고어 과거형)"
+   ],
+   [
+    "put out",
+    "",
+    "빼다, 뽑다"
+   ],
+   [
+    "fetters",
+    "n.",
+    "족쇄, 사슬"
+   ],
+   [
+    "brass",
+    "n.",
+    "놋"
+   ]
   ],
   "idi": [
-   ["round about", "사방에, 빙 둘러"]
+   [
+    "put out the eyes of Zedekiah",
+    "'눈을 빼다'—고대 근동의 잔혹한 형벌"
+   ]
   ],
-  "gra": [
-   ["it came to pass ... that", "it came to pass that='~한 일이 있었더라'(사건 도입 관용구)"]
-  ]
+  "gra": []
  },
  {
-  "en": "the famine prevailed in the city, and there was no bread for the people of the land.",
-  "ko": "성중에 기근이 심하여 그 땅 백성을 위한 양식이 떨어졌더라.",
-  "note": "히브리어 '라아브'(רָעָב, 기근)가 '하자크'(חָזַק, 강해지다)와 결합되어 굶주림이 점점 심해짐을 보인다. 성벽이 무너지기 전에 양식이 먼저 끊어지니, 포위된 도성의 절망이 사실적으로 그려진다.",
+  "en": "And in the fifth month, on the seventh day of the month, which is the nineteenth year of king Nebuchadnezzar king of Babylon, came Nebuzaradan, captain of the guard, a servant of the king of Babylon, unto Jerusalem:",
+  "ko": "다섯째 달 칠일 곧 바벨론 왕 느부갓네살 제십구년에 바벨론 왕의 신하요 시위대 대장인 느부사라단이 예루살렘에 이르러,",
+  "note": "느부사라단이 예루살렘에 이르렀다. 시위대 대장의 도착은 성전과 성읍의 최종적 파괴가 임박했음을 알리는 서막이다.",
   "voc": [
-   ["famine", "n.", "기근"],
-   ["prevail", "v.", "심해지다, 만연하다"],
-   ["bread", "n.", "양식, 빵"],
-   ["the people of the land", "", "그 땅 백성"]
+   [
+    "fifth month",
+    "",
+    "다섯째 달"
+   ],
+   [
+    "captain of the guard",
+    "",
+    "시위대 대장"
+   ],
+   [
+    "servant",
+    "n.",
+    "신하"
+   ]
   ],
-  "gra": [
-   ["there was no bread", "there was no~='~이 없었다'(존재 부정)"]
-  ]
+  "idi": [],
+  "gra": []
  },
  {
-  "en": "the city was broken up, and all the men of war fled by night ... the king went the way toward the plain.",
-  "ko": "성벽이 헐리매 모든 군사가 밤을 타서 도망하고, 왕은 평지로 가는 길을 향하여 가니라.",
-  "note": "'바카'(בָּקַע, 쪼개다·뚫다)는 성벽이 뚫림을 가리킨다. 다윗의 후손인 왕이 밤중에 도망하는 장면은 한때 영광스럽던 다윗 왕조의 비참한 몰락을 응축한다.",
+  "en": "And he burnt the house of the LORD, and the king’s house, and all the houses of Jerusalem, and every great man’s house burnt he with fire.",
+  "ko": "여호와의 전과 왕궁을 불사르고 예루살렘의 모든 집과 모든 큰 자의 집을 불로 사르며,",
+  "note": "여호와의 전과 왕궁, 모든 집이 불탔다. 하나님의 집이 불사름을 당하니, 므낫세가 성전을 더럽힌 그 죄가 마침내 성전의 파괴로 귀결되었다.",
   "voc": [
-   ["be broken up", "", "헐리다, 뚫리다"],
-   ["men of war", "", "군사들"],
-   ["flee", "v.", "도망하다 (과거 fled)"],
-   ["by night", "", "밤을 타서, 밤중에"],
-   ["plain", "n.", "평지, 아라바"]
+   [
+    "burnt",
+    "v.",
+    "불살랐다"
+   ],
+   [
+    "house of the LORD",
+    "",
+    "여호와의 전"
+   ],
+   [
+    "great man",
+    "",
+    "큰 자, 귀인"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And all the army of the Chaldees, that were with the captain of the guard, brake down the walls of Jerusalem round about.",
+  "ko": "시위대 대장과 함께한 갈대아의 온 군대가 예루살렘을 두른 성벽을 사방으로 헐었더라.",
+  "note": "갈대아 군대가 예루살렘 성벽을 사방으로 헐었다. 성벽의 붕괴는 도성의 죽음이니, 느헤미야가 훗날 그 재건을 위해 눈물 흘릴 그 성벽이 이렇게 무너졌다.",
+  "voc": [
+   [
+    "army",
+    "n.",
+    "군대"
+   ],
+   [
+    "brake down",
+    "",
+    "헐었다"
+   ],
+   [
+    "walls",
+    "n.",
+    "성벽"
+   ],
+   [
+    "round about",
+    "",
+    "사방으로"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "Now the rest of the people that were left in the city, and the fugitives that fell away to the king of Babylon, with the remnant of the multitude, did Nebuzaradan the captain of the guard carry away.",
+  "ko": "성중에 남은 백성과 바벨론 왕에게 항복하여 넘어간 자들과 그 밖에 남은 무리를 시위대 대장 느부사라단이 사로잡아 가되,",
+  "note": "남은 백성과 투항자들이 사로잡혀 갔다. 성안의 생존자마저 끌려가니, 이것이 예루살렘 함락과 함께한 대규모 포로 이송이다.",
+  "voc": [
+   [
+    "remnant",
+    "n.",
+    "남은 자, 무리"
+   ],
+   [
+    "fugitives",
+    "n.",
+    "도망자, 투항자"
+   ],
+   [
+    "fell away",
+    "",
+    "넘어가다, 항복하다"
+   ],
+   [
+    "carry away",
+    "",
+    "사로잡아 가다"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "But the captain of the guard left of the poor of the land to be vinedressers and husbandmen.",
+  "ko": "다만 그 땅의 가난한 자 얼마를 남겨 두어 포도원을 가꾸는 자와 밭을 가는 자가 되게 하니라.",
+  "note": "가난한 자만 남겨 농사짓게 하였다. 정복자는 땅을 놀리지 않으려 최빈층만 남겼으니, 이것이 포로기 유다에 남은 초라한 잔존이었다.",
+  "voc": [
+   [
+    "poor",
+    "n.",
+    "가난한 자"
+   ],
+   [
+    "vinedressers",
+    "n.",
+    "포도원 가꾸는 자"
+   ],
+   [
+    "husbandmen",
+    "n.",
+    "밭 가는 자, 농부"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And the pillars of brass that were in the house of the LORD, and the bases, and the brasen sea that was in the house of the LORD, did the Chaldees break in pieces, and carried the brass of them to Babylon.",
+  "ko": "여호와의 전에 있던 놋기둥과 받침대와 여호와의 전에 있던 놋바다를 갈대아 사람들이 깨뜨려 그 놋을 바벨론으로 가져가고,",
+  "note": "성전의 놋기둥과 놋바다를 부수어 바벨론으로 가져갔다. 솔로몬이 만든 성전의 영광이 조각나 실려 가니, 예배의 처소가 약탈당하는 슬픔이 깊다.",
+  "voc": [
+   [
+    "pillars",
+    "n.",
+    "기둥들"
+   ],
+   [
+    "brass",
+    "n.",
+    "놋"
+   ],
+   [
+    "bases",
+    "n.",
+    "받침대"
+   ],
+   [
+    "brasen sea",
+    "",
+    "놋바다"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And the pots, and the shovels, and the snuffers, and the spoons, and all the vessels of brass wherewith they ministered, took they away.",
+  "ko": "또 솥과 부삽과 부집게와 숟가락과 섬길 때에 쓰던 모든 놋그릇을 가져갔으며,",
+  "note": "솥과 부삽, 놋그릇까지 모두 가져갔다. 예배에 쓰이던 기물 하나까지 남기지 않으니, 성전 약탈의 철저함이 심판의 완전함을 드러낸다.",
+  "voc": [
+   [
+    "pots",
+    "n.",
+    "솥"
+   ],
+   [
+    "shovels",
+    "n.",
+    "부삽"
+   ],
+   [
+    "snuffers",
+    "n.",
+    "부집게"
+   ],
+   [
+    "vessels",
+    "n.",
+    "그릇"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And the firepans, and the bowls, and such things as were of gold, in gold, and of silver, in silver, the captain of the guard took away.",
+  "ko": "불 옮기는 그릇과 대접 곧 금으로 된 것은 금으로, 은으로 된 것은 은으로, 시위대 대장이 가져갔더라.",
+  "note": "금은 기물을 시위대 대장이 가져갔다. 성물의 재료별 약탈 기록은 성전의 부가 조직적으로 강탈되었음을 증언한다.",
+  "voc": [
+   [
+    "firepans",
+    "n.",
+    "불 옮기는 그릇, 향로"
+   ],
+   [
+    "bowls",
+    "n.",
+    "대접"
+   ],
+   [
+    "gold",
+    "n.",
+    "금"
+   ],
+   [
+    "silver",
+    "n.",
+    "은"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "The two pillars, one sea, and the bases which Solomon had made for the house of the LORD; the brass of all these vessels was without weight.",
+  "ko": "솔로몬이 여호와의 전을 위하여 만든 두 기둥과 한 바다와 받침대들, 이 모든 기물의 놋 무게는 헤아릴 수 없었더라.",
+  "note": "두 기둥과 바다의 놋은 '무게를 헤아릴 수 없었다'. 솔로몬 성전의 방대한 규모를 회고하며, 그 영광이 이제 파괴되었음을 애도한다.",
+  "voc": [
+   [
+    "pillars",
+    "n.",
+    "기둥들"
+   ],
+   [
+    "made",
+    "v.",
+    "만들었다"
+   ],
+   [
+    "without weight",
+    "",
+    "무게를 헤아릴 수 없는"
+   ]
   ],
   "idi": [
-   ["by night", "밤에, 밤을 타서"]
+   [
+    "was without weight",
+    "'무게를 헤아릴 수 없다'—막대한 양을 뜻하는 관용 표현"
+   ]
   ],
-  "gra": [
-   ["fled by night by the way of the gate", "by the way of='~의 길로'(경로); 앞의 by night와 전치사 by의 뜻이 다름에 유의"]
-  ]
+  "gra": []
  },
  {
-  "en": "they took the king ... to Riblah; and they gave judgment upon him.",
-  "ko": "그들이 왕을 사로잡아 립나에 있는 바벨론 왕에게로 끌어올려 그를 심문하여 판결하니라.",
-  "note": "'미슈파트'(מִשְׁפָּט, 판결·재판)는 시드기야가 단순한 포로가 아니라 반역자로 재판받았음을 알린다. 이어 그의 눈이 뽑히는 장면은, 그가 마지막으로 본 광경이 아들들의 죽음이었음을 보여주는 비통한 성취다(렘 39:6-7).",
+  "en": "The height of the one pillar was eighteen cubits, and the chapiter upon it was brass: and the height of the chapiter three cubits; and the wreathen work, and pomegranates upon the chapiter round about, all of brass: and like unto these had the second pillar with wreathen work.",
+  "ko": "한 기둥의 높이는 십팔 규빗이요 그 위의 머리는 놋이라. 그 머리의 높이는 삼 규빗이며, 그 머리 둘레에 그물과 석류가 다 놋이라. 둘째 기둥도 그물과 함께 이와 같았더라.",
+  "note": "기둥의 규모가 상세히 기록된다. 십팔 규빗의 놋기둥과 석류 장식의 세밀한 묘사는 잃어버린 성전의 아름다움을 마지막으로 증언한다.",
   "voc": [
-   ["take", "v.", "사로잡다 (과거 took)"],
-   ["bring up", "", "끌어올리다"],
-   ["give judgment upon", "", "~을 심문하여 판결하다"]
+   [
+    "cubits",
+    "n.",
+    "규빗 (길이 단위)"
+   ],
+   [
+    "chapiter",
+    "n.",
+    "기둥 머리, 주두"
+   ],
+   [
+    "wreathen work",
+    "",
+    "그물 세공"
+   ],
+   [
+    "pomegranates",
+    "n.",
+    "석류"
+   ]
   ],
-  "idi": [
-   ["give judgment upon", "~에게 판결을 내리다, 심판하다"]
-  ]
+  "idi": [],
+  "gra": []
  },
  {
-  "en": "he burnt the house of the LORD, and the king's house, and all the houses of Jerusalem ...",
-  "ko": "여호와의 전과 왕궁과 예루살렘의 모든 집을 불사르니라.",
-  "note": "'베이트 아도나이'(בֵּית יְהוָה, 여호와의 전)가 가장 먼저 불탄다. 솔로몬이 세운 성전의 소멸은 단순한 건물의 파괴가 아니라, 죄로 인해 하나님의 임재가 백성을 떠나심을 보이는 영적 재앙이다.",
+  "en": "And the captain of the guard took Seraiah the chief priest, and Zephaniah the second priest, and the three keepers of the door:",
+  "ko": "시위대 대장이 대제사장 스라야와 부제사장 스바냐와 문을 지키는 세 사람을 잡고,",
+  "note": "대제사장 스라야와 부제사장, 문지기가 사로잡혔다. 성전의 지도자들이 포로가 되니, 제사 제도 자체가 중단되는 영적 공백이 시작된다.",
   "voc": [
-   ["burn", "v.", "불사르다 (과거 burnt)"],
-   ["the house of the LORD", "", "여호와의 전(성전)"],
-   ["the king's house", "", "왕궁"],
-   ["with fire", "", "불로"]
+   [
+    "captain of the guard",
+    "",
+    "시위대 대장"
+   ],
+   [
+    "chief priest",
+    "",
+    "대제사장"
+   ],
+   [
+    "second priest",
+    "",
+    "부제사장"
+   ],
+   [
+    "keepers of the door",
+    "",
+    "문지기들"
+   ]
   ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And out of the city he took an officer that was set over the men of war, and five men of them that were in the king’s presence, which were found in the city, and the principal scribe of the host, which mustered the people of the land, and threescore men of the people of the land that were found in the city:",
+  "ko": "또 성중에서 군사를 거느린 내시 하나와 성중에서 발견된바 왕을 가까이 모시던 자 다섯과 그 땅 백성을 징집하던 군대 장관의 서기관과 성중에서 발견된 그 땅 백성 육십 명을 잡으니,",
+  "note": "군대 지휘관과 서기관, 백성 육십 명이 잡혔다. 남은 지도층까지 색출되니, 유다의 조직적 재건 가능성이 철저히 제거된다.",
+  "voc": [
+   [
+    "officer",
+    "n.",
+    "내시, 관리"
+   ],
+   [
+    "principal scribe",
+    "",
+    "군대의 서기관"
+   ],
+   [
+    "mustered",
+    "v.",
+    "징집하였다, 소집하였다"
+   ],
+   [
+    "threescore",
+    "",
+    "육십"
+   ]
+  ],
+  "idi": [],
   "gra": [
-   ["every great man's house burnt he with fire", "burnt he=he burnt(도치); 옛 영어의 강조 어순"]
+   [
+    "threescore men",
+    "threescore=60; '육십 명'—고어 수 표기"
+   ]
   ]
  },
  {
-  "en": "the king of Babylon smote them, and slew them at Riblah ... So Judah was carried away out of their land.",
+  "en": "And Nebuzaradan captain of the guard took these, and brought them to the king of Babylon to Riblah:",
+  "ko": "시위대 대장 느부사라단이 이들을 잡아 립나에 있는 바벨론 왕에게로 데려가매,",
+  "note": "느부사라단이 이들을 립나의 바벨론 왕에게 데려갔다. 지도층의 압송은 처형을 향한 마지막 절차였으니, 심판의 손길은 끝까지 미친다.",
+  "voc": [
+   [
+    "captain of the guard",
+    "",
+    "시위대 대장"
+   ],
+   [
+    "took",
+    "v.",
+    "잡았다"
+   ],
+   [
+    "brought",
+    "v.",
+    "데려갔다"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And the king of Babylon smote them, and slew them at Riblah in the land of Hamath. So Judah was carried away out of their land.",
   "ko": "바벨론 왕이 하맛 땅 립나에서 그들을 쳐 죽이니라. 이같이 유다가 사로잡혀 그 땅에서 떠났더라.",
-  "note": "'갈라'(גָּלָה, 사로잡혀 가다·유배되다)는 바벨론 포로의 핵심 단어다. 약속의 땅에서 쫓겨남은 언약의 저주가 임함이나(레 26:33), 이 유배는 끝이 아니라 회복을 향한 통로가 된다.",
+  "note": "바벨론 왕이 립나에서 그들을 쳐 죽였다. '유다가 사로잡혀 그 땅에서 떠났다'—이 한 문장이 남유다 왕국의 공식적 종말을 선언한다.",
   "voc": [
-   ["smite", "v.", "치다 (과거 smote)"],
-   ["slay", "v.", "죽이다 (과거 slew)"],
-   ["carry away", "", "사로잡아 가다, 유배 보내다"],
-   ["out of their land", "", "그들의 땅에서"]
+   [
+    "smote",
+    "v.",
+    "쳤다 (smite의 고어 과거형)"
+   ],
+   [
+    "slew",
+    "v.",
+    "죽였다"
+   ],
+   [
+    "carried away",
+    "",
+    "사로잡혀 가다"
+   ]
   ],
   "idi": [
-   ["carry away", "사로잡아 가다, 끌고 가다"]
+   [
+    "Judah was carried away out of their land",
+    "'유다가 그 땅에서 사로잡혀 가다'—왕국의 종말과 유배를 선언"
+   ]
   ],
+  "gra": []
+ },
+ {
+  "en": "And as for the people that remained in the land of Judah, whom Nebuchadnezzar king of Babylon had left, even over them he made Gedaliah the son of Ahikam, the son of Shaphan, ruler.",
+  "ko": "유다 땅에 남은 백성 곧 바벨론 왕 느부갓네살이 남겨 둔 자들, 그들 위에 그가 아히감의 아들이요 사반의 손자인 그달리야를 세워 다스리게 하였더라.",
+  "note": "느부갓네살이 그달리야를 남은 백성 위에 세웠다. 왕조 대신 총독을 세우니, 유다는 이제 독립국이 아니라 바벨론의 한 지방으로 전락하였다.",
+  "voc": [
+   [
+    "remained",
+    "v.",
+    "남았다"
+   ],
+   [
+    "left",
+    "v.",
+    "남겨 두었다"
+   ],
+   [
+    "ruler",
+    "n.",
+    "다스리는 자, 총독"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And when all the captains of the armies, they and their men, heard that the king of Babylon had made Gedaliah governor, there came to Gedaliah to Mizpah, even Ishmael the son of Nethaniah, and Johanan the son of Careah, and Seraiah the son of Tanhumeth the Netophathite, and Jaazaniah the son of a Maachathite, they and their men.",
+  "ko": "모든 군대 장관들과 그들의 부하들이 바벨론 왕이 그달리야를 총독으로 세웠음을 듣고, 미스바로 그달리야에게 나아왔으니, 곧 느다냐의 아들 이스마엘과 가레아의 아들 요하난과 느도바 사람 단후멧의 아들 스라야와 마아가 사람의 아들 야아사냐라. 그들과 그들의 부하들이더라.",
+  "note": "군대 장관들이 그달리야에게로 나아왔다. 흩어졌던 지도자들이 남은 총독에게 모이니, 폐허 속에서 재건의 희미한 시도가 엿보인다.",
+  "voc": [
+   [
+    "captains",
+    "n.",
+    "장관들, 지휘관들"
+   ],
+   [
+    "armies",
+    "n.",
+    "군대들"
+   ],
+   [
+    "governor",
+    "n.",
+    "총독"
+   ],
+   [
+    "Mizpah",
+    "",
+    "미스바"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And Gedaliah sware to them, and to their men, and said unto them, Fear not to be the servants of the Chaldees: dwell in the land, and serve the king of Babylon; and it shall be well with you.",
+  "ko": "그달리야가 그들과 그들의 부하들에게 맹세하여 이르되 \"너희는 갈대아 사람을 섬기기를 두려워하지 말라. 이 땅에 거하여 바벨론 왕을 섬기라. 그리하면 너희가 평안하리라\" 하니라.",
+  "note": "그달리야가 '갈대아를 섬기기를 두려워 말라' 맹세하였다. 순종하며 그 땅에 거하면 평안하리라는 권면이니, 심판 후의 삶은 겸손한 순복에 있었다.",
+  "voc": [
+   [
+    "sware",
+    "v.",
+    "맹세하였다 (swear의 고어 과거형)"
+   ],
+   [
+    "Fear not",
+    "",
+    "두려워하지 말라"
+   ],
+   [
+    "dwell",
+    "v.",
+    "거하다"
+   ],
+   [
+    "well",
+    "adv.",
+    "평안히, 잘"
+   ]
+  ],
+  "idi": [
+   [
+    "it shall be well with you",
+    "'너희가 평안하리라'—축복과 안녕을 비는 관용 표현"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "But it came to pass in the seventh month, that Ishmael the son of Nethaniah, the son of Elishama, of the seed royal, came, and ten men with him, and smote Gedaliah, that he died, and the Jews and the Chaldees that were with him at Mizpah.",
+  "ko": "그러나 일곱째 달에 왕족 곧 엘리사마의 손자요 느다냐의 아들인 이스마엘이 부하 열 사람을 거느리고 와서 그달리야를 쳐 죽이고, 또 미스바에서 그와 함께한 유다 사람들과 갈대아 사람들을 죽였더라.",
+  "note": "왕족 이스마엘이 그달리야를 쳐 죽였다. 남은 재건의 희망마저 내부의 반역으로 꺾이니, 유다의 비극은 끝까지 이어진다.",
+  "voc": [
+   [
+    "seventh month",
+    "",
+    "일곱째 달"
+   ],
+   [
+    "seed royal",
+    "",
+    "왕족"
+   ],
+   [
+    "smote",
+    "v.",
+    "쳐 죽였다"
+   ],
+   [
+    "died",
+    "v.",
+    "죽었다"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And all the people, both small and great, and the captains of the armies, arose, and came to Egypt: for they were afraid of the Chaldees.",
+  "ko": "이에 작은 자로부터 큰 자에 이르기까지 모든 백성과 군대 장관들이 일어나 애굽으로 갔으니, 이는 그들이 갈대아 사람을 두려워하였음이더라.",
+  "note": "백성이 갈대아를 두려워하여 애굽으로 도망하였다. 출애굽으로 시작된 언약 백성이 다시 애굽으로 돌아가니, 이는 구속사의 슬픈 역전이다.",
+  "voc": [
+   [
+    "small and great",
+    "",
+    "작은 자와 큰 자"
+   ],
+   [
+    "arose",
+    "v.",
+    "일어났다"
+   ],
+   [
+    "afraid",
+    "adj.",
+    "두려워하는"
+   ]
+  ],
+  "idi": [
+   [
+    "both small and great",
+    "'작은 자로부터 큰 자까지'—온 백성을 아우르는 관용 표현"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And it came to pass in the seven and thirtieth year of the captivity of Jehoiachin king of Judah, in the twelfth month, on the seven and twentieth day of the month, that Evilmerodach king of Babylon in the year that he began to reign did lift up the head of Jehoiachin king of Judah out of prison;",
+  "ko": "유다 왕 여호야긴이 사로잡힌 지 삼십칠년 열두째 달 이십칠일에, 바벨론 왕 에윌므로닥이 그가 통치를 시작한 해에 유다 왕 여호야긴을 옥에서 내어 그 머리를 들게 하고,",
+  "note": "포로 삼십칠 년, 에윌므로닥이 여호야긴을 옥에서 풀어 주었다. 절망의 기록 끝에 비치는 이 은혜의 빛은 다윗 언약이 아직 끊기지 않았음을 암시한다.",
+  "voc": [
+   [
+    "captivity",
+    "n.",
+    "사로잡힘, 포로"
+   ],
+   [
+    "twelfth month",
+    "",
+    "열두째 달"
+   ],
+   [
+    "lift up the head",
+    "",
+    "머리를 들게 하다, 높이다"
+   ],
+   [
+    "prison",
+    "n.",
+    "옥"
+   ]
+  ],
+  "idi": [
+   [
+    "did lift up the head of Jehoiachin",
+    "'머리를 들게 하다'—신원·회복·존귀케 함의 관용 표현"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And he spake kindly to him, and set his throne above the throne of the kings that were with him in Babylon;",
+  "ko": "그에게 친절히 말하며 그의 자리를 바벨론에서 그와 함께한 왕들의 자리보다 높이고,",
+  "note": "에윌므로닥이 여호야긴을 다른 왕들보다 높였다. 포로된 다윗 왕조의 후손이 존귀케 되니, 하나님은 심판 가운데서도 약속의 등불을 지키신다.",
+  "voc": [
+   [
+    "kindly",
+    "adv.",
+    "친절히"
+   ],
+   [
+    "throne",
+    "n.",
+    "자리, 왕좌"
+   ],
+   [
+    "above",
+    "prep.",
+    "~보다 높이"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And changed his prison garments: and he did eat bread continually before him all the days of his life.",
+  "ko": "그 옥중의 의복을 갈아입히매, 여호야긴이 평생토록 항상 왕 앞에서 음식을 먹었더라.",
+  "note": "여호야긴이 죄수복을 벗고 평생 왕 앞에서 음식을 먹었다. 옷을 갈아입힘은 신분의 회복을 상징하니, 다윗의 후손이 이방 궁에서 은혜를 입는다.",
+  "voc": [
+   [
+    "prison garments",
+    "",
+    "옥중의 의복, 죄수복"
+   ],
+   [
+    "did eat",
+    "",
+    "먹었다"
+   ],
+   [
+    "continually",
+    "adv.",
+    "항상, 계속"
+   ]
+  ],
+  "idi": [],
   "gra": [
-   ["Judah was carried away", "was carried=수동태 '사로잡혀 갔다'"]
+   [
+    "he did eat bread continually",
+    "'did+동사원형'은 고어 강조·과거; '항상 음식을 먹었다'"
+   ]
   ]
  },
  {
-  "en": "even over them he made Gedaliah the son of Ahikam ... ruler.",
-  "ko": "그들 위에 아히감의 아들 그달리야를 세워 다스리게 하였더라.",
-  "note": "'파카드'(פָּקַד, 세우다·맡기다)로 그달리야가 총독에 임명된다. 그의 아버지 아히감은 일찍이 예레미야를 죽음에서 건진 의로운 사람이었으니(렘 26:24), 경건한 가문에 남은 땅의 책임이 맡겨진다.",
+  "en": "And his allowance was a continual allowance given him of the king, a daily rate for every day, all the days of his life.",
+  "ko": "그가 받을 양식은 왕에게서 날마다 받는 일정한 양식이라. 그의 평생토록 매일의 몫이 끊이지 아니하였더라.",
+  "note": "여호야긴이 평생 왕의 양식을 받았다. 열왕기하는 심판의 어둠 속에서도 이 은혜의 소식으로 맺으니, 바벨론 강가에도 하나님의 신실하심은 흐르고 있었다.",
   "voc": [
-   ["remain", "v.", "남다"],
-   ["leave", "v.", "남겨 두다 (과거분사 left)"],
-   ["make ... ruler", "", "~을 다스리는 자로 세우다"],
-   ["ruler", "n.", "다스리는 자, 통치자"]
-  ],
-  "gra": [
-   ["even over them he made Gedaliah ... ruler", "make+목적어+명사(보어) '~를 …으로 세우다'; even over them=강조 도치 '바로 그들 위에'"]
-  ]
- },
- {
-  "en": "Ishmael ... of the seed royal, came ... and smote Gedaliah, that he died ...",
-  "ko": "왕족 이스마엘이 와서 그달리야를 쳐 죽이고 그와 함께한 자들도 죽였더라.",
-  "note": "'제라 함멜루카'(זֶרַע הַמְּלוּכָה, 왕의 씨)인 이스마엘의 시기가 마지막 평화의 싹을 짓밟는다. 외세의 칼이 멈춘 자리에서 동족의 칼이 일어나니, 죄가 빚은 분열이 멸망 뒤에도 백성을 흩는다.",
-  "voc": [
-   ["the seed royal", "", "왕족, 왕의 혈통"],
-   ["come", "v.", "오다 (과거 came)"],
-   ["smite ... that he died", "", "쳐서 죽게 하다"],
-   ["the Jews", "", "유다 사람들"]
+   [
+    "allowance",
+    "n.",
+    "양식, 배급"
+   ],
+   [
+    "daily rate",
+    "",
+    "매일의 몫, 일정한 양"
+   ],
+   [
+    "all the days",
+    "",
+    "평생토록"
+   ]
   ],
   "idi": [
-   ["the seed royal", "왕족, 왕가의 혈통"]
+   [
+    "a continual allowance",
+    "'끊이지 않는 일정한 양식'—지속적 은혜를 뜻함"
+   ]
   ],
-  "gra": [
-   ["smote Gedaliah, that he died", "that he died=결과절 '쳐서 그가 죽었다'"]
-  ]
- },
- {
-  "en": "Evilmerodach ... did lift up the head of Jehoiachin ... and his allowance was a continual allowance ... all the days of his life.",
-  "ko": "에윌므로닥이 여호야긴을 옥에서 내어 그 머리를 들게 하고, 평생토록 끊이지 않는 일정한 양식을 받게 하니라.",
-  "note": "'나사 로쉬'(נָשָׂא רֹאשׁ, 머리를 들다)는 명예와 사면의 회복을 뜻하는 관용 표현이다. 다윗의 후손이 옥에서 풀려나 왕의 상에서 '평생토록' 양식을 받으며 열왕기가 닫히니, 캄캄한 멸망의 기록 끝에 언약이 폐기되지 않았음을, 메시아를 향한 소망이 살아 있음을 조용히 증언한다.",
-  "voc": [
-   ["lift up the head", "", "머리를 들게 하다(높이다·사면하다)"],
-   ["prison", "n.", "옥, 감옥"],
-   ["allowance", "n.", "양식, 몫, 정해진 배급"],
-   ["continual", "adj.", "끊이지 않는, 항상의"],
-   ["all the days of his life", "", "그의 평생토록"]
-  ],
-  "idi": [
-   ["lift up the head of", "~의 머리를 들게 하다(명예를 회복하다)"],
-   ["all the days of his life", "그의 평생토록, 사는 날 동안 내내"]
-  ],
-  "gra": [
-   ["did lift up the head", "did+동사원형=강조 과거 '들게 하였다'"]
-  ]
+  "gra": []
  }
 ]
