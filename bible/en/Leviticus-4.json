@@ -1,129 +1,972 @@
 [
  {
-  "en": "Speak unto the children of Israel, saying, If a soul shall sin through ignorance against any of the commandments of the LORD ...",
+  "en": "And the LORD spake unto Moses, saying,",
+  "ko": "여호와께서 모세에게 말씀하여 이르시되,",
+  "note": "속죄제(히브리어 하타트)를 다루는 장이 시작된다. 여호와께서 모세에게 직접 말씀하심은 이 규례가 하나님의 계시된 뜻임을 보인다.",
+  "voc": [
+   [
+    "spake",
+    "v.",
+    "말씀하셨다"
+   ],
+   [
+    "saying",
+    "v.",
+    "이르시되"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "spake unto Moses",
+    "spake='spoke'(고어)"
+   ]
+  ]
+ },
+ {
+  "en": "Speak unto the children of Israel, saying, If a soul shall sin through ignorance against any of the commandments of the LORD concerning things which ought not to be done, and shall do against any of them:",
   "ko": "\"너는 이스라엘 자손에게 이같이 이르라. 누구든지 여호와의 어느 계명에든지 그릇하여 행하지 못할 일을 범하였으되 그 가운데 하나라도 행하였으면,",
-  "note": "'그릇하여'는 히브리어 비쉬가가(בִּשְׁגָגָה, '부지중에·실수로')이다. 속죄제(하타트)는 고의가 아니라 연약함으로 빗나간 죄를 다루니, 알지 못한 죄까지 하나님 앞에 드러나야 함을 가르친다.",
+  "note": "'그릇하여'(히브리어 비쉬가가, 부지중에) 지은 죄를 다룸은 알지 못하고 범한 죄조차 하나님 앞에서는 죄임을 보인다. 죄는 의도만이 아니라 실체로 하나님의 거룩을 침해한다.",
   "voc": [
-   ["soul", "n.", "사람, 영혼"],
-   ["sin", "v.", "죄를 짓다"],
-   ["through ignorance", "", "부지중에, 모르고"],
-   ["commandment", "n.", "계명"]
+   [
+    "soul",
+    "n.",
+    "사람, 영혼"
+   ],
+   [
+    "sin",
+    "v.",
+    "범죄하다"
+   ],
+   [
+    "ignorance",
+    "n.",
+    "무지, 그릇함"
+   ],
+   [
+    "commandments",
+    "n.",
+    "계명"
+   ]
   ],
   "idi": [
-   ["through ignorance", "모르는 사이에, 부지중에"]
+   [
+    "through ignorance",
+    "그릇하여, 부지중에"
+   ]
+  ],
+  "gra": [
+   [
+    "which ought not to be done",
+    "ought not='마땅히 ~하지 말아야 할'"
+   ]
   ]
  },
  {
-  "en": "... a young bullock without blemish unto the LORD for a sin offering.",
-  "ko": "그가 범한 죄로 말미암아 흠 없는 수송아지 한 마리를 여호와께 속죄제로 드릴지니라.",
-  "note": "'속죄제'는 하타트(חַטָּאת)로, '죄' 자체를 뜻하는 말이 곧 그 죄를 없애는 제물의 이름이 되었다. 죄를 짊어진 제물이 죄인을 대신함을 한 단어가 보여 준다.",
+  "en": "If the priest that is anointed do sin according to the sin of the people; then let him bring for his sin, which he hath sinned, a young bullock without blemish unto the LORD for a sin offering.",
+  "ko": "곧 기름 부음 받은 제사장이 범죄하여 백성으로 허물을 입게 하였거든, 그가 범한 죄로 말미암아 흠 없는 수송아지 한 마리를 여호와께 속죄제로 드릴지니라.",
+  "note": "기름 부음 받은 대제사장의 죄는 온 백성에게 허물을 입힌다. 지도자의 죄는 결코 사사롭지 않으니, 그 영향이 공동체 전체에 미친다. 흠 없는 수송아지는 가장 값진 속죄물이다.",
   "voc": [
-   ["bullock", "n.", "수송아지"],
-   ["without blemish", "", "흠 없는"],
-   ["sin offering", "n.", "속죄제"]
+   [
+    "anointed",
+    "adj.",
+    "기름 부음 받은"
+   ],
+   [
+    "priest",
+    "n.",
+    "제사장"
+   ],
+   [
+    "sin offering",
+    "n.",
+    "속죄제"
+   ]
   ],
   "idi": [
-   ["without blemish", "흠 없는, 결점 없는"]
+   [
+    "the priest that is anointed",
+    "기름 부음 받은 제사장"
+   ]
+  ],
+  "gra": [
+   [
+    "which he hath sinned",
+    "hath='has'(3인칭 완료 고어)"
+   ]
   ]
  },
  {
-  "en": "And he shall put his hand upon the head ... and kill the bullock before the LORD.",
+  "en": "And he shall bring the bullock unto the door of the tabernacle of the congregation before the LORD; and shall lay his hand upon the bullock’s head, and kill the bullock before the LORD.",
   "ko": "그 송아지를 회막 문으로 여호와 앞에 끌어다가 그 머리에 안수하고 그 송아지를 여호와 앞에서 잡을 것이요,",
-  "note": "'안수하다'는 사마크(סָמַךְ, '힘껏 누르다·기대다')이다. 손을 머리에 얹음은 자기 죄를 제물에 전가하는 행위로, 대속의 원리가 손끝에 새겨진다.",
+  "note": "제사장이라도 자기 죄를 위해 안수하고 제물을 잡아야 함은 중보자 역시 죄인임을 보인다. 오직 죄 없으신 그리스도만이 자기를 위한 제사 없이 남을 대속하실 수 있다(히 7:27).",
   "voc": [
-   ["put one's hand upon", "", "~에 손을 얹다, 안수하다"],
-   ["head", "n.", "머리"],
-   ["kill", "v.", "잡다, 죽이다"],
-   ["before", "prep.", "~ 앞에서"]
+   [
+    "door",
+    "n.",
+    "문"
+   ],
+   [
+    "lay",
+    "v.",
+    "안수하다"
+   ]
   ],
-  "idi": [
-   ["put his hand upon the head", "머리에 손을 얹다(안수하다)"]
+  "idi": [],
+  "gra": [
+   [
+    "shall lay his hand",
+    "shall='~할지니라'"
+   ]
   ]
  },
  {
-  "en": "And the priest shall dip his finger in the blood, and sprinkle of the blood seven times before the LORD ...",
+  "en": "And the priest that is anointed shall take of the bullock’s blood, and bring it to the tabernacle of the congregation:",
+  "ko": "기름 부음 받은 제사장은 그 송아지의 피를 가지고 회막으로 들어가서,",
+  "note": "대제사장의 죄에는 피를 성소 안으로 가져가는 특별한 절차가 따른다. 죄가 성소를 오염시켰기에 그 회복이 더 깊은 곳까지 이르러야 함을 보인다.",
+  "voc": [
+   [
+    "take",
+    "v.",
+    "가지다"
+   ],
+   [
+    "blood",
+    "n.",
+    "피"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "bring it to the tabernacle",
+    "bring='가져오다'(원형)"
+   ]
+  ]
+ },
+ {
+  "en": "And the priest shall dip his finger in the blood, and sprinkle of the blood seven times before the LORD, before the vail of the sanctuary.",
   "ko": "그 제사장은 손가락에 그 피를 찍어 여호와 앞 곧 성소의 휘장 앞에 일곱 번 뿌릴 것이며,",
-  "note": "'뿌리다'는 나자(נָזָה)이며 '일곱'은 셰바(שֶׁבַע)로 완전수다. 피를 일곱 번 뿌림은 속죄가 온전하고 부족함 없이 이루어짐을 가리킨다.",
+  "note": "휘장 앞에 피를 일곱 번 뿌림은 완전한 정결(일곱은 완전수)을 상징한다. 휘장은 하나님의 임재를 가리는 경계이니, 피가 그 앞에 이르러 화목의 길을 예비한다.",
   "voc": [
-   ["priest", "n.", "제사장"],
-   ["dip", "v.", "(액체에) 담그다, 찍다"],
-   ["sprinkle", "v.", "뿌리다"],
-   ["seven times", "", "일곱 번"]
+   [
+    "dip",
+    "v.",
+    "찍다"
+   ],
+   [
+    "finger",
+    "n.",
+    "손가락"
+   ],
+   [
+    "vail",
+    "n.",
+    "휘장"
+   ],
+   [
+    "sanctuary",
+    "n.",
+    "성소"
+   ]
+  ],
+  "idi": [
+   [
+    "seven times",
+    "일곱 번(완전을 상징)"
+   ]
   ],
   "gra": [
-   ["dip his finger in the blood", "'dip A in B'는 'A를 B에 담그다·찍다'라는 형태로, 전치사 in이 담그는 대상을 이끈다."]
+   [
+    "vail",
+    "'veil'의 KJV 고어 철자(휘장)"
+   ]
   ]
  },
  {
-  "en": "And the two kidneys, and the fat that is upon them ... and the caul above the liver ...",
+  "en": "And the priest shall put some of the blood upon the horns of the altar of sweet incense before the LORD, which is in the tabernacle of the congregation; and shall pour all the blood of the bullock at the bottom of the altar of the burnt offering, which is at the door of the tabernacle of the congregation.",
+  "ko": "또 그 제사장은 회막 안 여호와 앞에 있는 향단의 뿔들에 그 피를 바르고, 그 송아지의 남은 피는 회막 문 앞에 있는 번제단 밑에 다 쏟을 것이요,",
+  "note": "향단 뿔에 피를 바르고 남은 피를 번제단 밑에 쏟음은 기도(향단)와 헌신(번제단)의 자리가 모두 피로 정결케 됨을 보인다. 죄 사함은 예배의 모든 영역을 회복시킨다.",
+  "voc": [
+   [
+    "horns",
+    "n.",
+    "뿔"
+   ],
+   [
+    "incense",
+    "n.",
+    "향"
+   ],
+   [
+    "pour",
+    "v.",
+    "쏟다"
+   ],
+   [
+    "bottom",
+    "n.",
+    "밑"
+   ]
+  ],
+  "idi": [
+   [
+    "the altar of sweet incense",
+    "향단"
+   ]
+  ],
+  "gra": [
+   [
+    "which is in the tabernacle",
+    "which='관계대명사'"
+   ]
+  ]
+ },
+ {
+  "en": "And he shall take off from it all the fat of the bullock for the sin offering; the fat that covereth the inwards, and all the fat that is upon the inwards,",
+  "ko": "또 그 속죄제 송아지의 모든 기름을 떼어 낼지니, 곧 내장에 덮인 기름과 내장에 붙은 모든 기름과,",
+  "note": "속죄제 제물의 기름을 떼어 냄은 화목제와 동일하다. 죄를 다루는 제사에서도 가장 좋은 부분은 하나님께 돌려진다.",
+  "voc": [
+   [
+    "take off",
+    "v.구",
+    "떼어 내다"
+   ],
+   [
+    "fat",
+    "n.",
+    "기름"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "all the fat that is upon",
+    "that is='which is'"
+   ]
+  ]
+ },
+ {
+  "en": "And the two kidneys, and the fat that is upon them, which is by the flanks, and the caul above the liver, with the kidneys, it shall he take away,",
   "ko": "두 콩팥과 그 위 곧 허리께에 있는 기름과 간에 덮인 꺼풀을 콩팥과 함께 떼어 내되,",
-  "note": "'콩팥'은 켈라요트(כְּלָיוֹת), '간에 덮인 꺼풀'은 요테레트(יֹתֶרֶת)이다. 콩팥은 사람의 깊은 속마음을 상징하니, 가장 은밀한 부분의 기름이 온전히 하나님께 돌려진다.",
+  "note": "콩팥과 간 꺼풀의 기름 규정이 속죄제에도 적용된다. 제사 규례의 일관성은 하나님의 질서정연하신 거룩을 반영한다.",
   "voc": [
-   ["kidney", "n.", "콩팥, 신장"],
-   ["fat", "n.", "기름, 지방"],
-   ["caul", "n.", "(내장을 덮는) 꺼풀, 막"],
-   ["liver", "n.", "간"]
+   [
+    "kidneys",
+    "n.",
+    "콩팥"
+   ],
+   [
+    "caul",
+    "n.",
+    "꺼풀"
+   ]
   ],
+  "idi": [],
   "gra": [
-   ["the fat that is upon them", "that은 the fat를 선행사로 받는 관계대명사로, 'them(콩팥) 위에 있는 기름'을 가리킨다."]
+   [
+    "it shall he take away",
+    "도치 강조"
+   ]
   ]
  },
  {
-  "en": "... burn him on the wood with fire: where the ashes are poured out shall he be burnt.",
+  "en": "As it was taken off from the bullock of the sacrifice of peace offerings: and the priest shall burn them upon the altar of the burnt offering.",
+  "ko": "화목제 제물인 소에게서 떼어 냄같이 할 것이요, 제사장은 그것을 번제단 위에서 불사를 것이며,",
+  "note": "화목제와 같은 방식으로 기름을 떼어 번제단에서 불사름은 제사들 사이의 통일성을 보인다. 모든 제사가 결국 한 분 그리스도를 다양한 각도로 예표한다.",
+  "voc": [
+   [
+    "taken off",
+    "v.",
+    "떼어 낸"
+   ],
+   [
+    "burn",
+    "v.",
+    "불사르다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "as it was taken off",
+    "as='~같이'"
+   ]
+  ]
+ },
+ {
+  "en": "And the skin of the bullock, and all his flesh, with his head, and with his legs, and his inwards, and his dung,",
+  "ko": "그 송아지의 가죽과 그 모든 고기와 그 머리와 다리와 내장과 똥,",
+  "note": "가죽, 고기, 머리, 다리, 내장, 똥까지 온 제물을 언급함은 죄를 담당한 제물 전체가 진영 밖에서 처리됨을 예비한다.",
+  "voc": [
+   [
+    "skin",
+    "n.",
+    "가죽"
+   ],
+   [
+    "flesh",
+    "n.",
+    "고기"
+   ],
+   [
+    "dung",
+    "n.",
+    "똥"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "his flesh",
+    "his='its'(중성 소유격)"
+   ]
+  ]
+ },
+ {
+  "en": "Even the whole bullock shall he carry forth without the camp unto a clean place, where the ashes are poured out, and burn him on the wood with fire: where the ashes are poured out shall he be burnt.",
   "ko": "곧 그 송아지의 전부를 진영 밖으로 내어다가 재 버리는 정결한 곳에서 나무 위에 놓고 불사르되, 재 버리는 곳에서 불사를지니라.",
-  "note": "제물을 '진영 밖'(미후츠 라마하네, מִחוּץ לַמַּחֲנֶה)에서 사름은 죄가 거룩한 곳에서 멀리 쫓겨남을 보인다. 히브리서 13장은 예수께서 '성문 밖'에서 고난받으심을 이로써 풀이한다.",
+  "note": "온 송아지를 진영 밖 정결한 곳에서 불사름은 죄를 진 제물이 진 밖으로 나감을 보인다. 예수께서도 백성을 거룩케 하시려 성문 밖에서 고난받으셨다(히 13:12).",
   "voc": [
-   ["burn", "v.", "불사르다, 태우다"],
-   ["wood", "n.", "나무, 장작"],
-   ["ashes", "n.", "재"],
-   ["pour out", "", "쏟아 내다, 버리다"]
-  ],
-  "gra": [
-   ["where the ashes are poured out shall he be burnt", "장소를 나타내는 절(where ...)이 문두로 도치되었고, 뒤이어 'shall he be burnt'로 주어와 조동사가 도치되었다. 현대 어순은 'he shall be burnt where the ashes are poured out'이다."]
-  ]
- },
- {
-  "en": "... and the priest shall make an atonement for them, and it shall be forgiven them.",
-  "ko": "이같이 제사장이 그들을 위하여 속죄한즉 그들이 사함을 받으리라.",
-  "note": "'속죄하다'는 키페르(כִּפֶּר, '덮다·가리다')이며 '사함을 받다'는 살라흐(סָלַח)이다. 피로 죄를 덮어야 비로소 죄가 가려지고 용서가 임하니, 사함은 인간의 결심이 아니라 제물의 피에서 온다.",
-  "voc": [
-   ["make an atonement", "", "속죄하다"],
-   ["atonement", "n.", "속죄, 화해"],
-   ["forgive", "v.", "용서하다, 사하다"]
+   [
+    "carry forth",
+    "v.구",
+    "내어 가다"
+   ],
+   [
+    "camp",
+    "n.",
+    "진영"
+   ],
+   [
+    "clean",
+    "adj.",
+    "정결한"
+   ]
   ],
   "idi": [
-   ["make an atonement for", "~를 위하여 속죄하다"]
+   [
+    "without the camp",
+    "진영 밖"
+   ]
   ],
   "gra": [
-   ["it shall be forgiven them", "수동태(be forgiven) 구문으로 '그들에게 사함이 베풀어지리라'는 뜻이다. them은 '~에게'에 해당하는 간접 목적의 잔재이다."]
+   [
+    "where the ashes are poured out",
+    "where='~하는 곳'"
+   ]
   ]
  },
  {
-  "en": "When a ruler hath sinned ... he shall bring his offering, a kid of the goats, a male without blemish:",
-  "ko": "관원이 범죄하여 ... 그는 흠 없는 숫염소 하나를 예물로 가져다가,",
-  "note": "'관원'은 나시(נָשִׂיא, '높이 들린 자·지도자')이다. 신분이 높을수록 책임도 무거우나, 지도자조차 흠 없는 제물 없이는 죄를 벗지 못한다.",
+  "en": "And if the whole congregation of Israel sin through ignorance, and the thing be hid from the eyes of the assembly, and they have done somewhat against any of the commandments of the LORD concerning things which should not be done, and are guilty;",
+  "ko": "이스라엘 온 회중이 그릇 범죄하여 여호와의 어느 계명에든지 행하지 못할 일을 범하여 허물을 입었으나 그 일이 회중의 눈에 숨겨졌다가,",
+  "note": "온 회중이 부지중에 지은 죄를 다룬다. 죄가 숨겨져 드러나지 않아도 공동체 전체에 허물이 쌓이니, 회개는 개인만의 일이 아니다.",
   "voc": [
-   ["ruler", "n.", "관원, 통치자"],
-   ["offering", "n.", "예물, 제물"],
-   ["kid of the goats", "", "숫염소(염소 새끼)"],
-   ["male", "n.", "수컷"]
-  ],
-  "gra": [
-   ["When a ruler hath sinned", "hath sinned는 현대 영어 'has sinned'의 고어형 현재완료로, 주어 a ruler에 3인칭 단수 hath가 쓰였다."]
-  ]
- },
- {
-  "en": "And if any one of the common people sin through ignorance ... a female without blemish, for his sin ...",
-  "ko": "만일 평민의 하나가 그릇 범죄하여 ... 흠 없는 암염소 하나를 예물로 가져다가,",
-  "note": "'평민'은 암 하아레츠(עַם הָאָרֶץ, '그 땅의 백성')이다. 제사장·회중·관원·평민 누구도 예외 없이 속죄가 필요하니, 율법은 모든 사람이 죄 아래 있음을 선포한다.",
-  "voc": [
-   ["common people", "", "평민, 일반 백성"],
-   ["any one of", "", "~ 가운데 누구든지"],
-   ["female", "n.", "암컷"],
-   ["sin through ignorance", "", "부지중에 죄를 짓다"]
+   [
+    "congregation",
+    "n.",
+    "회중"
+   ],
+   [
+    "hid",
+    "v.",
+    "숨겨진"
+   ],
+   [
+    "assembly",
+    "n.",
+    "회중, 모임"
+   ],
+   [
+    "guilty",
+    "adj.",
+    "허물 있는"
+   ]
   ],
   "idi": [
-   ["the common people", "평민, 보통 사람들"]
+   [
+    "through ignorance",
+    "그릇하여"
+   ]
+  ],
+  "gra": [
+   [
+    "the thing be hid",
+    "be='is'(가정법 고어)"
+   ]
+  ]
+ },
+ {
+  "en": "When the sin, which they have sinned against it, is known, then the congregation shall offer a young bullock for the sin, and bring him before the tabernacle of the congregation.",
+  "ko": "그들의 범한 그 죄가 드러나거든, 회중은 그 죄로 말미암아 수송아지 하나를 속죄제로 드릴지니, 그것을 회막 앞으로 끌어올 것이요,",
+  "note": "죄가 드러날 때 회중이 속죄제를 드림은 알게 된 죄를 지체 없이 다루어야 함을 보인다. 깨달음은 회개의 행동으로 이어져야 한다.",
+  "voc": [
+   [
+    "known",
+    "v.",
+    "드러난, 알려진"
+   ],
+   [
+    "offer",
+    "v.",
+    "드리다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "when the sin...is known",
+    "수동태(드러날 때)"
+   ]
+  ]
+ },
+ {
+  "en": "And the elders of the congregation shall lay their hands upon the head of the bullock before the LORD: and the bullock shall be killed before the LORD.",
+  "ko": "회중의 장로들이 여호와 앞에서 그 송아지의 머리에 안수하고 그 송아지를 여호와 앞에서 잡을 것이며,",
+  "note": "장로들이 회중을 대표하여 송아지 머리에 안수함은 대표성의 원리를 보인다. 한 무리의 죄가 그 대표를 통해 제물에 전가된다.",
+  "voc": [
+   [
+    "elders",
+    "n.",
+    "장로들"
+   ],
+   [
+    "killed",
+    "v.",
+    "잡히다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "shall be killed",
+    "수동태 미래(잡힐지니라)"
+   ]
+  ]
+ },
+ {
+  "en": "And the priest that is anointed shall bring of the bullock’s blood to the tabernacle of the congregation:",
+  "ko": "기름 부음 받은 제사장은 그 송아지의 피를 가지고 회막으로 들어가서,",
+  "note": "대제사장이 회중의 피를 성소로 가져감은 개인 제사장의 죄와 동일한 절차이다. 공동체의 죄도 하나님의 임재 앞까지 깊이 다루어져야 한다.",
+  "voc": [
+   [
+    "anointed",
+    "adj.",
+    "기름 부음 받은"
+   ],
+   [
+    "bring",
+    "v.",
+    "가져오다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "the priest that is anointed",
+    "that is='who is'"
+   ]
+  ]
+ },
+ {
+  "en": "And the priest shall dip his finger in some of the blood, and sprinkle it seven times before the LORD, even before the vail.",
+  "ko": "그 제사장은 손가락에 그 피를 찍어 여호와 앞 곧 휘장 앞에 일곱 번 뿌릴 것이며,",
+  "note": "휘장 앞에 피를 일곱 번 뿌림이 반복된다. 완전한 정결의 상징이 회중의 죄에도 동일하게 적용되니, 하나님의 거룩은 타협을 모른다.",
+  "voc": [
+   [
+    "dip",
+    "v.",
+    "찍다"
+   ],
+   [
+    "vail",
+    "n.",
+    "휘장"
+   ]
+  ],
+  "idi": [
+   [
+    "seven times",
+    "일곱 번"
+   ]
+  ],
+  "gra": [
+   [
+    "even before the vail",
+    "even='곧'(강조)"
+   ]
+  ]
+ },
+ {
+  "en": "And he shall put some of the blood upon the horns of the altar which is before the LORD, that is in the tabernacle of the congregation, and shall pour out all the blood at the bottom of the altar of the burnt offering, which is at the door of the tabernacle of the congregation.",
+  "ko": "또 회막 안 여호와 앞에 있는 제단 뿔들에 그 피를 바르고, 그 남은 피는 회막 문 앞에 있는 번제단 밑에 다 쏟을 것이요,",
+  "note": "제단 뿔에 피를 바르고 남은 피를 번제단 밑에 쏟음이 반복된다. 예배의 처소가 피로 회복되니, 죄로 더럽혀진 관계가 화목으로 돌아온다.",
+  "voc": [
+   [
+    "horns",
+    "n.",
+    "뿔"
+   ],
+   [
+    "pour out",
+    "v.구",
+    "쏟다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "at the bottom of the altar",
+    "bottom='밑'"
+   ]
+  ]
+ },
+ {
+  "en": "And he shall take all his fat from him, and burn it upon the altar.",
+  "ko": "그 모든 기름을 떼어 제단 위에서 불사를 것이며,",
+  "note": "모든 기름을 떼어 제단에서 불사름은 회중의 속죄제도 가장 좋은 부분을 하나님께 드림을 보인다. 공동체의 회개에도 온전한 헌신이 따른다.",
+  "voc": [
+   [
+    "take",
+    "v.",
+    "떼다"
+   ],
+   [
+    "burn",
+    "v.",
+    "불사르다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "take all his fat",
+    "his='its'(중성 소유격)"
+   ]
+  ]
+ },
+ {
+  "en": "And he shall do with the bullock as he did with the bullock for a sin offering, so shall he do with this: and the priest shall make an atonement for them, and it shall be forgiven them.",
+  "ko": "그가 속죄제 송아지에게 행함같이 이 송아지에게도 그리할지니, 이같이 제사장이 그들을 위하여 속죄한즉 그들이 사함을 받으리라.",
+  "note": "제사장의 속죄제와 동일하게 행함으로 속죄가 이루어지고 사함을 받는다. '사함받으리라'(히브리어 살라흐)는 오직 하나님만이 주시는 용서를 뜻한다.",
+  "voc": [
+   [
+    "atonement",
+    "n.",
+    "속죄"
+   ],
+   [
+    "forgiven",
+    "v.",
+    "사함받은"
+   ]
+  ],
+  "idi": [
+   [
+    "make an atonement",
+    "속죄하다"
+   ]
+  ],
+  "gra": [
+   [
+    "it shall be forgiven them",
+    "수동태 미래(사함받으리라)"
+   ]
+  ]
+ },
+ {
+  "en": "And he shall carry forth the bullock without the camp, and burn him as he burned the first bullock: it is a sin offering for the congregation.",
+  "ko": "그는 그 송아지를 진영 밖으로 내어다가 먼젓번 송아지를 불사름같이 불사를지니, 이는 회중을 위한 속죄제니라.",
+  "note": "회중의 제물을 진영 밖에서 불사름은 대제사장의 경우와 같다. 죄를 담당한 제물이 진 밖으로 나감은 그리스도의 성문 밖 고난을 예표한다.",
+  "voc": [
+   [
+    "carry forth",
+    "v.구",
+    "내어 가다"
+   ],
+   [
+    "camp",
+    "n.",
+    "진영"
+   ]
+  ],
+  "idi": [
+   [
+    "without the camp",
+    "진영 밖"
+   ]
+  ],
+  "gra": [
+   [
+    "as he burned the first",
+    "as='~같이'"
+   ]
+  ]
+ },
+ {
+  "en": "When a ruler hath sinned, and done somewhat through ignorance against any of the commandments of the LORD his God concerning things which should not be done, and is guilty;",
+  "ko": "관원이 범죄하여 그 하나님 여호와의 어느 계명에든지 그릇하여 행하지 못할 일을 행하여 허물을 입었으나,",
+  "note": "관원(지도자)의 죄를 다룬다. 대제사장·회중에 이어 지도자로 내려옴은 사회 각 계층이 다 죄 아래 있음을 보인다. 지도자는 숫염소를 드린다.",
+  "voc": [
+   [
+    "ruler",
+    "n.",
+    "관원, 통치자"
+   ],
+   [
+    "guilty",
+    "adj.",
+    "허물 있는"
+   ]
+  ],
+  "idi": [
+   [
+    "through ignorance",
+    "그릇하여"
+   ]
+  ],
+  "gra": [
+   [
+    "when a ruler hath sinned",
+    "hath='has'(완료 고어)"
+   ]
+  ]
+ },
+ {
+  "en": "Or if his sin, wherein he hath sinned, come to his knowledge; he shall bring his offering, a kid of the goats, a male without blemish:",
+  "ko": "그가 범한 그 죄를 스스로 깨닫거든, 그는 흠 없는 숫염소 하나를 예물로 가져다가,",
+  "note": "자기 죄를 스스로 깨달을 때 흠 없는 숫염소를 드린다. 깨달음(양심의 각성)이 속죄의 출발점이니, 죄를 죄로 인정함이 회개의 첫걸음이다.",
+  "voc": [
+   [
+    "knowledge",
+    "n.",
+    "깨달음, 앎"
+   ],
+   [
+    "kid",
+    "n.",
+    "새끼 염소"
+   ]
+  ],
+  "idi": [
+   [
+    "come to his knowledge",
+    "그가 깨닫다"
+   ]
+  ],
+  "gra": [
+   [
+    "wherein he hath sinned",
+    "wherein='그 안에서'(고어 관계부사)"
+   ]
+  ]
+ },
+ {
+  "en": "And he shall lay his hand upon the head of the goat, and kill it in the place where they kill the burnt offering before the LORD: it is a sin offering.",
+  "ko": "그 염소의 머리에 안수하고 번제물을 잡는 곳 곧 여호와 앞에서 그것을 잡을지니, 이는 속죄제니라.",
+  "note": "번제물 잡는 곳에서 속죄제를 잡음은 제사들이 한 장소에서 이어짐을 보인다. 지도자의 죄도 동일한 대속의 자리에서 다루어진다.",
+  "voc": [
+   [
+    "lay",
+    "v.",
+    "안수하다"
+   ],
+   [
+    "slay",
+    "v.",
+    "잡다, 죽이다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "it is a sin offering",
+    "it is='이는 ~이니라'"
+   ]
+  ]
+ },
+ {
+  "en": "And the priest shall take of the blood of the sin offering with his finger, and put it upon the horns of the altar of burnt offering, and shall pour out his blood at the bottom of the altar of burnt offering.",
+  "ko": "제사장은 그 속죄제 제물의 피를 손가락에 찍어 번제단 뿔들에 바르고, 그 피는 번제단 밑에 쏟을 것이며,",
+  "note": "번제단 뿔에 피를 바름은 지도자의 속죄에도 피의 적용이 필수임을 보인다. 지위가 높아도 죄 사함의 길은 오직 대속의 피뿐이다.",
+  "voc": [
+   [
+    "blood",
+    "n.",
+    "피"
+   ],
+   [
+    "horns",
+    "n.",
+    "뿔"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "put it upon the horns",
+    "put='바르다'(원형)"
+   ]
+  ]
+ },
+ {
+  "en": "And he shall burn all his fat upon the altar, as the fat of the sacrifice of peace offerings: and the priest shall make an atonement for him as concerning his sin, and it shall be forgiven him.",
+  "ko": "그 모든 기름은 화목제 제물의 기름같이 제단 위에서 불사를지니, 이같이 제사장이 그의 죄를 위하여 속죄한즉 그가 사함을 받으리라.",
+  "note": "기름을 화목제같이 불사르고 속죄함으로 사함을 받는다. 지도자라 하여 예외가 없으니, 하나님 앞에서는 만민이 동일한 은혜의 문으로 나아간다.",
+  "voc": [
+   [
+    "burn",
+    "v.",
+    "불사르다"
+   ],
+   [
+    "forgiven",
+    "v.",
+    "사함받은"
+   ]
+  ],
+  "idi": [
+   [
+    "as concerning his sin",
+    "그의 죄에 관하여"
+   ]
+  ],
+  "gra": [
+   [
+    "it shall be forgiven him",
+    "수동태(사함받으리라)"
+   ]
+  ]
+ },
+ {
+  "en": "And if any one of the common people sin through ignorance, while he doeth somewhat against any of the commandments of the LORD concerning things which ought not to be done, and be guilty;",
+  "ko": "만일 평민의 하나가 그릇 범죄하여 여호와의 어느 계명에든지 행하지 못할 일을 행하여 허물을 입었으나,",
+  "note": "평민(일반 백성)의 죄를 다룬다. 대제사장에서 평민까지 이르는 순서는 온 이스라엘이 죄인임을 남김없이 드러낸다. 평민은 암염소를 드린다.",
+  "voc": [
+   [
+    "common people",
+    "n.",
+    "평민"
+   ],
+   [
+    "doeth",
+    "v.",
+    "행하다"
+   ]
+  ],
+  "idi": [
+   [
+    "through ignorance",
+    "그릇하여"
+   ]
+  ],
+  "gra": [
+   [
+    "doeth somewhat",
+    "doeth='does'(3인칭 -eth 고어)"
+   ]
+  ]
+ },
+ {
+  "en": "Or if his sin, which he hath sinned, come to his knowledge: then he shall bring his offering, a kid of the goats, a female without blemish, for his sin which he hath sinned.",
+  "ko": "그가 범한 그 죄를 스스로 깨닫거든, 그는 그 범한 죄로 말미암아 흠 없는 암염소 하나를 예물로 가져다가,",
+  "note": "평민도 죄를 깨달을 때 흠 없는 암염소를 드린다. 제물의 등급은 낮아도 흠 없음이라는 거룩의 기준은 동일하다.",
+  "voc": [
+   [
+    "knowledge",
+    "n.",
+    "깨달음"
+   ],
+   [
+    "female",
+    "n.",
+    "암컷"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "come to his knowledge",
+    "그가 깨닫다"
+   ]
+  ]
+ },
+ {
+  "en": "And he shall lay his hand upon the head of the sin offering, and slay the sin offering in the place of the burnt offering.",
+  "ko": "그 속죄제 제물의 머리에 안수하고 번제물을 잡는 곳에서 그 속죄제 제물을 잡을 것이요,",
+  "note": "안수하고 번제물 잡는 곳에서 잡음이 평민에게도 동일하다. 하나님은 신분을 가리지 않고 같은 대속의 원리로 죄인을 받으신다.",
+  "voc": [
+   [
+    "slay",
+    "v.",
+    "잡다"
+   ],
+   [
+    "sin offering",
+    "n.",
+    "속죄제"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "in the place of the burnt offering",
+    "of='~의 자리'"
+   ]
+  ]
+ },
+ {
+  "en": "And the priest shall take of the blood thereof with his finger, and put it upon the horns of the altar of burnt offering, and shall pour out all the blood thereof at the bottom of the altar.",
+  "ko": "제사장은 그 피를 손가락에 찍어 번제단 뿔들에 바르고, 그 모든 피는 제단 밑에 쏟을 것이며,",
+  "note": "피를 뿔에 바르고 밑에 쏟음이 평민에게도 적용된다. 만민에게 열린 속죄의 길은 언제나 피 흘림을 통과함을 다시 확증한다.",
+  "voc": [
+   [
+    "blood",
+    "n.",
+    "피"
+   ],
+   [
+    "pour out",
+    "v.구",
+    "쏟다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "all the blood thereof",
+    "thereof='of it'"
+   ]
+  ]
+ },
+ {
+  "en": "And he shall take away all the fat thereof, as the fat is taken away from off the sacrifice of peace offerings; and the priest shall burn it upon the altar for a sweet savour unto the LORD; and the priest shall make an atonement for him, and it shall be forgiven him.",
+  "ko": "그 모든 기름을 화목제 제물에서 떼어 냄같이 떼어 내고, 제사장은 그것을 제단 위에서 불살라 여호와께 향기로운 냄새가 되게 할지니, 이같이 제사장이 그를 위하여 속죄한즉 그가 사함을 받으리라.",
+  "note": "기름을 떼어 향기로운 냄새로 불사름은 평민의 속죄제도 하나님께 열납됨을 보인다. 가장 낮은 자의 회개도 하나님께 향기로 오른다.",
+  "voc": [
+   [
+    "take away",
+    "v.구",
+    "떼어 내다"
+   ],
+   [
+    "savour",
+    "n.",
+    "냄새, 향"
+   ]
+  ],
+  "idi": [
+   [
+    "a sweet savour",
+    "향기로운 냄새"
+   ]
+  ],
+  "gra": [
+   [
+    "as the fat is taken away",
+    "수동태(떼어 냄같이)"
+   ]
+  ]
+ },
+ {
+  "en": "And if he bring a lamb for a sin offering, he shall bring it a female without blemish.",
+  "ko": "만일 그가 어린 양을 속죄제 제물로 가져오려거든 흠 없는 암컷을 끌어올 것이요,",
+  "note": "어린 양을 속죄제로 가져올 경우 흠 없는 암컷을 드린다. 어린 양은 흠 없이 죽으신 그리스도를 예표하며, 평민조차 어린양으로 나아갈 수 있다.",
+  "voc": [
+   [
+    "lamb",
+    "n.",
+    "어린양"
+   ],
+   [
+    "female",
+    "n.",
+    "암컷"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "if he bring a lamb",
+    "bring='가져오다'(가정법)"
+   ]
+  ]
+ },
+ {
+  "en": "And he shall lay his hand upon the head of the sin offering, and slay it for a sin offering in the place where they kill the burnt offering.",
+  "ko": "그 속죄제 제물의 머리에 안수하고 번제물을 잡는 곳에서 그것을 속죄제 제물로 잡을 것이며,",
+  "note": "어린 양 제물에도 안수와 도살이 동일하다. 제물의 종류가 달라도 대속의 원리는 하나이니, 모든 길이 한 어린양을 가리킨다.",
+  "voc": [
+   [
+    "lay",
+    "v.",
+    "안수하다"
+   ],
+   [
+    "slay",
+    "v.",
+    "잡다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "slay it for a sin offering",
+    "slay='잡다'(원형 명령)"
+   ]
+  ]
+ },
+ {
+  "en": "And the priest shall take of the blood of the sin offering with his finger, and put it upon the horns of the altar of burnt offering, and shall pour out all the blood thereof at the bottom of the altar:",
+  "ko": "제사장은 그 속죄제 제물의 피를 손가락에 찍어 번제단 뿔들에 바르고, 그 모든 피는 제단 밑에 쏟을 것이며,",
+  "note": "어린 양의 피를 뿔에 바르고 밑에 쏟음이 동일하다. 피의 적용은 제물의 종류를 초월하여 언제나 속죄의 중심에 있다.",
+  "voc": [
+   [
+    "blood",
+    "n.",
+    "피"
+   ],
+   [
+    "horns",
+    "n.",
+    "뿔"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "all the blood thereof",
+    "thereof='of it'"
+   ]
+  ]
+ },
+ {
+  "en": "And he shall take away all the fat thereof, as the fat of the lamb is taken away from the sacrifice of the peace offerings; and the priest shall burn them upon the altar, according to the offerings made by fire unto the LORD: and the priest shall make an atonement for his sin that he hath committed, and it shall be forgiven him.",
+  "ko": "그 모든 기름을 화목제 제물의 어린 양에게서 떼어 냄같이 떼어 내고, 제사장은 그것을 제단 위 여호와께 드리는 화제물 위에서 불사를지니, 이같이 제사장이 그가 범한 죄를 위하여 속죄한즉 그가 사함을 받으리라.\"",
+  "note": "기름을 떼어 화제로 불사르고 속죄하여 사함을 받는다. 이 장은 만인이 죄인임과 만인에게 열린 속죄를 선포하니, 그 완성은 단번에 드려진 그리스도의 제사이다(히 10:12).",
+  "voc": [
+   [
+    "take away",
+    "v.구",
+    "떼어 내다"
+   ],
+   [
+    "committed",
+    "v.",
+    "범한"
+   ]
+  ],
+  "idi": [
+   [
+    "make an atonement",
+    "속죄하다"
+   ]
+  ],
+  "gra": [
+   [
+    "that he hath committed",
+    "hath='has'(완료 고어)"
+   ]
   ]
  }
 ]
