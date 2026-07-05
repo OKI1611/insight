@@ -1,150 +1,731 @@
 [
  {
-  "en": "To morrow about this time shall a measure of fine flour be sold for a shekel ...",
-  "ko": "내일 이맘때에 고운 가루 한 스아를 한 세겔에 팔리라",
-  "note": "히브리어 '세아'(סְאָה, seah)는 곡물의 부피 단위(약 7리터)이고 '세겔'(שֶׁקֶל, sheqel)은 무게·화폐 단위다. 6장 끝의 살인적 물가가 단 하루 만에 무너지리라는 선언으로, 기근 한복판에서 외친 이 말씀은 인간의 셈으로는 불가능했다.",
+  "en": "Then Elisha said, Hear ye the word of the LORD; Thus saith the LORD, To morrow about this time shall a measure of fine flour be sold for a shekel, and two measures of barley for a shekel, in the gate of Samaria.",
+  "ko": "엘리사가 이르되 \"너희는 여호와의 말씀을 들으라. 여호와께서 이같이 말씀하시되, 내일 이맘때에 사마리아 성문에서 고운 가루 한 스아를 한 세겔에 팔 것이요, 보리 두 스아를 한 세겔에 팔리라\" 하니라.",
+  "note": "엘리사가 극한의 기근 한복판에서 '내일 이맘때' 값싼 양식을 선포함은, 절망을 뒤엎는 하나님의 구원 예언이다. 하루 만의 반전은 오직 여호와의 능력으로만 가능하니, 이는 믿음을 시험하는 놀라운 약속이다.",
   "voc": [
-   ["to morrow", "adv.", "내일"],
-   ["measure", "n.", "(곡식의) 되, 분량(세아)"],
-   ["fine flour", "", "고운 가루"],
-   ["shekel", "n.", "세겔(화폐·무게 단위)"],
-   ["barley", "n.", "보리"],
-   ["gate", "n.", "성문"]
+   [
+    "measure",
+    "n.",
+    "스아 (부피 단위)"
+   ],
+   [
+    "fine flour",
+    "",
+    "고운 가루"
+   ],
+   [
+    "shekel",
+    "n.",
+    "세겔"
+   ],
+   [
+    "gate",
+    "n.",
+    "성문"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Hear ye the word of the LORD",
+    "ye는 you의 고어 복수 주격; '너희는 들으라'"
+   ],
+   [
+    "shall a measure...be sold",
+    "shall be sold는 확정 미래 수동; 도치 어순"
+   ]
+  ]
+ },
+ {
+  "en": "Then a lord on whose hand the king leaned answered the man of God, and said, Behold, if the LORD would make windows in heaven, might this thing be? And he said, Behold, thou shalt see it with thine eyes, but shalt not eat thereof.",
+  "ko": "그때에 왕이 그 손에 의지하던 한 장관이 하나님의 사람에게 대답하여 이르되 \"보라, 여호와께서 하늘에 창을 내신들 이런 일이 있으리이까\" 하매, 엘리사가 이르되 \"보라, 네가 네 눈으로 보려니와 그것을 먹지는 못하리라\" 하니라.",
+  "note": "왕의 장관이 '하늘에 창을 낸들' 조롱함은, 하나님의 능력을 인간 이성으로 제한하는 불신이다. '보되 먹지 못하리라'는 선고는, 불신앙이 은혜의 성취를 목도하고도 그 복에 참여치 못함을 예고한다.",
+  "voc": [
+   [
+    "leaned",
+    "v.",
+    "의지하였다"
+   ],
+   [
+    "windows",
+    "n.",
+    "창"
+   ],
+   [
+    "heaven",
+    "n.",
+    "하늘"
+   ],
+   [
+    "eat",
+    "v.",
+    "먹다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "if the LORD would make windows",
+    "would make는 가정법; '창을 내신들'"
+   ],
+   [
+    "thou shalt see it...but shalt not eat",
+    "shalt see...shalt not eat 대조; 확정 미래"
+   ]
+  ]
+ },
+ {
+  "en": "And there were four leprous men at the entering in of the gate: and they said one to another, Why sit we here until we die?",
+  "ko": "성문 어귀에 나병 든 사람 넷이 있더니, 그들이 서로 이르되 \"우리가 어찌하여 여기 앉아 죽기를 기다리랴.",
+  "note": "성문 밖 나병 든 넷은 사회에서 밀려난 가장 낮은 자들이다. 하나님은 이 소외된 자들을 구원의 첫 증인으로 택하시니, 그분의 역사는 종종 가장 낮은 곳에서 시작된다.",
+  "voc": [
+   [
+    "leprous",
+    "adj.",
+    "나병 든"
+   ],
+   [
+    "entering in",
+    "",
+    "어귀"
+   ],
+   [
+    "one to another",
+    "",
+    "서로"
+   ],
+   [
+    "die",
+    "v.",
+    "죽다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Why sit we here",
+    "sit we는 도치 어순; '우리가 어찌 앉았느냐'"
+   ]
+  ]
+ },
+ {
+  "en": "If we say, We will enter into the city, then the famine is in the city, and we shall die there: and if we sit still here, we die also. Now therefore come, and let us fall unto the host of the Syrians: if they save us alive, we shall live; and if they kill us, we shall but die.",
+  "ko": "우리가 성읍으로 들어가자 한들 성중은 주리니 우리가 거기서 죽을 것이요, 여기 그대로 앉아 있어도 우리가 죽으리라. 그런즉 이제 우리가 가서 시리아 군대에게로 넘어가자. 그들이 우리를 살려 두면 우리가 살 것이요, 우리를 죽이면 죽을 따름이라\" 하고,",
+  "note": "'죽으나 사나 넘어가 보자'는 결단은, 절망 속에서도 살길을 찾는 인간의 마지막 용기다. 잃을 것 없는 자들의 이 발걸음이, 하나님이 예비하신 구원의 통로가 된다.",
+  "voc": [
+   [
+    "famine",
+    "n.",
+    "기근"
+   ],
+   [
+    "sit still",
+    "",
+    "그대로 앉다"
+   ],
+   [
+    "fall unto",
+    "",
+    "넘어가다, 항복하다"
+   ],
+   [
+    "alive",
+    "adj.",
+    "살아 있는"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "we shall but die",
+    "but은 '단지, ~할 따름'을 뜻하는 고어 부사"
+   ],
+   [
+    "if they save us alive",
+    "save...alive는 '살려 두다'"
+   ]
+  ]
+ },
+ {
+  "en": "And they rose up in the twilight, to go unto the camp of the Syrians: and when they were come to the uttermost part of the camp of Syria, behold, there was no man there.",
+  "ko": "그들이 해 질 무렵에 일어나 시리아 진영으로 가려 하여 시리아 진영 맨 끝에 이르렀으나, 보라, 거기 한 사람도 없었더라.",
+  "note": "나병 든 자들이 이른 진영이 텅 빔은, 하나님이 이미 대적을 물리치셨음을 보인다. 사람이 도착하기 전에 구원은 완성되어 있었으니, 이는 은혜가 사람의 수고에 앞섬을 증언한다.",
+  "voc": [
+   [
+    "twilight",
+    "n.",
+    "해 질 무렵"
+   ],
+   [
+    "camp",
+    "n.",
+    "진영"
+   ],
+   [
+    "uttermost",
+    "adj.",
+    "맨 끝의"
+   ],
+   [
+    "no man",
+    "",
+    "한 사람도 없는"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "when they were come to",
+    "were come은 완료의 고어형; '이르렀을 때'"
+   ],
+   [
+    "the uttermost part",
+    "uttermost는 '가장 끝의'를 뜻하는 고어 최상급"
+   ]
+  ]
+ },
+ {
+  "en": "For the LORD had made the host of the Syrians to hear a noise of chariots, and a noise of horses, even the noise of a great host: and they said one to another, Lo, the king of Israel hath hired against us the kings of the Hittites, and the kings of the Egyptians, to come upon us.",
+  "ko": "이는 주께서 시리아 군대로 병거 소리와 말 소리 곧 큰 군대의 소리를 듣게 하셨음이라. 그들이 서로 이르되 \"보라, 이스라엘 왕이 헷 사람의 왕들과 애굽 사람의 왕들을 우리에게 보내어 우리를 치려고 삯을 주었도다\" 하고,",
+  "note": "하나님이 큰 군대의 소리를 듣게 하사 아람을 도망케 하심은, 보이지 않는 능력으로 대적을 흩으심을 보인다. 사람의 칼 없이 이룬 승리는, 전쟁이 여호와께 속함을 다시 증언한다.",
+  "voc": [
+   [
+    "noise",
+    "n.",
+    "소리"
+   ],
+   [
+    "chariots",
+    "n.",
+    "병거들"
+   ],
+   [
+    "hired",
+    "v.",
+    "삯을 주었다"
+   ],
+   [
+    "come upon",
+    "",
+    "치다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "the LORD had made the host...to hear",
+    "had made...to hear는 사역 과거완료; '듣게 하셨다'"
+   ],
+   [
+    "hath hired against us",
+    "hath hired는 완료형; '삯을 주었다'"
+   ]
+  ]
+ },
+ {
+  "en": "Wherefore they arose and fled in the twilight, and left their tents, and their horses, and their asses, even the camp as it was, and fled for their life.",
+  "ko": "해 질 무렵에 일어나 도망하되, 그들의 장막과 그들의 말과 그들의 나귀와 진영을 그대로 둔 채 제 목숨을 위하여 달아났더라.",
+  "note": "아람 군대가 진영을 그대로 두고 목숨만 부지해 달아남은, 하나님이 심으신 공포의 위력을 보인다. 그들이 버린 모든 것이 곧 굶주린 성읍의 양식이 되니, 대적의 패주가 백성의 구원이 된다.",
+  "voc": [
+   [
+    "arose",
+    "v.",
+    "일어났다"
+   ],
+   [
+    "fled",
+    "v.",
+    "도망하였다"
+   ],
+   [
+    "tents",
+    "n.",
+    "장막들"
+   ],
+   [
+    "for their life",
+    "",
+    "제 목숨을 위하여"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "even the camp as it was",
+    "as it was는 '있는 그대로'"
+   ],
+   [
+    "fled for their life",
+    "for their life는 '목숨을 부지하려'"
+   ]
+  ]
+ },
+ {
+  "en": "And when these lepers came to the uttermost part of the camp, they went into one tent, and did eat and drink, and carried thence silver, and gold, and raiment, and went and hid it; and came again, and entered into another tent, and carried thence also, and went and hid it.",
+  "ko": "이 나병 든 사람들이 진영 맨 끝에 이르러 한 장막에 들어가 먹고 마시며, 거기서 은과 금과 의복을 가져다가 가서 감추고, 다시 돌아와 다른 장막에 들어가 거기서도 가져다가 가서 감추니라.",
+  "note": "나병 든 자들이 먹고 마시며 재물을 감춤은, 구원의 첫 기쁨을 홀로 누리려는 인간적 본능이다. 그러나 곧 그들은 좋은 소식을 감추는 것이 옳지 않음을 깨닫는다.",
+  "voc": [
+   [
+    "went into",
+    "",
+    "들어갔다"
+   ],
+   [
+    "carried",
+    "v.",
+    "가져갔다"
+   ],
+   [
+    "raiment",
+    "n.",
+    "의복"
+   ],
+   [
+    "hid",
+    "v.",
+    "감추었다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "did eat and drink",
+    "did+동사원형은 강조 과거"
+   ],
+   [
+    "carried thence",
+    "thence는 '거기서부터'를 뜻하는 고어 부사"
+   ]
+  ]
+ },
+ {
+  "en": "Then they said one to another, We do not well: this day is a day of good tidings, and we hold our peace: if we tarry till the morning light, some mischief will come upon us: now therefore come, that we may go and tell the king’s household.",
+  "ko": "그때에 그들이 서로 이르되 \"우리가 잘하는 일이 아니로다. 오늘은 좋은 소식이 있는 날이거늘 우리가 잠잠하니, 만일 아침 동틀 때까지 기다리면 우리에게 재앙이 미치리라. 그런즉 이제 가서 왕궁에 알리자\" 하고,",
+  "note": "'오늘은 좋은 소식의 날이거늘 잠잠하면 재앙이 미치리라'는 자각은, 구원의 기쁜 소식을 홀로 감추어서는 안 됨을 가르친다. 이는 복음을 전해야 할 그리스도인의 사명을 예표하는 귀한 교훈이다.",
+  "voc": [
+   [
+    "good tidings",
+    "",
+    "좋은 소식"
+   ],
+   [
+    "hold our peace",
+    "",
+    "잠잠하다"
+   ],
+   [
+    "mischief",
+    "n.",
+    "재앙"
+   ],
+   [
+    "household",
+    "n.",
+    "왕궁, 집안"
+   ]
   ],
   "idi": [
-   ["about this time", "이맘때에"]
+   [
+    "a day of good tidings",
+    "좋은 소식의 날 (복음의 날)"
+   ],
+   [
+    "hold one's peace",
+    "잠잠하다, 침묵하다"
+   ]
   ],
   "gra": [
-   ["shall a measure ... be sold", "shall+수동태(be sold) — 예언적 선언 '팔리리라'; 주어·동사 도치"]
+   [
+    "We do not well",
+    "do not well은 '잘하는 일이 아니다'"
+   ],
+   [
+    "that we may go and tell",
+    "may go는 목적의 가정법"
+   ]
   ]
  },
  {
-  "en": "Behold, if the LORD would make windows in heaven, might this thing be?",
-  "ko": "보라, 여호와께서 하늘에 창을 내신들 이런 일이 있으리이까",
-  "note": "'하늘의 창'(아룹보트, אֲרֻבּוֹת)은 창세기 홍수 때 열린 그 창을 떠올리게 한다. 장관은 하나님이 하늘 문을 여신다 해도 불가하다며 말씀을 비웃었으나, 그 불신은 곧 자기 심판이 되었다.",
+  "en": "So they came and called unto the porter of the city: and they told them, saying, We came to the camp of the Syrians, and, behold, there was no man there, neither voice of man, but horses tied, and asses tied, and the tents as they were.",
+  "ko": "그들이 가서 성읍 문지기를 불러 알려 이르되 \"우리가 시리아 진영에 갔더니, 보라, 거기 한 사람도 없고 사람의 소리도 없으며, 다만 말들이 매여 있고 나귀들이 매여 있으며 장막들이 그대로 있더라\" 하니,",
+  "note": "나병 든 자들이 문지기에게 텅 빈 진영을 알림은, 구원의 소식이 마침내 성읍에 전해짐을 보인다. 가장 낮은 자의 입술로 전해진 이 복된 소식이 온 성을 살린다.",
   "voc": [
-   ["behold", "v.", "보라"],
-   ["windows", "n.", "창문들"],
-   ["heaven", "n.", "하늘"],
-   ["might", "aux.", "~일 수 있겠는가(가능)"]
+   [
+    "porter",
+    "n.",
+    "문지기"
+   ],
+   [
+    "voice",
+    "n.",
+    "소리"
+   ],
+   [
+    "tied",
+    "adj.",
+    "매여 있는"
+   ],
+   [
+    "as they were",
+    "",
+    "그대로 있는"
+   ]
   ],
+  "idi": [],
   "gra": [
-   ["if the LORD would make ..., might this thing be?", "가정법 — would(과거 가정)+might(귀결) '~하신들 …있겠는가'(반어 의문)"]
+   [
+    "called unto the porter",
+    "unto는 to의 고어형"
+   ],
+   [
+    "neither voice of man",
+    "neither는 '~도 없는'의 고어 부정"
+   ]
   ]
  },
  {
-  "en": "Why sit we here until we die?",
-  "ko": "우리가 어찌하여 여기 앉아 죽기를 기다리랴",
-  "note": "성문 밖 나병 환자들의 자조 섞인 물음이다. 들어가도 죽고 앉아 있어도 죽을 절망 속에서, 그들은 차라리 행동하기로 결단한다 — 하나님은 이 버림받은 자들을 구원의 통로로 쓰셨다.",
+  "en": "And he called the porters; and they told it to the king’s house within.",
+  "ko": "문지기들이 외쳐 안에 있는 왕궁에 알리매,",
+  "note": "문지기들이 왕궁에 알림은, 구원의 소식이 위로 전해지는 통로를 보인다. 낮은 자에게서 시작된 소식이 왕궁에까지 이르니, 하나님의 구원은 온 백성에게 미친다.",
   "voc": [
-   ["sit", "v.", "앉다"],
-   ["until", "conj.", "~할 때까지"],
-   ["die", "v.", "죽다"],
-   ["leprous", "adj.", "나병 든"]
+   [
+    "porters",
+    "n.",
+    "문지기들"
+   ],
+   [
+    "told",
+    "v.",
+    "알렸다"
+   ],
+   [
+    "within",
+    "adv.",
+    "안에"
+   ]
   ],
+  "idi": [],
   "gra": [
-   ["Why sit we here", "고어 의문 어순(=Why do we sit here) — 조동사 do 없이 동사+주어 도치"]
+   [
+    "told it to the king’s house",
+    "king’s house는 '왕궁'; 소유격"
+   ]
   ]
  },
  {
-  "en": "Let us fall unto the host of the Syrians: if they save us alive, we shall live ...",
-  "ko": "시리아 군대에게로 넘어가자. 그들이 우리를 살려 두면 우리가 살 것이요",
-  "note": "'fall unto'는 적진으로 투항·넘어감을 뜻하는 군사적 표현이다. '시리아 사람'(아람, אֲרָם)은 다메섹을 중심으로 한 강국으로, 사마리아를 에워싸 기근을 일으킨 장본인이었다.",
+  "en": "And the king arose in the night, and said unto his servants, I will now shew you what the Syrians have done to us. They know that we be hungry; therefore are they gone out of the camp to hide themselves in the field, saying, When they come out of the city, we shall catch them alive, and get into the city.",
+  "ko": "왕이 밤중에 일어나 그의 신하들에게 이르되 \"시리아 사람이 우리에게 행한 일을 내가 너희에게 이르리라. 그들이 우리가 주린 줄을 아는지라, 그러므로 진영을 떠나 들에 숨고 이르기를 '그들이 성읍에서 나오거든 우리가 사로잡고 성읍으로 들어가리라' 하였으리라\" 하니,",
+  "note": "왕이 이를 함정으로 의심함은, 하나님의 구원조차 불신하는 배교한 마음의 완악함이다. 은혜의 소식 앞에서도 의심하는 태도는, 참 구원을 늦게 깨닫는 어리석음이다.",
   "voc": [
-   ["fall unto", "", "~에게로 넘어가다, 투항하다"],
-   ["host", "n.", "군대, 무리"],
-   ["Syrians", "n.", "시리아(아람) 사람들"],
-   ["save alive", "", "살려 두다"],
-   ["but", "adv.", "다만, ~할 뿐"]
+   [
+    "arose",
+    "v.",
+    "일어났다"
+   ],
+   [
+    "hungry",
+    "adj.",
+    "주린"
+   ],
+   [
+    "hide",
+    "v.",
+    "숨다"
+   ],
+   [
+    "catch alive",
+    "",
+    "사로잡다"
+   ]
   ],
-  "idi": [
-   ["save us alive", "우리를 살려 두다"]
-  ],
+  "idi": [],
   "gra": [
-   ["if they kill us, we shall but die", "조건절+귀결; but=only '죽을 따름이라'"]
+   [
+    "we be hungry",
+    "be는 가정법 현재; '우리가 주린'"
+   ],
+   [
+    "are they gone out",
+    "are gone은 완료의 고어형; '나갔다'"
+   ]
   ]
  },
  {
-  "en": "For the LORD had made the host of the Syrians to hear a noise of chariots ...",
-  "ko": "이는 주께서 시리아 군대로 병거 소리 ... 를 듣게 하셨음이라",
-  "note": "이 결정적 전환은 여호와의 행하심이다. '듣게 하셨다'(샤마, שָׁמַע의 사역형)는 하나님이 환청과도 같은 군대 소리로 적을 흩으셨음을 보인다 — 사람이 칼 한 번 들지 않고 승리가 주어졌다.",
+  "en": "And one of his servants answered and said, Let some take, I pray thee, five of the horses that remain, which are left in the city, (behold, they are as all the multitude of Israel that are left in it: behold, I say, they are even as all the multitude of the Israelites that are consumed:) and let us send and see.",
+  "ko": "그의 신하 중 하나가 대답하여 이르되 \"청하건대 성중에 남아 있는 말 다섯 마리를 가져오게 하소서. (보소서, 그것들은 성중에 남은 이스라엘 온 무리와 같으며, 보소서, 진멸된 이스라엘 온 무리와 같으니이다.) 우리가 사람을 보내어 보게 하사이다\" 하니라.",
+  "note": "신하가 남은 말 몇 마리로 정탐을 제안하며 성읍의 처참함을 토로함은, 기근으로 진멸된 백성의 참상을 드러낸다. 그럼에도 하나님의 구원은 이 절망의 밑바닥에서 확인되려 한다.",
   "voc": [
-   ["noise", "n.", "소리, 소음"],
-   ["chariots", "n.", "병거들"],
-   ["horses", "n.", "말들"],
-   ["hire", "v.", "삯을 주어 고용하다"],
-   ["Hittites", "n.", "헷 사람들"],
-   ["Egyptians", "n.", "애굽 사람들"]
+   [
+    "remain",
+    "v.",
+    "남다"
+   ],
+   [
+    "multitude",
+    "n.",
+    "무리"
+   ],
+   [
+    "consumed",
+    "adj.",
+    "진멸된"
+   ],
+   [
+    "send and see",
+    "",
+    "보내어 보다"
+   ]
   ],
+  "idi": [],
   "gra": [
-   ["had made ... to hear", "사역 과거완료(make+목적어+to부정사) '~로 …듣게 하셨다'"]
+   [
+    "they are as all the multitude",
+    "as는 '~와 같은'; 비교 표현"
+   ],
+   [
+    "that are consumed",
+    "consumed는 '진멸된'; 관계절"
+   ]
   ]
  },
  {
-  "en": "They arose and fled in the twilight ... and fled for their life.",
-  "ko": "해 질 무렵에 일어나 도망하되 ... 제 목숨을 위하여 달아났더라",
-  "note": "'twilight'(네쉡, נֶשֶׁף)은 동틀 녘이나 해 질 녘의 어스름을 가리킨다. 나병 환자들도 같은 '황혼'에 일어났으니(5절), 본문은 같은 시간대의 두 무리 — 도망하는 군대와 나아가는 버림받은 자들 — 을 대조한다.",
+  "en": "They took therefore two chariot horses; and the king sent after the host of the Syrians, saying, Go and see.",
+  "ko": "그들이 병거의 말 둘을 취하매, 왕이 시리아 군대를 쫓아 보내며 이르되 \"가서 보라\" 하니,",
+  "note": "왕이 병거의 말을 보내어 확인케 함은, 하나님의 구원을 눈으로 검증하려는 절차다. 의심은 남았으나, 진실은 곧 확증된다.",
   "voc": [
-   ["arose", "v.", "일어났다(arise)"],
-   ["fled", "v.", "도망하였다(flee)"],
-   ["twilight", "n.", "해 질 녘, 어스름"],
-   ["tents", "n.", "장막들"],
-   ["asses", "n.", "나귀들"]
+   [
+    "chariot horses",
+    "",
+    "병거의 말"
+   ],
+   [
+    "sent after",
+    "",
+    "쫓아 보냈다"
+   ],
+   [
+    "host",
+    "n.",
+    "군대"
+   ]
   ],
-  "idi": [
-   ["fled for their life", "목숨을 부지하려 달아났다"]
+  "idi": [],
+  "gra": [
+   [
+    "the king sent after the host",
+    "send after는 '뒤쫓아 보내다'"
+   ]
   ]
  },
  {
-  "en": "This day is a day of good tidings, and we hold our peace ...",
-  "ko": "오늘은 좋은 소식이 있는 날이거늘 우리가 잠잠하니",
-  "note": "'good tidings'(베소라, בְּשׂוֹרָה)는 '복된 소식'으로, 신약의 '복음'(유앙겔리온)과 같은 뿌리의 개념이다. 좋은 소식을 받은 자가 침묵함은 옳지 않다는 깨달음 — 구원의 소식은 나누어야 할 빚이다.",
+  "en": "And they went after them unto Jordan: and, lo, all the way was full of garments and vessels, which the Syrians had cast away in their haste. And the messengers returned, and told the king.",
+  "ko": "그들이 요단까지 그들을 쫓아가니, 보라, 온 길에 시리아 사람들이 급히 도망하며 버린 의복과 기물이 가득하였더라. 사자들이 돌아와 왕에게 고하매,",
+  "note": "온 길에 버려진 의복과 기물이 가득함은, 아람의 급박한 패주와 하나님의 구원의 실상을 눈으로 증언한다. 대적이 흘린 흔적마다 여호와의 승리가 새겨져 있다.",
   "voc": [
-   ["good tidings", "", "좋은 소식, 기쁜 소식"],
-   ["hold one's peace", "", "잠잠하다, 침묵하다"],
-   ["tarry", "v.", "머무르다, 지체하다"],
-   ["mischief", "n.", "재앙, 화"]
+   [
+    "garments",
+    "n.",
+    "의복"
+   ],
+   [
+    "vessels",
+    "n.",
+    "기물"
+   ],
+   [
+    "cast away",
+    "",
+    "버렸다"
+   ],
+   [
+    "haste",
+    "n.",
+    "급함"
+   ]
   ],
-  "idi": [
-   ["hold our peace", "잠잠히 있다, 입을 다물다"],
-   ["a day of good tidings", "좋은 소식이 있는 날"]
-  ],
+  "idi": [],
   "gra": [
-   ["if we tarry till the morning light, some mischief will come", "조건절(현재)+귀결(will) '지체하면 …미치리라'"]
+   [
+    "which the Syrians had cast away",
+    "had cast away는 과거완료; '버렸다'"
+   ],
+   [
+    "in their haste",
+    "haste는 '서두름'; '급히'"
+   ]
   ]
  },
  {
-  "en": "So a measure of fine flour was sold for a shekel ... according to the word of the LORD.",
-  "ko": "고운 가루 한 스아를 한 세겔에 팔고 ... 여호와의 말씀과 같이 되었더라",
-  "note": "1절의 예언이 글자 그대로 성취된다. '여호와의 말씀과 같이'(키드바르 아도나이)라는 후렴은 열왕기 전체의 핵심 주제로, 하나님의 말씀은 한 마디도 땅에 떨어지지 않음을 증언한다.",
+  "en": "And the people went out, and spoiled the tents of the Syrians. So a measure of fine flour was sold for a shekel, and two measures of barley for a shekel, according to the word of the LORD.",
+  "ko": "백성이 나가 시리아 사람들의 장막을 노략한지라, 이에 고운 가루 한 스아를 한 세겔에 팔고 보리 두 스아를 한 세겔에 파니, 여호와의 말씀과 같이 되었더라.",
+  "note": "백성이 진영을 노략하여 양식이 예언대로 값싸게 팔림은, 여호와의 말씀이 한 치도 어긋나지 않고 성취됨을 보인다. 절망의 밤이 지나 구원의 아침이 밝으니, 하나님의 약속은 반드시 이루어진다.",
   "voc": [
-   ["spoiled", "v.", "노략하였다"],
-   ["according to", "", "~을 따라, ~와 같이"],
-   ["word", "n.", "말씀"]
+   [
+    "spoiled",
+    "v.",
+    "노략하였다"
+   ],
+   [
+    "measure",
+    "n.",
+    "스아"
+   ],
+   [
+    "barley",
+    "n.",
+    "보리"
+   ],
+   [
+    "according to",
+    "",
+    "~와 같이"
+   ]
   ],
-  "idi": [
-   ["according to the word of the LORD", "여호와의 말씀과 같이"]
-  ],
+  "idi": [],
   "gra": [
-   ["was sold for a shekel", "수동태(be sold)+for(값) '한 세겔에 팔렸다'"]
+   [
+    "was sold for a shekel",
+    "was sold는 수동 과거; '팔렸다'"
+   ],
+   [
+    "according to the word of the LORD",
+    "말씀대로의 성취"
+   ]
   ]
  },
  {
-  "en": "The people trode upon him in the gate, and he died, as the man of God had said.",
-  "ko": "백성이 성문에서 그를 밟으매 그가 죽으니라, 하나님의 사람이 말한 바와 같이",
-  "note": "'trode'는 'tread'(밟다)의 고형 과거다. 풍요를 보되 먹지 못하리라던 2절의 경고가 그대로 이루어진다 — 말씀을 비웃은 장관은 그 풍요의 문턱에서 짓밟혀 죽으니, 불신은 곧 자기 심판이었다.",
+  "en": "And the king appointed the lord on whose hand he leaned to have the charge of the gate: and the people trode upon him in the gate, and he died, as the man of God had said, who spake when the king came down to him.",
+  "ko": "왕이 그가 의지하던 그 장관에게 성문을 맡겼더니, 백성이 성문에서 그를 밟으매 그가 죽으니라. 이는 왕이 하나님의 사람에게 내려왔을 때에 그가 말한 바와 같이 되었더라.",
+  "note": "조롱하던 장관이 성문에서 밟혀 죽음은, 불신앙의 선고(2절)가 그대로 이루어짐이다. 구원을 목도하고도 참여치 못한 그의 죽음은, 하나님의 말씀을 업신여긴 결과를 엄중히 증언한다.",
   "voc": [
-   ["trode", "v.", "밟았다(tread)"],
-   ["appoint", "v.", "맡기다, 세우다"],
-   ["charge", "n.", "맡은 일, 책임"],
-   ["man of God", "", "하나님의 사람(선지자)"]
+   [
+    "appointed",
+    "v.",
+    "맡겼다"
+   ],
+   [
+    "charge",
+    "n.",
+    "맡음, 책임"
+   ],
+   [
+    "trode",
+    "v.",
+    "밟았다"
+   ],
+   [
+    "died",
+    "v.",
+    "죽었다"
+   ]
   ],
-  "idi": [
-   ["man of God", "하나님의 사람(선지자)"],
-   ["have the charge of", "~을 맡다, 관할하다"]
-  ],
+  "idi": [],
   "gra": [
-   ["as the man of God had said", "as(~한 대로)+과거완료(had said) '말한 바와 같이'"]
+   [
+    "trode upon him",
+    "trode는 tread(밟다)의 고어 과거형"
+   ],
+   [
+    "who spake when the king came down",
+    "spake는 speak의 고어 과거형"
+   ]
+  ]
+ },
+ {
+  "en": "And it came to pass as the man of God had spoken to the king, saying, Two measures of barley for a shekel, and a measure of fine flour for a shekel, shall be to morrow about this time in the gate of Samaria:",
+  "ko": "하나님의 사람이 왕에게 말하여 이르기를 \"내일 이맘때에 사마리아 성문에서 보리 두 스아를 한 세겔에 팔고 고운 가루 한 스아를 한 세겔에 팔리라\" 하던 그대로 된지라,",
+  "note": "저자가 예언을 다시 인용함은, 하나님의 말씀과 그 성취의 정확한 일치를 독자에게 못박기 위함이다. 반복되는 이 확증은, 여호와의 말씀이 결코 헛되이 돌아오지 않음을 강조한다.",
+  "voc": [
+   [
+    "spoken",
+    "v.",
+    "말하였다"
+   ],
+   [
+    "measures",
+    "n.",
+    "스아 (복수)"
+   ],
+   [
+    "to morrow",
+    "",
+    "내일"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "as the man of God had spoken",
+    "had spoken은 과거완료; '말하였던 대로'"
+   ]
+  ]
+ },
+ {
+  "en": "And that lord answered the man of God, and said, Now, behold, if the LORD should make windows in heaven, might such a thing be? And he said, Behold, thou shalt see it with thine eyes, but shalt not eat thereof.",
+  "ko": "그 장관이 하나님의 사람에게 대답하여 이르기를 \"이제 보라, 여호와께서 하늘에 창을 내신들 이런 일이 있으리이까\" 하매, 그가 이르기를 \"보라, 네가 네 눈으로 보려니와 그것을 먹지는 못하리라\" 하였더니,",
+  "note": "장관의 조롱과 엘리사의 선고가 다시 인용됨은, 불신앙의 말과 그 대가를 나란히 대조한다. 하나님의 능력을 의심한 자의 최후는, 말씀의 확실성을 반증하는 표징이 된다.",
+  "voc": [
+   [
+    "windows",
+    "n.",
+    "창"
+   ],
+   [
+    "might such a thing be",
+    "",
+    "이런 일이 있으리이까"
+   ],
+   [
+    "thereof",
+    "adv.",
+    "그것을"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "if the LORD should make windows",
+    "should make는 가정법; '창을 내신들'"
+   ],
+   [
+    "shalt not eat thereof",
+    "thereof는 '그것을'을 뜻하는 고어 대명사"
+   ]
+  ]
+ },
+ {
+  "en": "And so it fell out unto him: for the people trode upon him in the gate, and he died.",
+  "ko": "그에게 그대로 이루어지니, 곧 백성이 성문에서 그를 밟으매 그가 죽었더라.",
+  "note": "'그에게 그대로 이루어지니'라는 결말은, 하나님의 말씀은 복이든 심판이든 반드시 성취됨을 확증한다. 밟혀 죽은 장관의 최후가, 여호와의 말씀의 신실하심을 마지막으로 인친다.",
+  "voc": [
+   [
+    "fell out",
+    "",
+    "이루어졌다"
+   ],
+   [
+    "trode",
+    "v.",
+    "밟았다"
+   ],
+   [
+    "gate",
+    "n.",
+    "성문"
+   ],
+   [
+    "died",
+    "v.",
+    "죽었다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "so it fell out unto him",
+    "fall out은 '일어나다, 이루어지다'의 고어 표현"
+   ]
   ]
  }
 ]
