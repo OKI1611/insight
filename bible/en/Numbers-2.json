@@ -1,92 +1,788 @@
 [
-  {
-    "en": "by his own standard",
-    "ko": "자기 기(旗) 곁에",
-    "note": "히브리어 '데겔'(דֶּגֶל, degel)은 큰 부대를 대표하는 '군기·깃발'을 뜻한다. 세 지파씩 묶인 네 진영이 각기 큰 기 아래 모였으니, 광야의 이스라엘이 질서 잡힌 군대로 행진했음을 보여 준다.",
-    "voc": [
-      ["by", "prep.", "~ 곁에, ~ 옆에"],
-      ["own", "adj.", "자기 자신의"],
-      ["standard", "n.", "군기, 깃발"]
-    ],
-    "gra": [
-      ["by his own standard", "전치사 'by'가 위치('~ 곁에')를 나타냄; 'his own'은 소유 강조"]
-    ]
-  },
-  {
-    "en": "with the ensign of their father's house",
-    "ko": "자기 조상의 집 표지 아래",
-    "note": "'오트'(אוֹת, ʾoth)는 '표·표지'를 뜻하며, 각 집안을 구별하는 작은 기호를 가리킨다. 큰 진영의 기('데겔')와 달리 가문 단위의 표지로, 큰 질서 안에 작은 질서가 있음을 나타낸다.",
-    "voc": [
-      ["ensign", "n.", "표지, 기호, 깃발"],
-      ["father's house", "n.", "조상의 집, 가문"]
-    ],
-    "gra": [
-      ["their father's house", "'father's'는 소유격('s); 'their father's house'는 '그들 조상의 집'"]
-    ]
-  },
-  {
-    "en": "shall they pitch",
-    "ko": "진을 치다",
-    "note": "'하나'(חָנָה, ḥanah)는 '장막을 치다·진을 치다'는 뜻이다. 회막을 한가운데 두고 둘러 진 친 배치는, 하나님이 백성 가운데 거하시며 그들의 중심이 되심을 형상화한다.",
-    "voc": [
-      ["shall", "aux.", "~할 것이다, ~하라 (규정·명령)"],
-      ["pitch", "v.", "(장막·진을) 치다"]
-    ],
-    "gra": [
-      ["shall they pitch", "강조를 위해 'shall'을 주어 앞에 둔 도치; 율법의 규정을 나타내는 'shall'"]
-    ]
-  },
-  {
-    "en": "captain",
-    "ko": "지휘관",
-    "note": "'나시'(נָשִׂיא, nasiʾ)는 '들어 올려진 자', 곧 지파의 우두머리·지도자를 뜻한다. KJV의 'captain'은 군사적 어감이나, 원어는 행정과 군사를 아우르는 지도자를 가리킨다.",
-    "voc": [
-      ["captain", "n.", "지휘관, 두령"]
-    ]
-  },
-  {
-    "en": "his host / those that were numbered",
-    "ko": "그의 군대 곧 계수된 자",
-    "note": "'차바'(צָבָא, tsavaʾ)는 '군대·싸움에 나갈 무리'를, '파카드'(פָּקַד, paqad)는 '점검하여 세다'를 뜻한다. 단순한 인구가 아니라 전쟁에 나설 수 있는 정예를 헤아린 것이다.",
-    "voc": [
-      ["host", "n.", "군대, 무리"],
-      ["number", "v.", "세다, 계수하다"]
-    ],
-    "gra": [
-      ["those that were numbered", "'those that ~'는 '~한 자들'; 'were numbered'는 수동태(계수되었다)"]
-    ]
-  },
-  {
-    "en": "in the midst of the camp",
-    "ko": "모든 진영 한가운데",
-    "note": "'베토크'(בְּתוֹךְ, betok)는 '한가운데·중앙에'를 뜻한다. 회막과 레위 진영이 네 진영의 정중앙에 놓였으니, 예배와 하나님의 임재가 공동체의 중심임을 공간으로 가르친다.",
-    "voc": [
-      ["midst", "n.", "한가운데, 중앙"],
-      ["camp", "n.", "진영, 야영지"]
-    ],
-    "idi": [
-      ["in the midst of", "~의 한가운데에"]
-    ]
-  },
-  {
-    "en": "These shall first set forth",
-    "ko": "먼저 진군하다",
-    "note": "'나사'(נָסַע, nasaʿ)는 '장막을 거두어 떠나다·진군하다'는 뜻이다. 동·남·서·북의 순서로 떠나는 행진의 차례를 정하여, 이동 중에도 흐트러지지 않는 질서를 세웠다.",
-    "voc": [
-      ["first", "adv.", "먼저, 첫째로"],
-      ["set forth", "v.", "출발하다, 떠나다"]
-    ],
-    "idi": [
-      ["set forth", "길을 떠나다, 진군하다"]
-    ]
-  },
-  {
-    "en": "the camp of the Levites",
-    "ko": "레위인의 진영",
-    "note": "'마하네'(מַחֲנֶה, maḥaneh)는 '진영'을 뜻한다. 레위 진영은 거룩한 회막을 떠메고 보호하는 임무를 맡아, 일반 군대의 계수에서 제외되어 따로 가운데 위치하였다.",
-    "voc": [
-      ["camp", "n.", "진영"],
-      ["Levites", "n.", "레위인 (레위 지파 사람들)"]
-    ]
-  }
+ {
+  "en": "And the LORD spake unto Moses and unto Aaron, saying,",
+  "ko": "여호와께서 모세와 아론에게 말씀하여 이르시되,",
+  "note": "2장은 진영 배치의 명령으로 시작된다. 여호와께서 모세와 아론에게 열두 지파를 성막을 중심으로 사방에 정렬시키라 하시니, 하나님의 임재가 백성 삶의 중심임을 공간으로 드러내신다.",
+  "voc": [
+   [
+    "spake",
+    "v.",
+    "말씀하셨다(speak의 고어 과거)"
+   ],
+   [
+    "saying",
+    "v.",
+    "이르시되"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "spake",
+    "speak의 고어 과거형으로 오늘날의 spoke에 해당한다."
+   ]
+  ]
+ },
+ {
+  "en": "Every man of the children of Israel shall pitch by his own standard, with the ensign of their father’s house: far off about the tabernacle of the congregation shall they pitch.",
+  "ko": "\"이스라엘 자손은 각기 자기 기(旗) 곁에, 자기 조상의 집 표지 아래 진을 칠 것이요, 회막에서 멀찍이 떨어져 그 둘레에 진을 칠지니라.\"",
+  "note": "각 사람은 자기 지파의 기(旗)와 조상의 집 표지 아래 진을 치되, 성막에서 '멀찍이 떨어져' 둘러 진을 친다. 하나님의 거룩하심에 대한 경외의 거리가 진영 배치에 담겨 있다.",
+  "voc": [
+   [
+    "pitch",
+    "v.",
+    "진을 치다"
+   ],
+   [
+    "standard",
+    "n.",
+    "기(旗), 군기"
+   ],
+   [
+    "ensign",
+    "n.",
+    "표지, 깃발"
+   ],
+   [
+    "far off",
+    "adv.",
+    "멀찍이 떨어져"
+   ]
+  ],
+  "idi": [
+   [
+    "far off about",
+    "~에서 멀찍이 떨어져 그 둘레에"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And on the east side toward the rising of the sun shall they of the standard of the camp of Judah pitch throughout their armies: and Nahshon the son of Amminadab shall be captain of the children of Judah.",
+  "ko": "해 돋는 동편에 진 칠 자는 유다 진영의 기에 속한 자들이니 그 군대대로 진 칠 것이요, 유다 자손의 지휘관은 암미나답의 아들 나손이며,",
+  "note": "동편, 곧 해 돋는 방향에는 유다 진영이 선다. 유다는 왕가와 메시아의 지파로 가장 영예로운 동편 선두에 배치되니, 하나님의 구원 계획의 우선순위가 진영에 새겨진다.",
+  "voc": [
+   [
+    "east",
+    "n.",
+    "동쪽"
+   ],
+   [
+    "camp",
+    "n.",
+    "진영"
+   ],
+   [
+    "captain",
+    "n.",
+    "지휘관, 대장"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "shall they ... pitch",
+    "조동사 shall 뒤에 주어 they가 도치된 고어적 어순이다."
+   ]
+  ]
+ },
+ {
+  "en": "And his host, and those that were numbered of them, were threescore and fourteen thousand and six hundred.",
+  "ko": "그의 군대 곧 계수된 자들은 칠만 사천육백 명이니라.",
+  "note": "유다의 군대는 칠만 사천육백 명으로 가장 큰 진영이었다. 선두에 선 지파가 가장 강성하니, 하나님이 앞장선 자를 든든히 세우심을 본다.",
+  "voc": [
+   [
+    "host",
+    "n.",
+    "군대, 무리"
+   ],
+   [
+    "numbered",
+    "v.",
+    "계수된"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "threescore and fourteen thousand",
+    "score는 20이므로 threescore는 60, 전체는 74,000을 뜻하는 고어식 수 표기다."
+   ]
+  ]
+ },
+ {
+  "en": "And those that do pitch next unto him shall be the tribe of Issachar: and Nethaneel the son of Zuar shall be captain of the children of Issachar.",
+  "ko": "그 곁에 진 칠 자는 잇사갈 지파니, 잇사갈 자손의 지휘관은 수알의 아들 느다넬이며,",
+  "note": "유다 곁에 잇사갈이 진을 친다. 지휘관은 수알의 아들 느다넬이다. 진영의 순서는 우연이 아니라 하나님이 정하신 질서였다.",
+  "voc": [
+   [
+    "next",
+    "adv.",
+    "다음으로, 곁에"
+   ],
+   [
+    "tribe",
+    "n.",
+    "지파"
+   ],
+   [
+    "Issachar",
+    "n.",
+    "잇사갈(지파)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "those that do pitch",
+    "do pitch는 강조를 위한 고어적 조동사 용법으로 '진을 치는 자들'을 뜻한다."
+   ]
+  ]
+ },
+ {
+  "en": "And his host, and those that were numbered thereof, were fifty and four thousand and four hundred.",
+  "ko": "그의 군대 곧 계수된 자들은 오만 사천사백 명이니라.",
+  "note": "잇사갈의 군대는 오만 사천사백 명이었다. 'thereof'는 '그것의'라는 고어로 앞서 언급한 지파를 가리킨다.",
+  "voc": [
+   [
+    "fifty",
+    "num.",
+    "오십"
+   ],
+   [
+    "four",
+    "num.",
+    "넷"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "numbered thereof",
+    "thereof는 'of it(그것의)'을 뜻하는 고어 부사다."
+   ]
+  ]
+ },
+ {
+  "en": "Then the tribe of Zebulun: and Eliab the son of Helon shall be captain of the children of Zebulun.",
+  "ko": "다음은 스불론 지파니, 스불론 자손의 지휘관은 헬론의 아들 엘리압이며,",
+  "note": "동편 셋째로 스불론이 배치된다. 유다·잇사갈·스불론은 모두 레아의 아들들로, 한 어머니의 자손이 동편 진영을 이룬다.",
+  "voc": [
+   [
+    "then",
+    "adv.",
+    "그 다음은"
+   ],
+   [
+    "Zebulun",
+    "n.",
+    "스불론(지파)"
+   ],
+   [
+    "captain",
+    "n.",
+    "지휘관"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And his host, and those that were numbered thereof, were fifty and seven thousand and four hundred.",
+  "ko": "그의 군대 곧 계수된 자들은 오만 칠천사백 명이니라.",
+  "note": "스불론의 군대는 오만 칠천사백 명이었다. 동편 세 지파가 모두 계수되어 선두 진영이 정돈된다.",
+  "voc": [
+   [
+    "seven",
+    "num.",
+    "일곱"
+   ],
+   [
+    "hundred",
+    "num.",
+    "백"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "All that were numbered in the camp of Judah were an hundred thousand and fourscore thousand and six thousand and four hundred, throughout their armies. These shall first set forth.",
+  "ko": "유다 진영에 계수된 자는 그 군대대로 모두 십팔만 육천사백 명이니, 이들이 먼저 진군할지니라.",
+  "note": "유다 진영의 총수는 십팔만 육천사백 명으로, '이들이 먼저 진군할지니라' 하신다. 가장 강한 진영이 앞장서 길을 여니, 하나님의 군대는 질서 있게 전진했다.",
+  "voc": [
+   [
+    "fourscore",
+    "num.",
+    "팔십(80)"
+   ],
+   [
+    "set forth",
+    "v.",
+    "진군하다, 출발하다"
+   ],
+   [
+    "first",
+    "adv.",
+    "먼저"
+   ]
+  ],
+  "idi": [
+   [
+    "set forth",
+    "길을 나서다, 진군하다"
+   ]
+  ],
+  "gra": [
+   [
+    "fourscore thousand",
+    "fourscore는 4×20=80을 뜻하므로 80,000을 나타내는 고어식 표현이다."
+   ]
+  ]
+ },
+ {
+  "en": "On the south side shall be the standard of the camp of Reuben according to their armies: and the captain of the children of Reuben shall be Elizur the son of Shedeur.",
+  "ko": "남편에는 르우벤 진영의 기가 있어 그 군대대로 진 칠 것이요, 르우벤 자손의 지휘관은 스데울의 아들 엘리술이며,",
+  "note": "남편에는 르우벤 진영이 선다. 지휘관은 스데울의 아들 엘리술이다. 르우벤은 장자이나 동편이 아닌 남편에 배치되니, 장자권이 유다에게로 옮겨졌음을 진영이 반영한다.",
+  "voc": [
+   [
+    "south",
+    "n.",
+    "남쪽"
+   ],
+   [
+    "standard",
+    "n.",
+    "기(旗)"
+   ],
+   [
+    "Reuben",
+    "n.",
+    "르우벤(지파)"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And his host, and those that were numbered thereof, were forty and six thousand and five hundred.",
+  "ko": "그의 군대 곧 계수된 자들은 사만 육천오백 명이니라.",
+  "note": "르우벤의 군대는 사만 육천오백 명이었다. 남편 진영의 첫 지파가 계수된다.",
+  "voc": [
+   [
+    "forty",
+    "num.",
+    "사십"
+   ],
+   [
+    "six",
+    "num.",
+    "여섯"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And those which pitch by him shall be the tribe of Simeon: and the captain of the children of Simeon shall be Shelumiel the son of Zurishaddai.",
+  "ko": "그 곁에 진 칠 자는 시므온 지파니, 시므온 자손의 지휘관은 수리삿대의 아들 슬루미엘이며,",
+  "note": "르우벤 곁에 시므온이 진을 친다. 르우벤과 시므온은 다 레아의 아들로, 남편 진영도 혈연을 따라 묶인다.",
+  "voc": [
+   [
+    "Simeon",
+    "n.",
+    "시므온(지파)"
+   ],
+   [
+    "captain",
+    "n.",
+    "지휘관"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And his host, and those that were numbered of them, were fifty and nine thousand and three hundred.",
+  "ko": "그의 군대 곧 계수된 자들은 오만 구천삼백 명이니라.",
+  "note": "시므온의 군대는 오만 구천삼백 명이었다. 남편 진영의 둘째 지파가 계수된다.",
+  "voc": [
+   [
+    "fifty",
+    "num.",
+    "오십"
+   ],
+   [
+    "nine",
+    "num.",
+    "아홉"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "Then the tribe of Gad: and the captain of the sons of Gad shall be Eliasaph the son of Reuel.",
+  "ko": "다음은 갓 지파니, 갓 자손의 지휘관은 르우엘의 아들 엘리아삽이며,",
+  "note": "남편 셋째로 갓이 배치된다. 갓의 지휘관 엘리아삽의 아버지가 여기서는 '르우엘'로, 1장의 '드우엘'과 표기가 다른데, 이는 히브리어 다렛(ד)과 레쉬(ר) 자모의 유사성에서 비롯된 이형(異形) 표기다.",
+  "voc": [
+   [
+    "Gad",
+    "n.",
+    "갓(지파)"
+   ],
+   [
+    "sons",
+    "n.",
+    "자손"
+   ],
+   [
+    "Reuel",
+    "n.",
+    "르우엘(인명)"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And his host, and those that were numbered of them, were forty and five thousand and six hundred and fifty.",
+  "ko": "그의 군대 곧 계수된 자들은 사만 오천육백오십 명이니라.",
+  "note": "갓의 군대는 사만 오천육백오십 명이었다. 남편 세 지파의 계수가 마무리된다.",
+  "voc": [
+   [
+    "five",
+    "num.",
+    "다섯"
+   ],
+   [
+    "fifty",
+    "num.",
+    "오십"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "All that were numbered in the camp of Reuben were an hundred thousand and fifty and one thousand and four hundred and fifty, throughout their armies. And they shall set forth in the second rank.",
+  "ko": "르우벤 진영에 계수된 자는 그 군대대로 모두 십오만 천사백오십 명이니, 이들이 둘째로 진군할지니라.",
+  "note": "르우벤 진영의 총수는 십오만 천사백오십 명으로, '둘째로 진군할지니라' 하신다. 진군 순서가 진영별로 정해져 광야의 행군이 혼란 없이 이루어졌다.",
+  "voc": [
+   [
+    "rank",
+    "n.",
+    "순서, 대열"
+   ],
+   [
+    "second",
+    "adj.",
+    "둘째의"
+   ],
+   [
+    "set forth",
+    "v.",
+    "진군하다"
+   ]
+  ],
+  "idi": [
+   [
+    "in the second rank",
+    "둘째 순서로, 두 번째 대열로"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Then the tabernacle of the congregation shall set forward with the camp of the Levites in the midst of the camp: as they encamp, so shall they set forward, every man in his place by their standards.",
+  "ko": "그 다음에 회막이 레위인의 진영과 함께 모든 진영 한가운데 있어 진군할 것이니, 그들이 진 친 그대로 진군하되 각기 자기 위치에서 자기 기를 따를지니라.",
+  "note": "회막이 레위인의 진영과 함께 모든 진영 한가운데 있어 진군한다. 하나님의 임재가 백성의 중심에서 함께 이동하니, 임마누엘의 원리가 광야 행군에 나타난다.",
+  "voc": [
+   [
+    "midst",
+    "n.",
+    "한가운데"
+   ],
+   [
+    "encamp",
+    "v.",
+    "진을 치다"
+   ],
+   [
+    "set forward",
+    "v.",
+    "진군하다, 나아가다"
+   ]
+  ],
+  "idi": [
+   [
+    "in the midst of the camp",
+    "진영 한가운데에"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "On the west side shall be the standard of the camp of Ephraim according to their armies: and the captain of the sons of Ephraim shall be Elishama the son of Ammihud.",
+  "ko": "서편에는 에브라임 진영의 기가 있어 그 군대대로 진 칠 것이요, 에브라임 자손의 지휘관은 암미훗의 아들 엘리사마며,",
+  "note": "서편에는 에브라임 진영이 선다. 지휘관은 암미훗의 아들 엘리사마다. 요셉의 자손이 서편 선두를 맡으니, 야곱의 유업이 진영 안에서 존귀히 여겨진다.",
+  "voc": [
+   [
+    "west",
+    "n.",
+    "서쪽"
+   ],
+   [
+    "Ephraim",
+    "n.",
+    "에브라임(지파)"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And his host, and those that were numbered of them, were forty thousand and five hundred.",
+  "ko": "그의 군대 곧 계수된 자들은 사만 오백 명이니라.",
+  "note": "에브라임의 군대는 사만 오백 명이었다. 서편 진영의 첫 지파가 계수된다.",
+  "voc": [
+   [
+    "forty",
+    "num.",
+    "사십"
+   ],
+   [
+    "hundred",
+    "num.",
+    "백"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And by him shall be the tribe of Manasseh: and the captain of the children of Manasseh shall be Gamaliel the son of Pedahzur.",
+  "ko": "그 곁에는 므낫세 지파가 있으니, 므낫세 자손의 지휘관은 브다술의 아들 가말리엘이며,",
+  "note": "에브라임 곁에 므낫세가 진을 친다. 요셉의 두 아들이 나란히 서편에 배치되어 형제가 함께 행군한다.",
+  "voc": [
+   [
+    "Manasseh",
+    "n.",
+    "므낫세(지파)"
+   ],
+   [
+    "captain",
+    "n.",
+    "지휘관"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And his host, and those that were numbered of them, were thirty and two thousand and two hundred.",
+  "ko": "그의 군대 곧 계수된 자들은 삼만 이천이백 명이니라.",
+  "note": "므낫세의 군대는 삼만 이천이백 명이었다. 지파 중 적은 편이나 하나님의 진영에서 제 몫을 감당한다.",
+  "voc": [
+   [
+    "thirty",
+    "num.",
+    "삼십"
+   ],
+   [
+    "two",
+    "num.",
+    "둘"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "Then the tribe of Benjamin: and the captain of the sons of Benjamin shall be Abidan the son of Gideoni.",
+  "ko": "다음은 베냐민 지파니, 베냐민 자손의 지휘관은 기드오니의 아들 아비단이며,",
+  "note": "서편 셋째로 베냐민이 배치된다. 라헬의 자손인 요셉(에브라임·므낫세)과 베냐민이 서편 진영을 이룬다.",
+  "voc": [
+   [
+    "Benjamin",
+    "n.",
+    "베냐민(지파)"
+   ],
+   [
+    "sons",
+    "n.",
+    "자손"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And his host, and those that were numbered of them, were thirty and five thousand and four hundred.",
+  "ko": "그의 군대 곧 계수된 자들은 삼만 오천사백 명이니라.",
+  "note": "베냐민의 군대는 삼만 오천사백 명이었다. 서편 세 진영의 계수가 마무리된다.",
+  "voc": [
+   [
+    "five",
+    "num.",
+    "다섯"
+   ],
+   [
+    "four",
+    "num.",
+    "넷"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "All that were numbered of the camp of Ephraim were an hundred thousand and eight thousand and an hundred, throughout their armies. And they shall go forward in the third rank.",
+  "ko": "에브라임 진영에 계수된 자는 그 군대대로 모두 십만 팔천백 명이니, 이들이 셋째로 진군할지니라.",
+  "note": "에브라임 진영의 총수는 십만 팔천백 명으로, '셋째로 진군할지니라' 하신다. 회막을 뒤따르는 진영으로 행군 순서를 지킨다.",
+  "voc": [
+   [
+    "third",
+    "adj.",
+    "셋째의"
+   ],
+   [
+    "go forward",
+    "v.",
+    "진군하다, 나아가다"
+   ]
+  ],
+  "idi": [
+   [
+    "in the third rank",
+    "셋째 순서로"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "The standard of the camp of Dan shall be on the north side by their armies: and the captain of the children of Dan shall be Ahiezer the son of Ammishaddai.",
+  "ko": "북편에는 단 진영의 기가 있어 그 군대대로 진 칠 것이요, 단 자손의 지휘관은 암미삿대의 아들 아히에셀이며,",
+  "note": "북편에는 단 진영이 선다. 지휘관은 암미삿대의 아들 아히에셀이다. 단은 후미를 맡아 온 진영의 뒤를 지키는 큰 지파였다.",
+  "voc": [
+   [
+    "north",
+    "n.",
+    "북쪽"
+   ],
+   [
+    "Dan",
+    "n.",
+    "단(지파)"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And his host, and those that were numbered of them, were threescore and two thousand and seven hundred.",
+  "ko": "그의 군대 곧 계수된 자들은 육만 이천칠백 명이니라.",
+  "note": "단의 군대는 육만 이천칠백 명으로 유다 다음으로 컸다. 후미를 지키는 지파가 강성하여 진영의 균형을 이룬다.",
+  "voc": [
+   [
+    "threescore",
+    "num.",
+    "예순(60)"
+   ],
+   [
+    "seven",
+    "num.",
+    "일곱"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "threescore and two thousand",
+    "threescore(60)에 two를 더한 62,000의 고어식 표기다."
+   ]
+  ]
+ },
+ {
+  "en": "And those that encamp by him shall be the tribe of Asher: and the captain of the children of Asher shall be Pagiel the son of Ocran.",
+  "ko": "그 곁에 진 칠 자는 아셀 지파니, 아셀 자손의 지휘관은 오그란의 아들 바기엘이며,",
+  "note": "단 곁에 아셀이 진을 친다. 지휘관은 오그란의 아들 바기엘이다. 북편 진영이 형성되어 사방 배치가 완성되어 간다.",
+  "voc": [
+   [
+    "Asher",
+    "n.",
+    "아셀(지파)"
+   ],
+   [
+    "encamp",
+    "v.",
+    "진을 치다"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And his host, and those that were numbered of them, were forty and one thousand and five hundred.",
+  "ko": "그의 군대 곧 계수된 자들은 사만 천오백 명이니라.",
+  "note": "아셀의 군대는 사만 천오백 명이었다. 북편 진영의 둘째 지파가 계수된다.",
+  "voc": [
+   [
+    "forty",
+    "num.",
+    "사십"
+   ],
+   [
+    "one",
+    "num.",
+    "하나"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "Then the tribe of Naphtali: and the captain of the children of Naphtali shall be Ahira the son of Enan.",
+  "ko": "다음은 납달리 지파니, 납달리 자손의 지휘관은 에난의 아들 아히라며,",
+  "note": "북편 셋째로 납달리가 배치된다. 단·아셀·납달리가 북편 진영을 이루어 열두 지파의 배치가 마무리된다.",
+  "voc": [
+   [
+    "Naphtali",
+    "n.",
+    "납달리(지파)"
+   ],
+   [
+    "captain",
+    "n.",
+    "지휘관"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And his host, and those that were numbered of them, were fifty and three thousand and four hundred.",
+  "ko": "그의 군대 곧 계수된 자들은 오만 삼천사백 명이니라.",
+  "note": "납달리의 군대는 오만 삼천사백 명이었다. 사방 열두 지파의 계수가 모두 완료된다.",
+  "voc": [
+   [
+    "fifty",
+    "num.",
+    "오십"
+   ],
+   [
+    "three",
+    "num.",
+    "셋"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "All they that were numbered in the camp of Dan were an hundred thousand and fifty and seven thousand and six hundred. They shall go hindmost with their standards.",
+  "ko": "단 진영에 계수된 자는 모두 십오만 칠천육백 명이니, 이들이 자기 기를 따라 맨 뒤에서 진군할지니라.",
+  "note": "단 진영의 총수는 십오만 칠천육백 명으로, '맨 뒤에서 진군할지니라' 하신다. 강한 지파가 후미를 지켜 온 백성을 보호하며 행군했다.",
+  "voc": [
+   [
+    "hindmost",
+    "adj.",
+    "맨 뒤의"
+   ],
+   [
+    "standards",
+    "n.",
+    "기(旗)들"
+   ]
+  ],
+  "idi": [
+   [
+    "go hindmost",
+    "맨 뒤에서 행군하다"
+   ]
+  ],
+  "gra": [
+   [
+    "hindmost",
+    "hind(뒤)에 최상급 -most가 붙은 고어식 형용사로 '가장 뒤의'를 뜻한다."
+   ]
+  ]
+ },
+ {
+  "en": "These are those which were numbered of the children of Israel by the house of their fathers: all those that were numbered of the camps throughout their hosts were six hundred thousand and three thousand and five hundred and fifty.",
+  "ko": "이들은 이스라엘 자손 중 그 조상의 집을 따라 계수된 자니, 진영별로 그 군대대로 계수된 자가 모두 육십만 삼천오백오십 명이니라.",
+  "note": "진영별로 계수된 총수는 육십만 삼천오백오십 명으로 1장의 수와 일치한다. 서로 다른 목적(계수와 배치)의 기록이 동일한 수로 확증되어 하나님의 정확하심을 드러낸다.",
+  "voc": [
+   [
+    "camps",
+    "n.",
+    "진영들"
+   ],
+   [
+    "hosts",
+    "n.",
+    "군대"
+   ],
+   [
+    "six",
+    "num.",
+    "여섯"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "But the Levites were not numbered among the children of Israel; as the LORD commanded Moses.",
+  "ko": "그러나 레위인은 이스라엘 자손 중에 계수되지 아니하였으니, 여호와께서 모세에게 명하신 바와 같으니라.",
+  "note": "레위인은 이 계수에서 제외되었으니 '여호와께서 모세에게 명하신 바와 같으니라.' 성막을 섬기는 지파는 군대의 수와 구별되어 거룩한 직무로 세워졌다.",
+  "voc": [
+   [
+    "Levites",
+    "n.",
+    "레위인"
+   ],
+   [
+    "commanded",
+    "v.",
+    "명하셨다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "as the LORD commanded",
+    "as는 '~하신 바와 같이'를 뜻하는 고어적 접속사 용법이다."
+   ]
+  ]
+ },
+ {
+  "en": "And the children of Israel did according to all that the LORD commanded Moses: so they pitched by their standards, and so they set forward, every one after their families, according to the house of their fathers.",
+  "ko": "이스라엘 자손이 여호와께서 모세에게 명하신 모든 것을 좇아 행하여, 그 기를 따라 진을 치고 또 진군하되 각기 자기 가족을 따라 자기 조상의 집대로 하니라.",
+  "note": "이스라엘 자손이 여호와께서 명하신 모든 것을 그대로 행하여 기를 따라 진 치고 진군했다. 2장도 온전한 순종의 선언으로 마무리되니, 하나님의 질서에 대한 순복이 언약 백성의 표지다.",
+  "voc": [
+   [
+    "according",
+    "prep.",
+    "~을 따라"
+   ],
+   [
+    "pitched",
+    "v.",
+    "진을 쳤다"
+   ],
+   [
+    "families",
+    "n.",
+    "가족, 가문"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "so they pitched ... so they set forward",
+    "so ... so ... 구문은 '그리하여 ~하고 또한 ~했다'를 뜻하는 고어적 병렬 강조 표현이다."
+   ]
+  ]
+ }
 ]
