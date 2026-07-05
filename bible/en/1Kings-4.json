@@ -2,148 +2,931 @@
  {
   "en": "So king Solomon was king over all Israel.",
   "ko": "이리하여 솔로몬 왕은 온 이스라엘을 다스리는 왕이 되었더라.",
-  "note": "히브리어 '멜레크'(melek, 왕)가 한 절에 거듭 울린다. 다윗에게 약속된 왕위가 솔로몬에게서 흔들림 없이 이어지니, 이 짧은 선언이 4장 통치 기록 전체의 머릿돌이다.",
+  "note": "솔로몬이 온 이스라엘의 왕이 되었다. 한 절의 요약이 통일 왕국의 안정을 선언한다. 이어지는 관리 명단이 그 통치의 조직을 보여준다.",
   "voc": [
-   ["king", "n.", "왕"],
-   ["over", "prep.", "~을 다스리는, ~위에"],
-   ["all Israel", "", "온 이스라엘"]
+   [
+    "king",
+    "n.",
+    "왕"
+   ],
+   [
+    "over",
+    "prep.",
+    "~위에, 다스리는"
+   ],
+   [
+    "all Israel",
+    "",
+    "온 이스라엘"
+   ]
   ],
-  "gra": [
-   ["king over all Israel", "over=지배·통치를 나타내는 전치사 '~을 다스리는'"]
-  ]
+  "idi": [],
+  "gra": []
  },
  {
   "en": "And these were the princes which he had; Azariah the son of Zadok the priest,",
   "ko": "그에게 있던 신하들은 이러하니, 사독의 아들 아사랴는 제사장이요,",
-  "note": "'사림'(sarim)은 단순한 귀족이 아니라 왕을 보좌하는 고위 관리를 가리킨다. 제사장 사독의 가문이 첫머리에 서니, 솔로몬의 나라는 예배의 질서 위에 세워진 통치였다.",
+  "note": "솔로몬의 신하 명단이 시작된다. 아사랴가 제사장이라는 첫머리는 하나님을 섬기는 직분이 국가 조직의 근간임을 보여준다. 신정 국가의 질서다.",
   "voc": [
-   ["princes", "n.", "고관, 신하"],
-   ["which", "rel.pron.", "~한 (관계대명사)"],
-   ["the son of", "", "~의 아들"],
-   ["priest", "n.", "제사장"]
+   [
+    "princes",
+    "n.",
+    "고관, 방백"
+   ],
+   [
+    "son of",
+    "",
+    "~의 아들"
+   ],
+   [
+    "priest",
+    "n.",
+    "제사장"
+   ]
   ],
-  "idi": [
-   ["the son of", "~의 아들"]
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "Elihoreph and Ahiah, the sons of Shisha, scribes; Jehoshaphat the son of Ahilud, the recorder.",
+  "ko": "시사의 아들들인 엘리호렙과 아히야는 서기관이요, 아힐룻의 아들 여호사밧은 사관(史官)이요,",
+  "note": "서기관과 사관이 열거된다. 서기관은 문서를, 사관(recorder)은 국사의 기록을 맡았다. 기록과 행정이 잘 갖춰진 나라의 체계를 보여준다.",
+  "voc": [
+   [
+    "scribes",
+    "n.",
+    "서기관"
+   ],
+   [
+    "recorder",
+    "n.",
+    "사관, 기록관"
+   ],
+   [
+    "sons",
+    "n.",
+    "아들들"
+   ]
   ],
-  "gra": [
-   ["the princes which he had", "which=관계대명사(목적격) '그가 가졌던 신하들'; 현대 영어라면 whom/that"]
-  ]
+  "idi": [],
+  "gra": []
  },
  {
   "en": "And Benaiah the son of Jehoiada was over the host: and Zadok and Abiathar were the priests:",
   "ko": "여호야다의 아들 브나야는 군대를 거느린 자요, 사독과 아비아달은 제사장이요,",
-  "note": "'차바'(tsaba)는 군대·군사를 뜻한다. 군대를 맡은 브나야와 제사장 사독·아비아달이 나란히 서니, 칼과 제단이 한 왕 아래 질서를 이룬 모습이다.",
+  "note": "브나야가 군대 장관, 사독과 아비아달이 제사장으로 언급된다. 아비아달은 파직되었으나(2:27) 공식 명단에는 옛 직함으로 남는다. 군권과 제사권의 배치가 나라의 두 기둥이다.",
   "voc": [
-   ["host", "n.", "군대, 무리"],
-   ["over the host", "", "군대를 거느린"],
-   ["priests", "n.", "제사장들"]
+   [
+    "host",
+    "n.",
+    "군대"
+   ],
+   [
+    "priests",
+    "n.",
+    "제사장들"
+   ],
+   [
+    "over",
+    "prep.",
+    "~을 관할하는"
+   ]
   ],
-  "gra": [
-   ["was over the host", "be over='~을 맡다/거느리다'; host는 옛 영어에서 '군대'를 뜻함"]
-  ]
+  "idi": [
+   [
+    "was over the host",
+    "군대를 관할하였다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And Azariah the son of Nathan was over the officers: and Zabud the son of Nathan was principal officer, and the king’s friend:",
+  "ko": "나단의 아들 아사랴는 관장들을 거느린 자요, 나단의 아들 사붓은 으뜸 관원이며 왕의 벗이요,",
+  "note": "관리들을 총괄하는 자와 왕의 벗이 언급된다. '왕의 벗(king's friend)'은 최측근 고문의 직함이다. 신뢰받는 조언자가 통치를 돕는다.",
+  "voc": [
+   [
+    "officers",
+    "n.",
+    "관리"
+   ],
+   [
+    "principal",
+    "adj.",
+    "으뜸가는"
+   ],
+   [
+    "friend",
+    "n.",
+    "벗, 친구"
+   ]
+  ],
+  "idi": [
+   [
+    "the king's friend",
+    "왕의 벗(측근 고문)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And Ahishar was over the household: and Adoniram the son of Abda was over the tribute.",
+  "ko": "아히살은 궁내(宮內)를 맡은 자요, 압다의 아들 아도니람은 부역을 맡은 자더라.",
+  "note": "궁내대신과 조공 감독이 언급된다. '조공(tribute)'은 부역과 세를 뜻한다. 대규모 건축 사업을 위한 노역 관리가 이미 조직되어 있다.",
+  "voc": [
+   [
+    "household",
+    "n.",
+    "궁궐, 살림"
+   ],
+   [
+    "tribute",
+    "n.",
+    "조공, 부역"
+   ],
+   [
+    "over",
+    "prep.",
+    "~을 맡은"
+   ]
+  ],
+  "idi": [
+   [
+    "over the household",
+    "궁내를 관할하는"
+   ]
+  ],
+  "gra": []
  },
  {
   "en": "And Solomon had twelve officers over all Israel, which provided victuals for the king and his household: each man his month in a year made provision.",
   "ko": "솔로몬에게는 온 이스라엘을 다스리는 열두 관장이 있어 왕과 그의 왕실을 위하여 양식을 마련하였으니, 각 사람이 일 년 중 한 달씩 양식을 대었더라.",
-  "note": "열둘이라는 수는 이스라엘 열두 지파를 떠올리게 한다. 한 사람이 한 달씩 왕실을 책임지니, 솔로몬의 풍요는 우연이 아니라 잘 짜인 행정의 열매였다.",
+  "note": "열두 지방 관장이 왕실 양식을 대었다. 각기 일 년에 한 달씩 맡음은 열두 달과 열두 지파에 상응하는 정연한 조직이다. 온 나라가 왕실을 함께 떠받든다.",
   "voc": [
-   ["officers", "n.", "관장, 관리"],
-   ["victuals", "n.", "양식, 식량"],
-   ["household", "n.", "집안, 왕실"],
-   ["provision", "n.", "양식, 식량 조달"]
+   [
+    "officers",
+    "n.",
+    "관장"
+   ],
+   [
+    "victuals",
+    "n.",
+    "양식"
+   ],
+   [
+    "provision",
+    "n.",
+    "공급, 준비"
+   ]
   ],
   "idi": [
-   ["make provision", "양식을 마련하다, 준비하다"]
+   [
+    "made provision",
+    "양식을 준비하였다"
+   ]
   ],
-  "gra": [
-   ["each man his month in a year made provision", "each man ... made='각 사람이 ~을 마련하였다'; his month=부사적 시간 '자기 (맡은) 달에'"]
-  ]
+  "gra": []
+ },
+ {
+  "en": "And these are their names: The son of Hur, in mount Ephraim:",
+  "ko": "그들의 이름은 이러하니, 에브라임 산지에는 훌의 아들이요,",
+  "note": "지방 관장의 이름이 나열되기 시작한다. 에브라임 산지의 관장을 필두로 각 지역의 책임자가 열거된다. 세밀한 행정 구획이 통치의 안정을 뒷받침한다.",
+  "voc": [
+   [
+    "names",
+    "n.",
+    "이름"
+   ],
+   [
+    "mount",
+    "n.",
+    "산지"
+   ],
+   [
+    "Ephraim",
+    "n.",
+    "에브라임(지명)"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "The son of Dekar, in Makaz, and in Shaalbim, and Bethshemesh, and Elonbethhanan:",
+  "ko": "마가스와 사알빔과 벧세메스와 엘론벧하난에는 데겔의 아들이요,",
+  "note": "마가스, 사알빔 등 여러 성읍의 관장이 언급된다. 지명의 나열은 솔로몬 왕국의 영토와 조직의 광대함을 증거한다. 하나님이 주신 땅의 풍요다.",
+  "voc": [
+   [
+    "Makaz",
+    "n.",
+    "마가스(지명)"
+   ],
+   [
+    "Bethshemesh",
+    "n.",
+    "벧세메스(지명)"
+   ],
+   [
+    "son",
+    "n.",
+    "아들"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "The son of Hesed, in Aruboth; to him pertained Sochoh, and all the land of Hepher:",
+  "ko": "아룹봇에는 헤셋의 아들이니, 소고와 헤벨의 온 땅이 그에게 속하였고,",
+  "note": "헤벨 온 땅을 관할한 관장이 언급된다. 소고와 헤벨 땅까지 이르는 관할은 넓은 영토의 관리 체계를 보여준다. 질서 있는 분담이 평화를 유지한다.",
+  "voc": [
+   [
+    "pertained",
+    "v.",
+    "속하였다"
+   ],
+   [
+    "land",
+    "n.",
+    "땅"
+   ],
+   [
+    "Hepher",
+    "n.",
+    "헤벨(지명)"
+   ]
+  ],
+  "idi": [
+   [
+    "to him pertained",
+    "그에게 속하였다(관할하였다)"
+   ]
+  ],
+  "gra": []
  },
  {
   "en": "The son of Abinadab, in all the region of Dor; which had Taphath the daughter of Solomon to wife:",
   "ko": "돌의 온 지방에는 아비나답의 아들이니, 그는 솔로몬의 딸 다밧을 아내로 삼았고,",
-  "note": "관장이 왕의 사위가 되었다는 짧은 기록은 통치의 실상을 비춘다. 솔로몬은 딸을 통해 지방 관리들과 혈연으로 묶어 나라를 더욱 단단히 했다.",
+  "note": "돌 지방 관장은 솔로몬의 딸을 아내로 삼았다. 왕실과 관장의 혼인은 통치의 결속을 다진다. 정략적 유대가 나라의 안정을 도모한다.",
   "voc": [
-   ["region", "n.", "지방, 지역"],
-   ["daughter", "n.", "딸"],
-   ["to wife", "", "아내로"]
+   [
+    "region",
+    "n.",
+    "지방"
+   ],
+   [
+    "Dor",
+    "n.",
+    "돌(지명)"
+   ],
+   [
+    "wife",
+    "n.",
+    "아내"
+   ]
   ],
   "idi": [
-   ["take ... to wife", "~을 아내로 삼다"]
+   [
+    "had ... to wife",
+    "~를 아내로 삼았다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Baana the son of Ahilud; to him pertained Taanach and Megiddo, and all Bethshean, which is by Zartanah beneath Jezreel, from Bethshean to Abelmeholah, even unto the place that is beyond Jokneam:",
+  "ko": "다아낙과 므깃도와 이스르엘 아래 사르단 곁에 있는 온 벧스안 곧 벧스안에서 아벨므홀라에 이르고 욕느암 너머에까지 미치는 땅은 아힐룻의 아들 바아나에게 속하였고,",
+  "note": "바아나가 다아낙, 므깃도, 벧스안 지역을 관할했다. 이스르엘 골짜기의 요충지들을 포함함은 이 지역이 곡창이며 전략 요지였음을 보여준다.",
+  "voc": [
+   [
+    "Taanach",
+    "n.",
+    "다아낙(지명)"
+   ],
+   [
+    "Megiddo",
+    "n.",
+    "므깃도(지명)"
+   ],
+   [
+    "beneath",
+    "prep.",
+    "아래에"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "The son of Geber, in Ramothgilead; to him pertained the towns of Jair the son of Manasseh, which are in Gilead; to him also pertained the region of Argob, which is in Bashan, threescore great cities with walls and brasen bars:",
+  "ko": "라못길르앗에는 게벨의 아들이니, 길르앗에 있는 므낫세의 아들 야일의 마을들이 그에게 속하였고 또 바산에 있는 아르곱 지방 곧 성벽과 놋쇠 빗장이 있는 큰 성읍 예순이 그에게 속하였고,",
+  "note": "길르앗 라못 지방과 바산의 견고한 성읍들이 언급된다. '놋빗장 있는 성벽의 큰 성읍 육십'은 요단 동편의 견고한 방비를 보여준다. 왕국의 위엄이 성읍의 규모로 드러난다.",
+  "voc": [
+   [
+    "towns",
+    "n.",
+    "성읍"
+   ],
+   [
+    "region",
+    "n.",
+    "지방"
+   ],
+   [
+    "brasen bars",
+    "",
+    "놋빗장"
+   ]
+  ],
+  "idi": [
+   [
+    "threescore great cities",
+    "육십 개의 큰 성읍"
+   ],
+   [
+    "brasen bars",
+    "놋빗장"
+   ]
   ],
   "gra": [
-   ["which had Taphath ... to wife", "had ... to wife='~을 아내로 두었다/삼았다'(옛 표현); which=그 관장을 가리킴"]
+   [
+    "threescore",
+    "threescore=60의 고어 수사(score=20)"
+   ]
   ]
+ },
+ {
+  "en": "Ahinadab the son of Iddo had Mahanaim:",
+  "ko": "마하나임에는 잇도의 아들 아히나답이요,",
+  "note": "마하나임 지방 관장이 언급된다. 요단 동편의 마하나임은 다윗이 압살롬을 피하던 곳이다. 이제 평화로운 통치의 한 구역이 되었다.",
+  "voc": [
+   [
+    "Ahinadab",
+    "n.",
+    "아히나답(인명)"
+   ],
+   [
+    "Mahanaim",
+    "n.",
+    "마하나임(지명)"
+   ],
+   [
+    "had",
+    "v.",
+    "맡았다"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "Ahimaaz was in Naphtali; he also took Basmath the daughter of Solomon to wife:",
+  "ko": "납달리에는 아히마아스니, 그도 솔로몬의 딸 바스맛을 아내로 삼았고,",
+  "note": "납달리 관장 아히마아스도 솔로몬의 딸과 혼인했다. 왕가와의 겹친 혼인은 지방 관장들의 충성을 확보하는 방편이었다. 결속을 통한 통일의 유지다.",
+  "voc": [
+   [
+    "Naphtali",
+    "n.",
+    "납달리(지명)"
+   ],
+   [
+    "Basmath",
+    "n.",
+    "바스맛(인명)"
+   ],
+   [
+    "wife",
+    "n.",
+    "아내"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "Baanah the son of Hushai was in Asher and in Aloth:",
+  "ko": "아셀과 아롯에는 후새의 아들 바아나요,",
+  "note": "아셀과 아롯 지방 관장이 언급된다. 북쪽 지경까지 이르는 관할은 온 이스라엘을 아우르는 통일 왕권의 범위를 보여준다.",
+  "voc": [
+   [
+    "Asher",
+    "n.",
+    "아셀(지명)"
+   ],
+   [
+    "Aloth",
+    "n.",
+    "아롯(지명)"
+   ],
+   [
+    "son",
+    "n.",
+    "아들"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "Jehoshaphat the son of Paruah, in Issachar:",
+  "ko": "잇사갈에는 바루아의 아들 여호사밧이요,",
+  "note": "잇사갈 지방 관장이 언급된다. 계속되는 지파별 관할의 나열은 하나님이 나누신 기업의 땅이 온전히 다스려짐을 보여준다.",
+  "voc": [
+   [
+    "Jehoshaphat",
+    "n.",
+    "여호사밧(인명)"
+   ],
+   [
+    "Issachar",
+    "n.",
+    "잇사갈(지명)"
+   ],
+   [
+    "Paruah",
+    "n.",
+    "바루아(인명)"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "Shimei the son of Elah, in Benjamin:",
+  "ko": "베냐민에는 엘라의 아들 시므이요,",
+  "note": "베냐민 지방 관장이 언급된다. 다윗과 솔로몬의 지파 유다에 인접한 베냐민까지 조직에 포함됨은 통일의 완성을 보여준다.",
+  "voc": [
+   [
+    "Shimei",
+    "n.",
+    "시므이(인명)"
+   ],
+   [
+    "Benjamin",
+    "n.",
+    "베냐민(지명)"
+   ],
+   [
+    "Elah",
+    "n.",
+    "엘라(인명)"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "Geber the son of Uri was in the country of Gilead, in the country of Sihon king of the Amorites, and of Og king of Bashan; and he was the only officer which was in the land.",
+  "ko": "길르앗 땅 곧 아모리 사람의 왕 시혼과 바산 왕 옥의 땅에는 우리의 아들 게벨이니, 그는 그 땅에 있는 유일한 관장이더라.",
+  "note": "길르앗 땅, 곧 아모리 왕 시혼과 바산 왕 옥의 땅 관장이 언급된다. 이스라엘이 정복한 옛 대적의 땅까지 다스림은 하나님이 주신 승리의 열매다.",
+  "voc": [
+   [
+    "Gilead",
+    "n.",
+    "길르앗(지명)"
+   ],
+   [
+    "Amorites",
+    "n.",
+    "아모리 사람"
+   ],
+   [
+    "only officer",
+    "",
+    "유일한 관장"
+   ]
+  ],
+  "idi": [],
+  "gra": []
  },
  {
   "en": "Judah and Israel were many, as the sand which is by the sea in multitude, eating and drinking, and making merry.",
   "ko": "유다와 이스라엘은 바닷가의 모래같이 수가 많아 먹고 마시며 즐거워하였더라.",
-  "note": "'바닷가의 모래같이'는 아브라함에게 주신 약속(창 22:17)의 메아리다. 먹고 마시며 즐거워하는 백성의 모습은, 약속이 이루어진 평화의 시대를 그림처럼 보여 준다.",
+  "note": "유다와 이스라엘이 바닷가 모래같이 많았다. 아브라함 언약(창 22:17)의 성취다. '먹고 마시며 즐거워하였다'는 태평성대의 풍요와 기쁨을 그린다.",
   "voc": [
-   ["many", "adj.", "많은, 수가 많은"],
-   ["sand", "n.", "모래"],
-   ["multitude", "n.", "무리, 많음"],
-   ["make merry", "", "즐거워하다, 흥겨워하다"]
+   [
+    "multitude",
+    "n.",
+    "많음"
+   ],
+   [
+    "sand",
+    "n.",
+    "모래"
+   ],
+   [
+    "sea",
+    "n.",
+    "바다"
+   ]
   ],
   "idi": [
-   ["as the sand by the sea", "바닷가의 모래같이 (수없이 많은)"],
-   ["make merry", "즐거워하다, 잔치를 벌이다"]
+   [
+    "as the sand which is by the sea",
+    "바닷가의 모래같이(무수히 많음)"
+   ]
   ],
-  "gra": [
-   ["eating and drinking, and making merry", "분사구문 '먹고 마시며 즐거워하면서' — 백성의 상태를 묘사"]
-  ]
+  "gra": []
+ },
+ {
+  "en": "And Solomon reigned over all kingdoms from the river unto the land of the Philistines, and unto the border of Egypt: they brought presents, and served Solomon all the days of his life.",
+  "ko": "솔로몬은 그 강에서부터 블레셋 사람의 땅과 애굽 경계에 이르기까지 모든 왕국을 다스리니, 그들이 예물을 가져와 솔로몬이 사는 모든 날 동안 그를 섬겼더라.",
+  "note": "솔로몬이 유브라데강에서 애굽 지경까지 다스렸다. 열국이 조공을 바침은 아브라함에게 약속된 땅의 범위(창 15:18)의 성취다. 하나님의 언약이 역사 속에 이루어진다.",
+  "voc": [
+   [
+    "reigned",
+    "v.",
+    "다스렸다"
+   ],
+   [
+    "kingdoms",
+    "n.",
+    "왕국들"
+   ],
+   [
+    "presents",
+    "n.",
+    "예물, 조공"
+   ]
+  ],
+  "idi": [
+   [
+    "brought presents",
+    "조공을 바쳤다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And Solomon’s provision for one day was thirty measures of fine flour, and threescore measures of meal,",
+  "ko": "솔로몬의 하루 양식은 고운 가루 삼십 고르와 굵은 가루 육십 고르요,",
+  "note": "솔로몬의 하루 식량이 열거된다. 고운 가루 삼십 고르, 굵은 가루 육십 고르의 엄청난 양은 왕실 규모와 나라의 풍요를 보여준다. 태평성대의 물질적 증거다.",
+  "voc": [
+   [
+    "provision",
+    "n.",
+    "양식"
+   ],
+   [
+    "measures",
+    "n.",
+    "고르(용량 단위)"
+   ],
+   [
+    "meal",
+    "n.",
+    "가루"
+   ]
+  ],
+  "idi": [
+   [
+    "fine flour",
+    "고운 가루"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Ten fat oxen, and twenty oxen out of the pastures, and an hundred sheep, beside harts, and roebucks, and fallowdeer, and fatted fowl.",
+  "ko": "살진 소 열 마리와 목장의 소 스무 마리와 양 백 마리며, 그 외에 수사슴과 노루와 누런 사슴과 살진 새들이더라.",
+  "note": "살진 소, 목장의 소, 양, 사슴 등이 열거된다. 풍성한 육류 공급은 솔로몬 시대의 번영을 상징한다. 하나님의 복이 넘치는 시대의 그림이다.",
+  "voc": [
+   [
+    "oxen",
+    "n.",
+    "소"
+   ],
+   [
+    "harts",
+    "n.",
+    "수사슴"
+   ],
+   [
+    "fatted fowl",
+    "",
+    "살진 새"
+   ]
+  ],
+  "idi": [
+   [
+    "fatted fowl",
+    "살진 새(사육한 새)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "For he had dominion over all the region on this side the river, from Tiphsah even to Azzah, over all the kings on this side the river: and he had peace on all sides round about him.",
+  "ko": "그가 그 강 이편의 온 지방 곧 딥사에서부터 가사에 이르기까지 그 강 이편의 모든 왕을 다스렸으니, 그를 둘러싼 사방이 다 평안하였더라.",
+  "note": "솔로몬이 강 이편을 다 다스려 사방에 평화가 있었다. 딥사에서 가사까지의 지경과 '사방에 화평'은 그 이름 솔로몬(샬로모, 평화)에 걸맞은 통치를 보여준다.",
+  "voc": [
+   [
+    "dominion",
+    "n.",
+    "통치권"
+   ],
+   [
+    "peace",
+    "n.",
+    "평화"
+   ],
+   [
+    "on all sides",
+    "",
+    "사방에"
+   ]
+  ],
+  "idi": [
+   [
+    "he had peace on all sides",
+    "사방에 평화가 있었다"
+   ]
+  ],
+  "gra": []
  },
  {
   "en": "And Judah and Israel dwelt safely, every man under his vine and under his fig tree, from Dan even to Beersheba, all the days of Solomon.",
   "ko": "솔로몬이 사는 모든 날 동안 유다와 이스라엘은 단에서부터 브엘세바에 이르기까지 각기 자기 포도나무와 무화과나무 아래에서 안전히 살았더라.",
-  "note": "'자기 포도나무와 무화과나무 아래'는 성경에서 평화와 안식의 그림이다(미 4:4). 솔로몬의 평화는 장차 참된 평강의 왕이 이루실 메시아 왕국의 그림자다.",
+  "note": "각 사람이 포도나무와 무화과나무 아래 안연히 살았다. 이는 메시아적 평화의 상징(미 4:4, 슥 3:10)이다. 솔로몬의 태평성대가 장차 올 그리스도의 나라를 예표한다.",
   "voc": [
-   ["dwell", "v.", "거하다, 살다"],
-   ["safely", "adv.", "안전히"],
-   ["vine", "n.", "포도나무"],
-   ["fig tree", "", "무화과나무"]
+   [
+    "safely",
+    "adv.",
+    "안전하게"
+   ],
+   [
+    "vine",
+    "n.",
+    "포도나무"
+   ],
+   [
+    "fig tree",
+    "",
+    "무화과나무"
+   ]
   ],
   "idi": [
-   ["from Dan even to Beersheba", "단에서 브엘세바까지 (이스라엘 온 땅을 가리키는 관용 표현)"],
-   ["under his vine and fig tree", "자기 포도나무와 무화과나무 아래 (평화와 번영의 상징)"]
+   [
+    "under his vine and under his fig tree",
+    "자기 포도나무와 무화과나무 아래(평화와 안전)"
+   ]
   ],
-  "gra": [
-   ["every man under his vine", "every man=각 사람; 분배의 의미 '저마다 자기 ~ 아래에'"]
-  ]
+  "gra": []
+ },
+ {
+  "en": "And Solomon had forty thousand stalls of horses for his chariots, and twelve thousand horsemen.",
+  "ko": "솔로몬에게는 병거를 끄는 말의 외양간 사만과 마병 만 이천이 있었더라.",
+  "note": "솔로몬의 병거와 마병의 규모가 언급된다. 말 사만과 마병 일만 이천은 군사력의 위용을 보여준다. 다만 신명기 17:16의 경계는 후일의 문제를 예고한다.",
+  "voc": [
+   [
+    "stalls",
+    "n.",
+    "외양간, 마구간"
+   ],
+   [
+    "horses",
+    "n.",
+    "말"
+   ],
+   [
+    "chariots",
+    "n.",
+    "병거"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And those officers provided victual for king Solomon, and for all that came unto king Solomon’s table, every man in his month: they lacked nothing.",
+  "ko": "그 관장들은 각기 자기 달에 솔로몬 왕과 솔로몬 왕의 상에 나아오는 모든 자를 위하여 양식을 마련하였으니, 부족함이 없게 하였더라.",
+  "note": "지방 관장들이 부족함 없이 왕실을 공궤하였다. '부족함이 없게 하였다'는 조직의 완벽함을 보여준다. 질서 있는 나라의 풍요는 우연이 아니라 관리의 열매다.",
+  "voc": [
+   [
+    "victuals",
+    "n.",
+    "양식"
+   ],
+   [
+    "lacked",
+    "v.",
+    "부족하였다"
+   ],
+   [
+    "nothing",
+    "pron.",
+    "아무것도"
+   ]
+  ],
+  "idi": [
+   [
+    "they lacked nothing",
+    "부족한 것이 없었다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Barley also and straw for the horses and dromedaries brought they unto the place where the officers were, every man according to his charge.",
+  "ko": "또한 그들은 말과 빠른 낙타를 위한 보리와 짚을 각기 자기에게 맡겨진 대로 관장들이 있는 곳으로 가져왔더라.",
+  "note": "말과 준마를 위한 보리와 짚도 공급되었다. 세밀한 병참까지 갖춰진 조직은 나라의 체계가 얼마나 정연했는지 보여준다. 형통은 준비된 자에게 임한다.",
+  "voc": [
+   [
+    "barley",
+    "n.",
+    "보리"
+   ],
+   [
+    "straw",
+    "n.",
+    "짚"
+   ],
+   [
+    "dromedaries",
+    "n.",
+    "준마, 낙타"
+   ]
+  ],
+  "idi": [],
+  "gra": []
  },
  {
   "en": "And God gave Solomon wisdom and understanding exceeding much, and largeness of heart, even as the sand that is on the sea shore.",
   "ko": "하나님이 솔로몬에게 지극히 많은 지혜와 명철과 넓은 마음을 주시니, 바닷가의 모래같이 헤아릴 수 없었더라.",
-  "note": "지혜는 솔로몬이 쌓은 것이 아니라 '하나님이 주신' 선물이다. 히브리어 '호크마'(chokmah, 지혜)는 단지 지식이 아니라 삶을 바르게 살아 내는 분별이니, 참 지혜는 위로부터 온다(약 1:5).",
+  "note": "하나님이 솔로몬에게 지혜와 넓은 마음을 주셨다. '바닷가 모래같이 넓은 마음(largeness of heart)'은 무한한 이해력의 은유다. 하나님이 약속대로 넘치게 채우신다.",
   "voc": [
-   ["wisdom", "n.", "지혜"],
-   ["understanding", "n.", "명철, 깨달음"],
-   ["exceeding", "adv.", "지극히, 매우"],
-   ["largeness of heart", "", "넓은 마음, 큰 도량"]
+   [
+    "wisdom",
+    "n.",
+    "지혜"
+   ],
+   [
+    "understanding",
+    "n.",
+    "명철"
+   ],
+   [
+    "largeness",
+    "n.",
+    "넓음"
+   ]
   ],
   "idi": [
-   ["exceeding much", "지극히 많은, 심히 많은"]
+   [
+    "largeness of heart, even as the sand",
+    "바닷가 모래같이 넓은 마음"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And Solomon’s wisdom excelled the wisdom of all the children of the east country, and all the wisdom of Egypt.",
+  "ko": "솔로몬의 지혜가 동방 모든 사람의 지혜와 애굽의 온 지혜보다 뛰어나니,",
+  "note": "솔로몬의 지혜가 동방과 애굽의 모든 지혜보다 뛰어났다. 당대 지혜의 본거지들을 능가함은 그의 지혜가 하나님이 주신 특별한 것임을 증거한다.",
+  "voc": [
+   [
+    "excelled",
+    "v.",
+    "뛰어났다"
+   ],
+   [
+    "wisdom",
+    "n.",
+    "지혜"
+   ],
+   [
+    "east country",
+    "",
+    "동방"
+   ]
+  ],
+  "idi": [
+   [
+    "excelled the wisdom of all",
+    "모든 지혜를 능가하였다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "For he was wiser than all men; than Ethan the Ezrahite, and Heman, and Chalcol, and Darda, the sons of Mahol: and his fame was in all nations round about.",
+  "ko": "그가 모든 사람보다 지혜로워 에스라 사람 에단과 마홀의 아들들인 헤만과 갈골과 다르다보다 나으니, 그의 명성이 사방 모든 나라에 퍼졌더라.",
+  "note": "솔로몬이 당대의 현자들보다 지혜로웠다. 에단, 헤만 등 이름난 지혜자들을 능가함은 그의 명성이 열방에 퍼졌음을 뜻한다. 하나님의 은혜가 그를 높이셨다.",
+  "voc": [
+   [
+    "wiser",
+    "adj.",
+    "더 지혜로운"
+   ],
+   [
+    "fame",
+    "n.",
+    "명성"
+   ],
+   [
+    "round about",
+    "",
+    "사방에"
+   ]
+  ],
+  "idi": [
+   [
+    "his fame was in all nations",
+    "그의 명성이 온 나라에 퍼졌다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And he spake three thousand proverbs: and his songs were a thousand and five.",
+  "ko": "그가 잠언 삼천 가지를 말하였고, 그의 노래는 천다섯 편이더라.",
+  "note": "솔로몬이 잠언 삼천과 노래 천다섯을 지었다. 방대한 저술은 그의 지혜의 풍성함을 보여준다. 잠언과 아가서 등이 그 열매로 남았다.",
+  "voc": [
+   [
+    "spake",
+    "v.",
+    "말하였다, 지었다"
+   ],
+   [
+    "proverbs",
+    "n.",
+    "잠언"
+   ],
+   [
+    "songs",
+    "n.",
+    "노래"
+   ]
+  ],
+  "idi": [
+   [
+    "three thousand proverbs",
+    "삼천 잠언"
+   ]
   ],
   "gra": [
-   ["wisdom ... exceeding much", "exceeding=부사로 형용사를 강조하는 옛 용법 '대단히'; 현대 영어 exceedingly"]
+   [
+    "his songs were a thousand and five",
+    "were=복수 주어에 맞춘 고어 be동사"
+   ]
   ]
  },
  {
   "en": "And he spake of trees, from the cedar tree that is in Lebanon even unto the hyssop that springeth out of the wall: he spake also of beasts, and of fowl, and of creeping things, and of fishes.",
   "ko": "그가 나무를 논하되 레바논의 백향목으로부터 담에서 자라나는 우슬초에 이르렀고, 또 짐승과 새와 기는 것과 물고기를 논하였더라.",
-  "note": "가장 큰 백향목에서 가장 작은 우슬초까지, 솔로몬의 지혜는 창조 세계 전체를 꿰뚫었다. 짐승과 새와 물고기를 헤아리는 이 대목은 창세기의 창조 질서(창 1장)를 가만히 되울린다.",
+  "note": "솔로몬은 백향목에서 우슬초까지, 짐승과 새와 물고기를 논하였다. 자연 만물에 대한 통찰은 창조주를 아는 지혜로 이어진다. 참 지혜는 하나님의 창조를 깨닫는다.",
   "voc": [
-   ["spake", "v.", "말하였다, 논하였다 (speak의 옛 과거형)"],
-   ["cedar", "n.", "백향목"],
-   ["hyssop", "n.", "우슬초"],
-   ["spring out of", "", "~에서 돋아나다, 자라나다"],
-   ["creeping things", "", "기는 것들"]
+   [
+    "cedar",
+    "n.",
+    "백향목"
+   ],
+   [
+    "hyssop",
+    "n.",
+    "우슬초"
+   ],
+   [
+    "creeping things",
+    "",
+    "기는 것들"
+   ]
   ],
   "idi": [
-   ["from the cedar ... even unto the hyssop", "백향목에서 우슬초까지 (가장 큰 것부터 가장 작은 것까지, 곧 모든 것)"]
+   [
+    "from the cedar ... even unto the hyssop",
+    "백향목에서 우슬초까지(만물)"
+   ]
   ],
-  "gra": [
-   ["the hyssop that springeth out of the wall", "springeth=3인칭 단수 현재의 옛 어미(-eth) '자라나다'; that=관계대명사"]
-  ]
+  "gra": []
+ },
+ {
+  "en": "And there came of all people to hear the wisdom of Solomon, from all kings of the earth, which had heard of his wisdom.",
+  "ko": "솔로몬의 지혜를 들은 땅의 모든 왕으로부터 사람들이 그의 지혜를 들으려고 만민 가운데서 나아왔더라.",
+  "note": "만민과 열왕이 솔로몬의 지혜를 들으러 왔다. 그의 지혜가 온 세상의 부러움이 됨은 하나님의 이름이 이방에 알려지는 통로가 되었다. 지혜가 선교의 문을 연다.",
+  "voc": [
+   [
+    "came",
+    "v.",
+    "왔다"
+   ],
+   [
+    "hear",
+    "v.",
+    "듣다"
+   ],
+   [
+    "kings",
+    "n.",
+    "왕들"
+   ]
+  ],
+  "idi": [
+   [
+    "to hear the wisdom of Solomon",
+    "솔로몬의 지혜를 들으려고"
+   ]
+  ],
+  "gra": []
  }
 ]

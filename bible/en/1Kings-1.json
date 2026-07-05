@@ -1,134 +1,1617 @@
 [
  {
-  "en": "Now king David was old and stricken in years; ... but he gat no heat.",
+  "en": "Now king David was old and stricken in years; and they covered him with clothes, but he gat no heat.",
   "ko": "다윗 왕이 나이 많아 늙으매 이불을 덮어도 따뜻하지 아니한지라.",
-  "note": "히브리어 '자켄(zaqen)'은 늙음을, '바 바야밈(ba bayyamim, 날이 차다)'은 살날이 다 되어 감을 뜻한다. 한때 골리앗을 무찌른 용사도 이제 체온조차 지키지 못하니, 인생의 쇠함과 왕위 계승의 긴장을 함께 연다. 'gat'은 'got'의 옛 형태다.",
+  "note": "다윗의 노년은 왕위 계승 위기의 서막이다. '나이 많아(stricken in years)'는 히브리어 '바 바야밈'(날에 들어감)으로, 인생의 마지막 문턱을 뜻한다. 이불로도 따뜻하지 못한 왕의 쇠약함이 나라의 불안정을 드러낸다.",
   "voc": [
-   ["stricken in years", "", "나이가 많은, 연로한"],
-   ["cover", "v.", "덮다"],
-   ["gat", "v.", "얻었다(got의 고어)"],
-   ["heat", "n.", "온기, 열"]
+   [
+    "old",
+    "adj.",
+    "늙은"
+   ],
+   [
+    "stricken in years",
+    "",
+    "나이가 많은"
+   ],
+   [
+    "gat",
+    "v.",
+    "얻었다(got의 고어)"
+   ]
   ],
   "idi": [
-   ["stricken in years", "나이가 지긋한, 연로한"]
+   [
+    "stricken in years",
+    "나이가 많이 든"
+   ]
   ],
   "gra": [
-   ["he gat no heat", "gat=got의 고어형 과거; 'no heat를 얻지 못하였다'"]
+   [
+    "he gat no heat",
+    "gat=got의 고어형; 따뜻해지지 못하다"
+   ]
   ]
  },
  {
-  "en": "Then Adonijah the son of Haggith exalted himself, saying, I will be king",
-  "ko": "그때에 학깃의 아들 아도니야가 스스로 높여 이르되 \"내가 왕이 되리라\" 하고,",
-  "note": "히브리어 '미트나세(mitnasse, 스스로 높이다)'는 재귀형으로, 하나님이 세우심이 아니라 자기가 자기를 들어 올림을 드러낸다. 아도니야는 압살롬에 이어 다윗 가문에서 일어난 또 한 번의 자기 높임이니, 왕권은 빼앗는 것이 아니라 주어지는 것임을 역설로 비춘다.",
+  "en": "Wherefore his servants said unto him, Let there be sought for my lord the king a young virgin: and let her stand before the king, and let her cherish him, and let her lie in thy bosom, that my lord the king may get heat.",
+  "ko": "그러므로 그의 신하들이 그에게 이르되 \"우리 주 왕을 위하여 젊은 처녀 하나를 구하여 그로 왕을 모시고 받들게 하며 왕의 품에 누워 우리 주 왕을 따뜻하게 하리이다\" 하고,",
+  "note": "신하들의 처방은 인간적 대책이다. 히브리어 '샤카브 베헤크'(품에 눕다)는 시중과 온기를 위한 것이지 부부관계가 아님을 4절이 밝힌다. 왕의 생명력 회복을 꾀했으나 하나님이 아닌 사람을 의지한 방책이다.",
   "voc": [
-   ["exalt", "v.", "높이다, 들어 올리다"],
-   ["chariot", "n.", "병거, 전차"],
-   ["horsemen", "n.", "기병"],
-   ["run before", "", "앞에서 달리다"]
+   [
+    "virgin",
+    "n.",
+    "처녀"
+   ],
+   [
+    "cherish",
+    "v.",
+    "돌보다, 보살피다"
+   ],
+   [
+    "bosom",
+    "n.",
+    "품"
+   ]
+  ],
+  "idi": [
+   [
+    "stand before the king",
+    "왕을 시중들다"
+   ]
   ],
   "gra": [
-   ["exalted himself", "재귀대명사 himself='스스로를 높였다'"],
-   ["I will be king", "will=의지·결심 '내가 왕이 되겠다'"]
+   [
+    "Let there be sought",
+    "사역·수동을 나타내는 고어 명령형"
+   ]
   ]
  },
  {
-  "en": "Didst not thou ... swear unto thine handmaid ... Assuredly Solomon thy son shall reign after me",
-  "ko": "왕께서 당신의 여종에게 맹세하여 이르시되 「네 아들 솔로몬이 반드시 나를 이어 왕이 되리라」 하지 아니하셨나이까?",
-  "note": "히브리어 '니쉬바(nishba, 맹세하다)'는 본디 '일곱(쉐바)'과 같은 뿌리로, 일곱은 완전·확정을 뜻한다. 'handmaid'는 밧세바가 왕 앞에서 자기를 낮춘 겸양의 호칭이다. 다윗의 맹세는 곧 하나님 앞에 선 약속이니, 나단은 이 언약을 근거 삼아 솔로몬의 왕권을 세운다.",
+  "en": "So they sought for a fair damsel throughout all the coasts of Israel, and found Abishag a Shunammite, and brought her to the king.",
+  "ko": "이스라엘 온 지경에서 아리따운 처녀를 두루 구하다가 수넴 여인 아비삭을 만나 왕에게 데려오니,",
+  "note": "아비삭의 등장은 섭리적 배경이 된다. '수넴 여인(Shunammite)'은 이스르엘 골짜기 수넴 출신을 뜻한다. 온 지경을 두루 찾은 것은 왕의 상태가 그만큼 위중했음을 보여준다.",
   "voc": [
-   ["swear", "v.", "맹세하다"],
-   ["handmaid", "n.", "여종, 시녀"],
-   ["assuredly", "adv.", "반드시, 확실히"],
-   ["reign", "v.", "통치하다, 다스리다"],
-   ["throne", "n.", "왕좌, 보좌"]
+   [
+    "fair",
+    "adj.",
+    "아름다운"
+   ],
+   [
+    "damsel",
+    "n.",
+    "처녀, 소녀"
+   ],
+   [
+    "coasts",
+    "n.",
+    "지경, 경계"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "throughout all the coasts",
+    "coasts=영토·경계를 뜻하는 고어 용법"
+   ]
+  ]
+ },
+ {
+  "en": "And the damsel was very fair, and cherished the king, and ministered to him: but the king knew her not.",
+  "ko": "그 처녀가 심히 아리따운지라. 왕을 받들어 시중을 들었으나 왕은 그를 가까이하지 아니하였더라.",
+  "note": "'왕이 그를 알지 못하였다(knew her not)'는 히브리어 '야다'(알다)의 완곡어법으로 동침하지 않았음을 뜻한다. 후에 아도니야가 아비삭을 요구한 사건(2장)의 복선이 된다.",
+  "voc": [
+   [
+    "cherished",
+    "v.",
+    "돌보았다"
+   ],
+   [
+    "ministered",
+    "v.",
+    "시중들었다"
+   ],
+   [
+    "knew",
+    "v.",
+    "(동침하여) 알았다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "the king knew her not",
+    "knew=성적 관계의 완곡 표현; not이 뒤에 오는 고어 어순"
+   ]
+  ]
+ },
+ {
+  "en": "Then Adonijah the son of Haggith exalted himself, saying, I will be king: and he prepared him chariots and horsemen, and fifty men to run before him.",
+  "ko": "그때에 학깃의 아들 아도니야가 스스로 높여 이르되 \"내가 왕이 되리라\" 하고, 자기를 위하여 병거와 기병과 앞에서 달릴 사람 오십 명을 갖추니라.",
+  "note": "아도니야의 자기 높임은 반역의 뿌리다. '스스로 높여(exalted himself)'는 히브리어 '미트나세'(재귀형)로 자기를 치켜세움을 뜻한다. 압살롬처럼 병거와 호위병 오십 명을 준비한 것은 이미 형 압살롬의 반역을 답습하는 교만이다.",
+  "voc": [
+   [
+    "exalted",
+    "v.",
+    "높였다"
+   ],
+   [
+    "chariots",
+    "n.",
+    "병거"
+   ],
+   [
+    "horsemen",
+    "n.",
+    "기병"
+   ]
   ],
   "idi": [
-   ["sit upon the throne", "왕좌에 앉다, 즉위하다"]
+   [
+    "exalted himself",
+    "스스로를 높이다"
+   ]
   ],
   "gra": [
-   ["Didst not thou ... swear", "Did(조동사)+not+주어 도치=부정의문 '맹세하지 아니하셨나이까'"],
-   ["Solomon ... shall reign after me", "shall=의지·약속의 미래 '반드시 다스리리라'"]
+   [
+    "I will be king",
+    "단순미래로 스스로 왕이 되려는 의지 표명"
+   ]
+  ]
+ },
+ {
+  "en": "And his father had not displeased him at any time in saying, Why hast thou done so? and he also was a very goodly man; and his mother bare him after Absalom.",
+  "ko": "그의 아버지가 일찍이 그를 거슬러 \"네가 어찌하여 이같이 행하였느냐?\" 하며 그를 섭섭하게 한 적이 없었더라. 그도 또한 심히 준수한 자요, 그의 어머니는 압살롬 다음으로 그를 낳았더라.",
+  "note": "부모의 방임이 교만을 키웠다. '한 번도 꾸짖지 않았다'는 다윗의 자녀 훈육 실패를 지적한다. '압살롬 다음에 났다'는 언급은 그가 압살롬을 닮은 반역자임을 암시한다.",
+  "voc": [
+   [
+    "displeased",
+    "v.",
+    "언짢게 하다, 꾸짖다"
+   ],
+   [
+    "goodly",
+    "adj.",
+    "용모가 준수한"
+   ],
+   [
+    "bare",
+    "v.",
+    "낳았다(bore의 고어)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "had not displeased him",
+    "꾸짖어 언짢게 한 적이 없다는 과거완료 고어법"
+   ]
+  ]
+ },
+ {
+  "en": "And he conferred with Joab the son of Zeruiah, and with Abiathar the priest: and they following Adonijah helped him.",
+  "ko": "그가 스루야의 아들 요압과 제사장 아비아달과 더불어 의논하매, 그들이 아도니야를 따르며 그를 도왔으나,",
+  "note": "아도니야는 군권(요압)과 제사권(아비아달)을 끌어들였다. '의논하니(conferred)'는 히브리어 '다바르 임'(더불어 말하다)이다. 다윗의 옛 충신들이 왕의 뜻을 저버리고 반역에 가담한 것이다.",
+  "voc": [
+   [
+    "conferred",
+    "v.",
+    "의논하였다"
+   ],
+   [
+    "priest",
+    "n.",
+    "제사장"
+   ],
+   [
+    "helped",
+    "v.",
+    "도왔다"
+   ]
+  ],
+  "idi": [
+   [
+    "following Adonijah",
+    "아도니야를 좇아"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "But Zadok the priest, and Benaiah the son of Jehoiada, and Nathan the prophet, and Shimei, and Rei, and the mighty men which belonged to David, were not with Adonijah.",
+  "ko": "제사장 사독과 여호야다의 아들 브나야와 선지자 나단과 시므이와 레이와 다윗에게 속한 용사들은 아도니야와 함께하지 아니하였더라.",
+  "note": "하나님의 사람들은 반역에 서지 않았다. 사독, 브나야, 나단, 용사들이 아도니야와 함께하지 않았다는 대조가 참된 충성의 진영을 보여준다. 하나님의 언약(솔로몬 계승)을 아는 자들의 분별이다.",
+  "voc": [
+   [
+    "prophet",
+    "n.",
+    "선지자"
+   ],
+   [
+    "mighty men",
+    "",
+    "용사들"
+   ],
+   [
+    "belonged",
+    "v.",
+    "속하였다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "were not with Adonijah",
+    "편에 서지 않았다는 상태 표현"
+   ]
+  ]
+ },
+ {
+  "en": "And Adonijah slew sheep and oxen and fat cattle by the stone of Zoheleth, which is by Enrogel, and called all his brethren the king’s sons, and all the men of Judah the king’s servants:",
+  "ko": "아도니야가 엔로겔 근처 소헬렛 바위 곁에서 양과 소와 살진 짐승을 잡고 왕의 아들들 곧 자기의 모든 형제와 왕의 신하인 유다 사람들을 다 청하였으나,",
+  "note": "엔로겔 곁 소헬렛 바위에서의 잔치는 사실상 즉위식이었다. 제물을 잡아 형제와 신하를 부른 것은 자기 왕권을 기정사실화하려는 정치적 행위다. 그러나 하나님의 택함(솔로몬)을 배제한 잔치였다.",
+  "voc": [
+   [
+    "slew",
+    "v.",
+    "잡았다, 죽였다(slay의 과거)"
+   ],
+   [
+    "fat cattle",
+    "",
+    "살진 짐승"
+   ],
+   [
+    "brethren",
+    "n.",
+    "형제들(brother의 고어 복수)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "the king's sons",
+    "소유격이 여러 번 반복되는 고어 나열"
+   ]
+  ]
+ },
+ {
+  "en": "But Nathan the prophet, and Benaiah, and the mighty men, and Solomon his brother, he called not.",
+  "ko": "선지자 나단과 브나야와 용사들과 자기 아우 솔로몬은 청하지 아니하였더라.",
+  "note": "부름받지 못한 자들의 명단이 곧 심판의 명단이다. 나단, 브나야, 용사들, 그리고 솔로몬을 부르지 않은 것은 아도니야가 이들을 자기 왕권의 위협으로 알았기 때문이다.",
+  "voc": [
+   [
+    "mighty men",
+    "",
+    "용사들"
+   ],
+   [
+    "brother",
+    "n.",
+    "형제"
+   ],
+   [
+    "called not",
+    "",
+    "부르지 아니하였다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "he called not",
+    "부정어 not이 동사 뒤에 오는 고어 어순"
+   ]
+  ]
+ },
+ {
+  "en": "Wherefore Nathan spake unto Bathsheba the mother of Solomon, saying, Hast thou not heard that Adonijah the son of Haggith doth reign, and David our lord knoweth it not?",
+  "ko": "나단이 솔로몬의 어머니 밧세바에게 일러 이르되 \"학깃의 아들 아도니야가 왕이 된 것을 듣지 못하였나이까? 우리 주 다윗은 그것을 알지 못하시나이다.",
+  "note": "나단의 지혜로운 개입이 시작된다. '어찌 듣지 못하였나이까'라는 물음으로 밧세바를 일깨운다. 다윗이 알지 못하는 사이 아도니야가 왕 노릇 함을 알려 언약을 지키게 한다.",
+  "voc": [
+   [
+    "reign",
+    "v.",
+    "통치하다, 왕 노릇 하다"
+   ],
+   [
+    "knoweth",
+    "v.",
+    "안다(know의 고어 3인칭)"
+   ],
+   [
+    "heard",
+    "v.",
+    "들었다"
+   ]
+  ],
+  "idi": [
+   [
+    "Hast thou not heard",
+    "듣지 못하였느냐"
+   ]
+  ],
+  "gra": [
+   [
+    "doth reign",
+    "doth=does의 고어 조동사"
+   ]
+  ]
+ },
+ {
+  "en": "Now therefore come, let me, I pray thee, give thee counsel, that thou mayest save thine own life, and the life of thy son Solomon.",
+  "ko": "그런즉 이제 오소서. 내가 청하건대 당신에게 한 가지 계책을 드려 당신의 생명과 당신의 아들 솔로몬의 생명을 구하게 하리이다.",
+  "note": "나단은 계략이 아니라 생명을 구하는 지혜를 준다. '목숨을 구하라(save thy life)'는 히브리어 '말라트 네페쉬'로 위기에서 건짐을 뜻한다. 언약의 성취가 곧 생명의 보전임을 안다.",
+  "voc": [
+   [
+    "counsel",
+    "n.",
+    "조언, 방책"
+   ],
+   [
+    "save",
+    "v.",
+    "구하다"
+   ],
+   [
+    "life",
+    "n.",
+    "생명, 목숨"
+   ]
+  ],
+  "idi": [
+   [
+    "give thee counsel",
+    "네게 방책을 주다"
+   ]
+  ],
+  "gra": [
+   [
+    "that thou mayest save",
+    "목적을 나타내는 mayest 고어 접속법"
+   ]
+  ]
+ },
+ {
+  "en": "Go and get thee in unto king David, and say unto him, Didst not thou, my lord, O king, swear unto thine handmaid, saying, Assuredly Solomon thy son shall reign after me, and he shall sit upon my throne? why then doth Adonijah reign?",
+  "ko": "당신은 다윗 왕께 들어가 그에게 아뢰기를 '내 주 왕이여, 왕께서 전에 당신의 여종에게 맹세하여 이르시되 「네 아들 솔로몬이 반드시 나를 이어 왕이 되어 내 왕좌에 앉으리라」 하지 아니하셨나이까? 그런데 어찌하여 아도니야가 왕이 되었나이까?' 하소서.",
+  "note": "나단은 다윗의 맹세를 상기시키라 한다. '반드시(Assuredly)'는 히브리어 '키'의 강조로, 솔로몬 계승이 왕의 확약이었음을 못박는다. 왕의 서약이 곧 하나님의 뜻의 통로였다.",
+  "voc": [
+   [
+    "swear",
+    "v.",
+    "맹세하다"
+   ],
+   [
+    "handmaid",
+    "n.",
+    "여종, 시녀"
+   ],
+   [
+    "throne",
+    "n.",
+    "왕좌, 보좌"
+   ]
+  ],
+  "idi": [
+   [
+    "sit upon my throne",
+    "내 왕좌에 앉다"
+   ]
+  ],
+  "gra": [
+   [
+    "Didst not thou swear",
+    "did+not+주어의 고어 의문 어순"
+   ]
   ]
  },
  {
   "en": "Behold, while thou yet talkest there with the king, I also will come in after thee, and confirm thy words.",
-  "ko": "보소서, 당신이 거기서 왕과 더불어 아직 말씀하실 때에 나도 당신을 뒤따라 들어가 당신의 말을 확증하리이다.",
-  "note": "'confirm'은 라틴어 'firmus(굳건한)'에서 왔으며, 히브리어 '말레(male, 채우다·이루다)'를 옮긴 것으로 '네 말을 가득 채워 굳게 세운다'는 뜻이다. 두 증인의 입으로 일이 확정된다는 율법의 원리(신 19:15)가 여기 살아 움직인다. 'thou talkest'는 'you talk'의 고어형이다.",
+  "ko": "보소서, 당신이 거기서 왕과 더불어 아직 말씀하실 때에 나도 당신을 뒤따라 들어가 당신의 말을 확증하리이다\" 하니라.",
+  "note": "나단과 밧세바의 협력은 증인 원리를 따른다. '네 말을 확증하리라(confirm thy words)'는 두세 증인으로 말을 세우는 신명기의 법(신 19:15)을 반영한다.",
   "voc": [
-   ["behold", "v.", "보라"],
-   ["yet", "adv.", "아직"],
-   ["talkest", "v.", "말한다(talk의 고어 2인칭)"],
-   ["confirm", "v.", "확증하다, 굳게 하다"]
+   [
+    "talkest",
+    "v.",
+    "말한다(talk의 고어 2인칭)"
+   ],
+   [
+    "confirm",
+    "v.",
+    "확증하다"
+   ],
+   [
+    "words",
+    "n.",
+    "말"
+   ]
   ],
+  "idi": [],
   "gra": [
-   ["while thou yet talkest", "while+현재 '네가 아직 말하는 동안'; talkest=2인칭 단수 고어"],
-   ["I also will come in after thee", "after thee=after you '너를 뒤따라'"]
+   [
+    "while thou yet talkest",
+    "yet=아직; talkest=2인칭 고어 동사"
+   ]
   ]
  },
  {
-  "en": "As the LORD liveth, that hath redeemed my soul out of all distress",
-  "ko": "내 영혼을 모든 환난에서 구속하신 여호와께서 살아 계심을 두고 맹세하노니,",
-  "note": "'As the LORD liveth'는 살아 계신 여호와를 두고 하는 가장 엄숙한 맹세 공식이다. '구속하다(redeem)'는 히브리어 '파다(padah)'로, 값을 치러 건져 냄을 뜻한다. 다윗은 자기 평생 하나님이 사망의 골짜기마다 자기 '영혼(네페쉬)'을 건지신 그 신실하심을 근거로 맹세하니, 맹세의 무게가 곧 구속자에 대한 신뢰다.",
+  "en": "And Bathsheba went in unto the king into the chamber: and the king was very old; and Abishag the Shunammite ministered unto the king.",
+  "ko": "밧세바가 침실로 들어가 왕께 나아가니, 왕이 심히 늙었고 수넴 여인 아비삭이 왕을 받들고 있더라.",
+  "note": "침실 장면은 왕의 무력함을 다시 강조한다. '심히 늙어(very old)' 아비삭의 수종을 받는 다윗의 모습은 인간 왕권의 유한함을 보여준다. 그럼에도 하나님의 언약은 이 연약한 왕을 통해 이뤄진다.",
   "voc": [
-   ["liveth", "v.", "산다, 살아 있다(live의 고어 3인칭)"],
-   ["redeem", "v.", "구속하다, 값 주고 건지다"],
-   ["soul", "n.", "영혼, 생명"],
-   ["distress", "n.", "환난, 곤경"]
+   [
+    "chamber",
+    "n.",
+    "침실, 방"
+   ],
+   [
+    "ministered",
+    "v.",
+    "시중들었다"
+   ],
+   [
+    "very old",
+    "",
+    "심히 늙은"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And Bathsheba bowed, and did obeisance unto the king. And the king said, What wouldest thou?",
+  "ko": "밧세바가 몸을 굽혀 왕께 절하니, 왕이 이르되 \"네가 무엇을 원하느냐?\" 하더라.",
+  "note": "밧세바의 절은 왕에 대한 예를 갖춤이다. '몸을 굽혀 절하다(bowed and did obeisance)'는 히브리어 '카다'와 '샤하'의 결합으로 최고의 경의를 나타낸다. 왕의 '무엇을 원하느냐'는 물음이 청원의 문을 연다.",
+  "voc": [
+   [
+    "bowed",
+    "v.",
+    "몸을 굽혔다"
+   ],
+   [
+    "obeisance",
+    "n.",
+    "경의, 절"
+   ],
+   [
+    "wouldest",
+    "v.",
+    "원하느냐(would의 고어)"
+   ]
   ],
   "idi": [
-   ["As the LORD liveth", "여호와의 살아 계심을 두고(맹세 공식)"]
+   [
+    "did obeisance",
+    "경의를 표하다, 절하다"
+   ]
   ],
   "gra": [
-   ["the LORD ... that hath redeemed my soul", "that=관계대명사(여호와를 가리킴); hath redeemed=현재완료 '구속하셨다'"]
+   [
+    "What wouldest thou",
+    "무엇을 원하느냐 - wouldest 2인칭 고어"
+   ]
   ]
  },
  {
-  "en": "And Zadok the priest took an horn of oil out of the tabernacle, and anointed Solomon.",
-  "ko": "제사장 사독이 성막에서 기름 담은 뿔을 가져다가 솔로몬에게 기름을 붓고,",
-  "note": "'anoint(기름 붓다)'는 히브리어 '마샤흐(mashaḥ)'로, 여기서 '메시아(mashiaḥ, 기름 부음 받은 자)'가 나온다. 왕은 기름 부음으로 하나님의 택하심을 입으니, 솔로몬에게 부은 기름은 장차 영원한 왕이실 그리스도를 멀리 가리킨다. '뿔(horn)'은 성막에서 쓰던 거룩한 기름 그릇이다.",
+  "en": "And she said unto him, My lord, thou swarest by the LORD thy God unto thine handmaid, saying, Assuredly Solomon thy son shall reign after me, and he shall sit upon my throne.",
+  "ko": "그가 왕께 아뢰되 \"내 주여, 왕께서 당신의 하나님 여호와를 두고 당신의 여종에게 맹세하여 이르시기를 '네 아들 솔로몬이 반드시 나를 이어 왕이 되어 내 왕좌에 앉으리라' 하셨거늘,",
+  "note": "밧세바는 하나님의 이름으로 한 맹세를 근거로 삼는다. '당신의 하나님 여호와를 두고(by the LORD thy God)'는 맹세의 신성함을 상기시킨다. 왕의 서약은 하나님 앞의 언약이었다.",
   "voc": [
-   ["priest", "n.", "제사장"],
-   ["horn of oil", "", "기름 담은 뿔(기름 그릇)"],
-   ["tabernacle", "n.", "성막, 장막"],
-   ["anoint", "v.", "기름을 붓다"]
+   [
+    "swarest",
+    "v.",
+    "맹세하였다(swear 고어 2인칭)"
+   ],
+   [
+    "handmaid",
+    "n.",
+    "여종"
+   ],
+   [
+    "throne",
+    "n.",
+    "보좌"
+   ]
   ],
+  "idi": [],
   "gra": [
-   ["took an horn of oil", "an horn=옛 표기(h 앞 an); '기름 뿔 하나를 가져다가'"]
+   [
+    "thou swarest",
+    "swarest=swear의 2인칭 과거 고어형"
+   ]
   ]
  },
  {
-  "en": "And all the people ... rejoiced with great joy, so that the earth rent with the sound of them.",
-  "ko": "온 백성이 ... 크게 기뻐하니, 그 소리로 땅이 갈라질 듯하였더라.",
-  "note": "히브리어 '바카(baqa, 쪼개지다)'는 본래 단단한 것이 갈라짐을 뜻하는 강한 표현으로, 환호의 크기를 과장법으로 그린다. 'rent'는 'rend(찢다)'의 과거형이다. 참된 왕의 즉위에 온 백성이 한마음으로 터뜨린 기쁨이, 거짓 왕 아도니야의 은밀한 잔치와 선명히 대비된다.",
+  "en": "And now, behold, Adonijah reigneth; and now, my lord the king, thou knowest it not:",
+  "ko": "이제 보소서, 아도니야가 왕이 되었나이다. 그런데 내 주 왕께서는 그것을 알지 못하시나이다.",
+  "note": "현실과 언약의 충돌을 밧세바가 고발한다. '이제 아도니야가 왕이 되었거늘'과 '왕은 알지 못하시나이다'의 대조가 왕의 결단을 촉구한다.",
   "voc": [
-   ["people", "n.", "백성"],
-   ["pipe", "v.", "피리를 불다"],
-   ["rejoice", "v.", "기뻐하다"],
-   ["rent", "v.", "갈라졌다, 찢어졌다(rend의 과거)"]
+   [
+    "reigneth",
+    "v.",
+    "왕 노릇 한다"
+   ],
+   [
+    "behold",
+    "v.",
+    "보라"
+   ],
+   [
+    "knowest",
+    "v.",
+    "안다(know 2인칭 고어)"
+   ]
   ],
   "idi": [
-   ["rejoice with great joy", "크게 기뻐하다(동족목적어 강조)"]
+   [
+    "thou knowest it not",
+    "당신은 그것을 알지 못하신다"
+   ]
   ],
   "gra": [
-   ["so that the earth rent", "so that=결과 '~하여 땅이 갈라질 정도였다'"]
+   [
+    "Adonijah reigneth",
+    "reigneth=reigns의 고어 3인칭"
+   ]
   ]
  },
  {
-  "en": "If he will shew himself a worthy man, there shall not an hair of him fall to the earth: but if wickedness shall be found in him, he shall die.",
-  "ko": "그가 만일 자기를 합당한 자로 나타내면 그의 머리카락 하나도 땅에 떨어지지 아니하려니와, 그에게 악함이 발견되면 그가 죽으리라.",
-  "note": "'머리카락 하나도 떨어지지 않으리라'는 완전한 보전을 뜻하는 관용 표현이다(삼상 14:45). 솔로몬의 첫 판결은 자비와 공의를 함께 드러내니, 의로운 자에게는 은혜를, 악한 자에게는 심판을 두신 하나님의 통치를 그림자처럼 보여 준다. 'shew'는 'show'의 옛 철자다.",
+  "en": "And he hath slain oxen and fat cattle and sheep in abundance, and hath called all the sons of the king, and Abiathar the priest, and Joab the captain of the host: but Solomon thy servant hath he not called.",
+  "ko": "그가 소와 살진 짐승과 양을 많이 잡고 왕의 모든 아들과 제사장 아비아달과 군대 사령관 요압을 청하였으나, 왕의 종 솔로몬은 청하지 아니하였나이다.",
+  "note": "솔로몬만 부르지 않은 것이 반역의 증거다. 아도니야가 온 왕자와 아비아달과 요압은 청했으나 솔로몬은 청하지 않았다는 열거가 배제의 의도를 폭로한다.",
   "voc": [
-   ["shew", "v.", "보이다, 나타내다(show의 고어)"],
-   ["worthy", "adj.", "합당한, 가치 있는"],
-   ["hair", "n.", "머리카락"],
-   ["wickedness", "n.", "악함, 사악"]
+   [
+    "abundance",
+    "n.",
+    "풍부함"
+   ],
+   [
+    "captain",
+    "n.",
+    "우두머리, 지휘관"
+   ],
+   [
+    "host",
+    "n.",
+    "군대"
+   ]
   ],
   "idi": [
-   ["there shall not an hair ... fall to the earth", "머리카락 하나도 상하지 않다(완전히 보전되다)"]
+   [
+    "captain of the host",
+    "군대 장관"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And thou, my lord, O king, the eyes of all Israel are upon thee, that thou shouldest tell them who shall sit on the throne of my lord the king after him.",
+  "ko": "내 주 왕이여, 온 이스라엘의 눈이 왕을 향하여, 내 주 왕을 이어 누가 왕좌에 앉을지 그들에게 알려 주시기를 바라나이다.",
+  "note": "온 이스라엘의 눈이 왕에게 쏠렸다. '누가 앉을 것을 고하여야(tell who shall sit)'는 후계 결정이 왕의 책임임을 강조한다. 백성은 왕의 공표를 기다린다.",
+  "voc": [
+   [
+    "eyes",
+    "n.",
+    "눈"
+   ],
+   [
+    "throne",
+    "n.",
+    "보좌"
+   ],
+   [
+    "after him",
+    "",
+    "그의 뒤를 이어"
+   ]
+  ],
+  "idi": [
+   [
+    "the eyes of all Israel are upon thee",
+    "온 이스라엘의 눈이 당신께 있다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Otherwise it shall come to pass, when my lord the king shall sleep with his fathers, that I and my son Solomon shall be counted offenders.",
+  "ko": "그리하지 아니하시면 내 주 왕께서 그의 조상들과 함께 잠드신 후에 나와 내 아들 솔로몬은 죄인으로 여겨지리이다\" 하니라.",
+  "note": "밧세바는 왕의 죽음 이후의 위험을 예고한다. '조상들과 함께 자다(sleep with his fathers)'는 죽음의 완곡한 표현이다. 후계가 정해지지 않으면 자기와 솔로몬이 죄인처럼 몰릴 것을 두려워한다.",
+  "voc": [
+   [
+    "otherwise",
+    "adv.",
+    "그렇지 않으면"
+   ],
+   [
+    "offenders",
+    "n.",
+    "죄인, 범법자"
+   ],
+   [
+    "sleep",
+    "v.",
+    "자다(죽다)"
+   ]
+  ],
+  "idi": [
+   [
+    "sleep with his fathers",
+    "조상들과 함께 자다(죽다)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And, lo, while she yet talked with the king, Nathan the prophet also came in.",
+  "ko": "그가 아직 왕과 더불어 말할 때에, 보라, 선지자 나단도 들어온지라.",
+  "note": "나단의 등장은 밧세바의 말을 확증한다. '아직 말할 때에(while she yet talked)'라는 시점이 두 증인의 협력을 완성한다. 하나님은 진실을 세우는 증인을 예비하신다.",
+  "voc": [
+   [
+    "lo",
+    "interj.",
+    "보라"
+   ],
+   [
+    "yet",
+    "adv.",
+    "아직"
+   ],
+   [
+    "came in",
+    "",
+    "들어왔다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "while she yet talked",
+    "아직 말하고 있는 동안"
+   ]
+  ]
+ },
+ {
+  "en": "And they told the king, saying, Behold Nathan the prophet. And when he was come in before the king, he bowed himself before the king with his face to the ground.",
+  "ko": "사람들이 왕께 아뢰어 이르되 \"보소서, 선지자 나단이니이다\" 하매, 그가 왕 앞에 들어와 얼굴을 땅에 대고 왕께 절하니라.",
+  "note": "나단은 얼굴을 땅에 대고 절한다. 선지자조차 왕 앞에 최고의 예를 갖춤은 하나님이 세우신 왕권에 대한 존중이다. 그러나 그 존중은 언약을 지키려는 목적에 있다.",
+  "voc": [
+   [
+    "prophet",
+    "n.",
+    "선지자"
+   ],
+   [
+    "bowed",
+    "v.",
+    "절하였다"
+   ],
+   [
+    "face to the ground",
+    "",
+    "얼굴을 땅에 대고"
+   ]
+  ],
+  "idi": [
+   [
+    "with his face to the ground",
+    "얼굴을 땅에 대고"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And Nathan said, My lord, O king, hast thou said, Adonijah shall reign after me, and he shall sit upon my throne?",
+  "ko": "나단이 아뢰되 \"내 주 왕이여, 왕께서 '아도니야가 나를 이어 왕이 되어 내 왕좌에 앉으리라' 하셨나이까?",
+  "note": "나단은 왕의 뜻을 직접 확인한다. '왕께서 아도니야가 왕이 되리라 하셨나이까'라는 물음은 반역이 왕의 재가 없이 일어났음을 드러내는 수사적 질문이다.",
+  "voc": [
+   [
+    "reign",
+    "v.",
+    "왕 노릇 하다"
+   ],
+   [
+    "throne",
+    "n.",
+    "보좌"
+   ],
+   [
+    "said",
+    "v.",
+    "말하였다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "hast thou said",
+    "did you say - hast+과거분사 고어 완료"
+   ]
+  ]
+ },
+ {
+  "en": "For he is gone down this day, and hath slain oxen and fat cattle and sheep in abundance, and hath called all the king’s sons, and the captains of the host, and Abiathar the priest; and, behold, they eat and drink before him, and say, God save king Adonijah.",
+  "ko": "그가 오늘 내려가 소와 살진 짐승과 양을 많이 잡고 왕의 모든 아들과 군대 사령관들과 제사장 아비아달을 청하였으니, 보소서, 그들이 그 앞에서 먹고 마시며 '아도니야 왕은 만세수를 하옵소서' 하나이다.",
+  "note": "아도니야 진영의 '아도니야 왕 만세'는 노골적 찬탈이다. '하나님이여 아도니야 왕을 구원하소서(God save king Adonijah)'는 즉위 환호로, 정당한 왕이 아직 정해지지 않았음에도 왕권을 가로챈 것이다.",
+  "voc": [
+   [
+    "gone down",
+    "",
+    "내려갔다"
+   ],
+   [
+    "abundance",
+    "n.",
+    "많음"
+   ],
+   [
+    "captains",
+    "n.",
+    "장관들"
+   ]
+  ],
+  "idi": [
+   [
+    "God save king Adonijah",
+    "아도니야 왕 만세(즉위 환호)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "But me, even me thy servant, and Zadok the priest, and Benaiah the son of Jehoiada, and thy servant Solomon, hath he not called.",
+  "ko": "그러나 곧 당신의 종인 나와 제사장 사독과 여호야다의 아들 브나야와 당신의 종 솔로몬은 그가 청하지 아니하였나이다.",
+  "note": "배제된 충신들의 명단이 다시 확인된다. 나단 자신, 사독, 브나야, 솔로몬을 부르지 않았다는 열거가 아도니야의 파당적 성격을 폭로한다.",
+  "voc": [
+   [
+    "even me",
+    "",
+    "곧 나를"
+   ],
+   [
+    "thy servant",
+    "",
+    "당신의 종"
+   ],
+   [
+    "called",
+    "v.",
+    "불렀다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "me, even me thy servant",
+    "강조를 위한 동격 반복 고어법"
+   ]
+  ]
+ },
+ {
+  "en": "Is this thing done by my lord the king, and thou hast not shewed it unto thy servant, who should sit on the throne of my lord the king after him?",
+  "ko": "이 일이 내 주 왕께로 말미암은 것이니이까? 그러면서 내 주 왕을 이어 누가 그 왕좌에 앉을지 당신의 종에게 알리지 아니하셨나이까?\" 하니라.",
+  "note": "나단은 왕의 무지를 지적하며 결단을 촉구한다. '종에게 알게 하지 아니하셨나이까'는 후계 지명이 왕의 명백한 뜻이어야 함을 상기시키는 물음이다.",
+  "voc": [
+   [
+    "shewed",
+    "v.",
+    "보였다, 알렸다(show 고어)"
+   ],
+   [
+    "throne",
+    "n.",
+    "보좌"
+   ],
+   [
+    "done",
+    "v.",
+    "행하여졌다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "thou hast not shewed",
+    "shewed=shown의 고어 과거분사"
+   ]
+  ]
+ },
+ {
+  "en": "Then king David answered and said, Call me Bathsheba. And she came into the king’s presence, and stood before the king.",
+  "ko": "이에 다윗 왕이 대답하여 이르되 \"밧세바를 내게로 부르라\" 하매, 그가 왕 앞에 들어와 왕 앞에 서니라.",
+  "note": "다윗이 마침내 결단한다. 밧세바를 다시 부름은 언약의 확증 절차의 시작이다. 연약한 왕이 하나님의 뜻을 따라 움직이기 시작한다.",
+  "voc": [
+   [
+    "answered",
+    "v.",
+    "대답하였다"
+   ],
+   [
+    "presence",
+    "n.",
+    "앞, 면전"
+   ],
+   [
+    "stood",
+    "v.",
+    "섰다"
+   ]
+  ],
+  "idi": [
+   [
+    "came into the king's presence",
+    "왕 앞에 나아왔다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And the king sware, and said, As the LORD liveth, that hath redeemed my soul out of all distress,",
+  "ko": "왕이 맹세하여 이르되 \"내 영혼을 모든 환난에서 구속하신 여호와께서 살아 계심을 두고 맹세하노니,",
+  "note": "다윗은 살아계신 여호와로 맹세한다. '내 생명을 모든 환난에서 구원하신(redeemed my soul out of all distress)'은 히브리어 '파다'(구속하다)로, 자기 생애의 구원을 회고하며 맹세의 근거로 삼는다.",
+  "voc": [
+   [
+    "sware",
+    "v.",
+    "맹세하였다(swear 고어 과거)"
+   ],
+   [
+    "redeemed",
+    "v.",
+    "구속하였다"
+   ],
+   [
+    "distress",
+    "n.",
+    "환난, 고통"
+   ]
+  ],
+  "idi": [
+   [
+    "As the LORD liveth",
+    "여호와의 살아계심을 두고(맹세 형식)"
+   ]
   ],
   "gra": [
-   ["If he will shew himself a worthy man", "If+will(의지) '그가 자기를 합당한 자로 나타내려 하면'; shew himself+명사='자기를 ~로 드러내다'"],
-   ["if wickedness shall be found in him", "shall be found=수동 미래 '발견되면'"]
+   [
+    "hath redeemed my soul",
+    "hath=has의 고어 완료 조동사"
+   ]
+  ]
+ },
+ {
+  "en": "Even as I sware unto thee by the LORD God of Israel, saying, Assuredly Solomon thy son shall reign after me, and he shall sit upon my throne in my stead; even so will I certainly do this day.",
+  "ko": "내가 전에 이스라엘의 하나님 여호와를 두고 네게 맹세하여 이르기를 '네 아들 솔로몬이 반드시 나를 이어 왕이 되어 나를 대신하여 내 왕좌에 앉으리라' 한 것같이, 내가 오늘 반드시 그대로 행하리라\" 하니,",
+  "note": "다윗은 옛 맹세를 오늘 반드시 이루겠다 확언한다. '반드시(certainly)'의 반복이 언약의 확실성을 강조한다. 하나님의 뜻은 인간의 맹세를 통해 역사 속에 성취된다.",
+  "voc": [
+   [
+    "sware",
+    "v.",
+    "맹세하였다"
+   ],
+   [
+    "stead",
+    "n.",
+    "대신, 자리"
+   ],
+   [
+    "certainly",
+    "adv.",
+    "반드시"
+   ]
+  ],
+  "idi": [
+   [
+    "in my stead",
+    "나를 대신하여"
+   ]
+  ],
+  "gra": [
+   [
+    "even so will I certainly do",
+    "even so=바로 그같이; 강조 도치"
+   ]
+  ]
+ },
+ {
+  "en": "Then Bathsheba bowed with her face to the earth, and did reverence to the king, and said, Let my lord king David live for ever.",
+  "ko": "밧세바가 얼굴을 땅에 대고 굽혀 왕께 경배하며 이르되 \"내 주 다윗 왕은 만세토록 사시옵소서\" 하니라.",
+  "note": "밧세바의 '왕이여 만세수를 하옵소서(live for ever)'는 충성의 축복이다. 언약이 확정되자 위기의 두려움이 경배와 축원으로 바뀐다.",
+  "voc": [
+   [
+    "reverence",
+    "n.",
+    "경의"
+   ],
+   [
+    "for ever",
+    "",
+    "영원히"
+   ],
+   [
+    "earth",
+    "n.",
+    "땅"
+   ]
+  ],
+  "idi": [
+   [
+    "did reverence to the king",
+    "왕께 경의를 표하였다"
+   ],
+   [
+    "for ever",
+    "영원히"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And king David said, Call me Zadok the priest, and Nathan the prophet, and Benaiah the son of Jehoiada. And they came before the king.",
+  "ko": "다윗 왕이 이르되 \"제사장 사독과 선지자 나단과 여호야다의 아들 브나야를 내게로 부르라\" 하매, 그들이 왕 앞에 나아오니라.",
+  "note": "다윗은 제사장, 선지자, 군장을 함께 부른다. 사독(제사권), 나단(예언권), 브나야(군권)의 삼중 증인이 솔로몬 즉위의 정당성을 보증한다.",
+  "voc": [
+   [
+    "priest",
+    "n.",
+    "제사장"
+   ],
+   [
+    "prophet",
+    "n.",
+    "선지자"
+   ],
+   [
+    "came before",
+    "",
+    "앞에 나아왔다"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "The king also said unto them, Take with you the servants of your lord, and cause Solomon my son to ride upon mine own mule, and bring him down to Gihon:",
+  "ko": "왕이 또 그들에게 이르되 \"너희는 너희 주의 신하들을 데리고 내 아들 솔로몬을 내 노새에 태워 기혼으로 인도하여 내려가고,",
+  "note": "기혼으로 내려가 나귀에 태우라는 명은 겸손한 왕권의 상징이다. 왕의 노새를 태움은 솔로몬이 다윗의 정당한 계승자임을 공표하는 행위다. 기혼은 예루살렘의 수원지로 즉위식 장소가 된다.",
+  "voc": [
+   [
+    "mule",
+    "n.",
+    "노새"
+   ],
+   [
+    "ride",
+    "v.",
+    "타다"
+   ],
+   [
+    "Gihon",
+    "n.",
+    "기혼(지명)"
+   ]
+  ],
+  "idi": [
+   [
+    "cause Solomon to ride",
+    "솔로몬으로 타게 하라(사역)"
+   ]
+  ],
+  "gra": [
+   [
+    "bring him down to Gihon",
+    "down=지형상 내려감을 반영한 고어 방향어"
+   ]
+  ]
+ },
+ {
+  "en": "And let Zadok the priest and Nathan the prophet anoint him there king over Israel: and blow ye with the trumpet, and say, God save king Solomon.",
+  "ko": "거기서 제사장 사독과 선지자 나단은 그에게 기름을 부어 이스라엘 위에 왕으로 삼을 것이요, 너희는 나팔을 불며 '솔로몬 왕은 만세수를 하옵소서' 하라.",
+  "note": "기름 부음과 나팔은 왕의 성별과 공표다. 히브리어 '마샤흐'(기름 붓다)에서 '메시아'가 유래한다. '솔로몬 왕 만세'의 외침이 하나님이 세우신 왕을 온 백성 앞에 선포한다.",
+  "voc": [
+   [
+    "anoint",
+    "v.",
+    "기름 붓다"
+   ],
+   [
+    "trumpet",
+    "n.",
+    "나팔"
+   ],
+   [
+    "blow",
+    "v.",
+    "불다"
+   ]
+  ],
+  "idi": [
+   [
+    "God save king Solomon",
+    "솔로몬 왕 만세"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Then ye shall come up after him, that he may come and sit upon my throne; for he shall be king in my stead: and I have appointed him to be ruler over Israel and over Judah.",
+  "ko": "그런 후에 너희는 그를 뒤따라 올라오라. 그가 와서 내 왕좌에 앉아 나를 대신하여 왕이 되리니, 이는 내가 그를 세워 이스라엘과 유다의 통치자로 삼았음이니라\" 하매,",
+  "note": "다윗은 솔로몬을 이스라엘과 유다의 통치자로 세운다. '내가 그를 세웠다(I have appointed)'는 왕의 임명이 곧 하나님의 뜻의 집행임을 보여준다. 남북을 아우르는 통일 왕권의 선언이다.",
+  "voc": [
+   [
+    "appointed",
+    "v.",
+    "세웠다, 임명하였다"
+   ],
+   [
+    "ruler",
+    "n.",
+    "통치자"
+   ],
+   [
+    "stead",
+    "n.",
+    "대신"
+   ]
+  ],
+  "idi": [
+   [
+    "in my stead",
+    "나를 대신하여"
+   ]
+  ],
+  "gra": [
+   [
+    "I have appointed him to be ruler",
+    "have appointed=완료로 확정된 임명"
+   ]
+  ]
+ },
+ {
+  "en": "And Benaiah the son of Jehoiada answered the king, and said, Amen: the LORD God of my lord the king say so too.",
+  "ko": "여호야다의 아들 브나야가 왕께 대답하여 이르되 \"아멘. 내 주 왕의 하나님 여호와께서도 그같이 말씀하시기를 원하나이다.",
+  "note": "브나야의 '아멘'은 인간의 순종이 하나님의 뜻에 동의함이다. '여호와께서도 이렇게 말씀하시기를 원하나이다'는 왕의 명령이 하나님의 승인 아래 있기를 구하는 신앙 고백이다.",
+  "voc": [
+   [
+    "Amen",
+    "",
+    "아멘, 진실로 그러하다"
+   ],
+   [
+    "answered",
+    "v.",
+    "대답하였다"
+   ],
+   [
+    "say so too",
+    "",
+    "또한 그렇게 말씀하시기를"
+   ]
+  ],
+  "idi": [
+   [
+    "Amen",
+    "진실로 그렇게 되기를"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "As the LORD hath been with my lord the king, even so be he with Solomon, and make his throne greater than the throne of my lord king David.",
+  "ko": "여호와께서 내 주 왕과 함께 계셨던 것같이 솔로몬과도 함께 계셔서, 그의 왕좌를 내 주 다윗 왕의 왕좌보다 더 크게 하시기를 원하나이다\" 하니라.",
+  "note": "브나야는 솔로몬의 보좌가 다윗보다 크기를 축복한다. 하나님이 다윗과 함께하셨듯 솔로몬과 함께하시기를 구함은 임재가 왕권의 참된 능력임을 안다.",
+  "voc": [
+   [
+    "throne",
+    "n.",
+    "보좌"
+   ],
+   [
+    "greater",
+    "adj.",
+    "더 큰"
+   ],
+   [
+    "with",
+    "prep.",
+    "함께"
+   ]
+  ],
+  "idi": [
+   [
+    "be he with Solomon",
+    "솔로몬과 함께 계시기를(기원)"
+   ]
+  ],
+  "gra": [
+   [
+    "make his throne greater",
+    "기원을 나타내는 명령형 축복"
+   ]
+  ]
+ },
+ {
+  "en": "So Zadok the priest, and Nathan the prophet, and Benaiah the son of Jehoiada, and the Cherethites, and the Pelethites, went down, and caused Solomon to ride upon king David’s mule, and brought him to Gihon.",
+  "ko": "이에 제사장 사독과 선지자 나단과 여호야다의 아들 브나야와 그렛 사람과 블렛 사람이 내려가 솔로몬을 다윗 왕의 노새에 태우고 그를 기혼으로 인도하니라.",
+  "note": "그렛과 블렛 사람은 다윗의 친위대다. 사독, 나단, 브나야와 친위대가 솔로몬을 왕의 노새에 태워 기혼으로 인도함으로 즉위가 실행된다.",
+  "voc": [
+   [
+    "Cherethites",
+    "n.",
+    "그렛 사람"
+   ],
+   [
+    "Pelethites",
+    "n.",
+    "블렛 사람"
+   ],
+   [
+    "went down",
+    "",
+    "내려갔다"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And Zadok the priest took an horn of oil out of the tabernacle, and anointed Solomon. And they blew the trumpet; and all the people said, God save king Solomon.",
+  "ko": "제사장 사독이 성막에서 기름 담은 뿔을 가져다가 솔로몬에게 기름을 붓고 나팔을 불매, 온 백성이 '솔로몬 왕은 만세수를 하옵소서' 하니라.",
+  "note": "장막의 기름 뿔로 기름을 부었다. 히브리어 '오헬'(장막)의 거룩한 기름은 성별의 표다. 나팔 소리와 온 백성의 만세가 하나님이 세우신 왕을 공인한다.",
+  "voc": [
+   [
+    "horn",
+    "n.",
+    "뿔"
+   ],
+   [
+    "oil",
+    "n.",
+    "기름"
+   ],
+   [
+    "tabernacle",
+    "n.",
+    "장막, 성막"
+   ]
+  ],
+  "idi": [
+   [
+    "horn of oil",
+    "기름 뿔(기름을 담은 뿔)"
+   ],
+   [
+    "God save king Solomon",
+    "솔로몬 왕 만세"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And all the people came up after him, and the people piped with pipes, and rejoiced with great joy, so that the earth rent with the sound of them.",
+  "ko": "온 백성이 그를 뒤따라 올라오며 피리를 불고 크게 기뻐하니, 그 소리로 땅이 갈라질 듯하였더라.",
+  "note": "백성의 기쁨이 땅이 갈라질 듯하였다. '땅이 갈라지다(the earth rent)'는 히브리어 '바카'(쪼개지다)의 과장법으로 즉위의 환희를 생생히 그린다.",
+  "voc": [
+   [
+    "piped",
+    "v.",
+    "피리를 불었다"
+   ],
+   [
+    "rejoiced",
+    "v.",
+    "기뻐하였다"
+   ],
+   [
+    "rent",
+    "v.",
+    "갈라졌다(rend의 과거)"
+   ]
+  ],
+  "idi": [
+   [
+    "with great joy",
+    "큰 기쁨으로"
+   ]
+  ],
+  "gra": [
+   [
+    "the earth rent",
+    "rent=rend의 고어 과거형; 갈라지다"
+   ]
+  ]
+ },
+ {
+  "en": "And Adonijah and all the guests that were with him heard it as they had made an end of eating. And when Joab heard the sound of the trumpet, he said, Wherefore is this noise of the city being in an uproar?",
+  "ko": "아도니야와 그와 함께한 모든 손님이 먹기를 마칠 즈음에 그 소리를 들으니라. 요압이 나팔 소리를 듣고 이르되 \"성읍이 소란하니 이 소리가 어찌 됨이냐?\" 하더라.",
+  "note": "아도니야 진영은 잔치 끝에 소리를 듣는다. 요압이 '어찌하여 성읍이 소동하느냐' 물음은 그들의 왕권이 이미 무너졌음을 직감하는 불안이다.",
+  "voc": [
+   [
+    "guests",
+    "n.",
+    "손님들"
+   ],
+   [
+    "uproar",
+    "n.",
+    "소동"
+   ],
+   [
+    "noise",
+    "n.",
+    "소리, 소음"
+   ]
+  ],
+  "idi": [
+   [
+    "made an end of eating",
+    "먹기를 마쳤다"
+   ]
+  ],
+  "gra": [
+   [
+    "being in an uproar",
+    "소동하는 상태를 나타내는 분사구문"
+   ]
+  ]
+ },
+ {
+  "en": "And while he yet spake, behold, Jonathan the son of Abiathar the priest came; and Adonijah said unto him, Come in; for thou art a valiant man, and bringest good tidings.",
+  "ko": "그가 아직 말할 때에, 보라, 제사장 아비아달의 아들 요나단이 온지라. 아도니야가 그에게 이르되 \"들어오라. 너는 용맹한 자요 좋은 소식을 가져오는도다\" 하니,",
+  "note": "아도니야는 요나단을 좋은 소식 전할 자로 여겼으나 정반대였다. '용사요 좋은 소식을 가져온다'는 아이러니가 곧 무너질 반역의 헛된 기대를 드러낸다.",
+  "voc": [
+   [
+    "valiant",
+    "adj.",
+    "용맹한"
+   ],
+   [
+    "tidings",
+    "n.",
+    "소식"
+   ],
+   [
+    "come in",
+    "",
+    "들어오라"
+   ]
+  ],
+  "idi": [
+   [
+    "good tidings",
+    "좋은 소식"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And Jonathan answered and said to Adonijah, Verily our lord king David hath made Solomon king.",
+  "ko": "요나단이 아도니야에게 대답하여 이르되 \"참으로 우리 주 다윗 왕께서 솔로몬을 왕으로 삼으셨나이다.",
+  "note": "요나단은 '참으로(Verily)' 다윗이 솔로몬을 왕 삼았다 고한다. 히브리어 '아발'(그러나 참으로)로 시작하는 이 말은 아도니야의 기대를 완전히 뒤집는다.",
+  "voc": [
+   [
+    "verily",
+    "adv.",
+    "참으로, 진실로"
+   ],
+   [
+    "made king",
+    "",
+    "왕으로 삼았다"
+   ],
+   [
+    "answered",
+    "v.",
+    "대답하였다"
+   ]
+  ],
+  "idi": [
+   [
+    "Verily",
+    "참으로, 진실로"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And the king hath sent with him Zadok the priest, and Nathan the prophet, and Benaiah the son of Jehoiada, and the Cherethites, and the Pelethites, and they have caused him to ride upon the king’s mule:",
+  "ko": "왕이 제사장 사독과 선지자 나단과 여호야다의 아들 브나야와 그렛 사람과 블렛 사람을 그와 함께 보내셨고, 그들이 그를 왕의 노새에 태웠으며,",
+  "note": "왕이 친위대와 함께 보낸 것이 즉위의 공식성을 증거한다. 사독, 나단, 브나야, 그렛과 블렛 사람이 함께함은 왕의 온전한 재가를 뜻한다.",
+  "voc": [
+   [
+    "sent",
+    "v.",
+    "보냈다"
+   ],
+   [
+    "mule",
+    "n.",
+    "노새"
+   ],
+   [
+    "Cherethites",
+    "n.",
+    "그렛 사람"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And Zadok the priest and Nathan the prophet have anointed him king in Gihon: and they are come up from thence rejoicing, so that the city rang again. This is the noise that ye have heard.",
+  "ko": "제사장 사독과 선지자 나단이 기혼에서 그에게 기름을 부어 왕으로 삼았고, 그들이 거기서 기뻐하며 올라왔으므로 성읍이 다시 떠들썩하니, 이것이 곧 당신들이 들은 그 소리니이다.",
+  "note": "기혼의 기름 부음과 성읍의 진동이 즉위를 확정한다. '성읍이 진동하였다(the city rang again)'는 백성의 환호가 온 성에 울려 퍼졌음을 뜻한다. 이것이 아도니야가 들은 소리다.",
+  "voc": [
+   [
+    "anointed",
+    "v.",
+    "기름 부었다"
+   ],
+   [
+    "rejoicing",
+    "v.",
+    "기뻐하며"
+   ],
+   [
+    "rang",
+    "v.",
+    "울렸다(ring의 과거)"
+   ]
+  ],
+  "idi": [
+   [
+    "the city rang again",
+    "성읍이 다시 울렸다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And also Solomon sitteth on the throne of the kingdom.",
+  "ko": "또한 솔로몬이 그 왕국의 왕좌에 앉았으며,",
+  "note": "'솔로몬이 나라 왕좌에 앉았다'는 즉위의 완성 선언이다. 히브리어 '키세 함말쿠트'(나라의 보좌)는 단순한 자리가 아니라 하나님이 세우신 왕국의 통치권을 뜻한다.",
+  "voc": [
+   [
+    "sitteth",
+    "v.",
+    "앉는다(sit 고어 3인칭)"
+   ],
+   [
+    "throne",
+    "n.",
+    "보좌"
+   ],
+   [
+    "kingdom",
+    "n.",
+    "나라, 왕국"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Solomon sitteth",
+    "sitteth=sits의 고어 3인칭"
+   ]
+  ]
+ },
+ {
+  "en": "And moreover the king’s servants came to bless our lord king David, saying, God make the name of Solomon better than thy name, and make his throne greater than thy throne. And the king bowed himself upon the bed.",
+  "ko": "그뿐 아니라 왕의 신하들이 와서 우리 주 다윗 왕을 축복하여 이르기를 '왕의 하나님께서 솔로몬의 이름을 왕의 이름보다 더 아름답게 하시고 그의 왕좌를 왕의 왕좌보다 더 크게 하시기를 원하나이다' 하매, 왕이 침상 위에서 몸을 굽혀 절하고,",
+  "note": "신하들이 솔로몬의 이름과 보좌가 다윗보다 크기를 축복한다. 다윗이 침상에서 몸을 굽혀 경배함은 이 모든 일이 하나님의 은혜임을 인정하는 예배다.",
+  "voc": [
+   [
+    "bless",
+    "v.",
+    "축복하다"
+   ],
+   [
+    "better",
+    "adj.",
+    "더 나은"
+   ],
+   [
+    "bowed",
+    "v.",
+    "몸을 굽혔다"
+   ]
+  ],
+  "idi": [
+   [
+    "bowed himself upon the bed",
+    "침상에서 몸을 굽혀 경배하였다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And also thus said the king, Blessed be the LORD God of Israel, which hath given one to sit on my throne this day, mine eyes even seeing it.",
+  "ko": "또 이같이 이르시되 '이스라엘의 하나님 여호와를 찬송하리로다. 그가 오늘 한 사람으로 내 왕좌에 앉게 하사 내 눈으로 친히 그것을 보게 하셨도다' 하셨나이다\" 하니라.",
+  "note": "다윗의 마지막 찬송이 울린다. '내 눈으로 보게 하셨다(mine eyes even seeing it)'는 언약의 성취를 직접 목도한 감격이다. 하나님이 다윗의 보좌에 후계자를 주심을 찬양한다.",
+  "voc": [
+   [
+    "blessed",
+    "adj.",
+    "찬송받으실"
+   ],
+   [
+    "throne",
+    "n.",
+    "보좌"
+   ],
+   [
+    "seeing",
+    "v.",
+    "보면서"
+   ]
+  ],
+  "idi": [
+   [
+    "Blessed be the LORD",
+    "여호와를 찬송하리로다"
+   ]
+  ],
+  "gra": [
+   [
+    "mine eyes even seeing it",
+    "mine=my의 모음 앞 고어형; even=바로"
+   ]
+  ]
+ },
+ {
+  "en": "And all the guests that were with Adonijah were afraid, and rose up, and went every man his way.",
+  "ko": "이에 아도니야와 함께한 모든 손님이 두려워하여 일어나 각기 제 길로 가니라.",
+  "note": "아도니야의 손님들이 두려워 흩어졌다. 반역의 잔치가 순식간에 무너짐은 하나님을 대적한 계획의 허망함을 보여준다. 각기 제 길로 감은 파당의 해체다.",
+  "voc": [
+   [
+    "guests",
+    "n.",
+    "손님들"
+   ],
+   [
+    "afraid",
+    "adj.",
+    "두려워하는"
+   ],
+   [
+    "rose up",
+    "",
+    "일어났다"
+   ]
+  ],
+  "idi": [
+   [
+    "went every man his way",
+    "각자 자기 길로 갔다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And Adonijah feared because of Solomon, and arose, and went, and caught hold on the horns of the altar.",
+  "ko": "아도니야도 솔로몬을 두려워하여 일어나 가서 제단의 뿔을 붙잡으니라.",
+  "note": "아도니야는 제단 뿔을 잡는다. 히브리어 '카르노트 함미즈베아흐'(제단의 뿔)는 도피성 같은 피난처의 상징이다(출 21:14). 두려움에 하나님의 제단으로 피한 것이다.",
+  "voc": [
+   [
+    "feared",
+    "v.",
+    "두려워하였다"
+   ],
+   [
+    "arose",
+    "v.",
+    "일어났다"
+   ],
+   [
+    "horns of the altar",
+    "",
+    "제단 뿔"
+   ]
+  ],
+  "idi": [
+   [
+    "caught hold on the horns of the altar",
+    "제단 뿔을 붙잡았다(피난)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And it was told Solomon, saying, Behold, Adonijah feareth king Solomon: for, lo, he hath caught hold on the horns of the altar, saying, Let king Solomon swear unto me today that he will not slay his servant with the sword.",
+  "ko": "어떤 이가 솔로몬에게 아뢰어 이르되 \"보소서, 아도니야가 솔로몬 왕을 두려워하여, 보소서, 제단의 뿔을 붙잡고 이르기를 '솔로몬 왕이 오늘 내게 칼로 그 종을 죽이지 아니하겠다고 맹세하게 하라' 하나이다\" 하니,",
+  "note": "아도니야는 솔로몬의 맹세를 구한다. 제단 뿔을 잡은 채 '칼로 죽이지 않겠다'는 서약을 청함은 자기 생명의 보전을 왕의 자비에 맡긴 것이다.",
+  "voc": [
+   [
+    "feareth",
+    "v.",
+    "두려워한다"
+   ],
+   [
+    "altar",
+    "n.",
+    "제단"
+   ],
+   [
+    "slay",
+    "v.",
+    "죽이다"
+   ]
+  ],
+  "idi": [
+   [
+    "caught hold on the horns of the altar",
+    "제단 뿔을 붙잡았다"
+   ]
+  ],
+  "gra": [
+   [
+    "Adonijah feareth",
+    "feareth=fears의 고어 3인칭"
+   ]
+  ]
+ },
+ {
+  "en": "And Solomon said, If he will shew himself a worthy man, there shall not an hair of him fall to the earth: but if wickedness shall be found in him, he shall die.",
+  "ko": "솔로몬이 이르되 \"그가 만일 자기를 합당한 자로 나타내면 그의 머리카락 하나도 땅에 떨어지지 아니하려니와, 그에게 악함이 발견되면 그가 죽으리라\" 하고,",
+  "note": "솔로몬의 판결은 은혜와 공의의 균형이다. '머리카락 하나도 떨어지지 않으리라'는 완전한 보전을, '악이 발견되면 죽으리라'는 조건적 심판을 뜻한다. 회개할 기회를 주는 지혜로운 왕권이다.",
+  "voc": [
+   [
+    "worthy",
+    "adj.",
+    "합당한"
+   ],
+   [
+    "wickedness",
+    "n.",
+    "악"
+   ],
+   [
+    "hair",
+    "n.",
+    "머리카락"
+   ]
+  ],
+  "idi": [
+   [
+    "there shall not an hair of him fall",
+    "머리카락 하나도 떨어지지 않으리라(온전히 보전)"
+   ]
+  ],
+  "gra": [
+   [
+    "an hair",
+    "an=h 앞에서 쓰인 고어 부정관사"
+   ]
+  ]
+ },
+ {
+  "en": "So king Solomon sent, and they brought him down from the altar. And he came and bowed himself to king Solomon: and Solomon said unto him, Go to thine house.",
+  "ko": "솔로몬 왕이 사람을 보내어 그를 제단에서 데려 내리니, 그가 와서 솔로몬 왕께 절하매, 솔로몬이 그에게 이르되 \"네 집으로 가라\" 하니라.",
+  "note": "솔로몬은 아도니야를 집으로 돌려보낸다. '네 집으로 가라'는 관용이지만 감시의 뜻도 담긴다. 새 왕의 첫 통치는 절제된 자비로 시작된다.",
+  "voc": [
+   [
+    "altar",
+    "n.",
+    "제단"
+   ],
+   [
+    "bowed",
+    "v.",
+    "절하였다"
+   ],
+   [
+    "go to thine house",
+    "",
+    "네 집으로 가라"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "go to thine house",
+    "thine=your의 고어형(모음/h 앞)"
+   ]
   ]
  }
 ]

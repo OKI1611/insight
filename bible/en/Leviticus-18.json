@@ -1,162 +1,737 @@
 [
-  {
-    "en": "Speak unto the children of Israel, and say unto them, I am the LORD your God.",
-    "ko": "너는 이스라엘 자손에게 일러 그들에게 이르라. 나는 너희의 하나님 여호와니라.",
-    "note": "'나는 너희의 하나님 여호와니라'(아니 야훼 엘로헤켐, אֲנִי יְהוָה אֱלֹהֵיכֶם)가 이 장을 여닫는 후렴이다. 모든 금령의 근거는 규칙 자체가 아니라 언약의 하나님이 누구신가에 있다.",
-    "voc": [
-      ["speak", "v.", "말하다·이르다"],
-      ["unto", "prep.", "~에게(고어 to)"],
-      ["children of Israel", "", "이스라엘 자손"]
-    ],
-    "gra": [
-      ["unto", "고어 전치사로 현대 영어의 to에 해당한다."],
-      ["Speak ... and say", "주어를 생략한 명령문 두 개가 and로 이어진다."]
-    ]
-  },
-  {
-    "en": "After the doings of the land of Egypt ... shall ye not do: and after the doings of the land of Canaan ... shall ye not do",
-    "ko": "너희가 거하던 애굽 땅의 풍속을 따르지 말며, 내가 너희를 인도하여 들이는 가나안 땅의 풍속과 규례를 따라 행하지 말지니라.",
-    "note": "'풍속'(마아세, מַעֲשֶׂה, 행위)을 따르지 말라 하신다. 나온 땅(애굽)도 들어갈 땅(가나안)도 본받지 말라 하시니, 언약 백성은 주변 문화가 아니라 하나님을 기준 삼아 구별되어 산다.",
-    "voc": [
-      ["after", "prep.", "~을 따라·~을 본떠"],
-      ["doings", "n.", "행위·풍속"],
-      ["Egypt", "n.", "애굽·이집트"],
-      ["Canaan", "n.", "가나안"]
-    ],
-    "idi": [
-      ["after the doings of", "~의 행위(풍속)를 따라"]
-    ],
-    "gra": [
-      ["After ... shall ye not do", "목적어(After the doings ...)가 문두로 도치되고 주어 ye가 조동사 뒤로 가는 강조 도치 구문이다."]
-    ]
-  },
-  {
-    "en": "which if a man do, he shall live in them: I am the LORD.",
-    "ko": "사람이 이를 행하면 그로 말미암아 살리라. 나는 여호와니라.",
-    "note": "'살리라'(바하이, וָחַי, 어근 하야 חָיָה)는 하나님의 규례가 생명의 길임을 선언한다. 율법은 억압이 아니라, 그 안에서 참된 생명을 누리게 하는 언약의 선물이다(롬 10:5에 인용됨).",
-    "voc": [
-      ["man", "n.", "사람"],
-      ["do", "v.", "행하다·지키다"],
-      ["live", "v.", "살다"]
-    ],
-    "gra": [
-      ["which if a man do, he shall live", "관계대명사 which가 앞 절의 규례를 받으며, 그 안에 조건절 'if a man do'가 끼어든 구조이다. do는 고어 가정법으로 현대 영어의 does에 해당한다."]
-    ]
-  },
-  {
-    "en": "None of you shall approach to any that is near of kin to him, to uncover their nakedness",
-    "ko": "너희 중 누구든지 살붙이 가까운 친족을 가까이하여 그 하체를 범하지 말라",
-    "note": "'하체를 범하다(uncover the nakedness)'는 히브리어 갈라 에르바(גָּלָה עֶרְוָה)의 직역으로, 성적 관계를 가리키는 완곡어다. '살붙이'(셰에르 베사로, שְׁאֵר בְּשָׂרוֹ, 자기 살의 살)는 가까운 혈육을 뜻한다.",
-    "voc": [
-      ["none", "pron.", "아무도 ~않다"],
-      ["approach", "v.", "가까이하다·다가가다"],
-      ["near of kin", "", "가까운 친족·혈육"],
-      ["uncover", "v.", "벗기다·드러내다"]
-    ],
-    "idi": [
-      ["near of kin", "가까운 친족, 혈육"],
-      ["uncover the nakedness", "하체를 범하다(성관계를 가리키는 완곡어)"]
-    ],
-    "gra": [
-      ["None of you shall approach", "None of + 복수명사가 주어로 전체 부정('아무도 ~않다')을 나타낸다."]
-    ]
-  },
-  {
-    "en": "The nakedness of thy father, or the nakedness of thy mother, shalt thou not uncover",
-    "ko": "네 어머니 곧 네 아버지의 아내의 하체를 범하지 말라.",
-    "note": "근친 금령의 목록이 시작된다. 가정의 거룩한 질서를 지키는 것은 사회의 토대이니, 하나님은 가장 가까운 관계에서부터 거룩의 경계를 세우신다.",
-    "voc": [
-      ["nakedness", "n.", "벌거벗음·하체"],
-      ["thy", "pron.", "너의(고어 your)"],
-      ["father", "n.", "아버지"],
-      ["uncover", "v.", "벗기다·범하다"]
-    ],
-    "gra": [
-      ["shalt thou not uncover", "thy/thou는 your/you의 고어형(단수)이다. 목적어가 문두로 나가고 'shalt thou not'로 도치되어 명령을 강조한다."]
-    ]
-  },
-  {
-    "en": "And thou shalt not let any of thy seed pass through the fire to Molech, neither shalt thou profane the name of thy God",
-    "ko": "너는 네 자식을 몰렉에게 주어 불로 지나가게 하지 말며, 네 하나님의 이름을 욕되게 하지 말라.",
-    "note": "몰렉(מֹלֶךְ, Molech)은 가나안의 신으로, 자녀를 불에 바치는 제사가 행해졌다. '욕되게 하다'(할랄, חָלַל)는 거룩한 것을 더럽힘이니, 자녀를 우상에 바침은 하나님의 이름 자체를 모독하는 일이다.",
-    "voc": [
-      ["seed", "n.", "씨·자손·자식"],
-      ["pass through", "", "지나가다·통과시키다"],
-      ["profane", "v.", "욕되게 하다·모독하다"],
-      ["Molech", "n.", "몰렉(가나안 우상)"]
-    ],
-    "idi": [
-      ["pass through the fire", "불로 지나가게 하다(자녀를 불에 바치는 제사)"]
-    ],
-    "gra": [
-      ["neither shalt thou profane", "부정 부사 neither가 문두에 오면 주어·조동사가 도치된다('너도 ~하지 말라')."]
-    ]
-  },
-  {
-    "en": "Thou shalt not lie with mankind, as with womankind: it is abomination.",
-    "ko": "너는 여자와 동침함같이 남자와 동침하지 말라. 이는 가증한 일이니라.",
-    "note": "'가증한 일'(토에바, תּוֹעֵבָה)은 하나님이 심히 미워하시는 것을 가리키는 강한 말이다. 창조의 질서를 거스르는 행위에 이 단어가 쓰여, 그 심각함을 분명히 한다.",
-    "voc": [
-      ["lie with", "", "동침하다"],
-      ["mankind", "n.", "남자(여기서는 남성)"],
-      ["womankind", "n.", "여자(여기서는 여성)"],
-      ["abomination", "n.", "가증한 것·혐오스러운 것"]
-    ],
-    "idi": [
-      ["lie with", "동침하다, 잠자리를 같이하다"]
-    ],
-    "gra": [
-      ["as with womankind", "as가 비교를 이끌어 '여자와 (동침하는) 것처럼'을 뜻하며, with 앞에 lie가 생략되어 있다."]
-    ]
-  },
-  {
-    "en": "Defile not ye yourselves in any of these things: for in all these the nations are defiled which I cast out before you",
-    "ko": "너희는 이 모든 일로 스스로를 더럽히지 말라. 내가 너희 앞에서 쫓아내는 민족들이 이 모든 일로 말미암아 더러워졌고,",
-    "note": "'더럽히다'(타메, טָמֵא)가 거듭 쓰인다. 가나안 민족이 쫓겨난 까닭은 군사적 약함이 아니라 이런 죄로 인한 부정 때문이니, 죄는 땅과 사람을 함께 오염시킨다.",
-    "voc": [
-      ["defile", "v.", "더럽히다·오염시키다"],
-      ["nation", "n.", "민족·나라"],
-      ["cast out", "", "쫓아내다·내쫓다"]
-    ],
-    "idi": [
-      ["cast out", "쫓아내다, 내쫓다"]
-    ],
-    "gra": [
-      ["Defile not ye yourselves", "고어 명령문으로 주어 ye가 동사 뒤에 온다. 재귀대명사 yourselves가 '스스로를'을 뜻한다."],
-      ["the nations are defiled which I cast out", "관계대명사 which가 the nations를 받으며, 동사 are defiled 뒤로 분리되어 있다."]
-    ]
-  },
-  {
-    "en": "and the land itself vomiteth out her inhabitants.",
-    "ko": "그 땅도 그 주민을 토하여 내었느니라.",
-    "note": "'토하다'(쿠, קוֹא)는 견딜 수 없는 것을 게워 냄을 뜻하는 강렬한 비유다. 땅이 거주민을 '토해 낸다'는 표현은, 죄로 더럽혀진 삶을 거룩한 땅이 품을 수 없음을 생생히 드러낸다.",
-    "voc": [
-      ["land", "n.", "땅"],
-      ["vomit out", "", "토해 내다·게워 내다"],
-      ["inhabitant", "n.", "주민·거주민"]
-    ],
-    "idi": [
-      ["vomit out", "토해 내다, 게워 내다"]
-    ],
-    "gra": [
-      ["the land itself vomiteth", "재귀대명사 itself가 land를 강조한다('그 땅이 친히'). vomiteth는 vomits의 고어형이다."]
-    ]
-  },
-  {
-    "en": "that ye commit not any one of these abominable customs, which were committed before you ... I am the LORD your God.",
-    "ko": "너희 전에 행하던 그 가증한 풍속을 하나라도 따라 행하여 스스로를 더럽히지 말라. 나는 너희의 하나님 여호와니라.",
-    "note": "장의 마지막도 '나는 너희의 하나님 여호와니라'로 닫힌다. '가증한 풍속'(훅코트 하토에보트, 가증한 규례들)을 따르지 말라는 명령이, 언약의 하나님이라는 토대 위에 굳게 세워진다.",
-    "voc": [
-      ["commit", "v.", "(죄를) 범하다·저지르다"],
-      ["abominable", "adj.", "가증한·혐오스러운"],
-      ["custom", "n.", "풍속·관습"]
-    ],
-    "idi": [
-      ["any one of", "~ 중 어느 하나라도"]
-    ],
-    "gra": [
-      ["that ye commit not", "목적·결과를 나타내는 고어 절로 '너희가 ~을 범하지 않도록'을 뜻한다."],
-      ["which were committed before you", "관계대명사 which가 customs를 받으며 수동태('행해졌던')로 쓰였다."]
-    ]
-  }
+ {
+  "en": "And the LORD spake unto Moses, saying,",
+  "ko": "여호와께서 모세에게 말씀하여 이르시되,",
+  "note": "여호와께서 모세에게 말씀하신다. 성결한 삶에 관한 규례가 이어진다. 가정과 성의 거룩을 다루는 이 장의 서두를 연다.",
+  "voc": [
+   [
+    "spake",
+    "v.",
+    "말씀하셨다"
+   ],
+   [
+    "saying",
+    "v.",
+    "이르시되"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "spake",
+    "speak의 KJV 과거형"
+   ]
+  ]
+ },
+ {
+  "en": "Speak unto the children of Israel, and say unto them, I am the LORD your God.",
+  "ko": "\"너는 이스라엘 자손에게 일러 그들에게 이르라. 나는 너희의 하나님 여호와니라.",
+  "note": "'나는 너희 하나님 여호와라' 하신다. 모든 성결 규례의 근거는 하나님 자신이시다. 계명의 권위는 명령하시는 분의 거룩한 신성에 있다.",
+  "voc": [
+   [
+    "God",
+    "n.",
+    "하나님"
+   ],
+   [
+    "LORD",
+    "n.",
+    "여호와"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "I am the LORD your God",
+    "나는 너희 하나님 여호와라(언약적 자기 선언)"
+   ]
+  ]
+ },
+ {
+  "en": "After the doings of the land of Egypt, wherein ye dwelt, shall ye not do: and after the doings of the land of Canaan, whither I bring you, shall ye not do: neither shall ye walk in their ordinances.",
+  "ko": "너희는 너희가 거하던 애굽 땅의 풍속을 따르지 말며, 내가 너희를 인도하여 들이는 가나안 땅의 풍속과 규례를 따라 행하지 말지니라.",
+  "note": "애굽과 가나안의 풍속을 따르지 말고 그 규례대로 행하지 말라 하신다. 하나님의 백성은 이방 문화의 관습에 동화되어서는 안 된다. 성결은 세상의 풍속과 구별되는 삶에서 드러난다.",
+  "voc": [
+   [
+    "doings",
+    "n.",
+    "풍속·행위"
+   ],
+   [
+    "dwelt",
+    "v.",
+    "거하였다"
+   ],
+   [
+    "ordinances",
+    "n.",
+    "규례"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "whither",
+    "어디로(where의 방향형) KJV 고어"
+   ]
+  ]
+ },
+ {
+  "en": "Ye shall do my judgments, and keep mine ordinances, to walk therein: I am the LORD your God.",
+  "ko": "너희는 내 법도를 행하며 내 규례를 지켜 그대로 따를지니, 나는 너희의 하나님 여호와니라.",
+  "note": "내 법도를 행하고 내 규례를 지켜 그 안에서 행하라 하신다. 성결은 하나님의 법을 삶의 길로 삼음이다. 이방의 길이 아닌 하나님의 길을 걷는 것이 거룩이다.",
+  "voc": [
+   [
+    "judgments",
+    "n.",
+    "법도"
+   ],
+   [
+    "keep",
+    "v.",
+    "지키다"
+   ],
+   [
+    "walk",
+    "v.",
+    "행하다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "walk therein",
+    "그 안에서 행하다(KJV 어법)"
+   ]
+  ]
+ },
+ {
+  "en": "Ye shall therefore keep my statutes, and my judgments: which if a man do, he shall live in them: I am the LORD.",
+  "ko": "그러므로 너희는 내 율례와 내 법도를 지키라. 사람이 이를 행하면 그로 말미암아 살리라. 나는 여호와니라.",
+  "note": "내 규례와 법도를 지키라 사람이 이를 행하면 그로 인해 살리라 하신다. 하나님의 계명은 생명의 길이다. 순종은 곧 참된 생명을 누리는 길임을 밝힌다.",
+  "voc": [
+   [
+    "statutes",
+    "n.",
+    "규례"
+   ],
+   [
+    "live",
+    "v.",
+    "살다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "he shall live in them",
+    "그것들로 인해 살리라(순종=생명)"
+   ]
+  ]
+ },
+ {
+  "en": "None of you shall approach to any that is near of kin to him, to uncover their nakedness: I am the LORD.",
+  "ko": "너희 중 누구든지 살붙이 가까운 친족을 가까이하여 그 하체를 범하지 말라. 나는 여호와니라.",
+  "note": "골육지친을 가까이하여 그 하체를 범하지 말라 하신다. '하체를 드러내다(uncover nakedness)'는 성적 결합의 완곡한 표현이다. 가족 간의 성적 순결이 성결 공동체의 기초임을 선언한다.",
+  "voc": [
+   [
+    "approach",
+    "v.",
+    "가까이하다"
+   ],
+   [
+    "kin",
+    "n.",
+    "친족"
+   ],
+   [
+    "nakedness",
+    "n.",
+    "하체·벌거벗음"
+   ]
+  ],
+  "idi": [
+   [
+    "uncover nakedness",
+    "하체를 드러내다(성적 결합의 완곡 표현)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "The nakedness of thy father, or the nakedness of thy mother, shalt thou not uncover: she is thy mother; thou shalt not uncover her nakedness.",
+  "ko": "네 어머니 곧 네 아버지의 아내의 하체를 범하지 말라. 그는 네 어머니인즉, 너는 그의 하체를 범하지 말지니라.",
+  "note": "아버지나 어머니의 하체를 드러내지 말라 하신다. 부모의 성적 영역은 절대 침범될 수 없다. 가장 근본적인 가정의 질서가 거룩으로 지켜져야 한다.",
+  "voc": [
+   [
+    "father",
+    "n.",
+    "아버지"
+   ],
+   [
+    "mother",
+    "n.",
+    "어머니"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "shalt thou not uncover",
+    "드러내지 말라(KJV 2인칭 금령)"
+   ]
+  ]
+ },
+ {
+  "en": "The nakedness of thy father’s wife shalt thou not uncover: it is thy father’s nakedness.",
+  "ko": "네 아버지의 아내의 하체를 범하지 말라. 이는 네 아버지의 하체니라.",
+  "note": "아버지의 아내의 하체를 드러내지 말라 이는 아버지의 하체니라 하신다. 계모와의 결합은 아버지의 권리를 침범함이다. 혼인으로 맺어진 가정의 경계도 거룩으로 존중된다.",
+  "voc": [
+   [
+    "wife",
+    "n.",
+    "아내"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "it is thy father nakedness",
+    "이는 아버지의 하체니라(KJV 소유 표현)"
+   ]
+  ]
+ },
+ {
+  "en": "The nakedness of thy sister, the daughter of thy father, or daughter of thy mother, whether she be born at home, or born abroad, even their nakedness thou shalt not uncover.",
+  "ko": "네 자매 곧 네 아버지의 딸이나 네 어머니의 딸이 집에서 났든지 다른 데서 났든지 그의 하체를 범하지 말지니라.",
+  "note": "집에서 났든 밖에서 났든 자매의 하체를 드러내지 말라 하신다. 이복이나 동복을 막론하고 자매와의 결합은 금지된다. 혈연의 순결이 태생의 정황에 상관없이 지켜져야 한다.",
+  "voc": [
+   [
+    "sister",
+    "n.",
+    "자매"
+   ],
+   [
+    "daughter",
+    "n.",
+    "딸"
+   ],
+   [
+    "born",
+    "v.",
+    "태어난"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "born at home, or born abroad",
+    "집에서 났든 밖에서 났든(KJV 대구)"
+   ]
+  ]
+ },
+ {
+  "en": "The nakedness of thy son’s daughter, or of thy daughter’s daughter, even their nakedness thou shalt not uncover: for theirs is thine own nakedness.",
+  "ko": "네 손녀나 네 외손녀의 하체를 범하지 말라. 이는 너 자신의 하체임이니라.",
+  "note": "손녀의 하체를 드러내지 말라 그들의 하체는 곧 네 하체니라 하신다. 후손과의 결합은 곧 자기 자신을 범하는 것이다. 세대를 잇는 혈통의 거룩이 보호된다.",
+  "voc": [
+   [
+    "son",
+    "n.",
+    "아들"
+   ],
+   [
+    "thine",
+    "pron.",
+    "너의"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "theirs is thine own nakedness",
+    "그들의 하체가 곧 네 하체(KJV 어법)"
+   ]
+  ]
+ },
+ {
+  "en": "The nakedness of thy father’s wife’s daughter, begotten of thy father, she is thy sister, thou shalt not uncover her nakedness.",
+  "ko": "네 아버지의 아내가 네 아버지에게서 낳은 딸은 네 누이인즉, 너는 그의 하체를 범하지 말지니라.",
+  "note": "아버지의 아내가 낳은 딸 곧 네 자매의 하체를 드러내지 말라 하신다. 아버지에게서 난 이복 자매도 자매로 규정된다. 아버지의 혈통을 나눈 자와의 결합이 금지된다.",
+  "voc": [
+   [
+    "begotten",
+    "v.",
+    "낳은"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "begotten of thy father",
+    "네 아버지에게서 난(beget의 KJV 과거분사)"
+   ]
+  ]
+ },
+ {
+  "en": "Thou shalt not uncover the nakedness of thy father’s sister: she is thy father’s near kinswoman.",
+  "ko": "네 아버지의 누이의 하체를 범하지 말라. 그는 네 아버지의 살붙이니라.",
+  "note": "아버지의 자매의 하체를 드러내지 말라 그는 아버지의 골육지친이라 하신다. 고모는 아버지의 가까운 혈육이다. 부모의 형제자매에게까지 성결의 경계가 확장된다.",
+  "voc": [
+   [
+    "aunt",
+    "n.",
+    "고모·이모"
+   ],
+   [
+    "kinswoman",
+    "n.",
+    "여자 친족"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "near kinswoman",
+    "가까운 여자 친족(골육지친)"
+   ]
+  ]
+ },
+ {
+  "en": "Thou shalt not uncover the nakedness of thy mother’s sister: for she is thy mother’s near kinswoman.",
+  "ko": "네 어머니의 자매의 하체를 범하지 말라. 이는 그가 네 어머니의 살붙이임이니라.",
+  "note": "어머니의 자매의 하체를 드러내지 말라 그는 어머니의 골육지친이라 하신다. 이모 역시 어머니의 가까운 혈육이다. 모계의 혈연도 동일하게 거룩으로 지켜진다.",
+  "voc": [
+   [
+    "mother",
+    "n.",
+    "어머니"
+   ],
+   [
+    "near",
+    "adj.",
+    "가까운"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "Thou shalt not uncover the nakedness of thy father’s brother, thou shalt not approach to his wife: she is thine aunt.",
+  "ko": "네 아버지 형제의 하체를 범하지 말지니, 그의 아내를 가까이하지 말라. 그는 네 숙모니라.",
+  "note": "아버지 형제의 아내를 가까이하지 말라 그는 네 숙모니라 하신다. 백숙부의 아내와의 결합도 금지된다. 혼인으로 맺어진 친족의 관계까지 거룩이 미친다.",
+  "voc": [
+   [
+    "brother",
+    "n.",
+    "형제"
+   ],
+   [
+    "aunt",
+    "n.",
+    "숙모"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "thine aunt",
+    "너의 숙모(thine=your) KJV 소유격"
+   ]
+  ]
+ },
+ {
+  "en": "Thou shalt not uncover the nakedness of thy daughter in law: she is thy son’s wife; thou shalt not uncover her nakedness.",
+  "ko": "네 며느리의 하체를 범하지 말라. 그는 네 아들의 아내인즉, 너는 그의 하체를 범하지 말지니라.",
+  "note": "며느리의 하체를 드러내지 말라 그는 네 아들의 아내니라 하신다. 아들의 아내는 절대 침범될 수 없는 관계다. 세대 간 혼인 질서의 거룩이 보호된다.",
+  "voc": [
+   [
+    "daughter in law",
+    "숙어",
+    "며느리"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "daughter in law",
+    "며느리(KJV 표현)"
+   ]
+  ]
+ },
+ {
+  "en": "Thou shalt not uncover the nakedness of thy brother’s wife: it is thy brother’s nakedness.",
+  "ko": "네 형제의 아내의 하체를 범하지 말라. 이는 네 형제의 하체니라.",
+  "note": "형제의 아내의 하체를 드러내지 말라 이는 형제의 하체니라 하신다. 형제의 아내와의 결합은 형제를 범하는 것이다. 형제 관계의 성적 경계가 거룩으로 존중된다.",
+  "voc": [
+   [
+    "brother",
+    "n.",
+    "형제"
+   ],
+   [
+    "wife",
+    "n.",
+    "아내"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "Thou shalt not uncover the nakedness of a woman and her daughter, neither shalt thou take her son’s daughter, or her daughter’s daughter, to uncover her nakedness; for they are her near kinswomen: it is wickedness.",
+  "ko": "너는 한 여인과 그의 딸의 하체를 함께 범하지 말며, 그의 손녀나 그의 외손녀를 데려다가 그의 하체를 범하지 말라. 그들은 그의 살붙이인즉, 이는 악한 일이니라.",
+  "note": "한 여인과 그 딸의 하체를 아울러 드러내지 말라 이는 악행이라 하신다. 어머니와 딸을 함께 취함은 골육을 짓밟는 사악함이다. '악행(wickedness, 히브리어 짐마)'은 계획된 음란한 죄를 뜻한다.",
+  "voc": [
+   [
+    "wickedness",
+    "n.",
+    "악행"
+   ],
+   [
+    "take",
+    "v.",
+    "취하다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "it is wickedness",
+    "이는 악행이라(짐마, 음란한 죄)"
+   ]
+  ]
+ },
+ {
+  "en": "Neither shalt thou take a wife to her sister, to vex her, to uncover her nakedness, beside the other in her life time.",
+  "ko": "너는 아내가 살아 있는 동안에 그의 자매를 데려다가 그를 괴롭게 하려고 그의 하체를 범하지 말지니라.",
+  "note": "아내가 살아 있는 동안 그 자매를 함께 취하여 번거롭게 하지 말라 하신다. 자매를 동시에 아내로 삼음은 시기와 다툼을 부른다. 가정의 화평을 깨뜨리는 결합이 금지된다.",
+  "voc": [
+   [
+    "vex",
+    "v.",
+    "번거롭게 하다"
+   ],
+   [
+    "beside",
+    "prep.",
+    "외에·더하여"
+   ],
+   [
+    "life time",
+    "숙어",
+    "생전"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "in her life time",
+    "그가 살아 있는 동안(KJV 표현)"
+   ]
+  ]
+ },
+ {
+  "en": "Also thou shalt not approach unto a woman to uncover her nakedness, as long as she is put apart for her uncleanness.",
+  "ko": "여인이 부정한 동안 곧 불결할 때에 그에게 가까이하여 그의 하체를 범하지 말라.",
+  "note": "여인이 불결로 구별되어 있는 동안 가까이하여 하체를 드러내지 말라 하신다. 월경 중의 여인은 성결법상 구별의 기간에 있다. 생명의 피가 흐르는 때는 거룩한 절제가 요구된다.",
+  "voc": [
+   [
+    "approach",
+    "v.",
+    "가까이하다"
+   ],
+   [
+    "put apart",
+    "숙어",
+    "구별된"
+   ]
+  ],
+  "idi": [
+   [
+    "put apart for her uncleanness",
+    "불결로 구별되다(니다, 월경 기간)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Moreover thou shalt not lie carnally with thy neighbour’s wife, to defile thyself with her.",
+  "ko": "너는 네 이웃의 아내와 동침하여 그로 더불어 스스로를 더럽히지 말지니라.",
+  "note": "이웃의 아내와 동침하여 스스로를 더럽히지 말라 하신다. 간음은 자신과 공동체를 함께 더럽힌다. 부부의 언약을 침범하는 것은 성결의 근본을 무너뜨린다.",
+  "voc": [
+   [
+    "carnally",
+    "adv.",
+    "육체적으로"
+   ],
+   [
+    "neighbour",
+    "n.",
+    "이웃"
+   ],
+   [
+    "defile",
+    "v.",
+    "더럽히다"
+   ]
+  ],
+  "idi": [
+   [
+    "lie carnally with",
+    "~와 육체적으로 동침하다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And thou shalt not let any of thy seed pass through the fire to Molech, neither shalt thou profane the name of thy God: I am the LORD.",
+  "ko": "너는 네 자식을 몰렉에게 주어 불로 지나가게 하지 말며, 네 하나님의 이름을 욕되게 하지 말라. 나는 여호와니라.",
+  "note": "네 자식을 몰렉에게 불로 지나가게 하지 말며 네 하나님의 이름을 욕되게 하지 말라 하신다. 몰렉 숭배의 인신제사는 하나님의 이름을 모독하는 극악한 죄다. 자녀를 우상에게 바침은 생명의 하나님을 정면으로 거스름이다.",
+  "voc": [
+   [
+    "seed",
+    "n.",
+    "자식·씨"
+   ],
+   [
+    "Molech",
+    "n.",
+    "몰렉(우상)"
+   ],
+   [
+    "profane",
+    "v.",
+    "욕되게 하다"
+   ]
+  ],
+  "idi": [
+   [
+    "pass through the fire to Molech",
+    "몰렉에게 불로 지나가게 하다(인신제사)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Thou shalt not lie with mankind, as with womankind: it is abomination.",
+  "ko": "너는 여자와 동침함같이 남자와 동침하지 말라. 이는 가증한 일이니라.",
+  "note": "남자가 여자와 하듯 남자와 동침하지 말라 이는 가증한 일이라 하신다. '가증한 것(abomination, 히브리어 토에바)'은 하나님이 극도로 혐오하시는 죄다. 하나님이 세우신 창조의 성 질서를 거스르는 행위가 정죄된다.",
+  "voc": [
+   [
+    "mankind",
+    "n.",
+    "남자"
+   ],
+   [
+    "womankind",
+    "n.",
+    "여자"
+   ],
+   [
+    "abomination",
+    "n.",
+    "가증한 것"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "it is abomination",
+    "이는 가증한 것이라(토에바)"
+   ]
+  ]
+ },
+ {
+  "en": "Neither shalt thou lie with any beast to defile thyself therewith: neither shall any woman stand before a beast to lie down thereto: it is confusion.",
+  "ko": "너는 짐승과 교합하여 스스로를 더럽히지 말며, 여자는 짐승 앞에 서서 그것과 교합하게 하지 말라. 이는 문란한 일이니라.",
+  "note": "짐승과 교합하여 스스로를 더럽히지 말라 이는 문란한 일이라 하신다. '문란(confusion, 히브리어 테벨)'은 창조 질서를 뒤섞는 혼란을 뜻한다. 인간과 짐승의 경계를 무너뜨리는 죄가 엄히 금지된다.",
+  "voc": [
+   [
+    "beast",
+    "n.",
+    "짐승"
+   ],
+   [
+    "confusion",
+    "n.",
+    "문란·혼란"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "it is confusion",
+    "이는 문란한 일이라(테벨, 질서의 혼란)"
+   ]
+  ]
+ },
+ {
+  "en": "Defile not ye yourselves in any of these things: for in all these the nations are defiled which I cast out before you:",
+  "ko": "너희는 이 모든 일로 스스로를 더럽히지 말라. 내가 너희 앞에서 쫓아내는 민족들이 이 모든 일로 말미암아 더러워졌고,",
+  "note": "이 모든 일로 스스로를 더럽히지 말라 내가 쫓아낼 이방인이 이로써 더럽혀졌느니라 하신다. 가나안 족속이 쫓겨나는 이유가 바로 이 죄들이다. 성결의 규례를 어김은 그 땅에서 쫓겨나는 심판을 부른다.",
+  "voc": [
+   [
+    "defile",
+    "v.",
+    "더럽히다"
+   ],
+   [
+    "nations",
+    "n.",
+    "이방 족속"
+   ],
+   [
+    "cast out",
+    "숙어",
+    "쫓아내다"
+   ]
+  ],
+  "idi": [
+   [
+    "cast out before you",
+    "너희 앞에서 쫓아내다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And the land is defiled: therefore I do visit the iniquity thereof upon it, and the land itself vomiteth out her inhabitants.",
+  "ko": "그 땅도 더러워졌으므로 내가 그 죄악으로 인하여 그 땅을 벌하매, 그 땅도 그 주민을 토하여 내었느니라.",
+  "note": "그 땅이 더럽혀졌으므로 내가 그 죄악을 벌하니 땅이 그 주민을 토해 내느니라 하신다. '땅이 토해 낸다(the land vomiteth)'는 죄가 극에 달할 때의 심판을 생생히 묘사한다. 죄의 오염은 땅 자체가 견디지 못할 만큼 무겁다.",
+  "voc": [
+   [
+    "visit",
+    "v.",
+    "벌하다·징벌하다"
+   ],
+   [
+    "vomiteth",
+    "v.",
+    "토해 내다"
+   ],
+   [
+    "inhabitants",
+    "n.",
+    "주민"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "the land vomiteth out",
+    "땅이 토해 내다(심판의 은유)"
+   ]
+  ]
+ },
+ {
+  "en": "Ye shall therefore keep my statutes and my judgments, and shall not commit any of these abominations; neither any of your own nation, nor any stranger that sojourneth among you:",
+  "ko": "그러므로 너희는 내 율례와 내 법도를 지키고 이 모든 가증한 일 중 하나도 행하지 말라. 본토인이든지 너희 가운데 거류하는 나그네든지 그리할지니,",
+  "note": "너희는 내 규례와 법도를 지켜 이 가증한 일을 행하지 말라 본토인이나 나그네나 마찬가지라 하신다. 성결의 규례는 언약 안의 모든 이에게 동일하게 요구된다. 거룩의 부르심에는 예외가 없다.",
+  "voc": [
+   [
+    "commit",
+    "v.",
+    "범하다"
+   ],
+   [
+    "abominations",
+    "n.",
+    "가증한 일들"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "(For all these abominations have the men of the land done, which were before you, and the land is defiled;)",
+  "ko": "(너희 전에 있던 그 땅의 사람들이 이 모든 가증한 일을 행하여 그 땅이 더러워졌느니라.)",
+  "note": "너희 전에 그 땅의 사람들이 이 모든 가증한 일을 행하여 땅이 더럽혀졌느니라 하신다. 이전 거민들의 죄가 그 땅을 오염시켰다. 역사가 죄의 결과를 증언하는 경고로 제시된다.",
+  "voc": [
+   [
+    "men",
+    "n.",
+    "사람들"
+   ],
+   [
+    "before you",
+    "숙어",
+    "너희 이전에"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "That the land spue not you out also, when ye defile it, as it spued out the nations that were before you.",
+  "ko": "너희도 그 땅을 더럽히면 그 땅이 너희 전에 있던 민족을 토하여 낸 것같이 너희를 토하여 낼까 하노라.",
+  "note": "너희가 그 땅을 더럽히면 그 땅이 너희 전의 이방을 토했듯 너희도 토하리라 하신다. 이스라엘도 죄를 범하면 동일한 심판을 피하지 못한다. 언약 백성이라도 죄의 오염은 추방을 부른다.",
+  "voc": [
+   [
+    "spue",
+    "v.",
+    "토하다"
+   ],
+   [
+    "defile",
+    "v.",
+    "더럽히다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "spue...out",
+    "토해 내다(spue=spew) KJV 철자"
+   ]
+  ]
+ },
+ {
+  "en": "For whosoever shall commit any of these abominations, even the souls that commit them shall be cut off from among their people.",
+  "ko": "이 모든 가증한 일 중 하나라도 행하는 자는 누구든지 그 백성 중에서 끊어지리라.",
+  "note": "이 가증한 일을 하나라도 범하는 자는 백성 중에서 끊어지리라 하신다. 성결법의 위반은 언약 공동체에서의 단절을 부른다. 거룩을 저버리는 자는 하나님의 백성에서 제외된다.",
+  "voc": [
+   [
+    "whosoever",
+    "pron.",
+    "누구든지"
+   ],
+   [
+    "cut off",
+    "숙어",
+    "끊어지다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "cut off from among their people",
+    "백성 중에서 끊어지다(언약적 처벌)"
+   ]
+  ]
+ },
+ {
+  "en": "Therefore shall ye keep mine ordinance, that ye commit not any one of these abominable customs, which were committed before you, and that ye defile not yourselves therein: I am the LORD your God.",
+  "ko": "그러므로 너희는 내 명령을 지켜, 너희 전에 행하던 그 가증한 풍속을 하나라도 따라 행하여 스스로를 더럽히지 말라. 나는 너희의 하나님 여호와니라.\"",
+  "note": "내 규례를 지켜 이 가증한 풍속을 행하지 말고 스스로를 더럽히지 말라 나는 너희 하나님 여호와라 하신다. 성결의 규례가 다시 하나님의 자기 선언으로 봉인된다. 거룩의 근거이자 목적은 오직 여호와 자신이시다.",
+  "voc": [
+   [
+    "ordinance",
+    "n.",
+    "규례"
+   ],
+   [
+    "customs",
+    "n.",
+    "풍속"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "I am the LORD your God",
+    "나는 너희 하나님 여호와라(성결의 근거)"
+   ]
+  ]
+ }
 ]

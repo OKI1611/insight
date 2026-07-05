@@ -1,126 +1,804 @@
 [
-  {
-    "en": "a Nazarite",
-    "ko": "나실인",
-    "note": "히브리어 '나지르'(נָזִיר, nazir)는 어근 '나자르'(נָזַר, 구별하다·삼가다)에서 나온 말로, '구별된 자·바쳐진 자'를 뜻한다. 머리털·포도주·시체에 관한 세 가지 금기로 자신을 여호와께 온전히 구별하여 바친 사람이다. 한국 교회 전통 표기 '나실인'을 따른다.",
-    "voc": [
-      ["Nazarite", "n.", "나실인(구별하여 바쳐진 자)"],
-      ["separate", "v.", "구별하다·따로 떼다"]
-    ],
-    "gra": [
-      ["a Nazarite", "부정관사 a=어떤 한 사람(개념상의 한 부류를 가리킴)"]
-    ]
-  },
-  {
-    "en": "to separate themselves / his separation",
-    "ko": "구별하여 바침",
-    "note": "'나자르'(נָזַר, nazar)는 '따로 떼어 구별하다·거룩히 바치다'는 뜻이다. 나실인 서원의 핵심으로, 일반적 삶에서 자기를 떼어 내어 오직 여호와께 속하게 하는 헌신을 가리킨다.",
-    "voc": [
-      ["separate", "v.", "구별하다·분리하다"],
-      ["themselves", "pron.", "그들 자신을"],
-      ["separation", "n.", "구별·헌신"]
-    ],
-    "gra": [
-      ["to separate themselves", "재귀대명사 themselves=주어와 목적어가 같음 '스스로를 구별하다'; to부정사는 목적을 나타낸다"]
-    ]
-  },
-  {
-    "en": "vow a vow",
-    "ko": "서원하다",
-    "note": "'나다르 네데르'(נָדַר נֶדֶר, nadar neder)는 '서원으로 서약하다'는 동족목적어 구문으로, 강한 자발적 맹세를 강조한다. 강요가 아니라 스스로 선택하여 하나님께 드리는 약속이다.",
-    "voc": [
-      ["vow", "v.", "서원하다"],
-      ["vow", "n.", "서원·맹세"]
-    ],
-    "gra": [
-      ["vow a vow", "동족목적어: 같은 어원의 명사를 목적어로 써서 행위를 강조한다('서원을 서원하다')"]
-    ]
-  },
-  {
-    "en": "no razor come upon his head",
-    "ko": "삭도를 머리에 대지 아니함",
-    "note": "'타아르'(תַּעַר, taʿar)는 '삭도·면도칼'이다. 자라는 머리털은 나실인 서원의 가시적 표징으로, 그 길이가 곧 여호와께 바친 날들의 증거가 된다. 삼손이 대표적 나실인이다(삿 13장).",
-    "voc": [
-      ["razor", "n.", "삭도·면도칼"],
-      ["come upon", "v.", "~에 닿다·임하다"],
-      ["head", "n.", "머리"]
-    ],
-    "idi": [
-      ["come upon", "~에 닿다·들이닥치다"]
-    ],
-    "gra": [
-      ["no razor come upon", "no+명사='어떤 ~도 ~않다'; come은 가정·명령의 옛 동사 원형 용법"]
-    ]
-  },
-  {
-    "en": "the consecration of his God is upon his head",
-    "ko": "하나님께 구별하여 바친 표가 머리에 있음",
-    "note": "'네제르'(נֵזֶר, nezer)는 '바침·왕관·면류관'을 뜻한다. 나실인의 길게 자란 머리털 자체를 '하나님께 바친 왕관'으로 본 표현으로, 그 거룩한 신분을 드러낸다.",
-    "voc": [
-      ["consecration", "n.", "구별하여 바침·봉헌"],
-      ["upon", "prep.", "~위에"],
-      ["head", "n.", "머리"]
-    ],
-    "gra": [
-      ["is upon his head", "be동사+전치사구='~위에 있다'; 상태·위치를 나타낸다"]
-    ]
-  },
-  {
-    "en": "the LORD bless thee, and keep thee",
-    "ko": "여호와께서 복을 주시고 지키심",
-    "note": "'바라크'(בָּרַךְ, barak, 복을 주다)와 '샤마르'(שָׁמַר, shamar, 지키다·보호하다). 아론의 축복(민 6:24-26)의 첫 구절로, 여호와의 복 주심과 보호하심을 함께 구한다.",
-    "voc": [
-      ["bless", "v.", "복을 주다"],
-      ["keep", "v.", "지키다·보호하다"],
-      ["thee", "pron.", "너를(고어)"]
-    ],
-    "gra": [
-      ["the LORD bless thee", "기원문(축복): '여호와께서 ~하시기를'; 동사원형 bless로 소망을 나타낸다"]
-    ]
-  },
-  {
-    "en": "make his face shine upon thee",
-    "ko": "그의 얼굴을 비추심",
-    "note": "'얼굴을 빛나게 하다'(파님 + 아오르, פָּנִים + אוֹר)는 히브리 관용으로, 하나님의 은혜로운 호의와 기쁘게 받으심을 뜻한다. 노여움으로 얼굴을 가리심과 대조되는 복의 표현이다.",
-    "voc": [
-      ["make", "v.", "~하게 하다"],
-      ["face", "n.", "얼굴"],
-      ["shine", "v.", "빛나다·비추다"]
-    ],
-    "idi": [
-      ["make one's face shine upon ~", "~에게 은혜로운 호의를 베풀다"]
-    ],
-    "gra": [
-      ["make his face shine", "사역동사 make+목적어+동사원형='~을 ~하게 하다'(make+O+동사원형)"]
-    ]
-  },
-  {
-    "en": "give thee peace",
-    "ko": "평강을 주심",
-    "note": "'샬롬'(שָׁלוֹם, shalom)은 단순한 다툼 없음이 아니라 온전함·번영·하나님과의 화목을 아우르는 충만한 안녕이다. 아론의 축복은 이 '샬롬'으로 절정에 이른다.",
-    "voc": [
-      ["give", "v.", "주다"],
-      ["thee", "pron.", "너에게(고어)"],
-      ["peace", "n.", "평강·평화"]
-    ],
-    "gra": [
-      ["give thee peace", "수여동사 give+간접목적어(thee)+직접목적어(peace)='~에게 ~을 주다'(4형식)"]
-    ]
-  },
-  {
-    "en": "put my name upon the children of Israel",
-    "ko": "내 이름을 이스라엘 자손 위에 둠",
-    "note": "축복의 근원이 제사장이 아니라 여호와 자신이심을 밝히는 절이다. 그의 '이름'(셈, שֵׁם)을 둠은 곧 그가 친히 백성의 소유주이심을 선언하며, 복은 여호와께서 친히 베푸심을 강조한다.",
-    "voc": [
-      ["put", "v.", "두다·놓다"],
-      ["name", "n.", "이름"],
-      ["children", "n.", "자손·자녀들"]
-    ],
-    "idi": [
-      ["put one's name upon ~", "~을 자기 소유로 삼다·자기 것으로 표하다"]
-    ],
-    "gra": [
-      ["the children of Israel", "of=소속을 나타내어 '이스라엘의 자손', 곧 이스라엘 백성을 가리키는 관용 표현"]
-    ]
-  }
+ {
+  "en": "And the LORD spake unto Moses, saying,",
+  "ko": "여호와께서 모세에게 말씀하여 이르시되,",
+  "note": "6장은 나실인의 서원을 다룬다. 여호와께서 모세에게 말씀하시니, 일반 백성도 자원하여 하나님께 자기를 구별해 바칠 수 있는 거룩한 길이 열린다.",
+  "voc": [
+   [
+    "spake",
+    "v.",
+    "말씀하셨다(speak의 고어 과거)"
+   ],
+   [
+    "saying",
+    "v.",
+    "이르시되"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "spake",
+    "speak의 고어 과거형으로 오늘날의 spoke에 해당한다."
+   ]
+  ]
+ },
+ {
+  "en": "Speak unto the children of Israel, and say unto them, When either man or woman shall separate themselves to vow a vow of a Nazarite, to separate themselves unto the LORD:",
+  "ko": "\"이스라엘 자손에게 일러 그들에게 이르라. 남자나 여자가 스스로를 구별하여 나실인의 서원, 곧 여호와께 자기를 따로 바치는 서원을 하거든,",
+  "note": "'나실인'(Nazarite)은 히브리어 '나지르'(구별된 자)에서 왔다. 남자든 여자든 스스로를 구별하여 여호와께 바치는 서원이니, 성직이 아닌 자원하는 헌신의 길이다.",
+  "voc": [
+   [
+    "separate",
+    "v.",
+    "구별하다, 따로 떼다"
+   ],
+   [
+    "vow",
+    "v.",
+    "서원하다"
+   ],
+   [
+    "Nazarite",
+    "n.",
+    "나실인(구별된 자)"
+   ]
+  ],
+  "idi": [
+   [
+    "vow a vow",
+    "서원하다, 서약을 세우다"
+   ]
+  ],
+  "gra": [
+   [
+    "separate themselves",
+    "재귀대명사로 '스스로를 구별하다'를 뜻한다."
+   ]
+  ]
+ },
+ {
+  "en": "He shall separate himself from wine and strong drink, and shall drink no vinegar of wine, or vinegar of strong drink, neither shall he drink any liquor of grapes, nor eat moist grapes, or dried.",
+  "ko": "그는 포도주와 독주를 멀리할 것이요, 포도주로 빚은 초나 독주로 빚은 초를 마시지 말며, 포도로 만든 어떤 즙도 마시지 말고, 생포도나 건포도도 먹지 말지니라.",
+  "note": "나실인은 포도주와 독주, 포도로 만든 모든 것을 멀리한다. 포도는 세상의 기쁨과 잔치를 상징하니, 이를 절제함으로 오직 하나님만을 향한 구별을 나타냈다.",
+  "voc": [
+   [
+    "strong drink",
+    "n.",
+    "독주"
+   ],
+   [
+    "vinegar",
+    "n.",
+    "초"
+   ],
+   [
+    "liquor",
+    "n.",
+    "즙, 액"
+   ],
+   [
+    "grapes",
+    "n.",
+    "포도"
+   ]
+  ],
+  "idi": [
+   [
+    "strong drink",
+    "독한 술, 독주"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "All the days of his separation shall he eat nothing that is made of the vine tree, from the kernels even to the husk.",
+  "ko": "그가 따로 구별된 모든 날 동안에는 포도나무에서 난 것은 씨에서 껍질까지 어떤 것도 먹지 말지니라.",
+  "note": "구별된 날 동안 포도나무에서 난 것은 씨에서 껍질까지 아무것도 먹지 않는다. 절제가 부분이 아니라 전부에 미치니, 하나님을 향한 구별은 철저함을 요구한다.",
+  "voc": [
+   [
+    "separation",
+    "n.",
+    "구별, 따로 바침"
+   ],
+   [
+    "vine",
+    "n.",
+    "포도나무"
+   ],
+   [
+    "kernels",
+    "n.",
+    "씨, 알갱이"
+   ],
+   [
+    "husk",
+    "n.",
+    "껍질"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "nothing that is made",
+    "that은 관계대명사로 '만들어진 어떤 것도'를 뜻한다."
+   ]
+  ]
+ },
+ {
+  "en": "All the days of the vow of his separation there shall no razor come upon his head: until the days be fulfilled, in the which he separateth himself unto the LORD, he shall be holy, and shall let the locks of the hair of his head grow.",
+  "ko": "그가 서원하여 따로 구별된 모든 날 동안에는 삭도를 그 머리에 대지 말 것이니, 그가 여호와께 자기를 구별하여 바친 날이 찰 때까지 그는 거룩할 것이요, 그 머리털을 길게 자라게 할지니라.",
+  "note": "삭도를 머리에 대지 않고 머리털을 길게 자라게 한다. 자라는 머리털은 서원의 눈에 보이는 표징이니, 나실인의 구별이 몸에 드러나는 거룩의 표였다.",
+  "voc": [
+   [
+    "razor",
+    "n.",
+    "삭도, 면도칼"
+   ],
+   [
+    "fulfilled",
+    "v.",
+    "(날이) 찬, 채워진"
+   ],
+   [
+    "locks",
+    "n.",
+    "머리털, 타래"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "there shall no razor come",
+    "there ... come은 '삭도가 오지 못하리라'를 뜻하는 고어적 도치 구문이다."
+   ]
+  ]
+ },
+ {
+  "en": "All the days that he separateth himself unto the LORD he shall come at no dead body.",
+  "ko": "그가 여호와께 자기를 구별하여 바친 모든 날 동안에는 시체에 가까이 가지 말지니라.",
+  "note": "구별된 날 동안 시체에 가까이 가지 않는다. 죽음은 죄로 인한 부정의 극점이니, 생명이신 하나님께 구별된 자는 죽음의 부정과 멀어야 했다.",
+  "voc": [
+   [
+    "separateth",
+    "v.",
+    "구별하다(-eth 고어형)"
+   ],
+   [
+    "dead body",
+    "n.",
+    "시체, 주검"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "shall come at no dead body",
+    "come at은 '가까이 가다', no ... 는 강한 부정으로 '결코 ~말라'를 뜻한다."
+   ]
+  ]
+ },
+ {
+  "en": "He shall not make himself unclean for his father, or for his mother, for his brother, or for his sister, when they die: because the consecration of his God is upon his head.",
+  "ko": "그의 부모나 형제자매가 죽을지라도 그들로 인하여 자기를 더럽히지 말지니, 이는 그의 하나님께 구별하여 바친 표가 그 머리 위에 있음이니라.",
+  "note": "부모나 형제자매가 죽어도 자기를 더럽히지 않으니, '하나님께 구별하여 바친 표가 그 머리 위에 있음이라.' 나실인의 서원은 가장 가까운 혈육의 정보다 우선하니, 하나님을 향한 헌신의 지극함을 보여 준다.",
+  "voc": [
+   [
+    "unclean",
+    "adj.",
+    "부정한, 더러운"
+   ],
+   [
+    "consecration",
+    "n.",
+    "구별하여 바침, 성별"
+   ],
+   [
+    "upon",
+    "prep.",
+    "~위에"
+   ]
+  ],
+  "idi": [
+   [
+    "the consecration of his God",
+    "하나님께 구별하여 바친 표"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "All the days of his separation he is holy unto the LORD.",
+  "ko": "그가 따로 구별된 모든 날 동안에 그는 여호와께 거룩한 자니라.",
+  "note": "'구별된 모든 날 동안 그는 여호와께 거룩한 자니라.' 나실인의 정체가 한마디로 요약된다. 거룩함은 곧 하나님을 위해 구별됨이니, 이것이 서원의 본질이다.",
+  "voc": [
+   [
+    "holy",
+    "adj.",
+    "거룩한"
+   ],
+   [
+    "separation",
+    "n.",
+    "구별"
+   ],
+   [
+    "unto",
+    "prep.",
+    "~에게, ~을 향하여"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And if any man die very suddenly by him, and he hath defiled the head of his consecration; then he shall shave his head in the day of his cleansing, on the seventh day shall he shave it.",
+  "ko": "만일 어떤 사람이 그의 곁에서 갑자기 죽어 그가 구별하여 바친 머리를 더럽혔거든, 그는 자기를 정결케 하는 날에 그 머리를 밀되 일곱째 날에 밀 것이며,",
+  "note": "곁에서 사람이 갑자기 죽어 머리를 더럽혔으면, 일곱째 날에 머리를 민다. 뜻하지 않은 부정이라도 구별을 다시 회복해야 하니, 거룩은 우연한 오염조차 그냥 지나치지 않는다.",
+  "voc": [
+   [
+    "suddenly",
+    "adv.",
+    "갑자기"
+   ],
+   [
+    "defiled",
+    "v.",
+    "더럽혔다"
+   ],
+   [
+    "shave",
+    "v.",
+    "(머리를) 밀다"
+   ],
+   [
+    "cleansing",
+    "n.",
+    "정결케 함"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "he hath defiled",
+    "hath는 has의 고어형으로 완료를 나타낸다."
+   ]
+  ]
+ },
+ {
+  "en": "And on the eighth day he shall bring two turtles, or two young pigeons, to the priest, to the door of the tabernacle of the congregation:",
+  "ko": "여덟째 날에는 산비둘기 두 마리나 집비둘기 새끼 두 마리를 회막 문으로 가져다 제사장에게 줄 것이요,",
+  "note": "여덟째 날에 산비둘기 두 마리나 집비둘기 새끼 두 마리를 제사장에게 가져온다. 가난한 자도 드릴 수 있는 예물이니, 하나님은 형편에 맞는 헌신의 길을 여신다.",
+  "voc": [
+   [
+    "eighth",
+    "adj.",
+    "여덟째의"
+   ],
+   [
+    "turtles",
+    "n.",
+    "산비둘기"
+   ],
+   [
+    "pigeons",
+    "n.",
+    "집비둘기"
+   ]
+  ],
+  "idi": [
+   [
+    "young pigeons",
+    "집비둘기 새끼"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And the priest shall offer the one for a sin offering, and the other for a burnt offering, and make an atonement for him, for that he sinned by the dead, and shall hallow his head that same day.",
+  "ko": "제사장은 그 하나는 속죄제물로, 다른 하나는 번제물로 드려 그를 위하여 속죄할지니, 이는 그가 그 시체로 인하여 범죄하였음이라. 그가 바로 그 날에 그의 머리를 거룩하게 할 것이며,",
+  "note": "제사장이 하나는 속죄제, 하나는 번제로 드려 속죄한다. 시체로 인한 부정이 죄로 규정되어 속죄가 필요하니, 뜻하지 않은 부정도 하나님 앞에서는 속함을 받아야 했다.",
+  "voc": [
+   [
+    "sin offering",
+    "n.",
+    "속죄제물"
+   ],
+   [
+    "burnt offering",
+    "n.",
+    "번제물"
+   ],
+   [
+    "atonement",
+    "n.",
+    "속죄"
+   ],
+   [
+    "hallow",
+    "v.",
+    "거룩하게 하다"
+   ]
+  ],
+  "idi": [
+   [
+    "make an atonement",
+    "속죄하다, 속죄를 이루다"
+   ]
+  ],
+  "gra": [
+   [
+    "for that he sinned",
+    "for that은 '~하였음이라, ~한 까닭에'를 뜻하는 고어 접속사다."
+   ]
+  ]
+ },
+ {
+  "en": "And he shall consecrate unto the LORD the days of his separation, and shall bring a lamb of the first year for a trespass offering: but the days that were before shall be lost, because his separation was defiled.",
+  "ko": "그는 자기가 따로 구별할 날들을 여호와께 다시 구별하여 바치고, 일 년 된 어린 숫양 하나를 속건제물로 가져올지니라. 그러나 이전 날들은 무효가 되리니, 이는 그가 구별하여 바친 것이 더럽혀졌음이니라.",
+  "note": "그는 구별할 날을 다시 여호와께 바치고 속건제로 어린 숫양을 가져오되, 이전 날들은 무효가 된다. 더럽혀진 서원은 처음부터 다시 시작되니, 거룩에는 타협 없는 온전함이 요구된다.",
+  "voc": [
+   [
+    "consecrate",
+    "v.",
+    "구별하여 바치다"
+   ],
+   [
+    "lamb",
+    "n.",
+    "어린 양"
+   ],
+   [
+    "trespass offering",
+    "n.",
+    "속건제물"
+   ],
+   [
+    "lost",
+    "adj.",
+    "무효가 된, 잃은"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "the days that were before shall be lost",
+    "that were before는 '이전의'를 뜻하는 관계절이다."
+   ]
+  ]
+ },
+ {
+  "en": "And this is the law of the Nazarite, when the days of his separation are fulfilled: he shall be brought unto the door of the tabernacle of the congregation:",
+  "ko": "나실인의 율법은 이러하니라. 그가 따로 구별할 날들이 찼을 때에 그를 회막 문으로 데려갈 것이요,",
+  "note": "'나실인의 율법은 이러하니라.' 서원의 날이 차면 그를 회막 문으로 데려간다. 구별의 기간이 끝나면 하나님 앞에서 그 서원을 마무리하는 예식이 이어진다.",
+  "voc": [
+   [
+    "law",
+    "n.",
+    "율법, 규례"
+   ],
+   [
+    "Nazarite",
+    "n.",
+    "나실인"
+   ],
+   [
+    "fulfilled",
+    "v.",
+    "(날이) 찬"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "he shall be brought",
+    "수동태로 '그가 데려가질 것이라'를 뜻한다."
+   ]
+  ]
+ },
+ {
+  "en": "And he shall offer his offering unto the LORD, one he lamb of the first year without blemish for a burnt offering, and one ewe lamb of the first year without blemish for a sin offering, and one ram without blemish for peace offerings,",
+  "ko": "그는 자기 예물을 여호와께 드리되, 흠 없는 일 년 된 숫양 하나는 번제물로, 흠 없는 일 년 된 어린 암양 하나는 속죄제물로, 흠 없는 숫양 하나는 화목제물로 드릴 것이며,",
+  "note": "번제·속죄제·화목제로 각각 흠 없는 양과 숫양을 드린다. '흠 없는'(without blemish)은 하나님께 드리는 제물의 온전함을 요구하니, 거룩한 헌신은 온전한 예물로 마무리된다.",
+  "voc": [
+   [
+    "offering",
+    "n.",
+    "예물, 제물"
+   ],
+   [
+    "blemish",
+    "n.",
+    "흠, 결점"
+   ],
+   [
+    "ewe",
+    "n.",
+    "암양"
+   ],
+   [
+    "peace offerings",
+    "n.",
+    "화목제물"
+   ]
+  ],
+  "idi": [
+   [
+    "without blemish",
+    "흠 없는, 온전한"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And a basket of unleavened bread, cakes of fine flour mingled with oil, and wafers of unleavened bread anointed with oil, and their meat offering, and their drink offerings.",
+  "ko": "기름 섞은 고운 가루로 만든 과자와 기름 바른 무교병 한 광주리와 그것들에 따른 소제와 전제를 드릴지니라.",
+  "note": "기름 섞은 과자와 무교병 한 광주리, 소제와 전제를 함께 드린다. 여러 제물이 어우러져 드려지니, 나실인의 서원을 마치는 예식이 풍성하고 정성스럽게 갖춰진다.",
+  "voc": [
+   [
+    "unleavened",
+    "adj.",
+    "무교의, 누룩 없는"
+   ],
+   [
+    "cakes",
+    "n.",
+    "과자, 전병"
+   ],
+   [
+    "mingled",
+    "v.",
+    "섞은"
+   ],
+   [
+    "wafers",
+    "n.",
+    "전병, 얇은 과자"
+   ]
+  ],
+  "idi": [
+   [
+    "drink offerings",
+    "전제(마시는 제물)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And the priest shall bring them before the LORD, and shall offer his sin offering, and his burnt offering:",
+  "ko": "제사장은 그것들을 여호와 앞에 가져다가 그의 속죄제물과 번제물을 드리고,",
+  "note": "제사장이 그것들을 여호와 앞에 가져다가 속죄제와 번제를 먼저 드린다. 속죄가 앞서니, 하나님께 나아가는 모든 예배는 죄를 다루는 것에서 시작된다.",
+  "voc": [
+   [
+    "bring",
+    "v.",
+    "가져오다"
+   ],
+   [
+    "sin offering",
+    "n.",
+    "속죄제물"
+   ],
+   [
+    "burnt offering",
+    "n.",
+    "번제물"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And he shall offer the ram for a sacrifice of peace offerings unto the LORD, with the basket of unleavened bread: the priest shall offer also his meat offering, and his drink offering.",
+  "ko": "그 숫양은 무교병 한 광주리와 함께 여호와께 화목제의 제물로 드릴 것이요, 제사장은 그의 소제와 전제도 드릴지니라.",
+  "note": "숫양을 화목제로 무교병 광주리와 함께 드리고, 소제와 전제도 드린다. 속죄 뒤에 화목의 제사가 이어지니, 죄를 속한 자가 하나님과 화평을 누리는 순서가 나타난다.",
+  "voc": [
+   [
+    "sacrifice",
+    "n.",
+    "제물, 희생"
+   ],
+   [
+    "peace offerings",
+    "n.",
+    "화목제물"
+   ],
+   [
+    "meat offering",
+    "n.",
+    "소제"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And the Nazarite shall shave the head of his separation at the door of the tabernacle of the congregation, and shall take the hair of the head of his separation, and put it in the fire which is under the sacrifice of the peace offerings.",
+  "ko": "나실인은 회막 문에서 자기가 구별하여 바친 머리를 밀고, 그 구별하여 바친 머리털을 가져다가 화목제물 밑에 있는 불에 둘지니라.",
+  "note": "나실인은 회막 문에서 구별한 머리를 밀고 그 머리털을 화목제물 밑의 불에 둔다. 서원의 표였던 머리털이 하나님께 드려지니, 구별의 기간이 하나님께 온전히 바쳐졌음을 상징한다.",
+  "voc": [
+   [
+    "shave",
+    "v.",
+    "(머리를) 밀다"
+   ],
+   [
+    "hair",
+    "n.",
+    "머리털"
+   ],
+   [
+    "fire",
+    "n.",
+    "불"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "which is under the sacrifice",
+    "which는 관계대명사로 '~밑에 있는'을 뜻한다."
+   ]
+  ]
+ },
+ {
+  "en": "And the priest shall take the sodden shoulder of the ram, and one unleavened cake out of the basket, and one unleavened wafer, and shall put them upon the hands of the Nazarite, after the hair of his separation is shaven:",
+  "ko": "제사장은 그 삶은 숫양의 어깨와 광주리에서 무교병 한 개와 무교 전병 한 개를 가져다가, 나실인이 자기 구별한 머리를 민 후에 그의 두 손에 둘 것이요,",
+  "note": "제사장이 삶은 숫양의 어깨와 무교병·전병을 나실인의 두 손에 둔다. 예물을 손에 얹음은 그것이 하나님께 드려짐을 나타내니, 나실인 자신이 헌신의 주체로 세워진다.",
+  "voc": [
+   [
+    "sodden",
+    "adj.",
+    "삶은"
+   ],
+   [
+    "shoulder",
+    "n.",
+    "어깨"
+   ],
+   [
+    "shaven",
+    "v.",
+    "밀린(shave의 과거분사)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "sodden",
+    "seethe(끓이다)의 고어 과거분사로 '삶은'을 뜻한다."
+   ]
+  ]
+ },
+ {
+  "en": "And the priest shall wave them for a wave offering before the LORD: this is holy for the priest, with the wave breast and heave shoulder: and after that the Nazarite may drink wine.",
+  "ko": "제사장은 그것들을 여호와 앞에 흔들어 요제로 드릴지니, 이는 흔든 가슴과 든 어깨와 함께 제사장에게 돌릴 거룩한 것이라. 그 후에야 나실인이 포도주를 마실 수 있느니라.",
+  "note": "제사장이 그것들을 여호와 앞에 흔들어 요제로 드리니, 이는 흔든 가슴과 든 어깨와 함께 제사장의 몫이다. 예식을 마친 후에야 나실인이 포도주를 마실 수 있으니, 구별의 끝이 분명히 선언된다.",
+  "voc": [
+   [
+    "wave offering",
+    "n.",
+    "요제(흔드는 제물)"
+   ],
+   [
+    "breast",
+    "n.",
+    "가슴"
+   ],
+   [
+    "heave shoulder",
+    "n.",
+    "든 어깨(거제)"
+   ]
+  ],
+  "idi": [
+   [
+    "wave offering",
+    "요제, 흔들어 드리는 제물"
+   ],
+   [
+    "heave shoulder",
+    "거제로 든 어깨"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "This is the law of the Nazarite who hath vowed, and of his offering unto the LORD for his separation, beside that that his hand shall get: according to the vow which he vowed, so he must do after the law of his separation.",
+  "ko": "이것은 서원한 나실인의 율법이요, 또 그가 구별하여 바친 일로 여호와께 드릴 예물의 율법이니, 그의 힘이 미치는 것 외에 그가 서원한 대로 행할지니, 곧 자기가 구별하여 바친 율법을 따라 그대로 행할지니라.\"",
+  "note": "'이것은 서원한 나실인의 율법이라.' 그의 힘이 미치는 것 외에 서원한 대로 행해야 한다. 자원한 서원이라도 일단 세우면 반드시 지켜야 하니, 하나님 앞의 약속은 가볍지 않다.",
+  "voc": [
+   [
+    "vowed",
+    "v.",
+    "서원한"
+   ],
+   [
+    "law",
+    "n.",
+    "율법"
+   ],
+   [
+    "beside",
+    "prep.",
+    "~외에"
+   ]
+  ],
+  "idi": [
+   [
+    "that that his hand shall get",
+    "그의 힘이 미치는 것, 그가 감당할 수 있는 것"
+   ]
+  ],
+  "gra": [
+   [
+    "so he must do",
+    "so는 '그대로', must는 의무를 나타내어 '반드시 행할지니라'를 뜻한다."
+   ]
+  ]
+ },
+ {
+  "en": "And the LORD spake unto Moses, saying,",
+  "ko": "여호와께서 모세에게 말씀하여 이르시되,",
+  "note": "여호와께서 모세에게 다시 말씀하신다. 이제 제사장의 축복문, 곧 아론의 축복이 이어지니, 백성을 향한 하나님의 은혜가 선포될 길이 열린다.",
+  "voc": [
+   [
+    "spake",
+    "v.",
+    "말씀하셨다"
+   ],
+   [
+    "saying",
+    "v.",
+    "이르시되"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "Speak unto Aaron and unto his sons, saying, On this wise ye shall bless the children of Israel, saying unto them,",
+  "ko": "\"아론과 그의 아들들에게 일러 이르라. 너희는 이같이 이스라엘 자손을 축복하여 그들에게 이르기를,",
+  "note": "'아론과 그 아들들에게 일러 이같이 이스라엘 자손을 축복하라.' 축복은 제사장이 지어내는 것이 아니라 하나님이 정하신 말씀이니, 복의 근원이 하나님께 있음을 분명히 한다.",
+  "voc": [
+   [
+    "bless",
+    "v.",
+    "축복하다"
+   ],
+   [
+    "on this wise",
+    "adv.",
+    "이같이, 이 방식으로"
+   ]
+  ],
+  "idi": [
+   [
+    "on this wise",
+    "이같이, 이러한 방식으로"
+   ]
+  ],
+  "gra": [
+   [
+    "ye shall bless",
+    "ye는 2인칭 복수 '너희'로 아론과 아들들을 가리킨다."
+   ]
+  ]
+ },
+ {
+  "en": "The LORD bless thee, and keep thee:",
+  "ko": "'여호와께서 네게 복을 주시고 너를 지키시기를 원하노라.",
+  "note": "'여호와께서 네게 복을 주시고 너를 지키시기를 원하노라.' 축복의 첫 구절은 복 주심과 지키심이다. 하나님이 선을 베푸시고 그 선을 보전하시니, 은혜의 시작과 보존이 함께 담긴다.",
+  "voc": [
+   [
+    "bless",
+    "v.",
+    "복 주다"
+   ],
+   [
+    "keep",
+    "v.",
+    "지키다, 보호하다"
+   ],
+   [
+    "thee",
+    "pron.",
+    "너를(고어 2인칭 목적격)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "The LORD bless thee",
+    "동사 bless가 원형인 것은 '~하시기를'을 뜻하는 기원의 가정법 어법이다."
+   ]
+  ]
+ },
+ {
+  "en": "The LORD make his face shine upon thee, and be gracious unto thee:",
+  "ko": "여호와께서 그의 얼굴을 네게 비추시고 네게 은혜를 베푸시기를 원하노라.",
+  "note": "'여호와께서 그의 얼굴을 네게 비추시고 은혜를 베푸시기를 원하노라.' 하나님의 얼굴이 비침은 그 임재와 호의의 상징이니, 하나님이 백성을 향해 밝히 웃으심을 구하는 복이다.",
+  "voc": [
+   [
+    "face",
+    "n.",
+    "얼굴"
+   ],
+   [
+    "shine",
+    "v.",
+    "비추다, 빛나다"
+   ],
+   [
+    "gracious",
+    "adj.",
+    "은혜로운"
+   ]
+  ],
+  "idi": [
+   [
+    "make his face shine upon thee",
+    "그의 얼굴을 네게 비추시다(호의를 베푸시다)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "The LORD lift up his countenance upon thee, and give thee peace.",
+  "ko": "여호와께서 그의 얼굴을 네게로 향하여 드시고 네게 평강을 주시기를 원하노라.' 할지니라.",
+  "note": "'여호와께서 그의 얼굴을 네게로 향하여 드시고 평강을 주시기를 원하노라.' 축복의 절정은 '평강'(샬롬)이다. 하나님이 얼굴을 드사 백성을 주목하시니, 그 시선의 결과가 온전한 평강이다.",
+  "voc": [
+   [
+    "lift up",
+    "v.",
+    "드시다, 향하시다"
+   ],
+   [
+    "countenance",
+    "n.",
+    "얼굴, 안색"
+   ],
+   [
+    "peace",
+    "n.",
+    "평강, 샬롬"
+   ]
+  ],
+  "idi": [
+   [
+    "lift up his countenance upon thee",
+    "그의 얼굴을 네게로 향하여 드시다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And they shall put my name upon the children of Israel; and I will bless them.",
+  "ko": "그들이 이같이 내 이름을 이스라엘 자손 위에 둘 것이요, 내가 그들에게 복을 주리라.\"",
+  "note": "'그들이 내 이름을 이스라엘 자손 위에 둘 것이요, 내가 그들에게 복을 주리라.' 제사장이 축복하나 복 주시는 분은 하나님 자신이시다. 축복은 하나님의 이름을 백성 위에 얹는 것이니, 복의 근원과 성취가 오직 여호와께 있다.",
+  "voc": [
+   [
+    "name",
+    "n.",
+    "이름"
+   ],
+   [
+    "bless",
+    "v.",
+    "복 주다"
+   ],
+   [
+    "them",
+    "pron.",
+    "그들에게"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "I will bless them",
+    "I will은 하나님의 확정적 약속을 나타내는 고어적 미래 용법이다."
+   ]
+  ]
+ }
 ]
