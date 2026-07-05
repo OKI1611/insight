@@ -247,7 +247,7 @@
   </main>
 
   <script>
-    let BOOKS=[], CUR=null, BOOK=null, CH=1, KR=null, ENNOTES=null;
+    let BOOKS=[], CUR=null, BOOK=null, CH=1, KR=null, ENNOTES=null, FOOT=null;
     const $=id=>document.getElementById(id);
 
     fetch('bible/books.json?t='+Date.now()).then(r=>r.json()).then(bs=>{
@@ -286,6 +286,7 @@
       KR=null; ENNOTES=null;
       try{ const r=await fetch('bible/kr/'+CUR.file+'-'+CH+'.json?t='+Date.now()); if(r.ok) KR=await r.json(); }catch(e){}
       try{ const re=await fetch('bible/en/'+CUR.file+'-'+CH+'.json?t='+Date.now()); if(re.ok) ENNOTES=await re.json(); }catch(e){}
+      if(FOOT===null){ try{ FOOT=await (await fetch('bible/footnotes.json?t='+Date.now())).json(); }catch(e){ FOOT={}; } }
       history.replaceState(null,'','?b='+CUR.file+'&c='+CH);
       renderChapter(); renderEn();
       if(tv){ // 검색 결과에서 들어온 경우 — 해당 절로 스크롤·강조
@@ -360,7 +361,9 @@
       h+='<div class="space-y-3.5">';
       verses.forEach((en,i)=>{
         const ko = (par && KR[i]) ? `<p class="serif text-[16px] text-neutral-900 leading-relaxed mt-0.5">${esc(KR[i])}</p>` : '';
-        h+=`<div id="v${i+1}" class="vrow flex gap-2.5 px-1.5 -mx-1.5 py-0.5"><span class="text-gold font-bold text-xs pt-1 w-5 shrink-0 text-right">${i+1}</span><div class="vbody flex-1">${ko}<p class="verse-en text-[15px] ${par?'text-neutral-900/55':'text-neutral-900/85'} leading-relaxed">${tokEn(en)}</p></div></div>`;
+        const fnKey=CUR.file+'-'+CH+'-'+(i+1);
+        const fn=(FOOT&&FOOT[fnKey])?`<p class="text-[12px] text-neutral-900/60 leading-snug mt-1 pl-2.5 py-1 border-l-2 border-gold/40 bg-gold/[0.05] rounded-r">📖 ${esc(FOOT[fnKey])}</p>`:'';
+        h+=`<div id="v${i+1}" class="vrow flex gap-2.5 px-1.5 -mx-1.5 py-0.5"><span class="text-gold font-bold text-xs pt-1 w-5 shrink-0 text-right">${i+1}</span><div class="vbody flex-1">${ko}<p class="verse-en text-[15px] ${par?'text-neutral-900/55':'text-neutral-900/85'} leading-relaxed">${tokEn(en)}</p>${fn}</div></div>`;
       });
       h+='</div>';
       if($('parallel').checked && !KR){ h+='<p class="text-xs text-gold/80 mt-5 bg-gold/[0.07] rounded-lg p-3">이 장의 한국어 번역은 아직 준비 중입니다. (원어 기반 자체 번역으로 순차 추가)</p>'; }

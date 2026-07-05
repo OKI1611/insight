@@ -1,137 +1,761 @@
 [
-  {
-    "en": "Bow down thine ear, O LORD, hear me: for I am poor and needy.",
-    "ko": "여호와여, 주의 귀를 기울이사 내게 응답하소서, 내가 곤고하고 궁핍하나이다.",
-    "note": "표제(미포함): 다윗의 기도(תְּפִלָּה לְדָוִד, tefillah le-David). '귀를 기울이소서'(הַטֵּה אָזְנְךָ, hatteh oznekha)는 몸을 굽혀 낮은 자의 말을 듣는 친밀한 자세를 그린다. '곤고하고 궁핍한'(עָנִי וְאֶבְיוֹן, ani we-evyon)은 시편의 단골 대구로, 자기를 비운 의탁의 고백이다.",
-    "voc": [["bow down", "v.구", "굽히다, 숙이다"], ["ear", "n.", "귀"], ["poor", "a.", "가난한, 곤고한"], ["needy", "a.", "궁핍한"]],
-    "idi": [["bow down thine ear", "귀를 기울이다(몸을 굽혀 경청하다)"], ["poor and needy", "곤고하고 궁핍한(연약함의 강조 대구)"]],
-    "gra": [["thine ear", "모음 앞에서 thy 대신 쓰인 고어 소유격 — '너의/주의 귀'"]]
-  },
-  {
-    "en": "Preserve my soul; for I am holy: O thou my God, save thy servant that trusteth in thee.",
-    "ko": "내 영혼을 지키소서, 내가 주께 헌신하였사오니, 나의 하나님이시여, 주를 의지하는 주의 종을 구원하소서.",
-    "note": "'내가 거룩하니이다'(KJV holy)의 원어는 חָסִיד(ḥasid)로, '경건한·주께 신실히 헌신한 자'를 뜻한다. 도덕적 완전이 아니라 언약적 인자(ḥesed) 안에서 주께 매인 자라는 뜻이라, '헌신하였사오니'로 옮긴다.",
-    "voc": [["preserve", "v.", "지키다, 보존하다"], ["soul", "n.", "영혼, 생명"], ["holy", "a.", "거룩한, 경건한(원어 ḥasid)"], ["servant", "n.", "종"], ["trusteth", "v.", "신뢰하다(trust의 고어 3인칭)"]],
-    "idi": [["trust in thee", "주를 의지하다"]],
-    "gra": [["that trusteth in thee", "관계대명사 that이 servant를 수식 — 주를 신뢰하는 그 종"]]
-  },
-  {
-    "en": "Be merciful unto me, O Lord: for I cry unto thee daily.",
-    "ko": "주여, 내게 은혜를 베푸소서, 내가 종일토록 주께 부르짖나이다.",
-    "note": "'주'(Lord)는 여기서 אֲדֹנָי(Adonai)로, YHWH가 아닌 주권자 '주'를 가리킨다(지침 §4). '날마다'(KJV daily)는 כָּל־הַיּוֹם, 곧 '온종일·끊임없이'의 뜻이라 '종일토록'으로 옮긴다.",
-    "voc": [["merciful", "a.", "자비로운, 은혜로운"], ["cry", "v.", "부르짖다"], ["daily", "adv.", "날마다, 온종일"]],
-    "idi": [["be merciful unto", "~에게 은혜를 베풀다"], ["cry unto", "~을 향해 부르짖다"]]
-  },
-  {
-    "en": "Rejoice the soul of thy servant: for unto thee, O Lord, do I lift up my soul.",
-    "ko": "주의 종의 영혼을 기쁘게 하소서, 주여, 내가 주를 향하여 내 영혼을 들어 올리나이다.",
-    "note": "'내 영혼을 들어 올리다'(אֵלֶיךָ נֶפֶשׁ אֶשָּׂא)는 온 존재를 주께 드려 바라는 신뢰의 표현이다. 여기서 rejoice는 타동사로 '기쁘게 하다'.",
-    "voc": [["rejoice", "v.", "기쁘게 하다(타동사)"], ["lift up", "v.구", "들어 올리다"], ["soul", "n.", "영혼"]],
-    "idi": [["lift up my soul", "내 영혼을 들어 올리다(온 존재로 사모하다)"]],
-    "gra": [["do I lift up", "강조의 do — 'unto thee'를 앞세운 도치문에서 의미를 강조"]]
-  },
-  {
-    "en": "For thou, Lord, art good, and ready to forgive; and plenteous in mercy unto all them that call upon thee.",
-    "ko": "주여, 주는 선하시어 기꺼이 용서하시며, 주를 부르는 모든 자에게 인자가 넘치시나이다.",
-    "note": "'용서하기를 기뻐하시는'(סַלָּח, sallaḥ)은 성경에서 오직 여기에만 쓰인 강조형으로, '용서가 본성이신 분'을 뜻한다. '인자가 풍성한'(רַב־חֶסֶד, rav-ḥesed)은 출 34:6의 자기 계시를 메아리친다.",
-    "voc": [["good", "a.", "선한"], ["ready to forgive", "a.구", "기꺼이 용서하는"], ["plenteous", "a.", "풍성한, 넘치는"], ["mercy", "n.", "인자(ḥesed)"]],
-    "idi": [["ready to forgive", "기꺼이 용서하는"], ["plenteous in mercy", "인자가 풍성한"], ["call upon", "~을 부르다, ~께 간구하다"]],
-    "gra": [["all them that call upon thee", "them that = those who의 고어 — '부르는 모든 자'"]]
-  },
-  {
-    "en": "Give ear, O LORD, unto my prayer; and attend to the voice of my supplications.",
-    "ko": "여호와여, 나의 기도에 귀를 기울이시고, 나의 간구하는 소리를 살피소서.",
-    "note": "'귀를 기울이소서'(הַאֲזִינָה)와 '살피소서'(הַקְשִׁיבָה)는 동의 평행으로, 들으심을 두 번 변주한다. '간구'(תַּחֲנוּן, taḥanun)는 은혜를 구하는 탄원이다.",
-    "voc": [["give ear", "v.구", "귀를 기울이다"], ["prayer", "n.", "기도"], ["attend", "v.", "살피다, 주의하다"], ["supplications", "n.", "간구"]],
-    "idi": [["give ear unto", "~에 귀를 기울이다"], ["attend to", "~에 주의를 기울이다"]],
-    "gra": [["Give ear ... attend", "두 명령형의 평행 — 같은 청원을 반복 변주한 히브리 평행법"]]
-  },
-  {
-    "en": "In the day of my trouble I will call upon thee: for thou wilt answer me.",
-    "ko": "나의 환난 날에 내가 주께 부르짖으오리니, 주께서 내게 응답하시리이다.",
-    "note": "'주께서 응답하시리이다'(תַּעֲנֵנִי)는 확신의 미완료로, 들으심에 대한 흔들림 없는 신뢰를 담는다.",
-    "voc": [["trouble", "n.", "환난, 고난"], ["call upon", "v.구", "부르짖다, 간구하다"], ["answer", "v.", "응답하다"]],
-    "idi": [["in the day of my trouble", "나의 환난 날에"]],
-    "gra": [["thou wilt answer", "will로 확신의 미래 — '반드시 응답하시리이다'"]]
-  },
-  {
-    "en": "Among the gods there is none like unto thee, O Lord; neither are there any works like unto thy works.",
-    "ko": "주여, 신들 가운데 주와 같은 이 없사오며, 주의 행하신 일과 같은 것도 없나이다.",
-    "note": "'신들'(אֱלֹהִים, elohim)은 이방의 거짓 신들 또는 천상의 존재들을 가리키나, 그 어느 것도 여호와께 견줄 수 없음을 선포한다. 출 15:11의 찬가를 떠올리게 한다.",
-    "voc": [["among", "prep.", "~ 가운데"], ["gods", "n.", "신들"], ["none", "pron.", "아무도 없는"], ["works", "n.", "행하신 일들"]],
-    "idi": [["none like unto thee", "주와 같은 이 없는"], ["like unto", "~와 같은(고어)"]],
-    "gra": [["neither are there any works", "neither로 시작한 부정 도치 — '~도 없다'"]]
-  },
-  {
-    "en": "All nations whom thou hast made shall come and worship before thee, O Lord; and shall glorify thy name.",
-    "ko": "주여, 주께서 지으신 모든 민족이 나아와 주 앞에 경배하며, 주의 이름에 영광을 돌리리이다.",
-    "note": "만민이 창조주 앞에 경배하리라는 보편적 예언 — 시 22:27, 계 15:4의 약속과 잇닿는다. '민족'(גּוֹיִם, goyim)은 흔히 이방을 가리키며, 그 열방의 회심을 내다본다.",
-    "voc": [["nations", "n.", "민족들, 열방"], ["worship", "v.", "경배하다"], ["glorify", "v.", "영광을 돌리다"], ["name", "n.", "이름"]],
-    "idi": [["worship before thee", "주 앞에 경배하다"], ["glorify thy name", "주의 이름에 영광을 돌리다"]],
-    "gra": [["whom thou hast made", "관계대명사 whom이 nations를 수식 — 현재완료로 '주께서 지으신'"]]
-  },
-  {
-    "en": "For thou art great, and doest wondrous things: thou art God alone.",
-    "ko": "주는 위대하시어 기이한 일들을 행하시오니, 주만이 홀로 하나님이시니이다.",
-    "note": "'주만이 홀로 하나님'(אַתָּה אֱלֹהִים לְבַדֶּךָ)은 유일신 신앙의 핵심 고백이다. '기이한 일들'(נִפְלָאוֹת, niflaot)은 오직 하나님만이 행하실 수 있는 경이로운 권능의 역사다.",
-    "voc": [["great", "a.", "위대한"], ["doest", "v.", "행하다(do의 고어 2인칭)"], ["wondrous", "a.", "기이한, 경이로운"], ["alone", "adv.", "홀로"]],
-    "idi": [["wondrous things", "기이한 일들"], ["God alone", "오직 홀로 하나님이신 분"]],
-    "gra": [["thou doest", "고어 2인칭 단수 현재 — 현대영어 you do"]]
-  },
-  {
-    "en": "Teach me thy way, O LORD; I will walk in thy truth: unite my heart to fear thy name.",
-    "ko": "여호와여, 주의 길을 내게 가르치소서, 내가 주의 진리 안에서 행하오리니, 내 마음을 하나로 모아 주의 이름을 경외하게 하소서.",
-    "note": "'내 마음을 하나로 모으소서'(יַחֵד לְבָבִי, yaḥed levavi)는 흩어진 마음을 한데 모아 오직 주만 경외하게 하소서라는 간구다. 두 마음(분열된 충성)을 버리고 온전한 헌신을 구한다.",
-    "voc": [["teach", "v.", "가르치다"], ["way", "n.", "길"], ["walk", "v.", "행하다, 걷다"], ["truth", "n.", "진리"], ["unite", "v.", "하나로 모으다"], ["fear", "v.", "경외하다"]],
-    "idi": [["walk in thy truth", "주의 진리 안에서 행하다(진리대로 살다)"], ["unite my heart", "내 마음을 하나로 모으다"], ["fear thy name", "주의 이름을 경외하다"]],
-    "gra": [["unite my heart to fear", "to부정사가 목적 — '경외하도록 하나로 모으소서'"]]
-  },
-  {
-    "en": "I will praise thee, O Lord my God, with all my heart: and I will glorify thy name for evermore.",
-    "ko": "주 나의 하나님이여, 내가 온 마음을 다하여 주를 찬송하며, 영원토록 주의 이름에 영광을 돌리오리이다.",
-    "note": "11절의 '하나 된 마음' 간구가 12절의 '온 마음의 찬송'으로 응답되어 흐른다. '온 마음으로'(בְּכָל־לְבָבִי)는 신 6:5의 명령을 응답하는 표현이다.",
-    "voc": [["praise", "v.", "찬송하다"], ["heart", "n.", "마음"], ["glorify", "v.", "영광을 돌리다"], ["for evermore", "adv.구", "영원토록"]],
-    "idi": [["with all my heart", "온 마음을 다하여"], ["for evermore", "영원토록"]],
-    "gra": [["I will praise ... I will glorify", "will로 결단의 미래 — 찬송의 서원"]]
-  },
-  {
-    "en": "For great is thy mercy toward me: and thou hast delivered my soul from the lowest hell.",
-    "ko": "내게 베푸신 주의 인자가 크시어, 주께서 내 영혼을 깊은 스올에서 건지셨나이다.",
-    "note": "'깊은 음부'(שְׁאוֹל תַּחְתִּיָּה, sheol taḥtiyyah)는 직역하면 '가장 낮은 스올'로, 죽음의 가장 깊은 곳을 뜻한다. KJV의 hell은 지옥이 아니라 죽음의 영역 '스올'을 옮긴 고어 용법이라, '스올'로 옮긴다. '인자'(ḥesed)는 언약적 사랑이다.",
-    "voc": [["great", "a.", "큰"], ["mercy", "n.", "인자(ḥesed)"], ["toward", "prep.", "~을 향한"], ["delivered", "v.", "건지셨다, 구하셨다"], ["lowest", "a.", "가장 낮은"], ["hell", "n.", "스올, 죽음의 영역(원어 sheol)"]],
-    "idi": [["the lowest hell", "가장 깊은 스올(죽음의 깊은 곳)"]],
-    "gra": [["great is thy mercy", "보어 도치 — 'thy mercy is great'를 강조한 어순"]]
-  },
-  {
-    "en": "O God, the proud are risen against me, and the assemblies of violent men have sought after my soul; and have not set thee before them.",
-    "ko": "하나님이여, 교만한 자들이 일어나 나를 치며, 포악한 자들의 무리가 내 영혼을 찾으오니, 그들은 주를 그 앞에 두지 아니하였나이다.",
-    "note": "'포악한 자들'(עָרִיצִים, aritsim)은 무자비한 압제자들이다. '주를 그 앞에 두지 아니하였다'는 하나님을 안중에 두지 않는 불경을 가리킨다(시 54:3과 평행).",
-    "voc": [["proud", "a.", "교만한"], ["risen", "v.", "일어났다(rise의 과거분사)"], ["assemblies", "n.", "무리, 회중"], ["violent", "a.", "포악한"], ["sought", "v.", "찾았다(seek의 과거)"]],
-    "idi": [["risen against me", "일어나 나를 치다"], ["sought after my soul", "내 생명을 노리다"], ["set thee before them", "주를 그 앞에 두다(주를 염두에 두다)"]],
-    "gra": [["have sought ... have not set", "현재완료 — 과거의 행위가 지금까지 이어진 적대"]]
-  },
-  {
-    "en": "But thou, O Lord, art a God full of compassion, and gracious, long suffering, and plenteous in mercy and truth.",
-    "ko": "그러나 주여, 주는 긍휼이 풍성하시고 은혜로우시며, 노하기를 더디 하시고, 인자와 진실이 넘치시는 하나님이시니이다.",
-    "note": "출 34:6의 하나님의 자기 계시를 거의 그대로 인용한다 — '긍휼히 여기며 은혜롭고 노하기를 더디 하며 인자와 진실이 많은' 하나님. '노하기를 더디 하시고'(אֶרֶךְ אַפַּיִם, erekh appayim)는 직역하면 '콧김이 긴' 곧 오래 참으심이다.",
-    "voc": [["compassion", "n.", "긍휼"], ["gracious", "a.", "은혜로운"], ["long suffering", "a.구", "노하기를 더디 하는, 오래 참는"], ["plenteous", "a.", "풍성한, 넘치는"], ["truth", "n.", "진실, 신실"]],
-    "idi": [["full of compassion", "긍휼이 풍성한"], ["long suffering", "오래 참는, 노하기를 더디 하는"], ["plenteous in mercy and truth", "인자와 진실이 넘치는"]],
-    "gra": [["But thou ... art", "대조의 But — 14절의 원수와 15절의 주를 대비"]]
-  },
-  {
-    "en": "O turn unto me, and have mercy upon me; give thy strength unto thy servant, and save the son of thine handmaid.",
-    "ko": "내게로 돌이키사 내게 은혜를 베푸소서, 주의 힘을 주의 종에게 주시며, 주의 여종의 아들을 구원하소서.",
-    "note": "'주의 여종의 아들'(בֶּן־אֲמָתֶךָ, ben-amatekha)은 태어날 때부터 주께 속한 집안의 종임을 강조하는 겸손한 자기 호칭이다(시 116:16과 평행).",
-    "voc": [["turn unto", "v.구", "~에게로 돌이키다"], ["mercy", "n.", "은혜, 긍휼"], ["strength", "n.", "힘"], ["save", "v.", "구원하다"], ["handmaid", "n.", "여종"]],
-    "idi": [["turn unto me", "내게로 돌이키다(주의를 돌리다)"], ["the son of thine handmaid", "주의 여종의 아들(집안의 종으로 태어난 자)"]],
-    "gra": [["thine handmaid", "모음 앞 thy의 고어형 — '주의 여종'"]]
-  },
-  {
-    "en": "Shew me a token for good; that they which hate me may see it, and be ashamed: because thou, LORD, hast holpen me, and comforted me.",
-    "ko": "내게 선하신 표징을 보이소서, 그리하시면 나를 미워하는 자들이 보고 부끄러워하오리니, 여호와여, 주께서 나를 도우시고 위로하셨음이니이다.",
-    "note": "'표징'(אוֹת, oth)은 하나님의 호의를 드러내는 가시적 증표다. 'holpen'은 help의 고어 과거분사로 '도우셨다'. 시편은 도우심에 대한 확신의 고백으로 닫힌다.",
-    "voc": [["shew", "v.", "보이다(show의 고어)"], ["token", "n.", "표징, 증표"], ["ashamed", "a.", "부끄러운"], ["holpen", "v.", "도우셨다(help의 고어 과거분사)"], ["comforted", "v.", "위로하셨다"]],
-    "idi": [["a token for good", "선하신 표징(호의의 증표)"], ["be ashamed", "부끄러워하다"]],
-    "gra": [["that they ... may see", "목적의 that절 + may — '그들이 보도록'"], ["they which hate me", "which = who의 고어 용법 — '나를 미워하는 자들'"]]
-  }
+ {
+  "en": "Bow down thine ear, O LORD, hear me: for I am poor and needy.",
+  "ko": "여호와여, 주의 귀를 기울이사 내게 응답하소서, 내가 곤고하고 궁핍하나이다",
+  "note": "표제(미포함): 다윗의 기도(תְּפִלָּה לְדָוִד, tefillah le-David). '귀를 기울이소서'(הַטֵּה אָזְנְךָ, hatteh oznekha)는 몸을 굽혀 낮은 자의 말을 듣는 친밀한 자세를 그린다. '곤고하고 궁핍한'(עָנִי וְאֶבְיוֹן, ani we-evyon)은 시편의 단골 대구로, 자기를 비운 의탁의 고백이다.",
+  "voc": [
+   [
+    "bow down",
+    "v.구",
+    "굽히다, 숙이다"
+   ],
+   [
+    "ear",
+    "n.",
+    "귀"
+   ],
+   [
+    "poor",
+    "a.",
+    "가난한, 곤고한"
+   ],
+   [
+    "needy",
+    "a.",
+    "궁핍한"
+   ]
+  ],
+  "idi": [
+   [
+    "bow down thine ear",
+    "귀를 기울이다(몸을 굽혀 경청하다)"
+   ],
+   [
+    "poor and needy",
+    "곤고하고 궁핍한(연약함의 강조 대구)"
+   ]
+  ],
+  "gra": [
+   [
+    "thine ear",
+    "모음 앞에서 thy 대신 쓰인 고어 소유격 — '너의/주의 귀'"
+   ]
+  ]
+ },
+ {
+  "en": "Preserve my soul; for I am holy: O thou my God, save thy servant that trusteth in thee.",
+  "ko": "내 영혼을 지키소서, 내가 주께 헌신하였사오니, 나의 하나님이시여, 주를 의지하는 주의 종을 구원하소서",
+  "note": "'내가 거룩하니이다'(KJV holy)의 원어는 חָסִיד(ḥasid)로, '경건한·주께 신실히 헌신한 자'를 뜻한다. 도덕적 완전이 아니라 언약적 인자(ḥesed) 안에서 주께 매인 자라는 뜻이라, '헌신하였사오니'로 옮긴다.",
+  "voc": [
+   [
+    "preserve",
+    "v.",
+    "지키다, 보존하다"
+   ],
+   [
+    "soul",
+    "n.",
+    "영혼, 생명"
+   ],
+   [
+    "holy",
+    "a.",
+    "거룩한, 경건한(원어 ḥasid)"
+   ],
+   [
+    "servant",
+    "n.",
+    "종"
+   ],
+   [
+    "trusteth",
+    "v.",
+    "신뢰하다(trust의 고어 3인칭)"
+   ]
+  ],
+  "idi": [
+   [
+    "trust in thee",
+    "주를 의지하다"
+   ]
+  ],
+  "gra": [
+   [
+    "that trusteth in thee",
+    "관계대명사 that이 servant를 수식 — 주를 신뢰하는 그 종"
+   ]
+  ]
+ },
+ {
+  "en": "Be merciful unto me, O Lord: for I cry unto thee daily.",
+  "ko": "주여, 내게 은혜를 베푸소서, 내가 종일토록 주께 부르짖나이다",
+  "note": "'주'(Lord)는 여기서 אֲדֹנָי(Adonai)로, YHWH가 아닌 주권자 '주'를 가리킨다(지침 §4). '날마다'(KJV daily)는 כָּל־הַיּוֹם, 곧 '온종일·끊임없이'의 뜻이라 '종일토록'으로 옮긴다.",
+  "voc": [
+   [
+    "merciful",
+    "a.",
+    "자비로운, 은혜로운"
+   ],
+   [
+    "cry",
+    "v.",
+    "부르짖다"
+   ],
+   [
+    "daily",
+    "adv.",
+    "날마다, 온종일"
+   ]
+  ],
+  "idi": [
+   [
+    "be merciful unto",
+    "~에게 은혜를 베풀다"
+   ],
+   [
+    "cry unto",
+    "~을 향해 부르짖다"
+   ]
+  ]
+ },
+ {
+  "en": "Rejoice the soul of thy servant: for unto thee, O Lord, do I lift up my soul.",
+  "ko": "주의 종의 영혼을 기쁘게 하소서, 주여, 내가 주를 향하여 내 영혼을 들어 올리나이다",
+  "note": "'내 영혼을 들어 올리다'(אֵלֶיךָ נֶפֶשׁ אֶשָּׂא)는 온 존재를 주께 드려 바라는 신뢰의 표현이다. 여기서 rejoice는 타동사로 '기쁘게 하다'.",
+  "voc": [
+   [
+    "rejoice",
+    "v.",
+    "기쁘게 하다(타동사)"
+   ],
+   [
+    "lift up",
+    "v.구",
+    "들어 올리다"
+   ],
+   [
+    "soul",
+    "n.",
+    "영혼"
+   ]
+  ],
+  "idi": [
+   [
+    "lift up my soul",
+    "내 영혼을 들어 올리다(온 존재로 사모하다)"
+   ]
+  ],
+  "gra": [
+   [
+    "do I lift up",
+    "강조의 do — 'unto thee'를 앞세운 도치문에서 의미를 강조"
+   ]
+  ]
+ },
+ {
+  "en": "For thou, Lord, art good, and ready to forgive; and plenteous in mercy unto all them that call upon thee.",
+  "ko": "주여, 주는 선하시어 기꺼이 용서하시며, 주를 부르는 모든 자에게 인자가 넘치시나이다",
+  "note": "'용서하기를 기뻐하시는'(סַלָּח, sallaḥ)은 성경에서 오직 여기에만 쓰인 강조형으로, '용서가 본성이신 분'을 뜻한다. '인자가 풍성한'(רַב־חֶסֶד, rav-ḥesed)은 출 34:6의 자기 계시를 메아리친다.",
+  "voc": [
+   [
+    "good",
+    "a.",
+    "선한"
+   ],
+   [
+    "ready to forgive",
+    "a.구",
+    "기꺼이 용서하는"
+   ],
+   [
+    "plenteous",
+    "a.",
+    "풍성한, 넘치는"
+   ],
+   [
+    "mercy",
+    "n.",
+    "인자(ḥesed)"
+   ]
+  ],
+  "idi": [
+   [
+    "ready to forgive",
+    "기꺼이 용서하는"
+   ],
+   [
+    "plenteous in mercy",
+    "인자가 풍성한"
+   ],
+   [
+    "call upon",
+    "~을 부르다, ~께 간구하다"
+   ]
+  ],
+  "gra": [
+   [
+    "all them that call upon thee",
+    "them that = those who의 고어 — '부르는 모든 자'"
+   ]
+  ]
+ },
+ {
+  "en": "Give ear, O LORD, unto my prayer; and attend to the voice of my supplications.",
+  "ko": "여호와여, 나의 기도에 귀를 기울이시고, 나의 간구하는 소리를 살피소서",
+  "note": "'귀를 기울이소서'(הַאֲזִינָה)와 '살피소서'(הַקְשִׁיבָה)는 동의 평행으로, 들으심을 두 번 변주한다. '간구'(תַּחֲנוּן, taḥanun)는 은혜를 구하는 탄원이다.",
+  "voc": [
+   [
+    "give ear",
+    "v.구",
+    "귀를 기울이다"
+   ],
+   [
+    "prayer",
+    "n.",
+    "기도"
+   ],
+   [
+    "attend",
+    "v.",
+    "살피다, 주의하다"
+   ],
+   [
+    "supplications",
+    "n.",
+    "간구"
+   ]
+  ],
+  "idi": [
+   [
+    "give ear unto",
+    "~에 귀를 기울이다"
+   ],
+   [
+    "attend to",
+    "~에 주의를 기울이다"
+   ]
+  ],
+  "gra": [
+   [
+    "Give ear ... attend",
+    "두 명령형의 평행 — 같은 청원을 반복 변주한 히브리 평행법"
+   ]
+  ]
+ },
+ {
+  "en": "In the day of my trouble I will call upon thee: for thou wilt answer me.",
+  "ko": "나의 환난 날에 내가 주께 부르짖으오리니, 주께서 내게 응답하시리이다",
+  "note": "'주께서 응답하시리이다'(תַּעֲנֵנִי)는 확신의 미완료로, 들으심에 대한 흔들림 없는 신뢰를 담는다.",
+  "voc": [
+   [
+    "trouble",
+    "n.",
+    "환난, 고난"
+   ],
+   [
+    "call upon",
+    "v.구",
+    "부르짖다, 간구하다"
+   ],
+   [
+    "answer",
+    "v.",
+    "응답하다"
+   ]
+  ],
+  "idi": [
+   [
+    "in the day of my trouble",
+    "나의 환난 날에"
+   ]
+  ],
+  "gra": [
+   [
+    "thou wilt answer",
+    "will로 확신의 미래 — '반드시 응답하시리이다'"
+   ]
+  ]
+ },
+ {
+  "en": "Among the gods there is none like unto thee, O Lord; neither are there any works like unto thy works.",
+  "ko": "주여, 신들 가운데 주와 같은 이 없사오며, 주의 행하신 일과 같은 것도 없나이다",
+  "note": "'신들'(אֱלֹהִים, elohim)은 이방의 거짓 신들 또는 천상의 존재들을 가리키나, 그 어느 것도 여호와께 견줄 수 없음을 선포한다. 출 15:11의 찬가를 떠올리게 한다.",
+  "voc": [
+   [
+    "among",
+    "prep.",
+    "~ 가운데"
+   ],
+   [
+    "gods",
+    "n.",
+    "신들"
+   ],
+   [
+    "none",
+    "pron.",
+    "아무도 없는"
+   ],
+   [
+    "works",
+    "n.",
+    "행하신 일들"
+   ]
+  ],
+  "idi": [
+   [
+    "none like unto thee",
+    "주와 같은 이 없는"
+   ],
+   [
+    "like unto",
+    "~와 같은(고어)"
+   ]
+  ],
+  "gra": [
+   [
+    "neither are there any works",
+    "neither로 시작한 부정 도치 — '~도 없다'"
+   ]
+  ]
+ },
+ {
+  "en": "All nations whom thou hast made shall come and worship before thee, O Lord; and shall glorify thy name.",
+  "ko": "주여, 주께서 지으신 모든 민족이 나아와 주 앞에 경배하며, 주의 이름에 영광을 돌리리이다",
+  "note": "만민이 창조주 앞에 경배하리라는 보편적 예언 — 시 22:27, 계 15:4의 약속과 잇닿는다. '민족'(גּוֹיִם, goyim)은 흔히 이방을 가리키며, 그 열방의 회심을 내다본다.",
+  "voc": [
+   [
+    "nations",
+    "n.",
+    "민족들, 열방"
+   ],
+   [
+    "worship",
+    "v.",
+    "경배하다"
+   ],
+   [
+    "glorify",
+    "v.",
+    "영광을 돌리다"
+   ],
+   [
+    "name",
+    "n.",
+    "이름"
+   ]
+  ],
+  "idi": [
+   [
+    "worship before thee",
+    "주 앞에 경배하다"
+   ],
+   [
+    "glorify thy name",
+    "주의 이름에 영광을 돌리다"
+   ]
+  ],
+  "gra": [
+   [
+    "whom thou hast made",
+    "관계대명사 whom이 nations를 수식 — 현재완료로 '주께서 지으신'"
+   ]
+  ]
+ },
+ {
+  "en": "For thou art great, and doest wondrous things: thou art God alone.",
+  "ko": "주는 위대하시어 기이한 일들을 행하시오니, 주만이 홀로 하나님이시니이다",
+  "note": "'주만이 홀로 하나님'(אַתָּה אֱלֹהִים לְבַדֶּךָ)은 유일신 신앙의 핵심 고백이다. '기이한 일들'(נִפְלָאוֹת, niflaot)은 오직 하나님만이 행하실 수 있는 경이로운 권능의 역사다.",
+  "voc": [
+   [
+    "great",
+    "a.",
+    "위대한"
+   ],
+   [
+    "doest",
+    "v.",
+    "행하다(do의 고어 2인칭)"
+   ],
+   [
+    "wondrous",
+    "a.",
+    "기이한, 경이로운"
+   ],
+   [
+    "alone",
+    "adv.",
+    "홀로"
+   ]
+  ],
+  "idi": [
+   [
+    "wondrous things",
+    "기이한 일들"
+   ],
+   [
+    "God alone",
+    "오직 홀로 하나님이신 분"
+   ]
+  ],
+  "gra": [
+   [
+    "thou doest",
+    "고어 2인칭 단수 현재 — 현대영어 you do"
+   ]
+  ]
+ },
+ {
+  "en": "Teach me thy way, O LORD; I will walk in thy truth: unite my heart to fear thy name.",
+  "ko": "여호와여, 주의 길을 내게 가르치소서, 내가 주의 진리 안에서 행하오리니, 내 마음을 하나로 모아 주의 이름을 경외하게 하소서",
+  "note": "'내 마음을 하나로 모으소서'(יַחֵד לְבָבִי, yaḥed levavi)는 흩어진 마음을 한데 모아 오직 주만 경외하게 하소서라는 간구다. 두 마음(분열된 충성)을 버리고 온전한 헌신을 구한다.",
+  "voc": [
+   [
+    "teach",
+    "v.",
+    "가르치다"
+   ],
+   [
+    "way",
+    "n.",
+    "길"
+   ],
+   [
+    "walk",
+    "v.",
+    "행하다, 걷다"
+   ],
+   [
+    "truth",
+    "n.",
+    "진리"
+   ],
+   [
+    "unite",
+    "v.",
+    "하나로 모으다"
+   ],
+   [
+    "fear",
+    "v.",
+    "경외하다"
+   ]
+  ],
+  "idi": [
+   [
+    "walk in thy truth",
+    "주의 진리 안에서 행하다(진리대로 살다)"
+   ],
+   [
+    "unite my heart",
+    "내 마음을 하나로 모으다"
+   ],
+   [
+    "fear thy name",
+    "주의 이름을 경외하다"
+   ]
+  ],
+  "gra": [
+   [
+    "unite my heart to fear",
+    "to부정사가 목적 — '경외하도록 하나로 모으소서'"
+   ]
+  ]
+ },
+ {
+  "en": "I will praise thee, O Lord my God, with all my heart: and I will glorify thy name for evermore.",
+  "ko": "주 나의 하나님이여, 내가 온 마음을 다하여 주를 찬송하며, 영원토록 주의 이름에 영광을 돌리오리이다",
+  "note": "11절의 '하나 된 마음' 간구가 12절의 '온 마음의 찬송'으로 응답되어 흐른다. '온 마음으로'(בְּכָל־לְבָבִי)는 신 6:5의 명령을 응답하는 표현이다.",
+  "voc": [
+   [
+    "praise",
+    "v.",
+    "찬송하다"
+   ],
+   [
+    "heart",
+    "n.",
+    "마음"
+   ],
+   [
+    "glorify",
+    "v.",
+    "영광을 돌리다"
+   ],
+   [
+    "for evermore",
+    "adv.구",
+    "영원토록"
+   ]
+  ],
+  "idi": [
+   [
+    "with all my heart",
+    "온 마음을 다하여"
+   ],
+   [
+    "for evermore",
+    "영원토록"
+   ]
+  ],
+  "gra": [
+   [
+    "I will praise ... I will glorify",
+    "will로 결단의 미래 — 찬송의 서원"
+   ]
+  ]
+ },
+ {
+  "en": "For great is thy mercy toward me: and thou hast delivered my soul from the lowest hell.",
+  "ko": "내게 베푸신 주의 인자가 크시어, 주께서 내 영혼을 깊은 음부에서 건지셨나이다",
+  "note": "'깊은 음부'(שְׁאוֹל תַּחְתִּיָּה, sheol taḥtiyyah)는 직역하면 '가장 낮은 스올'로, 죽음의 가장 깊은 곳을 뜻한다. KJV의 hell은 지옥이 아니라 죽음의 영역 '스올'을 옮긴 고어 용법이라, '스올'로 옮긴다. '인자'(ḥesed)는 언약적 사랑이다.",
+  "voc": [
+   [
+    "great",
+    "a.",
+    "큰"
+   ],
+   [
+    "mercy",
+    "n.",
+    "인자(ḥesed)"
+   ],
+   [
+    "toward",
+    "prep.",
+    "~을 향한"
+   ],
+   [
+    "delivered",
+    "v.",
+    "건지셨다, 구하셨다"
+   ],
+   [
+    "lowest",
+    "a.",
+    "가장 낮은"
+   ],
+   [
+    "hell",
+    "n.",
+    "스올, 죽음의 영역(원어 sheol)"
+   ]
+  ],
+  "idi": [
+   [
+    "the lowest hell",
+    "가장 깊은 스올(죽음의 깊은 곳)"
+   ]
+  ],
+  "gra": [
+   [
+    "great is thy mercy",
+    "보어 도치 — 'thy mercy is great'를 강조한 어순"
+   ]
+  ]
+ },
+ {
+  "en": "O God, the proud are risen against me, and the assemblies of violent men have sought after my soul; and have not set thee before them.",
+  "ko": "하나님이여, 교만한 자들이 일어나 나를 치며, 포악한 자들의 무리가 내 영혼을 찾으오니, 그들은 주를 그 앞에 두지 아니하였나이다",
+  "note": "'포악한 자들'(עָרִיצִים, aritsim)은 무자비한 압제자들이다. '주를 그 앞에 두지 아니하였다'는 하나님을 안중에 두지 않는 불경을 가리킨다(시 54:3과 평행).",
+  "voc": [
+   [
+    "proud",
+    "a.",
+    "교만한"
+   ],
+   [
+    "risen",
+    "v.",
+    "일어났다(rise의 과거분사)"
+   ],
+   [
+    "assemblies",
+    "n.",
+    "무리, 회중"
+   ],
+   [
+    "violent",
+    "a.",
+    "포악한"
+   ],
+   [
+    "sought",
+    "v.",
+    "찾았다(seek의 과거)"
+   ]
+  ],
+  "idi": [
+   [
+    "risen against me",
+    "일어나 나를 치다"
+   ],
+   [
+    "sought after my soul",
+    "내 생명을 노리다"
+   ],
+   [
+    "set thee before them",
+    "주를 그 앞에 두다(주를 염두에 두다)"
+   ]
+  ],
+  "gra": [
+   [
+    "have sought ... have not set",
+    "현재완료 — 과거의 행위가 지금까지 이어진 적대"
+   ]
+  ]
+ },
+ {
+  "en": "But thou, O Lord, art a God full of compassion, and gracious, long suffering, and plenteous in mercy and truth.",
+  "ko": "그러나 주여, 주는 긍휼이 풍성하시고 은혜로우시며, 노하기를 더디 하시고, 인자와 진실이 넘치시는 하나님이시니이다",
+  "note": "출 34:6의 하나님의 자기 계시를 거의 그대로 인용한다 — '긍휼히 여기며 은혜롭고 노하기를 더디 하며 인자와 진실이 많은' 하나님. '노하기를 더디 하시고'(אֶרֶךְ אַפַּיִם, erekh appayim)는 직역하면 '콧김이 긴' 곧 오래 참으심이다.",
+  "voc": [
+   [
+    "compassion",
+    "n.",
+    "긍휼"
+   ],
+   [
+    "gracious",
+    "a.",
+    "은혜로운"
+   ],
+   [
+    "long suffering",
+    "a.구",
+    "노하기를 더디 하는, 오래 참는"
+   ],
+   [
+    "plenteous",
+    "a.",
+    "풍성한, 넘치는"
+   ],
+   [
+    "truth",
+    "n.",
+    "진실, 신실"
+   ]
+  ],
+  "idi": [
+   [
+    "full of compassion",
+    "긍휼이 풍성한"
+   ],
+   [
+    "long suffering",
+    "오래 참는, 노하기를 더디 하는"
+   ],
+   [
+    "plenteous in mercy and truth",
+    "인자와 진실이 넘치는"
+   ]
+  ],
+  "gra": [
+   [
+    "But thou ... art",
+    "대조의 But — 14절의 원수와 15절의 주를 대비"
+   ]
+  ]
+ },
+ {
+  "en": "O turn unto me, and have mercy upon me; give thy strength unto thy servant, and save the son of thine handmaid.",
+  "ko": "내게로 돌이키사 내게 은혜를 베푸소서, 주의 힘을 주의 종에게 주시며, 주의 여종의 아들을 구원하소서",
+  "note": "'주의 여종의 아들'(בֶּן־אֲמָתֶךָ, ben-amatekha)은 태어날 때부터 주께 속한 집안의 종임을 강조하는 겸손한 자기 호칭이다(시 116:16과 평행).",
+  "voc": [
+   [
+    "turn unto",
+    "v.구",
+    "~에게로 돌이키다"
+   ],
+   [
+    "mercy",
+    "n.",
+    "은혜, 긍휼"
+   ],
+   [
+    "strength",
+    "n.",
+    "힘"
+   ],
+   [
+    "save",
+    "v.",
+    "구원하다"
+   ],
+   [
+    "handmaid",
+    "n.",
+    "여종"
+   ]
+  ],
+  "idi": [
+   [
+    "turn unto me",
+    "내게로 돌이키다(주의를 돌리다)"
+   ],
+   [
+    "the son of thine handmaid",
+    "주의 여종의 아들(집안의 종으로 태어난 자)"
+   ]
+  ],
+  "gra": [
+   [
+    "thine handmaid",
+    "모음 앞 thy의 고어형 — '주의 여종'"
+   ]
+  ]
+ },
+ {
+  "en": "Shew me a token for good; that they which hate me may see it, and be ashamed: because thou, LORD, hast holpen me, and comforted me.",
+  "ko": "내게 선하신 표징을 보이소서, 그리하시면 나를 미워하는 자들이 보고 부끄러워하오리니, 여호와여, 주께서 나를 도우시고 위로하셨음이니이다",
+  "note": "'표징'(אוֹת, oth)은 하나님의 호의를 드러내는 가시적 증표다. 'holpen'은 help의 고어 과거분사로 '도우셨다'. 시편은 도우심에 대한 확신의 고백으로 닫힌다.",
+  "voc": [
+   [
+    "shew",
+    "v.",
+    "보이다(show의 고어)"
+   ],
+   [
+    "token",
+    "n.",
+    "표징, 증표"
+   ],
+   [
+    "ashamed",
+    "a.",
+    "부끄러운"
+   ],
+   [
+    "holpen",
+    "v.",
+    "도우셨다(help의 고어 과거분사)"
+   ],
+   [
+    "comforted",
+    "v.",
+    "위로하셨다"
+   ]
+  ],
+  "idi": [
+   [
+    "a token for good",
+    "선하신 표징(호의의 증표)"
+   ],
+   [
+    "be ashamed",
+    "부끄러워하다"
+   ]
+  ],
+  "gra": [
+   [
+    "that they ... may see",
+    "목적의 that절 + may — '그들이 보도록'"
+   ],
+   [
+    "they which hate me",
+    "which = who의 고어 용법 — '나를 미워하는 자들'"
+   ]
+  ]
+ }
 ]
