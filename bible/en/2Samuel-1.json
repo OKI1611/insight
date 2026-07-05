@@ -1,135 +1,912 @@
 [
  {
-  "en": "Now it came to pass after the death of Saul ...",
+  "en": "Now it came to pass after the death of Saul, when David was returned from the slaughter of the Amalekites, and David had abode two days in Ziklag;",
   "ko": "사울이 죽은 후에, 다윗이 아말렉 사람을 친 데서 돌아와 시글락에 이틀을 머무니라.",
-  "note": "히브리어 와예히(וַיְהִי, '그리고 ~이 되니라')로 책이 열린다. 사울의 죽음과 다윗의 즉위 사이의 문턱을 잇는 표현으로, 사무엘하는 사무엘상의 끝을 곧바로 이어받는다.",
+  "note": "사무엘하는 '~된 후에'(after the death of Saul)라는 표현으로 열리니, 사울의 죽음이 다윗 왕조의 시작점임을 알린다. 히브리어 '시글락'(Tsiqlag)은 다윗이 망명 시절 머물던 블레셋 변방의 성읍으로, 왕이 될 자가 아직 이방 땅 언저리에서 기다리고 있는 처지를 드러낸다.",
   "voc": [
-   ["come to pass", "", "(일이) 일어나다, 이루어지다"],
-   ["death", "n.", "죽음"],
-   ["slaughter", "n.", "쳐 죽임, 살육"],
-   ["abide", "v.", "머무르다 (과거 abode)"]
+   [
+    "come to pass",
+    "v.",
+    "일어나다, 되다"
+   ],
+   [
+    "death",
+    "n.",
+    "죽음"
+   ],
+   [
+    "slaughter",
+    "n.",
+    "살육, 도륙"
+   ],
+   [
+    "abide",
+    "v.",
+    "머무르다"
+   ]
   ],
   "idi": [
-   ["it came to pass", "(고어) ~한 일이 있었다, 일이 이루어졌다"]
+   [
+    "come to pass",
+    "(일이) 일어나다, 이루어지다"
+   ]
   ],
   "gra": [
-   ["when David was returned", "be+과거분사='돌아와 있었다'(완료의 옛 용법, =had returned)"]
+   [
+    "after the death of Saul",
+    "after+명사구로 시점을 표시하는 고어적 서술"
+   ]
   ]
  },
  {
-  "en": "his clothes rent, and earth upon his head",
-  "ko": "그 옷은 찢어졌고 머리에는 흙을 뒤집어썼더라.",
-  "note": "옷을 찢고 머리에 흙을 끼얹음은 히브리 사람의 깊은 애도와 비탄의 표시다. 그 청년은 패전의 비보를 온몸으로 전하고 있다.",
+  "en": "It came even to pass on the third day, that, behold, a man came out of the camp from Saul with his clothes rent, and earth upon his head: and so it was, when he came to David, that he fell to the earth, and did obeisance.",
+  "ko": "사흘째 되는 날에, 보라, 한 사람이 사울에게서 곧 진영에서 나오는데, 그 옷은 찢어졌고 머리에는 흙을 뒤집어썼더라. 그가 다윗에게 이르러 땅에 엎드려 절하니라.",
+  "note": "옷을 찢고 머리에 흙을 뒤집어씀은 고대 근동에서 극심한 슬픔과 애도를 나타내는 관습이다. 이 아말렉 청년의 겉모습은 참된 애도처럼 보이나, 뒤에 드러나듯 그의 말은 상을 노린 거짓이니 겉과 속의 대조가 이 장의 긴장을 이룬다.",
   "voc": [
-   ["clothes", "n.", "옷"],
-   ["rent", "v.", "찢어진 (rend의 과거분사)"],
-   ["earth", "n.", "흙, 땅"]
+   [
+    "camp",
+    "n.",
+    "진영, 진"
+   ],
+   [
+    "rent",
+    "v.",
+    "찢다 (rend의 과거분사)"
+   ],
+   [
+    "obeisance",
+    "n.",
+    "절, 경의"
+   ]
   ],
   "idi": [
-   ["earth upon his head", "머리에 흙을 끼얹은 (애도의 표시)"]
+   [
+    "do obeisance",
+    "엎드려 절하다, 경의를 표하다"
+   ]
   ],
   "gra": [
-   ["his clothes rent", "명사+과거분사(독립분사구문) '옷이 찢어진 채로'"]
+   [
+    "his clothes rent, and earth upon his head",
+    "과거분사 rent가 상태를 나타내는 고어적 서술; earth upon his head=머리에 흙을 얹은 채로"
+   ]
   ]
  },
  {
-  "en": "From whence comest thou?",
-  "ko": "\"너는 어디서 왔느냐?\"",
-  "note": "다윗의 첫 물음이다. whence 자체가 '어디로부터'라는 뜻이라 from은 중복이나, KJV 시대의 관용 어법이다. comest는 2인칭 단수 thou에 붙는 옛 동사형.",
+  "en": "And David said unto him, From whence comest thou? And he said unto him, Out of the camp of Israel am I escaped.",
+  "ko": "다윗이 그에게 이르되 \"너는 어디서 왔느냐?\" 하니, 그가 대답하되 \"이스라엘의 진영에서 빠져나왔나이다\" 하더라.",
+  "note": "다윗의 첫 물음 '어디서 왔느냐'는 진상을 밝히려는 왕의 신중함을 보인다. 이스라엘 진영에서 도망쳐 나왔다는 청년의 말은 전쟁의 참담한 결과를 예고한다.",
   "voc": [
-   ["whence", "adv.", "(고어) 어디서부터"],
-   ["comest", "v.", "오느냐 (come의 2인칭 단수 thou 형태)"],
-   ["thou", "pron.", "(고어) 너"]
+   [
+    "whence",
+    "adv.",
+    "어디서 (고어)"
+   ],
+   [
+    "escape",
+    "v.",
+    "피하다, 도망하다"
+   ]
   ],
-  "idi": [
-   ["from whence", "어디로부터 (whence의 강조 옛 표현)"]
-  ],
+  "idi": [],
   "gra": [
-   ["comest thou", "의문문 어순 도치 '너는 오느냐'; -est=2인칭 단수 thou 어미"]
+   [
+    "From whence comest thou",
+    "comest=come의 2인칭 단수 고어형; From whence=어디로부터 (whence 자체가 '어디로부터'라 중복적 고어 표현)"
+   ],
+   [
+    "am I escaped",
+    "be동사+과거분사로 완료를 나타내는 고어 용법 '나는 도망하였다'"
+   ]
   ]
  },
  {
-  "en": "I pray thee, tell me.",
-  "ko": "\"청하노니 ... 내게 말하라.\"",
-  "note": "I pray thee는 정중한 부탁을 더하는 옛 표현으로, 우리말 '청하노니/원하건대'에 해당한다. 명령에 간곡함을 입혀 권위와 예의를 함께 살린다.",
+  "en": "And David said unto him, How went the matter? I pray thee, tell me. And he answered, That the people are fled from the battle, and many of the people also are fallen and dead; and Saul and Jonathan his son are dead also.",
+  "ko": "다윗이 그에게 이르되 \"청하노니 그 일이 어찌 되었는지 내게 말하라\" 하니, 그가 대답하되 \"백성이 싸움에서 도망하였고 백성 가운데 많은 자가 엎드러져 죽었으며, 사울과 그의 아들 요나단도 죽었나이다\" 하더라.",
+  "note": "'백성이 도망하고 많이 엎드러져 죽었다'는 보고는 길보아 전투의 참패를 요약한다. 사울과 요나단이 함께 죽었다는 소식은 다윗에게 왕좌의 길이 열림과 동시에 깊은 상실을 안긴다.",
   "voc": [
-   ["pray", "v.", "(고어) 간청하다, 청하다"],
-   ["thee", "pron.", "(고어) 너를, 네게"],
-   ["matter", "n.", "일, 사정"]
+   [
+    "flee",
+    "v.",
+    "도망하다 (fled=과거)"
+   ],
+   [
+    "battle",
+    "n.",
+    "전투"
+   ],
+   [
+    "fall",
+    "v.",
+    "쓰러지다, 전사하다"
+   ]
   ],
   "idi": [
-   ["I pray thee", "청하노니, 부디 (정중한 부탁)"],
-   ["How went the matter?", "그 일이 어찌 되었느냐?"]
+   [
+    "I pray thee",
+    "간청하건대, 제발 (고어)"
+   ]
+  ],
+  "gra": [
+   [
+    "the people are fled",
+    "be+과거분사로 완료를 표현하는 고어 용법"
+   ],
+   [
+    "Saul and Jonathan his son are dead also",
+    "his son이 앞 명사를 동격으로 수식하는 고어 어순"
+   ]
   ]
  },
  {
-  "en": "How wast thou not afraid to stretch forth thine hand to destroy the LORD's anointed?",
-  "ko": "\"네가 어찌하여 손을 들어 여호와의 기름 부음 받은 자를 죽이기를 두려워하지 아니하였느냐?\"",
-  "note": "히브리어 메시아흐(מָשִׁיחַ, '기름 부음 받은 자')가 여기 쓰인다. 다윗은 사울이 자기를 죽이려 했어도 그를 여호와께서 세우신 왕으로 끝까지 존중하였으니, 권위를 하나님께 맡기는 믿음이 드러난다.",
+  "en": "And David said unto the young man that told him, How knowest thou that Saul and Jonathan his son be dead?",
+  "ko": "다윗이 그 소식을 전한 청년에게 이르되 \"사울과 그의 아들 요나단이 죽은 줄을 네가 어찌 아느냐?\" 하니,",
+  "note": "다윗은 소식을 전한 청년에게 어떻게 그 죽음을 아는지 캐묻는다. 왕이 될 자로서 진위를 분별하려는 태도로, 소문에 휩쓸리지 않는 지도자의 신중함이 엿보인다.",
   "voc": [
-   ["afraid", "adj.", "두려워하는"],
-   ["stretch forth", "", "(손을) 내밀다, 뻗다"],
-   ["destroy", "v.", "멸하다, 죽이다"],
-   ["anointed", "n.", "기름 부음 받은 자"]
+   [
+    "young man",
+    "n.",
+    "젊은이, 청년"
+   ],
+   [
+    "know",
+    "v.",
+    "알다"
+   ]
   ],
-  "idi": [
-   ["stretch forth one's hand", "손을 들어/내밀어 (해치려 하다)"],
-   ["the LORD's anointed", "여호와의 기름 부음 받은 자 (메시아흐)"]
-  ],
+  "idi": [],
   "gra": [
-   ["How wast thou not afraid to ...", "wast=be동사 2인칭 단수 thou 과거; to부정사='~하기를'"]
+   [
+    "How knowest thou",
+    "knowest=know의 2인칭 단수 고어형"
+   ],
+   [
+    "Saul ... be dead",
+    "be가 가정·의문의 문맥에서 쓰인 고어 용법"
+   ]
   ]
  },
  {
-  "en": "Thy blood be upon thy head; for thy mouth hath testified against thee.",
-  "ko": "\"네 피가 네 머리로 돌아갈지니, 이는 네 입이 너를 쳐서 증언하였음이니라.\"",
-  "note": "'피가 네 머리로'는 그 죽음의 책임이 본인에게 있다는 히브리 관용 선언이다. 그 청년은 스스로 왕을 죽였다 자백하였으니, 자기 입이 곧 자기 죄의 증인이 되었다.",
+  "en": "And the young man that told him said, As I happened by chance upon mount Gilboa, behold, Saul leaned upon his spear; and, lo, the chariots and horsemen followed hard after him.",
+  "ko": "그 소식을 전한 청년이 이르되 \"내가 우연히 길보아 산에 올랐더니, 보소서, 사울이 자기 창에 기대어 있고, 보소서, 병거와 기병들이 그를 바싹 뒤쫓더이다.",
+  "note": "'우연히'(by chance)라는 표현은 청년의 이야기가 지어낸 정황임을 암시한다. 사울이 창에 기대고 병거와 마병이 바짝 뒤쫓는 장면은 절박한 최후를 그린다.",
   "voc": [
-   ["blood", "n.", "피"],
-   ["testify", "v.", "증언하다 (hath testified=현재완료)"],
-   ["against", "prep.", "~을 거슬러, ~에 불리하게"],
-   ["slain", "v.", "죽인 (slay의 과거분사)"]
+   [
+    "by chance",
+    "",
+    "우연히"
+   ],
+   [
+    "lean",
+    "v.",
+    "기대다"
+   ],
+   [
+    "spear",
+    "n.",
+    "창"
+   ],
+   [
+    "chariot",
+    "n.",
+    "병거, 전차"
+   ]
   ],
   "idi": [
-   ["thy blood be upon thy head", "네 피가 네 머리로 돌아가리라 (죽음의 책임이 네게 있다)"]
+   [
+    "by chance",
+    "우연히, 뜻하지 않게"
+   ],
+   [
+    "follow hard after",
+    "바짝 뒤쫓다"
+   ]
   ],
   "gra": [
-   ["thy mouth hath testified against thee", "hath+과거분사=3인칭 단수 현재완료; against thee='너에게 불리하게'"]
+   [
+    "lo",
+    "보라 (고어 감탄사)"
+   ]
   ]
  },
  {
-  "en": "How are the mighty fallen!",
-  "ko": "\"용사들이 어찌 엎드러졌는고!\"",
-  "note": "이 애가의 후렴이다(19, 25, 27절에 반복). 히브리어 에크 나펠루 기보림(אֵיךְ נָפְלוּ גִבּוֹרִים)의 탄식하는 가락을, 권위 있는 문어체 감탄형 '어찌 ~엎드러졌는고'로 살린다.",
+  "en": "And when he looked behind him, he saw me, and called unto me. And I answered, Here am I.",
+  "ko": "그가 뒤를 돌아보다가 나를 보고 부르기로 내가 대답하되 '내가 여기 있나이다' 하니,",
+  "note": "'내가 여기 있나이다'(Here am I)는 성경에서 부름에 응답하는 정형적 표현이다. 그러나 여기서는 사울을 살렸다는 거짓 서사를 꾸미기 위한 청년의 진술 속에 놓여 있다.",
   "voc": [
-   ["mighty", "adj./n.", "강한 (자), 용사"],
-   ["fallen", "v.", "쓰러진 (fall의 과거분사)"],
-   ["beauty", "n.", "영광, 아름다움"],
-   ["high places", "", "높은 산, 산당"]
+   [
+    "look behind",
+    "",
+    "뒤를 돌아보다"
+   ],
+   [
+    "call unto",
+    "",
+    "~에게 부르다"
+   ]
   ],
   "idi": [
-   ["How are the mighty fallen!", "용사들이 어찌 엎드러졌는고! (애가의 후렴)"]
+   [
+    "Here am I",
+    "내가 여기 있나이다 (부름에 대한 응답)"
+   ]
   ],
   "gra": [
-   ["are ... fallen", "be+과거분사='엎드러졌다'(완료의 옛 용법, =have fallen); How=감탄"]
+   [
+    "Here am I",
+    "주어와 동사가 도치된 고어 어순 (=Here I am)"
+   ]
   ]
  },
  {
-  "en": "Thy love to me was wonderful, passing the love of women.",
-  "ko": "\"그대가 나를 사랑함이 기이하여 여인의 사랑보다 더하였도다.\"",
-  "note": "다윗이 요나단을 향해 부르는 절정의 탄식이다. passing은 '능가하여, ~을 넘어서'라는 뜻으로, 두 사람의 언약적 우정(삼상 18:3)이 얼마나 깊었는지를 시가의 가락으로 새긴다.",
+  "en": "And he said unto me, Who art thou? And I answered him, I am an Amalekite.",
+  "ko": "그가 내게 이르되 '너는 누구냐?' 하기로 내가 대답하되 '나는 아말렉 사람이니이다' 하니,",
+  "note": "청년이 자신을 아말렉 사람이라 밝힌다. 아말렉은 하나님이 진멸을 명하신 민족이니(신 25장), 사울을 죽였다고 주장하는 자가 하필 아말렉 사람이라는 점은 사울이 아말렉을 온전히 진멸하지 않은 불순종의 그림자를 되비친다.",
   "voc": [
-   ["distressed", "adj.", "괴로워하는, 비통한"],
-   ["brother", "n.", "형제"],
-   ["pleasant", "adj.", "사랑스러운, 아름다운"],
-   ["wonderful", "adj.", "기이한, 놀라운"],
-   ["passing", "prep.", "~을 능가하여, ~보다 더한"]
+   [
+    "Amalekite",
+    "n.",
+    "아말렉 사람"
+   ],
+   [
+    "answer",
+    "v.",
+    "대답하다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Who art thou",
+    "art=are의 2인칭 단수 고어형"
+   ]
+  ]
+ },
+ {
+  "en": "He said unto me again, Stand, I pray thee, upon me, and slay me: for anguish is come upon me, because my life is yet whole in me.",
+  "ko": "그가 다시 내게 이르되 '청하노니 내 곁에 서서 나를 죽이라. 내 생명이 아직 내게 온전히 붙어 있으나 고통이 나를 사로잡았느니라' 하더이다.",
+  "note": "'괴로움이 내게 임하였다'는 사울의 극한 고통을 표현한다. 히브리어 '샤바츠'(shabbats, 여기 '고통·현기증')는 갑옷이나 그물처럼 죄어드는 상태를 뜻하여, 죽음을 앞둔 자의 옥죄임을 생생히 그린다.",
+  "voc": [
+   [
+    "stand upon",
+    "",
+    "~위에 서다, 덮치다"
+   ],
+   [
+    "slay",
+    "v.",
+    "죽이다"
+   ],
+   [
+    "anguish",
+    "n.",
+    "고뇌, 극심한 고통"
+   ]
   ],
   "idi": [
-   ["passing the love of women", "여인의 사랑을 넘어서는, 그보다 더한"]
+   [
+    "my life is yet whole in me",
+    "내 목숨이 아직 온전히 붙어 있다"
+   ]
   ],
   "gra": [
-   ["very pleasant hast thou been unto me", "도치 강조; hast ... been=2인칭 현재완료 '심히 아름다웠도다'"]
+   [
+    "Stand, I pray thee, upon me",
+    "I pray thee가 명령문 사이에 삽입된 간청의 고어 표현"
+   ]
+  ]
+ },
+ {
+  "en": "So I stood upon him, and slew him, because I was sure that he could not live after that he was fallen: and I took the crown that was upon his head, and the bracelet that was on his arm, and have brought them hither unto my lord.",
+  "ko": "그러므로 내가 그의 곁에 서서 그를 죽였사오니, 이는 그가 쓰러진 후에 살지 못할 줄을 내가 확실히 알았음이니이다. 내가 그의 머리에 있던 면류관과 그의 팔에 있던 팔찌를 가져다가 내 주께로 가져왔나이다\" 하니라.",
+  "note": "청년은 사울을 죽이고 왕관과 팔찌를 가져왔다고 말한다. 왕관(nezer)은 왕권의 상징이니, 그것을 다윗에게 바침은 다윗을 새 왕으로 인정하며 상을 얻으려는 계산이다. 그러나 여호와의 기름 부음 받은 자에게 손을 댄 죄가 그를 사망으로 이끈다.",
+  "voc": [
+   [
+    "slew",
+    "v.",
+    "죽였다 (slay의 과거)"
+   ],
+   [
+    "crown",
+    "n.",
+    "왕관"
+   ],
+   [
+    "bracelet",
+    "n.",
+    "팔찌"
+   ],
+   [
+    "hither",
+    "adv.",
+    "이리로 (고어)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "after that he was fallen",
+    "after that=~한 후에 (that이 접속사로 쓰인 고어); was fallen=완료의 고어 용법"
+   ]
+  ]
+ },
+ {
+  "en": "Then David took hold on his clothes, and rent them; and likewise all the men that were with him:",
+  "ko": "이에 다윗이 자기 옷을 잡아 찢으매, 그와 함께한 모든 사람도 그리하니라.",
+  "note": "다윗이 자기 옷을 붙잡아 찢으니, 그의 애도는 즉각적이고 진실하다. 원수의 죽음조차 슬퍼하는 다윗의 모습은 왕권을 향한 야망보다 하나님의 기름 부음에 대한 경외가 앞섬을 보여준다.",
+  "voc": [
+   [
+    "take hold on",
+    "",
+    "~을 붙잡다"
+   ],
+   [
+    "rend",
+    "v.",
+    "찢다"
+   ],
+   [
+    "likewise",
+    "adv.",
+    "마찬가지로"
+   ]
+  ],
+  "idi": [
+   [
+    "take hold on",
+    "~을 붙들다, 움켜쥐다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And they mourned, and wept, and fasted until even, for Saul, and for Jonathan his son, and for the people of the LORD, and for the house of Israel; because they were fallen by the sword.",
+  "ko": "그들이 사울과 그의 아들 요나단과 여호와의 백성과 이스라엘 집을 위하여 슬퍼하며 울며 저녁까지 금식하니, 이는 그들이 칼에 엎드러졌음이라.",
+  "note": "다윗과 그의 사람들이 저녁까지 슬퍼하고 울며 금식한다. 애도의 대상이 '여호와의 백성'과 '이스라엘 집'으로 확대되니, 이 슬픔은 개인적 손실을 넘어 언약 백성이 칼에 엎드러진 국가적 재앙을 향한 것이다.",
+  "voc": [
+   [
+    "mourn",
+    "v.",
+    "애도하다, 슬퍼하다"
+   ],
+   [
+    "weep",
+    "v.",
+    "울다"
+   ],
+   [
+    "fast",
+    "v.",
+    "금식하다"
+   ],
+   [
+    "sword",
+    "n.",
+    "칼"
+   ]
+  ],
+  "idi": [
+   [
+    "fall by the sword",
+    "칼에 쓰러지다, 전사하다"
+   ]
+  ],
+  "gra": [
+   [
+    "until even",
+    "even=evening의 고어 단축형 '저녁까지'"
+   ]
+  ]
+ },
+ {
+  "en": "And David said unto the young man that told him, Whence art thou? And he answered, I am the son of a stranger, an Amalekite.",
+  "ko": "다윗이 그 소식을 전한 청년에게 이르되 \"너는 어디 사람이냐?\" 하니, 그가 대답하되 \"나는 타국인의 아들이요 아말렉 사람이니이다\" 하더라.",
+  "note": "다윗이 다시 청년의 출신을 확인한다. '나그네의 아들, 아말렉 사람'이라는 답은 그가 이스라엘 언약 밖의 이방인임을 재차 못박아, 곧 이어질 심판의 정당성을 드러낸다.",
+  "voc": [
+   [
+    "stranger",
+    "n.",
+    "나그네, 이방인"
+   ],
+   [
+    "son of",
+    "",
+    "~의 아들"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Whence art thou",
+    "Whence=어디 출신 (고어); art=are의 2인칭 단수"
+   ]
+  ]
+ },
+ {
+  "en": "And David said unto him, How wast thou not afraid to stretch forth thine hand to destroy the LORD’s anointed?",
+  "ko": "다윗이 그에게 이르되 \"네가 어찌하여 손을 들어 여호와의 기름 부음 받은 자를 죽이기를 두려워하지 아니하였느냐?\" 하고,",
+  "note": "'여호와의 기름 부음 받은 자'(the LORD's anointed)는 히브리어 '메시아흐'(mashiach)로, 왕을 하나님의 대리자로 세우신 거룩한 신분을 가리킨다. 다윗은 사울이 자신을 핍박했어도 그에게 손대기를 거부했으니, 그 원칙이 여기서 심판의 잣대가 된다.",
+  "voc": [
+   [
+    "afraid",
+    "adj.",
+    "두려워하는"
+   ],
+   [
+    "stretch forth",
+    "",
+    "(손을) 내밀다"
+   ],
+   [
+    "destroy",
+    "v.",
+    "멸하다"
+   ],
+   [
+    "anointed",
+    "n.",
+    "기름 부음 받은 자"
+   ]
+  ],
+  "idi": [
+   [
+    "stretch forth thine hand",
+    "손을 내밀다, 해를 가하다"
+   ]
+  ],
+  "gra": [
+   [
+    "How wast thou not afraid",
+    "wast=was의 2인칭 단수 고어형"
+   ],
+   [
+    "the LORD's anointed",
+    "여호와의 기름 부음 받은 자 (소유격 's 고어 표기)"
+   ]
+  ]
+ },
+ {
+  "en": "And David called one of the young men, and said, Go near, and fall upon him. And he smote him that he died.",
+  "ko": "다윗이 청년 중 하나를 불러 이르되 \"가까이 가서 그를 치라\" 하니, 그가 그를 쳐서 죽게 하니라.",
+  "note": "다윗이 청년을 즉결 처형하도록 명한다. 여호와의 기름 부음 받은 자를 해한 손은 반드시 대가를 치른다는 원칙이 왕국의 첫 판결로 세워진다.",
+  "voc": [
+   [
+    "go near",
+    "",
+    "가까이 가다"
+   ],
+   [
+    "fall upon",
+    "",
+    "덮치다, 치다"
+   ],
+   [
+    "smite",
+    "v.",
+    "치다 (smote=과거)"
+   ]
+  ],
+  "idi": [
+   [
+    "fall upon",
+    "~을 덮치다, 공격하다"
+   ]
+  ],
+  "gra": [
+   [
+    "that he died",
+    "that=결과를 나타내는 고어 접속사 '그리하여 그가 죽었다'"
+   ]
+  ]
+ },
+ {
+  "en": "And David said unto him, Thy blood be upon thy head; for thy mouth hath testified against thee, saying, I have slain the LORD’s anointed.",
+  "ko": "다윗이 그에게 이르되 \"네 피가 네 머리로 돌아갈지니, 이는 네 입이 너를 쳐서 증언하여 '내가 여호와의 기름 부음 받은 자를 죽였노라' 하였음이니라\" 하니라.",
+  "note": "'네 피가 네 머리로 돌아가리라'는 자신의 죄값을 스스로 지게 되는 심판의 관용구다. 청년의 입이 스스로 증언하였으니, 그의 거짓 자랑이 곧 그의 정죄가 된다.",
+  "voc": [
+   [
+    "blood",
+    "n.",
+    "피, 피의 책임"
+   ],
+   [
+    "testify",
+    "v.",
+    "증언하다"
+   ],
+   [
+    "against",
+    "prep.",
+    "~에 불리하게"
+   ]
+  ],
+  "idi": [
+   [
+    "Thy blood be upon thy head",
+    "네 피가 네 머리로 돌아가리라 (죄값을 스스로 지다)"
+   ]
+  ],
+  "gra": [
+   [
+    "hath testified",
+    "hath=has의 3인칭 단수 고어형 (완료)"
+   ]
+  ]
+ },
+ {
+  "en": "And David lamented with this lamentation over Saul and over Jonathan his son:",
+  "ko": "다윗이 사울과 그의 아들 요나단을 위하여 이 애가로 슬피 노래하고,",
+  "note": "다윗이 사울과 요나단을 위해 애가를 지어 부른다. 히브리어 '키나'(qinah)는 죽은 자를 애도하는 정형 시가로, 다윗의 시인적 은사가 원수의 죽음 앞에서도 고결한 슬픔으로 승화된다.",
+  "voc": [
+   [
+    "lament",
+    "v.",
+    "애도하다, 애가를 부르다"
+   ],
+   [
+    "lamentation",
+    "n.",
+    "애가, 애곡"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "lamented with this lamentation",
+    "동족목적어 구문으로 '이 애가로 애곡하였다'는 히브리 시가의 강조 어법"
+   ]
+  ]
+ },
+ {
+  "en": "(Also he bade them teach the children of Judah the use of the bow: behold, it is written in the book of Jasher.)",
+  "ko": "또 명하여 유다 자손에게 활 노래를 가르치게 하였으니, 보라, 이는 야셀의 책에 기록되었더라.",
+  "note": "'야살의 책'(the book of Jasher)은 이스라엘의 옛 시가와 무용담을 모은 소실된 문헌으로 여겨진다. 다윗이 유다 자손에게 '활 노래'를 가르치게 한 것은 이 애가가 백성에게 전승될 공적 유산이 되었음을 보인다.",
+  "voc": [
+   [
+    "bid",
+    "v.",
+    "명하다, 이르다"
+   ],
+   [
+    "the use of the bow",
+    "",
+    "활의 사용법"
+   ],
+   [
+    "Jasher",
+    "n.",
+    "야살 (책 이름)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "he bade them teach",
+    "bade=bid의 과거 고어형 '명하였다'"
+   ]
+  ]
+ },
+ {
+  "en": "The beauty of Israel is slain upon thy high places: how are the mighty fallen!",
+  "ko": "\"이스라엘의 영광이 네 높은 산 위에서 죽임을 당하였도다. 슬프다, 용사들이 어찌 엎드러졌는고!",
+  "note": "'이스라엘의 영광'(the beauty of Israel)은 사울과 요나단, 나아가 쓰러진 용사들을 가리킨다. '어찌 그 용사들이 엎드러졌는고!'(how are the mighty fallen)라는 후렴은 이 애가 전체를 관통하며 상실의 무게를 거듭 울린다.",
+  "voc": [
+   [
+    "beauty",
+    "n.",
+    "영광, 영화"
+   ],
+   [
+    "slain",
+    "adj.",
+    "죽임당한"
+   ],
+   [
+    "high places",
+    "n.",
+    "산당, 높은 곳"
+   ],
+   [
+    "mighty",
+    "n.",
+    "용사"
+   ]
+  ],
+  "idi": [
+   [
+    "how are the mighty fallen",
+    "어찌 그 용사들이 엎드러졌는고 (애가의 후렴)"
+   ]
+  ],
+  "gra": [
+   [
+    "how are the mighty fallen",
+    "의문·감탄의 도치 어순; are fallen=완료의 고어 용법"
+   ]
+  ]
+ },
+ {
+  "en": "Tell it not in Gath, publish it not in the streets of Askelon; lest the daughters of the Philistines rejoice, lest the daughters of the uncircumcised triumph.",
+  "ko": "이 일을 가드에 알리지 말며 아스글론 거리에 전파하지 말지어다. 블레셋의 딸들이 기뻐할까, 할례받지 못한 자의 딸들이 개가를 부를까 하노라.",
+  "note": "가드와 아스글론은 블레셋의 성읍이다. 이 소식이 그곳에 전해지지 않기를 바람은, 언약 백성의 패배가 '할례받지 않은 자'(우상 숭배 이방인)의 조롱거리가 되는 것을 막으려는 열심에서 나온다.",
+  "voc": [
+   [
+    "publish",
+    "v.",
+    "선포하다, 알리다"
+   ],
+   [
+    "rejoice",
+    "v.",
+    "기뻐하다"
+   ],
+   [
+    "uncircumcised",
+    "adj.",
+    "할례받지 않은"
+   ],
+   [
+    "triumph",
+    "v.",
+    "승리를 뽐내다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Tell it not ... publish it not",
+    "동사+it+not의 고어적 부정 명령 어순"
+   ],
+   [
+    "lest ... rejoice",
+    "lest=~하지 않도록 (뒤에 가정법 동사)"
+   ]
+  ]
+ },
+ {
+  "en": "Ye mountains of Gilboa, let there be no dew, neither let there be rain, upon you, nor fields of offerings: for there the shield of the mighty is vilely cast away, the shield of Saul, as though he had not been anointed with oil.",
+  "ko": "길보아 산들아, 너희 위에 이슬도 내리지 말고 비도 내리지 말며 예물 드릴 밭도 없을지어다. 거기서 용사의 방패가, 곧 사울의 방패가 더럽게 버림을 당하였으니, 기름 부음 받지 아니한 것 같이 되었도다.",
+  "note": "길보아 산에 이슬도 비도 내리지 말라는 저주는, 그곳에서 용사의 방패가 버림받은 슬픔의 크기를 드러낸다. 사울의 방패가 '기름 부음 받지 않은 것처럼' 던져졌다는 표현은 왕의 거룩한 신분이 죽음으로 무너진 비극을 애통해한다.",
+  "voc": [
+   [
+    "dew",
+    "n.",
+    "이슬"
+   ],
+   [
+    "shield",
+    "n.",
+    "방패"
+   ],
+   [
+    "vilely",
+    "adv.",
+    "천하게, 더럽게"
+   ],
+   [
+    "cast away",
+    "",
+    "내던지다"
+   ]
+  ],
+  "idi": [
+   [
+    "cast away",
+    "내버리다, 내던지다"
+   ]
+  ],
+  "gra": [
+   [
+    "let there be no dew",
+    "let there be=~이 있게 하라의 기원 구문"
+   ],
+   [
+    "as though he had not been anointed",
+    "as though=마치 ~인 것처럼 (가정법 과거완료)"
+   ]
+  ]
+ },
+ {
+  "en": "From the blood of the slain, from the fat of the mighty, the bow of Jonathan turned not back, and the sword of Saul returned not empty.",
+  "ko": "죽임당한 자의 피와 용사들의 기름에서, 요나단의 활은 물러서지 아니하였고 사울의 칼은 헛되이 돌아오지 아니하였도다.",
+  "note": "요나단의 활과 사울의 칼이 헛되이 돌아오지 않았다는 표현은 두 용사의 용맹을 기린다. 애가는 그들의 죽음을 비겁이 아닌 전사의 명예로 그려, 산 자에게 존경의 기억을 남긴다.",
+  "voc": [
+   [
+    "slain",
+    "n.",
+    "죽임당한 자들"
+   ],
+   [
+    "fat",
+    "n.",
+    "기름, 정수"
+   ],
+   [
+    "turn back",
+    "",
+    "돌아서다, 물러나다"
+   ],
+   [
+    "empty",
+    "adj.",
+    "빈, 헛된"
+   ]
+  ],
+  "idi": [
+   [
+    "turn not back",
+    "물러서지 않다"
+   ],
+   [
+    "return not empty",
+    "헛되이 돌아오지 않다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Saul and Jonathan were lovely and pleasant in their lives, and in their death they were not divided: they were swifter than eagles, they were stronger than lions.",
+  "ko": "사울과 요나단은 살아서 사랑스럽고 아름다웠으며, 죽어서도 서로 떠나지 아니하였으니, 그들은 독수리보다 빠르고 사자보다 강하였도다.",
+  "note": "사울과 요나단이 '생시에 사랑스럽고 아름다웠고 죽을 때에도 나뉘지 않았다'는 구절은 부자의 결속을 기린다. 독수리보다 빠르고 사자보다 강했다는 비유는 히브리 시가의 전형적 병행법으로, 그들의 탁월함을 두 겹으로 칭송한다.",
+  "voc": [
+   [
+    "lovely",
+    "adj.",
+    "사랑스러운"
+   ],
+   [
+    "pleasant",
+    "adj.",
+    "아름다운, 즐거운"
+   ],
+   [
+    "divide",
+    "v.",
+    "나누다, 갈라지다"
+   ],
+   [
+    "eagle",
+    "n.",
+    "독수리"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "swifter than eagles ... stronger than lions",
+    "비교급 병행 구문으로 히브리 시가의 대구를 옮긴 표현"
+   ]
+  ]
+ },
+ {
+  "en": "Ye daughters of Israel, weep over Saul, who clothed you in scarlet, with other delights, who put on ornaments of gold upon your apparel.",
+  "ko": "이스라엘의 딸들아, 사울을 위하여 울지어다. 그가 너희에게 화려한 주홍옷을 입히고 너희 옷에 금장식을 달아 주었도다.",
+  "note": "이스라엘의 딸들에게 사울을 위해 울라 부름은, 사울의 통치가 백성에게 홍색 옷과 금 장식의 번영을 가져왔음을 상기시킨다. 애가는 사울의 결함이 아니라 그가 베푼 은택을 기억하며 슬퍼한다.",
+  "voc": [
+   [
+    "clothe",
+    "v.",
+    "입히다"
+   ],
+   [
+    "scarlet",
+    "n.",
+    "홍색, 진홍"
+   ],
+   [
+    "ornament",
+    "n.",
+    "장식품"
+   ],
+   [
+    "apparel",
+    "n.",
+    "의복"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "who clothed you in scarlet",
+    "who=관계대명사 (사울을 가리킴); clothed in=~로 입히다"
+   ]
+  ]
+ },
+ {
+  "en": "How are the mighty fallen in the midst of the battle! O Jonathan, thou wast slain in thine high places.",
+  "ko": "용사들이 어찌 싸움 가운데 엎드러졌는고! 오 요나단이여, 그대가 네 높은 산 위에서 죽임을 당하였도다.",
+  "note": "후렴 '어찌 용사들이 전쟁 중에 엎드러졌는고'가 다시 울리며 이제 요나단에게 초점을 맞춘다. '너의 산당에서 죽임을 당하였도다'는 다윗의 사적 애통이 이 공적 애가 안으로 스며드는 전환점이다.",
+  "voc": [
+   [
+    "midst",
+    "n.",
+    "한가운데"
+   ],
+   [
+    "slain",
+    "adj.",
+    "죽임당한"
+   ]
+  ],
+  "idi": [
+   [
+    "in the midst of",
+    "~의 한가운데서"
+   ]
+  ],
+  "gra": [
+   [
+    "thou wast slain",
+    "wast=was의 2인칭 단수 고어형; wast slain=수동태 완료"
+   ]
+  ]
+ },
+ {
+  "en": "I am distressed for thee, my brother Jonathan: very pleasant hast thou been unto me: thy love to me was wonderful, passing the love of women.",
+  "ko": "내 형제 요나단이여, 내가 그대로 인하여 괴로워하노라. 그대는 내게 심히 아름다웠으며, 그대가 나를 사랑함이 기이하여 여인의 사랑보다 더하였도다.",
+  "note": "다윗이 요나단을 '내 형제'라 부르며 그 사랑이 '여인의 사랑보다 뛰어났다'고 애통해한다. 이는 언약으로 맺어진 신실한 우정(삼상 18장)을 기리는 것으로, 요나단의 헌신적 언약 사랑에 대한 깊은 존경의 표현이다.",
+  "voc": [
+   [
+    "distressed",
+    "adj.",
+    "괴로워하는, 비통한"
+   ],
+   [
+    "brother",
+    "n.",
+    "형제"
+   ],
+   [
+    "wonderful",
+    "adj.",
+    "놀라운, 뛰어난"
+   ],
+   [
+    "pass",
+    "v.",
+    "능가하다"
+   ]
+  ],
+  "idi": [
+   [
+    "passing the love of women",
+    "여인의 사랑을 능가하는"
+   ]
+  ],
+  "gra": [
+   [
+    "very pleasant hast thou been unto me",
+    "보어 도치+hast(=hast의 2인칭 완료) 고어 어순"
+   ]
+  ]
+ },
+ {
+  "en": "How are the mighty fallen, and the weapons of war perished!",
+  "ko": "용사들이 어찌 엎드러졌으며 싸움의 병기가 어찌 망하였는고!\"",
+  "note": "애가는 '어찌 용사들이 엎드러졌으며 싸우는 무기가 망하였는고'라는 후렴으로 닫힌다. 개인과 국가의 슬픔을 하나로 봉인하는 이 마지막 탄식은, 한 시대의 종막과 새 시대의 시작 사이에 놓인 엄숙한 침묵을 남긴다.",
+  "voc": [
+   [
+    "weapons of war",
+    "",
+    "전쟁 무기"
+   ],
+   [
+    "perish",
+    "v.",
+    "망하다, 멸망하다"
+   ]
+  ],
+  "idi": [
+   [
+    "how are the mighty fallen",
+    "어찌 그 용사들이 엎드러졌는고"
+   ]
+  ],
+  "gra": [
+   [
+    "the weapons of war perished",
+    "perished=완료의 상태를 나타내는 고어 용법"
+   ]
   ]
  }
 ]
