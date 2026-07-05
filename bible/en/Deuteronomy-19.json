@@ -1,165 +1,850 @@
 [
  {
-  "en": "Thou shalt separate three cities for thee in the midst of thy land",
-  "ko": "네 땅 가운데 너를 위하여 세 성읍을 구별하라.",
-  "note": "히브리어 '바달'(badal)은 '갈라 따로 두다'이니, 이 세 성읍은 도피성(아레이 미클라트)이다. 부지중에 사람을 죽인 자가 피의 보복을 피하여 공정한 재판을 받기까지 머무는 피난처이니, 하나님의 공의와 긍휼이 함께 깃든 제도다.",
+  "en": "When the LORD thy God hath cut off the nations, whose land the LORD thy God giveth thee, and thou succeedest them, and dwellest in their cities, and in their houses;",
+  "ko": "네 하나님 여호와께서 그 땅을 네게 주시는 그 민족들을 끊으시고 네가 그들을 이어 그들의 성읍과 그들의 집에 거하게 되거든,",
+  "note": "민족들을 끊으시고 그 성읍에 거하게 하실 때를 전제한다. 도피성 규례의 배경으로 정착의 상황을 설정한다.",
   "voc": [
-   ["separate", "v.", "구별하다, 따로 떼다"],
-   ["cities", "n.", "성읍들"],
-   ["midst", "n.", "한가운데"],
-   ["thy land", "", "네 땅"]
+   [
+    "cut off",
+    "v.",
+    "끊다, 진멸하다"
+   ],
+   [
+    "succeed",
+    "v.",
+    "이어받다, 계승하다"
+   ],
+   [
+    "dwell",
+    "v.",
+    "거하다"
+   ],
+   [
+    "city",
+    "n.",
+    "성읍"
+   ]
   ],
   "idi": [
-   ["in the midst of", "~의 한가운데에"]
-  ]
- },
- {
-  "en": "that every slayer may flee thither",
-  "ko": "살인한 모든 자가 그리로 피하게 할지니라.",
-  "note": "히브리어 '로체아흐'(rotseaḥ)는 고의·과실을 아우르는 '죽인 자'다. 본문은 곧이어 부지중의 살인과 고의의 살인을 가르니, '피하라' 하심은 무죄한 자를 보복의 격정에서 건지시려는 하나님의 배려다.",
-  "voc": [
-   ["slayer", "n.", "살인한 자"],
-   ["flee", "v.", "피하다, 도망하다"],
-   ["thither", "adv.", "그리로, 그곳으로"]
+   [
+    "cut off the nations",
+    "민족들을 끊다"
+   ]
   ],
   "gra": [
-   ["that every slayer may flee thither", "that ~ may=목적 '~가 피할 수 있도록'; thither=옛말 '그리로'"]
+   [
+    "thou succeedest ... dwellest",
+    "-est=2인칭 단수 현재의 옛 어미"
+   ]
   ]
  },
  {
-  "en": "Whoso killeth his neighbour ignorantly, whom he hated not in time past",
-  "ko": "본래 미워하지 아니하던 이웃을 부지중에 죽인 자라.",
-  "note": "'이그노런틀리'(ignorantly)는 히브리어 '비블리-다아트' 곧 '알지 못하고'를 옮긴 것으로, 고의 없는 과실을 가리킨다. 죄의 무게를 가르는 것은 행위만이 아니라 마음의 의도이니, 도피성은 의도를 살피는 하나님의 공의를 보여 준다.",
+  "en": "Thou shalt separate three cities for thee in the midst of thy land, which the LORD thy God giveth thee to possess it.",
+  "ko": "네 하나님 여호와께서 네게 주어 차지하게 하시는 네 땅 가운데 너를 위하여 세 성읍을 구별하라.",
+  "note": "땅 가운데 세 성읍을 구별하라 명한다. '구별하라'는 히브리어 바달(בָּדַל) 곧 성별하여 따로 세움이다.",
   "voc": [
-   ["whoso", "pron.", "누구든지 ~하는 자"],
-   ["killeth", "v.", "죽이다(kill의 옛 3인칭)"],
-   ["neighbour", "n.", "이웃"],
-   ["ignorantly", "adv.", "부지중에, 모르고"]
+   [
+    "separate",
+    "v.",
+    "구별하다, 따로 세우다"
+   ],
+   [
+    "midst",
+    "n.",
+    "가운데"
+   ],
+   [
+    "possess",
+    "v.",
+    "차지하다"
+   ]
   ],
   "idi": [
-   ["in time past", "이전에, 본래"]
+   [
+    "in the midst of thy land",
+    "네 땅 가운데"
+   ]
   ],
   "gra": [
-   ["whom he hated not in time past", "whom=관계대명사(목적격) '그가 미워하지 않던'; hated not=옛 부정 어순(=did not hate)"]
+   [
+    "separate ... for thee",
+    "for thee=재귀적 '너를 위하여'(옛 여격 용법)"
+   ]
   ]
  },
  {
-  "en": "the head slippeth from the helve, and lighteth upon his neighbour, that he die",
-  "ko": "그 도끼 머리가 자루에서 빠져 그 이웃에게 맞아 그가 죽으면,",
-  "note": "도끼 머리가 자루에서 빠져 사람을 치는 일은 누구도 뜻하지 않은 사고다. 율법은 이런 우연한 죽음에까지 길을 열어 두니, 하나님의 공의는 결코 무자비한 기계가 아니라 사람의 형편을 헤아리는 지혜다.",
+  "en": "Thou shalt prepare thee a way, and divide the coasts of thy land, which the LORD thy God giveth thee to inherit, into three parts, that every slayer may flee thither.",
+  "ko": "너는 길을 닦고, 네 하나님 여호와께서 네게 기업으로 주시는 네 땅의 경계를 셋으로 나누어, 살인한 모든 자가 그리로 피하게 할지니라.",
+  "note": "길을 닦고 경계를 셋으로 나누어 살인자가 피하게 하라 명한다. 도피성 접근의 실제적 배려다.",
   "voc": [
-   ["head", "n.", "(도끼) 머리, 쇠날"],
-   ["slippeth", "v.", "빠지다, 미끄러지다(slip의 옛 3인칭)"],
-   ["helve", "n.", "(도끼) 자루"],
-   ["lighteth upon", "", "~에 떨어지다, 맞다"]
-  ],
-  "gra": [
-   ["that he die", "that=결과·목적절 '그가 죽도록/죽으면'; die=가정법 현재(옛 용법)"]
-  ]
- },
- {
-  "en": "Lest the avenger of the blood pursue the slayer, while his heart is hot",
-  "ko": "이는 피의 보복자가 그 마음이 뜨거울 때에 그 살인자를 쫓을까 함이라.",
-  "note": "'피의 보복자'는 히브리어 '고엘 하담'(go'el haddam)이니, 피살자의 가장 가까운 친족이 그 피를 갚을 권한과 의무를 진 자다. '마음이 뜨거울 때'는 격정에 사로잡힌 순간을 그리니, 도피성은 사사로운 보복이 공의를 삼키지 못하게 막는다.",
-  "voc": [
-   ["lest", "conj.", "~할까 하여, ~하지 않도록"],
-   ["avenger", "n.", "보복자, 원수 갚는 자"],
-   ["pursue", "v.", "쫓다, 추격하다"],
-   ["overtake", "v.", "따라잡다"]
+   [
+    "prepare",
+    "v.",
+    "닦다, 준비하다"
+   ],
+   [
+    "divide",
+    "v.",
+    "나누다"
+   ],
+   [
+    "slayer",
+    "n.",
+    "살인자"
+   ],
+   [
+    "flee",
+    "v.",
+    "피하다, 도망하다"
+   ]
   ],
   "idi": [
-   ["the avenger of blood", "피의 보복자(친족 복수자)"],
-   ["his heart is hot", "마음이 뜨겁다(분노에 사로잡히다)"]
+   [
+    "divide ... into three parts",
+    "셋으로 나누다"
+   ],
+   [
+    "flee thither",
+    "그리로 피하다"
+   ]
   ],
   "gra": [
-   ["Lest ... pursue ... and overtake him", "lest+동사원형='~할까 하여'(가정법, 부정 목적)"]
+   [
+    "that every slayer may flee",
+    "may=목적을 나타내는 옛 조동사"
+   ]
   ]
  },
  {
-  "en": "Thine eye shall not pity him, but thou shalt put away the guilt of innocent blood",
-  "ko": "네 눈이 그를 불쌍히 여기지 말고, 너는 무죄한 피 흘린 죄를 제하라.",
-  "note": "고의로 사람을 죽인 자에게는 긍휼을 베풀지 말라 하신다. '무죄한 피'(담 나키)를 그대로 두면 그 죄가 온 땅에 머무니, 거짓된 동정으로 공의를 저버림은 도리어 공동체를 더럽힌다. 긍휼과 공의는 마땅한 자리를 지킬 때 참되다.",
+  "en": "And this is the case of the slayer, which shall flee thither, that he may live: Whoso killeth his neighbour ignorantly, whom he hated not in time past;",
+  "ko": "그리로 피하여 살게 될 살인자의 경우는 이러하니, 곧 본래 미워하지 아니하던 이웃을 부지중에 죽인 자라.",
+  "note": "도피성은 부지중 살인자를 위한 것이다. '부지중에'는 히브리어 비블리 다아트(בִּבְלִי דַעַת) 곧 알지 못하고 행함을 뜻한다.",
   "voc": [
-   ["pity", "v.", "불쌍히 여기다"],
-   ["put away", "", "제하다, 없이하다"],
-   ["guilt", "n.", "죄, 죄책"],
-   ["innocent blood", "", "무죄한 피"]
+   [
+    "case",
+    "n.",
+    "경우, 사정"
+   ],
+   [
+    "slayer",
+    "n.",
+    "살인자"
+   ],
+   [
+    "ignorantly",
+    "adv.",
+    "부지중에, 모르고"
+   ],
+   [
+    "hate",
+    "v.",
+    "미워하다"
+   ]
   ],
   "idi": [
-   ["put away", "제거하다, 없애다"],
-   ["thine eye shall not pity", "네 눈이 불쌍히 여기지 말라(동정에 끌리지 말라)"]
+   [
+    "in time past",
+    "본래, 이전에"
+   ],
+   [
+    "killeth his neighbour ignorantly",
+    "부지중에 이웃을 죽이다"
+   ]
   ],
   "gra": [
-   ["that it may go well with thee", "that ~ may=목적·결과 '네게 잘 되도록'; go well with=~에게 형통하다"]
+   [
+    "Whoso killeth",
+    "Whoso='누구든지'(강조형 옛 관계대명사); killeth=kills"
+   ]
   ]
  },
  {
-  "en": "Thou shalt not remove thy neighbour's landmark",
-  "ko": "네 이웃의 경계표를 옮기지 말지니라.",
-  "note": "'랜드마크'는 히브리어 '게불'(gevul) 곧 토지의 경계 돌이다. 기업의 땅은 여호와께서 각 지파에 정해 주신 것이니, 경계를 몰래 옮김은 이웃의 몫을 도둑질함이요 곧 하나님의 분배에 손대는 일이다(신 27:17).",
+  "en": "As when a man goeth into the wood with his neighbour to hew wood, and his hand fetcheth a stroke with the axe to cut down the tree, and the head slippeth from the helve, and lighteth upon his neighbour, that he die; he shall flee unto one of those cities, and live:",
+  "ko": "이를테면 어떤 사람이 그 이웃과 함께 나무를 베러 숲에 들어가 손에 도끼를 들고 나무를 찍을 때에, 그 도끼 머리가 자루에서 빠져 그 이웃에게 맞아 그가 죽으면, 그는 이 성읍들 중 하나로 피하여 살 것이니라.",
+  "note": "도끼 머리가 빠져 이웃을 죽인 예를 든다. 고의 없는 우발적 사고임을 구체적 상황으로 예시한다.",
   "voc": [
-   ["remove", "v.", "옮기다, 치우다"],
-   ["landmark", "n.", "경계표, 경계석"],
-   ["of old time", "", "옛적에"],
-   ["inheritance", "n.", "기업, 유산"]
+   [
+    "hew",
+    "v.",
+    "베다, 찍다"
+   ],
+   [
+    "axe",
+    "n.",
+    "도끼"
+   ],
+   [
+    "helve",
+    "n.",
+    "(도끼) 자루"
+   ],
+   [
+    "slip",
+    "v.",
+    "빠지다, 미끄러지다"
+   ]
   ],
   "idi": [
-   ["of old time", "옛적에, 예로부터"]
+   [
+    "fetch a stroke",
+    "(도끼를) 내리치다"
+   ],
+   [
+    "light upon",
+    "~에 떨어지다, 맞다"
+   ]
   ],
   "gra": [
-   ["which they of old time have set", "which=관계대명사(목적격); have set=현재완료 '정하여 두었다'"]
+   [
+    "the head slippeth ... lighteth",
+    "-eth=3인칭 단수 현재의 옛 어미"
+   ]
   ]
  },
  {
-  "en": "at the mouth of two witnesses ... shall the matter be established",
-  "ko": "두 증인의 입이나 세 증인의 입으로 그 일이 확정되리라.",
-  "note": "한 사람의 증언만으로는 판결할 수 없다. '증인의 입'(피 에딤)은 둘 또는 셋이어야 하니, 이는 무고한 정죄를 막는 하나님의 공의다. 신약도 이 원칙을 권징과 진리 확증에 이어 쓴다(마 18:16; 고후 13:1).",
+  "en": "Lest the avenger of the blood pursue the slayer, while his heart is hot, and overtake him, because the way is long, and slay him; whereas he was not worthy of death, inasmuch as he hated him not in time past.",
+  "ko": "이는 피의 보복자가 그 마음이 뜨거울 때에 그 살인자를 쫓되, 길이 멀므로 그를 따라잡아 죽일까 함이라. 그러나 그는 본래 그를 미워하지 아니하였은즉 죽기에 합당하지 아니하니라.",
+  "note": "피의 보복자가 뜨거운 마음에 쫓지 못하게 함이 목적이다. '보복자'는 히브리어 고엘 하담(גֹּאֵל הַדָּם) 곧 피를 무를 근족이다.",
   "voc": [
-   ["witness", "n.", "증인"],
-   ["matter", "n.", "일, 사건"],
-   ["established", "v.", "확정되다, 굳게 서다"],
-   ["iniquity", "n.", "죄악"]
+   [
+    "avenger",
+    "n.",
+    "보복자"
+   ],
+   [
+    "pursue",
+    "v.",
+    "쫓다"
+   ],
+   [
+    "overtake",
+    "v.",
+    "따라잡다"
+   ],
+   [
+    "worthy",
+    "adj.",
+    "합당한, ~받을 만한"
+   ]
   ],
   "idi": [
-   ["at the mouth of", "~의 입으로(증언으로)"]
+   [
+    "avenger of the blood",
+    "피의 보복자"
+   ],
+   [
+    "his heart is hot",
+    "마음이 뜨겁다(분노에 차다)"
+   ]
   ],
   "gra": [
-   ["shall the matter be established", "조동사 shall+주어 도치(강조); be established=수동 '확정되다'"]
+   [
+    "inasmuch as",
+    "inasmuch as='~인 만큼, ~이므로'(이유를 이끄는 옛 접속사)"
+   ]
   ]
  },
  {
-  "en": "the judges shall make diligent inquisition",
-  "ko": "재판관들은 자세히 조사할 것이라.",
-  "note": "'딜리전트 인퀴지션'은 히브리어 '다라쉬 헤이테브' 곧 '철저히 캐묻다'를 옮긴 것이다. 재판은 겉만 보지 않고 진실을 끝까지 파헤쳐야 하니, 공의는 부지런한 분별에서 나온다. 거짓 증인이 드러나면 그가 꾀하던 형벌이 도리어 그에게 돌아간다.",
+  "en": "Wherefore I command thee, saying, Thou shalt separate three cities for thee.",
+  "ko": "그러므로 내가 네게 명하여 이르노니, 너를 위하여 세 성읍을 구별하라.",
+  "note": "그러므로 세 성읍을 구별하라 다시 명한다. 반복은 도피성 규례의 긴요함을 보인다.",
   "voc": [
-   ["judges", "n.", "재판관들"],
-   ["diligent", "adj.", "부지런한, 철저한"],
-   ["inquisition", "n.", "조사, 심문"],
-   ["testify", "v.", "증언하다"]
+   [
+    "wherefore",
+    "adv.",
+    "그러므로"
+   ],
+   [
+    "command",
+    "v.",
+    "명하다"
+   ],
+   [
+    "separate",
+    "v.",
+    "구별하다"
+   ]
   ],
   "idi": [
-   ["make diligent inquisition", "자세히 조사하다, 철저히 캐묻다"]
+   [
+    "Wherefore I command thee",
+    "그러므로 내가 네게 명하노니"
+   ]
   ],
   "gra": [
-   ["if the witness be a false witness", "if+be(가정법 현재) '만일 ~이거든'; false witness=거짓 증인"]
+   [
+    "Thou shalt separate",
+    "thou shalt='너는 ~할지니라'(규정의 옛 명령)"
+   ]
   ]
  },
  {
-  "en": "life shall go for life, eye for eye, tooth for tooth",
-  "ko": "생명은 생명으로, 눈은 눈으로, 이는 이로 갚을지니라.",
-  "note": "이른바 '동해보복법'(lex talionis)이니, 사사로운 복수가 아니라 형벌을 죄에 꼭 맞게 제한하는 공의의 잣대다. 받은 해보다 더 갚지 못하게 하여 보복의 끝없는 확대를 막으니, 이는 잔혹이 아니라 절제된 정의다(마 5:38 참조).",
+  "en": "And if the LORD thy God enlarge thy coast, as he hath sworn unto thy fathers, and give thee all the land which he promised to give unto thy fathers;",
+  "ko": "네 하나님 여호와께서 네 조상들에게 맹세하신 대로 네 경계를 넓히사 네 조상들에게 주리라 약속하신 그 온 땅을 네게 주시거든,",
+  "note": "경계가 넓어지면 세 성읍을 더하라 명한다. 하나님의 약속대로 지경이 확장될 것을 전제한다.",
   "voc": [
-   ["life", "n.", "생명"],
-   ["eye for eye", "", "눈은 눈으로"],
-   ["tooth", "n.", "이, 치아"],
-   ["foot", "n.", "발"]
+   [
+    "enlarge",
+    "v.",
+    "넓히다"
+   ],
+   [
+    "coast",
+    "n.",
+    "경계, 지경"
+   ],
+   [
+    "swear",
+    "v.",
+    "맹세하다"
+   ],
+   [
+    "promise",
+    "v.",
+    "약속하다"
+   ]
   ],
   "idi": [
-   ["eye for eye, tooth for tooth", "눈은 눈으로 이는 이로(동해보복)"],
-   ["life shall go for life", "생명은 생명으로 갚다"]
+   [
+    "enlarge thy coast",
+    "네 경계를 넓히다"
+   ]
   ],
   "gra": [
-   ["A for B", "'A를 B로 (갚다)' — 등가 보상을 나타내는 전치사 for"]
+   [
+    "as he hath sworn",
+    "hath sworn=현재완료(맹세의 확정)"
+   ]
+  ]
+ },
+ {
+  "en": "If thou shalt keep all these commandments to do them, which I command thee this day, to love the LORD thy God, and to walk ever in his ways; then shalt thou add three cities more for thee, beside these three:",
+  "ko": "또 네가 오늘 내가 네게 명하는 이 모든 명령을 지켜 행하여 네 하나님 여호와를 사랑하고 항상 그의 길로 행하거든, 너는 이 세 성읍 외에 세 성읍을 더하여,",
+  "note": "명령을 지켜 하나님을 사랑하면 세 성읍을 더한다. 순종이 정의의 제도 확장과 연결된다.",
+  "voc": [
+   [
+    "keep",
+    "v.",
+    "지키다"
+   ],
+   [
+    "walk",
+    "v.",
+    "행하다"
+   ],
+   [
+    "add",
+    "v.",
+    "더하다"
+   ]
+  ],
+  "idi": [
+   [
+    "walk ever in his ways",
+    "항상 그의 길로 행하다"
+   ],
+   [
+    "three cities more",
+    "세 성읍을 더"
+   ]
+  ],
+  "gra": [
+   [
+    "then shalt thou add",
+    "도치(then 뒤 조동사 도치의 옛 어순)"
+   ]
+  ]
+ },
+ {
+  "en": "That innocent blood be not shed in thy land, which the LORD thy God giveth thee for an inheritance, and so blood be upon thee.",
+  "ko": "네 하나님 여호와께서 네게 기업으로 주시는 네 땅에서 무죄한 피를 흘리지 아니하게 하라. 그리하여야 피 흘린 죄가 네게 돌아가지 아니하리라.",
+  "note": "무죄한 피를 흘리지 않게 함이 도피성의 목적이다. '피가 네게 돌아감'은 무고한 죽음의 죄책을 뜻한다.",
+  "voc": [
+   [
+    "innocent",
+    "adj.",
+    "무죄한"
+   ],
+   [
+    "blood",
+    "n.",
+    "피"
+   ],
+   [
+    "shed",
+    "v.",
+    "흘리다"
+   ],
+   [
+    "inheritance",
+    "n.",
+    "기업"
+   ]
+  ],
+  "idi": [
+   [
+    "innocent blood",
+    "무죄한 피"
+   ],
+   [
+    "blood be upon thee",
+    "피 흘린 죄가 네게 돌아가다"
+   ]
+  ],
+  "gra": [
+   [
+    "that innocent blood be not shed",
+    "be+과거분사=수동태 가정법(옛 어법)"
+   ]
+  ]
+ },
+ {
+  "en": "But if any man hate his neighbour, and lie in wait for him, and rise up against him, and smite him mortally that he die, and fleeth into one of these cities:",
+  "ko": "그러나 만일 어떤 사람이 그 이웃을 미워하여 그를 노리고 엎드려 기다리다가 일어나 그를 쳐 죽게 하고 이 성읍들 중 하나로 도망하거든,",
+  "note": "고의로 매복하여 살인한 자는 도피성의 보호를 받지 못한다. 고의와 과실을 엄격히 구별한다.",
+  "voc": [
+   [
+    "hate",
+    "v.",
+    "미워하다"
+   ],
+   [
+    "lie in wait",
+    "v.",
+    "매복하다, 노리다"
+   ],
+   [
+    "smite",
+    "v.",
+    "치다"
+   ],
+   [
+    "mortally",
+    "adv.",
+    "치명적으로, 죽게"
+   ]
+  ],
+  "idi": [
+   [
+    "lie in wait for",
+    "~을 노리고 매복하다"
+   ],
+   [
+    "rise up against",
+    "~을 치려고 일어나다"
+   ]
+  ],
+  "gra": [
+   [
+    "smite him mortally that he die",
+    "that=결과를 이끄는 옛 접속사(그리하여)"
+   ]
+  ]
+ },
+ {
+  "en": "Then the elders of his city shall send and fetch him thence, and deliver him into the hand of the avenger of blood, that he may die.",
+  "ko": "그 성읍의 장로들이 사람을 보내어 거기서 그를 잡아다가 피의 보복자의 손에 넘겨 죽게 할 것이라.",
+  "note": "장로들이 고의 살인자를 잡아 보복자에게 넘긴다. 도피성이 정의를 회피하는 은신처가 되지 않게 한다.",
+  "voc": [
+   [
+    "elder",
+    "n.",
+    "장로"
+   ],
+   [
+    "fetch",
+    "v.",
+    "잡아 오다, 데려오다"
+   ],
+   [
+    "deliver",
+    "v.",
+    "넘기다"
+   ],
+   [
+    "avenger",
+    "n.",
+    "보복자"
+   ]
+  ],
+  "idi": [
+   [
+    "fetch him thence",
+    "거기서 그를 잡아 오다"
+   ],
+   [
+    "deliver ... into the hand of",
+    "~의 손에 넘기다"
+   ]
+  ],
+  "gra": [
+   [
+    "that he may die",
+    "may=결과·목적을 나타내는 옛 조동사"
+   ]
+  ]
+ },
+ {
+  "en": "Thine eye shall not pity him, but thou shalt put away the guilt of innocent blood from Israel, that it may go well with thee.",
+  "ko": "네 눈이 그를 불쌍히 여기지 말고, 너는 무죄한 피 흘린 죄를 이스라엘에서 제하라. 그리하면 네게 복이 있으리라.",
+  "note": "고의 살인자를 불쌍히 여기지 말고 무죄한 피의 죄를 제하라 명한다. 정의의 엄정함이 공동체의 복이다.",
+  "voc": [
+   [
+    "pity",
+    "v.",
+    "불쌍히 여기다"
+   ],
+   [
+    "put away",
+    "v.",
+    "제하다, 없이하다"
+   ],
+   [
+    "guilt",
+    "n.",
+    "죄, 죄책"
+   ]
+  ],
+  "idi": [
+   [
+    "put away the guilt",
+    "죄를 제하다"
+   ],
+   [
+    "go well with thee",
+    "네게 복이 있다"
+   ]
+  ],
+  "gra": [
+   [
+    "Thine eye shall not pity",
+    "shall not=금지를 나타내는 옛 조동사"
+   ]
+  ]
+ },
+ {
+  "en": "Thou shalt not remove thy neighbour’s landmark, which they of old time have set in thine inheritance, which thou shalt inherit in the land that the LORD thy God giveth thee to possess it.",
+  "ko": "네 하나님 여호와께서 네게 주어 차지하게 하시는 땅 곧 네가 받을 기업에서, 옛사람들이 정하여 둔 네 이웃의 경계표를 옮기지 말지니라.",
+  "note": "이웃의 경계표를 옮기지 말라 명한다. '경계표'는 히브리어 게불(גְּבוּל) 곧 조상이 정한 기업의 경계로, 재산권 보호의 원리다.",
+  "voc": [
+   [
+    "remove",
+    "v.",
+    "옮기다"
+   ],
+   [
+    "landmark",
+    "n.",
+    "경계표, 지계석"
+   ],
+   [
+    "of old time",
+    "phr.",
+    "옛적에"
+   ],
+   [
+    "inherit",
+    "v.",
+    "기업으로 받다"
+   ]
+  ],
+  "idi": [
+   [
+    "they of old time",
+    "옛사람들"
+   ],
+   [
+    "set in thine inheritance",
+    "네 기업에 정하여 두다"
+   ]
+  ],
+  "gra": [
+   [
+    "which thou shalt inherit",
+    "shalt=미래·규정을 나타내는 옛 조동사"
+   ]
+  ]
+ },
+ {
+  "en": "One witness shall not rise up against a man for any iniquity, or for any sin, in any sin that he sinneth: at the mouth of two witnesses, or at the mouth of three witnesses, shall the matter be established.",
+  "ko": "사람의 모든 죄악이나 모든 잘못에 대하여, 무릇 그가 범한 어떤 죄에 대하여서든지 한 증인이 일어나 그를 대적하지 못할 것이요, 두 증인의 입이나 세 증인의 입으로 그 일이 확정되리라.",
+  "note": "한 증인만으로 정죄할 수 없고 두세 증인이 필요하다. 히브리어 알 피(עַל־פִּי) 곧 '입에 근거하여'로, 증거법의 기초다.",
+  "voc": [
+   [
+    "witness",
+    "n.",
+    "증인"
+   ],
+   [
+    "iniquity",
+    "n.",
+    "죄악"
+   ],
+   [
+    "establish",
+    "v.",
+    "확정하다, 세우다"
+   ],
+   [
+    "matter",
+    "n.",
+    "일, 사안"
+   ]
+  ],
+  "idi": [
+   [
+    "rise up against",
+    "~을 대적하여 일어나다"
+   ],
+   [
+    "at the mouth of two witnesses",
+    "두 증인의 입으로"
+   ]
+  ],
+  "gra": [
+   [
+    "that he sinneth",
+    "sinneth=sins(3인칭 단수 현재의 옛 어법)"
+   ]
+  ]
+ },
+ {
+  "en": "If a false witness rise up against any man to testify against him that which is wrong;",
+  "ko": "만일 거짓 증인이 일어나 어떤 사람을 대적하여 그가 그릇 행하였다고 증언하거든,",
+  "note": "거짓 증인이 일어나 무고할 경우를 다룬다. '그릇 행하였다'는 히브리어 사라(סָרָה) 곧 배도·범법의 무고를 뜻한다.",
+  "voc": [
+   [
+    "false",
+    "adj.",
+    "거짓의"
+   ],
+   [
+    "witness",
+    "n.",
+    "증인"
+   ],
+   [
+    "testify",
+    "v.",
+    "증언하다"
+   ],
+   [
+    "wrong",
+    "n.",
+    "그릇된 일, 불의"
+   ]
+  ],
+  "idi": [
+   [
+    "testify against",
+    "~을 대적하여 증언하다"
+   ],
+   [
+    "that which is wrong",
+    "그릇된 것"
+   ]
+  ],
+  "gra": [
+   [
+    "If a false witness rise up",
+    "rise=가정법 현재(옛 접속법)"
+   ]
+  ]
+ },
+ {
+  "en": "Then both the men, between whom the controversy is, shall stand before the LORD, before the priests and the judges, which shall be in those days;",
+  "ko": "그 다툼이 있는 두 사람은 여호와 앞 곧 그때에 재직하는 제사장들과 재판관들 앞에 설 것이요,",
+  "note": "두 사람이 제사장과 재판관 앞에 서야 한다. '여호와 앞'은 성소에서의 공식 재판을 뜻한다.",
+  "voc": [
+   [
+    "controversy",
+    "n.",
+    "다툼, 송사"
+   ],
+   [
+    "priest",
+    "n.",
+    "제사장"
+   ],
+   [
+    "judge",
+    "n.",
+    "재판관"
+   ]
+  ],
+  "idi": [
+   [
+    "between whom the controversy is",
+    "그 다툼이 있는"
+   ],
+   [
+    "in those days",
+    "그때에, 그 당시"
+   ]
+  ],
+  "gra": [
+   [
+    "shall stand before the LORD",
+    "shall=규정을 나타내는 옛 조동사"
+   ]
+  ]
+ },
+ {
+  "en": "And the judges shall make diligent inquisition: and, behold, if the witness be a false witness, and hath testified falsely against his brother;",
+  "ko": "재판관들은 자세히 조사할 것이라. 보라, 그 증인이 거짓 증인이라 그가 자기 형제를 거슬러 거짓으로 증언한 것이거든,",
+  "note": "재판관은 자세히 조사한다. '자세히 조사함'은 히브리어 다라쉬 헤테브(דָּרַשׁ הֵיטֵב) 곧 철저한 심문이다.",
+  "voc": [
+   [
+    "diligent",
+    "adj.",
+    "자세한, 부지런한"
+   ],
+   [
+    "inquisition",
+    "n.",
+    "조사, 심문"
+   ],
+   [
+    "falsely",
+    "adv.",
+    "거짓으로"
+   ]
+  ],
+  "idi": [
+   [
+    "make diligent inquisition",
+    "자세히 조사하다"
+   ],
+   [
+    "testify falsely",
+    "거짓으로 증언하다"
+   ]
+  ],
+  "gra": [
+   [
+    "hath testified falsely",
+    "hath testified=현재완료(거짓 증언한 사실)"
+   ]
+  ]
+ },
+ {
+  "en": "Then shall ye do unto him, as he had thought to have done unto his brother: so shalt thou put the evil away from among you.",
+  "ko": "너희는 그가 자기 형제에게 행하려고 꾀하던 그대로 그에게 행하여, 너희 가운데서 그 악을 제할지니라.",
+  "note": "거짓 증인은 형제에게 꾀하던 그대로 받는다. 동해보복의 원리로 위증을 엄히 다스려 악을 제한다.",
+  "voc": [
+   [
+    "think",
+    "v.",
+    "꾀하다, 생각하다"
+   ],
+   [
+    "put away",
+    "v.",
+    "제하다"
+   ],
+   [
+    "evil",
+    "n.",
+    "악"
+   ]
+  ],
+  "idi": [
+   [
+    "as he had thought to have done",
+    "그가 행하려고 꾀하던 대로"
+   ],
+   [
+    "put the evil away",
+    "악을 제하다"
+   ]
+  ],
+  "gra": [
+   [
+    "so shalt thou put",
+    "도치(so 강조를 위한 옛 어순)"
+   ]
+  ]
+ },
+ {
+  "en": "And those which remain shall hear, and fear, and shall henceforth commit no more any such evil among you.",
+  "ko": "그리하면 남은 자들이 듣고 두려워하여 이후로는 너희 가운데서 다시는 이런 악을 행하지 아니하리라.",
+  "note": "남은 자들이 듣고 두려워하여 다시는 악을 행하지 않는다. 공개된 처벌의 억지 효과를 밝힌다.",
+  "voc": [
+   [
+    "remain",
+    "v.",
+    "남다"
+   ],
+   [
+    "hear",
+    "v.",
+    "듣다"
+   ],
+   [
+    "fear",
+    "v.",
+    "두려워하다"
+   ],
+   [
+    "henceforth",
+    "adv.",
+    "이후로, 이제부터"
+   ]
+  ],
+  "idi": [
+   [
+    "commit no more",
+    "다시는 행하지 않다"
+   ]
+  ],
+  "gra": [
+   [
+    "those which remain",
+    "which=who(사람에게 쓰인 옛 관계대명사)"
+   ]
+  ]
+ },
+ {
+  "en": "And thine eye shall not pity; but life shall go for life, eye for eye, tooth for tooth, hand for hand, foot for foot.",
+  "ko": "네 눈이 불쌍히 여기지 말지니, 생명은 생명으로, 눈은 눈으로, 이는 이로, 손은 손으로, 발은 발로 갚을지니라.",
+  "note": "동해보복법이 선언된다. '눈은 눈으로'는 히브리어 아인 타하트 아인(עַיִן תַּחַת עַיִן)으로, 형벌의 균형과 상한을 규정한다.",
+  "voc": [
+   [
+    "pity",
+    "v.",
+    "불쌍히 여기다"
+   ],
+   [
+    "life",
+    "n.",
+    "생명"
+   ],
+   [
+    "eye",
+    "n.",
+    "눈"
+   ],
+   [
+    "tooth",
+    "n.",
+    "이"
+   ]
+  ],
+  "idi": [
+   [
+    "life for life",
+    "생명은 생명으로"
+   ],
+   [
+    "eye for eye",
+    "눈은 눈으로"
+   ]
+  ],
+  "gra": [
+   [
+    "life shall go for life",
+    "shall go for=~으로 갚아지다(옛 관용 어법)"
+   ]
   ]
  }
 ]

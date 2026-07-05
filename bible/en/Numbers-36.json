@@ -1,107 +1,516 @@
 [
-  {
-    "en": "inheritance",
-    "ko": "기업",
-    "note": "히브리어 '나할라'(נַחֲלָה, naḥalah)는 대대로 물려받는 '상속 재산·기업'을 뜻한다. 단순한 토지가 아니라 여호와께서 각 지파에 정해 주신 영속적 분깃이므로, 한 지파에서 다른 지파로 넘어가지 않도록 보전해야 했다.",
-    "voc": [
-      ["inheritance", "n.", "기업, 상속 재산"],
-      ["inherit", "v.", "상속하다, 물려받다"],
-      ["heir", "n.", "상속자, 후사"]
-    ],
-    "gra": [
-      ["inheritance", "동사 inherit(물려받다)에 명사 접미사 -ance가 붙어 '물려받는 것·상속물'을 뜻하는 추상명사가 되었다."]
-    ]
-  },
-  {
-    "en": "the daughters of Zelophehad",
-    "ko": "슬로브핫의 딸들",
-    "note": "'첼로프하드'(צְלָפְחָד, Tselofḥad)에게는 아들이 없었으므로(민 27장) 딸들이 기업을 받았다. 이름은 말라·디르사·호글라·밀가·노아로, 여성도 기업을 상속할 길을 연 이스라엘 율법의 중요한 판례다.",
-    "voc": [
-      ["daughter", "n.", "딸"],
-      ["daughters", "n.", "딸들(daughter의 복수형)"],
-      ["Zelophehad", "n.", "슬로브핫(인명)"]
-    ],
-    "gra": [
-      ["the daughters of Zelophehad", "'of + 인명'으로 소속·혈연을 나타내어 '슬로브핫의 딸들'을 뜻한다. 영어의 소유 관계는 's보다 of를 자주 쓴다."]
-    ]
-  },
-  {
-    "en": "by lot",
-    "ko": "제비뽑아",
-    "note": "히브리어 '고랄'(גּוֹרָל, goral)은 '제비'를 뜻한다. 가나안 땅의 분배는 사람의 뜻이 아니라 제비뽑기로 여호와께서 정하신 것이므로(민 26:55), 그 경계를 인위적으로 옮기는 것은 하나님의 분배를 거스르는 일이었다.",
-    "voc": [
-      ["lot", "n.", "제비, 몫, 운명"],
-      ["by", "prep.", "~로, ~에 의하여"]
-    ],
-    "idi": [
-      ["by lot", "제비뽑기로(추첨으로)"]
-    ]
-  },
-  {
-    "en": "the jubile",
-    "ko": "희년",
-    "note": "히브리어 '요벨'(יוֹבֵל, yobel)은 본래 '숫양 뿔 나팔'을 뜻하며, 오십 년마다 나팔을 불어 선포하는 해방·회복의 해다(레 25장). 희년에는 팔린 토지가 본래 주인에게 돌아가므로, 혼인으로 옮겨진 기업도 영구히 고착될 위험이 있어 이 규례가 필요했다.",
-    "voc": [
-      ["jubile", "n.", "(고어) 희년, 환희의 해"],
-      ["jubilee", "n.", "희년, 기념제(현대 철자)"]
-    ],
-    "gra": [
-      ["the jubile", "jubile는 현대 영어 jubilee의 옛 철자다. 정관사 the를 붙여 율법이 정한 그 '희년'을 특정한다."]
-    ]
-  },
-  {
-    "en": "from tribe to tribe",
-    "ko": "이 지파에서 저 지파로",
-    "note": "'마테'(מַטֶּה, matteh)는 본래 '지팡이·막대기'에서 나와 '지파'를 가리킨다. 각 지파의 기업이 혼인을 통해 서로 섞이지 않게 하여, 열두 지파의 경계와 질서를 지키게 한 핵심 원리다.",
-    "voc": [
-      ["tribe", "n.", "지파, 부족"],
-      ["from", "prep.", "~에서, ~로부터"],
-      ["to", "prep.", "~로, ~에게"]
-    ],
-    "idi": [
-      ["from tribe to tribe", "이 지파에서 저 지파로(한 지파에서 다른 지파로 옮겨감)"]
-    ],
-    "gra": [
-      ["from ... to ...", "'from A to A' 형태로 같은 명사를 반복하여 'A에서 또 다른 A로'의 이동·전이를 나타내는 관용 구문이다."]
-    ]
-  },
-  {
-    "en": "let them marry to whom they think best",
-    "ko": "좋게 여기는 자에게 시집갈 것이로되",
-    "note": "히브리어로 '그들의 눈에 좋은 자'(לַטּוֹב בְּעֵינֵיהֶם)라는 표현이다. 딸들에게 배우자 선택의 자유를 인정하되, 자기 조상 지파 안에서만 혼인하라는 단서를 붙여 개인의 권리와 공동체의 질서를 함께 지켰다.",
-    "voc": [
-      ["marry", "v.", "결혼하다, 시집·장가가다"],
-      ["whom", "pron.", "(목적격) 누구에게"],
-      ["best", "adv.", "가장 좋게"]
-    ],
-    "gra": [
-      ["let them marry", "'let + 목적어 + 동사원형' 사역구문으로 '그들이 ~하게 하라(허락하라)'를 뜻한다.", "to whom they think best", "관계대명사 whom이 이끄는 절로 '그들이 가장 좋게 여기는 자에게'라는 뜻이며, whom은 marry to의 목적어다."]
-    ]
-  },
-  {
-    "en": "the chief fathers",
-    "ko": "우두머리 된 조상들",
-    "note": "'라셰 하아보트'(רָאשֵׁי הָאָבוֹת)는 '조상들의 머리들' 곧 각 가문을 대표하는 어른들을 뜻한다. 이들이 공식 대표로 모세 앞에 나와 기업 보전의 문제를 제기하였다.",
-    "voc": [
-      ["chief", "adj.", "우두머리의, 으뜸가는"],
-      ["fathers", "n.", "조상들, 선조들"],
-      ["father", "n.", "아버지, 조상"]
-    ],
-    "gra": [
-      ["the chief fathers", "chief가 형용사로 fathers를 수식하여 '우두머리 된 조상들' 곧 각 가문의 대표 어른들을 뜻한다. 여기서 fathers는 '조상·가장'의 뜻이다."]
-    ]
-  },
-  {
-    "en": "the commandments and the judgments",
-    "ko": "명령과 규례",
-    "note": "'미츠바'(מִצְוָה, 명령)와 '미슈파트'(מִשְׁפָּט, 판례·규례)의 짝이다. 민수기 전체를 맺는 이 마지막 절은 모압 평지에서 모세를 통해 주어진 율법 전부가 여호와께로부터 왔음을 선언한다.",
-    "voc": [
-      ["commandment", "n.", "명령, 계명"],
-      ["judgment", "n.", "규례, 판례, 심판"],
-      ["judgments", "n.", "규례들(judgment의 복수형)"]
-    ],
-    "gra": [
-      ["the commandments and the judgments", "두 복수명사를 and로 병렬하여 '명령들과 규례들' 전체를 한데 묶은 표현이다. 각 명사 앞의 the는 율법으로 정해진 그 명령·규례를 특정한다."]
-    ]
-  }
+ {
+  "en": "And the chief fathers of the families of the children of Gilead, the son of Machir, the son of Manasseh, of the families of the sons of Joseph, came near, and spake before Moses, and before the princes, the chief fathers of the children of Israel:",
+  "ko": "요셉 자손의 가족 중 므낫세의 손자요 마길의 아들인 길르앗 자손 가족의 우두머리 된 조상들이 나아와, 모세와 이스라엘 자손의 우두머리 된 조상인 지휘관들 앞에서 말하여 이르되,",
+  "note": "길르앗 가족의 우두머리들이 모세와 지도자들 앞에 나아온다. 슬로브핫 딸들의 상속(27장)이 야기한 새로운 문제를 제기하려는 것으로, 언약 공동체 안에서 정당한 청원의 질서를 보여 준다.",
+  "voc": [
+   [
+    "chief",
+    "adj.",
+    "우두머리의"
+   ],
+   [
+    "family",
+    "n.",
+    "가족, 종족"
+   ],
+   [
+    "come near",
+    "phr.v.",
+    "나아오다"
+   ],
+   [
+    "prince",
+    "n.",
+    "지휘관, 방백"
+   ]
+  ],
+  "idi": [
+   [
+    "chief fathers",
+    "우두머리 된 조상들"
+   ]
+  ],
+  "gra": [
+   [
+    "the son of Machir, the son of Manasseh",
+    "동격의 'the son of' 반복으로 계보를 밝힘"
+   ]
+  ]
+ },
+ {
+  "en": "And they said, The LORD commanded my lord to give the land for an inheritance by lot to the children of Israel: and my lord was commanded by the LORD to give the inheritance of Zelophehad our brother unto his daughters.",
+  "ko": "그들이 이르되, \"여호와께서 내 주께 명하사 이 땅을 제비뽑아 이스라엘 자손에게 기업으로 나누어 주게 하셨고, 또 내 주께서 여호와의 명을 받아 우리 형제 슬로브핫의 기업을 그의 딸들에게 주게 하셨나이다.",
+  "note": "그들은 여호와께서 슬로브핫의 딸들에게 기업을 주게 하신 명령을 인정하며 말을 시작한다. 앞선 판결을 존중하면서 새 문제를 제기함은, 하나님의 규례를 거스르지 않으려는 신중함을 보여 준다.",
+  "voc": [
+   [
+    "command",
+    "v.",
+    "명하다"
+   ],
+   [
+    "inheritance",
+    "n.",
+    "기업"
+   ],
+   [
+    "lot",
+    "n.",
+    "제비"
+   ],
+   [
+    "daughter",
+    "n.",
+    "딸"
+   ]
+  ],
+  "idi": [
+   [
+    "by lot",
+    "제비뽑아"
+   ],
+   [
+    "my lord",
+    "내 주(존칭)"
+   ]
+  ],
+  "gra": [
+   [
+    "my lord was commanded by the LORD",
+    "수동태로 '명을 받았다'를 표현"
+   ]
+  ]
+ },
+ {
+  "en": "And if they be married to any of the sons of the other tribes of the children of Israel, then shall their inheritance be taken from the inheritance of our fathers, and shall be put to the inheritance of the tribe whereunto they are received: so shall it be taken from the lot of our inheritance.",
+  "ko": "그러나 만일 그들이 이스라엘 자손의 다른 지파 사람들에게 시집가면, 그들의 기업이 우리 조상의 기업에서 떼어져 그들이 속하게 되는 지파의 기업에 더해질 것이니, 그리하면 그것이 우리에게 제비뽑아 나누어진 기업에서 떨어져 나가리이다.",
+  "note": "딸들이 다른 지파로 시집가면 그 기업이 다른 지파로 옮겨지는 문제를 제기한다. 개인의 권리와 지파 전체의 기업 보전이 충돌할 수 있음을 보여 주는 현실적 우려다.",
+  "voc": [
+   [
+    "marry",
+    "v.",
+    "시집가다, 혼인하다"
+   ],
+   [
+    "tribe",
+    "n.",
+    "지파"
+   ],
+   [
+    "inheritance",
+    "n.",
+    "기업"
+   ],
+   [
+    "receive",
+    "v.",
+    "속하다, 받아들여지다"
+   ]
+  ],
+  "idi": [
+   [
+    "taken from ... put to",
+    "~에서 떼어져 ~에 더해지다"
+   ]
+  ],
+  "gra": [
+   [
+    "the tribe whereunto they are received",
+    "whereunto='to which', 관계부사의 고어"
+   ]
+  ]
+ },
+ {
+  "en": "And when the jubile of the children of Israel shall be, then shall their inheritance be put unto the inheritance of the tribe whereunto they are received: so shall their inheritance be taken away from the inheritance of the tribe of our fathers.",
+  "ko": "또 이스라엘 자손의 희년이 이르면, 그들의 기업이 그들이 속하게 되는 지파의 기업에 더해질 것이요, 그리하면 그들의 기업이 우리 조상 지파의 기업에서 떨어져 나가리이다.\"",
+  "note": "희년이 되면 그 기업이 영구히 다른 지파에 귀속되는 위험을 지적한다. '희년'(요벨)은 원소유주에게 땅이 돌아가는 해이나, 혼인으로 넘어간 기업은 오히려 굳어짐을 우려한다.",
+  "voc": [
+   [
+    "jubile",
+    "n.",
+    "희년"
+   ],
+   [
+    "inheritance",
+    "n.",
+    "기업"
+   ],
+   [
+    "tribe",
+    "n.",
+    "지파"
+   ],
+   [
+    "take away",
+    "phr.v.",
+    "떨어져 나가다"
+   ]
+  ],
+  "idi": [
+   [
+    "taken away from",
+    "~에서 떨어져 나가다"
+   ]
+  ],
+  "gra": [
+   [
+    "when the jubile ... shall be",
+    "'shall be'로 미래의 때를 표현"
+   ]
+  ]
+ },
+ {
+  "en": "And Moses commanded the children of Israel according to the word of the LORD, saying, The tribe of the sons of Joseph hath said well.",
+  "ko": "모세가 여호와의 말씀을 따라 이스라엘 자손에게 명하여 이르되, \"요셉 자손 지파의 말이 옳도다.",
+  "note": "모세가 여호와의 말씀을 따라 '요셉 자손의 말이 옳도다' 인정한다. 정당한 문제 제기를 받아들여 규례를 보완함은, 하나님의 율법이 공동체의 실제 필요에 응답하는 살아 있는 지혜임을 보여 준다.",
+  "voc": [
+   [
+    "command",
+    "v.",
+    "명하다"
+   ],
+   [
+    "word",
+    "n.",
+    "말씀"
+   ],
+   [
+    "Joseph",
+    "n.",
+    "요셉"
+   ],
+   [
+    "well",
+    "adv.",
+    "옳게, 잘"
+   ]
+  ],
+  "idi": [
+   [
+    "hath said well",
+    "옳게 말하였다"
+   ]
+  ],
+  "gra": [
+   [
+    "The tribe of the sons of Joseph hath said well",
+    "'hath said'는 현재완료의 고어형"
+   ]
+  ]
+ },
+ {
+  "en": "This is the thing which the LORD doth command concerning the daughters of Zelophehad, saying, Let them marry to whom they think best; only to the family of the tribe of their father shall they marry.",
+  "ko": "여호와께서 슬로브핫의 딸들에 관하여 명하신 것이 이러하니, 이르시되, 그들은 자기들이 좋게 여기는 자에게 시집갈 것이로되, 다만 그 조상 지파의 가족에게로만 시집갈지니라.",
+  "note": "딸들은 좋게 여기는 자에게 시집가되 반드시 자기 조상 지파 안에서 혼인하라 명하신다. 개인의 선택의 자유와 지파 기업의 보전을 조화시킨 지혜로운 규례를 보여 준다.",
+  "voc": [
+   [
+    "command",
+    "v.",
+    "명하다"
+   ],
+   [
+    "marry",
+    "v.",
+    "시집가다"
+   ],
+   [
+    "family",
+    "n.",
+    "가족"
+   ],
+   [
+    "tribe",
+    "n.",
+    "지파"
+   ]
+  ],
+  "idi": [
+   [
+    "to whom they think best",
+    "자기들이 좋게 여기는 자에게"
+   ]
+  ],
+  "gra": [
+   [
+    "Let them marry to whom they think best",
+    "Let+목적어+원형의 허락 구문"
+   ]
+  ]
+ },
+ {
+  "en": "So shall not the inheritance of the children of Israel remove from tribe to tribe: for every one of the children of Israel shall keep himself to the inheritance of the tribe of his fathers.",
+  "ko": "그리하면 이스라엘 자손의 기업이 이 지파에서 저 지파로 옮겨지지 아니하리니, 이는 이스라엘 자손이 저마다 자기 조상 지파의 기업을 지킬 것임이니라.",
+  "note": "이로써 기업이 지파에서 지파로 옮겨지지 않는다. 각 지파가 조상의 기업을 지킴은, 하나님이 정하신 땅의 분배 질서가 대대로 보전되게 하려는 뜻을 보여 준다.",
+  "voc": [
+   [
+    "inheritance",
+    "n.",
+    "기업"
+   ],
+   [
+    "remove",
+    "v.",
+    "옮겨지다"
+   ],
+   [
+    "tribe",
+    "n.",
+    "지파"
+   ],
+   [
+    "keep",
+    "v.",
+    "지키다"
+   ]
+  ],
+  "idi": [
+   [
+    "from tribe to tribe",
+    "이 지파에서 저 지파로"
+   ],
+   [
+    "keep himself to",
+    "~을 고수하다, 지키다"
+   ]
+  ],
+  "gra": [
+   [
+    "So shall not the inheritance ... remove",
+    "So shall not으로 도치하여 결과를 강조"
+   ]
+  ]
+ },
+ {
+  "en": "And every daughter, that possesseth an inheritance in any tribe of the children of Israel, shall be wife unto one of the family of the tribe of her father, that the children of Israel may enjoy every man the inheritance of his fathers.",
+  "ko": "이스라엘 자손의 어느 지파에서든 기업을 이어받은 모든 딸은 그 조상 지파의 가족 중 한 사람에게 아내가 될지니, 이는 이스라엘 자손이 저마다 자기 조상의 기업을 누리게 하려 함이라.",
+  "note": "기업을 이어받은 모든 딸은 조상 지파 안에서 혼인해야 한다는 일반 규례로 확장된다. 슬로브핫 딸들의 개별 사례가 온 이스라엘의 항구적 법으로 세워짐을 보여 준다.",
+  "voc": [
+   [
+    "possess",
+    "v.",
+    "이어받다, 소유하다"
+   ],
+   [
+    "wife",
+    "n.",
+    "아내"
+   ],
+   [
+    "family",
+    "n.",
+    "가족"
+   ],
+   [
+    "enjoy",
+    "v.",
+    "누리다"
+   ]
+  ],
+  "idi": [
+   [
+    "shall be wife unto",
+    "~의 아내가 되다"
+   ]
+  ],
+  "gra": [
+   [
+    "that the children of Israel may enjoy",
+    "that ~ may로 목적을 표현"
+   ]
+  ]
+ },
+ {
+  "en": "Neither shall the inheritance remove from one tribe to another tribe; but every one of the tribes of the children of Israel shall keep himself to his own inheritance.",
+  "ko": "기업이 한 지파에서 다른 지파로 옮겨지지 아니할 것이요, 이스라엘 자손 지파마다 저마다 자기 기업을 지킬지니라.\"",
+  "note": "기업이 한 지파에서 다른 지파로 옮겨지지 않고 각 지파가 자기 기업을 지킨다는 원칙을 재확인한다. 반복된 강조는 지파별 기업 보전이 얼마나 중요한 언약적 원리인지를 보여 준다.",
+  "voc": [
+   [
+    "inheritance",
+    "n.",
+    "기업"
+   ],
+   [
+    "remove",
+    "v.",
+    "옮겨지다"
+   ],
+   [
+    "tribe",
+    "n.",
+    "지파"
+   ],
+   [
+    "keep",
+    "v.",
+    "지키다"
+   ]
+  ],
+  "idi": [
+   [
+    "from one tribe to another",
+    "한 지파에서 다른 지파로"
+   ]
+  ],
+  "gra": [
+   [
+    "shall keep himself to his own inheritance",
+    "keep oneself to로 '~을 고수하다'를 표현"
+   ]
+  ]
+ },
+ {
+  "en": "Even as the LORD commanded Moses, so did the daughters of Zelophehad:",
+  "ko": "여호와께서 모세에게 명하신 그대로 슬로브핫의 딸들이 행하니라.",
+  "note": "슬로브핫의 딸들이 여호와의 명대로 순종하여 행한다. '명하신 그대로'의 강조는, 자신들의 권리를 얻은 후에도 하나님의 규례에 온전히 순복한 그들의 신실함을 보여 준다.",
+  "voc": [
+   [
+    "command",
+    "v.",
+    "명하다"
+   ],
+   [
+    "daughter",
+    "n.",
+    "딸"
+   ],
+   [
+    "Zelophehad",
+    "n.",
+    "슬로브핫"
+   ]
+  ],
+  "idi": [
+   [
+    "Even as the LORD commanded",
+    "여호와께서 명하신 그대로"
+   ]
+  ],
+  "gra": [
+   [
+    "Even as the LORD commanded Moses, so did",
+    "'as ... so'로 순종의 일치를 강조하는 도치"
+   ]
+  ]
+ },
+ {
+  "en": "For Mahlah, Tirzah, and Hoglah, and Milcah, and Noah, the daughters of Zelophehad, were married unto their father’s brothers’ sons:",
+  "ko": "슬로브핫의 딸들 곧 말라와 디르사와 호글라와 밀가와 노아가 그 아버지 형제의 아들들에게로 시집가니,",
+  "note": "다섯 딸이 그 아버지 형제의 아들들, 곧 사촌들에게 시집간다. 친족 안에서의 혼인은 규례에 대한 순종이자, 가문의 기업을 보전하는 신실한 실천을 보여 준다.",
+  "voc": [
+   [
+    "Mahlah",
+    "n.",
+    "말라"
+   ],
+   [
+    "marry",
+    "v.",
+    "시집가다"
+   ],
+   [
+    "brother",
+    "n.",
+    "형제"
+   ],
+   [
+    "son",
+    "n.",
+    "아들"
+   ]
+  ],
+  "idi": [
+   [
+    "their father's brothers' sons",
+    "그 아버지 형제의 아들들(사촌)"
+   ]
+  ],
+  "gra": [
+   [
+    "were married unto",
+    "수동태 'be married unto'로 혼인을 표현"
+   ]
+  ]
+ },
+ {
+  "en": "And they were married into the families of the sons of Manasseh the son of Joseph, and their inheritance remained in the tribe of the family of their father.",
+  "ko": "그들이 요셉의 아들 므낫세 자손의 가족에게로 시집가매, 그들의 기업이 그 아버지 가족의 지파에 머물러 있었더라.",
+  "note": "그들이 므낫세 자손 가족에게 시집가매 기업이 아버지 지파에 머문다. 규례가 실제로 지켜져 기업이 보전됨은, 하나님의 지혜로운 법이 온전히 성취되었음을 증언한다.",
+  "voc": [
+   [
+    "family",
+    "n.",
+    "가족"
+   ],
+   [
+    "Manasseh",
+    "n.",
+    "므낫세"
+   ],
+   [
+    "inheritance",
+    "n.",
+    "기업"
+   ],
+   [
+    "remain",
+    "v.",
+    "머물다"
+   ]
+  ],
+  "idi": [
+   [
+    "remained in the tribe",
+    "지파에 머물러 있었다"
+   ]
+  ],
+  "gra": [
+   [
+    "their inheritance remained in the tribe",
+    "'remained in'으로 기업의 보전을 표현"
+   ]
+  ]
+ },
+ {
+  "en": "These are the commandments and the judgments, which the LORD commanded by the hand of Moses unto the children of Israel in the plains of Moab by Jordan near Jericho.",
+  "ko": "이것들은 여호와께서 여리고 가까운 요단 강 가 모압 평지에서 모세의 손을 통하여 이스라엘 자손에게 명하신 명령과 규례니라.",
+  "note": "민수기 전체를 마무리하는 결어로, 모압 평지에서 모세를 통해 주신 명령과 규례임을 밝힌다. '모세의 손을 통하여'라는 표현은 하나님이 사람을 통해 언약을 전하심을 강조하며, 광야를 지나 약속의 땅 문턱에 이른 백성에게 주신 하나님의 신실한 말씀으로 책을 맺는다.",
+  "voc": [
+   [
+    "commandment",
+    "n.",
+    "명령"
+   ],
+   [
+    "judgment",
+    "n.",
+    "규례"
+   ],
+   [
+    "plain",
+    "n.",
+    "평지"
+   ],
+   [
+    "Jericho",
+    "n.",
+    "여리고"
+   ]
+  ],
+  "idi": [
+   [
+    "by the hand of Moses",
+    "모세의 손을 통하여"
+   ],
+   [
+    "plains of Moab",
+    "모압 평지"
+   ]
+  ],
+  "gra": [
+   [
+    "which the LORD commanded by the hand of Moses",
+    "'by the hand of'로 중재의 도구를 표현"
+   ]
+  ]
+ }
 ]

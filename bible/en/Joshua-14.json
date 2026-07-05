@@ -1,126 +1,521 @@
 [
  {
-  "en": "And these are the countries which the children of Israel inherited in the land of Canaan ...",
-  "ko": "이스라엘 자손이 가나안 땅에서 기업으로 얻은 지경은 이러하니라.",
-  "note": "기업으로 옮긴 히브리어 '나할라(naḥalah)'는 단순한 토지가 아니라 여호와께서 언약으로 약속하신 '물려받는 분깃'이다. 땅의 분배는 우연이 아니라 하나님의 신실하심의 성취다.",
+  "en": "And these are the countries which the children of Israel inherited in the land of Canaan, which Eleazar the priest, and Joshua the son of Nun, and the heads of the fathers of the tribes of the children of Israel, distributed for inheritance to them.",
+  "ko": "이스라엘 자손이 가나안 땅에서 기업으로 얻은 지경은 이러하니, 곧 제사장 엘르아살과 눈의 아들 여호수아와 이스라엘 자손 지파의 족장들이 그들에게 기업으로 나누어 준 것이라.",
+  "note": "제사장 엘르아살과 여호수아와 족장들이 함께 기업을 나누니, 하나님의 백성을 위한 분배가 종교적 권위와 지도자의 지혜와 지파의 대표성이 어우러진 질서 가운데 이루어졌다. 하나님의 일은 무질서가 아니라 세워진 직분을 통해 시행된다.",
   "voc": [
-   ["country", "n.", "지역, 땅"],
-   ["inherit", "v.", "기업으로 받다, 상속하다"],
-   ["distribute", "v.", "나누어 주다, 분배하다"],
-   ["heads of the fathers", "", "족장들, 가문의 우두머리들"]
+   [
+    "inherit",
+    "v.",
+    "기업으로 얻다, 상속하다"
+   ],
+   [
+    "priest",
+    "n.",
+    "제사장"
+   ],
+   [
+    "distribute",
+    "v.",
+    "나누어 주다, 분배하다"
+   ]
   ],
   "idi": [
-   ["heads of the fathers", "(각 가문의) 족장들"]
+   [
+    "heads of the fathers",
+    "족장들, 가문의 우두머리들"
+   ]
   ],
   "gra": [
-   ["the countries which the children of Israel inherited", "which=목적격 관계대명사 '이스라엘 자손이 상속한 그 땅들'"]
+   [
+    "which ... distributed",
+    "목적어를 뒤로 돌린 관계절 구조(=whom ... distributed to them)"
+   ]
   ]
  },
  {
-  "en": "By lot was their inheritance, as the LORD commanded by the hand of Moses ...",
-  "ko": "여호와께서 모세의 손으로 명하신 대로 제비를 뽑아 그 기업을 주었으니,",
-  "note": "'제비(lot, 히브리어 고랄goral)'로 땅을 나눈 것은 인간의 흥정이 아니라 여호와께 결정을 맡김이다(잠 16:33). '모세의 손으로'는 하나님의 명령이 사람을 통해 전해졌음을 뜻하는 관용 표현이다.",
+  "en": "By lot was their inheritance, as the LORD commanded by the hand of Moses, for the nine tribes, and for the half tribe.",
+  "ko": "여호와께서 모세의 손으로 명하신 대로 아홉 지파와 반 지파에게 제비를 뽑아 그 기업을 주었으니,",
+  "note": "'제비 뽑아(by lot)' 기업을 정한 것은 사람의 편애를 배제하고 결정을 하나님께 맡긴 것이다(잠 16:33). 모세의 손으로 명하신 여호와의 말씀이 그대로 시행되니, 지도자가 바뀌어도 하나님의 명령의 권위는 변하지 아니한다.",
   "voc": [
-   ["lot", "n.", "제비(뽑기)"],
-   ["inheritance", "n.", "기업, 상속"],
-   ["command", "v.", "명하다"],
-   ["by the hand of", "", "~의 손으로, ~을 통하여"]
+   [
+    "lot",
+    "n.",
+    "제비"
+   ],
+   [
+    "command",
+    "v.",
+    "명하다"
+   ],
+   [
+    "tribe",
+    "n.",
+    "지파"
+   ]
   ],
   "idi": [
-   ["by the hand of Moses", "모세를 통하여, 모세의 손으로"],
-   ["by lot", "제비를 뽑아"]
+   [
+    "by the hand of",
+    "~의 손으로, ~을 통하여"
+   ]
   ],
   "gra": [
-   ["By lot was their inheritance", "보어(By lot)를 앞세운 도치 — 'their inheritance was by lot'의 강조 어순"]
+   [
+    "By lot was their inheritance",
+    "보어를 앞세운 도치 구문(=Their inheritance was by lot)"
+   ]
   ]
  },
  {
-  "en": "But unto the Levites he gave none inheritance among them.",
-  "ko": "레위 자손에게는 그들 가운데서 아무 기업도 주지 아니하였음이라.",
-  "note": "레위 지파는 땅을 분깃으로 받지 못했으니, 여호와 자신이 그들의 기업이기 때문이다(수 13:33). 섬기는 자에게는 하나님이 곧 상급이심을 보여 준다.",
+  "en": "For Moses had given the inheritance of two tribes and an half tribe on the other side Jordan: but unto the Levites he gave none inheritance among them.",
+  "ko": "이는 모세가 두 지파와 반 지파의 기업은 요단 저편에서 이미 주었음이요, 레위 자손에게는 그들 가운데서 아무 기업도 주지 아니하였음이라.",
+  "note": "레위 지파에게 땅의 기업을 주지 아니한 것은 그들이 여호와를 섬기는 일에 온전히 구별되었기 때문이다. 세상의 몫을 비운 자리에 하나님을 섬기는 거룩한 직분이 채워지니, 이는 하나님의 사람의 참된 분깃이 무엇인지 가르친다.",
   "voc": [
-   ["Levite", "n.", "레위 사람"],
-   ["give none", "", "아무것도 주지 않다"],
-   ["save", "prep.", "~외에는, ~을 제외하고"],
-   ["suburbs", "n.", "성읍 둘레의 목초지, 들"]
+   [
+    "inheritance",
+    "n.",
+    "기업"
+   ],
+   [
+    "Levite",
+    "n.",
+    "레위 사람"
+   ],
+   [
+    "none",
+    "pron.",
+    "아무것도 (없음)"
+   ]
   ],
   "idi": [
-   ["save cities to dwell in", "거할 성읍들 외에는"]
+   [
+    "on the other side Jordan",
+    "요단 저편(동편)에"
+   ]
   ],
   "gra": [
-   ["he gave none inheritance among them", "none=형용사적 부정 'no' — '아무 기업도 주지 아니하였다'"]
+   [
+    "Moses had given",
+    "과거완료(had+p.p.)로 앞선 사건을 표시"
+   ]
   ]
  },
  {
-  "en": "I wholly followed the LORD my God.",
-  "ko": "나는 내 하나님 여호와를 온전히 좇았더이다.",
-  "note": "이 장의 열쇠 어구다. '온전히 좇다(wholly follow, 히브리어 직역 '여호와를 가득 채워 따르다')'는 갈렙의 한결같은 충성을 가리키며, 14절에서 그가 기업을 받은 근거로 다시 울려 퍼진다. 다수의 두려움 앞에서도 흔들리지 않은 믿음의 표상이다.",
+  "en": "For the children of Joseph were two tribes, Manasseh and Ephraim: therefore they gave no part unto the Levites in the land, save cities to dwell in, with their suburbs for their cattle and for their substance.",
+  "ko": "요셉의 자손은 므낫세와 에브라임 두 지파가 되었으므로, 레위 사람에게는 그 땅에서 아무 분깃도 주지 아니하고 다만 거할 성읍들과 그 가축과 재물을 둘 목초지만 주었더라.",
+  "note": "요셉이 므낫세와 에브라임 두 지파로 나뉘어 레위의 자리를 대신하니, 열두 지파의 수가 온전히 유지된다. 레위에게는 땅 대신 성읍과 목초지를 주셨으니, 하나님을 섬기는 자도 이 땅에서 살아갈 처소를 은혜로 얻는다.",
   "voc": [
-   ["wholly", "adv.", "온전히, 전적으로"],
-   ["follow", "v.", "좇다, 따르다"],
-   ["espy out", "v.", "정탐하다"],
-   ["melt", "v.", "녹다, (마음이) 약해지다"],
-   ["brethren", "n.", "형제들"]
+   [
+    "part",
+    "n.",
+    "분깃, 몫"
+   ],
+   [
+    "suburb",
+    "n.",
+    "목초지, 성읍 주변 들"
+   ],
+   [
+    "substance",
+    "n.",
+    "재물, 소유"
+   ]
   ],
   "idi": [
-   ["wholly follow the LORD", "여호와를 온전히 좇다"],
-   ["make the heart melt", "마음을 녹게 하다, 낙담시키다"]
+   [
+    "save cities to dwell in",
+    "다만 거할 성읍들만은 (제외하고)"
+   ]
   ],
   "gra": [
-   ["my brethren that went up with me made the heart of the people melt", "make+목적어+동사원형(melt)=사역동사 '~을 녹게 만들었다'"]
+   [
+    "save",
+    "'~을 제외하고'를 뜻하는 KJV 고어 전치사(=except)"
+   ]
   ]
  },
  {
-  "en": "I am this day fourscore and five years old.",
-  "ko": "오늘 내 나이 팔십오 세로되,",
-  "note": "'fourscore and five'는 옛 영어의 수 표기로 80(four score)+5, 곧 85세다. 'score'는 20을 뜻하니 KJV 전반에 나타나는 어법이다. 갈렙은 사십오 년의 광야 세월에도 여호와께서 자기를 살려 두셨음을 고백한다.",
+  "en": "As the LORD commanded Moses, so the children of Israel did, and they divided the land.",
+  "ko": "여호와께서 모세에게 명하신 대로 이스라엘 자손이 행하여 그 땅을 나누었더라.",
+  "note": "'여호와께서 명하신 대로 이스라엘 자손이 행하여'라는 한 마디가 이 분배의 정신을 요약한다. 순종이 곧 기업을 받는 통로이니, 하나님의 명령을 그대로 좇는 백성에게 그분의 약속이 실제로 성취된다.",
   "voc": [
-   ["keep alive", "", "살려 두다"],
-   ["wander", "v.", "유랑하다, 떠돌다"],
-   ["fourscore", "n.", "80(four score)"],
-   ["lo", "interj.", "보라"]
+   [
+    "command",
+    "v.",
+    "명하다"
+   ],
+   [
+    "divide",
+    "v.",
+    "나누다"
+   ]
   ],
   "idi": [
-   ["fourscore and five years old", "팔십오 세"],
-   ["these forty and five years", "이 사십오 년 동안"]
+   [
+    "As ... so ...",
+    "~한 대로, 그와 같이"
+   ]
   ],
   "gra": [
-   ["the LORD hath kept me alive", "현재완료(hath kept) '살려 두셨다' — 과거에서 지금까지 이어진 보존"]
+   [
+    "As the LORD commanded ... so ... did",
+    "As ... so 상관접속으로 명령과 순종을 대응시킴"
+   ]
   ]
  },
  {
-  "en": "Now therefore give me this mountain ... if so be the LORD will be with me ...",
-  "ko": "그러므로 이 산지를 이제 내게 주소서 ... 여호와께서 나와 함께하시면,",
-  "note": "팔십오 세의 갈렙이 평지가 아니라 아낙 거인들이 버틴 견고한 '산지(this mountain)'를 구한다. 노년의 안일이 아니라 가장 어려운 싸움을 택하니, '여호와께서 나와 함께하시면'이라는 믿음이 그 담대함의 근원이다.",
+  "en": "Then the children of Judah came unto Joshua in Gilgal: and Caleb the son of Jephunneh the Kenezite said unto him, Thou knowest the thing that the LORD said unto Moses the man of God concerning me and thee in Kadeshbarnea.",
+  "ko": "그때에 유다 자손이 길갈에 있는 여호수아에게 나아오고, 그니스 사람 여분네의 아들 갈렙이 그에게 이르되 \"여호와께서 가데스바네아에서 나와 당신에 대하여 하나님의 사람 모세에게 이르신 일을 당신이 아시는 바라.",
+  "note": "갈렙이 45년 전 가데스바네아의 약속을 붙들고 나아온다. 믿음의 사람은 하나님의 말씀을 세월이 흘러도 잊지 아니하고 그 약속의 성취를 담대히 구하니, 갈렙의 기억은 곧 그의 신앙의 증거이다.",
   "voc": [
-   ["mountain", "n.", "산, 산지"],
-   ["fenced", "adj.", "견고한, 성벽으로 둘러싼"],
-   ["drive out", "v.", "쫓아내다"],
-   ["Anakims", "n.", "아낙 사람들(거인족)"]
+   [
+    "concerning",
+    "prep.",
+    "~에 관하여"
+   ],
+   [
+    "knowest",
+    "v.",
+    "알다(고어, know의 2인칭)"
+   ]
   ],
   "idi": [
-   ["if so be", "만일 ~라면(혹시 ~하면)"],
-   ["drive them out", "그들을 쫓아내다"]
+   [
+    "came unto",
+    "~에게 나아오다"
+   ]
   ],
   "gra": [
-   ["if so be the LORD will be with me, then I shall be able to drive them out", "조건절(if ~) + 귀결절(then I shall ~) '~하시면, 그리하면 ~하리이다'"]
+   [
+    "Thou knowest",
+    "2인칭 단수 thou + -est 어미의 고어형(=You know)"
+   ]
   ]
  },
  {
-  "en": "And Joshua blessed him, and gave unto Caleb ... Hebron for an inheritance.",
-  "ko": "여호수아가 갈렙을 축복하고 헤브론을 그에게 기업으로 주매,",
-  "note": "갈렙이 받은 헤브론은 본래 '기럇아르바', 곧 아낙 거인의 도성이었다. 가장 두려운 곳이 가장 충성된 자의 기업이 되니, 끝 절의 '그 땅이 전쟁을 그치고 평온하였더라'는 정복의 안식을 봉인하는 말씀이다.",
+  "en": "Forty years old was I when Moses the servant of the LORD sent me from Kadeshbarnea to espy out the land; and I brought him word again as it was in mine heart.",
+  "ko": "여호와의 종 모세가 가데스바네아에서 나를 보내어 그 땅을 정탐하게 하던 그때에 내 나이 사십 세라. 내가 내 마음에 있는 대로 그에게 보고하였고,",
+  "note": "'내 마음에 있는 대로 보고하였고'라는 갈렙의 말은, 다수의 두려움에 굴하지 아니하고 하나님을 신뢰한 정직한 믿음을 드러낸다. 열두 정탐꾼 중 오직 갈렙과 여호수아만이 진실한 믿음의 보고를 올렸다(민 13-14장).",
   "voc": [
-   ["bless", "v.", "축복하다"],
-   ["rest", "n.", "안식, 쉼"],
-   ["from war", "", "전쟁으로부터"],
-   ["a great man", "", "큰 인물, 위대한 자"]
+   [
+    "espy",
+    "v.",
+    "정탐하다, 살피다"
+   ],
+   [
+    "servant",
+    "n.",
+    "종"
+   ]
   ],
   "idi": [
-   ["the land had rest from war", "그 땅이 전쟁을 그치고 평온하였다"]
+   [
+    "brought him word again",
+    "그에게 다시 소식을 전하였다, 보고하였다"
+   ],
+   [
+    "as it was in mine heart",
+    "내 마음에 있는 그대로"
+   ]
   ],
   "gra": [
-   ["because that he wholly followed the LORD God of Israel", "because that=because(옛 용법) '~하였음으로 인하여'"]
+   [
+    "mine heart",
+    "모음 앞에서 my 대신 쓰는 고어 소유격 mine"
+   ],
+   [
+    "Forty years old was I",
+    "보어를 앞세운 도치 구문(=I was forty years old)"
+   ]
+  ]
+ },
+ {
+  "en": "Nevertheless my brethren that went up with me made the heart of the people melt: but I wholly followed the LORD my God.",
+  "ko": "나와 함께 올라갔던 내 형제들은 백성의 마음을 녹게 하였으나, 나는 내 하나님 여호와를 온전히 좇았더이다.",
+  "note": "'나는 내 하나님 여호와를 온전히 좇았더이다'는 갈렙의 신앙을 요약하는 핵심 구절이다. 형제들이 백성의 마음을 녹게 할 때에도 흔들리지 아니한 그의 온전한 순종이, 사십오 년 뒤 기업을 구하는 담대함의 근거가 된다.",
+  "voc": [
+   [
+    "brethren",
+    "n.",
+    "형제들(고어, brothers)"
+   ],
+   [
+    "melt",
+    "v.",
+    "녹다, 낙담하다"
+   ],
+   [
+    "wholly",
+    "adv.",
+    "온전히, 전적으로"
+   ]
+  ],
+  "idi": [
+   [
+    "made the heart melt",
+    "마음을 녹게 하다, 낙담시키다"
+   ],
+   [
+    "wholly followed",
+    "온전히 좇았다"
+   ]
+  ],
+  "gra": [
+   [
+    "brethren",
+    "brother의 고어 복수형"
+   ]
+  ]
+ },
+ {
+  "en": "And Moses sware on that day, saying, Surely the land whereon thy feet have trodden shall be thine inheritance, and thy children’s for ever, because thou hast wholly followed the LORD my God.",
+  "ko": "그날에 모세가 맹세하여 이르되 '네 발로 밟은 땅은 영영히 너와 네 자손의 기업이 되리니, 이는 네가 내 하나님 여호와를 온전히 좇았음이라' 하였나이다.",
+  "note": "모세의 맹세는 '온전히 좇았음이라'는 이유를 분명히 밝힌다. 하나님은 자신을 전심으로 좇는 자에게 밟는 땅을 영원한 기업으로 주시니, 신실한 순종에 신실한 보상으로 응답하시는 그분의 언약적 성품이 드러난다.",
+  "voc": [
+   [
+    "sware",
+    "v.",
+    "맹세하였다(고어, swore)"
+   ],
+   [
+    "trodden",
+    "v.",
+    "밟은(tread의 과거분사)"
+   ],
+   [
+    "wholly",
+    "adv.",
+    "온전히"
+   ]
+  ],
+  "idi": [
+   [
+    "for ever",
+    "영원히"
+   ],
+   [
+    "whereon thy feet have trodden",
+    "네 발이 밟은 (그곳)"
+   ]
+  ],
+  "gra": [
+   [
+    "sware",
+    "swear의 고어 과거형(=swore)"
+   ],
+   [
+    "thine inheritance",
+    "모음/강조 앞에서 thy 대신 쓰는 고어 소유격 thine"
+   ]
+  ]
+ },
+ {
+  "en": "And now, behold, the LORD hath kept me alive, as he said, these forty and five years, even since the LORD spake this word unto Moses, while the children of Israel wandered in the wilderness: and now, lo, I am this day fourscore and five years old.",
+  "ko": "이제 보소서. 여호와께서 이 말씀을 모세에게 이르신 때로부터, 이스라엘이 광야에서 유랑하던 사십오 년 동안을 여호와께서 말씀하신 대로 나를 살려 두셨나이다. 보소서, 오늘 내 나이 팔십오 세로되,",
+  "note": "'여호와께서 나를 살려 두셨나이다'라는 고백은, 갈렙의 팔십오 세 생애가 하나님의 언약을 지키시는 능력의 증거임을 보인다. 약속을 붙든 자는 그 약속의 성취를 볼 때까지 하나님의 보존하시는 손 안에 있다.",
+  "voc": [
+   [
+    "wander",
+    "v.",
+    "유랑하다, 방황하다"
+   ],
+   [
+    "wilderness",
+    "n.",
+    "광야"
+   ],
+   [
+    "fourscore",
+    "num.",
+    "여든(80, 고어)"
+   ]
+  ],
+  "idi": [
+   [
+    "kept me alive",
+    "나를 살려 두셨다"
+   ],
+   [
+    "fourscore and five",
+    "팔십오(85)"
+   ]
+  ],
+  "gra": [
+   [
+    "fourscore",
+    "score(20)를 넷 곱한 80을 뜻하는 KJV 고어 수사"
+   ],
+   [
+    "hath kept",
+    "현재완료 hath+p.p.의 고어형(=has kept)"
+   ]
+  ]
+ },
+ {
+  "en": "As yet I am as strong this day as I was in the day that Moses sent me: as my strength was then, even so is my strength now, for war, both to go out, and to come in.",
+  "ko": "모세가 나를 보내던 날과 같이 오늘도 내가 여전히 강건하니, 나가고 들어오며 싸우는 일에 그때의 내 힘이 이제도 그러하니이다.",
+  "note": "'그때의 내 힘이 이제도 그러하니이다'라는 갈렙의 담대함은 노년의 자랑이 아니라 하나님을 신뢰하는 믿음의 활력이다. 육신은 늙어도 하나님을 좇는 자의 영적 기력은 쇠하지 아니하며, 여전히 싸움에 나아갈 준비가 되어 있다.",
+  "voc": [
+   [
+    "strength",
+    "n.",
+    "힘, 기력"
+   ],
+   [
+    "war",
+    "n.",
+    "전쟁, 싸움"
+   ]
+  ],
+  "idi": [
+   [
+    "to go out, and to come in",
+    "나가고 들어오는, 곧 활동하는 (히브리적 표현)"
+   ],
+   [
+    "as ... so ...",
+    "~와 같이, 그와 같이"
+   ]
+  ],
+  "gra": [
+   [
+    "even so is my strength",
+    "보어를 앞세운 도치 강조 구문"
+   ]
+  ]
+ },
+ {
+  "en": "Now therefore give me this mountain, whereof the LORD spake in that day; for thou heardest in that day how the Anakims were there, and that the cities were great and fenced: if so be the LORD will be with me, then I shall be able to drive them out, as the LORD said.",
+  "ko": "그러므로 여호와께서 그날에 말씀하신 이 산지를 이제 내게 주소서. 아낙 사람이 거기 있고 그 성읍들이 크고 견고함은 당신도 그날에 들으신 바라. 여호와께서 나와 함께하시면 여호와께서 말씀하신 대로 내가 그들을 쫓아내리이다\" 하니,",
+  "note": "'여호와께서 나와 함께하시면 내가 그들을 쫓아내리이다'는 갈렙의 신앙의 절정이다. 아낙 사람과 견고한 성읍을 두려워하지 아니하고 오히려 가장 험한 산지를 구하니, 참된 믿음은 어려움을 피하지 아니하고 하나님과 함께 정면으로 맞선다.",
+  "voc": [
+   [
+    "whereof",
+    "adv.",
+    "그것에 관하여(고어)"
+   ],
+   [
+    "fenced",
+    "adj.",
+    "견고한, 성벽으로 둘러싸인"
+   ],
+   [
+    "drive out",
+    "v.",
+    "쫓아내다"
+   ]
+  ],
+  "idi": [
+   [
+    "give me this mountain",
+    "이 산지를 내게 주소서"
+   ],
+   [
+    "if so be",
+    "만일 ~라면"
+   ]
+  ],
+  "gra": [
+   [
+    "thou heardest",
+    "2인칭 단수 thou + -est 어미의 고어 과거형(=you heard)"
+   ],
+   [
+    "whereof",
+    "'of which'를 뜻하는 KJV 고어 관계부사"
+   ]
+  ]
+ },
+ {
+  "en": "And Joshua blessed him, and gave unto Caleb the son of Jephunneh Hebron for an inheritance.",
+  "ko": "여호수아가 여분네의 아들 갈렙을 축복하고 헤브론을 그에게 주어 기업을 삼게 하매,",
+  "note": "여호수아가 갈렙을 축복하고 헤브론을 기업으로 주니, 믿음의 노병에게 언약의 조상 아브라함이 거하던 거룩한 성읍이 상급으로 돌아간다. 하나님을 온전히 좇은 자의 인내가 마침내 약속의 성취로 열매 맺는다.",
+  "voc": [
+   [
+    "bless",
+    "v.",
+    "축복하다"
+   ],
+   [
+    "inheritance",
+    "n.",
+    "기업"
+   ]
+  ],
+  "idi": [
+   [
+    "gave unto Caleb ... Hebron",
+    "갈렙에게 헤브론을 주었다"
+   ]
+  ],
+  "gra": [
+   [
+    "gave unto",
+    "여격을 나타내는 고어 전치사 unto(=gave to)"
+   ]
+  ]
+ },
+ {
+  "en": "Hebron therefore became the inheritance of Caleb the son of Jephunneh the Kenezite unto this day, because that he wholly followed the LORD God of Israel.",
+  "ko": "헤브론이 그니스 사람 여분네의 아들 갈렙의 기업이 되어 오늘까지 이르렀으니, 이는 그가 이스라엘의 하나님 여호와를 온전히 좇았음이라.",
+  "note": "'그가 이스라엘의 하나님 여호와를 온전히 좇았음이라'는 헤브론 기업의 이유로 세 번째 반복된다. 이 반복은 온전한 순종이야말로 하나님의 복을 잇는 통로임을 성경이 힘써 강조하는 것이다.",
+  "voc": [
+   [
+    "became",
+    "v.",
+    "되었다(become의 과거)"
+   ],
+   [
+    "wholly",
+    "adv.",
+    "온전히"
+   ]
+  ],
+  "idi": [
+   [
+    "unto this day",
+    "오늘날까지"
+   ],
+   [
+    "because that",
+    "~한 까닭에(고어)"
+   ]
+  ],
+  "gra": [
+   [
+    "because that he wholly followed",
+    "because that의 고어 접속 표현(=because)"
+   ]
+  ]
+ },
+ {
+  "en": "And the name of Hebron before was Kirjatharba; which Arba was a great man among the Anakims. And the land had rest from war.",
+  "ko": "헤브론의 본 이름은 기럇아르바라. 아르바는 아낙 사람 중에 가장 큰 사람이었더라. 그리고 그 땅이 전쟁을 그치고 평온하였더라.",
+  "note": "헤브론의 옛 이름 기럇아르바는 아낙 사람 중 가장 큰 자 아르바의 이름에서 났으니, 한때 거인의 위세가 서렸던 땅이다. 그러나 믿음의 사람에게 정복되어 '그 땅이 전쟁을 그치고 평온하였더라'로 마치니, 하나님을 좇는 순종이 마침내 안식을 가져옴을 보인다.",
+  "voc": [
+   [
+    "rest",
+    "n.",
+    "안식, 평온"
+   ],
+   [
+    "great",
+    "adj.",
+    "큰, 위대한"
+   ]
+  ],
+  "idi": [
+   [
+    "had rest from war",
+    "전쟁을 그치고 평온하였다"
+   ]
+  ],
+  "gra": [
+   [
+    "which Arba was",
+    "앞 이름 Arba를 which로 받아 설명을 잇는 관계절"
+   ]
   ]
  }
 ]

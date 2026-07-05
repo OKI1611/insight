@@ -2,151 +2,956 @@
  {
   "en": "So when David was old and full of days, he made Solomon his son king over Israel.",
   "ko": "다윗이 늙어 나이가 차매, 그의 아들 솔로몬을 이스라엘 위에 왕으로 세우니라.",
-  "note": "히브리어 '자켄 베사바 야밈'(זָקֵן וְשָׂבַע יָמִים)은 '늙고 날이 가득 찼다'이니, 단지 노쇠가 아니라 하나님이 정하신 수명을 충만히 누렸음을 뜻한다. 다윗은 죽기 전 후계자를 세우고 성전 봉사를 정비하여, 자기 대가 아니라 다음 세대의 예배까지 준비하였다.",
+  "note": "다윗이 늙어 나이가 차매 솔로몬을 왕으로 세웠다. 히브리어 '세바 야밈'(שְׂבַע יָמִים, 나이가 참)은 인생을 넉넉히 산 자를 뜻한다. 다윗은 살아 있을 때 후계를 정하여 왕위를 평온히 물려주니, 지혜로운 계승의 본이다.",
   "voc": [
-   ["old", "adj.", "늙은"],
-   ["full of days", "", "날이 가득 찬, 천수를 누린"],
-   ["make ... king", "", "왕으로 삼다"]
+   [
+    "old",
+    "adj.",
+    "늙은"
+   ],
+   [
+    "full of days",
+    "adj.",
+    "나이가 찬"
+   ],
+   [
+    "king",
+    "n.",
+    "왕"
+   ]
   ],
   "idi": [
-   ["full of days", "천수를 누린, 살 만큼 산"]
+   [
+    "full of days",
+    "나이가 차서 (장수하여)"
+   ],
+   [
+    "made...king over Israel",
+    "이스라엘의 왕으로 세우다"
+   ]
   ],
   "gra": [
-   ["he made Solomon his son king", "make+목적어+명사(보어) '솔로몬을 왕으로 삼다'"]
+   [
+    "when David was old",
+    "때를 나타내는 부사절"
+   ]
+  ]
+ },
+ {
+  "en": "And he gathered together all the princes of Israel, with the priests and the Levites.",
+  "ko": "그가 이스라엘의 모든 방백과 제사장들과 레위 사람들을 함께 모았더라.",
+  "note": "다윗이 방백과 제사장과 레위 사람을 함께 모았다. 왕위 계승과 성전 봉사의 조직을 위해 지도자들을 소집한 것이다. 큰 전환의 때에 온 공동체의 지도자를 모음은 질서 있는 위임을 위함이다.",
+  "voc": [
+   [
+    "gather",
+    "v.",
+    "모으다"
+   ],
+   [
+    "priest",
+    "n.",
+    "제사장"
+   ],
+   [
+    "Levite",
+    "n.",
+    "레위 사람"
+   ]
+  ],
+  "idi": [
+   [
+    "gathered together",
+    "함께 모았다"
+   ]
+  ],
+  "gra": [
+   [
+    "with the priests and the Levites",
+    "with로 대상을 열거"
+   ]
   ]
  },
  {
   "en": "Now the Levites were numbered from the age of thirty years and upward: and their number by their polls, man by man, was thirty and eight thousand.",
   "ko": "이에 레위 사람을 삼십 세 이상으로 계수하니, 그 명수가 사람을 따라 머릿수대로 삼만 팔천이었더라.",
-  "note": "'폴'(poll)은 옛 영어로 '머리'를 뜻하니 'by their polls'는 '머릿수대로'이다. 광야에서 레위인의 봉사 연령은 삼십 세였으나(민 4:3), 뒤 24절에서 스무 살로 낮춘다. 성전이 한곳에 세워져 무거운 성막을 메는 일이 사라졌기에, 더 이른 나이부터 봉사할 수 있게 된 변화를 보여 준다.",
+  "note": "레위 사람을 삼십 세 이상으로 계수하니 삼만 팔천이었다. 히브리어 '굴골레트'(גֻּלְגֹּלֶת, 머릿수)는 한 사람씩 헤아림이다. 봉사할 자를 정확히 계수함은 하나님의 일을 질서 있게 조직하려는 다윗의 신중함을 보인다.",
   "voc": [
-   ["number", "v.", "계수하다, 세다"],
-   ["from ... and upward", "", "~ 이상으로"],
-   ["poll", "n.", "(옛말) 머리, 머릿수"],
-   ["man by man", "", "사람마다, 한 사람씩"]
+   [
+    "number",
+    "v.",
+    "계수하다"
+   ],
+   [
+    "upward",
+    "adv.",
+    "이상"
+   ],
+   [
+    "poll",
+    "n.",
+    "머릿수"
+   ]
   ],
   "idi": [
-   ["man by man", "한 사람 한 사람, 일일이"]
+   [
+    "from the age of thirty years and upward",
+    "삼십 세 이상으로"
+   ],
+   [
+    "man by man",
+    "사람마다, 한 사람씩"
+   ]
   ],
   "gra": [
-   ["the Levites were numbered", "수동태(were numbered) '레위 사람이 계수되었다'"]
+   [
+    "were numbered",
+    "수동태로 계수의 대상을 표현"
+   ]
+  ]
+ },
+ {
+  "en": "Of which, twenty and four thousand were to set forward the work of the house of the LORD; and six thousand were officers and judges:",
+  "ko": "그 가운데 이만 사천은 여호와의 전의 일을 맡아 진행하게 하고, 육천은 유사와 재판관으로 삼으며,",
+  "note": "이만 사천은 전의 일을, 육천은 유사와 재판관을 삼았다. 히브리어 '쇼테르'(שֹׁטֵר, 유사)와 '쇼페트'(שֹׁפֵט, 재판관)는 행정과 재판의 직임이다. 레위 사람의 봉사가 성전 안에만 아니라 사회의 질서에까지 미쳤음을 보인다.",
+  "voc": [
+   [
+    "set forward",
+    "v.",
+    "진행하다, 맡아 하다"
+   ],
+   [
+    "officer",
+    "n.",
+    "유사, 관원"
+   ],
+   [
+    "judge",
+    "n.",
+    "재판관"
+   ]
+  ],
+  "idi": [
+   [
+    "set forward the work",
+    "일을 맡아 진행하다"
+   ]
+  ],
+  "gra": [
+   [
+    "Of which",
+    "그 가운데 (관계사 of which)"
+   ]
   ]
  },
  {
   "en": "Moreover four thousand were porters; and four thousand praised the LORD with the instruments which I made, said David, to praise therewith.",
   "ko": "또 사천은 문지기가 되게 하고, 사천은 다윗이 찬양하려고 만든 악기로 여호와를 찬양하게 하였으니, 다윗이 이르되 \"이로써 찬송할지니라\" 하였더라.",
-  "note": "'포터'(porter)는 짐꾼이 아니라 성전 '문지기'이다. 다윗은 예배의 악기를 친히 고안하였으니('which I made, said David'), 찬양은 즉흥이 아니라 왕이 마련한 질서 안에서 드려졌다. 'therewith'는 옛말로 '그것으로써'이다.",
+  "note": "사천은 문지기, 사천은 다윗이 만든 악기로 찬양하게 하였다. 왕이 몸소 찬양의 악기를 만들었으니, 예배를 향한 그의 정성이 깊다. 문 지킴과 찬양이 모두 하나님을 섬기는 거룩한 봉사로 세워졌다.",
   "voc": [
-   ["porter", "n.", "문지기, 수문장"],
-   ["praise", "v.", "찬양하다"],
-   ["instrument", "n.", "악기, 도구"],
-   ["therewith", "adv.", "(옛말) 그것으로써"]
+   [
+    "porter",
+    "n.",
+    "문지기"
+   ],
+   [
+    "praise",
+    "v.",
+    "찬양하다"
+   ],
+   [
+    "instrument",
+    "n.",
+    "악기"
+   ]
+  ],
+  "idi": [
+   [
+    "with the instruments",
+    "악기로"
+   ],
+   [
+    "to praise therewith",
+    "이로써 찬송하다"
+   ]
   ],
   "gra": [
-   ["the instruments which I made", "which=관계대명사(목적격) '내가 만든 악기'"],
-   ["said David", "삽입절 '다윗이 말하였다' — 인용 중간에 화자를 밝힘"]
+   [
+    "said David",
+    "삽입절로 다윗의 말을 인용"
+   ]
+  ]
+ },
+ {
+  "en": "And David divided them into courses among the sons of Levi, namely, Gershon, Kohath, and Merari.",
+  "ko": "다윗이 레위의 아들들 곧 게르손과 그핫과 므라리를 따라 그들을 반차로 나누었더라.",
+  "note": "다윗이 레위의 아들 게르손·그핫·므라리를 따라 반차로 나누었다. 히브리어 '마할라코트'(מַחְלָקוֹת, 반차)는 순번대로 섬기는 조직이다. 봉사를 반차로 나눔은 모두가 질서 있게 섬기며 지치지 않게 하는 지혜였다.",
+  "voc": [
+   [
+    "divide",
+    "v.",
+    "나누다"
+   ],
+   [
+    "course",
+    "n.",
+    "반차, 반열"
+   ]
+  ],
+  "idi": [
+   [
+    "divided them into courses",
+    "반차로 나누었다"
+   ]
+  ],
+  "gra": [
+   [
+    "namely",
+    "곧, 즉 (열거를 여는 부사)"
+   ]
+  ]
+ },
+ {
+  "en": "Of the Gershonites were, Laadan, and Shimei.",
+  "ko": "게르손 자손 중에는 라단과 시므이가 있고,",
+  "note": "게르손 자손 중에는 라단과 시므이가 있었다. 게르손은 레위의 장자로, 그 자손이 봉사의 반차를 이룬다. 계보의 이름들이 성전 봉사자의 명단으로 이어지니, 혈통이 곧 섬김의 자리로 나타난다.",
+  "voc": [
+   [
+    "Gershonites",
+    "n.",
+    "게르손 자손"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Of the Gershonites were",
+    "도치 구문으로 소속을 밝힘"
+   ]
+  ]
+ },
+ {
+  "en": "The sons of Laadan; the chief was Jehiel, and Zetham, and Joel, three.",
+  "ko": "라단의 아들들은 그 우두머리 여히엘과 세담과 요엘 셋이요,",
+  "note": "라단의 아들은 우두머리 여히엘과 세담과 요엘 셋이었다. '여히엘'은 '하나님이 살리신다', '요엘'은 '여호와는 하나님이시라'는 뜻이다. 봉사자의 이름마다 하나님을 향한 신앙 고백이 담겨 있다.",
+  "voc": [
+   [
+    "chief",
+    "n.",
+    "우두머리"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "the chief was Jehiel",
+    "우두머리는 여히엘이었다"
+   ]
+  ]
+ },
+ {
+  "en": "The sons of Shimei; Shelomith, and Haziel, and Haran, three. These were the chief of the fathers of Laadan.",
+  "ko": "시므이의 아들들은 슬로밋과 하시엘과 하란 셋이니, 이들은 라단의 족장들이며,",
+  "note": "시므이의 아들은 슬로밋과 하시엘과 하란 셋이니 이들은 라단의 족장이었다. '하시엘'은 '하나님의 환상', '하란'은 '산지'의 뜻이다. 각 가문이 족장을 세워 봉사의 책임을 나누어 맡았다.",
+  "voc": [
+   [
+    "chief of the fathers",
+    "n.",
+    "족장"
+   ]
+  ],
+  "idi": [
+   [
+    "the chief of the fathers",
+    "족장, 가문의 우두머리"
+   ]
+  ],
+  "gra": [
+   [
+    "These were the chief",
+    "이들은 족장이었다"
+   ]
+  ]
+ },
+ {
+  "en": "And the sons of Shimei were, Jahath, Zina, and Jeush, and Beriah. These four were the sons of Shimei.",
+  "ko": "시므이의 아들들은 야핫과 시나와 여우스와 브리아니, 이 넷이 시므이의 아들들이라.",
+  "note": "시므이의 아들 넷은 야핫과 시나와 여우스와 브리아였다. '야핫'은 '그가 붙드신다', '브리아'는 '재앙 중의' 뜻으로 여겨진다. 계보가 세밀히 기록됨은 각 사람이 하나님의 일에 중요함을 보인다.",
+  "voc": [
+   [
+    "Shimei",
+    "n.",
+    "시므이 (인명)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "These four were",
+    "이 넷은 ~이었다"
+   ]
+  ]
+ },
+ {
+  "en": "And Jahath was the chief, and Zizah the second: but Jeush and Beriah had not many sons; therefore they were in one reckoning, according to their father’s house.",
+  "ko": "야핫은 우두머리요 시사는 둘째며, 여우스와 브리아는 아들이 많지 아니하므로 그들의 아버지의 집에서 한 반열로 계수되었더라.",
+  "note": "야핫이 우두머리요 시사가 둘째며, 여우스와 브리아는 아들이 적어 한 반열로 계수되었다. 히브리어 '페쿠다'(계수·직무)의 편성은 실제 인원에 맞추어 유연히 이루어졌다. 작은 가문도 소외되지 않고 봉사에 포함되었다.",
+  "voc": [
+   [
+    "reckoning",
+    "n.",
+    "반열, 계수"
+   ],
+   [
+    "according to",
+    "prep.",
+    "~을 따라"
+   ]
+  ],
+  "idi": [
+   [
+    "in one reckoning",
+    "한 반열로"
+   ],
+   [
+    "their father’s house",
+    "그들의 아버지 집 (가문)"
+   ]
+  ],
+  "gra": [
+   [
+    "had not many sons",
+    "아들이 많지 않았다"
+   ]
+  ]
+ },
+ {
+  "en": "The sons of Kohath; Amram, Izhar, Hebron, and Uzziel, four.",
+  "ko": "그핫의 아들들은 아므람과 이스할과 헤브론과 웃시엘 넷이며,",
+  "note": "그핫의 아들은 아므람과 이스할과 헤브론과 웃시엘 넷이었다. 그핫 계열은 지성물을 맡은 존귀한 반차로, 아론과 모세가 여기서 났다. 이 계보가 제사장 직분의 뿌리로 이어진다.",
+  "voc": [
+   [
+    "Kohath",
+    "n.",
+    "그핫 (레위의 아들)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "The sons of Kohath",
+    "그핫의 아들들"
+   ]
   ]
  },
  {
   "en": "The sons of Amram; Aaron and Moses: and Aaron was separated, that he should sanctify the most holy things, he and his sons for ever, to burn incense before the LORD, to minister unto him, and to bless in his name for ever.",
   "ko": "아므람의 아들들은 아론과 모세라. 아론은 구별되어 그와 그의 아들들이 영원히 지극히 거룩한 것들을 거룩하게 하고 여호와 앞에 분향하며 그를 섬기고 그의 이름으로 영원토록 축복하게 되었더라.",
-  "note": "'세퍼레이트'(separate)의 히브리어 '바달'(בָּדַל)은 '갈라 거룩히 구별하다'이니, 제사장직은 사람이 차지한 자리가 아니라 하나님이 떼어 세우신 부르심이다. 'sanctify the most holy things'는 지성소의 거룩한 것들을 거룩하게 다루는 직무로, 분향·섬김·축복이 곧 제사장의 영원한 사명이다.",
+  "note": "아므람의 아들은 아론과 모세라. 아론은 구별되어 지성물을 거룩하게 하고 분향하며 여호와의 이름으로 영원히 축복하게 되었다. 히브리어 '바달'(בָּדַל, 구별하다)은 제사장직의 성별이다. 아론 자손은 하나님과 백성 사이의 중보로 세워졌다.",
   "voc": [
-   ["separate", "v.", "구별하다, 따로 세우다"],
-   ["sanctify", "v.", "거룩하게 하다, 성별하다"],
-   ["the most holy things", "", "지극히 거룩한 것들"],
-   ["burn incense", "", "분향하다"],
-   ["minister", "v.", "섬기다, 봉사하다"]
+   [
+    "separate",
+    "v.",
+    "구별하다"
+   ],
+   [
+    "incense",
+    "n.",
+    "분향, 향"
+   ],
+   [
+    "bless",
+    "v.",
+    "축복하다"
+   ]
   ],
   "idi": [
-   ["burn incense", "분향하다, 향을 피우다"]
+   [
+    "the most holy things",
+    "지극히 거룩한 것들"
+   ],
+   [
+    "in his name",
+    "그의 이름으로"
+   ]
   ],
   "gra": [
-   ["that he should sanctify ... to burn ... to minister ... to bless", "that+should(목적절)에 to부정사(목적)가 이어져 직무의 내용을 나열"]
+   [
+    "that he should sanctify",
+    "목적의 that절; should로 표현"
+   ]
+  ]
+ },
+ {
+  "en": "Now concerning Moses the man of God, his sons were named of the tribe of Levi.",
+  "ko": "하나님의 사람 모세로 말하면 그의 아들들은 레위 지파에 속하여 일컬어졌으며,",
+  "note": "하나님의 사람 모세의 아들들은 레위 지파에 속하여 일컬어졌다. 히브리어 '이쉬 하엘로힘'(אִישׁ הָאֱלֹהִים, 하나님의 사람)은 모세의 존귀한 칭호이다. 모세의 자손은 왕가가 아니라 레위 봉사자로 남았으니, 겸손한 섬김의 자리가 존귀하다.",
+  "voc": [
+   [
+    "man of God",
+    "n.",
+    "하나님의 사람"
+   ],
+   [
+    "tribe",
+    "n.",
+    "지파"
+   ]
+  ],
+  "idi": [
+   [
+    "the man of God",
+    "하나님의 사람 (모세의 칭호)"
+   ]
+  ],
+  "gra": [
+   [
+    "were named of the tribe",
+    "~지파에 속하여 일컬어졌다"
+   ]
+  ]
+ },
+ {
+  "en": "The sons of Moses were, Gershom, and Eliezer.",
+  "ko": "모세의 아들들은 게르솜과 엘리에셀이라.",
+  "note": "모세의 아들은 게르솜과 엘리에셀이었다. '게르솜'은 '나그네', '엘리에셀'은 '내 하나님은 도우심'이라는 뜻이다. 이 이름들은 모세가 미디안에서의 삶과 하나님의 도우심을 기념한 것이다.",
+  "voc": [
+   [
+    "Gershom",
+    "n.",
+    "게르솜 (인명)"
+   ],
+   [
+    "Eliezer",
+    "n.",
+    "엘리에셀 (인명)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "The sons of Moses were",
+    "모세의 아들들은 ~이었다"
+   ]
+  ]
+ },
+ {
+  "en": "Of the sons of Gershom, Shebuel was the chief.",
+  "ko": "게르솜의 아들들 중에는 스부엘이 우두머리요,",
+  "note": "게르솜의 아들 중에는 스부엘이 우두머리였다. '스부엘'은 '하나님께로 돌아가다'의 뜻으로 여겨진다. 봉사자의 이름에도 하나님께 돌아감의 신앙이 담겨 있다.",
+  "voc": [
+   [
+    "Shebuel",
+    "n.",
+    "스부엘 (인명)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Shebuel was the chief",
+    "스부엘이 우두머리였다"
+   ]
+  ]
+ },
+ {
+  "en": "And the sons of Eliezer were, Rehabiah the chief. And Eliezer had none other sons; but the sons of Rehabiah were very many.",
+  "ko": "엘리에셀의 아들들은 그 우두머리 르하뱌라. 엘리에셀에게는 다른 아들이 없으나 르하뱌의 아들들은 심히 많았더라.",
+  "note": "엘리에셀의 아들은 우두머리 르하뱌라. 엘리에셀에게 다른 아들이 없으나 르하뱌의 아들은 심히 많았다. 히브리어 '라바'(רָבָה, 많아지다)의 번성이다. 하나님은 한 줄기를 통해서도 크게 번성케 하신다.",
+  "voc": [
+   [
+    "Rehabiah",
+    "n.",
+    "르하뱌 (인명)"
+   ],
+   [
+    "none other",
+    "adj.",
+    "다른 ~이 없는"
+   ]
+  ],
+  "idi": [
+   [
+    "very many",
+    "심히 많은"
+   ]
+  ],
+  "gra": [
+   [
+    "Eliezer had none other sons",
+    "다른 아들이 없었다"
+   ]
+  ]
+ },
+ {
+  "en": "Of the sons of Izhar; Shelomith the chief.",
+  "ko": "이스할의 아들들 중에는 슬로밋이 우두머리요,",
+  "note": "이스할의 아들 중에는 슬로밋이 우두머리였다. '슬로밋'은 '평화로운'의 뜻이다. 각 가문마다 우두머리를 세워 봉사의 질서를 잡으니, 이름의 열거가 곧 섬김의 조직을 이룬다.",
+  "voc": [
+   [
+    "Izhar",
+    "n.",
+    "이스할 (인명)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Shelomith the chief",
+    "슬로밋이 우두머리 (be동사 생략)"
+   ]
+  ]
+ },
+ {
+  "en": "Of the sons of Hebron; Jeriah the first, Amariah the second, Jahaziel the third, and Jekameam the fourth.",
+  "ko": "헤브론의 아들들은 여리야가 첫째요 아마랴가 둘째요 야하시엘이 셋째요 여가므암이 넷째며,",
+  "note": "헤브론의 아들은 여리야가 첫째, 아마랴가 둘째, 야하시엘이 셋째, 여가므암이 넷째였다. 순서를 따라 기록됨은 봉사의 반차를 정하기 위함이다. '아마랴'는 '여호와께서 말씀하셨다'는 뜻이다.",
+  "voc": [
+   [
+    "first",
+    "adj.",
+    "첫째"
+   ],
+   [
+    "second",
+    "adj.",
+    "둘째"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Jeriah the first",
+    "여리야가 첫째 (be동사 생략)"
+   ]
+  ]
+ },
+ {
+  "en": "Of the sons of Uzziel; Micah the first, and Jesiah the second.",
+  "ko": "웃시엘의 아들들은 미가가 첫째요 잇시야가 둘째더라.",
+  "note": "웃시엘의 아들은 미가가 첫째, 잇시야가 둘째였다. '미가'는 '누가 여호와와 같으랴'의 뜻으로, 하나님의 비할 데 없으심을 담은 이름이다. 계보의 이름이 신앙 고백을 이룬다.",
+  "voc": [
+   [
+    "Uzziel",
+    "n.",
+    "웃시엘 (인명)"
+   ],
+   [
+    "Micah",
+    "n.",
+    "미가 (인명)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Micah the first",
+    "미가가 첫째"
+   ]
+  ]
+ },
+ {
+  "en": "The sons of Merari; Mahli, and Mushi. The sons of Mahli; Eleazar, and Kish.",
+  "ko": "므라리의 아들들은 마흘리와 무시요, 마흘리의 아들들은 엘르아살과 기스라.",
+  "note": "므라리의 아들은 마흘리와 무시요, 마흘리의 아들은 엘르아살과 기스였다. 므라리 계열은 성막의 널판과 기둥을 맡아 충성히 섬겼다. 계보가 세대를 이어 봉사의 직분을 계승한다.",
+  "voc": [
+   [
+    "Merari",
+    "n.",
+    "므라리 (인명)"
+   ],
+   [
+    "Mahli",
+    "n.",
+    "마흘리 (인명)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "The sons of Merari",
+    "므라리의 아들들"
+   ]
   ]
  },
  {
   "en": "And Eleazar died, and had no sons, but daughters: and their brethren the sons of Kish took them.",
   "ko": "엘르아살이 죽었으되 아들이 없고 딸들만 있으므로, 그들의 형제 기스의 아들들이 그들을 아내로 맞았더라.",
-  "note": "딸만 남은 집의 대를 잇기 위해 친족이 그들을 아내로 맞았으니, 이는 슬로브핫 딸들에게 주신 율법(민 36장) 곧 기업이 지파 밖으로 흩어지지 않게 한 규례를 따른 것이다. 'took them'은 '그들을 아내로 취하였다'는 뜻이다.",
+  "note": "엘르아살이 아들 없이 딸만 두고 죽으매 형제 기스의 아들들이 그 딸들을 아내로 맞았다. 히브리어 관습에서 기업이 가문 안에 남도록 근친이 혼인함이다. 이는 기업을 지키시는 하나님의 율법의 배려를 보인다.",
   "voc": [
-   ["die", "v.", "죽다"],
-   ["brethren", "n.", "(옛말) 형제들"],
-   ["take", "v.", "(아내로) 맞다, 취하다"]
+   [
+    "die",
+    "v.",
+    "죽다"
+   ],
+   [
+    "daughter",
+    "n.",
+    "딸"
+   ],
+   [
+    "take",
+    "v.",
+    "(아내로) 맞다"
+   ]
   ],
   "idi": [
-   ["take to wife", "아내로 맞다 (여기서 took them=그들을 아내로 취하다)"]
+   [
+    "had no sons, but daughters",
+    "아들이 없고 딸만 있었다"
+   ]
   ],
   "gra": [
-   ["had no sons, but daughters", "no ... but ~='~ 외에는 없다' — '아들은 없고 딸만 있다'"]
+   [
+    "the sons of Kish took them",
+    "기스의 아들들이 그들을 맞았다"
+   ]
+  ]
+ },
+ {
+  "en": "The sons of Mushi; Mahli, and Eder, and Jeremoth, three.",
+  "ko": "무시의 아들들은 마흘리와 에델과 여레못 셋이니라.",
+  "note": "무시의 아들은 마흘리와 에델과 여레못 셋이었다. 므라리 계열의 봉사자들이 세대를 이어 세워진다. '여레못'은 '높은 곳'의 뜻으로, 이름마다 특유의 의미가 담겨 있다.",
+  "voc": [
+   [
+    "Mushi",
+    "n.",
+    "무시 (인명)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Mahli, and Eder, and Jeremoth, three",
+    "세 이름을 열거하고 수를 명시"
+   ]
+  ]
+ },
+ {
+  "en": "These were the sons of Levi after the house of their fathers; even the chief of the fathers, as they were counted by number of names by their polls, that did the work for the service of the house of the LORD, from the age of twenty years and upward.",
+  "ko": "이들은 그들의 아버지의 집을 따른 레위의 자손이요 곧 족장들이라. 이들은 이름의 수효를 따라 머릿수대로 계수되어 스무 살 이상으로 여호와의 전의 봉사의 일을 행하였더라.",
+  "note": "이들이 아버지 집을 따른 레위 자손이요 족장이라, 스무 살 이상으로 계수되어 전의 봉사를 행하였다. 앞서 삼십 세였던 기준이 스무 살로 낮아졌으니, 성전 시대에 맞춘 봉사 편성의 변화이다.",
+  "voc": [
+   [
+    "chief of the fathers",
+    "n.",
+    "족장"
+   ],
+   [
+    "service",
+    "n.",
+    "봉사, 직무"
+   ]
+  ],
+  "idi": [
+   [
+    "after the house of their fathers",
+    "아버지 집을 따라"
+   ],
+   [
+    "from the age of twenty years and upward",
+    "스무 살 이상으로"
+   ]
+  ],
+  "gra": [
+   [
+    "as they were counted",
+    "~하게 계수된 대로"
+   ]
   ]
  },
  {
   "en": "For David said, The LORD God of Israel hath given rest unto his people, that they may dwell in Jerusalem for ever:",
-  "ko": "이는 다윗이 이르기를 \"이스라엘의 하나님 여호와께서 그의 백성에게 안식을 주사 그들로 예루살렘에 영원히 거하게 하셨으니,\" 하였음이라.",
-  "note": "히브리어 '메누하'(מְנוּחָה, rest)는 단순한 쉼이 아니라 원수에게서 벗어난 '안식의 정착'을 뜻한다. 광야의 유랑이 끝나고 예루살렘에 영구히 거하게 되었으므로, 레위인의 임무도 성막을 메는 일에서 정착한 성전을 섬기는 일로 바뀐다.",
+  "ko": "이는 다윗이 이르기를 \"이스라엘의 하나님 여호와께서 그의 백성에게 안식을 주사 그들로 예루살렘에 영원히 거하게 하셨으니,",
+  "note": "다윗이 이르되 여호와께서 백성에게 안식을 주사 예루살렘에 영원히 거하게 하셨다 하였다. 히브리어 '누아흐'(נוּחַ, 안식)는 전쟁이 그친 평안이다. 안식이 이루어졌으므로 봉사의 형태가 새롭게 정해질 수 있었다.",
   "voc": [
-   ["give rest", "", "안식을 주다"],
-   ["dwell", "v.", "거하다, 살다"],
-   ["for ever", "", "영원히"]
+   [
+    "rest",
+    "n.",
+    "안식"
+   ],
+   [
+    "dwell",
+    "v.",
+    "거하다"
+   ]
   ],
   "idi": [
-   ["give rest unto", "~에게 안식을 주다"]
+   [
+    "given rest unto his people",
+    "백성에게 안식을 주셨다"
+   ],
+   [
+    "for ever",
+    "영원히"
+   ]
   ],
   "gra": [
-   ["hath given rest", "현재완료(hath given) '안식을 주셨다'"],
-   ["that they may dwell", "that+may=목적 '거하게 하려'"]
+   [
+    "that they may dwell",
+    "목적의 that절"
+   ]
+  ]
+ },
+ {
+  "en": "And also unto the Levites; they shall no more carry the tabernacle, nor any vessels of it for the service thereof.",
+  "ko": "또한 레위 사람에게도 그러하니, 그들이 다시는 성막과 그 봉사에 쓰이는 어떤 기구도 메지 아니하리라\" 하였음이라.",
+  "note": "레위 사람이 다시는 성막과 그 기구를 메지 않게 되었다. 성전이 세워지면 성막을 옮길 필요가 없기 때문이다. 광야의 이동 시대가 끝나고 정착의 예배 시대가 열렸으니, 봉사의 성격이 바뀌었다.",
+  "voc": [
+   [
+    "carry",
+    "v.",
+    "메다, 운반하다"
+   ],
+   [
+    "tabernacle",
+    "n.",
+    "성막"
+   ],
+   [
+    "vessel",
+    "n.",
+    "기구, 그릇"
+   ]
+  ],
+  "idi": [
+   [
+    "no more carry",
+    "다시는 메지 않다"
+   ],
+   [
+    "for the service thereof",
+    "그 봉사를 위한"
+   ]
+  ],
+  "gra": [
+   [
+    "nor any vessels",
+    "nor로 부정을 이어 강조"
+   ]
+  ]
+ },
+ {
+  "en": "For by the last words of David the Levites were numbered from twenty years old and above:",
+  "ko": "다윗의 마지막 말씀을 따라 레위 사람을 스무 살 이상으로 계수하였으니,",
+  "note": "다윗의 마지막 말씀을 따라 레위 사람을 스무 살 이상으로 계수하였다. 히브리어 '디브레 다비드 하아하로님'(다윗의 마지막 말씀)은 그의 유언적 규례이다. 지도자의 마지막 지침이 성전 봉사의 기준으로 이어졌다.",
+  "voc": [
+   [
+    "last words",
+    "n.",
+    "마지막 말씀"
+   ],
+   [
+    "number",
+    "v.",
+    "계수하다"
+   ]
+  ],
+  "idi": [
+   [
+    "by the last words of David",
+    "다윗의 마지막 말씀을 따라"
+   ]
+  ],
+  "gra": [
+   [
+    "from twenty years old and above",
+    "스무 살 이상으로"
+   ]
   ]
  },
  {
   "en": "Because their office was to wait on the sons of Aaron for the service of the house of the LORD, in the courts, and in the chambers, and in the purifying of all holy things, and the work of the service of the house of God;",
   "ko": "이는 그들의 직무가 아론의 자손을 도와 여호와의 전을 섬기되, 뜰과 골방에서 일하며 모든 거룩한 것을 정결하게 하고 하나님의 전을 섬기는 일을 하게 함이라.",
-  "note": "'웨이트 온'(wait on)은 '시중들다, 돕다'이니, 레위인은 제사장을 대신함이 아니라 보조하는 자리에 섰다. 제사장(아론 자손)과 레위인의 직분이 뚜렷이 구별되어, 거룩한 봉사 안에도 정해진 위계와 질서가 있었음을 보여 준다.",
+  "note": "그들의 직무는 아론 자손을 도와 뜰과 골방에서 일하며 거룩한 것을 정결하게 함이었다. 히브리어 '타하르'(טָהַר, 정결하게 하다)는 성물을 거룩히 지킴이다. 레위 사람은 제사장을 보조하여 예배가 온전히 드려지도록 섬겼다.",
   "voc": [
-   ["office", "n.", "직무, 직분"],
-   ["wait on", "", "시중들다, 돕다"],
-   ["court", "n.", "뜰, 안마당"],
-   ["chamber", "n.", "방, 골방"],
-   ["purifying", "n.", "정결하게 함"]
+   [
+    "office",
+    "n.",
+    "직무"
+   ],
+   [
+    "court",
+    "n.",
+    "뜰"
+   ],
+   [
+    "chamber",
+    "n.",
+    "골방, 방"
+   ],
+   [
+    "purify",
+    "v.",
+    "정결하게 하다"
+   ]
   ],
   "idi": [
-   ["wait on", "시중들다, 섬기다, 돕다"]
+   [
+    "wait on",
+    "돕다, 섬기다"
+   ],
+   [
+    "the purifying of all holy things",
+    "모든 거룩한 것의 정결케 함"
+   ]
   ],
   "gra": [
-   ["their office was to wait on", "be+to부정사 '~하는 것이 그들의 직무였다'"]
+   [
+    "their office was to wait",
+    "직무는 돕는 것이었다"
+   ]
+  ]
+ },
+ {
+  "en": "Both for the shewbread, and for the fine flour for meat offering, and for the unleavened cakes, and for that which is baked in the pan, and for that which is fried, and for all manner of measure and size;",
+  "ko": "또한 진설병과 소제로 드리는 고운 가루와 누룩 없는 과자와 번철에 굽는 것과 기름에 지지는 것과 모든 분량과 크기를 맡으며,",
+  "note": "진설병과 소제의 고운 가루, 누룩 없는 과자와 굽고 지지는 것과 모든 분량을 맡았다. 히브리어 '레헴 하파님'(לֶחֶם הַפָּנִים, 진설병)은 하나님 앞에 놓는 떡이다. 예배의 세밀한 준비까지 레위 사람이 정성으로 맡았다.",
+  "voc": [
+   [
+    "shewbread",
+    "n.",
+    "진설병"
+   ],
+   [
+    "fine flour",
+    "n.",
+    "고운 가루"
+   ],
+   [
+    "unleavened",
+    "adj.",
+    "누룩 없는"
+   ]
+  ],
+  "idi": [
+   [
+    "meat offering",
+    "소제 (곡식 제사)"
+   ],
+   [
+    "all manner of measure and size",
+    "모든 분량과 크기"
+   ]
+  ],
+  "gra": [
+   [
+    "that which is baked",
+    "구운 것 (that which은 ~하는 것)"
+   ]
   ]
  },
  {
   "en": "And to stand every morning to thank and praise the LORD, and likewise at even;",
   "ko": "또 아침마다 서서 여호와께 감사하고 찬양하며 저녁에도 그리하고,",
-  "note": "'이븐'(even)은 옛 영어로 '저녁'(evening)이다. 아침과 저녁마다 '서서' 감사하고 찬양함은, 예배가 하루를 여닫는 항상된 리듬이었음을 보여 준다. '라이크와이즈'(likewise)는 '마찬가지로'이니, 같은 찬양을 저녁에도 거르지 않았다.",
+  "note": "아침저녁으로 서서 여호와께 감사하고 찬양하는 것도 그들의 직무였다. 히브리어 '야다'(יָדָה, 감사하다)와 '할랄'(הָלַל, 찬양하다)이 날마다 드려졌다. 끊임없는 감사와 찬양이 성전 봉사의 심장이었다.",
   "voc": [
-   ["stand", "v.", "서다"],
-   ["thank", "v.", "감사하다"],
-   ["praise", "v.", "찬양하다"],
-   ["likewise", "adv.", "마찬가지로, 그같이"],
-   ["even", "n.", "(옛말) 저녁"]
+   [
+    "stand",
+    "v.",
+    "서다"
+   ],
+   [
+    "thank",
+    "v.",
+    "감사하다"
+   ],
+   [
+    "even",
+    "n.",
+    "저녁"
+   ]
+  ],
+  "idi": [
+   [
+    "every morning",
+    "아침마다"
+   ],
+   [
+    "at even",
+    "저녁에"
+   ]
   ],
   "gra": [
-   ["to stand every morning to thank and praise", "to부정사(목적) '감사하고 찬양하려 서다'; every morning=시간 부사"]
+   [
+    "to stand every morning",
+    "아침마다 서도록 (목적의 부정사)"
+   ]
+  ]
+ },
+ {
+  "en": "And to offer all burnt sacrifices unto the LORD in the sabbaths, in the new moons, and on the set feasts, by number, according to the order commanded unto them, continually before the LORD:",
+  "ko": "또 안식일과 초하루와 정한 절기에 여호와께 모든 번제를 드리되, 그 수효대로 그들에게 명령된 규례를 따라 항상 여호와 앞에서 드리게 하였으며,",
+  "note": "안식일과 초하루와 절기에 정한 규례대로 항상 번제를 드리게 하였다. 히브리어 '타미드'(תָּמִיד, 항상)의 제사이다. 정해진 때와 수효를 따라 드림은 예배가 감정이 아니라 하나님의 규례를 따름을 보인다.",
+  "voc": [
+   [
+    "sabbath",
+    "n.",
+    "안식일"
+   ],
+   [
+    "new moon",
+    "n.",
+    "초하루"
+   ],
+   [
+    "feast",
+    "n.",
+    "절기"
+   ]
+  ],
+  "idi": [
+   [
+    "set feasts",
+    "정한 절기"
+   ],
+   [
+    "according to the order",
+    "규례를 따라"
+   ]
+  ],
+  "gra": [
+   [
+    "continually before the LORD",
+    "항상 여호와 앞에서"
+   ]
   ]
  },
  {
   "en": "And that they should keep the charge of the tabernacle of the congregation, and the charge of the holy place, and the charge of the sons of Aaron their brethren, in the service of the house of the LORD.",
   "ko": "또 그들로 회막의 직무와 거룩한 곳의 직무와 그들의 형제 아론 자손의 직무를 지켜 여호와의 전에서 봉사하게 하였더라.",
-  "note": "'킵 더 차지'(keep the charge)는 '맡은 직무를 지키다'이니, 히브리어 '샤마르 미슈메레트'(שָׁמַר מִשְׁמֶרֶת)는 '책임을 충실히 파수하다'이다. '태버나클 오브 더 컹그리게이션'(tabernacle of the congregation)은 '회막'으로, 하나님이 백성과 만나시는 곳이다. 거룩한 곳을 지키는 충실함이 곧 예배의 본질이다.",
+  "note": "그들로 회막과 성소와 아론 자손의 직무를 지켜 여호와의 전에서 봉사하게 하였다. 히브리어 '미쉬메레트'(מִשְׁמֶרֶת, 직무·지킴)는 맡은 바를 충성히 지킴이다. 각자의 직무를 지키는 성실함이 예배 공동체를 든든히 세운다.",
   "voc": [
-   ["keep the charge", "", "직무를 지키다, 맡은 바를 파수하다"],
-   ["charge", "n.", "직무, 맡은 책임"],
-   ["tabernacle of the congregation", "", "회막"],
-   ["holy place", "", "거룩한 곳, 성소"]
+   [
+    "keep",
+    "v.",
+    "지키다"
+   ],
+   [
+    "charge",
+    "n.",
+    "직무, 맡은 바"
+   ],
+   [
+    "congregation",
+    "n.",
+    "회중"
+   ]
   ],
   "idi": [
-   ["keep the charge of", "~의 직무를 지키다, ~을 파수하다"],
-   ["tabernacle of the congregation", "회막 (하나님이 백성과 만나시는 장막)"]
+   [
+    "the tabernacle of the congregation",
+    "회막"
+   ],
+   [
+    "keep the charge",
+    "직무를 지키다"
+   ]
   ],
   "gra": [
-   ["that they should keep the charge", "that+should=목적·명령 '직무를 지키게 하려'"]
+   [
+    "that they should keep",
+    "목적의 that절; should로 표현"
+   ]
   ]
  }
 ]

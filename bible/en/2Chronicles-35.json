@@ -1,229 +1,991 @@
 [
  {
-  "en": "Moreover Josiah kept a passover unto the LORD in Jerusalem",
-  "ko": "요시야가 예루살렘에서 여호와께 유월절을 지키니라.",
-  "note": "히브리어 '페사흐'(pesaḥ)는 '넘어가다'에서 온 말로, 애굽에서 멸하는 자가 피 바른 집을 '넘어간' 구원을 기념한다(출 12장). 요시야의 개혁은 잃었던 이 구원의 절기를 회복함으로 절정에 이른다.",
+  "en": "Moreover Josiah kept a passover unto the LORD in Jerusalem: and they killed the passover on the fourteenth day of the first month.",
+  "ko": "요시야가 예루살렘에서 여호와께 유월절을 지키니, 첫째 달 열나흗날에 유월절 양을 잡으니라.",
+  "note": "요시야가 예루살렘에서 유월절을 지켜 첫째 달 열나흗날에 양을 잡았다. 히스기야의 유월절이 둘째 달의 임시 절기였다면, 요시야는 규정된 첫째 달에 지키니 율법 재발견 후의 온전한 순종을 보여 준다.",
   "voc": [
-   ["kept", "v.", "(절기를) 지켰다"],
-   ["passover", "n.", "유월절"],
-   ["killed", "v.", "잡았다, 죽였다"],
-   ["fourteenth", "num.", "열넷째"]
+   [
+    "kept",
+    "v.",
+    "지켰다"
+   ],
+   [
+    "passover",
+    "n.",
+    "유월절"
+   ],
+   [
+    "killed",
+    "v.",
+    "잡았다"
+   ],
+   [
+    "fourteenth",
+    "adj.",
+    "열넷째의"
+   ]
   ],
   "idi": [
-   ["keep a passover", "유월절을 지키다"]
+   [
+    "kept a passover",
+    "유월절을 지키다"
+   ]
   ],
-  "gra": [
-   ["they killed the passover", "여기 the passover는 '유월절 양'을 가리킨다(환유)"]
-  ]
+  "gra": []
  },
  {
-  "en": "And he set the priests in their charges, and encouraged them to the service of the house of the LORD",
+  "en": "And he set the priests in their charges, and encouraged them to the service of the house of the LORD,",
   "ko": "그가 제사장들을 그 직분에 세우고, 여호와의 전을 섬기는 일에 그들을 격려하니라.",
-  "note": "히브리어 '미슈메레트'(mishmereth)는 '맡은 직무·지켜야 할 임무'를 뜻한다. 왕이 제사장 각 사람을 제자리에 세우니, 예배의 회복은 무질서가 아니라 정해진 질서를 따라 이루어진다.",
+  "note": "왕이 제사장을 직분에 세우고 성전 섬김에 격려했다. 히브리어 '하자크'(격려하다, 굳게 하다)는, 개혁이 사람을 세우고 힘 주는 데서 시작됨을 보여 주며 왕의 목양적 지도력을 드러낸다.",
   "voc": [
-   ["set", "v.", "세웠다, 두었다"],
-   ["charge", "n.", "직분, 맡은 임무"],
-   ["encouraged", "v.", "격려하였다"],
-   ["service", "n.", "섬김, 봉사"]
+   [
+    "set",
+    "v.",
+    "세웠다"
+   ],
+   [
+    "charges",
+    "n.",
+    "직분, 맡은 일"
+   ],
+   [
+    "encouraged",
+    "v.",
+    "격려하였다"
+   ],
+   [
+    "service",
+    "n.",
+    "섬김, 봉사"
+   ]
   ],
   "idi": [
-   ["set ... in their charges", "~을 그 직분에 세우다"]
-  ]
- },
- {
-  "en": "Put the holy ark in the house which Solomon ... did build; it shall not be a burden upon your shoulders",
-  "ko": "거룩한 궤를 솔로몬이 지은 전 안에 둘지니, 다시는 그것을 너희 어깨에 멜 짐으로 삼지 말라.",
-  "note": "광야 시절 레위 사람은 언약궤를 어깨에 메었으나(민 7:9), 이제 성전이 영구한 처소가 되었으니 그 짐을 내려놓으라 하신다. 메는 수고에서 섬기는 직무로 옮겨가는 전환이다.",
-  "voc": [
-   ["holy ark", "", "거룩한 궤(언약궤)"],
-   ["burden", "n.", "짐"],
-   ["shoulders", "n.", "어깨"],
-   ["build", "v.", "짓다, 건축하다"]
+   [
+    "set the priests in their charges",
+    "제사장을 직분에 세우다"
+   ]
   ],
-  "gra": [
-   ["the house which Solomon ... did build", "which=관계대명사; did build=과거 강조형 '지었던'"]
-  ]
+  "gra": []
  },
  {
-  "en": "And prepare yourselves by the houses of your fathers, after your courses, according to the writing of David",
-  "ko": "다윗의 글을 따라, 너희 조상의 집을 좇아 너희 반차대로 스스로 준비하라.",
-  "note": "히브리어 '마흘레코트'(maḥleqoth)는 다윗이 정한 제사장·레위인의 '반열(당번 조)'을 뜻한다(대상 24장). 예배의 회복이 다윗과 솔로몬이 남긴 기록을 근거로 삼으니, 개혁은 옛 말씀으로 돌아감이다.",
+  "en": "And said unto the Levites that taught all Israel, which were holy unto the LORD, Put the holy ark in the house which Solomon the son of David king of Israel did build; it shall not be a burden upon your shoulders: serve now the LORD your God, and his people Israel,",
+  "ko": "또 온 이스라엘을 가르치며 여호와께 거룩히 구별된 레위 사람들에게 이르되 \"거룩한 궤를 이스라엘 왕 다윗의 아들 솔로몬이 지은 전 안에 둘지니, 다시는 그것을 너희 어깨에 멜 짐으로 삼지 말고, 이제 너희 하나님 여호와와 그의 백성 이스라엘을 섬길지니라.",
+  "note": "'거룩한 궤를 성전에 두라, 다시 어깨에 멜 짐으로 삼지 말고 여호와를 섬기라'고 명한다. 광야에서 궤를 메던 레위인이 이제 정착한 성전에서 봉사로 전환하니, 예배의 형태가 시대에 맞게 회복됨을 보여 준다.",
   "voc": [
-   ["prepare", "v.", "준비하다"],
-   ["houses of your fathers", "", "너희 조상의 집(가문)"],
-   ["courses", "n.", "반차, 당번 조"],
-   ["writing", "n.", "글, 기록"]
+   [
+    "ark",
+    "n.",
+    "궤, 법궤"
+   ],
+   [
+    "burden",
+    "n.",
+    "짐"
+   ],
+   [
+    "shoulders",
+    "n.",
+    "어깨들"
+   ],
+   [
+    "serve",
+    "v.",
+    "섬기다"
+   ]
   ],
   "idi": [
-   ["according to the writing of", "~의 글(기록)을 따라"]
-  ]
- },
- {
-  "en": "So kill the passover, and sanctify yourselves, and prepare your brethren",
-  "ko": "이같이 유월절 양을 잡고 너희 자신을 거룩하게 하며 너희 형제를 준비시키라.",
-  "note": "히브리어 '카다쉬'(qadash)는 '거룩하게 구별하다'이다. 제물을 잡는 일에 앞서 자신을 정결케 하라 하니, 섬기는 자가 먼저 거룩해야 거룩한 일을 감당할 수 있다.",
-  "voc": [
-   ["kill", "v.", "잡다, 죽이다"],
-   ["sanctify", "v.", "거룩하게 하다"],
-   ["brethren", "n.", "형제들"],
-   ["by the hand of Moses", "", "모세를 통하여"]
+   [
+    "the holy ark",
+    "거룩한 궤(언약궤)"
+   ],
+   [
+    "a burden upon your shoulders",
+    "너희 어깨에 멘 짐"
+   ]
   ],
-  "gra": [
-   ["that they may do according to the word of the LORD", "that ... may=목적 '~하도록'"]
-  ]
+  "gra": []
  },
  {
-  "en": "And Josiah gave to the people ... lambs and kids, all for the passover offerings ... these were of the king's substance",
-  "ko": "요시야가 백성에게 어린 양과 어린 염소를 유월절 제물로 주니, 이는 왕의 소유에서 낸 것이라.",
-  "note": "히브리어 '레쿠시'(rekhush)는 왕의 '재산·소유'를 뜻한다. 요시야가 자기 재물로 백성의 제물을 댔으니, 참된 지도자는 명령만 내리지 않고 자기 것을 들여 백성을 섬긴다.",
+  "en": "And prepare yourselves by the houses of your fathers, after your courses, according to the writing of David king of Israel, and according to the writing of Solomon his son.",
+  "ko": "이스라엘 왕 다윗의 글과 그의 아들 솔로몬의 글을 따라, 너희 조상의 집을 좇아 너희 반차대로 스스로 준비하고,",
+  "note": "'다윗과 솔로몬의 글을 따라 반차대로 준비하라'고 명한다. 히브리어 '마할레켓'(반차, 조)의 회복은, 요시야 개혁이 다윗 시대의 예배 질서를 근거로 삼았음을 보여 주며 전통과 말씀에 뿌리내린 순종을 드러낸다.",
   "voc": [
-   ["lambs", "n.", "어린 양들"],
-   ["kids", "n.", "어린 염소들"],
-   ["bullocks", "n.", "수소들"],
-   ["substance", "n.", "재산, 소유"]
+   [
+    "prepare",
+    "v.",
+    "준비하다"
+   ],
+   [
+    "courses",
+    "n.",
+    "반차, 조"
+   ],
+   [
+    "writing",
+    "n.",
+    "글, 기록"
+   ],
+   [
+    "fathers",
+    "n.",
+    "조상들"
+   ]
   ],
   "idi": [
-   ["passover offerings", "유월절 제물"]
-  ]
- },
- {
-  "en": "And his princes gave willingly unto the people, to the priests, and to the Levites",
-  "ko": "그의 방백들도 백성과 제사장들과 레위 사람들에게 기쁘게 드렸느니라.",
-  "note": "히브리어 '네다바'(nedavah, '기쁘게 드림' willingly)는 강요 아닌 자원하는 마음을 가리킨다. 왕의 헌신이 방백들의 자원함을 불러일으키니, 거룩한 본보기는 백성을 감화시킨다.",
-  "voc": [
-   ["princes", "n.", "방백들, 고관들"],
-   ["willingly", "adv.", "기쁘게, 자원하여"],
-   ["rulers", "n.", "다스리는 자들"],
-   ["small cattle", "", "작은 가축(양·염소)"]
+   [
+    "by the houses of your fathers",
+    "너희 조상의 집을 좇아"
+   ],
+   [
+    "after your courses",
+    "너희 반차대로"
+   ]
   ],
-  "gra": [
-   ["gave willingly", "동사+부사 '기쁜 마음으로 드렸다'"]
-  ]
+  "gra": []
  },
  {
-  "en": "And they roasted the passover with fire according to the ordinance: but the other holy offerings sod they in pots",
-  "ko": "그들이 규례를 따라 유월절 양을 불에 굽고, 그 밖에 거룩한 제물은 솥에 삶았느니라.",
-  "note": "유월절 양은 반드시 '불에 구워' 먹으라 명하셨다(출 12:8-9). 율법의 작은 규례까지 그대로 지킴은, 회복된 예배가 사람의 편의가 아니라 말씀의 명령을 따름을 보인다. ('sod'는 seethe '삶다'의 옛 과거형)",
+  "en": "And stand in the holy place according to the divisions of the families of the fathers of your brethren the people, and after the division of the families of the Levites.",
+  "ko": "너희 형제 곧 백성의 조상의 가문이 나뉜 대로, 또 레위 사람의 가문이 나뉜 대로 거룩한 곳에 설지니라.",
+  "note": "백성의 가문과 레위인의 가문이 나뉜 대로 거룩한 곳에 서라고 지시한다. 질서 있는 배치는, 회복된 유월절이 무질서한 열심이 아니라 정해진 규례에 따른 조직적 예배였음을 보여 준다.",
   "voc": [
-   ["roasted", "v.", "구웠다"],
-   ["ordinance", "n.", "규례"],
-   ["sod", "v.", "삶았다(seethe의 옛 과거형)"],
-   ["pots", "n.", "솥들"]
-  ],
-  "gra": [
-   ["sod they in pots", "도치 '그들이 솥에 삶았다'(=they seethed)"]
-  ]
- },
- {
-  "en": "And there was no passover like to that kept in Israel from the days of Samuel the prophet",
-  "ko": "선지자 사무엘의 날부터 이스라엘 중에 이같이 지킨 유월절이 없었더라.",
-  "note": "요시야의 유월절이 사사 시대 끝 사무엘 이래 으뜸이라 한다. 오랜 영적 쇠퇴 끝에 온 백성이 한마음으로 절기를 지키니, 한 경건한 왕을 통해 나라 전체가 말씀으로 돌아섰다.",
-  "voc": [
-   ["like to", "", "~와 같은"],
-   ["prophet", "n.", "선지자"],
-   ["inhabitants", "n.", "주민들"],
-   ["present", "adj.", "거기 있던, 참석한"]
-  ],
-  "gra": [
-   ["there was no passover like to that", "no ... like to that='그와 같은 ~이 없었다'(비교 부정)"]
-  ]
- },
- {
-  "en": "Necho king of Egypt came up to fight against Charchemish by Euphrates: and Josiah went out against him",
-  "ko": "애굽 왕 느고가 유브라데 강가의 갈그미스를 치러 올라오매, 요시야가 그를 막으려고 나아가니라.",
-  "note": "느고의 출정은 본래 유다를 겨눈 것이 아니었다. 요시야가 굳이 그를 막아서니, 경건한 왕의 마지막 행보가 부르심 없는 싸움으로 흐른 것이 그의 비극의 시작이다.",
-  "voc": [
-   ["came up", "v.", "올라왔다"],
-   ["fight against", "", "~와 싸우다, ~을 치다"],
-   ["Euphrates", "n.", "유브라데 강"],
-   ["went out against", "", "~을 막으려 나아가다"]
+   [
+    "stand",
+    "v.",
+    "서다"
+   ],
+   [
+    "holy place",
+    "",
+    "거룩한 곳"
+   ],
+   [
+    "divisions",
+    "n.",
+    "나뉨, 반열"
+   ],
+   [
+    "families",
+    "n.",
+    "가문들"
+   ]
   ],
   "idi": [
-   ["go out against", "~에 맞서 나아가다"]
-  ]
+   [
+    "the holy place",
+    "거룩한 곳, 성소"
+   ],
+   [
+    "the divisions of the families",
+    "가문의 나뉨"
+   ]
+  ],
+  "gra": []
  },
  {
-  "en": "forbear thee from meddling with God, who is with me, that he destroy thee not",
-  "ko": "나와 함께 계신 하나님을 거스르지 말라. 그가 그대를 멸하실까 하노라.",
-  "note": "이방 왕 느고의 입에서 나온 경고를 본문은 '하나님의 입에서 나온' 말씀이라 한다(22절). 하나님은 뜻밖의 입술로도 말씀하시니, 누가 전하느냐보다 그 말씀이 하나님에게서 났느냐가 중요하다.",
+  "en": "So kill the passover, and sanctify yourselves, and prepare your brethren, that they may do according to the word of the LORD by the hand of Moses.",
+  "ko": "이같이 유월절 양을 잡고 너희 자신을 거룩하게 하며 너희 형제를 준비시켜, 모세를 통하여 이르신 여호와의 말씀을 따라 행하게 할지니라\" 하니라.",
+  "note": "'유월절 양을 잡고 자신을 거룩케 하며 형제를 준비시켜 모세의 말씀대로 행하게 하라'고 명한다. 히브리어 '베야드 모셰'(모세를 통하여)의 반복은, 회복된 절기가 온전히 율법에 근거함을 거듭 강조한다.",
   "voc": [
-   ["forbear", "v.", "삼가다, 그치다"],
-   ["meddle", "v.", "참견하다, 거스르다"],
-   ["destroy", "v.", "멸하다"],
-   ["ambassadors", "n.", "사신들"]
+   [
+    "kill",
+    "v.",
+    "잡다"
+   ],
+   [
+    "sanctify",
+    "v.",
+    "거룩하게 하다"
+   ],
+   [
+    "prepare",
+    "v.",
+    "준비시키다"
+   ],
+   [
+    "word",
+    "n.",
+    "말씀"
+   ]
   ],
   "idi": [
-   ["forbear from", "~을 삼가다, 그만두다"],
-   ["What have I to do with thee", "내가 그대와 무슨 상관이 있느냐"]
+   [
+    "by the hand of Moses",
+    "모세를 통하여"
+   ],
+   [
+    "according to the word of the LORD",
+    "여호와의 말씀을 따라"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And Josiah gave to the people, of the flock, lambs and kids, all for the passover offerings, for all that were present, to the number of thirty thousand, and three thousand bullocks: these were of the king’s substance.",
+  "ko": "요시야가 백성에게 양 떼에서 어린 양과 어린 염소를 주어 거기 있는 모든 자를 위한 유월절 제물로 삼으니 그 수가 삼만이요, 또 수소가 삼천이라. 이는 왕의 소유에서 낸 것이며,",
+  "note": "요시야가 왕의 소유에서 양 삼만과 수소 삼천을 유월절 제물로 백성에게 주었다. 히스기야의 후한 헌납(30장)처럼, 왕이 몸소 막대한 제물을 대는 이 관대함은 온 백성이 함께 절기를 지키게 하려는 배려를 보여 준다.",
+  "voc": [
+   [
+    "gave",
+    "v.",
+    "주었다"
+   ],
+   [
+    "flock",
+    "n.",
+    "양 떼"
+   ],
+   [
+    "kids",
+    "n.",
+    "어린 염소들"
+   ],
+   [
+    "substance",
+    "n.",
+    "소유, 재산"
+   ]
+  ],
+  "idi": [
+   [
+    "passover offerings",
+    "유월절 제물"
+   ],
+   [
+    "of the king's substance",
+    "왕의 소유에서"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And his princes gave willingly unto the people, to the priests, and to the Levites: Hilkiah and Zechariah and Jehiel, rulers of the house of God, gave unto the priests for the passover offerings two thousand and six hundred small cattle, and three hundred oxen.",
+  "ko": "그의 방백들도 백성과 제사장들과 레위 사람들에게 기쁘게 드렸으니, 하나님의 전을 다스리는 자 힐기야와 스가랴와 여히엘은 제사장들에게 유월절 제물로 작은 가축 이천육백과 수소 삼백을 주었고,",
+  "note": "방백들도 기쁘게 드렸으니 힐기야 등 성전 관리자가 작은 가축 이천육백과 수소 삼백을 주었다. 히브리어 '네다바'(자원함)의 강조는, 왕뿐 아니라 지도층 전체가 자발적으로 헌신한 부흥의 뜨거움을 보여 준다.",
+  "voc": [
+   [
+    "princes",
+    "n.",
+    "방백들"
+   ],
+   [
+    "willingly",
+    "adv.",
+    "기쁘게, 자원하여"
+   ],
+   [
+    "rulers",
+    "n.",
+    "다스리는 자들"
+   ],
+   [
+    "cattle",
+    "n.",
+    "가축"
+   ]
+  ],
+  "idi": [
+   [
+    "gave willingly",
+    "기쁘게 드리다, 자원하여 주다"
+   ],
+   [
+    "small cattle",
+    "작은 가축(양·염소)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Conaniah also, and Shemaiah and Nethaneel, his brethren, and Hashabiah and Jeiel and Jozabad, chief of the Levites, gave unto the Levites for passover offerings five thousand small cattle, and five hundred oxen.",
+  "ko": "또 고나냐와 그의 형제 스마야와 느다넬과 레위 사람의 어른 하사뱌와 여이엘과 요사밧은 레위 사람들에게 유월절 제물로 작은 가축 오천과 수소 오백을 주니라.",
+  "note": "레위인의 어른들도 레위인에게 작은 가축 오천과 수소 오백을 주었다. 레위 지도자가 동료 레위인을 챙기는 이 나눔은, 봉사자들 사이의 상호 섬김과 공동체적 관대함을 보여 준다.",
+  "voc": [
+   [
+    "brethren",
+    "n.",
+    "형제들"
+   ],
+   [
+    "chief",
+    "n.",
+    "어른, 우두머리"
+   ],
+   [
+    "gave",
+    "v.",
+    "주었다"
+   ],
+   [
+    "oxen",
+    "n.",
+    "수소들"
+   ]
+  ],
+  "idi": [
+   [
+    "chief of the Levites",
+    "레위 사람의 어른"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "So the service was prepared, and the priests stood in their place, and the Levites in their courses, according to the king’s commandment.",
+  "ko": "이같이 섬기는 일이 준비되매 왕의 명령을 따라 제사장들은 그 자리에 서고 레위 사람들은 그 반차대로 서니라.",
+  "note": "섬김이 준비되매 제사장은 자리에, 레위인은 반차대로 섰다. 히브리어 '쿤'(준비됨, 질서)은 예배 질서의 완비를 뜻하니, 왕의 명령대로 각자 제 자리를 지킨 조직적 순종을 보여 준다.",
+  "voc": [
+   [
+    "service",
+    "n.",
+    "섬김"
+   ],
+   [
+    "prepared",
+    "v.",
+    "준비되었다"
+   ],
+   [
+    "place",
+    "n.",
+    "자리"
+   ],
+   [
+    "commandment",
+    "n.",
+    "명령"
+   ]
+  ],
+  "idi": [
+   [
+    "stood in their place",
+    "그 자리에 서다"
+   ],
+   [
+    "in their courses",
+    "그 반차대로"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And they killed the passover, and the priests sprinkled the blood from their hands, and the Levites flayed them.",
+  "ko": "그들이 유월절 양을 잡으니, 제사장들은 그들의 손에서 받은 피를 뿌리고 레위 사람들은 그 가죽을 벗기니라.",
+  "note": "양을 잡으매 제사장이 피를 뿌리고 레위인이 가죽을 벗겼다. 각 직분이 정해진 역할을 수행하는 이 협업은, 레위기의 규례를 따른 정교한 예배 진행을 보여 준다.",
+  "voc": [
+   [
+    "killed",
+    "v.",
+    "잡았다"
+   ],
+   [
+    "sprinkled",
+    "v.",
+    "뿌렸다"
+   ],
+   [
+    "blood",
+    "n.",
+    "피"
+   ],
+   [
+    "flayed",
+    "v.",
+    "가죽을 벗겼다"
+   ]
+  ],
+  "idi": [
+   [
+    "sprinkled the blood",
+    "피를 뿌리다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And they removed the burnt offerings, that they might give according to the divisions of the families of the people, to offer unto the LORD, as it is written in the book of Moses. And so did they with the oxen.",
+  "ko": "또 번제물을 따로 떼어 두어 백성의 조상의 가문이 나뉜 대로 그들에게 주어, 모세의 책에 기록된 대로 여호와께 드리게 하니, 수소도 그같이 하니라.",
+  "note": "번제물을 따로 떼어 가문대로 나눠 '모세의 책에 기록된 대로' 드리게 했다. 유월절 제사와 번제를 구별해 규례대로 처리한 이 세밀함은, 개혁이 말씀의 정확한 준수를 목표했음을 보여 준다.",
+  "voc": [
+   [
+    "removed",
+    "v.",
+    "따로 떼어 두었다"
+   ],
+   [
+    "burnt offerings",
+    "",
+    "번제물"
+   ],
+   [
+    "offer",
+    "v.",
+    "드리다"
+   ],
+   [
+    "written",
+    "v.",
+    "기록된"
+   ]
+  ],
+  "idi": [
+   [
+    "as it is written in the book of Moses",
+    "모세의 책에 기록된 대로"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And they roasted the passover with fire according to the ordinance: but the other holy offerings sod they in pots, and in caldrons, and in pans, and divided them speedily among all the people.",
+  "ko": "그들이 규례를 따라 유월절 양을 불에 굽고, 그 밖에 거룩한 제물은 솥과 가마와 냄비에 삶아 모든 백성에게 속히 나누어 주니라.",
+  "note": "규례대로 유월절 양을 불에 굽고 다른 제물은 삶아 속히 나눠 주었다. 출애굽기 12장의 '불에 구우라'는 규례를 정확히 지키면서 백성을 신속히 먹인 이 배려는, 순종과 섬김이 함께한 절기를 보여 준다.",
+  "voc": [
+   [
+    "roasted",
+    "v.",
+    "구웠다"
+   ],
+   [
+    "ordinance",
+    "n.",
+    "규례"
+   ],
+   [
+    "sod",
+    "v.",
+    "삶았다(seethe의 옛 과거)"
+   ],
+   [
+    "speedily",
+    "adv.",
+    "속히, 빠르게"
+   ]
+  ],
+  "idi": [
+   [
+    "according to the ordinance",
+    "규례를 따라"
+   ]
   ],
   "gra": [
-   ["that he destroy thee not", "that ... not=목적·결과 '그가 그대를 멸하지 않도록'"]
+   [
+    "sod",
+    "sod=seethe(삶다)의 옛 과거형"
+   ]
   ]
  },
  {
-  "en": "Nevertheless Josiah would not turn his face from him, but disguised himself ... and hearkened not unto the words of Necho from the mouth of God",
-  "ko": "요시야가 그에게서 얼굴을 돌이키지 아니하고 변장하여 그와 싸우고자 하며, 하나님의 입에서 나온 느고의 말을 듣지 아니하니라.",
-  "note": "한평생 말씀에 순종하던 요시야가 마지막에 '듣지 아니'하였다. 평생의 경건도 한 순간의 고집을 막지 못하니, 끝까지 귀를 여는 겸손이 곧 지혜다.",
+  "en": "And afterward they made ready for themselves, and for the priests: because the priests the sons of Aaron were busied in offering of burnt offerings and the fat until night; therefore the Levites prepared for themselves, and for the priests the sons of Aaron.",
+  "ko": "그 후에 그들이 자기와 제사장들을 위하여 준비하였으니, 이는 아론의 자손 제사장들이 밤이 되도록 번제와 기름을 드리기에 분주하였으므로, 레위 사람들이 자기와 아론의 자손 제사장들을 위하여 준비하였음이라.",
+  "note": "제사장이 밤까지 번제와 기름 드리기에 분주하매 레위인이 자기와 제사장의 몫을 준비했다. 직무에 매인 제사장을 레위인이 섬긴 이 배려는, 봉사자들이 서로의 필요를 채우는 아름다운 협력을 보여 준다.",
   "voc": [
-   ["nevertheless", "adv.", "그럼에도 불구하고"],
-   ["turn his face from", "", "~에게서 얼굴을 돌이키다"],
-   ["disguised himself", "", "변장하였다"],
-   ["hearkened", "v.", "귀 기울여 들었다"]
+   [
+    "afterward",
+    "adv.",
+    "그 후에"
+   ],
+   [
+    "made ready",
+    "v.",
+    "준비하였다"
+   ],
+   [
+    "busied",
+    "v.",
+    "분주하였다"
+   ],
+   [
+    "fat",
+    "n.",
+    "기름"
+   ]
   ],
   "idi": [
-   ["hearken not unto", "~에 귀 기울이지 않다"]
+   [
+    "made ready for themselves",
+    "자기를 위하여 준비하다"
+   ],
+   [
+    "until night",
+    "밤이 되도록"
+   ]
   ],
-  "gra": [
-   ["would not turn", "would not=완강한 거부 '돌이키려 하지 않았다'"]
-  ]
+  "gra": []
  },
  {
-  "en": "And the archers shot at king Josiah; and the king said to his servants, Have me away; for I am sore wounded",
-  "ko": "활 쏘는 자들이 요시야 왕을 쏜지라. 왕이 그의 신하들에게 이르되 \"나를 데리고 나가라. 내가 중상을 입었노라\" 하니라.",
-  "note": "'sore'는 옛 영어에서 '심히·중하게'를 뜻하는 부사다(sorely). 경건한 왕이 부르심 없는 전장에서 화살에 쓰러지니, 하나님의 사람도 그 말씀을 거스를 때 보호의 자리를 떠난다.",
+  "en": "And the singers the sons of Asaph were in their place, according to the commandment of David, and Asaph, and Heman, and Jeduthun the king’s seer; and the porters waited at every gate; they might not depart from their service; for their brethren the Levites prepared for them.",
+  "ko": "아삽의 자손 노래하는 자들은 다윗과 아삽과 헤만과 왕의 선견자 여두둔의 명령을 따라 그 자리에 있었고, 문지기들은 각 문에서 지켜 그 직무를 떠나지 아니하였으니, 이는 그 형제 레위 사람들이 그들을 위하여 준비하였음이라.",
+  "note": "아삽 자손 노래하는 자들이 다윗·아삽·헤만·여두둔의 명령대로 자리에 있고, 문지기는 각 문을 지켜 직무를 떠나지 않았다. 그 형제 레위인이 대신 준비해 준 덕이니, 예배 봉사가 한 사람도 이탈 없이 온전히 이루어졌음을 보여 준다.",
   "voc": [
-   ["archers", "n.", "활 쏘는 자들"],
-   ["shot at", "", "~을 향해 쏘았다"],
-   ["servants", "n.", "신하들"],
-   ["sore wounded", "", "중상을 입은"]
+   [
+    "singers",
+    "n.",
+    "노래하는 자들"
+   ],
+   [
+    "seer",
+    "n.",
+    "선견자"
+   ],
+   [
+    "porters",
+    "n.",
+    "문지기들"
+   ],
+   [
+    "depart",
+    "v.",
+    "떠나다"
+   ]
   ],
   "idi": [
-   ["have me away", "나를 데리고 나가라"]
+   [
+    "waited at every gate",
+    "각 문에서 지키다"
+   ],
+   [
+    "might not depart from their service",
+    "직무를 떠나지 아니하다"
+   ]
   ],
-  "gra": [
-   ["sore wounded", "sore=부사(=sorely) '심히 부상당한'"]
-  ]
+  "gra": []
  },
  {
-  "en": "and he died, and was buried in one of the sepulchres of his fathers. And all Judah and Jerusalem mourned for Josiah",
-  "ko": "그가 죽어 그의 조상의 묘실 중 하나에 장사되니라. 온 유다와 예루살렘이 요시야를 위하여 슬퍼하였느니라.",
-  "note": "히브리어 '아발'(aval, '애곡하다')은 깊은 통곡을 가리킨다. 온 나라가 한 왕을 위해 울었으니, 그의 경건이 백성에게 얼마나 귀하였는지를 그 애곡이 증언한다.",
+  "en": "So all the service of the LORD was prepared the same day, to keep the passover, and to offer burnt offerings upon the altar of the LORD, according to the commandment of king Josiah.",
+  "ko": "이와 같이 그 날에 여호와를 섬기는 모든 일이 준비되어, 요시야 왕의 명령을 따라 유월절을 지키며 여호와의 제단 위에 번제를 드리니라.",
+  "note": "'그 날에 여호와를 섬기는 모든 일이 준비되어' 유월절을 지키고 번제를 드렸다. 히브리어 '쿤'(준비됨)의 총괄은, 왕의 명령 아래 온 예배 체계가 하루 만에 완비된 개혁의 절정을 요약한다.",
   "voc": [
-   ["died", "v.", "죽었다"],
-   ["buried", "v.", "장사되었다"],
-   ["sepulchres", "n.", "묘실, 무덤"],
-   ["mourned", "v.", "슬퍼하였다, 애곡하였다"]
+   [
+    "service",
+    "n.",
+    "섬김, 봉사"
+   ],
+   [
+    "prepared",
+    "v.",
+    "준비되었다"
+   ],
+   [
+    "altar",
+    "n.",
+    "제단"
+   ],
+   [
+    "commandment",
+    "n.",
+    "명령"
+   ]
   ],
   "idi": [
-   ["mourn for", "~을 위하여 슬퍼하다"]
-  ]
+   [
+    "all the service of the LORD",
+    "여호와를 섬기는 모든 일"
+   ],
+   [
+    "the same day",
+    "그 날에, 바로 그 날"
+   ]
+  ],
+  "gra": []
  },
  {
-  "en": "And Jeremiah lamented for Josiah ... and made them an ordinance in Israel",
-  "ko": "예레미야가 요시야를 위하여 애가를 지었으며, 그것을 이스라엘 중에 규례로 삼았느니라.",
-  "note": "히브리어 '키나'(qinah)는 죽음을 애도하는 '애가'다. 선지자 예레미야가 이 경건한 왕의 죽음을 애곡하였으니, 의인의 떠남은 온 백성이 함께 우는 손실이다.",
+  "en": "And the children of Israel that were present kept the passover at that time, and the feast of unleavened bread seven days.",
+  "ko": "그 때에 거기 있던 이스라엘 자손이 유월절을 지키고 무교절을 이레 동안 지키니라.",
+  "note": "거기 있던 이스라엘 자손이 유월절과 무교절을 이레 동안 지켰다. 유월절과 무교절의 연이은 준수는, 출애굽 구원을 기념하는 절기 전체가 온전히 회복되었음을 보여 준다.",
   "voc": [
-   ["lamented", "v.", "애가를 지었다, 애곡하였다"],
-   ["singing men", "", "노래하는 남자들"],
-   ["singing women", "", "노래하는 여자들"],
-   ["lamentations", "n.", "애가들"]
+   [
+    "present",
+    "adj.",
+    "있는, 참석한"
+   ],
+   [
+    "feast",
+    "n.",
+    "절기"
+   ],
+   [
+    "unleavened bread",
+    "",
+    "무교병"
+   ],
+   [
+    "seven",
+    "num.",
+    "일곱"
+   ]
   ],
   "idi": [
-   ["lament for", "~을 위하여 애곡하다"],
-   ["to this day", "오늘까지"]
+   [
+    "feast of unleavened bread",
+    "무교절"
+   ],
+   [
+    "seven days",
+    "이레 동안"
+   ]
   ],
-  "gra": [
-   ["made them an ordinance", "made+목적어+보어 '그것을 규례로 삼았다'"]
-  ]
+  "gra": []
+ },
+ {
+  "en": "And there was no passover like to that kept in Israel from the days of Samuel the prophet; neither did all the kings of Israel keep such a passover as Josiah kept, and the priests, and the Levites, and all Judah and Israel that were present, and the inhabitants of Jerusalem.",
+  "ko": "선지자 사무엘의 날부터 이스라엘 중에 이같이 지킨 유월절이 없었고, 이스라엘의 어느 왕도 요시야가 제사장들과 레위 사람들과 거기 있던 온 유다와 이스라엘과 예루살렘 주민과 더불어 지킨 것 같은 유월절을 지키지 못하였더라.",
+  "note": "'선지자 사무엘 때부터 이런 유월절이 없었다'고 평한다. 사사시대의 사무엘까지 거슬러 견주는 이 최고의 찬사는, 요시야의 유월절이 왕정 전체를 통틀어 가장 온전한 절기 준수였음을 새긴다.",
+  "voc": [
+   [
+    "like",
+    "adj.",
+    "같은, 비할 만한"
+   ],
+   [
+    "prophet",
+    "n.",
+    "선지자"
+   ],
+   [
+    "such",
+    "adj.",
+    "그와 같은"
+   ],
+   [
+    "inhabitants",
+    "n.",
+    "주민들"
+   ]
+  ],
+  "idi": [
+   [
+    "there was no passover like to that",
+    "이같이 지킨 유월절이 없었다"
+   ],
+   [
+    "from the days of Samuel",
+    "사무엘의 날부터"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "In the eighteenth year of the reign of Josiah was this passover kept.",
+  "ko": "이 유월절은 요시야가 다스린 지 십팔 년에 지킨 것이더라.",
+  "note": "이 유월절이 요시야 십팔 년에 지켜졌음을 명시한다. 율법책 발견(34장)과 같은 해임을 밝히니, 말씀의 재발견이 곧바로 최고의 유월절로 열매 맺었음을 시간적으로 확증한다.",
+  "voc": [
+   [
+    "eighteenth",
+    "adj.",
+    "열여덟째의"
+   ],
+   [
+    "reign",
+    "n.",
+    "통치"
+   ],
+   [
+    "kept",
+    "v.",
+    "지켜졌다"
+   ]
+  ],
+  "idi": [
+   [
+    "was this passover kept",
+    "이 유월절이 지켜졌다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "After all this, when Josiah had prepared the temple, Necho king of Egypt came up to fight against Charchemish by Euphrates: and Josiah went out against him.",
+  "ko": "이 모든 일 후 곧 요시야가 전을 정비한 후에, 애굽 왕 느고가 유브라데 강가의 갈그미스를 치러 올라오매, 요시야가 그를 막으려고 나아가니라.",
+  "note": "요시야가 성전을 정비한 후 애굽 왕 느고가 갈그미스를 치러 오매 그를 막으러 나갔다. 개혁의 절정 뒤에 찾아온 이 정치적 충돌이, 위대한 왕의 비극적 최후로 이어지는 어두운 전환을 연다.",
+  "voc": [
+   [
+    "prepared",
+    "v.",
+    "정비하였다"
+   ],
+   [
+    "temple",
+    "n.",
+    "성전"
+   ],
+   [
+    "came up",
+    "v.",
+    "올라왔다"
+   ],
+   [
+    "went out against",
+    "v.",
+    "막으러 나갔다"
+   ]
+  ],
+  "idi": [
+   [
+    "came up to fight against",
+    "~를 치러 올라오다"
+   ],
+   [
+    "went out against him",
+    "그를 막으러 나갔다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "But he sent ambassadors to him, saying, What have I to do with thee, thou king of Judah? I come not against thee this day, but against the house wherewith I have war: for God commanded me to make haste: forbear thee from meddling with God, who is with me, that he destroy thee not.",
+  "ko": "그러나 느고가 그에게 사신들을 보내어 이르되 \"유다 왕이여, 내가 그대와 무슨 상관이 있느냐. 내가 오늘 그대를 치러 온 것이 아니요 나와 싸우는 집을 치러 왔노라. 하나님이 내게 명하여 속히 행하라 하셨은즉, 나와 함께 계신 하나님을 거스르지 말라. 그가 그대를 멸하실까 하노라\" 하되,",
+  "note": "느고가 '나와 함께 계신 하나님을 거스르지 말라, 그가 그대를 멸하실까 하노라' 경고한다. 이방 왕의 입을 통해 하나님의 뜻이 전해지는 이 아이러니는, 하나님이 열방의 왕도 그 섭리의 도구로 쓰심을 보여 준다.",
+  "voc": [
+   [
+    "ambassadors",
+    "n.",
+    "사신들"
+   ],
+   [
+    "haste",
+    "n.",
+    "서두름, 급함"
+   ],
+   [
+    "forbear",
+    "v.",
+    "삼가다, 그치다"
+   ],
+   [
+    "meddling",
+    "n.",
+    "참견, 간섭"
+   ]
+  ],
+  "idi": [
+   [
+    "What have I to do with thee",
+    "내가 그대와 무슨 상관이 있느냐"
+   ],
+   [
+    "make haste",
+    "속히 행하다, 서두르다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Nevertheless Josiah would not turn his face from him, but disguised himself, that he might fight with him, and hearkened not unto the words of Necho from the mouth of God, and came to fight in the valley of Megiddo.",
+  "ko": "요시야가 그에게서 얼굴을 돌이키지 아니하고 도리어 변장하여 그와 싸우고자 하며, 하나님의 입에서 나온 느고의 말을 듣지 아니하고 므깃도 골짜기에 이르러 싸우더니,",
+  "note": "요시야가 하나님의 입에서 나온 느고의 말을 듣지 않고 변장해 므깃도에서 싸웠다. 히브리어 '로 샤마'(듣지 않음)는 불순종을 뜻하니, 위대한 개혁 왕조차 하나님의 경고를 무시함이 파멸을 부름을 보여 준다.",
+  "voc": [
+   [
+    "turn",
+    "v.",
+    "돌이키다"
+   ],
+   [
+    "disguised",
+    "v.",
+    "변장하였다"
+   ],
+   [
+    "hearkened",
+    "v.",
+    "귀 기울여 들었다"
+   ],
+   [
+    "valley",
+    "n.",
+    "골짜기"
+   ]
+  ],
+  "idi": [
+   [
+    "would not turn his face from him",
+    "그에게서 얼굴을 돌이키지 아니하다"
+   ],
+   [
+    "from the mouth of God",
+    "하나님의 입에서 나온"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And the archers shot at king Josiah; and the king said to his servants, Have me away; for I am sore wounded.",
+  "ko": "활 쏘는 자들이 요시야 왕을 쏜지라. 왕이 그의 신하들에게 이르되 \"나를 데리고 나가라. 내가 중상을 입었노라\" 하매,",
+  "note": "활 쏘는 자들이 왕을 쏘매 '나를 데리고 나가라, 중상을 입었노라' 했다. 아합의 최후(18장)를 연상시키는 이 부상은, 하나님의 말씀을 거스른 결과가 신분과 무관하게 임함을 보여 준다.",
+  "voc": [
+   [
+    "archers",
+    "n.",
+    "활 쏘는 자들"
+   ],
+   [
+    "shot",
+    "v.",
+    "쏘았다"
+   ],
+   [
+    "sore",
+    "adv.",
+    "심히, 몹시"
+   ],
+   [
+    "wounded",
+    "adj.",
+    "부상당한"
+   ]
+  ],
+  "idi": [
+   [
+    "Have me away",
+    "나를 데리고 나가라"
+   ],
+   [
+    "sore wounded",
+    "중상을 입은"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "His servants therefore took him out of that chariot, and put him in the second chariot that he had; and they brought him to Jerusalem, and he died, and was buried in one of the sepulchres of his fathers. And all Judah and Jerusalem mourned for Josiah.",
+  "ko": "그의 신하들이 그를 그 병거에서 옮겨 그의 버금 병거에 태워 예루살렘으로 데려가니, 그가 죽어 그의 조상의 묘실 중 하나에 장사되니라. 온 유다와 예루살렘이 요시야를 위하여 슬퍼하였고,",
+  "note": "신하들이 왕을 버금 병거에 태워 예루살렘으로 데려가니 그가 죽어 조상 묘실에 장사되고 온 백성이 슬퍼했다. 훌다의 예언대로 '평안히' 무덤에 이르렀으나, 개혁 왕의 이른 죽음은 유다에 깊은 애도를 남긴다.",
+  "voc": [
+   [
+    "chariot",
+    "n.",
+    "병거"
+   ],
+   [
+    "died",
+    "v.",
+    "죽었다"
+   ],
+   [
+    "buried",
+    "v.",
+    "장사되었다"
+   ],
+   [
+    "mourned",
+    "v.",
+    "슬퍼하였다"
+   ]
+  ],
+  "idi": [
+   [
+    "the second chariot",
+    "버금 병거"
+   ],
+   [
+    "mourned for Josiah",
+    "요시야를 위하여 슬퍼하다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And Jeremiah lamented for Josiah: and all the singing men and the singing women spake of Josiah in their lamentations to this day, and made them an ordinance in Israel: and, behold, they are written in the lamentations.",
+  "ko": "예레미야가 요시야를 위하여 애가를 지었으며, 노래하는 모든 남녀가 그들의 애가 중에서 오늘까지 요시야를 노래하여 이스라엘 중에 규례로 삼았으니, 보라, 그것이 애가 가운데 기록되었더라.",
+  "note": "예레미야가 애가를 짓고 노래하는 남녀가 오늘까지 요시야를 노래하여 규례로 삼았다. 히브리어 '키나'(애가)는 애도의 노래로, 위대한 왕의 죽음이 온 나라의 공적 슬픔으로 기억되었음을 보여 준다.",
+  "voc": [
+   [
+    "lamented",
+    "v.",
+    "애가를 지었다, 애도하였다"
+   ],
+   [
+    "singing men",
+    "",
+    "노래하는 남자들"
+   ],
+   [
+    "lamentations",
+    "n.",
+    "애가들"
+   ],
+   [
+    "ordinance",
+    "n.",
+    "규례, 관례"
+   ]
+  ],
+  "idi": [
+   [
+    "lamented for Josiah",
+    "요시야를 위하여 애가를 짓다"
+   ],
+   [
+    "to this day",
+    "오늘까지"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Now the rest of the acts of Josiah, and his goodness, according to that which was written in the law of the LORD,",
+  "ko": "요시야의 남은 행적과 여호와의 율법에 기록된 대로 행한 그의 선행과,",
+  "note": "요시야의 남은 행적과 '여호와의 율법에 기록된 대로 행한 선행'을 언급한다. 그의 선함이 율법에 근거했음을 명시하니, 참된 선행이 하나님의 말씀에 순종함에서 나옴을 재확인한다.",
+  "voc": [
+   [
+    "rest",
+    "n.",
+    "나머지"
+   ],
+   [
+    "acts",
+    "n.",
+    "행적"
+   ],
+   [
+    "goodness",
+    "n.",
+    "선행, 선함"
+   ],
+   [
+    "law",
+    "n.",
+    "율법"
+   ]
+  ],
+  "idi": [
+   [
+    "the rest of the acts",
+    "남은 행적"
+   ],
+   [
+    "according to that which was written",
+    "기록된 대로"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And his deeds, first and last, behold, they are written in the book of the kings of Israel and Judah.",
+  "ko": "그의 행한 일은 처음부터 끝까지, 보라, 이스라엘과 유다 열왕기에 기록되었더라.",
+  "note": "그의 행한 일이 처음부터 끝까지 열왕기에 기록되었다고 맺는다. '처음부터 끝까지'라는 표현은, 여덟 살 즉위부터 므깃도의 죽음까지 하나님을 온전히 따른 그의 생애 전체가 기록에 남았음을 뜻한다.",
+  "voc": [
+   [
+    "deeds",
+    "n.",
+    "행한 일들"
+   ],
+   [
+    "written",
+    "v.",
+    "기록되었다"
+   ],
+   [
+    "kings",
+    "n.",
+    "왕들"
+   ]
+  ],
+  "idi": [
+   [
+    "first and last",
+    "처음부터 끝까지"
+   ]
+  ],
+  "gra": []
  }
 ]

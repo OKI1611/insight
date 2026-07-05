@@ -1,218 +1,906 @@
 [
  {
-  "en": "that they should come to the house of the LORD ... to keep the passover",
-  "ko": "여호와의 전으로 와서 유월절을 지키게 하니라",
-  "note": "히브리어 '페사흐'(פֶּסַח)는 '넘어가다·건너뛰다'이니, 어린양의 피를 보고 심판이 그 집을 지나친 출애굽의 밤(출 12장)을 기념함이다. 분열 이후 북왕국까지 청하여 한 유월절로 부르니, 히스기야의 개혁은 흩어진 백성을 한 언약 아래 다시 모으려는 부름이다.",
+  "en": "And Hezekiah sent to all Israel and Judah, and wrote letters also to Ephraim and Manasseh, that they should come to the house of the LORD at Jerusalem, to keep the passover unto the LORD God of Israel.",
+  "ko": "히스기야가 온 이스라엘과 유다에 사람을 보내고 또 에브라임과 므낫세에 편지를 써서, 예루살렘 여호와의 전으로 와서 이스라엘의 하나님 여호와께 유월절을 지키게 하니라.",
+  "note": "히스기야가 온 이스라엘과 유다, 나아가 북왕국 에브라임·므낫세에까지 편지를 보내 유월절을 지키게 했다. 분열된 남북 백성을 한 성전으로 부르는 이 초대는, 하나 된 하나님 백성의 회복을 향한 개혁의 확장이다.",
   "voc": [
-   ["passover", "n.", "유월절"],
-   ["letters", "n.", "편지"],
-   ["come unto", "", "~에게로 오다"]
+   [
+    "sent",
+    "v.",
+    "보냈다"
+   ],
+   [
+    "letters",
+    "n.",
+    "편지들"
+   ],
+   [
+    "passover",
+    "n.",
+    "유월절"
+   ]
   ],
   "idi": [
-   ["keep the passover", "유월절을 지키다"]
+   [
+    "keep the passover",
+    "유월절을 지키다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "For the king had taken counsel, and his princes, and all the congregation in Jerusalem, to keep the passover in the second month.",
+  "ko": "이는 왕이 그의 방백들과 예루살렘의 온 회중과 더불어 의논하여 둘째 달에 유월절을 지키기로 정하였음이라.",
+  "note": "왕과 방백들이 의논하여 유월절을 둘째 달에 지키기로 했다. 원래 첫째 달의 절기를 한 달 늦춘 것은, 준비 부족을 배려한 융통성으로 민수기 9장의 예비 규례를 적용한 지혜다.",
+  "voc": [
+   [
+    "counsel",
+    "n.",
+    "의논, 계획"
+   ],
+   [
+    "princes",
+    "n.",
+    "방백들"
+   ],
+   [
+    "second month",
+    "",
+    "둘째 달"
+   ]
+  ],
+  "idi": [
+   [
+    "taken counsel",
+    "의논하다, 계획하다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "For they could not keep it at that time, because the priests had not sanctified themselves sufficiently, neither had the people gathered themselves together to Jerusalem.",
+  "ko": "그들이 그때에 지키지 못하였으니, 이는 제사장들이 자신을 충분히 거룩하게 하지 못하였고 백성도 예루살렘에 모이지 못하였음이라.",
+  "note": "제때 지키지 못한 것은 제사장이 충분히 성별되지 못하고 백성도 모이지 못했기 때문이다. 정직한 형편 진술은, 절기의 형식보다 준비된 마음과 정결을 우선하는 히스기야 개혁의 성실함을 보여 준다.",
+  "voc": [
+   [
+    "sanctified",
+    "v.",
+    "거룩하게 하였다"
+   ],
+   [
+    "sufficiently",
+    "adv.",
+    "충분히"
+   ],
+   [
+    "gathered",
+    "v.",
+    "모였다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "neither had the people gathered",
+    "neither+도치=~도 아니하였다(옛 어순)"
+   ]
+  ]
+ },
+ {
+  "en": "And the thing pleased the king and all the congregation.",
+  "ko": "그 일이 왕과 온 회중의 보기에 합당한지라.",
+  "note": "'그 일이 왕과 온 회중의 보기에 합당하였다'고 짧게 맺는다. 히브리어 '야샤르 베에네'(눈에 옳음)는 만장일치의 동의를 뜻하니, 개혁이 왕의 독단이 아니라 온 공동체의 합의로 이루어짐을 보여 준다.",
+  "voc": [
+   [
+    "thing",
+    "n.",
+    "일"
+   ],
+   [
+    "pleased",
+    "v.",
+    "합당하였다, 기쁘게 하였다"
+   ],
+   [
+    "congregation",
+    "n.",
+    "회중"
+   ]
+  ],
+  "idi": [
+   [
+    "the thing pleased",
+    "그 일이 합당하였다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "So they established a decree to make proclamation throughout all Israel, from Beersheba even to Dan, that they should come to keep the passover unto the LORD God of Israel at Jerusalem: for they had not done it of a long time in such sort as it was written.",
+  "ko": "이에 그들이 한 가지 명령을 세워 브엘세바에서부터 단까지 온 이스라엘에 선포하여, 예루살렘으로 와서 이스라엘의 하나님 여호와께 유월절을 지키게 하니, 이는 기록된 바와 같이 그처럼 지킨 지가 오래되었음이라.",
+  "note": "'브엘세바에서 단까지' 온 이스라엘에 유월절을 선포했다. 남단에서 북단을 아우르는 이 표현은 온 땅의 통합을 뜻하며, '기록된 대로 지킨 지 오래되었다'는 말이 개혁의 절실함을 드러낸다.",
+  "voc": [
+   [
+    "established",
+    "v.",
+    "세웠다"
+   ],
+   [
+    "decree",
+    "n.",
+    "명령, 법령"
+   ],
+   [
+    "proclamation",
+    "n.",
+    "선포"
+   ]
+  ],
+  "idi": [
+   [
+    "from Beersheba even to Dan",
+    "브엘세바에서 단까지(온 땅을 아우르는 표현)"
+   ],
+   [
+    "of a long time",
+    "오랫동안"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "So the posts went with the letters from the king and his princes throughout all Israel and Judah, and according to the commandment of the king, saying, Ye children of Israel, turn again unto the LORD God of Abraham, Isaac, and Israel, and he will return to the remnant of you, that are escaped out of the hand of the kings of Assyria.",
+  "ko": "그리하여 파발꾼들이 왕과 그의 방백들의 편지를 가지고 왕의 명령을 따라 온 이스라엘과 유다에 두루 다니며 이르되, \"너희 이스라엘 자손들아, 아브라함과 이삭과 이스라엘의 하나님 여호와께로 돌아오라. 그리하면 그가 너희 가운데 남은 자 곧 앗수르 왕들의 손에서 벗어난 자에게로 돌아오시리라.",
+  "note": "파발꾼들이 '아브라함·이삭·이스라엘의 하나님께 돌아오라, 그리하면 남은 자에게 돌아오시리라'고 외친다. 히브리어 '슈브'(돌아오다)가 왕복의 은혜를 담으니, 회개가 하나님의 돌이키심을 부른다는 언약의 핵심을 선포한다.",
+  "voc": [
+   [
+    "posts",
+    "n.",
+    "파발꾼들, 전령들"
+   ],
+   [
+    "turn again",
+    "v.",
+    "돌아오다"
+   ],
+   [
+    "remnant",
+    "n.",
+    "남은 자"
+   ],
+   [
+    "escaped",
+    "v.",
+    "벗어난, 피한"
+   ]
+  ],
+  "idi": [
+   [
+    "turn again unto the LORD",
+    "여호와께로 돌아오다(회개하다)"
+   ]
   ],
   "gra": [
-   ["that they should come", "that+should=목적·의도 '~하도록' (그들이 오게 하려고)"]
+   [
+    "Ye children of Israel",
+    "Ye=너희(2인칭 복수 호격)"
+   ]
   ]
  },
  {
-  "en": "to keep the passover in the second month",
-  "ko": "둘째 달에 유월절을 지키기로",
-  "note": "율법은 첫째 달 열나흗날을 정하였으나(출 12:6), 민수기 9:10-11은 부정하거나 멀리 있던 자에게 둘째 달의 둘째 유월절을 허락한다. 히스기야는 이 예비 규정을 온 백성에게 적용하니, 율법의 정신을 살려 더 많은 자를 언약의 식탁으로 불러들임이다.",
+  "en": "And be not ye like your fathers, and like your brethren, which trespassed against the LORD God of their fathers, who therefore gave them up to desolation, as ye see.",
+  "ko": "너희는 너희 조상들과 같이 되지 말며 너희 형제들과 같이 되지 말라. 그들은 그 조상들의 하나님 여호와께 범죄하였으므로, 그분이 그들을 황폐함에 넘기셨으니 너희가 보는 바와 같으니라.",
+  "note": "'조상과 형제처럼 되지 말라, 그들은 범죄하여 황폐함에 넘겨졌다'고 경고한다. 히브리어 '샴마'(황폐)는 북왕국의 멸망을 가리키니, 앞선 세대의 배도를 반면교사 삼아 돌이키라 촉구한다.",
   "voc": [
-   ["take counsel", "", "의논하다"],
-   ["princes", "n.", "방백들, 고관들"],
-   ["congregation", "n.", "회중"],
-   ["second month", "", "둘째 달"]
+   [
+    "fathers",
+    "n.",
+    "조상들"
+   ],
+   [
+    "brethren",
+    "n.",
+    "형제들"
+   ],
+   [
+    "trespassed",
+    "v.",
+    "범죄하였다"
+   ],
+   [
+    "desolation",
+    "n.",
+    "황폐, 폐허"
+   ]
   ],
   "idi": [
-   ["take counsel", "의논하다, 협의하다"]
-  ]
- },
- {
-  "en": "because the priests had not sanctified themselves sufficiently",
-  "ko": "제사장들이 자신을 충분히 거룩하게 하지 못하였음이라",
-  "note": "'거룩하게 하다'는 히브리어 '카다쉬'(קָדַשׁ), 곧 '구별하다·성별하다'이다(§5 거룩 qodesh). 거룩한 일에는 거룩한 자가 필요하니, 제사장이 먼저 자신을 성별해야 백성을 인도할 수 있다. 준비되지 않은 거룩보다 한 달 늦더라도 바른 거룩을 택함이 경건이다.",
-  "voc": [
-   ["sanctify", "v.", "거룩하게 하다, 성별하다"],
-   ["sufficiently", "adv.", "충분히"],
-   ["gather together", "", "함께 모이다"]
+   [
+    "gave them up to desolation",
+    "그들을 황폐함에 넘기다"
+   ]
   ],
   "gra": [
-   ["the priests had not sanctified themselves", "과거완료(had not sanctified) '~하지 못하였었다'; themselves=재귀(자신을)"]
+   [
+    "be not ye",
+    "be not ye=너희는 ~되지 말라(옛 부정 명령)"
+   ]
   ]
  },
  {
-  "en": "turn again unto the LORD God of Abraham, Isaac, and Israel",
-  "ko": "아브라함과 이삭과 이스라엘의 하나님 여호와께로 돌아오라",
-  "note": "'돌아오라'는 히브리어 '슈브'(שׁוּב), 회개의 핵심 단어다(§5 회개 teshuvah). 같은 동사가 9절에서 하나님이 '돌아오시리라'로 다시 쓰이니, 사람이 그분께 돌이키면 그분도 그 백성에게 돌이키신다. 회개는 단지 뉘우침이 아니라 방향을 바꾸어 여호와께로 향함이다.",
+  "en": "Now be ye not stiffnecked, as your fathers were, but yield yourselves unto the LORD, and enter into his sanctuary, which he hath sanctified for ever: and serve the LORD your God, that the fierceness of his wrath may turn away from you.",
+  "ko": "이제 너희는 너희 조상들과 같이 목을 곧게 하지 말고 여호와께 너희 자신을 드리며, 그분이 영원히 거룩하게 하신 그의 성소로 들어가 너희 하나님 여호와를 섬기라. 그리하면 그의 맹렬한 진노가 너희에게서 돌이켜지리라.",
+  "note": "'목을 곧게 하지 말고 여호와께 자신을 드려 성소로 들어가라'고 권한다. 히브리어 '카쉐 오레프'(목이 곧음)는 완악한 불순종을 뜻하니, 겸비하여 순복함이 진노를 돌이키는 길임을 밝힌다.",
   "voc": [
-   ["posts", "n.", "파발꾼, 전령"],
-   ["turn again", "", "돌아오다, 돌이키다"],
-   ["remnant", "n.", "남은 자"],
-   ["escape", "v.", "벗어나다, 피하다"]
+   [
+    "stiffnecked",
+    "adj.",
+    "목이 곧은, 완악한"
+   ],
+   [
+    "yield",
+    "v.",
+    "드리다, 굴복하다"
+   ],
+   [
+    "sanctuary",
+    "n.",
+    "성소"
+   ],
+   [
+    "fierceness",
+    "n.",
+    "맹렬함"
+   ]
   ],
   "idi": [
-   ["turn again unto", "~에게로 돌아오다"]
+   [
+    "be not stiffnecked",
+    "목을 곧게 하지 말라(완악하지 말라)"
+   ],
+   [
+    "yield yourselves unto the LORD",
+    "여호와께 자신을 드리다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "For if ye turn again unto the LORD, your brethren and your children shall find compassion before them that lead them captive, so that they shall come again into this land: for the LORD your God is gracious and merciful, and will not turn away his face from you, if ye return unto him.",
+  "ko": "너희가 여호와께로 돌아오면 너희 형제와 너희 자녀가 그들을 사로잡은 자들 앞에서 긍휼을 입어 이 땅으로 다시 돌아오게 되리니, 이는 너희 하나님 여호와는 은혜로우시고 자비로우시므로 너희가 그분께 돌아오면 그의 얼굴을 너희에게서 돌이키지 아니하실 것임이라\" 하니라.",
+  "note": "'돌아오면 사로잡힌 형제와 자녀가 긍휼을 입어 돌아오리라'며 하나님의 은혜로움과 자비를 근거로 든다. 히브리어 '한눈'(은혜로우심)과 '라훔'(자비로우심)은 출애굽기 34:6의 하나님 성품 고백을 되울린다.",
+  "voc": [
+   [
+    "compassion",
+    "n.",
+    "긍휼"
+   ],
+   [
+    "captive",
+    "n./adj.",
+    "포로; 사로잡힌"
+   ],
+   [
+    "gracious",
+    "adj.",
+    "은혜로운"
+   ],
+   [
+    "merciful",
+    "adj.",
+    "자비로운"
+   ]
+  ],
+  "idi": [
+   [
+    "lead them captive",
+    "그들을 사로잡아 끌고 가다"
+   ],
+   [
+    "turn away his face",
+    "그의 얼굴을 돌이키다(외면하다)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "So the posts passed from city to city through the country of Ephraim and Manasseh even unto Zebulun: but they laughed them to scorn, and mocked them.",
+  "ko": "이에 파발꾼들이 에브라임과 므낫세 지방을 거쳐 스불론까지 이 성읍에서 저 성읍으로 지나갔으나, 그들이 비웃고 조롱하더라.",
+  "note": "파발꾼이 스불론까지 갔으나 사람들이 비웃고 조롱했다. 히브리어 '라아그'(비웃다)의 냉소는 북왕국의 완악함을 드러내며, 부흥의 초대가 늘 환영받는 것은 아니라는 현실을 정직히 보여 준다.",
+  "voc": [
+   [
+    "passed",
+    "v.",
+    "지나갔다"
+   ],
+   [
+    "laughed to scorn",
+    "v.",
+    "비웃었다"
+   ],
+   [
+    "mocked",
+    "v.",
+    "조롱하였다"
+   ]
+  ],
+  "idi": [
+   [
+    "laughed them to scorn",
+    "그들을 비웃다, 조롱하다"
+   ],
+   [
+    "from city to city",
+    "이 성읍에서 저 성읍으로"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Nevertheless divers of Asher and Manasseh and of Zebulun humbled themselves, and came to Jerusalem.",
+  "ko": "그러할지라도 아셀과 므낫세와 스불론 가운데 몇 사람이 스스로 겸비하여 예루살렘으로 왔더라.",
+  "note": "그럼에도 아셀·므낫세·스불론의 몇 사람이 스스로 겸비하여 예루살렘으로 왔다. 히브리어 '카나'(겸비하다)는 마음을 낮춤을 뜻하니, 다수의 조롱 속에서도 순종한 소수의 남은 자가 부흥의 씨앗이 된다.",
+  "voc": [
+   [
+    "nevertheless",
+    "adv.",
+    "그러할지라도"
+   ],
+   [
+    "divers",
+    "adj.",
+    "여러, 몇몇의"
+   ],
+   [
+    "humbled",
+    "v.",
+    "겸비하게 하였다, 낮추었다"
+   ]
+  ],
+  "idi": [
+   [
+    "humbled themselves",
+    "스스로 겸비하다"
+   ]
   ],
   "gra": [
-   ["he will return to the remnant of you", "will return=미래 '돌아오시리라'; the remnant of you='너희 중 남은 자'"]
+   [
+    "divers",
+    "divers=several/various의 옛 형용사(여러, 몇몇)"
+   ]
   ]
  },
  {
-  "en": "Now be ye not stiffnecked, as your fathers were",
-  "ko": "이제 너희는 너희 조상들과 같이 목을 곧게 하지 말라",
-  "note": "'목이 곧다'(히브리어 '카쉐 오레프', קְשֵׁה־עֹרֶף)는 멍에에 목을 숙이지 않는 짐승의 완고함에서 온 표현으로(출 32:9), 하나님의 인도하심을 거부하는 고집을 뜻한다. 굳은 목을 굽혀 '너희 자신을 드리라'(야드 나탄, 손을 내밀어 굴복함) 하시니, 회개는 곧 자기 고집을 꺾고 그분께 항복함이다.",
+  "en": "Also in Judah the hand of God was to give them one heart to do the commandment of the king and of the princes, by the word of the LORD.",
+  "ko": "또한 유다에서는 하나님의 손이 임하여 그들에게 한마음을 주사, 여호와의 말씀을 따라 왕과 방백들의 명령을 행하게 하셨더라.",
+  "note": "유다에서는 '하나님의 손이 임하여 한마음을 주셨다'고 밝힌다. 히브리어 '레브 에하드'(한마음)는 공동체의 일치를 뜻하며, 순종의 연합조차 하나님이 주시는 선물임을 드러낸다.",
   "voc": [
-   ["stiffnecked", "adj.", "목이 곧은, 완고한"],
-   ["yield oneself", "", "자신을 드리다, 굴복하다"],
-   ["sanctuary", "n.", "성소"],
-   ["fierceness", "n.", "맹렬함"],
-   ["wrath", "n.", "진노"]
+   [
+    "hand of God",
+    "",
+    "하나님의 손"
+   ],
+   [
+    "one heart",
+    "",
+    "한마음"
+   ],
+   [
+    "commandment",
+    "n.",
+    "명령"
+   ]
   ],
   "idi": [
-   ["turn away from", "~에게서 돌이키다, 떠나다"]
+   [
+    "the hand of God was to give",
+    "하나님의 손이 ~을 주시려고 임하다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And there assembled at Jerusalem much people to keep the feast of unleavened bread in the second month, a very great congregation.",
+  "ko": "둘째 달에 무교절을 지키려고 많은 백성이 예루살렘에 모이니, 심히 큰 회중이더라.",
+  "note": "둘째 달에 무교절을 지키려 심히 큰 회중이 모였다. 히브리어 '카할 라브'(큰 회중)의 강조는, 조롱을 뚫고 모인 백성의 열심을 보여 주며, 오랜 침체 끝에 부흥이 폭발함을 그린다.",
+  "voc": [
+   [
+    "assembled",
+    "v.",
+    "모였다"
+   ],
+   [
+    "feast",
+    "n.",
+    "절기"
+   ],
+   [
+    "unleavened bread",
+    "",
+    "무교병, 누룩 없는 떡"
+   ]
+  ],
+  "idi": [
+   [
+    "feast of unleavened bread",
+    "무교절"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And they arose and took away the altars that were in Jerusalem, and all the altars for incense took they away, and cast them into the brook Kidron.",
+  "ko": "그들이 일어나 예루살렘에 있는 제단들을 제하며 향 사르는 모든 제단을 제하여 기드론 시내에 던지고,",
+  "note": "백성이 일어나 예루살렘의 우상 제단들을 제하여 기드론 시내에 던졌다. 절기를 지키기 전 먼저 우상을 제거하는 이 순서는, 참된 예배가 배도의 청산에서 시작됨을 보여 준다.",
+  "voc": [
+   [
+    "arose",
+    "v.",
+    "일어났다"
+   ],
+   [
+    "took away",
+    "v.",
+    "제하였다, 없앴다"
+   ],
+   [
+    "altars",
+    "n.",
+    "제단들"
+   ],
+   [
+    "cast",
+    "v.",
+    "던졌다"
+   ]
+  ],
+  "idi": [
+   [
+    "took away the altars",
+    "제단들을 제하다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Then they killed the passover on the fourteenth day of the second month: and the priests and the Levites were ashamed, and sanctified themselves, and brought in the burnt offerings into the house of the LORD.",
+  "ko": "둘째 달 열나흗날에 유월절 어린양을 잡으니라. 이에 제사장들과 레위 사람들이 부끄러워하여 자신을 거룩하게 하고 번제물을 여호와의 전으로 가져왔더라.",
+  "note": "열나흗날 유월절 양을 잡으니 제사장과 레위인이 부끄러워하여 자신을 성별했다. 히브리어 '보쉬'(부끄러워하다)는 회개의 각성을 뜻하니, 백성의 열심이 도리어 성직자를 각성시킨 아름다운 역전을 보여 준다.",
+  "voc": [
+   [
+    "killed",
+    "v.",
+    "잡았다"
+   ],
+   [
+    "ashamed",
+    "adj.",
+    "부끄러워하는"
+   ],
+   [
+    "sanctified",
+    "v.",
+    "거룩하게 하였다"
+   ],
+   [
+    "fourteenth",
+    "adj.",
+    "열넷째의"
+   ]
+  ],
+  "idi": [
+   [
+    "were ashamed",
+    "부끄러워하다(자책하여 각성하다)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And they stood in their place after their manner, according to the law of Moses the man of God: the priests sprinkled the blood, which they received of the hand of the Levites.",
+  "ko": "그들이 하나님의 사람 모세의 율법을 따라 그 규례대로 자기 처소에 서니, 제사장들이 레위 사람들의 손에서 피를 받아 뿌리더라.",
+  "note": "그들이 모세의 율법대로 자기 처소에 서서 피를 뿌렸다. '하나님의 사람 모세의 율법을 따라'라는 명시는, 회복된 예배가 자의적 열심이 아니라 성경의 규례에 근거함을 거듭 강조한다.",
+  "voc": [
+   [
+    "stood",
+    "v.",
+    "섰다"
+   ],
+   [
+    "manner",
+    "n.",
+    "규례, 방식"
+   ],
+   [
+    "law",
+    "n.",
+    "율법"
+   ],
+   [
+    "sprinkled",
+    "v.",
+    "뿌렸다"
+   ]
+  ],
+  "idi": [
+   [
+    "after their manner",
+    "그 규례대로"
+   ],
+   [
+    "according to the law of Moses",
+    "모세의 율법을 따라"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "For there were many in the congregation that were not sanctified: therefore the Levites had the charge of the killing of the passovers for every one that was not clean, to sanctify them unto the LORD.",
+  "ko": "회중 가운데 자신을 거룩하게 하지 못한 자가 많은지라. 그러므로 레위 사람들이 정결하지 못한 모든 자를 위하여 유월절 어린양 잡는 일을 맡아 그들을 여호와께 거룩하게 하였으니,",
+  "note": "정결하지 못한 자가 많아 레위인이 그들을 위해 양 잡는 일을 맡았다. 규례상 각자 잡아야 하나, 미처 성별되지 못한 자를 레위인이 대신 도운 것은 형편을 배려한 긍휼의 적용을 보여 준다.",
+  "voc": [
+   [
+    "charge",
+    "n.",
+    "맡은 일, 책임"
+   ],
+   [
+    "clean",
+    "adj.",
+    "정결한"
+   ],
+   [
+    "sanctify",
+    "v.",
+    "거룩하게 하다"
+   ]
+  ],
+  "idi": [
+   [
+    "had the charge of",
+    "~을 맡다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "For a multitude of the people, even many of Ephraim, and Manasseh, Issachar, and Zebulun, had not cleansed themselves, yet did they eat the passover otherwise than it was written. But Hezekiah prayed for them, saying, The good LORD pardon every one",
+  "ko": "이는 백성 가운데 무리 곧 에브라임과 므낫세와 잇사갈과 스불론의 많은 사람이 자신을 정결하게 하지 못하였으되, 기록된 바와 다르게 유월절 양을 먹었음이라. 그러나 히스기야가 그들을 위하여 기도하여 이르되, \"선하신 여호와여, 모든 사람을 사하여 주옵소서.",
+  "note": "많은 북방 사람이 정결치 못한 채 규례와 다르게 유월절을 먹자 히스기야가 '선하신 여호와여 사하소서' 하고 중보한다. 왕이 백성을 위해 기도하는 이 장면은, 형식보다 마음을 보시는 하나님께 대한 신뢰를 드러낸다.",
+  "voc": [
+   [
+    "multitude",
+    "n.",
+    "무리, 많은 사람"
+   ],
+   [
+    "cleansed",
+    "v.",
+    "정결하게 하였다"
+   ],
+   [
+    "prayed",
+    "v.",
+    "기도하였다"
+   ],
+   [
+    "pardon",
+    "v.",
+    "사하다, 용서하다"
+   ]
+  ],
+  "idi": [
+   [
+    "otherwise than it was written",
+    "기록된 바와 다르게"
+   ],
+   [
+    "The good LORD pardon",
+    "선하신 여호와여 사하소서(기원문)"
+   ]
   ],
   "gra": [
-   ["that the fierceness of his wrath may turn away", "that+may=목적·결과 '~하도록' (진노가 돌이켜지도록)"]
+   [
+    "The good LORD pardon",
+    "동사 원형 pardon=기원·간구를 나타내는 옛 가정법"
+   ]
   ]
  },
  {
-  "en": "for the LORD your God is gracious and merciful",
-  "ko": "너희 하나님 여호와는 은혜로우시고 자비로우시므로",
-  "note": "'은혜로우시고 자비로우신'은 출애굽기 34:6의 여호와의 자기 계시를 그대로 잇는다. '자비로운'의 히브리어 '라훔'(רַחוּם)은 '레헴'(자궁)에서 왔으니, 어미가 제 태에서 난 자식을 향하듯 깊은 긍휼이다. 돌아오는 자를 외면하지 않으심은 그분의 본성에 새겨진 사랑이다.",
+  "en": "That prepareth his heart to seek God, the LORD God of his fathers, though he be not cleansed according to the purification of the sanctuary.",
+  "ko": "비록 성소의 정결 규례대로 깨끗하게 되지 못하였을지라도, 마음을 정하여 하나님 곧 그의 조상들의 하나님 여호와를 찾는 모든 자를 사하여 주옵소서\" 하매,",
+  "note": "'성소의 정결 규례대로 깨끗지 못해도 마음을 정하여 하나님을 찾는 자를 사하소서'라 기도한다. 히브리어 '헤킨 레바브'(마음을 정함)는 진실한 갈망을 뜻하니, 외적 정결보다 하나님을 향한 마음의 준비가 우선함을 밝힌다.",
   "voc": [
-   ["compassion", "n.", "긍휼, 불쌍히 여김"],
-   ["captive", "adj./n.", "사로잡힌 (자)"],
-   ["gracious", "adj.", "은혜로운"],
-   ["merciful", "adj.", "자비로운"]
+   [
+    "prepareth",
+    "v.",
+    "정하다, 준비하다"
+   ],
+   [
+    "seek",
+    "v.",
+    "찾다, 구하다"
+   ],
+   [
+    "purification",
+    "n.",
+    "정결, 결례"
+   ]
+  ],
+  "idi": [
+   [
+    "prepareth his heart to seek God",
+    "마음을 정하여 하나님을 찾다"
+   ]
   ],
   "gra": [
-   ["if ye return unto him", "if+현재시제로 조건 '너희가 돌아오면'"]
+   [
+    "prepareth",
+    "prepareth=prepares의 옛 3인칭 단수형(-eth 어미)"
+   ]
   ]
  },
  {
-  "en": "but they laughed them to scorn, and mocked them",
-  "ko": "그러나 그들이 비웃고 조롱하더라",
-  "note": "은혜의 부름이 모두에게 같은 응답을 얻지는 않는다. 북왕국 대다수는 회개의 초청을 비웃었으나, 11절의 '몇 사람'은 겸비하여 나아왔다. 같은 말씀이 누구에게는 조롱거리가 되고 누구에게는 구원의 길이 되니, 갈림은 말씀이 아니라 듣는 마음에 있다.",
+  "en": "And the LORD hearkened to Hezekiah, and healed the people.",
+  "ko": "여호와께서 히스기야의 기도를 들으시고 백성을 고치셨더라.",
+  "note": "'여호와께서 히스기야의 기도를 들으시고 백성을 고치셨다'고 응답한다. 히브리어 '라파'(고치다)는 죄로 인한 부정을 치유하심을 뜻하니, 마음을 보시는 하나님이 형식의 결함을 은혜로 덮으심을 보여 준다.",
   "voc": [
-   ["laugh to scorn", "", "비웃다, 조소하다"],
-   ["mock", "v.", "조롱하다"],
-   ["pass from ... to", "", "~에서 ~로 지나가다"]
+   [
+    "hearkened",
+    "v.",
+    "들으셨다"
+   ],
+   [
+    "healed",
+    "v.",
+    "고치셨다"
+   ],
+   [
+    "people",
+    "n.",
+    "백성"
+   ]
   ],
   "idi": [
-   ["laugh to scorn", "비웃다, 멸시하여 웃다"],
-   ["from city to city", "이 성읍에서 저 성읍으로"]
-  ]
+   [
+    "hearkened to",
+    "~의 (기도를) 들으시다"
+   ]
+  ],
+  "gra": []
  },
  {
-  "en": "humbled themselves, and came to Jerusalem",
-  "ko": "스스로 겸비하여 예루살렘으로 왔더라",
-  "note": "'겸비하다'(히브리어 '카나', כָּנַע)는 스스로 낮추어 굴복함이다. 역대하의 거듭된 주제로, 겸비한 자에게 하나님이 응답하신다(대하 7:14). 12절은 그 겸비를 일으킨 손길을 밝히니, 곧 '하나님의 손'이 그들에게 한마음을 주신 은혜의 역사다.",
+  "en": "And the children of Israel that were present at Jerusalem kept the feast of unleavened bread seven days with great gladness: and the Levites and the priests praised the LORD day by day, singing with loud instruments unto the LORD.",
+  "ko": "예루살렘에 모인 이스라엘 자손이 크게 즐거워하며 이레 동안 무교절을 지키고, 레위 사람들과 제사장들은 날마다 여호와를 찬송하며 큰 소리 나는 악기로 여호와를 노래하더라.",
+  "note": "모인 백성이 크게 즐거워하며 이레 동안 무교절을 지키고 날마다 큰 악기로 찬송했다. 히브리어 '심하 게돌라'(큰 기쁨)의 강조는, 회복된 예배가 절기 내내 넘치는 기쁨의 잔치였음을 그린다.",
   "voc": [
-   ["humble oneself", "", "자신을 낮추다, 겸비하다"],
-   ["divers", "adj.", "여럿의, 몇몇의 (古)"],
-   ["one heart", "", "한마음"]
+   [
+    "present",
+    "adj.",
+    "모인, 참석한"
+   ],
+   [
+    "gladness",
+    "n.",
+    "즐거움, 기쁨"
+   ],
+   [
+    "praised",
+    "v.",
+    "찬송하였다"
+   ],
+   [
+    "loud",
+    "adj.",
+    "큰 소리 나는"
+   ]
   ],
   "idi": [
-   ["humble oneself", "스스로 겸손하다, 자신을 낮추다"],
-   ["the hand of God", "하나님의 손 (능력·인도)"]
+   [
+    "day by day",
+    "날마다"
+   ],
+   [
+    "with great gladness",
+    "크게 즐거워하며"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And Hezekiah spake comfortably unto all the Levites that taught the good knowledge of the LORD: and they did eat throughout the feast seven days, offering peace offerings, and making confession to the LORD God of their fathers.",
+  "ko": "히스기야가 여호와를 섬기는 좋은 지식을 가르치는 모든 레위 사람에게 위로의 말을 하니라. 그리하여 그들이 이레 동안 그 절기에 먹으며 화목제물을 드리고 그 조상들의 하나님 여호와께 자복하니라.",
+  "note": "히스기야가 좋은 지식을 가르치는 레위인들에게 위로의 말을 하니, 그들이 화목제를 드리며 자복했다. 히브리어 '다바르 알 레브'(마음에 대고 말함)는 격려를 뜻하니, 지도자가 봉사자를 세우는 따뜻한 목양을 보여 준다.",
+  "voc": [
+   [
+    "comfortably",
+    "adv.",
+    "위로가 되게"
+   ],
+   [
+    "knowledge",
+    "n.",
+    "지식"
+   ],
+   [
+    "confession",
+    "n.",
+    "자복, 고백"
+   ]
+  ],
+  "idi": [
+   [
+    "spake comfortably unto",
+    "~에게 위로의 말을 하다"
+   ],
+   [
+    "making confession",
+    "자복하다"
+   ]
   ],
   "gra": [
-   ["the hand of God was to give them one heart", "was to+동사='~하려는 것이었다' (한마음을 주려 하심)"]
+   [
+    "spake",
+    "spake=speak의 옛 과거형(현대 spoke)"
+   ]
   ]
  },
  {
-  "en": "Then they killed the passover on the fourteenth day",
-  "ko": "둘째 달 열나흗날에 유월절 어린양을 잡으니라",
-  "note": "'유월절을 잡다'는 곧 유월절 어린양을 잡음이다(출 12:21). 제사장과 레위 사람이 '부끄러워하여' 자신을 성별하니, 백성의 열심이 도리어 인도자의 양심을 찔렀다. 거룩한 일에 미흡했던 자가 부끄러움을 알고 돌이킴은 회개의 또 다른 모습이다.",
+  "en": "And the whole assembly took counsel to keep other seven days: and they kept other seven days with gladness.",
+  "ko": "온 회중이 다시 이레를 더 지키기로 의논하고, 또 이레를 즐거이 지켰으니,",
+  "note": "온 회중이 이레를 더 지키기로 의논해 즐거이 지켰다. 규정된 이레를 갑절로 연장한 것은, 강요된 의무가 아니라 넘치는 기쁨에서 우러난 자발적 연장으로, 부흥의 뜨거움을 증언한다.",
   "voc": [
-   ["kill the passover", "", "유월절 양을 잡다"],
-   ["fourteenth day", "", "열나흗날"],
-   ["be ashamed", "", "부끄러워하다"],
-   ["burnt offering", "", "번제물"]
+   [
+    "whole",
+    "adj.",
+    "온, 전체의"
+   ],
+   [
+    "assembly",
+    "n.",
+    "회중"
+   ],
+   [
+    "counsel",
+    "n.",
+    "의논"
+   ]
   ],
   "idi": [
-   ["be ashamed", "부끄러워하다"]
-  ]
+   [
+    "other seven days",
+    "또 다른 이레(추가된 칠일)"
+   ]
+  ],
+  "gra": []
  },
  {
-  "en": "yet did they eat the passover otherwise than it was written. But Hezekiah prayed for them",
-  "ko": "기록된 바와 다르게 유월절 양을 먹었으되, 그러나 히스기야가 그들을 위하여 기도하여",
-  "note": "규례대로 정결하지 못한 자들이 유월절을 먹은 것은 율법의 글자에 어긋났다. 그러나 히스기야는 정죄하지 않고 중보 기도로 나아가니, 율법의 글자보다 '하나님을 찾는 마음'(19절)을 보시는 분께 호소함이다. 의식의 흠보다 마음의 방향을 귀히 여기심을 구하는 왕의 중보다.",
+  "en": "For Hezekiah king of Judah did give to the congregation a thousand bullocks and seven thousand sheep; and the princes gave to the congregation a thousand bullocks and ten thousand sheep: and a great number of priests sanctified themselves.",
+  "ko": "이는 유다 왕 히스기야가 회중에게 수송아지 천 마리와 양 칠천 마리를 주었고 방백들도 회중에게 수송아지 천 마리와 양 만 마리를 주었으며, 많은 제사장이 자신을 거룩하게 하였음이라.",
+  "note": "히스기야와 방백들이 막대한 소와 양을 회중에게 주고 많은 제사장이 성별되었다. 왕과 지도층의 후한 헌납은, 부흥이 위로부터의 관대한 섬김으로 뒷받침되었음을 보여 준다.",
   "voc": [
-   ["a multitude of", "", "~의 무리, 많은"],
-   ["cleanse", "v.", "정결하게 하다"],
-   ["otherwise than", "", "~과 다르게"],
-   ["pray for", "", "~을 위하여 기도하다"],
-   ["pardon", "v.", "사하다, 용서하다"]
+   [
+    "gave",
+    "v.",
+    "주었다"
+   ],
+   [
+    "bullocks",
+    "n.",
+    "수송아지들"
+   ],
+   [
+    "sheep",
+    "n.",
+    "양들"
+   ],
+   [
+    "number",
+    "n.",
+    "수, 무리"
+   ]
   ],
   "idi": [
-   ["otherwise than it was written", "기록된 바와 다르게"]
+   [
+    "a great number of priests",
+    "많은 제사장"
+   ]
   ],
-  "gra": [
-   ["yet did they eat the passover", "did+동사원형(eat)=강조 도치 '먹기는 먹었으되'"]
-  ]
+  "gra": []
  },
  {
-  "en": "That prepareth his heart to seek God",
-  "ko": "마음을 정하여 하나님을 찾는 모든 자",
-  "note": "'마음을 정하다'(히브리어 '쿤 레바브', כּוּן לֵבָב)는 마음을 굳게 세워 한 방향으로 향함이다. 하나님이 받으시는 예배의 본질은 외형의 정결이 아니라 그분을 향한 마음의 준비다. 정결 규례를 다 갖추지 못했어도 마음으로 하나님을 찾는 자를 그분이 받으시니, 율법의 끝은 마음을 향한다.",
+  "en": "And all the congregation of Judah, with the priests and the Levites, and all the congregation that came out of Israel, and the strangers that came out of the land of Israel, and that dwelt in Judah, rejoiced.",
+  "ko": "유다의 온 회중과 제사장들과 레위 사람들과 이스라엘에서 나온 온 회중과 이스라엘 땅에서 나와 유다에 거하는 나그네들이 다 즐거워하니,",
+  "note": "유다와 이스라엘의 온 회중, 나그네까지 다 즐거워했다. 히브리어 '게르'(나그네)의 포함은, 회복된 예배의 기쁨이 혈통을 넘어 이방인에게까지 미쳤음을 뜻하니, 열방을 향한 하나님의 마음을 예표한다.",
   "voc": [
-   ["prepare one's heart", "", "마음을 준비하다, 마음을 정하다"],
-   ["seek God", "", "하나님을 찾다"],
-   ["purification", "n.", "정결, 깨끗하게 함"],
-   ["according to", "", "~에 따라"]
+   [
+    "strangers",
+    "n.",
+    "나그네들, 이방인들"
+   ],
+   [
+    "dwelt",
+    "v.",
+    "거하였다"
+   ],
+   [
+    "rejoiced",
+    "v.",
+    "즐거워하였다"
+   ]
   ],
   "idi": [
-   ["prepare one's heart to", "~하려고 마음을 정하다"]
+   [
+    "came out of",
+    "~에서 나온"
+   ]
   ],
-  "gra": [
-   ["That prepareth his heart", "prepareth=고어 3인칭 단수 현재(=prepares); That=관계대명사 '~하는 자'"]
-  ]
+  "gra": []
  },
  {
-  "en": "And the LORD hearkened to Hezekiah, and healed the people",
-  "ko": "여호와께서 히스기야의 기도를 들으시고 백성을 고치셨더라",
-  "note": "'들으시다'의 '샤마'(שָׁמַע)는 단지 귀로 들음이 아니라 응답하여 받아들이심이다. 마음으로 찾는 자를 받으시는 기도가 응답되니, 하나님은 의식의 흠을 정죄하기보다 진실한 중보에 자비로 화답하셨다. '고치셨다'는 죄로 인한 상함까지 회복하시는 은혜를 가리킨다.",
+  "en": "So there was great joy in Jerusalem: for since the time of Solomon the son of David king of Israel there was not the like in Jerusalem.",
+  "ko": "이에 예루살렘에 큰 기쁨이 있었더라. 다윗의 아들 이스라엘 왕 솔로몬 때로부터 예루살렘에 이와 같은 일이 없었더라.",
+  "note": "'솔로몬 때로부터 예루살렘에 이런 일이 없었다'고 평한다. 성전 봉헌의 절정이던 솔로몬 시대에 견주는 이 비교는, 히스기야의 유월절이 다윗 왕조 최대의 부흥이었음을 최고의 찬사로 새긴다.",
   "voc": [
-   ["hearken to", "", "~의 말을 듣다, 귀 기울이다"],
-   ["heal", "v.", "고치다, 치유하다"]
+   [
+    "great joy",
+    "",
+    "큰 기쁨"
+   ],
+   [
+    "Solomon",
+    "n.",
+    "솔로몬"
+   ],
+   [
+    "like",
+    "n.",
+    "같은 것, 비할 것"
+   ]
   ],
   "idi": [
-   ["hearken to", "~에게 귀를 기울이다, 들어주다"]
-  ]
+   [
+    "there was not the like",
+    "이와 같은 일이 없었다"
+   ],
+   [
+    "since the time of",
+    "~때로부터"
+   ]
+  ],
+  "gra": []
  },
  {
-  "en": "for since the time of Solomon ... there was not the like in Jerusalem",
-  "ko": "솔로몬 때로부터 예루살렘에 이와 같은 일이 없었더라",
-  "note": "분열 이후 처음으로 남북의 백성이 함께 한 유월절을 지키니, 이는 솔로몬의 성전 봉헌(대하 7장) 이후 가장 큰 기쁨이었다. 회개로 다시 모인 언약 공동체의 기쁨이 옛 영화에 견주어지니, 참된 부흥은 화려함이 아니라 흩어진 자가 하나님 앞에 다시 모이는 데 있다.",
+  "en": "Then the priests the Levites arose and blessed the people: and their voice was heard, and their prayer came up to his holy dwelling place, even unto heaven.",
+  "ko": "그때에 제사장들과 레위 사람들이 일어나 백성을 축복하니, 그 소리가 들리고 그 기도가 그의 거룩한 처소 곧 하늘에까지 이르렀더라.",
+  "note": "제사장과 레위인이 백성을 축복하니 그 기도가 하늘 거룩한 처소에까지 이르렀다. 히브리어 '마온 코드쇼'(그의 거룩한 처소)는 하늘 성소를 가리키니, 회복된 예배의 축복이 하나님께 온전히 상달되었음을 선포하며 장을 맺는다.",
   "voc": [
-   ["strangers", "n.", "나그네, 이방인·타지 사람"],
-   ["rejoice", "v.", "즐거워하다, 기뻐하다"],
-   ["the like", "", "그와 같은 것"]
+   [
+    "blessed",
+    "v.",
+    "축복하였다"
+   ],
+   [
+    "voice",
+    "n.",
+    "소리, 음성"
+   ],
+   [
+    "prayer",
+    "n.",
+    "기도"
+   ],
+   [
+    "dwelling place",
+    "",
+    "처소, 거처"
+   ]
   ],
   "idi": [
-   ["there was not the like", "이와 같은 일이 없었다"]
+   [
+    "came up to his holy dwelling place",
+    "그의 거룩한 처소에까지 이르다(상달되다)"
+   ]
   ],
-  "gra": [
-   ["since the time of Solomon", "since=~이후로(기점); the time of Solomon='솔로몬의 때'"]
-  ]
- },
- {
-  "en": "and their prayer came up to his holy dwelling place, even unto heaven",
-  "ko": "그 기도가 그의 거룩한 처소 곧 하늘에까지 이르렀더라",
-  "note": "제사장들의 축복(민 6:24-26)으로 장이 닫힌다. 기도가 '하늘에까지 이르렀다'는 솔로몬의 성전 기도에 응답하신 약속(대하 7:14)의 성취이니, 겸비히 돌이킨 백성의 기도를 하나님이 그 거룩한 처소에서 들으셨다. 회개로 시작한 절기가 하늘에 상달된 기도로 마치니, 돌아온 백성을 향한 은혜의 확증이다.",
-  "voc": [
-   ["bless", "v.", "축복하다"],
-   ["dwelling place", "", "처소, 거하시는 곳"],
-   ["come up unto", "", "~에까지 올라가다, 이르다"]
-  ],
-  "idi": [
-   ["come up to heaven", "하늘에까지 이르다(상달되다)"]
-  ],
-  "gra": [
-   ["their voice was heard", "was heard=수동태 '그 소리가 들렸다'"]
-  ]
+  "gra": []
  }
 ]

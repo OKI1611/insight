@@ -1,114 +1,855 @@
 [
-  {
-    "en": "a red heifer without spot",
-    "ko": "흠 없는 붉은 암송아지",
-    "note": "히브리어 '파라 아둠마'(פָּרָה אֲדֻמָּה, parah ʾadummah)는 '붉은 암소'다. '아둠'(붉다)은 피·땅·사람('아담')과 어근이 같아 죄와 생명, 흙으로 지음받은 사람을 떠올리게 한다. 흠 없고(타밈, תָּמִים) 멍에를 메지 않은 짐승은 죄 없이 자신을 드리신 그리스도를 예표한다(히 9:13~14).",
-    "voc": [
-      ["red", "a.", "붉은"],
-      ["heifer", "n.", "암송아지"],
-      ["without", "prep.", "~없이"],
-      ["spot", "n.", "흠, 점, 얼룩"]
-    ],
-    "idi": [
-      ["without spot", "흠 없는, 티 하나 없는"]
-    ]
-  },
-  {
-    "en": "upon which never came yoke",
-    "ko": "멍에를 메지 아니한",
-    "note": "'로 알라 알레하 올'(לֹא־עָלָה עָלֶיהָ עֹל)은 '그 위에 멍에가 올라간 적이 없다'는 뜻이다. 사람의 일에 쓰여 길든 적 없는, 온전히 구별된 짐승만 이 제사에 합당하다.",
-    "voc": [
-      ["upon", "prep.", "~위에"],
-      ["never", "adv.", "결코 ~않다"],
-      ["yoke", "n.", "멍에"],
-      ["came", "v.", "왔다(come의 과거)"]
-    ],
-    "gra": [
-      ["upon which never came yoke", "관계대명사 which가 앞 명사(heifer)를 받고, 도치되어 동사 came이 주어 yoke 앞에 옴 = 'on which a yoke never came'"]
-    ]
-  },
-  {
-    "en": "without the camp",
-    "ko": "진 밖",
-    "note": "'미후츠 라마하네'(מִחוּץ לַמַּחֲנֶה)는 '진영 바깥'이다. 이 암송아지는 성막이 아니라 진 밖에서 잡고 사른다. 히브리서는 예수께서 '성문 밖에서' 고난받으심을 이 규례와 잇는다(히 13:11~12).",
-    "voc": [
-      ["without", "prep.", "~밖에(고어)"],
-      ["camp", "n.", "진영, 야영지"]
-    ],
-    "gra": [
-      ["without the camp", "여기서 without은 '~없이'가 아니라 고어로 '~밖에(outside)'의 뜻"]
-    ]
-  },
-  {
-    "en": "cedar wood, and hyssop, and scarlet",
-    "ko": "백향목과 우슬초와 홍색 실",
-    "note": "'에레즈'(אֶרֶז, 백향목)·'에조브'(אֵזוֹב, 우슬초)·'쉐니'(שָׁנִי, 홍색)는 함께 던져 재에 섞이는 정결 재료다. 같은 세 가지가 나병자 정결례(레 14)에도 쓰여, 죄와 죽음에서 깨끗케 하는 표징을 이룬다.",
-    "voc": [
-      ["cedar", "n.", "백향목, 삼나무"],
-      ["wood", "n.", "나무, 목재"],
-      ["hyssop", "n.", "우슬초"],
-      ["scarlet", "n.", "홍색, 진홍색"]
-    ]
-  },
-  {
-    "en": "a water of separation",
-    "ko": "정결의 물",
-    "note": "'메 닛다'(מֵי נִדָּה, mey niddah)는 '분리(부정)를 씻는 물'이라는 뜻이다. 암송아지의 재를 흐르는 물에 타 만든 것으로, 시체에 닿아 부정해진 자를 정결하게 하는 데 쓴다. KJV의 'water of separation'을 원어의 정결 기능에 맞춰 '정결의 물'로 옮긴다.",
-    "voc": [
-      ["water", "n.", "물"],
-      ["separation", "n.", "분리, 구별"]
-    ],
-    "gra": [
-      ["a water of separation", "of separation은 명사 water를 꾸미는 한정 어구(목적·기능을 나타내는 of)"]
-    ]
-  },
-  {
-    "en": "it is a purification for sin",
-    "ko": "죄를 깨끗하게 함",
-    "note": "'핫타트 히'(חַטָּאת הִוא)는 '그것은 속죄(정결)다'라는 뜻으로, '핫타트'는 죄와 그 죄를 씻는 속죄제를 함께 가리킨다. 이 재는 죄를 제거하는 속죄의 효력을 지닌다.",
-    "voc": [
-      ["purification", "n.", "정결, 깨끗하게 함"],
-      ["sin", "n.", "죄"]
-    ],
-    "idi": [
-      ["purification for sin", "죄를 씻는 정결(속죄)"]
-    ]
-  },
-  {
-    "en": "running water",
-    "ko": "흐르는 물",
-    "note": "'마임 하임'(מַיִם חַיִּים, mayim ḥayyim)은 글자대로 '살아 있는 물', 곧 고이지 않고 흐르는 생수다. 죽음의 부정을 씻는 데 생명을 상징하는 흐르는 물을 쓰게 한 것이 깊은 뜻을 준다.",
-    "voc": [
-      ["running", "a.", "흐르는, 달리는"],
-      ["water", "n.", "물"]
-    ],
-    "gra": [
-      ["running water", "현재분사 running이 형용사처럼 명사 water를 앞에서 꾸밈 = '흐르고 있는 물'"]
-    ]
-  },
-  {
-    "en": "that soul shall be cut off",
-    "ko": "그 영혼이 끊어지리라",
-    "note": "'베니크레타 하네페쉬'(וְנִכְרְתָה הַנֶּפֶשׁ)에서 '카라트'(끊다)는 언약 공동체에서 제하여짐을, '네페쉬'(영혼·생명)는 그 사람 전체를 가리킨다. 정결을 거부함이 곧 거룩하신 하나님을 거역함임을 보인다.",
-    "voc": [
-      ["soul", "n.", "영혼, 사람"],
-      ["shall", "aux.", "~하리라(미래·당위)"],
-      ["cut off", "v.", "끊어내다, 제거하다"]
-    ],
-    "idi": [
-      ["cut off", "끊어내다, (공동체에서) 제하여지다"]
-    ],
-    "gra": [
-      ["shall be cut off", "shall+be+과거분사 = 미래 수동태. 주체가 명시되지 않은 신적 수동(하나님에 의해 끊어짐)을 나타냄"]
-    ]
-  },
-  {
-    "en": "a perpetual statute",
-    "ko": "영원한 규례",
-    "note": "'훅카트 올람'(חֻקַּת עוֹלָם, ḥuqqat ʿolam)은 '영구한 법규'다. '훅카'는 사람이 그 까닭을 다 헤아릴 수 없으나 하나님이 정하셔서 반드시 지켜야 할 규례를 뜻한다.",
-    "voc": [
-      ["perpetual", "a.", "영원한, 영구적인"],
-      ["statute", "n.", "규례, 법령"]
-    ]
-  }
+ {
+  "en": "And the LORD spake unto Moses and unto Aaron, saying,",
+  "ko": "여호와께서 모세와 아론에게 말씀하여 이르시되,",
+  "note": "거듭된 죽음의 심판 뒤에, 하나님은 시체의 부정을 정결케 하는 규례를 주신다. 붉은 암송아지의 재 규례가 시작되는 도입절이다.",
+  "voc": [
+   [
+    "spake",
+    "v.",
+    "말씀하셨다"
+   ],
+   [
+    "unto",
+    "prep.",
+    "~에게"
+   ],
+   [
+    "Aaron",
+    "고유명사",
+    "아론"
+   ],
+   [
+    "saying",
+    "v.",
+    "이르시되"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "spake unto Moses and unto Aaron",
+    "반복된 전치사 unto의 KJV 어법이다"
+   ]
+  ]
+ },
+ {
+  "en": "This is the ordinance of the law which the LORD hath commanded, saying, Speak unto the children of Israel, that they bring thee a red heifer without spot, wherein is no blemish, and upon which never came yoke:",
+  "ko": "\"이는 여호와께서 명하신 율법의 규례니라. 이르시되, 이스라엘 자손에게 일러 흠도 없고 점도 없으며 아직 멍에를 메지 아니한 붉은 암송아지 한 마리를 네게로 끌어 오게 하라.",
+  "note": "'흠 없고 멍에 메지 아니한 붉은 암송아지'는 온전하고 세속에 쓰이지 않은 제물이다. 이 흠 없는 희생은, 죄를 온전히 담당하실 그리스도를 예표한다.",
+  "voc": [
+   [
+    "ordinance",
+    "n.",
+    "규례"
+   ],
+   [
+    "red",
+    "adj.",
+    "붉은"
+   ],
+   [
+    "heifer",
+    "n.",
+    "암송아지"
+   ],
+   [
+    "blemish",
+    "n.",
+    "흠, 점"
+   ]
+  ],
+  "idi": [
+   [
+    "upon which never came yoke",
+    "아직 멍에를 메지 아니한이라는 표현이다"
+   ]
+  ],
+  "gra": [
+   [
+    "wherein is no blemish",
+    "wherein이 '그 안에'를 뜻한 KJV 고어이다"
+   ]
+  ]
+ },
+ {
+  "en": "And ye shall give her unto Eleazar the priest, that he may bring her forth without the camp, and one shall slay her before his face:",
+  "ko": "너희는 그것을 제사장 엘르아살에게 줄 것이요, 그는 그것을 진 밖으로 끌어내어 자기 앞에서 잡게 할지니라.",
+  "note": "암송아지를 '진 밖에서' 잡는다. 부정을 다루는 희생이 진영 밖에서 드려짐은, 훗날 성문 밖에서 고난받으신 그리스도의 대속을 미리 보여 준다.",
+  "voc": [
+   [
+    "Eleazar",
+    "고유명사",
+    "엘르아살"
+   ],
+   [
+    "without",
+    "prep.",
+    "~밖에"
+   ],
+   [
+    "camp",
+    "n.",
+    "진영"
+   ],
+   [
+    "slay",
+    "v.",
+    "잡다, 죽이다"
+   ]
+  ],
+  "idi": [
+   [
+    "bring her forth without the camp",
+    "진 밖으로 끌어내라는 표현이다"
+   ]
+  ],
+  "gra": [
+   [
+    "one shall slay her",
+    "부정대명사 one이 주어로 쓰인 KJV 어법이다"
+   ]
+  ]
+ },
+ {
+  "en": "And Eleazar the priest shall take of her blood with his finger, and sprinkle of her blood directly before the tabernacle of the congregation seven times:",
+  "ko": "제사장 엘르아살은 손가락으로 그 피를 찍어 회막 정면을 향하여 일곱 번 뿌릴 것이며,",
+  "note": "피를 회막 정면을 향해 일곱 번 뿌린다. 일곱은 완전을 상징하며, 피가 하나님의 임재를 향해 뿌려짐은 이 정결이 그분 앞에서 유효함을 보여 준다.",
+  "voc": [
+   [
+    "blood",
+    "n.",
+    "피"
+   ],
+   [
+    "finger",
+    "n.",
+    "손가락"
+   ],
+   [
+    "sprinkle",
+    "v.",
+    "뿌리다"
+   ],
+   [
+    "directly",
+    "adv.",
+    "정면으로, 곧바로"
+   ]
+  ],
+  "idi": [
+   [
+    "seven times",
+    "일곱 번이라는 완전을 상징하는 표현이다"
+   ]
+  ],
+  "gra": [
+   [
+    "directly before the tabernacle",
+    "directly가 방향을 강조한 KJV 부사이다"
+   ]
+  ]
+ },
+ {
+  "en": "And one shall burn the heifer in his sight; her skin, and her flesh, and her blood, with her dung, shall he burn:",
+  "ko": "그가 보는 데서 그 암송아지를 사를지니, 곧 그 가죽과 그 고기와 그 피를 똥과 함께 사를 것이요,",
+  "note": "암송아지를 가죽과 고기와 똥까지 통째로 사른다. 전부를 태움은 이 희생이 온전한 대속임을 보여 주며, 그 재가 정결의 근원이 될 것이다.",
+  "voc": [
+   [
+    "burn",
+    "v.",
+    "사르다"
+   ],
+   [
+    "sight",
+    "n.",
+    "보는 데, 목전"
+   ],
+   [
+    "skin",
+    "n.",
+    "가죽"
+   ],
+   [
+    "dung",
+    "n.",
+    "똥"
+   ]
+  ],
+  "idi": [
+   [
+    "in his sight",
+    "그가 보는 데서라는 표현이다"
+   ]
+  ],
+  "gra": [
+   [
+    "her flesh, and her blood, with her dung",
+    "목적어를 나열한 KJV 서술이다"
+   ]
+  ]
+ },
+ {
+  "en": "And the priest shall take cedar wood, and hyssop, and scarlet, and cast it into the midst of the burning of the heifer.",
+  "ko": "제사장은 백향목과 우슬초와 홍색 실을 가져다가 그 암송아지를 사르는 불 가운데 던질지니라.",
+  "note": "백향목과 우슬초와 홍색 실을 불 가운데 던진다. 이 세 요소는 정결 예식에 쓰이는 상징물로, 죄를 씻는 예식의 재료가 희생과 함께 태워진다.",
+  "voc": [
+   [
+    "cedar wood",
+    "명사구",
+    "백향목"
+   ],
+   [
+    "hyssop",
+    "n.",
+    "우슬초"
+   ],
+   [
+    "scarlet",
+    "n.",
+    "홍색, 진홍"
+   ],
+   [
+    "cast",
+    "v.",
+    "던지다"
+   ]
+  ],
+  "idi": [
+   [
+    "cast it into the midst of the burning",
+    "불 가운데 던지라는 표현이다"
+   ]
+  ],
+  "gra": [
+   [
+    "the burning of the heifer",
+    "동명사 burning이 명사로 쓰인 KJV 어법이다"
+   ]
+  ]
+ },
+ {
+  "en": "Then the priest shall wash his clothes, and he shall bathe his flesh in water, and afterward he shall come into the camp, and the priest shall be unclean until the even.",
+  "ko": "그리한 후에 제사장은 자기 옷을 빨고 물로 몸을 씻을 것이요, 그 후에야 진에 들어올 것이며, 그 제사장은 저녁까지 부정하리라.",
+  "note": "제사장이 옷을 빨고 몸을 씻어도 저녁까지 부정하다. 정결케 하는 예식을 행한 자조차 부정에 접촉하여 부정해짐은, 죄의 오염이 얼마나 깊은지를 역설적으로 드러낸다.",
+  "voc": [
+   [
+    "wash",
+    "v.",
+    "빨다, 씻다"
+   ],
+   [
+    "clothes",
+    "n.",
+    "옷"
+   ],
+   [
+    "flesh",
+    "n.",
+    "몸, 살"
+   ],
+   [
+    "unclean",
+    "adj.",
+    "부정한"
+   ]
+  ],
+  "idi": [
+   [
+    "unclean until the even",
+    "저녁까지 부정하다는 표현이다"
+   ]
+  ],
+  "gra": [
+   [
+    "the even",
+    "evening(저녁)의 KJV 고형이다"
+   ]
+  ]
+ },
+ {
+  "en": "And he that burneth her shall wash his clothes in water, and bathe his flesh in water, and shall be unclean until the even.",
+  "ko": "그것을 사른 자도 자기 옷을 물로 빨고 물로 몸을 씻을 것이요, 저녁까지 부정하리라.",
+  "note": "암송아지를 사른 자도 옷을 빨고 저녁까지 부정하다. 정결의 재를 만드는 봉사자마저 부정에 물듦은, 인간의 노력만으로는 완전한 정결에 이를 수 없음을 시사한다.",
+  "voc": [
+   [
+    "burneth",
+    "v.",
+    "사르는 (burn의 고형)"
+   ],
+   [
+    "wash",
+    "v.",
+    "빨다, 씻다"
+   ],
+   [
+    "water",
+    "n.",
+    "물"
+   ],
+   [
+    "unclean",
+    "adj.",
+    "부정한"
+   ]
+  ],
+  "idi": [
+   [
+    "bathe his flesh in water",
+    "물로 몸을 씻다는 표현이다"
+   ]
+  ],
+  "gra": [
+   [
+    "he that burneth her",
+    "he that 관계절이 '사르는 자'를 뜻한 KJV 어법이다"
+   ]
+  ]
+ },
+ {
+  "en": "And a man that is clean shall gather up the ashes of the heifer, and lay them up without the camp in a clean place, and it shall be kept for the congregation of the children of Israel for a water of separation: it is a purification for sin.",
+  "ko": "정결한 사람이 그 암송아지의 재를 거두어 진 밖 정결한 곳에 둘지니, 이는 이스라엘 자손의 회중을 위하여 간직하여 정결의 물을 만드는 것이라. 이는 죄를 깨끗하게 함이니라.",
+  "note": "재를 거두어 정결한 곳에 간직하여 '정결의 물'을 만든다. 이는 '죄를 깨끗하게 함'을 위한 것으로, 한 번의 희생이 반복되는 정결의 근원이 됨을 보여 준다.",
+  "voc": [
+   [
+    "ashes",
+    "n.",
+    "재"
+   ],
+   [
+    "gather up",
+    "동사구",
+    "거두다"
+   ],
+   [
+    "separation",
+    "n.",
+    "정결, 구별"
+   ],
+   [
+    "purification",
+    "n.",
+    "정결하게 함, 깨끗하게 함"
+   ]
+  ],
+  "idi": [
+   [
+    "a water of separation",
+    "정결의 물이라는 표현이다"
+   ]
+  ],
+  "gra": [
+   [
+    "it is a purification for sin",
+    "it is 구문이 목적을 규정한 KJV 어법이다"
+   ]
+  ]
+ },
+ {
+  "en": "And he that gathereth the ashes of the heifer shall wash his clothes, and be unclean until the even: and it shall be unto the children of Israel, and unto the stranger that sojourneth among them, for a statute for ever.",
+  "ko": "그 암송아지의 재를 거둔 자도 자기 옷을 빨 것이요, 저녁까지 부정하리라. 이는 이스라엘 자손과 그들 가운데 거류하는 나그네에게 영원한 규례가 되리라.",
+  "note": "재를 거둔 자도 부정하며, 이 규례가 나그네에게도 영원히 적용된다. 정결의 규례가 이방인에게까지 미침은, 하나님의 은혜가 열방을 향함을 보여 준다.",
+  "voc": [
+   [
+    "gathereth",
+    "v.",
+    "거두는 (gather의 고형)"
+   ],
+   [
+    "ashes",
+    "n.",
+    "재"
+   ],
+   [
+    "stranger",
+    "n.",
+    "나그네"
+   ],
+   [
+    "sojourneth",
+    "v.",
+    "거류하는 (sojourn의 고형)"
+   ]
+  ],
+  "idi": [
+   [
+    "a statute for ever",
+    "영원한 규례라는 표현이다"
+   ]
+  ],
+  "gra": [
+   [
+    "that sojourneth among them",
+    "3인칭 단수 어미 -eth가 붙은 KJV 어법이다"
+   ]
+  ]
+ },
+ {
+  "en": "He that toucheth the dead body of any man shall be unclean seven days.",
+  "ko": "누구든지 사람의 시체를 만진 자는 이레 동안 부정하리니,",
+  "note": "시체를 만진 자는 이레 동안 부정하다. 죽음과의 접촉이 가장 심각한 부정을 낳음은, 죄의 삯인 죽음이 오염의 근원임을 상징적으로 가르친다.",
+  "voc": [
+   [
+    "toucheth",
+    "v.",
+    "만지는 (touch의 고형)"
+   ],
+   [
+    "dead body",
+    "명사구",
+    "시체, 죽은 몸"
+   ],
+   [
+    "unclean",
+    "adj.",
+    "부정한"
+   ],
+   [
+    "seven",
+    "num.",
+    "일곱"
+   ]
+  ],
+  "idi": [
+   [
+    "He that toucheth the dead",
+    "시체를 만진 자라는 표현이다"
+   ]
+  ],
+  "gra": [
+   [
+    "He that toucheth the dead body of any man",
+    "he that 관계절의 KJV 용법이다"
+   ]
+  ]
+ },
+ {
+  "en": "He shall purify himself with it on the third day, and on the seventh day he shall be clean: but if he purify not himself the third day, then the seventh day he shall not be clean.",
+  "ko": "그는 셋째 날과 일곱째 날에 그 물로 자신을 정결하게 할 것이요, 그리하면 정결하려니와, 만일 셋째 날에 자신을 정결하게 하지 아니하면 일곱째 날에도 정결하지 못하리라.",
+  "note": "셋째 날과 일곱째 날에 정결의 물로 자신을 정결하게 해야 한다. 정한 절차를 따르지 않으면 정결하지 못함은, 하나님이 정하신 방식대로의 순종이 필수임을 보여 준다.",
+  "voc": [
+   [
+    "purify",
+    "v.",
+    "정결하게 하다"
+   ],
+   [
+    "third",
+    "adj.",
+    "셋째의"
+   ],
+   [
+    "seventh",
+    "adj.",
+    "일곱째의"
+   ],
+   [
+    "clean",
+    "adj.",
+    "정결한"
+   ]
+  ],
+  "idi": [
+   [
+    "he shall be clean",
+    "그가 정결하리라는 표현이다"
+   ]
+  ],
+  "gra": [
+   [
+    "if he purify not himself",
+    "부정 조건절 purify not의 KJV 어순이다"
+   ]
+  ]
+ },
+ {
+  "en": "Whosoever toucheth the dead body of any man that is dead, and purifieth not himself, defileth the tabernacle of the LORD; and that soul shall be cut off from Israel: because the water of separation was not sprinkled upon him, he shall be unclean; his uncleanness is yet upon him.",
+  "ko": "무릇 죽은 사람의 시체를 만지고도 자신을 정결하게 하지 아니하는 자는 여호와의 성막을 더럽힘이니, 그 영혼은 이스라엘에서 끊어지리라. 정결의 물이 그 위에 뿌려지지 아니하였으므로 그는 부정하니, 그 부정함이 아직 그에게 있느니라.",
+  "note": "정결하게 하지 아니하면 '성막을 더럽힘'이니 끊어진다. 개인의 부정이 하나님의 거처를 더럽히는 것으로 여겨짐은, 부정을 방치하는 것이 공동체 전체의 문제임을 보여 준다.",
+  "voc": [
+   [
+    "defileth",
+    "v.",
+    "더럽힌다 (defile의 고형)"
+   ],
+   [
+    "tabernacle",
+    "n.",
+    "성막"
+   ],
+   [
+    "cut off",
+    "동사구",
+    "끊어지다"
+   ],
+   [
+    "uncleanness",
+    "n.",
+    "부정함"
+   ]
+  ],
+  "idi": [
+   [
+    "his uncleanness is yet upon him",
+    "그 부정함이 아직 그에게 있다는 표현이다"
+   ]
+  ],
+  "gra": [
+   [
+    "because the water... was not sprinkled",
+    "이유를 나타내는 because 절의 KJV 어법이다"
+   ]
+  ]
+ },
+ {
+  "en": "This is the law, when a man dieth in a tent: all that come into the tent, and all that is in the tent, shall be unclean seven days.",
+  "ko": "사람이 장막에서 죽었을 때의 율법은 이러하니, 그 장막에 들어가는 모든 자와 그 장막 안에 있는 모든 것이 이레 동안 부정하리라.",
+  "note": "장막에서 사람이 죽으면 들어가는 모든 자와 안의 모든 것이 부정하다. 죽음의 부정이 공간 전체에 퍼짐은, 죄의 영향력이 접촉을 넘어 확산됨을 보여 준다.",
+  "voc": [
+   [
+    "law",
+    "n.",
+    "율법, 법도"
+   ],
+   [
+    "dieth",
+    "v.",
+    "죽는 (die의 고형)"
+   ],
+   [
+    "tent",
+    "n.",
+    "장막"
+   ],
+   [
+    "unclean",
+    "adj.",
+    "부정한"
+   ]
+  ],
+  "idi": [
+   [
+    "all that come into the tent",
+    "장막에 들어가는 모든 자라는 표현이다"
+   ]
+  ],
+  "gra": [
+   [
+    "This is the law, when a man dieth",
+    "when 절이 상황을 규정한 KJV 어법이다"
+   ]
+  ]
+ },
+ {
+  "en": "And every open vessel, which hath no covering bound upon it, is unclean.",
+  "ko": "뚜껑을 덮어 매지 아니한 모든 열린 그릇은 부정하니라.",
+  "note": "뚜껑을 덮지 않은 열린 그릇도 부정하다. 부정에 노출된 것은 무엇이든 오염됨은, 거룩함을 지키려면 세심한 경계가 필요함을 가르친다.",
+  "voc": [
+   [
+    "open",
+    "adj.",
+    "열린"
+   ],
+   [
+    "vessel",
+    "n.",
+    "그릇"
+   ],
+   [
+    "covering",
+    "n.",
+    "뚜껑, 덮개"
+   ],
+   [
+    "bound",
+    "v.",
+    "매어진 (bind의 과거분사)"
+   ]
+  ],
+  "idi": [
+   [
+    "hath no covering bound upon it",
+    "뚜껑을 덮어 매지 아니한이라는 표현이다"
+   ]
+  ],
+  "gra": [
+   [
+    "which hath no covering",
+    "관계대명사 which와 3인칭 hath의 KJV 어법이다"
+   ]
+  ]
+ },
+ {
+  "en": "And whosoever toucheth one that is slain with a sword in the open fields, or a dead body, or a bone of a man, or a grave, shall be unclean seven days.",
+  "ko": "들에서 칼에 죽임을 당한 자나 시체나 사람의 뼈나 무덤을 만지는 자는 누구든지 이레 동안 부정하리라.",
+  "note": "들에서 죽은 자, 시체, 뼈, 무덤을 만진 자도 이레 부정하다. 죽음과 관련된 모든 접촉이 부정을 낳음은, 죽음이 하나님의 생명과 대립하는 오염임을 보여 준다.",
+  "voc": [
+   [
+    "slain",
+    "v.",
+    "죽임을 당한 (slay의 과거분사)"
+   ],
+   [
+    "sword",
+    "n.",
+    "칼"
+   ],
+   [
+    "bone",
+    "n.",
+    "뼈"
+   ],
+   [
+    "grave",
+    "n.",
+    "무덤"
+   ]
+  ],
+  "idi": [
+   [
+    "slain with a sword",
+    "칼에 죽임을 당한이라는 표현이다"
+   ]
+  ],
+  "gra": [
+   [
+    "whosoever toucheth",
+    "whosoever + 3인칭 단수 -eth의 KJV 어법이다"
+   ]
+  ]
+ },
+ {
+  "en": "And for an unclean person they shall take of the ashes of the burnt heifer of purification for sin, and running water shall be put thereto in a vessel:",
+  "ko": "부정한 자를 위하여는 죄를 깨끗하게 하려고 사른 그 암송아지의 재를 가져다가 그릇에 담고 거기에 흐르는 물을 부을 것이요,",
+  "note": "부정한 자를 위해 암송아지의 재를 그릇에 담고 흐르는 물을 붓는다. '흐르는 물'은 생명의 물로, 죽음의 부정을 씻는 정결의 매개가 된다.",
+  "voc": [
+   [
+    "unclean",
+    "adj.",
+    "부정한"
+   ],
+   [
+    "ashes",
+    "n.",
+    "재"
+   ],
+   [
+    "burnt",
+    "v.",
+    "사른"
+   ],
+   [
+    "running water",
+    "명사구",
+    "흐르는 물"
+   ]
+  ],
+  "idi": [
+   [
+    "running water shall be put thereto",
+    "거기에 흐르는 물을 부으라는 표현이다"
+   ]
+  ],
+  "gra": [
+   [
+    "for an unclean person",
+    "for가 '~을 위하여'를 뜻한 KJV 어법이다"
+   ]
+  ]
+ },
+ {
+  "en": "And a clean person shall take hyssop, and dip it in the water, and sprinkle it upon the tent, and upon all the vessels, and upon the persons that were there, and upon him that touched a bone, or one slain, or one dead, or a grave:",
+  "ko": "정결한 사람이 우슬초를 가져다가 그 물에 적셔 그 장막과 모든 기구와 거기 있던 사람들에게 뿌리며, 또 뼈나 죽임을 당한 자나 시체나 무덤을 만진 자에게 뿌릴지니라.",
+  "note": "정결한 사람이 우슬초로 물을 적셔 부정한 것과 사람에게 뿌린다. 우슬초를 통한 뿌림은, 다윗이 '우슬초로 나를 정결하게 하소서'라 기도한 정결의 상징이다.",
+  "voc": [
+   [
+    "hyssop",
+    "n.",
+    "우슬초"
+   ],
+   [
+    "dip",
+    "v.",
+    "적시다, 담그다"
+   ],
+   [
+    "sprinkle",
+    "v.",
+    "뿌리다"
+   ],
+   [
+    "vessels",
+    "n.",
+    "기구들"
+   ]
+  ],
+  "idi": [
+   [
+    "dip it in the water",
+    "그 물에 적시다는 표현이다"
+   ]
+  ],
+  "gra": [
+   [
+    "a clean person shall take hyssop",
+    "a clean person이 주어로 규정된 KJV 어법이다"
+   ]
+  ]
+ },
+ {
+  "en": "And the clean person shall sprinkle upon the unclean on the third day, and on the seventh day: and on the seventh day he shall purify himself, and wash his clothes, and bathe himself in water, and shall be clean at even.",
+  "ko": "정결한 자가 셋째 날과 일곱째 날에 부정한 자에게 뿌릴 것이요, 일곱째 날에 그는 자신을 정결하게 하여 자기 옷을 빨고 물로 몸을 씻을 것이니, 저녁에는 정결하리라.",
+  "note": "셋째 날과 일곱째 날의 뿌림 후 옷을 빨고 몸을 씻으면 저녁에 정결하다. 정한 날의 반복된 정결 절차는, 죄 씻음이 정한 과정을 통해 완성됨을 보여 준다.",
+  "voc": [
+   [
+    "sprinkle",
+    "v.",
+    "뿌리다"
+   ],
+   [
+    "purify",
+    "v.",
+    "정결하게 하다"
+   ],
+   [
+    "wash",
+    "v.",
+    "빨다, 씻다"
+   ],
+   [
+    "clean",
+    "adj.",
+    "정결한"
+   ]
+  ],
+  "idi": [
+   [
+    "shall be clean at even",
+    "저녁에는 정결하리라는 표현이다"
+   ]
+  ],
+  "gra": [
+   [
+    "he shall purify himself",
+    "재귀대명사 himself가 쓰인 KJV 어법이다"
+   ]
+  ]
+ },
+ {
+  "en": "But the man that shall be unclean, and shall not purify himself, that soul shall be cut off from among the congregation, because he hath defiled the sanctuary of the LORD: the water of separation hath not been sprinkled upon him; he is unclean.",
+  "ko": "그러나 부정하게 되고도 자신을 정결하게 하지 아니하는 자, 그 영혼은 회중 가운데서 끊어지리니, 이는 그가 여호와의 성소를 더럽혔음이라. 정결의 물이 그 위에 뿌려지지 아니하였으니 그는 부정하니라.",
+  "note": "정결하게 하지 아니하는 자는 성소를 더럽혀 끊어진다. 13절과 같은 경고의 반복은, 부정을 방치하는 것이 하나님의 거룩하심을 거스르는 중대한 죄임을 강조한다.",
+  "voc": [
+   [
+    "defiled",
+    "v.",
+    "더럽혔다"
+   ],
+   [
+    "sanctuary",
+    "n.",
+    "성소"
+   ],
+   [
+    "cut off",
+    "동사구",
+    "끊어지다"
+   ],
+   [
+    "separation",
+    "n.",
+    "정결, 구별"
+   ]
+  ],
+  "idi": [
+   [
+    "the water of separation hath not been sprinkled",
+    "정결의 물이 뿌려지지 아니하였다는 표현이다"
+   ]
+  ],
+  "gra": [
+   [
+    "hath not been sprinkled",
+    "현재완료 수동 부정의 KJV 어법이다"
+   ]
+  ]
+ },
+ {
+  "en": "And it shall be a perpetual statute unto them, that he that sprinkleth the water of separation shall wash his clothes; and he that toucheth the water of separation shall be unclean until even.",
+  "ko": "이것이 그들에게 영원한 규례가 되리니, 정결의 물을 뿌리는 자도 자기 옷을 빨 것이요, 정결의 물을 만지는 자도 저녁까지 부정하리라.",
+  "note": "이것이 영원한 규례이며, 정결의 물을 뿌리거나 만지는 자도 부정해진다. 정결케 하는 물조차 부정을 옮김은, 이 예식이 그림자일 뿐 완전한 정결은 장차 올 실체에 있음을 시사한다.",
+  "voc": [
+   [
+    "perpetual",
+    "adj.",
+    "영원한, 항구적인"
+   ],
+   [
+    "statute",
+    "n.",
+    "규례"
+   ],
+   [
+    "sprinkleth",
+    "v.",
+    "뿌리는 (sprinkle의 고형)"
+   ],
+   [
+    "toucheth",
+    "v.",
+    "만지는 (touch의 고형)"
+   ]
+  ],
+  "idi": [
+   [
+    "a perpetual statute unto them",
+    "그들에게 영원한 규례라는 표현이다"
+   ]
+  ],
+  "gra": [
+   [
+    "he that sprinkleth... he that toucheth",
+    "he that 관계절이 병렬된 KJV 어법이다"
+   ]
+  ]
+ },
+ {
+  "en": "And whatsoever the unclean person toucheth shall be unclean; and the soul that toucheth it shall be unclean until even.",
+  "ko": "또 부정한 자가 만지는 것은 무엇이든지 부정하겠고, 그것을 만지는 영혼도 저녁까지 부정하리라.\"",
+  "note": "부정한 자가 만지는 것과 그것을 만지는 자가 다 부정하다. 부정이 접촉을 따라 전이됨은, 죄의 전염성을 보여 주며 거룩한 대속의 필요를 절감케 한다.",
+  "voc": [
+   [
+    "unclean",
+    "adj.",
+    "부정한"
+   ],
+   [
+    "toucheth",
+    "v.",
+    "만지는 (touch의 고형)"
+   ],
+   [
+    "soul",
+    "n.",
+    "영혼, 사람"
+   ],
+   [
+    "even",
+    "n.",
+    "저녁"
+   ]
+  ],
+  "idi": [
+   [
+    "whatsoever the unclean person toucheth",
+    "부정한 자가 만지는 것은 무엇이든지라는 표현이다"
+   ]
+  ],
+  "gra": [
+   [
+    "the soul that toucheth it shall be unclean",
+    "the soul that 관계절의 KJV 용법이다"
+   ]
+  ]
+ }
 ]

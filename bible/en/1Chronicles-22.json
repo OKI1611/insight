@@ -1,172 +1,674 @@
 [
  {
-  "en": "This is the house of the LORD God, and this is the altar of the burnt offering for Israel.",
-  "ko": "이것이 곧 여호와 하나님의 집이요, 이것이 이스라엘을 위한 번제의 제단이니라.",
-  "note": "다윗이 오르난의 타작마당(21장)을 가리키며 성전 터를 확정한다. 히브리어 '베이트'(בַּיִת, 집)는 단순한 건물이 아니라 여호와께서 그 이름을 두시는 처소를 뜻하니, 한 장소를 지목함이 곧 예배의 중심을 정함이다.",
+  "en": "Then David said, This is the house of the LORD God, and this is the altar of the burnt offering for Israel.",
+  "ko": "이에 다윗이 이르되 \"이것이 곧 여호와 하나님의 집이요, 이것이 이스라엘을 위한 번제의 제단이니라\" 하니라.",
+  "note": "다윗이 오르난의 타작마당을 여호와 하나님의 집이요 번제단이라 선언하였다. 심판이 멈추고 응답이 임한 그 자리가 성전 터로 확정된 것이다. 진노의 장소를 예배의 장소로 삼으시는 하나님의 은혜가 여기 절정에 이른다.",
   "voc": [
-   ["house", "n.", "집, 전(殿)"],
-   ["altar", "n.", "제단"],
-   ["burnt offering", "", "번제"]
+   [
+    "house",
+    "n.",
+    "집, 전(殿)"
+   ],
+   [
+    "altar",
+    "n.",
+    "제단"
+   ],
+   [
+    "burnt offering",
+    "n.",
+    "번제"
+   ]
   ],
   "idi": [
-   ["burnt offering", "번제(짐승을 통째로 불사르는 제사)"]
+   [
+    "the house of the LORD God",
+    "여호와 하나님의 집"
+   ]
+  ],
+  "gra": [
+   [
+    "This is...and this is",
+    "지시대명사의 반복으로 확정을 강조"
+   ]
   ]
  },
  {
   "en": "And David commanded to gather together the strangers that were in the land of Israel; and he set masons to hew wrought stones to build the house of God.",
   "ko": "다윗이 명하여 이스라엘 땅에 거하는 이방인들을 모으고, 석수들을 세워 하나님의 집을 지을 다듬은 돌을 쪼게 하니라.",
-  "note": "'이방인'(히브리어 게림, גֵּרִים)은 이스라엘 가운데 머무는 외인이다. 솔로몬도 후에 이들을 부역에 쓰니(대하 2:17-18), 성전 건축에 열방까지 동원됨은 만민이 기도하는 집(사 56:7)을 미리 보여 준다.",
+  "note": "다윗이 이방인을 모으고 석수를 세워 성전 지을 돌을 다듬게 하였다. 히브리어 '가짓'(גָּזִית, 다듬은 돌)은 정교히 쪼갠 석재이다. 왕이 몸소 성전 건축을 위한 준비에 착수하니, 큰 사역에는 치밀한 예비가 앞선다.",
   "voc": [
-   ["command", "v.", "명하다"],
-   ["gather together", "", "함께 모으다"],
-   ["stranger", "n.", "이방인, 나그네"],
-   ["mason", "n.", "석수, 돌 다루는 자"],
-   ["hew", "v.", "(돌·나무를) 쪼다, 깎다"],
-   ["wrought", "adj.", "다듬은, 가공한"]
+   [
+    "stranger",
+    "n.",
+    "이방인, 나그네"
+   ],
+   [
+    "mason",
+    "n.",
+    "석수"
+   ],
+   [
+    "hew",
+    "v.",
+    "(돌을) 쪼다, 다듬다"
+   ]
+  ],
+  "idi": [
+   [
+    "gather together",
+    "함께 모으다"
+   ],
+   [
+    "wrought stones",
+    "다듬은 돌"
+   ]
   ],
   "gra": [
-   ["the strangers that were in the land", "that=관계대명사(주격) '그 땅에 있던 이방인들'"],
-   ["he set masons to hew ... to build", "set+목적어+to부정사 '~하도록 세우다'; 뒤의 to build=목적 '짓기 위하여'"]
+   [
+    "set masons to hew",
+    "석수를 세워 쪼게 하다"
+   ]
   ]
  },
  {
-  "en": "Solomon my son is young and tender, and the house that is to be builded for the LORD must be exceeding magnifical, of fame and of glory throughout all countries: I will therefore now make preparation for it.",
-  "ko": "내 아들 솔로몬은 어리고 연약하나, 여호와를 위하여 지을 그 집은 심히 웅장하여 모든 나라에 그 이름과 영광이 드러나게 하여야 하리니, 내가 이제 그것을 위하여 예비하리라.",
-  "note": "'마그니피컬'(magnifical)은 KJV 고어로 '장엄한·웅대한'을 뜻한다. 성전이 '영광'(히브리어 티프에레트, תִּפְאֶרֶת)을 드러내야 함은 사람의 자랑이 아니라 여호와의 위엄을 열방에 비추기 위함이니, 다윗은 자기가 짓지 못할 집을 위하여 죽기 전에 아낌없이 예비한다.",
+  "en": "And David prepared iron in abundance for the nails for the doors of the gates, and for the joinings; and brass in abundance without weight;",
+  "ko": "또 다윗이 문짝의 못과 거멀못을 위하여 철을 풍성히 예비하고, 무게를 달 수 없을 만큼 놋을 풍성히 예비하며,",
+  "note": "다윗이 문짝의 못과 거멀못을 위한 철과 달 수 없을 만큼 놋을 풍성히 예비하였다. 히브리어 '롭'(רֹב, 풍성함)이 거듭 강조된다. 다윗은 아들의 사역을 위해 자기 대에 넉넉히 준비하니, 다음 세대를 위한 헌신의 본을 보인다.",
   "voc": [
-   ["tender", "adj.", "연약한, 어린"],
-   ["exceeding", "adv.", "심히, 지극히"],
-   ["magnifical", "adj.", "(고어) 웅장한, 장엄한"],
-   ["fame", "n.", "명성, 이름"],
-   ["glory", "n.", "영광"],
-   ["throughout", "prep.", "~ 전역에"],
-   ["preparation", "n.", "예비, 준비"]
+   [
+    "iron",
+    "n.",
+    "철"
+   ],
+   [
+    "abundance",
+    "n.",
+    "풍성함"
+   ],
+   [
+    "brass",
+    "n.",
+    "놋"
+   ]
   ],
   "idi": [
-   ["make preparation for", "~을 위하여 준비하다"]
+   [
+    "in abundance",
+    "풍성히"
+   ],
+   [
+    "without weight",
+    "달 수 없을 만큼 (헤아릴 수 없이)"
+   ]
   ],
   "gra": [
-   ["the house that is to be builded", "be to+동사='~될 예정이다'; builded=build의 옛 과거분사형(현대 built)"]
+   [
+    "prepared iron in abundance",
+    "철을 풍성히 예비하였다"
+   ]
+  ]
+ },
+ {
+  "en": "Also cedar trees in abundance: for the Zidonians and they of Tyre brought much cedar wood to David.",
+  "ko": "백향목을 무수히 예비하니, 이는 시돈 사람과 두로 사람이 백향목을 많이 다윗에게로 가져왔음이라.",
+  "note": "시돈과 두로 사람이 백향목을 많이 가져와 다윗이 무수히 예비하였다. 이방 나라까지 성전 건축에 재료를 보탠 것이다. 히브리어 '에레즈'(אֶרֶז, 백향목)는 존귀한 목재이니, 열방이 하나님의 집을 위해 섬기게 되었다.",
+  "voc": [
+   [
+    "cedar",
+    "n.",
+    "백향목"
+   ],
+   [
+    "Zidonians",
+    "n.",
+    "시돈 사람"
+   ]
+  ],
+  "idi": [
+   [
+    "in abundance",
+    "무수히, 풍성히"
+   ],
+   [
+    "they of Tyre",
+    "두로 사람"
+   ]
+  ],
+  "gra": [
+   [
+    "brought much cedar wood",
+    "많은 백향목을 가져왔다"
+   ]
+  ]
+ },
+ {
+  "en": "And David said, Solomon my son is young and tender, and the house that is to be builded for the LORD must be exceeding magnifical, of fame and of glory throughout all countries: I will therefore now make preparation for it. So David prepared abundantly before his death.",
+  "ko": "다윗이 이르되 \"내 아들 솔로몬은 어리고 연약하나, 여호와를 위하여 지을 그 집은 심히 웅장하여 모든 나라에 그 이름과 영광이 드러나게 하여야 하리니, 내가 이제 그것을 위하여 예비하리라\" 하고, 다윗이 죽기 전에 풍성히 예비하니라.",
+  "note": "다윗이 솔로몬은 어리고 연약하나 그 집은 심히 웅장해야 하므로 미리 예비하겠다 하였다. 히브리어 '마그딜'(웅장한)은 하나님의 영광에 합당한 규모이다. 다윗은 아들의 부족함을 알고 사랑으로 그 짐을 미리 덜어 주었다.",
+  "voc": [
+   [
+    "tender",
+    "adj.",
+    "연약한, 어린"
+   ],
+   [
+    "magnifical",
+    "adj.",
+    "웅장한"
+   ],
+   [
+    "preparation",
+    "n.",
+    "예비, 준비"
+   ]
+  ],
+  "idi": [
+   [
+    "young and tender",
+    "어리고 연약한"
+   ],
+   [
+    "exceeding magnifical",
+    "심히 웅장한"
+   ]
+  ],
+  "gra": [
+   [
+    "that is to be builded",
+    "builded는 built의 옛 형태"
+   ]
+  ]
+ },
+ {
+  "en": "Then he called for Solomon his son, and charged him to build an house for the LORD God of Israel.",
+  "ko": "그리고 그 아들 솔로몬을 불러, 이스라엘의 하나님 여호와를 위하여 집을 지으라 명하니라.",
+  "note": "다윗이 솔로몬을 불러 여호와를 위하여 집을 지으라 명하였다. 히브리어 '차바'(צָוָה, 명하다)는 엄중한 위임이다. 아버지가 아들에게 하나님의 사역을 맡김은 신앙의 대를 잇는 거룩한 계승이다.",
+  "voc": [
+   [
+    "call for",
+    "v.",
+    "부르다"
+   ],
+   [
+    "charge",
+    "v.",
+    "명하다, 위임하다"
+   ]
+  ],
+  "idi": [
+   [
+    "charged him to build",
+    "집을 지으라 명하였다"
+   ]
+  ],
+  "gra": [
+   [
+    "called for Solomon",
+    "솔로몬을 불렀다"
+   ]
+  ]
+ },
+ {
+  "en": "And David said to Solomon, My son, as for me, it was in my mind to build an house unto the name of the LORD my God:",
+  "ko": "다윗이 솔로몬에게 이르되 \"내 아들아, 나로 말하면 내 하나님 여호와의 이름을 위하여 집을 짓고자 하는 뜻이 내 마음에 있었으나,",
+  "note": "다윗이 자기 마음에 하나님의 이름을 위해 집을 지을 뜻이 있었다 하였다. 히브리어 '샴'(שֵׁם, 이름)을 위한 집이란 하나님의 임재와 영광이 머무는 처소이다. 선한 소원이 다윗의 마음에 있었음을 아들에게 밝힌다.",
+  "voc": [
+   [
+    "mind",
+    "n.",
+    "마음, 뜻"
+   ],
+   [
+    "build",
+    "v.",
+    "짓다"
+   ]
+  ],
+  "idi": [
+   [
+    "as for me",
+    "나로 말하면"
+   ],
+   [
+    "it was in my mind",
+    "내 마음에 있었다"
+   ]
+  ],
+  "gra": [
+   [
+    "unto the name of the LORD",
+    "여호와의 이름을 위하여"
+   ]
   ]
  },
  {
   "en": "But the word of the LORD came to me, saying, Thou hast shed blood abundantly, and hast made great wars: thou shalt not build an house unto my name, because thou hast shed much blood upon the earth in my sight.",
-  "ko": "여호와의 말씀이 내게 임하여 이르시되 '네가 피를 많이 흘렸고 큰 전쟁을 치렀은즉, 내 이름을 위하여 집을 짓지 못하리니, 이는 네가 내 눈앞에서 땅에 피를 많이 흘렸음이니라.'",
-  "note": "다윗이 성전을 짓지 못함은 죄의 형벌이 아니라 부르심의 차이다. '피를 흘렸다'(히브리어 샤파크 담, שָׁפַךְ דָּם)는 그가 전쟁의 왕이었음을 가리키니, 평화의 집은 평화의 왕 솔로몬의 몫이라 — 이는 참 평강의 왕 그리스도를 미리 그린다.",
+  "ko": "여호와의 말씀이 내게 임하여 이르시되 '네가 피를 많이 흘렸고 큰 전쟁을 치렀은즉, 내 이름을 위하여 집을 짓지 못하리니, 이는 네가 내 눈앞에서 땅에 피를 많이 흘렸음이니라.",
+  "note": "그러나 여호와께서 다윗이 피를 많이 흘렸으므로 집을 짓지 못하리라 하셨다. 히브리어 '다밈'(דָּמִים, 피)은 전쟁의 유혈이다. 성전은 평화의 집이므로 전쟁의 사람이 아니라 평안의 사람이 지어야 했으니, 이는 거절이 아니라 하나님의 뜻이었다.",
   "voc": [
-   ["word", "n.", "말씀"],
-   ["shed", "v.", "(피를) 흘리다 (과거·과거분사 shed)"],
-   ["blood", "n.", "피"],
-   ["abundantly", "adv.", "많이, 풍성히"],
-   ["war", "n.", "전쟁"],
-   ["in my sight", "", "내 눈앞에서"]
+   [
+    "shed",
+    "v.",
+    "(피를) 흘리다"
+   ],
+   [
+    "blood",
+    "n.",
+    "피"
+   ],
+   [
+    "war",
+    "n.",
+    "전쟁"
+   ]
   ],
   "idi": [
-   ["shed blood", "피를 흘리다"]
+   [
+    "shed blood abundantly",
+    "피를 많이 흘렸다"
+   ],
+   [
+    "in my sight",
+    "내 눈앞에서"
+   ]
   ],
   "gra": [
-   ["Thou hast shed ... and hast made", "hast+과거분사=2인칭 단수 현재완료(고어) '네가 ~하였다'"],
-   ["thou shalt not build", "shalt not=강한 금지·불허 '짓지 못하리라'"]
+   [
+    "Thou shalt not build",
+    "강한 금지의 옛 어법"
+   ]
   ]
  },
  {
-  "en": "Behold, a son shall be born to thee, who shall be a man of rest ... for his name shall be Solomon, and I will give peace and quietness unto Israel in his days.",
-  "ko": "보라, 한 아들이 네게서 나리니, 그는 평안의 사람이 되리라 ... 그의 이름은 솔로몬이라. 그의 날에 내가 이스라엘에게 평화와 안정을 주리라.",
-  "note": "이름 '솔로몬'(쉴로모, שְׁלֹמֹה)은 '평화'(샬롬, שָׁלוֹם)에서 왔다. 본문이 '평안의 사람·평화·안정'을 거듭함은 그 이름의 뜻을 풀이함이니, 성전은 전쟁이 그친 안식의 때에 비로소 세워진다.",
+  "en": "Behold, a son shall be born to thee, who shall be a man of rest; and I will give him rest from all his enemies round about: for his name shall be Solomon, and I will give peace and quietness unto Israel in his days.",
+  "ko": "보라, 한 아들이 네게서 나리니, 그는 평안의 사람이 되리라. 내가 그를 사방의 모든 원수에게서 벗어나 평안케 하리니, 그의 이름은 솔로몬이라. 그의 날에 내가 이스라엘에게 평화와 안정을 주리라.",
+  "note": "하나님이 평안의 아들이 나서 사방의 원수에게서 벗어나 평화를 누리리라 하셨다. 히브리어 '솔로몬'(שְׁלֹמֹה)은 '평강'(샬롬)에서 온 이름이다. 그의 이름과 그의 시대가 다 평화이니, 성전은 평화의 왕이 짓기에 합당하였다.",
   "voc": [
-   ["behold", "v.", "보라"],
-   ["be born", "", "태어나다, 나다"],
-   ["rest", "n.", "안식, 평안"],
-   ["enemy", "n.", "원수, 적"],
-   ["round about", "", "사방에, 둘레에"],
-   ["peace", "n.", "평화"],
-   ["quietness", "n.", "안정, 고요함"]
+   [
+    "rest",
+    "n.",
+    "평안, 안식"
+   ],
+   [
+    "peace",
+    "n.",
+    "평화"
+   ],
+   [
+    "quietness",
+    "n.",
+    "안정, 고요함"
+   ]
   ],
   "idi": [
-   ["a man of rest", "평안의 사람 (안식을 누리는 자)"]
+   [
+    "a man of rest",
+    "평안의 사람"
+   ],
+   [
+    "round about",
+    "사방의"
+   ]
   ],
   "gra": [
-   ["a son ... who shall be a man of rest", "who=관계대명사(앞의 son을 받음); shall be=미래 예언 '되리라'"]
+   [
+    "for his name shall be Solomon",
+    "이름을 미래형으로 예고"
+   ]
   ]
  },
  {
   "en": "He shall build an house for my name; and he shall be my son, and I will be his father; and I will establish the throne of his kingdom over Israel for ever.",
-  "ko": "그가 내 이름을 위하여 집을 지을 것이요, 그는 내 아들이 되고 나는 그의 아버지가 되리니, 내가 그의 왕국의 보좌를 이스라엘 위에 영원히 견고하게 하리라.",
-  "note": "사무엘하 7장의 다윗 언약이 여기 다시 울린다. '내 아들·그의 아버지'는 솔로몬을 가리키나, '영원한 보좌'는 솔로몬을 넘어 다윗의 자손 그리스도에게서 온전히 이루어진다(눅 1:32-33). 지상의 성전은 영원한 왕국의 그림자다.",
+  "ko": "그가 내 이름을 위하여 집을 지을 것이요, 그는 내 아들이 되고 나는 그의 아버지가 되리니, 내가 그의 왕국의 보좌를 이스라엘 위에 영원히 견고하게 하리라' 하셨느니라.",
+  "note": "그가 내 이름을 위해 집을 짓고 그는 내 아들, 나는 그의 아버지가 되며 그 보좌를 영원히 견고케 하리라. 다윗 언약의 반복이다. 솔로몬을 통한 이 부자 언약은 궁극적으로 영원한 왕 그리스도를 가리킨다.",
   "voc": [
-   ["build", "v.", "짓다, 건축하다"],
-   ["establish", "v.", "견고하게 하다, 세우다"],
-   ["throne", "n.", "보좌, 왕좌"],
-   ["kingdom", "n.", "왕국, 나라"],
-   ["for ever", "", "영원히"]
+   [
+    "establish",
+    "v.",
+    "견고하게 하다"
+   ],
+   [
+    "throne",
+    "n.",
+    "보좌"
+   ],
+   [
+    "kingdom",
+    "n.",
+    "왕국"
+   ]
   ],
   "idi": [
-   ["for ever", "영원히, 영영히"]
+   [
+    "for ever",
+    "영원히"
+   ]
   ],
   "gra": [
-   ["he shall be my son, and I will be his father", "shall/will=미래·언약의 약속; 인칭에 따른 미래조동사 옛 용법"]
+   [
+    "I will establish the throne",
+    "미래로 언약의 확실함을 표현"
+   ]
+  ]
+ },
+ {
+  "en": "Now, my son, the LORD be with thee; and prosper thou, and build the house of the LORD thy God, as he hath said of thee.",
+  "ko": "이제 내 아들아, 여호와께서 너와 함께하시기를 원하노라. 너는 형통하여, 여호와께서 너를 두고 말씀하신 대로 네 하나님 여호와의 집을 지을지어다.",
+  "note": "다윗이 아들에게 여호와께서 함께하시고 형통하여 말씀하신 대로 집을 지으라 축복하였다. 히브리어 '찰라흐'(צָלַח, 형통하다)는 하나님이 이루어 주심이다. 사역의 성공은 사람의 능력이 아니라 하나님의 함께하심에 달려 있다.",
+  "voc": [
+   [
+    "prosper",
+    "v.",
+    "형통하다"
+   ],
+   [
+    "build",
+    "v.",
+    "짓다"
+   ]
+  ],
+  "idi": [
+   [
+    "the LORD be with thee",
+    "여호와께서 너와 함께하시기를"
+   ],
+   [
+    "as he hath said of thee",
+    "너를 두고 말씀하신 대로"
+   ]
+  ],
+  "gra": [
+   [
+    "prosper thou",
+    "명령형에 주어 thou를 붙인 옛 어법"
+   ]
+  ]
+ },
+ {
+  "en": "Only the LORD give thee wisdom and understanding, and give thee charge concerning Israel, that thou mayest keep the law of the LORD thy God.",
+  "ko": "오직 여호와께서 네게 지혜와 명철을 주시고 너에게 이스라엘을 다스릴 명을 맡기사, 네가 네 하나님 여호와의 율법을 지키게 하시기를 원하노라.",
+  "note": "다윗이 여호와께서 지혜와 명철을 주시고 율법을 지키게 하시기를 구하였다. 히브리어 '호크마'(חָכְמָה, 지혜)와 '비나'(בִּינָה, 명철)는 하나님을 경외함에서 나온다. 성전을 짓는 것보다 율법을 지킴이 더 중하니, 순종이 사역의 근본이다.",
+  "voc": [
+   [
+    "wisdom",
+    "n.",
+    "지혜"
+   ],
+   [
+    "understanding",
+    "n.",
+    "명철"
+   ],
+   [
+    "charge",
+    "n.",
+    "명, 책임"
+   ]
+  ],
+  "idi": [
+   [
+    "give thee charge concerning",
+    "~을 다스릴 명을 맡기다"
+   ]
+  ],
+  "gra": [
+   [
+    "that thou mayest keep",
+    "목적의 that절"
+   ]
   ]
  },
  {
   "en": "Then shalt thou prosper, if thou takest heed to fulfil the statutes and judgments which the LORD charged Moses with concerning Israel: be strong, and of good courage; dread not, nor be dismayed.",
   "ko": "여호와께서 이스라엘을 위하여 모세에게 명하신 율례와 규례를 네가 삼가 행하면, 그리하면 네가 형통하리라. 강하고 담대하라. 두려워하지 말며 놀라지도 말지어다.",
-  "note": "'강하고 담대하라'(be strong, and of good courage)는 여호수아에게 주신 말씀(수 1:6-9)을 그대로 잇는다. 새 지도자를 세우는 자리마다 같은 격려가 울리니, 큰일 앞의 두려움을 이기는 힘은 언제나 여호와의 임재에 있다.",
+  "note": "율례와 규례를 삼가 행하면 형통하리니 강하고 담대하며 두려워 말라 하였다. 히브리어 '하자크 베에마츠'(강하고 담대하라)는 여호수아에게 주신 격려와 같다. 순종과 담대함이 사역자의 두 날개이니, 하나님이 함께하시매 두려움이 없다.",
   "voc": [
-   ["take heed", "", "삼가다, 주의하다"],
-   ["fulfil", "v.", "이루다, 행하다"],
-   ["statute", "n.", "율례, 법령"],
-   ["judgment", "n.", "규례, 판단"],
-   ["of good courage", "", "담대한"],
-   ["dread", "v.", "두려워하다"],
-   ["dismayed", "adj.", "놀란, 낙담한"]
+   [
+    "take heed",
+    "v.",
+    "삼가다"
+   ],
+   [
+    "fulfil",
+    "v.",
+    "행하다, 이루다"
+   ],
+   [
+    "dismayed",
+    "adj.",
+    "놀란, 낙심한"
+   ]
   ],
   "idi": [
-   ["take heed", "삼가다, 유의하다"],
-   ["be of good courage", "담대하라, 용기를 내라"]
+   [
+    "be strong, and of good courage",
+    "강하고 담대하라"
+   ],
+   [
+    "dread not, nor be dismayed",
+    "두려워 말고 놀라지 말라"
+   ]
   ],
   "gra": [
-   ["Then shalt thou prosper", "조건문의 귀결절 도치(Then+shalt thou) '그리하면 네가 형통하리라'"],
-   ["which the LORD charged Moses with", "charge A with B='A에게 B를 명하다'; which=관계대명사(B를 받음)"]
+   [
+    "Then shalt thou prosper",
+    "조건 후 결과의 도치 (then you shall)"
+   ]
   ]
  },
  {
-  "en": "Now, behold, in my trouble I have prepared for the house of the LORD an hundred thousand talents of gold, and a thousand thousand talents of silver; and of brass and iron without weight.",
-  "ko": "이제 보라, 내가 환난 중에 여호와의 집을 위하여 금 십만 달란트와 은 백만 달란트를 예비하였고, 놋과 철은 그 무게를 달 수 없을 만큼 풍성하니라.",
-  "note": "'아 사우전드 사우전드'(a thousand thousand)는 곧 백만이라는 옛 영어 표현이다. 달란트(히브리어 키카르, כִּכָּר)는 약 34kg에 달하는 무게 단위로, 이 어마어마한 양은 다윗이 평생 환난 가운데서도 성전을 향한 마음을 품어 왔음을 드러낸다.",
+  "en": "Now, behold, in my trouble I have prepared for the house of the LORD an hundred thousand talents of gold, and a thousand thousand talents of silver; and of brass and iron without weight; for it is in abundance: timber also and stone have I prepared; and thou mayest add thereto.",
+  "ko": "이제 보라, 내가 환난 중에 여호와의 집을 위하여 금 십만 달란트와 은 백만 달란트를 예비하였고, 놋과 철은 그 무게를 달 수 없을 만큼 풍성하며, 또 재목과 돌도 내가 예비하였으니, 너는 거기에 더할지니라.",
+  "note": "다윗이 환난 중에도 금 십만 달란트와 은 백만 달란트, 헤아릴 수 없는 놋과 철을 예비하였다. 막대한 준비가 그의 헌신을 보인다. 자기 시대에 힘써 예비하여 아들의 사역을 든든히 뒷받침하니, 세대를 잇는 헌신이 아름답다.",
   "voc": [
-   ["trouble", "n.", "환난, 고난"],
-   ["talent", "n.", "달란트(무게·화폐 단위)"],
-   ["gold", "n.", "금"],
-   ["silver", "n.", "은"],
-   ["in abundance", "", "풍성히, 많이"]
+   [
+    "trouble",
+    "n.",
+    "환난"
+   ],
+   [
+    "talent",
+    "n.",
+    "달란트 (무게·화폐 단위)"
+   ],
+   [
+    "timber",
+    "n.",
+    "재목"
+   ]
   ],
   "idi": [
-   ["a thousand thousand", "백만 (천의 천 배, 옛 표현)"],
-   ["without weight", "(달 수 없을 만큼) 무수히, 한없이"]
+   [
+    "in my trouble",
+    "환난 중에"
+   ],
+   [
+    "thou mayest add thereto",
+    "너는 거기에 더할지니라"
+   ]
   ],
   "gra": [
-   ["an hundred thousand", "an+자음 h(묵음 취급한 옛 표기) '십만'"]
+   [
+    "have I prepared",
+    "도치 강조 (I have prepared)"
+   ]
   ]
  },
  {
-  "en": "Now set your heart and your soul to seek the LORD your God; arise therefore, and build ye the sanctuary of the LORD God, to bring the ark of the covenant of the LORD ... into the house that is to be built to the name of the LORD.",
-  "ko": "이제 너희 마음과 너희 영혼을 다하여 너희 하나님 여호와를 찾으라. 그러므로 일어나 여호와 하나님의 성소를 건축하고, 여호와의 언약궤와 하나님의 거룩한 기물들을 여호와의 이름을 위하여 지을 그 집으로 들일지니라.",
-  "note": "건축의 출발점이 손이 아니라 '마음과 영혼'으로 여호와를 찾음(다라쉬, דָּרַשׁ)임을 강조한다. '언약궤'(아론 하브리트, אֲרוֹן הַבְּרִית)를 집으로 들임이 성전의 목적이니, 건물은 곧 언약하신 하나님의 임재를 모시기 위한 것이다.",
+  "en": "Moreover there are workmen with thee in abundance, hewers and workers of stone and timber, and all manner of cunning men for every manner of work.",
+  "ko": "또 너와 함께 일꾼이 풍성히 있으니, 곧 돌과 재목을 다듬고 다루는 자와 온갖 일에 능숙한 모든 사람들이라.",
+  "note": "돌과 재목을 다듬는 자와 온갖 일에 능숙한 자가 풍성히 있다 하였다. 히브리어 '하캄'(חָכָם, 능숙한)은 지혜로운 손을 가진 자이다. 재료뿐 아니라 숙련된 일꾼까지 예비되었으니, 하나님의 사역에는 사람도 은사도 함께 준비된다.",
   "voc": [
-   ["set", "v.", "두다, 정하다 (과거·과거분사 set)"],
-   ["soul", "n.", "영혼"],
-   ["seek", "v.", "찾다, 구하다"],
-   ["sanctuary", "n.", "성소"],
-   ["ark", "n.", "궤 (언약궤)"],
-   ["covenant", "n.", "언약"]
+   [
+    "workman",
+    "n.",
+    "일꾼"
+   ],
+   [
+    "hewer",
+    "n.",
+    "돌 다듬는 자"
+   ],
+   [
+    "cunning",
+    "adj.",
+    "능숙한, 솜씨 있는"
+   ]
   ],
   "idi": [
-   ["set your heart and your soul to", "마음과 영혼을 다하여 ~하다"],
-   ["the ark of the covenant", "언약궤"]
+   [
+    "all manner of",
+    "온갖, 모든 종류의"
+   ],
+   [
+    "cunning men",
+    "능숙한 사람들"
+   ]
   ],
   "gra": [
-   ["build ye the sanctuary", "ye=2인칭 복수 주어(옛 형태)를 동사 뒤에 둔 명령형 '너희는 건축하라'"],
-   ["the house that is to be built", "be to+동사='~될 집'; that=관계대명사"]
+   [
+    "every manner of work",
+    "온갖 일"
+   ]
+  ]
+ },
+ {
+  "en": "Of the gold, the silver, and the brass, and the iron, there is no number. Arise therefore, and be doing, and the LORD be with thee.",
+  "ko": "금과 은과 놋과 철이 헤아릴 수 없이 많으니, 일어나 행하라. 여호와께서 너와 함께하시기를 원하노라\" 하니라.",
+  "note": "금·은·놋·철이 헤아릴 수 없으니 일어나 행하라, 여호와께서 함께하시기를 원한다 하였다. 히브리어 '쿰 바아세'(일어나 행하라)는 결단의 촉구이다. 예비가 갖추어졌으니 이제 남은 것은 순종의 행함이니, 믿음은 일어나 실행함으로 완성된다.",
+  "voc": [
+   [
+    "number",
+    "n.",
+    "수, 헤아림"
+   ],
+   [
+    "arise",
+    "v.",
+    "일어나다"
+   ]
+  ],
+  "idi": [
+   [
+    "there is no number",
+    "헤아릴 수 없다"
+   ],
+   [
+    "be doing",
+    "행하라, 실행하라"
+   ]
+  ],
+  "gra": [
+   [
+    "Arise therefore, and be doing",
+    "명령의 연속으로 촉구"
+   ]
+  ]
+ },
+ {
+  "en": "David also commanded all the princes of Israel to help Solomon his son, saying,",
+  "ko": "다윗이 또 이스라엘의 모든 방백에게 명하여 그 아들 솔로몬을 도우라 이르되,",
+  "note": "다윗이 이스라엘 방백들에게 솔로몬을 도우라 명하였다. 큰 사역은 한 사람의 몫이 아니라 온 공동체의 협력을 요한다. 왕이 지도자들에게 다음 세대를 돕게 하니, 사역의 계승에는 함께 세우는 손길이 필요하다.",
+  "voc": [
+   [
+    "prince",
+    "n.",
+    "방백, 고관"
+   ],
+   [
+    "help",
+    "v.",
+    "돕다"
+   ]
+  ],
+  "idi": [
+   [
+    "commanded...to help",
+    "돕도록 명하였다"
+   ]
+  ],
+  "gra": [
+   [
+    "saying",
+    "이르되; 인용을 여는 옛 분사"
+   ]
+  ]
+ },
+ {
+  "en": "Is not the LORD your God with you? and hath he not given you rest on every side? for he hath given the inhabitants of the land into mine hand; and the land is subdued before the LORD, and before his people.",
+  "ko": "\"너희 하나님 여호와께서 너희와 함께하지 아니하시느냐? 또 사방에서 너희에게 평안을 주지 아니하셨느냐? 이는 그가 이 땅의 거민을 내 손에 넘기셨으므로, 이 땅이 여호와 앞과 그의 백성 앞에 복종하였음이라.",
+  "note": "여호와께서 너희와 함께하시고 사방에 평안을 주셨으며 이 땅을 복종시키셨다 하였다. 히브리어 '카바쉬'(כָּבַשׁ, 복종시키다)는 굴복시킴이다. 하나님이 이미 안식을 주셨으니, 이제 그 평안 위에 성전을 세우는 것이 마땅한 응답이다.",
+  "voc": [
+   [
+    "rest",
+    "n.",
+    "평안, 안식"
+   ],
+   [
+    "inhabitant",
+    "n.",
+    "거민"
+   ],
+   [
+    "subdue",
+    "v.",
+    "복종시키다"
+   ]
+  ],
+  "idi": [
+   [
+    "on every side",
+    "사방에서"
+   ],
+   [
+    "given...into mine hand",
+    "내 손에 넘기셨다"
+   ]
+  ],
+  "gra": [
+   [
+    "Is not the LORD...with you",
+    "수사의문으로 확신을 강조"
+   ]
+  ]
+ },
+ {
+  "en": "Now set your heart and your soul to seek the LORD your God; arise therefore, and build ye the sanctuary of the LORD God, to bring the ark of the covenant of the LORD, and the holy vessels of God, into the house that is to be built to the name of the LORD.",
+  "ko": "이제 너희 마음과 너희 영혼을 다하여 너희 하나님 여호와를 찾으라. 그러므로 일어나 여호와 하나님의 성소를 건축하고, 여호와의 언약궤와 하나님의 거룩한 기물들을 여호와의 이름을 위하여 지을 그 집으로 들일지니라\" 하니라.",
+  "note": "이제 마음과 영혼을 다하여 여호와를 찾고 일어나 성소를 건축하여 언약궤와 거룩한 기물을 들이라 하였다. 히브리어 '다라쉬'(דָּרַשׁ, 찾다)는 온전히 구함이다. 성전 건축의 근본은 하나님을 마음과 영혼으로 찾음에 있으니, 예배가 사역의 목적이다.",
+  "voc": [
+   [
+    "soul",
+    "n.",
+    "영혼"
+   ],
+   [
+    "sanctuary",
+    "n.",
+    "성소"
+   ],
+   [
+    "vessel",
+    "n.",
+    "기물, 그릇"
+   ]
+  ],
+  "idi": [
+   [
+    "set your heart and your soul",
+    "마음과 영혼을 다하다"
+   ],
+   [
+    "build ye the sanctuary",
+    "성소를 건축하라"
+   ]
+  ],
+  "gra": [
+   [
+    "that is to be built",
+    "지어질; to be + 과거분사의 예정 표현"
+   ]
   ]
  }
 ]

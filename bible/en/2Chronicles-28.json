@@ -1,156 +1,871 @@
 [
  {
-  "en": "he did not that which was right in the sight of the LORD, like David his father",
-  "ko": "그의 조상 다윗과 달리 여호와 보시기에 정직히 행하지 아니하고",
-  "note": "역대기는 다윗을 신앙의 잣대로 삼는다. 히브리어 '야샤르(yashar, 곧은·정직한)'는 여호와 앞에서의 곧음을 뜻하니, 아하스는 그 곧음에서 벗어난 굽은 길을 걸었다.",
+  "en": "Ahaz was twenty years old when he began to reign, and he reigned sixteen years in Jerusalem: but he did not that which was right in the sight of the LORD, like David his father:",
+  "ko": "아하스가 왕위에 오를 때에 나이가 이십 세라, 예루살렘에서 십육 년을 다스렸으되 그의 조상 다윗과 달리 여호와 보시기에 정직히 행하지 아니하고,",
+  "note": "아하스('그가 붙드셨다', 아하즈)가 이십에 왕이 되어 십육 년을 다스렸으나 조상 다윗과 달리 정직히 행하지 않았다. '다윗과 달리'라는 대조는 그의 통치를 유다 최악의 배도로 규정하는 서두다.",
   "voc": [
-   ["right", "adj.", "옳은, 정직한"],
-   ["in the sight of", "", "~의 보시기에"]
+   [
+    "reign",
+    "v.",
+    "다스리다"
+   ],
+   [
+    "right",
+    "adj.",
+    "옳은, 정직한"
+   ],
+   [
+    "sight",
+    "n.",
+    "보시기, 목전"
+   ]
   ],
-  "idi": [
-   ["in the sight of the LORD", "여호와 보시기에"]
-  ],
+  "idi": [],
   "gra": [
-   ["he did not that which was right", "that which=관계대명사 '~인 것'; did not (do)='행하지 아니하였다'(옛 부정문, do 생략)"]
+   [
+    "he did not that which was right",
+    "that which=~한 것(관계대명사 what의 옛 표현)"
+   ]
   ]
  },
  {
-  "en": "he burnt his children in the fire, after the abominations of the heathen",
-  "ko": "자기 자녀를 불 가운데로 지나가게 하였으니, 이는 이방인들의 가증한 일을 본받음이라",
-  "note": "히브리어 '토에바(to'ebah, 가증한 것)'는 여호와께서 미워하시는 우상숭배를 가리킨다. 아하스가 힌놈 골짜기에서 행한 인신 제사는 이방의 몰렉 숭배로, 후일 '게헨나(지옥)'라는 말의 배경이 되었다.",
+  "en": "For he walked in the ways of the kings of Israel, and made also molten images for Baalim.",
+  "ko": "이스라엘 왕들의 길로 행하며 또한 바알들을 위하여 부어 만든 우상을 지었으며,",
+  "note": "아하스가 이스라엘 왕들의 길로 행하며 바알들을 위해 부어 만든 우상을 지었다. 히브리어 '바알림'(바알들)은 복수 우상을 뜻하니, 북왕국의 배도를 유다에 들여온 그의 죄가 뿌리부터 드러난다.",
   "voc": [
-   ["burn", "v.", "불사르다, 태우다"],
-   ["abomination", "n.", "가증한 일"],
-   ["heathen", "n.", "이방인, 이교도"]
+   [
+    "walked",
+    "v.",
+    "행하였다"
+   ],
+   [
+    "molten",
+    "adj.",
+    "부어 만든, 주조한"
+   ],
+   [
+    "images",
+    "n.",
+    "우상, 형상"
+   ]
   ],
   "idi": [
-   ["after the abominations of", "~의 가증한 일을 본받아"]
+   [
+    "walked in the ways of",
+    "~의 길로 행하다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Moreover he burnt incense in the valley of the son of Hinnom, and burnt his children in the fire, after the abominations of the heathen whom the LORD had cast out before the children of Israel.",
+  "ko": "또 힌놈의 아들 골짜기에서 분향하고 자기 자녀를 불 가운데로 지나가게 하였으니, 이는 여호와께서 이스라엘 자손 앞에서 쫓아내신 이방인들의 가증한 일을 본받음이라.",
+  "note": "아하스가 힌놈 골짜기에서 자녀를 불에 지나가게 했다. 몰렉 제사의 인신제물은 이방의 가장 가증한 죄로, 하나님이 쫓아내신 이방인의 악을 도리어 본받은 배도의 극점을 보여 준다.",
+  "voc": [
+   [
+    "burnt incense",
+    "v.",
+    "분향하였다"
+   ],
+   [
+    "abomination",
+    "n.",
+    "가증한 일"
+   ],
+   [
+    "heathen",
+    "n.",
+    "이방인"
+   ],
+   [
+    "cast out",
+    "v.",
+    "쫓아내다"
+   ]
+  ],
+  "idi": [
+   [
+    "burnt his children in the fire",
+    "자녀를 불 가운데로 지나가게 하다(인신제물)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "He sacrificed also and burnt incense in the high places, and on the hills, and under every green tree.",
+  "ko": "또 산당과 작은 산 위와 모든 푸른 나무 아래에서 제사하며 분향하였더라.",
+  "note": "아하스가 산당과 언덕과 푸른 나무 아래에서 제사하고 분향했다. '모든 푸른 나무 아래'는 가나안 우상숭배의 상투적 표현으로, 성전을 버리고 사방에 우상을 섬긴 그의 만연한 배도를 드러낸다.",
+  "voc": [
+   [
+    "sacrificed",
+    "v.",
+    "제사하였다"
+   ],
+   [
+    "high places",
+    "",
+    "산당"
+   ],
+   [
+    "hills",
+    "n.",
+    "작은 산, 언덕"
+   ],
+   [
+    "green tree",
+    "",
+    "푸른 나무"
+   ]
+  ],
+  "idi": [
+   [
+    "under every green tree",
+    "모든 푸른 나무 아래(우상숭배의 상투구)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Wherefore the LORD his God delivered him into the hand of the king of Syria; and they smote him, and carried away a great multitude of them captives, and brought them to Damascus. And he was also delivered into the hand of the king of Israel, who smote him with a great slaughter.",
+  "ko": "그러므로 그의 하나님 여호와께서 그를 시리아 왕의 손에 넘기시매, 그들이 그를 쳐서 그의 백성 중 많은 무리를 사로잡아 다메섹으로 끌어갔고, 또 그가 이스라엘 왕의 손에도 넘겨지매 그가 그를 쳐서 크게 살륙하였더라.",
+  "note": "여호와께서 아하스를 시리아와 이스라엘의 손에 넘기셨다. 히브리어 '나탄 베야드'(손에 넘기다)는 심판의 언어로, 우상을 섬긴 왕이 도리어 대적의 손에 백성을 잃는 인과를 명백히 한다.",
+  "voc": [
+   [
+    "delivered",
+    "v.",
+    "넘기셨다"
+   ],
+   [
+    "smote",
+    "v.",
+    "쳤다(smite의 과거)"
+   ],
+   [
+    "captive",
+    "n.",
+    "포로"
+   ],
+   [
+    "slaughter",
+    "n.",
+    "살륙"
+   ]
+  ],
+  "idi": [
+   [
+    "delivered him into the hand of",
+    "그를 ~의 손에 넘기다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "For Pekah the son of Remaliah slew in Judah an hundred and twenty thousand in one day, which were all valiant men; because they had forsaken the LORD God of their fathers.",
+  "ko": "이는 그들이 그들 조상의 하나님 여호와를 버렸음이라. 르말랴의 아들 베가가 유다에서 하루 동안에 십이만 명을 죽였으니 다 용맹한 자들이더라.",
+  "note": "베가가 하루에 유다 용사 십이만을 죽인 것은 '조상의 하나님을 버렸음' 때문이라 밝힌다. 히브리어 '아자브'(버리다)는 배도의 핵심 동사로, 참혹한 패배의 신학적 원인을 못박는다.",
+  "voc": [
+   [
+    "slew",
+    "v.",
+    "죽였다(slay의 과거)"
+   ],
+   [
+    "valiant",
+    "adj.",
+    "용맹한"
+   ],
+   [
+    "forsaken",
+    "v.",
+    "버렸다(forsake의 과거분사)"
+   ]
+  ],
+  "idi": [
+   [
+    "in one day",
+    "하루 동안에"
+   ],
+   [
+    "forsaken the LORD",
+    "여호와를 버리다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And Zichri, a mighty man of Ephraim, slew Maaseiah the king’s son, and Azrikam the governor of the house, and Elkanah that was next to the king.",
+  "ko": "또 에브라임의 용사 시그리가 왕의 아들 마아세야와 궁중을 다스리는 자 아스리감과 왕의 다음 가는 자 엘가나를 죽였더라.",
+  "note": "에브라임 용사 시그리가 왕자와 궁중 총관과 왕 다음가는 자를 죽였다. 왕실 핵심 인물들의 몰살은 아하스의 배도가 나라의 심장부까지 무너뜨렸음을 구체적 이름으로 증언한다.",
+  "voc": [
+   [
+    "mighty man",
+    "",
+    "용사"
+   ],
+   [
+    "king's son",
+    "",
+    "왕의 아들, 왕자"
+   ],
+   [
+    "governor",
+    "n.",
+    "다스리는 자, 총관"
+   ]
+  ],
+  "idi": [
+   [
+    "next to the king",
+    "왕의 다음 가는 자(2인자)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And the children of Israel carried away captive of their brethren two hundred thousand, women, sons, and daughters, and took also away much spoil from them, and brought the spoil to Samaria.",
+  "ko": "또 이스라엘 자손이 그들의 형제 중에서 부녀와 자녀 이십만 명을 사로잡고 많은 노략물을 빼앗아 그 노략물을 사마리아로 가져갔더라.",
+  "note": "이스라엘이 형제 유다의 부녀와 자녀 이십만을 사로잡아 갔다. '형제'(아흐)를 노예 삼으려는 이 죄가 곧 선지자 오뎃의 책망을 부르니, 승리조차 하나님의 진노 아래 있음을 예고한다.",
+  "voc": [
+   [
+    "carried away",
+    "v.",
+    "사로잡아 갔다"
+   ],
+   [
+    "brethren",
+    "n.",
+    "형제들"
+   ],
+   [
+    "spoil",
+    "n.",
+    "노략물"
+   ]
+  ],
+  "idi": [
+   [
+    "carried away captive",
+    "사로잡아 끌고 가다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "But a prophet of the LORD was there, whose name was Oded: and he went out before the host that came to Samaria, and said unto them, Behold, because the LORD God of your fathers was wroth with Judah, he hath delivered them into your hand, and ye have slain them in a rage that reacheth up unto heaven.",
+  "ko": "그러나 그곳에 여호와의 선지자가 있었으니 그의 이름은 오뎃이라. 그가 사마리아로 돌아오는 군대 앞에 나아가 그들에게 이르되 \"보라, 너희 조상의 하나님 여호와께서 유다에게 진노하사 그들을 너희 손에 넘기셨거늘, 너희가 하늘에 사무치는 분노로 그들을 죽였도다.",
+  "note": "선지자 오뎃이 승전한 이스라엘 군대를 막아서서, 하나님이 유다를 넘기신 것뿐인데 '하늘에 사무치는 분노'로 죽였다고 책망한다. 심판의 도구도 그 잔혹함으로 심판받음을 경고한다.",
+  "voc": [
+   [
+    "prophet",
+    "n.",
+    "선지자"
+   ],
+   [
+    "host",
+    "n.",
+    "군대"
+   ],
+   [
+    "wroth",
+    "adj.",
+    "진노한"
+   ],
+   [
+    "rage",
+    "n.",
+    "분노, 격노"
+   ]
+  ],
+  "idi": [
+   [
+    "reacheth up unto heaven",
+    "하늘에 사무치다(극에 달하다)"
+   ]
   ],
   "gra": [
-   ["whom the LORD had cast out", "whom=관계대명사(목적격); had cast out=과거완료 '이미 쫓아내셨던'"]
+   [
+    "ye have slain",
+    "ye=너희(2인칭 복수 주격, 옛 영어)"
+   ]
   ]
  },
  {
-  "en": "the LORD his God delivered him into the hand of the king of Syria",
-  "ko": "그의 하나님 여호와께서 그를 시리아 왕의 손에 넘기시매",
-  "note": "'손에 넘기다'는 히브리어 '나탄 베야드(natan beyad)' — 심판으로 대적의 권세 아래 두심을 뜻하는 관용 표현이다. 아하스의 우상숭배가 곧 외적의 침입을 부른 원인임을 보여 준다.",
+  "en": "And now ye purpose to keep under the children of Judah and Jerusalem for bondmen and bondwomen unto you: but are there not with you, even with you, sins against the LORD your God?",
+  "ko": "이제 너희가 유다와 예루살렘 자손을 너희의 남종과 여종으로 삼아 억누르려 하는도다. 그러나 너희에게는, 곧 너희 자신에게는 너희 하나님 여호와를 거스른 죄가 없느냐?",
+  "note": "오뎃은 '너희에게는 하나님을 거스른 죄가 없느냐'고 되묻는다. 형제를 노예 삼으려는 승자의 교만을 찌르는 이 물음은, 심판받은 자를 정죄하기 전 자신을 돌아보라는 예언자적 촉구다.",
   "voc": [
-   ["deliver", "v.", "넘기다, 내어주다"],
-   ["into the hand of", "", "~의 손에"],
-   ["smite", "v.", "치다 (과거 smote)"]
+   [
+    "purpose",
+    "v.",
+    "꾀하다, ~하려 하다"
+   ],
+   [
+    "keep under",
+    "v.",
+    "억누르다, 복종시키다"
+   ],
+   [
+    "bondmen",
+    "n.",
+    "남종"
+   ],
+   [
+    "bondwomen",
+    "n.",
+    "여종"
+   ]
   ],
-  "idi": [
-   ["deliver into the hand of", "~의 손에 넘기다"]
-  ],
+  "idi": [],
   "gra": [
-   ["carried away ... captives", "carry away=끌어가다; captives=목적격 보어 '포로로'"]
+   [
+    "are there not ... sins",
+    "are there not=~이 없느냐(수사의문문)"
+   ]
   ]
  },
  {
-  "en": "Behold, because the LORD God of your fathers was wroth with Judah, he hath delivered them into your hand",
-  "ko": "보라, 너희 조상의 하나님 여호와께서 유다에게 진노하사 그들을 너희 손에 넘기셨거늘",
-  "note": "선지자 오뎃은 승리를 자랑하는 이스라엘을 책망한다. 히브리어 '케체프(qetseph, 진노)'로 유다를 치셨으나, 도구로 쓰인 이스라엘이 그 진노를 빙자해 형제를 학살함은 도리어 자기 죄임을 드러낸다.",
+  "en": "Now hear me therefore, and deliver the captives again, which ye have taken captive of your brethren: for the fierce wrath of the LORD is upon you.",
+  "ko": "그러므로 이제 내 말을 들어 너희가 너희 형제 중에서 사로잡은 포로들을 도로 돌려보내라. 여호와의 맹렬한 진노가 너희 위에 있느니라\" 하니라.",
+  "note": "오뎃이 포로를 돌려보내라 명하며 '여호와의 맹렬한 진노가 너희 위에 있다'고 경고한다. 히브리어 '하론 아프'(맹렬한 진노)는 즉각적 심판의 위협으로, 회개와 자비를 촉구하는 근거가 된다.",
   "voc": [
-   ["wroth", "adj.", "진노한"],
-   ["deliver", "v.", "넘기다"],
-   ["rage", "n.", "분노"],
-   ["reach up unto", "", "~에 사무치다"]
+   [
+    "deliver",
+    "v.",
+    "돌려보내다"
+   ],
+   [
+    "captives",
+    "n.",
+    "포로들"
+   ],
+   [
+    "fierce",
+    "adj.",
+    "맹렬한"
+   ],
+   [
+    "wrath",
+    "n.",
+    "진노"
+   ]
   ],
   "idi": [
-   ["be wroth with", "~에게 진노하다"],
-   ["reach up unto heaven", "하늘에 사무치다"]
+   [
+    "deliver the captives again",
+    "포로들을 도로 돌려보내다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Then certain of the heads of the children of Ephraim, Azariah the son of Johanan, Berechiah the son of Meshillemoth, and Jehizkiah the son of Shallum, and Amasa the son of Hadlai, stood up against them that came from the war,",
+  "ko": "이에 에브라임 자손의 우두머리 몇 사람 곧 요하난의 아들 아사랴와 므실레못의 아들 베레갸와 살룸의 아들 여히스기야와 하들래의 아들 아마사가 전장에서 돌아오는 자들을 막아서며,",
+  "note": "에브라임 우두머리 넷이 일어나 전장에서 돌아오는 자들을 막아섰다. 이름이 낱낱이 기록된 이 지도자들은, 하나님의 말씀에 순종하여 승리의 관성을 거스른 참된 용기의 본을 보인다.",
+  "voc": [
+   [
+    "certain",
+    "adj.",
+    "몇몇의, 어떤"
+   ],
+   [
+    "heads",
+    "n.",
+    "우두머리들"
+   ],
+   [
+    "stood up",
+    "v.",
+    "일어섰다, 막아섰다"
+   ]
+  ],
+  "idi": [
+   [
+    "stood up against",
+    "~를 막아서다, ~에 맞서다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And said unto them, Ye shall not bring in the captives hither: for whereas we have offended against the LORD already, ye intend to add more to our sins and to our trespass: for our trespass is great, and there is fierce wrath against Israel.",
+  "ko": "그들에게 이르되 \"너희는 이 포로들을 이리로 데려오지 말라. 우리가 이미 여호와께 범죄하였거늘, 너희가 우리의 죄와 우리의 허물에 더하려 하는도다. 우리의 허물이 크고 맹렬한 진노가 이스라엘 위에 있느니라\" 하매,",
+  "note": "우두머리들은 '포로를 데려오지 말라, 이미 큰 허물에 죄를 더하려 하느냐'고 말한다. 히브리어 '아샴'(허물)의 인정은, 형제를 노예 삼음이 죄에 죄를 쌓는 일임을 스스로 깨달은 회개의 고백이다.",
+  "voc": [
+   [
+    "offended",
+    "v.",
+    "범죄하였다, 거슬렀다"
+   ],
+   [
+    "intend",
+    "v.",
+    "~하려 하다"
+   ],
+   [
+    "trespass",
+    "n.",
+    "허물, 범과"
+   ]
+  ],
+  "idi": [
+   [
+    "add more to our sins",
+    "우리 죄에 더하다"
+   ]
   ],
   "gra": [
-   ["he hath delivered them", "hath delivered=현재완료(옛 3인칭 has) '넘기셨다'"]
+   [
+    "whereas",
+    "~인데도, ~한 까닭에(옛 접속사)"
+   ]
   ]
  },
  {
-  "en": "deliver the captives again, which ye have taken captive of your brethren",
-  "ko": "너희가 너희 형제 중에서 사로잡은 포로들을 도로 돌려보내라",
-  "note": "선지자는 형제(아흐, 'ach)임을 강조한다. 유다와 이스라엘은 한 언약 백성이니, 동족을 노예로 삼음은 율법을 거스르는 일이다(레 25:46). '맹렬한 진노(하론 아프, ḥaron 'aph)'가 회개를 촉구한다.",
+  "en": "So the armed men left the captives and the spoil before the princes and all the congregation.",
+  "ko": "이에 무장한 자들이 그 포로들과 노략물을 방백들과 온 회중 앞에 두니라.",
+  "note": "무장한 자들이 포로와 노략물을 방백들과 회중 앞에 두었다. 승자가 전리품을 스스로 내려놓는 이 장면은, 하나님의 말씀 앞에 무력이 굴복하는 순종의 회복을 보여 준다.",
   "voc": [
-   ["captive", "n.", "포로"],
-   ["take captive", "", "사로잡다"],
-   ["brethren", "n.", "형제들"],
-   ["fierce", "adj.", "맹렬한"]
+   [
+    "armed",
+    "adj.",
+    "무장한"
+   ],
+   [
+    "princes",
+    "n.",
+    "방백들"
+   ],
+   [
+    "congregation",
+    "n.",
+    "회중"
+   ]
   ],
   "idi": [
-   ["take captive", "사로잡다, 포로로 잡다"],
-   ["fierce wrath", "맹렬한 진노"]
+   [
+    "left the captives",
+    "포로들을 놓아두다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And the men which were expressed by name rose up, and took the captives, and with the spoil clothed all that were naked among them, and arrayed them, and shod them, and gave them to eat and to drink, and anointed them, and carried all the feeble of them upon asses, and brought them to Jericho, the city of palm trees, to their brethren: then they returned to Samaria.",
+  "ko": "이름이 지명된 자들이 일어나 그 포로들을 데려다가 그 노략물로 그들 중 벗은 자를 다 입히되, 그들에게 옷을 입히고 신을 신기며 먹이고 마시게 하고 기름을 발라 주며, 그들 중 약한 자는 다 나귀에 태워 종려나무의 성읍 여리고에 이르러 그들의 형제에게 데려간 후에 사마리아로 돌아갔더라.",
+  "note": "이름이 지명된 자들이 포로를 입히고 신기고 먹이고 기름 발라 여리고로 돌려보냈다. 원수를 형제로 돌보는 이 선행은 선한 사마리아인 비유를 예표하며, 참된 회개가 낳는 긍휼을 그린다.",
+  "voc": [
+   [
+    "clothed",
+    "v.",
+    "입혔다"
+   ],
+   [
+    "arrayed",
+    "v.",
+    "단장시켰다, 옷 입혔다"
+   ],
+   [
+    "shod",
+    "v.",
+    "신을 신겼다"
+   ],
+   [
+    "feeble",
+    "adj.",
+    "약한"
+   ]
+  ],
+  "idi": [
+   [
+    "the city of palm trees",
+    "종려나무의 성읍(여리고의 별칭)"
+   ],
+   [
+    "gave them to eat and to drink",
+    "먹이고 마시게 하다"
+   ]
   ],
   "gra": [
-   ["deliver ... again", "again='도로, 다시' — '돌려보내라'의 뜻을 더함"]
+   [
+    "which were expressed by name",
+    "expressed by name=이름이 지명된(수동태)"
+   ]
   ]
  },
  {
-  "en": "clothed all that were naked among them ... and brought them to Jericho, the city of palm trees",
-  "ko": "그들 중 벗은 자를 다 입히되 ... 종려나무의 성읍 여리고에 이르러 그들의 형제에게 데려간",
-  "note": "입히고 신기고 먹이고 기름을 발라 약한 자를 나귀에 태움 — 포로를 향한 자비의 행렬이다. '종려나무의 성읍'은 여리고의 별칭(신 34:3)으로, 적국이 베푼 긍휼이 도리어 유다를 부끄럽게 한다.",
+  "en": "At that time did king Ahaz send unto the kings of Assyria to help him.",
+  "ko": "그때에 아하스 왕이 앗수르 왕들에게 사람을 보내어 자기를 도와 달라 하였으니,",
+  "note": "아하스가 앗수르 왕에게 도움을 청한다. 하나님 대신 이방 제국을 의지한 이 선택이 곧 파멸의 길이 되니, 심판 중에도 하나님께 돌아서지 않는 완악한 배도의 전형을 보여 준다.",
   "voc": [
-   ["clothe", "v.", "옷을 입히다"],
-   ["naked", "adj.", "벗은"],
-   ["shod", "v.", "신을 신기다 (shoe의 과거)"],
-   ["anoint", "v.", "기름을 바르다"],
-   ["feeble", "adj.", "약한, 연약한"]
+   [
+    "send",
+    "v.",
+    "보내다"
+   ],
+   [
+    "Assyria",
+    "n.",
+    "앗수르"
+   ],
+   [
+    "help",
+    "v.",
+    "돕다"
+   ]
   ],
-  "idi": [
-   ["the city of palm trees", "종려나무의 성읍 (여리고의 별칭)"]
-  ],
+  "idi": [],
   "gra": [
-   ["all that were naked", "all that=관계절 '벗은 모든 자'"]
+   [
+    "did king Ahaz send",
+    "did ... send=강조·도치된 옛 어순"
+   ]
   ]
  },
  {
-  "en": "And in the time of his distress did he trespass yet more against the LORD: this is that king Ahaz",
-  "ko": "이 환난의 때에도 그가 여호와께 더욱 범죄하였으니, 이 사람이 곧 아하스 왕이라",
-  "note": "환난은 본래 회개로 이끄나, 아하스는 도리어 더 깊이 패역하였다. '이 사람이 곧 아하스 왕이라(this is that king Ahaz)'는 역대기 저자의 탄식 어린 손가락질로, 그 이름을 악행의 표본으로 못박는다.",
+  "en": "For again the Edomites had come and smitten Judah, and carried away captives.",
+  "ko": "이는 에돔 사람이 다시 와서 유다를 치고 포로를 사로잡아 갔음이며,",
+  "note": "에돔이 다시 와서 유다를 치고 포로를 잡아갔다. 사방에서 몰려오는 대적은 아하스의 배도에 대한 하나님의 심판이 겹겹이 임함을 보여 주며, 앗수르에 손 내민 절박함의 배경이 된다.",
   "voc": [
-   ["distress", "n.", "환난, 곤경"],
-   ["trespass", "v.", "범죄하다, 허물을 짓다"],
-   ["yet more", "", "더욱, 한층 더"]
+   [
+    "Edomites",
+    "n.",
+    "에돔 사람들"
+   ],
+   [
+    "smitten",
+    "v.",
+    "쳤다(smite의 과거분사)"
+   ],
+   [
+    "carried away",
+    "v.",
+    "사로잡아 갔다"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "The Philistines also had invaded the cities of the low country, and of the south of Judah, and had taken Bethshemesh, and Ajalon, and Gederoth, and Shocho with the villages thereof, and Timnah with the villages thereof, Gimzo also and the villages thereof: and they dwelt there.",
+  "ko": "또 블레셋 사람이 저지대와 유다 남방의 성읍들을 침노하여 벧세메스와 아얄론과 그데롯과 소고와 그 주변 마을들과 딤나와 그 주변 마을들과 김소와 그 주변 마을들을 빼앗고 거기 거하였음이라.",
+  "note": "블레셋이 저지대와 남방 성읍들을 침노해 여럿을 빼앗고 거기 거했다. 상세한 지명 나열은 유다 영토의 급격한 상실을 증언하며, 하나님을 떠난 왕 아래 나라가 사방으로 잠식됨을 드러낸다.",
+  "voc": [
+   [
+    "invaded",
+    "v.",
+    "침노하였다"
+   ],
+   [
+    "low country",
+    "",
+    "저지대, 평지"
+   ],
+   [
+    "villages",
+    "n.",
+    "주변 마을들"
+   ],
+   [
+    "dwelt",
+    "v.",
+    "거하였다"
+   ]
   ],
   "idi": [
-   ["in the time of distress", "환난의 때에"],
-   ["this is that king Ahaz", "이 사람이 바로 그 아하스 왕이라"]
+   [
+    "the villages thereof",
+    "그 주변 마을들"
+   ]
   ],
+  "gra": []
+ },
+ {
+  "en": "For the LORD brought Judah low because of Ahaz king of Israel; for he made Judah naked, and transgressed sore against the LORD.",
+  "ko": "이는 여호와께서 이스라엘 왕 아하스로 말미암아 유다를 낮추셨음이니, 그가 유다를 벌거벗기고 여호와께 심히 범죄하였음이라.",
+  "note": "'여호와께서 아하스로 말미암아 유다를 낮추셨다'가 이 재난의 열쇠다. 히브리어 '카나'(낮추다)는 하나님의 징계를 뜻하며, 왕이 유다를 '벌거벗겼다'는 표현은 그의 배도가 나라를 방비 없이 만들었음을 고발한다.",
+  "voc": [
+   [
+    "brought low",
+    "v.",
+    "낮추셨다"
+   ],
+   [
+    "naked",
+    "adj.",
+    "벌거벗은, 무방비의"
+   ],
+   [
+    "transgressed",
+    "v.",
+    "범죄하였다"
+   ],
+   [
+    "sore",
+    "adv.",
+    "심히"
+   ]
+  ],
+  "idi": [
+   [
+    "made Judah naked",
+    "유다를 벌거벗기다(무방비하게 만들다)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And Tilgathpilneser king of Assyria came unto him, and distressed him, but strengthened him not.",
+  "ko": "디글랏빌레셀 앗수르 왕이 그에게 이르렀으나 그를 괴롭게 할 뿐 강하게 하지 못하였더라.",
+  "note": "디글랏빌레셀이 아하스를 도리어 괴롭게 할 뿐 강하게 하지 못했다. 히브리어 대조는 명확하다. 이방을 의지한 결과는 도움이 아니라 압제이니, 세상 세력에 기댄 신앙의 헛됨을 통렬히 밝힌다.",
+  "voc": [
+   [
+    "distressed",
+    "v.",
+    "괴롭게 하였다"
+   ],
+   [
+    "strengthened",
+    "v.",
+    "강하게 하였다"
+   ],
+   [
+    "came unto",
+    "v.",
+    "이르렀다"
+   ]
+  ],
+  "idi": [],
   "gra": [
-   ["did he trespass yet more", "did+동사원형=강조 도치 '더욱 범죄하였더라'"]
+   [
+    "strengthened him not",
+    "not이 동사 뒤에 오는 옛 부정 어순(현대는 did not strengthen)"
+   ]
   ]
  },
  {
-  "en": "Ahaz ... shut up the doors of the house of the LORD, and he made him altars in every corner of Jerusalem",
-  "ko": "여호와의 전 문들을 닫으며 예루살렘 구석마다 자기를 위하여 제단을 만들고",
-  "note": "아하스는 성전 기구를 부수고 그 문을 닫아 예배를 끊었다. 한 분 여호와의 전을 닫는 대신 성읍 구석마다 우상의 제단을 세움은 배교의 절정이니, 아들 히스기야가 곧 그 문을 다시 여는 개혁을 일으킨다(29장).",
+  "en": "For Ahaz took away a portion out of the house of the LORD, and out of the house of the king, and of the princes, and gave it unto the king of Assyria: but he helped him not.",
+  "ko": "아하스가 여호와의 전과 왕궁과 방백들의 집에서 재물을 취하여 앗수르 왕에게 주었으나, 그가 그를 돕지 아니하였더라.",
+  "note": "아하스가 성전과 왕궁과 방백들의 재물을 앗수르 왕에게 바쳤으나 돕지 않았다. 하나님의 집을 털어 우상 같은 제국에 바친 이 행위는, 배도가 거룩한 것마저 헛되이 소진함을 보여 준다.",
   "voc": [
-   ["cut in pieces", "", "산산이 부수다"],
-   ["shut up", "", "닫다, 폐쇄하다"],
-   ["altar", "n.", "제단"],
-   ["corner", "n.", "구석, 모퉁이"]
+   [
+    "took away",
+    "v.",
+    "취하였다, 빼앗았다"
+   ],
+   [
+    "portion",
+    "n.",
+    "재물, 몫"
+   ],
+   [
+    "gave",
+    "v.",
+    "주었다"
+   ]
   ],
-  "idi": [
-   ["shut up the doors", "문들을 닫다, 폐쇄하다"],
-   ["in every corner", "구석마다, 곳곳에"]
-  ],
+  "idi": [],
   "gra": [
-   ["he made him altars", "him=재귀 '자기를 위하여'(옛 용법, =for himself)"]
+   [
+    "he helped him not",
+    "helped him not=옛 부정 어순(그가 그를 돕지 아니하였다)"
+   ]
   ]
  },
  {
-  "en": "Ahaz slept with his fathers ... but they brought him not into the sepulchres of the kings of Israel",
-  "ko": "아하스가 그의 조상들과 함께 잠드니 ... 이스라엘 왕들의 묘실에는 두지 아니하였으며",
-  "note": "'조상과 함께 잠들다(샤카브 임 아보타브)'는 죽음의 완곡어다. 그러나 왕들의 묘실에 묻히지 못함은 그 악행에 대한 마지막 낙인이니, 그럼에도 아들 히스기야로 다윗의 등불은 꺼지지 않는다.",
+  "en": "And in the time of his distress did he trespass yet more against the LORD: this is that king Ahaz.",
+  "ko": "이 환난의 때에도 그가 여호와께 더욱 범죄하였으니, 이 사람이 곧 아하스 왕이라.",
+  "note": "'환난의 때에도 더욱 범죄하였으니 이 사람이 곧 아하스 왕이라'는 통렬한 낙인을 찍는다. 고난이 회개로 이끌기는커녕 배도를 심화시킨 그를, 역대기 기자는 이름으로 못박아 경계로 남긴다.",
   "voc": [
-   ["sleep with his fathers", "", "조상과 함께 잠들다(죽다)"],
-   ["bury", "v.", "장사하다, 묻다"],
-   ["sepulchre", "n.", "묘실, 무덤"],
-   ["reign in his stead", "", "그를 대신하여 다스리다"]
+   [
+    "distress",
+    "n.",
+    "환난, 곤경"
+   ],
+   [
+    "trespass",
+    "v.",
+    "범죄하다"
+   ],
+   [
+    "yet more",
+    "",
+    "더욱"
+   ]
   ],
   "idi": [
-   ["sleep with his fathers", "조상과 함께 잠들다 (죽음의 완곡 표현)"],
-   ["in his stead", "그를 대신하여"]
+   [
+    "this is that king Ahaz",
+    "이 사람이 바로 그 아하스 왕이라(강조적 낙인)"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "For he sacrificed unto the gods of Damascus, which smote him: and he said, Because the gods of the kings of Syria help them, therefore will I sacrifice to them, that they may help me. But they were the ruin of him, and of all Israel.",
+  "ko": "그가 자기를 친 다메섹의 신들에게 제사하며 이르되 \"시리아 왕들의 신들이 그들을 돕는즉 내가 그 신들에게 제사하여 그들이 나를 돕게 하리라\" 하였으나, 그 신들이 도리어 그와 온 이스라엘을 망하게 하는 것이 되었더라.",
+  "note": "아하스가 자기를 친 다메섹의 신들에게 제사하며 그것들이 도우리라 여겼다. '그를 친 신들'을 섬기는 어리석음은, 무력한 우상을 하나님보다 신뢰한 배도의 파멸적 논리를 극명히 드러낸다.",
+  "voc": [
+   [
+    "gods",
+    "n.",
+    "신들(우상)"
+   ],
+   [
+    "ruin",
+    "n.",
+    "패망, 파멸"
+   ],
+   [
+    "sacrifice",
+    "v.",
+    "제사하다"
+   ]
+  ],
+  "idi": [
+   [
+    "the ruin of him",
+    "그의 파멸이 됨"
+   ]
   ],
   "gra": [
-   ["they brought him not", "brought ... not=옛 부정문(=did not bring) '데려가지 아니하였다'"]
+   [
+    "will I sacrifice",
+    "will I=주어와 조동사 도치(강조의 옛 어순)"
+   ]
   ]
+ },
+ {
+  "en": "And Ahaz gathered together the vessels of the house of God, and cut in pieces the vessels of the house of God, and shut up the doors of the house of the LORD, and he made him altars in every corner of Jerusalem.",
+  "ko": "아하스가 하나님의 전의 기구들을 모아다가 그 기구들을 부수고 여호와의 전 문들을 닫으며 예루살렘 구석마다 자기를 위하여 제단을 만들고,",
+  "note": "아하스가 성전 기구를 부수고 문을 닫으며 예루살렘 구석마다 제단을 만들었다. 여호와의 전을 폐쇄한 이 행위는 배도의 절정으로, 온 성을 우상의 제단으로 뒤덮은 영적 암흑을 보여 준다.",
+  "voc": [
+   [
+    "gathered",
+    "v.",
+    "모았다"
+   ],
+   [
+    "vessels",
+    "n.",
+    "기구들, 그릇들"
+   ],
+   [
+    "cut in pieces",
+    "v.",
+    "부수다, 조각내다"
+   ],
+   [
+    "shut up",
+    "v.",
+    "닫았다"
+   ]
+  ],
+  "idi": [
+   [
+    "shut up the doors",
+    "문들을 닫아 걸다"
+   ],
+   [
+    "every corner",
+    "구석마다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And in every several city of Judah he made high places to burn incense unto other gods, and provoked to anger the LORD God of his fathers.",
+  "ko": "유다 각 성읍에 산당을 세워 다른 신들에게 분향하여 그의 조상의 하나님 여호와를 진노케 하였더라.",
+  "note": "아하스가 유다 각 성읍에 산당을 세워 다른 신들에게 분향해 여호와를 진노케 했다. '각 성읍마다'라는 확산은 배도가 온 나라에 스몄음을 뜻하니, 히스기야의 대개혁이 얼마나 절실했는지를 예비한다.",
+  "voc": [
+   [
+    "several",
+    "adj.",
+    "각각의, 여러"
+   ],
+   [
+    "provoked",
+    "v.",
+    "진노케 하였다, 격동시켰다"
+   ],
+   [
+    "anger",
+    "n.",
+    "진노"
+   ]
+  ],
+  "idi": [
+   [
+    "provoked to anger",
+    "진노케 하다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Now the rest of his acts and of all his ways, first and last, behold, they are written in the book of the kings of Judah and Israel.",
+  "ko": "그의 남은 행적과 그의 모든 행위는 처음부터 끝까지 보라, 유다와 이스라엘 열왕기에 기록되었느니라.",
+  "note": "아하스의 남은 행적이 열왕기에 기록되었다고 밝힌다. 상투적 후기이나 '처음부터 끝까지'라는 표현은, 배도로 일관한 그의 생애 전체가 하나님 앞에 낱낱이 남았음을 담담히 증언한다.",
+  "voc": [
+   [
+    "rest",
+    "n.",
+    "나머지"
+   ],
+   [
+    "acts",
+    "n.",
+    "행적"
+   ],
+   [
+    "ways",
+    "n.",
+    "행위, 길"
+   ]
+  ],
+  "idi": [
+   [
+    "first and last",
+    "처음부터 끝까지"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And Ahaz slept with his fathers, and they buried him in the city, even in Jerusalem: but they brought him not into the sepulchres of the kings of Israel: and Hezekiah his son reigned in his stead.",
+  "ko": "아하스가 그의 조상들과 함께 잠드니 무리가 그를 그 성 곧 예루살렘에 장사하였으나 이스라엘 왕들의 묘실에는 두지 아니하였으며, 그의 아들 히스기야가 그를 대신하여 다스리니라.",
+  "note": "아하스가 예루살렘에 장사되었으나 이스라엘 왕들의 묘실에는 두지 않았고 히스기야가 뒤를 이었다. 왕의 무덤에서 배제된 죽음은 배도의 오명을 확정하며, 곧이어 개혁의 왕 히스기야가 등장한다.",
+  "voc": [
+   [
+    "slept",
+    "v.",
+    "잠들었다(죽었다)"
+   ],
+   [
+    "buried",
+    "v.",
+    "장사하였다"
+   ],
+   [
+    "sepulchres",
+    "n.",
+    "묘실, 무덤들"
+   ],
+   [
+    "stead",
+    "n.",
+    "자리, 대신"
+   ]
+  ],
+  "idi": [
+   [
+    "slept with his fathers",
+    "조상들과 함께 잠들다(죽다)"
+   ],
+   [
+    "in his stead",
+    "그를 대신하여"
+   ]
+  ],
+  "gra": []
  }
 ]

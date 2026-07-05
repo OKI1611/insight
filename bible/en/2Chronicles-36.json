@@ -1,135 +1,827 @@
 [
  {
-  "en": "he did that which was evil in the sight of the LORD his God",
-  "ko": "그가 그의 하나님 여호와 보시기에 악을 행하였더라",
-  "note": "유다 마지막 왕들을 평가하는 후렴이다. '여호와 보시기에'(히브리어 베에네 야훼, '여호와의 눈에')는 사람의 평판이 아니라 하나님의 시선이 선악의 잣대임을 말한다. 여호야김·여호야긴·시드기야가 연이어 같은 길을 걸어 멸망을 자초하였다.",
+  "en": "Then the people of the land took Jehoahaz the son of Josiah, and made him king in his father’s stead in Jerusalem.",
+  "ko": "그 땅의 백성이 요시야의 아들 여호아하스를 데려다가 예루살렘에서 그 아버지를 이어 왕으로 삼으니라.",
+  "note": "백성이 요시야의 아들 여호아하스를 왕으로 세웠다. 위대한 개혁 왕의 죽음 뒤 이어지는 왕들의 짧은 통치는, 유다의 급격한 몰락과 바벨론 포로로 치닫는 마지막 장의 서두를 연다.",
   "voc": [
-   ["evil", "n./adj.", "악, 악한"],
-   ["sight", "n.", "시야, 보시는 바"],
-   ["in the sight of", "", "~보시기에"]
+   [
+    "people of the land",
+    "",
+    "그 땅 백성"
+   ],
+   [
+    "took",
+    "v.",
+    "데려다가"
+   ],
+   [
+    "stead",
+    "n.",
+    "자리, 대신"
+   ]
   ],
   "idi": [
-   ["in the sight of the LORD", "여호와 보시기에"]
+   [
+    "the people of the land",
+    "그 땅 백성(국민)"
+   ],
+   [
+    "in his father's stead",
+    "그 아버지를 이어"
+   ]
   ],
+  "gra": []
+ },
+ {
+  "en": "Jehoahaz was twenty and three years old when he began to reign, and he reigned three months in Jerusalem.",
+  "ko": "여호아하스가 왕이 될 때에 나이가 스물세 살이라, 예루살렘에서 석 달을 다스리니라.",
+  "note": "여호아하스가 스물셋에 왕이 되어 겨우 석 달을 다스렸다. 극히 짧은 통치는 유다 왕권이 이제 이방 제국의 손아귀에 좌우됨을 예고하니, 나라의 주권이 빠르게 무너지는 현실을 보여 준다.",
+  "voc": [
+   [
+    "reign",
+    "v.",
+    "다스리다"
+   ],
+   [
+    "months",
+    "n.",
+    "달들"
+   ],
+   [
+    "three",
+    "num.",
+    "셋"
+   ]
+  ],
+  "idi": [],
   "gra": [
-   ["that which was evil", "that which=관계대명사 what '악한 것을' — 선행사를 포함한 관계절"]
+   [
+    "twenty and three years old",
+    "twenty and three=스물셋(옛 수 표기)"
+   ]
   ]
  },
  {
-  "en": "bound him in fetters, to carry him to Babylon",
-  "ko": "그를 사슬로 결박하여 바벨론으로 끌어가려 하니라",
-  "note": "느부갓네살(히브리어 네부카드네차르)이 여호야김을 결박한다. fetters는 발에 채우는 쇠고랑이니, 다윗 왕가의 후손이 이방 왕에게 사로잡혀 끌려가는 굴욕은 언약 백성의 불순종이 부른 심판의 표징이다.",
+  "en": "And the king of Egypt put him down at Jerusalem, and condemned the land in an hundred talents of silver and a talent of gold.",
+  "ko": "애굽 왕이 예루살렘에서 그를 폐위하고 그 땅에 은 백 달란트와 금 한 달란트를 벌금으로 물리니라.",
+  "note": "애굽 왕이 그를 폐위하고 은 백 달란트·금 한 달란트의 벌금을 물렸다. 히브리어 '아나쉬'(벌금 물리다)는 정복자의 수탈을 뜻하니, 유다가 조공을 바치는 속국으로 전락했음을 드러낸다.",
   "voc": [
-   ["bind", "v.", "결박하다 (과거 bound)"],
-   ["fetters", "n.", "족쇄, 사슬"],
-   ["carry", "v.", "끌어가다, 데려가다"]
+   [
+    "put down",
+    "v.",
+    "폐위하였다"
+   ],
+   [
+    "condemned",
+    "v.",
+    "벌금을 물렸다"
+   ],
+   [
+    "talents",
+    "n.",
+    "달란트들"
+   ],
+   [
+    "silver",
+    "n.",
+    "은"
+   ]
+  ],
+  "idi": [
+   [
+    "put him down",
+    "그를 폐위하다"
+   ],
+   [
+    "condemned the land in",
+    "그 땅에 ~을 벌금으로 물리다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And the king of Egypt made Eliakim his brother king over Judah and Jerusalem, and turned his name to Jehoiakim. And Necho took Jehoahaz his brother, and carried him to Egypt.",
+  "ko": "애굽 왕이 그의 형제 엘리아김을 세워 유다와 예루살렘의 왕으로 삼고 그 이름을 여호야김으로 고치니라. 느고는 그의 형제 여호아하스를 붙들어 애굽으로 끌어가니라.",
+  "note": "애굽 왕이 엘리아김을 왕으로 세워 이름을 여호야김으로 고치고 여호아하스를 애굽으로 끌어갔다. 이방 왕이 유다 왕의 이름을 바꾸는 이 행위는 종주권의 표시로, 유다가 완전히 애굽의 봉신이 되었음을 보여 준다.",
+  "voc": [
+   [
+    "made ... king",
+    "v.",
+    "왕으로 삼았다"
+   ],
+   [
+    "turned",
+    "v.",
+    "고쳤다, 바꾸었다"
+   ],
+   [
+    "name",
+    "n.",
+    "이름"
+   ],
+   [
+    "carried",
+    "v.",
+    "끌어갔다"
+   ]
+  ],
+  "idi": [
+   [
+    "turned his name to",
+    "그 이름을 ~으로 고치다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Jehoiakim was twenty and five years old when he began to reign, and he reigned eleven years in Jerusalem: and he did that which was evil in the sight of the LORD his God.",
+  "ko": "여호야김이 왕이 될 때에 나이가 스물다섯 살이라, 예루살렘에서 열한 해를 다스리니라. 그가 그의 하나님 여호와 보시기에 악을 행하였더라.",
+  "note": "여호야김이 스물다섯에 왕이 되어 열한 해를 다스리며 여호와 보시기에 악을 행했다. 히브리어 '하라'(악을 행함)의 반복은, 요시야의 아들이 아버지의 개혁을 저버리고 배도로 돌아섰음을 규정한다.",
+  "voc": [
+   [
+    "evil",
+    "adj.",
+    "악한"
+   ],
+   [
+    "eleven",
+    "num.",
+    "열하나"
+   ],
+   [
+    "sight",
+    "n.",
+    "보시기, 목전"
+   ]
+  ],
+  "idi": [
+   [
+    "that which was evil",
+    "악한 것"
+   ]
   ],
   "gra": [
-   ["bound him in fetters, to carry him", "bound=bind의 과거형; to carry=목적의 부정사 '끌어가려'"]
+   [
+    "twenty and five years old",
+    "twenty and five=스물다섯(옛 수 표기)"
+   ]
   ]
  },
  {
-  "en": "humbled not himself before Jeremiah the prophet speaking from the mouth of the LORD",
-  "ko": "여호와의 입을 대언하는 선지자 예레미야 앞에서 자신을 낮추지 아니하였더라",
-  "note": "선지자 예레미야(히브리어 이르메야)는 '여호와의 입에서 나온 말씀을 전하는' 자다. 시드기야의 죄는 단지 악행이 아니라 하나님의 말씀 앞에서 마음을 낮추지(히브리어 카나, '겸비하다') 않은 데 있으니, 회개의 거부가 멸망의 핵심이다.",
+  "en": "Against him came up Nebuchadnezzar king of Babylon, and bound him in fetters, to carry him to Babylon.",
+  "ko": "바벨론 왕 느부갓네살이 그를 치러 올라와 그를 사슬로 결박하여 바벨론으로 끌어가려 하니라.",
+  "note": "바벨론 왕 느부갓네살이 올라와 여호야김을 사슬로 결박해 끌어가려 했다. 애굽에서 바벨론으로 종주국이 바뀌는 이 장면은, 예레미야가 예언한 바벨론의 부상과 유다의 최종 파국을 알린다.",
   "voc": [
-   ["humble oneself", "", "스스로 낮추다, 겸손하다"],
-   ["prophet", "n.", "선지자"],
-   ["mouth", "n.", "입"]
+   [
+    "came up",
+    "v.",
+    "올라왔다"
+   ],
+   [
+    "bound",
+    "v.",
+    "결박하였다"
+   ],
+   [
+    "fetters",
+    "n.",
+    "사슬, 족쇄"
+   ],
+   [
+    "carry",
+    "v.",
+    "끌어가다"
+   ]
   ],
   "idi": [
-   ["humble himself", "스스로 겸비하다, 자신을 낮추다"]
+   [
+    "came up against him",
+    "그를 치러 올라왔다"
+   ],
+   [
+    "bound him in fetters",
+    "사슬로 결박하다"
+   ]
   ],
+  "gra": []
+ },
+ {
+  "en": "Nebuchadnezzar also carried of the vessels of the house of the LORD to Babylon, and put them in his temple at Babylon.",
+  "ko": "느부갓네살이 또한 여호와의 전의 기물들을 바벨론으로 가져다가 바벨론에 있는 자기 신전에 두니라.",
+  "note": "느부갓네살이 여호와의 전 기물을 바벨론 신전에 두었다. 성전 기물이 이방 신전으로 옮겨지는 이 첫 약탈은, 다니엘 1장의 배경으로 성전 몰락의 시작이자 이방 신 앞에 굴욕당하는 유다를 상징한다.",
+  "voc": [
+   [
+    "vessels",
+    "n.",
+    "기물들, 그릇들"
+   ],
+   [
+    "temple",
+    "n.",
+    "신전"
+   ],
+   [
+    "put",
+    "v.",
+    "두었다"
+   ]
+  ],
+  "idi": [
+   [
+    "carried of the vessels",
+    "기물들을 가져가다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Now the rest of the acts of Jehoiakim, and his abominations which he did, and that which was found in him, behold, they are written in the book of the kings of Israel and Judah: and Jehoiachin his son reigned in his stead.",
+  "ko": "이제 여호야김의 남은 행적과 그가 행한 가증한 일들과 그에게서 드러난 바는, 보라, 이스라엘과 유다 열왕의 책에 기록되었느니라. 그의 아들 여호야긴이 그를 이어 다스리니라.",
+  "note": "여호야김의 가증한 일과 드러난 바가 열왕기에 기록되었다고 밝히고 여호야긴이 뒤를 이었다. '가증한 일'과 '드러난 바'라는 표현은, 그의 배도가 낱낱이 심판의 기록으로 남았음을 뜻한다.",
+  "voc": [
+   [
+    "rest",
+    "n.",
+    "나머지"
+   ],
+   [
+    "abominations",
+    "n.",
+    "가증한 일들"
+   ],
+   [
+    "found",
+    "v.",
+    "드러났다, 발견되었다"
+   ]
+  ],
+  "idi": [
+   [
+    "that which was found in him",
+    "그에게서 드러난 바"
+   ],
+   [
+    "in his stead",
+    "그를 이어"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Jehoiachin was eight years old when he began to reign, and he reigned three months and ten days in Jerusalem: and he did that which was evil in the sight of the LORD.",
+  "ko": "여호야긴이 왕이 될 때에 나이가 여덟 살이라, 예루살렘에서 석 달 열흘을 다스리니라. 그가 여호와 보시기에 악을 행하였더라.",
+  "note": "여호야긴이 여덟 살에 왕이 되어 석 달 열흘을 다스리며 악을 행했다. 극히 짧고 어린 통치는 유다 왕권의 붕괴를 보여 주며, 그 역시 배도의 길을 걸어 심판을 재촉했음을 드러낸다.",
+  "voc": [
+   [
+    "eight",
+    "num.",
+    "여덟"
+   ],
+   [
+    "ten",
+    "num.",
+    "열"
+   ],
+   [
+    "days",
+    "n.",
+    "날들"
+   ]
+  ],
+  "idi": [
+   [
+    "three months and ten days",
+    "석 달 열흘"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And when the year was expired, king Nebuchadnezzar sent, and brought him to Babylon, with the goodly vessels of the house of the LORD, and made Zedekiah his brother king over Judah and Jerusalem.",
+  "ko": "해가 바뀔 때에 느부갓네살 왕이 사람을 보내어 그를 여호와의 전의 보배로운 기물들과 함께 바벨론으로 끌어오고, 그의 형제 시드기야를 세워 유다와 예루살렘의 왕으로 삼으니라.",
+  "note": "해가 바뀌매 느부갓네살이 그를 성전 보물과 함께 바벨론으로 끌어가고 시드기야를 세웠다. 왕과 성물이 함께 끌려가는 이 2차 포로는, 597년의 바벨론 유수로 유다의 종말이 임박했음을 보여 준다.",
+  "voc": [
+   [
+    "expired",
+    "v.",
+    "다하였다, 지났다"
+   ],
+   [
+    "goodly",
+    "adj.",
+    "보배로운, 아름다운"
+   ],
+   [
+    "treasures",
+    "n.",
+    "보물들"
+   ]
+  ],
+  "idi": [
+   [
+    "when the year was expired",
+    "해가 바뀔 때에"
+   ],
+   [
+    "goodly vessels",
+    "보배로운 기물들"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Zedekiah was one and twenty years old when he began to reign, and reigned eleven years in Jerusalem.",
+  "ko": "시드기야가 왕이 될 때에 나이가 스물한 살이라, 예루살렘에서 열한 해를 다스리니라.",
+  "note": "시드기야가 스물하나에 왕이 되어 열한 해를 다스렸다. 유다의 마지막 왕으로, 그의 통치 끝에 예루살렘과 성전이 완전히 무너지니 다윗 왕조의 몰락을 마무리하는 인물이다.",
+  "voc": [
+   [
+    "reign",
+    "v.",
+    "다스리다"
+   ],
+   [
+    "eleven",
+    "num.",
+    "열하나"
+   ],
+   [
+    "began",
+    "v.",
+    "시작하였다"
+   ]
+  ],
+  "idi": [],
   "gra": [
-   ["humbled not himself", "옛 어순으로 not이 동사 뒤에 옴 (=did not humble himself)"]
+   [
+    "one and twenty years old",
+    "one and twenty=스물하나(옛 수 표기)"
+   ]
   ]
  },
  {
-  "en": "he stiffened his neck, and hardened his heart from turning unto the LORD God of Israel",
-  "ko": "목을 곧게 하고 마음을 완악하게 하여 이스라엘의 하나님 여호와께로 돌아오지 아니하였더라",
-  "note": "'목을 곧게 함'(히브리어 카샤 오레프)과 '마음을 완악하게 함'은 구약이 고집스런 불순종을 그리는 짝 표현이다. turning(히브리어 슈브, '돌이키다')은 회개를 뜻하니, 완악함은 곧 돌이키기를 거부함이다.",
+  "en": "And he did that which was evil in the sight of the LORD his God, and humbled not himself before Jeremiah the prophet speaking from the mouth of the LORD.",
+  "ko": "그가 그의 하나님 여호와 보시기에 악을 행하고, 여호와의 입을 대언하는 선지자 예레미야 앞에서 자신을 낮추지 아니하였더라.",
+  "note": "시드기야가 악을 행하고 여호와의 입을 대언하는 예레미야 앞에서 겸비하지 않았다. 히브리어 '카나'(겸비)의 결여는, 하나님의 말씀을 전한 선지자를 무시한 완악함으로, 그의 파멸의 근본 원인을 드러낸다.",
   "voc": [
-   ["stiffen", "v.", "뻣뻣하게 하다, 곧게 하다"],
-   ["neck", "n.", "목"],
-   ["harden", "v.", "완악하게 하다, 굳게 하다"],
-   ["turn unto", "", "~에게로 돌아오다"]
+   [
+    "evil",
+    "adj.",
+    "악한"
+   ],
+   [
+    "humbled",
+    "v.",
+    "겸비하였다"
+   ],
+   [
+    "prophet",
+    "n.",
+    "선지자"
+   ],
+   [
+    "mouth",
+    "n.",
+    "입"
+   ]
   ],
   "idi": [
-   ["stiffen one's neck", "목을 곧게 하다 (완고하게 굴다)"],
-   ["harden one's heart", "마음을 완악하게 하다"]
+   [
+    "humbled not himself",
+    "자신을 낮추지 아니하다"
+   ],
+   [
+    "from the mouth of the LORD",
+    "여호와의 입을 대언하여"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And he also rebelled against king Nebuchadnezzar, who had made him swear by God: but he stiffened his neck, and hardened his heart from turning unto the LORD God of Israel.",
+  "ko": "또한 그를 하나님으로 맹세하게 한 느부갓네살 왕을 거슬러 반역하였으며, 목을 곧게 하고 마음을 완악하게 하여 이스라엘의 하나님 여호와께로 돌아오지 아니하였더라.",
+  "note": "시드기야가 하나님으로 맹세하게 한 느부갓네살을 배반하고 목과 마음을 완악하게 했다. 히브리어 '카쉐 오레프'(목이 곧음)와 '아마츠 레브'(마음을 완악케 함)는, 하나님께 돌아올 기회를 스스로 닫아 버린 완고함을 고발한다.",
+  "voc": [
+   [
+    "rebelled",
+    "v.",
+    "반역하였다"
+   ],
+   [
+    "swear",
+    "v.",
+    "맹세하다"
+   ],
+   [
+    "stiffened",
+    "v.",
+    "곧게 하였다"
+   ],
+   [
+    "hardened",
+    "v.",
+    "완악하게 하였다"
+   ]
+  ],
+  "idi": [
+   [
+    "stiffened his neck",
+    "목을 곧게 하다(완악하다)"
+   ],
+   [
+    "hardened his heart",
+    "마음을 완악하게 하다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Moreover all the chief of the priests, and the people, transgressed very much after all the abominations of the heathen; and polluted the house of the LORD which he had hallowed in Jerusalem.",
+  "ko": "그뿐 아니라 제사장의 모든 우두머리와 백성이 이방인의 온갖 가증한 일을 따라 크게 범죄하여, 여호와께서 예루살렘에 거룩하게 하신 그분의 전을 더럽혔더라.",
+  "note": "제사장의 우두머리와 백성까지 이방의 가증을 따라 성전을 더럽혔다. 왕뿐 아니라 종교 지도자와 온 백성이 함께 타락한 이 총체적 배도는, 심판이 온 공동체에 임할 수밖에 없음을 보여 준다.",
+  "voc": [
+   [
+    "chief",
+    "n.",
+    "우두머리"
+   ],
+   [
+    "transgressed",
+    "v.",
+    "범죄하였다"
+   ],
+   [
+    "polluted",
+    "v.",
+    "더럽혔다"
+   ],
+   [
+    "hallowed",
+    "v.",
+    "거룩하게 하셨다"
+   ]
+  ],
+  "idi": [
+   [
+    "after all the abominations of the heathen",
+    "이방인의 온갖 가증한 일을 따라"
+   ],
+   [
+    "polluted the house of the LORD",
+    "여호와의 전을 더럽히다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And the LORD God of their fathers sent to them by his messengers, rising up betimes, and sending; because he had compassion on his people, and on his dwelling place:",
+  "ko": "그들의 조상의 하나님 여호와께서 그분의 사자들을 통하여 그들에게 거듭거듭 일찍이 보내셨으니, 이는 그분이 자기 백성과 자기 처소를 불쌍히 여기셨음이라.",
+  "note": "하나님이 백성과 자기 처소를 불쌍히 여겨 사자들을 '거듭거듭 일찍이' 보내셨다. 히브리어 '하쉬켐 웨샬로아흐'(부지런히 거듭 보냄)는 하나님의 끈질긴 자비를 뜻하니, 심판 전에 오래 참으시며 경고하신 긍휼을 드러낸다.",
+  "voc": [
+   [
+    "messengers",
+    "n.",
+    "사자들, 사신들"
+   ],
+   [
+    "betimes",
+    "adv.",
+    "일찍이"
+   ],
+   [
+    "compassion",
+    "n.",
+    "불쌍히 여김, 긍휼"
+   ],
+   [
+    "dwelling place",
+    "",
+    "처소, 거처"
+   ]
+  ],
+  "idi": [
+   [
+    "rising up betimes",
+    "일찍이 거듭거듭(부지런히)"
+   ],
+   [
+    "had compassion on",
+    "~을 불쌍히 여기다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "But they mocked the messengers of God, and despised his words, and misused his prophets, until the wrath of the LORD arose against his people, till there was no remedy.",
+  "ko": "그러나 그들이 하나님의 사자들을 조롱하고 그분의 말씀을 멸시하며 그분의 선지자들을 욕보였으니, 마침내 여호와의 진노가 그분의 백성을 향하여 일어나 돌이킬 길이 없게 되었더라.",
+  "note": "그러나 그들이 사자를 조롱하고 말씀을 멸시하며 선지자를 욕보여 '돌이킬 길이 없게' 되었다. 히브리어 '엔 마르페'(치유할 수 없음)는, 회개의 마지막 기회마저 완악함으로 짓밟은 결과 심판이 불가피해졌음을 선언한다.",
+  "voc": [
+   [
+    "mocked",
+    "v.",
+    "조롱하였다"
+   ],
+   [
+    "despised",
+    "v.",
+    "멸시하였다"
+   ],
+   [
+    "misused",
+    "v.",
+    "욕보였다, 학대하였다"
+   ],
+   [
+    "remedy",
+    "n.",
+    "치유, 대책"
+   ]
+  ],
+  "idi": [
+   [
+    "till there was no remedy",
+    "돌이킬 길이 없게 되기까지"
+   ],
+   [
+    "despised his words",
+    "그분의 말씀을 멸시하다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Therefore he brought upon them the king of the Chaldees, who slew their young men with the sword in the house of their sanctuary, and had no compassion upon young man or maiden, old man, or him that stooped for age: he gave them all into his hand.",
+  "ko": "그러므로 그분이 갈대아 왕을 그들에게로 이끌어 오시니, 그가 그들의 성소의 전 안에서 그들의 청년들을 칼로 죽이되 청년이나 처녀나 노인이나 백발이 성성한 자를 불쌍히 여기지 아니하니라. 그분이 그들 모두를 그의 손에 넘기셨더라.",
+  "note": "하나님이 갈대아 왕을 이끌어 오시니 성소 안에서 청년과 노인을 가리지 않고 죽였다. 성전 안의 학살과 무차별한 죽음은, 오래 참으신 하나님의 진노가 마침내 쏟아진 심판의 참상을 적나라하게 그린다.",
+  "voc": [
+   [
+    "Chaldees",
+    "n.",
+    "갈대아 사람들"
+   ],
+   [
+    "slew",
+    "v.",
+    "죽였다"
+   ],
+   [
+    "maiden",
+    "n.",
+    "처녀"
+   ],
+   [
+    "stooped for age",
+    "",
+    "나이 들어 허리 굽은 자"
+   ]
+  ],
+  "idi": [
+   [
+    "had no compassion upon",
+    "~을 불쌍히 여기지 아니하다"
+   ],
+   [
+    "gave them all into his hand",
+    "그들 모두를 그의 손에 넘기다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And all the vessels of the house of God, great and small, and the treasures of the house of the LORD, and the treasures of the king, and of his princes; all these he brought to Babylon.",
+  "ko": "또 하나님의 전의 모든 기물 곧 크고 작은 것과 여호와의 전의 보물과 왕과 그 방백들의 보물, 이 모든 것을 그가 바벨론으로 가져가니라.",
+  "note": "성전과 왕궁의 크고 작은 모든 기물과 보물을 바벨론으로 가져갔다. 하나님의 집이 남김없이 약탈당함은, 배도한 나라에서 거룩한 것들조차 지켜지지 못하고 이방의 손에 넘어감을 뼈아프게 보여 준다.",
+  "voc": [
+   [
+    "vessels",
+    "n.",
+    "기물들"
+   ],
+   [
+    "treasures",
+    "n.",
+    "보물들"
+   ],
+   [
+    "princes",
+    "n.",
+    "방백들"
+   ],
+   [
+    "brought",
+    "v.",
+    "가져갔다"
+   ]
+  ],
+  "idi": [
+   [
+    "great and small",
+    "크고 작은 것"
+   ],
+   [
+    "the treasures of the king",
+    "왕의 보물"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And they burnt the house of God, and brake down the wall of Jerusalem, and burnt all the palaces thereof with fire, and destroyed all the goodly vessels thereof.",
+  "ko": "그들이 하나님의 전을 불사르고 예루살렘 성벽을 헐며 그 모든 궁궐을 불로 사르고 그 모든 보배로운 기물을 부수니라.",
+  "note": "그들이 하나님의 전을 불사르고 성벽을 헐며 궁궐을 불태우고 기물을 부쉈다. 솔로몬이 지은 성전의 소각은 유다 멸망의 절정으로, 다윗 언약의 가시적 중심이 잿더미가 되는 비극을 증언한다.",
+  "voc": [
+   [
+    "burnt",
+    "v.",
+    "불살랐다"
+   ],
+   [
+    "brake down",
+    "v.",
+    "헐었다"
+   ],
+   [
+    "palaces",
+    "n.",
+    "궁궐들"
+   ],
+   [
+    "destroyed",
+    "v.",
+    "부수었다, 파괴하였다"
+   ]
+  ],
+  "idi": [
+   [
+    "burnt the house of God",
+    "하나님의 전을 불사르다"
+   ],
+   [
+    "with fire",
+    "불로"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And them that had escaped from the sword carried he away to Babylon; where they were servants to him and his sons until the reign of the kingdom of Persia:",
+  "ko": "또 칼을 피하여 남은 자들을 그가 바벨론으로 사로잡아 가니, 그들이 페르시아 왕국이 통치하기까지 거기서 그와 그의 아들들의 종이 되었더라.",
+  "note": "칼을 피한 자들을 바벨론으로 끌어가 페르시아가 통치하기까지 종이 되게 했다. 히브리어 '아바딤'(종들)의 신분 전락은, 약속의 땅에서 쫓겨나 이방의 노예가 된 포로기의 시작을 보여 준다.",
+  "voc": [
+   [
+    "escaped",
+    "v.",
+    "피하였다, 벗어났다"
+   ],
+   [
+    "carried away",
+    "v.",
+    "사로잡아 갔다"
+   ],
+   [
+    "servants",
+    "n.",
+    "종들"
+   ],
+   [
+    "Persia",
+    "n.",
+    "페르시아"
+   ]
+  ],
+  "idi": [
+   [
+    "escaped from the sword",
+    "칼을 피하여 남은 자"
+   ],
+   [
+    "until the reign of the kingdom of Persia",
+    "페르시아 왕국이 통치하기까지"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "To fulfil the word of the LORD by the mouth of Jeremiah, until the land had enjoyed her sabbaths: for as long as she lay desolate she kept sabbath, to fulfil threescore and ten years.",
+  "ko": "이는 예레미야의 입을 빌려 이르신 여호와의 말씀을 이루려 하심이니, 곧 그 땅이 그 안식을 누리기까지라. 그 땅이 황폐하여 누워 있는 모든 날 동안 안식하여 칠십 년을 채웠더라.",
+  "note": "이는 예레미야의 말씀대로 '땅이 안식을 누리기까지' 곧 칠십 년을 채우려 하심이었다. 히브리어 '샤바트'(안식하다)는 지키지 못한 안식년(레 26장)의 회복을 뜻하니, 포로기조차 하나님의 말씀을 이루는 섭리 안에 있음을 밝힌다.",
+  "voc": [
+   [
+    "fulfil",
+    "v.",
+    "이루다, 채우다"
+   ],
+   [
+    "enjoyed",
+    "v.",
+    "누렸다"
+   ],
+   [
+    "sabbaths",
+    "n.",
+    "안식들, 안식년들"
+   ],
+   [
+    "desolate",
+    "adj.",
+    "황폐한"
+   ]
+  ],
+  "idi": [
+   [
+    "enjoyed her sabbaths",
+    "그 안식을 누리다"
+   ],
+   [
+    "lay desolate",
+    "황폐하여 누워 있다"
+   ]
+  ],
+  "gra": [
+   [
+    "threescore and ten",
+    "threescore=60(score=20), 곧 70(옛 수 표기)"
+   ]
   ]
  },
  {
-  "en": "the LORD God of their fathers sent to them by his messengers, rising up betimes, and sending",
-  "ko": "그들의 조상의 하나님 여호와께서 그분의 사자들을 통하여 그들에게 거듭거듭 일찍이 보내셨으니",
-  "note": "'일찍이 일어나 보내심'(히브리어 하슈켐 베샬로아흐)은 하나님이 부지런히, 거듭거듭 선지자를 보내셨다는 관용 표현이다. 심판에 앞선 오랜 인내가 강조되니, 멸망은 갑작스러운 진노가 아니라 거듭된 부르심을 저버린 결과다.",
+  "en": "Now in the first year of Cyrus king of Persia, that the word of the LORD spoken by the mouth of Jeremiah might be accomplished, the LORD stirred up the spirit of Cyrus king of Persia, that he made a proclamation throughout all his kingdom, and put it also in writing, saying,",
+  "ko": "페르시아 왕 고레스 원년에 예레미야의 입으로 이르신 여호와의 말씀을 이루려 하사, 여호와께서 페르시아 왕 고레스의 마음을 감동시키시니, 그가 온 왕국에 두루 선포하고 또한 조서로 기록하여 이르되,",
+  "note": "고레스 원년에 여호와께서 예레미야의 말씀을 이루려 그의 마음을 감동시켜 조서를 내리게 하셨다. 히브리어 '헤이르'(감동시키다, 일으키다)는, 이방 왕의 마음조차 주관하시어 회복을 여시는 하나님의 주권을 드러낸다.",
   "voc": [
-   ["messenger", "n.", "사자, 전령"],
-   ["rise up", "v.", "일어나다"],
-   ["betimes", "adv.", "일찍이, 때맞추어"],
-   ["compassion", "n.", "긍휼, 불쌍히 여김"]
+   [
+    "accomplished",
+    "v.",
+    "이루어졌다"
+   ],
+   [
+    "stirred up",
+    "v.",
+    "감동시켰다, 일으켰다"
+   ],
+   [
+    "spirit",
+    "n.",
+    "마음, 영"
+   ],
+   [
+    "proclamation",
+    "n.",
+    "선포, 조서"
+   ]
   ],
   "idi": [
-   ["rising up betimes", "일찍이 일어나 (부지런히, 거듭)"]
+   [
+    "stirred up the spirit of",
+    "~의 마음을 감동시키다"
+   ],
+   [
+    "put it also in writing",
+    "조서로 기록하다"
+   ]
   ],
-  "gra": [
-   ["rising up betimes, and sending", "분사구문으로 본동사 sent의 방식을 보충 '거듭거듭 일찍이 보내며'"]
-  ]
+  "gra": []
  },
  {
-  "en": "they mocked the messengers of God ... until the wrath of the LORD arose against his people, till there was no remedy",
-  "ko": "그들이 하나님의 사자들을 조롱하고 ... 마침내 여호와의 진노가 그분의 백성을 향하여 일어나 돌이킬 길이 없게 되었더라",
-  "note": "조롱·멸시·욕보임이 쌓여 '돌이킬 길이 없는'(히브리어 엔 마르페, '치료가 없는') 지경에 이른다. 하나님의 인내에는 한계가 있으니, 회개의 기회를 끝내 짓밟을 때 은혜의 문이 닫힌다.",
+  "en": "Thus saith Cyrus king of Persia, All the kingdoms of the earth hath the LORD God of heaven given me; and he hath charged me to build him an house in Jerusalem, which is in Judah. Who is there among you of all his people? The LORD his God be with him, and let him go up.",
+  "ko": "\"페르시아 왕 고레스는 이같이 말하노라. 하늘의 하나님 여호와께서 땅의 모든 왕국을 내게 주셨고, 또 유다에 있는 예루살렘에 그분을 위하여 전을 건축하라 내게 명하셨노라. 너희 가운데 그분의 모든 백성 중 누구든지 있느냐? 그의 하나님 여호와께서 그와 함께 계시기를 원하노니, 그로 올라가게 할지어다\" 하였더라.",
+  "note": "고레스가 '하늘의 하나님이 내게 명하여 예루살렘에 전을 지으라 하셨으니 그의 백성은 올라가라' 선포한다. 심판으로 끝난 듯한 역대기가 성전 재건의 소망으로 맺으니, 하나님의 언약이 포로기 너머까지 살아 있음을 선포하며 대단원을 이룬다.",
   "voc": [
-   ["mock", "v.", "조롱하다"],
-   ["despise", "v.", "멸시하다"],
-   ["misuse", "v.", "학대하다, 욕보이다"],
-   ["wrath", "n.", "진노"],
-   ["remedy", "n.", "치료, 회복의 길"]
+   [
+    "saith",
+    "v.",
+    "말하다"
+   ],
+   [
+    "kingdoms",
+    "n.",
+    "왕국들"
+   ],
+   [
+    "charged",
+    "v.",
+    "명하였다"
+   ],
+   [
+    "go up",
+    "v.",
+    "올라가다"
+   ]
   ],
   "idi": [
-   ["there was no remedy", "돌이킬 길이 없었다, 회복할 수 없었다"]
+   [
+    "Thus saith Cyrus",
+    "고레스는 이같이 말하노라"
+   ],
+   [
+    "let him go up",
+    "그로 올라가게 할지어다"
+   ]
   ],
   "gra": [
-   ["until the wrath ... arose ... till there was no remedy", "until/till=때를 나타내는 접속사 '~할 때까지, 마침내'; arose=arise의 과거형"]
-  ]
- },
- {
-  "en": "until the land had enjoyed her sabbaths ... to fulfil threescore and ten years",
-  "ko": "곧 그 땅이 그 안식을 누리기까지라 ... 칠십 년을 채웠더라",
-  "note": "칠십 년의 포로(렘 25:11-12; 29:10)는 땅이 누리지 못한 안식년들을 갚는 기간이다(레 25:1-7; 26:34-35). threescore and ten은 60+10=70의 옛 표현이다. 심판조차 하나님의 율법과 말씀이 한 치도 어긋남 없이 성취됨을 보인다.",
-  "voc": [
-   ["enjoy", "v.", "누리다"],
-   ["sabbath", "n.", "안식, 안식일/안식년"],
-   ["desolate", "adj.", "황폐한"],
-   ["fulfil", "v.", "이루다, 채우다"],
-   ["threescore", "n.", "예순(60)"]
-  ],
-  "idi": [
-   ["threescore and ten", "칠십 (60+10)"],
-   ["lay desolate", "황폐하여 누워 있다"]
-  ],
-  "gra": [
-   ["as long as she lay desolate she kept sabbath", "as long as=~하는 동안 내내; she=땅(land)을 여성으로 받은 옛 용법"]
-  ]
- },
- {
-  "en": "Thus saith Cyrus king of Persia, All the kingdoms of the earth hath the LORD God of heaven given me",
-  "ko": "페르시아 왕 고레스는 이같이 말하노라. 하늘의 하나님 여호와께서 땅의 모든 왕국을 내게 주셨고",
-  "note": "고레스 칙령(주전 538년)으로 역대하가 끝난다. 이방 왕의 입에서 '하늘의 하나님 여호와'(히브리어 야훼 엘로헤 하샤마임)가 고백되니, 만국의 왕좌가 그분의 손에 있음을 보인다. 70년 만에 귀환과 성전 재건의 문이 열리매, 심판의 책이 소망으로 닫힌다.",
-  "voc": [
-   ["thus", "adv.", "이같이"],
-   ["saith", "v.", "말하다 (say의 옛 3인칭 단수)"],
-   ["kingdom", "n.", "왕국"],
-   ["charge", "v.", "명하다, 위임하다"],
-   ["go up", "v.", "올라가다 (귀환하다)"]
-  ],
-  "idi": [
-   ["Thus saith", "이같이 말하노라 (선포 도입구)"],
-   ["go up", "올라가다 (예루살렘으로 귀환하다)"]
-  ],
-  "gra": [
-   ["All the kingdoms of the earth hath the LORD ... given me", "목적어(All the kingdoms)를 앞세운 도치; hath ... given=현재완료 '주셨다'"]
+   [
+    "saith",
+    "saith=says의 옛 3인칭 단수형(-th 어미)"
+   ]
   ]
  }
 ]

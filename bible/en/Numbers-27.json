@@ -1,120 +1,754 @@
 [
-  {
-    "en": "the daughters of Zelophehad",
-    "ko": "슬로브핫의 딸들",
-    "note": "슬로브핫(צְלָפְחָד, Tselophḥad)의 다섯 딸 말라·노아·호글라·밀가·디르사. 아들이 없는 집안의 딸들이 상속권을 청원한 사건으로, 율법 안에서 여성의 기업 상속이 인정된 분기점이다(민 36장에서 보완됨).",
-    "voc": [
-      ["daughter", "n.", "딸"],
-      ["Zelophehad", "n.", "슬로브핫(인명)"]
-    ],
-    "gra": [
-      ["the daughters of Zelophehad", "'of'가 소유 관계를 나타내는 명사구. 'Zelophehad's daughters'와 같은 뜻이다."]
-    ]
-  },
-  {
-    "en": "a possession ... an inheritance",
-    "ko": "기업",
-    "note": "히브리어 '나할라'(נַחֲלָה, naḥalah)와 '아훗자'(אֲחֻזָּה, aḥuzzah). '나할라'는 대대로 물려받는 분깃을, '아훗자'는 붙잡아 차지한 소유를 뜻한다. 땅은 본래 여호와의 것이므로(레 25:23) 각 지파의 기업은 양도가 아니라 위탁된 분깃이다.",
-    "voc": [
-      ["possession", "n.", "소유, 소유물"],
-      ["inheritance", "n.", "기업, 유산"]
-    ],
-    "gra": [
-      ["a possession ... an inheritance", "관사 'a/an'은 셀 수 있는 단수 명사 앞에 쓴다. 모음 소리로 시작하는 'inheritance' 앞에서는 'an'이 된다."]
-    ]
-  },
-  {
-    "en": "the company of Korah",
-    "ko": "고라의 무리",
-    "note": "'에다트 코라흐'(עֲדַת קֹרַח). 고라가 모세와 아론을 거슬러 일으킨 반역(민 16장). 딸들은 아버지가 그 반역에 가담하지 않고 '자기 자신의 죄'로 죽었음을 밝혀, 기업 박탈의 근거가 없음을 호소한다.",
-    "voc": [
-      ["company", "n.", "무리, 일행"],
-      ["Korah", "n.", "고라(인명)"]
-    ],
-    "gra": [
-      ["the company of Korah", "'company'는 여기서 '회사'가 아니라 '함께 모인 무리'를 뜻하는 옛 용법이다."]
-    ]
-  },
-  {
-    "en": "the water of Meribah",
-    "ko": "므리바 물",
-    "note": "'메 메리바'(מֵי מְרִיבָה). '메리바'는 '다툼·다툼의 물'이라는 뜻으로, 모세가 반석을 쳐 명령을 어긴 곳이다(민 20장). 모세가 약속의 땅에 들어가지 못하는 까닭이 여기에 명시된다.",
-    "voc": [
-      ["water", "n.", "물"],
-      ["Meribah", "n.", "므리바(지명)"]
-    ],
-    "gra": [
-      ["the water of Meribah", "'of'가 출처·지명을 한정하는 구. '므리바라는 곳의 물'을 뜻한다."]
-    ]
-  },
-  {
-    "en": "the God of the spirits of all flesh",
-    "ko": "모든 육체의 영들의 하나님",
-    "note": "'엘로헤이 하루홋 레콜 바사르'(אֱלֹהֵי הָרוּחֹת לְכָל־בָּשָׂר). '루아흐'(영)의 복수형으로, 모든 생명의 영을 지으시고 주관하시는 하나님을 가리킨다. 후계자 임명을 사람의 뜻이 아닌 하나님의 주권에 맡기는 모세의 고백이다.",
-    "voc": [
-      ["God", "n.", "하나님"],
-      ["spirit", "n.", "영, 정신"],
-      ["flesh", "n.", "육체, 살"]
-    ],
-    "gra": [
-      ["the God of the spirits of all flesh", "'of'가 세 번 이어진 명사구. 뒤에서 앞으로 '모든 육체 → 그 영들 → 그 영들의 하나님'으로 풀어 읽는다."]
-    ]
-  },
-  {
-    "en": "as sheep which have no shepherd",
-    "ko": "목자 없는 양 떼같이",
-    "note": "'카촌 아셰르 에인 라헴 로에'(כַּצֹּאן אֲשֶׁר אֵין־לָהֶם רֹעֶה). 지도자 없는 백성을 흩어진 양에 비유한 표현으로, 훗날 예수께서 무리를 보시고 같은 말씀으로 긍휼히 여기신다(막 6:34).",
-    "voc": [
-      ["sheep", "n.", "양(단수·복수 동형)"],
-      ["which", "pron.", "~인(관계대명사)"],
-      ["shepherd", "n.", "목자, 목동"]
-    ],
-    "idi": [
-      ["as sheep which have no shepherd", "목자 없는 양같이"]
-    ],
-    "gra": [
-      ["sheep which have no shepherd", "'which'가 이끄는 관계절이 'sheep'을 꾸민다. 'sheep'은 단수·복수가 같아 동사 'have'로 복수임을 안다."]
-    ]
-  },
-  {
-    "en": "Joshua the son of Nun, a man in whom is the spirit",
-    "ko": "눈의 아들 여호수아 곧 그 안에 영이 있는 사람",
-    "note": "'예호슈아'(יְהוֹשֻׁעַ, '여호와는 구원이시다')는 모세의 후계자다. '그 안에 영(루아흐)이 있는 사람'은 하나님의 영이 함께하는 자로 인정받았음을 뜻하며, 지도력이 영적 자격에서 비롯됨을 보여 준다.",
-    "voc": [
-      ["Joshua", "n.", "여호수아(인명)"],
-      ["Nun", "n.", "눈(인명)"],
-      ["spirit", "n.", "영, 성령"]
-    ],
-    "gra": [
-      ["a man in whom is the spirit", "'in whom'은 'in + 관계대명사 whom'. 'a man in whom the spirit is'의 도치형으로 '그 안에 영이 있는 사람'."]
-    ]
-  },
-  {
-    "en": "lay thine hand upon him",
-    "ko": "네 손을 그 위에 얹고",
-    "note": "'사마크'(סָמַךְ, samak)는 '기대다·힘 있게 얹다'로, 권위와 직무를 위임하는 안수다. 제물에 안수하던 동작과 같은 단어로(레 1:4), 여기서는 후계자에게 사명을 전수하는 행위다.",
-    "voc": [
-      ["lay", "v.", "놓다, 얹다"],
-      ["thine", "pron.", "너의(고어, your)"],
-      ["upon", "prep.", "~위에"]
-    ],
-    "idi": [
-      ["lay one's hand upon", "~위에 손을 얹다(안수하다)"]
-    ],
-    "gra": [
-      ["lay thine hand upon him", "'thine'은 모음·h 앞에서 쓰는 'thy(너의)'의 고어형. 현대 영어로는 'lay your hand upon him'."]
-    ]
-  },
-  {
-    "en": "the judgment of Urim",
-    "ko": "우림의 판결",
-    "note": "'미슈파트 하우림'(מִשְׁפַּט הָאוּרִים). '우림'은 대제사장의 흉패에 둔 신탁 도구로(출 28:30), 하나님의 뜻을 묻는 수단이었다. 여호수아는 모세와 달리 직접 대면이 아니라 제사장을 통한 우림으로 인도받는다.",
-    "voc": [
-      ["judgment", "n.", "판결, 심판"],
-      ["Urim", "n.", "우림(신탁 도구)"]
-    ],
-    "gra": [
-      ["the judgment of Urim", "'of'가 출처·수단을 한정하는 구. '우림으로 (구하는) 판결'을 뜻한다."]
-    ]
-  }
+ {
+  "en": "Then came the daughters of Zelophehad, the son of Hepher, the son of Gilead, the son of Machir, the son of Manasseh, of the families of Manasseh the son of Joseph: and these are the names of his daughters; Mahlah, Noah, and Hoglah, and Milcah, and Tirzah.",
+  "ko": "그때에 슬로브핫의 딸들이 나아왔으니, 슬로브핫은 헤벨의 아들이요, 헤벨은 길르앗의 아들이요, 길르앗은 마길의 아들이요, 마길은 요셉의 아들 므낫세의 아들이라. 곧 므낫세 가문에 속한 자니, 그 딸들의 이름은 말라와 노아와 호글라와 밀가와 디르사라.",
+  "note": "슬로브핫의 딸들이 므낫세 가문의 계보와 함께 등장한다. 아들이 없는 아버지의 이름과 기업을 지키려는 이들의 청원은 여성의 상속권 문제를 여는 중요한 사건이다.",
+  "voc": [
+   [
+    "daughter",
+    "n.",
+    "딸"
+   ],
+   [
+    "Zelophehad",
+    "n.",
+    "슬로브핫"
+   ],
+   [
+    "family",
+    "n.",
+    "가문, 종족"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "the son of Hepher, the son of Gilead",
+    "동격의 'the son of' 반복으로 계보를 밝힘"
+   ]
+  ]
+ },
+ {
+  "en": "And they stood before Moses, and before Eleazar the priest, and before the princes and all the congregation, by the door of the tabernacle of the congregation, saying,",
+  "ko": "그들이 회막 문에서 모세와 제사장 엘르아살과 지휘관들과 온 회중 앞에 서서 이르되,",
+  "note": "딸들이 회막 문에서 모세와 지도자들과 온 회중 앞에 공적으로 섰다. 그들의 담대하나 질서 있는 청원은 언약 공동체 안에서의 정당한 호소를 보여 준다.",
+  "voc": [
+   [
+    "stand",
+    "v.",
+    "서다"
+   ],
+   [
+    "prince",
+    "n.",
+    "지휘관, 방백"
+   ],
+   [
+    "congregation",
+    "n.",
+    "회중"
+   ],
+   [
+    "tabernacle",
+    "n.",
+    "성막, 회막"
+   ]
+  ],
+  "idi": [
+   [
+    "stand before",
+    "~앞에 서다"
+   ]
+  ],
+  "gra": [
+   [
+    "by the door of the tabernacle",
+    "전치사 by로 위치를 나타냄"
+   ]
+  ]
+ },
+ {
+  "en": "Our father died in the wilderness, and he was not in the company of them that gathered themselves together against the LORD in the company of Korah; but died in his own sin, and had no sons.",
+  "ko": "\"우리 아버지는 광야에서 죽었으나, 여호와를 거슬러 모였던 무리 곧 고라의 무리에는 들지 아니하였고, 자기 자신의 죄로 죽었으며 아들이 없나이다.",
+  "note": "딸들은 아버지가 고라의 반역과 무관하며 '자기 죄'로 죽었다고 밝힌다. 반역이 아닌 광야 세대 전체의 운명으로 죽은 것이기에 그 이름을 보존할 명분이 정당하다.",
+  "voc": [
+   [
+    "die",
+    "v.",
+    "죽다"
+   ],
+   [
+    "wilderness",
+    "n.",
+    "광야"
+   ],
+   [
+    "gather",
+    "v.",
+    "모이다"
+   ],
+   [
+    "sin",
+    "n.",
+    "죄"
+   ]
+  ],
+  "idi": [
+   [
+    "gather themselves together against",
+    "무리 지어 ~을 거스르다"
+   ]
+  ],
+  "gra": [
+   [
+    "died in his own sin",
+    "'own'으로 소유를 강조하는 표현"
+   ]
+  ]
+ },
+ {
+  "en": "Why should the name of our father be done away from among his family, because he hath no son? Give unto us therefore a possession among the brethren of our father.",
+  "ko": "어찌하여 아들이 없다 하여 우리 아버지의 이름이 그 가문 가운데서 사라지게 하리이까? 그러므로 우리 아버지의 형제들 가운데서 우리에게 기업을 주소서\" 하니라.",
+  "note": "'이름이 사라지게 하리이까'라는 호소는 기업이 곧 이름의 존속임을 보여 준다. 히브리어 '나할라'(기업)는 대대로 이어지는 언약적 몫으로, 그 상실은 가문의 소멸을 뜻한다.",
+  "voc": [
+   [
+    "done away",
+    "phr.",
+    "없어지다, 사라지다"
+   ],
+   [
+    "possession",
+    "n.",
+    "기업, 소유"
+   ],
+   [
+    "brethren",
+    "n.",
+    "형제들(고어 복수)"
+   ]
+  ],
+  "idi": [
+   [
+    "done away from among",
+    "~가운데서 사라지다"
+   ]
+  ],
+  "gra": [
+   [
+    "Why should ... be done away",
+    "'Why should + 수동'으로 항변하는 수사의문"
+   ]
+  ]
+ },
+ {
+  "en": "And Moses brought their cause before the LORD.",
+  "ko": "이에 모세가 그들의 사정을 여호와 앞에 가져갔더라.",
+  "note": "모세가 스스로 판단하지 않고 그들의 사정을 여호와 앞에 가져간 것은 참된 지도자가 하나님께 물어 결정함을 보여 준다.",
+  "voc": [
+   [
+    "bring",
+    "v.",
+    "가져가다"
+   ],
+   [
+    "cause",
+    "n.",
+    "사정, 송사"
+   ]
+  ],
+  "idi": [
+   [
+    "bring one's cause before",
+    "~의 사정을 ~앞에 가져가다"
+   ]
+  ],
+  "gra": [
+   [
+    "brought their cause before the LORD",
+    "before로 하나님 임재 앞의 상고를 표현"
+   ]
+  ]
+ },
+ {
+  "en": "And the LORD spake unto Moses, saying,",
+  "ko": "여호와께서 모세에게 말씀하여 이르시되,",
+  "note": "여호와께서 모세에게 말씀하시는 정형 어구로, 딸들의 청원에 대한 응답이 이어진다.",
+  "voc": [
+   [
+    "spake",
+    "v.",
+    "말씀하셨다(고어)"
+   ],
+   [
+    "saying",
+    "v.",
+    "이르시되"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "spake unto Moses",
+    "'unto'는 to의 고어형"
+   ]
+  ]
+ },
+ {
+  "en": "The daughters of Zelophehad speak right: thou shalt surely give them a possession of an inheritance among their father’s brethren; and thou shalt cause the inheritance of their father to pass unto them.",
+  "ko": "\"슬로브핫의 딸들이 옳게 말하는도다. 너는 반드시 그들의 아버지의 형제들 가운데서 그들에게 상속할 기업을 줄 것이요, 그들의 아버지의 기업이 그들에게 넘어가게 할지니라.",
+  "note": "'옳게 말하는도다'라는 하나님의 인정은 그들의 청원이 언약 정신에 부합함을 확증한다. 하나님은 약자와 소외된 자의 정당한 몫을 지키신다.",
+  "voc": [
+   [
+    "right",
+    "adv.",
+    "옳게, 바르게"
+   ],
+   [
+    "surely",
+    "adv.",
+    "반드시"
+   ],
+   [
+    "inheritance",
+    "n.",
+    "기업"
+   ]
+  ],
+  "idi": [
+   [
+    "cause ... to pass unto",
+    "~에게 넘어가게 하다"
+   ]
+  ],
+  "gra": [
+   [
+    "thou shalt surely give",
+    "'shalt surely'로 확실한 명령을 강조"
+   ]
+  ]
+ },
+ {
+  "en": "And thou shalt speak unto the children of Israel, saying, If a man die, and have no son, then ye shall cause his inheritance to pass unto his daughter.",
+  "ko": "너는 이스라엘 자손에게 일러 이르라. '만일 어떤 사람이 죽고 아들이 없거든, 너희는 그의 기업이 그의 딸에게 넘어가게 할지니라.",
+  "note": "이 사건을 계기로 상속의 일반 율례가 제정된다. 아들이 없으면 딸에게 기업이 넘어간다는 규정은 개별 청원이 항구적 법도로 확장됨을 보여 준다.",
+  "voc": [
+   [
+    "speak",
+    "v.",
+    "말하다, 이르다"
+   ],
+   [
+    "die",
+    "v.",
+    "죽다"
+   ],
+   [
+    "pass",
+    "v.",
+    "넘어가다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "If a man die, and have no son",
+    "가정을 나타내는 If절의 고어 가정법(die/have 원형)"
+   ]
+  ]
+ },
+ {
+  "en": "And if he have no daughter, then ye shall give his inheritance unto his brethren.",
+  "ko": "만일 그에게 딸도 없거든, 너희는 그의 기업을 그의 형제들에게 줄 것이요,",
+  "note": "딸도 없을 경우 형제에게 기업이 넘어가는 차순위 규정이다. 하나님의 율례는 모든 경우를 포괄하는 세심한 질서를 갖춘다.",
+  "voc": [
+   [
+    "daughter",
+    "n.",
+    "딸"
+   ],
+   [
+    "give",
+    "v.",
+    "주다"
+   ],
+   [
+    "brethren",
+    "n.",
+    "형제들(고어)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "if he have no daughter",
+    "가정법 현재의 고어 형태(have)"
+   ]
+  ]
+ },
+ {
+  "en": "And if he have no brethren, then ye shall give his inheritance unto his father’s brethren.",
+  "ko": "만일 그에게 형제도 없거든, 너희는 그의 기업을 그의 아버지의 형제들에게 줄지니라.",
+  "note": "형제도 없으면 아버지의 형제에게 기업이 돌아간다. 혈연의 근친 순서를 따라 기업을 보존하는 원리가 명시된다.",
+  "voc": [
+   [
+    "brethren",
+    "n.",
+    "형제들"
+   ],
+   [
+    "inheritance",
+    "n.",
+    "기업"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "his father's brethren",
+    "-'s 소유격으로 '아버지의 형제들'을 표현"
+   ]
+  ]
+ },
+ {
+  "en": "And if his father have no brethren, then ye shall give his inheritance unto his kinsman that is next to him of his family, and he shall possess it: and it shall be unto the children of Israel a statute of judgment, as the LORD commanded Moses.",
+  "ko": "만일 그의 아버지에게 형제도 없거든, 너희는 그의 기업을 그의 가문 가운데 그에게 가장 가까운 친족에게 주어 그가 그것을 차지하게 할지니라. 이것이 여호와께서 모세에게 명하신 대로 이스라엘 자손에게 율례의 법도가 되리라.'\"",
+  "note": "가장 가까운 친족에게 이르는 최종 규정으로 상속 순위가 완성된다. '율례의 법도'로 옮긴 '후카트 미쉬파트'는 재판의 근거가 되는 항구적 규례를 뜻한다.",
+  "voc": [
+   [
+    "kinsman",
+    "n.",
+    "친족"
+   ],
+   [
+    "possess",
+    "v.",
+    "차지하다"
+   ],
+   [
+    "statute",
+    "n.",
+    "율례"
+   ],
+   [
+    "judgment",
+    "n.",
+    "법도, 판결"
+   ]
+  ],
+  "idi": [
+   [
+    "next to him",
+    "그에게 가장 가까운"
+   ]
+  ],
+  "gra": [
+   [
+    "a statute of judgment",
+    "명사+of+명사로 '재판의 규례'를 표현"
+   ]
+  ]
+ },
+ {
+  "en": "And the LORD said unto Moses, Get thee up into this mount Abarim, and see the land which I have given unto the children of Israel.",
+  "ko": "여호와께서 모세에게 이르시되, \"너는 이 아바림 산에 올라가, 내가 이스라엘 자손에게 준 땅을 바라보라.",
+  "note": "여호와께서 모세에게 아바림 산에 올라 약속의 땅을 바라보라 명하신다. 들어가지 못하나 눈으로 보게 하심은 언약의 성취를 확증하는 은혜인 동시에 순종의 엄중함을 보여 준다.",
+  "voc": [
+   [
+    "mount",
+    "n.",
+    "산"
+   ],
+   [
+    "Abarim",
+    "n.",
+    "아바림(산 이름)"
+   ],
+   [
+    "see",
+    "v.",
+    "바라보다"
+   ]
+  ],
+  "idi": [
+   [
+    "Get thee up",
+    "올라가라(고어 재귀 명령)"
+   ]
+  ],
+  "gra": [
+   [
+    "Get thee up into this mount",
+    "'Get thee up'은 재귀대명사를 더한 고어 명령"
+   ]
+  ]
+ },
+ {
+  "en": "And when thou hast seen it, thou also shalt be gathered unto thy people, as Aaron thy brother was gathered.",
+  "ko": "네가 그것을 본 후에는, 네 형 아론이 자기 백성에게로 돌아간 것같이 너도 네 백성에게로 돌아가리라.",
+  "note": "'네 백성에게로 돌아가리라'는 죽음을 조상과의 합류로 표현하는 완곡어법이다. 아론처럼 모세도 약속의 땅 밖에서 생을 마치게 된다.",
+  "voc": [
+   [
+    "gather",
+    "v.",
+    "(백성에게로) 돌아가다"
+   ],
+   [
+    "Aaron",
+    "n.",
+    "아론"
+   ],
+   [
+    "brother",
+    "n.",
+    "형제"
+   ]
+  ],
+  "idi": [
+   [
+    "be gathered unto thy people",
+    "죽어 조상에게로 돌아가다"
+   ]
+  ],
+  "gra": [
+   [
+    "as Aaron thy brother was gathered",
+    "as로 비교, 수동태로 죽음을 완곡히 표현"
+   ]
+  ]
+ },
+ {
+  "en": "For ye rebelled against my commandment in the desert of Zin, in the strife of the congregation, to sanctify me at the water before their eyes: that is the water of Meribah in Kadesh in the wilderness of Zin.",
+  "ko": "이는 너희가 신 광야에서 회중이 다툴 때에 내 명령을 거역하여, 그 물가에서 그들의 눈앞에 나를 거룩히 받들지 아니하였음이라\" 하시니, 이는 곧 신 광야 가데스의 므리바 물이니라.",
+  "note": "모세가 들어가지 못하는 이유는 므리바 물가에서 하나님을 거룩히 받들지 못한 반역 때문이다. 지도자에게 더 엄격한 거룩의 책임이 요구됨을 보여 준다.",
+  "voc": [
+   [
+    "rebel",
+    "v.",
+    "거역하다"
+   ],
+   [
+    "strife",
+    "n.",
+    "다툼"
+   ],
+   [
+    "sanctify",
+    "v.",
+    "거룩히 받들다"
+   ],
+   [
+    "Meribah",
+    "n.",
+    "므리바(지명)"
+   ]
+  ],
+  "idi": [
+   [
+    "water of Meribah",
+    "므리바 물(다툼의 물)"
+   ]
+  ],
+  "gra": [
+   [
+    "to sanctify me at the water",
+    "to부정사로 마땅히 해야 할 바를 나타냄"
+   ]
+  ]
+ },
+ {
+  "en": "And Moses spake unto the LORD, saying,",
+  "ko": "모세가 여호와께 아뢰어 이르되,",
+  "note": "모세가 여호와께 아뢰는 정형 어구로, 후계자를 구하는 간구가 이어진다.",
+  "voc": [
+   [
+    "spake",
+    "v.",
+    "아뢰었다(고어)"
+   ],
+   [
+    "saying",
+    "v.",
+    "이르되"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "spake unto the LORD",
+    "'unto'는 to의 고어형"
+   ]
+  ]
+ },
+ {
+  "en": "Let the LORD, the God of the spirits of all flesh, set a man over the congregation,",
+  "ko": "\"모든 육체의 영들의 하나님이신 여호와께서는 한 사람을 세워 회중을 다스리게 하사,",
+  "note": "'모든 육체의 영들의 하나님'이라는 호칭은 하나님이 모든 생명과 영의 근원이심을 고백한다. 모세는 자기 죽음보다 백성의 지도자를 먼저 구한다.",
+  "voc": [
+   [
+    "spirit",
+    "n.",
+    "영"
+   ],
+   [
+    "flesh",
+    "n.",
+    "육체"
+   ],
+   [
+    "set",
+    "v.",
+    "세우다"
+   ]
+  ],
+  "idi": [
+   [
+    "the God of the spirits of all flesh",
+    "모든 육체의 영들의 하나님"
+   ]
+  ],
+  "gra": [
+   [
+    "Let the LORD ... set a man",
+    "Let+주어+원형으로 기원·간구를 표현"
+   ]
+  ]
+ },
+ {
+  "en": "Which may go out before them, and which may go in before them, and which may lead them out, and which may bring them in; that the congregation of the LORD be not as sheep which have no shepherd.",
+  "ko": "그들 앞에서 나가며 그들 앞에서 들어오며 그들을 인도하여 나가게 하고 그들을 인도하여 들어오게 하시옵소서. 그리하여 여호와의 회중으로 목자 없는 양 떼같이 되지 않게 하소서\" 하니라.",
+  "note": "'목자 없는 양 떼'라는 표현은 지도자 없는 백성의 위험을 드러낸다. 나가고 들어옴을 인도하는 지도자상은 후에 참목자이신 그리스도를 예표한다.",
+  "voc": [
+   [
+    "go out",
+    "phr.v.",
+    "나가다"
+   ],
+   [
+    "lead",
+    "v.",
+    "인도하다"
+   ],
+   [
+    "sheep",
+    "n.",
+    "양"
+   ],
+   [
+    "shepherd",
+    "n.",
+    "목자"
+   ]
+  ],
+  "idi": [
+   [
+    "as sheep which have no shepherd",
+    "목자 없는 양같이"
+   ]
+  ],
+  "gra": [
+   [
+    "which may go out ... which may go in",
+    "which may로 소원·기능을 나타내는 고어 관계절"
+   ]
+  ]
+ },
+ {
+  "en": "And the LORD said unto Moses, Take thee Joshua the son of Nun, a man in whom is the spirit, and lay thine hand upon him;",
+  "ko": "여호와께서 모세에게 이르시되, \"너는 눈의 아들 여호수아 곧 그 안에 영이 있는 사람을 데려다가 네 손을 그 위에 얹고,",
+  "note": "여호와께서 여호수아를 지목하시며 '그 안에 영이 있는 사람'이라 하신다. 안수는 직분과 권위의 위임을 상징하는 언약적 예식이다.",
+  "voc": [
+   [
+    "Joshua",
+    "n.",
+    "여호수아"
+   ],
+   [
+    "spirit",
+    "n.",
+    "영"
+   ],
+   [
+    "lay",
+    "v.",
+    "얹다"
+   ],
+   [
+    "hand",
+    "n.",
+    "손"
+   ]
+  ],
+  "idi": [
+   [
+    "lay one's hand upon",
+    "~위에 손을 얹다(안수하다)"
+   ]
+  ],
+  "gra": [
+   [
+    "a man in whom is the spirit",
+    "in whom으로 관계절, 도치된 be동사"
+   ]
+  ]
+ },
+ {
+  "en": "And set him before Eleazar the priest, and before all the congregation; and give him a charge in their sight.",
+  "ko": "그를 제사장 엘르아살과 온 회중 앞에 세워, 그들이 보는 데서 그에게 직무를 맡길지니라.",
+  "note": "제사장과 온 회중 앞에서 공적으로 직무를 맡기라 하심은 지도자 계승이 은밀하지 않고 언약 공동체 전체 앞에서 확증되어야 함을 보여 준다.",
+  "voc": [
+   [
+    "set",
+    "v.",
+    "세우다"
+   ],
+   [
+    "priest",
+    "n.",
+    "제사장"
+   ],
+   [
+    "charge",
+    "n.",
+    "직무, 임무"
+   ]
+  ],
+  "idi": [
+   [
+    "give a charge",
+    "직무를 맡기다"
+   ]
+  ],
+  "gra": [
+   [
+    "in their sight",
+    "'in one's sight'로 '~이 보는 앞에서'를 표현"
+   ]
+  ]
+ },
+ {
+  "en": "And thou shalt put some of thine honour upon him, that all the congregation of the children of Israel may be obedient.",
+  "ko": "또 너는 네 존귀의 얼마를 그에게 두어, 온 이스라엘 자손의 회중이 그에게 순종하게 할지니라.",
+  "note": "모세의 존귀 얼마를 여호수아에게 두라 하심은, 권위가 하나님으로부터 위임되어 백성의 순종을 이끌어냄을 보여 준다.",
+  "voc": [
+   [
+    "honour",
+    "n.",
+    "존귀, 권위"
+   ],
+   [
+    "obedient",
+    "adj.",
+    "순종하는"
+   ]
+  ],
+  "idi": [
+   [
+    "put some of thine honour upon",
+    "네 존귀의 얼마를 ~에게 두다"
+   ]
+  ],
+  "gra": [
+   [
+    "that all the congregation ... may be obedient",
+    "that ~ may로 목적을 나타내는 고어 구문"
+   ]
+  ]
+ },
+ {
+  "en": "And he shall stand before Eleazar the priest, who shall ask counsel for him after the judgment of Urim before the LORD: at his word shall they go out, and at his word they shall come in, both he, and all the children of Israel with him, even all the congregation.",
+  "ko": "그는 제사장 엘르아살 앞에 설 것이요, 엘르아살은 여호와 앞에서 우림의 판결로 그를 위하여 물을 것이며, 그의 말에 따라 그들이 나가고 그의 말에 따라 그들이 들어오리니, 그와 그와 함께한 온 이스라엘 자손 곧 온 회중이 그리할지니라.\"",
+  "note": "여호수아는 우림의 판결로 하나님의 뜻을 물어야 한다. 모세와 달리 여호수아는 제사장을 통해 하나님께 물어야 했으니, 이는 모세가 누린 직접적 교제의 유일성을 보여 준다.",
+  "voc": [
+   [
+    "counsel",
+    "n.",
+    "지시, 뜻"
+   ],
+   [
+    "Urim",
+    "n.",
+    "우림"
+   ],
+   [
+    "word",
+    "n.",
+    "말"
+   ]
+  ],
+  "idi": [
+   [
+    "ask counsel for",
+    "~을 위하여 (하나님께) 물어 지시를 구하다"
+   ]
+  ],
+  "gra": [
+   [
+    "at his word shall they go out",
+    "'at his word'로 '그의 말에 따라'를 표현, 도치"
+   ]
+  ]
+ },
+ {
+  "en": "And Moses did as the LORD commanded him: and he took Joshua, and set him before Eleazar the priest, and before all the congregation:",
+  "ko": "모세가 여호와께서 자기에게 명하신 대로 행하여, 여호수아를 데려다가 제사장 엘르아살과 온 회중 앞에 세우고,",
+  "note": "모세가 명하신 그대로 순종하여 여호수아를 세운다. 자신의 죽음을 앞두고도 백성의 미래를 위해 순복하는 지도자의 신실함이 드러난다.",
+  "voc": [
+   [
+    "command",
+    "v.",
+    "명하다"
+   ],
+   [
+    "take",
+    "v.",
+    "데려오다"
+   ],
+   [
+    "set",
+    "v.",
+    "세우다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "did as the LORD commanded",
+    "'did as'로 '~하신 대로 행하였다'를 표현"
+   ]
+  ]
+ },
+ {
+  "en": "And he laid his hands upon him, and gave him a charge, as the LORD commanded by the hand of Moses.",
+  "ko": "그 위에 자기 손을 얹어 그에게 직무를 맡겼으니, 여호와께서 모세의 손으로 명하신 대로 하였더라.",
+  "note": "안수와 직무 위임이 여호와의 명대로 이루어짐으로 계승이 완성된다. '모세의 손으로'라는 표현은 하나님이 사람을 통해 언약을 이어가심을 강조한다.",
+  "voc": [
+   [
+    "lay",
+    "v.",
+    "얹다"
+   ],
+   [
+    "charge",
+    "n.",
+    "직무"
+   ],
+   [
+    "hand",
+    "n.",
+    "손"
+   ]
+  ],
+  "idi": [
+   [
+    "by the hand of",
+    "~의 손으로, ~을 통하여"
+   ]
+  ],
+  "gra": [
+   [
+    "as the LORD commanded by the hand of Moses",
+    "'by the hand of'로 중재의 도구를 표현"
+   ]
+  ]
+ }
 ]
