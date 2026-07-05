@@ -1,141 +1,626 @@
 [
  {
+  "en": "In the seventh year of Jehu Jehoash began to reign; and forty years reigned he in Jerusalem. And his mother’s name was Zibiah of Beersheba.",
+  "ko": "예후의 칠 년에 요아스가 다스리기 시작하여 사십 년을 예루살렘에서 다스리니라. 그의 어머니의 이름은 브엘세바 출신 시비아더라.",
+  "note": "예후의 칠 년, 곧 북이스라엘의 폭풍이 몰아치던 때에 유다에서 요아스가 즉위한다. 아달랴의 학살에서 살아남아 여호야다의 손에 감추어졌던 그가 사십 년을 다스리니, 다윗의 등불은 꺼지지 않는다.",
+  "voc": [
+   [
+    "reign",
+    "v.",
+    "다스리다, 통치하다"
+   ],
+   [
+    "mother",
+    "n.",
+    "어머니"
+   ],
+   [
+    "began",
+    "v.",
+    "시작하였다(begin의 과거)"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
   "en": "And Jehoash did that which was right in the sight of the LORD all his days wherein Jehoiada the priest instructed him.",
   "ko": "요아스는 제사장 여호야다가 그를 가르치던 모든 날 동안 여호와 보시기에 옳은 일을 행하였으되,",
-  "note": "히브리어 야호아쉬(Jehoash, '여호와께서 주신 자')는 요아스(Joash)의 본디 이름이다. 본문은 그의 선함에 단서를 단다 — '여호야다가 가르치던 동안'이니, 그의 경건은 스승의 그늘에 매여 있었고 뒤에 여호야다가 죽자 흔들렸다(대하 24장). 빌려 입은 믿음의 위태로움을 보여 준다.",
+  "note": "본문은 요아스의 의로움에 조건을 단다. '제사장 여호야다가 그를 가르치던 모든 날 동안'이라 하니, 그의 신앙은 스스로 선 뿌리가 아니라 경건한 스승에게 기대어 선 열매였음을 예고한다.",
   "voc": [
-   ["did", "v.", "행하였다(do의 과거)"],
-   ["right", "adj.", "옳은"],
-   ["in the sight of", "", "~의 보시기에"],
-   ["all his days", "", "그의 모든 날 동안"],
-   ["instruct", "v.", "가르치다, 지도하다"]
+   [
+    "right",
+    "adj.",
+    "옳은, 바른"
+   ],
+   [
+    "sight",
+    "n.",
+    "보시기, 눈앞"
+   ],
+   [
+    "instructed",
+    "v.",
+    "가르쳤다"
+   ],
+   [
+    "priest",
+    "n.",
+    "제사장"
+   ]
   ],
   "idi": [
-   ["in the sight of the LORD", "여호와 보시기에"]
+   [
+    "did that which was right in the sight of the LORD",
+    "여호와 보시기에 옳은 일을 행하다(왕들에 대한 정형적 평가구)"
+   ]
   ],
   "gra": [
-   ["that which was right", "that which=관계대명사 '~한 것'(=the thing which)"],
-   ["all his days wherein ... instructed him", "wherein=관계부사(=in which) '~하던 그 날들 동안'"]
+   [
+    "did that which was right",
+    "which=관계대명사, 선행사 없이 '~한 것'을 이끄는 옛 용법"
+   ]
   ]
  },
  {
   "en": "But the high places were not taken away: the people still sacrificed and burnt incense in the high places.",
   "ko": "다만 산당들은 헐어 버리지 아니하였으므로 백성이 여전히 그 산당에서 제사하며 분향하였더라.",
-  "note": "'산당'(히브리어 바모트bamot)은 언덕 위의 제단으로, 본디 여호와 예배에도 쓰였으나 율법은 예루살렘 성전에 예배를 모으라 명한다(신 12장). 왕은 옳은 일을 행하였으나 이 잔재를 끝내 없애지 못하니, 개혁이 절반에 그친 자취다.",
+  "note": "산당을 헐지 아니한 것은 남유다 개혁의 고질적 미완이다. 히브리어 '바모트'(산당)는 여호와를 섬긴다는 명목으로도 존속했으나, 참된 예배는 하나님이 정하신 자리에서만 온전하다.",
   "voc": [
-   ["high places", "", "산당(언덕 위 제단)"],
-   ["take away", "v.", "없애다, 제거하다"],
-   ["still", "adv.", "여전히, 아직도"],
-   ["sacrifice", "v.", "제사하다, 희생을 드리다"],
-   ["burn incense", "", "분향하다"]
+   [
+    "high places",
+    "n.",
+    "산당"
+   ],
+   [
+    "sacrificed",
+    "v.",
+    "제사하였다"
+   ],
+   [
+    "incense",
+    "n.",
+    "향, 분향"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And Jehoash said to the priests, All the money of the dedicated things that is brought into the house of the LORD, even the money of every one that passeth the account, the money that every man is set at, and all the money that cometh into any man’s heart to bring into the house of the LORD,",
+  "ko": "요아스가 제사장들에게 이르되 \"여호와의 집에 들이는 모든 거룩한 예물의 돈 곧 사람마다 셈하여 내는 돈과 각 사람을 값매겨 받는 돈과 누구든지 마음에 감동되어 여호와의 집에 가져오는 모든 돈을,",
+  "note": "요아스가 성전 수리를 위한 재원을 명한다. '거룩한 예물의 돈'은 인구 조사에 따른 속전과 서원·자원하는 헌금을 아우르니, 하나님의 집을 향한 마음은 강제가 아니라 감동에서 흘러나와야 한다.",
+  "voc": [
+   [
+    "dedicated",
+    "adj.",
+    "거룩히 구별된, 봉헌된"
+   ],
+   [
+    "money",
+    "n.",
+    "돈"
+   ],
+   [
+    "passeth",
+    "v.",
+    "지나가다(pass의 옛 3인칭)"
+   ],
+   [
+    "heart",
+    "n.",
+    "마음"
+   ]
   ],
   "idi": [
-   ["take away", "없애다, 치우다"],
-   ["burn incense", "향을 피우다, 분향하다"]
+   [
+    "it cometh into one’s heart",
+    "마음에 감동되다, 마음이 우러나다"
+   ]
   ],
   "gra": [
-   ["the high places were not taken away", "수동태(were ... taken) '헐리지 아니하였다'"]
+   [
+    "passeth ... cometh",
+    "-eth=현재 3인칭 단수 어미(옛 형태, 오늘날 -es)"
+   ]
   ]
  },
  {
-  "en": "And let them repair the breaches of the house, wheresoever any breach shall be found.",
-  "ko": "무릇 성전의 무너진 데가 발견되거든 어디든지 그것을 보수하라.",
-  "note": "히브리어 베데크(bedek, '무너진 데·틈')는 건물의 갈라지고 헐어진 곳을 가리킨다. 요아스의 성전 수리 명령에서 거듭 울리는 핵심어로, 하나님의 집을 돌보는 일이 곧 예배 회복의 표지임을 드러낸다.",
+  "en": "Let the priests take it to them, every man of his acquaintance: and let them repair the breaches of the house, wheresoever any breach shall be found.",
+  "ko": "제사장들이 각기 아는 자에게서 받아들이고, 무릇 성전의 무너진 데가 발견되거든 어디든지 그것을 보수하라\" 하였으나,",
+  "note": "왕은 제사장들이 각기 아는 자, 곧 헌금하는 이들에게서 직접 받아 무너진 성전을 보수하라 명한다. 거룩한 사명에는 구체적인 위임과 책임이 따른다.",
   "voc": [
-   ["repair", "v.", "보수하다, 고치다"],
-   ["breach", "n.", "무너진 데, 틈, 갈라진 곳"],
-   ["house", "n.", "집(여기서는 성전)"],
-   ["wheresoever", "adv.", "어디든지(=wherever)"],
-   ["be found", "", "발견되다"]
+   [
+    "repair",
+    "v.",
+    "보수하다, 수리하다"
+   ],
+   [
+    "breaches",
+    "n.",
+    "무너진 곳, 파손된 데"
+   ],
+   [
+    "acquaintance",
+    "n.",
+    "아는 사람, 지인"
+   ]
   ],
+  "idi": [],
   "gra": [
-   ["wheresoever any breach shall be found", "wheresoever=강조형 wherever; shall be found=수동 '발견되는 곳마다'"]
+   [
+    "wheresoever",
+    "wheresoever=wherever의 강조형 고어(어디든지)"
+   ]
   ]
  },
  {
-  "en": "Why repair ye not the breaches of the house? now therefore receive no more money of your acquaintance, but deliver it for the breaches of the house.",
-  "ko": "너희가 어찌하여 성전의 무너진 데를 보수하지 아니하느냐? 그런즉 이제부터는 너희가 아는 자에게서 돈을 받지 말고 성전의 무너진 데를 위하여 그것을 내어놓으라.",
-  "note": "이십삼 년이 지나도록 수리가 더디매 왕이 제사장들을 책망한다. '아는 자'(acquaintance, 히브리어 마카르makkar '친지·아는 사람')에게서 돈을 모으는 옛 방식이 헛돌았으니, 왕은 모금과 집행을 갈라 맑게 한다 — 거룩한 일도 그릇된 구조 위에서는 무너진다.",
+  "en": "But it was so, that in the three and twentieth year of king Jehoash the priests had not repaired the breaches of the house.",
+  "ko": "요아스 왕 제이십삼년에 이르도록 제사장들이 그 성전의 무너진 데를 보수하지 아니하였더라.",
+  "note": "제이십삼년에 이르도록 보수가 이루어지지 않았다. 명령이 있었으나 실행이 없었으니, 제사장들의 태만은 거룩한 일도 감독 없이는 지체됨을 드러낸다.",
   "voc": [
-   ["why", "adv.", "어찌하여, 왜"],
-   ["receive", "v.", "받다"],
-   ["no more", "", "더 이상 ~않다"],
-   ["acquaintance", "n.", "아는 사람, 친지"],
-   ["deliver", "v.", "내어놓다, 넘겨주다"]
+   [
+    "twentieth",
+    "adj.",
+    "스무 번째의"
+   ],
+   [
+    "repaired",
+    "v.",
+    "보수하였다"
+   ],
+   [
+    "breaches",
+    "n.",
+    "무너진 곳"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "Then king Jehoash called for Jehoiada the priest, and the other priests, and said unto them, Why repair ye not the breaches of the house? now therefore receive no more money of your acquaintance, but deliver it for the breaches of the house.",
+  "ko": "이에 요아스 왕이 제사장 여호야다와 다른 제사장들을 불러 그들에게 이르되 \"너희가 어찌하여 성전의 무너진 데를 보수하지 아니하느냐? 그런즉 이제부터는 너희가 아는 자에게서 돈을 받지 말고 성전의 무너진 데를 위하여 그것을 내어놓으라\" 하니,",
+  "note": "왕이 여호야다를 친히 불러 책망한다. '어찌하여 보수하지 아니하느냐'는 물음은 게으름을 향한 정당한 추궁이며, 지도자의 감독이 곧 개혁의 동력임을 보여 준다.",
+  "voc": [
+   [
+    "called",
+    "v.",
+    "불렀다"
+   ],
+   [
+    "deliver",
+    "v.",
+    "내어놓다, 넘겨주다"
+   ],
+   [
+    "therefore",
+    "adv.",
+    "그러므로"
+   ]
   ],
   "idi": [
-   ["no more", "더 이상 ~ 아니"],
-   ["now therefore", "그런즉 이제"]
+   [
+    "deliver it for the breaches",
+    "무너진 데를 위하여 내어놓다"
+   ]
   ],
   "gra": [
-   ["Why repair ye not", "고어 의문 어순(=Why do ye not repair) '어찌하여 너희가 보수하지 않느냐'"]
+   [
+    "repair ye not",
+    "ye=너희(주격 복수), 부정문에서 'ye not' 어순은 고어체"
+   ]
   ]
  },
  {
-  "en": "But Jehoiada the priest took a chest, and bored a hole in the lid of it, and set it beside the altar.",
-  "ko": "제사장 여호야다가 한 궤를 가져다가 그 뚜껑에 구멍을 뚫어 제단 곁에 두니.",
-  "note": "헌금궤(히브리어 아론aron, 흔히 '언약궤'를 가리키는 그 단어)에 구멍을 뚫어 백성이 직접 넣게 하니, 손을 거치지 않는 투명한 모금이다. 이 한 가지 지혜로운 고안이 멈췄던 수리를 다시 흐르게 하였다.",
+  "en": "And the priests consented to receive no more money of the people, neither to repair the breaches of the house.",
+  "ko": "제사장들이 응낙하여 다시는 백성에게서 돈을 받지도 아니하고 성전의 무너진 데를 보수하지도 아니하기로 하니라.",
+  "note": "제사장들이 응낙하여 더는 돈을 받지도, 보수를 맡지도 않기로 한다. 각자의 은사와 직임을 존중하여 재정과 감독의 손을 나누니, 이는 지혜로운 개혁의 시작이다.",
   "voc": [
-   ["chest", "n.", "궤, 상자"],
-   ["bore", "v.", "(구멍을) 뚫다(bore-bored)"],
-   ["hole", "n.", "구멍"],
-   ["lid", "n.", "뚜껑"],
-   ["set", "v.", "두다, 놓다"],
-   ["beside", "prep.", "~곁에"]
+   [
+    "consented",
+    "v.",
+    "응낙하였다, 동의하였다"
+   ],
+   [
+    "receive",
+    "v.",
+    "받다"
+   ],
+   [
+    "neither",
+    "adv.",
+    "~도 아니다"
+   ]
   ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "But Jehoiada the priest took a chest, and bored a hole in the lid of it, and set it beside the altar, on the right side as one cometh into the house of the LORD: and the priests that kept the door put therein all the money that was brought into the house of the LORD.",
+  "ko": "제사장 여호야다가 한 궤를 가져다가 그 뚜껑에 구멍을 뚫어 여호와의 집으로 들어가는 길 오른편 제단 곁에 두니, 문을 지키는 제사장들이 여호와의 집에 들이는 모든 돈을 그 안에 넣더라.",
+  "note": "여호야다가 한 궤를 만들어 제단 곁에 두니, 이것이 성전 헌금궤의 기원이다. 뚜껑에 구멍을 뚫어 누구도 손대지 못하게 하였으니, 투명함이 거룩한 재정의 첫 원리다.",
+  "voc": [
+   [
+    "chest",
+    "n.",
+    "궤, 상자"
+   ],
+   [
+    "bored",
+    "v.",
+    "구멍을 뚫었다"
+   ],
+   [
+    "lid",
+    "n.",
+    "뚜껑"
+   ],
+   [
+    "altar",
+    "n.",
+    "제단"
+   ]
+  ],
+  "idi": [],
   "gra": [
-   ["bored a hole in the lid of it", "of it='그것의'(=its); bore의 과거 bored"]
+   [
+    "as one cometh",
+    "cometh=come의 옛 3인칭 단수형(들어오다)"
+   ]
   ]
  },
  {
-  "en": "And they gave the money, being told, into the hands of them that did the work.",
-  "ko": "그 세어 본 돈을 일하는 자들의 손에 내주매.",
-  "note": "'being told'의 told는 '말하다'가 아니라 옛 뜻 '세다·헤아리다'이다(현대어 teller, all told에 그 자취가 남았다). 돈을 정확히 세어 일꾼에게 맡기니, 하나님의 집을 향한 충성은 회계의 정직에서도 드러난다.",
+  "en": "And it was so, when they saw that there was much money in the chest, that the king’s scribe and the high priest came up, and they put up in bags, and told the money that was found in the house of the LORD.",
+  "ko": "그 궤 안에 돈이 많은 것을 보면 왕의 서기관과 대제사장이 올라와서 여호와의 집에서 발견된 돈을 자루에 담아 세더니,",
+  "note": "궤에 돈이 차면 왕의 서기관과 대제사장이 함께 올라와 세었다. 두 증인이 나란히 서서 계수하니, 하나님의 재물은 홀로 다루지 않는 것이 정직의 법도다.",
   "voc": [
-   ["give into the hands of", "", "~의 손에 내주다, 맡기다"],
-   ["told", "v.", "(여기서) 센, 헤아린(tell의 옛 뜻)"],
-   ["work", "n.", "일, 공사"]
+   [
+    "scribe",
+    "n.",
+    "서기관"
+   ],
+   [
+    "bags",
+    "n.",
+    "자루, 주머니"
+   ],
+   [
+    "told",
+    "v.",
+    "세었다(count의 옛 뜻)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "the king’s scribe ... told the money",
+    "told=count의 옛 뜻 '세다', 여기서 '돈을 세었다'"
+   ]
+  ]
+ },
+ {
+  "en": "And they gave the money, being told, into the hands of them that did the work, that had the oversight of the house of the LORD: and they laid it out to the carpenters and builders, that wrought upon the house of the LORD,",
+  "ko": "그 세어 본 돈을 여호와의 집을 감독하는 일꾼들의 손에 내주매, 그들이 그것을 여호와의 집에서 일하는 목수와 건축자에게 지불하고,",
+  "note": "세어 본 돈을 감독하는 일꾼의 손에 내주어 목수와 건축자에게 지불하였다. 헌금이 곧바로 실제 공사로 흘러가니, 하나님께 드린 것은 그분의 집을 세우는 데 쓰인다.",
+  "voc": [
+   [
+    "oversight",
+    "n.",
+    "감독"
+   ],
+   [
+    "carpenters",
+    "n.",
+    "목수들"
+   ],
+   [
+    "builders",
+    "n.",
+    "건축자들"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And to masons, and hewers of stone, and to buy timber and hewed stone to repair the breaches of the house of the LORD, and for all that was laid out for the house to repair it.",
+  "ko": "또 미장이와 석수에게 주며, 또 여호와의 집의 무너진 데를 보수할 재목과 다듬은 돌을 사며, 그 집을 보수하기 위하여 들이는 모든 비용에 쓰게 하였더라.",
+  "note": "미장이와 석수에게 주고 재목과 다듬은 돌을 사는 데 썼다. 성전 회복은 추상적 열심이 아니라 돌 하나, 나무 하나의 구체적 수고로 이루어진다.",
+  "voc": [
+   [
+    "masons",
+    "n.",
+    "미장이, 석공"
+   ],
+   [
+    "hewers",
+    "n.",
+    "돌 다듬는 자"
+   ],
+   [
+    "timber",
+    "n.",
+    "재목, 목재"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "Howbeit there were not made for the house of the LORD bowls of silver, snuffers, basons, trumpets, any vessels of gold, or vessels of silver, of the money that was brought into the house of the LORD:",
+  "ko": "다만 여호와의 집에 들인 그 돈으로는 여호와의 집을 위하여 은 대접이나 부집게나 주발이나 나팔이나 무릇 금그릇이나 은그릇을 만들지 아니하고,",
+  "note": "들인 돈으로 은그릇이나 금그릇 같은 성전 기명은 만들지 않았다. 우선순위가 분명하니, 무너진 것을 먼저 세우고 장식은 뒤로 미루는 것이 참된 회복의 순서다.",
+  "voc": [
+   [
+    "bowls",
+    "n.",
+    "대접, 사발"
+   ],
+   [
+    "snuffers",
+    "n.",
+    "부집게"
+   ],
+   [
+    "vessels",
+    "n.",
+    "그릇, 기명"
+   ],
+   [
+    "basons",
+    "n.",
+    "주발(bason=basin의 옛 철자)"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Howbeit",
+    "Howbeit=however/그러나의 고어 접속부사"
+   ]
+  ]
+ },
+ {
+  "en": "But they gave that to the workmen, and repaired therewith the house of the LORD.",
+  "ko": "그것을 일꾼들에게 주어 그것으로 여호와의 집을 보수하게 하였더라.",
+  "note": "그 돈을 오직 일꾼들에게 주어 성전을 보수하게 하였다. 거룩한 재물은 본래의 목적에서 벗어나지 않을 때 그 거룩함을 지킨다.",
+  "voc": [
+   [
+    "gave",
+    "v.",
+    "주었다"
+   ],
+   [
+    "workmen",
+    "n.",
+    "일꾼들"
+   ],
+   [
+    "therewith",
+    "adv.",
+    "그것으로"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "repaired therewith",
+    "therewith=with that의 고어(그것으로)"
+   ]
+  ]
+ },
+ {
+  "en": "Moreover they reckoned not with the men, into whose hand they delivered the money to be bestowed on workmen: for they dealt faithfully.",
+  "ko": "또 그 돈을 받아 일꾼에게 주어 쓰게 한 사람들과는 셈하지 아니하였으니, 이는 그들이 진실하게 행하였음이더라.",
+  "note": "일꾼에게 돈을 맡긴 자들과 셈하지 아니하였으니, 이는 그들이 진실하게 행하였음이라. 히브리어 '에무나'(신실함)가 감사보다 앞서니, 신뢰받을 만한 정직이 최고의 회계다.",
+  "voc": [
+   [
+    "reckoned",
+    "v.",
+    "셈하였다, 정산하였다"
+   ],
+   [
+    "delivered",
+    "v.",
+    "넘겨주었다, 맡겼다"
+   ],
+   [
+    "faithfully",
+    "adv.",
+    "진실하게, 신실하게"
+   ]
   ],
   "idi": [
-   ["into the hands of", "~의 손에, ~에게 맡겨"]
+   [
+    "deal faithfully",
+    "진실하게 행하다"
+   ]
   ],
   "gra": [
-   ["being told", "분사구문(수동) '세어진 채로'; told=counted의 옛 용법"],
-   ["them that did the work", "them that=those who '일하는 자들'"]
+   [
+    "they reckoned not",
+    "not이 조동사 없이 본동사 뒤에 오는 고어 부정 어순"
+   ]
   ]
  },
  {
-  "en": "Moreover they reckoned not with the men ... for they dealt faithfully.",
-  "ko": "또 그 돈을 받아 쓰게 한 사람들과는 셈하지 아니하였으니, 이는 그들이 진실하게 행하였음이더라.",
-  "note": "'reckon with'은 '~와 셈을 따지다'이니, 일꾼들이 워낙 신실하여 회계 감사조차 필요 없었다는 뜻이다. 히브리어 에무나(emunah, '신실·진실')는 같은 어근에서 '아멘'이 나온 말로, 맡겨진 일에 대한 한결같음을 가리킨다.",
+  "en": "The trespass money and sin money was not brought into the house of the LORD: it was the priests’.",
+  "ko": "속건제의 돈과 속죄제의 돈은 여호와의 집에 들이지 아니하였으니, 그것은 제사장들의 것이었더라.",
+  "note": "속건제와 속죄제의 돈은 성전 수리에 쓰지 않고 제사장의 몫으로 남겼다. 율법이 정한 분깃을 침범하지 않으니, 개혁 중에도 하나님의 규례는 세밀히 지켜졌다.",
   "voc": [
-   ["moreover", "adv.", "또한, 게다가"],
-   ["reckon", "v.", "셈하다, 계산하다"],
-   ["deal", "v.", "행하다, 처신하다(deal-dealt)"],
-   ["faithfully", "adv.", "진실하게, 신실하게"]
+   [
+    "trespass",
+    "n.",
+    "속건, 범과"
+   ],
+   [
+    "sin",
+    "n.",
+    "죄, 속죄(제)"
+   ],
+   [
+    "priests",
+    "n.",
+    "제사장들"
+   ]
   ],
-  "idi": [
-   ["reckon with", "~와 셈을 따지다, 청산하다"]
-  ],
+  "idi": [],
   "gra": [
-   ["they reckoned not", "고어 부정(=they did not reckon) '셈하지 아니하였다'"]
+   [
+    "it was the priests’",
+    "the priests’=제사장들의 것(소유격 단독 용법)"
+   ]
   ]
  },
  {
-  "en": "And Jehoash king of Judah took all the hallowed things ... and sent it to Hazael king of Syria: and he went away from Jerusalem.",
-  "ko": "유다 왕 요아스가 모든 거룩한 물건과 여호와의 집 곳간의 금을 가져다가 시리아 왕 하사엘에게 보냈더니, 하사엘이 예루살렘에서 떠나갔더라.",
-  "note": "'hallowed'는 hallow('거룩하게 하다')의 분사로, 주기도문 'Hallowed be thy name'의 그 말이다. 성전 수리에 정성을 쏟던 왕이 이제 적을 달래려 그 거룩한 보물을 내주니, 하나님을 의지하던 손이 두려움 앞에서 사람의 값을 치르는 손으로 바뀐다.",
+  "en": "Then Hazael king of Syria went up, and fought against Gath, and took it: and Hazael set his face to go up to Jerusalem.",
+  "ko": "그때에 시리아 왕 하사엘이 올라와서 가드를 쳐서 그것을 취하고, 하사엘이 그 얼굴을 돌려 예루살렘으로 올라오려 하니,",
+  "note": "시리아 왕 하사엘이 가드를 쳐서 취하고 예루살렘으로 얼굴을 돌린다. 성전을 수리하던 평화의 날 뒤에 위협이 밀려오니, 요아스의 신앙은 이제 시험대에 오른다.",
   "voc": [
-   ["hallowed", "adj.", "거룩하게 구별된, 봉헌된"],
-   ["dedicate", "v.", "구별하여 드리다, 봉헌하다"],
-   ["treasures", "n.", "곳간, 보물(보관소)"],
-   ["go away", "v.", "떠나가다, 물러가다"]
+   [
+    "fought",
+    "v.",
+    "싸웠다(fight의 과거)"
+   ],
+   [
+    "took",
+    "v.",
+    "취하였다"
+   ],
+   [
+    "set his face",
+    "",
+    "얼굴을 향하다, ~로 향하다"
+   ]
   ],
   "idi": [
-   ["go away from", "~에서 떠나다, 물러가다"]
+   [
+    "set one’s face to go up",
+    "~로 올라가기로 작정하다, 얼굴을 향하다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And Jehoash king of Judah took all the hallowed things that Jehoshaphat, and Jehoram, and Ahaziah, his fathers, kings of Judah, had dedicated, and his own hallowed things, and all the gold that was found in the treasures of the house of the LORD, and in the king’s house, and sent it to Hazael king of Syria: and he went away from Jerusalem.",
+  "ko": "유다 왕 요아스가 그의 조상들인 유다 왕 여호사밧과 여호람과 아하시야가 구별하여 드린 모든 거룩한 물건과 자기가 구별하여 드린 거룩한 물건과 여호와의 집 곳간과 왕궁에서 발견된 모든 금을 가져다가 시리아 왕 하사엘에게 보냈더니, 하사엘이 예루살렘에서 떠나갔더라.",
+  "note": "요아스가 조상들과 자기가 드린 거룩한 물건과 성전·왕궁의 금을 하사엘에게 바친다. 여호와께 구하지 않고 성전 보물로 대적을 달래니, 스승 없는 그의 믿음이 흔들리기 시작한다.",
+  "voc": [
+   [
+    "hallowed",
+    "adj.",
+    "거룩히 구별된"
+   ],
+   [
+    "dedicated",
+    "v.",
+    "구별하여 드렸다"
+   ],
+   [
+    "treasures",
+    "n.",
+    "곳간, 보물"
+   ],
+   [
+    "gold",
+    "n.",
+    "금"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And the rest of the acts of Joash, and all that he did, are they not written in the book of the chronicles of the kings of Judah?",
+  "ko": "요아스의 남은 행적과 그가 행한 모든 일은 유다 왕 역대지략에 기록되지 아니하였느냐?",
+  "note": "요아스의 남은 행적을 역대지략에 미루는 상투적 기록이나, 화려하던 개혁의 시작과 초라한 결말의 낙차가 그 행간에 짙게 깔려 있다.",
+  "voc": [
+   [
+    "rest",
+    "n.",
+    "남은 것"
+   ],
+   [
+    "acts",
+    "n.",
+    "행적, 행한 일"
+   ],
+   [
+    "chronicles",
+    "n.",
+    "역대지, 연대기"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And his servants arose, and made a conspiracy, and slew Joash in the house of Millo, which goeth down to Silla.",
+  "ko": "요아스의 신복들이 일어나 반역을 꾀하여 실라로 내려가는 길에 있는 밀로의 집에서 요아스를 죽이니라.",
+  "note": "신복들이 반역을 꾀하여 밀로의 집에서 요아스를 죽인다. 여호야다가 죽은 뒤 우상으로 기울고 스승의 아들 스가랴까지 죽인 왕(대하 24장)의 최후이니, 뿌리 없는 신앙의 비극적 종말이다.",
+  "voc": [
+   [
+    "servants",
+    "n.",
+    "신복, 종"
+   ],
+   [
+    "conspiracy",
+    "n.",
+    "반역, 음모"
+   ],
+   [
+    "slew",
+    "v.",
+    "죽였다(slay의 과거)"
+   ]
+  ],
+  "idi": [
+   [
+    "make a conspiracy",
+    "반역을 꾀하다, 음모를 꾸미다"
+   ]
   ],
   "gra": [
-   ["all the gold that was found", "that was found=관계절(수동) '발견된 모든 금'"]
+   [
+    "slew",
+    "slew=slay(죽이다)의 과거형"
+   ]
+  ]
+ },
+ {
+  "en": "For Jozachar the son of Shimeath, and Jehozabad the son of Shomer, his servants, smote him, and he died; and they buried him with his fathers in the city of David: and Amaziah his son reigned in his stead.",
+  "ko": "곧 그를 죽인 자는 그의 신복 시므앗의 아들 요사갈과 소멜의 아들 여호사바드라. 그가 죽으매 무리가 그를 그의 조상들과 함께 다윗 성에 장사하고, 그의 아들 아마샤가 그를 대신하여 다스리니라.",
+  "note": "요아스를 죽인 두 신복의 이름이 낱낱이 기록되고, 그는 다윗 성에 장사되나 왕들의 묘실에는 들지 못한다. 아들 아마샤가 대를 이으니, 심판 가운데서도 다윗의 언약은 이어진다.",
+  "voc": [
+   [
+    "smote",
+    "v.",
+    "쳐죽였다(smite의 과거)"
+   ],
+   [
+    "buried",
+    "v.",
+    "장사하였다"
+   ],
+   [
+    "stead",
+    "n.",
+    "대신, 자리"
+   ]
+  ],
+  "idi": [
+   [
+    "in one’s stead",
+    "~을 대신하여"
+   ]
+  ],
+  "gra": [
+   [
+    "smote ... in his stead",
+    "smote=smite의 과거; in his stead=그를 대신하여"
+   ]
   ]
  }
 ]
