@@ -1,257 +1,1047 @@
 [
-  {
-    "en": "These are now the chief of their fathers, and this is the genealogy of them that went up with me from Babylon",
-    "ko": "이들은 그 조상의 우두머리들이요, 나와 함께 바벨론에서 올라온 자들의 계보라",
-    "note": "히브리어 '라쉐이 아보탐'(rashei avotam)은 '그들의 조상들의 머리들'로, 각 가문의 대표를 가리킨다. '계보'는 히브리어 '히트야헤스'(hityaḥes, 등록·족보 기록)에서 온 것으로, 에스라가 인솔한 2차 귀환 명단의 공식 기록임을 보여준다.",
-    "voc": [["chief", "n.", "우두머리, 수장"], ["fathers", "n.", "조상, 가문의 가장"], ["genealogy", "n.", "족보, 계보"], ["went up", "v.", "올라갔다(go up의 과거)"]],
-    "gra": [["them that went up", "관계대명사 옛 표현 — 현대 영어로는 those who went up(올라간 자들)"]]
-  },
-  {
-    "en": "Of the sons of Phinehas; Gershom: of the sons of Ithamar; Daniel: of the sons of David; Hattush.",
-    "ko": "비느하스의 자손 중에서는 게르솜, 이다말의 자손 중에서는 다니엘, 다윗의 자손 중에서는 핫두스",
-    "note": "비느하스와 이다말은 아론의 제사장 계열, 다윗은 왕족 혈통이다. 귀환의 첫머리에 제사장 가문과 왕가 후손이 함께 오름으로써, 회복된 공동체의 영적·정치적 토대가 동시에 드러난다.",
-    "voc": [["sons", "n.", "아들들, 자손"]],
-    "idi": [["of the sons of", "~의 자손 중에서는(명단 도입 표현)"]]
-  },
-  {
-    "en": "and with him were reckoned by genealogy of the males an hundred and fifty.",
-    "ko": "그와 함께 계보에 오른 남자가 백오십 명이며",
-    "note": "'reckoned by genealogy'는 히브리어 '히트야헤스'로, 족보에 정식 등록된 것을 뜻한다. 각 가문마다 '남자'(males, 히브리어 '제카림' zekarim)의 수만 헤아린 것은, 이 명단이 동행한 성인 남성 인원 집계임을 보여준다.",
-    "voc": [["reckoned", "v.", "헤아려졌다, 계수되었다"], ["males", "n.", "남자들"], ["an hundred", "num.", "백(an은 옛 표기, 현대는 a hundred)"]],
-    "gra": [["were reckoned", "수동태 과거 — 헤아려졌다(reckon의 수동형)"]]
-  },
-  {
-    "en": "Elihoenai the son of Zerahiah, and with him two hundred males.",
-    "ko": "스라히야의 아들 엘여호에내니, 그와 함께한 남자가 이백 명이며",
-    "note": "바핫모압('모압 총독'이라는 뜻) 가문은 1차 귀환에서도 큰 가문이었다(에스라 2:6). 이름 '엘여호에내'는 '내 눈이 여호와를 향하나이다'라는 뜻으로, 신뢰의 고백이 담긴 이름이다.",
-    "voc": [["son", "n.", "아들"], ["two hundred", "num.", "이백"]]
-  },
-  {
-    "en": "Of the sons of Shechaniah; the son of Jahaziel, and with him three hundred males.",
-    "ko": "스가냐의 자손 중에서는 야하시엘의 아들이니, 그와 함께한 남자가 삼백 명이며",
-    "note": "이 절은 히브리 본문에서 인솔자의 이름이 빠져 있고 '야하시엘의 아들'로만 기록되었다. 칠십인역 등은 '스가냐의 아들 즉 야하시엘의 자손' 식으로 보완하기도 한다.",
-    "voc": [["three hundred", "num.", "삼백"]]
-  },
-  {
-    "en": "Ebed the son of Jonathan, and with him fifty males.",
-    "ko": "요나단의 아들 에벳이니, 그와 함께한 남자가 오십 명이며",
-    "note": "'에벳'(Ebed)은 히브리어로 '종, 섬기는 자'를 뜻한다. '요나단'은 '여호와께서 주셨다'라는 의미다.",
-    "voc": [["fifty", "num.", "오십"]],
-    "idi": [["with him", "그와 함께(동행 인원을 표시)"]]
-  },
-  {
-    "en": "Jeshaiah the son of Athaliah, and with him seventy males.",
-    "ko": "아달리야의 아들 여사야니, 그와 함께한 남자가 칠십 명이며",
-    "note": "엘람 가문은 1차 귀환에서 1,254명이 올랐다(에스라 2:7). '여사야'(Jeshaiah)는 '여호와는 구원이시다'라는 뜻으로, 이사야(Isaiah)와 같은 어근이다.",
-    "voc": [["seventy", "num.", "칠십"]]
-  },
-  {
-    "en": "Zebadiah the son of Michael, and with him fourscore males.",
-    "ko": "미가엘의 아들 스바댜니, 그와 함께한 남자가 팔십 명이며",
-    "note": "'fourscore'는 옛 영어 표현으로 4×20=80을 뜻한다(score=20). '미가엘'은 '누가 하나님과 같으랴'라는 뜻의 이름이다.",
-    "voc": [["fourscore", "num.", "팔십(4×20, 옛 표현)"]],
-    "gra": [["fourscore", "score(20)를 단위로 쓰는 옛 셈법 — four score = 80"]]
-  },
-  {
-    "en": "Obadiah the son of Jehiel, and with him two hundred and eighteen males.",
-    "ko": "여히엘의 아들 오바댜니, 그와 함께한 남자가 이백십팔 명이며",
-    "note": "'오바댜'(Obadiah)는 '여호와의 종, 여호와를 섬기는 자'라는 뜻이다. 같은 이름의 선지자가 있으나 동일 인물은 아니다.",
-    "voc": [["eighteen", "num.", "십팔"]]
-  },
-  {
-    "en": "the son of Josiphiah, and with him an hundred and threescore males.",
-    "ko": "요시뱌의 아들이니, 그와 함께한 남자가 백육십 명이며",
-    "note": "'threescore'는 3×20=60을 뜻하는 옛 표현이다. 따라서 'an hundred and threescore'는 160이다. '슬로밋'은 '평화로운, 화평한'이라는 뜻과 연관된다.",
-    "voc": [["threescore", "num.", "육십(3×20, 옛 표현)"]],
-    "idi": [["an hundred and threescore", "백육십(100+60)"]]
-  },
-  {
-    "en": "Zechariah the son of Bebai, and with him twenty and eight males.",
-    "ko": "베배의 아들 스가랴니, 그와 함께한 남자가 이십팔 명이며",
-    "note": "'스가랴'(Zechariah)는 '여호와께서 기억하신다'라는 뜻으로, 귀환 시대의 선지자 스가랴와 같은 이름이다(에스라 5:1).",
-    "voc": [["twenty and eight", "num.", "이십팔(옛 어순)"]],
-    "gra": [["twenty and eight", "옛 영어 숫자 어순 — 현대는 twenty-eight"]]
-  },
-  {
-    "en": "Johanan the son of Hakkatan, and with him an hundred and ten males.",
-    "ko": "학가단의 아들 요하난이니, 그와 함께한 남자가 백십 명이며",
-    "note": "'요하난'(Johanan)은 '여호와는 은혜로우시다'라는 뜻으로, 신약의 요한(John)의 히브리어 원형이다. '학가단'은 '작은 자'라는 뜻을 지닌다.",
-    "voc": [["ten", "num.", "십"]]
-  },
-  {
-    "en": "And of the last sons of Adonikam, whose names are these, Eliphelet, Jeiel, and Shemaiah, and with them threescore males.",
-    "ko": "아도니감의 자손 중 나중에 온 자들이니, 그 이름은 엘리벨렛과 여우엘과 스마야며, 그들과 함께한 남자가 육십 명이며",
-    "note": "'last sons'(히브리어 '하아하로님' ha'aḥaronim)는 '나중의/마지막 자손들'로, 아도니감 가문이 1차 귀환 때 다 오지 못하고 일부가 뒤늦게 합류했음을 시사한다.",
-    "voc": [["last", "adj.", "나중의, 마지막의"], ["names", "n.", "이름들"], ["threescore", "num.", "육십"]],
-    "idi": [["whose names are these", "그 이름은 이러하니(명단 도입)"]]
-  },
-  {
-    "en": "Uthai, and Zabbud, and with them seventy males.",
-    "ko": "우대와 사붓이니, 그들과 함께한 남자가 칠십 명이었더라",
-    "note": "비그왜 가문으로 명단의 마지막이다. 절 14까지 인솔자 명단이 마무리되며, 동행한 성인 남자의 총 인원이 가문별로 정리된다.",
-    "voc": [["seventy", "num.", "칠십"]],
-    "gra": [["with them", "복수 대명사 them — 두 인솔자(우대·사붓)를 가리킴"]]
-  },
-  {
-    "en": "And I gathered them together to the river that runneth to Ahava; and there abode we in tents three days",
-    "ko": "내가 아하와로 흐르는 강가에 그들을 모으고, 거기 사흘 동안 장막을 치고 머물렀으며",
-    "note": "'runneth'는 run의 옛 3인칭 단수형(=runs)이다. '아하와'(Ahava)는 바벨론 인근의 운하 또는 강 이름으로 추정된다. '아바드'(abode)는 abide의 과거형으로 '머물렀다'.",
-    "voc": [["gathered", "v.", "모았다"], ["runneth", "v.", "흐른다(runs의 옛 형태)"], ["abode", "v.", "머물렀다(abide의 과거)"], ["tents", "n.", "장막들, 천막들"]],
-    "gra": [["runneth", "옛 3인칭 단수 현재형 — 현대 영어의 runs"], ["there abode we", "옛 도치 어순 — 현대는 we abode there"]]
-  },
-  {
-    "en": "Then sent I for Eliezer ... chief men; also for Joiarib, and for Elnathan, men of understanding.",
-    "ko": "그리하여 내가 우두머리 되는 자들을 부르고, 또 명철한 자들을 불렀으니",
-    "note": "'men of understanding'은 히브리어 '메비님'(mevinim, 분별·통찰이 있는 자들)으로, 단순한 지식이 아니라 율법과 일을 분별하는 영적 명철을 가리킨다. 에스라가 신중하게 지도자들을 가려 보냄을 보여준다.",
-    "voc": [["sent for", "v.", "사람을 보내어 불렀다"], ["chief men", "n.", "우두머리 되는 자들"], ["understanding", "n.", "명철, 분별력"]],
-    "idi": [["send for", "사람을 부르러 보내다, 불러오다"], ["men of understanding", "명철한 사람들, 분별 있는 자들"]]
-  },
-  {
-    "en": "And I sent them with commandment unto Iddo the chief at the place Casiphia",
-    "ko": "내가 그들을 가시뱌라 하는 곳의 우두머리 잇도에게 명령과 함께 보내며",
-    "note": "'느디님'(Nethinims)은 히브리어 '네티님'(netinim, '바쳐진 자들')으로, 성전 봉사를 위해 헌신된 종들이다(여호수아 9장의 기브온 사람들에게서 비롯). 가시뱌는 레위인·느디님이 모여 살던 곳으로 보인다.",
-    "voc": [["commandment", "n.", "명령, 지시"], ["chief", "n.", "우두머리"], ["brethren", "n.", "형제들(brother의 옛 복수)"], ["Nethinims", "n.", "느디님(성전 봉사자들)"]],
-    "idi": [["the place Casiphia", "가시뱌라 하는 곳"]]
-  },
-  {
-    "en": "And by the good hand of our God upon us they brought us a man of understanding",
-    "ko": "우리 하나님의 선하신 손길이 우리 위에 있었으므로, 그들이 명철한 사람 하나를 우리에게 데려왔으니",
-    "note": "'the good hand of our God upon us'는 에스라서의 반복되는 핵심 어구로(7:9, 8:22, 8:31), 하나님의 섭리적 인도와 보호하시는 능력을 가리킨다. 히브리어 '야드'(yad, 손)는 권능·돌보심의 상징이다.",
-    "voc": [["brought", "v.", "데려왔다(bring의 과거)"], ["understanding", "n.", "명철, 통찰"]],
-    "idi": [["the good hand of our God upon us", "우리 위에 임한 우리 하나님의 선하신 손길(하나님의 섭리적 인도)"]]
-  },
-  {
-    "en": "And Hashabiah, and with him Jeshaiah of the sons of Merari, his brethren and their sons, twenty;",
-    "ko": "또 하사뱌와 그와 함께 므라리의 자손 여사야와 그의 형제와 그들의 아들 이십 명을 데려오며",
-    "note": "므라리는 레위의 셋째 아들로, 그 자손은 성막의 골조·기둥을 담당했다(민수기 3:36). 부족했던 레위 사람들이 보충되어 성전 봉사 체계가 갖추어진다.",
-    "voc": [["brethren", "n.", "형제들"], ["twenty", "num.", "이십"]]
-  },
-  {
-    "en": "Also of the Nethinims, whom David and the princes had appointed for the service of the Levites, two hundred and twenty ... all of them were expressed by name.",
-    "ko": "또 다윗과 그 방백들이 레위 사람을 섬기게 하려고 세운 느디님 사람 이백이십 명이니, 이들은 모두 그 이름이 지명되었더라",
-    "note": "'expressed by name'(히브리어 '닉케부 베쉐모트')은 '이름으로 일일이 지명되었다'는 뜻으로, 명단의 정확성과 책임성을 강조한다. 다윗이 성전 봉사 체계를 조직했음을 보여준다.",
-    "voc": [["appointed", "v.", "세웠다, 임명했다"], ["service", "n.", "섬김, 봉사"], ["expressed", "v.", "지명되었다, 명시되었다"]],
-    "idi": [["expressed by name", "이름으로 일일이 지명되어"]],
-    "gra": [["had appointed", "과거완료 — (그 이전에) 세워 두었다"]]
-  },
-  {
-    "en": "Then I proclaimed a fast there, at the river of Ahava, that we might afflict ourselves before our God, to seek of him a right way",
-    "ko": "그때에 내가 거기 아하와 강가에서 금식을 선포하였으니, 이는 우리 하나님 앞에서 스스로를 낮추고 바른 길을 그분께 구하고자 함이라",
-    "note": "'fast'는 §5 표준용어 '금식'이다. 'afflict ourselves'(히브리어 '레히트안노트', 자신을 낮추다·괴롭게 하다)는 금식과 함께하는 겸비의 행위로, 레위기 16:29의 속죄일 표현과 같다. 'little ones'는 어린아이들을 뜻한다.",
-    "voc": [["proclaimed", "v.", "선포했다"], ["fast", "n.", "금식"], ["afflict", "v.", "낮추다, 괴롭게 하다"], ["seek", "v.", "구하다, 찾다"]],
-    "idi": [["proclaim a fast", "금식을 선포하다"], ["a right way", "바른 길"]],
-    "gra": [["that we might afflict ourselves", "목적의 that절 + might — ~하기 위하여"]]
-  },
-  {
-    "en": "For I was ashamed to require of the king a band of soldiers and horsemen to help us against the enemy in the way",
-    "ko": "내가 왕에게 길에서 원수를 막을 군사와 마병을 청하기를 부끄러워하였으니",
-    "note": "에스라는 이미 왕 앞에서 '하나님의 손길이 그분을 찾는 자에게 선을 이루신다'고 고백했기에, 호위 군대를 청하는 것이 그 믿음의 고백과 모순됨을 부끄러워했다. 신앙고백과 실제 행동의 일치를 보여주는 본문이다.",
-    "voc": [["ashamed", "adj.", "부끄러운"], ["require", "v.", "청하다, 요구하다"], ["band", "n.", "무리, 부대"], ["horsemen", "n.", "마병, 기병"], ["enemy", "n.", "원수, 적"]],
-    "idi": [["be ashamed to", "~하기를 부끄러워하다"], ["a band of soldiers", "한 무리의 군사들"]]
-  },
-  {
-    "en": "So we fasted and besought our God for this: and he was intreated of us.",
-    "ko": "그리하여 우리가 금식하며 이 일을 위하여 우리 하나님께 간구하였더니, 그분께서 우리의 간구를 들으셨더라",
-    "note": "'besought'는 beseech(간절히 구하다)의 과거형이다. 'he was intreated of us'(히브리어 '바예아테르 라누')는 '그분께서 우리의 간구를 받으셨다/응답하셨다'는 뜻으로, 하나님께서 기도에 응답하심을 나타낸다.",
-    "voc": [["fasted", "v.", "금식하였다"], ["besought", "v.", "간구하였다(beseech의 과거)"], ["intreated", "v.", "간구를 들으셨다(entreat의 옛 형태)"]],
-    "idi": [["be intreated of", "~의 간구를 들어주다, 응답하다"]],
-    "gra": [["he was intreated of us", "수동태 — 그분께서 우리에 의해 간구되어(우리의 간구를 들으셨다)"]]
-  },
-  {
-    "en": "Then I separated twelve of the chief of the priests, Sherebiah, Hashabiah, and ten of their brethren with them,",
-    "ko": "그때에 내가 제사장의 우두머리 중에서 열둘을 따로 세웠으니",
-    "note": "'separated'(히브리어 '아브딜라', 구별하여 세우다)는 거룩한 직무를 위해 따로 구별함을 뜻한다. '열둘'은 이스라엘 열두 지파를 상징하는 수로, 거룩한 예물을 맡기기에 합당한 대표성을 지닌다.",
-    "voc": [["separated", "v.", "따로 세웠다, 구별했다"], ["twelve", "num.", "열둘"], ["ten", "num.", "열"]],
-    "gra": [["separated", "타동사 과거 — (어떤 목적을 위해) 구별하여 세웠다"]]
-  },
-  {
-    "en": "And weighed unto them the silver, and the gold, and the vessels, even the offering of the house of our God",
-    "ko": "은과 금과 그릇들 곧 우리 하나님의 전을 위한 예물을 그들에게 달아 주었으니",
-    "note": "'weighed'(히브리어 '에쉬콜라')는 무게를 달아 정확히 인계함을 뜻한다. 거룩한 예물을 다룸에 있어 한 치의 오차도 없는 책임성과 투명성을 강조한다. 'even'은 여기서 '곧, 즉'의 동격 표시다.",
-    "voc": [["weighed", "v.", "달았다, 무게를 쟀다"], ["silver", "n.", "은"], ["gold", "n.", "금"], ["vessels", "n.", "그릇들, 기물"], ["offering", "n.", "예물, 헌물"]],
-    "gra": [["even the offering", "even은 동격 강조 — 곧, 즉(앞말을 다시 가리킴)"]]
-  },
-  {
-    "en": "I even weighed unto their hand six hundred and fifty talents of silver, and silver vessels an hundred talents, and of gold an hundred talents;",
-    "ko": "내가 그들의 손에 달아 준 것은 은 육백오십 달란트요, 은 그릇이 백 달란트요, 금이 백 달란트며",
-    "note": "'달란트'(talent, 히브리어 '키카르')는 약 34kg에 해당하는 큰 무게 단위다. 은 650달란트는 막대한 양으로, 페르시아 왕과 백성이 드린 헌물의 규모를 보여준다.",
-    "voc": [["talents", "n.", "달란트(무게·화폐 단위)"], ["six hundred", "num.", "육백"], ["fifty", "num.", "오십"]],
-    "gra": [["I even weighed", "even은 주어 I를 강조 — 내가 친히/직접 달았다"]]
-  },
-  {
-    "en": "Also twenty basons of gold, of a thousand drams; and two vessels of fine copper, precious as gold.",
-    "ko": "또 금 대접 스무 개니 그 값이 천 다릭이요, 또 금같이 보배로운 정한 놋 그릇 둘이라",
-    "note": "'basons'는 bason(대접)의 옛 복수형이다. 'drams'는 페르시아 금화 다릭(daric)을 가리킨다. 'fine copper'(번쩍이는 놋·청동)는 매우 귀하여 금에 비길 만하다고 묘사된다.",
-    "voc": [["basons", "n.", "대접들(basin의 옛 형태)"], ["drams", "n.", "다릭(페르시아 금화)"], ["copper", "n.", "놋, 구리"], ["precious", "adj.", "보배로운, 귀한"]],
-    "idi": [["precious as gold", "금같이 보배로운"]]
-  },
-  {
-    "en": "And I said unto them, Ye are holy unto the LORD; the vessels are holy also; and the silver and the gold are a freewill offering unto the LORD God of your fathers.",
-    "ko": "내가 그들에게 이르되 \"너희는 여호와께 거룩한 자요, 이 그릇들도 거룩하며, 이 은과 금은 너희 조상의 하나님 여호와께 드리는 자원하는 예물이니라\"",
-    "note": "'holy'는 §5 '거룩'(히브리어 '코데쉬')이다. 'freewill offering'(히브리어 '네다바')은 강제가 아닌 자원하는 예물이다. 예물을 맡은 사람 자신도 '거룩한 자'로 구별되었음을 선언하여, 직무의 신성함을 일깨운다.",
-    "voc": [["holy", "adj.", "거룩한"], ["freewill", "adj.", "자원하는, 자발적인"], ["offering", "n.", "예물"]],
-    "idi": [["freewill offering", "자원하는 예물, 낙헌제"]],
-    "gra": [["Ye are holy", "Ye는 you의 옛 주격 복수 — 너희는 거룩하니라"]]
-  },
-  {
-    "en": "Watch ye, and keep them, until ye weigh them before the chief of the priests and the Levites",
-    "ko": "너희는 깨어 이것을 지켜, 제사장과 레위 사람의 우두머리들 앞에 달기까지 보전하라",
-    "note": "'Watch ye, and keep'는 명령형으로, 거룩한 예물을 끝까지 지키라는 엄중한 위임이다. 받을 때와 인계할 때 모두 무게를 달아 확인하는 이중 점검 체계는 청지기 직분의 책임성을 보여준다. '골방'(chambers)은 성전 부속 방이다.",
-    "voc": [["watch", "v.", "깨어 지키다, 경계하다"], ["keep", "v.", "지키다, 보전하다"], ["weigh", "v.", "달다"], ["chambers", "n.", "골방, 방들"]],
-    "idi": [["watch and keep", "깨어 지키다, 잘 보전하다"]],
-    "gra": [["Watch ye", "ye를 동반한 옛 명령형 — 너희는 깨어 지키라"]]
-  },
-  {
-    "en": "So took the priests and the Levites the weight of the silver, and the gold, and the vessels, to bring them to Jerusalem",
-    "ko": "이에 제사장들과 레위 사람들이 그 은과 금과 그릇들을 달아 받아, 예루살렘으로 가져가려 하였더라",
-    "note": "'took ... the weight'는 '무게를 달아 인수하였다'는 뜻으로, 위임받은 예물을 정식으로 넘겨받은 것이다. 옛 영어의 도치 어순(So took the priests = So the priests took)에 유의한다.",
-    "voc": [["took", "v.", "받았다, 취하였다(take의 과거)"], ["weight", "n.", "무게"], ["bring", "v.", "가져가다, 데려가다"]],
-    "gra": [["So took the priests", "옛 도치 어순 — So the priests took(이에 제사장들이 받았다)"]]
-  },
-  {
-    "en": "Then we departed from the river of Ahava ... and the hand of our God was upon us, and he delivered us from the hand of the enemy, and of such as lay in wait by the way.",
-    "ko": "그리하여 우리가 아하와 강을 떠나 ... 우리 하나님의 손길이 우리 위에 있어, 원수의 손과 길에 매복한 자들의 손에서 우리를 건지셨더라",
-    "note": "'the hand of our God was upon us'(8:18의 어구가 다시 등장)는 응답된 기도의 성취다. 'such as lay in wait'(히브리어 '오레브', 매복하는 자)는 길에 숨어 있던 강도·약탈자를 가리킨다. 군대 호위 없이도 하나님의 보호로 안전히 도착했음을 증거한다.",
-    "voc": [["departed", "v.", "떠났다, 출발했다"], ["delivered", "v.", "건지셨다, 구원하셨다"], ["enemy", "n.", "원수"], ["lay in wait", "v.", "매복하였다"]],
-    "idi": [["the hand of our God was upon us", "우리 하나님의 손길이 우리 위에 있어(보호하심)"], ["lay in wait", "매복하다, 숨어 기다리다"]],
-    "gra": [["such as lay in wait", "such as = those who(매복한 자들)"]]
-  },
-  {
-    "en": "And we came to Jerusalem, and abode there three days.",
-    "ko": "우리가 예루살렘에 이르러 거기에서 사흘을 머물고",
-    "note": "'abode'는 abide(머물다)의 과거형이다. 사흘의 휴식은 긴 여정 후의 회복이자, 예물 인계라는 거룩한 임무 전의 준비 기간이었다.",
-    "voc": [["came", "v.", "이르렀다, 왔다(come의 과거)"], ["abode", "v.", "머물렀다"], ["three days", "n.", "사흘"]]
-  },
-  {
-    "en": "Now on the fourth day was the silver and the gold and the vessels weighed in the house of our God by the hand of Meremoth the son of Uriah the priest",
-    "ko": "넷째 날에 우리 하나님의 전에서 우리야의 아들 제사장 므레못의 손으로 그 은과 금과 그릇들을 달았으니",
-    "note": "받을 때(8:26)와 도착 후(8:33) 모두 무게를 달아 대조함으로써, 거룩한 예물 관리에 완전한 투명성을 확보했다. 'by the hand of'는 '~의 손으로/~을 통하여' 인계되었음을 뜻한다. 므레못은 책임 있는 제사장이다.",
-    "voc": [["fourth", "adj.", "넷째의"], ["weighed", "v.", "달렸다, 계량되었다"], ["priest", "n.", "제사장"]],
-    "idi": [["by the hand of", "~의 손으로, ~을 통하여"]],
-    "gra": [["was ... weighed", "수동태 과거 — 달려졌다(계량되었다)"]]
-  },
-  {
-    "en": "By number and by weight of every one: and all the weight was written at that time.",
-    "ko": "모든 것을 그 수효와 무게대로 달고, 그 모든 무게를 그때에 기록하였더라",
-    "note": "'by number and by weight'는 개수와 무게 두 기준 모두로 검수하였음을 강조한다. 'was written'(기록되었다)은 공식 문서로 남겼음을 뜻하여, 후일의 책임 소재까지 명확히 한 청지기 정신을 보여준다.",
-    "voc": [["number", "n.", "수효, 개수"], ["weight", "n.", "무게"], ["written", "v.", "기록되었다(write의 과거분사)"]],
-    "idi": [["by number and by weight", "수효와 무게대로"]],
-    "gra": [["was written", "수동태 과거 — 기록되었다"]]
-  },
-  {
-    "en": "Also the children of those that had been carried away ... offered burnt offerings unto the God of Israel, twelve bullocks for all Israel, ninety and six rams, seventy and seven lambs, twelve he goats for a sin offering",
-    "ko": "사로잡혀 갔던 자들의 자손이 이스라엘의 하나님께 번제를 드렸으니, 온 이스라엘을 위하여 수송아지 열두 마리와 숫양 아흔여섯 마리와 어린 양 일흔일곱 마리요, 속죄제로 숫염소 열두 마리라",
-    "note": "'burnt offering'(번제, 히브리어 '올라')은 온전히 불사르는 헌신의 제사다. '열두'(수송아지·숫염소)는 열두 지파를 상징하여 온 이스라엘을 대표한다. 'sin offering'(속죄제, 히브리어 '핫타트')은 죄를 속하는 제사다. 귀환 공동체가 가장 먼저 예배로 하나님께 나아간 것이다.",
-    "voc": [["burnt offering", "n.", "번제"], ["bullocks", "n.", "수송아지들"], ["rams", "n.", "숫양들"], ["lambs", "n.", "어린 양들"], ["he goats", "n.", "숫염소들"], ["sin offering", "n.", "속죄제"]],
-    "idi": [["carried away", "사로잡혀 끌려갔다(포로로)"]],
-    "gra": [["that had been carried away", "과거완료 수동태 — (이전에) 사로잡혀 끌려갔던"]]
-  },
-  {
-    "en": "And they delivered the king's commissions unto the king's lieutenants ... and they furthered the people, and the house of God.",
-    "ko": "그들이 또 왕의 조서를 강 이편의 왕의 관리들과 총독들에게 전하니, 그들이 백성과 하나님의 전을 도왔더라",
-    "note": "'commissions'(히브리어 '다테', 칙령·법령)는 아닥사스다 왕이 내린 공식 조서다(에스라 7장). 'furthered'(촉진하다, 돕다)는 관리들이 칙령에 따라 귀환 공동체와 성전 사업을 적극 지원했음을 뜻하여, 장의 마무리에 하나님의 인도하심이 통치 권력을 통해 이루어졌음을 보여준다.",
-    "voc": [["delivered", "v.", "전하였다, 건넸다"], ["commissions", "n.", "조서, 칙령"], ["lieutenants", "n.", "관리들, 대관들"], ["governors", "n.", "총독들"], ["furthered", "v.", "도왔다, 촉진하였다"]],
-    "idi": [["on this side the river", "강 이편의(유프라테스 서편)"]],
-    "gra": [["they furthered the people", "타동사 further의 과거 — ~을 돕다, 진척시키다"]]
-  }
+ {
+  "en": "These are now the chief of their fathers, and this is the genealogy of them that went up with me from Babylon, in the reign of Artaxerxes the king.",
+  "ko": "아닥사스다 왕이 다스리던 때에, 바벨론을 떠나 나와 함께 올라온 자들의 그 조상의 우두머리들과 그들의 계보는 이러하니라.",
+  "note": "에스라와 함께 바벨론을 떠난 자들의 조상의 우두머리들과 계보가 소개된다. 계보의 기록은 언약 공동체의 연속성을 증언하며, 귀환이 무질서한 이주가 아니라 하나님의 백성의 정돈된 회복임을 보여 준다.",
+  "voc": [
+   [
+    "chief",
+    "명사",
+    "우두머리, 족장"
+   ],
+   [
+    "genealogy",
+    "명사",
+    "계보, 족보"
+   ],
+   [
+    "reign",
+    "명사",
+    "치세"
+   ]
+  ],
+  "idi": [
+   [
+    "went up with me",
+    "나와 함께 올라오다"
+   ]
+  ],
+  "gra": [
+   [
+    "These are now the chief",
+    "now가 서술을 여는 KJV의 담화 표지"
+   ]
+  ]
+ },
+ {
+  "en": "Of the sons of Phinehas; Gershom: of the sons of Ithamar; Daniel: of the sons of David; Hattush.",
+  "ko": "비느하스의 자손 중에서는 게르솜이요, 이다말의 자손 중에서는 다니엘이요, 다윗의 자손 중에서는 핫두스며,",
+  "note": "제사장 계열(비느하스·이다말)과 왕가 계열(다윗)의 후손이 먼저 열거된다. 제사장직과 왕가가 앞자리에 섬은, 귀환 공동체가 예배와 통치의 정통성을 함께 회복함을 상징한다.",
+  "voc": [
+   [
+    "sons",
+    "명사",
+    "자손, 아들"
+   ],
+   [
+    "priest",
+    "명사",
+    "제사장"
+   ]
+  ],
+  "idi": [
+   [
+    "Of the sons of",
+    "~의 자손 중에서는"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Of the sons of Shechaniah, of the sons of Pharosh; Zechariah: and with him were reckoned by genealogy of the males an hundred and fifty.",
+  "ko": "스가냐의 자손 곧 바로스의 자손 중에서는 스가랴니, 그와 함께 계보에 오른 남자가 백오십 명이며,",
+  "note": "각 가문마다 함께 오른 남자의 수를 계보에 오른(reckoned by genealogy) 방식으로 기록한다. 정확한 계수는 회복 사역의 질서와 신실함을 드러낸다.",
+  "voc": [
+   [
+    "reckoned",
+    "동사",
+    "셈하다, 계수하다"
+   ],
+   [
+    "males",
+    "명사",
+    "남자들"
+   ]
+  ],
+  "idi": [
+   [
+    "reckoned by genealogy",
+    "계보에 따라 셈하다"
+   ]
+  ],
+  "gra": [
+   [
+    "an hundred and fifty",
+    "'백오십'—수를 접속사 and로 잇는 KJV 어법"
+   ]
+  ]
+ },
+ {
+  "en": "Of the sons of Pahathmoab; Elihoenai the son of Zerahiah, and with him two hundred males.",
+  "ko": "바핫모압의 자손 중에서는 스라히야의 아들 엘여호에내니, 그와 함께한 남자가 이백 명이며,",
+  "note": "바핫모압 자손 엘여호에내와 함께 이백 명이 올라온다. 가문별 인원을 낱낱이 밝힘은, 귀환자 한 사람 한 사람이 하나님 앞에서 기억되는 존재임을 시사한다.",
+  "voc": [
+   [
+    "son",
+    "명사",
+    "아들"
+   ],
+   [
+    "males",
+    "명사",
+    "남자들"
+   ]
+  ],
+  "idi": [
+   [
+    "with him two hundred males",
+    "그와 함께한 남자가 이백 명"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Of the sons of Shechaniah; the son of Jahaziel, and with him three hundred males.",
+  "ko": "스가냐의 자손 중에서는 야하시엘의 아들이니, 그와 함께한 남자가 삼백 명이며,",
+  "note": "스가냐의 자손 삼백 명이 열거된다. 이름 없이 야하시엘의 아들로만 기록된 경우도 있어, 본문이 원자료를 충실히 옮겼음을 보여 준다.",
+  "voc": [
+   [
+    "three hundred",
+    "수사",
+    "삼백"
+   ],
+   [
+    "son",
+    "명사",
+    "아들"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "the son of Jahaziel",
+    "이름이 생략된 채 '~의 아들'로만 표기된 고어적 기록"
+   ]
+  ]
+ },
+ {
+  "en": "Of the sons also of Adin; Ebed the son of Jonathan, and with him fifty males.",
+  "ko": "또 아딘의 자손 중에서는 요나단의 아들 에벳이니, 그와 함께한 남자가 오십 명이며,",
+  "note": "아딘 자손 에벳과 오십 명이 함께한다. 인원의 많고 적음에 관계없이 모든 가문이 동등하게 기록됨은, 회복 공동체의 포용성을 보여 준다.",
+  "voc": [
+   [
+    "fifty",
+    "수사",
+    "오십"
+   ],
+   [
+    "son",
+    "명사",
+    "아들"
+   ]
+  ],
+  "idi": [
+   [
+    "Of the sons also of",
+    "또 ~의 자손 중에서는"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And of the sons of Elam; Jeshaiah the son of Athaliah, and with him seventy males.",
+  "ko": "엘람의 자손 중에서는 아달리야의 아들 여사야니, 그와 함께한 남자가 칠십 명이며,",
+  "note": "엘람 자손 여사야와 칠십 명이 함께 오른다. 반복되는 명단 형식은 지루해 보이나, 하나님의 구원 역사가 구체적 사람들을 통해 이루어짐을 각인시킨다.",
+  "voc": [
+   [
+    "seventy",
+    "수사",
+    "칠십"
+   ],
+   [
+    "son",
+    "명사",
+    "아들"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And of the sons of Shephatiah; Zebadiah the son of Michael, and with him fourscore males.",
+  "ko": "스바댜의 자손 중에서는 미가엘의 아들 스바댜니, 그와 함께한 남자가 팔십 명이며,",
+  "note": "스바댜 자손과 함께 팔십 명(fourscore)이 온다. score(스무 개)를 단위로 쓰는 KJV의 수 표기가 나타난다.",
+  "voc": [
+   [
+    "fourscore",
+    "수사",
+    "팔십(4×20)"
+   ],
+   [
+    "son",
+    "명사",
+    "아들"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "fourscore",
+    "score(20)를 단위로 쓰는 KJV의 수 표기"
+   ]
+  ]
+ },
+ {
+  "en": "Of the sons of Joab; Obadiah the son of Jehiel, and with him two hundred and eighteen males.",
+  "ko": "요압의 자손 중에서는 여히엘의 아들 오바댜니, 그와 함께한 남자가 이백십팔 명이며,",
+  "note": "요압 자손 오바댜와 이백십팔 명이 함께한다. 정밀한 숫자 기록은 서기관 에스라의 엄정한 사료 정신을 반영한다.",
+  "voc": [
+   [
+    "eighteen",
+    "수사",
+    "십팔"
+   ],
+   [
+    "son",
+    "명사",
+    "아들"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And of the sons of Shelomith; the son of Josiphiah, and with him an hundred and threescore males.",
+  "ko": "또 슬로밋의 자손 중에서는 요시뱌의 아들이니, 그와 함께한 남자가 백육십 명이며,",
+  "note": "슬로밋 자손과 함께 백육십 명(threescore, 예순)이 온다. score 단위의 수 표기가 다시 등장한다.",
+  "voc": [
+   [
+    "threescore",
+    "수사",
+    "예순(3×20)"
+   ],
+   [
+    "son",
+    "명사",
+    "아들"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "threescore",
+    "'예순'을 뜻하는 KJV의 score 단위 표기"
+   ]
+  ]
+ },
+ {
+  "en": "And of the sons of Bebai; Zechariah the son of Bebai, and with him twenty and eight males.",
+  "ko": "또 베배의 자손 중에서는 베배의 아들 스가랴니, 그와 함께한 남자가 이십팔 명이며,",
+  "note": "베배 자손 스가랴와 이십팔 명이 함께한다. 작은 가문도 빠짐없이 기록되어, 남은 자 하나하나가 언약의 보존에 참여함을 보여 준다.",
+  "voc": [
+   [
+    "twenty",
+    "수사",
+    "스물"
+   ],
+   [
+    "son",
+    "명사",
+    "아들"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "twenty and eight",
+    "'이십팔'—작은 수를 and로 잇는 KJV 어법"
+   ]
+  ]
+ },
+ {
+  "en": "And of the sons of Azgad; Johanan the son of Hakkatan, and with him an hundred and ten males.",
+  "ko": "또 아스갓의 자손 중에서는 학가단의 아들 요하난이니, 그와 함께한 남자가 백십 명이며,",
+  "note": "아스갓 자손 요하난과 백십 명이 함께한다. 이러한 가문별 기록의 총합이 뒤이어 성전 봉헌과 예배 회복의 기초가 된다.",
+  "voc": [
+   [
+    "hundred",
+    "수사",
+    "백"
+   ],
+   [
+    "son",
+    "명사",
+    "아들"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "And of the last sons of Adonikam, whose names are these, Eliphelet, Jeiel, and Shemaiah, and with them threescore males.",
+  "ko": "또 아도니감의 자손 중 나중에 온 자들이니, 그 이름은 엘리벨렛과 여우엘과 스마야며, 그들과 함께한 남자가 육십 명이며,",
+  "note": "아도니감 자손 중 나중에 온 자들이 열거된다. 늦게 합류한 이들까지 기록됨은, 회복의 대열에 뒤늦은 참여도 배제되지 않음을 시사한다.",
+  "voc": [
+   [
+    "last",
+    "형용사",
+    "나중의, 마지막의"
+   ],
+   [
+    "names",
+    "명사",
+    "이름들"
+   ]
+  ],
+  "idi": [
+   [
+    "the last sons",
+    "나중에 온 자손"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Of the sons also of Bigvai; Uthai, and Zabbud, and with them seventy males.",
+  "ko": "또 비그왜의 자손 중에서는 우대와 사붓이니, 그들과 함께한 남자가 칠십 명이었더라.",
+  "note": "비그왜 자손 우대와 사붓, 칠십 명으로 명단이 끝난다. 명단의 마무리는 귀환 공동체의 규모가 온전히 파악되었음을 알린다.",
+  "voc": [
+   [
+    "seventy",
+    "수사",
+    "칠십"
+   ],
+   [
+    "sons",
+    "명사",
+    "자손, 아들"
+   ]
+  ],
+  "idi": [
+   [
+    "Of the sons also of",
+    "또 ~의 자손 중에서는"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And I gathered them together to the river that runneth to Ahava; and there abode we in tents three days: and I viewed the people, and the priests, and found there none of the sons of Levi.",
+  "ko": "내가 아하와로 흐르는 강가에 그들을 모으고, 거기 사흘 동안 장막을 치고 머물며 백성과 제사장들을 살펴보았으나, 레위 자손은 거기에서 하나도 찾지 못하였더라.",
+  "note": "에스라가 아하와 강가에 무리를 모아 사흘 머물며 살피니 레위 자손이 하나도 없었다. 성전 봉사의 핵심인 레위인의 부재는 예배 회복의 중대한 결함으로, 즉각적 대응을 요구한다.",
+  "voc": [
+   [
+    "gathered",
+    "동사",
+    "모으다"
+   ],
+   [
+    "abode",
+    "동사",
+    "머물다(abide의 과거)"
+   ],
+   [
+    "viewed",
+    "동사",
+    "살펴보다"
+   ]
+  ],
+  "idi": [
+   [
+    "none of the sons of Levi",
+    "레위 자손이 하나도 없다"
+   ]
+  ],
+  "gra": [
+   [
+    "there abode we",
+    "동사가 주어 앞에 온 도치 구문"
+   ]
+  ]
+ },
+ {
+  "en": "Then sent I for Eliezer, for Ariel, for Shemaiah, and for Elnathan, and for Jarib, and for Elnathan, and for Nathan, and for Zechariah, and for Meshullam, chief men; also for Joiarib, and for Elnathan, men of understanding.",
+  "ko": "그리하여 내가 우두머리 되는 자들 곧 엘리에셀과 아리엘과 스마야와 엘라단과 야립과 또 엘라단과 나단과 스가랴와 므술람을 부르고, 또 명철한 자 요야립과 엘라단을 부르며,",
+  "note": "에스라가 우두머리와 명철한 자들을 불러 대책을 세운다. 지도자를 세워 문제를 풀어가는 신중함은, 하나님의 일이 즉흥이 아닌 지혜로운 준비로 이루어짐을 보여 준다.",
+  "voc": [
+   [
+    "chief",
+    "형용사",
+    "우두머리 되는"
+   ],
+   [
+    "understanding",
+    "명사",
+    "명철, 분별"
+   ]
+  ],
+  "idi": [
+   [
+    "men of understanding",
+    "명철한 자들"
+   ]
+  ],
+  "gra": [
+   [
+    "Then sent I for",
+    "동사가 주어 앞에 온 도치"
+   ]
+  ]
+ },
+ {
+  "en": "And I sent them with commandment unto Iddo the chief at the place Casiphia, and I told them what they should say unto Iddo, and to his brethren the Nethinims, at the place Casiphia, that they should bring unto us ministers for the house of our God.",
+  "ko": "그들을 가시뱌라 하는 곳의 우두머리 잇도에게 보내며, 가시뱌라 하는 곳에 있는 잇도와 그의 형제 곧 느디님 사람들에게 무엇이라 말할지를 일러 주어, 우리 하나님의 전을 위한 일꾼들을 우리에게 데려오게 하였더니,",
+  "note": "가시뱌의 잇도에게 사람을 보내 느디님 사람들(성전 봉사자)까지 데려오게 한다. 하나님의 전을 위한 일꾼들을 구함은, 예배 회복이 사람의 준비를 통해 완성됨을 보여 준다.",
+  "voc": [
+   [
+    "commandment",
+    "명사",
+    "명령, 지시"
+   ],
+   [
+    "ministers",
+    "명사",
+    "일꾼들, 봉사자"
+   ],
+   [
+    "brethren",
+    "명사",
+    "형제들"
+   ]
+  ],
+  "idi": [
+   [
+    "for the house of our God",
+    "우리 하나님의 전을 위하여"
+   ]
+  ],
+  "gra": [
+   [
+    "what they should say",
+    "간접의문을 이끄는 should의 고어 용법"
+   ]
+  ]
+ },
+ {
+  "en": "And by the good hand of our God upon us they brought us a man of understanding, of the sons of Mahli, the son of Levi, the son of Israel; and Sherebiah, with his sons and his brethren, eighteen;",
+  "ko": "우리 하나님의 선하신 손길이 우리 위에 있었으므로, 그들이 명철한 사람 하나를 우리에게 데려왔으니, 그는 이스라엘의 아들 레위의 아들 마흘리의 자손이라. 또 세레뱌와 그의 아들들과 그의 형제 십팔 명을 데려오고,",
+  "note": "우리 하나님의 선하신 손길이 우리 위에 있었으므로 명철한 레위인들이 왔다. 선한 손(good hand)은 에스라서 전체를 관통하는 섭리의 표현으로, 인간의 노력에 임하는 하나님의 은혜를 드러낸다.",
+  "voc": [
+   [
+    "good",
+    "형용사",
+    "선하신"
+   ],
+   [
+    "hand",
+    "명사",
+    "손길"
+   ],
+   [
+    "understanding",
+    "명사",
+    "명철"
+   ]
+  ],
+  "idi": [
+   [
+    "by the good hand of our God",
+    "우리 하나님의 선하신 손길로"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And Hashabiah, and with him Jeshaiah of the sons of Merari, his brethren and their sons, twenty;",
+  "ko": "또 하사뱌와 그와 함께 므라리의 자손 여사야와 그의 형제와 그들의 아들 이십 명을 데려오며,",
+  "note": "므라리 자손 하사뱌와 여사야, 이십 명이 합류한다. 여러 레위 가문이 응답함으로써 성전 봉사의 인력이 갖추어진다.",
+  "voc": [
+   [
+    "brethren",
+    "명사",
+    "형제들"
+   ],
+   [
+    "twenty",
+    "수사",
+    "스물"
+   ]
+  ],
+  "idi": [
+   [
+    "with him",
+    "그와 함께"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Also of the Nethinims, whom David and the princes had appointed for the service of the Levites, two hundred and twenty Nethinims: all of them were expressed by name.",
+  "ko": "또 다윗과 그 방백들이 레위 사람을 섬기게 하려고 세운 느디님 사람 중에서 이백이십 명을 데려왔으니, 이들은 모두 그 이름이 지명되었더라.",
+  "note": "다윗과 방백들이 세운 느디님 사람 이백이십 명이 이름과 함께 온다. 다윗의 예배 조직을 계승함은, 회복이 옛 언약 질서의 회복임을 보여 준다.",
+  "voc": [
+   [
+    "appointed",
+    "동사",
+    "세우다, 임명하다"
+   ],
+   [
+    "service",
+    "명사",
+    "섬김, 봉사"
+   ],
+   [
+    "expressed",
+    "동사",
+    "지명하다, 명시하다"
+   ]
+  ],
+  "idi": [
+   [
+    "expressed by name",
+    "이름이 지명되다"
+   ]
+  ],
+  "gra": [
+   [
+    "whom David ... had appointed",
+    "관계대명사 whom의 목적격 용법"
+   ]
+  ]
+ },
+ {
+  "en": "Then I proclaimed a fast there, at the river of Ahava, that we might afflict ourselves before our God, to seek of him a right way for us, and for our little ones, and for all our substance.",
+  "ko": "그때에 내가 거기 아하와 강가에서 금식을 선포하였으니, 이는 우리가 우리 하나님 앞에서 스스로를 낮추고, 우리와 우리 어린아이들과 우리 모든 소유를 위하여 바른 길을 그분께 구하고자 함이라.",
+  "note": "에스라가 아하와 강가에서 금식을 선포하여 스스로를 낮추고 바른 길을 구한다. 어린아이와 소유까지 아우른 기도는, 위험한 여정 전체를 하나님께 맡기는 겸손한 의탁이다.",
+  "voc": [
+   [
+    "proclaimed",
+    "동사",
+    "선포하다"
+   ],
+   [
+    "fast",
+    "명사",
+    "금식"
+   ],
+   [
+    "afflict",
+    "동사",
+    "(스스로) 낮추다, 괴롭게 하다"
+   ]
+  ],
+  "idi": [
+   [
+    "afflict ourselves",
+    "스스로를 낮추다"
+   ],
+   [
+    "a right way",
+    "바른 길"
+   ]
+  ],
+  "gra": [
+   [
+    "that we might afflict",
+    "목적을 나타내는 might의 고어 용법"
+   ]
+  ]
+ },
+ {
+  "en": "For I was ashamed to require of the king a band of soldiers and horsemen to help us against the enemy in the way: because we had spoken unto the king, saying, The hand of our God is upon all them for good that seek him; but his power and his wrath is against all them that forsake him.",
+  "ko": "내가 왕에게 길에서 원수를 막을 군사와 마병을 청하기를 부끄러워하였으니, 이는 우리가 왕에게 아뢰기를 \"우리 하나님의 손길은 그분을 찾는 모든 자에게 선을 이루시되, 그분의 권능과 진노는 그분을 저버리는 모든 자를 치시나이다\" 하였음이라.",
+  "note": "에스라는 왕에게 호위병을 청하기를 부끄러워한다. 앞서 하나님의 손이 그를 찾는 자에게 임한다고 고백했기에, 군사가 아닌 하나님을 신뢰함으로 자신의 증언을 지키려 한 것이다.",
+  "voc": [
+   [
+    "ashamed",
+    "형용사",
+    "부끄러워하는"
+   ],
+   [
+    "soldiers",
+    "명사",
+    "군사들"
+   ],
+   [
+    "forsake",
+    "동사",
+    "저버리다, 버리다"
+   ]
+  ],
+  "idi": [
+   [
+    "lay in wait",
+    "매복하다"
+   ],
+   [
+    "for good",
+    "선을 위하여"
+   ]
+  ],
+  "gra": [
+   [
+    "The hand of our God is upon",
+    "단수 동사 is가 관용적으로 쓰인 어법"
+   ]
+  ]
+ },
+ {
+  "en": "So we fasted and besought our God for this: and he was intreated of us.",
+  "ko": "그리하여 우리가 금식하며 이 일을 위하여 우리 하나님께 간구하였더니, 그분께서 우리의 간구를 들으셨더라.",
+  "note": "우리가 금식하며 간구하였더니 그분께서 우리의 간구를 들으셨다. 들으셨다(intreated)는 하나님이 기도에 응답하심을 뜻하는 고어로, 신실한 기도의 열매를 간결히 증언한다.",
+  "voc": [
+   [
+    "fasted",
+    "동사",
+    "금식하다"
+   ],
+   [
+    "besought",
+    "동사",
+    "간구하다(beseech의 과거)"
+   ],
+   [
+    "intreated",
+    "동사",
+    "(간구를) 들어주다"
+   ]
+  ],
+  "idi": [
+   [
+    "he was intreated of us",
+    "그분께서 우리의 간구를 들으셨다"
+   ]
+  ],
+  "gra": [
+   [
+    "was intreated of us",
+    "of가 행위자를 나타내는 수동태 고어 어법"
+   ]
+  ]
+ },
+ {
+  "en": "Then I separated twelve of the chief of the priests, Sherebiah, Hashabiah, and ten of their brethren with them,",
+  "ko": "그때에 내가 제사장의 우두머리 중에서 열둘 곧 세레뱌와 하사뱌와 그들과 함께한 그들의 형제 열 사람을 따로 세우고,",
+  "note": "에스라가 제사장 우두머리 열둘을 따로 세워 거룩한 예물을 맡긴다. 열둘은 이스라엘 열두 지파를 상징하며, 거룩한 임무에 합당한 자를 구별함은 봉사의 거룩성을 지키려는 조치다.",
+  "voc": [
+   [
+    "separated",
+    "동사",
+    "따로 세우다, 구별하다"
+   ],
+   [
+    "priests",
+    "명사",
+    "제사장들"
+   ]
+  ],
+  "idi": [
+   [
+    "twelve of the chief",
+    "우두머리 중 열둘"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And weighed unto them the silver, and the gold, and the vessels, even the offering of the house of our God, which the king, and his counsellors, and his lords, and all Israel there present, had offered:",
+  "ko": "왕과 그의 모사들과 그의 귀족들과 거기 있던 온 이스라엘이 드린 예물 곧 우리 하나님의 전을 위한 은과 금과 그릇들을 그들에게 달아 주었으니,",
+  "note": "왕과 모사·귀족·온 이스라엘이 드린 예물을 달아 넘긴다. 무게를 정확히 재어 인계함은, 거룩한 헌물 관리에서 한 치의 부정도 없게 하려는 투명함을 보여 준다.",
+  "voc": [
+   [
+    "weighed",
+    "동사",
+    "달다, 무게를 재다"
+   ],
+   [
+    "offering",
+    "명사",
+    "예물, 헌물"
+   ],
+   [
+    "lords",
+    "명사",
+    "귀족들"
+   ]
+  ],
+  "idi": [
+   [
+    "all Israel there present",
+    "거기 있던 온 이스라엘"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "I even weighed unto their hand six hundred and fifty talents of silver, and silver vessels an hundred talents, and of gold an hundred talents;",
+  "ko": "내가 그들의 손에 달아 준 것은 은이 육백오십 달란트요, 은 그릇이 백 달란트요, 금이 백 달란트며,",
+  "note": "은 육백오십 달란트 등 막대한 헌물의 무게를 상세히 기록한다. 구체적 수량은 예물의 실재성과 관리의 엄정함을 증언하며, 하나님의 전을 향한 온 백성의 헌신을 드러낸다.",
+  "voc": [
+   [
+    "talents",
+    "명사",
+    "달란트(무게 단위)"
+   ],
+   [
+    "silver",
+    "명사",
+    "은"
+   ],
+   [
+    "hand",
+    "명사",
+    "손"
+   ]
+  ],
+  "idi": [
+   [
+    "weighed unto their hand",
+    "그들의 손에 달아 주다"
+   ]
+  ],
+  "gra": [
+   [
+    "six hundred and fifty",
+    "큰 수를 and로 잇는 KJV 수 표기"
+   ]
+  ]
+ },
+ {
+  "en": "Also twenty basons of gold, of a thousand drams; and two vessels of fine copper, precious as gold.",
+  "ko": "또 금 대접 스무 개니 그 값이 천 다릭이요, 또 금같이 보배로운 정한 놋 그릇 둘이라.",
+  "note": "금 대접과 금같이 보배로운 정한 놋 그릇까지 기록한다. 값진 예물의 다양함은, 성전 예배를 위해 백성이 가장 귀한 것을 아낌없이 드렸음을 보여 준다.",
+  "voc": [
+   [
+    "basons",
+    "명사",
+    "대접, 대야(basins)"
+   ],
+   [
+    "drams",
+    "명사",
+    "다릭(화폐 단위)"
+   ],
+   [
+    "copper",
+    "명사",
+    "놋, 구리"
+   ]
+  ],
+  "idi": [
+   [
+    "precious as gold",
+    "금같이 보배로운"
+   ]
+  ],
+  "gra": [
+   [
+    "basons",
+    "basins의 KJV 고어 철자"
+   ]
+  ]
+ },
+ {
+  "en": "And I said unto them, Ye are holy unto the LORD; the vessels are holy also; and the silver and the gold are a freewill offering unto the LORD God of your fathers.",
+  "ko": "내가 그들에게 이르되 \"너희는 여호와께 거룩한 자요, 이 그릇들도 거룩하며, 이 은과 금은 너희 조상의 하나님 여호와께 드리는 자원하는 예물이니라.",
+  "note": "에스라가 너희는 여호와께 거룩한 자요, 이 그릇들도 거룩하다고 선언한다. 사람과 기물이 함께 거룩히 구별됨은, 하나님께 드려진 것은 모두 성별되어야 함을 가르친다.",
+  "voc": [
+   [
+    "holy",
+    "형용사",
+    "거룩한"
+   ],
+   [
+    "vessels",
+    "명사",
+    "그릇들"
+   ],
+   [
+    "freewill",
+    "형용사",
+    "자원하는"
+   ]
+  ],
+  "idi": [
+   [
+    "holy unto the LORD",
+    "여호와께 거룩한"
+   ],
+   [
+    "freewill offering",
+    "자원하는 예물"
+   ]
+  ],
+  "gra": [
+   [
+    "Ye are holy",
+    "ye는 you의 주격 고어형"
+   ]
+  ]
+ },
+ {
+  "en": "Watch ye, and keep them, until ye weigh them before the chief of the priests and the Levites, and chief of the fathers of Israel, at Jerusalem, in the chambers of the house of the LORD.",
+  "ko": "너희는 깨어 이것을 지켜, 예루살렘에 이르러 여호와의 전 골방에서 제사장의 우두머리들과 레위 사람들과 이스라엘의 조상의 우두머리들 앞에 달기까지 보전하라\" 하였더니,",
+  "note": "깨어 지켜 예루살렘에서 달기까지 보전하라 명한다. 거룩한 임무는 목적지에 이르러 다시 계수될 때까지 온전히 지켜져야 하니, 신실한 청지기의 책임을 강조한다.",
+  "voc": [
+   [
+    "watch",
+    "동사",
+    "깨어 지키다"
+   ],
+   [
+    "keep",
+    "동사",
+    "보전하다"
+   ],
+   [
+    "chambers",
+    "명사",
+    "골방, 방들"
+   ]
+  ],
+  "idi": [
+   [
+    "Watch ye",
+    "너희는 깨어 있으라"
+   ]
+  ],
+  "gra": [
+   [
+    "Watch ye, and keep",
+    "ye를 주어로 한 명령형 고어 어법"
+   ]
+  ]
+ },
+ {
+  "en": "So took the priests and the Levites the weight of the silver, and the gold, and the vessels, to bring them to Jerusalem unto the house of our God.",
+  "ko": "이에 제사장들과 레위 사람들이 그 은과 금과 그릇들을 달아 받아, 그것을 예루살렘 우리 하나님의 전으로 가져가려 하였더라.",
+  "note": "제사장과 레위 사람이 예물을 달아 받아 예루살렘으로 가져간다. 인계와 인수가 저울로 이루어짐은, 거룩한 재물이 조금도 새지 않게 하려는 철저함을 보여 준다.",
+  "voc": [
+   [
+    "took",
+    "동사",
+    "받다, 취하다"
+   ],
+   [
+    "weight",
+    "명사",
+    "무게, 달아 잰 것"
+   ]
+  ],
+  "idi": [
+   [
+    "took the weight",
+    "달아 받다"
+   ]
+  ],
+  "gra": [
+   [
+    "So took the priests",
+    "동사가 주어 앞에 온 도치 구문"
+   ]
+  ]
+ },
+ {
+  "en": "Then we departed from the river of Ahava on the twelfth day of the first month, to go unto Jerusalem: and the hand of our God was upon us, and he delivered us from the hand of the enemy, and of such as lay in wait by the way.",
+  "ko": "그리하여 우리가 첫째 달 십이일에 아하와 강을 떠나 예루살렘으로 가니, 우리 하나님의 손길이 우리 위에 있어, 길에서 원수의 손과 매복하여 기다리는 자들의 손에서 우리를 건지셨더라.",
+  "note": "첫째 달 십이일에 떠나니 하나님의 손길이 우리 위에 있어 원수와 매복자의 손에서 건지셨다. 호위병 없이 출발한 여정을 하나님이 친히 지키심은, 22절의 신뢰가 헛되지 않았음을 증언한다.",
+  "voc": [
+   [
+    "departed",
+    "동사",
+    "떠나다"
+   ],
+   [
+    "delivered",
+    "동사",
+    "건지다, 구원하다"
+   ],
+   [
+    "enemy",
+    "명사",
+    "원수"
+   ]
+  ],
+  "idi": [
+   [
+    "lay in wait by the way",
+    "길에서 매복하여 기다리다"
+   ],
+   [
+    "the hand of our God was upon us",
+    "하나님의 손길이 우리 위에 있었다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "And we came to Jerusalem, and abode there three days.",
+  "ko": "우리가 예루살렘에 이르러 거기에서 사흘을 머물고,",
+  "note": "예루살렘에 이르러 사흘을 머문다. 도착 후의 사흘은 15절의 아하와 강가 사흘과 짝을 이루어, 여정의 시작과 끝을 하나님 앞에서 정돈하는 시간이 된다.",
+  "voc": [
+   [
+    "came",
+    "동사",
+    "이르다, 도착하다"
+   ],
+   [
+    "abode",
+    "동사",
+    "머물다"
+   ],
+   [
+    "three",
+    "수사",
+    "셋"
+   ]
+  ],
+  "idi": [
+   [
+    "abode there three days",
+    "거기에서 사흘을 머물다"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Now on the fourth day was the silver and the gold and the vessels weighed in the house of our God by the hand of Meremoth the son of Uriah the priest; and with him was Eleazar the son of Phinehas; and with them was Jozabad the son of Jeshua, and Noadiah the son of Binnui, Levites;",
+  "ko": "넷째 날에 우리 하나님의 전에서 우리야의 아들 제사장 므레못의 손으로 그 은과 금과 그릇들을 달았으니, 비느하스의 아들 엘르아살이 그와 함께하였고, 또 레위 사람 곧 예수아의 아들 요사밧과 빈누이의 아들 노아댜가 그들과 함께하였더라.",
+  "note": "넷째 날에 제사장 므레못의 손으로 예물을 다시 달았다. 출발 때와 도착 때 두 번 계수함으로써, 거룩한 재물이 온전히 보전되었음을 공적으로 확인한다.",
+  "voc": [
+   [
+    "weighed",
+    "동사",
+    "달다"
+   ],
+   [
+    "priest",
+    "명사",
+    "제사장"
+   ],
+   [
+    "Levites",
+    "명사",
+    "레위 사람들"
+   ]
+  ],
+  "idi": [
+   [
+    "by the hand of",
+    "~의 손으로"
+   ]
+  ],
+  "gra": [
+   [
+    "was ... weighed",
+    "단수 동사가 열거된 목적어를 받는 고어 일치"
+   ]
+  ]
+ },
+ {
+  "en": "By number and by weight of every one: and all the weight was written at that time.",
+  "ko": "모든 것을 그 수효와 무게대로 달고, 그 모든 무게를 그때에 기록하였더라.",
+  "note": "모든 것을 수효와 무게대로 달고 그때에 기록하였다. 계수와 기록의 이중 확인은 성경적 청지기 정신의 모범으로, 하나님의 것을 다룸에 투명과 책임이 함께함을 보여 준다.",
+  "voc": [
+   [
+    "number",
+    "명사",
+    "수효"
+   ],
+   [
+    "weight",
+    "명사",
+    "무게"
+   ],
+   [
+    "written",
+    "동사",
+    "기록되다"
+   ]
+  ],
+  "idi": [
+   [
+    "by number and by weight",
+    "수효와 무게대로"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "Also the children of those that had been carried away, which were come out of the captivity, offered burnt offerings unto the God of Israel, twelve bullocks for all Israel, ninety and six rams, seventy and seven lambs, twelve he goats for a sin offering: all this was a burnt offering unto the LORD.",
+  "ko": "사로잡혀 갔다가 돌아온 자들 곧 포로에서 나온 자들이 이스라엘의 하나님께 번제를 드렸으니, 온 이스라엘을 위하여 수송아지 열두 마리와 숫양 아흔여섯 마리와 어린 양 일흔일곱 마리요, 속죄제로 숫염소 열두 마리니, 이 모두가 여호와께 드리는 번제였더라.",
+  "note": "포로에서 돌아온 자들이 번제와 속죄제를 드린다. 열둘·아흔여섯·일흔일곱·열둘의 제물 수는 열두 지파를 아우르며, 죄 사함과 온전한 헌신을 함께 표현하는 예배의 회복이다.",
+  "voc": [
+   [
+    "burnt offerings",
+    "명사",
+    "번제"
+   ],
+   [
+    "bullocks",
+    "명사",
+    "수송아지"
+   ],
+   [
+    "sin offering",
+    "명사",
+    "속죄제"
+   ]
+  ],
+  "idi": [
+   [
+    "for all Israel",
+    "온 이스라엘을 위하여"
+   ]
+  ],
+  "gra": [
+   [
+    "ninety and six",
+    "큰 수를 and로 잇는 KJV 수 표기"
+   ]
+  ]
+ },
+ {
+  "en": "And they delivered the king’s commissions unto the king’s lieutenants, and to the governors on this side the river: and they furthered the people, and the house of God.",
+  "ko": "그들이 또 왕의 조서를 강 이편의 왕의 관리들과 총독들에게 전하니, 그들이 백성과 하나님의 전을 도왔더라.",
+  "note": "왕의 조서를 강 이편 관리와 총독에게 전하니 그들이 백성과 하나님의 전을 도왔다. 한때 방해했던 이방 권력이 이제 회복 사역을 후원함은, 하나님이 왕의 마음을 주장하심을 드러낸다.",
+  "voc": [
+   [
+    "commissions",
+    "명사",
+    "조서, 위임장"
+   ],
+   [
+    "lieutenants",
+    "명사",
+    "관리들, 대리인"
+   ],
+   [
+    "furthered",
+    "동사",
+    "돕다, 진척시키다"
+   ]
+  ],
+  "idi": [
+   [
+    "on this side the river",
+    "강 이편의"
+   ]
+  ],
+  "gra": [
+   [
+    "king’s commissions",
+    "곡선 아포스트로피를 쓴 소유격 표기"
+   ]
+  ]
+ }
 ]
