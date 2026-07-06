@@ -1,132 +1,567 @@
 [
-  {
-    "en": "In the ninth year of Zedekiah king of Judah, in the tenth month, came Nebuchadrezzar king of Babylon and all his army against Jerusalem, and they besieged it",
-    "ko": "유다 왕 시드기야 제구년 열째 달에 바벨론 왕 느부갓네살이 그 온 군대를 거느리고 예루살렘으로 와서 그 성을 에워쌌더라",
-    "note": "예루살렘 멸망의 역사적 절정을 기록한 장이다. KJV는 '느부갓네살'을 'Nebuchadrezzar'로 적는데, 이는 바벨론어 '나부쿠두리우추르'(Nabû-kudurri-uṣur, '나부 신이여 경계를 지키소서')에 더 가까운 음역이다. 한국 교회 전통 표기 '느부갓네살'을 따른다. '에워싸다'의 히브리어 '추르'(tsur, צוּר)는 군대로 성을 포위·압박함을 뜻한다.",
-    "voc": [["army", "n.", "군대"], ["against", "prep.", "~을 치러, ~에 맞서"], ["besieged", "v.", "포위하였다, 에워쌌다"]],
-    "gra": [["came ... and all his army", "동사 came이 주어(Nebuchadrezzar and all his army) 앞에 도치된 고어적 어순 — 느부갓네살과 그 온 군대가 왔다"]]
-  },
-  {
-    "en": "And in the eleventh year of Zedekiah ... the city was broken up",
-    "ko": "시드기야 제십일년에 ... 성이 함락되니라",
-    "note": "주전 586년, 약 18개월에 걸친 포위 끝에 성벽이 뚫린 사건이다. KJV 'broken up'의 히브리어 '바카'(baqa, בָּקַע)는 '쪼개다·돌파하다'로, 성벽이 갈라져 적이 침입한 것을 가리킨다. '함락'으로 옮겨 선포의 무게를 살린다.",
-    "voc": [["eleventh", "num.", "열한 번째의"], ["broken up", "phr.", "함락된, 돌파된"]],
-    "idi": [["the city was broken up", "성이 함락되다, 성벽이 뚫리다"]],
-    "gra": [["was broken up", "수동태 — 성이 (적에 의해) 무너뜨려졌다"]]
-  },
-  {
-    "en": "And all the princes of the king of Babylon came in, and sat in the middle gate",
-    "ko": "바벨론 왕의 모든 고관이 들어와 가운데 문에 앉았으니",
-    "note": "성문에 '앉는' 것은 고대 근동에서 통치·재판권을 행사함을 상징한다. 정복자가 가운데 문에 좌정함은 예루살렘이 이제 그들의 통치 아래 놓였음을 보여준다. 이어지는 이름들(네르갈사레셀·삼갈느보·랍사리스·랍막)은 일부가 직책(랍사리스='내시장', 랍막='제사장·관리장')으로 보인다.",
-    "voc": [["princes", "n.", "고관들, 방백들"], ["middle", "adj.", "가운데의"], ["gate", "n.", "성문, 문"], ["residue", "n.", "남은 자, 나머지"]],
-    "idi": [["sat in the gate", "성문에 앉다 — 통치·재판권 행사의 상징"]]
-  },
-  {
-    "en": "they fled, and went forth out of the city by night, by the way of the king's garden",
-    "ko": "그들이 도망하여 밤에 왕의 동산 길을 따라 성을 빠져나가",
-    "note": "시드기야가 야음을 틈타 탈출하는 장면이다. '왕의 동산'과 '두 성벽 사이의 문'은 성 남동쪽의 비밀 통로로 추정된다. KJV 'the plain'은 히브리어 '아라바'(arabah, עֲרָבָה) — 요단 계곡의 평원으로, 사해 쪽으로 도주하려던 길이다.",
-    "voc": [["fled", "v.", "도망하였다(flee의 과거)"], ["garden", "n.", "동산"], ["betwixt", "prep.", "~사이에(between의 고어)"], ["plain", "n.", "평지, 아라바 평원"]],
-    "idi": [["went forth out of the city by night", "밤에 성을 빠져나가다"], ["by the way of", "~의 길을 따라"]]
-  },
-  {
-    "en": "the Chaldeans' army pursued after them, and overtook Zedekiah in the plains of Jericho",
-    "ko": "갈대아 군대가 그들을 뒤쫓아 여리고 평지에서 시드기야를 따라잡으니",
-    "note": "'갈대아'(Chaldeans, 카스딤 כַּשְׂדִּים)는 바벨론을 세운 민족으로, 성경에서 흔히 바벨론과 동의어로 쓰인다. '립나'(Riblah)는 하맛 땅의 군사 본부로, 느부갓네살이 그곳에서 시드기야를 '신문'(give judgment, 미슈파트)했다 — 곧 반역자를 재판하는 형식을 취하였다.",
-    "voc": [["pursued", "v.", "뒤쫓았다"], ["overtook", "v.", "따라잡았다(overtake의 과거)"], ["plains", "n.", "평지, 평원"]],
-    "idi": [["pursued after", "뒤쫓다, 추격하다"], ["gave judgment upon him", "그를 신문하다, 그에게 판결을 내리다"]]
-  },
-  {
-    "en": "Then the king of Babylon slew the sons of Zedekiah in Riblah before his eyes",
-    "ko": "바벨론 왕이 립나에서 시드기야의 아들들을 그 눈앞에서 죽이고",
-    "note": "잔혹한 정치적 보복이다. 자식들의 처형을 마지막으로 보게 한 뒤 두 눈을 멀게 함으로써, 그 참상이 평생 마지막 기억으로 각인되게 하였다. '죽이다'의 '샤하트'(shachat, שָׁחַט)는 짐승을 잡듯 베어 죽임을 뜻하는 강한 동사다.",
-    "voc": [["slew", "v.", "죽였다(slay의 과거)"], ["nobles", "n.", "귀인들, 존귀한 자들"]],
-    "idi": [["before his eyes", "그 눈앞에서, 그가 보는 데서"]]
-  },
-  {
-    "en": "Moreover he put out Zedekiah's eyes, and bound him with chains, to carry him to Babylon",
-    "ko": "또 시드기야의 두 눈을 빼고 사슬로 결박하여 그를 바벨론으로 끌어가니라",
-    "note": "두 예언이 동시에 성취된다 — 시드기야가 바벨론을 보게 되리라(렘 32:5)는 말씀과, 그가 바벨론을 '보지 못한 채' 죽으리라(겔 12:13)는 말씀이 함께 이루어졌다. 곧 끌려가되 눈이 멀어 그 땅을 보지 못하였다. '사슬'의 히브리어 '네후쉬타임'은 청동 족쇄(쌍수)다.",
-    "voc": [["put out", "phr.", "(눈을) 빼다, 멀게 하다"], ["bound", "v.", "결박하였다(bind의 과거)"], ["chains", "n.", "사슬, 족쇄"]],
-    "idi": [["put out ... eyes", "눈을 빼다, 눈을 멀게 하다"]]
-  },
-  {
-    "en": "And the Chaldeans burned the king's house, and the houses of the people, with fire, and brake down the walls of Jerusalem",
-    "ko": "갈대아 사람들이 왕궁과 백성의 집들을 불사르고 예루살렘 성벽을 헐어 무너뜨리며",
-    "note": "다윗 왕조의 도성이 완전히 파괴되는 장면이다. 왕궁·민가·성벽이 차례로 무너진다. KJV 'brake down'은 'break down'의 고어 과거형. 성벽의 붕괴는 예루살렘이 더는 방어할 수 없는 폐허가 되었음을 상징한다.",
-    "voc": [["burned", "v.", "불살랐다"], ["houses", "n.", "집들"], ["brake down", "phr.", "헐어 무너뜨렸다(break down의 고어 과거)"], ["walls", "n.", "성벽"]],
-    "gra": [["brake down", "break의 고어 과거형 brake — 헐어 무너뜨렸다(현대 broke)"]]
-  },
-  {
-    "en": "Then Nebuzaradan the captain of the guard carried away captive into Babylon the remnant of the people",
-    "ko": "호위대장 느부사라단이 ... 남은 백성을 바벨론으로 사로잡아 가니라",
-    "note": "'호위대장'(captain of the guard)의 히브리어 '랍 타바힘'(rab-tabbachim, רַב־טַבָּחִים)은 문자적으로 '도수장(屠獸長)의 우두머리' — 본래 왕실 요리·도살을 맡던 직책에서 친위대 사령관으로 발전한 칭호다. '사로잡아 가다'는 바벨론 포로기의 시작을 가리킨다.",
-    "voc": [["captain", "n.", "대장, 사령관"], ["guard", "n.", "호위대, 친위대"], ["captive", "adj./n.", "포로된, 사로잡힌"], ["remnant", "n.", "남은 자"], ["fell away", "phr.", "항복하여 넘어간"]],
-    "idi": [["carried away captive", "사로잡아 가다, 포로로 끌고 가다"], ["those that fell away ... to him", "그에게 항복하여 넘어온 자들"]]
-  },
-  {
-    "en": "But Nebuzaradan the captain of the guard left of the poor of the people, which had nothing, in the land of Judah, and gave them vineyards and fields",
-    "ko": "호위대장 느부사라단이 아무것도 가진 것 없는 가난한 백성을 유다 땅에 남겨두고 ... 포도원과 밭을 주니라",
-    "note": "심판 가운데 역설적 자비가 비친다. 잃을 것 없던 '가난한 자'(달림 דַּלִּים)가 도리어 땅을 받는다. 이는 '비천한 자를 높이시는'(삼상 2:8) 여호와의 섭리를 어렴풋이 보여주며, 남은 자를 통한 회복의 씨앗이 된다.",
-    "voc": [["poor", "n.", "가난한 자"], ["vineyards", "n.", "포도원들"], ["fields", "n.", "밭들"]],
-    "idi": [["which had nothing", "아무것도 가진 것 없는"], ["at the same time", "그때에, 그날에"]]
-  },
-  {
-    "en": "Now Nebuchadrezzar king of Babylon gave charge concerning Jeremiah to Nebuzaradan the captain of the guard, saying",
-    "ko": "바벨론 왕 느부갓네살이 예레미야에 관하여 호위대장 느부사라단에게 명하여 이르되",
-    "note": "이방 왕이 한 선지자의 안위를 직접 챙기는 장면이다. 예레미야가 항복을 권한 일(렘 38:17)이 바벨론에 알려졌기 때문으로 보인다. '명하다'(gave charge)의 히브리어 '차바'(tsavah, צָוָה)는 권위 있는 명령·위임을 뜻한다.",
-    "voc": [["charge", "n.", "명령, 위임"], ["concerning", "prep.", "~에 관하여"]],
-    "idi": [["gave charge concerning", "~에 관하여 명하다, 지시를 내리다"]]
-  },
-  {
-    "en": "Take him, and look well to him, and do him no harm; but do unto him even as he shall say unto thee",
-    "ko": "그를 데려다가 잘 보살피고 해를 끼치지 말며, 그가 네게 이르는 대로 그대로 행하라",
-    "note": "선지자에게 베풀어진 보호 명령이다. KJV 'look well to him'은 '그를 잘 살피라'는 뜻으로, 신변을 보살피라는 명령이다. '해를 끼치지 말라'(do no harm)에서 히브리어 '라'(ra, רַע)는 악·재앙을 가리킨다.",
-    "voc": [["harm", "n.", "해, 손상"], ["unto", "prep.", "~에게(to의 고어)"], ["thee", "pron.", "너에게(thou의 목적격)"]],
-    "idi": [["look well to him", "그를 잘 보살피다, 신변을 살피다"], ["do him no harm", "그에게 해를 끼치지 말라"]],
-    "gra": [["even as he shall say", "even as = 꼭 ~하는 대로 / shall은 미래·당위 — 그가 이르는 그대로"]]
-  },
-  {
-    "en": "So Nebuzaradan the captain of the guard sent, and Nebushasban, Rabsaris, and Nergalsharezer, Rabmag, and all the king of Babylon's princes",
-    "ko": "이에 호위대장 느부사라단과 느부사스반과 랍사리스와 네르갈사레셀과 랍막과 바벨론 왕의 모든 고관이 사람을 보내어",
-    "note": "왕명을 받든 고위 관리들이 예레미야 석방을 집행한다. '느부사스반 랍사리스'는 '느부사스반, 곧 랍사리스(내시장)'로, 직책과 이름이 결합된 형태다. 3절에 나온 인물·직책이 다시 등장하여 명령 집행의 무게를 보인다.",
-    "voc": [["sent", "v.", "보냈다(send의 과거)"]],
-    "gra": [["So ... sent", "So(이에)로 시작하여 앞 명령의 결과로 이어지는 서사 — 이에 보내어"]]
-  },
-  {
-    "en": "took Jeremiah out of the court of the prison, and committed him unto Gedaliah the son of Ahikam the son of Shaphan ... so he dwelt among the people",
-    "ko": "예레미야를 옥뜰에서 데려다가 사반의 손자요 아히감의 아들인 그달리야에게 맡겨 ... 백성 가운데 거하였더라",
-    "note": "예레미야가 자유를 얻어 동족 가운데 머문다. '그달리야'는 후에 바벨론이 세운 유다 총독이 된다(렘 40:5). 그의 조부 '사반'과 부친 '아히감'은 일찍이 예레미야를 보호했던 가문(렘 26:24)으로, 신실한 가문의 후대가 선지자를 다시 돌본다.",
-    "voc": [["court", "n.", "뜰, 마당"], ["prison", "n.", "옥, 감옥"], ["committed", "v.", "맡겼다, 위임하였다"], ["dwelt", "v.", "거하였다(dwell의 과거)"]],
-    "idi": [["committed him unto", "그를 ~에게 맡기다"], ["dwelt among the people", "백성 가운데 거하다"]]
-  },
-  {
-    "en": "Now the word of the LORD came unto Jeremiah, while he was shut up in the court of the prison, saying",
-    "ko": "예레미야가 옥뜰에 갇혀 있을 때에 여호와의 말씀이 그에게 임하여 이르시되",
-    "note": "시간적으로 앞 사건(석방) 이전, 곧 예레미야가 아직 갇혀 있던 때에 받은 말씀을 회상하여 덧붙인다(16~18절). '여호와의 말씀이 임하다'(하야 데바르-여호와)는 예언 도입의 정형구다. LORD(대문자)는 신성4문자 YHWH, 곧 여호와이시다.",
-    "voc": [["word", "n.", "말씀"], ["shut up", "phr.", "갇힌, 가둬진"]],
-    "idi": [["the word of the LORD came unto", "여호와의 말씀이 ~에게 임하다"], ["shut up in the court of the prison", "옥뜰에 갇히다"]]
-  },
-  {
-    "en": "Go and speak to Ebedmelech the Ethiopian ... Behold, I will bring my words upon this city for evil, and not for good",
-    "ko": "가서 구스 사람 에벳멜렉에게 말하여 이르라 ... 보라 내가 이 성에 내 말을 화로 임하게 하고 복으로 하지 아니하리라",
-    "note": "'에벳멜렉'(Ebed-melech, עֶבֶד־מֶלֶךְ)은 '왕의 종'이라는 뜻의 구스(에티오피아) 사람 환관으로, 일찍이 예레미야를 진흙 구덩이에서 건져낸 인물이다(렘 38:7~13). KJV 'Ethiopian'의 히브리어 원어는 '쿠시'(Cushi, 구스 사람). '내 말을 임하게 하다'는 선포한 심판이 반드시 이루어짐을 가리킨다.",
-    "voc": [["Ethiopian", "n.", "구스 사람, 에티오피아 사람"], ["behold", "interj.", "보라"], ["accomplished", "v.", "이루어진, 성취된"], ["evil", "n.", "화, 재앙"]],
-    "idi": [["for evil, and not for good", "복이 아니라 화로"], ["in that day before thee", "그날에 네 목전에서"]]
-  },
-  {
-    "en": "But I will deliver thee in that day, saith the LORD: and thou shalt not be given into the hand of the men of whom thou art afraid",
-    "ko": "그러나 그날에 내가 너를 건지리니, 네가 두려워하는 자들의 손에 넘겨지지 아니하리라 여호와의 말이니라",
-    "note": "심판의 날에도 한 의인을 향한 구원의 약속이 빛난다. '건지다'(deliver)의 히브리어 '나찰'(natsal, נָצַל)은 위험에서 '낚아채어 빼내다'를 뜻한다. 성 전체가 화를 당하나, 여호와를 신뢰한 이방인 종은 보존된다.",
-    "voc": [["deliver", "v.", "건지다, 구원하다"], ["given", "v.", "넘겨진, 주어진"], ["afraid", "adj.", "두려워하는"]],
-    "idi": [["into the hand of", "~의 손에"], ["of whom thou art afraid", "네가 두려워하는 (자들)"]],
-    "gra": [["thou shalt not be given", "shalt not + 수동태 — 너는 넘겨지지 아니하리라(강한 부정의 약속)"]]
-  },
-  {
-    "en": "For I will surely deliver thee ... but thy life shall be for a prey unto thee: because thou hast put thy trust in me, saith the LORD",
-    "ko": "내가 반드시 너를 건지리니 ... 네 생명을 노략물 같이 얻으리라 이는 네가 나를 신뢰하였음이라 여호와의 말이니라",
-    "note": "구원의 근거가 명시된다 — '나를 신뢰하였음이라'(바타흐 baṭach, בָּטַח, 의지·신뢰). KJV 'thy life shall be for a prey'는 전쟁의 약탈 가운데서도 제 목숨만은 전리품처럼 건져낸다는 관용 표현으로, 간신히 살아남음을 뜻한다. 믿음으로 구원받는 원리가 한 환관의 이야기 속에 새겨져 장을 맺는다.",
-    "voc": [["surely", "adv.", "반드시, 분명히"], ["prey", "n.", "노략물, 전리품"], ["trust", "n.", "신뢰, 의지"]],
-    "idi": [["thy life shall be for a prey unto thee", "네 생명을 노략물같이 얻으리라 — 간신히 목숨을 건지다"], ["put thy trust in", "~을 신뢰하다, ~에 의지하다"]],
-    "gra": [["I will surely deliver", "will + surely로 약속의 확실성을 강조 — 내가 반드시 건지리라"]]
-  }
+ {
+  "en": "In the ninth year of Zedekiah king of Judah, in the tenth month, came Nebuchadrezzar king of Babylon and all his army against Jerusalem, and they besieged it.",
+  "ko": "유다 왕 시드기야 제구년 열째 달에 바벨론 왕 느부갓네살이 그 온 군대를 거느리고 예루살렘으로 올라와 그 성을 에워쌌더라.",
+  "note": "예레미야의 오랜 예언이 마침내 성취된다. 느부갓네살의 예루살렘 포위(주전 588년)는 유다 심판의 시작이다. 하나님이 경고하신 '북방의 재앙'(1:14)이 역사 속에 임하는 순간으로, 말씀의 신실을 증언한다.",
+  "voc": [
+   [
+    "ninth",
+    "adj.",
+    "아홉째의"
+   ],
+   [
+    "army",
+    "n.",
+    "군대"
+   ],
+   [
+    "besieged",
+    "v.",
+    "에워쌌다, 포위하였다"
+   ]
+  ],
+  "gra": [
+   [
+    "came Nebuchadrezzar",
+    "주어-동사 도치로 사건을 부각하는 고어 어순 — 느부갓네살이 올라왔다"
+   ]
+  ]
+ },
+ {
+  "en": "And in the eleventh year of Zedekiah, in the fourth month, the ninth day of the month, the city was broken up.",
+  "ko": "시드기야 제십일년 넷째 달 그 달 구일에 성이 함락되니라.",
+  "note": "'성이 함락되니라'는 짧은 문장이 유다의 종말을 선언한다. 약 십팔 개월의 포위 끝에 예루살렘이 무너짐은, 하나님의 심판이 지체되어도 반드시 이루어짐을 보인다. 언약 백성의 죄에 대한 공의의 성취이다.",
+  "voc": [
+   [
+    "eleventh",
+    "adj.",
+    "열한째의"
+   ],
+   [
+    "fourth",
+    "adj.",
+    "넷째의"
+   ],
+   [
+    "broken up",
+    "phr.v.",
+    "함락되다, 뚫리다"
+   ]
+  ],
+  "gra": [
+   [
+    "the city was broken up",
+    "'be broken up'은 '함락되다'를 뜻하는 수동 표현"
+   ]
+  ]
+ },
+ {
+  "en": "And all the princes of the king of Babylon came in, and sat in the middle gate, even Nergalsharezer, Samgarnebo, Sarsechim, Rabsaris, Nergalsharezer, Rabmag, with all the residue of the princes of the king of Babylon.",
+  "ko": "바벨론 왕의 모든 고관이 들어와 가운데 문에 앉았으니, 곧 네르갈사레셀과 삼갈느보와 살스김과 랍사리스와 네르갈사레셀과 랍막이며 바벨론 왕의 남은 모든 고관이더라.",
+  "note": "바벨론 고관들이 '가운데 문에 앉음'은 정복자가 성문에서 재판권을 행사함을 뜻하며, 1장 15절의 예언 성취이다. 이방 관리들의 이름이 나열됨은 심판의 역사적 구체성을 드러낸다.",
+  "voc": [
+   [
+    "princes",
+    "n.",
+    "고관들"
+   ],
+   [
+    "sat",
+    "v.",
+    "앉았다"
+   ],
+   [
+    "gate",
+    "n.",
+    "문"
+   ],
+   [
+    "residue",
+    "n.",
+    "남은 자, 나머지"
+   ]
+  ],
+  "gra": [
+   [
+    "with all the residue",
+    "'residue'는 '남은 것'을 뜻하는 고어 명사"
+   ]
+  ]
+ },
+ {
+  "en": "And it came to pass, that when Zedekiah the king of Judah saw them, and all the men of war, then they fled, and went forth out of the city by night, by the way of the king’s garden, by the gate betwixt the two walls: and he went out the way of the plain.",
+  "ko": "유다 왕 시드기야와 모든 군사가 그들을 보고 도망하여 밤에 왕의 동산 길을 따라 두 성벽 사이의 문으로 성을 빠져나가 아라바 길로 나아가더라.",
+  "note": "시드기야의 야반도주는 하나님의 심판을 피하려는 인간적 몸부림이다. 항복하면 살리라던 예레미야의 권고(38:17)를 거부한 결과, 왕은 도망자의 처지로 전락한다. 불순종의 비참한 열매이다.",
+  "voc": [
+   [
+    "fled",
+    "v.",
+    "도망하였다 (flee의 과거)"
+   ],
+   [
+    "garden",
+    "n.",
+    "동산"
+   ],
+   [
+    "betwixt",
+    "prep.",
+    "사이에 (between 고어)"
+   ],
+   [
+    "plain",
+    "n.",
+    "평지, 아라바"
+   ]
+  ],
+  "gra": [
+   [
+    "the king’s garden",
+    "king’s에 곡선 아포스트로피, 소유격 — 왕의 동산"
+   ]
+  ]
+ },
+ {
+  "en": "But the Chaldeans’ army pursued after them, and overtook Zedekiah in the plains of Jericho: and when they had taken him, they brought him up to Nebuchadnezzar king of Babylon to Riblah in the land of Hamath, where he gave judgment upon him.",
+  "ko": "갈대아 군대가 그들을 뒤쫓아 여리고 평지에서 시드기야를 따라잡아 사로잡아, 그를 하맛 땅 립나에 있는 바벨론 왕 느부갓네살에게로 끌고 가매 그가 그를 신문하니라.",
+  "note": "'여리고 평지에서 따라잡혔다'는 도주의 실패를 보인다. '립나'에서의 신문(미쉬파트)은 심판의 자리를 뜻한다. 하나님의 손을 벗어날 수 없는 시드기야의 운명은, 심판의 불가피성을 확증한다.",
+  "voc": [
+   [
+    "pursued",
+    "v.",
+    "뒤쫓았다"
+   ],
+   [
+    "overtook",
+    "v.",
+    "따라잡았다"
+   ],
+   [
+    "taken",
+    "v.",
+    "사로잡았다"
+   ],
+   [
+    "judgment",
+    "n.",
+    "신문, 재판"
+   ]
+  ],
+  "gra": [
+   [
+    "the Chaldeans’ army",
+    "Chaldeans’에 곡선 아포스트로피, 복수 소유격 — 갈대아 군대"
+   ]
+  ]
+ },
+ {
+  "en": "Then the king of Babylon slew the sons of Zedekiah in Riblah before his eyes: also the king of Babylon slew all the nobles of Judah.",
+  "ko": "바벨론 왕이 립나에서 시드기야의 아들들을 그 눈앞에서 죽이고, 바벨론 왕이 또 유다의 모든 귀인을 죽이며,",
+  "note": "시드기야가 겪은 참혹한 형벌이다. '아들들을 그 눈앞에서 죽임'은 그가 마지막으로 본 광경이 되게 하려는 잔혹한 처사이다. 왕의 불순종이 온 왕가와 귀인에게 재앙을 불러온 비극을 보인다.",
+  "voc": [
+   [
+    "slew",
+    "v.",
+    "죽였다 (slay의 과거)"
+   ],
+   [
+    "sons",
+    "n.",
+    "아들들"
+   ],
+   [
+    "eyes",
+    "n.",
+    "눈"
+   ],
+   [
+    "nobles",
+    "n.",
+    "귀인들"
+   ]
+  ],
+  "gra": [
+   [
+    "before his eyes",
+    "'그 눈앞에서'를 뜻하는 고어 관용 표현"
+   ]
+  ]
+ },
+ {
+  "en": "Moreover he put out Zedekiah’s eyes, and bound him with chains, to carry him to Babylon.",
+  "ko": "시드기야의 두 눈을 빼고 사슬로 결박하여 그를 바벨론으로 끌어가니라.",
+  "note": "'두 눈을 빼고 사슬로 결박함'은 에스겔의 역설적 예언(겔 12:13)의 성취이다. 시드기야는 바벨론을 보되 보지 못한 채 끌려간다. 마지막으로 본 것이 아들들의 죽음이었다는 사실이 형벌을 더 참혹하게 한다.",
+  "voc": [
+   [
+    "put out",
+    "phr.v.",
+    "빼다, 뽑다"
+   ],
+   [
+    "bound",
+    "v.",
+    "결박하였다"
+   ],
+   [
+    "chains",
+    "n.",
+    "사슬"
+   ],
+   [
+    "carry",
+    "v.",
+    "끌어가다"
+   ]
+  ],
+  "gra": [
+   [
+    "Zedekiah’s eyes",
+    "Zedekiah’s에 곡선 아포스트로피, 소유격 — 시드기야의 눈"
+   ]
+  ]
+ },
+ {
+  "en": "And the Chaldeans burned the king’s house, and the houses of the people, with fire, and brake down the walls of Jerusalem.",
+  "ko": "갈대아 사람들이 왕궁과 백성의 집들을 불사르고 예루살렘 성벽을 헐어 무너뜨리며,",
+  "note": "'왕궁과 집들을 불사르고 성벽을 헐었다'는 예루살렘의 완전한 파괴를 그린다. 하나님이 21장 10절에서 예고하신 심판이 문자 그대로 성취된다. 성전 도시의 몰락은 죄의 대가가 얼마나 철저한지를 보인다.",
+  "voc": [
+   [
+    "burned",
+    "v.",
+    "불살랐다"
+   ],
+   [
+    "houses",
+    "n.",
+    "집들"
+   ],
+   [
+    "brake down",
+    "phr.v.",
+    "헐어 무너뜨렸다"
+   ],
+   [
+    "walls",
+    "n.",
+    "성벽"
+   ]
+  ],
+  "gra": [
+   [
+    "the king’s house",
+    "king’s에 곡선 아포스트로피, 소유격 — 왕궁"
+   ]
+  ]
+ },
+ {
+  "en": "Then Nebuzaradan the captain of the guard carried away captive into Babylon the remnant of the people that remained in the city, and those that fell away, that fell to him, with the rest of the people that remained.",
+  "ko": "호위대장 느부사라단이 성에 남아 있던 백성의 남은 자와 자기에게 항복하여 넘어온 자와 그 외의 남은 백성을 바벨론으로 사로잡아 가니라.",
+  "note": "'호위대장 느부사라단'이 백성을 포로로 끌어간다. 남은 자와 항복한 자를 함께 데려감은 대규모 유배의 시작이다. 예레미야가 그토록 경고했던 바벨론 포로가 이제 현실이 된다.",
+  "voc": [
+   [
+    "captain",
+    "n.",
+    "대장, 지휘관"
+   ],
+   [
+    "guard",
+    "n.",
+    "호위대"
+   ],
+   [
+    "remnant",
+    "n.",
+    "남은 자"
+   ],
+   [
+    "fell away",
+    "phr.v.",
+    "항복하였다, 넘어갔다"
+   ]
+  ],
+  "gra": [
+   [
+    "those that fell away",
+    "'those that'은 '~한 자들'을 뜻하는 고어 관계 표현"
+   ]
+  ]
+ },
+ {
+  "en": "But Nebuzaradan the captain of the guard left of the poor of the people, which had nothing, in the land of Judah, and gave them vineyards and fields at the same time.",
+  "ko": "호위대장 느부사라단이 아무것도 가진 것 없는 가난한 백성을 유다 땅에 남겨두고, 그날에 그들에게 포도원과 밭을 주니라.",
+  "note": "심판 가운데 은혜의 흔적이 나타난다. 아무것도 없던 가난한 자들에게 포도원과 밭이 주어짐은, 하나님이 남은 자를 통해 회복의 씨를 남기심을 암시한다. 심판의 어둠 속에도 자비가 있다.",
+  "voc": [
+   [
+    "left",
+    "v.",
+    "남겨두었다"
+   ],
+   [
+    "poor",
+    "n.",
+    "가난한 자"
+   ],
+   [
+    "vineyards",
+    "n.",
+    "포도원들"
+   ],
+   [
+    "fields",
+    "n.",
+    "밭들"
+   ]
+  ],
+  "gra": [
+   [
+    "which had nothing",
+    "관계대명사 which가 poor를 받는 관계절 — 아무것도 없던"
+   ]
+  ]
+ },
+ {
+  "en": "Now Nebuchadrezzar king of Babylon gave charge concerning Jeremiah to Nebuzaradan the captain of the guard, saying,",
+  "ko": "바벨론 왕 느부갓네살이 예레미야에 관하여 호위대장 느부사라단에게 명하여 이르되,",
+  "note": "느부갓네살이 예레미야를 특별히 보호하도록 명한다. 바벨론에 항복을 권한 선지자의 예언이 이방 왕에게까지 알려진 결과이다. 하나님은 자기 종을 원수의 손을 통해서도 지키신다.",
+  "voc": [
+   [
+    "gave charge",
+    "phr.",
+    "명하였다, 당부하였다"
+   ],
+   [
+    "concerning",
+    "prep.",
+    "~에 관하여"
+   ],
+   [
+    "captain",
+    "n.",
+    "대장"
+   ]
+  ],
+  "gra": [
+   [
+    "gave charge concerning Jeremiah",
+    "'give charge'는 '명하다, 당부하다'를 뜻하는 고어 표현"
+   ]
+  ]
+ },
+ {
+  "en": "Take him, and look well to him, and do him no harm; but do unto him even as he shall say unto thee.",
+  "ko": "그를 데려다가 잘 보살피고 해를 끼치지 말며, 그가 네게 이르는 대로 그대로 행하라 하였더라.",
+  "note": "'잘 보살피고 해를 끼치지 말라'는 명령은 예레미야를 향한 하나님의 보호가 구체적임을 보인다. '그가 이르는 대로 행하라'는 자유의 보장은, 참 선지자가 심판 중에도 존귀히 여김을 받음을 나타낸다.",
+  "voc": [
+   [
+    "look well",
+    "phr.",
+    "잘 보살피다"
+   ],
+   [
+    "harm",
+    "n.",
+    "해, 해악"
+   ],
+   [
+    "say",
+    "v.",
+    "이르다, 말하다"
+   ]
+  ],
+  "gra": [
+   [
+    "do him no harm",
+    "'do+간접목적어+no+명사'로 부정을 나타내는 고어 어순 — 해를 끼치지 말라"
+   ]
+  ]
+ },
+ {
+  "en": "So Nebuzaradan the captain of the guard sent, and Nebushasban, Rabsaris, and Nergalsharezer, Rabmag, and all the king of Babylon’s princes;",
+  "ko": "이에 호위대장 느부사라단과 느부사스반과 랍사리스와 네르갈사레셀과 랍막과 바벨론 왕의 모든 고관이 사람을 보내어,",
+  "note": "고관들이 사람을 보내 명령을 이행한다. 앞서 예레미야를 옥에 가두었던 세력과 대조적으로, 이제 이방의 권세자들이 그를 존중한다. 하나님의 종이 겪는 반전은 그분의 신실을 증언한다.",
+  "voc": [
+   [
+    "sent",
+    "v.",
+    "보냈다"
+   ],
+   [
+    "princes",
+    "n.",
+    "고관들"
+   ]
+  ],
+  "gra": [
+   [
+    "the king of Babylon’s princes",
+    "Babylon’s에 곡선 아포스트로피, 소유격 — 바벨론 왕의 고관들"
+   ]
+  ]
+ },
+ {
+  "en": "Even they sent, and took Jeremiah out of the court of the prison, and committed him unto Gedaliah the son of Ahikam the son of Shaphan, that he should carry him home: so he dwelt among the people.",
+  "ko": "사람을 보내어 예레미야를 옥뜰에서 데려다가 사반의 손자요 아히감의 아들인 그달리야에게 맡겨 그를 집으로 데려가게 하니, 이에 그가 백성 가운데 거하였더라.",
+  "note": "예레미야가 옥뜰에서 풀려나 '그달리야'에게 맡겨진다. 그달리야는 예레미야에게 우호적인 사반 가문의 인물로, 훗날 총독이 된다. '백성 가운데 거하였다'는 것은 선지자가 자유롭게 동족과 함께함을 보인다.",
+  "voc": [
+   [
+    "court",
+    "n.",
+    "뜰"
+   ],
+   [
+    "prison",
+    "n.",
+    "옥, 감옥"
+   ],
+   [
+    "committed",
+    "v.",
+    "맡겼다"
+   ],
+   [
+    "dwelt",
+    "v.",
+    "거하였다"
+   ]
+  ],
+  "gra": [
+   [
+    "that he should carry him home",
+    "'should'로 목적을 나타내는 고어 어법 — 집으로 데려가게"
+   ]
+  ]
+ },
+ {
+  "en": "Now the word of the LORD came unto Jeremiah, while he was shut up in the court of the prison, saying,",
+  "ko": "예레미야가 옥뜰에 갇혀 있을 때에 여호와의 말씀이 그에게 임하여 이르시되,",
+  "note": "시간을 거슬러, 예레미야가 아직 옥뜰에 갇혀 있던 때의 말씀이 소개된다. 이는 구스 사람 에벳멜렉을 향한 축복의 배경이다. 심판의 기록 가운데 한 의인을 향한 하나님의 기억이 삽입된다.",
+  "voc": [
+   [
+    "word",
+    "n.",
+    "말씀"
+   ],
+   [
+    "shut up",
+    "phr.v.",
+    "갇힌"
+   ],
+   [
+    "prison",
+    "n.",
+    "옥"
+   ],
+   [
+    "saying",
+    "v.",
+    "이르시되"
+   ]
+  ],
+  "gra": [
+   [
+    "while he was shut up",
+    "'be shut up'은 '갇히다'를 뜻하는 수동 표현"
+   ]
+  ]
+ },
+ {
+  "en": "Go and speak to Ebedmelech the Ethiopian, saying, Thus saith the LORD of hosts, the God of Israel; Behold, I will bring my words upon this city for evil, and not for good; and they shall be accomplished in that day before thee.",
+  "ko": "가서 구스 사람 에벳멜렉에게 말하여 이르라. 만군의 여호와 이스라엘의 하나님이 이같이 말하노라. 보라, 내가 이 성에 내 말을 화로 임하게 하고 복으로 하지 아니하리니, 그날에 그 일이 네 목전에 이루어지리라.",
+  "note": "'구스 사람 에벳멜렉'은 예레미야를 구덩이에서 건진 이방인 환관이다(38장). 그에게 심판의 성취를 알리시되, 이어 그를 향한 구원을 예고하신다. 하나님은 의를 행한 이방인을 잊지 않으신다.",
+  "voc": [
+   [
+    "Ethiopian",
+    "n.",
+    "구스 사람, 에티오피아 사람"
+   ],
+   [
+    "bring",
+    "v.",
+    "임하게 하다"
+   ],
+   [
+    "evil",
+    "n.",
+    "화, 재앙"
+   ],
+   [
+    "accomplished",
+    "v.",
+    "이루어지다"
+   ]
+  ],
+  "gra": [
+   [
+    "for evil, and not for good",
+    "'for'는 '~을 위하여/향하여'를 뜻하는 고어 전치사"
+   ]
+  ]
+ },
+ {
+  "en": "But I will deliver thee in that day, saith the LORD: and thou shalt not be given into the hand of the men of whom thou art afraid.",
+  "ko": "그러나 그날에 내가 너를 건지리니, 네가 두려워하는 자들의 손에 넘겨지지 아니하리라. 여호와의 말이니라.",
+  "note": "'그날에 내가 너를 건지리라'는 심판 중의 구원 약속이다. '두려워하는 자들의 손에 넘겨지지 아니하리라'는 것은, 하나님을 의뢰한 자가 재앙 가운데서도 보호받음을 보인다. 개인적 신실에 대한 갚음이다.",
+  "voc": [
+   [
+    "deliver",
+    "v.",
+    "건지다, 구원하다"
+   ],
+   [
+    "given",
+    "v.",
+    "넘겨지다"
+   ],
+   [
+    "afraid",
+    "adj.",
+    "두려워하는"
+   ]
+  ],
+  "gra": [
+   [
+    "the men of whom thou art afraid",
+    "'of whom'은 선행사를 받는 전치사+관계대명사 — 네가 두려워하는 자들"
+   ]
+  ]
+ },
+ {
+  "en": "For I will surely deliver thee, and thou shalt not fall by the sword, but thy life shall be for a prey unto thee: because thou hast put thy trust in me, saith the LORD.",
+  "ko": "내가 반드시 너를 건지리니, 네가 칼에 엎드러지지 아니하고 네 생명을 노략물 같이 얻으리라. 이는 네가 나를 신뢰하였음이라. 여호와의 말이니라.",
+  "note": "'네 생명을 노략물 같이 얻으리라'는 전쟁터에서 목숨만 겨우 건지는 자의 이미지이다. 구원의 근거는 '네가 나를 신뢰하였음이라'로, 믿음이 구원의 통로임을 밝힌다. 심판의 기록을 은혜의 약속으로 맺는다.",
+  "voc": [
+   [
+    "surely",
+    "adv.",
+    "반드시"
+   ],
+   [
+    "fall",
+    "v.",
+    "엎드러지다"
+   ],
+   [
+    "prey",
+    "n.",
+    "노략물, 먹이"
+   ],
+   [
+    "trust",
+    "n.",
+    "신뢰"
+   ]
+  ],
+  "idi": [
+   [
+    "put thy trust in me",
+    "나를 신뢰하다, 내게 의뢰하다"
+   ]
+  ],
+  "gra": [
+   [
+    "thy life shall be for a prey",
+    "'for a prey'는 '노략물 같이'를 뜻하는 고어 관용 표현"
+   ]
+  ]
+ }
 ]

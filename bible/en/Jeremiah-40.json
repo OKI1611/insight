@@ -1,115 +1,515 @@
 [
-  {
-    "en": "after that Nebuzaradan the captain of the guard had let him go from Ramah",
-    "ko": "느부사라단 시위대장이 그를 라마에서 풀어준 후에",
-    "note": "'시위대장'의 히브리어 '랍-타바힘'(rav-tabbachim, רַב־טַבָּחִים)은 본래 '요리장의 우두머리'에서 온 표현으로 왕의 친위 호위대장을 가리킨다. '느부사라단'(Nebuzaradan)은 '느보가 후손을 주셨다'는 뜻의 바벨론 이름. '라마'(Ramah, רָמָה)는 '높은 곳'이라는 뜻으로 포로들을 집결시킨 곳이었다.",
-    "voc": [["captain", "n.", "대장, 장관"], ["guard", "n.", "호위대, 시위대"], ["let go", "phr.", "풀어주다, 놓아주다"], ["bound", "v.", "결박된, bind의 과거분사"], ["chains", "n.", "쇠사슬"]],
-    "idi": [["let him go", "그를 풀어주다, 놓아 보내다"]],
-    "gra": [["after that ... had let him go", "과거완료(had let) — 더 앞선 시점에 풀어준 일을 가리킴"]]
-  },
-  {
-    "en": "The LORD thy God hath pronounced this evil upon this place",
-    "ko": "여호와 네 하나님께서 이곳에 이 재앙을 선언하셨고",
-    "note": "이방인 시위대장이 '여호와 네 하나님'(YHWH, 여호와)을 입에 올려 유다의 멸망이 우상 마르둑이 아니라 여호와의 작정임을 인정하는 장면이다. '재앙'의 히브리어 '라아'(ra'ah, רָעָה)는 도덕적 악과 그 결과인 재난을 함께 가리킨다.",
-    "voc": [["pronounced", "v.", "선언하였다, 선고하였다"], ["evil", "n.", "재앙, 화"], ["place", "n.", "곳, 장소"], ["thy", "pron.", "너의(고어)"]],
-    "gra": [["hath pronounced", "현재완료(hath = has) — 선언하신 일이 이제 성취됨"]]
-  },
-  {
-    "en": "because ye have sinned against the LORD, and have not obeyed his voice",
-    "ko": "이는 너희가 여호와께 범죄하여 그 음성에 순종하지 아니하였음이라",
-    "note": "선지자가 줄곧 외친 멸망의 원인을 이방인 장관이 그대로 되풀이한다. '순종하다'의 히브리어 '샤마'(shama, שָׁמַע)는 '듣다'이자 '듣고 따르다'로, 단순한 청취가 아니라 순복을 뜻한다. 여호와의 '음성'(콜, qol)에 대한 불순종이 곧 죄로 규정된다.",
-    "voc": [["sinned", "v.", "범죄하였다"], ["obeyed", "v.", "순종하였다"], ["voice", "n.", "음성, 소리"], ["ye", "pron.", "너희(고어 복수 주격)"]],
-    "idi": [["this thing is come upon you", "이 일이 너희에게 임하였다"]]
-  },
-  {
-    "en": "behold, I loose thee this day from the chains which were upon thine hand",
-    "ko": "보라, 내가 오늘 네 손에 채워진 쇠사슬에서 너를 풀어주노니",
-    "note": "'풀어주다'(루즈)는 결박을 끄른다는 뜻으로, 예레미야가 동족이 아니라 적국 장관에 의해 자유를 얻는 역설을 보여준다. '보라'(힌네, hinneh, הִנֵּה)는 주의를 환기하는 선포의 감탄사다. KJV 'forbear'는 '그만두라, 삼가라'는 고어.",
-    "voc": [["loose", "v.", "풀다, 끄르다"], ["chains", "n.", "쇠사슬"], ["thine", "pron.", "너의(모음 앞 고어)"], ["forbear", "v.", "그만두다, 삼가다"], ["convenient", "adj.", "합당한, 알맞은"]],
-    "idi": [["if it seem good unto thee", "네가 보기에 좋거든"], ["all the land is before thee", "온 땅이 네 앞에 있다 — 어디든 갈 자유가 있음"]],
-    "gra": [["I loose thee this day", "현재형으로 즉각적 행위를 선언 — 내가 오늘 너를 풀어주노라"]]
-  },
-  {
-    "en": "go back also to Gedaliah the son of Ahikam the son of Shaphan",
-    "ko": "사반의 손자요 아히감의 아들인 그달리야에게로 돌아가라",
-    "note": "'그달리야'(Gedaliah, גְּדַלְיָהוּ)는 '여호와는 위대하시다'라는 뜻. 그의 조부 '사반'은 요시야 시대 율법책을 발견한 서기관이며(왕하 22장), 부친 '아히감'은 예레미야를 죽음에서 보호한 인물(렘 26:24)로, 선지자에게 우호적인 가문이었다.",
-    "voc": [["governor", "n.", "총독, 다스리는 자"], ["cities", "n.", "성읍들"], ["dwell", "v.", "거하다, 살다"], ["victuals", "n.", "양식, 먹을 것"], ["reward", "n.", "예물, 선물"]],
-    "idi": [["go wheresoever it seemeth convenient", "합당해 보이는 곳 어디로든 가라"]],
-    "gra": [["hath made governor", "현재완료 — 총독으로 세우신 일이 지속됨"]]
-  },
-  {
-    "en": "Then went Jeremiah unto Gedaliah ... and dwelt with him among the people",
-    "ko": "이에 예레미야가 그달리야에게로 가서 백성 가운데서 그와 함께 거하니라",
-    "note": "예레미야는 바벨론의 안락 대신 폐허가 된 고국에 남아 남은 백성과 함께하기를 택한다. '미스바'(Mizpah, מִצְפָּה)는 '망대, 파수처'라는 뜻으로, 예루살렘 함락 후 행정 중심지가 되었다. 선지자의 선택은 끝까지 백성과 함께하려는 목자적 사랑을 드러낸다.",
-    "voc": [["went", "v.", "갔다, go의 과거"], ["dwelt", "v.", "거하였다, dwell의 과거"], ["among", "prep.", "~가운데"], ["left", "v.", "남겨진, leave의 과거분사"]],
-    "gra": [["Then went Jeremiah", "도치 구문(동사+주어) — 고어체 강조, '이에 예레미야가 가니라'"]]
-  },
-  {
-    "en": "when all the captains of the forces which were in the fields ... heard",
-    "ko": "들에 있던 군대의 모든 지휘관이 들었을 때에",
-    "note": "예루살렘 함락 때 항복하지 않고 들과 산지로 흩어진 유다 군 잔여 세력을 가리킨다. '들'(사데, sadeh)은 성읍 밖 개활지로, 이들은 게릴라처럼 활동하던 지휘관들이었다. KJV 'forces'는 군대·병력을 뜻한다.",
-    "voc": [["captains", "n.", "지휘관들, 우두머리들"], ["forces", "n.", "군대, 병력"], ["fields", "n.", "들, 들판"], ["committed", "v.", "맡겼다, 위탁하였다"], ["poor", "n.", "빈천한 자, 가난한 자"]],
-    "idi": [["of the poor of the land", "그 땅의 빈천한 자들 가운데서"]]
-  },
-  {
-    "en": "even Ishmael the son of Nethaniah, and Johanan ... the sons of Kareah",
-    "ko": "곧 느다냐의 아들 이스마엘과 가레아의 아들들인 요하난",
-    "note": "뒤에 그달리야를 살해할 '이스마엘'(Ishmael, '하나님이 들으신다')과 그를 막으려 애쓰는 '요하난'(Johanan, '여호와는 은혜로우시다')이 한 명단에 함께 등장하여 다가올 비극의 긴장을 예고한다. 이들은 본래 한 진영의 지휘관들이었다.",
-    "voc": [["sons", "n.", "아들들"], ["men", "n.", "부하들, 사람들"], ["Netophathite", "n.", "느도바 사람"], ["Maachathite", "n.", "마아가 사람"]]
-  },
-  {
-    "en": "Fear not to serve the Chaldeans: dwell in the land, and serve the king of Babylon",
-    "ko": "갈대아 사람 섬기기를 두려워하지 말고 이 땅에 거하여 바벨론 왕을 섬기라",
-    "note": "'갈대아 사람'(Chaldeans, 카스딤)은 바벨론 제국의 핵심 종족으로 '바벨론 사람'과 사실상 같은 말이다. 그달리야의 권면은 예레미야가 선포해 온 '바벨론에 항복하여 살라'(렘 27:11)는 메시지와 일치한다. '맹세하여'(샤바)는 신뢰를 다지는 엄숙한 보증이었다.",
-    "voc": [["sware", "v.", "맹세하였다, swear의 고어 과거"], ["serve", "v.", "섬기다"], ["Chaldeans", "n.", "갈대아 사람"], ["dwell", "v.", "거하다"]],
-    "idi": [["fear not", "두려워하지 말라"], ["it shall be well with you", "너희가 평안하리라, 잘 되리라"]]
-  },
-  {
-    "en": "gather ye wine, and summer fruits, and oil, and put them in your vessels",
-    "ko": "너희는 포도주와 여름 실과와 기름을 거두어 너희 그릇에 담으라",
-    "note": "'여름 실과'(카이츠, qayits)는 무화과·포도 등 한여름에 거두는 소산이다. 포도주·실과·기름은 가나안 땅의 풍요를 상징하는 대표 산물로, 폐허 가운데서도 일상의 회복과 정착을 권하는 평화의 청사진이다. '그릇'(켈리)은 저장 용기를 가리킨다.",
-    "voc": [["gather", "v.", "거두다, 모으다"], ["wine", "n.", "포도주"], ["summer fruits", "n.", "여름 실과"], ["oil", "n.", "기름"], ["vessels", "n.", "그릇, 용기"]],
-    "idi": [["As for me", "나로 말하면, 내 경우는"]]
-  },
-  {
-    "en": "the king of Babylon had left a remnant of Judah",
-    "ko": "바벨론 왕이 유다에 남은 자를 남겨두었더라",
-    "note": "'남은 자'(she'erith, שְׁאֵרִית)는 심판 가운데 보존된 무리를 가리키는 성경의 핵심 개념이다. 흩어졌던 유다 사람들이 그달리야 아래 모이는 모습은 회복의 소망을 보여준다. 모압·암몬·에돔은 유다 동편의 이웃 민족들로 피난처가 되었다.",
-    "voc": [["remnant", "n.", "남은 자, 잔존자"], ["countries", "n.", "지방들, 나라들"], ["Moab", "n.", "모압"], ["Ammonites", "n.", "암몬 자손"], ["Edom", "n.", "에돔"]],
-    "gra": [["had left a remnant", "과거완료 — 이미 남겨 두신 일을 보고함"]]
-  },
-  {
-    "en": "all the Jews returned out of all places whither they were driven",
-    "ko": "모든 유다 사람이 쫓겨났던 모든 곳에서 돌아왔더라",
-    "note": "'쫓겨나다'(나다흐, nadach)는 흩어져 내쫓김을 뜻하며, 그 돌아옴은 작은 귀환의 그림이다. '심히 많이'(하르베 메오드)는 풍성한 수확을 강조하는 표현으로, 그달리야 치하의 짧은 안정과 번영을 부각한다.",
-    "voc": [["returned", "v.", "돌아왔다"], ["whither", "adv.", "~한 곳으로(고어)"], ["driven", "v.", "쫓겨난, drive의 과거분사"], ["very much", "phr.", "심히 많이"]],
-    "gra": [["whither they were driven", "관계부사 whither + 수동태 — 그들이 쫓겨났던 (곳)"]]
-  },
-  {
-    "en": "Moreover Johanan the son of Kareah ... came to Gedaliah to Mizpah",
-    "ko": "또 가레아의 아들 요하난이 미스바로 그달리야에게 나아왔더라",
-    "note": "'요하난'(Johanan)이 동료 지휘관들과 함께 그달리야를 찾아와 위험을 경고하는 장면으로, 음모를 드러내려는 충정이 나타난다. '나아오다'(보)는 공식적으로 찾아옴을 뜻한다. 'Moreover'는 새 단락을 여는 연결어다.",
-    "voc": [["moreover", "adv.", "또한, 게다가"], ["captains", "n.", "지휘관들"], ["forces", "n.", "군대"], ["came", "v.", "왔다, come의 과거"]]
-  },
-  {
-    "en": "Dost thou certainly know that Baalis the king of the Ammonites hath sent Ishmael ... to slay thee?",
-    "ko": "암몬 자손의 왕 바알리스가 이스마엘을 보내어 당신을 죽이려 하는 줄을 분명히 아나이까",
-    "note": "'바알리스'(Baalis)는 암몬 왕으로, 유다의 재건을 방해하려 암살을 사주한 배후다. '분명히 아느냐'의 KJV 'certainly know'는 히브리어 부정사 강조 구문(야도아 테다)을 옮긴 것으로 '정녕 아느냐'의 강세를 담는다. '죽이다'(나카, nakah)는 치명적 타격을 가리킨다.",
-    "voc": [["dost", "v.", "do의 고어 2인칭"], ["certainly", "adv.", "분명히, 정녕"], ["sent", "v.", "보냈다"], ["slay", "v.", "죽이다, 살해하다"], ["believed", "v.", "믿었다"]],
-    "gra": [["Dost thou certainly know", "고어 의문문(Dost thou = Do you) — 네가 정녕 아느냐"]]
-  },
-  {
-    "en": "Let me go, I pray thee, and I will slay Ishmael ... and no man shall know it",
-    "ko": "청하건대 나로 가서 이스마엘을 죽이게 하소서, 아무도 알지 못하리이다",
-    "note": "'청하건대'(나, na)는 정중한 간청의 첨사로 KJV 'I pray thee'로 옮겨졌다. 요하난은 그달리야와 남은 자를 보존하려는 충심에서 선제적 제거를 제안하나, 그달리야는 이를 받아들이지 않는다. '흩어지다'(푸츠)와 '멸망하다'(아바드)가 위기의 결과를 평행으로 그린다.",
-    "voc": [["I pray thee", "phr.", "청하건대, 간구하오니"], ["slay", "v.", "죽이다"], ["scattered", "v.", "흩어진"], ["remnant", "n.", "남은 자"], ["perish", "v.", "멸망하다"]],
-    "idi": [["I pray thee", "청하건대, 부디"], ["no man shall know it", "아무도 그것을 알지 못하리라"]]
-  },
-  {
-    "en": "Thou shalt not do this thing: for thou speakest falsely of Ishmael",
-    "ko": "너는 이 일을 행하지 말라, 네가 이스마엘에 대하여 거짓을 말함이니라",
-    "note": "그달리야의 비극적 선의가 드러난다. '거짓을 말하다'(셰케르 다바르)는 진실을 왜곡함을 뜻하나, 실상 요하난의 경고는 참이었다. 의로운 자의 순진한 신뢰가 화를 부른 이 장면은 41장의 암살로 이어지며, 분별 없는 선함의 위험을 보여준다.",
-    "voc": [["shalt", "v.", "shall의 고어 2인칭"], ["speakest", "v.", "speak의 고어 2인칭, 말하다"], ["falsely", "adv.", "거짓되게"], ["thing", "n.", "일, 것"]],
-    "gra": [["Thou shalt not do", "고어 금지 명령(shalt not = shall not) — 너는 ~하지 말라"]]
-  }
+ {
+  "en": "The word that came to Jeremiah from the LORD, after that Nebuzaradan the captain of the guard had let him go from Ramah, when he had taken him being bound in chains among all that were carried away captive of Jerusalem and Judah, which were carried away captive unto Babylon.",
+  "ko": "느부사라단 시위대장이 예레미야를 라마에서 풀어준 후에 여호와께로부터 그에게 임한 말씀이니, 그가 사로잡혀 바벨론으로 끌려가는 예루살렘과 유다의 모든 포로 가운데서 예레미야를 쇠사슬로 결박하여 끌고 갔다가 풀어주었더라.",
+  "note": "예루살렘 함락 후 예레미야가 라마에서 풀려나는 장면이다. 포로들과 함께 쇠사슬에 결박되었던 선지자가 자유를 얻는다. 하나님이 심판 가운데서도 자기 종을 지키셨음을 다시 확증하는 도입부이다.",
+  "voc": [
+   [
+    "captain",
+    "n.",
+    "대장, 지휘관"
+   ],
+   [
+    "guard",
+    "n.",
+    "시위대, 호위대"
+   ],
+   [
+    "bound",
+    "adj.",
+    "결박된"
+   ],
+   [
+    "captive",
+    "adj.",
+    "사로잡힌"
+   ]
+  ],
+  "gra": [
+   [
+    "after that Nebuzaradan... had let him go",
+    "'after that'+과거완료로 선후 관계를 나타내는 고어 어법"
+   ]
+  ]
+ },
+ {
+  "en": "And the captain of the guard took Jeremiah, and said unto him, The LORD thy God hath pronounced this evil upon this place.",
+  "ko": "시위대장이 예레미야를 데려다가 그에게 이르되, 여호와 네 하나님께서 이곳에 이 재앙을 선언하셨고",
+  "note": "이방인 시위대장이 도리어 하나님의 심판을 정확히 해석한다. '여호와 네 하나님께서 이 재앙을 선언하셨다'는 고백은, 예레미야의 예언이 옳았음을 원수의 입으로 증언하는 아이러니이다.",
+  "voc": [
+   [
+    "took",
+    "v.",
+    "데려왔다"
+   ],
+   [
+    "pronounced",
+    "v.",
+    "선언하였다"
+   ],
+   [
+    "evil",
+    "n.",
+    "재앙, 화"
+   ],
+   [
+    "place",
+    "n.",
+    "곳, 장소"
+   ]
+  ],
+  "gra": [
+   [
+    "The LORD thy God hath pronounced",
+    "hath는 have의 고어 3인칭 현재완료, thy는 소유격 고어"
+   ]
+  ]
+ },
+ {
+  "en": "Now the LORD hath brought it, and done according as he hath said: because ye have sinned against the LORD, and have not obeyed his voice, therefore this thing is come upon you.",
+  "ko": "이제 여호와께서 그것을 임하게 하사 말씀하신 대로 행하셨으니, 이는 너희가 여호와께 범죄하여 그 음성에 순종하지 아니하였음이라. 그러므로 이 일이 너희에게 임하였느니라.",
+  "note": "'너희가 여호와께 범죄하여 순종하지 아니하였음이라'는 심판의 원인을 명시한다. 이방 관리조차 유다의 죄를 정확히 지적함은, 하나님의 공의가 온 세상에 자명함을 드러낸다. 심판은 우연이 아닌 죄의 결과이다.",
+  "voc": [
+   [
+    "brought",
+    "v.",
+    "임하게 하였다"
+   ],
+   [
+    "sinned",
+    "v.",
+    "범죄하였다"
+   ],
+   [
+    "obeyed",
+    "v.",
+    "순종하였다"
+   ],
+   [
+    "voice",
+    "n.",
+    "음성"
+   ]
+  ],
+  "gra": [
+   [
+    "according as he hath said",
+    "'according as'는 '~한 대로'를 뜻하는 고어 접속사구"
+   ]
+  ]
+ },
+ {
+  "en": "And now, behold, I loose thee this day from the chains which were upon thine hand. If it seem good unto thee to come with me into Babylon, come; and I will look well unto thee: but if it seem ill unto thee to come with me into Babylon, forbear: behold, all the land is before thee: whither it seemeth good and convenient for thee to go, thither go.",
+  "ko": "이제 보라, 내가 오늘 네 손에 채워진 쇠사슬에서 너를 풀어주노니, 네가 보기에 나와 함께 바벨론으로 가는 것이 좋거든 오라, 내가 너를 잘 돌보리라. 그러나 네가 보기에 나와 함께 바벨론으로 가는 것이 싫거든 그만두라. 보라, 온 땅이 네 앞에 있으니 네가 보기에 좋고 합당한 곳으로 가고 싶거든 그리로 가라 하고",
+  "note": "시위대장이 예레미야에게 자유로운 선택을 제안한다. '온 땅이 네 앞에 있으니 좋은 곳으로 가라'는 배려는, 심판받는 백성 가운데 참 선지자가 존귀히 여김을 받는 반전을 보인다. 신실한 자를 향한 하나님의 갚음이다.",
+  "voc": [
+   [
+    "loose",
+    "v.",
+    "풀다"
+   ],
+   [
+    "chains",
+    "n.",
+    "쇠사슬"
+   ],
+   [
+    "forbear",
+    "v.",
+    "그만두다, 삼가다"
+   ],
+   [
+    "convenient",
+    "adj.",
+    "합당한, 적당한"
+   ]
+  ],
+  "gra": [
+   [
+    "whither... thither go",
+    "'whither'(어디로)와 'thither'(그리로)로 짝을 이루는 고어 관계부사"
+   ]
+  ]
+ },
+ {
+  "en": "Now while he was not yet gone back, he said, Go back also to Gedaliah the son of Ahikam the son of Shaphan, whom the king of Babylon hath made governor over the cities of Judah, and dwell with him among the people: or go wheresoever it seemeth convenient unto thee to go. So the captain of the guard gave him victuals and a reward, and let him go.",
+  "ko": "예레미야가 아직 돌아가기 전에 그가 또 이르되, 바벨론 왕이 유다 성읍들을 다스리게 세운 사반의 손자요 아히감의 아들인 그달리야에게로 돌아가 그와 함께 백성 가운데 거하라. 혹은 네가 보기에 합당한 곳 어디로든지 가라 하고, 시위대장이 그에게 양식과 예물을 주어 보내니라.",
+  "note": "예레미야는 백성과 함께 남기를 택한다. 시위대장은 '그달리야에게로 돌아가라' 권하며 양식과 예물까지 준다. 선지자가 포로의 안락 대신 남은 백성과의 동행을 택함은, 끝까지 동족을 섬기려는 목자의 마음을 보인다.",
+  "voc": [
+   [
+    "governor",
+    "n.",
+    "총독"
+   ],
+   [
+    "dwell",
+    "v.",
+    "거하다"
+   ],
+   [
+    "victuals",
+    "n.",
+    "양식, 먹을 것"
+   ],
+   [
+    "reward",
+    "n.",
+    "예물, 상"
+   ]
+  ],
+  "gra": [
+   [
+    "go wheresoever it seemeth convenient",
+    "'wheresoever'는 '어디로든지'를 뜻하는 고어 관계부사"
+   ]
+  ]
+ },
+ {
+  "en": "Then went Jeremiah unto Gedaliah the son of Ahikam to Mizpah; and dwelt with him among the people that were left in the land.",
+  "ko": "이에 예레미야가 아히감의 아들 그달리야에게로 미스바에 이르러, 그 땅에 남은 백성 가운데서 그와 함께 거하니라.",
+  "note": "예레미야가 미스바의 그달리야에게로 간다. '미스바'는 성전 파괴 후 유다의 임시 행정 중심지가 된다. '남은 백성 가운데 거하니라'는 것은 선지자가 회복의 씨가 될 잔여 공동체와 함께함을 보인다.",
+  "voc": [
+   [
+    "Mizpah",
+    "n.",
+    "미스바(지명)"
+   ],
+   [
+    "dwelt",
+    "v.",
+    "거하였다"
+   ],
+   [
+    "left",
+    "adj.",
+    "남은"
+   ],
+   [
+    "land",
+    "n.",
+    "땅"
+   ]
+  ],
+  "gra": [
+   [
+    "Then went Jeremiah",
+    "주어-동사 도치로 강조하는 고어 어순 — 예레미야가 갔다"
+   ]
+  ]
+ },
+ {
+  "en": "Now when all the captains of the forces which were in the fields, even they and their men, heard that the king of Babylon had made Gedaliah the son of Ahikam governor in the land, and had committed unto him men, and women, and children, and of the poor of the land, of them that were not carried away captive to Babylon;",
+  "ko": "이제 들에 있던 군대의 모든 지휘관과 그 부하들이, 바벨론 왕이 아히감의 아들 그달리야를 그 땅의 총독으로 세우고 바벨론으로 사로잡혀 가지 아니한 남자와 여자와 어린아이와 그 땅의 빈천한 자들을 그에게 맡겼다 함을 듣고",
+  "note": "들에 흩어졌던 군대 지휘관들이 그달리야의 총독 임명 소식을 듣는다. 바벨론이 남은 백성을 그에게 맡긴 것은, 유다 땅에 최소한의 질서를 세우려는 조치이다. 이 지휘관들의 등장은 이후 비극의 복선이 된다.",
+  "voc": [
+   [
+    "captains",
+    "n.",
+    "지휘관들"
+   ],
+   [
+    "forces",
+    "n.",
+    "군대"
+   ],
+   [
+    "committed",
+    "v.",
+    "맡겼다"
+   ],
+   [
+    "poor",
+    "n.",
+    "빈천한 자"
+   ]
+  ],
+  "gra": [
+   [
+    "them that were not carried away",
+    "'them that'은 '~한 자들'을 뜻하는 고어 관계 표현"
+   ]
+  ]
+ },
+ {
+  "en": "Then they came to Gedaliah to Mizpah, even Ishmael the son of Nethaniah, and Johanan and Jonathan the sons of Kareah, and Seraiah the son of Tanhumeth, and the sons of Ephai the Netophathite, and Jezaniah the son of a Maachathite, they and their men.",
+  "ko": "그들이 미스바로 그달리야에게 나아오니, 곧 느다냐의 아들 이스마엘과 가레아의 두 아들 요하난과 요나단과 단후멧의 아들 스라야와 느도바 사람 에배의 아들들과 마아가 사람의 아들 여사냐라, 그들과 그 부하들이더라.",
+  "note": "미스바로 모여든 지휘관들의 이름이 열거된다. 그중 '느다냐의 아들 이스마엘'은 훗날 그달리야를 살해할 인물로, 이 명단 속에 숨은 위협이 잠복해 있다. 회복의 공동체 안에 균열의 씨가 있음을 암시한다.",
+  "voc": [
+   [
+    "came",
+    "v.",
+    "나아왔다"
+   ],
+   [
+    "sons",
+    "n.",
+    "아들들"
+   ],
+   [
+    "men",
+    "n.",
+    "부하들, 사람들"
+   ]
+  ],
+  "gra": [
+   [
+    "even Ishmael the son of Nethaniah",
+    "'even'으로 명단을 부연하는 고어 강조 어법"
+   ]
+  ]
+ },
+ {
+  "en": "And Gedaliah the son of Ahikam the son of Shaphan sware unto them and to their men, saying, Fear not to serve the Chaldeans: dwell in the land, and serve the king of Babylon, and it shall be well with you.",
+  "ko": "사반의 손자요 아히감의 아들인 그달리야가 그들과 그 부하들에게 맹세하여 이르되, 갈대아 사람 섬기기를 두려워하지 말고 이 땅에 거하여 바벨론 왕을 섬기라. 그리하면 너희가 평안하리라.",
+  "note": "그달리야가 지휘관들에게 맹세로 안심시킨다. '갈대아 사람 섬기기를 두려워하지 말고 이 땅에 거하라'는 권고는, 바벨론에 순복하라던 예레미야의 메시지와 일치한다. 순복이 평안의 길임을 다시 보인다.",
+  "voc": [
+   [
+    "sware",
+    "v.",
+    "맹세하였다 (swear 고어 과거)"
+   ],
+   [
+    "fear",
+    "v.",
+    "두려워하다"
+   ],
+   [
+    "serve",
+    "v.",
+    "섬기다"
+   ],
+   [
+    "dwell",
+    "v.",
+    "거하다"
+   ]
+  ],
+  "gra": [
+   [
+    "Fear not to serve",
+    "'do not fear' 대신 쓰인 KJV 고어 부정 명령 어순"
+   ]
+  ]
+ },
+ {
+  "en": "As for me, behold, I will dwell at Mizpah, to serve the Chaldeans, which will come unto us: but ye, gather ye wine, and summer fruits, and oil, and put them in your vessels, and dwell in your cities that ye have taken.",
+  "ko": "나로 말하면, 보라, 내가 미스바에 거하여 우리에게 나아올 갈대아 사람을 섬기려니와, 너희는 포도주와 여름 실과와 기름을 거두어 너희 그릇에 담고 너희가 취한 성읍들에 거하라 하니라.",
+  "note": "그달리야가 백성에게 정상적 삶의 회복을 독려한다. '포도주와 여름 실과와 기름을 거두어 성읍에 거하라'는 권면은, 폐허 가운데 일상을 재건하려는 지도자의 지혜를 보인다. 심판 후의 소박한 회복의 소망이다.",
+  "voc": [
+   [
+    "gather",
+    "v.",
+    "거두다, 모으다"
+   ],
+   [
+    "summer fruits",
+    "n.",
+    "여름 실과"
+   ],
+   [
+    "oil",
+    "n.",
+    "기름"
+   ],
+   [
+    "vessels",
+    "n.",
+    "그릇들"
+   ]
+  ],
+  "gra": [
+   [
+    "gather ye wine",
+    "'ye'를 명령문에 넣은 고어 강조 어순 — 너희는 거두라"
+   ]
+  ]
+ },
+ {
+  "en": "Likewise when all the Jews that were in Moab, and among the Ammonites, and in Edom, and that were in all the countries, heard that the king of Babylon had left a remnant of Judah, and that he had set over them Gedaliah the son of Ahikam the son of Shaphan;",
+  "ko": "또한 모압과 암몬 자손 가운데와 에돔과 모든 지방에 있던 모든 유다 사람이, 바벨론 왕이 유다에 남은 자를 남겨두고 사반의 손자요 아히감의 아들인 그달리야를 그들 위에 세웠다 함을 듣고",
+  "note": "흩어졌던 유다 사람들이 소식을 듣는다. 모압, 암몬, 에돔 등 이웃 나라로 피신했던 자들이 남은 자 공동체 소식에 반응한다. 하나님이 흩으신 백성을 다시 모으시는 회복의 손길이 어렴풋이 나타난다.",
+  "voc": [
+   [
+    "likewise",
+    "adv.",
+    "또한, 마찬가지로"
+   ],
+   [
+    "Jews",
+    "n.",
+    "유다 사람들"
+   ],
+   [
+    "remnant",
+    "n.",
+    "남은 자"
+   ],
+   [
+    "countries",
+    "n.",
+    "지방들, 나라들"
+   ]
+  ],
+  "gra": [
+   [
+    "whither they were driven",
+    "'whither'는 '~하는 곳으로'를 뜻하는 고어 관계부사"
+   ]
+  ]
+ },
+ {
+  "en": "Even all the Jews returned out of all places whither they were driven, and came to the land of Judah, to Gedaliah, unto Mizpah, and gathered wine and summer fruits very much.",
+  "ko": "곧 모든 유다 사람이 쫓겨났던 모든 곳에서 돌아와 유다 땅 미스바에 있는 그달리야에게 이르러, 포도주와 여름 실과를 심히 많이 거두니라.",
+  "note": "흩어진 유다 사람들이 미스바로 돌아와 '심히 많이 거두니라'. 폐허 위에 풍성한 수확이 임함은, 심판 후에도 하나님이 남은 자를 통해 은혜를 베푸심을 보인다. 짧으나마 회복의 서광이 비치는 순간이다.",
+  "voc": [
+   [
+    "returned",
+    "v.",
+    "돌아왔다"
+   ],
+   [
+    "places",
+    "n.",
+    "곳들"
+   ],
+   [
+    "gathered",
+    "v.",
+    "거두었다"
+   ],
+   [
+    "much",
+    "adv.",
+    "많이"
+   ]
+  ],
+  "gra": [
+   [
+    "out of all places whither they were driven",
+    "'whither'로 장소를 받는 고어 관계 구문"
+   ]
+  ]
+ },
+ {
+  "en": "Moreover Johanan the son of Kareah, and all the captains of the forces that were in the fields, came to Gedaliah to Mizpah,",
+  "ko": "또 가레아의 아들 요하난과 들에 있던 군대의 모든 지휘관이 미스바로 그달리야에게 나아와",
+  "note": "요하난과 지휘관들이 그달리야에게 나아온다. 이들은 회복의 공동체에 닥친 위험을 경고하려 한다. 다음 절의 음모 폭로를 위한 도입으로, 평화 속에 감춰진 위협이 수면 위로 떠오르기 시작한다.",
+  "voc": [
+   [
+    "moreover",
+    "adv.",
+    "또, 더욱이"
+   ],
+   [
+    "captains",
+    "n.",
+    "지휘관들"
+   ],
+   [
+    "forces",
+    "n.",
+    "군대"
+   ],
+   [
+    "fields",
+    "n.",
+    "들"
+   ]
+  ],
+  "gra": [
+   [
+    "that were in the fields",
+    "관계대명사 that이 forces를 받는 관계절 — 들에 있던"
+   ]
+  ]
+ },
+ {
+  "en": "And said unto him, Dost thou certainly know that Baalis the king of the Ammonites hath sent Ishmael the son of Nethaniah to slay thee? But Gedaliah the son of Ahikam believed them not.",
+  "ko": "그에게 이르되, 암몬 자손의 왕 바알리스가 느다냐의 아들 이스마엘을 보내어 당신의 생명을 빼앗으려 하는 줄을 당신이 분명히 아나이까 하되, 아히감의 아들 그달리야가 그들의 말을 믿지 아니하니라.",
+  "note": "'바알리스가 이스마엘을 보내어 당신을 죽이려 한다'는 암살 음모의 폭로이다. 그러나 '그달리야가 믿지 아니하니라'는 그의 순진함을 드러낸다. 경고를 무시한 지도자의 방심이 비극의 씨앗이 됨을 예고한다.",
+  "voc": [
+   [
+    "certainly",
+    "adv.",
+    "분명히, 확실히"
+   ],
+   [
+    "slay",
+    "v.",
+    "죽이다"
+   ],
+   [
+    "believed",
+    "v.",
+    "믿었다"
+   ]
+  ],
+  "gra": [
+   [
+    "Dost thou certainly know",
+    "'dost'는 do의 고어 2인칭 — 네가 분명히 아느냐"
+   ]
+  ]
+ },
+ {
+  "en": "Then Johanan the son of Kareah spake to Gedaliah in Mizpah secretly, saying, Let me go, I pray thee, and I will slay Ishmael the son of Nethaniah, and no man shall know it: wherefore should he slay thee, that all the Jews which are gathered unto thee should be scattered, and the remnant in Judah perish?",
+  "ko": "이에 가레아의 아들 요하난이 미스바에서 그달리야에게 은밀히 말하여 이르되, 청하건대 나로 가서 느다냐의 아들 이스마엘을 죽이게 하소서. 아무도 알지 못하리이다. 어찌하여 그로 하여금 당신의 생명을 빼앗아, 당신에게 모인 모든 유다 사람을 흩어지게 하고 유다의 남은 자를 멸망하게 하리이까 하나",
+  "note": "요하난이 은밀히 이스마엘 제거를 제안한다. '유다의 남은 자가 멸망할까' 하는 그의 우려는 공동체를 지키려는 충정에서 나온 것이다. 그러나 이 제안조차 그달리야의 신뢰 앞에 거절되고 만다.",
+  "voc": [
+   [
+    "secretly",
+    "adv.",
+    "은밀히"
+   ],
+   [
+    "scattered",
+    "v.",
+    "흩어지다"
+   ],
+   [
+    "perish",
+    "v.",
+    "멸망하다"
+   ],
+   [
+    "wherefore",
+    "adv.",
+    "어찌하여"
+   ]
+  ],
+  "gra": [
+   [
+    "Let me go, I pray thee",
+    "'I pray thee'는 '청하건대'를 뜻하는 KJV 정중 삽입 표현"
+   ]
+  ]
+ },
+ {
+  "en": "But Gedaliah the son of Ahikam said unto Johanan the son of Kareah, Thou shalt not do this thing: for thou speakest falsely of Ishmael.",
+  "ko": "아히감의 아들 그달리야가 가레아의 아들 요하난에게 이르되, 너는 이 일을 행하지 말라. 네가 이스마엘에 대하여 거짓을 말함이니라 하니라.",
+  "note": "그달리야가 요하난의 경고를 '거짓'이라 물리친다. 그의 관대함은 미덕이나, 분별 없는 신뢰는 화를 부른다. 이 장은 임박한 비극(41장)의 그림자를 남긴 채, 지도자의 순진한 오판으로 맺는다.",
+  "voc": [
+   [
+    "falsely",
+    "adv.",
+    "거짓으로"
+   ],
+   [
+    "speakest",
+    "v.",
+    "말하다 (speak 고어 2인칭)"
+   ],
+   [
+    "thing",
+    "n.",
+    "일"
+   ]
+  ],
+  "gra": [
+   [
+    "Thou shalt not do this thing",
+    "thou+shalt 고어 2인칭 금지 — 너는 이 일을 행하지 말라"
+   ]
+  ]
+ }
 ]
