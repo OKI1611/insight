@@ -213,7 +213,7 @@
     function won(v){ return '₩'+(Number(v)||0).toLocaleString(); }
     (async function(){
       let s={}; try{ s=(await (await fetch('content/site.json?t='+Date.now())).json()).support||{}; }catch(e){}
-      const mail = s.contact_email || 'josephoh1611@gmail.com';
+      const mail = s.contact_email || 'contact@biblynote.com';
       const bank = document.getElementById('payBank');
       if(s.bank_account){ bank.innerHTML = (s.bank_name||'') + ' <b class="text-neutral-900">' + s.bank_account + '</b> (예금주 ' + (s.bank_holder||'') + ')'; }
       else { bank.textContent = '주문 접수 후 입금 계좌를 이메일로 안내해 드립니다.'; }
