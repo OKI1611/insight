@@ -984,7 +984,7 @@
       <p class="font-bold text-neutral-700 text-[13px] tracking-wide mb-3">BIBLY <span class="text-gold">·</span> 바이블 인사이트</p>
       <p class="text-[11.5px] leading-[2] text-neutral-500">
         <span class="text-neutral-400">상호</span> <span class="text-neutral-700">바이블 인사이트</span><span class="text-neutral-300 mx-2.5">│</span><span class="text-neutral-400">대표</span> <span class="text-neutral-700">오광일</span><span class="text-neutral-300 mx-2.5">│</span><span class="text-neutral-400">사업자등록번호</span> <span class="text-neutral-700">251-07-03623</span><br/>
-        <span class="text-neutral-400">통신판매업</span> <span class="text-neutral-700">신고 준비 중</span><span class="text-neutral-300 mx-2.5">│</span><span class="text-neutral-400">주소</span> <span class="text-neutral-700">서울특별시 <span class="text-gold font-semibold">강남구</span> 논현로10길 30, 505-S264호</span><br/>
+        <span class="text-neutral-400">통신판매업</span> <span class="text-neutral-700" data-biz="eco">신고 준비 중</span><span class="text-neutral-300 mx-2.5">│</span><span class="text-neutral-400">주소</span> <span class="text-neutral-700">서울특별시 <span class="text-gold font-semibold">강남구</span> 논현로10길 30, 505-S264호</span><br/>
         <span class="text-neutral-400">문의</span> <span class="text-neutral-700">contact@biblynote.com</span>
       </p>
     </div>
@@ -1895,6 +1895,18 @@
       +'<a class="rtop" title="맨 위로" onclick="window.scrollTo({top:0,behavior:\'smooth\'});return false;"><span class="ic">⤴</span><span class="lb">TOP</span></a>';
     document.body.appendChild(rail);
   })();
+  </script>
+  <script>
+  /* 통신판매업 신고번호 단일화 — 푸터 data-biz="eco" 를 content/site.json 값으로 채움
+     (index.html 은 site-header.js 미사용이라 별도 처리. 내일 site.json ecommerce_no 한 곳만 채우면 반영) */
+  (function(){ try{
+    fetch('content/site.json?t='+Date.now()).then(function(r){return r.json();}).then(function(s){
+      var b = s && s.business; if(!b) return;
+      var t = b.ecommerce_no ? ('제 '+b.ecommerce_no+' 호') : (b.ecommerce_status || '신고 준비 중');
+      var n = document.querySelectorAll('[data-biz="eco"]');
+      for(var i=0;i<n.length;i++){ n[i].textContent = t; }
+    }).catch(function(){});
+  }catch(e){} })();
   </script>
 </body>
 </html>

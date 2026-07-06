@@ -260,6 +260,15 @@
           if(f) f.appendChild(bl); else document.body.appendChild(bl);
         }
       }catch(e){}
+      // 통신판매업 신고번호 단일화: data-biz="eco" 표시 자리를 site.json 값으로 채움
+      //  (하드코딩 페이지 index·store-help·terms 도 site.json 한 곳만 고치면 자동 반영)
+      try{
+        var bz = s && s.business;
+        var ecoTxt = (bz && bz.ecommerce_no) ? ('제 ' + bz.ecommerce_no + ' 호')
+                     : ((bz && bz.ecommerce_status) ? bz.ecommerce_status : '신고 준비 중');
+        var nodes = document.querySelectorAll('[data-biz="eco"]');
+        for(var i=0;i<nodes.length;i++){ nodes[i].textContent = ecoTxt; }
+      }catch(e){}
       // 왼쪽 퀵메뉴 바(전 페이지 공통 · 자주 쓰는 곳 바로가기 + 맨 위로)
       try{ buildQuickRail(s); }catch(e){}
     }).catch(function(){ try{ buildQuickRail(null); }catch(e){} });
