@@ -1,181 +1,737 @@
 [
-  {
-    "en": "Learn not the way of the heathen, and be not dismayed at the signs of heaven",
-    "ko": "이방의 길을 배우지 말며 하늘의 징조를 보고 놀라지 말라",
-    "note": "'이방'의 히브리어 '고이'(goy, גּוֹי)는 여호와를 모르는 열방을 가리킨다. '하늘의 징조'(오토트 하샤마임)는 일식·혜성·별자리 같은 천체 현상으로, 고대 근동에서 점성술의 대상이었다. 여호와의 백성은 피조물인 하늘을 두려워할 것이 아니라 그 하늘을 지으신 분만 경외해야 한다.",
-    "voc": [["learn", "v.", "배우다"], ["heathen", "n.", "이방인, 이교도"], ["dismayed", "adj.", "놀란, 낙담한"], ["signs", "n.", "징조들"], ["heaven", "n.", "하늘"]],
-    "idi": [["the way of the heathen", "이방의 길 — 이교도의 생활·신앙 방식"]],
-    "gra": [["be not dismayed", "고어 부정 명령형(Be not = Do not be) — 놀라지 말라"]]
-  },
-  {
-    "en": "For the customs of the people are vain: for one cutteth a tree out of the forest",
-    "ko": "그 백성의 풍속이 헛되니, 어떤 이가 숲에서 나무를 베어내며",
-    "note": "'헛되다'의 히브리어 '헤벨'(hevel, הֶבֶל)은 입김·수증기처럼 실체 없고 덧없는 것을 가리키며, 전도서의 '헛되다'와 같은 단어다. 우상은 사람이 숲의 나무를 베어 만든 것에 불과하다는 조롱이 13~16절까지 이어지는 우상 풍자의 출발점이다.",
-    "voc": [["customs", "n.", "풍속, 관습"], ["vain", "adj.", "헛된, 공허한"], ["cutteth", "v.", "cuts의 고어, 베다"], ["forest", "n.", "숲"], ["axe", "n.", "도끼"]],
-    "gra": [["one cutteth", "cutteth는 cuts의 고어 3인칭 단수 — 어떤 이가 벤다"]]
-  },
-  {
-    "en": "They deck it with silver and with gold; they fasten it with nails and with hammers",
-    "ko": "은과 금으로 그것을 꾸미고 못과 망치로 단단히 박나니",
-    "note": "우상 제작 과정의 세밀한 묘사. 값진 은금으로 치장해도 본질은 못으로 고정해야 넘어지지 않는 나무토막이다. '꾸미다'(야파, 아름답게 하다)와 '단단히 박다'(하자크, 굳게 하다)의 대비가 외형의 화려함과 내적 무력함을 드러낸다.",
-    "voc": [["deck", "v.", "꾸미다, 장식하다"], ["silver", "n.", "은"], ["gold", "n.", "금"], ["fasten", "v.", "고정하다, 단단히 박다"], ["nails", "n.", "못"], ["hammers", "n.", "망치"]],
-    "gra": [["that it move not", "목적의 that절 + 고어 부정(move not) — 그것이 흔들리지 않도록"]]
-  },
-  {
-    "en": "They are upright as the palm tree, but speak not: they must needs be borne, because they cannot go",
-    "ko": "그것들은 종려나무 같이 곧추 섰으나 말하지 못하며, 능히 걷지 못하므로 반드시 메어 옮겨야 하느니라",
-    "note": "우상은 종려나무처럼 똑바로 서 있을 뿐 말도 못 하고 걷지도 못한다. '메어 옮기다'(나사)는 사람이 우상을 짊어져야 하는 역설을 강조한다 — 섬김을 받아야 할 신이 도리어 사람에게 운반되는 짐일 뿐이다. 이사야 46:1~7과 같은 풍자의 맥이다.",
-    "voc": [["upright", "adj.", "곧추선, 똑바른"], ["palm tree", "n.", "종려나무"], ["borne", "v.", "bear의 과거분사, 메어진"], ["afraid", "adj.", "두려워하는"], ["evil", "n.", "해, 악"]],
-    "idi": [["must needs", "반드시 ~해야 한다(고어 강조 표현)"]],
-    "gra": [["they must needs be borne", "must needs + 수동태 — 반드시 메어 옮겨져야 한다"]]
-  },
-  {
-    "en": "Forasmuch as there is none like unto thee, O LORD; thou art great",
-    "ko": "여호와여, 주와 같으신 이가 없사오니 주는 위대하시나이다",
-    "note": "우상 풍자에서 참 하나님 송영으로 전환되는 분기점. '주와 같으신 이가 없다'(엔 카모카)는 출애굽기 15:11의 고백과 같은 비교 불가의 선언이다. '권능'(게부라, גְּבוּרָה)은 여호와의 능력 있는 행위를 가리키며, 그 이름 자체가 권능으로 위대하다는 찬양이다.",
-    "voc": [["forasmuch as", "conj.", "~이므로(고어)"], ["none", "pron.", "아무도 ~없다"], ["thee", "pron.", "너/주를(thou의 목적격)"], ["thou", "pron.", "너/주는(2인칭 단수 주격)"], ["might", "n.", "권능, 힘"]],
-    "idi": [["none like unto thee", "주와 같은 이가 없다"]],
-    "gra": [["thou art great", "art는 are의 고어 2인칭 단수 — 주는 위대하시다"]]
-  },
-  {
-    "en": "Who would not fear thee, O King of nations?",
-    "ko": "열방의 왕이시여, 누가 주를 경외하지 아니하리이까",
-    "note": "'열방의 왕'(멜렉 하고임)은 모든 민족을 다스리시는 여호와의 우주적 왕권을 선언한다. '경외하다'(야레)는 단순한 공포가 아니라 합당한 경배의 두려움이다. '주께 마땅하다'(아파테인)는 그 경외가 오직 여호와께만 마땅한 권리임을 뜻한다.",
-    "voc": [["fear", "v.", "경외하다, 두려워하다"], ["nations", "n.", "열방, 민족들"], ["appertain", "v.", "마땅하다, ~에 속하다"], ["wise", "adj.", "지혜로운"], ["kingdoms", "n.", "왕국들"]],
-    "idi": [["to thee doth it appertain", "그것이 주께 마땅하다(주께 속한다)"]],
-    "gra": [["Who would not fear", "수사 의문문(가정법 would) — 누가 경외하지 않으리이까(반드시 경외함)"]]
-  },
-  {
-    "en": "But they are altogether brutish and foolish: the stock is a doctrine of vanities",
-    "ko": "그러나 그들은 다 짐승같이 어리석고 미련하니, 그 우상은 헛된 것을 가르치는 나무토막이라",
-    "note": "'짐승같이 어리석다'(바아르)는 분별 없는 짐승의 우둔함을 가리킨다. '나무토막'(에츠, 곧 나무)이 '헛된 것의 교훈'이라는 표현은, 우상이 거짓을 가르치는 스승 노릇을 한다는 신랄한 풍자다. '헛된 것'(하발림)은 2절의 '헤벨'과 같은 뿌리다.",
-    "voc": [["altogether", "adv.", "다, 전적으로"], ["brutish", "adj.", "짐승 같은, 우둔한"], ["foolish", "adj.", "미련한"], ["stock", "n.", "나무토막, 그루터기"], ["doctrine", "n.", "교훈, 가르침"], ["vanities", "n.", "헛된 것들"]],
-    "idi": [["a doctrine of vanities", "헛된 것을 가르치는 교훈"]]
-  },
-  {
-    "en": "Silver spread into plates is brought from Tarshish, and gold from Uphaz",
-    "ko": "은을 두드려 편 것은 다시스에서 가져오고 금은 우바스에서 가져오니",
-    "note": "'다시스'(타르시스)는 먼 서방의 광물 무역항(스페인 추정), '우바스'(우파즈)는 정금 산지로 알려진 곳이다. 먼 곳에서 들여온 값비싼 재료와 청색·자색(왕실 빛깔) 옷으로 치장해도 결국 사람의 손이 만든 작품일 뿐임을 강조한다.",
-    "voc": [["spread", "v.", "펴다, 두드려 늘이다"], ["plates", "n.", "판, 얇은 조각"], ["Tarshish", "n.", "다시스"], ["Uphaz", "n.", "우바스"], ["founder", "n.", "도금장이, 주조공"], ["blue", "n.", "청색"], ["purple", "n.", "자색"], ["cunning", "adj.", "능숙한, 솜씨 좋은"]],
-    "gra": [["is brought", "수동태 — 가져와진다"]]
-  },
-  {
-    "en": "But the LORD is the true God, he is the living God, and an everlasting king",
-    "ko": "그러나 여호와는 참 하나님이시요, 그는 살아 계신 하나님이시며 영원한 왕이시니라",
-    "note": "이 장의 신학적 핵심. 우상은 '거짓'이나 여호와는 '참 하나님'(엘로힘 에메트), 죽은 형상이 아니라 '살아 계신 하나님'(엘로힘 하임), 일시적 왕이 아니라 '영원한 왕'(멜렉 올람)이시다. '에메트'는 진실·신실을 함께 담은 단어다. 그의 진노에 땅이 떨고 열방이 견디지 못한다.",
-    "voc": [["true", "adj.", "참된"], ["living", "adj.", "살아 계신"], ["everlasting", "adj.", "영원한"], ["wrath", "n.", "진노"], ["tremble", "v.", "떨다"], ["abide", "v.", "견디다, 머무르다"], ["indignation", "n.", "분노, 격분"]],
-    "idi": [["the living God", "살아 계신 하나님 — 죽은 우상과 대비되는 호칭"]]
-  },
-  {
-    "en": "The gods that have not made the heavens and the earth, even they shall perish",
-    "ko": "하늘과 땅을 짓지 아니한 신들은 멸망하리라",
-    "note": "이 절은 본래 히브리어가 아니라 아람어로 기록된 예레미야서 유일한 구절이다. 바벨론 포로 가운데서도 외워 선포할 수 있도록 당시 국제 통용어인 아람어로 못박은 것으로 본다. 창조하지 못한 신은 결국 피조 세계에서 소멸할 운명임을 선언한다.",
-    "voc": [["gods", "n.", "신들"], ["made", "v.", "만들었다, 지었다"], ["perish", "v.", "멸망하다"], ["earth", "n.", "땅"], ["heavens", "n.", "하늘"]],
-    "gra": [["they shall perish", "shall + 동사원형(예언적 미래) — 그들이 멸망하리라"]]
-  },
-  {
-    "en": "He hath made the earth by his power, he hath established the world by his wisdom",
-    "ko": "그가 권능으로 땅을 지으셨고 그의 지혜로 세상을 세우셨으며",
-    "note": "여호와의 창조 권능을 세 동사(짓다·세우다·펴다)로 찬양한다. '권능'(코아흐)·'지혜'(호크마)·'명철'(테부나)이 평행을 이룬다. 잠언 3:19~20과 같은 지혜 창조의 신학으로, 우상에는 없는 창조주만의 속성을 부각한다.",
-    "voc": [["established", "v.", "세웠다, 굳게 하였다"], ["world", "n.", "세상"], ["wisdom", "n.", "지혜"], ["stretched out", "phr.", "펴셨다"], ["discretion", "n.", "명철, 분별"]],
-    "idi": [["stretched out the heavens", "하늘을 펴셨다 — 창조를 장막 치심에 비유"]],
-    "gra": [["He hath made", "현재완료(hath = has) — 그가 지으셨다(그 일이 지금도 유효함)"]]
-  },
-  {
-    "en": "When he uttereth his voice, there is a multitude of waters in the heavens",
-    "ko": "그가 음성을 내실 때에 하늘에 물의 무리가 이느니라",
-    "note": "천둥·번개·비·바람을 다스리시는 분이 여호와이심을 선포한다 — 이는 바알을 폭풍신으로 섬기던 가나안 우상 숭배에 대한 정면 반박이다. '곳간에서 바람을 내신다'는 표현은 자연 현상이 모두 여호와의 보관된 권능 아래 있음을 그린다.",
-    "voc": [["uttereth", "v.", "utters의 고어, 내다, 발하다"], ["voice", "n.", "음성"], ["multitude", "n.", "무리, 많음"], ["vapours", "n.", "안개, 수증기"], ["lightnings", "n.", "번개"], ["treasures", "n.", "곳간, 보고"]],
-    "idi": [["the ends of the earth", "땅끝, 온 땅의 가장 먼 곳"]],
-    "gra": [["bringeth forth the wind", "bringeth = brings(고어) + forth — 바람을 내신다"]]
-  },
-  {
-    "en": "Every man is brutish in his knowledge: every founder is confounded by the graven image",
-    "ko": "사람마다 그 지식이 짐승같이 어리석으니, 도금장이마다 자기가 새긴 우상으로 인하여 수치를 당하느니라",
-    "note": "8절의 '짐승같이 어리석다'가 다시 등장하여 우상 풍자를 마무리한다. '부어 만든 형상'(네세크)이 '거짓'(셰케르)이며 '그 안에 호흡(루아흐, רוּחַ)이 없다'는 것은, 생명의 영을 지니신 살아 계신 하나님과의 결정적 차이다. 자기 손으로 만든 우상이 도리어 만든 자의 수치가 된다.",
-    "voc": [["knowledge", "n.", "지식"], ["founder", "n.", "도금장이, 주조공"], ["confounded", "adj.", "수치를 당한, 당황한"], ["graven image", "n.", "새긴 우상"], ["molten", "adj.", "부어 만든, 녹여 부은"], ["falsehood", "n.", "거짓"], ["breath", "n.", "호흡, 숨"]],
-    "idi": [["graven image", "새긴 우상(나무·돌을 깎아 만든 형상)"], ["molten image", "부어 만든 우상(금속을 녹여 주조한 형상)"]]
-  },
-  {
-    "en": "They are vanity, and the work of errors: in the time of their visitation they shall perish",
-    "ko": "그것들은 헛되며 망령된 것의 작품이라. 벌하시는 때에 멸망하리라",
-    "note": "'벌하시는 때'(visitation, 페쿠다)는 여호와께서 심판하러 찾아오시는 때를 가리키는 예언의 정형 표현이다 — '찾아오다'(파카드)가 심판의 문맥에서 쓰일 때의 의미다. 우상과 그것을 만든 자가 그날에 함께 멸망한다.",
-    "voc": [["vanity", "n.", "헛됨"], ["errors", "n.", "망령된 것, 잘못"], ["visitation", "n.", "벌하시는 때, 심판의 방문"], ["perish", "v.", "멸망하다"]],
-    "idi": [["the time of their visitation", "그것들을 벌하시는 때 — 여호와의 심판이 임하는 날"]]
-  },
-  {
-    "en": "The portion of Jacob is not like them: for he is the former of all things",
-    "ko": "야곱의 분깃은 그것들과 같지 아니하시니, 그는 만물을 지으신 이시라",
-    "note": "'야곱의 분깃'(헬레크 야아콥)은 여호와 자신을 가리킨다 — 이스라엘의 참 기업은 우상이 아니라 만물의 조성자이신 여호와시다. '기업의 지파'(셰베트 나할라토)는 이스라엘이 여호와의 소유된 백성임을 뜻한다. '만군의 여호와'(YHWH 체바오트)로 절을 봉인한다.",
-    "voc": [["portion", "n.", "분깃, 몫"], ["former", "n.", "지으신 이, 조성자"], ["rod", "n.", "지파, 막대기"], ["inheritance", "n.", "기업, 유산"], ["hosts", "n.", "만군, 군대"]],
-    "idi": [["the portion of Jacob", "야곱의 분깃 — 이스라엘의 기업이신 여호와"], ["the LORD of hosts is his name", "만군의 여호와가 그의 이름이라"]]
-  },
-  {
-    "en": "Gather up thy wares out of the land, O inhabitant of the fortress",
-    "ko": "포위된 땅에 거하는 자여, 네 짐을 그 땅에서 거두라",
-    "note": "우상 풍자에서 임박한 포로의 경고로 장면이 전환된다. '짐을 거두라'(키프이 크나아테크)는 망명 길을 위해 봇짐을 싸라는 명령이다. '포위된 땅에 거하는 자'(요셰베트 바마초르)는 적에게 에워싸인 처지의 예루살렘 주민을 부르는 호칭이다.",
-    "voc": [["gather up", "phr.", "거두다, 싸다"], ["wares", "n.", "짐, 물품"], ["inhabitant", "n.", "거하는 자, 주민"], ["fortress", "n.", "요새, 포위된 곳"]],
-    "idi": [["gather up thy wares", "네 봇짐을 싸라 — 망명·피난 준비의 명령"]],
-    "gra": [["O inhabitant", "돈호법(O + 명사) — ~여, ~하는 자여"]]
-  },
-  {
-    "en": "Behold, I will sling out the inhabitants of the land at this once",
-    "ko": "보라, 내가 이번에는 그 땅에 거하는 자들을 물매로 내던지리라",
-    "note": "'물매로 내던지다'(칼라, 무릿매 돌처럼 멀리 내던지다)는 포로로 추방하시는 심판을 생생한 비유로 그린다. '이번에는'(바파암 하조트)은 이전과 달리 단번에 결행될 확정적 심판임을 강조한다. '깨닫게 하리라'는 고통을 통해 그 실상을 절감하게 하심이다.",
-    "voc": [["behold", "v.", "보라(주목을 끄는 감탄사)"], ["sling out", "phr.", "물매로 내던지다"], ["inhabitants", "n.", "거하는 자들"], ["distress", "v.", "괴롭게 하다"]],
-    "idi": [["at this once", "이번에는, 단번에"]],
-    "gra": [["that they may find it so", "목적·결과의 that절 — 그들이 그것이 그러함을 깨닫도록"]]
-  },
-  {
-    "en": "Woe is me for my hurt! my wound is grievous",
-    "ko": "내 상처로 인하여 내게 화가 있도다, 내 상처가 중하도다",
-    "note": "선지자가 백성의 고통을 자기 것으로 짊어지는 애가적 탄식이다. '화가 있도다'(오이 리)는 깊은 비통의 탄성. '상처가 중하다'(나흘라 마카티)는 치유 불가에 가까운 깊은 상처를 가리킨다. '내가 마땅히 견디리라'는 피할 수 없는 슬픔을 묵묵히 감당하는 고백이다.",
-    "voc": [["woe", "n.", "화, 비통"], ["hurt", "n.", "상처, 아픔"], ["wound", "n.", "상처"], ["grievous", "adj.", "중한, 비통한"], ["grief", "n.", "슬픔"], ["bear", "v.", "견디다, 짊어지다"]],
-    "idi": [["Woe is me", "내게 화가 있도다 — 깊은 탄식의 외침"]]
-  },
-  {
-    "en": "My tabernacle is spoiled, and all my cords are broken: my children are gone forth of me",
-    "ko": "내 장막이 헐리고 내 모든 줄이 끊어졌으며 내 자식들이 나를 떠나가 없도다",
-    "note": "민족의 멸망을 무너진 천막에 비유한 애가다. '장막'(오헬)·'줄'(메타르)·'휘장'(예리아)은 모두 유목 천막의 부분으로, 공동체의 해체를 그린다. '자식들이 떠나가 없다'(에남)는 자손이 포로로 끌려가 사라진 처지를 탄식한다.",
-    "voc": [["tabernacle", "n.", "장막, 천막"], ["spoiled", "v.", "헐린, 약탈당한"], ["cords", "n.", "줄, 끈"], ["broken", "v.", "끊어진"], ["tent", "n.", "장막"], ["curtains", "n.", "휘장"]],
-    "idi": [["gone forth of me", "나를 떠나가다(고어: of me = from me)"]],
-    "gra": [["are gone forth", "고어 현재완료(be동사 + 과거분사) — 떠나가 버렸다"]]
-  },
-  {
-    "en": "For the pastors are become brutish, and have not sought the LORD",
-    "ko": "이는 목자들이 짐승같이 어리석어 여호와를 찾지 아니하였음이라",
-    "note": "재앙의 원인을 지도자에게 돌린다. '목자'(로임)는 왕과 통치자를 가리키는 은유로, 그들의 우매함(8·14절의 '바아르')이 양 떼(백성)를 흩어지게 했다. '여호와를 찾다'(다라쉬)는 그분의 뜻을 구하는 것으로, 이를 저버린 결과가 흩어짐이다.",
-    "voc": [["pastors", "n.", "목자들, 지도자들"], ["brutish", "adj.", "짐승 같은, 우둔한"], ["sought", "v.", "seek의 과거, 찾았다"], ["prosper", "v.", "형통하다"], ["flocks", "n.", "양 떼"], ["scattered", "v.", "흩어진"]],
-    "idi": [["have not sought the LORD", "여호와를 찾지 아니하였다 — 그분의 뜻을 구하지 않음"]]
-  },
-  {
-    "en": "Behold, the noise of the bruit is come, and a great commotion out of the north country",
-    "ko": "보라, 소문의 풍성이 들리는도다. 북방에서 큰 소동이 일어나는도다",
-    "note": "'북방'(미츠폰)에서 오는 적은 예레미야서 전체에서 바벨론 군대를 가리키는 상징적 방위다. '소문'(셰무아)과 '큰 소동'(라아쉬 가돌)은 진군하는 대군의 함성과 진동을 표현한다. '이리의 굴'(KJV 'dragons', 곧 들개·자칼의 거처)은 인적 끊긴 폐허를 그린다.",
-    "voc": [["noise", "n.", "소리, 소문"], ["bruit", "n.", "소문, 풍문(고어)"], ["commotion", "n.", "소동, 진동"], ["north", "n.", "북방"], ["desolate", "adj.", "황폐한"], ["dragons", "n.", "이리, 들개(KJV; 곧 자칼)"]],
-    "idi": [["the north country", "북방, 곧 바벨론이 오는 방향"], ["a den of dragons", "이리의 굴 — 인적 끊긴 폐허"]]
-  },
-  {
-    "en": "O LORD, I know that the way of man is not in himself",
-    "ko": "여호와여, 내가 아나이다. 사람의 길이 자기에게 있지 아니하나이다",
-    "note": "선지자의 겸손한 기도. 사람이 자기 걸음을 스스로 정하거나 인도할 수 없고 오직 여호와의 주권 아래 있음을 고백한다(잠 16:9; 20:24와 같은 신학). '길'(데레크)과 '걸음'(차아드)이 평행을 이루어 인생의 방향이 하나님께 달렸음을 강조한다.",
-    "voc": [["way", "n.", "길, 행로"], ["man", "n.", "사람"], ["walketh", "v.", "walks의 고어, 걷다"], ["direct", "v.", "인도하다, 정하다"], ["steps", "n.", "걸음"]],
-    "idi": [["the way of man is not in himself", "사람의 길이 자기에게 있지 않다 — 인생의 주권이 하나님께 있음"]],
-    "gra": [["that walketh", "관계절(고어 walketh) — 걷는 (사람)"]]
-  },
-  {
-    "en": "O LORD, correct me, but with judgment; not in thine anger",
-    "ko": "여호와여, 나를 징계하시되 공의로 하시고 주의 노로 하지 마옵소서",
-    "note": "심판을 피하려는 것이 아니라 멸절이 아닌 연단의 징계를 구하는 기도다. '징계하다'(야사르)는 자녀를 바로잡는 교육적 훈육이다. '공의로'(베미슈파트)는 절제된 분량, '주의 노로'(베아페카)는 진멸하는 진노다. '없는 것이 되게 하실까'(타므잇)는 완전한 소멸을 두려워함이다.",
-    "voc": [["correct", "v.", "징계하다, 바로잡다"], ["judgment", "n.", "공의, 절제된 판단"], ["anger", "n.", "노, 진노"], ["thine", "pron.", "당신의(고어, 모음 앞)"], ["bring to nothing", "phr.", "없는 것이 되게 하다"]],
-    "idi": [["bring me to nothing", "나를 없는 것이 되게 하다 — 완전히 소멸시키다"]],
-    "gra": [["lest thou bring me to nothing", "lest + 주어 + 동사원형 — 주께서 나를 멸하실까 하여(우려의 절)"]]
-  },
-  {
-    "en": "Pour out thy fury upon the heathen that know thee not, for they have eaten up Jacob",
-    "ko": "주를 알지 못하는 이방에게 주의 분노를 쏟으소서, 이는 그들이 야곱을 삼켰음이니이다",
-    "note": "시편 79:6~7과 거의 같은 표현으로, 여호와의 백성을 삼킨 열방에 대한 공의의 보응을 간구한다. '쏟다'(샤파크)는 진노를 액체처럼 부으심을 그린다. '삼키고·멸하고·진멸하였다'는 세 동사의 점층이 압제의 잔혹함을 강조하며, 그래서 그 거처가 황폐해졌음을 호소한다.",
-    "voc": [["pour out", "phr.", "쏟다, 부어내다"], ["fury", "n.", "분노, 격노"], ["families", "n.", "족속들"], ["eaten up", "phr.", "삼키다, 먹어치우다"], ["devoured", "v.", "삼켜 멸한"], ["consumed", "v.", "진멸한"], ["habitation", "n.", "거처"]],
-    "idi": [["call not on thy name", "주의 이름을 부르지 아니하다 — 여호와를 예배하지 않음"], ["eaten up Jacob", "야곱을 삼키다 — 이스라엘을 압제·약탈함"]]
-  }
+ {
+  "en": "Hear ye the word which the LORD speaketh unto you, O house of Israel:",
+  "ko": "이스라엘 집이여, 여호와께서 너희에게 이르시는 말씀을 들으라.",
+  "note": "이스라엘 집을 향한 말씀 청취 명령으로 우상 논박 단락이 열린다. 참 하나님과 헛된 우상의 대조가 장 전체의 주제다.",
+  "voc": [
+   [
+    "hear",
+    "v.",
+    "듣다"
+   ],
+   [
+    "speaketh",
+    "v.",
+    "speaks의 고어, 말씀하시다"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "Thus saith the LORD, Learn not the way of the heathen, and be not dismayed at the signs of heaven; for the heathen are dismayed at them.",
+  "ko": "여호와께서 이같이 이르시느니라. 너희는 이방의 길을 배우지 말며 하늘의 징조를 보고 놀라지 말지니, 이방인들은 그것들을 보고 놀라느니라.",
+  "note": "이방의 길과 하늘의 징조(점성술)를 배우지 말라 하신다. '놀라다'(chathath)는 두려워 낙담함을 뜻하니, 피조물을 신격화하는 이교를 경계한다.",
+  "voc": [
+   [
+    "heathen",
+    "n.",
+    "이방, 이교도"
+   ],
+   [
+    "dismayed",
+    "adj.",
+    "놀란, 낙담한"
+   ],
+   [
+    "signs",
+    "n.",
+    "징조"
+   ]
+  ],
+  "idi": [
+   [
+    "signs of heaven",
+    "하늘의 징조 — 일월성신을 신으로 섬기던 점성술"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "For the customs of the people are vain: for one cutteth a tree out of the forest, the work of the hands of the workman, with the axe.",
+  "ko": "이는 그 백성의 풍속이 헛되니, 어떤 이가 숲에서 나무를 베어 도끼로 다듬으매 그것은 장인의 손이 만든 것이라.",
+  "note": "우상은 숲의 나무를 도끼로 다듬은 '장인의 손이 만든 것'이라는 조소다. 만드는 자보다 못한 것을 섬기는 허무를 폭로한다.",
+  "voc": [
+   [
+    "customs",
+    "n.",
+    "풍속"
+   ],
+   [
+    "vain",
+    "adj.",
+    "헛된"
+   ],
+   [
+    "axe",
+    "n.",
+    "도끼"
+   ],
+   [
+    "workman",
+    "n.",
+    "장인"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "one cutteth a tree",
+    "cutteth는 cuts의 고어 — 어떤 이가 나무를 베다"
+   ]
+  ]
+ },
+ {
+  "en": "They deck it with silver and with gold; they fasten it with nails and with hammers, that it move not.",
+  "ko": "그들이 은과 금으로 그것을 꾸미고 못과 망치로 그것을 단단히 박아 흔들리지 않게 하나니,",
+  "note": "은과 금으로 꾸미고 못으로 박아 넘어지지 않게 하는 우상의 무력함을 비꼰다. 넘어질까 붙들어야 하는 신이 무슨 신인가.",
+  "voc": [
+   [
+    "deck",
+    "v.",
+    "꾸미다, 장식하다"
+   ],
+   [
+    "fasten",
+    "v.",
+    "단단히 박다"
+   ],
+   [
+    "nails",
+    "n.",
+    "못"
+   ],
+   [
+    "hammers",
+    "n.",
+    "망치"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "that it move not",
+    "고어 부정 목적절 — 흔들리지 않게 하려고"
+   ]
+  ]
+ },
+ {
+  "en": "They are upright as the palm tree, but speak not: they must needs be borne, because they cannot go. Be not afraid of them; for they cannot do evil, neither also is it in them to do good.",
+  "ko": "그것들은 종려나무 같이 곧추 섰으나 말하지 못하며 반드시 메어 옮겨야 하니 능히 걷지 못함이라. 너희는 그것들을 두려워하지 말라. 이는 그것들이 해를 끼치지도 못하고 또한 복을 베풀 능력도 그 안에 없음이니라.",
+  "note": "종려나무처럼 곧추 섰으나 말도 못하고 스스로 걷지도 못해 메어 옮겨야 한다. 해도 복도 못 주는 무능을 통해 두려워 말라 권한다. 우상 논박의 절정이다.",
+  "voc": [
+   [
+    "upright",
+    "adj.",
+    "곧추 선"
+   ],
+   [
+    "palm tree",
+    "n.",
+    "종려나무"
+   ],
+   [
+    "borne",
+    "v.",
+    "bear의 과거분사, 메어 옮겨지다"
+   ],
+   [
+    "afraid",
+    "adj.",
+    "두려워하는"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "they must needs be borne",
+    "must needs는 반드시 ~해야 한다의 고어 — 반드시 메어 옮겨야 한다"
+   ]
+  ]
+ },
+ {
+  "en": "Forasmuch as there is none like unto thee, O LORD; thou art great, and thy name is great in might.",
+  "ko": "여호와여, 주와 같으신 이가 없나이다. 주는 위대하시며 주의 이름은 권능으로 위대하시나이다.",
+  "note": "우상 논박 사이에 삽입된 찬양으로, 여호와의 비할 데 없으심을 고백한다. '주와 같으신 이가 없나이다'는 유일신 신앙의 정수다.",
+  "voc": [
+   [
+    "none",
+    "pron.",
+    "아무도 없음"
+   ],
+   [
+    "great",
+    "adj.",
+    "위대한"
+   ],
+   [
+    "might",
+    "n.",
+    "권능"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "there is none like unto thee",
+    "unto thee는 to you의 고어 — 주와 같으신 이가 없나이다"
+   ]
+  ]
+ },
+ {
+  "en": "Who would not fear thee, O King of nations? for to thee doth it appertain: forasmuch as among all the wise men of the nations, and in all their kingdoms, there is none like unto thee.",
+  "ko": "열방의 왕이시여, 누가 주를 경외하지 아니하리이까. 이는 주께 마땅한 일이니이다. 열방의 모든 지혜로운 자 가운데와 그들의 모든 왕국 가운데 주와 같으신 이가 없나이다.",
+  "note": "'열방의 왕'이신 여호와를 경외함이 마땅하다. 모든 나라의 지혜자 중에도 주와 같은 이가 없다는 절대 우월성을 노래한다.",
+  "voc": [
+   [
+    "King of nations",
+    "phr.",
+    "열방의 왕"
+   ],
+   [
+    "appertain",
+    "v.",
+    "마땅하다, 속하다"
+   ],
+   [
+    "kingdoms",
+    "n.",
+    "왕국들"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "to thee doth it appertain",
+    "doth는 does의 고어 강조 — 주께 마땅한 일이니이다"
+   ]
+  ]
+ },
+ {
+  "en": "But they are altogether brutish and foolish: the stock is a doctrine of vanities.",
+  "ko": "그러나 그들은 다 어리석고 미련하니, 그 우상은 헛된 것을 가르치는 나무토막이라.",
+  "note": "우상은 '헛된 것을 가르치는 나무토막'(a doctrine of vanities)이다. 논박이 다시 이어지며 우상의 어리석음을 봉인한다.",
+  "voc": [
+   [
+    "brutish",
+    "adj.",
+    "짐승 같은, 미련한"
+   ],
+   [
+    "stock",
+    "n.",
+    "나무토막, 우상"
+   ],
+   [
+    "doctrine",
+    "n.",
+    "가르침, 교리"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "Silver spread into plates is brought from Tarshish, and gold from Uphaz, the work of the workman, and of the hands of the founder: blue and purple is their clothing: they are all the work of cunning men.",
+  "ko": "은을 두드려 편 것은 다시스에서 가져오고 금은 우바스에서 가져오니 장인의 솜씨요 도금장이의 손이 만든 것이며, 청색과 자색이 그것들의 옷이니, 다 능숙한 자의 솜씨로 만든 것이라.",
+  "note": "다시스의 은, 우바스의 금, 청색·자색 옷 — 값비싼 재료로도 우상의 본질은 사람의 솜씨일 뿐이다. 화려함이 신성을 만들지 못한다.",
+  "voc": [
+   [
+    "plates",
+    "n.",
+    "(금속) 판"
+   ],
+   [
+    "founder",
+    "n.",
+    "도금장이, 주물공"
+   ],
+   [
+    "cunning",
+    "adj.",
+    "능숙한, 솜씨 좋은"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "But the LORD is the true God, he is the living God, and an everlasting king: at his wrath the earth shall tremble, and the nations shall not be able to abide his indignation.",
+  "ko": "그러나 여호와는 참 하나님이시요, 그는 살아 계신 하나님이시며 영원한 왕이시니라. 그의 진노에 땅이 떨며 열방이 그의 분노를 능히 견디지 못하느니라.",
+  "note": "우상과 대조되는 '참 하나님, 살아 계신 하나님, 영원한 왕'의 삼중 칭호다. 그의 진노에 땅이 떨고 열방이 견디지 못하는 살아 계신 위엄을 선포한다.",
+  "voc": [
+   [
+    "true",
+    "adj.",
+    "참된"
+   ],
+   [
+    "living",
+    "adj.",
+    "살아 계신"
+   ],
+   [
+    "everlasting",
+    "adj.",
+    "영원한"
+   ],
+   [
+    "indignation",
+    "n.",
+    "분노"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "Thus shall ye say unto them, The gods that have not made the heavens and the earth, even they shall perish from the earth, and from under these heavens.",
+  "ko": "너희는 그들에게 이같이 말할지니라. 하늘과 땅을 짓지 아니한 신들은 이 땅에서, 또 이 하늘 아래에서 멸망하리라.",
+  "note": "본 절만 아람어로 기록되어 이방에 향한 선언임을 형식으로 드러낸다. 천지를 짓지 않은 신들은 반드시 멸망함을 못박는다.",
+  "voc": [
+   [
+    "perish",
+    "v.",
+    "멸망하다"
+   ],
+   [
+    "heavens",
+    "n.",
+    "하늘"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "Thus shall ye say unto them",
+    "ye say는 you say의 고어 — 너희는 그들에게 이같이 말할지니라"
+   ]
+  ]
+ },
+ {
+  "en": "He hath made the earth by his power, he hath established the world by his wisdom, and hath stretched out the heavens by his discretion.",
+  "ko": "그가 그의 권능으로 땅을 지으셨고 그의 지혜로 세상을 세우셨으며 그의 명철로 하늘을 펴셨느니라.",
+  "note": "권능으로 땅을, 지혜로 세상을, 명철로 하늘을 펴신 창조주 찬양이다. 능력·지혜·명철의 삼중 속성이 창조 사역에 나타난다.",
+  "voc": [
+   [
+    "power",
+    "n.",
+    "권능"
+   ],
+   [
+    "established",
+    "v.",
+    "세우다, 견고케 하다"
+   ],
+   [
+    "discretion",
+    "n.",
+    "명철, 분별"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "hath stretched out the heavens",
+    "hath + 과거분사 완료 — 하늘을 펴셨느니라"
+   ]
+  ]
+ },
+ {
+  "en": "When he uttereth his voice, there is a multitude of waters in the heavens, and he causeth the vapours to ascend from the ends of the earth; he maketh lightnings with rain, and bringeth forth the wind out of his treasures.",
+  "ko": "그가 음성을 내실 때에 하늘에 물의 무리가 일며, 땅끝에서 안개를 올리시고 비를 위하여 번개를 만드시며 그의 곳간에서 바람을 내시느니라.",
+  "note": "물의 무리·안개·번개·바람을 주관하시는 자연의 주권자다. '그의 곳간에서 바람을 내신다'는 만물을 저장고처럼 다스리시는 이미지다.",
+  "voc": [
+   [
+    "uttereth",
+    "v.",
+    "utters의 고어, (음성을) 내다"
+   ],
+   [
+    "vapours",
+    "n.",
+    "안개, 수증기"
+   ],
+   [
+    "lightnings",
+    "n.",
+    "번개"
+   ],
+   [
+    "treasures",
+    "n.",
+    "곳간, 보고"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "Every man is brutish in his knowledge: every founder is confounded by the graven image: for his molten image is falsehood, and there is no breath in them.",
+  "ko": "사람마다 그 지식이 짐승같이 어리석으니, 도금장이마다 자기가 새긴 우상으로 인하여 수치를 당하느니라. 이는 그가 부어 만든 형상이 거짓이요 그것들 속에 호흡이 없음이라.",
+  "note": "14절은 8절의 우상 논박을 재개한다. 부어 만든 형상은 '거짓'이요 그 속에 호흡(ruach)이 없으니, 생명 없는 것을 섬김이 수치다.",
+  "voc": [
+   [
+    "knowledge",
+    "n.",
+    "지식"
+   ],
+   [
+    "confounded",
+    "v.",
+    "수치를 당하다"
+   ],
+   [
+    "graven image",
+    "phr.",
+    "새긴 우상"
+   ],
+   [
+    "molten",
+    "adj.",
+    "부어 만든"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "there is no breath in them",
+    "breath는 호흡/생기 — 그것들 속에 호흡이 없음이라"
+   ]
+  ]
+ },
+ {
+  "en": "They are vanity, and the work of errors: in the time of their visitation they shall perish.",
+  "ko": "그것들은 헛되며 망령된 것의 작품이라. 벌하시는 때에 멸망하리라.",
+  "note": "우상은 '헛되며 망령된 것의 작품'이라 벌하시는 때에 멸망한다. 우상의 운명과 참 하나님의 영원하심이 대비된다.",
+  "voc": [
+   [
+    "vanity",
+    "n.",
+    "헛됨"
+   ],
+   [
+    "errors",
+    "n.",
+    "망령된 것, 오류"
+   ],
+   [
+    "visitation",
+    "n.",
+    "벌하시는 때, 심판"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "The portion of Jacob is not like them: for he is the former of all things; and Israel is the rod of his inheritance: The LORD of hosts is his name.",
+  "ko": "야곱의 분깃은 그것들과 같지 아니하시니, 이는 그가 만물을 지으신 이시요 이스라엘은 그의 기업의 지파라. 그의 이름은 만군의 여호와시니라.",
+  "note": "'야곱의 분깃'(the portion of Jacob)은 이스라엘의 기업이신 여호와 자신이다. 만물을 지으신 만군의 여호와가 그의 이름이다.",
+  "voc": [
+   [
+    "portion",
+    "n.",
+    "분깃, 몫"
+   ],
+   [
+    "former",
+    "n.",
+    "지으신 이, 조성자"
+   ],
+   [
+    "inheritance",
+    "n.",
+    "기업"
+   ],
+   [
+    "rod",
+    "n.",
+    "지파, 막대기"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "The LORD of hosts is his name",
+    "만군의 여호와 — 그의 언약적 이름의 선포"
+   ]
+  ]
+ },
+ {
+  "en": "Gather up thy wares out of the land, O inhabitant of the fortress.",
+  "ko": "포위된 땅에 거하는 자여, 네 짐을 그 땅에서 거두라.",
+  "note": "포위된 성에 거하는 자에게 짐을 싸라 명한다. 임박한 포로 유배를 준비하라는 긴박한 심판 선언이다.",
+  "voc": [
+   [
+    "gather up",
+    "phr.",
+    "거두다, 싸다"
+   ],
+   [
+    "wares",
+    "n.",
+    "짐, 물품"
+   ],
+   [
+    "inhabitant",
+    "n.",
+    "거하는 자"
+   ],
+   [
+    "fortress",
+    "n.",
+    "요새, 포위된 땅"
+   ]
+  ],
+  "idi": [
+   [
+    "gather up thy wares",
+    "네 짐을 거두라 — 피난 준비 명령"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "For thus saith the LORD, Behold, I will sling out the inhabitants of the land at this once, and will distress them, that they may find it so.",
+  "ko": "이는 여호와께서 이같이 이르심이니라. 보라, 내가 이번에는 그 땅에 거하는 자들을 물매로 내던지고 그들을 괴롭게 하여 그들로 깨닫게 하리라.",
+  "note": "여호와께서 백성을 '물매로 내던지시겠다'는 폭력적 심판의 이미지다. 그들이 비로소 깨닫게 하려는 목적이 담겨 있다.",
+  "voc": [
+   [
+    "sling out",
+    "phr.",
+    "물매로 내던지다"
+   ],
+   [
+    "distress",
+    "v.",
+    "괴롭게 하다"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "at this once",
+    "이번에는 — 단번에"
+   ]
+  ]
+ },
+ {
+  "en": "Woe is me for my hurt! my wound is grievous: but I said, Truly this is a grief, and I must bear it.",
+  "ko": "내 상처로 인하여 내게 화가 있도다. 내 상처가 중하도다. 그러나 내가 이르기를, 참으로 이는 나의 슬픔이니 내가 마땅히 견디리라 하였노라.",
+  "note": "선지자의 애가로 전환된다. 유다의 상처가 중함을 슬퍼하며 '내가 마땅히 견디리라' 하는 예레미야의 공감적 탄식이다.",
+  "voc": [
+   [
+    "woe",
+    "interj.",
+    "화 있도다"
+   ],
+   [
+    "hurt",
+    "n.",
+    "상처, 아픔"
+   ],
+   [
+    "wound",
+    "n.",
+    "상처"
+   ],
+   [
+    "grievous",
+    "adj.",
+    "중한, 심한"
+   ]
+  ],
+  "idi": [
+   [
+    "Woe is me",
+    "내게 화가 있도다 — 탄식의 정형구"
+   ]
+  ],
+  "gra": []
+ },
+ {
+  "en": "My tabernacle is spoiled, and all my cords are broken: my children are gone forth of me, and they are not: there is none to stretch forth my tent any more, and to set up my curtains.",
+  "ko": "내 장막이 헐리고 내 모든 줄이 끊어졌으며 내 자식들이 나를 떠나가 없으니, 다시는 내 장막을 펼 자도 없고 내 휘장을 세울 자도 없도다.",
+  "note": "장막이 헐리고 줄이 끊기고 자식이 떠난 폐허를 유목의 천막으로 형상화한다. 예루살렘의 황폐와 유배를 애도한다.",
+  "voc": [
+   [
+    "tabernacle",
+    "n.",
+    "장막"
+   ],
+   [
+    "cords",
+    "n.",
+    "줄"
+   ],
+   [
+    "stretch forth",
+    "phr.",
+    "펴다"
+   ],
+   [
+    "curtains",
+    "n.",
+    "휘장"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "they are not",
+    "완곡어법 — 그들이 없으니(죽거나 사라짐)"
+   ]
+  ]
+ },
+ {
+  "en": "For the pastors are become brutish, and have not sought the LORD: therefore they shall not prosper, and all their flocks shall be scattered.",
+  "ko": "이는 목자들이 짐승같이 어리석어 여호와를 찾지 아니하였음이라. 그러므로 그들이 형통하지 못하며 그들의 모든 양 떼가 흩어지리라.",
+  "note": "목자(지도자)들이 여호와를 찾지 않아 양 떼가 흩어진다. 지도자의 영적 무지가 공동체 붕괴의 원인임을 지적한다.",
+  "voc": [
+   [
+    "pastors",
+    "n.",
+    "목자들, 지도자들"
+   ],
+   [
+    "brutish",
+    "adj.",
+    "짐승 같은, 어리석은"
+   ],
+   [
+    "flocks",
+    "n.",
+    "양 떼"
+   ],
+   [
+    "scattered",
+    "v.",
+    "흩어지다"
+   ]
+  ],
+  "idi": [],
+  "gra": []
+ },
+ {
+  "en": "Behold, the noise of the bruit is come, and a great commotion out of the north country, to make the cities of Judah desolate, and a den of dragons.",
+  "ko": "보라, 소문의 풍성이 들리는도다. 북방에서 큰 소동이 일어나 유다의 성읍들을 황폐하게 하여 이리의 굴이 되게 하리라.",
+  "note": "북방의 큰 소동(바벨론)이 유다 성읍을 황폐케 하여 '이리의 굴'로 만든다. 임박한 침략의 소문이 들려온다.",
+  "voc": [
+   [
+    "noise",
+    "n.",
+    "소리, 소문"
+   ],
+   [
+    "bruit",
+    "n.",
+    "소문, 풍문"
+   ],
+   [
+    "commotion",
+    "n.",
+    "소동"
+   ],
+   [
+    "desolate",
+    "adj.",
+    "황폐한"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "a den of dragons",
+    "고어 표현 — 이리(들짐승)의 굴, 황폐의 상징"
+   ]
+  ]
+ },
+ {
+  "en": "O LORD, I know that the way of man is not in himself: it is not in man that walketh to direct his steps.",
+  "ko": "여호와여, 내가 아나이다. 사람의 길이 자기에게 있지 아니하니, 걸음을 인도함이 걷는 사람에게 있지 아니하나이다.",
+  "note": "사람의 길이 자기에게 있지 않다는 겸손의 고백이다. 걸음을 인도하심이 하나님께 있음(잠 16:9)을 선지자가 인정한다.",
+  "voc": [
+   [
+    "direct",
+    "v.",
+    "인도하다"
+   ],
+   [
+    "steps",
+    "n.",
+    "걸음"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "the way of man is not in himself",
+    "사람의 길이 자기에게 있지 아니하다 — 인간 주권의 한계"
+   ]
+  ]
+ },
+ {
+  "en": "O LORD, correct me, but with judgment; not in thine anger, lest thou bring me to nothing.",
+  "ko": "여호와여, 나를 징계하시되 공의로 하시고 주의 노로 하지 마옵소서. 주께서 나를 없는 것이 되게 하실까 하나이다.",
+  "note": "진노가 아닌 '공의로' 징계해 달라는 간구다. 심판을 받되 진멸이 아닌 교정의 은혜를 구하는 기도다.",
+  "voc": [
+   [
+    "correct",
+    "v.",
+    "징계하다, 바로잡다"
+   ],
+   [
+    "judgment",
+    "n.",
+    "공의"
+   ],
+   [
+    "anger",
+    "n.",
+    "노, 진노"
+   ]
+  ],
+  "idi": [],
+  "gra": [
+   [
+    "lest thou bring me to nothing",
+    "lest는 ~하지 않도록의 고어 — 나를 없는 것이 되게 하실까"
+   ]
+  ]
+ },
+ {
+  "en": "Pour out thy fury upon the heathen that know thee not, and upon the families that call not on thy name: for they have eaten up Jacob, and devoured him, and consumed him, and have made his habitation desolate.",
+  "ko": "주를 알지 못하는 이방과 주의 이름을 부르지 아니하는 족속에게 주의 분노를 쏟으소서. 이는 그들이 야곱을 삼키되 삼켜 멸하고 그를 진멸하였으며 그의 거처를 황폐하게 하였음이니이다.",
+  "note": "주를 알지 못하는 이방에 분노를 쏟아 달라는 기도로 장이 마무리된다. 야곱을 삼킨 자들에 대한 공의로운 보응을 구한다.",
+  "voc": [
+   [
+    "pour out",
+    "phr.",
+    "쏟다, 부어 내리다"
+   ],
+   [
+    "fury",
+    "n.",
+    "분노"
+   ],
+   [
+    "devoured",
+    "v.",
+    "삼키다, 먹어 치우다"
+   ],
+   [
+    "habitation",
+    "n.",
+    "거처"
+   ]
+  ],
+  "idi": [
+   [
+    "pour out thy fury",
+    "주의 분노를 쏟으소서 — 심판 간구의 정형구"
+   ]
+  ],
+  "gra": []
+ }
 ]
