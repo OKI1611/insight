@@ -262,7 +262,7 @@
             <div class="px-6 py-5 text-white relative overflow-hidden" style="background:linear-gradient(135deg, ${rk.color}, ${rk.color}cc)">
               <span class="absolute -right-8 -top-8 w-28 h-28 rounded-full bg-white/10"></span>
               <div class="relative flex flex-wrap items-center gap-2 mb-1.5">
-                <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/18 border border-white/35 text-white font-bold text-sm shrink-0" style="font-family:Georgia,serif">${['Ⅴ','Ⅳ','Ⅲ','Ⅱ','Ⅰ'][rk.tier-1]||''}</span>
+                <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/18 border border-white/35 text-white font-bold text-sm shrink-0" style="font-family:Georgia,serif">${6-rk.tier}</span>
                 <span class="bg-white text-xs font-bold px-2.5 py-1 rounded-full" style="color:${rk.color}">${esc(rk.rank)}</span>
                 <h3 class="text-xl font-bold">${esc(rk.name)}</h3>
                 <span class="text-[10px] font-bold tracking-wider text-white/65">${esc(rk.en||'')}</span>

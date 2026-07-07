@@ -984,9 +984,8 @@
 
     // ===== 급수 휘장(뱃지) =====
     const RANK_C = {1:['#d4c08e','#c7b07a'],2:['#cba968','#c2a050'],3:['#c2a050','#00704a'],4:['#a98a3e','#9a7a34'],5:['#2a3c66','#1f2d4d']};
-    const RANK_RN = {1:'Ⅰ',2:'Ⅱ',3:'Ⅲ',4:'Ⅳ',5:'Ⅴ'};
     function rankSeal(tier, size, earned){
-      const rn = RANK_RN[tier]||'Ⅰ';
+      const rn = String(6 - (Number(tier)||1));
       if(!earned){
         return `<span class="inline-flex items-center justify-center rounded-full shrink-0" style="width:${size}px;height:${size}px;background:#ece7dd;box-shadow:inset 0 0 0 2px rgba(21,32,58,.06)"><span style="font-size:${Math.round(size*0.4)}px;color:#c3b6a3;font-family:Georgia,serif;font-weight:700">${rn}</span></span>`;
       }
