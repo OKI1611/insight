@@ -70,6 +70,10 @@
       <button id="tabTopic" onclick="setMode('topic')" class="tabbtn text-sm font-bold px-5 py-2 rounded-full border transition">주제로 찾기</button>
       <button id="tabBook" onclick="setMode('book')" class="tabbtn text-sm font-bold px-5 py-2 rounded-full border transition">성경 책으로 찾기</button>
     </div>
+    <div id="adminBar" class="hidden mb-4 flex items-center justify-between gap-2 bg-gold/[0.06] border border-gold/25 rounded-xl px-4 py-2.5">
+      <span class="text-[12.5px] text-gold font-semibold">관리자 모드 · 직접 Q&amp;A를 작성/수정할 수 있어요</span>
+      <button onclick="openEditor()" class="bg-gold text-white text-[12.5px] font-bold px-3.5 py-1.5 rounded-full hover:opacity-90 transition shrink-0">＋ 새 Q&amp;A 작성</button>
+    </div>
 
     <div id="results" class="space-y-3"></div>
     <div id="empty" class="hidden text-center text-neutral-900/45 py-16">
@@ -83,10 +87,49 @@
     </p>
   </main>
 
+  <!-- 관리자 Q&A 편집 모달 -->
+  <div id="qaModal" class="hidden fixed inset-0 z-[120] bg-ink/40 backdrop-blur-sm flex items-start justify-center overflow-auto p-4">
+    <div class="bg-white rounded-2xl shadow-card w-full max-w-lg my-8 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 id="qaModalTitle" class="text-lg font-bold">새 Q&amp;A 작성</h3>
+        <button onclick="closeEditor()" class="text-neutral-900/40 hover:text-neutral-900 text-xl">✕</button>
+      </div>
+      <div class="space-y-3">
+        <div><label class="text-xs font-bold text-neutral-900/55">질문 *</label>
+          <input id="fTerm" type="text" maxlength="120" placeholder="예: 십일조는 꼭 드려야 하나요?" class="w-full border border-ink/15 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold mt-1" /></div>
+        <div><label class="text-xs font-bold text-neutral-900/55">주제</label>
+          <select id="fTopic" class="w-full border border-ink/15 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold mt-1 bg-white"></select></div>
+        <div><label class="text-xs font-bold text-neutral-900/55">한마디 답 *</label>
+          <textarea id="fDef" rows="2" maxlength="400" placeholder="핵심을 한두 문장으로" class="w-full border border-ink/15 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold mt-1 resize-none"></textarea></div>
+        <div><label class="text-xs font-bold text-neutral-900/55">자세한 답변</label>
+          <p class="text-[11px] text-neutral-900/40 mb-1">문단은 빈 줄로 나눕니다. 소제목을 넣으려면 <b>소제목 | 내용</b> 형식으로 쓰세요.</p>
+          <textarea id="fDeep" rows="7" placeholder="첫 문단…&#10;&#10;둘째 문단…&#10;&#10;흔한 오해 | 이렇게 오해하기 쉽지만…" class="w-full border border-ink/15 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold mt-1 resize-y"></textarea></div>
+        <div class="grid grid-cols-2 gap-3">
+          <div><label class="text-xs font-bold text-neutral-900/55">관련 성구</label>
+            <input id="fScr" type="text" placeholder="예: 말3:10, 마23:23" class="w-full border border-ink/15 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold mt-1" /></div>
+          <div><label class="text-xs font-bold text-neutral-900/55">관련어</label>
+            <input id="fRel" type="text" placeholder="예: 헌금, 십일조" class="w-full border border-ink/15 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold mt-1" /></div>
+        </div>
+        <p id="fMsg" class="text-center text-sm text-gold min-h-[18px]"></p>
+        <div class="flex gap-2 pt-1">
+          <button onclick="saveQa()" id="fSave" class="flex-1 bg-gold text-white font-bold py-3 rounded-xl hover:opacity-90 transition">저장</button>
+          <button onclick="closeEditor()" class="px-5 bg-white border border-ink/20 text-neutral-900/70 font-semibold rounded-xl hover:bg-neutral-50 transition text-sm">취소</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     const $=id=>document.getElementById(id);
     const esc=s=>String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
     let FAQ=[], MODE='topic', SEL='', BOOKORDER=[];
+    // ── 관리자 직접 작성 Q&A (Supabase site_content['qa_posts'] 재사용, 새 테이블 불필요) ──
+    const SB='https://bmxkndkwefdgsomlznoo.supabase.co';
+    const AK='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+    const ADMIN='josephoh1611@gmail.com';
+    let QA_ADMIN=[], EDIT_ID=null;
+    function qaSession(){ try{ for(var i=0;i<localStorage.length;i++){ var k=localStorage.key(i); if(!/auth-token/.test(k)) continue; var v=JSON.parse(localStorage.getItem(k)); var s=(v&&v.user)?v:(v&&v.currentSession)?v.currentSession:null; if(s&&s.user){ if(s.expires_at&&s.expires_at*1000<Date.now()) return null; return s; } } }catch(e){} return null; }
+    function isAdmin(){ var s=qaSession(); return !!(s&&s.user&&s.user.email===ADMIN); }
     const TOPICS=['구원·믿음','하나님·예수·삼위일체','성경·창조','신앙생활','교회·예배·헌금','성령·은사','윤리·관계·문화','죽음·종말·천국'];
     const TOPIC_IC={'구원·믿음':'✝️','하나님·예수·삼위일체':'🕊️','성경·창조':'📖','신앙생활':'🙏','교회·예배·헌금':'⛪','성령·은사':'🔥','윤리·관계·문화':'🤝','죽음·종말·천국':'⏳'};
     const ABBR={'창':'창세기','출':'출애굽기','레':'레위기','민':'민수기','신':'신명기','수':'여호수아','삿':'사사기','룻':'룻기','삼상':'사무엘상','삼하':'사무엘하','왕상':'열왕기상','왕하':'열왕기하','대상':'역대상','대하':'역대하','스':'에스라','느':'느헤미야','에':'에스더','욥':'욥기','시':'시편','잠':'잠언','전':'전도서','아':'아가','사':'이사야','렘':'예레미야','애':'예레미야애가','겔':'에스겔','단':'다니엘','호':'호세아','욜':'요엘','암':'아모스','옵':'오바댜','욘':'요나','미':'미가','나':'나훔','합':'하박국','습':'스바냐','학':'학개','슥':'스가랴','말':'말라기','마':'마태복음','막':'마가복음','눅':'누가복음','요':'요한복음','행':'사도행전','롬':'로마서','고전':'고린도전서','고후':'고린도후서','갈':'갈라디아서','엡':'에베소서','빌':'빌립보서','골':'골로새서','살전':'데살로니가전서','살후':'데살로니가후서','딤전':'디모데전서','딤후':'디모데후서','딛':'디도서','몬':'빌레몬서','히':'히브리서','약':'야고보서','벧전':'베드로전서','벧후':'베드로후서','요일':'요한일서','요이':'요한이서','요삼':'요한삼서','유':'유다서','계':'요한계시록'};
@@ -112,13 +155,18 @@
     $('results').innerHTML='<div class="text-center text-neutral-900/40 py-16"><p class="text-sm">질문을 불러오는 중…</p></div>';
     Promise.all([
       fetch('dictionary/entries.json').then(r=>r.json()).catch(()=>[]),
-      fetch('bible/books.json').then(r=>r.ok?r.json():[]).catch(()=>[])
+      fetch('bible/books.json').then(r=>r.ok?r.json():[]).catch(()=>[]),
+      fetch(SB+'/rest/v1/site_content?select=data&key=eq.qa_posts',{headers:{apikey:AK,Authorization:'Bearer '+AK}}).then(r=>r.ok?r.json():[]).catch(()=>[])
     ]).then(function(res){
       var d=res[0]||[], books=res[1]||[];
+      QA_ADMIN=(res[2]&&res[2][0]&&Array.isArray(res[2][0].data))?res[2][0].data:[];
       BOOKORDER=books.map(function(b){return b.ko;}).filter(Boolean);
       books.forEach(function(b){ if(b.ko&&b.file) KO2FILE[b.ko]=b.file; });
       FAQ=(Array.isArray(d)?d:[]).filter(e=>e.category==='자주 묻는 질문');
+      // 관리자 작성분을 앞에 병합(최신 우선)
+      FAQ = QA_ADMIN.map(function(e){ e.category='자주 묻는 질문'; e._admin=true; return e; }).concat(FAQ);
       FAQ.forEach(function(e){ e._books=booksOf(e); });
+      renderAdminBar();
       $('hotchips').innerHTML=HOT.map(h=>`<button onclick="searchFor('${h.replace(/'/g,"\\'")}')" class="text-[11.5px] bg-sand/70 hover:bg-gold/15 text-neutral-900/60 hover:text-gold px-2.5 py-1 rounded-full transition">${esc(h)}</button>`).join('');
       paintTabs();
       var sp=new URLSearchParams(location.search); var q=sp.get('q');
@@ -207,10 +255,47 @@
           ${deepInner}
           ${scr?`<div class="mt-3.5">${scr}</div>`:''}
           <div class="flex items-center flex-wrap gap-x-1 gap-y-1 mt-2.5 text-xs">${rel}${bks?`<span class="ml-auto text-[10.5px] text-neutral-900/30">관련 본문 · ${bks}</span>`:''}</div>
+          ${(e._admin&&isAdmin())?`<div class="mt-2.5 flex gap-1.5"><button onclick="event.preventDefault();editQa('${e.id}')" class="text-[11px] text-gold border border-gold/30 rounded-full px-2.5 py-0.5 hover:bg-gold/10">수정</button><button onclick="event.preventDefault();deleteQa('${e.id}')" class="text-[11px] text-rose-500 border border-rose-200 rounded-full px-2.5 py-0.5 hover:bg-rose-50">삭제</button></div>`:''}
         </div>
       </details>`;
     }
     function qList(arr,q){ return '<div class="bg-white rounded-2xl border border-ink/8 shadow-soft px-4 divide-y divide-ink/6">'+arr.map((e,i)=>qRow(e,q,i+1)).join('')+'</div>'; }
+
+    // ── 관리자 직접 작성/수정/삭제 ──
+    function renderAdminBar(){ var bar=$('adminBar'); if(bar) bar.classList.toggle('hidden', !isAdmin()); }
+    function openEditor(e){ EDIT_ID=(e&&e.id)?e.id:null;
+      $('fTopic').innerHTML=TOPICS.map(t=>`<option value="${esc(t)}">${esc(t)}</option>`).join('');
+      $('qaModalTitle').textContent=e?'Q&A 수정':'새 Q&A 작성';
+      $('fTerm').value=e?(e.term||''):'';
+      $('fTopic').value=e?(e.faqTopic||TOPICS[0]):TOPICS[0];
+      $('fDef').value=e?(e.def||'').replace(/^\s*한마디로\s*[—-]\s*/,''):'';
+      $('fDeep').value=(e&&e.deep)?e.deep.map(s=>(s.h?s.h+' | ':'')+(s.p||'')).join('\n\n'):'';
+      $('fScr').value=(e&&e.scriptures)?e.scriptures.join(', '):'';
+      $('fRel').value=(e&&e.related)?e.related.join(', '):'';
+      $('fMsg').textContent=''; $('qaModal').classList.remove('hidden');
+    }
+    function closeEditor(){ $('qaModal').classList.add('hidden'); EDIT_ID=null; }
+    function parseDeep(txt){ return String(txt||'').split(/\n\s*\n/).map(function(b){ b=b.trim(); if(!b) return null; var i=b.indexOf('|'); if(i>0&&i<40) return {h:b.slice(0,i).trim(),p:b.slice(i+1).trim()}; return {p:b}; }).filter(Boolean); }
+    function pushQa(arr,onOk){ var s=qaSession(); if(!s){ $('fMsg').textContent='로그인이 필요합니다'; return; }
+      fetch(SB+'/rest/v1/site_content',{method:'POST',headers:{apikey:AK,Authorization:'Bearer '+(s.access_token||AK),'Content-Type':'application/json',Prefer:'resolution=merge-duplicates,return=minimal'},body:JSON.stringify({key:'qa_posts',data:arr,updated_at:new Date().toISOString()})})
+        .then(function(r){ if(r.ok){ onOk(); } else { return r.text().then(t=>{ if($('fMsg')) $('fMsg').textContent='저장 오류: '+t.slice(0,90); alert('저장 오류: '+t+'\n\nsite_content 테이블/관리자 권한을 확인하세요.'); }); } })
+        .catch(function(){ if($('fMsg')) $('fMsg').textContent='네트워크 오류'; });
+    }
+    function reflectAdmin(arr){ QA_ADMIN=arr; FAQ=FAQ.filter(x=>!x._admin); FAQ=arr.map(function(x){ x._admin=true; x.category='자주 묻는 질문'; x._books=booksOf(x); return x; }).concat(FAQ); }
+    function saveQa(){ var term=$('fTerm').value.trim(), def=$('fDef').value.trim();
+      if(!term||!def){ $('fMsg').textContent='질문과 한마디 답은 필수입니다'; return; }
+      var obj={ id:EDIT_ID||('a'+Date.now()), term:term, category:'자주 묻는 질문', faqTopic:$('fTopic').value,
+        def: def.indexOf('한마디로')===0?def:('한마디로 — '+def), deep:parseDeep($('fDeep').value),
+        scriptures:$('fScr').value.split(/[,\n]/).map(x=>x.trim()).filter(Boolean),
+        related:$('fRel').value.split(/[,\n]/).map(x=>x.trim()).filter(Boolean), _admin:true, updated:new Date().toISOString() };
+      obj=JSON.parse(JSON.stringify(obj).replace(/세례/g,'침례'));
+      var arr=QA_ADMIN.slice(); var idx=arr.findIndex(x=>x.id===obj.id);
+      if(idx>=0) arr[idx]=obj; else arr.unshift(obj);
+      $('fSave').disabled=true; $('fMsg').textContent='저장 중…';
+      pushQa(arr,function(){ $('fSave').disabled=false; reflectAdmin(arr); closeEditor(); MODE='topic'; SEL=''; $('q').value=''; render(); });
+    }
+    function editQa(id){ var e=QA_ADMIN.find(x=>x.id===id); if(e) openEditor(e); }
+    function deleteQa(id){ if(!confirm('이 Q&A를 삭제할까요?')) return; var arr=QA_ADMIN.filter(x=>x.id!==id); pushQa(arr,function(){ reflectAdmin(arr); render(); }); }
 
     function card(e,q){
       var scr=(e.scriptures||[]).map(s=>`<button type="button" class="scrchip inline-block bg-sand/70 hover:bg-gold/20 text-neutral-900/75 text-[11px] px-2 py-0.5 rounded mr-1 mb-1 transition" onclick="showScr(event,'${esc(s).replace(/'/g,"\\'")}')">${esc(s)}</button>`).join('');
@@ -261,6 +346,9 @@
     function showScr(ev,ref){ ev.stopPropagation(); var anchor=ev.currentTarget; var p=parseRef(ref); if(!p){ showBubble(anchor,ref,'<p>구절을 찾을 수 없어요.</p>'); return; } var link='bible.html?b='+p.file+'&c='+p.ch+'&v='+p.v1; var linkHtml='<a class="blink" href="'+link+'">본문에서 보기 →</a>'; showBubble(anchor,ref,'<p>불러오는 중…</p>'); getChapter(p.file,p.ch).then(function(ch){ var h=''; if(ch){ var lines=[]; for(var v=p.v1; v<=p.v2 && v<=p.v1+3; v++){ if(ch[v-1]) lines.push('<p><b>'+v+'</b>'+esc(ch[v-1])+'</p>'); } h=lines.length?lines.join(''):'<p>이 구절은 번역 준비 중입니다.</p>'; if(p.v2>p.v1+3) h+='<p style="color:rgba(33,58,107,.45)">…</p>'; } else h='<p>이 책은 곧 제공됩니다.</p>'; showBubble(anchor,ref,h+linkHtml); }); }
     document.addEventListener('click', function(e){ if(!e.target.closest('#scrBubble') && !e.target.closest('.scrchip')) closeBubble(); });
     window.setMode=setMode; window.pickTopic=pickTopic; window.pickBook=pickBook; window.onSearch=onSearch; window.searchFor=searchFor; window.showScr=showScr; window.closeBubble=closeBubble;
+    window.openEditor=openEditor; window.closeEditor=closeEditor; window.saveQa=saveQa; window.editQa=editQa; window.deleteQa=deleteQa;
+    // 로그인 상태가 늦게 로드될 수 있어 관리자 바 재확인
+    setTimeout(renderAdminBar, 1500);
   </script>
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
