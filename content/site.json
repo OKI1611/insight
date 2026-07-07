@@ -49,10 +49,6 @@
           "href": "bible.html"
         },
         {
-          "label": "성경 Q&A",
-          "href": "qa.html"
-        },
-        {
           "label": "매일 말씀과 함께",
           "href": "daily.html"
         },
@@ -72,7 +68,17 @@
     },
     {
       "label": "성경사전",
-      "href": "dictionary.html"
+      "href": "dictionary.html",
+      "children": [
+        {
+          "label": "성경사전",
+          "href": "dictionary.html"
+        },
+        {
+          "label": "성경 Q&A",
+          "href": "qa.html"
+        }
+      ]
     },
     {
       "label": "위대한 믿음",
