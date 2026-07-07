@@ -121,9 +121,9 @@
     function showMore(){ BROWSE+=24; render(); }
     const CATS=['전체','자주 묻는 질문','교리','인물','지명','사물·자연','절기·제도','종말론','기타'];
     const FAQ_TOPICS=[
-      {n:'구원·믿음', ic:''},{n:'종말·예언', ic:'⏳'},{n:'죽음·천국·지옥', ic:''},
-      {n:'예수님·삼위일체', ic:''},{n:'성령·은사', ic:''},{n:'성경·창조', ic:''},
-      {n:'교회·예배·헌금', ic:''},{n:'윤리·관계', ic:''},{n:'생활·문화', ic:''}
+      {n:'구원·믿음', ic:''},{n:'하나님·예수·삼위일체', ic:''},{n:'성경·창조', ic:''},
+      {n:'신앙생활', ic:''},{n:'교회·예배·헌금', ic:''},{n:'성령·은사', ic:''},
+      {n:'윤리·관계·문화', ic:''},{n:'죽음·종말·천국', ic:''}
     ];
     function setFaqTopic(t){ FAQ_TOPIC=t; render(); window.scrollTo({top:0,behavior:'smooth'}); }
     function renderFaqTopics(){
