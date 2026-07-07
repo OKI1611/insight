@@ -181,13 +181,22 @@
       $('empty').classList.add('hidden');
       // 1) 검색 모드 — 모드/선택 무시하고 전체에서 찾기
       if(q){
-        var list=FAQ.filter(function(e){
-          var deepTxt=(e.deep||[]).map(s=>(s.h||'')+' '+(s.p||'')).join(' ');
-          var hay=((e.term||'')+' '+(e.def||'')+' '+deepTxt+' '+((e.related||[]).join(' '))).toLowerCase();
-          return hay.includes(q);
+        var direct=[], indirect=[];
+        FAQ.forEach(function(e){
+          var t=(e.term||'').toLowerCase(), df=(e.def||'').toLowerCase();
+          if(t.indexOf(q)>=0||df.indexOf(q)>=0){ direct.push(e); return; }
+          var deepTxt=(e.deep||[]).map(s=>(s.h||'')+' '+(s.p||'')).join(' ').toLowerCase();
+          var extra=(((e.related||[]).join(' '))+' '+((e.scriptures||[]).join(' '))+' '+((e._books||[]).join(' '))+' '+(e.faqTopic||'')).toLowerCase();
+          if(deepTxt.indexOf(q)>=0||extra.indexOf(q)>=0) indirect.push(e);
         });
-        if(!list.length){ $('results').innerHTML=''; $('empty').classList.remove('hidden'); return; }
-        $('results').innerHTML='<p class="text-sm text-neutral-900/55 mb-3"><b class="text-neutral-900">'+list.length+'개</b>의 질문을 찾았어요. <span class="text-neutral-900/40">제목을 누르면 답변이 펼쳐집니다.</span></p>'+qList(list.slice(0,200),q);
+        // 직접 관련은 제목 정확·시작 일치 우선 정렬
+        direct.sort(function(a,b){ var ta=(a.term||'').toLowerCase(), tb=(b.term||'').toLowerCase(); var sa=ta===q?0:ta.indexOf(q)===0?1:ta.indexOf(q)>=0?2:3, sb=tb===q?0:tb.indexOf(q)===0?1:tb.indexOf(q)>=0?2:3; return sa-sb; });
+        if(!direct.length&&!indirect.length){ $('results').innerHTML=''; $('empty').classList.remove('hidden'); return; }
+        $('empty').classList.add('hidden');
+        var html='<p class="text-sm text-neutral-900/60 mb-4">‘<b class="text-gold">'+esc(q)+'</b>’ 검색 — 직접 관련 <b class="text-neutral-900">'+direct.length+'</b>개'+(indirect.length?' · 함께 보면 좋은 <b class="text-neutral-900">'+indirect.length+'</b>개':'')+'</p>';
+        if(direct.length){ html+='<h3 class="text-[13px] font-bold text-neutral-900/70 mb-2 flex items-center gap-1.5"><span class="inline-block w-1 h-3.5 bg-gold rounded-full"></span>직접 관련 질문</h3>'+qList(direct.slice(0,120),q); }
+        if(indirect.length){ html+='<h3 class="text-[13px] font-bold text-neutral-900/55 mt-6 mb-2 flex items-center gap-1.5"><span class="inline-block w-1 h-3.5 bg-neutral-300 rounded-full"></span>함께 보면 좋은 질문 <span class="font-normal text-neutral-900/35 text-[11px]">본문·관련어·성구에서 언급</span></h3>'+qList(indirect.slice(0,80),q); }
+        $('results').innerHTML=html;
         return;
       }
       // 2) 주제 모드
