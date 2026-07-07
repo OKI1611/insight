@@ -232,10 +232,12 @@
         </div>
 
         <div class="space-y-3">
+          <!-- 선택한 급수 과정 요약(금액 포함) -->
+          <div id="aPkgSummary" class="hidden"></div>
           <input id="aName" type="text" maxlength="40" placeholder="이름 (또는 닉네임)" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold" />
           <input id="aEmail" type="email" maxlength="120" placeholder="이메일 *" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold" />
           <input id="aPhone" type="tel" maxlength="30" placeholder="연락처 (선택)" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold" />
-          <select id="aInterest" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold text-neutral-900/80 bg-white">
+          <select id="aInterest" onchange="updateApplySummary()" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold text-neutral-900/80 bg-white">
             <option value="">신청할 패키지를 골라주세요 *</option>
           </select>
           <textarea id="aMotive" rows="3" maxlength="600" placeholder="신청 동기나 듣고 싶은 점이 있다면 적어주세요 (선택)" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold resize-none"></textarea>
@@ -249,8 +251,8 @@
             <span>위 안내(수강료의 <b class="text-neutral-900">미디어 선교 후원 사용</b> · 기부금 영수증 미발행)를 확인하였으며 이에 동의합니다. *</span>
           </label>
           <input id="aHp" type="text" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
-          <button id="aCard" onclick="payCardAcademy()" class="w-full bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition flex items-center justify-center gap-2">카드로 결제하고 바로 수강 <span class="text-[10.5px] font-bold text-gold bg-white/90 px-2 py-0.5 rounded-full">즉시 개설</span></button>
-          <button id="aSubmit" onclick="submitApp()" class="w-full mt-2 bg-white border border-ink/20 text-neutral-900/70 font-semibold py-3 rounded-xl hover:bg-neutral-50 transition text-sm">계좌이체로 신청 (입금 확인 후 개설)</button>
+          <button id="aCard" onclick="payCardAcademy()" class="w-full bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition flex items-center justify-center gap-2"><span id="aCardLabel">카드로 결제하고 바로 수강</span> <span class="text-[10.5px] font-bold text-gold bg-white/90 px-2 py-0.5 rounded-full">즉시 개설</span></button>
+          <button id="aSubmit" onclick="submitApp()" class="w-full mt-2 bg-white border border-ink/20 text-neutral-900/70 font-semibold py-3 rounded-xl hover:bg-neutral-50 transition text-sm"><span id="aBankLabel">계좌이체로 신청 (입금 확인 후 개설)</span></button>
           <p id="aMsg" class="text-center text-sm min-h-[18px]"></p>
           <p class="text-center text-neutral-900/40 text-xs leading-relaxed">신청 정보는 정규 과정 안내 목적으로만 사용되며, 원치 않으시면 언제든 삭제 요청하실 수 있어요.</p>
         </div>
@@ -298,7 +300,8 @@
     // 급수 패키지 — program.json에서 동적 렌더(단일 출처)
     let PROG = null;
     function won(n){ return '₩' + (Number(n)||0).toLocaleString(); }
-    (async () => { try { PROG = await (await fetch('content/program.json?t=' + Date.now())).json(); renderPkgs(); applyFromURL(); } catch(e){ const g=document.getElementById('pkgGrid'); if(g) g.innerHTML=''; } })();
+    function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    (async () => { try { PROG = await (await fetch('content/program.json?t=' + Date.now())).json(); renderPkgs(); applyFromURL(); updateApplySummary(); prefillApply(); } catch(e){ const g=document.getElementById('pkgGrid'); if(g) g.innerHTML=''; } })();
     // 진단(find.html)에서 ?apply=패키지명 으로 들어오면 해당 급수를 자동 선택하고 신청 폼으로 이동
     function applyFromURL(){
       const p = new URLSearchParams(location.search).get('apply');
@@ -365,7 +368,40 @@
       }).join('');
       if(sel) sel.innerHTML = '<option value="">신청할 패키지를 골라주세요 *</option>' + ranks.map(rk => `<option>${rk.name} (${rk.rank})</option>`).join('');
     }
-    function pickPkg(v){ const s = document.getElementById('aInterest'); if(s) s.value = v; }
+    function pickPkg(v){ const s = document.getElementById('aInterest'); if(s) s.value = v; updateApplySummary(); }
+    function findRankByInterest(v){ if(!PROG||!PROG.ranks) return null; return PROG.ranks.find(rk => (rk.name+' ('+rk.rank+')') === v) || null; }
+    function gradeDigit(rk){ return (String(rk&&rk.rank||'').match(/\d+/)||[''])[0]; }
+    // 선택한 급수 과정 요약(금액 포함) + 결제 버튼 금액 라벨 갱신
+    function updateApplySummary(){
+      const box=document.getElementById('aPkgSummary'), cl=document.getElementById('aCardLabel'), bl=document.getElementById('aBankLabel');
+      const rk=findRankByInterest((document.getElementById('aInterest')||{}).value||'');
+      if(!rk){ if(box){box.classList.add('hidden');box.innerHTML='';} if(cl)cl.textContent='카드로 결제하고 바로 수강'; if(bl)bl.textContent='계좌이체로 신청 (입금 확인 후 개설)'; return; }
+      const HIDE=!!(PROG&&PROG.hidePrice), amt=rk.earlybird||rk.price||0, accent=rk.color||'#00704a', wonAmt=HIDE?'':won(amt);
+      if(box){
+        box.classList.remove('hidden');
+        box.innerHTML='<div class="rounded-2xl border p-4" style="border-color:'+accent+'40;background:'+accent+'0d">'
+          +'<p class="text-[11px] font-bold tracking-wide mb-2.5" style="color:'+accent+'">선택한 급수 과정</p>'
+          +'<div class="flex items-center justify-between gap-3">'
+          +'<div class="flex items-center gap-2.5 min-w-0"><span class="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-[15px] shrink-0" style="background:'+accent+'">'+gradeDigit(rk)+'</span>'
+          +'<div class="min-w-0"><p class="font-bold text-neutral-900 text-[15px] leading-tight truncate">'+esc(rk.rank)+' · '+esc(rk.name)+'</p><p class="text-[11px] text-neutral-500 mt-0.5">'+(rk.tracks||[]).length+'개 과목 · 18개월 수강</p></div></div>'
+          +'<div class="text-right shrink-0">'+(HIDE?'<span class="font-bold text-neutral-900">가격 추후 안내</span>':('<p class="font-extrabold text-neutral-900 text-lg leading-none">'+wonAmt+'</p>'+(rk.earlybird?'<p class="text-[11px] mt-1"><s class="text-neutral-400">'+won(rk.price)+'</s> <span class="text-rose-500 font-bold">얼리버드</span></p>':'')))+'</div>'
+          +'</div></div>';
+      }
+      if(cl) cl.textContent = wonAmt ? ('카드로 '+wonAmt+' 결제하고 바로 수강') : '카드로 결제하고 바로 수강';
+      if(bl) bl.textContent = wonAmt ? ('계좌이체로 신청 · '+wonAmt) : '계좌이체로 신청 (입금 확인 후 개설)';
+    }
+    function restoreCardBtn(){ const b=document.getElementById('aCard'); if(b) b.disabled=false; updateApplySummary(); }
+    function copyAcademyAcct(){ const t='1006-301-266177'; const done=()=>alert('계좌번호를 복사했어요!\n'+t+'  (우리은행 · 예금주 오광일)'); if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(done).catch(()=>prompt('아래 계좌번호를 복사하세요:',t)); } else prompt('아래 계좌번호를 복사하세요:',t); }
+    // 로그인 시 이름·이메일 자동 채움(수정 가능)
+    async function prefillApply(){
+      try{
+        const {data}=await sb.auth.getSession(); const u=data&&data.session&&data.session.user; if(!u) return;
+        const em=document.getElementById('aEmail'), nm=document.getElementById('aName');
+        if(em && !em.value && u.email) em.value=u.email;
+        const dn=(u.user_metadata&&(u.user_metadata.name||u.user_metadata.full_name))||'';
+        if(nm && !nm.value && dn) nm.value=dn;
+      }catch(e){}
+    }
     function hexToRgba(hex, a){ const h=(hex||'#00704a').replace('#',''); const n=h.length===3?h.split('').map(c=>c+c).join(''):h; const r=parseInt(n.slice(0,2),16), g=parseInt(n.slice(2,4),16), b=parseInt(n.slice(4,6),16); return `rgba(${r},${g},${b},${a})`; }
     function pkgSeal(tier,color,size){ return `<span class="inline-flex items-center justify-center rounded-full shrink-0" style="width:${size}px;height:${size}px;background:radial-gradient(circle at 32% 26%, rgba(255,255,255,.55), transparent 58%), linear-gradient(145deg,${color},${color}cc);box-shadow:0 6px 14px -6px ${color}, inset 0 0 0 2px rgba(255,255,255,.3)"><span style="font-size:${Math.round(size*0.44)}px;color:#fff;font-family:Georgia,serif;font-weight:700;text-shadow:0 1px 2px rgba(0,0,0,.28)">${6-tier}</span></span>`; }
     // 급수 제목 클릭 → 소개·홍보 + 수강신청 모달
@@ -411,21 +447,21 @@
       if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.textContent = '이메일을 정확히 입력해 주세요.'; return; }
       if (!interest) { msg.textContent = '신청할 패키지를 선택해 주세요.'; return; }
       if (!document.getElementById('aAgree').checked) { msg.textContent = '수강료 사용·기부금 영수증 안내에 동의해 주세요.'; return; }
-      const btn = document.getElementById('aCard'); btn.disabled = true; btn.textContent = '결제창 여는 중…';
+      const btn = document.getElementById('aCard'); const _cl=document.getElementById('aCardLabel'); btn.disabled = true; if(_cl) _cl.textContent = '결제창 여는 중…';
       try {
         let userId=null; try{ const {data}=await sb.auth.getUser(); userId=(data&&data.user&&data.user.id)||null; }catch(e){}
-        if(!userId){ msg.innerHTML='카드 결제는 <b>로그인 후</b> 이용 가능해요 (수강권이 계정에 연결됩니다). <a href="index.html" class="text-gold underline">로그인하기</a>'; btn.disabled=false; btn.textContent='카드로 결제하고 바로 수강'; return; }
+        if(!userId){ msg.innerHTML='카드 결제는 <b>로그인 후</b> 이용 가능해요 (수강권이 계정에 연결됩니다). <a href="index.html" class="text-gold underline">로그인하기</a>'; restoreCardBtn(); return; }
         const rankCode = ((interest.match(/\(([^)]+)\)/)||[])[1]) || interest;   // "Associate (5급)" → "5급"
         const r = await fetch('/api/pay/create-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items:[{kind:'cert',itemId:rankCode,earlybird:true}],email,userId})});
         const raw = await r.text();
         let o={}; try{ o=raw?JSON.parse(raw):{}; }catch(e){ o={}; }
         if(!r.ok||o.error||!o.orderId){
           const detail = o.error || (r.status===404||r.status===405 ? '결제 서버(함수)가 아직 배포되지 않았어요. 잠시 후 다시 시도해 주세요.' : ('결제 서버 응답 오류 ('+r.status+')'));
-          msg.textContent='주문 생성 실패: '+detail; btn.disabled=false; btn.textContent='카드로 결제하고 바로 수강'; return; }
-        if(typeof TossPayments!=='function'){ msg.textContent='결제 모듈을 불러오지 못했어요. 새로고침 후 다시 시도해 주세요.'; btn.disabled=false; btn.textContent='카드로 결제하고 바로 수강'; return; }
+          msg.textContent='주문 생성 실패: '+detail; restoreCardBtn(); return; }
+        if(typeof TossPayments!=='function'){ msg.textContent='결제 모듈을 불러오지 못했어요. 새로고침 후 다시 시도해 주세요.'; restoreCardBtn(); return; }
         const toss = TossPayments(TOSS_CLIENT_KEY_A);
         await toss.requestPayment('카드',{ amount:o.amount, orderId:o.orderId, orderName:o.orderName, customerName:name||'수강생', customerEmail:email, successUrl:location.origin+'/pay-success.html', failUrl:location.origin+'/pay-fail.html' });
-      } catch(e){ const m=(e&&e.message)||''; if(!/취소|cancel|USER_CANCEL/i.test(m)) msg.textContent='결제 진행 중 문제가 발생했어요. '+m; btn.disabled=false; btn.textContent='카드로 결제하고 바로 수강'; }
+      } catch(e){ const m=(e&&e.message)||''; if(!/취소|cancel|USER_CANCEL/i.test(m)) msg.textContent='결제 진행 중 문제가 발생했어요. '+m; restoreCardBtn(); }
     }
     async function submitApp(){
       const msg = document.getElementById('aMsg'); msg.style.color = '#dc2626'; msg.textContent = '';
@@ -439,18 +475,24 @@
       if (!interest) { msg.textContent = '신청할 패키지를 선택해 주세요.'; return; }
       if (!document.getElementById('aAgree').checked) { msg.textContent = '수강료 사용·기부금 영수증 안내에 동의해 주세요.'; return; }
       const memo = (motivation ? motivation + ' / ' : '') + '[동의] 수강료 미디어 선교 후원 사용·기부금 영수증 미발행 확인';
-      const btn = document.getElementById('aSubmit'); btn.disabled = true; btn.textContent = '신청 중…';
+      const btn = document.getElementById('aSubmit'); const _bl=document.getElementById('aBankLabel'); btn.disabled = true; if(_bl) _bl.textContent = '신청 중…';
       let error;
       try { const res = await withTimeout(sb.from('course_applications').insert({ name: name || null, email, phone: phone || null, interest: interest || null, motivation: memo }), 9000); error = res.error; }
       catch(e){ error = e; }
-      btn.disabled = false; btn.textContent = '등록 신청하기';
+      btn.disabled = false; updateApplySummary();
       if (error) {
         if (tableMissing(error)) { msg.innerHTML = '등록 신청을 준비 중이에요. 잠시 후 다시 시도하시거나 <a href="mailto:contact@biblynote.com" class="underline">이메일</a>로 알려주세요.'; }
         else { msg.textContent = '신청 중 오류가 났어요: ' + (error.message || error); }
         return;
       }
       notifyApplication({ name, email, phone, interest, motivation });   // 관리자 이메일 알림(비차단)
-      document.getElementById('apply').innerHTML = '<div class="bg-white rounded-3xl border border-gold/30 shadow-card p-8 md:p-10 max-w-xl mx-auto text-center"><p class="text-4xl mb-3"></p><h2 class="text-xl md:text-2xl font-bold">등록 신청이 접수됐어요!</h2><p class="text-neutral-900/60 text-sm mt-3 leading-relaxed"><b class="text-neutral-900">입금·등록 안내</b>를 입력하신 이메일로 보내드릴게요. 입금이 확인되면 수강권을 열어 드립니다.<br/>함께해 주셔서 감사합니다. </p><a href="index.html" class="inline-block mt-6 text-gold font-semibold hover:underline">홈으로 돌아가기 →</a></div>';
+      const _rk=findRankByInterest(interest), _amt=_rk?(_rk.earlybird||_rk.price||0):0, _wa=(PROG&&PROG.hidePrice)?'':won(_amt);
+      const _acct = '<div class="bg-sand/50 border border-ink/10 rounded-2xl p-5 text-left mt-5">'
+        + '<p class="text-[11px] font-bold text-neutral-500 mb-2">입금 계좌</p>'
+        + '<div class="flex items-center justify-between gap-3"><div><p class="font-bold text-neutral-900" id="acctNo">우리은행 1006-301-266177</p><p class="text-xs text-neutral-500 mt-0.5">예금주 오광일</p></div><button onclick="copyAcademyAcct()" class="shrink-0 bg-neutral-900/[0.06] hover:bg-gold hover:text-white text-neutral-700 text-xs font-semibold px-3.5 py-2 rounded-lg transition">복사</button></div>'
+        + (_wa?('<div class="flex items-center justify-between border-t border-ink/8 mt-3 pt-3"><span class="text-sm text-neutral-500">입금액</span><span class="font-extrabold text-neutral-900">'+_wa+'</span></div>'):'')
+        + '<p class="text-[11.5px] text-neutral-500 mt-3 leading-relaxed">입금자명에 <b class="text-neutral-700">신청자 성함</b>을 남겨 주세요. 입금이 확인되면 <b class="text-neutral-700">'+(interest?esc(interest):'신청하신 과정')+'</b> 수강권을 바로 열어 드려요. 안내 메일도 함께 보내드립니다.</p></div>';
+      document.getElementById('apply').innerHTML = '<div class="bg-white rounded-3xl border border-gold/30 shadow-card p-8 md:p-9 max-w-xl mx-auto text-center"><h2 class="text-xl md:text-2xl font-bold">등록 신청이 접수됐어요!</h2><p class="text-neutral-900/60 text-sm mt-3 leading-relaxed">아래 계좌로 입금해 주시면 <b class="text-neutral-900">확인 후 수강권을 바로 열어</b> 드려요.</p>' + _acct + '<div class="flex gap-2 justify-center mt-6"><a href="mylearning.html" class="text-gold font-semibold hover:underline text-sm">내 강의실 →</a><span class="text-neutral-900/20">·</span><a href="index.html" class="text-neutral-900/50 hover:text-gold text-sm">홈으로</a></div></div>';
       document.getElementById('apply').scrollIntoView({ behavior:'smooth', block:'center' });
     }
   </script>
