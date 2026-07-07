@@ -1,13 +1,12 @@
-/* 범용 좌측 섹션 사이드바 — 모든 상위메뉴(성경·소통나눔·강의·스토어·위대한믿음·BIBLY이야기)에서
-   현재 페이지가 속한 섹션의 하위메뉴를 좌측 세로 메뉴로 자동 생성한다.
+/* 범용 좌측 사이드바(네이버 카페식 전체 메뉴 트리) — 모든 상위메뉴를 로고 아래에
+   세로로 펼쳐 보여준다. 현재 페이지가 속한 섹션은 자동으로 펼쳐지고 강조되며,
+   나머지 섹션은 접혀 있고 헤더를 누르면 펼쳐진다.
    메뉴 정의는 content/site.json 의 nav 를 단일 소스로 사용(헤더와 100% 동일).
    데스크톱(>=1024px)에서만 노출되며 본문을 오른쪽으로 밀어 가려지지 않게 한다.
    좁은 화면(<1024px)에서는 상단 드롭다운 메뉴로 대체되므로 숨긴다. */
 (function(){
   if(window.__biblySectionNav) return; window.__biblySectionNav = true;
 
-  // 아이콘 없이 타이포그래피 중심의 깔끔한 메뉴(이모지 제거 — 현재 항목은 골드 알약으로 강조)
-  // site.json 로드 실패 시 사용할 내장 백업(헤더 DEFAULT_MENU와 동일 구조)
   // site.json nav와 100% 동일하게 유지(불일치 시 깜빡임·엉뚱한 메뉴 노출 방지)
   var FALLBACK = [
     { label:'소개', href:'about.html', children:[
@@ -39,43 +38,59 @@
   if(!page) page = 'index.html';
   else if(page.indexOf('.') < 0) page += '.html'; // 클린 URL(/column) → column.html 보정
 
-  // 자체 좌측 메뉴가 있는 페이지는 섹션 사이드바를 띄우지 않는다(스토어 하위메뉴가 잘못 보이던 문제).
+  // 자체 좌측 메뉴가 있는 페이지는 사이드바를 띄우지 않는다.
   var SKIP_PAGES = ['mylearning.html'];
   if(SKIP_PAGES.indexOf(page) >= 0) return;
 
   function base(h){ return String(h||'').split('#')[0].split('?')[0].toLowerCase(); }
+  function hashOf(h){ var i = String(h).indexOf('#'); return i >= 0 ? String(h).slice(i) : ''; }
 
+  // 현재 페이지가 속한 섹션 찾기
   function pickSection(nav){
     for(var i=0;i<nav.length;i++){
       var m = nav[i], kids = m.children || [];
-      if(!kids.length) continue;
-      for(var j=0;j<kids.length;j++){ if(base(kids[j].href) === page) return m; }
-      if(base(m.href) === page) return m; // 섹션 대표 페이지(자식에 없을 때)
+      if(kids.length){ for(var j=0;j<kids.length;j++){ if(base(kids[j].href) === page) return m; } }
+      if(base(m.href) === page) return m;
     }
     return null;
   }
 
-  function render(sec){
+  // 섹션 안에서 현재 페이지에 해당하는 자식이 활성인지 판단(같은 페이지 앵커 메뉴 대응)
+  function makeIsOn(kids){
+    var anchorMode = kids.filter(function(c){ return base(c.href) === page; }).length > 1;
+    function anyHashMatch(){ var cur = location.hash || ''; return kids.some(function(k){ return base(k.href) === page && hashOf(k.href) && cur === hashOf(k.href); }); }
+    return function(href){
+      var cb = base(href), hh = hashOf(href), cur = location.hash || '';
+      if(cb !== page) return false;
+      if(anchorMode) return hh ? (cur === hh) : !anyHashMatch();
+      return true;
+    };
+  }
+
+  function render(nav){
     if(document.getElementById('bibleSideNav') || document.getElementById('sectionSideNav')) return;
-    var W = 212;
+    var curSec = pickSection(nav);
+    if(!curSec) return; // 어느 섹션에도 속하지 않는 페이지(홈 등)에는 사이드바 없음
+    var W = 216;
     var st = document.createElement('style');
     st.id = '__sectionNavStyle';
     st.textContent =
       '#sectionSideNav{display:none;position:fixed;top:96px;left:0;bottom:0;width:' + W + 'px;z-index:35;'
-      + 'background:#fff;border-right:1px solid rgba(33,58,107,.08);'
-      + 'flex-direction:column;padding:18px 12px;overflow-y:auto}'
-      + '#sectionSideNav .hd{position:relative;font-size:15px;font-weight:800;color:#171717;letter-spacing:-.01em;padding:4px 10px 14px;margin-bottom:8px}'
-      + '#sectionSideNav .hd:after{content:"";position:absolute;left:10px;bottom:0;width:20px;height:2px;background:#00704a;border-radius:2px}'
-      + '#sectionSideNav a{display:block;padding:10px 14px;border-radius:10px;'
-      + 'text-decoration:none;margin-bottom:2px;white-space:nowrap;transition:background .15s,transform .15s}'
-      + '#sectionSideNav .lbl{font-size:13.5px}'
-      + '#sectionSideNav a.on{background:#e7f3ec;box-shadow:inset 3px 0 0 #00704a}'
-      + '#sectionSideNav a.on .lbl{color:#0a3d2b;font-weight:800}'
-      + '#sectionSideNav a:not(.on) .lbl{color:#4a4a4a;font-weight:600}'
-      + '#sectionSideNav a:not(.on):hover{background:#f4f6fa;transform:translateX(2px)}'
+      + 'background:#fff;border-right:1px solid rgba(33,58,107,.08);flex-direction:column;padding:16px 10px;overflow-y:auto}'
+      + '#sectionSideNav .sn-title{font-size:10.5px;font-weight:800;letter-spacing:.16em;color:rgba(33,58,107,.38);padding:2px 10px 12px;text-transform:uppercase}'
+      + '#sectionSideNav .sn-grp{margin-bottom:1px}'
+      + '#sectionSideNav .sn-hd{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 10px;border-radius:9px;cursor:pointer;font-size:13.5px;font-weight:700;color:#2a3346;text-decoration:none;transition:background .15s,color .15s;letter-spacing:-.01em}'
+      + '#sectionSideNav .sn-hd:hover{background:#f4f6fa}'
+      + '#sectionSideNav .sn-grp.cur > .sn-hd{color:#00704a}'
+      + '#sectionSideNav .chev{width:8px;height:8px;border-right:2px solid rgba(33,58,107,.32);border-bottom:2px solid rgba(33,58,107,.32);transform:rotate(-45deg);transition:transform .18s;flex:none;margin-right:4px}'
+      + '#sectionSideNav .sn-grp.open .chev{transform:rotate(45deg)}'
+      + '#sectionSideNav .sn-kids{display:none;padding:1px 0 6px}'
+      + '#sectionSideNav .sn-grp.open .sn-kids{display:block}'
+      + '#sectionSideNav .sn-kids a{display:block;padding:7px 12px 7px 24px;border-radius:8px;font-size:12.8px;font-weight:600;color:#5a6070;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:background .15s,transform .15s}'
+      + '#sectionSideNav .sn-kids a:hover{background:#f4f6fa;transform:translateX(2px)}'
+      + '#sectionSideNav .sn-kids a.on{background:#e7f3ec;color:#0a3d2b;font-weight:800;box-shadow:inset 3px 0 0 #00704a}'
       + '#sectionSideNav .foot{margin-top:auto;padding:12px 10px 2px;font-size:10.5px;color:rgba(33,58,107,.4);line-height:1.55;border-top:1px solid rgba(33,58,107,.06)}'
       + '@media(min-width:1024px){'
-      // 좌우 대칭 패딩 → 본문이 화면 정중앙에 오도록(좌측 메뉴로 인한 우측 쏠림 방지)
       + 'body{padding-left:calc(max(0px, (100vw - 1360px) / 2) + ' + W + 'px);padding-right:calc(max(0px, (100vw - 1360px) / 2) + ' + W + 'px)}'
       + '#sectionSideNav{display:flex;left:max(0px, calc((100vw - 1360px) / 2))}'
       + 'body>.bibly-topbar,body>header{margin-left:calc(-1 * (max(0px, (100vw - 1360px) / 2) + ' + W + 'px));width:calc(100% + 2 * (max(0px, (100vw - 1360px) / 2) + ' + W + 'px))}'
@@ -84,72 +99,69 @@
 
     var rail = document.createElement('nav');
     rail.id = 'sectionSideNav';
-    rail.setAttribute('aria-label', sec.label + ' 메뉴');
-    // 같은 페이지 앵커(#) 메뉴는 전부 base가 같아 모두 '활성'이 되던 버그 방지:
-    //  - 해시 링크는 현재 location.hash와 일치할 때만 활성(초기엔 아무것도 활성 아님)
-    //  - 일반 링크는 현재 페이지와 일치할 때 활성
-    var kids = sec.children || [];
-    // 같은 페이지를 가리키는 하위 항목이 2개 이상이면 '앵커 메뉴'로 간주한다.
-    //  - 현재 해시(#)와 일치하는 항목만 활성
-    //  - 일치가 없으면 해시 없는 대표 항목이 활성(기본 랜딩)
-    //  → 예전엔 about.html 하위 3개가 모두 활성(골드)이 되던 버그를 해결.
-    function hashOf(href){ var i = String(href).indexOf('#'); return i >= 0 ? String(href).slice(i) : ''; }
-    var anchorMode = kids.filter(function(c){ return base(c.href) === page; }).length > 1;
-    function anyHashMatch(){ var cur = location.hash || ''; return kids.some(function(k){ return base(k.href) === page && hashOf(k.href) && cur === hashOf(k.href); }); }
-    function isOn(href){
-      var cb = base(href), hh = hashOf(href), cur = location.hash || '';
-      if(anchorMode){
-        if(cb !== page) return false;
-        return hh ? (cur === hh) : !anyHashMatch();
+    rail.setAttribute('aria-label', '전체 메뉴');
+
+    var h = '<div class="sn-title">전체 메뉴</div>';
+    nav.forEach(function(m){
+      var kids = m.children || [];
+      var isCur = curSec.label === m.label;
+      if(!kids.length){
+        // 자식 없는 상위메뉴(예: 성경사전) → 헤더 자체가 링크
+        h += '<div class="sn-grp' + (isCur ? ' cur' : '') + '">'
+          + '<a class="sn-hd" href="' + m.href + '"><span>' + m.label + '</span></a></div>';
+        return;
       }
-      return cb === page;
-    }
-    var h = '<div class="hd">' + sec.label + '</div>';
-    kids.forEach(function(c){
-      h += '<a href="' + c.href + '" data-h="' + hashOf(c.href) + '" data-b="' + base(c.href) + '" class="' + (isOn(c.href) ? 'on' : '') + '" title="' + c.label + '">'
-        + '<span class="lbl">' + c.label + '</span></a>';
+      var isOn = isCur ? makeIsOn(kids) : function(){ return false; };
+      h += '<div class="sn-grp' + (isCur ? ' cur open' : '') + '">'
+        + '<div class="sn-hd" role="button" tabindex="0"><span>' + m.label + '</span><span class="chev"></span></div>'
+        + '<div class="sn-kids">';
+      kids.forEach(function(c){
+        h += '<a href="' + c.href + '" data-h="' + hashOf(c.href) + '" data-b="' + base(c.href) + '" class="' + (isOn(c.href) ? 'on' : '') + '" title="' + c.label + '">' + c.label + '</a>';
+      });
+      h += '</div></div>';
     });
     h += '<div class="foot">말씀으로 시대를 읽다<br>BIBLY · 바이블 인사이트</div>';
     rail.innerHTML = h;
     document.body.appendChild(rail);
-    // 앵커 이동 시 활성 표시 실시간 갱신
-    if(anchorMode){
-      window.addEventListener('hashchange', function(){
-        var cur = location.hash || '', links = rail.querySelectorAll('a'), any = false;
-        links.forEach(function(a){ if(a.getAttribute('data-b') === page && a.getAttribute('data-h') && cur === a.getAttribute('data-h')) any = true; });
-        links.forEach(function(a){
-          var cb = a.getAttribute('data-b'), hh = a.getAttribute('data-h'), on;
-          if(cb !== page) on = false; else on = hh ? (cur === hh) : !any;
-          a.classList.toggle('on', on);
-        });
-      });
-    }
+
+    // 헤더 클릭 → 그룹 펼침/접힘 토글(자식 있는 그룹만)
+    rail.querySelectorAll('.sn-grp').forEach(function(grp){
+      var hd = grp.querySelector('.sn-hd');
+      if(!hd || hd.tagName === 'A') return; // 링크형 헤더는 토글 아님
+      hd.addEventListener('click', function(){ grp.classList.toggle('open'); });
+      hd.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); grp.classList.toggle('open'); } });
+    });
+
+    // 앵커(#) 이동 시 현재 섹션의 활성 표시 실시간 갱신
+    window.addEventListener('hashchange', function(){
+      var links = rail.querySelectorAll('.sn-grp.cur .sn-kids a');
+      var kids = curSec.children || [];
+      var isOn = makeIsOn(kids);
+      links.forEach(function(a){ a.classList.toggle('on', isOn(a.getAttribute('href'))); });
+    });
   }
 
-  function sig(sec){ try{ return JSON.stringify(sec); }catch(e){ return ''; } }
+  function sig(nav){ try{ return JSON.stringify(nav); }catch(e){ return ''; } }
 
   function start(){
     // 1) 즉시(동기) 렌더 — 캐시된 nav가 있으면 그것으로, 없으면 내장 FALLBACK으로.
-    //    fetch를 기다리지 않으므로 페이지 전환 때 사이드바가 사라졌다 나타나는 깜빡임이 없다.
     var rendered = '';
     var cached = null;
     try{ cached = JSON.parse(sessionStorage.getItem('bibly_nav') || 'null'); }catch(e){}
-    var sec0 = (cached && pickSection(cached)) || pickSection(FALLBACK);
-    if(sec0){ render(sec0); rendered = sig(sec0); }
+    var nav0 = (cached && cached.length) ? cached : FALLBACK;
+    if(pickSection(nav0)){ render(nav0); rendered = sig(nav0); }
 
-    // 2) 백그라운드로 site.json 최신본을 받아 캐시 갱신. 메뉴 구조가 실제로 바뀐
-    //    경우에만 재렌더(평상시엔 동일 → 재렌더 없음 → 깜빡임 없음).
+    // 2) 백그라운드로 site.json 최신본 반영. 메뉴가 실제로 바뀐 경우에만 재렌더.
     fetch('content/site.json', { cache:'no-cache' })
       .then(function(r){ return r.ok ? r.json() : null; })
       .then(function(d){
         if(!d || !d.nav) return;
         try{ sessionStorage.setItem('bibly_nav', JSON.stringify(d.nav)); }catch(e){}
-        var sec = pickSection(d.nav);
-        if(sec && sig(sec) !== rendered){
+        if(pickSection(d.nav) && sig(d.nav) !== rendered){
           var st = document.getElementById('__sectionNavStyle');
           var old = document.getElementById('sectionSideNav');
           if(old) old.remove(); if(st) st.remove();
-          render(sec); rendered = sig(sec);
+          render(d.nav); rendered = sig(d.nav);
         }
       })
       .catch(function(){});
