@@ -32,3 +32,11 @@
   Cache-Control: no-cache, must-revalidate
 /sw.js
   Cache-Control: no-cache, must-revalidate
+
+# 컨텐츠·사전 데이터(메뉴·강의·사전·Q&A 등)는 항상 최신 확인 — 변경이 즉시 반영되도록
+/content/*.json
+  Cache-Control: no-cache, must-revalidate
+/dictionary/*.json
+  Cache-Control: no-cache, must-revalidate
+/bible/search-index.json
+  Cache-Control: no-cache, must-revalidate
