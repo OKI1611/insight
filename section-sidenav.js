@@ -101,12 +101,18 @@
     rail.id = 'sectionSideNav';
     rail.setAttribute('aria-label', '전체 메뉴');
 
+    // 다른 섹션의 하위에 이미 존재하는 링크는 최상위에서 중복 표시하지 않기 위한 집합
+    var childBases = {};
+    nav.forEach(function(m){ (m.children || []).forEach(function(c){ childBases[base(c.href)] = true; }); });
+
     var h = '<div class="sn-title">전체 메뉴</div>';
     nav.forEach(function(m){
       var kids = m.children || [];
       var isCur = curSec.label === m.label;
       if(!kids.length){
-        // 자식 없는 상위메뉴(예: 성경사전) → 헤더 자체가 링크
+        // 자식 없는 상위메뉴가 이미 다른 섹션의 하위 항목이면 중복이므로 건너뜀
+        //  (예: '성경사전'은 '성경' 하위에 있으므로 별도 최상위로 또 보이지 않게)
+        if(childBases[base(m.href)]) return;
         h += '<div class="sn-grp' + (isCur ? ' cur' : '') + '">'
           + '<a class="sn-hd" href="' + m.href + '"><span>' + m.label + '</span></a></div>';
         return;
