@@ -55,7 +55,7 @@
     <div class="max-w-3xl mx-auto px-5 py-11 md:py-14 text-center">
       <p class="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-3">Bible Q&amp;A · 성경 궁금증</p>
       <h1 class="text-2xl md:text-[32px] font-bold leading-tight">성경 <span class="text-gold">Q&amp;A</span> · 말씀 궁금증 풀이</h1>
-      <p class="text-neutral-900/60 text-sm md:text-[15px] mt-3 leading-relaxed max-w-xl mx-auto">신앙과 성경에 대한 궁금증, <b class="text-neutral-900">원어와 성경 본문</b>으로 정직하게 답합니다. 주제로도, 성경 책으로도 쉽게 찾아보세요.</p>
+      <p class="text-neutral-900/60 text-sm md:text-[15px] mt-3 leading-relaxed max-w-xl mx-auto">신앙과 성경에 대한 궁금증, <b class="text-neutral-900">원어와 성경 본문</b>으로 정직하게 답합니다. 주제별로 쉽게 찾아보세요.</p>
       <div class="relative mt-6 max-w-lg mx-auto">
         <input id="q" type="search" autocomplete="off" placeholder="궁금한 것을 검색하세요 (예: 구원의 확신, 십일조, 666…)" oninput="onSearch()" class="w-full border border-ink/15 rounded-full pl-12 pr-4 py-3.5 text-[15px] outline-none focus:border-gold shadow-soft bg-white" />
         <span class="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-900/30"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></svg></span>
@@ -65,11 +65,17 @@
   </section>
 
   <main class="max-w-3xl mx-auto px-4 py-6">
-    <!-- 탐색 모드 탭 -->
-    <div id="tabs" class="flex items-center justify-center gap-2 mb-5">
-      <button id="tabTopic" onclick="setMode('topic')" class="tabbtn text-sm font-bold px-5 py-2 rounded-full border transition">주제로 찾기</button>
-      <button id="tabBook" onclick="setMode('book')" class="tabbtn text-sm font-bold px-5 py-2 rounded-full border transition">성경 책으로 찾기</button>
-    </div>
+    <!-- 성경 권별 Q&A로 이동 안내 -->
+    <a href="qa-book.html" class="flex items-center justify-between gap-3 bg-white border border-ink/10 rounded-2xl px-4 py-3 mb-5 shadow-soft hover:border-gold/40 transition group">
+      <span class="flex items-center gap-2.5 min-w-0">
+        <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gold/10 text-gold shrink-0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
+        <span class="min-w-0">
+          <span class="block text-[14px] font-bold text-neutral-900">성경 권별 Q&amp;A</span>
+          <span class="block text-[12px] text-neutral-900/50 truncate">창세기~요한계시록, 각 권의 본문 궁금증을 구절과 함께</span>
+        </span>
+      </span>
+      <span class="text-gold text-sm font-bold shrink-0 group-hover:translate-x-0.5 transition">바로가기 →</span>
+    </a>
     <div id="adminBar" class="hidden mb-4 flex items-center justify-between gap-2 bg-gold/[0.06] border border-gold/25 rounded-xl px-4 py-2.5">
       <span class="text-[12.5px] text-gold font-semibold">관리자 모드 · 직접 Q&amp;A를 작성/수정할 수 있어요</span>
       <button onclick="openEditor()" class="bg-gold text-white text-[12.5px] font-bold px-3.5 py-1.5 rounded-full hover:opacity-90 transition shrink-0">＋ 새 Q&amp;A 작성</button>
@@ -140,12 +146,7 @@
     function booksOf(e){ var set={}; (e.scriptures||[]).forEach(function(s){ var b=bookOf(s); if(b) set[b]=1; }); return Object.keys(set); }
 
     // 초기 탭 스타일
-    function paintTabs(){
-      [['tabTopic','topic'],['tabBook','book']].forEach(function(p){
-        var b=$(p[0]), on=MODE===p[1];
-        b.className='tabbtn text-sm font-bold px-5 py-2 rounded-full border transition '+(on?'bg-gold text-white border-ink':'bg-white text-neutral-900/55 border-ink/15 hover:border-ink/30');
-      });
-    }
+    function paintTabs(){ /* 탭 제거됨(주제별 전용) — 하위호환용 no-op */ }
     function setMode(m){ MODE=m; SEL=''; $('q').value=''; paintTabs(); render(); window.scrollTo({top:0,behavior:'smooth'}); }
     function pickTopic(t){ SEL=t; render(); window.scrollTo({top:0,behavior:'smooth'}); }
     function pickBook(b){ SEL=b; render(); window.scrollTo({top:0,behavior:'smooth'}); }
@@ -182,7 +183,7 @@
       // 1) 검색 모드 — 모드/선택 무시하고 전체에서 찾기
       if(q){
         var direct=[], indirect=[];
-        FAQ.forEach(function(e){
+        FAQ.filter(e=>!e.book).forEach(function(e){
           var t=(e.term||'').toLowerCase(), df=(e.def||'').toLowerCase();
           if(t.indexOf(q)>=0||df.indexOf(q)>=0){ direct.push(e); return; }
           var deepTxt=(e.deep||[]).map(s=>(s.h||'')+' '+(s.p||'')).join(' ').toLowerCase();
@@ -199,44 +200,14 @@
         $('results').innerHTML=html;
         return;
       }
-      // 2) 주제 모드
-      if(MODE==='topic'){
-        if(!SEL){
-          var counts={}; FAQ.forEach(e=>{ var t=e.faqTopic||'신앙생활'; counts[t]=(counts[t]||0)+1; });
-          var cards=TOPICS.filter(t=>counts[t]).map(t=>
-            `<button onclick="pickTopic('${t.replace(/'/g,"\\'")}')" class="group bg-white rounded-2xl border border-ink/8 shadow-soft p-5 text-left hover:-translate-y-0.5 hover:border-gold/40 hover:shadow-card transition">
-              <span class="block w-7 h-[3px] bg-gold/55 rounded-full mb-3.5 group-hover:w-10 transition-all"></span>
-              <p class="font-bold text-neutral-900 text-[15px] group-hover:text-gold transition leading-snug">${esc(t)}</p>
-              <p class="text-xs text-neutral-900/45 mt-1.5">질문 <b class="text-neutral-900/70">${counts[t]}</b>개 <span class="text-gold/70">→</span></p></button>`).join('');
-          $('results').innerHTML=`<p class="text-sm text-neutral-900/55 mb-4">궁금한 <b class="text-neutral-900">주제를 선택</b>하면 관련 질문을 모아서 볼 수 있어요.</p>
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">${cards}</div>`;
-          return;
-        }
-        var tl=FAQ.filter(e=>(e.faqTopic||'신앙생활')===SEL);
-        $('results').innerHTML=backBar('주제 전체','pickTopic')+
-          `<h2 class="text-xl font-bold mb-1.5 flex items-baseline gap-2"><span class="inline-block w-1 h-5 bg-gold rounded-full translate-y-0.5"></span>${esc(SEL)} <span class="text-sm font-semibold text-neutral-900/40">${tl.length}</span></h2>`+
-          `<p class="text-xs text-neutral-900/45 mb-3 pl-3">궁금한 질문 제목을 누르면 답변이 펼쳐집니다.</p>`+
-          qList(tl,'');
-        return;
-      }
-      // 3) 성경 책 모드
-      if(!SEL){
-        var bc={}; FAQ.forEach(e=>{ (e._books||[]).forEach(b=>{ bc[b]=(bc[b]||0)+1; }); });
-        var order=BOOKORDER.length?BOOKORDER:Object.keys(bc);
-        var chips=order.map(function(b){
-          var n=bc[b]||0, on=n>0;
-          return `<button ${on?`onclick="pickBook('${b.replace(/'/g,"\\'")}')"`:'disabled'} class="text-left px-3 py-2 rounded-xl border text-[13px] transition ${on?'bg-white border-ink/10 hover:border-gold/50 hover:shadow-soft':'bg-ink/[0.02] border-ink/5 text-neutral-900/25 cursor-default'}">
-            <span class="font-semibold ${on?'text-neutral-900':''}">${esc(b)}</span> ${on?`<span class="text-gold font-bold text-xs">${n}</span>`:'<span class="text-[10px]">–</span>'}</button>`;
-        }).join('');
-        var haveN=Object.keys(bc).length;
-        $('results').innerHTML=`<p class="text-sm text-neutral-900/55 mb-3">성경 <b class="text-neutral-900">책을 선택</b>하면 그 책과 관련된 질문을 볼 수 있어요. <span class="text-neutral-900/40">(현재 ${haveN}권에 질문 연결 · 계속 추가)</span></p>
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">${chips}</div>`;
-        return;
-      }
-      var bl=FAQ.filter(e=>(e._books||[]).indexOf(SEL)>=0);
-      $('results').innerHTML=backBar('성경 책 전체','pickBook')+
-        `<h2 class="text-xl font-bold mb-1.5 flex items-baseline gap-2"><span class="inline-block w-1 h-5 bg-gold rounded-full translate-y-0.5"></span>${esc(SEL)} <span class="text-sm font-semibold text-neutral-900/40">${bl.length}</span></h2>`+
-        (bl.length?`<p class="text-xs text-neutral-900/45 mb-3 pl-3">질문 제목을 누르면 답변이 펼쳐집니다.</p>`+qList(bl,''):'<p class="text-neutral-900/45 py-8 text-center text-sm">이 책과 연결된 질문은 곧 추가됩니다.</p>');
+      function chip(label,val,n,on,fn){ return `<button onclick="${fn}('${String(val).replace(/'/g,"\\'")}')" class="text-[12.5px] font-semibold px-3 py-1.5 rounded-full border whitespace-nowrap transition ${on?'bg-gold text-white border-ink':'bg-white text-neutral-900/60 border-ink/15 hover:border-gold/40'}">${esc(label)}<span class="${on?'text-white/75':'text-neutral-900/35'} ml-1">${n}</span></button>`; }
+      // 주제 칩(상단) + 글 목록 바로 노출 (주제별 질문만 — 권별은 qa-book.html)
+      var pool=FAQ.filter(e=>!e.book);
+      var counts={}; pool.forEach(e=>{ var t=e.faqTopic||'신앙생활'; counts[t]=(counts[t]||0)+1; });
+      var chips=chip('전체','',pool.length,!SEL,'pickTopic')+TOPICS.filter(t=>counts[t]).map(t=>chip(t,t,counts[t],SEL===t,'pickTopic')).join('');
+      var list=SEL?pool.filter(e=>(e.faqTopic||'신앙생활')===SEL):pool;
+      $('results').innerHTML='<div class="flex flex-wrap gap-1.5 mb-3.5">'+chips+'</div>'
+        +'<p class="text-xs text-neutral-900/45 mb-2 pl-1"><b class="text-neutral-900/70">'+list.length+'개</b> · 제목을 누르면 답변이 펼쳐집니다</p>'+qList(list,'');
     }
     function backBar(label,fn){ return `<button onclick="${fn}('')" class="inline-flex items-center gap-1 text-sm font-semibold text-gold mb-3 hover:underline">← ${label} 보기</button>`; }
 
@@ -252,7 +223,7 @@
       }
       var scr=(e.scriptures||[]).map(s=>`<button type="button" class="scrchip inline-block bg-sand/70 hover:bg-gold/15 text-neutral-900/70 text-[11px] px-2 py-0.5 rounded mr-1 mb-1 transition" onclick="showScr(event,'${esc(s).replace(/'/g,"\\'")}')">${esc(s)}</button>`).join('');
       var rel=(e.related||[]).map(r=>`<button onclick="searchFor('${esc(r).replace(/'/g,"\\'")}')" class="text-gold/90 text-xs hover:underline mr-2.5">${esc(r)}</button>`).join('');
-      var bks=(e._books||[]).slice(0,3).map(b=>`<button onclick="setMode('book');pickBook('${b.replace(/'/g,"\\'")}')" class="text-neutral-900/40 hover:text-gold">${esc(b)}</button>`).join('<span class="text-neutral-900/20 mx-1">·</span>');
+      var bks=(e._books||[]).slice(0,3).map(b=>`<a href="qa-book.html?b=${encodeURIComponent(b)}" class="text-neutral-900/40 hover:text-gold">${esc(b)}</a>`).join('<span class="text-neutral-900/20 mx-1">·</span>');
       return `<details class="qrow">
         <summary class="cursor-pointer select-none flex items-center gap-3 py-3.5 hover:bg-sand/20 rounded-lg px-2 -mx-2 transition">
           <span class="qnum text-[13px] font-semibold text-neutral-900/35 shrink-0 w-7 text-right" style="font-variant-numeric:tabular-nums">${num||''}</span>
