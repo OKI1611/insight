@@ -7,8 +7,8 @@
   <script src="/section-sidenav.js?v=10"></script>
   <script src="/protect.js?v=1"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>주제별 성경 읽기 — BIBLY 바이블 인사이트</title>
-  <meta name="description" content="기독교 핵심 교리를 주제별로 — 원어(히브리어·헬라어)를 참고한 매끄러운 한국어 새 번역과 영어 학습 각주로 읽는 성경." />
+  <title>주제별 성경 Q&A — BIBLY 바이블 인사이트</title>
+  <meta name="description" content="기독교 핵심 교리를 주제별로 — 단계별 성구 스터디와 자주 묻는 질문(Q&A)을 원어 근거로 한 화면에서. 말씀으로 읽고, 궁금증을 풀어보세요." />
   <link rel="canonical" href="https://biblynote.com/themes" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="BIBLY 바이블 인사이트" />
@@ -55,20 +55,24 @@
     <!-- ===== 테마 목록 ===== -->
     <section id="gridView">
       <div class="text-center mb-8">
-        <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">THEMATIC SCRIPTURE · 주제별 성경 읽기</p>
-        <h1 class="text-3xl md:text-4xl font-bold leading-tight">교리로 읽는 성경</h1>
+        <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">THEMATIC BIBLE Q&amp;A · 주제별 성경 Q&amp;A</p>
+        <h1 class="text-3xl md:text-4xl font-bold leading-tight">주제별 성경 Q&amp;A</h1>
         <p class="text-neutral-900/60 text-base md:text-lg mt-4 max-w-2xl mx-auto leading-relaxed">
-          기독교 핵심 교리를 <b class="text-neutral-900/80">주제별</b>로 모았습니다. 한 절 한 절,
-          <b class="text-gold">원어(히브리어·헬라어)를 참고한 새 번역</b>과 <b class="text-gold">영어 학습 각주</b>로 함께 읽습니다.
+          주제마다 <b class="text-gold">말씀으로</b>(단계별 성구 스터디)와 <b class="text-gold">묻고 답하기</b>(자주 묻는 질문)를 한 곳에.
+          원어(히브리어·헬라어) 근거로 정직하고 균형 있게 풀어냅니다.
         </p>
-        <div class="mt-5 inline-flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-sm text-neutral-900/55 bg-white border border-ink/8 rounded-2xl px-5 py-3 shadow-soft">
-          <span>매끄러운 한국어 새 번역</span>
-          <span class="text-neutral-900/20">·</span>
-          <span>원어 핵심 단어 풀이</span>
-          <span class="text-neutral-900/20">·</span>
-          <span>영어 표현 학습 각주</span>
+        <div class="relative mt-6 max-w-lg mx-auto">
+          <input id="q" type="search" autocomplete="off" placeholder="궁금한 것을 검색하세요 (예: 구원의 확신, 십일조, 창조…)" oninput="onSearch()" class="w-full border border-ink/15 rounded-full pl-12 pr-4 py-3.5 text-[15px] outline-none focus:border-gold shadow-soft bg-white" />
+          <span class="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-900/30"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></svg></span>
         </div>
       </div>
+      <!-- 관리자 바 -->
+      <div id="adminBar" class="hidden mb-5 flex items-center justify-between gap-2 bg-gold/[0.06] border border-gold/25 rounded-xl px-4 py-2.5">
+        <span class="text-[12.5px] text-gold font-semibold">관리자 모드 · 주제별 Q&amp;A를 직접 작성할 수 있어요</span>
+        <button onclick="openEditor()" class="bg-gold text-white text-[12.5px] font-bold px-3.5 py-1.5 rounded-full hover:opacity-90 transition shrink-0">＋ 새 Q&amp;A 작성</button>
+      </div>
+      <!-- 검색 결과 -->
+      <div id="searchResults" class="hidden"></div>
 
       <div id="themeGrid" class="grid sm:grid-cols-2 gap-4">
         <p class="text-neutral-900/40 text-sm text-center py-16 col-span-2">불러오는 중…</p>
@@ -86,21 +90,27 @@
 
       <div id="themeHero" class="bg-gold text-white rounded-3xl p-6 md:p-8 mb-5"></div>
 
-      <!-- 단계 탭(초급/중급/고급) -->
-      <div id="levelTabs" class="hidden flex flex-wrap gap-2 mb-2"></div>
-      <p id="levelDesc" class="hidden text-[13px] text-neutral-900/55 mb-4"></p>
+      <!-- 상세 탭: 말씀으로 / 묻고 답하기 -->
+      <div id="detailTabs" class="flex gap-1 mb-5 border-b border-ink/10"></div>
 
-      <!-- 보기 옵션 -->
-      <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mb-5 text-sm bg-white border border-ink/8 rounded-2xl px-4 py-3 shadow-soft">
-        <span class="font-bold text-neutral-900/55">보기</span>
-        <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="optEn" checked onchange="renderVerses()"/> 영어 원문</label>
-        <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="optNote" checked onchange="renderVerses()"/> 신학 설명</label>
+      <!-- 탭① 말씀으로 (성구 스터디) -->
+      <div id="versePanel">
+        <!-- 단계 탭(초급/중급/고급) -->
+        <div id="levelTabs" class="hidden flex flex-wrap gap-2 mb-2"></div>
+        <p id="levelDesc" class="hidden text-[13px] text-neutral-900/55 mb-4"></p>
+        <!-- 보기 옵션 -->
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mb-5 text-sm bg-white border border-ink/8 rounded-2xl px-4 py-3 shadow-soft">
+          <span class="font-bold text-neutral-900/55">보기</span>
+          <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="optEn" checked onchange="renderVerses()"/> 영어 원문</label>
+          <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="optNote" checked onchange="renderVerses()"/> 신학 설명</label>
+        </div>
+        <div id="verseList" class="space-y-4"></div>
+        <!-- 관련 강의(YouTube) -->
+        <div id="videoSec" class="hidden mt-9"></div>
       </div>
 
-      <div id="verseList" class="space-y-4"></div>
-
-      <!-- 관련 강의(YouTube) -->
-      <div id="videoSec" class="hidden mt-9"></div>
+      <!-- 탭② 묻고 답하기 (Q&A) -->
+      <div id="qaPanel" class="hidden"></div>
 
       <div class="text-center mt-8">
         <button onclick="showGrid()" class="text-sm text-gold hover:underline">← 다른 주제 보기</button>
@@ -109,28 +119,84 @@
 
   </main>
 
+  <!-- 관리자 Q&A 편집 모달 -->
+  <div id="qaModal" class="hidden fixed inset-0 z-[120] bg-ink/40 backdrop-blur-sm flex items-start justify-center overflow-auto p-4">
+    <div class="bg-white rounded-2xl shadow-card w-full max-w-lg my-8 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 id="qaModalTitle" class="text-lg font-bold">새 주제별 Q&amp;A 작성</h3>
+        <button onclick="closeEditor()" class="text-neutral-900/40 hover:text-neutral-900 text-xl">✕</button>
+      </div>
+      <div class="space-y-3">
+        <div><label class="text-xs font-bold text-neutral-900/55">질문 *</label>
+          <input id="fTerm" type="text" maxlength="140" class="w-full border border-ink/15 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold mt-1" /></div>
+        <div><label class="text-xs font-bold text-neutral-900/55">주제 *</label>
+          <select id="fTheme" class="w-full border border-ink/15 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold mt-1 bg-white"></select></div>
+        <div><label class="text-xs font-bold text-neutral-900/55">한마디 답 *</label>
+          <textarea id="fDef" rows="2" maxlength="400" class="w-full border border-ink/15 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold mt-1 resize-none"></textarea></div>
+        <div><label class="text-xs font-bold text-neutral-900/55">자세한 답변</label>
+          <p class="text-[11px] text-neutral-900/40 mb-1">문단은 빈 줄로 나눕니다. 소제목은 <b>소제목 | 내용</b> 형식.</p>
+          <textarea id="fDeep" rows="7" class="w-full border border-ink/15 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold mt-1 resize-y"></textarea></div>
+        <div class="grid grid-cols-2 gap-3">
+          <div><label class="text-xs font-bold text-neutral-900/55">관련 성구</label>
+            <input id="fScr" type="text" placeholder="예: 요3:16, 롬5:8" class="w-full border border-ink/15 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold mt-1" /></div>
+          <div><label class="text-xs font-bold text-neutral-900/55">관련어</label>
+            <input id="fRel" type="text" class="w-full border border-ink/15 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold mt-1" /></div>
+        </div>
+        <p id="fMsg" class="text-center text-sm text-gold min-h-[18px]"></p>
+        <div class="flex gap-2 pt-1">
+          <button onclick="saveQa()" id="fSave" class="flex-1 bg-gold text-white font-bold py-3 rounded-xl hover:opacity-90 transition">저장</button>
+          <button onclick="closeEditor()" class="px-5 bg-white border border-ink/20 text-neutral-900/70 font-semibold rounded-xl hover:bg-neutral-50 transition text-sm">취소</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     let THEMES = [];
     const $ = id => document.getElementById(id);
     function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-    fetch('content/themes.json?t='+Date.now()).then(r=>r.json()).then(d=>{
-      THEMES = d.themes || [];
-      renderGrid();
+    // ── Q&A / 성구 팝업 공용 ──
+    const SB='https://bmxkndkwefdgsomlznoo.supabase.co';
+    const AK='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+    const ADMIN='josephoh1611@gmail.com';
+    const ABBR_F={'창':'Genesis','출':'Exodus','레':'Leviticus','민':'Numbers','신':'Deuteronomy','수':'Joshua','삿':'Judges','룻':'Ruth','삼상':'1Samuel','삼하':'2Samuel','왕상':'1Kings','왕하':'2Kings','대상':'1Chronicles','대하':'2Chronicles','스':'Ezra','느':'Nehemiah','에':'Esther','욥':'Job','시':'Psalms','잠':'Proverbs','전':'Ecclesiastes','아':'SongofSolomon','사':'Isaiah','렘':'Jeremiah','애':'Lamentations','겔':'Ezekiel','단':'Daniel','호':'Hosea','욜':'Joel','암':'Amos','옵':'Obadiah','욘':'Jonah','미':'Micah','나':'Nahum','합':'Habakkuk','습':'Zephaniah','학':'Haggai','슥':'Zechariah','말':'Malachi','마':'Matthew','막':'Mark','눅':'Luke','요':'John','행':'Acts','롬':'Romans','고전':'1Corinthians','고후':'2Corinthians','갈':'Galatians','엡':'Ephesians','빌':'Philippians','골':'Colossians','살전':'1Thessalonians','살후':'2Thessalonians','딤전':'1Timothy','딤후':'2Timothy','딛':'Titus','몬':'Philemon','히':'Hebrews','약':'James','벧전':'1Peter','벧후':'2Peter','요일':'1John','요이':'2John','요삼':'3John','유':'Jude','계':'Revelation'};
+    let QA_ADMIN=[], QA_BY_THEME={}, FAQ_STATIC=[], KO2FILE={}, EDIT_ID=null, CUR_TAB='verse'; var chCache={};
+    function rebuildQa(){ QA_BY_THEME={}; QA_ADMIN.filter(e=>e.themeId&&!e.book).map(function(e){e._admin=true;return e;}).concat(FAQ_STATIC).forEach(function(e){ (QA_BY_THEME[e.themeId]=QA_BY_THEME[e.themeId]||[]).push(e); }); }
+    function qaCount(id){ return (QA_BY_THEME[id]||[]).length; }
+    function verseCount(t){ if(t.levels){ return ['beginner','intermediate','advanced'].reduce((s,k)=>s+((t.levels[k]||[]).length),0); } return (t.verses||[]).length; }
+
+    Promise.all([
+      fetch('content/themes.json?t='+Date.now()).then(r=>r.json()).catch(()=>({themes:[]})),
+      fetch('dictionary/entries.json').then(r=>r.json()).catch(()=>[]),
+      fetch('bible/books.json').then(r=>r.ok?r.json():[]).catch(()=>[]),
+      fetch(SB+'/rest/v1/site_content?select=data&key=eq.qa_posts',{headers:{apikey:AK,Authorization:'Bearer '+AK}}).then(r=>r.ok?r.json():[]).catch(()=>[])
+    ]).then(function(res){
+      THEMES = (res[0]&&res[0].themes) || [];
+      (res[2]||[]).forEach(function(b){ if(b.ko&&b.file) KO2FILE[b.ko]=b.file; });
+      QA_ADMIN=(res[3]&&res[3][0]&&Array.isArray(res[3][0].data))?res[3][0].data:[];
+      var d=res[1]||[];
+      FAQ_STATIC=(Array.isArray(d)?d:[]).filter(e=>e.category==='자주 묻는 질문' && e.themeId && !e.book);
+      rebuildQa();
+      renderGrid(); renderAdminBar();
       const id = new URLSearchParams(location.search).get('theme');
       if(id && THEMES.some(t=>t.id===id)) openTheme(id, true);
     }).catch(()=>{ $('themeGrid').innerHTML = '<p class="text-red-500 text-sm text-center py-16 col-span-2">주제를 불러오지 못했습니다.</p>'; });
 
+    function qaSession(){ try{ for(var i=0;i<localStorage.length;i++){ var k=localStorage.key(i); if(!/auth-token/.test(k)) continue; var v=JSON.parse(localStorage.getItem(k)); var s=(v&&v.user)?v:(v&&v.currentSession)?v.currentSession:null; if(s&&s.user){ if(s.expires_at&&s.expires_at*1000<Date.now()) return null; return s; } } }catch(e){} return null; }
+    function isAdmin(){ var s=qaSession(); return !!(s&&s.user&&s.user.email===ADMIN); }
+    function renderAdminBar(){ var b=$('adminBar'); if(b) b.classList.toggle('hidden', !isAdmin()); }
+
     const LVL_META={beginner:{l:'초급',d:'핵심 5절 · 쉽고 따뜻하게'},intermediate:{l:'중급',d:'15절 · 맥락과 신학적 의미'},advanced:{l:'고급',d:'30절 · 변증·세대주의 종말론 깊이'}};
     function renderGrid(){
       $('themeGrid').innerHTML = THEMES.map((t,i)=>{
-        const leveled = t.levels && (t.levels.advanced||t.levels.beginner);
-        const badge = leveled
-          ? '<span class="inline-flex items-center gap-1 mt-2.5 text-xs font-semibold text-white bg-gold rounded-full px-2.5 py-0.5">초·중·고급 단계별 →</span>'
-          : `<span class="inline-block mt-2.5 text-xs font-semibold text-gold">${(t.verses||[]).length}개 핵심 성구 →</span>`;
+        const vN=verseCount(t), qN=qaCount(t.id);
+        const badge = `<span class="inline-flex items-center gap-2 mt-2.5 text-xs font-semibold">`
+          + (vN?`<span class="text-white bg-gold rounded-full px-2.5 py-0.5">성구 ${vN}</span>`:'')
+          + (qN?`<span class="text-gold bg-gold/10 border border-gold/25 rounded-full px-2.5 py-0.5">질문 ${qN}</span>`:'')
+          + `</span>`;
         return `<button onclick="openTheme('${t.id}')" class="themeCard text-left bg-white rounded-2xl border border-ink/8 shadow-soft hover:shadow-card p-5 flex gap-4">
-          <span class="text-3xl shrink-0 leading-none mt-0.5">${t.icon||''}</span>
-          <span class="min-w-0">
+          <span class="min-w-0 flex-1">
             <span class="block text-[10px] font-bold text-gold tracking-[0.18em] mb-0.5">THEME ${String(i+1).padStart(2,'0')}</span>
             <span class="block font-bold text-lg leading-snug">${esc(t.title)}</span>
             <span class="block text-xs text-neutral-900/45 mt-0.5">${esc(t.en||'')}</span>
@@ -162,8 +228,73 @@
       $('gridView').classList.add('hidden');
       $('readView').classList.remove('hidden');
       renderLevelTabs(); renderVerses(); renderVideos();
+      CUR_TAB = verseCount(t)>0 ? 'verse' : 'qa';
+      renderDetailTabs(); applyTab();
       if(!noScroll) window.scrollTo({top:0,behavior:'smooth'});
     }
+    // 상세 탭(말씀으로 / 묻고 답하기)
+    function renderDetailTabs(){
+      if(!CURRENT) return;
+      var vN=verseCount(CURRENT), qN=qaCount(CURRENT.id);
+      function tab(id,label,n){ var on=CUR_TAB===id;
+        return `<button onclick="switchTab('${id}')" class="px-4 py-2.5 text-sm font-bold border-b-2 -mb-px transition ${on?'border-gold text-gold':'border-transparent text-neutral-900/45 hover:text-neutral-900/70'}">${label}<span class="ml-1 text-[11px] ${on?'text-gold/70':'text-neutral-900/30'}">${n}</span></button>`; }
+      $('detailTabs').innerHTML = tab('verse','말씀으로',vN) + tab('qa','묻고 답하기',qN);
+    }
+    function switchTab(t){ CUR_TAB=t; renderDetailTabs(); applyTab(); }
+    function applyTab(){
+      var isV=CUR_TAB==='verse';
+      $('versePanel').classList.toggle('hidden',!isV);
+      $('qaPanel').classList.toggle('hidden',isV);
+      if(!isV) renderQa();
+    }
+    // 현재 주제의 Q&A 목록
+    function renderQa(){
+      var list=(QA_BY_THEME[CURRENT.id]||[]);
+      var admin=isAdmin();
+      var head = `<div class="flex items-center justify-between mb-3"><p class="text-[13px] text-neutral-900/50">이 주제의 자주 묻는 질문 <b class="text-gold">${list.length}</b>개 · 제목을 누르면 답변이 펼쳐집니다.</p>${admin?`<button onclick="openEditor()" class="text-[12px] font-bold text-gold border border-gold/30 rounded-full px-3 py-1 hover:bg-gold/10 shrink-0">＋ 작성</button>`:''}</div>`;
+      $('qaPanel').innerHTML = head + (list.length ? qaListHtml(list,'') : '<p class="text-neutral-900/45 py-10 text-center text-sm">이 주제의 질문은 곧 추가됩니다.</p>');
+    }
+    function qaListHtml(arr,q){ return '<div class="bg-white rounded-2xl border border-ink/8 shadow-soft px-4 divide-y divide-ink/6">'+arr.map((e,i)=>qRow(e,q,i+1)).join('')+'</div>'; }
+    function hl(text,q){ if(!q) return esc(text); var safe=esc(text); try{ var re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig'); return safe.replace(re,'<mark>$1</mark>'); }catch(e){ return safe; } }
+    function qRow(e,q,num){
+      var ans=(e.def||'').replace(/^\s*한마디로\s*[—-]\s*/,'');
+      var deepInner='';
+      if(Array.isArray(e.deep)&&e.deep.length){
+        deepInner='<div class="mt-3.5 space-y-3.5 border-l-2 border-sand pl-4">'+e.deep.map(function(s){
+          if(s.h==='흔한 오해'||s.misc){ return `<div class="bg-[#faf5ec] border-l-2 border-gold/50 rounded-r-lg px-3.5 py-2.5"><p class="text-[12.5px] font-bold text-gold mb-0.5">${esc(s.h||'흔한 오해')}</p><p class="text-[13.5px] text-neutral-900/80">${esc(s.p||'')}</p></div>`; }
+          return `<div>${s.h?`<h4 class="font-bold text-neutral-900 text-[14px] mb-1">${esc(s.h)}</h4>`:''}<p class="text-[13.5px] text-neutral-900/80">${esc(s.p||'')}</p></div>`;
+        }).join('')+'</div>';
+      }
+      var scr=(e.scriptures||[]).map(s=>`<button type="button" class="scrchip inline-block bg-sand/70 hover:bg-gold/15 text-neutral-900/70 text-[11px] px-2 py-0.5 rounded mr-1 mb-1 transition" onclick="showScr(event,'${esc(s).replace(/'/g,"\\'")}')">${esc(s)}</button>`).join('');
+      var rel=(e.related||[]).map(r=>`<button onclick="searchFor('${esc(r).replace(/'/g,"\\'")}')" class="text-gold/90 text-xs hover:underline mr-2.5">${esc(r)}</button>`).join('');
+      return `<details class="qrow">
+        <summary class="cursor-pointer select-none flex items-center gap-3 py-3.5 hover:bg-sand/20 rounded-lg px-2 -mx-2 transition">
+          <span class="text-[13px] font-semibold text-neutral-900/35 shrink-0 w-7 text-right" style="font-variant-numeric:tabular-nums">${num||''}</span>
+          <span class="flex-1 min-w-0 font-semibold text-[15px] text-neutral-900 leading-snug">${hl(e.term||'',q)}</span>
+          <span class="text-neutral-900/25 shrink-0 text-xs">▼</span>
+        </summary>
+        <div class="pl-10 pr-1 pb-5 pt-1">
+          <p class="text-[14px] text-neutral-900/85 leading-[1.9]">${hl(ans,q)}</p>
+          ${deepInner}
+          ${scr?`<div class="mt-3.5">${scr}</div>`:''}
+          <div class="flex items-center flex-wrap gap-x-1 gap-y-1 mt-2.5 text-xs">${rel}</div>
+          ${(e._admin&&isAdmin())?`<div class="mt-2.5 flex gap-1.5"><button onclick="event.preventDefault();editQa('${e.id}')" class="text-[11px] text-gold border border-gold/30 rounded-full px-2.5 py-0.5 hover:bg-gold/10">수정</button><button onclick="event.preventDefault();deleteQa('${e.id}')" class="text-[11px] text-rose-500 border border-rose-200 rounded-full px-2.5 py-0.5 hover:bg-rose-50">삭제</button></div>`:''}
+        </div>
+      </details>`;
+    }
+
+    // 통합 검색(주제 전체 Q&A) — 히어로 검색창
+    function onSearch(){
+      var q=($('q').value||'').trim().toLowerCase();
+      if(!q){ $('searchResults').classList.add('hidden'); $('searchResults').innerHTML=''; $('themeGrid').classList.remove('hidden'); return; }
+      $('themeGrid').classList.add('hidden'); $('searchResults').classList.remove('hidden');
+      var all=[]; Object.keys(QA_BY_THEME).forEach(k=>{ (QA_BY_THEME[k]||[]).forEach(e=>all.push(e)); });
+      var list=all.filter(function(e){ var deep=(e.deep||[]).map(s=>(s.h||'')+' '+(s.p||'')).join(' '); return ((e.term||'')+' '+(e.def||'')+' '+deep).toLowerCase().indexOf(q)>=0; });
+      var themeHit=THEMES.filter(t=>((t.title||'')+' '+(t.intro||'')).toLowerCase().indexOf(q)>=0);
+      var th = themeHit.length?`<p class="text-sm text-neutral-900/60 mb-2">주제 <b class="text-gold">${themeHit.length}</b></p><div class="flex flex-wrap gap-2 mb-5">${themeHit.map(t=>`<button onclick="$('q').value='';onSearch();openTheme('${t.id}')" class="text-sm font-semibold text-gold bg-gold/10 border border-gold/25 rounded-full px-3.5 py-1.5 hover:bg-gold/15">${esc(t.title)} →</button>`).join('')}</div>`:'';
+      $('searchResults').innerHTML = th + `<p class="text-sm text-neutral-900/60 mb-3">‘<b class="text-gold">${esc(q)}</b>’ 질문 검색 — <b>${list.length}</b>개</p>` + (list.length?qaListHtml(list,q):'<p class="text-neutral-900/45 py-10 text-center text-sm">검색 결과가 없어요. 다른 검색어로 찾아보세요.</p>');
+    }
+    function searchFor(t){ showGrid(); $('q').value=t; onSearch(); window.scrollTo({top:0,behavior:'smooth'}); }
     function setLevel(k){ CUR_LEVEL=k; renderLevelTabs(); renderVerses(); window.scrollTo({top:document.getElementById('levelTabs').offsetTop-80,behavior:'smooth'}); }
     function renderLevelTabs(){
       const tabs=$('levelTabs'), desc=$('levelDesc');
@@ -216,6 +347,59 @@
       history.replaceState(null,'',location.pathname);
       window.scrollTo({top:0,behavior:'smooth'});
     }
+
+    /* ===== 관리자 작성/수정/삭제 (site_content['qa_posts'] 공유) ===== */
+    function openEditor(e){ EDIT_ID=(e&&e.id)?e.id:null;
+      $('fTheme').innerHTML=THEMES.map(t=>`<option value="${esc(t.id)}">${esc(t.title)}</option>`).join('');
+      $('qaModalTitle').textContent=e?'주제별 Q&A 수정':'새 주제별 Q&A 작성';
+      $('fTerm').value=e?(e.term||''):'';
+      $('fTheme').value=e?(e.themeId||(CURRENT&&CURRENT.id)||THEMES[0].id):((CURRENT&&CURRENT.id)||THEMES[0].id);
+      $('fDef').value=e?(e.def||'').replace(/^\s*한마디로\s*[—-]\s*/,''):'';
+      $('fDeep').value=(e&&e.deep)?e.deep.map(s=>(s.h?s.h+' | ':'')+(s.p||'')).join('\n\n'):'';
+      $('fScr').value=(e&&e.scriptures)?e.scriptures.join(', '):''; $('fRel').value=(e&&e.related)?e.related.join(', '):'';
+      $('fMsg').textContent=''; $('qaModal').classList.remove('hidden');
+    }
+    function closeEditor(){ $('qaModal').classList.add('hidden'); EDIT_ID=null; }
+    function parseDeep(txt){ return String(txt||'').split(/\n\s*\n/).map(function(b){ b=b.trim(); if(!b) return null; var i=b.indexOf('|'); if(i>0&&i<40) return {h:b.slice(0,i).trim(),p:b.slice(i+1).trim()}; return {p:b}; }).filter(Boolean); }
+    function pushQa(arr,onOk){ var s=qaSession(); if(!s){ $('fMsg').textContent='로그인이 필요합니다'; return; }
+      fetch(SB+'/rest/v1/site_content',{method:'POST',headers:{apikey:AK,Authorization:'Bearer '+(s.access_token||AK),'Content-Type':'application/json',Prefer:'resolution=merge-duplicates,return=minimal'},body:JSON.stringify({key:'qa_posts',data:arr,updated_at:new Date().toISOString()})})
+        .then(function(r){ if(r.ok) onOk(); else return r.text().then(t=>{ $('fMsg').textContent='저장 오류: '+t.slice(0,90); }); }).catch(function(){ $('fMsg').textContent='네트워크 오류'; });
+    }
+    function saveQa(){ var term=$('fTerm').value.trim(), def=$('fDef').value.trim();
+      if(!term||!def){ $('fMsg').textContent='질문과 한마디 답은 필수입니다'; return; }
+      var obj={ id:EDIT_ID||('a'+Date.now()), term:term, category:'자주 묻는 질문', themeId:$('fTheme').value,
+        def: def.indexOf('한마디로')===0?def:('한마디로 — '+def), deep:parseDeep($('fDeep').value),
+        scriptures:$('fScr').value.split(/[,\n]/).map(x=>x.trim()).filter(Boolean),
+        related:$('fRel').value.split(/[,\n]/).map(x=>x.trim()).filter(Boolean), _admin:true, updated:new Date().toISOString() };
+      obj=JSON.parse(JSON.stringify(obj).replace(/세례/g,'침례'));
+      var arr=QA_ADMIN.slice(); var idx=arr.findIndex(x=>x.id===obj.id); if(idx>=0) arr[idx]=obj; else arr.unshift(obj);
+      $('fSave').disabled=true; $('fMsg').textContent='저장 중…';
+      pushQa(arr,function(){ $('fSave').disabled=false; QA_ADMIN=arr; rebuildQa(); closeEditor();
+        if(CURRENT&&CURRENT.id===obj.themeId){ renderDetailTabs(); renderQa(); } else { openTheme(obj.themeId); } renderGrid(); });
+    }
+    function editQa(id){ var e=QA_ADMIN.find(x=>x.id===id); if(e) openEditor(e); }
+    function deleteQa(id){ if(!confirm('이 Q&A를 삭제할까요?')) return; var arr=QA_ADMIN.filter(x=>x.id!==id);
+      pushQa(arr,function(){ QA_ADMIN=arr; rebuildQa(); renderDetailTabs(); renderQa(); renderGrid(); }); }
+
+    /* ===== 성구 말풍선 ===== */
+    (function(){ var st=document.createElement('style'); st.textContent=
+      '.scrchip{cursor:pointer;border:0}mark{background:#f6e6a8;color:#5a4a1a;border-radius:2px}'
+      +'#scrBubble{position:absolute;z-index:130;background:#fff;border:1px solid rgba(33,58,107,.12);border-radius:14px;box-shadow:0 14px 40px -10px rgba(21,32,58,.32);max-width:92vw}'
+      +'#scrBubble .bh{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 13px;border-bottom:1px solid rgba(33,58,107,.07)}'
+      +'#scrBubble .bh b{color:#00704a;font-size:12.5px}#scrBubble .bh button{border:0;background:transparent;color:rgba(33,58,107,.4);cursor:pointer;font-size:13px}'
+      +'#scrBubble .bbody{padding:11px 14px 13px;max-height:48vh;overflow:auto}#scrBubble .bbody p{color:rgba(33,58,107,.88);line-height:1.78;font-size:13px;margin-bottom:5px}#scrBubble .bbody p b{color:#00704a;font-weight:700;margin-right:3px;font-size:11px}'
+      +'#scrBubble .blink{display:inline-block;margin-top:6px;color:#00704a;font-weight:600;font-size:12.5px;text-decoration:none}';
+      document.head.appendChild(st); })();
+    function parseRef(s){ var m=String(s||'').trim().match(/^(.+?)\s*(\d+):(\d+)(?:[-~](\d+))?$/); if(!m) return null; var nm=m[1].trim(); var f=ABBR_F[nm]||KO2FILE[nm]; if(!f) return null; return {file:f,ch:+m[2],v1:+m[3],v2:m[4]?+m[4]:+m[3]}; }
+    function getChapter(file,ch){ var k=file+'-'+ch; if(chCache[k]!==undefined) return Promise.resolve(chCache[k]); return fetch('bible/kr/'+k+'.json').then(r=>r.ok?r.json():null).then(j=>{chCache[k]=j;return j;}).catch(()=>{chCache[k]=null;return null;}); }
+    function closeBubble(){ var b=$('scrBubble'); if(b) b.remove(); }
+    function showBubble(anchor,title,html){ closeBubble(); var b=document.createElement('div'); b.id='scrBubble'; b.innerHTML='<div class="bh"><b>'+esc(title)+'</b><button type="button" onclick="closeBubble()">✕</button></div><div class="bbody">'+html+'</div>'; document.body.appendChild(b); var bw=Math.min(340,window.innerWidth-24); b.style.width=bw+'px'; var r=anchor.getBoundingClientRect(); var left=r.left+window.scrollX+r.width/2-bw/2; left=Math.max(window.scrollX+12,Math.min(left,window.scrollX+window.innerWidth-bw-12)); b.style.left=left+'px'; b.style.top=(r.bottom+window.scrollY+9)+'px'; var bh=b.offsetHeight; if(r.bottom+bh+16>window.innerHeight&&r.top-bh-9>0){ b.style.top=(r.top+window.scrollY-bh-9)+'px'; } }
+    function showScr(ev,ref){ ev.stopPropagation(); var anchor=ev.currentTarget; var p=parseRef(ref); if(!p){ showBubble(anchor,ref,'<p>구절을 찾을 수 없어요.</p>'); return; } var link='bible.html?b='+p.file+'&c='+p.ch+'&v='+p.v1; var linkHtml='<a class="blink" href="'+link+'">본문에서 보기 →</a>'; showBubble(anchor,ref,'<p>불러오는 중…</p>'); getChapter(p.file,p.ch).then(function(ch){ var h=''; if(ch){ var lines=[]; for(var v=p.v1; v<=p.v2&&v<=p.v1+3; v++){ if(ch[v-1]) lines.push('<p><b>'+v+'</b>'+esc(ch[v-1])+'</p>'); } h=lines.length?lines.join(''):'<p>이 구절은 번역 준비 중입니다.</p>'; if(p.v2>p.v1+3) h+='<p style="color:rgba(33,58,107,.45)">…</p>'; } else h='<p>이 책은 곧 제공됩니다.</p>'; showBubble(anchor,ref,h+linkHtml); }); }
+    document.addEventListener('click', function(e){ if(!e.target.closest('#scrBubble') && !e.target.closest('.scrchip')) closeBubble(); });
+    setTimeout(renderAdminBar,1500);
+    window.openTheme=openTheme; window.showGrid=showGrid; window.setLevel=setLevel; window.renderVerses=renderVerses;
+    window.switchTab=switchTab; window.onSearch=onSearch; window.searchFor=searchFor; window.showScr=showScr; window.closeBubble=closeBubble;
+    window.openEditor=openEditor; window.closeEditor=closeEditor; window.saveQa=saveQa; window.editQa=editQa; window.deleteQa=deleteQa;
   </script>
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
