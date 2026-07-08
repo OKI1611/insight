@@ -187,7 +187,7 @@
     function isAdmin(){ var s=qaSession(); return !!(s&&s.user&&s.user.email===ADMIN); }
     function renderAdminBar(){ var b=$('adminBar'); if(b) b.classList.toggle('hidden', !isAdmin()); }
 
-    const LVL_META={beginner:{l:'초급',d:'핵심 5절 · 쉽고 따뜻하게'},intermediate:{l:'중급',d:'15절 · 맥락과 신학적 의미'},advanced:{l:'고급',d:'30절 · 변증·세대주의 종말론 깊이'}};
+    const LVL_META={beginner:{l:'초급',d:'핵심 성구 · 쉽고 따뜻하게'},intermediate:{l:'중급',d:'맥락과 신학적 의미'},advanced:{l:'고급',d:'더 깊은 신학과 변증'}};
     function renderGrid(){
       $('themeGrid').innerHTML = THEMES.map((t,i)=>{
         const vN=verseCount(t), qN=qaCount(t.id);
@@ -216,12 +216,9 @@
       history.replaceState(null,'','?theme='+id);
       const sub = t.levels ? `초급 → 고급, 단계별로 깊어지는 ${(t.levels.advanced||[]).length}절` : `${(t.verses||[]).length}개 핵심 성구 · 한국어 새 번역`;
       $('themeHero').innerHTML = `
-        <div class="flex items-center gap-3 mb-2">
-          <span class="text-4xl leading-none">${t.icon||''}</span>
-          <div>
-            <p class="text-gold text-xs font-bold tracking-[0.2em]">${esc(t.en||'')}</p>
-            <h1 class="text-2xl md:text-3xl font-bold leading-snug">${esc(t.title)}</h1>
-          </div>
+        <div class="mb-2">
+          <p class="text-paper/60 text-xs font-bold tracking-[0.2em]">${esc(t.en||'')}</p>
+          <h1 class="text-2xl md:text-3xl font-bold leading-snug mt-1">${esc(t.title)}</h1>
         </div>
         <p class="text-paper/75 text-[15px] leading-relaxed mt-2">${esc(t.intro||'')}</p>
         <p class="text-paper/45 text-xs mt-3">${sub}</p>`;
@@ -319,7 +316,7 @@
           }
         }
         return `<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5">
-          <p class="text-gold font-bold text-sm mb-2">${i+1}. ${esc(v.ref)}</p>
+          <p class="mb-2"><button type="button" class="scrchip text-gold font-bold text-sm hover:underline" onclick="showScr(event,'${esc(v.ref).replace(/'/g,"\\'")}')">${i+1}. ${esc(v.ref)}</button></p>
           <p class="serif text-[18px] md:text-[19px] text-neutral-900 leading-[1.85]">${esc(v.ko)}</p>
           ${en}${note}
         </div>`;
