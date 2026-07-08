@@ -1,0 +1,13 @@
+# Cloudflare Workers 자산 업로드 제외 목록 (.gitignore 문법)
+# 사이트 서빙에 불필요하고, .git은 25MiB 한도 초과로 배포를 실패시킴
+/.git
+/.github
+/.claude
+/node_modules
+/promo_shots
+/*.py
+/_*.json
+/_*.md
+/계획-*.md
+*.log
+.DS_Store
