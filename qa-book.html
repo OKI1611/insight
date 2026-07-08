@@ -156,9 +156,21 @@
     function isAdmin(){ var s=qaSession(); return !!(s&&s.user&&s.user.email===ADMIN); }
     function renderAdminBar(){ var b=$('adminBar'); if(b) b.classList.toggle('hidden', !isAdmin()); }
 
-    function onSearch(){ PAGE=1; render(); }
-    function pickBook(b){ SEL=b; TOPIC=''; $('q').value=''; PAGE=1; var ts=$('topicSel'); if(ts) ts.value=''; render(); window.scrollTo({top:0,behavior:'smooth'}); }
-    function searchFor(t){ $('q').value=t; SEL=''; PAGE=1; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+    function onSearch(){ PAGE=1; render(); replaceHist(); }
+    function pickBook(b){ SEL=b; TOPIC=''; $('q').value=''; PAGE=1; var ts=$('topicSel'); if(ts) ts.value=''; render(); pushHist(); window.scrollTo({top:0,behavior:'smooth'}); }
+    function searchFor(t){ $('q').value=t; SEL=''; PAGE=1; render(); pushHist(); window.scrollTo({top:0,behavior:'smooth'}); }
+
+    /* ===== 브라우저 히스토리 연동 — 뒤로가기 시 페이지를 떠나지 않고 보던 위치로 복원 ===== */
+    function curState(){ return {sel:SEL, topic:TOPIC, q:($('q')?$('q').value:'')||'', page:PAGE}; }
+    function stateUrl(s){ var p=new URLSearchParams(); if(s.q) p.set('q',s.q); else if(s.sel) p.set('b',s.sel); if(s.topic) p.set('t',s.topic); if(s.page>1) p.set('p',s.page); var qs=p.toString(); return location.pathname+(qs?('?'+qs):''); }
+    function pushHist(){ try{ var s=curState(); history.pushState(s,'',stateUrl(s)); }catch(e){} }
+    function replaceHist(){ try{ var s=curState(); history.replaceState(s,'',stateUrl(s)); }catch(e){} }
+    function applyState(s){ SEL=s.sel||''; TOPIC=s.topic||''; PAGE=s.page||1; if($('q')) $('q').value=s.q||''; var ts=$('topicSel'); if(ts) ts.value=TOPIC; render(); }
+    window.addEventListener('popstate', function(ev){
+      var s=ev.state;
+      if(!s){ s={sel:'',topic:'',q:'',page:1}; var sp=new URLSearchParams(location.search); if(sp.get('b'))s.sel=sp.get('b'); if(sp.get('q'))s.q=sp.get('q'); if(sp.get('t'))s.topic=sp.get('t'); if(sp.get('p'))s.page=+sp.get('p')||1; }
+      applyState(s); window.scrollTo({top:0});
+    });
 
     $('results').innerHTML='<div class="text-center text-neutral-900/40 py-16"><p class="text-sm">질문을 불러오는 중…</p></div>';
     Promise.all([
@@ -173,8 +185,11 @@
       // 권별 Q&A = book 태그 있는 것 + 관리자 작성 중 book 있는 것
       VERSE=QA_ADMIN.filter(e=>e.book).map(function(e){ e._admin=true; return e; }).concat(faq.filter(e=>e.book));
       buildFilters(); renderAdminBar();
-      var sp=new URLSearchParams(location.search); var bk=sp.get('b'); if(bk){ SEL=bk; }
-      render();
+      var sp=new URLSearchParams(location.search);
+      if(sp.get('q')&&$('q')){ $('q').value=sp.get('q'); } else if(sp.get('b')){ SEL=sp.get('b'); }
+      if(sp.get('t')){ TOPIC=sp.get('t'); var ts0=$('topicSel'); if(ts0) ts0.value=TOPIC; }
+      if(sp.get('p')){ PAGE=+sp.get('p')||1; }
+      render(); replaceHist();
     }).catch(()=>{ $('results').innerHTML='<p class="text-center text-neutral-900/40 py-10">질문을 불러오지 못했어요.</p>'; });
 
     function hl(text,q){ if(!q) return esc(text); const safe=esc(text); try{ const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig'); return safe.replace(re,'<mark>$1</mark>'); }catch(e){ return safe; } }
@@ -195,13 +210,13 @@
     }
     function openBookPicker(){ buildFilters(); $('bookModal').classList.remove('hidden'); document.body.style.overflow='hidden'; }
     function closeBookPicker(){ $('bookModal').classList.add('hidden'); document.body.style.overflow=''; }
-    function chooseBook(b){ SEL=b; TOPIC=''; $('q').value=''; PAGE=1; var ts=$('topicSel'); if(ts) ts.value=''; closeBookPicker(); render(); window.scrollTo({top:0,behavior:'smooth'}); }
+    function chooseBook(b){ SEL=b; TOPIC=''; $('q').value=''; PAGE=1; var ts=$('topicSel'); if(ts) ts.value=''; closeBookPicker(); render(); pushHist(); window.scrollTo({top:0,behavior:'smooth'}); }
     function updateBookBtn(searching){
       var lb=$('bookBtnLabel'); if(!lb) return;
       if(searching){ lb.textContent='검색 결과'; return; }
       lb.textContent = SEL ? (SEL+' · '+(BC[SEL]||0)+'개') : '전체 성경';
     }
-    function onTopic(){ TOPIC=$('topicSel').value; PAGE=1; render(); }
+    function onTopic(){ TOPIC=$('topicSel').value; PAGE=1; render(); pushHist(); }
 
     // 현재 필터(검색어 > 책 + 주제)에 맞는 목록
     function currentList(){
@@ -223,7 +238,7 @@
       $('results').innerHTML=qList(pageItems,q,start,showBadge);
       $('pager').innerHTML=pager(pages);
     }
-    function goPage(p){ PAGE=p; render(); window.scrollTo({top:100,behavior:'smooth'}); }
+    function goPage(p){ PAGE=p; render(); pushHist(); window.scrollTo({top:100,behavior:'smooth'}); }
     function pager(pages){
       if(pages<=1) return '';
       var win=2, s=Math.max(1,PAGE-win), e=Math.min(pages,PAGE+win), h='<div class="flex items-center justify-center gap-1.5 flex-wrap">';
