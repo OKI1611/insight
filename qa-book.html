@@ -65,12 +65,12 @@
   </div>
 
   <main class="max-w-4xl mx-auto px-4 py-7">
-    <!-- 상단 필터 툴바: 성경 책 드롭다운 + 주제 + 개수 -->
+    <!-- 상단 필터 툴바: 성경 책 팝업 선택 + 주제 + 개수 -->
     <div class="flex flex-col sm:flex-row gap-2.5 sm:items-center mb-4">
-      <div class="relative">
-        <select id="bookSel" onchange="onBook()" class="appearance-none w-full sm:w-64 border border-ink/15 rounded-xl pl-4 pr-9 py-2.5 text-sm font-bold text-neutral-900 bg-white outline-none focus:border-gold cursor-pointer"></select>
-        <span class="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-neutral-900/40 text-[10px]">▼</span>
-      </div>
+      <button id="bookBtn" type="button" onclick="openBookPicker()" class="group flex items-center justify-between gap-2 w-full sm:w-64 border border-ink/15 rounded-xl pl-4 pr-3.5 py-2.5 text-sm font-bold text-neutral-900 bg-white outline-none hover:border-gold focus:border-gold transition cursor-pointer">
+        <span class="flex items-center gap-2 min-w-0"><svg class="shrink-0 text-gold" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><span id="bookBtnLabel" class="truncate">전체 성경</span></span>
+        <span class="text-neutral-900/35 text-[10px] group-hover:text-gold transition">펼치기 ▾</span>
+      </button>
       <div class="relative">
         <select id="topicSel" onchange="onTopic()" class="appearance-none w-full sm:w-auto border border-ink/15 rounded-xl pl-4 pr-9 py-2.5 text-sm text-neutral-900/80 bg-white outline-none focus:border-gold cursor-pointer"><option value="">전체 주제</option></select>
         <span class="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-neutral-900/40 text-[10px]">▼</span>
@@ -85,6 +85,24 @@
       <p class="text-sm mt-1">다른 검색어로 찾아보시거나 곧 더 많은 질문이 추가됩니다.</p>
     </div>
   </main>
+
+  <!-- 성경 책 선택 팝업 -->
+  <div id="bookModal" class="hidden fixed inset-0 z-[125] bg-ink/40 backdrop-blur-sm flex items-start justify-center overflow-auto p-4" onclick="if(event.target===this)closeBookPicker()">
+    <div class="bg-white rounded-2xl shadow-card w-full max-w-2xl my-6 p-5 sm:p-6">
+      <div class="flex items-center justify-between mb-3 pb-2.5 border-b border-ink/8">
+        <p class="text-[15px] font-bold text-neutral-900">성경 책을 선택하세요</p>
+        <button onclick="closeBookPicker()" class="text-neutral-900/40 hover:text-neutral-900 text-xl leading-none">✕</button>
+      </div>
+      <button type="button" onclick="chooseBook('')" id="allBooksBtn" class="w-full mb-4 rounded-xl border border-gold/30 bg-gold/[0.06] px-4 py-2.5 text-sm font-bold text-gold hover:bg-gold/12 transition text-left flex items-center justify-between">
+        <span>전체 성경 — 모든 질문 보기</span><span id="allBooksCount" class="text-[12px] font-semibold text-gold/70"></span>
+      </button>
+      <p class="text-xs font-bold text-neutral-900/45 mb-2">구약 <span class="font-normal">(Old Testament · 39권)</span></p>
+      <div id="otGrid" class="grid grid-cols-3 sm:grid-cols-5 gap-1.5 mb-4"></div>
+      <p class="text-xs font-bold text-neutral-900/45 mb-2">신약 <span class="font-normal">(New Testament · 27권)</span></p>
+      <div id="ntGrid" class="grid grid-cols-3 sm:grid-cols-5 gap-1.5"></div>
+      <p class="text-[11.5px] text-neutral-900/40 mt-4 text-center">숫자는 그 권에 등록된 질문 수입니다. 회색은 아직 준비 중이에요.</p>
+    </div>
+  </div>
 
   <!-- 관리자 편집 모달 -->
   <div id="qaModal" class="hidden fixed inset-0 z-[120] bg-ink/40 backdrop-blur-sm flex items-start justify-center overflow-auto p-4">
@@ -161,15 +179,28 @@
 
     function hl(text,q){ if(!q) return esc(text); const safe=esc(text); try{ const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig'); return safe.replace(re,'<mark>$1</mark>'); }catch(e){ return safe; } }
 
-    // 드롭다운(책·주제) 채우기 — 각 항목에 질문 수 표시
+    // 팝업 책 그리드 + 주제 드롭다운 채우기 — 각 항목에 질문 수 표시
+    var BC={};
+    function bookCell(b){
+      var n=BC[b]||0, on=(SEL===b);
+      if(!n) return `<span class="rounded-lg border border-ink/8 bg-neutral-50 px-2 py-2 text-[12.5px] text-neutral-900/30 text-center cursor-default select-none">${esc(b)}</span>`;
+      return `<button type="button" onclick="chooseBook('${esc(b)}')" class="bookcell rounded-lg border px-2 py-2 text-[12.5px] font-semibold text-center transition ${on?'bg-gold text-white border-gold':'border-ink/12 text-neutral-900 hover:border-gold hover:bg-gold/8'}"><span class="block truncate">${esc(b)}</span><span class="block text-[10.5px] font-normal ${on?'text-white/80':'text-gold'}">${n}</span></button>`;
+    }
     function buildFilters(){
-      var bc={}; VERSE.forEach(e=>{ bc[e.book]=(bc[e.book]||0)+1; });
-      function opts(list){ return list.filter(b=>bc[b]).map(b=>`<option value="${esc(b)}">${esc(b)} (${bc[b]})</option>`).join(''); }
-      var bs=$('bookSel'); if(bs) bs.innerHTML=`<option value="">전체 성경 (${VERSE.length})</option>`
-        + `<optgroup label="구약 39권">${opts(OT)}</optgroup><optgroup label="신약 27권">${opts(NT)}</optgroup>`;
+      BC={}; VERSE.forEach(e=>{ BC[e.book]=(BC[e.book]||0)+1; });
+      var og=$('otGrid'); if(og) og.innerHTML=OT.map(bookCell).join('');
+      var ng=$('ntGrid'); if(ng) ng.innerHTML=NT.map(bookCell).join('');
+      var ac=$('allBooksCount'); if(ac) ac.textContent=VERSE.length+'개 질문';
       var ts=$('topicSel'); if(ts) ts.innerHTML='<option value="">전체 주제</option>'+TOPICS.map(t=>`<option value="${esc(t)}">${esc(t)}</option>`).join('');
     }
-    function onBook(){ SEL=$('bookSel').value; $('q').value=''; PAGE=1; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+    function openBookPicker(){ buildFilters(); $('bookModal').classList.remove('hidden'); document.body.style.overflow='hidden'; }
+    function closeBookPicker(){ $('bookModal').classList.add('hidden'); document.body.style.overflow=''; }
+    function chooseBook(b){ SEL=b; TOPIC=''; $('q').value=''; PAGE=1; var ts=$('topicSel'); if(ts) ts.value=''; closeBookPicker(); render(); window.scrollTo({top:0,behavior:'smooth'}); }
+    function updateBookBtn(searching){
+      var lb=$('bookBtnLabel'); if(!lb) return;
+      if(searching){ lb.textContent='검색 결과'; return; }
+      lb.textContent = SEL ? (SEL+' · '+(BC[SEL]||0)+'개') : '전체 성경';
+    }
     function onTopic(){ TOPIC=$('topicSel').value; PAGE=1; render(); }
 
     // 현재 필터(검색어 > 책 + 주제)에 맞는 목록
@@ -183,7 +214,7 @@
     function render(){
       $('empty').classList.add('hidden');
       var r=currentList(), list=r.list, q=r.q;
-      var bs=$('bookSel'); if(bs) bs.value=q?'':SEL;   // 검색 중엔 책 선택 해제 표시
+      updateBookBtn(!!q);   // 버튼 라벨 갱신(검색 중엔 '검색 결과')
       $('listCount').textContent=list.length+'개 질문';
       if(!list.length){ $('results').innerHTML=''; $('pager').innerHTML=''; $('empty').classList.remove('hidden'); return; }
       var pages=Math.ceil(list.length/PER); if(PAGE>pages) PAGE=pages; if(PAGE<1) PAGE=1;
@@ -290,6 +321,7 @@
     document.addEventListener('click', function(e){ if(!e.target.closest('#scrBubble') && !e.target.closest('.scrchip')) closeBubble(); });
     setTimeout(renderAdminBar,1500);
     window.onSearch=onSearch; window.pickBook=pickBook; window.searchFor=searchFor; window.showScr=showScr; window.closeBubble=closeBubble;
+    window.openBookPicker=openBookPicker; window.closeBookPicker=closeBookPicker; window.chooseBook=chooseBook; window.onTopic=onTopic;
     window.openEditor=openEditor; window.closeEditor=closeEditor; window.saveQa=saveQa; window.editQa=editQa; window.deleteQa=deleteQa;
   </script>
 
