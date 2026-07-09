@@ -1,338 +1,907 @@
 [
-  {
-    "en": "Surely there is a vein for the silver, and a place for gold where they fine it.",
-    "ko": "참으로 은에는 광맥이 있고, 금에는 그것을 제련하는 곳이 있으며,",
-    "note": "히브리어 모차(מוֹצָא, motsa, '나오는 곳·근원')가 은에, 마콤(מָקוֹם, '자리·터')이 금에 쓰여 평행을 이루느니라. '광맥'으로 옮긴 모차는 광물이 솟아 나오는 근원을 뜻하며, 28장 전체가 '사람은 땅 깊은 보화는 찾아내되 지혜의 자리는 못 찾는다'는 대조로 열리는 도입절이라.",
-    "voc": [
-      ["surely", "adv.", "참으로, 분명히"],
-      ["vein", "n.", "광맥, 줄기"],
-      ["silver", "n.", "은(銀)"],
-      ["fine", "v.", "(금속을) 제련하다, 정련하다"]
-    ],
-    "gra": [["where they fine it", "관계부사 where가 이끄는 절 — 그들이 그것을 제련하는 곳"]]
-  },
-  {
-    "en": "Iron is taken out of the earth, and brass is molten out of the stone.",
-    "ko": "쇠는 흙에서 캐어 내고, 구리는 돌을 녹여 얻느니라.",
-    "note": "여기 '브라스(brass)'로 옮긴 히브리어 네호셰트(נְחֹשֶׁת)는 당시 청동·구리를 가리키니, 고대에 주석을 더한 합금 황동은 아직 없었으므로 '구리'로 옮김이 원어에 가깝도다.",
-    "voc": [
-      ["iron", "n.", "쇠, 철"],
-      ["earth", "n.", "흙, 땅"],
-      ["brass", "n.", "(고어) 구리, 청동"],
-      ["molten", "adj.", "녹은, 녹여 만든"],
-      ["stone", "n.", "돌"]
-    ],
-    "gra": [["is taken / is molten", "수동태 — 캐어 내어지다 / 녹여지다(주어가 동작을 받음)"]]
-  },
-  {
-    "en": "He setteth an end to darkness, and searcheth out all perfection: the stones of darkness, and the shadow of death.",
-    "ko": "사람이 어둠에 끝을 두고, 그 깊은 데를 샅샅이 뒤져, 캄캄함과 죽음의 그늘 속에 묻힌 광석을 찾아내니라.",
-    "note": "찰무트(צַלְמָוֶת, tsalmaveth, '죽음의 그늘·짙은 어둠')는 광부가 빛 없는 땅속 깊은 갱도를 더듬어 광석을 캐는 정경을 그리느니라. '모든 완전한 것을 찾아냄(searcheth out all perfection)'은 광맥의 끝까지 샅샅이 탐색함을 뜻하므로 '깊은 데를 샅샅이 뒤져'로 옮김.",
-    "voc": [
-      ["setteth", "v.", "(고어, set의 3인칭) 두다, 정하다"],
-      ["end", "n.", "끝, 한계"],
-      ["darkness", "n.", "어둠, 캄캄함"],
-      ["search out", "v.", "샅샅이 찾아내다"],
-      ["perfection", "n.", "끝, 극한(여기서는 광맥의 가장 깊은 끝)"],
-      ["shadow", "n.", "그늘, 그림자"]
-    ],
-    "idi": [["the shadow of death", "죽음의 그늘 — 짙은 어둠을 가리키는 히브리 표현"]],
-    "gra": [["setteth / searcheth", "고어 3인칭 단수 현재 어미 -eth (현대 영어 sets / searches)"]]
-  },
-  {
-    "en": "The flood breaketh out from the inhabitant; even the waters forgotten of the foot: they are dried up, they are gone away from men.",
-    "ko": "사람 사는 곳에서 멀리 갱을 파 내려가, 발길도 잊은 그곳, 사람에게서 떨어져 매달려 흔들리느니라.",
-    "note": "본 절은 히브리 원문이 난해하여 역본마다 갈리느니라. 직역하면 '거주지에서 멀리 갱도를 뚫어 발길이 잊은 곳, 사람에게서 떨어져 매달려 흔들린다'로, 광부가 인적 없는 땅속 깊이 줄에 매달려 작업하는 모습을 그림. '물이 끊어진다(dried up)'는 KJV 표현은 깊은 갱에서 흘러나온 물줄기로도 읽히나, 원어의 핵심은 '사람에게서 떨어진 외딴 깊음'이라.",
-    "voc": [
-      ["flood", "n.", "물줄기, 갱도(문맥)"],
-      ["break out", "v.", "뚫고 나가다, 터져 나오다"],
-      ["inhabitant", "n.", "거주민, 사람 사는 곳"],
-      ["forgotten", "adj.", "잊혀진"],
-      ["dried up", "phr.", "말라 끊어진"]
-    ],
-    "idi": [["forgotten of the foot", "발길이 잊은 — 사람이 다니지 않는 외진 곳"]]
-  },
-  {
-    "en": "As for the earth, out of it cometh bread: and under it is turned up as it were fire.",
-    "ko": "땅으로 말하면, 그 위로는 양식이 솟아나나, 그 아래는 불로 뒤집힌 듯하며,",
-    "note": "레헴(לֶחֶם, lechem, '빵·양식')이 땅 위에서 나는 곡식을 가리키느니라. '아래는 불로 뒤집힌 듯'은 땅속이 채굴로 파헤쳐지고 제련의 불로 변모됨, 곧 겉은 평온하나 속은 화염으로 뒤집힌 광산의 대조를 드러냄.",
-    "voc": [
-      ["as for", "phr.", "~로 말하면, ~에 관하여는"],
-      ["cometh", "v.", "(고어, come의 3인칭) 나오다"],
-      ["bread", "n.", "양식, 빵, 곡식"],
-      ["turned up", "phr.", "뒤집히다, 파헤쳐지다"]
-    ],
-    "idi": [["as it were", "마치 ~인 것처럼, ~인 듯"]]
-  },
-  {
-    "en": "The stones of it are the place of sapphires: and it hath dust of gold.",
-    "ko": "그 돌들이 든 곳에 사파이어가 박혀 있고, 그 흙에는 금가루가 깃들였느니라.",
-    "note": "사피르(סַפִּיר, sappir)는 흔히 청금석(라피스라줄리)으로 보느니라. '금가루(dust of gold)'는 흙 속에 흩어진 사금(沙金)을 가리켜, 땅이 품은 보화의 풍성함을 노래함.",
-    "voc": [
-      ["stone", "n.", "돌, 광석"],
-      ["sapphire", "n.", "사파이어, 청금석"],
-      ["dust", "n.", "가루, 티끌"],
-      ["gold", "n.", "금"]
-    ],
-    "gra": [["it hath", "고어 3인칭 단수 (현대 영어 it has) — 그것이 가지고 있다"]]
-  },
-  {
-    "en": "There is a path which no fowl knoweth, and which the vulture's eye hath not seen:",
-    "ko": "그 길은 어떤 새도 알지 못하고, 솔개의 눈도 본 적이 없으며,",
-    "note": "아이트(עַיִט, ayit, '맹금·솔개·독수리류')는 가장 멀리, 가장 높이 보는 새이거늘 그 날카로운 눈조차 이 길을 못 보았다 하니, 땅속 보화에 이르는 길의 은밀함을 강조하여, 곧 이어질 '지혜의 길은 더욱 감추였다'는 절정을 예비하느니라.",
-    "voc": [
-      ["path", "n.", "길, 통로"],
-      ["fowl", "n.", "새, 날짐승"],
-      ["vulture", "n.", "솔개, 독수리류 맹금"]
-    ],
-    "gra": [["which no fowl knoweth", "목적격 관계대명사 which — 어떤 새도 알지 못하는 (길)"]]
-  },
-  {
-    "en": "The lion's whelps have not trodden it, nor the fierce lion passed by it.",
-    "ko": "사나운 짐승의 새끼도 밟지 못하였고, 굶주린 사자도 그리로 지나가지 못하였느니라.",
-    "note": "샤할(שַׁחַל, '사자')이 두 번 다른 낱말로 대구를 이루느니라. 가장 용맹한 짐승조차 닿지 못한 외딴 길임을 평행법으로 거듭 노래하여, 사람이 캐낸 보화의 길이 얼마나 인적 없는 곳인지를 드러냄.",
-    "voc": [
-      ["whelp", "n.", "(짐승의) 새끼"],
-      ["trodden", "v.", "(tread의 과거분사) 밟다, 디디다"],
-      ["fierce", "adj.", "사나운, 맹렬한"],
-      ["pass by", "v.", "지나가다, 곁을 지나다"]
-    ],
-    "gra": [["have not trodden / nor ... passed", "현재완료 + nor로 이어지는 부정의 평행 구문"]]
-  },
-  {
-    "en": "He putteth forth his hand upon the rock; he overturneth the mountains by the roots.",
-    "ko": "사람이 차돌에 손을 대어, 산들을 뿌리째 뒤엎으며,",
-    "note": "할라미시(חַלָּמִישׁ, '차돌·부싯돌')는 가장 단단한 바위라. 사람이 그 단단한 돌에 손을 대어 산을 '뿌리째(by the roots)' 뒤엎는다 하니, 광물을 캐는 인간의 끈질긴 수고와 능함을 그려, 자연을 정복하는 사람도 지혜만은 캐내지 못함을 대비함.",
-    "voc": [
-      ["put forth", "v.", "내밀다, 뻗다"],
-      ["rock", "n.", "바위, 차돌"],
-      ["overturn", "v.", "뒤엎다, 뒤집다"],
-      ["root", "n.", "뿌리"]
-    ],
-    "idi": [["by the roots", "뿌리째, 송두리째"]]
-  },
-  {
-    "en": "He cutteth out rivers among the rocks; and his eye seeth every precious thing.",
-    "ko": "바위를 쪼개어 물길을 트고, 그 눈은 온갖 보배로운 것을 살피며,",
-    "note": "예오림(יְאֹרִים, yeorim, '수로·물길')은 광부가 바위를 깎아 만든 갱도의 도랑을 가리키느니라. 사람의 눈이 '온갖 보배로운 것(every precious thing)'을 빠짐없이 살핀다 하여, 보화 탐색에는 이토록 밝은 인간의 눈을 부각함.",
-    "voc": [
-      ["cut out", "v.", "쪼개어 파내다, 깎아 내다"],
-      ["river", "n.", "물길, 수로"],
-      ["precious", "adj.", "보배로운, 귀한"]
-    ],
-    "gra": [["every precious thing", "every + 단수명사 — 온갖 귀한 것 하나하나"]]
-  },
-  {
-    "en": "He bindeth the floods from overflowing; and the thing that is hid bringeth he forth to light.",
-    "ko": "강물이 스미어 흐름을 틀어막고, 감추인 것을 빛으로 끌어내느니라.",
-    "note": "광부가 갱도로 새어드는 물줄기를 틀어막아 범람을 막고, '감추인 것(the thing that is hid)' 곧 땅속 깊이 숨은 광물을 빛 가운데로 끌어낸다 하느니라. 11~12절 사이에서 '사람은 숨은 보화는 빛으로 끌어내되, 정작 지혜는 못 찾는다'는 결정적 전환이 일어남.",
-    "voc": [
-      ["bind", "v.", "묶다, 틀어막다"],
-      ["flood", "n.", "물줄기, 흐름"],
-      ["overflow", "v.", "넘쳐흐르다, 범람하다"],
-      ["hid", "adj.", "(고어, hidden) 감추인"],
-      ["bring forth", "v.", "끌어내다, 드러내다"]
-    ],
-    "gra": [["bringeth he forth", "고어의 도치 — he bringeth forth(그가 끌어낸다)의 강조 어순"]]
-  },
-  {
-    "en": "But where shall wisdom be found? and where is the place of understanding?",
-    "ko": "그러나 지혜는 어디서 찾으며, 명철이 머무는 곳은 어디뇨?",
-    "note": "이 장의 후렴이자 핵심 물음이라. 호크마(חָכְמָה, chokmah, '지혜')와 비나(בִּינָה, binah, '명철·분별')가 짝을 이루느니라. 사람이 땅속 보화는 캐어 내되 지혜만은 그 자리조차 알지 못하니, §5 표준 역어를 따라 '지혜·명철'로 옮김.",
-    "voc": [
-      ["wisdom", "n.", "지혜"],
-      ["understanding", "n.", "명철, 분별"],
-      ["place", "n.", "곳, 자리"]
-    ],
-    "gra": [["where shall ... be found", "수동태 의문문 — 어디서 찾아질 수 있는가"]]
-  },
-  {
-    "en": "Man knoweth not the price thereof; neither is it found in the land of the living.",
-    "ko": "사람은 그 값을 알지 못하나니, 산 자들의 땅에서는 찾을 수 없도다.",
-    "note": "에레크(עֵרֶךְ, '값·평가')를 사람이 알지 못한다 하니, 지혜는 인간의 시장에서 값 매길 수 없는 것이라. '산 자들의 땅(the land of the living)'은 인생 전부를 통틀어도 지혜의 거처를 찾을 수 없음을 뜻하느니라.",
-    "voc": [
-      ["price", "n.", "값, 가격"],
-      ["thereof", "adv.", "(고어) 그것의"],
-      ["neither", "adv.", "또한 ~아니다"]
-    ],
-    "idi": [["the land of the living", "산 자들의 땅 — 살아 있는 인간 세상"]]
-  },
-  {
-    "en": "The depth saith, It is not in me: and the sea saith, It is not with me.",
-    "ko": "깊은 바다가 이르되, '내 안에 없노라' 하고, 큰 바다가 이르되, '내게 있지 아니하도다' 하느니라.",
-    "note": "테홈(תְּהוֹם, tehom, '깊은 물·원시의 심연')과 얌(יָם, '바다')이 사람처럼 말하는 의인법이라. 가장 깊고 가장 넓은 곳조차 지혜를 품지 못하였노라 고백하니, 평행법으로 지혜의 초월함을 노래함.",
-    "voc": [
-      ["depth", "n.", "깊은 데, 심연"],
-      ["saith", "v.", "(고어, say의 3인칭) 이르되, 말하되"],
-      ["sea", "n.", "바다"]
-    ],
-    "gra": [["It is not in me / with me", "전치사 in과 with의 대구 — '내 안에 / 내게' 평행 표현"]]
-  },
-  {
-    "en": "It cannot be gotten for gold, neither shall silver be weighed for the price thereof.",
-    "ko": "순금을 주고도 그것을 얻지 못하며, 은을 달아 그 값으로 치를 수 없도다.",
-    "note": "세고르(סְגוֹר, segor, '순금·잠근 금')는 가장 정련된 금을 가리키느니라. 고대에 은을 저울에 달아 값을 치렀으므로 '은을 달아(silver be weighed)'라 함이라. 15~19절은 온갖 보화를 열거하며 그 무엇으로도 지혜를 못 산다는 점층을 이룸.",
-    "voc": [
-      ["gotten", "v.", "(get의 과거분사) 얻어진"],
-      ["weigh", "v.", "(저울에) 달다, 무게를 재다"]
-    ],
-    "gra": [["cannot be gotten / shall ... be weighed", "수동태 — 얻어질 수 없다 / 달아질 수 없다"]]
-  },
-  {
-    "en": "It cannot be valued with the gold of Ophir, with the precious onyx, or the sapphire.",
-    "ko": "오빌의 금으로도 값을 매기지 못하고, 귀한 마노나 사파이어로도 헤아리지 못하느니라.",
-    "note": "오빌(אוֹפִיר, Ophir)은 최상품 금의 산지로 이름났던 곳이라. 쇼함(שֹׁהַם, '마노·홍옥수')과 사피르가 함께 열거되어, 당대 가장 값진 보석으로도 지혜는 견줄 수 없음을 노래하느니라.",
-    "voc": [
-      ["value", "v.", "값을 매기다, 평가하다"],
-      ["Ophir", "n.", "오빌(최상급 금의 산지)"],
-      ["onyx", "n.", "마노, 줄마노"]
-    ]
-  },
-  {
-    "en": "The gold and the crystal cannot equal it: and the exchange of it shall not be for jewels of fine gold.",
-    "ko": "금이나 수정도 그것에 견주지 못하며, 순금 패물로도 바꾸지 못하리로다.",
-    "note": "제쿠키트(זְכוֹכִית, zekokit, '수정·유리')는 고대에 진귀하던 것이라. '바꿈(exchange)'은 물물교환을 가리켜, 순금으로 만든 패물조차 지혜와 맞바꿀 수 없음을 노래하느니라.",
-    "voc": [
-      ["crystal", "n.", "수정, 유리"],
-      ["equal", "v.", "견주다, 필적하다"],
-      ["exchange", "n.", "교환, 맞바꿈"],
-      ["jewel", "n.", "패물, 보석"]
-    ],
-    "gra": [["cannot equal it", "타동사 equal — '~에 필적하다'(전치사 없이 목적어를 바로 취함)"]]
-  },
-  {
-    "en": "No mention shall be made of coral, or of pearls: for the price of wisdom is above rubies.",
-    "ko": "산호나 진주는 말할 것도 없으니, 지혜의 값은 루비보다 높도다.",
-    "note": "페니님(פְּנִינִים, peninim, '진주·산호·홍옥')은 잠언에서도 지혜와 견주어 등장하는 귀물이라. '말할 것도 없다(No mention shall be made)'는 강조법으로, 어떤 보화도 지혜 앞에서는 거론할 가치조차 없음을 노래하느니라.",
-    "voc": [
-      ["mention", "n.", "언급, 거론"],
-      ["coral", "n.", "산호"],
-      ["pearl", "n.", "진주"],
-      ["ruby", "n.", "루비, 홍옥"]
-    ],
-    "idi": [["No mention shall be made of ...", "~은 거론조차 되지 못하리라(강조)"]],
-    "gra": [["above rubies", "전치사 above — '~보다 위에, ~를 능가하여'"]]
-  },
-  {
-    "en": "The topaz of Ethiopia shall not equal it, neither shall it be valued with pure gold.",
-    "ko": "구스의 황옥도 그것에 견주지 못하며, 순금으로도 값을 매기지 못하느니라.",
-    "note": "여기 '에티오피아'로 옮긴 쿠시(כּוּשׁ, Kush)는 나일강 상류의 구스를 가리키며, 한국 교회 전통 표기를 따라 '구스'로 옮김. 피트다(פִּטְדָה, '황옥·토파즈')는 그 지역 명산이라. 보석의 열거가 절정에 이르나, 그 무엇도 지혜를 능가하지 못함을 다시 못 박느니라.",
-    "voc": [
-      ["topaz", "n.", "황옥, 토파즈"],
-      ["Ethiopia", "n.", "구스(원어 Kush)"],
-      ["pure", "adj.", "순수한, 정련된"]
-    ]
-  },
-  {
-    "en": "Whence then cometh wisdom? and where is the place of understanding?",
-    "ko": "그러한즉 지혜는 어디서 오며, 명철이 머무는 곳은 어디뇨?",
-    "note": "12절의 물음이 다시 울리되, 이번에는 '어디서 찾으랴'에서 '어디서 오랴(whence cometh)'로 한 걸음 나아가느니라. 보화 열거를 마친 뒤 거듭되는 이 후렴이, 23절 이하 '오직 하나님만 아신다'는 답으로 이끄는 다리라.",
-    "voc": [
-      ["whence", "adv.", "(고어) 어디서, 어디로부터"],
-      ["then", "adv.", "그러한즉, 그러면"]
-    ],
-    "gra": [["Whence cometh wisdom", "고어의 도치 의문 — 지혜는 어디서 오는가(현대 Where does wisdom come from?)"]]
-  },
-  {
-    "en": "Seeing it is hid from the eyes of all living, and kept close from the fowls of the air.",
-    "ko": "그것은 살아 있는 모든 것의 눈에서 숨겨졌고, 공중의 새에게도 가리어졌느니라.",
-    "note": "'숨겨졌다(hid)'와 '가리어졌다(kept close)'가 짝을 이루느니라. 살아 있는 어떤 눈도, 가장 높이 나는 새도 지혜를 보지 못하니, 7절의 '솔개의 눈'으로 연 모티프가 여기서 온 피조계로 확장되어 절정의 답을 예비함.",
-    "voc": [
-      ["seeing", "conj.", "~인 까닭에, ~이므로"],
-      ["hid", "v.", "(고어, hidden) 숨겨진"],
-      ["kept close", "phr.", "가리어진, 숨겨 둔"],
-      ["fowl", "n.", "새, 날짐승"]
-    ],
-    "idi": [["the fowls of the air", "공중의 새들"]],
-    "gra": [["Seeing it is hid", "Seeing(접속사) + 절 — '~인 까닭에'로 이유를 이끎"]]
-  },
-  {
-    "en": "Destruction and death say, We have heard the fame thereof with our ears.",
-    "ko": "멸망과 사망이 이르되, '우리 귀로 그 소문만 들었노라' 하느니라.",
-    "note": "아바돈(אֲבַדּוֹן, Abaddon, '멸망의 처소')과 마베트(מָוֶת, '사망')가 의인화되어 말하느니라. 가장 깊은 음부조차 지혜를 직접 보지 못하고 '소문(fame)만 들었노라' 고백하니, 14절의 깊은 바다·큰 바다 의인법과 짝을 이루어 절정 직전의 긴장을 더함.",
-    "voc": [
-      ["destruction", "n.", "멸망(원어 Abaddon, 음부)"],
-      ["death", "n.", "사망, 죽음"],
-      ["fame", "n.", "소문, 풍문, 명성"]
-    ],
-    "idi": [["with our ears", "우리 귀로(직접 들음을 강조)"]]
-  },
-  {
-    "en": "God understandeth the way thereof, and he knoweth the place thereof.",
-    "ko": "오직 하나님이 그 길을 깨달으시며, 그 머무는 곳을 아시나니,",
-    "note": "엘로힘(אֱלֹהִים, '하나님', §4)이 주어로 우뚝 서느니라. 사람도, 깊은 바다도, 음부도, 새도 알지 못한 '그 길(the way)'과 '그 곳(the place)'을 오직 하나님만 아신다 하여, 12·20절의 물음에 마침내 답하느니라. 하나님의 행위인 '깨달으시며·아시나니'를 §4에 따라 존대로 옮김.",
-    "voc": [
-      ["understand", "v.", "깨닫다, 통달하다"],
-      ["way", "n.", "길, 이르는 길"],
-      ["thereof", "adv.", "(고어) 그것의"]
-    ],
-    "gra": [["God understandeth ... he knoweth", "고어 3인칭 단수 -eth 어미가 두 동사에 평행으로 쓰임"]]
-  },
-  {
-    "en": "For he looketh to the ends of the earth, and seeth under the whole heaven;",
-    "ko": "이는 그가 땅끝까지 굽어보시며, 온 하늘 아래를 두루 살피심이라.",
-    "note": "하나님이 지혜의 자리를 아시는 까닭(For)을 밝히느니라. 그분의 시야는 '땅끝(the ends of the earth)'에서 '온 하늘 아래(the whole heaven)'에 이르니, 전능자의 무한한 통찰을 노래하여 창조주만이 지혜의 거처를 아심을 뒷받침함.",
-    "voc": [
-      ["look to", "v.", "굽어보다, ~을 향해 보다"],
-      ["end", "n.", "끝, 가장자리"],
-      ["whole", "adj.", "온, 전체의"]
-    ],
-    "idi": [["the ends of the earth", "땅끝, 세상의 가장 먼 곳"]],
-    "gra": [["For he looketh", "For(접속사) — '이는 ~함이라'(이유를 이끎)"]]
-  },
-  {
-    "en": "To make the weight for the winds; and he weigheth the waters by measure.",
-    "ko": "그가 바람의 무게를 정하시고, 물을 분량으로 달아 두시며,",
-    "note": "미슈칼(מִשְׁקָל, '무게')을 바람에 정하시고 물을 미다(מִדָּה, '분량')로 다신다 하여, 보이지 않는 바람조차 무게로, 가없는 물조차 분량으로 다스리시는 창조의 정밀함을 노래하느니라. 곧 지혜로 만물을 측량하신 분이 지혜의 자리를 아심이 마땅하도다.",
-    "voc": [
-      ["weight", "n.", "무게, 중량"],
-      ["wind", "n.", "바람"],
-      ["weigh", "v.", "달다, 무게를 재다"],
-      ["measure", "n.", "분량, 척도"]
-    ],
-    "idi": [["by measure", "분량대로, 헤아려"]]
-  },
-  {
-    "en": "When he made a decree for the rain, and a way for the lightning of the thunder:",
-    "ko": "비를 위하여 법칙을 세우시고, 천둥과 번개를 위하여 길을 내실 때에,",
-    "note": "호크(חֹק, choq, '법칙·규례')를 비에 정하시고, 천둥에 따르는 번개에 '길(a way)'을 내신다 하느니라. 자연의 운행마다 하나님이 정하신 질서가 있음을 노래하여, 다음 절의 '그때에 지혜를 보시고 밝히셨다'는 절정을 이끄는 시간절이라.",
-    "voc": [
-      ["decree", "n.", "법칙, 규례, 작정"],
-      ["rain", "n.", "비"],
-      ["lightning", "n.", "번개"],
-      ["thunder", "n.", "천둥, 우레"]
-    ],
-    "gra": [["When he made", "When이 이끄는 시간 부사절 — 다음 절(27절)의 주절로 이어짐"]]
-  },
-  {
-    "en": "Then did he see it, and declare it; he prepared it, yea, and searched it out.",
-    "ko": "그때에 그가 지혜를 보시고 밝히 드러내셨으며, 굳게 세우시고 또한 샅샅이 살펴 내셨도다.",
-    "note": "네 동사 '보시고(see)·밝히 드러내시고(declare)·세우시고(prepare)·살펴 내셨다(search out)'가 점층으로 이어지느니라. 창조의 그때에 하나님이 지혜를 친히 보시고 굳게 두셨다 하여, 지혜가 곧 하나님께 속한 것임을 못 박고, 다음 절의 결론으로 이끄느니라.",
-    "voc": [
-      ["declare", "v.", "밝히 드러내다, 선포하다"],
-      ["prepare", "v.", "굳게 세우다, 갖추다"],
-      ["search out", "v.", "샅샅이 살피다, 헤아려 내다"],
-      ["yea", "adv.", "(고어) 참으로, 또한"]
-    ],
-    "gra": [["Then did he see", "강조의 도치 — 조동사 did가 앞서 '그때에 그가 보셨다'를 강조"]]
-  },
-  {
-    "en": "And unto man he said, Behold, the fear of the LORD, that is wisdom; and to depart from evil is understanding.",
-    "ko": "그리고 사람에게 이르시되, \"보라, 주를 경외함이 곧 지혜요, 악에서 떠남이 곧 명철이니라\" 하셨느니라.",
-    "note": "이 장의 절정이자 결론이라. 본 절의 '주(the LORD)'는 히브리어로 아도나이(אֲדֹנָי, Adonai)로, 욥기에서 드물게 쓰인 호칭이니 §4에 따라 '주(主)'로 옮김(YHWH '여호와'가 아님). 이르아트 아도나이(יִרְאַת אֲדֹנָי, '주를 경외함')가 곧 호크마(지혜)요, '악에서 떠남(to depart from evil)'이 곧 비나(명철)라 선언하느니라. 사람이 땅속 보화는 캐어 내되 지혜만은 못 찾았으나(1~11절), 그 지혜의 자리를 아시는 하나님이 사람에게 친히 길을 일러 주시니, 곧 보화를 캐는 손이 아니라 주를 경외하는 마음에 지혜가 있도다. 이는 잠언 1:7·9:10의 '여호와를 경외함이 지식·지혜의 근본'과 한 가락을 이루며, 욥기 전체에서 고난 한가운데 선 사람이 붙들 길이 무엇인지를 가리키는 봉우리니라.",
-    "voc": [
-      ["behold", "v.", "(고어) 보라, 보아라"],
-      ["fear", "n.", "경외, 두려워함"],
-      ["depart", "v.", "떠나다, 멀리하다"],
-      ["evil", "n.", "악, 악함"]
-    ],
-    "idi": [
-      ["the fear of the LORD", "주를 경외함 — 하나님을 향한 경외와 순종"],
-      ["depart from evil", "악에서 떠나다, 악을 멀리하다"]
-    ],
-    "gra": [
-      ["unto man he said", "고어의 도치 — he said unto man(그가 사람에게 이르시되)의 강조 어순"],
-      ["that is wisdom", "지시대명사 that이 앞 구('주를 경외함')를 받아 '그것이 곧 지혜라'로 강조"]
-    ]
-  }
+ {
+  "en": "Surely there is a vein for the silver, and a place for gold where they fine it.",
+  "ko": "참으로 은에는 광맥이 있고, 금에는 그것을 제련하는 곳이 있으며,",
+  "note": "히브리어 모차(מוֹצָא, motsa, '나오는 곳·근원')가 은에, 마콤(מָקוֹם, '자리·터')이 금에 쓰여 평행을 이룬다. '광맥'으로 옮긴 모차는 광물이 솟아 나오는 근원을 뜻하며, 28장 전체가 '사람은 땅 깊은 보화는 찾아내되 지혜의 자리는 못 찾는다'는 대조로 열리는 도입절이다.",
+  "voc": [
+   [
+    "surely",
+    "adv.",
+    "참으로, 분명히"
+   ],
+   [
+    "vein",
+    "n.",
+    "광맥, 줄기"
+   ],
+   [
+    "silver",
+    "n.",
+    "은(銀)"
+   ],
+   [
+    "fine",
+    "v.",
+    "(금속을) 제련하다, 정련하다"
+   ]
+  ],
+  "gra": [
+   [
+    "where they fine it",
+    "관계부사 where가 이끄는 절 — 그들이 그것을 제련하는 곳"
+   ]
+  ]
+ },
+ {
+  "en": "Iron is taken out of the earth, and brass is molten out of the stone.",
+  "ko": "쇠는 흙에서 캐어 내고, 구리는 돌을 녹여 얻느니라.",
+  "note": "여기 '브라스(brass)'로 옮긴 히브리어 네호셰트(נְחֹשֶׁת)는 당시 청동·구리를 가리키니, 고대에 주석을 더한 합금 황동은 아직 없었으므로 '구리'로 옮김이 원어에 가깝도다.",
+  "voc": [
+   [
+    "iron",
+    "n.",
+    "쇠, 철"
+   ],
+   [
+    "earth",
+    "n.",
+    "흙, 땅"
+   ],
+   [
+    "brass",
+    "n.",
+    "(고어) 구리, 청동"
+   ],
+   [
+    "molten",
+    "adj.",
+    "녹은, 녹여 만든"
+   ],
+   [
+    "stone",
+    "n.",
+    "돌"
+   ]
+  ],
+  "gra": [
+   [
+    "is taken / is molten",
+    "수동태 — 캐어 내어지다 / 녹여지다(주어가 동작을 받음)"
+   ]
+  ]
+ },
+ {
+  "en": "He setteth an end to darkness, and searcheth out all perfection: the stones of darkness, and the shadow of death.",
+  "ko": "사람이 어둠에 끝을 두고, 그 깊은 데를 샅샅이 뒤져, 캄캄함과 죽음의 그늘 속에 묻힌 광석을 찾아내니라.",
+  "note": "찰무트(צַלְמָוֶת, tsalmaveth, '죽음의 그늘·짙은 어둠')는 광부가 빛 없는 땅속 깊은 갱도를 더듬어 광석을 캐는 정경을 그린다. '모든 완전한 것을 찾아냄(searcheth out all perfection)'은 광맥의 끝까지 샅샅이 탐색함을 뜻하므로 '깊은 데를 샅샅이 뒤져'로 옮김.",
+  "voc": [
+   [
+    "setteth",
+    "v.",
+    "(고어, set의 3인칭) 두다, 정하다"
+   ],
+   [
+    "end",
+    "n.",
+    "끝, 한계"
+   ],
+   [
+    "darkness",
+    "n.",
+    "어둠, 캄캄함"
+   ],
+   [
+    "search out",
+    "v.",
+    "샅샅이 찾아내다"
+   ],
+   [
+    "perfection",
+    "n.",
+    "끝, 극한(여기서는 광맥의 가장 깊은 끝)"
+   ],
+   [
+    "shadow",
+    "n.",
+    "그늘, 그림자"
+   ]
+  ],
+  "idi": [
+   [
+    "the shadow of death",
+    "죽음의 그늘 — 짙은 어둠을 가리키는 히브리 표현"
+   ]
+  ],
+  "gra": [
+   [
+    "setteth / searcheth",
+    "고어 3인칭 단수 현재 어미 -eth (현대 영어 sets / searches)"
+   ]
+  ]
+ },
+ {
+  "en": "The flood breaketh out from the inhabitant; even the waters forgotten of the foot: they are dried up, they are gone away from men.",
+  "ko": "사람 사는 곳에서 멀리 갱을 파 내려가, 발길도 잊은 그곳, 사람에게서 떨어져 매달려 흔들리느니라.",
+  "note": "본 절은 히브리 원문이 난해하여 역본마다 갈린다. 직역하면 '거주지에서 멀리 갱도를 뚫어 발길이 잊은 곳, 사람에게서 떨어져 매달려 흔들린다'로, 광부가 인적 없는 땅속 깊이 줄에 매달려 작업하는 모습을 그림. '물이 끊어진다(dried up)'는 KJV 표현은 깊은 갱에서 흘러나온 물줄기로도 읽히나, 원어의 핵심은 '사람에게서 떨어진 외딴 깊음'이다.",
+  "voc": [
+   [
+    "flood",
+    "n.",
+    "물줄기, 갱도(문맥)"
+   ],
+   [
+    "break out",
+    "v.",
+    "뚫고 나가다, 터져 나오다"
+   ],
+   [
+    "inhabitant",
+    "n.",
+    "거주민, 사람 사는 곳"
+   ],
+   [
+    "forgotten",
+    "adj.",
+    "잊혀진"
+   ],
+   [
+    "dried up",
+    "phr.",
+    "말라 끊어진"
+   ]
+  ],
+  "idi": [
+   [
+    "forgotten of the foot",
+    "발길이 잊은 — 사람이 다니지 않는 외진 곳"
+   ]
+  ]
+ },
+ {
+  "en": "As for the earth, out of it cometh bread: and under it is turned up as it were fire.",
+  "ko": "땅으로 말하면, 그 위로는 양식이 솟아나나, 그 아래는 불로 뒤집힌 듯하며,",
+  "note": "레헴(לֶחֶם, lechem, '빵·양식')이 땅 위에서 나는 곡식을 가리킨다. '아래는 불로 뒤집힌 듯'은 땅속이 채굴로 파헤쳐지고 제련의 불로 변모됨, 곧 겉은 평온하나 속은 화염으로 뒤집힌 광산의 대조를 드러냄.",
+  "voc": [
+   [
+    "as for",
+    "phr.",
+    "~로 말하면, ~에 관하여는"
+   ],
+   [
+    "cometh",
+    "v.",
+    "(고어, come의 3인칭) 나오다"
+   ],
+   [
+    "bread",
+    "n.",
+    "양식, 빵, 곡식"
+   ],
+   [
+    "turned up",
+    "phr.",
+    "뒤집히다, 파헤쳐지다"
+   ]
+  ],
+  "idi": [
+   [
+    "as it were",
+    "마치 ~인 것처럼, ~인 듯"
+   ]
+  ]
+ },
+ {
+  "en": "The stones of it are the place of sapphires: and it hath dust of gold.",
+  "ko": "그 돌들이 든 곳에 사파이어가 박혀 있고, 그 흙에는 금가루가 깃들였느니라.",
+  "note": "사피르(סַפִּיר, sappir)는 흔히 청금석(라피스라줄리)으로 본다. '금가루(dust of gold)'는 흙 속에 흩어진 사금(沙金)을 가리켜, 땅이 품은 보화의 풍성함을 노래함.",
+  "voc": [
+   [
+    "stone",
+    "n.",
+    "돌, 광석"
+   ],
+   [
+    "sapphire",
+    "n.",
+    "사파이어, 청금석"
+   ],
+   [
+    "dust",
+    "n.",
+    "가루, 티끌"
+   ],
+   [
+    "gold",
+    "n.",
+    "금"
+   ]
+  ],
+  "gra": [
+   [
+    "it hath",
+    "고어 3인칭 단수 (현대 영어 it has) — 그것이 가지고 있다"
+   ]
+  ]
+ },
+ {
+  "en": "There is a path which no fowl knoweth, and which the vulture's eye hath not seen:",
+  "ko": "그 길은 어떤 새도 알지 못하고, 솔개의 눈도 본 적이 없으며,",
+  "note": "아이트(עַיִט, ayit, '맹금·솔개·독수리류')는 가장 멀리, 가장 높이 보는 새이거늘 그 날카로운 눈조차 이 길을 못 보았다 하니, 땅속 보화에 이르는 길의 은밀함을 강조하여, 곧 이어질 '지혜의 길은 더욱 감추였다'는 절정을 예비한다.",
+  "voc": [
+   [
+    "path",
+    "n.",
+    "길, 통로"
+   ],
+   [
+    "fowl",
+    "n.",
+    "새, 날짐승"
+   ],
+   [
+    "vulture",
+    "n.",
+    "솔개, 독수리류 맹금"
+   ]
+  ],
+  "gra": [
+   [
+    "which no fowl knoweth",
+    "목적격 관계대명사 which — 어떤 새도 알지 못하는 (길)"
+   ]
+  ]
+ },
+ {
+  "en": "The lion's whelps have not trodden it, nor the fierce lion passed by it.",
+  "ko": "사나운 짐승의 새끼도 밟지 못하였고, 굶주린 사자도 그리로 지나가지 못하였느니라.",
+  "note": "샤할(שַׁחַל, '사자')이 두 번 다른 낱말로 대구를 이룬다. 가장 용맹한 짐승조차 닿지 못한 외딴 길임을 평행법으로 거듭 노래하여, 사람이 캐낸 보화의 길이 얼마나 인적 없는 곳인지를 드러냄.",
+  "voc": [
+   [
+    "whelp",
+    "n.",
+    "(짐승의) 새끼"
+   ],
+   [
+    "trodden",
+    "v.",
+    "(tread의 과거분사) 밟다, 디디다"
+   ],
+   [
+    "fierce",
+    "adj.",
+    "사나운, 맹렬한"
+   ],
+   [
+    "pass by",
+    "v.",
+    "지나가다, 곁을 지나다"
+   ]
+  ],
+  "gra": [
+   [
+    "have not trodden / nor ... passed",
+    "현재완료 + nor로 이어지는 부정의 평행 구문"
+   ]
+  ]
+ },
+ {
+  "en": "He putteth forth his hand upon the rock; he overturneth the mountains by the roots.",
+  "ko": "사람이 차돌에 손을 대어, 산들을 뿌리째 뒤엎으며,",
+  "note": "할라미시(חַלָּמִישׁ, '차돌·부싯돌')는 가장 단단한 바위라. 사람이 그 단단한 돌에 손을 대어 산을 '뿌리째(by the roots)' 뒤엎는다 하니, 광물을 캐는 인간의 끈질긴 수고와 능함을 그려, 자연을 정복하는 사람도 지혜만은 캐내지 못함을 대비함.",
+  "voc": [
+   [
+    "put forth",
+    "v.",
+    "내밀다, 뻗다"
+   ],
+   [
+    "rock",
+    "n.",
+    "바위, 차돌"
+   ],
+   [
+    "overturn",
+    "v.",
+    "뒤엎다, 뒤집다"
+   ],
+   [
+    "root",
+    "n.",
+    "뿌리"
+   ]
+  ],
+  "idi": [
+   [
+    "by the roots",
+    "뿌리째, 송두리째"
+   ]
+  ]
+ },
+ {
+  "en": "He cutteth out rivers among the rocks; and his eye seeth every precious thing.",
+  "ko": "바위를 쪼개어 물길을 트고, 그 눈은 온갖 보배로운 것을 살피며,",
+  "note": "예오림(יְאֹרִים, yeorim, '수로·물길')은 광부가 바위를 깎아 만든 갱도의 도랑을 가리킨다. 사람의 눈이 '온갖 보배로운 것(every precious thing)'을 빠짐없이 살핀다 하여, 보화 탐색에는 이토록 밝은 인간의 눈을 부각함.",
+  "voc": [
+   [
+    "cut out",
+    "v.",
+    "쪼개어 파내다, 깎아 내다"
+   ],
+   [
+    "river",
+    "n.",
+    "물길, 수로"
+   ],
+   [
+    "precious",
+    "adj.",
+    "보배로운, 귀한"
+   ]
+  ],
+  "gra": [
+   [
+    "every precious thing",
+    "every + 단수명사 — 온갖 귀한 것 하나하나"
+   ]
+  ]
+ },
+ {
+  "en": "He bindeth the floods from overflowing; and the thing that is hid bringeth he forth to light.",
+  "ko": "강물이 스미어 흐름을 틀어막고, 감추인 것을 빛으로 끌어내느니라.",
+  "note": "광부가 갱도로 새어드는 물줄기를 틀어막아 범람을 막고, '감추인 것(the thing that is hid)' 곧 땅속 깊이 숨은 광물을 빛 가운데로 끌어낸다 한다. 11~12절 사이에서 '사람은 숨은 보화는 빛으로 끌어내되, 정작 지혜는 못 찾는다'는 결정적 전환이 일어남.",
+  "voc": [
+   [
+    "bind",
+    "v.",
+    "묶다, 틀어막다"
+   ],
+   [
+    "flood",
+    "n.",
+    "물줄기, 흐름"
+   ],
+   [
+    "overflow",
+    "v.",
+    "넘쳐흐르다, 범람하다"
+   ],
+   [
+    "hid",
+    "adj.",
+    "(고어, hidden) 감추인"
+   ],
+   [
+    "bring forth",
+    "v.",
+    "끌어내다, 드러내다"
+   ]
+  ],
+  "gra": [
+   [
+    "bringeth he forth",
+    "고어의 도치 — he bringeth forth(그가 끌어낸다)의 강조 어순"
+   ]
+  ]
+ },
+ {
+  "en": "But where shall wisdom be found? and where is the place of understanding?",
+  "ko": "그러나 지혜는 어디서 찾으며, 명철이 머무는 곳은 어디뇨?",
+  "note": "이 장의 후렴이자 핵심 물음이다. 호크마(חָכְמָה, chokmah, '지혜')와 비나(בִּינָה, binah, '명철·분별')가 짝을 이룬다. 사람이 땅속 보화는 캐어 내되 지혜만은 그 자리조차 알지 못하니, §5 표준 역어를 따라 '지혜·명철'로 옮김.",
+  "voc": [
+   [
+    "wisdom",
+    "n.",
+    "지혜"
+   ],
+   [
+    "understanding",
+    "n.",
+    "명철, 분별"
+   ],
+   [
+    "place",
+    "n.",
+    "곳, 자리"
+   ]
+  ],
+  "gra": [
+   [
+    "where shall ... be found",
+    "수동태 의문문 — 어디서 찾아질 수 있는가"
+   ]
+  ]
+ },
+ {
+  "en": "Man knoweth not the price thereof; neither is it found in the land of the living.",
+  "ko": "사람은 그 값을 알지 못하나니, 산 자들의 땅에서는 찾을 수 없도다.",
+  "note": "에레크(עֵרֶךְ, '값·평가')를 사람이 알지 못한다 하니, 지혜는 인간의 시장에서 값 매길 수 없는 것이다. '산 자들의 땅(the land of the living)'은 인생 전부를 통틀어도 지혜의 거처를 찾을 수 없음을 뜻한다.",
+  "voc": [
+   [
+    "price",
+    "n.",
+    "값, 가격"
+   ],
+   [
+    "thereof",
+    "adv.",
+    "(고어) 그것의"
+   ],
+   [
+    "neither",
+    "adv.",
+    "또한 ~아니다"
+   ]
+  ],
+  "idi": [
+   [
+    "the land of the living",
+    "산 자들의 땅 — 살아 있는 인간 세상"
+   ]
+  ]
+ },
+ {
+  "en": "The depth saith, It is not in me: and the sea saith, It is not with me.",
+  "ko": "깊은 바다가 이르되, '내 안에 없노라' 하고, 큰 바다가 이르되, '내게 있지 아니하도다' 하느니라.",
+  "note": "테홈(תְּהוֹם, tehom, '깊은 물·원시의 심연')과 얌(יָם, '바다')이 사람처럼 말하는 의인법이다. 가장 깊고 가장 넓은 곳조차 지혜를 품지 못하였노라 고백하니, 평행법으로 지혜의 초월함을 노래함.",
+  "voc": [
+   [
+    "depth",
+    "n.",
+    "깊은 데, 심연"
+   ],
+   [
+    "saith",
+    "v.",
+    "(고어, say의 3인칭) 이르되, 말하되"
+   ],
+   [
+    "sea",
+    "n.",
+    "바다"
+   ]
+  ],
+  "gra": [
+   [
+    "It is not in me / with me",
+    "전치사 in과 with의 대구 — '내 안에 / 내게' 평행 표현"
+   ]
+  ]
+ },
+ {
+  "en": "It cannot be gotten for gold, neither shall silver be weighed for the price thereof.",
+  "ko": "순금을 주고도 그것을 얻지 못하며, 은을 달아 그 값으로 치를 수 없도다.",
+  "note": "세고르(סְגוֹר, segor, '순금·잠근 금')는 가장 정련된 금을 가리킨다. 고대에 은을 저울에 달아 값을 치렀으므로 '은을 달아(silver be weighed)'라 함이다. 15~19절은 온갖 보화를 열거하며 그 무엇으로도 지혜를 못 산다는 점층을 이룸.",
+  "voc": [
+   [
+    "gotten",
+    "v.",
+    "(get의 과거분사) 얻어진"
+   ],
+   [
+    "weigh",
+    "v.",
+    "(저울에) 달다, 무게를 재다"
+   ]
+  ],
+  "gra": [
+   [
+    "cannot be gotten / shall ... be weighed",
+    "수동태 — 얻어질 수 없다 / 달아질 수 없다"
+   ]
+  ]
+ },
+ {
+  "en": "It cannot be valued with the gold of Ophir, with the precious onyx, or the sapphire.",
+  "ko": "오빌의 금으로도 값을 매기지 못하고, 귀한 마노나 사파이어로도 헤아리지 못하느니라.",
+  "note": "오빌(אוֹפִיר, Ophir)은 최상품 금의 산지로 이름났던 곳이다. 쇼함(שֹׁהַם, '마노·홍옥수')과 사피르가 함께 열거되어, 당대 가장 값진 보석으로도 지혜는 견줄 수 없음을 노래한다.",
+  "voc": [
+   [
+    "value",
+    "v.",
+    "값을 매기다, 평가하다"
+   ],
+   [
+    "Ophir",
+    "n.",
+    "오빌(최상급 금의 산지)"
+   ],
+   [
+    "onyx",
+    "n.",
+    "마노, 줄마노"
+   ]
+  ]
+ },
+ {
+  "en": "The gold and the crystal cannot equal it: and the exchange of it shall not be for jewels of fine gold.",
+  "ko": "금이나 수정도 그것에 견주지 못하며, 순금 패물로도 바꾸지 못하리로다.",
+  "note": "제쿠키트(זְכוֹכִית, zekokit, '수정·유리')는 고대에 진귀하던 것이다. '바꿈(exchange)'은 물물교환을 가리켜, 순금으로 만든 패물조차 지혜와 맞바꿀 수 없음을 노래한다.",
+  "voc": [
+   [
+    "crystal",
+    "n.",
+    "수정, 유리"
+   ],
+   [
+    "equal",
+    "v.",
+    "견주다, 필적하다"
+   ],
+   [
+    "exchange",
+    "n.",
+    "교환, 맞바꿈"
+   ],
+   [
+    "jewel",
+    "n.",
+    "패물, 보석"
+   ]
+  ],
+  "gra": [
+   [
+    "cannot equal it",
+    "타동사 equal — '~에 필적하다'(전치사 없이 목적어를 바로 취함)"
+   ]
+  ]
+ },
+ {
+  "en": "No mention shall be made of coral, or of pearls: for the price of wisdom is above rubies.",
+  "ko": "산호나 진주는 말할 것도 없으니, 지혜의 값은 루비보다 높도다.",
+  "note": "페니님(פְּנִינִים, peninim, '진주·산호·홍옥')은 잠언에서도 지혜와 견주어 등장하는 귀물이다. '말할 것도 없다(No mention shall be made)'는 강조법으로, 어떤 보화도 지혜 앞에서는 거론할 가치조차 없음을 노래한다.",
+  "voc": [
+   [
+    "mention",
+    "n.",
+    "언급, 거론"
+   ],
+   [
+    "coral",
+    "n.",
+    "산호"
+   ],
+   [
+    "pearl",
+    "n.",
+    "진주"
+   ],
+   [
+    "ruby",
+    "n.",
+    "루비, 홍옥"
+   ]
+  ],
+  "idi": [
+   [
+    "No mention shall be made of ...",
+    "~은 거론조차 되지 못하리라(강조)"
+   ]
+  ],
+  "gra": [
+   [
+    "above rubies",
+    "전치사 above — '~보다 위에, ~를 능가하여'"
+   ]
+  ]
+ },
+ {
+  "en": "The topaz of Ethiopia shall not equal it, neither shall it be valued with pure gold.",
+  "ko": "구스의 황옥도 그것에 견주지 못하며, 순금으로도 값을 매기지 못하느니라.",
+  "note": "여기 '에티오피아'로 옮긴 쿠시(כּוּשׁ, Kush)는 나일강 상류의 구스를 가리키며, 한국 교회 전통 표기를 따라 '구스'로 옮김. 피트다(פִּטְדָה, '황옥·토파즈')는 그 지역 명산이다. 보석의 열거가 절정에 이르나, 그 무엇도 지혜를 능가하지 못함을 다시 못 박다.",
+  "voc": [
+   [
+    "topaz",
+    "n.",
+    "황옥, 토파즈"
+   ],
+   [
+    "Ethiopia",
+    "n.",
+    "구스(원어 Kush)"
+   ],
+   [
+    "pure",
+    "adj.",
+    "순수한, 정련된"
+   ]
+  ]
+ },
+ {
+  "en": "Whence then cometh wisdom? and where is the place of understanding?",
+  "ko": "그러한즉 지혜는 어디서 오며, 명철이 머무는 곳은 어디뇨?",
+  "note": "12절의 물음이 다시 울리되, 이번에는 '어디서 찾으랴'에서 '어디서 오랴(whence cometh)'로 한 걸음 나아간다. 보화 열거를 마친 뒤 거듭되는 이 후렴이, 23절 이하 '오직 하나님만 아신다'는 답으로 이끄는 다리라.",
+  "voc": [
+   [
+    "whence",
+    "adv.",
+    "(고어) 어디서, 어디로부터"
+   ],
+   [
+    "then",
+    "adv.",
+    "그러한즉, 그러면"
+   ]
+  ],
+  "gra": [
+   [
+    "Whence cometh wisdom",
+    "고어의 도치 의문 — 지혜는 어디서 오는가(현대 Where does wisdom come from?)"
+   ]
+  ]
+ },
+ {
+  "en": "Seeing it is hid from the eyes of all living, and kept close from the fowls of the air.",
+  "ko": "그것은 살아 있는 모든 것의 눈에서 숨겨졌고, 공중의 새에게도 가리어졌느니라.",
+  "note": "'숨겨졌다(hid)'와 '가리어졌다(kept close)'가 짝을 이룬다. 살아 있는 어떤 눈도, 가장 높이 나는 새도 지혜를 보지 못하니, 7절의 '솔개의 눈'으로 연 모티프가 여기서 온 피조계로 확장되어 절정의 답을 예비함.",
+  "voc": [
+   [
+    "seeing",
+    "conj.",
+    "~인 까닭에, ~이므로"
+   ],
+   [
+    "hid",
+    "v.",
+    "(고어, hidden) 숨겨진"
+   ],
+   [
+    "kept close",
+    "phr.",
+    "가리어진, 숨겨 둔"
+   ],
+   [
+    "fowl",
+    "n.",
+    "새, 날짐승"
+   ]
+  ],
+  "idi": [
+   [
+    "the fowls of the air",
+    "공중의 새들"
+   ]
+  ],
+  "gra": [
+   [
+    "Seeing it is hid",
+    "Seeing(접속사) + 절 — '~인 까닭에'로 이유를 이끎"
+   ]
+  ]
+ },
+ {
+  "en": "Destruction and death say, We have heard the fame thereof with our ears.",
+  "ko": "멸망과 사망이 이르되, '우리 귀로 그 소문만 들었노라' 하느니라.",
+  "note": "아바돈(אֲבַדּוֹן, Abaddon, '멸망의 처소')과 마베트(מָוֶת, '사망')가 의인화되어 말한다. 가장 깊은 음부조차 지혜를 직접 보지 못하고 '소문(fame)만 들었노라' 고백하니, 14절의 깊은 바다·큰 바다 의인법과 짝을 이루어 절정 직전의 긴장을 더함.",
+  "voc": [
+   [
+    "destruction",
+    "n.",
+    "멸망(원어 Abaddon, 음부)"
+   ],
+   [
+    "death",
+    "n.",
+    "사망, 죽음"
+   ],
+   [
+    "fame",
+    "n.",
+    "소문, 풍문, 명성"
+   ]
+  ],
+  "idi": [
+   [
+    "with our ears",
+    "우리 귀로(직접 들음을 강조)"
+   ]
+  ]
+ },
+ {
+  "en": "God understandeth the way thereof, and he knoweth the place thereof.",
+  "ko": "오직 하나님이 그 길을 깨달으시며, 그 머무는 곳을 아시나니,",
+  "note": "엘로힘(אֱלֹהִים, '하나님', §4)이 주어로 우뚝 선다. 사람도, 깊은 바다도, 음부도, 새도 알지 못한 '그 길(the way)'과 '그 곳(the place)'을 오직 하나님만 아신다 하여, 12·20절의 물음에 마침내 답한다. 하나님의 행위인 '깨달으시며·아시나니'를 §4에 따라 존대로 옮김.",
+  "voc": [
+   [
+    "understand",
+    "v.",
+    "깨닫다, 통달하다"
+   ],
+   [
+    "way",
+    "n.",
+    "길, 이르는 길"
+   ],
+   [
+    "thereof",
+    "adv.",
+    "(고어) 그것의"
+   ]
+  ],
+  "gra": [
+   [
+    "God understandeth ... he knoweth",
+    "고어 3인칭 단수 -eth 어미가 두 동사에 평행으로 쓰임"
+   ]
+  ]
+ },
+ {
+  "en": "For he looketh to the ends of the earth, and seeth under the whole heaven;",
+  "ko": "이는 그가 땅끝까지 굽어보시며, 온 하늘 아래를 두루 살피심이라.",
+  "note": "하나님이 지혜의 자리를 아시는 까닭(For)을 밝힌다. 그분의 시야는 '땅끝(the ends of the earth)'에서 '온 하늘 아래(the whole heaven)'에 이르니, 전능자의 무한한 통찰을 노래하여 창조주만이 지혜의 거처를 아심을 뒷받침함.",
+  "voc": [
+   [
+    "look to",
+    "v.",
+    "굽어보다, ~을 향해 보다"
+   ],
+   [
+    "end",
+    "n.",
+    "끝, 가장자리"
+   ],
+   [
+    "whole",
+    "adj.",
+    "온, 전체의"
+   ]
+  ],
+  "idi": [
+   [
+    "the ends of the earth",
+    "땅끝, 세상의 가장 먼 곳"
+   ]
+  ],
+  "gra": [
+   [
+    "For he looketh",
+    "For(접속사) — '이는 ~함이라'(이유를 이끎)"
+   ]
+  ]
+ },
+ {
+  "en": "To make the weight for the winds; and he weigheth the waters by measure.",
+  "ko": "그가 바람의 무게를 정하시고, 물을 분량으로 달아 두시며,",
+  "note": "미슈칼(מִשְׁקָל, '무게')을 바람에 정하시고 물을 미다(מִדָּה, '분량')로 다신다 하여, 보이지 않는 바람조차 무게로, 가없는 물조차 분량으로 다스리시는 창조의 정밀함을 노래한다. 곧 지혜로 만물을 측량하신 분이 지혜의 자리를 아심이 마땅하도다.",
+  "voc": [
+   [
+    "weight",
+    "n.",
+    "무게, 중량"
+   ],
+   [
+    "wind",
+    "n.",
+    "바람"
+   ],
+   [
+    "weigh",
+    "v.",
+    "달다, 무게를 재다"
+   ],
+   [
+    "measure",
+    "n.",
+    "분량, 척도"
+   ]
+  ],
+  "idi": [
+   [
+    "by measure",
+    "분량대로, 헤아려"
+   ]
+  ]
+ },
+ {
+  "en": "When he made a decree for the rain, and a way for the lightning of the thunder:",
+  "ko": "비를 위하여 법칙을 세우시고, 천둥과 번개를 위하여 길을 내실 때에,",
+  "note": "호크(חֹק, choq, '법칙·규례')를 비에 정하시고, 천둥에 따르는 번개에 '길(a way)'을 내신다 한다. 자연의 운행마다 하나님이 정하신 질서가 있음을 노래하여, 다음 절의 '그때에 지혜를 보시고 밝히셨다'는 절정을 이끄는 시간절이다.",
+  "voc": [
+   [
+    "decree",
+    "n.",
+    "법칙, 규례, 작정"
+   ],
+   [
+    "rain",
+    "n.",
+    "비"
+   ],
+   [
+    "lightning",
+    "n.",
+    "번개"
+   ],
+   [
+    "thunder",
+    "n.",
+    "천둥, 우레"
+   ]
+  ],
+  "gra": [
+   [
+    "When he made",
+    "When이 이끄는 시간 부사절 — 다음 절(27절)의 주절로 이어짐"
+   ]
+  ]
+ },
+ {
+  "en": "Then did he see it, and declare it; he prepared it, yea, and searched it out.",
+  "ko": "그때에 그가 지혜를 보시고 밝히 드러내셨으며, 굳게 세우시고 또한 샅샅이 살펴 내셨도다.",
+  "note": "네 동사 '보시고(see)·밝히 드러내시고(declare)·세우시고(prepare)·살펴 내셨다(search out)'가 점층으로 이어진다. 창조의 그때에 하나님이 지혜를 친히 보시고 굳게 두셨다 하여, 지혜가 곧 하나님께 속한 것임을 못 박고, 다음 절의 결론으로 이끈다.",
+  "voc": [
+   [
+    "declare",
+    "v.",
+    "밝히 드러내다, 선포하다"
+   ],
+   [
+    "prepare",
+    "v.",
+    "굳게 세우다, 갖추다"
+   ],
+   [
+    "search out",
+    "v.",
+    "샅샅이 살피다, 헤아려 내다"
+   ],
+   [
+    "yea",
+    "adv.",
+    "(고어) 참으로, 또한"
+   ]
+  ],
+  "gra": [
+   [
+    "Then did he see",
+    "강조의 도치 — 조동사 did가 앞서 '그때에 그가 보셨다'를 강조"
+   ]
+  ]
+ },
+ {
+  "en": "And unto man he said, Behold, the fear of the LORD, that is wisdom; and to depart from evil is understanding.",
+  "ko": "그리고 사람에게 이르시되, \"보라, 주를 경외함이 곧 지혜요, 악에서 떠남이 곧 명철이니라\" 하셨느니라.",
+  "note": "이 장의 절정이자 결론이다. 본 절의 '주(the LORD)'는 히브리어로 아도나이(אֲדֹנָי, Adonai)로, 욥기에서 드물게 쓰인 호칭이니 §4에 따라 '주(主)'로 옮김(YHWH '여호와'가 아님). 이르아트 아도나이(יִרְאַת אֲדֹנָי, '주를 경외함')가 곧 호크마(지혜)요, '악에서 떠남(to depart from evil)'이 곧 비나(명철)라 선언한다. 사람이 땅속 보화는 캐어 내되 지혜만은 못 찾았으나(1~11절), 그 지혜의 자리를 아시는 하나님이 사람에게 친히 길을 일러 주시니, 곧 보화를 캐는 손이 아니라 주를 경외하는 마음에 지혜가 있도다. 이는 잠언 1:7·9:10의 '여호와를 경외함이 지식·지혜의 근본'과 한 가락을 이루며, 욥기 전체에서 고난 한가운데 선 사람이 붙들 길이 무엇인지를 가리키는 봉우리니라.",
+  "voc": [
+   [
+    "behold",
+    "v.",
+    "(고어) 보라, 보아라"
+   ],
+   [
+    "fear",
+    "n.",
+    "경외, 두려워함"
+   ],
+   [
+    "depart",
+    "v.",
+    "떠나다, 멀리하다"
+   ],
+   [
+    "evil",
+    "n.",
+    "악, 악함"
+   ]
+  ],
+  "idi": [
+   [
+    "the fear of the LORD",
+    "주를 경외함 — 하나님을 향한 경외와 순종"
+   ],
+   [
+    "depart from evil",
+    "악에서 떠나다, 악을 멀리하다"
+   ]
+  ],
+  "gra": [
+   [
+    "unto man he said",
+    "고어의 도치 — he said unto man(그가 사람에게 이르시되)의 강조 어순"
+   ],
+   [
+    "that is wisdom",
+    "지시대명사 that이 앞 구('주를 경외함')를 받아 '그것이 곧 지혜라'로 강조"
+   ]
+  ]
+ }
 ]

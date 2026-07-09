@@ -1,114 +1,601 @@
 [
-  {
-    "en": "Esther put on her royal apparel, and stood in the inner court of the king's house",
-    "ko": "에스더가 왕후의 예복을 입고 왕궁 안뜰에 서니라",
-    "note": "히브리어 '말쿠트(מַלְכוּת)'는 '왕권·왕적 지위'를 뜻하니, KJV의 'royal apparel'은 직역하면 '왕권의 옷', 곧 왕후로서의 위엄을 갖춘 예복이라. '안뜰(하체르 하프니미트)'은 왕의 거처에 가장 가까운 뜰로, 부름 없이 들어서면 죽음을 각오해야 하는 자리(에 4:11)였더라.",
-    "voc": [["royal", "a.", "왕의, 왕에 속한"], ["apparel", "n.", "의복, 예복"], ["inner", "a.", "안쪽의, 내부의"], ["court", "n.", "뜰, 궁정"], ["throne", "n.", "보좌, 왕좌"]],
-    "idi": [["over against", "~을 마주하여, ~을 향하여"]],
-    "gra": [["it came to pass", "고어 표현 — '~한 일이 일어났다' (현대영어 it happened)"]]
-  },
-  {
-    "en": "she obtained favour in his sight: and the king held out to Esther the golden sceptre",
-    "ko": "그가 왕의 눈에 은총을 입으매 왕이 금 홀을 내미니라",
-    "note": "히브리어 '나사 헨(נָשְׂאָה חֵן)'은 '은혜를 입다·총애를 얻다'라. 금 '홀(샤르비트)'을 내미는 것은 무단히 나아온 자에게 생명을 허락하는 왕의 표징이니, 에스더의 목숨이 이 한 동작에 달려 있었더라.",
-    "voc": [["obtained", "v.", "얻었다 (obtain의 과거)"], ["favour", "n.", "은총, 호의"], ["sight", "n.", "눈앞, 시야"], ["held out", "v.", "내밀었다 (hold out의 과거)"], ["sceptre", "n.", "홀, 왕의 지팡이"], ["drew near", "v.", "가까이 나아갔다"], ["touched", "v.", "만졌다"]],
-    "idi": [["in his sight", "그가 보기에, 그의 눈에"], ["held out", "내밀다, 내뻗다"]],
-    "gra": [["that was in his hand", "관계대명사 that — 앞의 sceptre를 수식 (그의 손에 있던 홀)"]]
-  },
-  {
-    "en": "What wilt thou, queen Esther? ... it shall be even given thee to the half of the kingdom",
-    "ko": "왕후 에스더여, 무엇을 원하느뇨? 나라의 절반이라도 주리라",
-    "note": "'나라의 절반까지(아드 하치 하말쿠트)'는 페르시아 궁정의 관용적 과장 표현으로, 무엇이든 들어 주겠다는 극진한 호의를 나타내니라. 'wilt thou'는 고어로 '네가 원하느냐'(현대 do you wish).",
-    "voc": [["wilt", "v.", "원하다 (will의 고어 2인칭)"], ["thou", "pron.", "너 (고어 주격)"], ["thy", "pron.", "너의 (고어 소유격)"], ["request", "n.", "청, 요청"], ["kingdom", "n.", "왕국, 나라"], ["half", "n.", "절반"]],
-    "idi": [["to the half of the kingdom", "나라의 절반까지라도 — 무엇이든 들어주겠다는 관용적 표현"]],
-    "gra": [["it shall be given thee", "shall 미래·약속 + 수동태 — '네게 주어지리라'"]]
-  },
-  {
-    "en": "let the king and Haman come this day unto the banquet that I have prepared for him",
-    "ko": "오늘 왕과 하만이 내가 베푼 잔치에 납시옵소서",
-    "note": "히브리어 '미슈테(מִשְׁתֶּה)'는 '마시는 자리·연회'라. 에스더는 청을 곧장 아뢰지 아니하고 잔치로 왕과 하만을 한자리에 부르니, 그 지혜로운 더딤이 이야기의 긴장을 높이느니라.",
-    "voc": [["banquet", "n.", "잔치, 연회"], ["prepared", "v.", "준비하였다, 베풀었다"], ["seem good", "phr.", "좋게 여겨지다"]],
-    "idi": [["if it seem good unto the king", "왕이 좋게 여기시거든 — 정중한 청원 도입"], ["this day", "오늘, 이 날에"]],
-    "gra": [["let the king come", "let + 목적어 + 동사원형 — 청유·허락 (왕이 오시게 하소서)"]]
-  },
-  {
-    "en": "Cause Haman to make haste, that he may do as Esther hath said",
-    "ko": "하만을 급히 불러 에스더가 말한 대로 행하게 하라",
-    "note": "'서두르다(마하르)'는 왕이 에스더의 청을 흔쾌히 따르는 모습을 보이니라. 'cause ... to make haste'는 '~를 서두르게 하라', 곧 '급히 데려오라'는 사역 표현이라.",
-    "voc": [["cause", "v.", "~하게 하다 (사역)"], ["haste", "n.", "서두름, 급함"], ["hath", "v.", "have의 고어 3인칭 단수"]],
-    "idi": [["make haste", "서두르다, 급히 하다"]],
-    "gra": [["that he may do", "목적의 that + may — '그가 ~하도록'"]]
-  },
-  {
-    "en": "What is thy petition? and it shall be granted thee ... even to the half of the kingdom",
-    "ko": "그대의 간구가 무엇이뇨? 나라의 절반이라도 이루어 주리라",
-    "note": "'간구(셰엘라)'와 '청(바카샤)'이 한 쌍으로 거듭 나오니, 히브리 평행법의 가락이라. '술자리(미슈테 하야인)'에서의 거듭된 권유는 왕의 변치 않는 호의를 강조하느니라.",
-    "voc": [["petition", "n.", "간구, 탄원"], ["granted", "v.", "허락되었다, 들어주어졌다"], ["performed", "v.", "이루어졌다, 행하여졌다"], ["wine", "n.", "포도주, 술"]],
-    "idi": [["banquet of wine", "술자리, 포도주 잔치"]],
-    "gra": [["it shall be granted thee", "shall 약속 + 수동태 — '네게 허락되리라'"]]
-  },
-  {
-    "en": "Then answered Esther, and said, My petition and my request is",
-    "ko": "에스더가 대답하여 이르되 나의 간구와 나의 청은 이러하옵니이다",
-    "note": "에스더가 곧바로 본론을 아뢰지 아니하고 말을 한 번 더 미루니, 다음 절에서 둘째 잔치로 청을 옮기는 절묘한 지연이라. 'answered ... and said'는 히브리어 '바타안 ... 바토메르'의 직역으로, 응답을 강조하는 관용이라.",
-    "voc": [["answered", "v.", "대답하였다"], ["request", "n.", "청, 바라는 바"]],
-    "idi": [["answered and said", "대답하여 이르되 — 히브리식 응답 도입구"]],
-    "gra": [["Then answered Esther", "부사 Then이 문두에 와 도치 — 동사가 주어 앞에 옴"]]
-  },
-  {
-    "en": "let the king and Haman come to the banquet that I shall prepare for them, and I will do to morrow as the king hath said",
-    "ko": "왕과 하만이 내가 베풀 잔치에 다시 납시옵소서, 그리하면 내일 왕의 말씀대로 행하리이다",
-    "note": "에스더가 둘째 잔치로 청을 미루니, 그 사이 밤에 왕이 잠 못 이루어 모르드개의 공을 기억하는 반전(6장)이 일어날 길이 열리느니라. 섭리의 손길이 사람의 더딤 속에 숨어 일하시는도다.",
-    "voc": [["prepare", "v.", "준비하다, 베풀다"], ["to morrow", "adv.", "내일 (고어 표기)"], ["please", "v.", "기쁘게 하다, 좋게 여기다"]],
-    "idi": [["if I have found favour", "내가 은총을 입었거든 — 정중한 청원 관용구"], ["to morrow", "내일"]],
-    "gra": [["I shall prepare", "shall 미래 — 1인칭의 단순 미래 (내가 베풀리라)"], ["as the king hath said", "as 양태 접속사 — '왕이 말씀하신 대로'"]]
-  },
-  {
-    "en": "but when Haman saw Mordecai in the king's gate, that he stood not up, nor moved for him, he was full of indignation",
-    "ko": "그러나 하만이 대궐 문에서 모르드개가 일어서지도 움직이지도 아니함을 보매 분노가 가득 찼더라",
-    "note": "히브리어 '헤마(חֵמָה)'는 '뜨거운 격분·노여움'이라. 하만의 기쁨이 한 사람의 무릎 꿇지 않음으로 단번에 분노로 뒤집히니, 교만한 자의 헛된 영화를 드러내느니라.",
-    "voc": [["joyful", "a.", "기뻐하는, 즐거운"], ["glad", "a.", "기쁜, 즐거운"], ["moved", "v.", "움직였다"], ["indignation", "n.", "분노, 격분"]],
-    "idi": [["full of indignation", "분노가 가득 찬"], ["stood not up", "일어서지 아니하였다"]],
-    "gra": [["that he stood not up", "동격의 that절 — 앞의 'saw Mordecai'를 부연 (일어서지 않음을 보았다)"], ["he stood not up", "고어 부정 — 조동사 do 없이 not을 동사 뒤에 둠"]]
-  },
-  {
-    "en": "Nevertheless Haman refrained himself: and when he came home, he sent and called for his friends, and Zeresh his wife",
-    "ko": "그러나 하만이 스스로 참고 집에 돌아와 벗들과 아내 세레스를 청하니라",
-    "note": "히브리어 '아파크(אָפַק)'는 '억제하다·자제하다'라. 하만이 분을 겉으로는 눌렀으나 속으로는 삭이지 못하니, 그 억눌린 노여움이 마침내 형틀로 터져 나오느니라. 세레스(זֶרֶשׁ)는 하만의 아내라.",
-    "voc": [["nevertheless", "adv.", "그럼에도, 그러나"], ["refrained", "v.", "참았다, 자제하였다"], ["friends", "n.", "벗들, 친구들"], ["wife", "n.", "아내"]],
-    "idi": [["refrained himself", "스스로 억제하였다, 자제하였다"], ["sent and called for", "사람을 보내어 불러오게 하였다"]],
-    "gra": [["refrained himself", "재귀 표현 — himself로 자기 자신을 억제함을 나타냄"]]
-  },
-  {
-    "en": "Haman told them of the glory of his riches, and the multitude of his children, and all the things wherein the king had promoted him",
-    "ko": "하만이 자기 재물의 영화와 자녀의 많음과 왕이 자기를 높인 모든 일을 이르니라",
-    "note": "'영화(카보드)'와 '많음(로브)'을 늘어놓는 하만의 자랑은 교만의 절정이라. 성경은 교만이 패망의 앞잡이임을 말하니(잠 16:18), 이 자랑이 곧 그의 몰락의 서막이 되느니라.",
-    "voc": [["glory", "n.", "영화, 영광"], ["riches", "n.", "재물, 부"], ["multitude", "n.", "많음, 무리"], ["promoted", "v.", "높였다, 승진시켰다"], ["advanced", "v.", "높였다, 진급시켰다"]],
-    "idi": [["the multitude of his children", "그의 많은 자녀"]],
-    "gra": [["wherein the king had promoted him", "관계부사 wherein (= in which) — '왕이 그를 높인 그 일에서'"], ["had promoted", "과거완료 — 자랑하던 시점보다 앞선 승진"]]
-  },
-  {
-    "en": "Esther the queen did let no man come in with the king unto the banquet that she had prepared but myself",
-    "ko": "왕후 에스더가 자기 잔치에 왕과 더불어 나 외에는 아무도 들이지 아니하였느니라",
-    "note": "'나 외에는(키 임 오티)'은 '오직 나만'을 강조하는 히브리 어법이라. 하만은 왕후의 특별한 부름을 영광으로 여겼으나, 실은 그것이 그를 멸망으로 이끄는 덫이었음을 알지 못하였더라.",
-    "voc": [["queen", "n.", "왕후, 여왕"], ["invited", "v.", "초대받았다, 청함을 받았다"], ["myself", "pron.", "나 자신"]],
-    "idi": [["let no man come in", "아무도 들이지 아니하다"], ["but myself", "나 외에는, 나 말고는"]],
-    "gra": [["did let no man come in", "강조의 조동사 did + let — 'no man'으로 전체 부정"]]
-  },
-  {
-    "en": "Yet all this availeth me nothing, so long as I see Mordecai the Jew sitting at the king's gate",
-    "ko": "그러나 유다 사람 모르드개가 대궐 문에 앉아 있음을 보는 한 이 모든 것이 내게 아무 소용이 없도다",
-    "note": "히브리어 '에넨누 쇼베 리(אֵינֶנּוּ שֹׁוֶה לִי)'는 '내게 값하지 못한다·만족을 주지 못한다'라. 하만은 천하를 가진 듯하나 한 사람의 굴복 없음에 마음이 짓눌리니, 채워지지 않는 교만의 빈 그릇을 보여 주느니라.",
-    "voc": [["yet", "adv.", "그러나, 아직"], ["availeth", "v.", "소용이 되다 (avail의 고어 3인칭)"], ["nothing", "pron.", "아무것도 (아님)"], ["sitting", "v.", "앉아 있는 (현재분사)"]],
-    "idi": [["availeth me nothing", "내게 아무 소용이 없다"], ["so long as", "~하는 한, ~하는 동안"]],
-    "gra": [["availeth me nothing", "고어 3인칭 -eth + 이중부정 어감 — '내게 도무지 소용없다'"]]
-  },
-  {
-    "en": "Let a gallows be made of fifty cubits high ... then go thou in merrily with the king unto the banquet",
-    "ko": "오십 규빗 높이의 나무를 세우게 하고 모르드개를 그 위에 달게 하소서, 그런 뒤에 즐거이 잔치에 나아가소서",
-    "note": "히브리어 '에츠(עֵץ)'는 '나무·기둥'이니, 페르시아식 처형 기둥(매달거나 꿰는 형틀)을 가리키느니라. 오십 규빗(약 23미터)은 과장된 높이로 하만의 끝없는 교만을 드러내거니와, 이 형틀이 도리어 하만 자신을 달리라(에 7:10).",
-    "voc": [["gallows", "n.", "형틀, 매다는 나무"], ["cubits", "n.", "규빗 (길이 단위, 약 45cm)"], ["merrily", "adv.", "즐거이, 기쁘게"], ["pleased", "v.", "기쁘게 하였다"]],
-    "idi": [["go thou in merrily", "즐거이 들어가라, 기쁘게 나아가라"], ["the thing pleased Haman", "그 일이 하만을 기쁘게 하였다"]],
-    "gra": [["Let a gallows be made", "let + 수동태 — '형틀이 세워지게 하라'"], ["fifty cubits high", "치수 + high 형용사 후치 — '오십 규빗 높이의'"]]
-  }
+ {
+  "en": "Esther put on her royal apparel, and stood in the inner court of the king's house",
+  "ko": "에스더가 왕후의 예복을 입고 왕궁 안뜰에 서니라",
+  "note": "히브리어 '말쿠트(מַלְכוּת)'는 '왕권·왕적 지위'를 뜻하니, KJV의 'royal apparel'은 직역하면 '왕권의 옷', 곧 왕후로서의 위엄을 갖춘 예복이다. '안뜰(하체르 하프니미트)'은 왕의 거처에 가장 가까운 뜰로, 부름 없이 들어서면 죽음을 각오해야 하는 자리(에 4:11)였더라.",
+  "voc": [
+   [
+    "royal",
+    "a.",
+    "왕의, 왕에 속한"
+   ],
+   [
+    "apparel",
+    "n.",
+    "의복, 예복"
+   ],
+   [
+    "inner",
+    "a.",
+    "안쪽의, 내부의"
+   ],
+   [
+    "court",
+    "n.",
+    "뜰, 궁정"
+   ],
+   [
+    "throne",
+    "n.",
+    "보좌, 왕좌"
+   ]
+  ],
+  "idi": [
+   [
+    "over against",
+    "~을 마주하여, ~을 향하여"
+   ]
+  ],
+  "gra": [
+   [
+    "it came to pass",
+    "고어 표현 — '~한 일이 일어났다' (현대영어 it happened)"
+   ]
+  ]
+ },
+ {
+  "en": "she obtained favour in his sight: and the king held out to Esther the golden sceptre",
+  "ko": "그가 왕의 눈에 은총을 입으매 왕이 금 홀을 내미니라",
+  "note": "히브리어 '나사 헨(נָשְׂאָה חֵן)'은 '은혜를 입다·총애를 얻다'라. 금 '홀(샤르비트)'을 내미는 것은 무단히 나아온 자에게 생명을 허락하는 왕의 표징이니, 에스더의 목숨이 이 한 동작에 달려 있었더라.",
+  "voc": [
+   [
+    "obtained",
+    "v.",
+    "얻었다 (obtain의 과거)"
+   ],
+   [
+    "favour",
+    "n.",
+    "은총, 호의"
+   ],
+   [
+    "sight",
+    "n.",
+    "눈앞, 시야"
+   ],
+   [
+    "held out",
+    "v.",
+    "내밀었다 (hold out의 과거)"
+   ],
+   [
+    "sceptre",
+    "n.",
+    "홀, 왕의 지팡이"
+   ],
+   [
+    "drew near",
+    "v.",
+    "가까이 나아갔다"
+   ],
+   [
+    "touched",
+    "v.",
+    "만졌다"
+   ]
+  ],
+  "idi": [
+   [
+    "in his sight",
+    "그가 보기에, 그의 눈에"
+   ],
+   [
+    "held out",
+    "내밀다, 내뻗다"
+   ]
+  ],
+  "gra": [
+   [
+    "that was in his hand",
+    "관계대명사 that — 앞의 sceptre를 수식 (그의 손에 있던 홀)"
+   ]
+  ]
+ },
+ {
+  "en": "What wilt thou, queen Esther? ... it shall be even given thee to the half of the kingdom",
+  "ko": "왕후 에스더여, 무엇을 원하느뇨? 나라의 절반이라도 주리라",
+  "note": "'나라의 절반까지(아드 하치 하말쿠트)'는 페르시아 궁정의 관용적 과장 표현으로, 무엇이든 들어 주겠다는 극진한 호의를 나타내니라. 'wilt thou'는 고어로 '네가 원하느냐'(현대 do you wish).",
+  "voc": [
+   [
+    "wilt",
+    "v.",
+    "원하다 (will의 고어 2인칭)"
+   ],
+   [
+    "thou",
+    "pron.",
+    "너 (고어 주격)"
+   ],
+   [
+    "thy",
+    "pron.",
+    "너의 (고어 소유격)"
+   ],
+   [
+    "request",
+    "n.",
+    "청, 요청"
+   ],
+   [
+    "kingdom",
+    "n.",
+    "왕국, 나라"
+   ],
+   [
+    "half",
+    "n.",
+    "절반"
+   ]
+  ],
+  "idi": [
+   [
+    "to the half of the kingdom",
+    "나라의 절반까지라도 — 무엇이든 들어주겠다는 관용적 표현"
+   ]
+  ],
+  "gra": [
+   [
+    "it shall be given thee",
+    "shall 미래·약속 + 수동태 — '네게 주어지리라'"
+   ]
+  ]
+ },
+ {
+  "en": "let the king and Haman come this day unto the banquet that I have prepared for him",
+  "ko": "오늘 왕과 하만이 내가 베푼 잔치에 납시옵소서",
+  "note": "히브리어 '미슈테(מִשְׁתֶּה)'는 '마시는 자리·연회'라. 에스더는 청을 곧장 아뢰지 아니하고 잔치로 왕과 하만을 한자리에 부르니, 그 지혜로운 더딤이 이야기의 긴장을 높인다.",
+  "voc": [
+   [
+    "banquet",
+    "n.",
+    "잔치, 연회"
+   ],
+   [
+    "prepared",
+    "v.",
+    "준비하였다, 베풀었다"
+   ],
+   [
+    "seem good",
+    "phr.",
+    "좋게 여겨지다"
+   ]
+  ],
+  "idi": [
+   [
+    "if it seem good unto the king",
+    "왕이 좋게 여기시거든 — 정중한 청원 도입"
+   ],
+   [
+    "this day",
+    "오늘, 이 날에"
+   ]
+  ],
+  "gra": [
+   [
+    "let the king come",
+    "let + 목적어 + 동사원형 — 청유·허락 (왕이 오시게 하소서)"
+   ]
+  ]
+ },
+ {
+  "en": "Cause Haman to make haste, that he may do as Esther hath said",
+  "ko": "하만을 급히 불러 에스더가 말한 대로 행하게 하라",
+  "note": "'서두르다(마하르)'는 왕이 에스더의 청을 흔쾌히 따르는 모습을 보이다. 'cause ... to make haste'는 '~를 서두르게 하라', 곧 '급히 데려오라'는 사역 표현이다.",
+  "voc": [
+   [
+    "cause",
+    "v.",
+    "~하게 하다 (사역)"
+   ],
+   [
+    "haste",
+    "n.",
+    "서두름, 급함"
+   ],
+   [
+    "hath",
+    "v.",
+    "have의 고어 3인칭 단수"
+   ]
+  ],
+  "idi": [
+   [
+    "make haste",
+    "서두르다, 급히 하다"
+   ]
+  ],
+  "gra": [
+   [
+    "that he may do",
+    "목적의 that + may — '그가 ~하도록'"
+   ]
+  ]
+ },
+ {
+  "en": "What is thy petition? and it shall be granted thee ... even to the half of the kingdom",
+  "ko": "그대의 간구가 무엇이뇨? 나라의 절반이라도 이루어 주리라",
+  "note": "'간구(셰엘라)'와 '청(바카샤)'이 한 쌍으로 거듭 나오니, 히브리 평행법의 가락이다. '술자리(미슈테 하야인)'에서의 거듭된 권유는 왕의 변치 않는 호의를 강조한다.",
+  "voc": [
+   [
+    "petition",
+    "n.",
+    "간구, 탄원"
+   ],
+   [
+    "granted",
+    "v.",
+    "허락되었다, 들어주어졌다"
+   ],
+   [
+    "performed",
+    "v.",
+    "이루어졌다, 행하여졌다"
+   ],
+   [
+    "wine",
+    "n.",
+    "포도주, 술"
+   ]
+  ],
+  "idi": [
+   [
+    "banquet of wine",
+    "술자리, 포도주 잔치"
+   ]
+  ],
+  "gra": [
+   [
+    "it shall be granted thee",
+    "shall 약속 + 수동태 — '네게 허락되리라'"
+   ]
+  ]
+ },
+ {
+  "en": "Then answered Esther, and said, My petition and my request is",
+  "ko": "에스더가 대답하여 이르되 나의 간구와 나의 청은 이러하옵니이다",
+  "note": "에스더가 곧바로 본론을 아뢰지 아니하고 말을 한 번 더 미루니, 다음 절에서 둘째 잔치로 청을 옮기는 절묘한 지연이다. 'answered ... and said'는 히브리어 '바타안 ... 바토메르'의 직역으로, 응답을 강조하는 관용이다.",
+  "voc": [
+   [
+    "answered",
+    "v.",
+    "대답하였다"
+   ],
+   [
+    "request",
+    "n.",
+    "청, 바라는 바"
+   ]
+  ],
+  "idi": [
+   [
+    "answered and said",
+    "대답하여 이르되 — 히브리식 응답 도입구"
+   ]
+  ],
+  "gra": [
+   [
+    "Then answered Esther",
+    "부사 Then이 문두에 와 도치 — 동사가 주어 앞에 옴"
+   ]
+  ]
+ },
+ {
+  "en": "let the king and Haman come to the banquet that I shall prepare for them, and I will do to morrow as the king hath said",
+  "ko": "왕과 하만이 내가 베풀 잔치에 다시 납시옵소서, 그리하면 내일 왕의 말씀대로 행하리이다",
+  "note": "에스더가 둘째 잔치로 청을 미루니, 그 사이 밤에 왕이 잠 못 이루어 모르드개의 공을 기억하는 반전(6장)이 일어날 길이 열린다. 섭리의 손길이 사람의 더딤 속에 숨어 일하시는도다.",
+  "voc": [
+   [
+    "prepare",
+    "v.",
+    "준비하다, 베풀다"
+   ],
+   [
+    "to morrow",
+    "adv.",
+    "내일 (고어 표기)"
+   ],
+   [
+    "please",
+    "v.",
+    "기쁘게 하다, 좋게 여기다"
+   ]
+  ],
+  "idi": [
+   [
+    "if I have found favour",
+    "내가 은총을 입었거든 — 정중한 청원 관용구"
+   ],
+   [
+    "to morrow",
+    "내일"
+   ]
+  ],
+  "gra": [
+   [
+    "I shall prepare",
+    "shall 미래 — 1인칭의 단순 미래 (내가 베풀리라)"
+   ],
+   [
+    "as the king hath said",
+    "as 양태 접속사 — '왕이 말씀하신 대로'"
+   ]
+  ]
+ },
+ {
+  "en": "but when Haman saw Mordecai in the king's gate, that he stood not up, nor moved for him, he was full of indignation",
+  "ko": "그러나 하만이 대궐 문에서 모르드개가 일어서지도 움직이지도 아니함을 보매 분노가 가득 찼더라",
+  "note": "히브리어 '헤마(חֵמָה)'는 '뜨거운 격분·노여움'이다. 하만의 기쁨이 한 사람의 무릎 꿇지 않음으로 단번에 분노로 뒤집히니, 교만한 자의 헛된 영화를 드러낸다.",
+  "voc": [
+   [
+    "joyful",
+    "a.",
+    "기뻐하는, 즐거운"
+   ],
+   [
+    "glad",
+    "a.",
+    "기쁜, 즐거운"
+   ],
+   [
+    "moved",
+    "v.",
+    "움직였다"
+   ],
+   [
+    "indignation",
+    "n.",
+    "분노, 격분"
+   ]
+  ],
+  "idi": [
+   [
+    "full of indignation",
+    "분노가 가득 찬"
+   ],
+   [
+    "stood not up",
+    "일어서지 아니하였다"
+   ]
+  ],
+  "gra": [
+   [
+    "that he stood not up",
+    "동격의 that절 — 앞의 'saw Mordecai'를 부연 (일어서지 않음을 보았다)"
+   ],
+   [
+    "he stood not up",
+    "고어 부정 — 조동사 do 없이 not을 동사 뒤에 둠"
+   ]
+  ]
+ },
+ {
+  "en": "Nevertheless Haman refrained himself: and when he came home, he sent and called for his friends, and Zeresh his wife",
+  "ko": "그러나 하만이 스스로 참고 집에 돌아와 벗들과 아내 세레스를 청하니라",
+  "note": "히브리어 '아파크(אָפַק)'는 '억제하다·자제하다'라. 하만이 분을 겉으로는 눌렀으나 속으로는 삭이지 못하니, 그 억눌린 노여움이 마침내 형틀로 터져 나온다. 세레스(זֶרֶשׁ)는 하만의 아내라.",
+  "voc": [
+   [
+    "nevertheless",
+    "adv.",
+    "그럼에도, 그러나"
+   ],
+   [
+    "refrained",
+    "v.",
+    "참았다, 자제하였다"
+   ],
+   [
+    "friends",
+    "n.",
+    "벗들, 친구들"
+   ],
+   [
+    "wife",
+    "n.",
+    "아내"
+   ]
+  ],
+  "idi": [
+   [
+    "refrained himself",
+    "스스로 억제하였다, 자제하였다"
+   ],
+   [
+    "sent and called for",
+    "사람을 보내어 불러오게 하였다"
+   ]
+  ],
+  "gra": [
+   [
+    "refrained himself",
+    "재귀 표현 — himself로 자기 자신을 억제함을 나타냄"
+   ]
+  ]
+ },
+ {
+  "en": "Haman told them of the glory of his riches, and the multitude of his children, and all the things wherein the king had promoted him",
+  "ko": "하만이 자기 재물의 영화와 자녀의 많음과 왕이 자기를 높인 모든 일을 이르니라",
+  "note": "'영화(카보드)'와 '많음(로브)'을 늘어놓는 하만의 자랑은 교만의 절정이다. 성경은 교만이 패망의 앞잡이임을 말하니(잠 16:18), 이 자랑이 곧 그의 몰락의 서막이 된다.",
+  "voc": [
+   [
+    "glory",
+    "n.",
+    "영화, 영광"
+   ],
+   [
+    "riches",
+    "n.",
+    "재물, 부"
+   ],
+   [
+    "multitude",
+    "n.",
+    "많음, 무리"
+   ],
+   [
+    "promoted",
+    "v.",
+    "높였다, 승진시켰다"
+   ],
+   [
+    "advanced",
+    "v.",
+    "높였다, 진급시켰다"
+   ]
+  ],
+  "idi": [
+   [
+    "the multitude of his children",
+    "그의 많은 자녀"
+   ]
+  ],
+  "gra": [
+   [
+    "wherein the king had promoted him",
+    "관계부사 wherein (= in which) — '왕이 그를 높인 그 일에서'"
+   ],
+   [
+    "had promoted",
+    "과거완료 — 자랑하던 시점보다 앞선 승진"
+   ]
+  ]
+ },
+ {
+  "en": "Esther the queen did let no man come in with the king unto the banquet that she had prepared but myself",
+  "ko": "왕후 에스더가 자기 잔치에 왕과 더불어 나 외에는 아무도 들이지 아니하였느니라",
+  "note": "'나 외에는(키 임 오티)'은 '오직 나만'을 강조하는 히브리 어법이다. 하만은 왕후의 특별한 부름을 영광으로 여겼으나, 실은 그것이 그를 멸망으로 이끄는 덫이었음을 알지 못하였더라.",
+  "voc": [
+   [
+    "queen",
+    "n.",
+    "왕후, 여왕"
+   ],
+   [
+    "invited",
+    "v.",
+    "초대받았다, 청함을 받았다"
+   ],
+   [
+    "myself",
+    "pron.",
+    "나 자신"
+   ]
+  ],
+  "idi": [
+   [
+    "let no man come in",
+    "아무도 들이지 아니하다"
+   ],
+   [
+    "but myself",
+    "나 외에는, 나 말고는"
+   ]
+  ],
+  "gra": [
+   [
+    "did let no man come in",
+    "강조의 조동사 did + let — 'no man'으로 전체 부정"
+   ]
+  ]
+ },
+ {
+  "en": "Yet all this availeth me nothing, so long as I see Mordecai the Jew sitting at the king's gate",
+  "ko": "그러나 유다 사람 모르드개가 대궐 문에 앉아 있음을 보는 한 이 모든 것이 내게 아무 소용이 없도다",
+  "note": "히브리어 '에넨누 쇼베 리(אֵינֶנּוּ שֹׁוֶה לִי)'는 '내게 값하지 못한다·만족을 주지 못한다'라. 하만은 천하를 가진 듯하나 한 사람의 굴복 없음에 마음이 짓눌리니, 채워지지 않는 교만의 빈 그릇을 보여 준다.",
+  "voc": [
+   [
+    "yet",
+    "adv.",
+    "그러나, 아직"
+   ],
+   [
+    "availeth",
+    "v.",
+    "소용이 되다 (avail의 고어 3인칭)"
+   ],
+   [
+    "nothing",
+    "pron.",
+    "아무것도 (아님)"
+   ],
+   [
+    "sitting",
+    "v.",
+    "앉아 있는 (현재분사)"
+   ]
+  ],
+  "idi": [
+   [
+    "availeth me nothing",
+    "내게 아무 소용이 없다"
+   ],
+   [
+    "so long as",
+    "~하는 한, ~하는 동안"
+   ]
+  ],
+  "gra": [
+   [
+    "availeth me nothing",
+    "고어 3인칭 -eth + 이중부정 어감 — '내게 도무지 소용없다'"
+   ]
+  ]
+ },
+ {
+  "en": "Let a gallows be made of fifty cubits high ... then go thou in merrily with the king unto the banquet",
+  "ko": "오십 규빗 높이의 나무를 세우게 하고 모르드개를 그 위에 달게 하소서, 그런 뒤에 즐거이 잔치에 나아가소서",
+  "note": "히브리어 '에츠(עֵץ)'는 '나무·기둥'이니, 페르시아식 처형 기둥(매달거나 꿰는 형틀)을 가리킨다. 오십 규빗(약 23미터)은 과장된 높이로 하만의 끝없는 교만을 드러내거니와, 이 형틀이 도리어 하만 자신을 달리라(에 7:10).",
+  "voc": [
+   [
+    "gallows",
+    "n.",
+    "형틀, 매다는 나무"
+   ],
+   [
+    "cubits",
+    "n.",
+    "규빗 (길이 단위, 약 45cm)"
+   ],
+   [
+    "merrily",
+    "adv.",
+    "즐거이, 기쁘게"
+   ],
+   [
+    "pleased",
+    "v.",
+    "기쁘게 하였다"
+   ]
+  ],
+  "idi": [
+   [
+    "go thou in merrily",
+    "즐거이 들어가라, 기쁘게 나아가라"
+   ],
+   [
+    "the thing pleased Haman",
+    "그 일이 하만을 기쁘게 하였다"
+   ]
+  ],
+  "gra": [
+   [
+    "Let a gallows be made",
+    "let + 수동태 — '형틀이 세워지게 하라'"
+   ],
+   [
+    "fifty cubits high",
+    "치수 + high 형용사 후치 — '오십 규빗 높이의'"
+   ]
+  ]
+ }
 ]
