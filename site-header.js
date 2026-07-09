@@ -98,7 +98,12 @@
       var cls = on ? 'text-gold font-semibold biblyOn' : 'hover:text-gold';
       if(!kids.length) return '<a href="' + href + '" class="biblyTop whitespace-nowrap ' + cls + '">' + esc(m.label) + '</a>';
       var caret = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="ml-0.5 opacity-60"><path d="M6 9l6 6 6-6"/></svg>';
-      var sub = kids.map(function(c){ return '<a href="' + _hrefOf(c.href) + '">' + esc(c.label) + '</a>'; }).join('');
+      var sub = kids.map(function(c){
+        var gk = c.children || [];
+        var head = '<a href="' + _hrefOf(c.href) + '"' + (gk.length ? ' class="navGroupHead"' : '') + '>' + esc(c.label) + '</a>';
+        if(!gk.length) return head;
+        return head + gk.map(function(g){ return '<a href="' + _hrefOf(g.href) + '" class="navSub">' + esc(g.label) + '</a>'; }).join('');
+      }).join('');
       return '<div class="navItem"><a href="' + href + '" class="biblyTop whitespace-nowrap inline-flex items-center ' + cls + '">' + esc(m.label) + caret + '</a>'
         + '<div class="navDrop"><div class="navDropCard">' + sub + '</div></div></div>';
     }).join('');
@@ -137,7 +142,12 @@
       var href = _hrefOf(m.href), kids = m.children || [];
       if(!kids.length) return '<a href="' + href + '" class="py-3 border-b border-ink/5 ' + (_isOn(m.href) ? 'text-gold font-semibold' : 'text-neutral-900/75') + '">' + esc(m.label) + '</a>';
       var head = '<a href="' + href + '" class="pt-3 pb-1 font-bold ' + (_isOn(m.href) ? 'text-gold' : 'text-neutral-900/80') + '">' + esc(m.label) + '</a>';
-      var sub = kids.map(function(c){ return '<a href="' + _hrefOf(c.href) + '" class="py-2 pl-4 border-b border-ink/5 text-[14px] ' + (_isOn(c.href) ? 'text-gold font-semibold' : 'text-neutral-900/60') + '">└ ' + esc(c.label) + '</a>'; }).join('');
+      var sub = kids.map(function(c){
+        var gk = c.children || [];
+        var a = '<a href="' + _hrefOf(c.href) + '" class="py-2 pl-4 border-b border-ink/5 text-[14px] ' + (_isOn(c.href) ? 'text-gold font-semibold' : 'text-neutral-900/60') + '">└ ' + esc(c.label) + '</a>';
+        if(!gk.length) return a;
+        return a + gk.map(function(g){ return '<a href="' + _hrefOf(g.href) + '" class="py-1.5 pl-9 border-b border-ink/5 text-[13px] ' + (_isOn(g.href) ? 'text-gold font-semibold' : 'text-neutral-900/50') + '">· ' + esc(g.label) + '</a>'; }).join('');
+      }).join('');
       return head + sub;
     }).join('');
     return '<div class="max-w-6xl mx-auto px-4 py-1 flex flex-col text-[15px]">'
@@ -214,6 +224,9 @@
       + '.navDropCard a::before{content:"";width:6px;height:6px;border-radius:50%;background:rgba(0,112,74,.4);flex:none;transition:transform .15s,background .15s}'
       + '.navDropCard a:hover{background:#eef3fb;color:#00704a;transform:translateX(2px)}'
       + '.navDropCard a:hover::before{background:#00704a;transform:scale(1.4)}'
+      + '.navDropCard a.navGroupHead{margin-top:.2rem;padding-top:.6rem;border-top:1px solid rgba(21,32,58,.08);font-weight:700}'
+      + '.navDropCard a.navSub{padding:.42rem .85rem .42rem 1.75rem;font-size:.82rem;font-weight:500;color:#44506a}'
+      + '.navDropCard a.navSub::before{width:4px;height:4px;background:rgba(0,112,74,.32)}'
       + '.bibly-topbar a,.bibly-topbar button{color:rgba(247,249,252,.72);white-space:nowrap;transition:color .15s}'
       + '.bibly-topbar a:hover,.bibly-topbar button:hover{color:#dcb866}'
       + '.bibly-topbar .sep{color:rgba(247,249,252,.22)}'
