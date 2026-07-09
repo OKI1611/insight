@@ -123,7 +123,7 @@
         </div>
         <div class="bg-white/10 rounded-2xl p-5">
           <p class="text-gold font-bold text-lg mb-1.5">② 강의 보기</p>
-          <p class="text-paper/85 text-[15px] leading-relaxed"><b class="text-paper">‘▶ 이 강의 보기’</b> 단추를 누르면 강의 페이지로 이동합니다. 무료 회원가입만 하면 모든 강의를 무료로 시청할 수 있어요.</p>
+          <p class="text-paper/85 text-[15px] leading-relaxed"><b class="text-paper">강의 제목(또는 카드)</b>을 누르면 강의 페이지로 바로 이동합니다. 무료 회원가입만 하면 모든 강의를 무료로 시청할 수 있어요.</p>
         </div>
         <div class="bg-white/10 rounded-2xl p-5">
           <p class="text-gold font-bold text-lg mb-1.5">③ 차근차근</p>
@@ -401,18 +401,18 @@
               ${chapters.map(ch => `<li class="text-[13.5px] text-neutral-900/65 leading-snug">${ ch.t ? `<span class="text-gold/70 font-semibold mr-1">${esc(ch.t)}</span>` : '' }${esc(ch.label)}</li>`).join('')}
             </ul>
           </details>` : '';
-        return `<div class="bg-white rounded-xl border border-ink/8 p-4 md:p-5 hover:border-gold/40 transition">
+        return `<div onclick="if(!event.target.closest('details')&&!event.target.closest('a'))location.href='watch.html?l=${gi}'" class="group bg-white rounded-xl border border-ink/8 p-4 md:p-5 hover:border-gold/40 hover:shadow-soft transition cursor-pointer">
           <div class="flex items-start gap-3">
-            <span class="shrink-0 w-8 h-8 rounded-full bg-gold/12 text-gold font-bold text-sm flex items-center justify-center mt-0.5">${String(li+1).padStart(2,'0')}</span>
+            <span class="shrink-0 w-8 h-8 rounded-full bg-gold/12 text-gold font-bold text-sm flex items-center justify-center mt-0.5 group-hover:bg-gold group-hover:text-white transition">${String(li+1).padStart(2,'0')}</span>
             <div class="flex-1 min-w-0">
               <div class="flex items-start justify-between gap-2">
-                <p class="font-bold text-[16px] leading-snug">${esc(l.title||'')}</p>
+                <a href="watch.html?l=${gi}" class="font-bold text-[16px] leading-snug text-neutral-900 group-hover:text-gold transition">${esc(l.title||'')}</a>
                 ${dur}
               </div>
               ${ l.summary ? `<p class="text-[15px] text-neutral-900/60 leading-relaxed mt-2">${esc(l.summary)}</p>` : '' }
               ${chHtml}
-              <a href="watch.html?l=${gi}" class="inline-flex items-center gap-1.5 mt-3 bg-ink/[0.04] hover:bg-gold hover:text-white text-neutral-900 font-bold text-[15px] px-4 py-2.5 rounded-full transition">▶ 이 강의 보기</a>
             </div>
+            <svg class="shrink-0 w-5 h-5 text-neutral-900/20 group-hover:text-gold mt-1 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
           </div>
         </div>`;
       }).join('');
