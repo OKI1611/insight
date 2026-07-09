@@ -89,6 +89,15 @@
       + '#sectionSideNav .sn-kids a{display:block;padding:7px 12px 7px 24px;border-radius:8px;font-size:12.8px;font-weight:600;color:#5a6070;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:background .15s,transform .15s}'
       + '#sectionSideNav .sn-kids a:hover{background:#f4f6fa;transform:translateX(2px)}'
       + '#sectionSideNav .sn-kids a.on{background:#e7f3ec;color:#0a3d2b;font-weight:800;box-shadow:inset 3px 0 0 #00704a}'
+      + '#sectionSideNav .sn-sub{margin:1px 0}'
+      + '#sectionSideNav .sn-sub-hd{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:7px 12px 7px 24px;border-radius:8px;cursor:pointer;font-size:12.8px;font-weight:700;color:#3a4358;transition:background .15s}'
+      + '#sectionSideNav .sn-sub-hd:hover{background:#f4f6fa}'
+      + '#sectionSideNav .chev2{width:7px;height:7px;border-right:2px solid rgba(33,58,107,.3);border-bottom:2px solid rgba(33,58,107,.3);transform:rotate(-45deg);transition:transform .18s;flex:none;margin-right:2px}'
+      + '#sectionSideNav .sn-sub.open .chev2{transform:rotate(45deg)}'
+      + '#sectionSideNav .sn-gkids{display:none;padding:1px 0 4px}'
+      + '#sectionSideNav .sn-sub.open .sn-gkids{display:block}'
+      + '#sectionSideNav .sn-gkids a{display:block;padding:6px 12px 6px 38px;border-radius:8px;font-size:12.3px;font-weight:600;color:#6a7080;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:background .15s,transform .15s}'
+      + '#sectionSideNav .sn-gkids a:hover{background:#f4f6fa;color:#00704a;transform:translateX(2px)}'
       + '#sectionSideNav .foot{margin-top:auto;padding:12px 10px 2px;font-size:10.5px;color:rgba(33,58,107,.4);line-height:1.55;border-top:1px solid rgba(33,58,107,.06)}'
       + '@media(min-width:1024px){'
       + 'body{padding-left:calc(max(0px, (100vw - 1360px) / 2) + ' + W + 'px);padding-right:calc(max(0px, (100vw - 1360px) / 2) + ' + W + 'px)}'
@@ -122,7 +131,18 @@
         + '<div class="sn-hd" role="button" tabindex="0"><span>' + m.label + '</span><span class="chev"></span></div>'
         + '<div class="sn-kids">';
       kids.forEach(function(c){
-        h += '<a href="' + c.href + '" data-h="' + hashOf(c.href) + '" data-b="' + base(c.href) + '" class="' + (isOn(c.href) ? 'on' : '') + '" title="' + c.label + '">' + c.label + '</a>';
+        var gk = c.children || [];
+        if(!gk.length){
+          h += '<a href="' + c.href + '" data-h="' + hashOf(c.href) + '" data-b="' + base(c.href) + '" class="' + (isOn(c.href) ? 'on' : '') + '" title="' + c.label + '">' + c.label + '</a>';
+          return;
+        }
+        // 손자 메뉴가 있는 항목(예: 전체 커리큘럼) → 접이식 서브그룹(현재 섹션이면 펼침)
+        h += '<div class="sn-sub' + (isCur ? ' open' : '') + '">'
+          + '<div class="sn-sub-hd" role="button" tabindex="0"><span>' + c.label + '</span><span class="chev2"></span></div>'
+          + '<div class="sn-gkids">'
+          + '<a href="' + c.href + '" title="전체 보기">전체 보기</a>'
+          + gk.map(function(g){ return '<a href="' + g.href + '" data-b="' + base(g.href) + '" title="' + g.label + '">' + g.label + '</a>'; }).join('')
+          + '</div></div>';
       });
       h += '</div></div>';
     });
@@ -136,6 +156,12 @@
       if(!hd || hd.tagName === 'A') return; // 링크형 헤더는 토글 아님
       hd.addEventListener('click', function(){ grp.classList.toggle('open'); });
       hd.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); grp.classList.toggle('open'); } });
+    });
+    // 손자 서브그룹(전체 커리큘럼 등) 펼침/접힘 토글
+    rail.querySelectorAll('.sn-sub-hd').forEach(function(sh){
+      var sub = sh.parentElement;
+      sh.addEventListener('click', function(){ sub.classList.toggle('open'); });
+      sh.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); sub.classList.toggle('open'); } });
     });
 
     // 앵커(#) 이동 시 현재 섹션의 활성 표시 실시간 갱신
