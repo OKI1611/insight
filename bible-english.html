@@ -7,12 +7,11 @@
   <script src="/section-sidenav.js?v=10"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>바이블 잉글리시 · 성경으로 배우는 영어 — BIBLY 바이블 인사이트</title>
-  <meta name="description" content="성경으로 영어를 배우는 바이블 잉글리시. 듣기·단어·표현·연습을 단계별로, 쉬운 영어와 발음(IPA)까지 — 청소년부터 어르신까지." />
+  <meta name="description" content="성경으로 영어를 배우는 바이블 잉글리시. 듣기·단어·어법·암송·연습을 단계별로. 발음(IPA)·쉬운 영어·토익/텝스 연계까지." />
   <link rel="canonical" href="https://biblynote.com/bible-english" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="BIBLY 바이블 인사이트" />
   <meta property="og:title" content="바이블 잉글리시 · 성경으로 배우는 영어" />
-  <meta property="og:description" content="듣기→단어→표현→연습 단계별 학습. 쉬운 영어·발음·문법을 한 곳에서." />
   <meta property="og:image" content="https://biblynote.com/images/og-cover.png?v=6" />
   <link rel="manifest" href="/manifest.json" />
   <meta name="theme-color" content="#213a6b" />
@@ -32,146 +31,164 @@
     .en{font-family:Georgia,'Times New Roman',serif}
     .ipa{font-family:'Segoe UI','Charis SIL',serif}
     .eyebrow{letter-spacing:.28em;text-transform:uppercase}
-    #lesson{ zoom:1; }               /* 글자 크기 조절(zoom) */
+    #lesson{zoom:1}
     .vrow{transition:background .18s,color .18s}
     .vrow.reading{background:#00704a;border-radius:12px}
     .vrow.reading .en,.vrow.reading .ko,.vrow.reading .vn,.vrow.reading .easy{color:#fff !important}
     .vrow.reading .spk{color:#ffffffcc !important}
-    .step{display:none} .step.on{display:block; animation:fade .25s ease}
+    .step{display:none} .step.on{display:block;animation:fade .25s ease}
     @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
     .easy{display:none} .showeasy .easy{display:block}
+    .hideko .ko{display:none}
+    .toolbtn.on{background:#00704a;color:#fff}
   </style>
 </head>
 <body class="font-sans bg-paper text-neutral-900 antialiased">
 
   <div id="siteHeader" data-active="bible-english.html"></div>
 
-  <!-- Hero -->
   <section class="bg-gradient-to-b from-sand/60 to-paper border-b border-ink/8">
-    <div class="max-w-3xl mx-auto px-5 py-10 md:py-14 text-center">
+    <div class="max-w-3xl mx-auto px-5 py-9 md:py-12 text-center">
       <p class="eyebrow text-gold text-[11px] font-bold mb-3">Bible English · 바이블 잉글리시</p>
-      <h1 class="text-2xl md:text-[32px] font-bold leading-tight">성경으로 <span class="text-gold">배우는 영어</span></h1>
-      <p class="text-neutral-900/60 text-sm md:text-[15px] mt-3 leading-relaxed max-w-xl mx-auto">듣고 · 익히고 · 말해 보며 <b class="text-neutral-900">영어도 배우고 말씀도 알아가는</b> 학습 코너.</p>
-      <div class="inline-flex items-center gap-2 mt-5 bg-white border border-ink/10 rounded-full pl-3 pr-4 py-1.5 shadow-soft text-[13px]">
+      <h1 class="text-2xl md:text-[30px] font-bold leading-tight">성경으로 <span class="text-gold">배우는 영어</span></h1>
+      <p class="text-neutral-900/60 text-sm mt-2.5 leading-relaxed max-w-xl mx-auto">듣고 · 익히고 · 외우고 · 말해 보며 영어도 배우고 말씀도 알아가는 학습 코너.</p>
+      <div class="inline-flex items-center gap-2 mt-4 bg-white border border-ink/10 rounded-full pl-3 pr-4 py-1.5 shadow-soft text-[13px]">
         <span class="bg-gold text-white font-bold rounded-full px-2.5 py-0.5 text-[11px]">UNIT 1</span>
-        <span class="font-semibold">In the Beginning · 태초에 말씀이 <span class="text-neutral-900/45 font-normal">(요한복음 1:1–7)</span></span>
+        <span class="font-semibold">In the Beginning <span class="text-neutral-900/45 font-normal">(요한복음 1:1–7)</span></span>
       </div>
     </div>
   </section>
 
   <!-- 학습 도구 바 -->
   <div class="sticky top-14 z-30 bg-white/95 backdrop-blur border-b border-ink/8">
-    <div class="max-w-3xl mx-auto px-4 py-2 flex items-center gap-2 flex-wrap text-[12.5px]">
-      <span class="text-neutral-900/40 font-semibold">읽기 속도</span>
+    <div class="max-w-3xl mx-auto px-4 py-2 flex items-center gap-x-2 gap-y-1.5 flex-wrap text-[12.5px]">
+      <span class="text-neutral-900/40 font-semibold">속도</span>
       <div class="inline-flex rounded-full border border-ink/12 overflow-hidden">
-        <button id="spd-slow" onclick="setSpeed(0.6,this)" class="px-3 py-1 font-semibold">아주 천천히</button>
-        <button id="spd-mid" onclick="setSpeed(0.75,this)" class="px-3 py-1 font-semibold border-l border-ink/12">천천히</button>
-        <button id="spd-norm" onclick="setSpeed(0.9,this)" class="px-3 py-1 font-semibold border-l border-ink/12">보통</button>
+        <button id="spd0" onclick="setSpeed(0.6,'spd0')" class="toolbtn px-2.5 py-1 font-semibold">아주 느리게</button>
+        <button id="spd1" onclick="setSpeed(0.75,'spd1')" class="toolbtn px-2.5 py-1 font-semibold border-l border-ink/12">천천히</button>
+        <button id="spd2" onclick="setSpeed(0.9,'spd2')" class="toolbtn px-2.5 py-1 font-semibold border-l border-ink/12">보통</button>
       </div>
-      <span class="text-neutral-900/40 font-semibold ml-2">글자</span>
+      <span class="text-neutral-900/40 font-semibold ml-1">글자</span>
       <div class="inline-flex rounded-full border border-ink/12 overflow-hidden">
-        <button onclick="setZoom(-1)" class="px-3 py-1 font-bold">가−</button>
-        <button onclick="setZoom(0)" class="px-3 py-1 font-bold border-l border-ink/12">가</button>
-        <button onclick="setZoom(1)" class="px-3 py-1 font-bold border-l border-ink/12">가＋</button>
+        <button onclick="setZoom(-1)" class="px-2.5 py-1 font-bold">가−</button>
+        <button onclick="setZoom(0)" class="px-2.5 py-1 font-bold border-l border-ink/12">가</button>
+        <button onclick="setZoom(1)" class="px-2.5 py-1 font-bold border-l border-ink/12">가＋</button>
       </div>
-      <button id="easyBtn" onclick="toggleEasy()" class="ml-auto inline-flex items-center gap-1 text-gold font-bold border border-gold/30 rounded-full px-3 py-1 hover:bg-gold/10">쉬운 영어 보기</button>
+      <button id="koBtn" onclick="toggleKo()" class="ml-auto text-neutral-900/60 font-bold border border-ink/15 rounded-full px-3 py-1 hover:bg-neutral-50">한글 끄기</button>
+      <button id="easyBtn" onclick="toggleEasy()" class="text-gold font-bold border border-gold/30 rounded-full px-3 py-1 hover:bg-gold/10">쉬운 영어</button>
     </div>
   </div>
 
   <div id="lesson" class="max-w-3xl mx-auto px-4 md:px-5 py-6">
-
-    <!-- 단계 표시 + 진행바 -->
     <div class="mb-5">
-      <div id="steptabs" class="grid grid-cols-4 gap-1.5 mb-2.5"></div>
-      <div class="h-1.5 bg-ink/8 rounded-full overflow-hidden"><div id="prog" class="h-full bg-gold transition-all" style="width:25%"></div></div>
+      <div id="steptabs" class="grid grid-cols-5 gap-1.5 mb-2.5"></div>
+      <div class="h-1.5 bg-ink/8 rounded-full overflow-hidden"><div id="prog" class="h-full bg-gold transition-all" style="width:20%"></div></div>
     </div>
 
-    <!-- STEP 1 · 듣기·읽기 -->
+    <!-- STEP 1 듣기 -->
     <section class="step on" data-step="0">
-      <p class="text-[13px] text-neutral-900/50 mb-2">🎧 <b class="text-neutral-900/70">먼저 귀로 익혀요.</b> ‘전체 듣기’를 누르고, 읽어 주는 구절을 눈으로 따라간 뒤 <b>소리 내어 따라 말해</b> 보세요.</p>
+      <p class="text-[13px] text-neutral-900/50 mb-2">🎧 <b class="text-neutral-900/70">먼저 귀로 익혀요.</b> 듣고, 읽어 주는 구절을 눈으로 따라간 뒤 <b>소리 내어 따라 말해</b> 보세요.</p>
       <div class="flex items-center gap-1.5 mb-2 flex-wrap">
-        <button id="playBtn" onclick="playAll()" class="inline-flex items-center gap-1.5 text-[13px] font-bold text-white bg-gold rounded-full px-4 py-2 hover:opacity-90 transition">▶ 전체 듣기</button>
-        <button onclick="stopAll()" class="text-[13px] font-bold text-neutral-900/55 border border-ink/15 rounded-full px-3.5 py-2 hover:bg-neutral-50 transition">■ 멈춤</button>
-        <span class="text-[11.5px] text-neutral-900/45 ml-1">남·여 음성이 번갈아 나오고, 읽는 구절은 초록으로 표시돼요.</span>
+        <button id="mainPlay" onclick="pbToggle()" class="inline-flex items-center gap-1.5 text-[13px] font-bold text-white bg-gold rounded-full px-4 py-2 hover:opacity-90 transition">▶ 전체 듣기</button>
+        <button onclick="pbStop()" class="text-[13px] font-bold text-neutral-900/55 border border-ink/15 rounded-full px-3.5 py-2 hover:bg-neutral-50 transition">⏹ 정지</button>
+        <span class="text-[11.5px] text-neutral-900/45 ml-1">남·여 음성 번갈아, 읽는 구절은 초록으로 표시돼요.</span>
       </div>
       <div id="passage" class="bg-white border border-ink/8 rounded-2xl shadow-soft p-1.5"></div>
-      <div class="mt-3 bg-[#fbf7ea] border border-[#ecd9a6] rounded-xl px-4 py-3 flex items-center gap-2">
-        <span class="text-[11px] font-bold text-[#b07d16] shrink-0">🎯 오늘의 한 문장</span>
-        <span class="en text-[15px] flex-1">In him was life; and the life was the light of men. <span class="text-[#8a7031]">(1:4)</span></span>
-        <button onclick="speak('In him was life; and the life was the light of men.')" class="text-gold text-sm shrink-0">🔊</button>
-      </div>
     </section>
 
-    <!-- STEP 2 · 단어 -->
+    <!-- STEP 2 단어 -->
     <section class="step" data-step="1">
-      <p class="text-[13px] text-neutral-900/50 mb-3">📖 <b class="text-neutral-900/70">핵심 단어 8개</b>예요. 단어를 누르면 발음을 들려주고, 아래 <b>테스트</b>로 확인해요. 틀려도 괜찮아요!</p>
+      <div class="flex items-center gap-2 mb-3 flex-wrap">
+        <p class="text-[13px] text-neutral-900/50">📖 7구절 속 <b class="text-neutral-900/70">중요·핵심 단어</b>를 골랐어요. 수준을 골라 보세요.</p>
+        <div class="ml-auto inline-flex rounded-full border border-ink/12 overflow-hidden text-[12px]">
+          <button id="lv10" onclick="setLevel(10,'lv10')" class="toolbtn px-3 py-1 font-bold">초급 10</button>
+          <button id="lv20" onclick="setLevel(20,'lv20')" class="toolbtn px-3 py-1 font-bold border-l border-ink/12">중급 20</button>
+          <button id="lv30" onclick="setLevel(30,'lv30')" class="toolbtn px-3 py-1 font-bold border-l border-ink/12">고급 30</button>
+        </div>
+      </div>
+      <p class="text-[11.5px] text-neutral-900/40 mb-2">단어를 누르면 발음을 들려줘요. 💬는 영어 뜻풀이예요.</p>
       <div id="words" class="grid sm:grid-cols-2 gap-2.5"></div>
       <div class="mt-4 bg-white border border-gold/25 rounded-2xl shadow-soft p-5">
         <p class="font-bold text-ink mb-1">🧩 단어 테스트 — 성경 표현에 알맞은 단어를 고르세요</p>
-        <p class="text-[12px] text-neutral-900/45 mb-3">빈칸에 들어갈 단어를 누르면 바로 채점돼요.</p>
-        <div id="wtest" class="space-y-4"></div>
+        <div id="wtest" class="space-y-4 mt-3"></div>
         <p id="wscore" class="text-[13px] font-bold text-gold mt-3"></p>
       </div>
     </section>
 
-    <!-- STEP 3 · 표현·어법 -->
+    <!-- STEP 3 어법 -->
     <section class="step" data-step="2">
-      <p class="text-[13px] text-neutral-900/50 mb-3">🧠 <b class="text-neutral-900/70">구절마다 문법을 콕콕.</b> 어렵지 않아요 — 하나씩 천천히 보면 돼요.</p>
+      <p class="text-[13px] text-neutral-900/50 mb-3">🧠 <b class="text-neutral-900/70">구절마다 문법을 깊이 있게.</b> 오늘 배운 문법은 토익·텝스에도 그대로 나와요.</p>
       <div id="grammar" class="space-y-2.5"></div>
       <div class="mt-3 bg-white border border-ink/10 rounded-2xl shadow-soft p-4">
-        <p class="font-bold text-ink mb-2">🕰 옛말 → 오늘말 <span class="text-[12px] font-normal text-neutral-900/45">(KJV는 400년 전 영어예요)</span></p>
+        <p class="font-bold text-ink mb-2">🕰 옛말 → 오늘말</p>
         <table class="w-full text-[13.5px]">
           <tr class="text-neutral-900/45 text-[11.5px] border-b border-ink/8"><th class="text-left font-semibold py-1">KJV 옛말</th><th class="text-left font-semibold">오늘 영어</th><th class="text-left font-semibold">뜻</th></tr>
-          <tr class="border-b border-ink/5"><td class="py-1.5 en text-neutral-900/40 line-through">shineth</td><td class="en text-gold font-semibold">shines</td><td>비친다 <span class="text-neutral-900/40">(-eth=3인칭 -s)</span></td></tr>
+          <tr class="border-b border-ink/5"><td class="py-1.5 en text-neutral-900/40 line-through">shineth</td><td class="en text-gold font-semibold">shines</td><td>비친다 (-eth=3인칭 -s)</td></tr>
           <tr class="border-b border-ink/5"><td class="py-1.5 en text-neutral-900/40 line-through">comprehended it not</td><td class="en text-gold font-semibold">did not comprehend it</td><td>깨닫지 못했다</td></tr>
-          <tr><td class="py-1.5 en text-neutral-900/40 line-through">the same</td><td class="en text-gold font-semibold">he / that one</td><td>바로 그(요한/말씀)</td></tr>
+          <tr><td class="py-1.5 en text-neutral-900/40 line-through">the same</td><td class="en text-gold font-semibold">he / that one</td><td>바로 그</td></tr>
         </table>
       </div>
+      <!-- 실전 문제 (토익·텝스 유형) -->
+      <div class="mt-3 bg-white border border-ink/10 rounded-2xl shadow-soft p-5">
+        <p class="font-bold text-ink mb-1">📝 실전 문제 <span class="text-[12px] font-normal text-neutral-900/45">(TOEIC · TEPS Part 5 유형)</span></p>
+        <p class="text-[12px] text-neutral-900/45 mb-3">빈칸에 알맞은 것을 고르세요. 오늘 배운 문법이 그대로 나와요.</p>
+        <div id="exam" class="space-y-5"></div>
+      </div>
       <div class="mt-3 bg-[#eef5f1] rounded-2xl p-4">
-        <div class="flex items-center gap-2 mb-1.5">
-          <p class="text-gold font-bold text-[13px]">🗣 오늘의 영어로 · 쉬운 현대 영어</p>
-          <button onclick="speak(document.getElementById('modernTxt').textContent)" class="ml-auto text-[12px] font-bold text-gold border border-gold/30 rounded-full px-2.5 py-1 hover:bg-gold/10">🔊 듣기</button>
-        </div>
+        <div class="flex items-center gap-2 mb-1.5"><p class="text-gold font-bold text-[13px]">🗣 오늘의 영어로 · 쉬운 현대 영어</p>
+          <button onclick="speak(document.getElementById('modernTxt').textContent)" class="ml-auto text-[12px] font-bold text-gold border border-gold/30 rounded-full px-2.5 py-1 hover:bg-gold/10">🔊 듣기</button></div>
         <p id="modernTxt" class="en text-[15px] leading-[1.75] text-neutral-900/85">In the beginning, the Word already existed. The Word was with God, and the Word was God. He was with God from the very beginning. Everything was made through him; nothing was made without him. In him was life, and that life was the light of all people. The light shines in the darkness, and the darkness has not put it out. There was a man sent from God, whose name was John. He came as a witness to speak about the Light, so that everyone might believe through him.</p>
       </div>
     </section>
 
-    <!-- STEP 4 · 연습·정리 -->
+    <!-- STEP 4 암송 -->
     <section class="step" data-step="3">
-      <p class="text-[13px] text-neutral-900/50 mb-3">✅ <b class="text-neutral-900/70">오늘 배운 걸 확인하고 마음에 새겨요.</b></p>
+      <p class="text-[13px] text-neutral-900/50 mb-3">💛 <b class="text-neutral-900/70">오늘의 한 문장을 마음에 새겨요.</b> 단계별로 빈칸을 늘리며 외워 봐요.</p>
+      <div class="bg-white border border-gold/25 rounded-2xl shadow-soft p-5">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-[11px] font-bold text-white bg-gold rounded-full px-2 py-0.5">요한복음 1:4</span>
+          <button onclick="speak('In him was life; and the life was the light of men.')" class="ml-auto text-[12px] font-bold text-gold border border-gold/30 rounded-full px-2.5 py-1 hover:bg-gold/10">🔊 듣기</button>
+        </div>
+        <p id="memText" class="en text-[19px] md:text-[21px] leading-[1.7] text-ink text-center py-3"></p>
+        <p class="text-[13px] text-neutral-900/55 text-center">그 안에 생명이 있었으니, 이 생명은 사람들의 빛이라.</p>
+        <div class="flex items-center justify-center gap-2 mt-4">
+          <button onclick="memStep(-1)" class="text-[13px] font-semibold border border-ink/15 rounded-full px-4 py-2 hover:bg-neutral-50">← 쉽게</button>
+          <span id="memLv" class="text-[12px] font-bold text-gold w-20 text-center"></span>
+          <button onclick="memStep(1)" class="text-[13px] font-bold text-white bg-gold rounded-full px-4 py-2 hover:opacity-90">빈칸 늘리기 →</button>
+        </div>
+      </div>
+      <div class="mt-3 bg-white border border-ink/10 rounded-2xl shadow-soft p-4">
+        <p class="font-bold text-ink mb-1.5">🔍 심화 설명 — 이 한 문장을 더 깊이</p>
+        <p class="text-[13.5px] text-neutral-900/75 leading-relaxed"><b class="en">life(생명)</b>와 <b class="en">light(빛)</b>는 요한복음 전체를 여는 두 열쇳말이에요. 헬라어로 생명은 <span class="en">zōē</span>(조에, 하나님이 주시는 영원한 생명), 빛은 <span class="en">phōs</span>(포스)입니다. <b>‘In him(그분 안에)’</b>을 앞세운 도치는 “생명이 다른 어디도 아닌 <b>오직 그분 안에</b> 있다”를 강조합니다. 이어지는 5절의 <span class="en">shineth</span>(비친다)와 연결되어, ‘생명 → 빛 → 어둠 속에서도 꺼지지 않음’으로 흐릅니다.</p>
+        <p class="text-[13px] text-neutral-900/55 leading-relaxed mt-2">✅ <b>암송 팁</b>: <span class="en">In him was life</span> / <span class="en">and the life was the light of men</span> — 두 덩어리로 끊어 리듬을 타면 훨씬 잘 외워져요.</p>
+      </div>
+    </section>
+
+    <!-- STEP 5 연습·정리 -->
+    <section class="step" data-step="4">
+      <p class="text-[13px] text-neutral-900/50 mb-3">✅ <b class="text-neutral-900/70">배운 걸 확인하고 마무리해요.</b></p>
       <div class="bg-white border border-ink/10 rounded-2xl shadow-soft p-5 space-y-5">
         <div>
           <p class="text-[14px] font-semibold mb-2">퀴즈 — 본문에서 ‘the Word(말씀)’가 가리키는 분은?</p>
-          <div id="quiz" class="flex flex-wrap gap-2"></div>
-          <span id="quizMsg" class="text-[13px] font-semibold"></span>
+          <div id="quiz" class="flex flex-wrap gap-2"></div><span id="quizMsg" class="text-[13px] font-semibold"></span>
         </div>
         <div>
           <p class="text-[14px] font-semibold mb-2">따라 쓰기 (필사)</p>
           <p class="en text-[13px] text-neutral-900/50 mb-1">In him was life; and the life was the light of men.</p>
           <textarea rows="2" class="w-full border border-ink/15 rounded-xl px-3 py-2 en text-[15px] outline-none focus:border-gold" placeholder="여기에 따라 써 보세요…"></textarea>
         </div>
-        <div class="text-[13.5px] text-neutral-900/70">
-          <p class="font-semibold mb-1.5">오늘의 미션</p>
-          <label class="flex items-center gap-2 py-0.5"><input type="checkbox" class="accent-gold" onchange="cheer()"> 전체 듣기를 따라 3번 소리 내어 읽었어요</label>
-          <label class="flex items-center gap-2 py-0.5"><input type="checkbox" class="accent-gold" onchange="cheer()"> 오늘의 한 문장을 외웠어요</label>
-          <label class="flex items-center gap-2 py-0.5"><input type="checkbox" class="accent-gold" onchange="cheer()"> 단어 테스트를 모두 맞혔어요</label>
-        </div>
       </div>
-
       <div class="mt-4 bg-[#fbf7ea] border border-[#ecd9a6] rounded-2xl px-5 py-5">
         <p class="text-[#b07d16] font-bold text-[15px] mb-1.5">🍯 말씀 한 스푼</p>
-        <p class="text-[14.5px] leading-[1.7] text-neutral-900/85">아무리 짙은 어둠도 작은 빛 하나를 이기지 못합니다. 오늘 당신의 하루에도 그 <span class="en">life</span>(생명)와 <span class="en">light</span>(빛)이 비치고 있어요. 낙심되는 날, 이 한 문장을 영어로 소리 내어 읽어 보세요 — <span class="en text-gold">the darkness comprehended it not.</span></p>
-        <p class="text-[13.5px] text-[#8a7031] mt-2.5"><b>✏️ 나눔</b> — 요즘 내 삶에서 ‘빛’이 되어 준 순간이나 사람은 누구였나요?</p>
+        <p class="text-[14.5px] leading-[1.7] text-neutral-900/85">아무리 짙은 어둠도 작은 빛 하나를 이기지 못합니다. 낙심되는 날, 이 한 문장을 소리 내어 읽어 보세요 — <span class="en text-gold">the darkness comprehended it not.</span></p>
+        <p class="text-[13.5px] text-[#8a7031] mt-2.5"><b>✏️ 나눔</b> — 요즘 내 삶에서 ‘빛’이 되어 준 순간은 무엇인가요?</p>
       </div>
-
       <div id="done" class="hidden mt-4 text-center bg-gold/[0.07] border border-gold/25 rounded-2xl py-6">
-        <p class="text-2xl">🎉</p>
-        <p class="font-bold text-gold text-lg mt-1">Unit 1 완주!</p>
+        <p class="text-2xl">🎉</p><p class="font-bold text-gold text-lg mt-1">Unit 1 완주!</p>
         <p class="text-[13.5px] text-neutral-900/60 mt-1">잘하셨어요. 정식판에서 Unit 2가 이어집니다.</p>
       </div>
     </section>
 
-    <!-- 이전/다음 -->
     <div class="flex items-center justify-between mt-6">
       <button id="prevBtn" onclick="go(-1)" class="text-[13.5px] font-semibold text-neutral-900/55 border border-ink/15 rounded-full px-5 py-2.5 hover:bg-neutral-50 transition invisible">← 이전</button>
       <button id="nextBtn" onclick="go(1)" class="text-[13.5px] font-bold text-white bg-gold rounded-full px-6 py-2.5 hover:opacity-90 transition">다음 단계 →</button>
@@ -199,133 +216,159 @@
       VMALE=vs.find(function(v){return mal.test(v.name);})||vs.find(function(v){return v!==VFEMALE;})||vs[0]||null; }
     if(window.speechSynthesis){ loadVoices(); speechSynthesis.onvoiceschanged=loadVoices; }
     function utter(t,who){ var u=new SpeechSynthesisUtterance(t); u.lang='en-US'; u.rate=SPEED; var v=who==='f'?VFEMALE:who==='m'?VMALE:(Math.random()<.5?VMALE:VFEMALE); if(v)u.voice=v; return u; }
-    function speak(t,who){ if(!window.speechSynthesis)return; speechSynthesis.cancel(); speechSynthesis.speak(utter(t,who)); }
-    function stopAll(){ if(window.speechSynthesis)speechSynthesis.cancel(); document.querySelectorAll('.vrow.reading').forEach(function(r){r.classList.remove('reading');}); }
-    function setSpeed(v,btn){ SPEED=v; ['spd-slow','spd-mid','spd-norm'].forEach(function(id){ var b=$(id); b.classList.remove('bg-gold','text-white'); }); btn.classList.add('bg-gold','text-white'); }
-    window.speak=speak; window.stopAll=stopAll; window.setSpeed=setSpeed;
+    function speak(t,who){ if(!window.speechSynthesis)return; pbStop(); speechSynthesis.cancel(); speechSynthesis.speak(utter(t,who)); }
+    function setSpeed(v,id){ SPEED=v; ['spd0','spd1','spd2'].forEach(function(x){$(x).classList.toggle('on',x===id);}); }
+    window.speak=speak; window.setSpeed=setSpeed;
 
-    /* ===== 글자 크기(zoom) ===== */
+    /* ===== 재생 엔진(일시정지·이어듣기, 중복읽기 방지, 정확한 하이라이트) ===== */
+    var pb={idx:0, state:'idle'};   // idle | playing | paused
+    function clearHi(){ document.querySelectorAll('.vrow.reading').forEach(function(r){r.classList.remove('reading');}); }
+    function setPlayBtn(){ var b=$('mainPlay'); if(!b)return; b.textContent = pb.state==='playing'?'⏸ 일시정지' : pb.state==='paused'?'▶ 이어 듣기' : '▶ 전체 듣기'; }
+    function speakVerse(){
+      if(pb.state!=='playing') return;
+      if(pb.idx>=VERSES.length){ pb.state='idle'; clearHi(); setPlayBtn(); return; }
+      clearHi();
+      var rows=document.querySelectorAll('#passage .vrow'); var row=rows[pb.idx];
+      if(row){ row.classList.add('reading'); row.scrollIntoView({block:'nearest',behavior:'smooth'}); }
+      var u=utter(VERSES[pb.idx].en, pb.idx%2?'f':'m'); var advanced=false;
+      function adv(){ if(advanced)return; advanced=true; if(pb.state!=='playing')return; pb.idx++; setTimeout(speakVerse,260); }
+      u.onend=adv; u.onerror=adv;
+      speechSynthesis.speak(u);
+    }
+    function pbPlay(){ if(!window.speechSynthesis){ alert('이 브라우저는 음성 읽기를 지원하지 않아요.'); return; }
+      if(pb.state==='paused'){ pb.state='playing'; try{speechSynthesis.resume();}catch(e){} setPlayBtn(); return; }
+      if(pb.state==='playing') return;
+      speechSynthesis.cancel(); if(pb.idx>=VERSES.length)pb.idx=0; pb.state='playing'; setPlayBtn(); speakVerse(); }
+    function pbPause(){ if(pb.state==='playing'){ pb.state='paused'; try{speechSynthesis.pause();}catch(e){} setPlayBtn(); } }
+    function pbToggle(){ if(pb.state==='playing')pbPause(); else pbPlay(); }
+    function pbStop(){ pb.state='idle'; pb.idx=0; try{if(window.speechSynthesis)speechSynthesis.cancel();}catch(e){} clearHi(); setPlayBtn(); }
+    window.pbToggle=pbToggle; window.pbStop=pbStop;
+    // Chrome 장문(≈15초) 끊김·재시작(중복읽기 원인) 방지 keepalive
+    setInterval(function(){ try{ if(pb.state==='playing' && speechSynthesis.speaking && !speechSynthesis.paused){ speechSynthesis.pause(); speechSynthesis.resume(); } }catch(e){} }, 9000);
+
+    /* ===== 글자·한글·쉬운영어 ===== */
     var ZL=[0.92,1,1.14,1.3], zi=1;
-    function setZoom(d){ if(d===0)zi=1; else zi=Math.max(0,Math.min(ZL.length-1,zi+d)); $('lesson').style.zoom=ZL[zi]; }
-    window.setZoom=setZoom;
-
-    /* ===== 쉬운 영어 토글 ===== */
-    var easyOn=false;
-    function toggleEasy(){ easyOn=!easyOn; $('lesson').classList.toggle('showeasy',easyOn); $('easyBtn').textContent=easyOn?'쉬운 영어 끄기':'쉬운 영어 보기'; $('easyBtn').classList.toggle('bg-gold/10',easyOn); }
-    window.toggleEasy=toggleEasy;
+    function setZoom(d){ zi=d===0?1:Math.max(0,Math.min(ZL.length-1,zi+d)); $('lesson').style.zoom=ZL[zi]; } window.setZoom=setZoom;
+    var easyOn=false; function toggleEasy(){ easyOn=!easyOn; $('lesson').classList.toggle('showeasy',easyOn); $('easyBtn').classList.toggle('on',easyOn); } window.toggleEasy=toggleEasy;
+    var koOff=false; function toggleKo(){ koOff=!koOff; $('lesson').classList.toggle('hideko',koOff); $('koBtn').textContent=koOff?'한글 보기':'한글 끄기'; $('koBtn').classList.toggle('on',koOff); } window.toggleKo=toggleKo;
 
     /* ===== 단계 ===== */
-    var STEPS=['듣기·읽기','단어','표현·어법','연습·정리'], cur=0;
-    $('steptabs').innerHTML=STEPS.map(function(s,i){ return '<button onclick="show('+i+')" data-t="'+i+'" class="steptab rounded-xl border py-2 text-[12.5px] font-bold text-center transition"><span class="block text-[10px] opacity-60">STEP '+(i+1)+'</span>'+esc(s)+'</button>'; }).join('');
-    function paintTabs(){ document.querySelectorAll('.steptab').forEach(function(b,i){ var on=i===cur, done=i<cur;
-      b.className='steptab rounded-xl border py-2 text-[12.5px] font-bold text-center transition '+(on?'bg-gold text-white border-gold':done?'bg-gold/10 text-gold border-gold/30':'bg-white text-neutral-900/55 border-ink/12'); }); }
-    function show(i){ cur=Math.max(0,Math.min(STEPS.length-1,i)); document.querySelectorAll('.step').forEach(function(s){ s.classList.toggle('on', +s.dataset.step===cur); });
-      $('prog').style.width=((cur+1)/STEPS.length*100)+'%'; paintTabs();
-      $('prevBtn').classList.toggle('invisible',cur===0);
-      $('nextBtn').textContent = cur===STEPS.length-1 ? '완료 🎉' : '다음 단계 →';
-      stopAll(); window.scrollTo({top:0,behavior:'smooth'});
-      if(cur===STEPS.length-1) setTimeout(function(){$('done').classList.remove('hidden');},400);
-    }
-    function go(d){ if(cur===STEPS.length-1 && d>0){ $('done').classList.remove('hidden'); $('done').scrollIntoView({behavior:'smooth'}); return; } show(cur+d); }
+    var STEPS=['듣기','단어','어법','암송','연습'], cur=0;
+    $('steptabs').innerHTML=STEPS.map(function(s,i){ return '<button onclick="show('+i+')" class="steptab rounded-xl border py-2 text-[12px] font-bold text-center transition"><span class="block text-[9px] opacity-60">STEP '+(i+1)+'</span>'+esc(s)+'</button>'; }).join('');
+    function paintTabs(){ document.querySelectorAll('.steptab').forEach(function(b,i){ var on=i===cur,done=i<cur; b.className='steptab rounded-xl border py-2 text-[12px] font-bold text-center transition '+(on?'bg-gold text-white border-gold':done?'bg-gold/10 text-gold border-gold/30':'bg-white text-neutral-900/55 border-ink/12'); }); }
+    function show(i){ pbStop(); cur=Math.max(0,Math.min(STEPS.length-1,i)); document.querySelectorAll('.step').forEach(function(s){ s.classList.toggle('on',+s.dataset.step===cur); });
+      $('prog').style.width=((cur+1)/STEPS.length*100)+'%'; paintTabs(); $('prevBtn').classList.toggle('invisible',cur===0);
+      $('nextBtn').textContent=cur===STEPS.length-1?'완료 🎉':'다음 단계 →'; window.scrollTo({top:0,behavior:'smooth'});
+      if(cur===STEPS.length-1) setTimeout(function(){$('done').classList.remove('hidden');},400); }
+    function go(d){ if(cur===STEPS.length-1&&d>0){ $('done').classList.remove('hidden'); $('done').scrollIntoView({behavior:'smooth'}); return; } show(cur+d); }
     window.show=show; window.go=go;
-    function cheer(){ /* 미션 체크 시 살짝 격려 */ }
-    window.cheer=cheer;
 
-    /* ===== 본문(7절) + 쉬운영어 ===== */
+    /* ===== 본문(7절) ===== */
     var VERSES=[
-      {n:1, en:"In the beginning was the Word, and the Word was with God, and the Word was God.", ko:"태초에 말씀이 계시니라. 이 말씀이 하나님과 함께 계셨으니, 이 말씀은 곧 하나님이시니라.", ez:"In the beginning, the Word already existed. The Word was with God, and the Word was God."},
-      {n:2, en:"The same was in the beginning with God.", ko:"그가 태초에 하나님과 함께 계셨으며,", ez:"He was with God from the very beginning."},
-      {n:3, en:"All things were made by him; and without him was not any thing made that was made.", ko:"만물이 그로 말미암아 지어진 바 되었으니, 지어진 것 가운데 그가 없이 된 것은 하나도 없느니라.", ez:"Everything was made through him; nothing was made without him."},
-      {n:4, en:"In him was life; and the life was the light of men.", ko:"그 안에 생명이 있었으니, 이 생명은 사람들의 빛이라.", ez:"In him was life, and that life was the light of all people."},
-      {n:5, en:"And the light shineth in darkness; and the darkness comprehended it not.", ko:"그 빛이 어둠 속에 비치되, 어둠이 이를 깨닫지 못하였느니라.", ez:"The light shines in the darkness, and the darkness has not put it out."},
-      {n:6, en:"There was a man sent from God, whose name was John.", ko:"하나님께로부터 보내심을 받은 사람이 있었으니, 그의 이름은 요한이라.", ez:"There was a man sent from God. His name was John."},
-      {n:7, en:"The same came for a witness, to bear witness of the Light, that all men through him might believe.", ko:"그가 증언하러 왔으니, 곧 그 빛에 대하여 증언하여 모든 사람이 자기로 말미암아 믿게 하려 함이라.", ez:"He came as a witness to speak about the Light, so that everyone might believe through him."}
+      {n:1,en:"In the beginning was the Word, and the Word was with God, and the Word was God.",ko:"태초에 말씀이 계시니라. 이 말씀이 하나님과 함께 계셨으니, 이 말씀은 곧 하나님이시니라.",ez:"In the beginning, the Word already existed. The Word was with God, and the Word was God."},
+      {n:2,en:"The same was in the beginning with God.",ko:"그가 태초에 하나님과 함께 계셨으며,",ez:"He was with God from the very beginning."},
+      {n:3,en:"All things were made by him; and without him was not any thing made that was made.",ko:"만물이 그로 말미암아 지어진 바 되었으니, 지어진 것 가운데 그가 없이 된 것은 하나도 없느니라.",ez:"Everything was made through him; nothing was made without him."},
+      {n:4,en:"In him was life; and the life was the light of men.",ko:"그 안에 생명이 있었으니, 이 생명은 사람들의 빛이라.",ez:"In him was life, and that life was the light of all people."},
+      {n:5,en:"And the light shineth in darkness; and the darkness comprehended it not.",ko:"그 빛이 어둠 속에 비치되, 어둠이 이를 깨닫지 못하였느니라.",ez:"The light shines in the darkness, and the darkness has not put it out."},
+      {n:6,en:"There was a man sent from God, whose name was John.",ko:"하나님께로부터 보내심을 받은 사람이 있었으니, 그의 이름은 요한이라.",ez:"There was a man sent from God. His name was John."},
+      {n:7,en:"The same came for a witness, to bear witness of the Light, that all men through him might believe.",ko:"그가 증언하러 왔으니, 곧 그 빛에 대하여 증언하여 모든 사람이 자기로 말미암아 믿게 하려 함이라.",ez:"He came as a witness to speak about the Light, so that everyone might believe through him."}
     ];
-    $('passage').innerHTML=VERSES.map(function(v,i){ return '<div class="vrow p-3.5 flex gap-3" data-i="'+i+'">'
-      +'<span class="vn text-gold font-bold text-[13px] shrink-0 w-5 text-right" style="font-variant-numeric:tabular-nums">'+v.n+'</span>'
-      +'<div class="flex-1 min-w-0"><p class="en text-[15.5px] leading-relaxed text-neutral-900">'+esc(v.en)
-      +' <button onclick="speak(VERSES['+i+'].en)" class="spk text-gold/70 hover:text-gold text-xs align-middle">🔊</button></p>'
-      +'<p class="easy en text-[13.5px] text-gold/90 mt-1 leading-relaxed">↳ '+esc(v.ez)+' <button onclick="speak(VERSES['+i+'].ez)" class="text-gold/60 text-xs">🔊</button></p>'
-      +'<p class="ko text-[14px] text-neutral-900/55 leading-relaxed mt-1">'+esc(v.ko)+'</p></div></div>'; }).join('');
+    $('passage').innerHTML=VERSES.map(function(v,i){ return '<div class="vrow p-3.5 flex gap-3" data-i="'+i+'"><span class="vn text-gold font-bold text-[13px] shrink-0 w-5 text-right" style="font-variant-numeric:tabular-nums">'+v.n+'</span><div class="flex-1 min-w-0"><p class="en text-[15.5px] leading-relaxed text-neutral-900">'+esc(v.en)+' <button onclick="speak(VERSES['+i+'].en)" class="spk text-gold/70 hover:text-gold text-xs align-middle">🔊</button></p><p class="easy en text-[13.5px] text-gold/90 mt-1 leading-relaxed">↳ '+esc(v.ez)+' <button onclick="speak(VERSES['+i+'].ez)" class="text-gold/60 text-xs">🔊</button></p><p class="ko text-[14px] text-neutral-900/55 leading-relaxed mt-1">'+esc(v.ko)+'</p></div></div>'; }).join('');
     window.VERSES=VERSES;
 
-    var playing=false;
-    function playAll(){ if(!window.speechSynthesis){ alert('이 브라우저는 음성 읽기를 지원하지 않아요.'); return; }
-      stopAll(); playing=true; var rows=[].slice.call(document.querySelectorAll('#passage .vrow')); var i=0;
-      (function next(){ if(!playing||i>=rows.length){ playing=false; return; }
-        var row=rows[i]; row.classList.add('reading'); row.scrollIntoView({block:'nearest',behavior:'smooth'});
-        var u=utter(VERSES[i].en, i%2?'f':'m');
-        u.onend=function(){ row.classList.remove('reading'); i++; setTimeout(next,220); };
-        u.onerror=function(){ row.classList.remove('reading'); i++; next(); };
-        speechSynthesis.speak(u);
-      })(); }
-    window.playAll=playAll;
-
-    /* ===== 단어 ===== */
-    var WORDS=[
-      {w:"beginning", ipa:"/bɪˈɡɪnɪŋ/", kr:"비기닝", pos:"n.", m:"태초, 시작", en_def:"the first part; the start"},
-      {w:"Word", ipa:"/wɜːrd/", kr:"워드", pos:"n.", m:"말씀(로고스)", en_def:"here: Christ, the divine Word"},
-      {w:"life", ipa:"/laɪf/", kr:"라이프", pos:"n.", m:"생명", en_def:"being alive; true life"},
-      {w:"light", ipa:"/laɪt/", kr:"라이트", pos:"n.", m:"빛", en_def:"brightness that lets us see; truth"},
-      {w:"darkness", ipa:"/ˈdɑːrknəs/", kr:"다크니스", pos:"n.", m:"어둠", en_def:"the absence of light"},
-      {w:"shine", ipa:"/ʃaɪn/", kr:"샤인", pos:"v.", m:"비치다", en_def:"to give off light"},
-      {w:"witness", ipa:"/ˈwɪtnəs/", kr:"위트니스", pos:"n.", m:"증인·증언", en_def:"one who tells what he saw"},
-      {w:"believe", ipa:"/bɪˈliːv/", kr:"빌리브", pos:"v.", m:"믿다", en_def:"to accept as true; to trust"}
+    /* ===== 단어 30 (초10/중20/고30) ===== */
+    var POOL=[
+      ["God","/ɡɑːd/","가드","n.","하나님","the supreme being; the Creator"],
+      ["Word","/wɜːrd/","워드","n.","말씀(로고스)","here: Christ, the divine Word (Logos)"],
+      ["light","/laɪt/","라이트","n.","빛","brightness; here, spiritual truth"],
+      ["life","/laɪf/","라이프","n.","생명","the state of being alive; true life"],
+      ["darkness","/ˈdɑːrknəs/","다크니스","n.","어둠","the absence of light; evil/ignorance"],
+      ["man","/mæn/","맨","n.","사람","a human being"],
+      ["name","/neɪm/","네임","n.","이름","the word by which a person is known"],
+      ["witness","/ˈwɪtnəs/","위트니스","n.","증인·증언","one who tells what he has seen"],
+      ["believe","/bɪˈliːv/","빌리브","v.","믿다","to accept as true; to trust"],
+      ["beginning","/bɪˈɡɪnɪŋ/","비기닝","n.","태초, 시작","the first part; the very start"],
+      ["make","/meɪk/","메이크","v.","만들다(과거 made)","to create or produce something"],
+      ["without","/wɪˈðaʊt/","위드아웃","prep.","~ 없이","not having; in the absence of"],
+      ["shine","/ʃaɪn/","샤인","v.","비치다(옛 shineth)","to give off light"],
+      ["comprehend","/ˌkɑːmprɪˈhend/","컴프리헨드","v.","깨닫다·이기다","to understand fully; to overcome"],
+      ["send","/send/","센드","v.","보내다(과거 sent)","to cause to go; to dispatch"],
+      ["come","/kʌm/","컴","v.","오다(과거 came)","to move toward a place"],
+      ["whose","/huːz/","후즈","pron.","(관계) ~의","of whom; belonging to whom"],
+      ["might","/maɪt/","마이트","aux.","~할 수도(may 과거)","used to express purpose or possibility"],
+      ["through","/θruː/","쓰루","prep.","~을 통하여","by means of; from start to end"],
+      ["bear","/bɛr/","베어","v.","(증언을) 하다·지다","to carry; to give (witness)"],
+      ["in the beginning","/ɪn ðə bɪˈɡɪnɪŋ/","인 더 비기닝","phr.","태초에","at the very start (of time)"],
+      ["all things","/ɔːl θɪŋz/","올 띵즈","phr.","만물, 모든 것","everything that exists"],
+      ["be with","/biː wɪð/","비 위드","phr.","~와 함께 있다","to be in the company of"],
+      ["bear witness","/bɛr ˈwɪtnəs/","베어 위트니스","phr.","증언하다","to testify; to give evidence"],
+      ["sent from","/sent frəm/","센트 프롬","phr.","~로부터 보내진","dispatched by (someone)"],
+      ["so that ... might","/soʊ ðæt maɪt/","소 댓 마이트","phr.","~하도록(목적)","in order that (purpose)"],
+      ["any thing","/ˈɛni θɪŋ/","에니 띵","phr.","(부정문) 아무것도","(with not) nothing at all"],
+      ["shineth","/ˈʃaɪnəθ/","샤이네쓰","v.(古)","비친다 = shines","old form of 'shines' (KJV)"],
+      ["the same","/ðə seɪm/","더 세임","phr.","바로 그(사람/것)","the very one just mentioned"],
+      ["that was made","/ðæt wəz meɪd/","댓 워즈 메이드","phr.","지어진 것","which was created"]
     ];
-    $('words').innerHTML=WORDS.map(function(x){ return '<button onclick="speak(\''+x.w+'\')" class="text-left bg-white border border-ink/10 rounded-xl shadow-soft px-4 py-3 hover:border-gold/40 transition flex items-start gap-3">'
-      +'<span class="flex-1 min-w-0"><span class="en font-bold text-[15px] text-ink">'+esc(x.w)+'</span> <span class="text-[11px] text-neutral-900/40">'+esc(x.pos)+'</span>'
-      +'<span class="block"><span class="ipa text-gold text-[13.5px]">'+esc(x.ipa)+'</span> <span class="text-[9px] text-neutral-900/40 align-middle">'+esc(x.kr)+'</span></span>'
-      +'<span class="block text-[13px] text-neutral-900/70 mt-0.5">'+esc(x.m)+'</span>'
-      +'<span class="block text-[11.5px] text-neutral-900/45 mt-1 en">💬 '+esc(x.en_def)+'</span></span>'
-      +'<span class="text-gold/60 shrink-0">🔊</span></button>'; }).join('');
+    var LEVEL=10;
+    function renderWords(){ var arr=POOL.slice(0,LEVEL);
+      $('words').innerHTML=arr.map(function(x){ return '<button onclick="speak(\''+x[0].replace(/'/g,"")+'\')" class="text-left bg-white border border-ink/10 rounded-xl shadow-soft px-4 py-3 hover:border-gold/40 transition flex items-start gap-3"><span class="flex-1 min-w-0"><span class="en font-bold text-[15px] text-ink">'+esc(x[0])+'</span> <span class="text-[11px] text-neutral-900/40">'+esc(x[3])+'</span><span class="block"><span class="ipa text-gold text-[13px]">'+esc(x[1])+'</span> <span class="text-[9px] text-neutral-900/40 align-middle">'+esc(x[2])+'</span></span><span class="block text-[13px] text-neutral-900/70 mt-0.5">'+esc(x[4])+'</span><span class="block text-[11.5px] text-neutral-900/45 mt-1 en">💬 '+esc(x[5])+'</span></span><span class="text-gold/60 shrink-0">🔊</span></button>'; }).join(''); }
+    function setLevel(n,id){ LEVEL=n; ['lv10','lv20','lv30'].forEach(function(x){$(x).classList.toggle('on',x===id);}); renderWords(); }
+    window.setLevel=setLevel;
 
     /* ===== 단어 테스트 ===== */
     var WT=[
-      {s:['In the ', ' was the Word.'], a:'beginning', ko:'태초에 말씀이 계시니라', opt:['beginning','darkness','witness']},
-      {s:['In him was ', '; and the life was the light of men.'], a:'life', ko:'그 안에 생명이 있었으니', opt:['light','life','word']},
-      {s:['the life was the ', ' of men.'], a:'light', ko:'이 생명은 사람들의 빛이라', opt:['light','darkness','life']},
-      {s:['the light shineth in ', '.'], a:'darkness', ko:'빛이 어둠 속에 비치되', opt:['darkness','beginning','light']},
-      {s:['', ' him was not any thing made.'], a:'Without', ko:'그가 없이 된 것은 하나도 없느니라', opt:['Within','Without','With']},
-      {s:['that all men might ', ' through him.'], a:'believe', ko:'모든 사람이 믿게 하려 함이라', opt:['witness','believe','shine']}
+      {s:['In the ',' was the Word.'],a:'beginning',ko:'태초에 말씀이 계시니라',opt:['beginning','darkness','witness']},
+      {s:['In him was ','; and the life was the light of men.'],a:'life',ko:'그 안에 생명이 있었으니',opt:['light','life','word']},
+      {s:['',' him was not any thing made.'],a:'Without',ko:'그가 없이 된 것은 하나도 없느니라',opt:['Within','Without','With']},
+      {s:['a man ',' name was John.'],a:'whose',ko:'그의 이름은 요한이라',opt:['who','whose','which']},
+      {s:['to bear ',' of the Light.'],a:'witness',ko:'그 빛에 대하여 증언하여',opt:['witness','darkness','beginning']},
+      {s:['that all men might ',' through him.'],a:'believe',ko:'모든 사람이 믿게 하려 함이라',opt:['witness','believe','shine']}
     ];
     var wtDone=0;
-    $('wtest').innerHTML=WT.map(function(q,i){ return '<div class="border-b border-ink/6 pb-3" data-i="'+i+'">'
-      +'<p class="en text-[15px] mb-1.5">'+esc(q.s[0])+'<span class="wblank inline-block min-w-[76px] text-center border-b-2 border-ink/25 text-gold font-bold"></span>'+esc(q.s[1])+'</p>'
-      +'<p class="text-[11.5px] text-neutral-900/45 mb-2">'+esc(q.ko)+'</p>'
-      +'<div class="flex flex-wrap gap-1.5">'+q.opt.map(function(o){ return '<button onclick="wtPick('+i+',this,\''+o+'\')" class="en border border-ink/15 rounded-full px-3 py-1 text-[13px] font-semibold hover:border-gold hover:text-gold transition">'+esc(o)+'</button>'; }).join('')+'</div></div>'; }).join('');
-    function wtPick(i,btn,val){ var q=WT[i]; var box=document.querySelector('#wtest [data-i="'+i+'"]'); var blank=box.querySelector('.wblank'); var ok=val.toLowerCase()===q.a.toLowerCase();
-      blank.textContent=val; blank.style.color=ok?'#00704a':'#e11d48';
-      box.querySelectorAll('button').forEach(function(b){ b.classList.remove('bg-gold','text-white','border-gold'); });
-      btn.classList.add(ok?'bg-gold':'border-gold'); if(ok)btn.classList.add('text-white');
-      if(ok){ speak(q.a); if(!box.dataset.done){ box.dataset.done='1'; wtDone++; } }
-      $('wscore').textContent='맞힌 개수 '+wtDone+' / '+WT.length+(wtDone===WT.length?' — 완벽해요! 잘하셨어요 🎉':' · 틀려도 괜찮아요, 다시!'); }
+    $('wtest').innerHTML=WT.map(function(q,i){ return '<div class="border-b border-ink/6 pb-3" data-i="'+i+'"><p class="en text-[15px] mb-1.5">'+esc(q.s[0])+'<span class="wblank inline-block min-w-[76px] text-center border-b-2 border-ink/25 text-gold font-bold"></span>'+esc(q.s[1])+'</p><p class="text-[11.5px] text-neutral-900/45 mb-2">'+esc(q.ko)+'</p><div class="flex flex-wrap gap-1.5">'+q.opt.map(function(o){return '<button onclick="wtPick('+i+',this,\''+o+'\')" class="en border border-ink/15 rounded-full px-3 py-1 text-[13px] font-semibold hover:border-gold hover:text-gold transition">'+esc(o)+'</button>';}).join('')+'</div></div>'; }).join('');
+    function wtPick(i,btn,val){ var q=WT[i],box=document.querySelector('#wtest [data-i="'+i+'"]'),blank=box.querySelector('.wblank'),ok=val.toLowerCase()===q.a.toLowerCase(); blank.textContent=val; blank.style.color=ok?'#00704a':'#e11d48'; box.querySelectorAll('button').forEach(function(b){b.classList.remove('bg-gold','text-white','border-gold');}); btn.classList.add(ok?'bg-gold':'border-gold'); if(ok)btn.classList.add('text-white'); if(ok){ speak(q.a); if(!box.dataset.done){box.dataset.done='1';wtDone++;} } $('wscore').textContent='맞힌 개수 '+wtDone+' / '+WT.length+(wtDone===WT.length?' — 완벽해요! 🎉':' · 틀려도 괜찮아요!'); }
     window.wtPick=wtPick;
 
-    /* ===== 문법(구절마다) ===== */
+    /* ===== 어법(구절별 심화) ===== */
     var GRAM=[
-      {v:1, ph:"the Word was God", pt:"<b>A was B = 「A는 B이다」</b> — be동사(was)는 우리말 ‘이다’예요. 어순은 그대로 ‘A was B’.", ex:"the Word(A) was God(B) → 말씀은 하나님이시다."},
-      {v:2, ph:"The same was in the beginning", pt:"<b>the same = 바로 그분</b>(앞의 ‘말씀’을 가리키는 대명사). was는 be동사 과거.", ex:"The same was… = He was… (그분이 …계셨다)."},
-      {v:3, ph:"without him was not any thing made", pt:"<b>수동태 + 도치 + 이중부정</b> — was made(만들어졌다)를 강조하려 어순을 뒤집고, not…any로 ‘아무것도 없다’를 강조.", ex:"오늘 영어: nothing was made without him."},
-      {v:4, ph:"In him was life", pt:"<b>장소구 도치</b> — ‘In him(그 안에)’을 앞에 두어 강조. 원래 어순은 Life was in him.", ex:"In him(그 안에) was life(생명이 있었다)."},
-      {v:5, ph:"the light shineth in darkness", pt:"<b>-eth = 옛 3인칭 어미</b> — shineth = shines. KJV(400년 전 영어)의 특징이에요.", ex:"오늘 영어: the light shines in the darkness."},
-      {v:6, ph:"whose name was John", pt:"<b>whose = 관계대명사 소유격</b> ‘그의 이름은’. 앞의 a man을 꾸며 줍니다.", ex:"a man … whose name was John = 이름이 요한인 사람."},
-      {v:7, ph:"that all men … might believe", pt:"<b>목적의 that + might</b> — ‘…하게 하려고’. so that … might로 목적을 나타내요.", ex:"…that all men might believe = 모든 사람이 믿게 하려고."}
+      {v:1,ph:"the Word was God",pt:"<b>2형식 be동사 = 「A는 B이다」.</b> be동사(am/is/are/was/were)는 ‘~이다/있다’를 뜻하고, 뒤의 명사(God)는 <b>보어</b>예요. 어순은 <span class='en'>주어 + be동사 + 보어</span> 그대로. 현대 영어도 똑같이 <span class='en'>The Word was God.</span>",ex:"the Word(주어) was(be동사) God(보어) → 말씀은 하나님이시다."},
+      {v:2,ph:"The same was in the beginning",pt:"<b>지시대명사 the same = ‘바로 그(앞서 말한 것)’.</b> 앞의 ‘the Word’를 다시 가리켜 반복을 피합니다. 현대 영어라면 대명사 <span class='en'>He/It</span>로 받아요.",ex:"The same was… = He was… (그분이 …계셨다)."},
+      {v:3,ph:"without him was not any thing made",pt:"<b>수동태(be + 과거분사) + 도치 + 이중부정.</b> <span class='en'>were made / was made</span>는 ‘만들어졌다’(수동). 부사구 <span class='en'>without him</span>을 앞세워 도치했고, <span class='en'>not … any thing</span>으로 ‘아무것도 (없다)’를 강조합니다. 현대 영어: <span class='en'>nothing was made without him.</span>",ex:"토익 포인트: 수동태는 「행위를 당하는 주어 + be + p.p.」."},
+      {v:4,ph:"In him was life",pt:"<b>장소·부사구 도치로 강조.</b> 원래 <span class='en'>Life was in him</span>인데, ‘In him(그분 안에)’을 문두에 두어 <b>‘다른 데가 아니라 그분 안에’</b>를 강조합니다. 이런 도치는 <span class='en'>Here comes the bus.</span>처럼 현대 영어에도 남아 있어요.",ex:"In him(부사구) was(동사) life(주어) — 도치 어순."},
+      {v:5,ph:"the light shineth in darkness",pt:"<b>-eth = 옛 3인칭 단수 현재 어미(= 오늘의 -s).</b> <span class='en'>shineth = shines</span>. KJV(1611년) 영어의 특징이에요. 지금은 <span class='en'>He shines / She teaches</span>처럼 -s를 붙입니다.",ex:"shineth → shines, hath → has, doth → does."},
+      {v:6,ph:"whose name was John",pt:"<b>소유격 관계대명사 whose.</b> 앞의 <span class='en'>a man</span>을 꾸며 ‘그 사람의 이름은’을 뜻합니다. 사람·사물 모두에 쓰고, 뒤에는 반드시 <b>명사</b>가 와요(<span class='en'>whose name</span>).",ex:"a man whose name was John = 이름이 요한인 한 사람."},
+      {v:7,ph:"that all men … might believe",pt:"<b>목적의 that + might(=~하도록).</b> <span class='en'>so that + 주어 + might/would + 동사</span>는 ‘…하기 위하여’라는 목적을 나타냅니다. 토익·텝스 단골 구문이에요.",ex:"…that all men might believe = 모든 사람이 믿게 하려고."}
     ];
-    $('grammar').innerHTML=GRAM.map(function(g){ return '<div class="bg-white border border-ink/10 rounded-2xl shadow-soft p-4">'
-      +'<div class="flex items-center gap-2 mb-1"><span class="text-[11px] font-bold text-white bg-gold rounded-full px-2 py-0.5">'+g.v+'절</span>'
-      +'<span class="en text-[14px] font-semibold text-ink">'+esc(g.ph)+'</span>'
-      +'<button onclick="speak(\''+esc(g.ph).replace(/'/g,"\\'")+'\')" class="ml-auto text-gold/70 hover:text-gold text-xs">🔊</button></div>'
-      +'<p class="text-[13.5px] text-neutral-900/75 leading-relaxed">'+g.pt+'</p>'
-      +'<p class="text-[12.5px] text-neutral-900/50 mt-1.5">'+esc(g.ex)+'</p></div>'; }).join('');
+    $('grammar').innerHTML=GRAM.map(function(g){ return '<div class="bg-white border border-ink/10 rounded-2xl shadow-soft p-4"><div class="flex items-center gap-2 mb-1.5"><span class="text-[11px] font-bold text-white bg-gold rounded-full px-2 py-0.5">'+g.v+'절</span><span class="en text-[14px] font-semibold text-ink">'+esc(g.ph)+'</span><button onclick="speak(\''+esc(g.ph).replace(/'/g,"\\'")+'\')" class="ml-auto text-gold/70 hover:text-gold text-xs">🔊</button></div><p class="text-[13.5px] text-neutral-900/78 leading-relaxed">'+g.pt+'</p><p class="text-[12.5px] text-neutral-900/50 mt-1.5">'+g.ex+'</p></div>'; }).join('');
+
+    /* ===== 실전 문제 (토익·텝스) ===== */
+    var EXAM=[
+      {q:"All things ______ by him; nothing was made without him.", opt:["were made","made","was make","are making"], a:0, ex:"주어 All things는 복수, ‘만들어졌다’는 <b>수동태(be + p.p.)</b>이므로 were made. (3절 문법)"},
+      {q:"There was a man sent from God, ______ name was John.", opt:["who","whose","which","whom"], a:1, ex:"뒤에 명사 name이 오므로 <b>소유격 관계대명사 whose</b>. (6절 문법)"}
+    ];
+    $('exam').innerHTML=EXAM.map(function(e,i){ return '<div data-i="'+i+'"><p class="en text-[14.5px] mb-2"><b>Q'+(i+1)+'.</b> '+esc(e.q)+'</p><div class="flex flex-wrap gap-1.5">'+e.opt.map(function(o,j){return '<button onclick="exPick('+i+','+j+',this)" class="en border border-ink/15 rounded-lg px-3 py-1.5 text-[13.5px] font-semibold hover:border-gold hover:text-gold transition">('+String.fromCharCode(65+j)+') '+esc(o)+'</button>';}).join('')+'</div><p class="exmsg text-[12.5px] mt-2 leading-relaxed"></p></div>'; }).join('');
+    function exPick(i,j,btn){ var e=EXAM[i],box=document.querySelector('#exam [data-i="'+i+'"]'),ok=j===e.a; box.querySelectorAll('button').forEach(function(b){b.classList.remove('bg-gold','text-white','border-gold','bg-rose-50');}); btn.classList.add(ok?'bg-gold':'bg-rose-50'); if(ok)btn.classList.add('text-white'); var m=box.querySelector('.exmsg'); m.innerHTML=(ok?'✅ 정답! ':'❌ 정답은 ('+String.fromCharCode(65+e.a)+') '+esc(e.opt[e.a])+'. ')+e.ex; m.style.color=ok?'#00704a':'#9f1239'; }
+    window.exPick=exPick;
+
+    /* ===== 암송(빈칸 단계) ===== */
+    var MEM="In him was life ; and the life was the light of men .".split(' ');
+    var memLv=0; // 0 full ~ 3 all
+    function memStep(d){ memLv=Math.max(0,Math.min(3,memLv+d)); renderMem(); }
+    function renderMem(){ var keep=/^(In|and|the|of|;|\.)$/i;
+      $('memText').innerHTML=MEM.map(function(w,i){ if(w===';'||w==='.')return '<span class="text-neutral-400">'+w+'</span>';
+        var hide = memLv===3 ? !keep.test(w) : memLv===2 ? (i%2===1 && !keep.test(w)) : memLv===1 ? (i%3===2 && !keep.test(w)) : false;
+        return hide ? '<span class="inline-block align-middle border-b-2 border-gold/40" style="min-width:'+Math.max(26,w.length*10)+'px;height:1.1em">&nbsp;</span>' : '<span>'+esc(w)+'</span>'; }).join(' ');
+      $('memLv').textContent=['전체 보기','1단계','2단계','3단계(도전)'][memLv]; }
+    window.memStep=memStep;
 
     /* ===== 퀴즈 ===== */
     var QA=[['① 성경책',0],['② 예수 그리스도',1],['③ 천사',0]];
-    $('quiz').innerHTML=QA.map(function(o){ return '<button onclick="ansQ('+o[1]+')" class="border border-ink/15 rounded-full px-4 py-2 text-sm font-semibold hover:border-gold hover:text-gold transition">'+esc(o[0])+'</button>'; }).join('');
+    $('quiz').innerHTML=QA.map(function(o){return '<button onclick="ansQ('+o[1]+')" class="border border-ink/15 rounded-full px-4 py-2 text-sm font-semibold hover:border-gold hover:text-gold transition">'+esc(o[0])+'</button>';}).join('');
     function ansQ(ok){ $('quizMsg').textContent=ok?' 정답! ‘the Word’는 예수 그리스도이십니다 (요1:14).':' 아쉬워요. 다시 골라보세요.'; $('quizMsg').style.color=ok?'#00704a':'#e11d48'; }
     window.ansQ=ansQ;
 
     // init
-    setSpeed(0.75, $('spd-mid')); paintTabs();
+    setSpeed(0.75,'spd1'); setLevel(10,'lv10'); renderMem(); paintTabs();
   </script>
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
