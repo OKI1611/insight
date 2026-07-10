@@ -1,6 +1,6 @@
 // 오광일 인사이트 브리핑 — 서비스 워커 (PWA)
 // 전략: HTML은 항상 네트워크(최신 유지), 정적자원만 캐시. 오프라인 시 폴백.
-const CACHE = 'bibleinsight-v71';
+const CACHE = 'bibleinsight-v72';
 const SHELL = ['/manifest.json'];
 
 self.addEventListener('install', (e) => {
