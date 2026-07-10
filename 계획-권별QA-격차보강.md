@@ -9,7 +9,9 @@
 - **✅ W4 소선지 12권(+76)**: 호세아10·요엘6·아모스8·오바댜6·요나6·미가7·나훔5·하박국5·스바냐6·학개6·스가랴3·말라기8.
 - 권별 Q&A 총계: **1,495 → 1,803** (이후 다른 세션 보강분 포함). 66권 유지, 금지어·세례 0.
 - ⚠️ **데이터 구조 변경(다른 세션)**: 사이트는 이제 `dictionary/qa-book.json`(권별 경량 추출)·`qa-topic.json`(주제별)을 읽음. entries.json은 여전히 마스터. **병합 후 반드시 qa-book.json 재추출**: `python -c "import json,io;d=json.load(io.open('dictionary/entries.json',encoding='utf-8'));b=[e for e in d if e.get('category')=='자주 묻는 질문' and e.get('book')];io.open('dictionary/qa-book.json','w',encoding='utf-8').write(json.dumps(b,ensure_ascii=False,indent=0)+chr(10))"` (indent=0 형식 유지). 주제별 무변동이면 qa-topic.json 건드리지 말 것.
-- 다음 재개: **W5 복음·행(마태·마가·누가·요한·사도행전, BQNA40~44, 대형)**. our_book_titles.json 재생성 완료.
+- **✅ W5 복음·행(5권, +62)**: 마태15·마가12·누가14·요한11·사도행전10.
+- 권별 Q&A 총계: **1,865**. 66권 유지, 금지어·세례 0.
+- 다음 재개: **W6 바울서신(로마서~빌레몬 13권, BQNA45~57)**, 이어 W7 일반서신·계(BQNA58~66). our_book_titles.json 재생성 완료.
 - 참고 특성 재확인: 역사서도 권당 게시글 1~16건으로 성글고 번역시비 다수 → 실신규는 우리 관점 격차 자체발굴이 큼(허수는 금지, 실질 주제만).
 - ⚠️ 서브에이전트가 def를 "한마디로 —"로 시작 안 하면 merge에서 거부됨 → 병합 전 dry로 확인, 필요시 def 앞에 "한마디로 — " 자동 보정(창세기 사례).
 
