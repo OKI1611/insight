@@ -41,6 +41,15 @@
     .easy{display:none} .showeasy .easy{display:block}
     .hideko .ko{display:none}
     .toolbtn.on{background:#00704a;color:#fff}
+    .wcard{perspective:900px;height:128px}
+    .wcard-inner{position:relative;width:100%;height:100%;transition:transform .55s;transform-style:preserve-3d}
+    #words.testing .wcard-inner{transform:rotateY(180deg)}
+    .wface{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:12px;overflow:hidden;background:#fff;border:1px solid rgba(33,58,107,.10);box-shadow:0 2px 10px -4px rgba(21,32,58,.10)}
+    .wback{transform:rotateY(180deg);border-color:rgba(0,112,74,.30)}
+    .wcard.right .wback{background:#e7f5ee;border-color:#00704a}
+    .wcard.wrong .wback{background:#fdecec;border-color:#e11d48}
+    .subox{white-space:nowrap;background:#fff;border:1px solid rgba(33,58,107,.18);border-radius:6px;padding:1px 7px;margin:0 2px;font-weight:600}
+    .subox .bx{color:#334}
   </style>
 </head>
 <body class="font-sans bg-paper text-neutral-900 antialiased">
@@ -105,14 +114,13 @@
           <button id="lv25" onclick="setLevel(25,'lv25')" class="toolbtn px-3 py-1 font-bold border-l border-ink/12">심화 25</button>
         </div>
       </div>
-      <p class="text-[11.5px] text-neutral-900/40 mb-2">단어를 누르면 발음을 들려줘요. 💬는 영어 뜻풀이예요.</p>
-      <div id="words" class="grid sm:grid-cols-2 gap-2.5"></div>
-      <div class="mt-4 bg-white border border-gold/25 rounded-2xl shadow-soft p-5">
-        <p class="font-bold text-ink mb-1">🧩 단어 뜻 맞히기 — 단어를 보고 알맞은 뜻을 고르세요</p>
-        <p class="text-[11.5px] text-neutral-900/45 mt-0.5">가볍게 확인해 봐요. 틀려도 괜찮아요!</p>
-        <div id="wtest" class="space-y-2.5 mt-3"></div>
-        <p id="wscore" class="text-[13px] font-bold text-gold mt-3"></p>
+      <div class="flex items-center gap-2 mb-2 flex-wrap">
+        <p class="text-[11.5px] text-neutral-900/40">카드를 누르면 발음을 들려줘요. 💬는 영어 뜻풀이.</p>
+        <button id="wtestBtn" onclick="toggleWtest()" class="ml-auto text-[12.5px] font-bold text-white bg-gold rounded-full px-3.5 py-1.5 hover:opacity-90 transition">🎯 단어 테스트 하기</button>
+        <span id="wscore" class="text-[12.5px] font-bold text-gold"></span>
       </div>
+      <div id="words" class="grid sm:grid-cols-2 gap-2.5"></div>
+      <p id="wtestHint" class="hidden text-[11.5px] text-neutral-900/45 mt-2">카드에서 알맞은 뜻을 고르세요 — 맞으면 <span class="text-[#00704a] font-bold">초록</span>, 틀리면 <span class="text-rose-500 font-bold">빨강</span>으로 표시돼요.</p>
     </section>
 
     <!-- STEP 3 어법 -->
@@ -136,12 +144,8 @@
         <p class="text-[12.5px] font-bold text-gold mt-4 mb-2">① TOEIC · TEPS 유형 <span class="font-normal text-neutral-900/40">— 빈칸에 알맞은 것</span></p>
         <div id="exam" class="space-y-5"></div>
 
-        <p class="text-[12.5px] font-bold text-gold mt-6 mb-1.5">② 수능 어법 유형 <span class="font-normal text-neutral-900/40">— 네모 안에서 어법상 알맞은 것</span></p>
-        <div class="bg-[#eef5f1] rounded-xl p-3.5 mb-3">
-          <p class="text-[11px] font-bold text-gold mb-1">지문 · 오늘의 영어로(쉬운 현대 영어)</p>
-          <p id="modernTxt" class="en text-[13.5px] leading-[1.7] text-neutral-900/80">In the beginning, the Word already existed. The Word was with God, and the Word was God. Everything was made through him; nothing was made without him. In him was life, and that life was the light of all people. The light shines in the darkness, and the darkness has not put it out. There was a man sent from God, whose name was John. He came as a witness, so that everyone might believe through him.</p>
-        </div>
-        <div id="suneung" class="space-y-4"></div>
+        <p class="text-[12.5px] font-bold text-gold mt-6 mb-1.5">② 수능 어법 유형 <span class="font-normal text-neutral-900/40">— 지문 (A)·(B)·(C)에서 알맞은 것끼리</span></p>
+        <div id="suneung" class="space-y-5"></div>
       </div>
     </section>
 
@@ -313,27 +317,30 @@
       ["the same","/ðə seɪm/","더 세임","phr.","바로 그(사람/것)","the very one just mentioned"],
       ["that was made","/ðæt wəz meɪd/","댓 워즈 메이드","phr.","지어진 것","which was created"]
     ];
-    var LEVEL=10;
-    function renderWords(){ var arr=POOL.slice(0,LEVEL);
-      $('words').innerHTML=arr.map(function(x){ return '<button onclick="speak(\''+x[0].replace(/'/g,"")+'\')" class="text-left bg-white border border-ink/10 rounded-xl shadow-soft px-4 py-3 hover:border-gold/40 transition flex items-start gap-3"><span class="flex-1 min-w-0"><span class="en font-bold text-[15px] text-ink">'+esc(x[0])+'</span> <span class="text-[11px] text-neutral-900/40">'+esc(x[3])+'</span><span class="block"><span class="ipa text-gold text-[13px]">'+esc(x[1])+'</span> <span class="text-[9px] text-neutral-900/40 align-middle">'+esc(x[2])+'</span></span><span class="block text-[13px] text-neutral-900/70 mt-0.5">'+esc(x[4])+'</span><span class="block text-[11.5px] text-neutral-900/45 mt-1 en">💬 '+esc(x[5])+'</span></span><span class="text-gold/60 shrink-0">🔊</span></button>'; }).join(''); }
+    var LEVEL=15, testing=false, qScore=0;
+    function wshuffle(a,seed){ for(var s=a.length-1;s>0;s--){ var j=(seed*3+s*7+2)%(s+1); var t=a[s];a[s]=a[j];a[j]=t; } return a; }
+    function quizFor(idx){ var correct=POOL[idx][4], pool=[]; for(var k=0;k<POOL.length;k++){ var m=POOL[k][4]; if(m!==correct && pool.indexOf(m)<0) pool.push(m); }
+      var d1=pool[(idx*5+1)%pool.length], d2=pool[(idx*11+4)%pool.length]; if(d2===d1)d2=pool[(idx*11+6)%pool.length];
+      return wshuffle([correct,d1,d2], idx+1); }
+    function renderWords(){ var arr=POOL.slice(0,LEVEL); testing=false; $('words').classList.remove('testing');
+      if($('wtestBtn'))$('wtestBtn').textContent='🎯 단어 테스트 하기'; if($('wscore'))$('wscore').textContent=''; if($('wtestHint'))$('wtestHint').classList.add('hidden');
+      $('words').innerHTML=arr.map(function(x,i){
+        var opts=quizFor(i);
+        var front='<div class="wface wfront"><button onclick="speak(\''+x[0].replace(/'/g,"")+'\')" class="w-full h-full text-left px-4 py-3 flex items-start gap-2"><span class="flex-1 min-w-0"><span class="en font-bold text-[15px] text-ink">'+esc(x[0])+'</span> <span class="text-[10.5px] text-neutral-900/40">'+esc(x[3])+'</span><span class="block leading-tight"><span class="ipa text-gold text-[12.5px]">'+esc(x[1])+'</span> <span class="text-[9px] text-neutral-900/40">'+esc(x[2])+'</span></span><span class="block text-[13px] text-neutral-900/70 mt-0.5">'+esc(x[4])+'</span><span class="block text-[10.5px] text-neutral-900/45 mt-0.5 en leading-tight">💬 '+esc(x[5])+'</span></span><span class="text-gold/60 shrink-0">🔊</span></button></div>';
+        var back='<div class="wface wback"><div class="px-3.5 py-2.5 h-full flex flex-col"><p class="text-[10.5px] text-neutral-900/45">이 단어의 뜻은?</p><p class="en font-bold text-[16px] text-ink mb-1.5">'+esc(x[0])+'</p><div class="grid gap-1 mt-auto">'+opts.map(function(o){return '<button onclick="qPick('+i+',this,\''+o.replace(/'/g,"")+'\')" class="qopt text-left border border-ink/15 rounded-lg px-2.5 py-1 text-[12.5px] font-semibold hover:border-gold hover:text-gold transition">'+esc(o)+'</button>';}).join('')+'</div></div></div>';
+        return '<div class="wcard" data-i="'+i+'" data-ans="'+esc(x[4])+'"><div class="wcard-inner">'+front+back+'</div></div>';
+      }).join(''); }
     function setLevel(n,id){ LEVEL=n; ['lv15','lv25'].forEach(function(x){$(x).classList.toggle('on',x===id);}); renderWords(); }
     window.setLevel=setLevel;
-
-    /* ===== 단어 뜻 맞히기(쉽고 직관적) ===== */
-    var MT=[
-      {w:'God', a:'하나님', o:['하나님','어둠','증인']},
-      {w:'light', a:'빛', o:['이름','빛','생명']},
-      {w:'life', a:'생명', o:['어둠','말씀','생명']},
-      {w:'darkness', a:'어둠', o:['어둠','빛','사람']},
-      {w:'witness', a:'증인·증언', o:['시작','증인·증언','만들다']},
-      {w:'believe', a:'믿다', o:['보내다','비치다','믿다']},
-      {w:'without', a:'~ 없이', o:['~ 없이','~와 함께','~을 통하여']},
-      {w:'shine', a:'비치다', o:['깨닫다','비치다','오다']}
-    ];
-    var mtDone=0;
-    $('wtest').innerHTML=MT.map(function(q,i){ return '<div class="flex items-center gap-3 flex-wrap border-b border-ink/6 pb-2.5" data-i="'+i+'"><span class="en font-bold text-[16px] text-ink" style="min-width:92px">'+esc(q.w)+'</span><div class="flex flex-wrap gap-1.5">'+q.o.map(function(o){return '<button onclick="mtPick('+i+',this,\''+o+'\')" class="opt border border-ink/15 rounded-full px-3 py-1 text-[13px] font-semibold hover:border-gold hover:text-gold transition">'+esc(o)+'</button>';}).join('')+'</div></div>'; }).join('');
-    function mtPick(i,btn,val){ var q=MT[i],box=document.querySelector('#wtest [data-i="'+i+'"]'),ok=val===q.a; box.querySelectorAll('.opt').forEach(function(b){b.classList.remove('bg-gold','text-white','border-gold','bg-rose-50','text-rose-600');}); if(ok){btn.classList.add('bg-gold','text-white');} else {btn.classList.add('bg-rose-50','text-rose-600'); box.querySelectorAll('.opt').forEach(function(b){ if(b.textContent===q.a)b.classList.add('border-gold');}); } if(ok&&!box.dataset.done){box.dataset.done='1';mtDone++;} $('wscore').textContent='맞힌 개수 '+mtDone+' / '+MT.length+(mtDone===MT.length?' — 완벽해요! 🎉':''); }
-    window.mtPick=mtPick;
+    function toggleWtest(){ testing=!testing; $('words').classList.toggle('testing',testing);
+      document.querySelectorAll('.wcard').forEach(function(c){c.classList.remove('right','wrong');});
+      document.querySelectorAll('.qopt').forEach(function(b){b.disabled=false;b.classList.remove('bg-gold','text-white','bg-rose-500','border-gold');});
+      qScore=0; $('wtestBtn').textContent=testing?'📖 학습 카드 보기':'🎯 단어 테스트 하기'; $('wtestHint').classList.toggle('hidden',!testing); $('wscore').textContent=testing?('맞힌 카드 0 / '+LEVEL):''; }
+    function qPick(i,btn,val){ var card=document.querySelector('#words .wcard[data-i="'+i+'"]'); if(card.classList.contains('right')||card.classList.contains('wrong'))return;
+      var ok=val===card.dataset.ans; card.classList.add(ok?'right':'wrong');
+      card.querySelectorAll('.qopt').forEach(function(b){ b.disabled=true; if(b.textContent===card.dataset.ans)b.classList.add('bg-gold','text-white'); });
+      if(!ok)btn.classList.add('bg-rose-500','text-white'); if(ok){qScore++; speak(POOL[i][0]);} $('wscore').textContent='맞힌 카드 '+qScore+' / '+LEVEL; }
+    window.toggleWtest=toggleWtest; window.qPick=qPick;
 
     /* ===== 어법(구절별 심화) ===== */
     var GRAM=[
@@ -356,14 +363,36 @@
     function exPick(i,j,btn){ var e=EXAM[i],box=document.querySelector('#exam [data-i="'+i+'"]'),ok=j===e.a; box.querySelectorAll('button').forEach(function(b){b.classList.remove('bg-gold','text-white','border-gold','bg-rose-50');}); btn.classList.add(ok?'bg-gold':'bg-rose-50'); if(ok)btn.classList.add('text-white'); var m=box.querySelector('.exmsg'); m.innerHTML=(ok?'✅ 정답! ':'❌ 정답은 ('+String.fromCharCode(65+e.a)+') '+esc(e.opt[e.a])+'. ')+e.ex; m.style.color=ok?'#00704a':'#9f1239'; }
     window.exPick=exPick;
 
-    /* ===== 수능 어법 유형(네모 안에서 고르기) ===== */
+    /* ===== 수능 어법 유형(지문 (A)(B)(C) 5지선다) ===== */
+    var CIRC=['①','②','③','④','⑤','⑥'];
     var SUNEUNG=[
-      {pre:'In him ', box:['was','were'], a:0, post:' life, and that life was the light of all people.', ex:"주어 <b>life</b>가 단수이므로 <b>was</b>. (주어–동사 수 일치)"},
-      {pre:'The light ', box:['shines','shine'], a:0, post:' in the darkness.', ex:"주어 <b>The light</b>는 3인칭 단수, 현재시제이므로 <b>shines</b>(-s). (동사의 수)"},
-      {pre:'Everything was ', box:['made','making'], a:0, post:' through him.', ex:"‘만들어졌다’는 <b>수동태(be + 과거분사)</b>이므로 <b>made</b>. (making은 능동)"}
+      { boxes:[
+          {l:'A', c:['was','were'], a:0, ex:'주어 <b class="en">the Word</b>는 단수이므로 <b class="en">was</b>. (주어–동사 수 일치)'},
+          {l:'B', c:['made','was made'], a:1, ex:'만물이 “만들어졌다”는 <b>수동태</b>이므로 <b class="en">was made</b>. (made 능동은 어색)'},
+          {l:'C', c:['who','whose'], a:1, ex:'뒤에 명사 <b class="en">name</b>이 오므로 <b>소유격 관계대명사 whose</b>.'}
+        ],
+        seg:['In the beginning the Word already existed, and the Word ',0,' God. Everything ',1,' through him; nothing was made without him. There was a man ',2,' name was John.'],
+        opts:['was – made – who','was – was made – whose','were – made – whose','was – was made – who','were – was made – whose'], ansOpt:1 },
+      { boxes:[
+          {l:'A', c:['shine','shines'], a:1, ex:'주어 <b class="en">The light</b>는 3인칭 단수·현재이므로 <b class="en">shines</b>(-s). (동사의 수)'},
+          {l:'B', c:['sent','sending'], a:0, ex:'“보내진” 사람이므로 <b>과거분사 sent</b>(수동). (sending은 능동)'},
+          {l:'C', c:['believes','might believe'], a:1, ex:'목적을 나타내는 <b class="en">so that … might</b> 구문이므로 <b class="en">might believe</b>.'}
+        ],
+        seg:['The light ',0,' in the darkness. A man was ',1,' from God as a witness, so that everyone ',2,' through him.'],
+        opts:['shines – sent – might believe','shine – sent – believes','shines – sending – might believe','shine – sent – might believe','shines – sent – believes'], ansOpt:0 }
     ];
-    $('suneung').innerHTML=SUNEUNG.map(function(e,i){ return '<div data-i="'+i+'"><p class="en text-[14.5px] leading-relaxed mb-1.5"><b class="not-italic">'+(i+1)+'.</b> '+esc(e.pre)+'<span class="inline-flex gap-1 align-middle mx-1">'+e.box.map(function(o,j){return '<button onclick="suPick('+i+','+j+',this)" class="suopt en border border-ink/25 rounded px-2 py-0.5 text-[13.5px] font-semibold hover:border-gold hover:text-gold transition">'+esc(o)+'</button>';}).join('<span class="text-neutral-400 self-center">/</span>')+'</span>'+esc(e.post)+'</p><p class="sumsg text-[12.5px] leading-relaxed"></p></div>'; }).join('');
-    function suPick(i,j,btn){ var e=SUNEUNG[i],box=document.querySelector('#suneung [data-i="'+i+'"]'),ok=j===e.a; box.querySelectorAll('.suopt').forEach(function(b){b.classList.remove('bg-gold','text-white','border-gold','bg-rose-50');}); btn.classList.add(ok?'bg-gold':'bg-rose-50'); if(ok)btn.classList.add('text-white'); var m=box.querySelector('.sumsg'); m.innerHTML=(ok?'✅ 정답! ':'❌ 정답은 <b>'+esc(e.box[e.a])+'</b>. ')+e.ex; m.style.color=ok?'#00704a':'#9f1239'; }
+    function renderSuneung(){ $('suneung').innerHTML=SUNEUNG.map(function(e,i){
+      var passage=e.seg.map(function(s){ if(typeof s==='number'){ var b=e.boxes[s]; return '<span class="subox">('+b.l+') <span class="bx" data-b="'+s+'-0">'+esc(b.c[0])+'</span> / <span class="bx" data-b="'+s+'-1">'+esc(b.c[1])+'</span></span>'; } return esc(s); }).join('');
+      var opts=e.opts.map(function(o,j){ return '<button onclick="suPick('+i+','+j+',this)" class="suopt block w-full text-left en border border-ink/15 rounded-lg px-3 py-1.5 text-[13.5px] font-semibold hover:border-gold hover:text-gold transition">'+CIRC[j]+' '+esc(o)+'</button>'; }).join('');
+      return '<div data-i="'+i+'"><p class="text-[11.5px] font-bold text-neutral-900/45 mb-1.5">문제 '+(i+1)+'. 다음 글의 (A), (B), (C)에서 어법상 알맞은 것끼리 짝지은 것은?</p><div class="bg-[#eef5f1] rounded-xl p-3.5 mb-2"><p class="en text-[13.5px] leading-[2] text-neutral-900/85">'+passage+'</p></div><div class="grid gap-1.5">'+opts+'</div><div class="sumsg text-[12.5px] mt-2 leading-relaxed"></div></div>';
+    }).join(''); }
+    function suPick(i,j,btn){ var e=SUNEUNG[i],box=document.querySelector('#suneung [data-i="'+i+'"]'),ok=j===e.ansOpt;
+      box.querySelectorAll('.suopt').forEach(function(b){b.classList.remove('bg-gold','text-white','bg-rose-50');}); btn.classList.add(ok?'bg-gold':'bg-rose-50'); if(ok)btn.classList.add('text-white');
+      box.querySelectorAll('.bx').forEach(function(sp){sp.classList.remove('text-gold','font-bold','underline');});
+      e.boxes.forEach(function(b,bi){ var sp=box.querySelector('.bx[data-b="'+bi+'-'+b.a+'"]'); if(sp)sp.classList.add('text-gold','font-bold','underline'); });
+      var head='<p class="font-bold mb-1" style="color:'+(ok?'#00704a':'#9f1239')+'">'+(ok?'✅ 정답! '+CIRC[e.ansOpt]:'❌ 정답은 '+CIRC[e.ansOpt]+' ('+esc(e.opts[e.ansOpt])+')')+'</p>';
+      var body=e.boxes.map(function(b){ return '<p class="text-neutral-900/70 mb-0.5">('+b.l+') <b class="en text-gold">'+esc(b.c[b.a])+'</b> — '+b.ex+'</p>'; }).join('');
+      box.querySelector('.sumsg').innerHTML=head+body; }
     window.suPick=suPick;
 
     /* ===== 암송(빈칸 단계) ===== */
@@ -384,7 +413,7 @@
     window.ansQ=ansQ;
 
     // init
-    setSpeed(0.75,'spd1'); setLevel(15,'lv15'); renderMem(); paintTabs();
+    setSpeed(0.75,'spd1'); setLevel(15,'lv15'); renderSuneung(); renderMem(); paintTabs();
   </script>
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
