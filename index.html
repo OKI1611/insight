@@ -250,24 +250,26 @@
   <script>
   (function(){
     var S=[
-      {bg:'#213a6b',bt:'#213a6b',ct:'#213a6b',href:'watch.html',tab:'무료로 시작하기',badge:'누구나 무료',title:'말씀으로<br><span style="color:#74c69d">시대를 읽다</span>',sub:'천년왕국·종말론 강의 310편, 전부 무료로 정주행',cta:'무료로 강의 듣기'},
-      {bg:'#2b5fb0',bt:'#1c4a86',ct:'#1c4a86',href:'curriculum.html',tab:'대표 시리즈',badge:'대표 시리즈',title:'천년왕국 세미나<br><span style="color:#74c69d">시즌 1</span>',sub:'8주 완주 커리큘럼 · 유튜브 147만+ 조회',cta:'지금 정주행하기'},
-      {bg:'#00704a',bt:'#0d5645',ct:'#0d5645',href:'welcome.html',tab:'5일 무료 체험',badge:'지금 가입하면',title:'5일 <span style="color:#ffe08a">무료 체험</span>',sub:'인증 과정 유료 자료를 5일간 무료로 열어드려요',cta:'무료 체험 시작'},
-      {bg:'#00704a',bt:'#7a642c',ct:'#7a642c',href:'founding.html',tab:'1기 창립멤버',badge:'선착순 1기',title:'1기 <span style="color:#fff">창립 멤버</span> 혜택',sub:'정가 20% 평생 할인 · 한정 모집 마감 임박',cta:'창립 혜택 받기'}
+      {bg:'#213a6b',href:'watch.html',tab:'무료로 시작하기',badge:'누구나 무료',title:'말씀으로<br><span style="color:#8fd6b4">시대를 읽다</span>',sub:'천년왕국·종말론·성경적 세계관 강의 310편, 전부 무료',cta:'무료로 강의 듣기'},
+      {bg:'#2b5fb0',href:'curriculum.html',tab:'대표 시리즈',badge:'우리 사이트 간판',title:'천년왕국 세미나<br><span style="color:#ffe08a">예언의 기초부터 완주까지</span>',sub:'유튜브 147만+ 조회 · 단계별 커리큘럼으로 완주',cta:'지금 정주행하기'},
+      {bg:'#0e7a68',href:'bible.html',tab:'성경 공부 도구',badge:'전부 무료',title:'성경, <span style="color:#ffe08a">직접 읽고 공부하다</span>',sub:'성경 읽기·성경사전 3,000+·성경 Q&A·통독·암송, 모두 무료',cta:'공부 시작하기'},
+      {bg:'#9a6a1b',href:'academy.html',tab:'인증과정·창립멤버',badge:'선착순 1기',title:'아카데미 <span style="color:#fff3d6">인증과정</span>',sub:'체계적 급수·수료증 · 1기 창립멤버 20% 평생할인',cta:'인증과정 보기'}
     ];
     var hero=document.getElementById('hpHero'); if(!hero) return;
+    hero.style.transition='background .5s ease';
     var tabs=document.getElementById('hpTabs'), dots=document.getElementById('hpDots'), idx=0, timer;
     function paint(i){ var s=S[i]; idx=i;
       hero.style.background=s.bg; hero.setAttribute('href',s.href);
-      var bd=document.getElementById('hpBadge'); bd.textContent=s.badge; bd.style.color=s.bt;
+      var bd=document.getElementById('hpBadge'); bd.textContent=s.badge; bd.style.color=s.bg;
       document.getElementById('hpTitle').innerHTML=s.title;
       document.getElementById('hpSub').innerHTML=s.sub;
-      var c=document.getElementById('hpCta'); c.textContent=s.cta+' →'; c.style.color=s.ct;
-      tabs.innerHTML=S.map(function(x,j){var on=j===i;return '<button data-j="'+j+'" style="text-align:left;cursor:pointer;border-radius:10px;padding:12px 13px;font-size:13.5px;font-weight:500;border:1px solid '+(on?'#d7e4f6':'rgba(33,58,107,.1)')+';background:'+(on?'#eef4fc':'#fff')+';color:'+(on?'#213a6b':'#6a7286')+'">'+x.tab+'</button>';}).join('');
+      var c=document.getElementById('hpCta'); c.textContent=s.cta+' →'; c.style.color=s.bg;
+      // 왼쪽 탭도 현재 슬라이드 색으로 동시 전환(활성=꽉 찬 색, 나머지=옅은 틴트) — 역동적
+      tabs.innerHTML=S.map(function(x,j){var on=j===i;return '<button data-j="'+j+'" style="text-align:left;cursor:pointer;border-radius:10px;padding:12px 13px;font-size:13.5px;font-weight:'+(on?'700':'500')+';transition:background .4s ease,color .4s ease,border-color .4s ease;border:1px solid '+(on?s.bg:s.bg+'2e')+';background:'+(on?s.bg:s.bg+'12')+';color:'+(on?'#fff':s.bg)+'">'+x.tab+'</button>';}).join('');
       Array.prototype.forEach.call(tabs.querySelectorAll('button'),function(b){ b.onclick=function(){ paint(+b.getAttribute('data-j')); restart(); }; });
       dots.innerHTML=S.map(function(x,j){return '<span style="width:6px;height:6px;border-radius:50%;background:'+(j===i?'#fff':'rgba(255,255,255,.45)')+'"></span>';}).join('');
     }
-    function restart(){ clearInterval(timer); timer=setInterval(function(){ paint((idx+1)%S.length); },3000); }
+    function restart(){ clearInterval(timer); timer=setInterval(function(){ paint((idx+1)%S.length); },3500); }
     paint(0); restart();
   })();
   </script>
