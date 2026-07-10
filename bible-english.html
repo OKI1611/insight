@@ -101,23 +101,23 @@
       <div class="flex items-center gap-2 mb-3 flex-wrap">
         <p class="text-[13px] text-neutral-900/50">📖 7구절 속 <b class="text-neutral-900/70">중요·핵심 단어</b>를 골랐어요. 수준을 골라 보세요.</p>
         <div class="ml-auto inline-flex rounded-full border border-ink/12 overflow-hidden text-[12px]">
-          <button id="lv10" onclick="setLevel(10,'lv10')" class="toolbtn px-3 py-1 font-bold">초급 10</button>
-          <button id="lv20" onclick="setLevel(20,'lv20')" class="toolbtn px-3 py-1 font-bold border-l border-ink/12">중급 20</button>
-          <button id="lv30" onclick="setLevel(30,'lv30')" class="toolbtn px-3 py-1 font-bold border-l border-ink/12">고급 30</button>
+          <button id="lv15" onclick="setLevel(15,'lv15')" class="toolbtn px-3 py-1 font-bold">기본 15</button>
+          <button id="lv25" onclick="setLevel(25,'lv25')" class="toolbtn px-3 py-1 font-bold border-l border-ink/12">심화 25</button>
         </div>
       </div>
       <p class="text-[11.5px] text-neutral-900/40 mb-2">단어를 누르면 발음을 들려줘요. 💬는 영어 뜻풀이예요.</p>
       <div id="words" class="grid sm:grid-cols-2 gap-2.5"></div>
       <div class="mt-4 bg-white border border-gold/25 rounded-2xl shadow-soft p-5">
-        <p class="font-bold text-ink mb-1">🧩 단어 테스트 — 성경 표현에 알맞은 단어를 고르세요</p>
-        <div id="wtest" class="space-y-4 mt-3"></div>
+        <p class="font-bold text-ink mb-1">🧩 단어 뜻 맞히기 — 단어를 보고 알맞은 뜻을 고르세요</p>
+        <p class="text-[11.5px] text-neutral-900/45 mt-0.5">가볍게 확인해 봐요. 틀려도 괜찮아요!</p>
+        <div id="wtest" class="space-y-2.5 mt-3"></div>
         <p id="wscore" class="text-[13px] font-bold text-gold mt-3"></p>
       </div>
     </section>
 
     <!-- STEP 3 어법 -->
     <section class="step" data-step="2">
-      <p class="text-[13px] text-neutral-900/50 mb-3">🧠 <b class="text-neutral-900/70">구절마다 문법을 깊이 있게.</b> 오늘 배운 문법은 토익·텝스에도 그대로 나와요.</p>
+      <p class="text-[13px] text-neutral-900/50 mb-3">🧠 <b class="text-neutral-900/70">구절마다 문법을 깊이 있게.</b> 어렵지 않아요 — 하나씩 천천히 짚어 봐요.</p>
       <div id="grammar" class="space-y-2.5"></div>
       <div class="mt-3 bg-white border border-ink/10 rounded-2xl shadow-soft p-4">
         <p class="font-bold text-ink mb-2">🕰 옛말 → 오늘말</p>
@@ -128,16 +128,20 @@
           <tr><td class="py-1.5 en text-neutral-900/40 line-through">the same</td><td class="en text-gold font-semibold">he / that one</td><td>바로 그</td></tr>
         </table>
       </div>
-      <!-- 실전 문제 (토익·텝스 유형) -->
+      <!-- 실전 문제 -->
       <div class="mt-3 bg-white border border-ink/10 rounded-2xl shadow-soft p-5">
-        <p class="font-bold text-ink mb-1">📝 실전 문제 <span class="text-[12px] font-normal text-neutral-900/45">(TOEIC · TEPS Part 5 유형)</span></p>
-        <p class="text-[12px] text-neutral-900/45 mb-3">빈칸에 알맞은 것을 고르세요. 오늘 배운 문법이 그대로 나와요.</p>
+        <p class="font-bold text-ink mb-1">📝 실전 문제</p>
+        <p class="text-[12px] text-neutral-900/45 mb-2">오늘 배운 어법을 실제 시험 유형으로 풀어 봐요.</p>
+
+        <p class="text-[12.5px] font-bold text-gold mt-4 mb-2">① TOEIC · TEPS 유형 <span class="font-normal text-neutral-900/40">— 빈칸에 알맞은 것</span></p>
         <div id="exam" class="space-y-5"></div>
-      </div>
-      <div class="mt-3 bg-[#eef5f1] rounded-2xl p-4">
-        <div class="flex items-center gap-2 mb-1.5"><p class="text-gold font-bold text-[13px]">🗣 오늘의 영어로 · 쉬운 현대 영어</p>
-          <button onclick="speak(document.getElementById('modernTxt').textContent)" class="ml-auto text-[12px] font-bold text-gold border border-gold/30 rounded-full px-2.5 py-1 hover:bg-gold/10">🔊 듣기</button></div>
-        <p id="modernTxt" class="en text-[15px] leading-[1.75] text-neutral-900/85">In the beginning, the Word already existed. The Word was with God, and the Word was God. He was with God from the very beginning. Everything was made through him; nothing was made without him. In him was life, and that life was the light of all people. The light shines in the darkness, and the darkness has not put it out. There was a man sent from God, whose name was John. He came as a witness to speak about the Light, so that everyone might believe through him.</p>
+
+        <p class="text-[12.5px] font-bold text-gold mt-6 mb-1.5">② 수능 어법 유형 <span class="font-normal text-neutral-900/40">— 네모 안에서 어법상 알맞은 것</span></p>
+        <div class="bg-[#eef5f1] rounded-xl p-3.5 mb-3">
+          <p class="text-[11px] font-bold text-gold mb-1">지문 · 오늘의 영어로(쉬운 현대 영어)</p>
+          <p id="modernTxt" class="en text-[13.5px] leading-[1.7] text-neutral-900/80">In the beginning, the Word already existed. The Word was with God, and the Word was God. Everything was made through him; nothing was made without him. In him was life, and that life was the light of all people. The light shines in the darkness, and the darkness has not put it out. There was a man sent from God, whose name was John. He came as a witness, so that everyone might believe through him.</p>
+        </div>
+        <div id="suneung" class="space-y-4"></div>
       </div>
     </section>
 
@@ -312,22 +316,24 @@
     var LEVEL=10;
     function renderWords(){ var arr=POOL.slice(0,LEVEL);
       $('words').innerHTML=arr.map(function(x){ return '<button onclick="speak(\''+x[0].replace(/'/g,"")+'\')" class="text-left bg-white border border-ink/10 rounded-xl shadow-soft px-4 py-3 hover:border-gold/40 transition flex items-start gap-3"><span class="flex-1 min-w-0"><span class="en font-bold text-[15px] text-ink">'+esc(x[0])+'</span> <span class="text-[11px] text-neutral-900/40">'+esc(x[3])+'</span><span class="block"><span class="ipa text-gold text-[13px]">'+esc(x[1])+'</span> <span class="text-[9px] text-neutral-900/40 align-middle">'+esc(x[2])+'</span></span><span class="block text-[13px] text-neutral-900/70 mt-0.5">'+esc(x[4])+'</span><span class="block text-[11.5px] text-neutral-900/45 mt-1 en">💬 '+esc(x[5])+'</span></span><span class="text-gold/60 shrink-0">🔊</span></button>'; }).join(''); }
-    function setLevel(n,id){ LEVEL=n; ['lv10','lv20','lv30'].forEach(function(x){$(x).classList.toggle('on',x===id);}); renderWords(); }
+    function setLevel(n,id){ LEVEL=n; ['lv15','lv25'].forEach(function(x){$(x).classList.toggle('on',x===id);}); renderWords(); }
     window.setLevel=setLevel;
 
-    /* ===== 단어 테스트 ===== */
-    var WT=[
-      {s:['In the ',' was the Word.'],a:'beginning',ko:'태초에 말씀이 계시니라',opt:['beginning','darkness','witness']},
-      {s:['In him was ','; and the life was the light of men.'],a:'life',ko:'그 안에 생명이 있었으니',opt:['light','life','word']},
-      {s:['',' him was not any thing made.'],a:'Without',ko:'그가 없이 된 것은 하나도 없느니라',opt:['Within','Without','With']},
-      {s:['a man ',' name was John.'],a:'whose',ko:'그의 이름은 요한이라',opt:['who','whose','which']},
-      {s:['to bear ',' of the Light.'],a:'witness',ko:'그 빛에 대하여 증언하여',opt:['witness','darkness','beginning']},
-      {s:['that all men might ',' through him.'],a:'believe',ko:'모든 사람이 믿게 하려 함이라',opt:['witness','believe','shine']}
+    /* ===== 단어 뜻 맞히기(쉽고 직관적) ===== */
+    var MT=[
+      {w:'God', a:'하나님', o:['하나님','어둠','증인']},
+      {w:'light', a:'빛', o:['이름','빛','생명']},
+      {w:'life', a:'생명', o:['어둠','말씀','생명']},
+      {w:'darkness', a:'어둠', o:['어둠','빛','사람']},
+      {w:'witness', a:'증인·증언', o:['시작','증인·증언','만들다']},
+      {w:'believe', a:'믿다', o:['보내다','비치다','믿다']},
+      {w:'without', a:'~ 없이', o:['~ 없이','~와 함께','~을 통하여']},
+      {w:'shine', a:'비치다', o:['깨닫다','비치다','오다']}
     ];
-    var wtDone=0;
-    $('wtest').innerHTML=WT.map(function(q,i){ return '<div class="border-b border-ink/6 pb-3" data-i="'+i+'"><p class="en text-[15px] mb-1.5">'+esc(q.s[0])+'<span class="wblank inline-block min-w-[76px] text-center border-b-2 border-ink/25 text-gold font-bold"></span>'+esc(q.s[1])+'</p><p class="text-[11.5px] text-neutral-900/45 mb-2">'+esc(q.ko)+'</p><div class="flex flex-wrap gap-1.5">'+q.opt.map(function(o){return '<button onclick="wtPick('+i+',this,\''+o+'\')" class="en border border-ink/15 rounded-full px-3 py-1 text-[13px] font-semibold hover:border-gold hover:text-gold transition">'+esc(o)+'</button>';}).join('')+'</div></div>'; }).join('');
-    function wtPick(i,btn,val){ var q=WT[i],box=document.querySelector('#wtest [data-i="'+i+'"]'),blank=box.querySelector('.wblank'),ok=val.toLowerCase()===q.a.toLowerCase(); blank.textContent=val; blank.style.color=ok?'#00704a':'#e11d48'; box.querySelectorAll('button').forEach(function(b){b.classList.remove('bg-gold','text-white','border-gold');}); btn.classList.add(ok?'bg-gold':'border-gold'); if(ok)btn.classList.add('text-white'); if(ok){ speak(q.a); if(!box.dataset.done){box.dataset.done='1';wtDone++;} } $('wscore').textContent='맞힌 개수 '+wtDone+' / '+WT.length+(wtDone===WT.length?' — 완벽해요! 🎉':' · 틀려도 괜찮아요!'); }
-    window.wtPick=wtPick;
+    var mtDone=0;
+    $('wtest').innerHTML=MT.map(function(q,i){ return '<div class="flex items-center gap-3 flex-wrap border-b border-ink/6 pb-2.5" data-i="'+i+'"><span class="en font-bold text-[16px] text-ink" style="min-width:92px">'+esc(q.w)+'</span><div class="flex flex-wrap gap-1.5">'+q.o.map(function(o){return '<button onclick="mtPick('+i+',this,\''+o+'\')" class="opt border border-ink/15 rounded-full px-3 py-1 text-[13px] font-semibold hover:border-gold hover:text-gold transition">'+esc(o)+'</button>';}).join('')+'</div></div>'; }).join('');
+    function mtPick(i,btn,val){ var q=MT[i],box=document.querySelector('#wtest [data-i="'+i+'"]'),ok=val===q.a; box.querySelectorAll('.opt').forEach(function(b){b.classList.remove('bg-gold','text-white','border-gold','bg-rose-50','text-rose-600');}); if(ok){btn.classList.add('bg-gold','text-white');} else {btn.classList.add('bg-rose-50','text-rose-600'); box.querySelectorAll('.opt').forEach(function(b){ if(b.textContent===q.a)b.classList.add('border-gold');}); } if(ok&&!box.dataset.done){box.dataset.done='1';mtDone++;} $('wscore').textContent='맞힌 개수 '+mtDone+' / '+MT.length+(mtDone===MT.length?' — 완벽해요! 🎉':''); }
+    window.mtPick=mtPick;
 
     /* ===== 어법(구절별 심화) ===== */
     var GRAM=[
@@ -350,6 +356,16 @@
     function exPick(i,j,btn){ var e=EXAM[i],box=document.querySelector('#exam [data-i="'+i+'"]'),ok=j===e.a; box.querySelectorAll('button').forEach(function(b){b.classList.remove('bg-gold','text-white','border-gold','bg-rose-50');}); btn.classList.add(ok?'bg-gold':'bg-rose-50'); if(ok)btn.classList.add('text-white'); var m=box.querySelector('.exmsg'); m.innerHTML=(ok?'✅ 정답! ':'❌ 정답은 ('+String.fromCharCode(65+e.a)+') '+esc(e.opt[e.a])+'. ')+e.ex; m.style.color=ok?'#00704a':'#9f1239'; }
     window.exPick=exPick;
 
+    /* ===== 수능 어법 유형(네모 안에서 고르기) ===== */
+    var SUNEUNG=[
+      {pre:'In him ', box:['was','were'], a:0, post:' life, and that life was the light of all people.', ex:"주어 <b>life</b>가 단수이므로 <b>was</b>. (주어–동사 수 일치)"},
+      {pre:'The light ', box:['shines','shine'], a:0, post:' in the darkness.', ex:"주어 <b>The light</b>는 3인칭 단수, 현재시제이므로 <b>shines</b>(-s). (동사의 수)"},
+      {pre:'Everything was ', box:['made','making'], a:0, post:' through him.', ex:"‘만들어졌다’는 <b>수동태(be + 과거분사)</b>이므로 <b>made</b>. (making은 능동)"}
+    ];
+    $('suneung').innerHTML=SUNEUNG.map(function(e,i){ return '<div data-i="'+i+'"><p class="en text-[14.5px] leading-relaxed mb-1.5"><b class="not-italic">'+(i+1)+'.</b> '+esc(e.pre)+'<span class="inline-flex gap-1 align-middle mx-1">'+e.box.map(function(o,j){return '<button onclick="suPick('+i+','+j+',this)" class="suopt en border border-ink/25 rounded px-2 py-0.5 text-[13.5px] font-semibold hover:border-gold hover:text-gold transition">'+esc(o)+'</button>';}).join('<span class="text-neutral-400 self-center">/</span>')+'</span>'+esc(e.post)+'</p><p class="sumsg text-[12.5px] leading-relaxed"></p></div>'; }).join('');
+    function suPick(i,j,btn){ var e=SUNEUNG[i],box=document.querySelector('#suneung [data-i="'+i+'"]'),ok=j===e.a; box.querySelectorAll('.suopt').forEach(function(b){b.classList.remove('bg-gold','text-white','border-gold','bg-rose-50');}); btn.classList.add(ok?'bg-gold':'bg-rose-50'); if(ok)btn.classList.add('text-white'); var m=box.querySelector('.sumsg'); m.innerHTML=(ok?'✅ 정답! ':'❌ 정답은 <b>'+esc(e.box[e.a])+'</b>. ')+e.ex; m.style.color=ok?'#00704a':'#9f1239'; }
+    window.suPick=suPick;
+
     /* ===== 암송(빈칸 단계) ===== */
     var MEM="In him was life ; and the life was the light of men .".split(' ');
     var memLv=0; // 0 full ~ 3 all
@@ -368,7 +384,7 @@
     window.ansQ=ansQ;
 
     // init
-    setSpeed(0.75,'spd1'); setLevel(10,'lv10'); renderMem(); paintTabs();
+    setSpeed(0.75,'spd1'); setLevel(15,'lv15'); renderMem(); paintTabs();
   </script>
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
