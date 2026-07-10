@@ -7,7 +7,7 @@
   <script src="/section-sidenav.js?v=10"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>바이블 잉글리시 · 성경으로 배우는 영어 — BIBLY 바이블 인사이트</title>
-  <meta name="description" content="성경으로 영어를 배우는 바이블 잉글리시. 듣기·단어·어법·암송·연습을 유닛별 단계 학습으로. 발음(IPA)·쉬운 영어·토익/텝스·수능 어법까지." />
+  <meta name="description" content="성경으로 영어를 배우는 바이블 잉글리시. 성경책·장을 골라 유닛별로 듣기·단어·어법·암송·연습 단계 학습. 발음(IPA)·쉬운 영어·토익/수능 어법까지." />
   <link rel="canonical" href="https://biblynote.com/bible-english" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="BIBLY 바이블 인사이트" />
@@ -30,7 +30,7 @@
     h1,h2,h3{font-family:'Pretendard',system-ui,sans-serif}
     .en{font-family:Georgia,'Times New Roman',serif}
     .eyebrow{letter-spacing:.28em;text-transform:uppercase}
-    .ucard{opacity:0;transform:translateY(8px);animation:rise .4s ease forwards}
+    .ucard{opacity:0;transform:translateY(8px);animation:rise .38s ease forwards}
     @keyframes rise{to{opacity:1;transform:none}}
   </style>
 </head>
@@ -40,37 +40,37 @@
 
   <!-- Hero -->
   <section class="bg-gradient-to-b from-sand/60 to-paper border-b border-ink/8">
-    <div class="max-w-3xl mx-auto px-5 py-9 md:py-12 text-center">
+    <div class="max-w-3xl mx-auto px-5 py-8 md:py-11 text-center">
       <p class="eyebrow text-gold text-[11px] font-bold mb-3">Bible English · 바이블 잉글리시</p>
       <h1 class="text-2xl md:text-[30px] font-bold leading-tight">성경으로 <span class="text-gold">배우는 영어</span></h1>
-      <p class="text-neutral-900/60 text-sm mt-2.5 leading-relaxed max-w-xl mx-auto">한 유닛씩 <b class="text-neutral-900/75">듣고 · 익히고 · 외우고 · 말해</b> 보며 영어도 배우고 말씀도 알아가는 학습 코너.</p>
-      <!-- 학습 흐름 -->
+      <p class="text-neutral-900/60 text-sm mt-2.5 leading-relaxed max-w-xl mx-auto">성경책과 장을 고르면, 한 유닛씩 <b class="text-neutral-900/75">듣고 · 익히고 · 외우고 · 말해</b> 보며 학습합니다.</p>
       <div class="inline-flex items-center gap-1.5 mt-5 text-[11.5px] font-semibold text-neutral-900/50 flex-wrap justify-center">
-        <span class="bg-white border border-ink/10 rounded-full px-2.5 py-1 shadow-soft">🎧 듣기</span><span class="text-neutral-900/25">→</span>
-        <span class="bg-white border border-ink/10 rounded-full px-2.5 py-1 shadow-soft">🔤 단어</span><span class="text-neutral-900/25">→</span>
-        <span class="bg-white border border-ink/10 rounded-full px-2.5 py-1 shadow-soft">🧠 어법</span><span class="text-neutral-900/25">→</span>
-        <span class="bg-white border border-ink/10 rounded-full px-2.5 py-1 shadow-soft">💛 암송</span><span class="text-neutral-900/25">→</span>
-        <span class="bg-white border border-ink/10 rounded-full px-2.5 py-1 shadow-soft">✅ 연습</span>
+        <span class="bg-white border border-ink/10 rounded-full px-2.5 py-1 shadow-soft">듣기</span><span class="text-neutral-900/25">→</span>
+        <span class="bg-white border border-ink/10 rounded-full px-2.5 py-1 shadow-soft">단어</span><span class="text-neutral-900/25">→</span>
+        <span class="bg-white border border-ink/10 rounded-full px-2.5 py-1 shadow-soft">어법</span><span class="text-neutral-900/25">→</span>
+        <span class="bg-white border border-ink/10 rounded-full px-2.5 py-1 shadow-soft">암송</span><span class="text-neutral-900/25">→</span>
+        <span class="bg-white border border-ink/10 rounded-full px-2.5 py-1 shadow-soft">연습</span>
       </div>
     </div>
   </section>
 
-  <div class="max-w-3xl mx-auto px-4 md:px-5 py-7">
-    <!-- 진도 요약 + 이어 학습 -->
-    <div id="summary" class="flex items-center gap-3 mb-4 flex-wrap">
+  <div class="max-w-3xl mx-auto px-4 md:px-5 py-6">
+    <!-- 경로(브레드크럼) -->
+    <nav id="crumb" class="flex items-center gap-1.5 text-[12.5px] font-semibold text-neutral-900/45 mb-4 flex-wrap"></nav>
+
+    <!-- 헤더 라인 -->
+    <div class="flex items-center gap-3 mb-4 flex-wrap">
       <div>
-        <p class="text-[13px] font-bold text-ink">유닛 목록</p>
-        <p id="progText" class="text-[11.5px] text-neutral-900/45">불러오는 중…</p>
+        <p id="viewTitle" class="text-[15px] font-bold text-ink">성경책 선택</p>
+        <p id="viewSub" class="text-[11.5px] text-neutral-900/45">불러오는 중…</p>
       </div>
-      <a id="resumeBtn" href="#" class="hidden ml-auto text-[13px] font-bold text-white bg-gold rounded-full px-4 py-2 hover:opacity-90 transition">▶ 이어서 학습하기</a>
+      <a id="resumeBtn" href="#" class="hidden ml-auto text-[13px] font-bold text-white bg-gold rounded-full px-4 py-2 hover:opacity-90 transition">▶ 이어서 학습</a>
     </div>
 
-    <!-- 유닛 카드 리스트 -->
-    <div id="unitList" class="grid gap-3 sm:grid-cols-2"></div>
+    <div id="view" class="grid gap-3 sm:grid-cols-2"></div>
+    <div id="emptyMsg" class="hidden text-center text-neutral-500 py-12 text-sm">콘텐츠를 불러오지 못했어요. 잠시 후 다시 시도해 주세요.</div>
 
-    <div id="emptyMsg" class="hidden text-center text-neutral-500 py-12 text-sm">유닛을 불러오지 못했어요. 잠시 후 다시 시도해 주세요.</div>
-
-    <p class="text-[11.5px] text-neutral-900/40 mt-6 text-center">새 유닛이 계속 추가됩니다 · KJV(공유저작물) + BIBLY 새 번역 · 음성은 브라우저 내장(무료)</p>
+    <p class="text-[11.5px] text-neutral-900/40 mt-7 text-center">새 성경책·장이 계속 추가됩니다 · KJV(공유저작물) + BIBLY 새 번역 · 음성은 브라우저 내장(무료)</p>
   </div>
 
   <footer class="bg-paper border-t border-neutral-200 py-12 mt-4">
@@ -82,47 +82,91 @@
 
   <script>
     const esc=s=>String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
-    var STEPN=['듣기','단어','어법','암송','연습'];
+    const $=id=>document.getElementById(id);
+    const STEPN=['듣기','단어','어법','암송','연습'];
     function prog(){ try{ return JSON.parse(localStorage.getItem('be_prog')||'{}'); }catch(e){ return {}; } }
+    var UNITS=[];
 
     function statusChip(st){
-      if(st==='done') return '<span class="ml-auto text-[10px] font-bold text-white bg-gold rounded-full px-2 py-0.5">✓ 완료</span>';
-      if(typeof st==='number') return '<span class="ml-auto text-[10px] font-bold text-[#b07d16] bg-[#fbf3dc] rounded-full px-2 py-0.5">이어서 · STEP '+(st+1)+'</span>';
-      return '<span class="ml-auto text-[10px] font-bold text-neutral-900/40 bg-ink/5 rounded-full px-2 py-0.5">시작 전</span>';
+      if(st==='done') return '<span class="text-[10px] font-bold text-white bg-gold rounded-full px-2 py-0.5">완료</span>';
+      if(typeof st==='number') return '<span class="text-[10px] font-bold text-[#b07d16] bg-[#fbf3dc] rounded-full px-2 py-0.5">이어서 · STEP '+(st+1)+'</span>';
+      return '<span class="text-[10px] font-bold text-neutral-900/40 bg-ink/5 rounded-full px-2 py-0.5">시작 전</span>';
     }
-    function render(units){
-      var p=prog(), done=0, resumeId=null;
-      var html=units.map(function(u,idx){
-        var st=p[u.id]; if(st==='done')done++; else if(resumeId===null && (typeof st==='number'))resumeId=u.id;
-        var barPct = st==='done'?100 : (typeof st==='number'? Math.round((st+1)/STEPN.length*100) : 0);
-        return '<a href="/bible-english-unit.html?u='+u.id+'" class="ucard group block bg-white border border-ink/10 rounded-2xl shadow-soft hover:shadow-card hover:border-gold/40 transition p-4" style="animation-delay:'+(idx*60)+'ms">'
-          +'<div class="flex items-center gap-3.5">'
-            +'<div class="shrink-0 w-14 h-14 rounded-2xl bg-gold/10 grid place-items-center text-[26px]">'+esc(u.emoji||'📘')+'</div>'
-            +'<div class="flex-1 min-w-0">'
-              +'<div class="flex items-center gap-2 mb-0.5"><span class="text-[11px] font-bold text-gold">UNIT '+u.id+'</span>'
-                +'<span class="text-[10px] font-semibold text-neutral-900/45 bg-ink/5 rounded-full px-2 py-0.5">'+esc(u.level||'')+'</span>'
-                +statusChip(st)+'</div>'
-              +'<p class="en font-bold text-[16px] text-ink truncate group-hover:text-gold transition">'+esc(u.title)+'</p>'
-              +'<p class="text-[13px] text-neutral-900/55 truncate">'+esc(u.titleKo)+' · '+esc(u.ref)+'</p>'
-            +'</div>'
-            +'<span class="shrink-0 text-gold/40 group-hover:text-gold group-hover:translate-x-0.5 transition text-lg">→</span>'
-          +'</div>'
-          +'<div class="flex items-center gap-2 mt-2.5 text-[11px] text-neutral-900/40">'
-            +'<span>📖 '+u.verses.length+'구절</span><span class="text-neutral-900/20">·</span><span>🔤 단어 '+u.words.length+'</span><span class="text-neutral-900/20">·</span><span>🎯 토익·수능 문제</span>'
-          +'</div>'
-          +'<div class="h-1 bg-ink/8 rounded-full overflow-hidden mt-2"><div class="h-full bg-gold transition-all" style="width:'+barPct+'%"></div></div>'
-        +'</a>';
+    function bar(pct){ return '<div class="h-1 bg-ink/8 rounded-full overflow-hidden mt-2.5"><div class="h-full bg-gold transition-all" style="width:'+pct+'%"></div></div>'; }
+    function card(href,inner,delay){ return '<a href="'+href+'" class="ucard group block bg-white border border-ink/10 rounded-2xl shadow-soft hover:shadow-card hover:border-gold/40 transition p-5" style="animation-delay:'+delay+'ms">'+inner+'</a>'; }
+
+    function setResume(){
+      var p=prog(), rid=null, done=0;
+      UNITS.forEach(function(u){ if(p[u.id]==='done')done++; else if(rid===null && typeof p[u.id]==='number')rid=u.id; });
+      if(rid===null){ var f=UNITS.find(function(u){return p[u.id]!=='done';}); if(f)rid=f.id; }
+      var rb=$('resumeBtn');
+      if(rid!==null){ rb.href='/bible-english-unit.html?u='+rid; rb.classList.remove('hidden'); rb.textContent=(done>0?'▶ 이어서 학습':'▶ 학습 시작'); }
+      else rb.classList.add('hidden');
+    }
+
+    /* ---- 책 목록 ---- */
+    function renderBooks(){
+      $('crumb').innerHTML='<span class="text-ink">성경책</span>';
+      $('viewTitle').textContent='성경책 선택';
+      var p=prog();
+      var order=[], map={};
+      UNITS.forEach(function(u){ if(!map[u.bookEn]){ map[u.bookEn]={book:u.book,bookEn:u.bookEn,chs:{},units:0,done:0}; order.push(u.bookEn);} var m=map[u.bookEn]; m.chs[u.chapter]=1; m.units++; if(p[u.id]==='done')m.done++; });
+      $('viewSub').textContent=order.length+'개 성경책 · 학습할 책을 고르세요';
+      $('view').className='grid gap-3 sm:grid-cols-2';
+      $('view').innerHTML=order.map(function(be,i){ var m=map[be]; var chN=Object.keys(m.chs).length; var pct=m.units?Math.round(m.done/m.units*100):0;
+        return card('?book='+encodeURIComponent(be),
+          '<div class="flex items-center gap-3"><div class="flex-1 min-w-0"><p class="font-bold text-[17px] text-ink group-hover:text-gold transition">'+esc(m.book)+' <span class="en text-neutral-900/40 text-[13px] font-semibold">'+esc(be)+'</span></p><p class="text-[12px] text-neutral-900/50 mt-0.5">'+chN+'개 장 · '+m.units+'개 유닛</p></div><div class="text-right shrink-0"><p class="text-[11px] text-neutral-900/45 mb-0.5">완료 '+m.done+'/'+m.units+'</p><span class="text-gold/50 group-hover:text-gold group-hover:translate-x-0.5 inline-block transition text-lg">→</span></div></div>'+bar(pct), i*60);
       }).join('');
-      document.getElementById('unitList').innerHTML=html;
-      document.getElementById('progText').textContent='전체 '+units.length+'개 유닛 · '+done+'개 완료';
-      // 이어 학습 버튼: 진행중 우선, 없으면 첫 미완료
-      if(resumeId===null){ var firstUndone=units.find(function(u){return p[u.id]!=='done';}); if(firstUndone && done>0) resumeId=firstUndone.id; }
-      var rb=document.getElementById('resumeBtn');
-      if(resumeId!==null){ rb.href='/bible-english-unit.html?u='+resumeId; rb.classList.remove('hidden'); rb.textContent=(done>0?'▶ 이어서 학습하기':'▶ 학습 시작하기'); }
+    }
+
+    /* ---- 장 목록 ---- */
+    function renderChapters(be){
+      var list=UNITS.filter(function(u){return u.bookEn===be;});
+      if(!list.length){ renderBooks(); return; }
+      var bookKo=list[0].book, p=prog();
+      $('crumb').innerHTML='<a href="/bible-english.html" class="hover:text-gold">성경책</a><span class="text-neutral-900/25">›</span><span class="text-ink">'+esc(bookKo)+'</span>';
+      $('viewTitle').textContent=bookKo+' — 장 선택';
+      var chs=[], cmap={};
+      list.forEach(function(u){ if(!cmap[u.chapter]){cmap[u.chapter]={ch:u.chapter,units:0,done:0}; chs.push(u.chapter);} var m=cmap[u.chapter]; m.units++; if(p[u.id]==='done')m.done++; });
+      chs.sort(function(a,b){return a-b;});
+      $('viewSub').textContent='몇 장을 학습할지 고르세요 · '+chs.length+'개 장';
+      $('view').className='grid gap-3 sm:grid-cols-3';
+      $('view').innerHTML=chs.map(function(ch,i){ var m=cmap[ch]; var pct=m.units?Math.round(m.done/m.units*100):0;
+        return card('?book='+encodeURIComponent(be)+'&ch='+ch,
+          '<div class="flex items-center gap-3"><div class="flex-1 min-w-0"><p class="font-bold text-[17px] text-ink group-hover:text-gold transition">'+ch+'장</p><p class="text-[12px] text-neutral-900/50 mt-0.5">'+m.units+'개 유닛 · 완료 '+m.done+'/'+m.units+'</p></div><span class="text-gold/50 group-hover:text-gold inline-block transition text-lg shrink-0">→</span></div>'+bar(pct), i*55);
+      }).join('');
+    }
+
+    /* ---- 유닛 목록 ---- */
+    function renderUnits(be,ch){
+      var list=UNITS.filter(function(u){return u.bookEn===be && u.chapter===ch;}).sort(function(a,b){return a.unitNo-b.unitNo;});
+      if(!list.length){ renderChapters(be); return; }
+      var bookKo=list[0].book, p=prog();
+      $('crumb').innerHTML='<a href="/bible-english.html" class="hover:text-gold">성경책</a><span class="text-neutral-900/25">›</span><a href="?book='+encodeURIComponent(be)+'" class="hover:text-gold">'+esc(bookKo)+'</a><span class="text-neutral-900/25">›</span><span class="text-ink">'+ch+'장</span>';
+      $('viewTitle').textContent=bookKo+' '+ch+'장 — 유닛';
+      $('viewSub').textContent=list.length+'개 유닛 · 순서대로 학습하세요';
+      $('view').className='grid gap-3 sm:grid-cols-2';
+      $('view').innerHTML=list.map(function(u,i){ var st=p[u.id];
+        var pct= st==='done'?100 : (typeof st==='number'? Math.round((st+1)/STEPN.length*100) : 0);
+        return card('/bible-english-unit.html?u='+u.id,
+          '<div class="flex items-start gap-3"><div class="flex-1 min-w-0"><div class="flex items-center gap-2 mb-1"><span class="text-[11px] font-bold text-gold">UNIT '+u.unitNo+'</span>'+statusChip(st)+'</div>'
+          +'<p class="en font-bold text-[16px] text-ink truncate group-hover:text-gold transition">'+esc(u.title)+'</p>'
+          +'<p class="text-[13px] text-neutral-900/55 truncate">'+esc(u.titleKo)+' · '+esc(u.ref)+'</p></div>'
+          +'<span class="shrink-0 text-gold/40 group-hover:text-gold group-hover:translate-x-0.5 transition text-lg mt-0.5">→</span></div>'
+          +'<div class="flex items-center gap-2 mt-2.5 text-[11px] text-neutral-900/40"><span>'+u.verses.length+'구절</span><span class="text-neutral-900/20">·</span><span>단어 '+u.words.length+'</span><span class="text-neutral-900/20">·</span><span>토익·수능 문제</span></div>'
+          +bar(pct), i*60);
+      }).join('');
+    }
+
+    function route(){
+      var q=new URLSearchParams(location.search), be=q.get('book'), ch=q.get('ch');
+      if(!be) renderBooks(); else if(!ch) renderChapters(be); else renderUnits(be, parseInt(ch,10));
+      setResume();
     }
     fetch('/content/be-units.json?t='+Date.now()).then(function(r){return r.json();})
-      .then(function(list){ if(!list||!list.length){ document.getElementById('emptyMsg').classList.remove('hidden'); document.getElementById('progText').textContent=''; return; } render(list); })
-      .catch(function(){ document.getElementById('emptyMsg').classList.remove('hidden'); document.getElementById('progText').textContent=''; });
+      .then(function(list){ if(!list||!list.length){ $('emptyMsg').classList.remove('hidden'); $('viewSub').textContent=''; return; } UNITS=list; route(); })
+      .catch(function(){ $('emptyMsg').classList.remove('hidden'); $('viewSub').textContent=''; });
+    window.addEventListener('popstate', route);
   </script>
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>

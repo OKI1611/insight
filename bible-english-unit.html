@@ -36,7 +36,7 @@
     .easy{display:none} .showeasy .easy{display:block}
     .hideko .ko{display:none}
     .toolbtn.on{background:#00704a;color:#fff}
-    .wcard{perspective:900px;height:128px}
+    .wcard{perspective:900px;height:134px}
     .wcard-inner{position:relative;width:100%;height:100%;transition:transform .55s;transform-style:preserve-3d}
     #words.testing .wcard-inner{transform:rotateY(180deg)}
     .wface{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:12px;overflow:hidden;background:#fff;border:1px solid rgba(33,58,107,.10);box-shadow:0 2px 10px -4px rgba(21,32,58,.10)}
@@ -53,7 +53,7 @@
 
   <section class="bg-gradient-to-b from-sand/60 to-paper border-b border-ink/8">
     <div class="max-w-3xl mx-auto px-5 py-6 md:py-8">
-      <a href="/bible-english.html" class="inline-flex items-center gap-1 text-[12.5px] font-bold text-neutral-900/50 hover:text-gold transition mb-3">← 유닛 목록</a>
+      <a id="backLink" href="/bible-english.html" class="inline-flex items-center gap-1 text-[12.5px] font-bold text-neutral-900/50 hover:text-gold transition mb-3">← 유닛 목록</a>
       <div class="text-center">
         <p class="eyebrow text-gold text-[11px] font-bold mb-2">Bible English · 바이블 잉글리시</p>
         <h1 id="uTitle" class="text-xl md:text-[26px] font-bold leading-tight">불러오는 중…</h1>
@@ -276,7 +276,7 @@
       if($('wtestBtn'))$('wtestBtn').textContent='🎯 단어 테스트 하기'; if($('wscore'))$('wscore').textContent=''; if($('wtestHint'))$('wtestHint').classList.add('hidden');
       $('words').innerHTML=arr.map(function(x,i){
         var opts=quizFor(i);
-        var front='<div class="wface wfront"><button onclick="speak(\''+x[0].replace(/'/g,"")+'\')" class="w-full h-full text-left px-4 py-3 flex items-start gap-2"><span class="flex-1 min-w-0"><span class="en font-bold text-[15px] text-ink">'+esc(x[0])+'</span> <span class="text-[10.5px] text-neutral-900/40">'+esc(x[3])+'</span><span class="block leading-tight"><span class="ipa text-gold text-[12.5px]">'+esc(x[1])+'</span> <span class="text-[9px] text-neutral-900/40">'+esc(x[2])+'</span></span><span class="block text-[13px] text-neutral-900/70 mt-0.5">'+esc(x[4])+'</span><span class="block text-[10.5px] text-neutral-900/45 mt-0.5 en leading-tight">💬 '+esc(x[5])+'</span></span><span class="text-gold/60 shrink-0">🔊</span></button></div>';
+        var front='<div class="wface wfront"><button onclick="speak(\''+x[0].replace(/'/g,"")+'\')" class="w-full h-full text-left px-4 py-3 flex flex-col"><div class="flex items-center gap-1.5"><span class="en font-bold text-[16px] text-ink leading-none">'+esc(x[0])+'</span><span class="text-[9.5px] font-semibold text-gold/80 bg-gold/10 rounded px-1.5 py-0.5">'+esc(x[3])+'</span><span class="ml-auto text-gold/45 text-[13px]">🔊</span></div><div class="flex items-baseline gap-1.5 mt-1.5"><span class="ipa text-gold text-[13px]">'+esc(x[1])+'</span><span class="text-[9px] text-neutral-900/35">'+esc(x[2])+'</span></div><p class="text-[14px] font-semibold text-neutral-900/85 mt-1">'+esc(x[4])+'</p><p class="text-[10.5px] text-neutral-900/40 en leading-snug mt-auto pt-1">'+esc(x[5])+'</p></button></div>';
         var back='<div class="wface wback"><div class="px-3.5 py-2.5 h-full flex flex-col"><p class="text-[10.5px] text-neutral-900/45">이 단어의 뜻은?</p><p class="en font-bold text-[16px] text-ink mb-1.5">'+esc(x[0])+'</p><div class="grid gap-1 mt-auto">'+opts.map(function(o){return '<button onclick="qPick('+i+',this,\''+o.replace(/'/g,"")+'\')" class="qopt text-left border border-ink/15 rounded-lg px-2.5 py-1 text-[12.5px] font-semibold hover:border-gold hover:text-gold transition">'+esc(o)+'</button>';}).join('')+'</div></div></div>';
         return '<div class="wcard" data-i="'+i+'" data-ans="'+esc(x[4])+'"><div class="wcard-inner">'+front+back+'</div></div>';
       }).join(''); }
@@ -301,7 +301,7 @@
     window.exPick=exPick;
 
     /* ---- 수능 어법 ---- */
-    function renderSuneung(){ $('suneung').innerHTML=SUNEUNG.map(function(e,i){
+    function renderSuneung(){ $('suneung').innerHTML=SUNEUNG.slice(0,1).map(function(e,i){
       var passage=e.seg.map(function(s){ if(typeof s==='number'){ var b=e.boxes[s]; return '<span class="subox">('+b.l+') <span class="bx" data-b="'+s+'-0">'+esc(b.c[0])+'</span> / <span class="bx" data-b="'+s+'-1">'+esc(b.c[1])+'</span></span>'; } return esc(s); }).join('');
       var opts=e.opts.map(function(o,j){ return '<button onclick="suPick('+i+','+j+',this)" class="suopt block w-full text-left en border border-ink/15 rounded-lg px-3 py-1.5 text-[13.5px] font-semibold hover:border-gold hover:text-gold transition">'+CIRC[j]+' '+esc(o)+'</button>'; }).join('');
       return '<div data-i="'+i+'"><p class="text-[11.5px] font-bold text-neutral-900/45 mb-1.5">문제 '+(i+1)+'. 다음 글의 (A), (B), (C)에서 어법상 알맞은 것끼리 짝지은 것은?</p><div class="bg-[#eef5f1] rounded-xl p-3.5 mb-2"><p class="en text-[13.5px] leading-[2] text-neutral-900/85">'+passage+'</p></div><div class="grid gap-1.5">'+opts+'</div><div class="sumsg text-[12.5px] mt-2 leading-relaxed"></div></div>';
@@ -328,8 +328,10 @@
     /* ===== 유닛 부팅 ===== */
     function boot(){
       $('uTitle').innerHTML=esc(UNIT.title)+' <span class="text-gold">·</span> <span class="text-neutral-900/60 text-[16px] md:text-[19px] font-semibold">'+esc(UNIT.titleKo)+'</span>';
-      $('uBadge').textContent='UNIT '+UNIT.id;
+      $('uBadge').textContent='UNIT '+(UNIT.unitNo||UNIT.id);
       $('uRef').textContent=UNIT.ref;
+      $('backLink').href='/bible-english.html?book='+encodeURIComponent(UNIT.bookEn||'')+'&ch='+(UNIT.chapter||'');
+      $('backLink').textContent='← '+(UNIT.book||'')+' '+(UNIT.chapter||'')+'장 목록';
       document.title='바이블 잉글리시 · Unit '+UNIT.id+' '+UNIT.title+' — BIBLY';
       VERSES=UNIT.verses; POOL=UNIT.words; GRAM=UNIT.gram; EXAM=UNIT.exam; SUNEUNG=UNIT.suneung||[];
       MEM=(UNIT.mem&&UNIT.mem.en?UNIT.mem.en:'').replace(/([;.,])/g,' $1').split(/\s+/).filter(Boolean);
@@ -340,11 +342,12 @@
       if(UNIT.mem){ $('memRef').textContent=UNIT.mem.ref||''; $('memKo').textContent=UNIT.mem.ko||''; $('memDeep').innerHTML=UNIT.mem.deep||''; $('memTip').innerHTML=UNIT.mem.tip?('✅ <b>암송 팁</b>: '+UNIT.mem.tip):''; $('memSpeak').setAttribute('onclick','speak('+JSON.stringify(UNIT.mem.en)+')'); $('copyRef').textContent=UNIT.mem.en||''; }
       $('spoon').innerHTML=UNIT.spoon || '오늘 배운 한 구절을 소리 내어 읽어 보세요. 말씀은 읽고 들을 때 마음에 새겨집니다.';
       $('doneTitle').textContent='Unit '+UNIT.id+' 완주!';
-      // 다음 유닛
-      var next=UNITS.find(function(u){return u.id===UNIT.id+1;});
+      // 다음 유닛(같은 장 안에서)
+      var next=UNITS.find(function(u){return u.bookEn===UNIT.bookEn && u.chapter===UNIT.chapter && u.unitNo===UNIT.unitNo+1;});
+      var chHref='/bible-english.html?book='+encodeURIComponent(UNIT.bookEn||'')+'&ch='+(UNIT.chapter||'');
       $('nextWrap').innerHTML = next
-        ? '<a href="/bible-english-unit.html?u='+next.id+'" class="inline-block text-[13.5px] font-bold text-white bg-gold rounded-full px-5 py-2.5 hover:opacity-90">다음: Unit '+next.id+' '+esc(next.title)+' →</a>'
-        : '<a href="/bible-english.html" class="inline-block text-[13.5px] font-bold text-gold border border-gold/30 rounded-full px-5 py-2.5 hover:bg-gold/10">유닛 목록으로 →</a>';
+        ? '<a href="/bible-english-unit.html?u='+next.id+'" class="inline-block text-[13.5px] font-bold text-white bg-gold rounded-full px-5 py-2.5 hover:opacity-90">다음: UNIT '+next.unitNo+' '+esc(next.title)+' →</a>'
+        : '<a href="'+chHref+'" class="inline-block text-[13.5px] font-bold text-gold border border-gold/30 rounded-full px-5 py-2.5 hover:bg-gold/10">'+esc(UNIT.book||'')+' '+(UNIT.chapter||'')+'장 목록으로 →</a>';
     }
     function fail(msg){ $('uTitle').textContent='유닛을 불러오지 못했어요'; $('lesson').innerHTML='<p class="text-center text-neutral-500 py-10 text-sm">'+esc(msg)+' <a href="/bible-english.html" class="text-gold font-bold underline">목록으로 돌아가기</a></p>'; }
     (function(){ var id=parseInt(new URLSearchParams(location.search).get('u')||'1',10)||1;
