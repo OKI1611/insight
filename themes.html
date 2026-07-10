@@ -168,7 +168,7 @@
 
     Promise.all([
       fetch('content/themes.json?t='+Date.now()).then(r=>r.json()).catch(()=>({themes:[]})),
-      fetch('dictionary/entries.json').then(r=>r.json()).catch(()=>[]),
+      fetch('dictionary/qa-topic.json').then(r=>r.json()).catch(()=>[]),   // 주제 Q&A만(경량) — entries.json 전체 대신
       fetch('bible/books.json').then(r=>r.ok?r.json():[]).catch(()=>[]),
       fetch(SB+'/rest/v1/site_content?select=data&key=eq.qa_posts',{headers:{apikey:AK,Authorization:'Bearer '+AK}}).then(r=>r.ok?r.json():[]).catch(()=>[])
     ]).then(function(res){
