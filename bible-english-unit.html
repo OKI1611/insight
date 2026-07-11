@@ -315,7 +315,22 @@
     window.toggleWtest=toggleWtest; window.qPick=qPick;
 
     /* ---- 어법 ---- */
-    function renderGram(){ $('grammar').innerHTML=GRAM.map(function(g){ return '<div class="bg-white border border-ink/10 rounded-2xl shadow-soft p-4"><div class="flex items-center gap-2 mb-1.5"><span class="text-[11px] font-bold text-white bg-gold rounded-full px-2 py-0.5">'+g.v+'절</span><span class="en text-[14px] font-semibold text-ink">'+esc(g.ph)+'</span><button onclick="speak(\''+esc(g.ph).replace(/'/g,"\\'")+'\')" class="ml-auto text-gold/70 hover:text-gold text-xs">🔊</button></div><p class="text-[13.5px] text-neutral-900/78 leading-relaxed">'+g.pt+'</p><p class="text-[12.5px] text-neutral-900/50 mt-1.5">'+esc(g.ex)+'</p></div>'; }).join(''); }
+    function renderGram(){ $('grammar').innerHTML=GRAM.map(function(g){
+        var vv=null; for(var i=0;i<VERSES.length;i++){ if(VERSES[i].n===g.v){ vv=VERSES[i]; break; } }
+        var full=vv?vv.en:(g.ph||''); var ph=g.ph||'', disp=esc(full);
+        if(ph){ var idx=full.indexOf(ph); if(idx>=0){ disp=esc(full.slice(0,idx))+'<b class="text-gold">'+esc(ph)+'</b>'+esc(full.slice(idx+ph.length)); } }
+        var say=String(full).replace(/[\\'"]/g,'');
+        return '<div class="grid md:grid-cols-2 bg-white border border-ink/10 rounded-2xl shadow-soft overflow-hidden">'
+          +'<div class="p-4 border-b md:border-b-0 md:border-r border-ink/8 bg-[#f7faf8]">'
+            +'<div class="flex items-center gap-2 mb-2"><span class="text-[11px] font-bold text-white bg-gold rounded-full px-2 py-0.5">'+g.v+'절</span><span class="text-[10px] font-semibold text-neutral-900/35">영문 성경</span><button onclick="speak(\''+say+'\')" class="ml-auto text-gold/70 hover:text-gold text-sm">🔊</button></div>'
+            +'<p class="en text-[15px] leading-relaxed text-neutral-900/90">'+disp+'</p>'
+          +'</div>'
+          +'<div class="p-4">'
+            +'<div class="text-[10px] font-semibold text-neutral-900/35 mb-1.5">문법 설명</div>'
+            +'<p class="text-[13.5px] text-neutral-900/78 leading-relaxed">'+g.pt+'</p>'
+            +'<p class="text-[12.5px] text-neutral-900/50 mt-2">'+esc(g.ex)+'</p>'
+          +'</div>'
+        +'</div>'; }).join(''); }
 
     /* ---- TOEIC/TEPS ---- */
     function renderExam(){ $('exam').innerHTML=EXAM.map(function(e,i){ return '<div data-i="'+i+'"><p class="en text-[14.5px] mb-2"><b>Q'+(i+1)+'.</b> '+esc(e.q)+'</p><div class="flex flex-wrap gap-1.5">'+e.opt.map(function(o,j){return '<button onclick="exPick('+i+','+j+',this)" class="en border border-ink/15 rounded-lg px-3 py-1.5 text-[13.5px] font-semibold hover:border-gold hover:text-gold transition">('+String.fromCharCode(65+j)+') '+esc(o)+'</button>';}).join('')+'</div><p class="exmsg text-[12.5px] mt-2 leading-relaxed"></p></div>'; }).join(''); }
