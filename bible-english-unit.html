@@ -99,21 +99,6 @@
         <button onclick="pbStop()" class="text-[13px] font-bold text-neutral-900/55 border border-ink/15 rounded-full px-3.5 py-2 hover:bg-neutral-50 transition">⏹ 정지</button>
         <span class="text-[11.5px] text-neutral-900/45 ml-1">남·여 음성 번갈아, 읽는 구절은 초록으로 표시돼요.</span>
       </div>
-      <!-- 구간 반복 듣기 학습기 -->
-      <div class="mb-2.5 bg-[#f4f8f5] border border-gold/25 rounded-2xl p-3.5">
-        <div class="flex items-center gap-2 flex-wrap">
-          <span class="text-[12.5px] font-bold text-gold">🔁 구간 반복 듣기</span>
-          <span class="text-[11px] text-neutral-900/45">듣고 싶은 절 구간을 골라 반복해서 들어요</span>
-        </div>
-        <div class="flex items-center gap-1.5 mt-2.5 flex-wrap text-[13px]">
-          <select id="loopA" class="border border-ink/15 rounded-lg px-2 py-1.5 bg-white font-semibold outline-none focus:border-gold"></select>
-          <span class="text-neutral-900/40">~</span>
-          <select id="loopB" class="border border-ink/15 rounded-lg px-2 py-1.5 bg-white font-semibold outline-none focus:border-gold"></select>
-          <button id="loopPlay" onclick="loopToggle()" class="ml-auto text-[12.5px] font-bold text-white bg-gold rounded-full px-3.5 py-1.5 hover:opacity-90 transition">▶ 반복 재생</button>
-          <button onclick="loopClear()" class="text-[12.5px] font-bold text-neutral-900/55 border border-ink/15 rounded-full px-3 py-1.5 hover:bg-white transition">해제</button>
-        </div>
-        <p id="loopStatus" class="hidden text-[11.5px] text-gold font-bold mt-2"></p>
-      </div>
       <div id="passage" class="bg-white border border-ink/8 rounded-2xl shadow-soft p-1.5"></div>
     </section>
 
@@ -157,13 +142,24 @@
           <span id="memRef" class="text-[11px] font-bold text-white bg-gold rounded-full px-2 py-0.5"></span>
           <div class="ml-auto flex items-center gap-1.5">
             <button id="memPlayBtn" onclick="memToggle()" class="text-[12px] font-bold text-white bg-gold rounded-full px-3 py-1 hover:opacity-90">▶ 듣기</button>
-            <button id="memLoopBtn" onclick="memLoopToggle()" class="text-[12px] font-bold text-gold border border-gold/30 rounded-full px-2.5 py-1 hover:bg-gold/10">🔁 반복 듣기</button>
             <button onclick="memStopPlay()" class="text-[12px] font-bold text-neutral-900/50 border border-ink/15 rounded-full px-2.5 py-1 hover:bg-neutral-50">정지</button>
           </div>
         </div>
-        <p id="memPlayStatus" class="hidden text-[11px] text-gold font-bold text-right mb-1"></p>
         <p id="memText" class="en text-[19px] md:text-[21px] leading-[1.7] text-ink text-center py-3"></p>
         <p id="memKo" class="text-[13px] text-neutral-900/55 text-center"></p>
+        <!-- 구간 반복 듣기 학습기 (암송용) -->
+        <div class="mt-4 bg-[#f4f8f5] border border-gold/25 rounded-xl p-3.5">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="text-[12.5px] font-bold text-gold">🔁 구간 반복 학습기</span>
+            <span id="segHint" class="text-[11px] text-neutral-900/45">반복할 어구를 탭하세요 — 시작 어구, 끝 어구 순으로</span>
+          </div>
+          <div id="segChips" class="flex flex-wrap gap-1.5 mt-2.5"></div>
+          <div class="flex items-center gap-1.5 mt-2.5 flex-wrap">
+            <button id="segPlayBtn" onclick="segToggle()" class="text-[12.5px] font-bold text-white bg-gold rounded-full px-3.5 py-1.5 hover:opacity-90 transition disabled:opacity-40" disabled>▶ 구간 반복</button>
+            <button onclick="segClear()" class="text-[12.5px] font-bold text-neutral-900/55 border border-ink/15 rounded-full px-3 py-1.5 hover:bg-white transition">해제</button>
+            <span id="segStatus" class="text-[11.5px] text-gold font-bold ml-auto"></span>
+          </div>
+        </div>
         <div class="flex items-center justify-center gap-2 mt-4">
           <button onclick="memStep(-1)" class="text-[13px] font-semibold border border-ink/15 rounded-full px-4 py-2 hover:bg-neutral-50">← 쉽게</button>
           <span id="memLv" class="text-[12px] font-bold text-gold w-20 text-center"></span>
@@ -350,24 +346,40 @@
       $('memLv').textContent=['전체 보기','1단계','2단계','3단계(도전)'][memLv]; }
     window.memStep=memStep;
 
-    /* ===== 암송 구절 재생(반복 듣기·일시정지) ===== */
-    var mp={state:'idle', loop:false, reps:0};
+    /* ===== 암송 재생: 전체 듣기 + 구간(어구) 반복 학습기 ===== */
+    var mp={state:'idle', loop:false, reps:0, text:'', src:'verse'};
+    var PHRASES=[], segA=null, segB=null;   // 어구 분할 + 선택 구간
     function memTextEn(){ return (UNIT&&UNIT.mem&&UNIT.mem.en)?UNIT.mem.en:''; }
+    // 구절을 어구(구두점 기준)로 분할
+    function buildPhrases(){ var t=memTextEn(); PHRASES=[]; segA=segB=null;
+      if(t){ var re=/[^,;:.]+[,;:.]?/g, m; while((m=re.exec(t))!==null){ var p=m[0].trim(); if(p)PHRASES.push(p); } if(!PHRASES.length)PHRASES=[t]; }
+      renderChips(); }
+    function renderChips(){ var c=$('segChips'); if(!c)return;
+      c.innerHTML=PHRASES.map(function(p,i){ var on=(segA!==null && i>=Math.min(segA,segB===null?segA:segB) && i<=Math.max(segA,segB===null?segA:segB));
+        return '<button onclick="segPick('+i+')" class="segchip en text-[12.5px] rounded-lg px-2.5 py-1 border transition '+(on?'bg-gold text-white border-gold':'bg-white text-neutral-900/70 border-ink/15 hover:border-gold')+'">'+esc(p)+'</button>'; }).join('');
+      var sel=segA!==null; $('segPlayBtn').disabled=!sel;
+      $('segHint').textContent = segA===null?'반복할 어구를 탭하세요 — 시작 어구, 끝 어구 순으로' : (segB===null?'끝 어구를 탭하세요 (한 어구만 반복하려면 바로 재생)':'선택됨 · ▶ 구간 반복을 누르세요'); }
+    function segPick(i){ if(segA===null || segB!==null){ segA=i; segB=null; } else { segB=i; } segStopIfSeg(); renderChips(); setMemBtns(); }
+    function segText(){ if(segA===null)return ''; var a=Math.min(segA,segB===null?segA:segB), b=Math.max(segA,segB===null?segA:segB); return PHRASES.slice(a,b+1).join(' '); }
+    window.segPick=segPick;
+
     function setMemBtns(){
-      var pbn=$('memPlayBtn'); if(pbn) pbn.textContent=(!mp.loop&&mp.state==='playing')?'⏸ 일시정지':(!mp.loop&&mp.state==='paused')?'▶ 이어 듣기':'▶ 듣기';
-      var lbn=$('memLoopBtn'); if(lbn) lbn.textContent=(mp.loop&&mp.state==='playing')?'⏸ 일시정지':(mp.loop&&mp.state==='paused')?'▶ 이어 듣기':'🔁 반복 듣기';
-      var st=$('memPlayStatus'); if(st){ if(mp.loop&&mp.state!=='idle'){ st.classList.remove('hidden'); st.textContent=(mp.state==='paused'?'⏸ ':'🔁 ')+'반복 '+mp.reps+'회'; } else st.classList.add('hidden'); } }
-    function memSpeakOnce(){ if(mp.state!=='playing')return; var t=memTextEn(); if(!t){mp.state='idle';setMemBtns();return;}
+      var pbn=$('memPlayBtn'); if(pbn) pbn.textContent=(mp.src==='verse'&&mp.state==='playing')?'⏸ 일시정지':(mp.src==='verse'&&mp.state==='paused')?'▶ 이어 듣기':'▶ 듣기';
+      var sbn=$('segPlayBtn'); if(sbn) sbn.textContent=(mp.src==='seg'&&mp.state==='playing')?'⏸ 일시정지':(mp.src==='seg'&&mp.state==='paused')?'▶ 이어 듣기':'▶ 구간 반복';
+      var ss=$('segStatus'); if(ss){ ss.textContent=(mp.src==='seg'&&mp.state!=='idle')?((mp.state==='paused'?'⏸ ':'🔁 ')+'반복 '+mp.reps+'회'):''; } }
+    function memSpeakOnce(){ if(mp.state!=='playing')return; var t=mp.text; if(!t){mp.state='idle';setMemBtns();return;}
       var u=utter(t,'m'); var done=false;
-      function adv(){ if(done)return; done=true; if(mp.state!=='playing')return; if(mp.loop){ mp.reps++; setMemBtns(); setTimeout(memSpeakOnce,700); } else { mp.state='idle'; setMemBtns(); } }
+      function adv(){ if(done)return; done=true; if(mp.state!=='playing')return; if(mp.loop){ mp.reps++; setMemBtns(); setTimeout(memSpeakOnce,650); } else { mp.state='idle'; setMemBtns(); } }
       u.onend=adv; u.onerror=adv; speechSynthesis.speak(u); }
-    function memStartPlay(loop){ if(!window.speechSynthesis){ alert('이 브라우저는 음성 읽기를 지원하지 않아요.'); return; } pbStop(); try{speechSynthesis.cancel();}catch(e){} mp.loop=loop; mp.reps=loop?1:0; mp.state='playing'; setMemBtns(); memSpeakOnce(); }
+    function memStart(text,loop,src){ if(!window.speechSynthesis){ alert('이 브라우저는 음성 읽기를 지원하지 않아요.'); return; } pbStop(); try{speechSynthesis.cancel();}catch(e){} mp.text=text; mp.loop=loop; mp.src=src; mp.reps=loop?1:0; mp.state='playing'; setMemBtns(); memSpeakOnce(); }
     function memPause(){ if(mp.state==='playing'){ mp.state='paused'; try{speechSynthesis.pause();}catch(e){} setMemBtns(); } }
     function memResume(){ if(mp.state==='paused'){ mp.state='playing'; try{speechSynthesis.resume();}catch(e){} setMemBtns(); } }
     function memStopPlay(){ mp.state='idle'; mp.loop=false; try{if(window.speechSynthesis)speechSynthesis.cancel();}catch(e){} setMemBtns(); }
-    function memToggle(){ if(!mp.loop&&mp.state==='playing')memPause(); else if(!mp.loop&&mp.state==='paused')memResume(); else memStartPlay(false); }
-    function memLoopToggle(){ if(mp.loop&&mp.state==='playing')memPause(); else if(mp.loop&&mp.state==='paused')memResume(); else memStartPlay(true); }
-    window.memToggle=memToggle; window.memLoopToggle=memLoopToggle; window.memStopPlay=memStopPlay;
+    function segStopIfSeg(){ if(mp.src==='seg'&&mp.state!=='idle')memStopPlay(); }
+    function memToggle(){ if(mp.src==='verse'&&mp.state==='playing')memPause(); else if(mp.src==='verse'&&mp.state==='paused')memResume(); else memStart(memTextEn(),false,'verse'); }
+    function segToggle(){ if(mp.src==='seg'&&mp.state==='playing')memPause(); else if(mp.src==='seg'&&mp.state==='paused')memResume(); else { var t=segText(); if(!t)return; memStart(t,true,'seg'); } }
+    function segClear(){ memStopPlay(); segA=segB=null; renderChips(); setMemBtns(); }
+    window.memToggle=memToggle; window.segToggle=segToggle; window.segClear=segClear; window.memStopPlay=memStopPlay;
 
     /* ===== 유닛 부팅 ===== */
     function boot(){
@@ -386,7 +398,7 @@
       if($('loopA')&&$('loopB')){ $('loopA').innerHTML=vopts; $('loopB').innerHTML=vopts; $('loopA').value='0'; $('loopB').value=String(Math.min(VERSES.length-1,2)); }
       setSpeed(0.75,'spd1'); setLevel(15,'lv15'); paintTabs();
       // 암송 카드 채우기
-      if(UNIT.mem){ $('memRef').textContent=UNIT.mem.ref||''; $('memKo').textContent=UNIT.mem.ko||''; $('memDeep').innerHTML=UNIT.mem.deep||''; $('memTip').innerHTML=UNIT.mem.tip?('✅ <b>암송 팁</b>: '+UNIT.mem.tip):''; $('copyRef').textContent=UNIT.mem.en||''; setMemBtns(); }
+      if(UNIT.mem){ $('memRef').textContent=UNIT.mem.ref||''; $('memKo').textContent=UNIT.mem.ko||''; $('memDeep').innerHTML=UNIT.mem.deep||''; $('memTip').innerHTML=UNIT.mem.tip?('✅ <b>암송 팁</b>: '+UNIT.mem.tip):''; $('copyRef').textContent=UNIT.mem.en||''; buildPhrases(); setMemBtns(); }
       $('spoon').innerHTML=UNIT.spoon || '오늘 배운 한 구절을 소리 내어 읽어 보세요. 말씀은 읽고 들을 때 마음에 새겨집니다.';
       $('doneTitle').textContent='Unit '+UNIT.id+' 완주!';
       // 다음 유닛(같은 장 안에서)
