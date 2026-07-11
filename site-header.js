@@ -9,24 +9,41 @@
   var SB = 'https://bmxkndkwefdgsomlznoo.supabase.co';
   var AK = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
   var ADMIN = 'josephoh1611@gmail.com';
+  // 폴백 메뉴 — content/site.json 의 nav 와 동일하게 유지(불일치 시 첫 로드에 깜빡임 발생).
   var DEFAULT_MENU = [
     { label:'소개', href:'about.html', children:[
       { label:'우리의 사명·소개', href:'about.html' },
+      { label:'스터디 가이드', href:'guide.html' },
       { label:'강사 소개', href:'about.html#instructor' },
       { label:'설립 이야기 · 간증', href:'about.html#story' },
       { label:'1기 창립 멤버', href:'founding.html' }
     ]},
     { label:'강의·커리큘럼', href:'curriculum.html', children:[
-      { label:'전체 커리큘럼', href:'curriculum.html' },
-      { label:'정규 심화 과정(아카데미)', href:'academy.html' },
-      { label:'나에게 맞는 강의 찾기', href:'find.html' }
+      { label:'무료로 시작하기', href:'welcome.html' },
+      { label:'나에게 맞는 강의 찾기', href:'find.html' },
+      { label:'커리큘럼 소개', href:'curriculum-guide.html' },
+      { label:'전체 커리큘럼', href:'curriculum.html', children:[
+        { label:'신앙의 기초', href:'curriculum.html?track=0' },
+        { label:'성경으로 더 깊이', href:'curriculum.html?track=5' },
+        { label:'종말과 예언', href:'curriculum.html?track=13' },
+        { label:'세계관과 분별', href:'curriculum.html?track=10' },
+        { label:'인물에게 배우다', href:'curriculum.html?track=18' },
+        { label:'삶으로 살아내기', href:'curriculum.html?track=20' },
+        { label:'교양 · 특강', href:'curriculum.html?track=26' },
+        { label:'그 외 · 단편 강의', href:'curriculum.html?track=25' }
+      ]}
     ]},
     { label:'성경', href:'bible.html', children:[
       { label:'성경 읽기', href:'bible.html' },
       { label:'매일 말씀과 함께', href:'daily.html' },
       { label:'성경암송 365', href:'memorize.html' },
       { label:'성경 통독표 (1년 1독)', href:'bible-plan.html' },
-      { label:'주제별 성경', href:'themes.html' }
+      { label:'바이블 잉글리시', href:'bible-english.html' }
+    ]},
+    { label:'성경사전', href:'dictionary.html', children:[
+      { label:'성경사전', href:'dictionary.html' },
+      { label:'주제별 성경 Q&A', href:'themes.html' },
+      { label:'성경 권별 Q&A', href:'qa-book.html' }
     ]},
     { label:'위대한 믿음', href:'preachers.html', children:[
       { label:'위대한 설교자', href:'preachers.html' },
@@ -44,6 +61,11 @@
       { label:'선물·후원 좌석', href:'gift.html' },
       { label:'고객센터(주문·배송·반품)', href:'store-help.html' },
       { label:'내 구매·자료', href:'mylearning.html' }
+    ]},
+    { label:'아카데미 인증과정', href:'academy.html', children:[
+      { label:'과정 소개', href:'academy.html' },
+      { label:'급수 패키지·수강료', href:'academy.html#packages' },
+      { label:'등록 신청', href:'academy.html#apply' }
     ]}
   ];
 
@@ -238,14 +260,20 @@
     if(!mount) return;
     injectNavCSS();
     active = mount.getAttribute('data-active') || (location.pathname.split('/').pop() || 'index.html');
-    // 1) 기본 메뉴로 즉시 렌더(깜빡임 방지)
-    mount.outerHTML = headerHTML(DEFAULT_MENU);
-    // 2) site.json 으로 메뉴 보강(nav=그룹 우선, 없으면 menu)
+    // 1) 즉시 렌더 — 직전 방문에서 캐시한 최신 메뉴가 있으면 그것으로(깜빡임 방지), 없으면 기본 메뉴
+    var initMenu = DEFAULT_MENU;
+    try{ var cm = JSON.parse(localStorage.getItem('bibly_nav') || 'null'); if(cm && cm.length) initMenu = cm; }catch(e){}
+    var initKey = JSON.stringify(initMenu);
+    mount.outerHTML = headerHTML(initMenu);
+    // 2) site.json 으로 메뉴 갱신 — 캐시 저장 + 내용이 다를 때만 재렌더(불필요한 교체·깜빡임 방지)
     fetch('content/site.json?t=' + Date.now()).then(function(r){ return r.json(); }).then(function(s){
       var mn = (s && s.nav && s.nav.length) ? s.nav : (s && s.menu);
       if(mn){
-        var nav = document.getElementById('navmenu'); if(nav){ nav.className = nav.className.replace('text-neutral-900/90','text-neutral-900'); nav.innerHTML = menuHTML(mn); }
-        var mob = document.getElementById('biblyMobMenu'); if(mob) mob.innerHTML = mobileMenuHTML(mn);
+        try{ localStorage.setItem('bibly_nav', JSON.stringify(mn)); }catch(e){}
+        if(JSON.stringify(mn) !== initKey){
+          var nav = document.getElementById('navmenu'); if(nav){ nav.className = nav.className.replace('text-neutral-900/90','text-neutral-900'); nav.innerHTML = menuHTML(mn); }
+          var mob = document.getElementById('biblyMobMenu'); if(mob) mob.innerHTML = mobileMenuHTML(mn);
+        }
       }
       // 사업자 정보 공통 표기(전 페이지 하단 자동 · 이미 표기된 페이지는 건너뜀)
       try{
