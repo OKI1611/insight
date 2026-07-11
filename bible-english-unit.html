@@ -364,19 +364,19 @@
 
     /* ===== 암송 재생: 전체 듣기 + 구간(어구) 반복 학습기 ===== */
     var mp={state:'idle', loop:false, reps:0, text:'', src:'verse', gen:0};
-    var PHRASES=[], segA=null, segB=null;   // 어구 분할 + 선택 구간
+    var PHRASES=[], segSel=[];   // 어구 분할 + 자유 다중 선택(토글)
     function memTextEn(){ return (UNIT&&UNIT.mem&&UNIT.mem.en)?UNIT.mem.en:''; }
     // 구절을 어구(구두점 기준)로 분할
-    function buildPhrases(){ var t=memTextEn(); PHRASES=[]; segA=segB=null;
+    function buildPhrases(){ var t=memTextEn(); PHRASES=[]; segSel=[];
       if(t){ var re=/[^,;:.]+[,;:.]?/g, m; while((m=re.exec(t))!==null){ var p=m[0].trim(); if(p)PHRASES.push(p); } if(!PHRASES.length)PHRASES=[t]; }
       renderChips(); }
     function renderChips(){ var c=$('segChips'); if(!c)return;
-      c.innerHTML=PHRASES.map(function(p,i){ var on=(segA!==null && i>=Math.min(segA,segB===null?segA:segB) && i<=Math.max(segA,segB===null?segA:segB));
+      c.innerHTML=PHRASES.map(function(p,i){ var on=segSel.indexOf(i)>=0;
         return '<button onclick="segPick('+i+')" class="segchip en text-[12.5px] rounded-lg px-2.5 py-1 border transition '+(on?'bg-gold text-white border-gold':'bg-white text-neutral-900/70 border-ink/15 hover:border-gold')+'">'+esc(p)+'</button>'; }).join('');
-      var sel=segA!==null; $('segPlayBtn').disabled=!sel;
-      $('segHint').textContent = segA===null?'반복할 어구를 탭하세요 — 시작 어구, 끝 어구 순으로' : (segB===null?'끝 어구를 탭하세요 (한 어구만 반복하려면 바로 재생)':'선택됨 · ▶ 구간 반복을 누르세요'); }
-    function segPick(i){ if(segA===null || segB!==null){ segA=i; segB=null; } else { segB=i; } segStopIfSeg(); renderChips(); setMemBtns(); }
-    function segText(){ if(segA===null)return ''; var a=Math.min(segA,segB===null?segA:segB), b=Math.max(segA,segB===null?segA:segB); return PHRASES.slice(a,b+1).join(' '); }
+      var sel=segSel.length>0; if($('segPlayBtn'))$('segPlayBtn').disabled=!sel;
+      if($('segHint'))$('segHint').textContent = sel ? (segSel.length+'개 문장 선택됨 — ▶ 구간 반복으로 듣고 따라 말해 보세요 (다시 탭하면 해제)') : '반복하고 싶은 문장(어구)을 탭해 자유롭게 고르세요 — 하나든 여러 개든 원하는 대로'; }
+    function segPick(i){ var k=segSel.indexOf(i); if(k>=0)segSel.splice(k,1); else segSel.push(i); segStopIfSeg(); renderChips(); setMemBtns(); }
+    function segText(){ if(!segSel.length)return ''; var idx=segSel.slice().sort(function(a,b){return a-b;}), out=[]; for(var j=0;j<idx.length;j++)out.push(PHRASES[idx[j]]); return out.join(' '); }
     window.segPick=segPick;
 
     function setMemBtns(){
@@ -394,7 +394,7 @@
     function segStopIfSeg(){ if(mp.src==='seg'&&mp.state!=='idle')memStopPlay(); }
     function memToggle(){ if(mp.src==='verse'&&mp.state==='playing')memPause(); else if(mp.src==='verse'&&mp.state==='paused')memResume(); else memStart(memTextEn(),false,'verse'); }
     function segToggle(){ if(mp.src==='seg'&&mp.state==='playing')memPause(); else if(mp.src==='seg'&&mp.state==='paused')memResume(); else { var t=segText(); if(!t)return; memStart(t,true,'seg'); } }
-    function segClear(){ memStopPlay(); segA=segB=null; renderChips(); setMemBtns(); }
+    function segClear(){ memStopPlay(); segSel=[]; renderChips(); setMemBtns(); }
     window.memToggle=memToggle; window.segToggle=segToggle; window.segClear=segClear; window.memStopPlay=memStopPlay;
 
     /* ===== 유닛 부팅 ===== */
