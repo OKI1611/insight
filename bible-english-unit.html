@@ -99,6 +99,21 @@
         <button onclick="pbStop()" class="text-[13px] font-bold text-neutral-900/55 border border-ink/15 rounded-full px-3.5 py-2 hover:bg-neutral-50 transition">⏹ 정지</button>
         <span class="text-[11.5px] text-neutral-900/45 ml-1">남·여 음성 번갈아, 읽는 구절은 초록으로 표시돼요.</span>
       </div>
+      <!-- 구간 반복 듣기 학습기 -->
+      <div class="mb-2.5 bg-[#f4f8f5] border border-gold/25 rounded-2xl p-3.5">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="text-[12.5px] font-bold text-gold">🔁 구간 반복 듣기</span>
+          <span class="text-[11px] text-neutral-900/45">듣고 싶은 절 구간을 골라 반복해서 들어요</span>
+        </div>
+        <div class="flex items-center gap-1.5 mt-2.5 flex-wrap text-[13px]">
+          <select id="loopA" class="border border-ink/15 rounded-lg px-2 py-1.5 bg-white font-semibold outline-none focus:border-gold"></select>
+          <span class="text-neutral-900/40">~</span>
+          <select id="loopB" class="border border-ink/15 rounded-lg px-2 py-1.5 bg-white font-semibold outline-none focus:border-gold"></select>
+          <button id="loopPlay" onclick="loopToggle()" class="ml-auto text-[12.5px] font-bold text-white bg-gold rounded-full px-3.5 py-1.5 hover:opacity-90 transition">▶ 반복 재생</button>
+          <button onclick="loopClear()" class="text-[12.5px] font-bold text-neutral-900/55 border border-ink/15 rounded-full px-3 py-1.5 hover:bg-white transition">해제</button>
+        </div>
+        <p id="loopStatus" class="hidden text-[11.5px] text-gold font-bold mt-2"></p>
+      </div>
       <div id="passage" class="bg-white border border-ink/8 rounded-2xl shadow-soft p-1.5"></div>
     </section>
 
@@ -217,25 +232,30 @@
     function setSpeed(v,id){ SPEED=v; ['spd0','spd1','spd2'].forEach(function(x){$(x).classList.toggle('on',x===id);}); }
     window.speak=speak; window.setSpeed=setSpeed;
 
-    /* ===== 재생 엔진(일시정지·이어듣기) ===== */
-    var pb={idx:0, state:'idle'};
+    /* ===== 재생 엔진(전체 듣기 / 구간반복, 일시정지·이어듣기) ===== */
+    var pb={idx:0, a:0, b:0, loop:false, mode:'full', reps:0, state:'idle'};
     function clearHi(){ document.querySelectorAll('.vrow.reading').forEach(function(r){r.classList.remove('reading');}); }
-    function setPlayBtn(){ var b=$('mainPlay'); if(!b)return; b.textContent = pb.state==='playing'?'⏸ 일시정지' : pb.state==='paused'?'▶ 이어 듣기' : '▶ 전체 듣기'; }
+    function setBtns(){
+      var mb=$('mainPlay'); if(mb) mb.textContent=(pb.mode==='full'&&pb.state==='playing')?'⏸ 일시정지':(pb.mode==='full'&&pb.state==='paused')?'▶ 이어 듣기':'▶ 전체 듣기';
+      var lb=$('loopPlay'); if(lb) lb.textContent=(pb.mode==='loop'&&pb.state==='playing')?'⏸ 일시정지':(pb.mode==='loop'&&pb.state==='paused')?'▶ 이어 듣기':'▶ 반복 재생';
+      var ls=$('loopStatus'); if(ls){ if(pb.mode==='loop'&&pb.state!=='idle'&&VERSES[pb.a]){ ls.classList.remove('hidden'); var rng=(pb.a===pb.b?(VERSES[pb.a].n+'절'):(VERSES[pb.a].n+'–'+VERSES[pb.b].n+'절')); ls.textContent=(pb.state==='paused'?'⏸ ':'🔁 ')+rng+' 반복 '+pb.reps+'회'; } else ls.classList.add('hidden'); } }
     function speakVerse(){ if(pb.state!=='playing') return;
-      if(pb.idx>=VERSES.length){ pb.state='idle'; clearHi(); setPlayBtn(); return; }
+      if(pb.idx>pb.b){ if(pb.loop){ pb.reps++; pb.idx=pb.a; setBtns(); setTimeout(speakVerse,650); return; } pb.state='idle'; pb.mode='full'; clearHi(); setBtns(); return; }
       clearHi(); var rows=document.querySelectorAll('#passage .vrow'); var row=rows[pb.idx];
       if(row){ row.classList.add('reading'); row.scrollIntoView({block:'nearest',behavior:'smooth'}); }
       var u=utter(VERSES[pb.idx].en, pb.idx%2?'f':'m'); var advanced=false;
       function adv(){ if(advanced)return; advanced=true; if(pb.state!=='playing')return; pb.idx++; setTimeout(speakVerse,260); }
       u.onend=adv; u.onerror=adv; speechSynthesis.speak(u); }
-    function pbPlay(){ if(!window.speechSynthesis){ alert('이 브라우저는 음성 읽기를 지원하지 않아요.'); return; }
-      if(pb.state==='paused'){ pb.state='playing'; try{speechSynthesis.resume();}catch(e){} setPlayBtn(); return; }
-      if(pb.state==='playing') return;
-      speechSynthesis.cancel(); if(pb.idx>=VERSES.length)pb.idx=0; pb.state='playing'; setPlayBtn(); speakVerse(); }
-    function pbPause(){ if(pb.state==='playing'){ pb.state='paused'; try{speechSynthesis.pause();}catch(e){} setPlayBtn(); } }
-    function pbToggle(){ if(pb.state==='playing')pbPause(); else pbPlay(); }
-    function pbStop(){ pb.state='idle'; pb.idx=0; try{if(window.speechSynthesis)speechSynthesis.cancel();}catch(e){} clearHi(); setPlayBtn(); }
-    window.pbToggle=pbToggle; window.pbStop=pbStop;
+    function pbStart(a,b,loop,mode){ if(!window.speechSynthesis){ alert('이 브라우저는 음성 읽기를 지원하지 않아요.'); return; }
+      try{speechSynthesis.cancel();}catch(e){} pb.a=Math.max(0,a); pb.b=Math.min(VERSES.length-1,b); pb.loop=loop; pb.mode=mode; pb.idx=pb.a; pb.reps=loop?1:0; pb.state='playing'; setBtns(); speakVerse(); }
+    function pbPause(){ if(pb.state==='playing'){ pb.state='paused'; try{speechSynthesis.pause();}catch(e){} setBtns(); } }
+    function pbResume(){ if(pb.state==='paused'){ pb.state='playing'; try{speechSynthesis.resume();}catch(e){} setBtns(); } }
+    function pbStop(){ pb.state='idle'; pb.mode='full'; pb.idx=0; pb.loop=false; try{if(window.speechSynthesis)speechSynthesis.cancel();}catch(e){} clearHi(); setBtns(); }
+    function pbToggle(){ if(pb.mode==='full'&&pb.state==='playing')pbPause(); else if(pb.mode==='full'&&pb.state==='paused')pbResume(); else pbStart(0,VERSES.length-1,false,'full'); }
+    function loopToggle(){ if(pb.mode==='loop'&&pb.state==='playing')pbPause(); else if(pb.mode==='loop'&&pb.state==='paused')pbResume();
+      else { var a=parseInt(($('loopA')||{}).value,10), b=parseInt(($('loopB')||{}).value,10); if(isNaN(a))a=0; if(isNaN(b))b=a; if(a>b){var t=a;a=b;b=t;} pbStart(a,b,true,'loop'); } }
+    function loopClear(){ pbStop(); }
+    window.pbToggle=pbToggle; window.pbStop=pbStop; window.loopToggle=loopToggle; window.loopClear=loopClear;
     setInterval(function(){ try{ if(pb.state==='playing' && speechSynthesis.speaking && !speechSynthesis.paused){ speechSynthesis.pause(); speechSynthesis.resume(); } }catch(e){} }, 9000);
 
     /* ===== 글자·한글·쉬운영어 ===== */
@@ -337,6 +357,9 @@
       MEM=(UNIT.mem&&UNIT.mem.en?UNIT.mem.en:'').replace(/([;.,])/g,' $1').split(/\s+/).filter(Boolean);
       window.VERSES=VERSES;
       renderPassage(); renderGram(); renderExam(); renderSuneung(); renderMem();
+      // 구간반복 절 선택
+      var vopts=VERSES.map(function(v,i){ return '<option value="'+i+'">'+v.n+'절</option>'; }).join('');
+      if($('loopA')&&$('loopB')){ $('loopA').innerHTML=vopts; $('loopB').innerHTML=vopts; $('loopA').value='0'; $('loopB').value=String(Math.min(VERSES.length-1,2)); }
       setSpeed(0.75,'spd1'); setLevel(15,'lv15'); paintTabs();
       // 암송 카드 채우기
       if(UNIT.mem){ $('memRef').textContent=UNIT.mem.ref||''; $('memKo').textContent=UNIT.mem.ko||''; $('memDeep').innerHTML=UNIT.mem.deep||''; $('memTip').innerHTML=UNIT.mem.tip?('✅ <b>암송 팁</b>: '+UNIT.mem.tip):''; $('memSpeak').setAttribute('onclick','speak('+JSON.stringify(UNIT.mem.en)+')'); $('copyRef').textContent=UNIT.mem.en||''; }
