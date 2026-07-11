@@ -229,12 +229,13 @@
       VMALE=vs.find(function(v){return mal.test(v.name);})||vs.find(function(v){return v!==VFEMALE;})||vs[0]||null; }
     if(window.speechSynthesis){ loadVoices(); speechSynthesis.onvoiceschanged=loadVoices; }
     function utter(t,who){ var u=new SpeechSynthesisUtterance(t); u.lang='en-US'; u.rate=SPEED; var v=who==='f'?VFEMALE:who==='m'?VMALE:(Math.random()<.5?VMALE:VFEMALE); if(v)u.voice=v; return u; }
-    function speak(t,who){ if(!window.speechSynthesis)return; pbStop(); speechSynthesis.cancel(); speechSynthesis.speak(utter(t,who)); }
+    function speak(t,who){ if(!window.speechSynthesis)return; pbStop(); if(typeof memStopPlay==='function')memStopPlay(); try{speechSynthesis.cancel();}catch(e){} try{speechSynthesis.speak(utter(t,who));}catch(e){} }
     function setSpeed(v,id){ SPEED=v; ['spd0','spd1','spd2'].forEach(function(x){$(x).classList.toggle('on',x===id);}); }
     window.speak=speak; window.setSpeed=setSpeed;
 
-    /* ===== 재생 엔진(전체 듣기 / 구간반복, 일시정지·이어듣기) ===== */
-    var pb={idx:0, a:0, b:0, loop:false, mode:'full', reps:0, state:'idle'};
+    /* ===== 재생 엔진(전체 듣기) — 모바일 안전: 취소·재생 방식 + 세대(gen) 가드 ===== */
+    var IS_MOBILE=/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile/i.test(navigator.userAgent||'');
+    var pb={idx:0, a:0, b:0, loop:false, mode:'full', reps:0, state:'idle', gen:0};
     function clearHi(){ document.querySelectorAll('.vrow.reading').forEach(function(r){r.classList.remove('reading');}); }
     function setBtns(){
       var mb=$('mainPlay'); if(mb) mb.textContent=(pb.mode==='full'&&pb.state==='playing')?'⏸ 일시정지':(pb.mode==='full'&&pb.state==='paused')?'▶ 이어 듣기':'▶ 전체 듣기';
@@ -244,20 +245,22 @@
       if(pb.idx>pb.b){ if(pb.loop){ pb.reps++; pb.idx=pb.a; setBtns(); setTimeout(speakVerse,650); return; } pb.state='idle'; pb.mode='full'; clearHi(); setBtns(); return; }
       clearHi(); var rows=document.querySelectorAll('#passage .vrow'); var row=rows[pb.idx];
       if(row){ row.classList.add('reading'); row.scrollIntoView({block:'nearest',behavior:'smooth'}); }
-      var u=utter(VERSES[pb.idx].en, pb.idx%2?'f':'m'); var advanced=false;
-      function adv(){ if(advanced)return; advanced=true; if(pb.state!=='playing')return; pb.idx++; setTimeout(speakVerse,260); }
-      u.onend=adv; u.onerror=adv; speechSynthesis.speak(u); }
+      var myGen=++pb.gen; var u=utter(VERSES[pb.idx].en, pb.idx%2?'f':'m');
+      function adv(){ if(myGen!==pb.gen||pb.state!=='playing')return; pb.idx++; setTimeout(speakVerse,240); }
+      u.onend=adv; u.onerror=adv; try{speechSynthesis.speak(u);}catch(e){} }
     function pbStart(a,b,loop,mode){ if(!window.speechSynthesis){ alert('이 브라우저는 음성 읽기를 지원하지 않아요.'); return; }
-      if(typeof mp!=='undefined'){mp.state='idle';setMemBtns&&setMemBtns();} try{speechSynthesis.cancel();}catch(e){} pb.a=Math.max(0,a); pb.b=Math.min(VERSES.length-1,b); pb.loop=loop; pb.mode=mode; pb.idx=pb.a; pb.reps=loop?1:0; pb.state='playing'; setBtns(); speakVerse(); }
-    function pbPause(){ if(pb.state==='playing'){ pb.state='paused'; try{speechSynthesis.pause();}catch(e){} setBtns(); } }
-    function pbResume(){ if(pb.state==='paused'){ pb.state='playing'; try{speechSynthesis.resume();}catch(e){} setBtns(); } }
-    function pbStop(){ pb.state='idle'; pb.mode='full'; pb.idx=0; pb.loop=false; try{if(window.speechSynthesis)speechSynthesis.cancel();}catch(e){} clearHi(); setBtns(); }
+      if(typeof mp!=='undefined'){mp.state='idle';mp.gen=(mp.gen||0)+1;setMemBtns&&setMemBtns();} pb.gen++; try{speechSynthesis.cancel();}catch(e){}
+      pb.a=Math.max(0,a); pb.b=Math.min(VERSES.length-1,b); pb.loop=loop; pb.mode=mode; pb.idx=pb.a; pb.reps=loop?1:0; pb.state='playing'; setBtns(); speakVerse(); }
+    function pbPause(){ if(pb.state==='playing'){ pb.state='paused'; pb.gen++; try{speechSynthesis.cancel();}catch(e){} setBtns(); } }
+    function pbResume(){ if(pb.state==='paused'){ pb.state='playing'; setBtns(); speakVerse(); } }
+    function pbStop(){ pb.state='idle'; pb.mode='full'; pb.idx=0; pb.loop=false; pb.gen++; try{if(window.speechSynthesis)speechSynthesis.cancel();}catch(e){} clearHi(); setBtns(); }
     function pbToggle(){ if(pb.mode==='full'&&pb.state==='playing')pbPause(); else if(pb.mode==='full'&&pb.state==='paused')pbResume(); else pbStart(0,VERSES.length-1,false,'full'); }
     function loopToggle(){ if(pb.mode==='loop'&&pb.state==='playing')pbPause(); else if(pb.mode==='loop'&&pb.state==='paused')pbResume();
       else { var a=parseInt(($('loopA')||{}).value,10), b=parseInt(($('loopB')||{}).value,10); if(isNaN(a))a=0; if(isNaN(b))b=a; if(a>b){var t=a;a=b;b=t;} pbStart(a,b,true,'loop'); } }
     function loopClear(){ pbStop(); }
     window.pbToggle=pbToggle; window.pbStop=pbStop; window.loopToggle=loopToggle; window.loopClear=loopClear;
-    setInterval(function(){ try{ if((pb.state==='playing'||mp.state==='playing') && speechSynthesis.speaking && !speechSynthesis.paused){ speechSynthesis.pause(); speechSynthesis.resume(); } }catch(e){} }, 9000);
+    /* keep-alive(긴 문장 끊김 방지)는 데스크톱에서만 — 모바일은 이 훅이 재생을 끊으므로 제외 */
+    if(!IS_MOBILE){ setInterval(function(){ try{ if((pb.state==='playing'||(typeof mp!=='undefined'&&mp.state==='playing')) && speechSynthesis.speaking && !speechSynthesis.paused){ speechSynthesis.pause(); speechSynthesis.resume(); } }catch(e){} }, 9000); }
 
     /* ===== 글자·한글·쉬운영어 ===== */
     var ZL=[0.92,1,1.14,1.3], zi=1;
@@ -347,7 +350,7 @@
     window.memStep=memStep;
 
     /* ===== 암송 재생: 전체 듣기 + 구간(어구) 반복 학습기 ===== */
-    var mp={state:'idle', loop:false, reps:0, text:'', src:'verse'};
+    var mp={state:'idle', loop:false, reps:0, text:'', src:'verse', gen:0};
     var PHRASES=[], segA=null, segB=null;   // 어구 분할 + 선택 구간
     function memTextEn(){ return (UNIT&&UNIT.mem&&UNIT.mem.en)?UNIT.mem.en:''; }
     // 구절을 어구(구두점 기준)로 분할
@@ -368,13 +371,13 @@
       var sbn=$('segPlayBtn'); if(sbn) sbn.textContent=(mp.src==='seg'&&mp.state==='playing')?'⏸ 일시정지':(mp.src==='seg'&&mp.state==='paused')?'▶ 이어 듣기':'▶ 구간 반복';
       var ss=$('segStatus'); if(ss){ ss.textContent=(mp.src==='seg'&&mp.state!=='idle')?((mp.state==='paused'?'⏸ ':'🔁 ')+'반복 '+mp.reps+'회'):''; } }
     function memSpeakOnce(){ if(mp.state!=='playing')return; var t=mp.text; if(!t){mp.state='idle';setMemBtns();return;}
-      var u=utter(t,'m'); var done=false;
-      function adv(){ if(done)return; done=true; if(mp.state!=='playing')return; if(mp.loop){ mp.reps++; setMemBtns(); setTimeout(memSpeakOnce,650); } else { mp.state='idle'; setMemBtns(); } }
-      u.onend=adv; u.onerror=adv; speechSynthesis.speak(u); }
-    function memStart(text,loop,src){ if(!window.speechSynthesis){ alert('이 브라우저는 음성 읽기를 지원하지 않아요.'); return; } pbStop(); try{speechSynthesis.cancel();}catch(e){} mp.text=text; mp.loop=loop; mp.src=src; mp.reps=loop?1:0; mp.state='playing'; setMemBtns(); memSpeakOnce(); }
-    function memPause(){ if(mp.state==='playing'){ mp.state='paused'; try{speechSynthesis.pause();}catch(e){} setMemBtns(); } }
-    function memResume(){ if(mp.state==='paused'){ mp.state='playing'; try{speechSynthesis.resume();}catch(e){} setMemBtns(); } }
-    function memStopPlay(){ mp.state='idle'; mp.loop=false; try{if(window.speechSynthesis)speechSynthesis.cancel();}catch(e){} setMemBtns(); }
+      var myGen=++mp.gen; var u=utter(t,'m');
+      function adv(){ if(myGen!==mp.gen||mp.state!=='playing')return; if(mp.loop){ mp.reps++; setMemBtns(); setTimeout(memSpeakOnce,600); } else { mp.state='idle'; setMemBtns(); } }
+      u.onend=adv; u.onerror=adv; try{speechSynthesis.speak(u);}catch(e){} }
+    function memStart(text,loop,src){ if(!window.speechSynthesis){ alert('이 브라우저는 음성 읽기를 지원하지 않아요.'); return; } pbStop(); mp.gen++; try{speechSynthesis.cancel();}catch(e){} mp.text=text; mp.loop=loop; mp.src=src; mp.reps=loop?1:0; mp.state='playing'; setMemBtns(); memSpeakOnce(); }
+    function memPause(){ if(mp.state==='playing'){ mp.state='paused'; mp.gen++; try{speechSynthesis.cancel();}catch(e){} setMemBtns(); } }
+    function memResume(){ if(mp.state==='paused'){ mp.state='playing'; setMemBtns(); memSpeakOnce(); } }
+    function memStopPlay(){ mp.state='idle'; mp.loop=false; mp.gen++; try{if(window.speechSynthesis)speechSynthesis.cancel();}catch(e){} setMemBtns(); }
     function segStopIfSeg(){ if(mp.src==='seg'&&mp.state!=='idle')memStopPlay(); }
     function memToggle(){ if(mp.src==='verse'&&mp.state==='playing')memPause(); else if(mp.src==='verse'&&mp.state==='paused')memResume(); else memStart(memTextEn(),false,'verse'); }
     function segToggle(){ if(mp.src==='seg'&&mp.state==='playing')memPause(); else if(mp.src==='seg'&&mp.state==='paused')memResume(); else { var t=segText(); if(!t)return; memStart(t,true,'seg'); } }
