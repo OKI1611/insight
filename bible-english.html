@@ -148,9 +148,7 @@
           '<div class="flex items-start gap-3"><div class="flex-1 min-w-0"><div class="flex items-center gap-2 mb-1"><span class="text-[11px] font-bold text-gold">UNIT '+u.unitNo+'</span>'+statusChip(st)+'</div>'
           +'<p class="en font-bold text-[16px] text-ink truncate group-hover:text-gold transition">'+esc(u.title)+'</p>'
           +'<p class="text-[13px] text-neutral-900/55 truncate">'+esc(u.titleKo)+' · '+esc(u.ref)+'</p></div>'
-          +'<span class="shrink-0 text-gold/40 group-hover:text-gold group-hover:translate-x-0.5 transition text-lg mt-0.5">→</span></div>'
-          +'<div class="flex items-center gap-2 mt-2.5 text-[11px] text-neutral-900/40"><span>'+u.verses.length+'구절</span><span class="text-neutral-900/20">·</span><span>단어 '+u.words.length+'</span><span class="text-neutral-900/20">·</span><span>토익·수능 문제</span></div>'
-          +bar(pct), i*60);
+          +'<span class="shrink-0 text-gold/40 group-hover:text-gold group-hover:translate-x-0.5 transition text-lg mt-0.5">→</span></div>'          +bar(pct), i*60);
       }).join('');
     }
 
