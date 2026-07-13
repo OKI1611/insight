@@ -47,7 +47,8 @@
     ]},
     { label:'위대한 믿음', href:'preachers.html', children:[
       { label:'위대한 설교자', href:'preachers.html' },
-      { label:'위대한 기도자', href:'prayers.html' }
+      { label:'위대한 기도자', href:'prayers.html' },
+      { label:'이단 바로 알기', href:'heresy.html' }
     ]},
     { label:'소통·나눔', href:'community.html', children:[
       { label:'질문·나눔·기도요청', href:'community.html' },

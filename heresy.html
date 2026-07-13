@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <script src="/content-loader.js?v=20260703f"></script>
+  <script src="/site-header.js?v=20260713a"></script>
+  <script src="/section-sidenav.js?v=10"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>이단 바로 알기 — BIBLY 바이블 인사이트</title>
+  <meta name="description" content="한국 주요 교단이 이단·사이비로 규정한 단체를 최신순·가나다순으로 정리하고 검색하는 성도의 분별 자료. 각 교단 총회 결의를 근거로 바이블 인사이트가 자체 정리했습니다." />
+  <link rel="canonical" href="https://biblynote.com/heresy" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BIBLY 바이블 인사이트" />
+  <meta property="og:title" content="이단 바로 알기 — 성도의 분별 자료" />
+  <meta property="og:description" content="주요 교단이 이단·사이비로 규정한 단체를 한눈에. 최신순·가나다순·검색." />
+  <meta property="og:url" content="https://biblynote.com/heresy" />
+  <meta property="og:image" content="https://biblynote.com/images/og-cover.png?v=6" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#213a6b" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink:'#213a6b', navy:'#182c54', gold:'#00704a', sand:'#eaf0f8', paper:'#ffffff' },
+      fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['Pretendard','system-ui','sans-serif'] },
+      boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
+    }}}
+  </script>
+  <style>
+    h1,h2,.serif{font-family:'Pretendard',system-ui,sans-serif}
+    .tabbtn[aria-selected="true"]{ background:#213a6b; color:#fff; border-color:#213a6b; }
+    mark{ background:#00704a22; color:inherit; border-radius:2px; padding:0 1px; }
+    .card{ transition:transform .15s ease, box-shadow .15s ease; }
+    .card:hover{ transform:translateY(-2px); }
+    dialog::backdrop{ background:rgba(20,28,48,.55); backdrop-filter:blur(2px); }
+  </style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://biblynote.com/"},{"@type":"ListItem","position":2,"name":"위대한 믿음","item":"https://biblynote.com/preachers"},{"@type":"ListItem","position":3,"name":"이단 바로 알기","item":"https://biblynote.com/heresy"}]}
+  </script>
+</head>
+<body class="font-sans bg-paper text-neutral-900 antialiased min-h-screen">
+
+  <div id="siteHeader" data-active="heresy.html"></div>
+
+  <main class="max-w-5xl mx-auto px-4 py-9">
+    <!-- 헤더 -->
+    <div class="text-center mb-6">
+      <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">HERESY WATCH · 성도의 분별</p>
+      <h1 class="text-3xl md:text-4xl font-bold leading-tight">이단 바로 알기</h1>
+      <p class="text-neutral-900/55 mt-3 text-sm md:text-[15px] leading-relaxed max-w-2xl mx-auto">
+        한국 주요 교단이 <b class="text-ink">이단·사이비로 규정</b>한 단체를 한눈에 정리했습니다.<br class="hidden md:block"/>
+        최신순·가나다순으로 살펴보거나, 이름으로 검색해 분별의 근거를 확인하세요.
+      </p>
+    </div>
+
+    <!-- 검색 + 보기 전환 -->
+    <div class="sticky top-0 z-10 bg-paper/95 backdrop-blur -mx-4 px-4 py-3 border-b border-ink/8 mb-5">
+      <div class="max-w-3xl mx-auto">
+        <div class="relative">
+          <svg class="w-4.5 h-4.5 absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg>
+          <input id="q" type="search" inputmode="search" placeholder="단체·교주 이름으로 검색 (예: 신천지, 이만희)"
+            class="w-full pl-11 pr-4 py-3 rounded-xl border border-ink/15 focus:border-gold outline-none text-[15px] bg-white" />
+        </div>
+        <div class="flex items-center justify-between mt-3 gap-2">
+          <div class="flex gap-1.5" role="tablist" aria-label="보기 방식">
+            <button class="tabbtn text-[13px] font-semibold px-3.5 py-1.5 rounded-full border border-ink/15 text-neutral-700" role="tab" aria-selected="true" data-mode="latest">최신 규정순</button>
+            <button class="tabbtn text-[13px] font-semibold px-3.5 py-1.5 rounded-full border border-ink/15 text-neutral-700" role="tab" aria-selected="false" data-mode="ganada">가나다순</button>
+          </div>
+          <span id="count" class="text-xs text-neutral-500"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 목록 -->
+    <div id="list" class="max-w-3xl mx-auto"></div>
+
+    <!-- 면책 -->
+    <div id="disc" class="max-w-3xl mx-auto mt-10 text-[12px] leading-relaxed text-neutral-500 bg-sand/60 border border-ink/8 rounded-xl p-4"></div>
+  </main>
+
+  <!-- 상세 -->
+  <dialog id="detail" class="rounded-2xl p-0 w-[92vw] max-w-lg backdrop:bg-black/50 shadow-card">
+    <div id="detailBody" class="p-6"></div>
+  </dialog>
+
+  <script>
+    const TYPE_STYLE = {
+      '이단':      'bg-rose-50 text-rose-700 border-rose-200',
+      '사이비':    'bg-red-100 text-red-800 border-red-300',
+      '비기독교':  'bg-slate-100 text-slate-700 border-slate-300',
+      '이단성':    'bg-amber-50 text-amber-800 border-amber-200'
+    };
+    function esc(s){ return String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+    function hl(s){ if(!Q) return esc(s); const i=s.toLowerCase().indexOf(Q.toLowerCase()); if(i<0) return esc(s);
+      return esc(s.slice(0,i))+'<mark>'+esc(s.slice(i,i+Q.length))+'</mark>'+esc(s.slice(i+Q.length)); }
+    function initial(k){ const c=(k||'').charCodeAt(0); if(!(c>=0xAC00&&c<=0xD7A3)) return '#';
+      const L='ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ'[Math.floor((c-0xAC00)/588)];
+      return ({'ㄲ':'ㄱ','ㄸ':'ㄷ','ㅃ':'ㅂ','ㅆ':'ㅅ','ㅉ':'ㅈ'})[L]||L; }
+    function rulingChips(rs){ return (rs||[]).map(r=>`<span class="inline-block text-[11px] text-ink/80 bg-sand border border-ink/10 rounded px-1.5 py-0.5">${esc(r.org)} <b>${r.year}</b></span>`).join(' '); }
+
+    let DB=null, MODE='latest', Q='';
+    function matches(x){ if(!Q) return true; const s=(x.name+' '+x.short+' '+(x.aka||[]).join(' ')+' '+x.founder+' '+x.summary+' '+(x.marks||[]).join(' ')).toLowerCase(); return s.includes(Q.toLowerCase()); }
+
+    function card(x){
+      return `<button class="card text-left w-full bg-white border border-ink/10 rounded-2xl p-4 md:p-5 shadow-soft hover:shadow-card mb-3" data-id="${x.id}">
+        <div class="flex items-start gap-3">
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="inline-block text-[11px] font-bold px-2 py-0.5 rounded-full border ${TYPE_STYLE[x.type]||''}">${esc(x.type)}</span>
+              <h3 class="font-bold text-[17px] leading-tight">${hl(x.name)}</h3>
+            </div>
+            <p class="text-[12.5px] text-neutral-500 mt-1">교주·관련 인물 · <span class="text-neutral-700">${hl(x.founder)}</span>${x.short&&x.short!==x.name?` · 통칭 <span class="text-neutral-700">${hl(x.short)}</span>`:''}</p>
+            <p class="text-[13.5px] text-neutral-700 mt-2 leading-relaxed" style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${hl(x.summary)}</p>
+            <div class="mt-2.5 flex items-center gap-1.5 flex-wrap">${rulingChips(x.rulings)}</div>
+          </div>
+          <div class="shrink-0 text-right">
+            <div class="text-[10px] text-neutral-400 leading-none">규정</div>
+            <div class="text-lg font-extrabold text-ink leading-tight">${x.latestYear||'—'}</div>
+          </div>
+        </div>
+      </button>`;
+    }
+
+    function render(){
+      if(!DB) return;
+      const items = DB.items.filter(matches);
+      const list = document.getElementById('list');
+      document.getElementById('count').textContent = `${items.length}개 단체`;
+      if(!items.length){ list.innerHTML = `<p class="text-center text-neutral-400 py-16 text-sm">‘${esc(Q)}’에 해당하는 단체가 없습니다.</p>`; return; }
+      if(MODE==='latest'){
+        items.sort((a,b)=>(b.latestYear||0)-(a.latestYear||0) || a.key.localeCompare(b.key,'ko'));
+        list.innerHTML = items.map(card).join('');
+      } else {
+        items.sort((a,b)=>a.key.localeCompare(b.key,'ko'));
+        let html='', cur=null;
+        for(const x of items){ const g=initial(x.key); if(g!==cur){ cur=g; html+=`<div class="text-gold font-extrabold text-lg mt-6 mb-2 pl-1 border-l-4 border-gold/40">${g}</div>`; } html+=card(x); }
+        list.innerHTML = html;
+      }
+      list.querySelectorAll('[data-id]').forEach(b=> b.addEventListener('click',()=>openDetail(b.dataset.id)));
+    }
+
+    function openDetail(id){
+      const x = DB.items.find(i=>i.id===id); if(!x) return;
+      const marks = (x.marks||[]).map(m=>`<li class="flex gap-2 text-[13.5px] text-neutral-700 leading-relaxed"><span class="text-gold shrink-0 font-bold">•</span><span>${esc(m)}</span></li>`).join('');
+      const rulings = (x.rulings||[]).map(r=>`<tr><td class="py-1 pr-3 text-neutral-500">${esc(r.org)}</td><td class="py-1 font-semibold text-ink">${r.year}년 · 이단·사이비 규정</td></tr>`).join('');
+      const aka = (x.aka||[]).filter(a=>a!==x.name).map(a=>`<span class="text-[11px] bg-sand border border-ink/10 rounded px-1.5 py-0.5">${esc(a)}</span>`).join(' ');
+      document.getElementById('detailBody').innerHTML = `
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <span class="inline-block text-[11px] font-bold px-2 py-0.5 rounded-full border ${TYPE_STYLE[x.type]||''}">${esc(x.type)}</span>
+            <h2 class="text-xl font-bold mt-2 leading-tight">${esc(x.name)}</h2>
+            <p class="text-[12.5px] text-neutral-500 mt-1">교주·관련 인물 · <span class="text-neutral-700">${esc(x.founder)}</span></p>
+          </div>
+          <button onclick="document.getElementById('detail').close()" class="shrink-0 text-neutral-400 hover:text-neutral-700 text-2xl leading-none">&times;</button>
+        </div>
+        ${aka?`<div class="mt-3 flex gap-1.5 flex-wrap">${aka}</div>`:''}
+        <p class="text-[14px] text-neutral-800 leading-relaxed mt-4">${esc(x.summary)}</p>
+        ${marks?`<div class="mt-4"><p class="text-[11px] font-bold tracking-wide text-gold mb-1.5">핵심 특징</p><ul class="space-y-1.5">${marks}</ul></div>`:''}
+        <div class="mt-4"><p class="text-[11px] font-bold tracking-wide text-gold mb-1.5">교단별 규정</p>
+          <table class="text-[13px] w-full">${rulings}</table></div>
+        <p class="text-[11px] text-neutral-400 mt-4 border-t border-ink/8 pt-3">${esc(DB.sourcesNote||'')}</p>`;
+      document.getElementById('detail').showModal();
+    }
+
+    document.querySelectorAll('.tabbtn').forEach(b=> b.addEventListener('click',()=>{
+      MODE=b.dataset.mode;
+      document.querySelectorAll('.tabbtn').forEach(t=>t.setAttribute('aria-selected', t===b?'true':'false'));
+      render();
+    }));
+    document.getElementById('q').addEventListener('input', e=>{ Q=e.target.value.trim(); render(); });
+
+    fetch('content/heresy.json').then(r=>r.json()).then(d=>{
+      DB=d;
+      document.getElementById('disc').innerHTML = `<b class="text-neutral-600">안내 ·</b> ${esc(d.disclaimer||'')}<br><span class="text-neutral-400">${esc(d.sourcesNote||'')} · 최종 정리 ${esc(d.updated||'')}</span>`;
+      render();
+    }).catch(()=>{ document.getElementById('list').innerHTML='<p class="text-center text-neutral-400 py-16 text-sm">자료를 불러오지 못했습니다.</p>'; });
+  </script>
+</body>
+</html>
