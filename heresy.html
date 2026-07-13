@@ -57,11 +57,17 @@
       </p>
     </div>
 
+    <!-- 법적 안내 배너 -->
+    <div class="max-w-3xl mx-auto mb-5 text-[12.5px] leading-relaxed text-neutral-600 bg-amber-50 border border-amber-200/70 rounded-xl px-4 py-3 flex gap-2.5">
+      <span class="text-amber-500 shrink-0 font-bold">ⓘ</span>
+      <span id="noticeText"></span>
+    </div>
+
     <!-- 검색 + 보기 전환 -->
     <div class="sticky top-0 z-10 bg-paper/95 backdrop-blur -mx-4 px-4 py-3 border-b border-ink/8 mb-5">
       <div class="max-w-3xl mx-auto">
         <div class="relative">
-          <svg class="w-4.5 h-4.5 absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg>
+          <svg class="w-5 h-5 absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-400 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg>
           <input id="q" type="search" inputmode="search" placeholder="단체·교주 이름으로 검색 (예: 신천지, 이만희)"
             class="w-full pl-11 pr-4 py-3 rounded-xl border border-ink/15 focus:border-gold outline-none text-[15px] bg-white" />
         </div>
@@ -113,7 +119,7 @@
               <span class="inline-block text-[11px] font-bold px-2 py-0.5 rounded-full border ${TYPE_STYLE[x.type]||''}">${esc(x.type)}</span>
               <h3 class="font-bold text-[17px] leading-tight">${hl(x.name)}</h3>
             </div>
-            <p class="text-[12.5px] text-neutral-500 mt-1">교주·관련 인물 · <span class="text-neutral-700">${hl(x.founder)}</span>${x.short&&x.short!==x.name?` · 통칭 <span class="text-neutral-700">${hl(x.short)}</span>`:''}</p>
+            <p class="text-[12.5px] text-neutral-500 mt-1">설립자·핵심 인물 ·<span class="text-neutral-700">${hl(x.founder)}</span>${x.short&&x.short!==x.name?` · 통칭 <span class="text-neutral-700">${hl(x.short)}</span>`:''}</p>
             <p class="text-[13.5px] text-neutral-700 mt-2 leading-relaxed" style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${hl(x.summary)}</p>
             <div class="mt-2.5 flex items-center gap-1.5 flex-wrap">${rulingChips(x.rulings)}</div>
           </div>
@@ -129,7 +135,7 @@
       if(!DB) return;
       const items = DB.items.filter(matches);
       const list = document.getElementById('list');
-      document.getElementById('count').textContent = `${items.length}개 단체`;
+      document.getElementById('count').textContent = `${DB.asOf?DB.asOf+' · ':''}${items.length}개 단체`;
       if(!items.length){ list.innerHTML = `<p class="text-center text-neutral-400 py-16 text-sm">‘${esc(Q)}’에 해당하는 단체가 없습니다.</p>`; return; }
       if(MODE==='latest'){
         items.sort((a,b)=>(b.latestYear||0)-(a.latestYear||0) || a.key.localeCompare(b.key,'ko'));
@@ -146,14 +152,14 @@
     function openDetail(id){
       const x = DB.items.find(i=>i.id===id); if(!x) return;
       const marks = (x.marks||[]).map(m=>`<li class="flex gap-2 text-[13.5px] text-neutral-700 leading-relaxed"><span class="text-gold shrink-0 font-bold">•</span><span>${esc(m)}</span></li>`).join('');
-      const rulings = (x.rulings||[]).map(r=>`<tr><td class="py-1 pr-3 text-neutral-500">${esc(r.org)}</td><td class="py-1 font-semibold text-ink">${r.year}년 · 이단·사이비 규정</td></tr>`).join('');
+      const rulings = (x.rulings||[]).map(r=>`<tr><td class="py-1 pr-3 text-neutral-500">${esc(r.org)}</td><td class="py-1 font-semibold text-ink">${r.year}년 · ${esc(x.type)} 규정</td></tr>`).join('');
       const aka = (x.aka||[]).filter(a=>a!==x.name).map(a=>`<span class="text-[11px] bg-sand border border-ink/10 rounded px-1.5 py-0.5">${esc(a)}</span>`).join(' ');
       document.getElementById('detailBody').innerHTML = `
         <div class="flex items-start justify-between gap-3">
           <div>
             <span class="inline-block text-[11px] font-bold px-2 py-0.5 rounded-full border ${TYPE_STYLE[x.type]||''}">${esc(x.type)}</span>
             <h2 class="text-xl font-bold mt-2 leading-tight">${esc(x.name)}</h2>
-            <p class="text-[12.5px] text-neutral-500 mt-1">교주·관련 인물 · <span class="text-neutral-700">${esc(x.founder)}</span></p>
+            <p class="text-[12.5px] text-neutral-500 mt-1">설립자·핵심 인물 ·<span class="text-neutral-700">${esc(x.founder)}</span></p>
           </div>
           <button onclick="document.getElementById('detail').close()" class="shrink-0 text-neutral-400 hover:text-neutral-700 text-2xl leading-none">&times;</button>
         </div>
@@ -162,7 +168,7 @@
         ${marks?`<div class="mt-4"><p class="text-[11px] font-bold tracking-wide text-gold mb-1.5">핵심 특징</p><ul class="space-y-1.5">${marks}</ul></div>`:''}
         <div class="mt-4"><p class="text-[11px] font-bold tracking-wide text-gold mb-1.5">교단별 규정</p>
           <table class="text-[13px] w-full">${rulings}</table></div>
-        <p class="text-[11px] text-neutral-400 mt-4 border-t border-ink/8 pt-3">${esc(DB.sourcesNote||'')}</p>`;
+        <p class="text-[11px] text-neutral-400 mt-4 border-t border-ink/8 pt-3">본 규정은 각 교단 총회의 공식 결의이며, 바이블 인사이트의 독자적 단정이 아닙니다. ${esc(DB.sourcesNote||'')} · 정정 요청 ${esc(DB.correctionEmail||'')}</p>`;
       document.getElementById('detail').showModal();
     }
 
@@ -175,7 +181,8 @@
 
     fetch('content/heresy.json').then(r=>r.json()).then(d=>{
       DB=d;
-      document.getElementById('disc').innerHTML = `<b class="text-neutral-600">안내 ·</b> ${esc(d.disclaimer||'')}<br><span class="text-neutral-400">${esc(d.sourcesNote||'')} · 최종 정리 ${esc(d.updated||'')}</span>`;
+      const nt=document.getElementById('noticeText'); if(nt) nt.textContent = d.noticeShort||'';
+      document.getElementById('disc').innerHTML = `<b class="text-neutral-600">이용 안내 ·</b> ${esc(d.disclaimer||'')}<br><span class="text-neutral-400">${esc(d.sourcesNote||'')} · 정정 요청 ${esc(d.correctionEmail||'')} · 최종 정리 ${esc(d.updated||'')}년</span>`;
       render();
     }).catch(()=>{ document.getElementById('list').innerHTML='<p class="text-center text-neutral-400 py-16 text-sm">자료를 불러오지 못했습니다.</p>'; });
   </script>
