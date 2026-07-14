@@ -130,26 +130,8 @@
 
       <div id="tabMain">
 
-      <!-- 내 급수 휘장 -->
-      <div id="rankBadge"></div>
-
-      <!-- 이번 주 목표 -->
-      <div id="weekPlan" class="mb-4"></div>
-
-      <!-- 미션포인트 (가볍게) -->
-      <div id="pointsWidget" class="hidden bg-white rounded-2xl border border-ink/8 shadow-soft p-5 mb-8">
-        <div class="flex items-center justify-between gap-3">
-          <div>
-            <p class="text-neutral-900/50 text-[11px] font-bold tracking-[0.18em]">미션포인트</p>
-            <p class="text-3xl font-bold mt-1 text-neutral-900"><span id="ptTotal">0</span> <span class="text-base font-semibold text-neutral-900/40">P</span></p>
-          </div>
-          <span id="ptTier" class="inline-block bg-gold/10 border border-gold/30 text-gold font-bold text-sm px-3 py-1.5 rounded-full shrink-0">씨앗</span>
-        </div>
-        <div class="mt-3">
-          <div class="flex justify-between text-[11px] text-neutral-900/50 mb-1"><span id="ptNext">다음 등급까지…</span><span id="ptNextPct"></span></div>
-          <div class="h-1.5 rounded-full bg-ink/8 overflow-hidden"><div id="ptTierBar" class="h-full bg-gold transition-all" style="width:0%"></div></div>
-        </div>
-      </div>
+      <!-- 이번 주 학습 플랜 (1차 위계: 오늘 무엇을 학습할지) -->
+      <div id="weekPlan" class="mb-6"></div>
 
       <!-- 내 학습 진행 (통독·암송) -->
       <section class="mb-8">
@@ -228,6 +210,23 @@
       <div id="certView" class="hidden">
         <button onclick="showCat('overview')" class="text-sm text-neutral-900/50 hover:text-gold mb-3">← 과정 선택으로</button>
         <div id="program"></div>
+      </div>
+
+      <!-- 내 급수 · 포인트 (동기 부여 — 학습 흐름 아래 하단 배치) -->
+      <h2 class="text-[15px] font-bold text-neutral-900 mb-3 mt-10">내 급수 · 포인트</h2>
+      <div id="rankBadge"></div>
+      <div id="pointsWidget" class="hidden bg-white rounded-2xl border border-ink/8 shadow-soft p-5 mb-8">
+        <div class="flex items-center justify-between gap-3">
+          <div>
+            <p class="text-neutral-900/50 text-[11px] font-bold tracking-[0.18em]">미션포인트</p>
+            <p class="text-3xl font-bold mt-1 text-neutral-900"><span id="ptTotal">0</span> <span class="text-base font-semibold text-neutral-900/40">P</span></p>
+          </div>
+          <span id="ptTier" class="inline-block bg-gold/10 border border-gold/30 text-gold font-bold text-sm px-3 py-1.5 rounded-full shrink-0">씨앗</span>
+        </div>
+        <div class="mt-3">
+          <div class="flex justify-between text-[11px] text-neutral-900/50 mb-1"><span id="ptNext">다음 등급까지…</span><span id="ptNextPct"></span></div>
+          <div class="h-1.5 rounded-full bg-ink/8 overflow-hidden"><div id="ptTierBar" class="h-full bg-gold transition-all" style="width:0%"></div></div>
+        </div>
       </div>
       </div><!-- /tabMain -->
 
