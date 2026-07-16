@@ -669,7 +669,7 @@
       if((n.terms||[]).length){h+=`<h3 class="bk-h">핵심 용어</h3>`;n.terms.forEach(t=>{h+=`<p class="bk-term"><b>${esc(t.term||'')}</b> — ${esc(t.def||'')}</p>`;});}
       if((n.misconceptions||[]).length){h+=`<h3 class="bk-h">오해 vs 바른 이해</h3>`;n.misconceptions.forEach(m=>{h+=`<p class="bk-mis"><span class="w">✗ ${esc(m.wrong||'')}</span><br/><span class="r">✓ ${esc(m.right||'')}</span></p>`;});}
       if((n.takeaways||[]).length){h+=`<h3 class="bk-h">한눈 정리</h3><ul class="bk-ul">`+n.takeaways.map(t=>`<li>${esc(t)}</li>`).join('')+'</ul>';}
-      if((n.application||[]).length){h+=`<h3 class="bk-h">삶으로</h3><ul class="bk-ul">`+n.application.map(t=>`<li>${esc(t)}</li>`).join('')+'</ul>';}
+      if((n.application||[]).length){const _ap=Array.isArray(n.application)?n.application:[n.application];h+=`<h3 class="bk-h">삶으로</h3><ul class="bk-ul">`+_ap.map(t=>`<li>${esc(t)}</li>`).join('')+'</ul>';}
       if((n.questions||[]).length){h+=`<h3 class="bk-h">묵상 질문</h3><ul class="bk-ul">`+n.questions.map(t=>`<li>${esc(t)}</li>`).join('')+'</ul>';}
       return h+'</div>';
     }

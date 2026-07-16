@@ -452,16 +452,20 @@
           <ul style="margin:0;padding-left:20px">` + n.takeaways.map(t => `<li style="margin:5px 0;color:#2b3550;line-height:1.65">${esc(t)}</li>`).join('') + `</ul></div>`;
       }
       if(n.application && n.application.length){
-        h += `<div style="margin:20px 0"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">삶으로 가져가기</p>
-          <ul style="margin:0;padding-left:20px">` + n.application.map(a => `<li style="margin:5px 0;color:#44506a;line-height:1.7">${esc(a)}</li>`).join('') + `</ul></div>`;
+        h += `<div style="margin:20px 0"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">삶으로 가져가기</p>` +
+          (Array.isArray(n.application)
+            ? `<ul style="margin:0;padding-left:20px">` + n.application.map(a => `<li style="margin:5px 0;color:#44506a;line-height:1.7">${esc(a)}</li>`).join('') + `</ul>`
+            : noteParas(n.application)) + `</div>`;
       }
       if(n.questions && n.questions.length){
         h += `<div style="margin:20px 0"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">묵상·토론 질문</p>
           <ol style="margin:0;padding-left:20px">` + n.questions.map(q => `<li style="margin:6px 0;color:#44506a;line-height:1.65">${esc(q)}</li>`).join('') + `</ol></div>`;
       }
       if(n.furtherStudy && n.furtherStudy.length){
-        h += `<div style="margin:20px 0;background:#f4f9ff;border:1px solid #e0ebfa;border-radius:14px;padding:15px 17px"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">더 깊이 공부하려면</p>
-          <ul style="margin:0;padding-left:20px">` + n.furtherStudy.map(f => `<li style="margin:5px 0;color:#44506a;line-height:1.65">${esc(f)}</li>`).join('') + `</ul></div>`;
+        h += `<div style="margin:20px 0;background:#f4f9ff;border:1px solid #e0ebfa;border-radius:14px;padding:15px 17px"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">더 깊이 공부하려면</p>` +
+          (Array.isArray(n.furtherStudy)
+            ? `<ul style="margin:0;padding-left:20px">` + n.furtherStudy.map(f => `<li style="margin:5px 0;color:#44506a;line-height:1.65">${esc(f)}</li>`).join('') + `</ul>`
+            : noteParas(n.furtherStudy)) + `</div>`;
       }
       const tags = (l.tags || []).map(t => `<span style="display:inline-block;background:#f4eedd;color:#8a6d2f;font-size:12px;font-weight:600;padding:3px 11px;border-radius:999px;margin:3px 5px 3px 0">#${esc(t)}</span>`).join('');
       if(tags){ h += `<div style="margin:18px 0 4px"><p style="font-weight:700;color:#171717;margin:0 0 7px;font-size:14px">키워드</p>${tags}</div>`; }
