@@ -280,22 +280,32 @@
       try{
         var biz = s && s.business;
         if(biz && biz.reg_no && document.body.innerText.indexOf(biz.reg_no) < 0){
-          var L = function(t){ return '<span style="color:#9ca3af">' + t + '</span> '; };
-          var V = function(t){ return '<span style="color:#404040">' + t + '</span>'; };
-          var S = '<span style="color:#d4d4d4;margin:0 10px">│</span>';
-          var eco = biz.ecommerce_no ? ('신고 ' + biz.ecommerce_no) : '신고 준비 중';
+          var eco = biz.ecommerce_no ? ('제 ' + biz.ecommerce_no + ' 호') : (biz.ecommerce_status || '신고 준비 중');
           var addr = String(biz.address || '').replace('강남구', '<span style="color:#00704a;font-weight:600">강남구</span>');
+          var cell = function(label, val){
+            return '<div style="display:flex;gap:12px;align-items:baseline">'
+              + '<span style="flex:none;min-width:90px;color:#9ca3af;font-size:11px;font-weight:600;letter-spacing:.01em">' + label + '</span>'
+              + '<span style="color:#404040;font-size:12px;line-height:1.55">' + val + '</span></div>';
+          };
+          var ytSvg = '<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.5 15.6V8.4l6.3 3.6z"/></svg>';
           var bl = document.createElement('div');
           bl.setAttribute('data-bibly-bizinfo','');
-          bl.style.cssText = 'max-width:1120px;margin:36px auto 0;padding:30px 20px 4px;text-align:center;border-top:1px solid #e5e5e5';
+          bl.style.cssText = 'max-width:1120px;margin:40px auto 0;padding:30px 20px 8px;text-align:left;border-top:1px solid #e5e5e5';
           bl.innerHTML =
-            '<img src="/images/logo-bible-insight.png?v=2" alt="바이블 인사이트" style="height:34px;width:auto;display:block;margin:0 auto 13px"/>'
-            + '<span style="display:inline-flex;align-items:center;gap:6px;border-radius:999px;background:rgba(0,112,74,.1);border:1px solid rgba(0,112,74,.25);padding:4px 14px;margin-bottom:13px;font-size:11px;font-weight:600;letter-spacing:.02em;color:#00704a">서울 강남 본부 · GANGNAM, SEOUL</span>'
-            + '<div style="font-weight:700;font-size:13px;letter-spacing:.02em;color:#404040;margin-bottom:11px">BIBLY <span style="color:#00704a">·</span> 바이블 인사이트</div>'
-            + '<div style="font-size:11.5px;line-height:2.05;color:#737373">'
-            +   L('상호') + V(biz.name) + S + L('대표') + V(biz.ceo) + S + L('사업자등록번호') + V(biz.reg_no)
-            +   '<br>' + L('통신판매업') + V(eco) + S + L('주소') + '<span style="color:#404040">' + addr + '</span>'
-            +   (biz.contact_email ? '<br>' + L('문의') + V(biz.contact_email) : '')
+            '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:22px">'
+            +   '<div style="display:flex;align-items:center;gap:10px">'
+            +     '<img src="/images/logo-bible-insight.png?v=2" alt="바이블 인사이트" style="height:28px;width:auto"/>'
+            +     '<span style="font-weight:700;font-size:14px;color:#262626;letter-spacing:-.01em">BIBLY <span style="color:#00704a">·</span> 바이블 인사이트</span>'
+            +   '</div>'
+            +   '<a href="' + YT + '" target="_blank" rel="noopener" aria-label="YouTube" style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#00704a">' + ytSvg + '</a>'
+            + '</div>'
+            + '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px 34px">'
+            +   cell('상호', biz.name)
+            +   cell('대표', biz.ceo)
+            +   cell('사업자등록번호', biz.reg_no)
+            +   cell('통신판매업 신고', eco)
+            +   cell('주소', addr)
+            +   cell('문의', biz.contact_email || '')
             + '</div>';
           var f = document.querySelector('footer');
           if(f) f.appendChild(bl); else document.body.appendChild(bl);
