@@ -103,6 +103,7 @@
       + 'body{padding-left:calc(max(0px, (100vw - 1360px) / 2) + ' + W + 'px);padding-right:calc(max(0px, (100vw - 1360px) / 2) + ' + W + 'px)}'
       + '#sectionSideNav{display:flex;left:max(0px, calc((100vw - 1360px) / 2))}'
       + 'body>.bibly-topbar,body>header{margin-left:calc(-1 * (max(0px, (100vw - 1360px) / 2) + ' + W + 'px));width:calc(100% + 2 * (max(0px, (100vw - 1360px) / 2) + ' + W + 'px))}'
+      + 'body #biblyRail{display:none}'   // 섹션 사이드바가 뜨는 데스크톱에선 겹치는 빠른이동 레일 숨김(중복·로드순서 무관하게 우선)
       + '}';
     document.head.appendChild(st);
 
