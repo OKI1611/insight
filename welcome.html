@@ -220,6 +220,7 @@
 
   <!-- 실제 회원가입(Supabase) — 원탭(카카오·구글) + 이메일. watch.html과 동일 인증 -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="access.js?v=20260619c"></script>
   <script>
     var SB_URL = 'https://bmxkndkwefdgsomlznoo.supabase.co';
     var SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
@@ -243,6 +244,7 @@
       return '<div class="text-center">'
         + '<p class="font-display font-bold text-xl text-neutral-900">🎉 ' + (name ? escHtml(name)+'님, ' : '') + '가입 완료!</p>'
         + '<p class="text-[13px] text-neutral-900/55 mt-1.5 leading-relaxed">이제 <b class="text-neutral-900">모든 강의를 무제한 무료</b>로 볼 수 있어요.' + (emailNote ? '<br>'+emailNote : '') + '</p>'
+        + '<p class="joinFoundingNo text-[12.5px] text-gold font-semibold mt-3" style="display:none"></p>'
         + '<a href="' + LEAD_FILE + '" target="_blank" rel="noopener" class="mt-4 flex items-center justify-center gap-2 w-full bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition">📄 무료 자료 다운로드</a>'
         + '<a href="watch.html" class="mt-2 flex items-center justify-center gap-2 w-full border border-ink/20 text-neutral-900 font-bold py-3.5 rounded-xl hover:bg-ink/5 transition">▶ 지금 강의 보러가기</a>'
         + '</div>';
@@ -254,8 +256,19 @@
     }
     function sessName(s){ try{ var u=s.user, m=u.user_metadata||{}; return m.full_name || m.name || ''; }catch(e){ return ''; } }
 
-    // 이미 로그인했거나 OAuth에서 돌아온 경우 → 즉시 '가입 완료 + PDF' 상태로
-    sb.auth.onAuthStateChange(function(_e, s){ if(s && s.user){ renderJoined(sessName(s), ''); } });
+    // ===== 가입 온보딩 통일 — 홈과 동일하게 창립멤버 번호 + 5일 체험 부여(선물=PDF는 카드에 노출) =====
+    function withTimeout(p, ms){ return Promise.race([ Promise.resolve(p), new Promise(function(_, rej){ setTimeout(function(){ rej(new Error('TIMEOUT')); }, ms||6000); }) ]); }
+    async function runOnboardingOnce(user){
+      var flag = 'biblyOnboarded_' + user.id;
+      try{ if(localStorage.getItem(flag)) return; localStorage.setItem(flag, '1'); }catch(e){}
+      var memberNo = null;
+      try{ memberNo = await withTimeout(sb.rpc('join_founding', { p_name: null }).then(function(r){ if(r.error) throw r.error; return r.data; }), 6000); }catch(e){}
+      try{ if(window.biblyGrantAccess) await withTimeout(biblyGrantAccess(sb, user, 'trial', { days:5 }), 6000); }catch(e){}
+      if(memberNo){ Array.prototype.forEach.call(document.querySelectorAll('.joinFoundingNo'), function(b){ b.innerHTML = '🎖 BIBLY 1기 창립멤버 <b>#' + String(memberNo).padStart(3,'0') + '</b> · 5일 무료체험 시작'; b.style.display = ''; }); }
+    }
+
+    // 이미 로그인했거나 OAuth에서 돌아온 경우 → 즉시 '가입 완료 + PDF' 상태로. 새 로그인(SIGNED_IN)이면 온보딩 실행
+    sb.auth.onAuthStateChange(function(event, s){ if(s && s.user){ renderJoined(sessName(s), ''); if(event === 'SIGNED_IN') runOnboardingOnce(s.user); } });
     (function(){ var s = readStoredSession(); if(s && s.user){ renderJoined(sessName(s), ''); } })();
 
     function joinKakao(){ try{ sb.auth.signInWithOAuth({ provider:'kakao', options:{ redirectTo: location.origin + location.pathname } }); }catch(e){} }
