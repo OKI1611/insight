@@ -35,6 +35,12 @@ _*.txt
 _book_t.png
 PAYMENT_SETUP.md
 
+# wrangler 로컬 개발 — 시크릿/상태 (절대 커밋 금지)
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+.wrangler/
+
 # 강의 자막(로컬 처리용, 배포 제외)
 content/transcripts/
 tools/_fetch_run.log

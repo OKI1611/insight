@@ -22,11 +22,14 @@
   (Worker → Settings → Variables and secrets)에만 설정되어 있습니다. 로컬에는 없어도 정상입니다.
 - 서비스워커(`sw.js`)에 버전 문자열(예: `SW v149`)이 있어 정적 자산 갱신 시 함께 올립니다.
 
-## 로컬 미리보기
-- 정적 서빙이면 충분합니다. 루트에서 아무 정적 서버나 사용:
-  - 예: `npx --yes serve -l 4321 .` 또는 간단한 Node http 서버
-- 결제(`/api/pay/*`)까지 로컬에서 테스트하려면 `wrangler dev`가 필요하며 Cloudflare 로그인이 있어야 합니다.
-- 채널톡/Supabase 실시간 위젯이 로컬에서 계속 연결을 시도하므로 헤드리스 스크린샷이 지연될 수 있습니다(정상).
+## 로컬 미리보기 / 개발
+- **정적(HTML/CSS/JS)만 확인**: 루트에서 아무 정적 서버나 사용 — 예 `npx --yes serve -l 4321 .`
+- **worker + 결제 API(`/api/pay/*`)까지 로컬 실행**: 저장소 루트의 **`dev-local.ps1`** 실행
+  - `powershell -ExecutionPolicy Bypass -File .\dev-local.ps1`  (기본 포트 8788, `-Port 9000` 으로 변경 가능)
+  - 확인: `http://localhost:8788/api/pay/ping` → `{"ok":true,"mode":"worker",...}`
+  - 결제/DB API 실제 동작에는 시크릿이 필요 → 루트에 **`.dev.vars`** 생성(`.dev.vars.example` 복사 후 값 입력). `.dev.vars` 는 gitignore 됨(커밋 금지).
+- ⚠️ `wrangler dev` 를 저장소 루트에서 **직접** 실행하면 무한 리로드 루프에 빠진다(자산 디렉터리가 `./` 라서 wrangler 의 `.wrangler` 상태 쓰기를 감시기가 계속 감지). 그래서 반드시 `dev-local.ps1`(저장소 밖 임시 폴더에서 실행) 을 사용한다.
+- `Request.cf` 타임아웃 경고, 채널톡/Supabase 실시간 위젯의 반복 연결 시도는 로컬에서 정상(무시).
 
 ## 작업 관례
 - 커밋 메시지·UI 문구·주석은 **한국어**로 작성합니다(기존 커밋 히스토리 참고).

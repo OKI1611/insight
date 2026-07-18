@@ -1,0 +1,11 @@
+# wrangler 로컬 개발용 환경변수 템플릿
+# 이 파일을 복사해 `.dev.vars` 로 만들고 실제 값을 채우세요. (.dev.vars 는 gitignore 됨 — 커밋 금지)
+#   copy .dev.vars.example .dev.vars   (PowerShell/CMD)
+#
+# 값 출처:
+#   SUPABASE_SERVICE_KEY : Supabase 대시보드 → Project Settings → API → service_role secret
+#                          (배포된 Worker에도 같은 값이 secret 으로 설정되어 있음)
+#   TOSS_SECRET_KEY      : 토스페이먼츠 실결제 시크릿. 비워두면 worker 가 내장 테스트 키로 동작.
+
+SUPABASE_SERVICE_KEY=여기에_supabase_service_role_키
+# TOSS_SECRET_KEY=live_sk_실결제키_있으면_입력
