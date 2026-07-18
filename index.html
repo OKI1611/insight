@@ -475,6 +475,72 @@
   })();
   </script>
 
+  <!-- ===== 성경 Q&A (홈 노출 · 궁금증 → Q&A/가입 유도) ===== -->
+  <section class="bg-gradient-to-b from-sand/40 to-paper border-b border-ink/8 py-11 md:py-14">
+    <div class="max-w-5xl mx-auto px-5">
+      <div class="text-center mb-6">
+        <p class="text-gold text-[11px] font-bold tracking-[0.22em] uppercase mb-2">Bible Q&amp;A · 성경 궁금증</p>
+        <h2 class="text-xl md:text-2xl font-bold">성경, <span class="text-gold">궁금한 건 물어보세요</span></h2>
+        <p class="text-neutral-900/55 text-[12.5px] md:text-[13px] mt-2 leading-relaxed max-w-lg mx-auto">666, 휴거, 죽으면 어디로… 창세기부터 요한계시록까지 <b class="text-neutral-900/80">2,100여 개의 질문</b>을 성경 본문과 함께 균형 있게 풀이합니다.</p>
+      </div>
+
+      <form onsubmit="event.preventDefault();var v=document.getElementById('qaHomeQ').value.trim();location.href='qa-book.html'+(v?('?q='+encodeURIComponent(v)):'');" class="max-w-lg mx-auto relative mb-4">
+        <input id="qaHomeQ" type="text" autocomplete="off" aria-label="성경 Q&amp;A 검색" placeholder="궁금한 걸 검색하세요 — 666? 네피림? 가인의 아내?" class="w-full rounded-full pl-5 pr-20 py-3 text-[13px] text-neutral-900 bg-white border border-neutral-300 outline-none shadow-soft placeholder:text-neutral-400 focus:border-gold transition" />
+        <button type="submit" class="absolute right-1.5 top-1/2 -translate-y-1/2 bg-gold text-white font-bold text-[12.5px] px-4 py-2 rounded-xl hover:opacity-90 transition">검색</button>
+      </form>
+
+      <div class="flex flex-wrap justify-center gap-1.5 mb-5">
+        <a href="qa-book.html?q=재림" class="text-[11.5px] text-neutral-900/70 bg-white border border-ink/12 rounded-full px-3 py-1 hover:border-gold hover:text-gold transition">종말·재림</a>
+        <a href="qa-book.html?q=창조" class="text-[11.5px] text-neutral-900/70 bg-white border border-ink/12 rounded-full px-3 py-1 hover:border-gold hover:text-gold transition">창조·창세기</a>
+        <a href="qa-book.html?q=천국" class="text-[11.5px] text-neutral-900/70 bg-white border border-ink/12 rounded-full px-3 py-1 hover:border-gold hover:text-gold transition">천국·사후세계</a>
+        <a href="qa-book.html?q=구원" class="text-[11.5px] text-neutral-900/70 bg-white border border-ink/12 rounded-full px-3 py-1 hover:border-gold hover:text-gold transition">구원·믿음</a>
+        <a href="qa-book.html" class="text-[11.5px] text-neutral-900/70 bg-white border border-ink/12 rounded-full px-3 py-1 hover:border-gold hover:text-gold transition">난해구절</a>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-2">
+        <a href="qa-book.html?q=666" class="group bg-white rounded-lg border border-ink/8 shadow-soft px-3.5 py-2.5 flex items-center gap-2.5 hover:border-gold/40 hover:shadow-card transition">
+          <span class="shrink-0 text-[10px] font-bold text-gold bg-gold/10 border border-gold/20 rounded-full px-2 py-0.5">요한계시록</span>
+          <span class="flex-1 min-w-0 text-[12.5px] font-semibold text-neutral-900 leading-snug group-hover:text-gold transition">짐승과 666은 무엇을 뜻하나요?</span>
+          <span class="shrink-0 text-gold font-bold text-[12px]">→</span>
+        </a>
+        <a href="qa-book.html?q=휴거" class="group bg-white rounded-lg border border-ink/8 shadow-soft px-3.5 py-2.5 flex items-center gap-2.5 hover:border-gold/40 hover:shadow-card transition">
+          <span class="shrink-0 text-[10px] font-bold text-gold bg-gold/10 border border-gold/20 rounded-full px-2 py-0.5">요한계시록</span>
+          <span class="flex-1 min-w-0 text-[12.5px] font-semibold text-neutral-900 leading-snug group-hover:text-gold transition">환난 전 휴거인가요, 후 휴거인가요?</span>
+          <span class="shrink-0 text-gold font-bold text-[12px]">→</span>
+        </a>
+        <a href="qa-book.html?q=네피림" class="group bg-white rounded-lg border border-ink/8 shadow-soft px-3.5 py-2.5 flex items-center gap-2.5 hover:border-gold/40 hover:shadow-card transition">
+          <span class="shrink-0 text-[10px] font-bold text-gold bg-gold/10 border border-gold/20 rounded-full px-2 py-0.5">창세기</span>
+          <span class="flex-1 min-w-0 text-[12.5px] font-semibold text-neutral-900 leading-snug group-hover:text-gold transition">‘하나님의 아들들’과 네피림은 누구인가요?</span>
+          <span class="shrink-0 text-gold font-bold text-[12px]">→</span>
+        </a>
+        <a href="qa-book.html?q=음부와 낙원" class="group bg-white rounded-lg border border-ink/8 shadow-soft px-3.5 py-2.5 flex items-center gap-2.5 hover:border-gold/40 hover:shadow-card transition">
+          <span class="shrink-0 text-[10px] font-bold text-gold bg-gold/10 border border-gold/20 rounded-full px-2 py-0.5">누가복음</span>
+          <span class="flex-1 min-w-0 text-[12.5px] font-semibold text-neutral-900 leading-snug group-hover:text-gold transition">죽으면 어디로 가나요? (음부와 낙원)</span>
+          <span class="shrink-0 text-gold font-bold text-[12px]">→</span>
+        </a>
+        <a href="qa-book.html?q=가인" class="group bg-white rounded-lg border border-ink/8 shadow-soft px-3.5 py-2.5 flex items-center gap-2.5 hover:border-gold/40 hover:shadow-card transition">
+          <span class="shrink-0 text-[10px] font-bold text-gold bg-gold/10 border border-gold/20 rounded-full px-2 py-0.5">창세기</span>
+          <span class="flex-1 min-w-0 text-[12.5px] font-semibold text-neutral-900 leading-snug group-hover:text-gold transition">가인은 아내를 어디서 얻었나요?</span>
+          <span class="shrink-0 text-gold font-bold text-[12px]">→</span>
+        </a>
+        <a href="qa-book.html?q=천년왕국" class="group bg-white rounded-lg border border-ink/8 shadow-soft px-3.5 py-2.5 flex items-center gap-2.5 hover:border-gold/40 hover:shadow-card transition">
+          <span class="shrink-0 text-[10px] font-bold text-gold bg-gold/10 border border-gold/20 rounded-full px-2 py-0.5">요한계시록</span>
+          <span class="flex-1 min-w-0 text-[12.5px] font-semibold text-neutral-900 leading-snug group-hover:text-gold transition">천년왕국에서는 무슨 일이 일어나나요?</span>
+          <span class="shrink-0 text-gold font-bold text-[12px]">→</span>
+        </a>
+        <a href="qa-book.html?q=창조의 6일" class="group bg-white rounded-lg border border-ink/8 shadow-soft px-3.5 py-2.5 flex items-center gap-2.5 hover:border-gold/40 hover:shadow-card transition sm:col-span-2">
+          <span class="shrink-0 text-[10px] font-bold text-gold bg-gold/10 border border-gold/20 rounded-full px-2 py-0.5">창세기</span>
+          <span class="flex-1 min-w-0 text-[12.5px] font-semibold text-neutral-900 leading-snug group-hover:text-gold transition">창조의 6일은 문자 그대로 24시간이었나요?</span>
+          <span class="shrink-0 text-gold font-bold text-[12px]">→</span>
+        </a>
+      </div>
+
+      <div class="text-center mt-6">
+        <a href="qa-book.html" class="inline-flex items-center gap-2 bg-ink text-white font-bold text-[13px] px-6 py-3 rounded-full hover:bg-navy transition shadow-soft">전체 2,100+ Q&amp;A 보기 →</a>
+      </div>
+    </div>
+  </section>
+
   <!-- BIBLY 브랜드 약속 (슬림 라이트 스트립) -->
   <div class="bg-paper border-b border-ink/8">
     <div class="max-w-5xl mx-auto px-5 py-4 flex flex-col sm:flex-row items-center justify-center gap-x-7 gap-y-3 text-center">
