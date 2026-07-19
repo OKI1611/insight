@@ -203,21 +203,6 @@
           class="w-full rounded-full pl-6 pr-28 py-4 text-[15px] text-neutral-900 bg-white border border-neutral-300 outline-none shadow-[0_1px_6px_rgba(21,32,58,0.06)] placeholder:text-neutral-400 hover:border-neutral-400 hover:shadow-[0_2px_12px_rgba(21,32,58,0.10)] focus:border-gold focus:shadow-[0_2px_14px_rgba(0,112,74,0.18)] transition" />
         <button type="submit" class="absolute right-2 top-1/2 -translate-y-1/2 bg-gold text-white font-bold text-sm px-5 py-2.5 rounded-xl hover:opacity-90 transition">물어보기</button>
       </form>
-
-      <!-- 원탭 무료가입 (비로그인 시에만 노출 · paintNav에서 토글) — 홈에서 바로 가입 -->
-      <div id="heroJoin" class="hidden mt-4 max-w-xl mx-auto">
-        <div class="flex items-stretch gap-2">
-          <button type="button" onclick="oauthLogin('kakao')" class="flex-1 inline-flex items-center justify-center gap-1.5 font-bold text-[14px] py-3 rounded-xl hover:opacity-90 transition" style="background:#FEE500;color:#191600">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.48 2 10.8c0 2.76 1.86 5.19 4.66 6.57-.15.53-.97 3.35-1 3.57 0 0-.02.17.09.24a.28.28 0 0 0 .24.01c.32-.04 3.7-2.42 4.28-2.83.56.08 1.14.13 1.73.13 5.52 0 10-3.48 10-7.8S17.52 3 12 3z"/></svg>
-            카카오로 3초 가입
-          </button>
-          <button type="button" onclick="oauthLogin('google')" class="flex-1 inline-flex items-center justify-center gap-1.5 bg-white border border-neutral-300 text-neutral-900 font-bold text-[14px] py-3 rounded-xl hover:bg-ink/5 transition">
-            <svg width="16" height="16" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-            구글로 3초 가입
-          </button>
-        </div>
-        <p class="text-[11.5px] text-neutral-900/50 text-center mt-2">가입 즉시 <b class="text-neutral-900/70">전 강의 무제한 무료</b> · 신규 5일 무료체험 · <span class="text-gold font-semibold">1기 창립멤버 혜택</span> · <button type="button" onclick="openAuth('signup')" class="underline hover:text-gold">이메일로 가입</button></p>
-      </div>
     </div>
 
     <!-- 회전 배너 3단 (좌측 탭 · 회전 히어로 · HOT PICK) -->
@@ -1837,8 +1822,6 @@
           `<button onclick="openAuth('login')" class="hover:text-gold">로그인</button>` +
           `<button onclick="openAuth('signup')" class="hover:text-gold font-semibold text-gold">회원가입</button>`;
       }
-      // 히어로 원탭 가입 블록: 로그인 시 숨김, 비로그인 시 노출
-      const hj = document.getElementById('heroJoin'); if(hj) hj.classList.toggle('hidden', !!user);
     }
     async function refreshNav(){
       // 저장된 세션을 즉시 반영(getSession 멈춤 대비) — 그 뒤 이름만 보강
