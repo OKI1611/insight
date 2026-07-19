@@ -147,6 +147,13 @@
         <button id="searchBtn" onclick="doSearch()" class="absolute right-2 top-1/2 -translate-y-1/2 bg-gold text-white font-semibold text-sm px-4 py-2 rounded-xl hover:opacity-90 active:scale-95 transition">검색</button>
       </div>
       <div class="flex items-center gap-1.5 mt-2 flex-wrap">
+        <label class="relative" title="특정 성경 책 안에서만 검색합니다">
+          <select id="searchBook" onchange="onSearchBookChange()" class="appearance-none border border-gold/40 rounded-full pl-3 pr-7 py-1 text-[11px] font-bold text-gold bg-gold/[0.06] cursor-pointer hover:border-gold focus:border-gold outline-none transition">
+            <option value="">전체 성경</option>
+          </select>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" class="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-gold/70"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </label>
+        <span class="w-px h-4 bg-ink/10 mx-0.5"></span>
         <span class="text-[11px] text-neutral-900/45 mr-0.5">자주 찾는 단어</span>
         <button class="text-[11px] px-2.5 py-1 rounded-full border border-ink/12 text-neutral-900/70 hover:border-gold/50 hover:bg-gold/5 transition" onclick="quickSearch('사랑')">사랑</button>
         <button class="text-[11px] px-2.5 py-1 rounded-full border border-ink/12 text-neutral-900/70 hover:border-gold/50 hover:bg-gold/5 transition" onclick="quickSearch('믿음')">믿음</button>
@@ -253,6 +260,9 @@
 
     fetch('bible/books.json?t='+Date.now()).then(r=>r.json()).then(bs=>{
       BOOKS=bs;
+      const sb=$('searchBook'); if(sb){ sb.innerHTML='<option value="">전체 성경</option>'
+        +'<optgroup label="구약">'+bs.filter(b=>b.t==='ot').map(b=>`<option value="${b.file}">${b.ko}</option>`).join('')+'</optgroup>'
+        +'<optgroup label="신약">'+bs.filter(b=>b.t==='nt').map(b=>`<option value="${b.file}">${b.ko}</option>`).join('')+'</optgroup>'; }
       const cell=b=>`<button onclick="selectBook('${b.file}')" class="text-xs px-2 py-1.5 rounded-lg border border-ink/10 hover:bg-gold/10 hover:border-gold/40 transition truncate" title="${b.ko}">${b.ko}</button>`;
       $('otGrid').innerHTML = bs.filter(b=>b.t==='ot').map(cell).join('');
       $('ntGrid').innerHTML = bs.filter(b=>b.t==='nt').map(cell).join('');
@@ -633,7 +643,7 @@
         return false;
       })||null;
     }
-    function studyPanel(ws){
+    function studyPanel(ws, scope){
       if(!ws) return '';
       const refs=(ws.refs||[]).map(r=>`<span class="inline-block bg-sand/70 text-neutral-900/70 text-[11px] px-2 py-0.5 rounded mr-1 mb-1">${esc(r)}</span>`).join('');
       return `<div class="bg-white rounded-2xl border border-gold/30 shadow-soft p-5 mb-4">
@@ -645,7 +655,7 @@
         ${ws.theology?`<div class="mb-3"><h4 class="font-bold text-neutral-900 text-[13.5px] mb-1">신학적 의미</h4><p class="text-[13.5px] text-neutral-900/80 leading-[1.9]">${esc(ws.theology)}</p></div>`:''}
         ${ws.context?`<div class="mb-2"><h4 class="font-bold text-neutral-900 text-[13.5px] mb-1">성경에서의 맥락</h4><p class="text-[13.5px] text-neutral-900/80 leading-[1.9]">${esc(ws.context)}</p></div>`:''}
         ${refs?`<div class="mt-2.5">${refs}</div>`:''}
-        <p class="text-[12px] text-gold/90 mt-3 pt-2.5 border-t border-ink/8">아래는 성경 전체에서 <b>‘${esc(ws.w)}’</b>가 실제로 쓰인 구절입니다 — 맥락 속에서 직접 확인하며 학습해 보세요.</p>
+        <p class="text-[12px] text-gold/90 mt-3 pt-2.5 border-t border-ink/8">아래는 ${scope?esc(scope):'성경 전체'}에서 <b>‘${esc(ws.w)}’</b>가 실제로 쓰인 구절입니다 — 맥락 속에서 직접 확인하며 학습해 보세요.</p>
       </div>`;
     }
     let SEARCH_EN=false;
@@ -669,13 +679,18 @@
     }
     function hlEn(text, terms){ let safe=esc(text); if(!terms||!terms.length) return safe;
       try{ return safe.replace(new RegExp('('+terms.map(escRe).join('|')+')','gi'),'<mark class="hl">$1</mark>'); }catch(e){ return safe; } }
+    function searchBookFile(){ return ($('searchBook')&&$('searchBook').value)||''; }
+    function searchBookName(file){ if(!file) return ''; const b=BOOKS.find(x=>x.file===file); return b?b.ko:''; }
+    function onSearchBookChange(){ if(!$('searchView').classList.contains('hidden') && ($('searchInput').value||'').trim()) doSearch(); }
     async function doSearch(fromHistory){
       const q=($('searchInput').value||'').trim();
       const view=$('searchView');
       if(q.length<1){ closeSearch(); return; }
-      if(!fromHistory){ try{ history.pushState({view:'search',q}, '', '?q='+encodeURIComponent(q)); }catch(e){} }
+      const bookFile=searchBookFile();
+      const scope=searchBookName(bookFile);
+      if(!fromHistory){ try{ history.pushState({view:'search',q,book:bookFile}, '', '?q='+encodeURIComponent(q)+(bookFile?('&in='+encodeURIComponent(bookFile)):'')); }catch(e){} }
       setSearchMode(true);
-      view.innerHTML='<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-8 text-center text-neutral-900/45">성경 전체에서 찾는 중…</div>';
+      view.innerHTML='<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-8 text-center text-neutral-900/45">'+(scope?esc(scope)+'에서':'성경 전체에서')+' 찾는 중…</div>';
       const idx=await ensureIndex();
       await ensureWordStudy();
       const ws=findWordStudy(q);
@@ -683,6 +698,7 @@
       const koList=[], enList=[];
       for(let i=0;i<idx.verses.length;i++){
         const r=idx.verses[i]; // [bi,ch,v,ko,en]
+        if(bookFile && idx.books[r[0]].f!==bookFile) continue;   // 책 필터
         const inKo = r[3] && r[3].indexOf(q)>=0;
         let enMatch=null;
         if(enTerms.length && r[4]){ const low=r[4].toLowerCase(); for(const x of enTerms){ if(low.indexOf(x)>=0){ enMatch=x; break; } } }
@@ -692,7 +708,7 @@
       }
       // 번역된 한글 구절 우선 → 구약 등 영어 전용 구절
       const hits=koList.slice(0,600).concat(enList.slice(0,500));
-      renderResults(q, hits, idx, ws, enTerms, koList.length, enList.length);
+      renderResults(q, hits, idx, ws, enTerms, koList.length, enList.length, scope);
     }
     function verseRow(r, idx, q, enTerms){
       const bk=idx.books[r[0]], ref=bk.k+' '+r[1]+':'+r[2];
@@ -707,19 +723,20 @@
           <span class="text-[11px] text-neutral-900/30 group-hover:text-gold/70 ml-auto transition">펼쳐 읽기 →</span>
         </div>${koHtml}${enHtml}</button>`;
     }
-    function renderResults(q, hits, idx, ws, enTerms, koN, enN){
+    function renderResults(q, hits, idx, ws, enTerms, koN, enN, scope){
       const view=$('searchView');
-      const study=studyPanel(ws);
+      const study=studyPanel(ws, scope);
       const otN = hits.filter(h=>!h[0][3]).length;
+      const scopeTag = scope?`<b class="text-gold">${esc(scope)}</b>에서 `:'';
       const head=`<div class="flex items-center justify-between gap-3 mb-3">
-        <p class="text-sm text-neutral-900/70"><b class="text-neutral-900">‘${esc(q)}’</b> 검색 결과 <b class="text-gold">${hits.length}</b>구절 <span class="text-neutral-900/40 text-xs">${otN?`· 구약 등 미번역 ${otN}구절 포함`:''}</span></p>
+        <p class="text-sm text-neutral-900/70">${scopeTag}<b class="text-neutral-900">‘${esc(q)}’</b> 검색 결과 <b class="text-gold">${hits.length}</b>구절 <span class="text-neutral-900/40 text-xs">${otN?`· 구약 등 미번역 ${otN}구절 포함`:''}</span></p>
         <button onclick="closeSearch()" class="text-xs text-neutral-900/55 hover:text-neutral-900 border border-ink/15 rounded-full px-3 py-1.5 hover:bg-ink/5 transition">✕ 읽기로 돌아가기</button>
       </div>`;
       if(!hits.length){
         view.innerHTML=head+study+`<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-10 text-center">
           <p class="text-3xl mb-2"></p>
-          <p class="text-neutral-900/60 text-sm">성경 전체에서 <b>‘${esc(q)}’</b>에 해당하는 구절을 찾지 못했어요.</p>
-          <p class="text-neutral-900/40 text-xs mt-2">맞춤법을 확인하거나 다른 단어로 검색해 보세요. (한글 번역 본문 + 전 성경 영어 KJV에서 검색합니다.)</p>
+          <p class="text-neutral-900/60 text-sm">${scope?esc(scope):'성경 전체'}에서 <b>‘${esc(q)}’</b>에 해당하는 구절을 찾지 못했어요.</p>
+          <p class="text-neutral-900/40 text-xs mt-2">${scope?'다른 책이나 <b>전체 성경</b>으로 넓혀 보세요. ':'맞춤법을 확인하거나 다른 단어로 검색해 보세요. '}(한글 번역 본문 + 전 성경 영어 KJV에서 검색합니다.)</p>
         </div>`;
         return;
       }
@@ -754,7 +771,7 @@
     // 뒤로가기/앞으로가기: 검색 상태면 검색 결과 복원, 아니면 검색 닫기
     window.addEventListener('popstate', e=>{
       const st=e.state;
-      if(st && st.view==='search'){ $('searchInput').value=st.q||''; doSearch(true); }
+      if(st && st.view==='search'){ $('searchInput').value=st.q||''; if($('searchBook')) $('searchBook').value=st.book||''; doSearch(true); }
       else { if(!$('searchView').classList.contains('hidden')) setSearchMode(false); }
     });
     document.addEventListener('keydown', e=>{
