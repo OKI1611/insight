@@ -114,6 +114,7 @@
             <button class="sbItem active" data-sec="main" onclick="sbGo('main')"><span>학습 현황</span></button>
             <button class="sbItem" data-sec="free" onclick="sbGo('free')"><span>자유 학습 과정</span></button>
             <button class="sbItem" data-sec="cert" onclick="sbGo('cert')"><span>인증 과정</span></button>
+            <button class="sbItem" data-sec="assign" onclick="sbGo('assign')"><span>내 과제</span></button>
             <button class="sbItem" data-sec="diary" onclick="sbGo('diary')"><span>학습 다이어리</span></button>
             <p class="sbGroup hidden lg:block mt-2">나의 정보 · 설정</p>
             <button class="sbItem" data-sec="profile" onclick="sbGo('profile')"><span>개인정보 수정</span></button>
@@ -299,6 +300,15 @@
         <div class="bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden">
           <iframe id="embBooks" title="내 교재·스토어" class="w-full block" style="height:80vh;border:0" loading="lazy"></iframe>
         </div>
+      </div>
+
+      <!-- 내 과제 -->
+      <div id="tabAssign" class="hidden">
+        <div class="mb-4">
+          <h2 class="text-lg font-bold">내 과제</h2>
+          <p class="text-sm text-neutral-900/50 mt-0.5">제출한 과제와 대표강사의 첨삭 피드백을 확인할 수 있어요.</p>
+        </div>
+        <div id="myAsgList"><p class="text-neutral-900/40 text-sm py-8 text-center">불러오는 중…</p></div>
       </div>
 
         </div><!-- /콘텐츠 -->
@@ -1030,12 +1040,14 @@
     function sbGo(sec){
       const mainSecs=['main','free','cert'];
       const tm=document.getElementById('tabMain'), td=document.getElementById('tabDiary'), tp=document.getElementById('tabProfile');
-      const tb=document.getElementById('tabBible'), tk=document.getElementById('tabBooks');
+      const tb=document.getElementById('tabBible'), tk=document.getElementById('tabBooks'), ta=document.getElementById('tabAssign');
       if(tm) tm.classList.toggle('hidden', !mainSecs.includes(sec));
       if(td) td.classList.toggle('hidden', sec!=='diary');
       if(tp) tp.classList.toggle('hidden', sec!=='profile');
       if(tb) tb.classList.toggle('hidden', sec!=='bible');
       if(tk) tk.classList.toggle('hidden', sec!=='books');
+      if(ta) ta.classList.toggle('hidden', sec!=='assign');
+      if(sec==='assign') loadMyAssignments();
       if(sec==='free') showCat('free');
       else if(sec==='cert') showCat('cert');
       else if(sec==='main') showCat('overview');
@@ -1047,6 +1059,36 @@
       window.scrollTo({top:0, behavior:'smooth'});
     }
     function loadEmbed(id, src){ const f=document.getElementById(id); if(f && !f.getAttribute('src')){ f.setAttribute('src', src); } }
+
+    // ===== 내 과제 =====
+    async function loadMyAssignments(){
+      const wrap=document.getElementById('myAsgList'); if(!wrap) return;
+      if(!user){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm py-8 text-center">로그인 후 이용할 수 있어요.</p>'; return; }
+      wrap.innerHTML='<p class="text-neutral-900/40 text-sm py-8 text-center">불러오는 중…</p>';
+      if(!COURSE){ try{ COURSE=await (await fetch('content/course.json?t='+Date.now())).json(); }catch(e){} }
+      const titles={}; ((COURSE&&COURSE.levels)||[]).forEach(lv=>(lv.lessons||[]).forEach(l=>{ const id=ytId(l.youtube); if(id) titles[id]=l.title||''; }));
+      let rows=[];
+      try{
+        const { data, error }=await withTimeout(sb.from('assignment_submissions').select('*').eq('user_id',user.id).order('submitted_at',{ascending:false}),8000);
+        if(error){ if(/relation|does not exist|schema cache/i.test(error.message||'')){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm py-8 text-center">과제 기능을 준비 중이에요.</p>'; return; } throw error; }
+        rows=data||[];
+      }catch(e){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm py-8 text-center">불러오기 오류: '+esc(e.message||String(e))+'</p>'; return; }
+      if(!rows.length){ wrap.innerHTML='<div class="bg-white rounded-2xl border border-ink/8 shadow-soft px-5 py-10 text-center"><p class="text-neutral-900/55 text-sm">아직 제출한 과제가 없어요.</p><p class="text-neutral-900/40 text-[13px] mt-1">급수 인증 강의의 <b>과제 제출</b> 탭에서 과제를 작성해 제출해 보세요.</p><a href="academy.html" class="inline-block mt-3 text-gold font-bold text-sm hover:underline">급수 과정 보기 →</a></div>'; return; }
+      const SB={submitted:['첨삭 대기','bg-amber-100 text-amber-700'], passed:['합격','bg-gold/15 text-gold']};
+      wrap.innerHTML=rows.map(r=>{
+        const t=titles[r.lesson_id]||r.lesson_id; const st=SB[r.status]||['제출됨','bg-ink/8 text-neutral-900/50'];
+        return `<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 mb-4">
+          <div class="flex items-start justify-between gap-3 flex-wrap">
+            <div><p class="font-bold text-[15px]">${esc(t)}</p><p class="text-[12.5px] text-neutral-900/50 mt-0.5">${esc(r.track||'')} · 제출 ${new Date(r.submitted_at).toLocaleDateString('ko')}</p></div>
+            <span class="text-[11px] font-bold px-2.5 py-1 rounded-full ${st[1]}">${st[0]}</span>
+          </div>
+          <div class="mt-3 border border-ink/8 rounded-xl px-4 py-3 bg-neutral-50/60 text-[13.5px] text-neutral-900/80 leading-relaxed whitespace-pre-wrap">${esc((r.body||'').slice(0,600))}${(r.body||'').length>600?'…':''}</div>
+          ${r.image_url?`<a href="${esc(r.image_url)}" target="_blank" class="inline-block mt-2 text-gold text-[12px] font-semibold hover:underline">📎 첨부 사진</a>`:''}
+          ${r.status==='passed'&&r.feedback?`<div class="mt-3 border border-gold/25 bg-gold/[0.05] rounded-xl p-4"><p class="text-[12px] font-bold text-gold mb-1">✔ 대표강사 첨삭</p><div class="text-[13.5px] text-neutral-900/85 leading-relaxed whitespace-pre-wrap">${esc(r.feedback)}</div></div>`:''}
+          ${r.status==='submitted'?`<a href="watch.html?v=${esc(r.lesson_id)}" class="inline-block mt-3 text-gold text-[13px] font-semibold hover:underline">강의로 이동해 수정 →</a>`:''}
+        </div>`;
+      }).join('');
+    }
 
     // ===== 개인정보 수정 =====
     let _pfLoaded=false;

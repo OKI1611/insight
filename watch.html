@@ -146,6 +146,7 @@
         <button data-tab="info" onclick="showLearnTab('info')" class="learnTabBtn">강의 안내</button>
         <button data-tab="note" onclick="showLearnTab('note')" class="learnTabBtn">요약 노트</button>
         <button data-tab="quiz" onclick="showLearnTab('quiz')" class="learnTabBtn">진단평가·핵심요약</button>
+        <button data-tab="assign" onclick="showLearnTab('assign')" class="learnTabBtn">과제 제출</button>
         <button data-tab="qa" onclick="showLearnTab('qa')" class="learnTabBtn">질의응답</button>
       </div>
       <div id="learnHost" class="mt-4"></div>
@@ -211,6 +212,18 @@
     </div>
   </section>
 
+
+  <!-- ===== 과제 제출 (급수 인증 과목 · 유료 수강생) ===== -->
+  <section id="assignSection" class="max-w-7xl mx-auto px-4 pb-14" style="display:none">
+    <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 lg:p-7">
+      <div class="flex items-center gap-2 mb-1">
+        <h3 class="font-bold text-lg">과제 제출</h3>
+        <span id="asgStatusBadge" class="hidden text-[11px] font-bold px-2.5 py-0.5 rounded-full"></span>
+      </div>
+      <p class="text-[13px] text-neutral-900/55 mb-4">이 강의를 듣고 과제를 작성해 제출하면, 대표강사가 직접 첨삭 피드백을 드립니다.</p>
+      <div id="asgBody"><p class="text-neutral-900/40 text-sm text-center py-8">불러오는 중…</p></div>
+    </div>
+  </section>
 
   <section id="qaSection" class="max-w-7xl mx-auto px-4 pb-14">
     <div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 lg:p-7">
@@ -1201,7 +1214,7 @@
   <!-- ===== 학습 탭 시스템 (흩어진 섹션을 한 곳에서 제자리 전환) ===== -->
   <script>
   (function(){
-    var TABS=['info','note','quiz','qa'], ready=false;
+    var TABS=['info','note','quiz','assign','qa'], ready=false;
     function $(id){return document.getElementById(id);}
     function build(){
       var host=$('learnHost'); if(!host || ready) return;
@@ -1227,7 +1240,10 @@
       // ③ 진단평가·핵심요약
       var pquiz=document.createElement('div'); pquiz.id='panel-quiz'; pquiz.className='tabPanel';
       var pl=$('postLesson'); if(pl){ ['max-w-7xl','mx-auto','px-4','pb-2'].forEach(function(c){pl.classList.remove(c);}); pl.style.display=''; pquiz.appendChild(pl); } host.appendChild(pquiz);
-      // ④ 질의응답
+      // ④ 과제 제출
+      var passign=document.createElement('div'); passign.id='panel-assign'; passign.className='tabPanel';
+      var asg=$('assignSection'); if(asg){ ['max-w-7xl','mx-auto','px-4','pb-14'].forEach(function(c){asg.classList.remove(c);}); asg.style.display=''; passign.appendChild(asg); } host.appendChild(passign);
+      // ⑤ 질의응답
       var pqa=document.createElement('div'); pqa.id='panel-qa'; pqa.className='tabPanel';
       var qa=$('qaSection'); if(qa){ ['max-w-7xl','mx-auto','px-4','pb-14'].forEach(function(c){qa.classList.remove(c);}); pqa.appendChild(qa); } host.appendChild(pqa);
       ready=true;
@@ -1237,10 +1253,132 @@
       if(!ready){ build(); }
       TABS.forEach(function(n){ var p=$('panel-'+n); if(p) p.style.display=(n===name)?'':'none'; });
       if(name==='quiz'){ var pl=$('postLesson'); if(pl) pl.style.display=''; }   // 퀴즈 탭 = 진단평가 열기
+      if(name==='assign' && window.loadAssignmentTab){ window.loadAssignmentTab(); }
       var btns=document.querySelectorAll('#learnTabs .learnTabBtn');
       for(var i=0;i<btns.length;i++){ btns[i].classList.toggle('on', btns[i].getAttribute('data-tab')===name); }
     };
     if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', build); else build();
+  })();
+  </script>
+
+  <!-- ===== 과제 제출·피드백 (급수 인증 과목 전용) ===== -->
+  <script>
+  (function(){
+    var ASG=null, PROG=null, busy=false;
+    function esc2(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+    function nl2br(s){ return esc2(s).replace(/\n/g,'<br>'); }
+    async function getAsg(){ if(!ASG){ try{ ASG=await (await fetch('content/assignments.json?t='+Date.now())).json(); }catch(e){ ASG={default:{title:'과제',prompt:'이 강의를 듣고 배운 점을 정리해 제출하세요.',minChars:100},byTrack:{},byLesson:{}}; } } return ASG; }
+    async function getProg(){ if(!PROG){ try{ PROG=await (await fetch('content/program.json?t='+Date.now())).json(); }catch(e){ PROG={ranks:[]}; } } return PROG; }
+    function assignFor(a, lid, track){
+      return (a.byLesson&&a.byLesson[lid]) || (a.byTrack&&a.byTrack[track]) || a.default || {title:'과제',prompt:'',minChars:100};
+    }
+    function reqTierFor(prog, track){ var t=0; (prog.ranks||[]).forEach(function(rk){ if((rk.tracks||[]).indexOf(track)>=0) t=rk.tier||0; }); return t; }
+
+    function host(){ return document.getElementById('asgBody'); }
+    function badge(txt, cls){ var b=document.getElementById('asgStatusBadge'); if(!b) return; if(!txt){ b.className='hidden'; return; } b.textContent=txt; b.className='text-[11px] font-bold px-2.5 py-0.5 rounded-full '+cls; }
+
+    window.loadAssignmentTab = async function(){
+      var h=host(); if(!h) return;
+      badge('', '');
+      var lid = (typeof curId==='function') ? curId() : '';
+      var track = (typeof curTrack==='function') ? curTrack() : '';
+      if(!lid){ h.innerHTML='<p class="text-neutral-900/40 text-sm text-center py-8">강의를 먼저 선택해 주세요.</p>'; return; }
+      // 1) 로그인 확인
+      if(typeof LUSER==='undefined' || !LUSER){ h.innerHTML='<div class="text-center py-8"><p class="text-neutral-900/55 text-sm mb-3">과제 제출은 로그인 후 이용할 수 있어요.</p><button onclick="openLogin&&openLogin()" class="bg-gold text-white font-semibold text-sm px-6 py-2.5 rounded-full hover:opacity-90 transition">로그인</button></div>'; return; }
+      h.innerHTML='<p class="text-neutral-900/40 text-sm text-center py-8">불러오는 중…</p>';
+      var a=await getAsg(), prog=await getProg();
+      var reqTier=reqTierFor(prog, track);
+      // 2) 인증 과목만: 비인증 강의는 과제 없음
+      if(reqTier<=0){ h.innerHTML='<div class="bg-sky/50 border border-ink/8 rounded-xl px-4 py-6 text-center"><p class="text-neutral-900/60 text-sm">이 강의는 급수 인증 과목이 아니어서 제출 과제가 없어요.<br>급수 인증 과목에서 과제 제출과 1:1 첨삭 피드백을 이용하실 수 있습니다.</p><a href="academy.html" class="inline-block mt-3 text-gold font-bold text-sm hover:underline">급수 과정 알아보기 →</a></div>'; return; }
+      // 3) 수강권(급수) 확인
+      var userTier=0;
+      try{ var r=await withTimeout(lsb.from('cert_access').select('tier').eq('user_id',LUSER.id).maybeSingle(),8000); if(r&&r.data&&r.data.tier) userTier=Number(r.data.tier)||0; }catch(e){}
+      if(userTier<reqTier){ h.innerHTML='<div class="bg-gold/[0.06] border border-gold/20 rounded-xl px-4 py-6 text-center"><p class="text-2xl mb-1">🔒</p><p class="text-neutral-900/70 text-sm font-semibold mb-1">이 과제는 급수 인증 수강생 전용이에요.</p><p class="text-neutral-900/50 text-[13px] mb-3">해당 급수 과정을 수강하면 과제 제출과 대표강사의 1:1 첨삭을 받을 수 있어요.</p><a href="academy.html#packages" class="inline-block bg-gold text-white font-bold text-sm px-6 py-2.5 rounded-full hover:opacity-90 transition">급수 과정 등록하기</a></div>'; return; }
+      // 4) 기존 제출물 조회
+      var sub=null;
+      try{ var q=await withTimeout(lsb.from('assignment_submissions').select('*').eq('user_id',LUSER.id).eq('lesson_id',lid).maybeSingle(),8000);
+        if(q&&q.error&&tableErr(q.error)){ h.innerHTML='<p class="text-neutral-900/40 text-sm text-center py-8">과제 기능을 준비 중이에요. (관리자: assignment_submissions 테이블 생성 필요)</p>'; return; }
+        sub=q&&q.data; }catch(e){}
+      var def=assignFor(a, lid, track);
+      renderAssign(def, sub, lid, track);
+    };
+
+    function renderAssign(def, sub, lid, track){
+      var h=host(); var minc=def.minChars||100;
+      // 합격(첨삭 완료)
+      if(sub && sub.status==='passed'){
+        badge('첨삭 완료', 'bg-gold/15 text-gold');
+        h.innerHTML=''
+          +'<div class="border border-gold/25 bg-gold/[0.05] rounded-xl p-4 mb-4"><p class="text-[12px] font-bold text-gold mb-1">✔ 대표강사 첨삭</p><div class="text-[14px] text-neutral-900/85 leading-relaxed">'+nl2br(sub.feedback||'수고하셨습니다. 통과입니다.')+'</div></div>'
+          +submittedBlock(sub);
+        return;
+      }
+      // 제출됨(첨삭 대기)
+      if(sub && sub.status==='submitted'){
+        badge('첨삭 대기 중', 'bg-amber-100 text-amber-700');
+        h.innerHTML='<div class="border border-ink/10 bg-sky/40 rounded-xl px-4 py-3 mb-4 text-[13px] text-neutral-900/65">제출이 완료되었어요. 대표강사의 첨삭을 기다리는 중입니다. 첨삭 전까지는 내용을 수정할 수 있어요.</div>'
+          + formBlock(def, sub, minc, true);
+        return;
+      }
+      // 미제출
+      badge('미제출', 'bg-ink/8 text-neutral-900/50');
+      h.innerHTML='<div class="border border-ink/10 rounded-xl px-4 py-3.5 mb-4 bg-gradient-to-br from-sky/50 to-white"><p class="text-[12px] font-bold text-gold mb-1">📝 '+esc2(def.title||'과제')+'</p><div class="text-[13.5px] text-neutral-900/75 leading-relaxed">'+nl2br(def.prompt||'')+'</div></div>'
+        + formBlock(def, null, minc, false);
+    }
+
+    function submittedBlock(sub){
+      return '<div class="text-[13px] text-neutral-900/55"><p class="font-bold text-neutral-900/70 mb-1">제출한 내용</p><div class="border border-ink/8 rounded-xl px-4 py-3 bg-neutral-50/60 leading-relaxed">'+nl2br(sub.body||'')+'</div>'
+        + (sub.image_url? '<a href="'+esc2(sub.image_url)+'" target="_blank" class="inline-block mt-2 text-gold text-[12px] font-semibold hover:underline">📎 첨부 사진 보기</a>':'')+'</div>';
+    }
+
+    function formBlock(def, sub, minc, isEdit){
+      var val = sub? esc2(sub.body) : '';
+      return ''
+        +'<textarea id="asgInput" rows="9" placeholder="여기에 과제를 작성해 주세요. (최소 '+minc+'자)" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-[14px] leading-relaxed outline-none focus:border-gold resize-y">'+val+'</textarea>'
+        +'<div class="flex items-center justify-between mt-1"><span id="asgCount" class="text-[11px] text-neutral-900/40">0자</span><span class="text-[11px] text-neutral-900/40">최소 '+minc+'자</span></div>'
+        +'<div class="mt-3 flex flex-wrap items-center gap-2">'
+        +'<label class="inline-flex items-center gap-1.5 text-[13px] text-neutral-900/60 border border-ink/12 rounded-lg px-3 py-2 cursor-pointer hover:bg-ink/[0.03]"><span>📎 사진 첨부</span><input id="asgImg" type="file" accept="image/*" class="hidden" onchange="__asgPick(this)"></label>'
+        +'<span id="asgImgName" class="text-[12px] text-neutral-900/45"></span>'
+        +(sub&&sub.image_url?'<a href="'+esc2(sub.image_url)+'" target="_blank" class="text-gold text-[12px] font-semibold hover:underline">기존 첨부 보기</a>':'')
+        +'</div>'
+        +'<button id="asgSubmitBtn" onclick="__asgSubmit(\''+esc2(def.minChars||100)+'\')" class="mt-4 w-full bg-gold text-white font-bold text-[15px] py-3 rounded-xl hover:opacity-90 transition">'+(isEdit?'수정하여 다시 제출':'과제 제출하기')+'</button>'
+        +'<p id="asgMsg" class="text-[12px] text-center mt-2 min-h-[16px]"></p>';
+    }
+
+    // 글자수 카운터(이벤트 위임)
+    document.addEventListener('input', function(e){ if(e.target && e.target.id==='asgInput'){ var c=document.getElementById('asgCount'); if(c) c.textContent=(e.target.value.trim().length)+'자'; } });
+
+    window.__asgPick=function(inp){ var n=document.getElementById('asgImgName'); if(n) n.textContent = inp.files&&inp.files[0]? inp.files[0].name : ''; };
+
+    window.__asgSubmit=async function(minc){
+      if(busy) return; minc=parseInt(minc,10)||100;
+      var ta=document.getElementById('asgInput'), msg=document.getElementById('asgMsg'), btn=document.getElementById('asgSubmitBtn');
+      var body=(ta&&ta.value||'').trim();
+      if(body.length<minc){ if(msg){ msg.style.color='#dc2626'; msg.textContent='최소 '+minc+'자 이상 작성해 주세요. (현재 '+body.length+'자)'; } return; }
+      busy=true; if(btn){ btn.disabled=true; btn.textContent='제출 중…'; }
+      var lid=curId(), track=curTrack(), uname=(typeof LNAME!=='undefined'&&LNAME)||(LUSER.user_metadata&&(LUSER.user_metadata.name||LUSER.user_metadata.full_name))||(LUSER.email||'회원');
+      var image_url=null;
+      try{
+        var f=document.getElementById('asgImg'); f=f&&f.files&&f.files[0];
+        if(f){
+          if(f.size>5*1024*1024){ throw new Error('사진은 5MB 이하만 첨부할 수 있어요.'); }
+          var ext=(f.name.split('.').pop()||'jpg').toLowerCase().replace(/[^a-z0-9]/g,'')||'jpg';
+          var path=LUSER.id+'/'+lid+'_'+Date.now()+'.'+ext;
+          var up=await lsb.storage.from('assignments').upload(path, f, {upsert:true, contentType:f.type||'image/jpeg'});
+          if(up.error) throw new Error('사진 업로드 실패: '+up.error.message);
+          var pu=lsb.storage.from('assignments').getPublicUrl(path); image_url=pu&&pu.data&&pu.data.publicUrl||null;
+        }
+      }catch(e){ busy=false; if(btn){ btn.disabled=false; btn.textContent='과제 제출하기'; } if(msg){ msg.style.color='#dc2626'; msg.textContent=e.message; } return; }
+      var row={ user_id:LUSER.id, lesson_id:lid, track:track, user_name:uname, body:body, status:'submitted', submitted_at:new Date().toISOString() };
+      if(image_url) row.image_url=image_url;
+      try{
+        var res=await withTimeout(lsb.from('assignment_submissions').upsert(row,{onConflict:'user_id,lesson_id'}),10000);
+        if(res.error){ throw new Error(tableErr(res.error)?'과제 기능 준비 중 (관리자 설정 필요)':res.error.message); }
+        busy=false;
+        if(typeof learnToast==='function') learnToast('과제가 제출되었어요. 첨삭을 기다려 주세요!', true);
+        window.loadAssignmentTab();
+      }catch(e){ busy=false; if(btn){ btn.disabled=false; btn.textContent='과제 제출하기'; } if(msg){ msg.style.color='#dc2626'; msg.textContent=(e.message==='TIMEOUT')?'응답 지연 — 다시 시도해 주세요.':e.message; } }
+    };
   })();
   </script>
 

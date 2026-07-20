@@ -62,6 +62,7 @@
         <button data-sec="founding" class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">창립 멤버</button>
         <button data-sec="apps"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">등록 신청</button>
         <button data-sec="cert"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">수강권(인증)</button>
+        <button data-sec="asg"    class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">과제 첨삭</button>
         <button data-sec="store"  class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">스토어 권한</button>
         <button data-sec="orders" class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">주문 내역(카드)</button>
         <button data-sec="cont"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">노트·퀴즈 현황</button>
@@ -171,6 +172,19 @@
         </div>
         <div class="flex items-center gap-3 mb-3"><h2 class="font-bold">현재 수강권 보유자</h2><button onclick="exportCertCSV()" class="border border-ink/15 text-xs px-2.5 py-1.5 rounded-lg hover:bg-ink/5">엑셀(CSV)</button><button onclick="loadCert()" class="text-xs text-gold hover:underline">새로고침</button></div>
         <div id="certList">불러오는 중…</div>
+      </section>
+
+      <!-- 과제 첨삭 -->
+      <section id="sec-asg" class="secPanel hidden">
+        <h1 class="text-2xl font-bold mb-1">과제 첨삭</h1>
+        <p class="text-neutral-900/50 text-sm mb-5">급수 인증 수강생이 제출한 과제를 확인하고 1:1 피드백을 남기세요. 피드백을 저장하면 <b>합격 처리</b>되어 마감됩니다.</p>
+        <div class="flex items-center gap-2 mb-4">
+          <button id="asgFilterNew" onclick="asgFilter('submitted')" class="text-sm font-semibold px-4 py-2 rounded-full bg-gold text-white">첨삭 대기</button>
+          <button id="asgFilterAll" onclick="asgFilter('all')" class="text-sm font-semibold px-4 py-2 rounded-full bg-white border border-ink/12 text-neutral-900/60">전체</button>
+          <button id="asgFilterDone" onclick="asgFilter('passed')" class="text-sm font-semibold px-4 py-2 rounded-full bg-white border border-ink/12 text-neutral-900/60">합격 완료</button>
+          <button onclick="loadAsg()" class="ml-auto text-xs text-gold hover:underline">새로고침</button>
+        </div>
+        <div id="asgAdminList">불러오는 중…</div>
       </section>
 
       <!-- 스토어 권한 (이용권·교재) -->
@@ -345,7 +359,7 @@
       document.querySelectorAll('.navItem').forEach(b=> b.className='navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg '+(b.dataset.sec===sec?'bg-white/10 text-paper font-medium':'hover:bg-white/5'));
       // 폼 섹션(curr·site)만 1회 로드 캐시, 데이터 섹션은 누를 때마다 새로고침(멈춤 방지)
       const formSec=(sec==='curr'||sec==='site');
-      if(!formSec || !LOADED[sec]){ LOADED[sec]=true; try{ ({dash:loadDash,curr:loadCurr,reqs:loadReqs,comm:loadComm,mem:loadMem,founding:loadFounding,apps:loadApps,cert:loadCert,store:loadStore,orders:loadOrders,cont:loadCont,site:loadSite}[sec]||(()=>{}))(); }catch(e){} }
+      if(!formSec || !LOADED[sec]){ LOADED[sec]=true; try{ ({dash:loadDash,curr:loadCurr,reqs:loadReqs,comm:loadComm,mem:loadMem,founding:loadFounding,apps:loadApps,cert:loadCert,asg:loadAsg,store:loadStore,orders:loadOrders,cont:loadCont,site:loadSite}[sec]||(()=>{}))(); }catch(e){} }
     }
 
     // ===== 대시보드 =====
@@ -598,6 +612,77 @@
       if(!confirm(email+' 님의 수강권을 회수할까요?')) return;
       try{ await rpcFetch('revoke_cert',{p_email:email},9000); toast('수강권 회수됨'); loadCert(); }
       catch(e){ alert('오류: '+(e.message||e)); }
+    }
+
+    // ===== 과제 첨삭 =====
+    let ASG_ROWS=[], ASG_FILTER='submitted', ASG_TITLES=null;
+    async function asgTitles(){ if(ASG_TITLES) return ASG_TITLES; ASG_TITLES={}; try{ const c=await getCourse(); (c.levels||[]).forEach(lv=>(lv.lessons||[]).forEach(l=>{ const m=/(?:v=|be\/|embed\/)([\w-]{11})/.exec(l.youtube||''); if(m) ASG_TITLES[m[1]]=l.title||''; })); }catch(e){} return ASG_TITLES; }
+    function asgFilter(f){ ASG_FILTER=f;
+      document.getElementById('asgFilterNew').className='text-sm font-semibold px-4 py-2 rounded-full '+(f==='submitted'?'bg-gold text-white':'bg-white border border-ink/12 text-neutral-900/60');
+      document.getElementById('asgFilterAll').className='text-sm font-semibold px-4 py-2 rounded-full '+(f==='all'?'bg-gold text-white':'bg-white border border-ink/12 text-neutral-900/60');
+      document.getElementById('asgFilterDone').className='text-sm font-semibold px-4 py-2 rounded-full '+(f==='passed'?'bg-gold text-white':'bg-white border border-ink/12 text-neutral-900/60');
+      renderAsg();
+    }
+    async function loadAsg(){
+      const wrap=document.getElementById('asgAdminList'); wrap.innerHTML='<p class="text-neutral-900/40 text-sm">불러오는 중…</p>';
+      await asgTitles();
+      try{
+        const data=await rest('assignment_submissions?select=*&order=submitted_at.asc');
+        ASG_ROWS=Array.isArray(data)?data:[];
+        renderAsg();
+      }catch(e){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">'+((tableMissing&&tableMissing(e))||/relation|does not exist|schema cache/i.test(e.message||'')?'과제 기능을 준비 중입니다. (관리자: <code class="bg-ink/5 px-1 rounded">db/assignments.sql</code> 실행 필요)':'불러오기 오류: '+esc(e.message||e))+'</p>'; }
+    }
+    function renderAsg(){
+      const wrap=document.getElementById('asgAdminList');
+      let rows=ASG_ROWS.slice();
+      if(ASG_FILTER==='submitted') rows=rows.filter(r=>r.status==='submitted');
+      else if(ASG_FILTER==='passed') rows=rows.filter(r=>r.status==='passed');
+      if(ASG_FILTER==='submitted') rows.sort((a,b)=>new Date(a.submitted_at)-new Date(b.submitted_at));
+      else rows.sort((a,b)=>new Date(b.submitted_at)-new Date(a.submitted_at));
+      const nNew=ASG_ROWS.filter(r=>r.status==='submitted').length;
+      document.getElementById('asgFilterNew').textContent='첨삭 대기'+(nNew?(' ('+nNew+')'):'');
+      if(!rows.length){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm py-6 text-center">'+(ASG_FILTER==='submitted'?'첨삭 대기 중인 과제가 없습니다. 👍':'해당하는 과제가 없습니다.')+'</p>'; return; }
+      wrap.innerHTML=rows.map(r=>{
+        const title=ASG_TITLES[r.lesson_id]||r.lesson_id;
+        const passed=r.status==='passed';
+        return `<div class="bg-white rounded-2xl border border-ink/6 shadow-sm p-5 mb-4">
+          <div class="flex items-start justify-between gap-3 flex-wrap">
+            <div><p class="font-bold text-[15px]">${esc(r.user_name||'수강생')} <span class="text-neutral-900/40 font-normal text-[13px]">· ${esc(r.track||'')}</span></p>
+              <p class="text-[12.5px] text-neutral-900/50 mt-0.5">${esc(title)} <span class="text-neutral-900/30">·</span> ${new Date(r.submitted_at).toLocaleString('ko')}</p></div>
+            <span class="text-[11px] font-bold px-2.5 py-1 rounded-full ${passed?'bg-gold/15 text-gold':'bg-amber-100 text-amber-700'}">${passed?'합격':'첨삭 대기'}</span>
+          </div>
+          <div class="mt-3 border border-ink/8 rounded-xl px-4 py-3 bg-neutral-50/60 text-[13.5px] text-neutral-900/80 leading-relaxed whitespace-pre-wrap">${esc(r.body||'')}</div>
+          ${r.image_url?`<a href="${esc(r.image_url)}" target="_blank" class="inline-block mt-2 text-gold text-[12px] font-semibold hover:underline">📎 첨부 사진 보기</a>`:''}
+          <div class="mt-3">
+            <label class="text-[12px] font-bold text-neutral-900/55">첨삭 피드백</label>
+            <textarea id="fb-${r.id}" rows="4" class="w-full mt-1 border border-ink/12 rounded-xl px-3 py-2 text-[13.5px] leading-relaxed outline-none focus:border-gold" placeholder="피드백을 작성하세요. 저장하면 합격 처리됩니다.">${esc(r.feedback||'')}</textarea>
+            <div class="flex items-center gap-2 mt-2">
+              <button onclick="saveFeedback('${r.id}')" class="bg-gold text-white font-bold text-[13px] px-5 py-2 rounded-lg hover:opacity-90">${passed?'피드백 수정 저장':'합격 처리 · 피드백 저장'}</button>
+              <span id="fbmsg-${r.id}" class="text-[12px] min-h-[16px]"></span>
+            </div>
+          </div>
+        </div>`;
+      }).join('');
+    }
+    async function saveFeedback(id){
+      const ta=document.getElementById('fb-'+id), m=document.getElementById('fbmsg-'+id);
+      const fb=(ta&&ta.value||'').trim();
+      if(!fb){ if(m){ m.style.color='#dc2626'; m.textContent='피드백을 입력하세요.'; } return; }
+      if(m){ m.style.color='#6b7280'; m.textContent='저장 중…'; }
+      try{
+        const ctrl=new AbortController(); const t=setTimeout(()=>ctrl.abort(),10000);
+        const res=await fetch(SUPABASE_URL+'/rest/v1/assignment_submissions?id=eq.'+encodeURIComponent(id), {
+          method:'PATCH', signal:ctrl.signal,
+          headers:{ apikey:SUPABASE_ANON, Authorization:'Bearer '+_authToken(), 'Content-Type':'application/json', Prefer:'return=representation' },
+          body:JSON.stringify({ feedback:fb, status:'passed', reviewer:(USER&&USER.email)||'', feedback_at:new Date().toISOString() })
+        }); clearTimeout(t);
+        if(!res.ok){ const tx=await res.text(); throw new Error(tx||('HTTP '+res.status)); }
+        const arr=await res.json(); const row=Array.isArray(arr)?arr[0]:arr;
+        const i=ASG_ROWS.findIndex(x=>x.id===id); if(i>=0&&row) ASG_ROWS[i]=row;
+        if(m){ m.style.color='#16a34a'; m.textContent='저장됨 · 합격 처리'; }
+        toast('첨삭 저장 완료');
+        setTimeout(renderAsg, 600);
+      }catch(e){ if(m){ m.style.color='#dc2626'; m.textContent='오류: '+(e.message||e); } }
     }
 
     // ===== 스토어 권한 (이용권·교재) =====
