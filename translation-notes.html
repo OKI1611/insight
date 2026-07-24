@@ -98,8 +98,30 @@
   <script>
   (function(){
     var DATA=null, CAT='all';
+    // 관리자 편집분(Supabase) — 같은 id는 덮어쓰기, 새 id는 추가, hidden은 숨김
+    var SB_URL='https://bmxkndkwefdgsomlznoo.supabase.co';
+    var SB_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
     function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
     function qs(k){ return new URLSearchParams(location.search).get(k); }
+    function fetchOverrides(){
+      return fetch(SB_URL+'/rest/v1/translation_notes?select=*&order=sort.asc',{
+        headers:{apikey:SB_ANON, Authorization:'Bearer '+SB_ANON}
+      }).then(function(r){ return r.ok? r.json():[]; }).catch(function(){ return []; });
+    }
+    function mergeNotes(base, rows){
+      var map={}; (rows||[]).forEach(function(r){ map[r.id]=r; });
+      var seen={}, out=[];
+      (base.notes||[]).forEach(function(n,i){
+        seen[n.id]=1;
+        var ov=map[n.id];
+        if(ov){ if(!ov.hidden) out.push({note:ov, sort:(ov.sort!==100000? ov.sort:(i+1)*10)}); }
+        else out.push({note:n, sort:(i+1)*10});
+      });
+      (rows||[]).forEach(function(r){ if(!seen[r.id] && !r.hidden) out.push({note:r, sort:r.sort||100000}); });
+      out.sort(function(a,b){ return a.sort-b.sort; });
+      base.notes=out.map(function(x){ return x.note; });
+      return base;
+    }
 
     function renderChips(){
       var base=[['all','전체']].concat(Object.entries(DATA.cats));
@@ -137,7 +159,11 @@
       if(next){ var a2=document.getElementById('nextLink'); a2.href='translation-notes.html?id='+encodeURIComponent(next.id); a2.querySelector('span').textContent=next.title; a2.classList.remove('hidden'); }
     }
 
-    fetch('content/translation-notes.json').then(function(r){ return r.json(); }).then(function(d){
+    Promise.all([
+      fetch('content/translation-notes.json').then(function(r){ return r.json(); }),
+      fetchOverrides()
+    ]).then(function(res){
+      var d=mergeNotes(res[0], res[1]);
       DATA=d;
       var id=qs('id');
       var idx=id? d.notes.findIndex(function(n){ return n.id===id; }) : -1;
