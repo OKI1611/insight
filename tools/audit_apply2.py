@@ -12,7 +12,14 @@ BIBLE = os.path.join(ROOT, 'bible')
 AUD = os.path.join(ROOT, 'tools', '_audit')
 
 # 고유명사 부분치환: (book, ch, v, old_fragment, new_fragment)
-NAME_FIXES = [
+SYRIA_FIXES = [(bf, ch, v, '수리아', '시리아') for (bf, ch, v) in [
+    ('1Kings', 11, 25), ('1Kings', 15, 18), ('1Kings', 22, 1), ('1Kings', 22, 3),
+    ('1Kings', 22, 31), ('2Kings', 15, 37), ('Ezekiel', 16, 57), ('Luke', 2, 2),
+    ('Acts', 15, 23), ('Acts', 15, 41), ('Acts', 18, 18), ('Acts', 20, 3),
+    ('Acts', 21, 3), ('Galatians', 1, 21),
+    ('1Kings', 22, 11), ('1Kings', 22, 35), ('Luke', 4, 27),   # 수리아 사람(들) Syrians/Syrian
+]]
+NAME_FIXES = SYRIA_FIXES + [
     # Beelzebub 바알세붑 → 바알세불 (신약 헬라 베엘제불, 마태·개역과 통일)
     ('Luke', 11, 15, '바알세붑', '바알세불'),
     ('Luke', 11, 18, '바알세붑', '바알세불'),
