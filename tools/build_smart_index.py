@@ -85,6 +85,20 @@ try:
         })
 except Exception: pass
 
+# 5) 성경 번역 이야기 (translation-notes.json)
+try:
+    tn = J('content/translation-notes.json')
+    for n in tn.get('notes', []):
+        if not isinstance(n, dict): continue
+        title = n.get('title') or ''
+        body = (n.get('summary') or '') + ' ' + (n.get('verse') or '') + ' ' + ' '.join(n.get('tags') or [])
+        items.append({
+            't': 'post', 'ti': '[번역 이야기] ' + title, 'sn': clip(n.get('summary') or '', 90),
+            'kw': clip(title + ' ' + body, 400).lower(),
+            'u': 'translation-notes?id=' + str(n.get('id') or '')
+        })
+except Exception: pass
+
 out = {'count': len(items), 'items': items}
 op = os.path.join(BASE, 'content', 'smart-index.json')
 json.dump(out, open(op, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))

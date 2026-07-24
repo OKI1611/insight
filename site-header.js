@@ -38,7 +38,8 @@
       { label:'매일 말씀과 함께', href:'daily.html' },
       { label:'성경암송 365', href:'memorize.html' },
       { label:'성경 통독표 (1년 1독)', href:'bible-plan.html' },
-      { label:'바이블 잉글리시', href:'bible-english.html' }
+      { label:'바이블 잉글리시', href:'bible-english.html' },
+      { label:'성경 번역 이야기', href:'translation-notes.html' }
     ]},
     { label:'성경사전', href:'dictionary.html', children:[
       { label:'성경사전', href:'dictionary.html' },

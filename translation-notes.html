@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <script src="/content-loader.js?v=20260703f"></script>
+  <script src="/site-header.js?v=20260725a"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>성경 번역 이야기 — 번역 노트 · BIBLY 바이블 인사이트</title>
+  <meta name="description" content="「KJV 새번역」이 특정 단어와 구절을 왜 그렇게 옮겼는지 — 원어·신학·문맥·한글 문법의 근거를 공개하는 번역 노트." />
+  <meta name="theme-color" content="#213a6b" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png?v=6" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png?v=6" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="canonical" href="https://biblynote.com/translation-notes" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BIBLY 바이블 인사이트" />
+  <meta property="og:title" content="성경 번역 이야기 — 번역 노트" />
+  <meta property="og:description" content="한 구절을 옮길 때마다 내려진 결정들 — 원어·신학·문맥·한글 문법의 근거를 투명하게 공개합니다." />
+  <meta property="og:url" content="https://biblynote.com/translation-notes" />
+  <meta property="og:image" content="https://biblynote.com/images/og-cover.png?v=6" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink:'#213a6b', navy:'#182c54', gold:'#00704a', sand:'#eaf0f8', paper:'#ffffff' },
+      fontFamily: { sans:['Pretendard','system-ui','sans-serif'], serifkr:['Noto Serif KR','serif'] },
+      boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
+    }}}
+  </script>
+  <style>
+    h1,h2,h3{font-family:'Pretendard',system-ui,sans-serif}
+    html{scroll-behavior:smooth}
+    .doc h2{font-size:1.05rem;font-weight:700;color:#171717;margin:2rem 0 .6rem}
+    .doc p{color:#3a4254;line-height:1.95;font-size:.93rem;margin:.55rem 0}
+    .doc b{color:#171717}
+    .verse{font-family:'Noto Serif KR',serif;background:#00704a08;border-left:3px solid #00704a55;border-radius:0 .5rem .5rem 0;padding:.75rem 1.05rem;margin:.9rem 0;color:#2a3446;font-size:.9rem;line-height:1.9}
+    .tag{display:inline-block;background:#00704a10;color:#00704a;font-weight:700;font-size:.7rem;border-radius:999px;padding:.14rem .55rem}
+    .chip{border:1px solid #213a6b22;border-radius:999px;padding:.32rem .9rem;font-size:.8rem;font-weight:700;color:#3a4254;background:#fff;cursor:pointer;transition:all .15s}
+    .chip:hover{border-color:#00704a66;color:#00704a}
+    .chip.on{background:#00704a;border-color:#00704a;color:#fff}
+    .noteCard{display:block;border:1px solid #213a6b14;border-radius:1rem;background:#fff;padding:1.15rem 1.25rem;transition:box-shadow .18s,transform .18s,border-color .18s}
+    .noteCard:hover{box-shadow:0 14px 40px -18px rgba(21,32,58,.22);transform:translateY(-2px);border-color:#00704a44}
+  </style>
+</head>
+<body class="font-sans bg-paper text-neutral-900 antialiased min-h-screen">
+
+  <div id="siteHeader" data-active=""></div>
+
+  <!-- 목록 뷰 -->
+  <div id="listView" class="hidden">
+    <section class="bg-white">
+      <div class="max-w-3xl mx-auto px-5 py-12 md:py-16">
+        <p class="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-3">KJV 새번역 · Translation Notes</p>
+        <h1 class="text-2xl md:text-3xl font-bold leading-snug">성경 번역 이야기</h1>
+        <p id="introTxt" class="text-neutral-900/65 text-sm mt-4 leading-relaxed"></p>
+        <a href="translation.html" class="mt-6 flex items-center gap-4 rounded-2xl border border-ink/10 bg-sand/50 px-5 py-4 hover:border-gold/50 transition-colors group">
+          <span class="text-2xl">📜</span>
+          <span class="flex-1">
+            <span class="block font-bold text-[15px] group-hover:text-gold transition-colors">번역 원칙 — 여섯 가지 약속</span>
+            <span class="block text-xs text-neutral-900/55 mt-0.5">본문 보존 · 원문 최종 근거 · 원어 구분 · 신명 표기 · 교리 용어 · 권위체</span>
+          </span>
+          <span class="text-gold font-bold">→</span>
+        </a>
+      </div>
+    </section>
+    <main class="max-w-3xl mx-auto px-5 pb-20">
+      <div id="chips" class="flex flex-wrap gap-2 mb-6"></div>
+      <div id="cards" class="grid gap-3"></div>
+    </main>
+  </div>
+
+  <!-- 글 뷰 -->
+  <div id="noteView" class="hidden">
+    <section class="bg-white">
+      <div class="max-w-3xl mx-auto px-5 pt-10 md:pt-14 pb-8">
+        <a href="translation-notes.html" class="text-xs font-bold text-gold hover:underline">← 번역 이야기 목록</a>
+        <p id="nCat" class="text-gold text-[11px] font-bold tracking-[0.25em] uppercase mt-5 mb-2"></p>
+        <h1 id="nTitle" class="text-2xl md:text-[28px] font-bold leading-snug"></h1>
+        <p id="nVerse" class="text-neutral-900/55 text-sm mt-3 font-serifkr"></p>
+        <div id="nTags" class="flex flex-wrap gap-1.5 mt-4"></div>
+      </div>
+    </section>
+    <main class="max-w-3xl mx-auto px-5 pb-14 doc" id="nBody"></main>
+    <div class="max-w-3xl mx-auto px-5 pb-20">
+      <div class="border-t border-ink/10 pt-6 flex items-center justify-between gap-4">
+        <a id="prevLink" class="text-sm font-bold text-neutral-900/60 hover:text-gold hidden">←&nbsp;<span></span></a>
+        <span class="flex-1"></span>
+        <a id="nextLink" class="text-sm font-bold text-neutral-900/60 hover:text-gold text-right hidden"><span></span>&nbsp;→</a>
+      </div>
+      <p class="mt-8"><a href="bible.html" class="inline-flex items-center gap-2 text-gold font-bold text-sm hover:underline">→ KJV 새번역 본문 읽기</a></p>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var DATA=null, CAT='all';
+    function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+    function qs(k){ return new URLSearchParams(location.search).get(k); }
+
+    function renderChips(){
+      var base=[['all','전체']].concat(Object.entries(DATA.cats));
+      document.getElementById('chips').innerHTML = base.map(function(c){
+        return '<button class="chip'+(CAT===c[0]?' on':'')+'" data-c="'+c[0]+'">'+esc(c[1])+'</button>';
+      }).join('');
+      document.querySelectorAll('#chips .chip').forEach(function(b){
+        b.onclick=function(){ CAT=b.dataset.c; renderChips(); renderCards(); };
+      });
+    }
+    function renderCards(){
+      var list=DATA.notes.filter(function(n){ return CAT==='all'||n.cat===CAT; });
+      document.getElementById('cards').innerHTML = list.map(function(n){
+        return '<a class="noteCard" href="translation-notes.html?id='+encodeURIComponent(n.id)+'">'
+          + '<div class="flex items-center gap-2 mb-1.5"><span class="tag">'+esc(DATA.cats[n.cat]||n.cat)+'</span>'
+          + '<span class="text-[11px] text-neutral-900/45 font-serifkr">'+esc(n.verse)+'</span></div>'
+          + '<div class="font-bold text-[15.5px] leading-snug">'+esc(n.title)+'</div>'
+          + '<p class="text-[13px] text-neutral-900/60 leading-relaxed mt-1.5">'+esc(n.summary)+'</p>'
+          + '</a>';
+      }).join('') || '<p class="text-sm text-neutral-900/50">글이 없습니다.</p>';
+    }
+    function renderNote(n, idx){
+      document.title = n.title + ' — 성경 번역 이야기 · BIBLY 바이블 인사이트';
+      document.getElementById('nCat').textContent = DATA.cats[n.cat]||n.cat;
+      document.getElementById('nTitle').textContent = n.title;
+      document.getElementById('nVerse').textContent = n.verse;
+      document.getElementById('nTags').innerHTML = (n.tags||[]).map(function(t){ return '<span class="tag">'+esc(t)+'</span>'; }).join('');
+      document.getElementById('nBody').innerHTML = (n.body||[]).map(function(b){
+        if(b.h) return '<h2>'+esc(b.h)+'</h2>';
+        if(b.v) return '<div class="verse">'+esc(b.v)+'</div>';
+        return '<p>'+String(b.p||'')+'</p>';  // 자체 집필 콘텐츠 — <b> 강조 허용
+      }).join('');
+      var prev=DATA.notes[idx-1], next=DATA.notes[idx+1];
+      if(prev){ var a=document.getElementById('prevLink'); a.href='translation-notes.html?id='+encodeURIComponent(prev.id); a.querySelector('span').textContent=prev.title; a.classList.remove('hidden'); }
+      if(next){ var a2=document.getElementById('nextLink'); a2.href='translation-notes.html?id='+encodeURIComponent(next.id); a2.querySelector('span').textContent=next.title; a2.classList.remove('hidden'); }
+    }
+
+    fetch('content/translation-notes.json').then(function(r){ return r.json(); }).then(function(d){
+      DATA=d;
+      var id=qs('id');
+      var idx=id? d.notes.findIndex(function(n){ return n.id===id; }) : -1;
+      if(idx>=0){
+        document.getElementById('noteView').classList.remove('hidden');
+        renderNote(d.notes[idx], idx);
+      } else {
+        document.getElementById('introTxt').textContent=d.intro||'';
+        document.getElementById('listView').classList.remove('hidden');
+        renderChips(); renderCards();
+      }
+    }).catch(function(e){
+      document.getElementById('listView').classList.remove('hidden');
+      document.getElementById('cards').innerHTML='<p class="text-sm text-neutral-900/50">목록을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.</p>';
+    });
+  })();
+  </script>
+</body>
+</html>

@@ -23,6 +23,7 @@ PAGES = [
     ('/resources', '0.6'), ('/notices', '0.6'), ('/event', '0.7'),
     ('/founding', '0.6'), ('/support', '0.5'), ('/mylearning', '0.4'),
     ('/bible-plan', '0.6'), ('/terms', '0.3'), ('/privacy', '0.3'),
+    ('/translation', '0.6'), ('/translation-notes', '0.7'),
 ]
 
 # 기존 sitemap에서 동적 URL(watch?l=N 등) 보존
