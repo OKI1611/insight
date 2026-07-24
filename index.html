@@ -139,7 +139,12 @@
   <!-- ===== 상단 유틸바 ===== -->
   <div class="bg-ink text-paper/70 text-xs">
     <div class="max-w-6xl mx-auto px-5 h-9 flex items-center justify-end gap-3 sm:gap-5 overflow-x-auto" style="scrollbar-width:none">
-      <span class="hidden md:inline text-paper/55 mr-auto">유튜브 「오광일의 인사이트 브리핑」 공식 강의 플랫폼</span>
+      <span class="flex items-center gap-1.5 mr-auto whitespace-nowrap">
+        <span class="relative flex h-1.5 w-1.5 shrink-0"><span class="absolute inline-flex h-full w-full rounded-full bg-gold/70 opacity-75 animate-ping"></span><span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-gold"></span></span>
+        <span class="font-semibold tracking-wide text-gold">미디어 선교 전문 채널</span>
+        <span class="hidden sm:inline text-paper/25">·</span>
+        <span class="hidden sm:inline text-paper/50">유튜브 「오광일의 인사이트 브리핑」 공식 플랫폼</span>
+      </span>
       <a href="notices.html" class="text-paper/70 hover:text-gold whitespace-nowrap">공지사항</a>
       <a href="notices.html?tab=event" class="text-paper/70 hover:text-gold whitespace-nowrap">이벤트</a>
       <span class="text-paper/20 hidden sm:inline">·</span>
@@ -232,6 +237,23 @@
             <a href="support.html" class="block bg-gold text-white text-center text-[12.5px] font-semibold py-2.5 rounded-xl hover:opacity-90 transition">함께 세우기</a>
           </div>
         </div>
+      </div>
+
+      <!-- 모바일 전용 선교 열매 · 후원 띠 (데스크톱은 우측 패널이 담당) -->
+      <div class="lg:hidden mt-3 rounded-2xl border border-ink/8 bg-white shadow-soft overflow-hidden">
+        <div class="flex items-center justify-between px-4 pt-3 pb-2">
+          <p class="flex items-center gap-1.5 text-[12px] font-bold text-neutral-900"><span class="w-1.5 h-1.5 rounded-full bg-gold"></span>선교 열매</p>
+          <p class="text-[10px] text-neutral-900/40">유튜브 채널 실적</p>
+        </div>
+        <div class="grid grid-cols-3 divide-x divide-ink/8 border-t border-ink/8">
+          <div class="text-center py-2.5"><p class="text-[16px] font-bold text-navy leading-none"><span data-stat="views">150만+</span></p><p class="text-[10.5px] text-neutral-900/50 mt-1">조회</p></div>
+          <div class="text-center py-2.5"><p class="text-[16px] font-bold text-navy leading-none"><span data-stat="subs">7,600+</span></p><p class="text-[10.5px] text-neutral-900/50 mt-1">구독</p></div>
+          <div class="text-center py-2.5"><p class="text-[16px] font-bold text-navy leading-none"><span data-stat="free">314편</span></p><p class="text-[10.5px] text-neutral-900/50 mt-1">무료 강의</p></div>
+        </div>
+        <a href="support.html" class="flex items-center justify-center gap-1.5 bg-gold text-white text-[13px] font-semibold py-3 hover:opacity-90 transition">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7.5-4.9-10-9.6C.4 8 1.9 4.4 5.2 4.4c1.9 0 3.3 1.1 4.1 2.3.3.4.9.4 1.2 0 .8-1.2 2.2-2.3 4.1-2.3 3.3 0 4.8 3.6 3.2 7C19.5 16.1 12 21 12 21z"/></svg>
+          이 사역, 함께 세우기
+        </a>
       </div>
     </div>
 
