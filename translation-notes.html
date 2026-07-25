@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <script src="/content-loader.js?v=20260703f"></script>
   <script src="/site-header.js?v=20260725a"></script>
+  <script src="/section-sidenav.js?v=12"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>성경 번역 이야기 — 번역 노트 · BIBLY 바이블 인사이트</title>
   <meta name="description" content="「KJV 새번역」이 특정 단어와 구절을 왜 그렇게 옮겼는지 — 원어·신학·문맥·한글 문법의 근거를 공개하는 번역 노트." />
@@ -68,9 +69,65 @@
       </div>
     </section>
     <main class="max-w-3xl mx-auto px-5 pb-20">
-      <div id="chips" class="flex flex-wrap gap-2 mb-6"></div>
+      <div id="adminBar" class="hidden mb-5 flex flex-wrap items-center gap-2 rounded-xl border border-gold/30 bg-gold/5 px-4 py-3">
+        <span class="text-xs font-bold text-gold">관리자 모드</span>
+        <span class="text-xs text-neutral-900/55">글을 직접 추가하거나 고칠 수 있습니다.</span>
+        <button id="btnNew" class="ml-auto text-xs font-bold bg-gold text-white px-3 py-1.5 rounded-lg hover:opacity-90">+ 새 글 쓰기</button>
+      </div>
+      <div class="relative mb-4">
+        <input id="q" type="search" placeholder="제목·구절·내용으로 검색 (예: 침례, 요한복음, 원어)"
+               class="w-full border border-ink/12 rounded-xl pl-10 pr-9 py-2.5 text-sm focus:outline-none focus:border-gold/60"/>
+        <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-900/35 text-sm">🔍</span>
+        <button id="qClear" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-neutral-900/35 hover:text-neutral-900/70 text-lg leading-none">×</button>
+      </div>
+      <div id="chips" class="flex flex-wrap gap-2 mb-4"></div>
+      <p id="countTxt" class="text-xs text-neutral-900/50 mb-3"></p>
       <div id="cards" class="grid gap-3"></div>
     </main>
+
+    <!-- 관리자 편집 모달 -->
+    <div id="edModal" class="hidden fixed inset-0 z-[60] bg-ink/50 px-4 py-6 overflow-auto">
+      <div class="bg-white rounded-2xl max-w-2xl mx-auto p-5 shadow-xl">
+        <div class="flex items-center justify-between mb-4">
+          <h2 id="edTitle" class="font-bold text-lg">글 편집</h2>
+          <button id="edClose" class="text-neutral-900/40 hover:text-neutral-900 text-2xl leading-none">×</button>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-3 mb-3">
+          <label class="block text-xs font-bold text-neutral-900/60">글 주소(영문)
+            <input id="edId" class="mt-1 w-full border border-ink/12 rounded-lg px-3 py-2 text-sm font-mono"/>
+          </label>
+          <label class="block text-xs font-bold text-neutral-900/60">분류
+            <select id="edCat" class="mt-1 w-full border border-ink/12 rounded-lg px-3 py-2 text-sm">
+              <option value="verse">구절 해설</option>
+              <option value="principle">원칙·기법</option>
+            </select>
+          </label>
+        </div>
+        <label class="block text-xs font-bold text-neutral-900/60 mb-3">제목
+          <input id="edT" class="mt-1 w-full border border-ink/12 rounded-lg px-3 py-2 text-sm"/>
+        </label>
+        <div class="grid sm:grid-cols-2 gap-3 mb-3">
+          <label class="block text-xs font-bold text-neutral-900/60">대표 구절
+            <input id="edV" class="mt-1 w-full border border-ink/12 rounded-lg px-3 py-2 text-sm"/>
+          </label>
+          <label class="block text-xs font-bold text-neutral-900/60">태그(쉼표 구분)
+            <input id="edTag" class="mt-1 w-full border border-ink/12 rounded-lg px-3 py-2 text-sm"/>
+          </label>
+        </div>
+        <label class="block text-xs font-bold text-neutral-900/60 mb-3">요약
+          <textarea id="edS" rows="2" class="mt-1 w-full border border-ink/12 rounded-lg px-3 py-2 text-sm"></textarea>
+        </label>
+        <label class="block text-xs font-bold text-neutral-900/60 mb-1">본문</label>
+        <p class="text-[11px] text-neutral-900/45 mb-2">소제목 <b>##&nbsp;</b> · 성경 인용 <b>&gt;&nbsp;</b> · 굵게 <b>**단어**</b> · 빈 줄로 문단 구분</p>
+        <textarea id="edB" rows="12" class="w-full border border-ink/12 rounded-lg px-3 py-2 text-sm leading-relaxed font-mono"></textarea>
+        <div class="flex flex-wrap items-center gap-2 mt-4">
+          <button id="edSave" class="bg-gold text-white font-bold px-5 py-2 rounded-lg text-sm hover:opacity-90">저장</button>
+          <button id="edHide" class="hidden border border-ink/12 px-4 py-2 rounded-lg text-sm text-neutral-900/60">사이트에서 숨기기</button>
+          <button id="edRevert" class="hidden border border-ink/12 px-4 py-2 rounded-lg text-sm text-neutral-900/60">수정 취소(원본 복원)</button>
+          <span id="edMsg" class="text-xs"></span>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- 글 뷰 -->
@@ -101,8 +158,43 @@
     // 관리자 편집분(Supabase) — 같은 id는 덮어쓰기, 새 id는 추가, hidden은 숨김
     var SB_URL='https://bmxkndkwefdgsomlznoo.supabase.co';
     var SB_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+    var ADMIN_EMAIL='josephoh1611@gmail.com', IS_ADMIN=false, RAW=null, OVER=[];
     function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
     function qs(k){ return new URLSearchParams(location.search).get(k); }
+    // 로그인 세션 읽기(admin.html과 동일 방식)
+    function session(){
+      try{
+        var raw=localStorage.getItem('bibly-admin-auth');
+        if(raw){ var v=JSON.parse(raw); if(v&&v.user&&!(v.expires_at&&v.expires_at*1000<Date.now())) return v; }
+        for(var i=0;i<localStorage.length;i++){ var k=localStorage.key(i); if(!/auth-token/.test(k)) continue;
+          var o=JSON.parse(localStorage.getItem(k)); var s=(o&&o.user)?o:(o&&o.currentSession)?o.currentSession:null;
+          if(s&&s.user&&!(s.expires_at&&s.expires_at*1000<Date.now())) return s; }
+      }catch(e){} return null;
+    }
+    function token(){ var s=session(); return (s&&s.access_token)||SB_ANON; }
+    // 본문 마크업 ↔ 블록 변환
+    function toText(body){
+      return (body||[]).map(function(b){
+        if(b.h) return '## '+b.h;
+        if(b.v) return '> '+b.v;
+        return String(b.p||'').replace(/<b>/g,'**').replace(/<\/b>/g,'**');
+      }).join('\n\n');
+    }
+    function toBlocks(txt){
+      var out=[];
+      String(txt||'').split(/\n\s*\n/).forEach(function(chunk){
+        var t=chunk.trim(); if(!t) return;
+        if(t.indexOf('## ')===0) out.push({h:t.slice(3).trim()});
+        else if(t.charAt(0)==='>') out.push({v:t.split('\n').map(function(l){return l.replace(/^>\s?/,'');}).join(' ').trim()});
+        else {
+          var p=t.replace(/\n/g,' ').replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});
+          var bold=false; p=p.replace(/\*\*/g,function(){ bold=!bold; return bold?'<b>':'</b>'; });
+          if(bold) p+='</b>';
+          out.push({p:p});
+        }
+      });
+      return out;
+    }
     function fetchOverrides(){
       return fetch(SB_URL+'/rest/v1/translation_notes?select=*&order=sort.asc',{
         headers:{apikey:SB_ANON, Authorization:'Bearer '+SB_ANON}
@@ -132,16 +224,45 @@
         b.onclick=function(){ CAT=b.dataset.c; renderChips(); renderCards(); };
       });
     }
+    // 본문 블록에서 검색용 평문 추출
+    function plain(n){
+      return [n.title, n.verse, n.summary, (n.tags||[]).join(' '),
+        (n.body||[]).map(function(b){ return String(b.h||b.v||b.p||''); }).join(' ')]
+        .join(' ').replace(/<[^>]+>/g,'').toLowerCase();
+    }
+    function hi(s, q){
+      s=esc(s); if(!q) return s;
+      try{ return s.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig'),'<mark class="bg-gold/25 rounded px-0.5">$1</mark>'); }
+      catch(e){ return s; }
+    }
     function renderCards(){
-      var list=DATA.notes.filter(function(n){ return CAT==='all'||n.cat===CAT; });
+      var q=(document.getElementById('q').value||'').trim().toLowerCase();
+      document.getElementById('qClear').classList.toggle('hidden', !q);
+      var byCat=DATA.notes.filter(function(n){ return CAT==='all'||n.cat===CAT; });
+      var list=q? byCat.filter(function(n){ return plain(n).indexOf(q)>=0; }) : byCat;
+      // 번호는 전체 목록 기준 고정(검색해도 원래 번호 유지)
+      var numOf={}; DATA.notes.forEach(function(n,i){ numOf[n.id]=i+1; });
+      var cnt=document.getElementById('countTxt');
+      cnt.innerHTML = q
+        ? '<b class="text-gold">'+list.length+'</b>편 검색됨 <span class="text-neutral-900/35">· 전체 '+DATA.notes.length+'편</span>'
+        : '모두 <b class="text-gold">'+DATA.notes.length+'</b>편'+(CAT!=='all'? ' <span class="text-neutral-900/35">· 이 분류 '+list.length+'편</span>':'');
       document.getElementById('cards').innerHTML = list.map(function(n){
-        return '<a class="noteCard" href="translation-notes.html?id='+encodeURIComponent(n.id)+'">'
-          + '<div class="flex items-center gap-2 mb-1.5"><span class="tag">'+esc(DATA.cats[n.cat]||n.cat)+'</span>'
-          + '<span class="text-[11px] text-neutral-900/45 font-serifkr">'+esc(n.verse)+'</span></div>'
-          + '<div class="font-bold text-[15.5px] leading-snug">'+esc(n.title)+'</div>'
-          + '<p class="text-[13px] text-neutral-900/60 leading-relaxed mt-1.5">'+esc(n.summary)+'</p>'
+        return '<a class="noteCard relative" href="translation-notes.html?id='+encodeURIComponent(n.id)+'">'
+          + '<div class="flex items-center gap-2 mb-1.5">'
+          + '<span class="shrink-0 w-6 h-6 rounded-full bg-ink/5 text-neutral-900/50 text-[11px] font-bold grid place-items-center">'+numOf[n.id]+'</span>'
+          + '<span class="tag">'+esc(DATA.cats[n.cat]||n.cat)+'</span>'
+          + '<span class="text-[11px] text-neutral-900/45 font-serifkr">'+hi(n.verse,q)+'</span>'
+          + (IS_ADMIN? '<span class="ml-auto text-[11px] font-bold text-gold border border-gold/40 rounded-md px-2 py-0.5 hover:bg-gold hover:text-white" data-edit="'+esc(n.id)+'">편집</span>':'')
+          + '</div>'
+          + '<div class="font-bold text-[15.5px] leading-snug">'+hi(n.title,q)+'</div>'
+          + '<p class="text-[13px] text-neutral-900/60 leading-relaxed mt-1.5">'+hi(n.summary,q)+'</p>'
           + '</a>';
-      }).join('') || '<p class="text-sm text-neutral-900/50">글이 없습니다.</p>';
+      }).join('') || '<p class="text-sm text-neutral-900/50">'+(q? '검색 결과가 없습니다. 다른 낱말로 찾아보세요.':'글이 없습니다.')+'</p>';
+      if(IS_ADMIN){
+        document.querySelectorAll('#cards [data-edit]').forEach(function(b){
+          b.onclick=function(ev){ ev.preventDefault(); ev.stopPropagation(); openEditor(b.getAttribute('data-edit')); };
+        });
+      }
     }
     function renderNote(n, idx){
       document.title = n.title + ' — 성경 번역 이야기 · BIBLY 바이블 인사이트';
@@ -159,10 +280,84 @@
       if(next){ var a2=document.getElementById('nextLink'); a2.href='translation-notes.html?id='+encodeURIComponent(next.id); a2.querySelector('span').textContent=next.title; a2.classList.remove('hidden'); }
     }
 
+    // ===== 관리자 편집기 =====
+    var CUR=null;
+    function el(i){ return document.getElementById(i); }
+    function openEditor(id){
+      var n = id? DATA.notes.filter(function(x){return x.id===id;})[0] : null;
+      var isNew=!n;
+      var isOverride = !!OVER.filter(function(r){return r.id===id;})[0];
+      CUR={ id:id||'', isNew:isNew };
+      el('edTitle').textContent = isNew? '새 글 쓰기' : '글 편집';
+      el('edId').value = n? n.id : '';
+      el('edId').readOnly = !isNew;
+      el('edCat').value = n? (n.cat||'verse') : 'verse';
+      el('edT').value = n? n.title : '';
+      el('edV').value = n? (n.verse||'') : '';
+      el('edTag').value = n? (n.tags||[]).join(', ') : '';
+      el('edS').value = n? (n.summary||'') : '';
+      el('edB').value = n? toText(n.body) : '';
+      el('edMsg').textContent='';
+      el('edHide').classList.toggle('hidden', isNew);
+      el('edRevert').classList.toggle('hidden', !isOverride);
+      el('edModal').classList.remove('hidden');
+    }
+    function closeEditor(){ el('edModal').classList.add('hidden'); CUR=null; }
+    function upsert(row){
+      return fetch(SB_URL+'/rest/v1/translation_notes?on_conflict=id',{
+        method:'POST',
+        headers:{apikey:SB_ANON, Authorization:'Bearer '+token(), 'Content-Type':'application/json',
+          Prefer:'resolution=merge-duplicates,return=representation'},
+        body:JSON.stringify([row])
+      }).then(function(r){ if(!r.ok) return r.text().then(function(t){ throw new Error(t); }); return r.json(); });
+    }
+    function reloadAll(){
+      return fetchOverrides().then(function(rows){
+        OVER=rows; DATA=mergeNotes(JSON.parse(JSON.stringify(RAW)), rows);
+        renderChips(); renderCards();
+      });
+    }
+    function saveNote(){
+      var m=el('edMsg'); m.style.color='#6b7280'; m.textContent='저장 중…';
+      var id=(el('edId').value||'').trim().toLowerCase().replace(/[^a-z0-9\-]/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,'');
+      if(!id){ m.style.color='#dc2626'; m.textContent='글 주소(영문)를 입력해 주세요.'; return; }
+      if(!el('edT').value.trim()){ m.style.color='#dc2626'; m.textContent='제목을 입력해 주세요.'; return; }
+      var body=toBlocks(el('edB').value);
+      if(!body.length){ m.style.color='#dc2626'; m.textContent='본문을 입력해 주세요.'; return; }
+      var idx=DATA.notes.map(function(n){return n.id;}).indexOf(id);
+      var sort = idx>=0? (idx+1)*10 : (DATA.notes.length+1)*10;
+      upsert({ id:id, cat:el('edCat').value, title:el('edT').value.trim(), verse:el('edV').value.trim(),
+        tags:el('edTag').value.split(',').map(function(s){return s.trim();}).filter(Boolean),
+        summary:el('edS').value.trim(), body:body, hidden:false, sort:sort, updated_at:new Date().toISOString() })
+      .then(function(){ m.style.color='#059669'; m.textContent='저장되었습니다.';
+        return reloadAll().then(function(){ setTimeout(closeEditor,700); }); })
+      .catch(function(e){ m.style.color='#dc2626'; m.textContent='저장 실패: '+String(e.message||e).slice(0,110); });
+    }
+    function hideNote(){
+      if(!CUR||!CUR.id) return;
+      if(!confirm('이 글을 사이트에서 숨길까요? (나중에 다시 보이게 할 수 있습니다)')) return;
+      var n=DATA.notes.filter(function(x){return x.id===CUR.id;})[0]||{};
+      var idx=DATA.notes.map(function(x){return x.id;}).indexOf(CUR.id);
+      upsert({ id:CUR.id, cat:n.cat||'verse', title:n.title||'', verse:n.verse||'', tags:n.tags||[],
+        summary:n.summary||'', body:n.body||[], hidden:true, sort:(idx+1)*10, updated_at:new Date().toISOString() })
+      .then(function(){ return reloadAll(); }).then(closeEditor)
+      .catch(function(e){ alert('실패: '+String(e.message||e).slice(0,110)); });
+    }
+    function revertNote(){
+      if(!CUR||!CUR.id) return;
+      if(!confirm('수정한 내용을 취소하고 원본 글로 되돌릴까요?')) return;
+      fetch(SB_URL+'/rest/v1/translation_notes?id=eq.'+encodeURIComponent(CUR.id),{
+        method:'DELETE', headers:{apikey:SB_ANON, Authorization:'Bearer '+token()}
+      }).then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return reloadAll(); })
+      .then(closeEditor).catch(function(e){ alert('실패: '+String(e.message||e).slice(0,110)); });
+    }
+
     Promise.all([
       fetch('content/translation-notes.json').then(function(r){ return r.json(); }),
       fetchOverrides()
     ]).then(function(res){
+      RAW=JSON.parse(JSON.stringify(res[0])); OVER=res[1];
+      var s=session(); IS_ADMIN = !!(s && s.user && s.user.email===ADMIN_EMAIL);
       var d=mergeNotes(res[0], res[1]);
       DATA=d;
       var id=qs('id');
@@ -173,7 +368,19 @@
       } else {
         document.getElementById('introTxt').textContent=d.intro||'';
         document.getElementById('listView').classList.remove('hidden');
+        if(IS_ADMIN) el('adminBar').classList.remove('hidden');
         renderChips(); renderCards();
+        // 검색
+        var qi=el('q'), t=null;
+        qi.addEventListener('input', function(){ clearTimeout(t); t=setTimeout(renderCards, 120); });
+        el('qClear').onclick=function(){ qi.value=''; qi.focus(); renderCards(); };
+        // 편집기 버튼
+        el('btnNew').onclick=function(){ openEditor(null); };
+        el('edClose').onclick=closeEditor;
+        el('edSave').onclick=saveNote;
+        el('edHide').onclick=hideNote;
+        el('edRevert').onclick=revertNote;
+        el('edModal').addEventListener('click', function(ev){ if(ev.target===el('edModal')) closeEditor(); });
       }
     }).catch(function(e){
       document.getElementById('listView').classList.remove('hidden');
