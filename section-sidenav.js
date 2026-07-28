@@ -11,7 +11,6 @@
   var FALLBACK = [
     { label:'소개', href:'about.html', children:[
       { label:'우리의 사명·소개', href:'about.html' }, { label:'강사 소개', href:'about.html#instructor' },
-      { label:'저자의 책', href:'books.html' },
       { label:'설립 이야기 · 간증', href:'about.html#story' }, { label:'1기 창립 멤버', href:'founding.html' } ]},
     { label:'강의·커리큘럼', href:'curriculum.html', children:[
       { label:'전체 커리큘럼', href:'curriculum.html' }, { label:'나에게 맞는 강의 찾기', href:'find.html' },
@@ -31,6 +30,10 @@
     { label:'스토어', href:'booklet.html', children:[
       { label:'PDF 책자·이용권', href:'booklet.html' }, { label:'선물·후원 좌석', href:'gift.html' },
       { label:'고객센터(주문·배송·반품)', href:'store-help.html' }, { label:'내 구매·자료', href:'mylearning.html' } ]},
+    { label:'저자의 책', href:'books.html', children:[
+      { label:'저자의 책 전체', href:'books.html' },
+      { label:'교회를 떠나고서야, 예수를 만났다', href:'books.html#church' },
+      { label:'엄마 향기', href:'books.html#mom' } ]},
     { label:'아카데미 인증과정', href:'academy.html', children:[
       { label:'과정 소개', href:'academy.html' }, { label:'급수 패키지·수강료', href:'academy.html#packages' },
       { label:'등록 신청', href:'academy.html#apply' } ]}
