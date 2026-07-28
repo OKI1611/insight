@@ -11,6 +11,7 @@
   var FALLBACK = [
     { label:'소개', href:'about.html', children:[
       { label:'우리의 사명·소개', href:'about.html' }, { label:'강사 소개', href:'about.html#instructor' },
+      { label:'저자의 책', href:'books.html' },
       { label:'설립 이야기 · 간증', href:'about.html#story' }, { label:'1기 창립 멤버', href:'founding.html' } ]},
     { label:'강의·커리큘럼', href:'curriculum.html', children:[
       { label:'전체 커리큘럼', href:'curriculum.html' }, { label:'나에게 맞는 강의 찾기', href:'find.html' },

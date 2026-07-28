@@ -303,7 +303,8 @@
       {bg:'#213a6b',href:'watch.html',tab:'무료로 시작하기',badge:'누구나 무료',title:'말씀으로<br><span style="color:#8fd6b4">시대를 읽다</span>',sub:'천년왕국·종말론·성경적 세계관 강의 <span data-stat="free">314편</span>, 전부 무료',cta:'무료로 강의 듣기'},
       {bg:'#2b5fb0',href:'curriculum.html',tab:'대표 시리즈',badge:'우리 사이트 간판',title:'천년왕국 세미나<br><span style="color:#ffe08a">예언의 기초부터 완주까지</span>',sub:'유튜브 <span data-stat="views">150만+</span> 조회 · 단계별 커리큘럼으로 완주',cta:'지금 정주행하기'},
       {bg:'#0e7a68',href:'bible.html',tab:'성경 공부 도구',badge:'전부 무료',title:'성경, <span style="color:#ffe08a">직접 읽고 공부하다</span>',sub:'성경 읽기·성경사전 3,000+·성경 Q&A·통독·암송, 모두 무료',cta:'공부 시작하기'},
-      {bg:'#9a6a1b',href:'academy.html',tab:'인증과정·창립멤버',badge:'선착순 1기',title:'아카데미 <span style="color:#fff3d6">인증과정</span>',sub:'체계적 급수·수료증 · 1기 창립멤버 20% 평생할인',cta:'인증과정 보기'}
+      {bg:'#9a6a1b',href:'academy.html',tab:'인증과정·창립멤버',badge:'선착순 1기',title:'아카데미 <span style="color:#fff3d6">인증과정</span>',sub:'체계적 급수·수료증 · 1기 창립멤버 20% 평생할인',cta:'인증과정 보기'},
+      {bg:'#21342a',href:'books.html',tab:'저자의 책',badge:'출간 도서',title:'강의로 다 담지 못한 이야기,<br><span style="color:#e4c07a">책으로 만나다</span>',sub:'『교회를 떠나고서야, 예수를 만났다』 · 『엄마 향기』 — 종이책·전자책 판매 중',cta:'책 보러 가기'}
     ];
     var hero=document.getElementById('hpHero'); if(!hero) return;
     hero.style.transition='background .5s ease';
@@ -380,6 +381,54 @@
         <a href="support.html" class="group flex flex-col items-center gap-2">
           <span class="w-14 h-14 rounded-full bg-pink-50 text-pink-500 flex items-center justify-center group-hover:-translate-y-0.5 group-hover:shadow-soft transition"><svg viewBox="0 0 24 24" fill="none" class="w-6 h-6"><path d="M12 20s-7-4.35-7-9.5A3.5 3.5 0 0 1 12 7a3.5 3.5 0 0 1 7 3.5C19 15.65 12 20 12 20z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
           <span class="text-[12px] font-semibold text-neutral-900/80 leading-tight">후원</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 저자의 책 (출간 도서 소개 · 구매 연결) ===== -->
+  <section id="books" class="bg-white border-b border-ink/8 py-11 md:py-14">
+    <div class="max-w-5xl mx-auto px-5">
+      <div class="flex flex-wrap items-end justify-between gap-3 mb-7">
+        <div>
+          <p class="text-gold text-[11px] font-bold tracking-[0.3em] uppercase mb-2">Books by 오광일</p>
+          <h2 class="text-xl md:text-2xl font-bold leading-snug">저자가 쓴 책</h2>
+          <p class="text-sm text-neutral-900/60 mt-2">강의로 다 담지 못한 이야기를, 책으로 만나실 수 있습니다.</p>
+        </div>
+        <a href="books.html" class="text-sm font-bold text-gold hover:underline shrink-0">전체 보기 →</a>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-5">
+        <!-- 교회를 떠나고서야, 예수를 만났다 -->
+        <a href="books.html#church" class="group flex gap-4 rounded-2xl border border-ink/10 bg-paper/60 p-4 hover:border-gold/50 hover:shadow-soft transition">
+          <img src="images/books/church.jpg" alt="교회를 떠나고서야, 예수를 만났다 표지" loading="lazy"
+               class="w-[92px] sm:w-[104px] shrink-0 rounded-lg shadow-md object-cover self-start"/>
+          <span class="flex-1 min-w-0 flex flex-col">
+            <span class="inline-flex w-fit text-[10.5px] font-bold text-emerald-700 bg-emerald-50 rounded-full px-2 py-0.5 mb-1.5">기독교 에세이</span>
+            <span class="block font-bold text-[15.5px] leading-snug group-hover:text-gold transition-colors">교회를 떠나고서야, 예수를 만났다</span>
+            <span class="block text-[12px] text-neutral-900/55 mt-1">환멸의 시대를 건너, 다시 찾은 진짜 교회</span>
+            <span class="block text-[12.5px] text-neutral-900/70 leading-relaxed mt-2.5">교회를 세 번 떠났던 사람의 고백. 상처받고 지쳐 교회 문을 나선 당신에게 건네는 이야기.</span>
+            <span class="mt-auto pt-3 flex items-center gap-1.5">
+              <span class="text-[11px] font-bold text-white bg-gold rounded-lg px-2.5 py-1.5">구매하러 가기</span>
+              <span class="text-[11px] text-neutral-900/45">종이책 · 전자책</span>
+            </span>
+          </span>
+        </a>
+
+        <!-- 엄마 향기 -->
+        <a href="books.html#mom" class="group flex gap-4 rounded-2xl border border-ink/10 bg-paper/60 p-4 hover:border-gold/50 hover:shadow-soft transition">
+          <img src="images/books/mom.jpg" alt="엄마 향기 표지" loading="lazy"
+               class="w-[92px] sm:w-[104px] shrink-0 rounded-lg shadow-md object-cover self-start"/>
+          <span class="flex-1 min-w-0 flex flex-col">
+            <span class="inline-flex w-fit text-[10.5px] font-bold text-rose-600 bg-rose-50 rounded-full px-2 py-0.5 mb-1.5">에세이 · 실화 소설</span>
+            <span class="block font-bold text-[15.5px] leading-snug group-hover:text-gold transition-colors">엄마 향기</span>
+            <span class="block text-[12px] text-neutral-900/55 mt-1">The Scent of My Mother</span>
+            <span class="block text-[12.5px] text-neutral-900/70 leading-relaxed mt-2.5">홀로 삼남매를 키운 어머니, 그 애증의 세월. 아무리 말해도 닿지 않는 부모를 둔 당신에게.</span>
+            <span class="mt-auto pt-3 flex items-center gap-1.5">
+              <span class="text-[11px] font-bold text-white bg-gold rounded-lg px-2.5 py-1.5">구매하러 가기</span>
+              <span class="text-[11px] text-neutral-900/45">종이책</span>
+            </span>
+          </span>
         </a>
       </div>
     </div>

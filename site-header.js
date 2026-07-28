@@ -15,6 +15,7 @@
       { label:'우리의 사명·소개', href:'about.html' },
       { label:'스터디 가이드', href:'guide.html' },
       { label:'강사 소개', href:'about.html#instructor' },
+      { label:'저자의 책', href:'books.html' },
       { label:'설립 이야기 · 간증', href:'about.html#story' },
       { label:'1기 창립 멤버', href:'founding.html' }
     ]},
