@@ -605,12 +605,41 @@
       try{
         const data=await rpcFetch('list_founding',{}); FOUNDING=data||[];
         if(!FOUNDING.length){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">아직 창립 멤버가 없습니다.</p>'; return; }
-        wrap.innerHTML=`<p class="text-sm text-neutral-900/50 mb-3">총 <b class="text-neutral-900">${FOUNDING.length}</b>명 · 가입(번호)순</p><div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">
-          <thead class="text-neutral-900/45 text-left border-b border-ink/5"><tr><th class="px-5 py-3 font-medium">번호</th><th class="px-5 py-3 font-medium">이름</th><th class="px-5 py-3 font-medium">이메일</th><th class="px-5 py-3 font-medium">가입일</th></tr></thead>
-          <tbody>${FOUNDING.map(r=>`<tr class="border-b border-ink/5"><td class="px-5 py-3 font-bold text-gold">#${String(r.member_no).padStart(3,'0')}</td><td class="px-5 py-3 font-medium">${esc(r.name||'(이름없음)')}</td><td class="px-5 py-3">${esc(r.email)}</td><td class="px-5 py-3 text-neutral-900/55">${r.joined_at?new Date(r.joined_at).toLocaleDateString('ko'):'-'}</td></tr>`).join('')}</tbody></table></div>`;
+        const _v=v=>{ const s=(v==null?'':String(v)).trim(); return s? esc(s) : '<span class="text-neutral-900/25">-</span>'; };
+        const _tel=v=>{ const s=(v==null?'':String(v)).trim(); return s? `<a href="tel:${esc(s.replace(/[^0-9+]/g,''))}" class="hover:text-gold">${esc(s)}</a>` : '<span class="text-neutral-900/25">-</span>'; };
+        const _mail=v=>{ const s=(v==null?'':String(v)).trim(); return s? `<a href="mailto:${esc(s)}" class="hover:text-gold">${esc(s)}</a>` : '<span class="text-neutral-900/25">-</span>'; };
+        const filled=k=>FOUNDING.filter(r=>String(r[k]||'').trim()).length;
+        wrap.innerHTML=`<div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-neutral-900/50 mb-3">
+            <span>총 <b class="text-neutral-900">${FOUNDING.length}</b>명 · 가입(번호)순</span>
+            <span class="text-xs">연락처 ${filled('phone')}명 · 주소 ${filled('address')||filled('region')}명 기재</span>
+          </div>
+          <div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">
+          <thead class="text-neutral-900/45 text-left border-b border-ink/5"><tr><th class="px-4 py-3 font-medium">번호</th><th class="px-4 py-3 font-medium">이름</th><th class="px-4 py-3 font-medium">전화번호</th><th class="px-4 py-3 font-medium">이메일</th><th class="px-4 py-3 font-medium">주소</th><th class="px-4 py-3 font-medium">출석 교회</th><th class="px-4 py-3 font-medium">가입일</th></tr></thead>
+          <tbody>${FOUNDING.map(r=>`<tr class="border-b border-ink/5 hover:bg-sand/40">
+            <td class="px-4 py-3 font-bold text-gold">#${String(r.member_no==null?'':r.member_no).padStart(3,'0')}</td>
+            <td class="px-4 py-3 font-medium">${_v(r.name)}</td>
+            <td class="px-4 py-3">${_tel(r.phone)}</td>
+            <td class="px-4 py-3">${_mail(r.email)}</td>
+            <td class="px-4 py-3 whitespace-normal max-w-[260px]">${_v(r.address||r.region)}</td>
+            <td class="px-4 py-3">${_v(r.church)}</td>
+            <td class="px-4 py-3 text-neutral-900/55">${r.joined_at?new Date(r.joined_at).toLocaleDateString('ko'):'-'}</td></tr>`).join('')}</tbody></table></div>`;
       }catch(e){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">'+(_storeNeedSql(e)?'창립 멤버 기능 준비 중 — <code class="bg-ink/5 px-1 rounded">supabase/founding_members.sql</code> 실행 필요.':'불러오기 오류: '+esc(e.message||e))+'</p>'; }
     }
-    function exportFoundingCSV(){ if(!FOUNDING.length){ toast('창립 멤버 없음'); return; } const fd=d=>d?new Date(d).toLocaleDateString('ko'):''; const rows=[['번호','이름','이메일','가입일'],...FOUNDING.map(r=>['#'+String(r.member_no).padStart(3,'0'),r.name||'',r.email,fd(r.joined_at)])]; const csv='﻿'+rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n'); const b=new Blob([csv],{type:'text/csv'}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='창립멤버.csv'; a.click(); toast('CSV 내려받음'); }
+    function exportFoundingCSV(){
+      if(!FOUNDING.length){ toast('창립 멤버 없음'); return; }
+      const fd=d=>d?new Date(d).toLocaleDateString('ko'):'';
+      // 전화번호 앞 0이 엑셀에서 사라지지 않도록 문자열로 고정
+      const tel=v=>{ const s=String(v==null?'':v).trim(); return s?('​'+s):''; };
+      const rows=[
+        ['번호','이름','전화번호','이메일','주소','출석 교회','신앙 연수','가입일'],
+        ...FOUNDING.map(r=>[
+          '#'+String(r.member_no==null?'':r.member_no).padStart(3,'0'),
+          r.name||'', tel(r.phone), r.email||'',
+          r.address||r.region||'', r.church||'', r.faith_years||'', fd(r.joined_at)
+        ])
+      ];
+      downloadCSV('창립멤버_명단_'+new Date().toISOString().slice(0,10)+'.csv', rows);
+    }
 
     // ===== 공통 CSV(엑셀) 내보내기 — UTF-8 BOM으로 엑셀에서 한글 정상 표시 =====
     let APPS=[], CERT=[], PASSHOLDERS=[], BOOKHOLDERS=[], ORDERS=[];
