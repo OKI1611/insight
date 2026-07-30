@@ -117,9 +117,27 @@
     .fwHeroRow{display:flex;width:max-content;align-items:center;animation:fwMq 44s linear infinite}
     .fwHeroRow.slow{animation-duration:62s}
     .fwHeroMask:hover .fwHeroRow{animation-play-state:paused}
-    .fwName{display:inline-flex;align-items:baseline;gap:6px;padding:0 16px;white-space:nowrap;border-left:1px solid rgba(33,58,107,.10)}
+    .fwName{display:inline-flex;align-items:center;gap:7px;padding:0 16px;white-space:nowrap;border-left:1px solid rgba(33,58,107,.10)}
     .fwName .n{font-size:10px;color:#00704a;letter-spacing:.04em;font-variant-numeric:tabular-nums}
     .fwName .v{font-size:13.5px;color:#213a6b;font-weight:600;letter-spacing:-.01em}
+    /* 1·2·3위 메달 */
+    .medal{display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;border-radius:50%;
+           font-size:10.5px;font-weight:800;color:#fff;font-variant-numeric:tabular-nums;
+           box-shadow:inset 0 1px 0 rgba(255,255,255,.5), 0 1px 2px rgba(21,32,58,.18)}
+    .m1{background:linear-gradient(150deg,#e6cd6b,#c9a227 48%,#a37f16)}
+    .m2{background:linear-gradient(150deg,#cfd6df,#9aa5b4 48%,#7c8899)}
+    .m3{background:linear-gradient(150deg,#dda878,#b0764a 48%,#8d5a35)}
+    /* 창립 멤버 줄 — 남색·금색 배색으로 격을 맞춤 */
+    .fwFound{background:linear-gradient(90deg,#f7f9fd,#fdfbf6)}
+    .fwFound .fwName{border-left-color:rgba(185,155,94,.28)}
+    .fwFound .fwName .n{color:#b99b5e;font-weight:700}
+    .fwFound .fwName .v{color:#1b2c52;font-weight:700}
+    .fwDot{width:5px;height:5px;border-radius:50%;background:#b99b5e;display:inline-block}
+    /* 창립 멤버 금뱃지 — 전원 동일 등급 */
+    .fwBadge{display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:17px;padding:0 6px;
+             border-radius:9px;background:linear-gradient(150deg,#efd98a,#c9a227 50%,#a37f16);
+             color:#3a2c06;font-size:9.5px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:.01em;
+             box-shadow:inset 0 1px 0 rgba(255,255,255,.6), 0 1px 2px rgba(21,32,58,.16)}
     @media (prefers-reduced-motion: reduce){
       .fwHeroRow{animation:none}
     }
@@ -228,13 +246,15 @@
     <div id="fameBar" class="hidden max-w-6xl mx-auto px-5 pt-2">
       <div class="rounded-2xl border border-ink/8 bg-white shadow-soft overflow-hidden">
         <div id="hofBarWrap" class="hidden flex items-center gap-3 px-4 md:px-5 py-2.5">
-          <span class="shrink-0 text-[11px] font-bold text-gold whitespace-nowrap">댓글 명예의 전당</span>
+          <span id="hofBarLabel" class="shrink-0 text-[11px] font-bold text-gold whitespace-nowrap">우수 멤버</span>
           <div class="fwHeroMask flex-1 min-w-0"><div id="hofBarRow" class="fwHeroRow"></div></div>
         </div>
-        <div id="fwBarWrap" class="hidden flex items-center gap-3 px-4 md:px-5 py-2.5 border-t border-ink/6">
-          <span class="shrink-0 text-[11px] font-bold text-neutral-900/45 whitespace-nowrap">창립 멤버</span>
+        <div id="fwBarWrap" class="fwFound hidden flex items-center gap-3 px-4 md:px-5 py-2.5 border-t border-ink/6">
+          <span class="shrink-0 inline-flex items-center gap-1.5 text-[11px] font-bold whitespace-nowrap" style="color:#1b2c52">
+            <span class="fwDot"></span>창립 멤버
+          </span>
           <div class="fwHeroMask flex-1 min-w-0"><div id="fwHeroRow" class="fwHeroRow slow"></div></div>
-          <a href="founding.html" class="shrink-0 hidden sm:inline text-[11.5px] font-semibold text-gold hover:underline whitespace-nowrap">이름 올리기 ›</a>
+          <a href="founding.html" class="shrink-0 hidden sm:inline text-[11.5px] font-bold hover:underline whitespace-nowrap" style="color:#b99b5e">이름 올리기 ›</a>
         </div>
       </div>
     </div>
@@ -992,7 +1012,7 @@
        아래 <li> 목록만 교체하면 됩니다. 최종 갱신: 2026-07-30 -->
   <section class="py-14 md:py-16 bg-sand/40 border-b border-ink/8">
     <div class="max-w-3xl mx-auto px-5 text-center">
-      <p class="eyebrow text-gold text-xs font-semibold mb-4" style="letter-spacing:.3em">HALL OF FAME · 명예의 전당</p>
+      <p class="eyebrow text-gold text-xs font-semibold mb-4" style="letter-spacing:.3em"><span id="hofTitle">우수 멤버</span> · 명예의 전당</p>
       <h2 class="text-2xl md:text-[30px] font-bold leading-snug">댓글로 <span class="text-gold">함께 걸어와 주신</span> 분들</h2>
       <p class="text-neutral-900/60 text-[15px] leading-relaxed mt-4 max-w-xl mx-auto">
         강의마다 정성스러운 묵상과 질문, 따뜻한 응원을 남겨 주신 분들입니다.<br class="hidden sm:block"/>
@@ -1005,7 +1025,7 @@
         <ol id="hofList" class="px-1 py-1"></ol>
       </div>
       <p class="text-[12.5px] text-neutral-900/45 mt-6 leading-relaxed">
-        순위는 감사의 표시일 뿐입니다. 이 자리에 담지 못한 모든 시청자 한 분 한 분께도 같은 마음으로 감사드립니다.
+        우수 멤버는 <b class="text-neutral-900/60">매달 새로 선정</b>합니다. 이 자리에 담지 못한 모든 시청자 한 분 한 분께도 같은 마음으로 감사드립니다.
       </p>
       <a href="https://www.youtube.com/channel/UC82IOMnZud8NNt3BYzAxTMg" target="_blank" rel="noopener"
          class="inline-block mt-7 bg-gold text-white font-semibold text-sm px-6 py-3 rounded-full hover:opacity-90 transition">
@@ -2092,15 +2112,27 @@
       m = m.slice().sort(function(a,b){ return (a.rank||0)-(b.rank||0); });
       var bs=document.getElementById('hofBasis');
       if(bs && d.basis) bs.textContent = d.basis;
+      // 기간 라벨 — period(YYYY-MM)로 "2026년 7월 우수 멤버" 생성. 매달 이 값만 바꾸면 됩니다.
+      var pl='우수 멤버';
+      if(d.period && /^\d{4}-\d{2}$/.test(d.period)){
+        var p=d.period.split('-'); pl=p[0]+'년 '+parseInt(p[1],10)+'월 우수 멤버';
+      }
+      var lab=document.getElementById('hofBarLabel'); if(lab) lab.textContent=pl;
+      var ttl=document.getElementById('hofTitle'); if(ttl) ttl.textContent=pl;
+      // 1·2·3위는 메달, 그 외는 숫자
+      function badge(r){
+        return (r>=1&&r<=3) ? '<span class="medal m'+r+'">'+r+'</span>'
+                            : '<span class="n">'+(r||'')+'</span>';
+      }
       var first=m[0];
       document.getElementById('hofTop').innerHTML =
-        '<span style="display:inline-block;background:#b99b5e;color:#fff;font-size:11px;border-radius:3px;padding:3px 12px;letter-spacing:.08em">1위</span>'
+        '<span class="medal m1" style="width:30px;height:30px;font-size:15px">1</span>'
         + '<p class="font-serifkr mt-3" style="font-size:21px;color:#2c2418;word-break:break-all">'+esc(first.handle)+'</p>';
       // 히어로 상단 띠에도 순위를 흘려보냄
       var barRow=document.getElementById('hofBarRow');
       if(barRow){
         var it=m.map(function(x){
-          return '<span class="fwName"><span class="n">'+(x.rank||'')+'</span><span class="v">'+esc(x.handle)+'</span></span>';
+          return '<span class="fwName">'+badge(x.rank)+'<span class="v">'+esc(x.handle)+'</span></span>';
         });
         while(it.length<14) it=it.concat(it);
         var s=it.join(''); barRow.innerHTML=s+s;
@@ -2108,9 +2140,12 @@
         document.getElementById('fameBar').classList.remove('hidden');
       }
       document.getElementById('hofList').innerHTML = m.slice(1).map(function(x,i,arr){
-        var last = i===arr.length-1;
+        var last = i===arr.length-1, r = x.rank||(i+2);
+        var mark = (r===2||r===3)
+          ? '<span class="medal m'+r+'">'+r+'</span>'
+          : '<span class="shrink-0 text-right" style="width:19px;font-size:12.5px;color:#8a7350">'+r+'</span>';
         return '<li class="flex items-center gap-3 px-4 py-2.5'+(last?'':' border-b')+'" style="border-color:rgba(90,70,40,.14)">'
-          + '<span class="shrink-0 text-right" style="width:22px;font-size:12.5px;color:#8a7350">'+(x.rank||(i+2))+'</span>'
+          + mark
           + '<span style="font-size:13.5px;color:#2c2418;word-break:break-all">'+esc(x.handle)+'</span></li>';
       }).join('');
     }).catch(function(){ board.style.display='none'; });
@@ -2135,7 +2170,7 @@
         var named=rows.filter(function(x){ return x.masked_name!=='창립멤버'; });
         if(!named.length) named=rows;
         var items=named.map(function(x){
-          return '<span class="fwName"><span class="n">'+no(x.member_no)+'</span>'
+          return '<span class="fwName"><span class="fwBadge">'+no(x.member_no)+'</span>'
                + '<span class="v">'+esc(x.masked_name)+'</span></span>';
         });
         while(items.length<14) items=items.concat(items);   // 인원이 적어도 줄이 비지 않게
