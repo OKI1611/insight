@@ -177,10 +177,11 @@
     </div>
     <!-- 메뉴 줄 (큰 폰트 + 호버 드롭다운) -->
     <nav class="hidden xl:block border-t border-ink/8">
-      <div class="max-w-7xl mx-auto px-5 h-14 flex items-center gap-7">
-        <div id="mainmenu" class="flex items-center gap-7 text-[16px] font-medium text-[#1f2a44]"></div>
+      <!-- 1280px(xl) 노트북에서 메뉴+버튼이 가로로 넘치지 않도록 간격을 좁히고, 2xl 이상에서 원래 여백 복원 -->
+      <div class="max-w-7xl mx-auto px-5 h-14 flex items-center gap-4 2xl:gap-7">
+        <div id="mainmenu" class="flex items-center gap-5 2xl:gap-7 text-[15px] 2xl:text-[16px] font-medium text-[#1f2a44]"></div>
         <div class="flex items-center gap-2 ml-auto shrink-0">
-          <a href="welcome.html" style="background:#00704a" class="inline-flex items-center gap-1.5 text-white font-semibold text-[15px] px-5 py-2.5 rounded-full hover:opacity-90 transition">무료로 시작하기</a>
+          <a href="welcome.html" style="background:#00704a" class="inline-flex items-center gap-1.5 text-white font-semibold text-[15px] px-4 2xl:px-5 py-2.5 rounded-full hover:opacity-90 transition">무료로 시작하기</a>
           <a href="mylearning.html" class="inline-flex items-center gap-1.5 border border-gold/45 text-gold font-semibold text-sm px-4 py-2.5 rounded-full hover:bg-gold/10 transition">내 강의실</a>
           <a href="support.html" aria-label="후원하기" title="후원하기" class="inline-flex items-center gap-1 rounded-full bg-rose-500/10 text-rose-500 border border-rose-300 font-semibold text-sm px-4 py-2.5 hover:bg-rose-500 hover:text-white transition"><span style="font-size:15px"></span> 후원</a>
         </div>
