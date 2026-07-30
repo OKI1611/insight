@@ -111,23 +111,17 @@
     /* 고딕 디스플레이 — 히어로 h1 & 섹션 h2 (깔끔·세련) */
     h1, section h2{ font-family:'Pretendard', system-ui, sans-serif; letter-spacing:-0.02em; font-weight:800; }
     .eyebrow{letter-spacing:.34em; text-transform:uppercase}
-    /* 1기 창립 멤버 명예의 전당 — 금박 명판 + 흐르는 전광판 */
-    @keyframes fwShine{0%,100%{opacity:.3}50%{opacity:.95}}
+    /* 창립 멤버 이름 띠 — 히어로 아래 한 줄로 조용히 흐름 */
     @keyframes fwMq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-    @keyframes fwMqR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
-    .fwPlate{position:relative;background:#182a4d;border:1px solid rgba(240,205,130,.45);border-radius:6px;padding:11px 8px;text-align:center}
-    .fwStar{position:absolute;top:5px;right:7px;font-size:9px;color:#f0cd82;animation:fwShine 2.4s ease-in-out infinite}
-    .fwNo{font-size:10px;color:#f0cd82;letter-spacing:.08em}
-    .fwNm{font-size:13px;color:#fff;margin-top:3px}
-    .fwMask{overflow:hidden}
-    .fwRow{display:flex;width:max-content;gap:10px;animation:fwMq 26s linear infinite}
-    .fwRow.rev{animation-name:fwMqR}
-    .fwMask:hover .fwRow{animation-play-state:paused}
-    .fwLed{background:#1b2c52;color:#f0d99a;border:1px solid rgba(240,217,154,.28);border-radius:8px;padding:7px 13px;font-size:12.5px;white-space:nowrap}
-    .fwLed b{color:#fff;font-weight:600}
+    .fwHeroMask{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 28px,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,transparent,#000 28px,#000 calc(100% - 28px),transparent)}
+    .fwHeroRow{display:flex;width:max-content;align-items:center;animation:fwMq 44s linear infinite}
+    .fwHeroRow.slow{animation-duration:62s}
+    .fwHeroMask:hover .fwHeroRow{animation-play-state:paused}
+    .fwName{display:inline-flex;align-items:baseline;gap:6px;padding:0 16px;white-space:nowrap;border-left:1px solid rgba(33,58,107,.10)}
+    .fwName .n{font-size:10px;color:#00704a;letter-spacing:.04em;font-variant-numeric:tabular-nums}
+    .fwName .v{font-size:13.5px;color:#213a6b;font-weight:600;letter-spacing:-.01em}
     @media (prefers-reduced-motion: reduce){
-      .fwRow{animation:none;flex-wrap:wrap;width:auto;justify-content:center}
-      .fwStar{animation:none;opacity:.7}
+      .fwHeroRow{animation:none}
     }
     .blob{display:none}
     .star{width:14px;height:14px;display:inline-block;color:#cB9a4a;color:#c79a4a}
@@ -228,6 +222,21 @@
       <p class="mb-2"><span class="inline-block bg-sand text-navy text-[11px] md:text-[12px] font-semibold px-3 py-1 rounded-full">미디어 선교 전문 채널 · 유튜브 「오광일의 인사이트 브리핑」 공식 플랫폼</span></p>
       <h1 data-cms="home.heroTitle" class="text-[24px] md:text-[32px] font-bold tracking-tight text-neutral-900">말씀으로 <span class="text-gold">시대를 읽다</span></h1>
       <p data-cms="home.heroSub" class="mt-2 text-neutral-900/55 text-[14px] md:text-[15px] leading-relaxed">성경을 스스로 읽는 눈을 길러, 흔들리지 않는 분별의 사람을 세웁니다 — <b class="text-neutral-900/75">전 강의 무료</b></p>
+    </div>
+
+    <!-- 함께해 주신 분들 띠 (히어로 배너 바로 위 · 첫 화면 노출) -->
+    <div id="fameBar" class="hidden max-w-6xl mx-auto px-5 pt-2">
+      <div class="rounded-2xl border border-ink/8 bg-white shadow-soft overflow-hidden">
+        <div id="hofBarWrap" class="hidden flex items-center gap-3 px-4 md:px-5 py-2.5">
+          <span class="shrink-0 text-[11px] font-bold text-gold whitespace-nowrap">댓글 명예의 전당</span>
+          <div class="fwHeroMask flex-1 min-w-0"><div id="hofBarRow" class="fwHeroRow"></div></div>
+        </div>
+        <div id="fwBarWrap" class="hidden flex items-center gap-3 px-4 md:px-5 py-2.5 border-t border-ink/6">
+          <span class="shrink-0 text-[11px] font-bold text-neutral-900/45 whitespace-nowrap">창립 멤버</span>
+          <div class="fwHeroMask flex-1 min-w-0"><div id="fwHeroRow" class="fwHeroRow slow"></div></div>
+          <a href="founding.html" class="shrink-0 hidden sm:inline text-[11.5px] font-semibold text-gold hover:underline whitespace-nowrap">이름 올리기 ›</a>
+        </div>
+      </div>
     </div>
 
     <!-- 회전 배너 3단 (좌측 탭 · 회전 히어로 · HOT PICK) -->
@@ -955,25 +964,6 @@
           <p class="text-sm text-neutral-900/60 mt-1 leading-relaxed">새 강의·자료·소식을 1기 멤버에게 <b class="text-neutral-900/80">가장 먼저</b> 전합니다.</p>
         </div>
       </div>
-      <!-- 창립 멤버 명예의 전당 (공개 함수 founding_wall 이 있을 때만 노출) -->
-      <div id="foundWall" class="hidden mt-10 rounded-2xl overflow-hidden text-left" style="background:#0d1730">
-        <div class="text-center px-5 pt-7">
-          <div style="font-size:24px">🏆</div>
-          <p style="font-size:10.5px;letter-spacing:.28em;color:#f0cd82;margin-top:6px">FOUNDING MEMBERS</p>
-          <p class="text-white mt-2" style="font-size:18px">1기 창립 멤버 명예의 전당</p>
-          <p style="font-size:11.5px;color:#ffffff77;margin-top:7px">가장 먼저 함께해 주신 <span id="fwCount" style="color:#f0cd82">—</span>의 이름을 영구히 새깁니다</p>
-        </div>
-        <div id="fwTop" class="flex justify-center flex-wrap gap-2 px-5 mt-4"></div>
-        <div id="fwGrid" class="grid gap-2 px-5 mt-3" style="grid-template-columns:repeat(auto-fit,minmax(92px,1fr))"></div>
-        <div class="mt-5 space-y-2 pb-1">
-          <div class="fwMask"><div id="fwMq1" class="fwRow"></div></div>
-          <div class="fwMask"><div id="fwMq2" class="fwRow rev"></div></div>
-        </div>
-        <div class="text-center px-5 pb-7 pt-5">
-          <a href="founding.html" class="inline-block font-bold rounded-full px-7 py-3 text-sm" style="background:#f0cd82;color:#2b2205">내 이름 새기러 가기</a>
-        </div>
-      </div>
-
       <p class="mt-7 text-neutral-900/55 text-sm">지금은 <b class="text-neutral-900/75">전부 무료</b> — 모든 강의·요약노트·퀴즈를 끝까지 소장하세요.</p>
       <a href="founding.html" class="mt-6 inline-flex items-center gap-2 bg-gold text-white font-bold text-lg px-9 py-4 rounded-full hover:opacity-90 transition shadow-xl">
         1기 창립 멤버 되기 · 무료
@@ -2104,8 +2094,19 @@
       if(bs && d.basis) bs.textContent = d.basis;
       var first=m[0];
       document.getElementById('hofTop').innerHTML =
-        '<span style="display:inline-block;background:#b99b5e;color:#fff;font-size:11px;border-radius:3px;padding:3px 12px;letter-spacing:.12em">壯元 · 1위</span>'
+        '<span style="display:inline-block;background:#b99b5e;color:#fff;font-size:11px;border-radius:3px;padding:3px 12px;letter-spacing:.08em">1위</span>'
         + '<p class="font-serifkr mt-3" style="font-size:21px;color:#2c2418;word-break:break-all">'+esc(first.handle)+'</p>';
+      // 히어로 상단 띠에도 순위를 흘려보냄
+      var barRow=document.getElementById('hofBarRow');
+      if(barRow){
+        var it=m.map(function(x){
+          return '<span class="fwName"><span class="n">'+(x.rank||'')+'</span><span class="v">'+esc(x.handle)+'</span></span>';
+        });
+        while(it.length<14) it=it.concat(it);
+        var s=it.join(''); barRow.innerHTML=s+s;
+        document.getElementById('hofBarWrap').classList.remove('hidden');
+        document.getElementById('fameBar').classList.remove('hidden');
+      }
       document.getElementById('hofList').innerHTML = m.slice(1).map(function(x,i,arr){
         var last = i===arr.length-1;
         return '<li class="flex items-center gap-3 px-4 py-2.5'+(last?'':' border-b')+'" style="border-color:rgba(90,70,40,.14)">'
@@ -2117,10 +2118,10 @@
   </script>
 
   <script>
-  /* 1기 창립 멤버 명예의 전당 — 공개 함수 founding_wall() 이 마스킹된 이름만 반환.
-     함수가 없거나(SQL 미실행) 명단이 비면 블록 전체를 숨깁니다(기존 CTA는 유지). */
+  /* 창립 멤버 이름 띠 (히어로 아래) — 공개 함수 founding_wall() 이 마스킹된 이름만 반환.
+     함수가 없거나(SQL 미실행) 명단이 비면 띠 전체를 숨깁니다. */
   (function(){
-    var wrap=document.getElementById('foundWall'); if(!wrap) return;
+    var wrap=document.getElementById('fwBarWrap'); if(!wrap) return;
     var SB='https://bmxkndkwefdgsomlznoo.supabase.co';
     var KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
     function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
@@ -2130,29 +2131,18 @@
       .then(function(rows){
         rows=(rows||[]).filter(function(x){ return x && x.masked_name; });
         if(!rows.length){ wrap.remove(); return; }
-        document.getElementById('fwCount').textContent = rows.length+'분';
-        var top=rows.slice(0,3), rest=rows.slice(3);
-        document.getElementById('fwTop').innerHTML = top.map(function(x){
-          return '<div class="text-center rounded-lg px-4 py-3" style="background:#1d3157;border:1.5px solid #f0cd82;min-width:104px">'
-            + '<div style="font-size:15px">👑</div>'
-            + '<div style="font-size:10px;color:#f0cd82;letter-spacing:.08em;margin-top:3px">FOUNDER '+no(x.member_no)+'</div>'
-            + '<div style="font-size:14px;color:#fff;margin-top:3px">'+esc(x.masked_name)+'</div></div>';
-        }).join('');
-        document.getElementById('fwGrid').innerHTML = rest.map(function(x){
-          return '<div class="fwPlate"><span class="fwStar">✦</span><div class="fwNo">'+no(x.member_no)+'</div>'
-            + '<div class="fwNm">'+esc(x.masked_name)+'</div></div>';
-        }).join('') + '<div class="fwPlate" style="border-style:dashed;border-color:rgba(240,205,130,.4)">'
-            + '<div class="fwNo">'+no((rows[rows.length-1].member_no||rows.length)+1)+'</div>'
-            + '<div class="fwNm" style="color:#f0cd82">비어 있음</div></div>';
-        // 흐르는 전광판 — 목록을 2회 복제해 끊김 없이 순환
-        var chips=rows.map(function(x){
-          return '<span class="fwLed"><b>'+no(x.member_no)+'</b> '+esc(x.masked_name)+'</span>';
+        // 이름을 남기지 않은 분은 띠에서 제외(흐름을 깔끔하게)
+        var named=rows.filter(function(x){ return x.masked_name!=='창립멤버'; });
+        if(!named.length) named=rows;
+        var items=named.map(function(x){
+          return '<span class="fwName"><span class="n">'+no(x.member_no)+'</span>'
+               + '<span class="v">'+esc(x.masked_name)+'</span></span>';
         });
-        while(chips.length<10) chips=chips.concat(chips);   // 인원이 적어도 빈 티가 나지 않게
-        var half=Math.ceil(chips.length/2);
-        document.getElementById('fwMq1').innerHTML = chips.slice(0,half).join('')+chips.slice(0,half).join('');
-        document.getElementById('fwMq2').innerHTML = chips.slice(half).join('')+chips.slice(half).join('');
+        while(items.length<14) items=items.concat(items);   // 인원이 적어도 줄이 비지 않게
+        var seq=items.join('');
+        document.getElementById('fwHeroRow').innerHTML = seq+seq;  // 2회 복제 → 끊김 없는 순환
         wrap.classList.remove('hidden');
+        document.getElementById('fameBar').classList.remove('hidden');
       }).catch(function(){ wrap.remove(); });
   })();
   </script>
