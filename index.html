@@ -111,6 +111,24 @@
     /* 고딕 디스플레이 — 히어로 h1 & 섹션 h2 (깔끔·세련) */
     h1, section h2{ font-family:'Pretendard', system-ui, sans-serif; letter-spacing:-0.02em; font-weight:800; }
     .eyebrow{letter-spacing:.34em; text-transform:uppercase}
+    /* 1기 창립 멤버 명예의 전당 — 금박 명판 + 흐르는 전광판 */
+    @keyframes fwShine{0%,100%{opacity:.3}50%{opacity:.95}}
+    @keyframes fwMq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    @keyframes fwMqR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+    .fwPlate{position:relative;background:#182a4d;border:1px solid rgba(240,205,130,.45);border-radius:6px;padding:11px 8px;text-align:center}
+    .fwStar{position:absolute;top:5px;right:7px;font-size:9px;color:#f0cd82;animation:fwShine 2.4s ease-in-out infinite}
+    .fwNo{font-size:10px;color:#f0cd82;letter-spacing:.08em}
+    .fwNm{font-size:13px;color:#fff;margin-top:3px}
+    .fwMask{overflow:hidden}
+    .fwRow{display:flex;width:max-content;gap:10px;animation:fwMq 26s linear infinite}
+    .fwRow.rev{animation-name:fwMqR}
+    .fwMask:hover .fwRow{animation-play-state:paused}
+    .fwLed{background:#1b2c52;color:#f0d99a;border:1px solid rgba(240,217,154,.28);border-radius:8px;padding:7px 13px;font-size:12.5px;white-space:nowrap}
+    .fwLed b{color:#fff;font-weight:600}
+    @media (prefers-reduced-motion: reduce){
+      .fwRow{animation:none;flex-wrap:wrap;width:auto;justify-content:center}
+      .fwStar{animation:none;opacity:.7}
+    }
     .blob{display:none}
     .star{width:14px;height:14px;display:inline-block;color:#cB9a4a;color:#c79a4a}
     .hairline{height:1px;background:linear-gradient(90deg,transparent,rgba(0,112,74,.5),transparent)}
@@ -937,6 +955,25 @@
           <p class="text-sm text-neutral-900/60 mt-1 leading-relaxed">새 강의·자료·소식을 1기 멤버에게 <b class="text-neutral-900/80">가장 먼저</b> 전합니다.</p>
         </div>
       </div>
+      <!-- 창립 멤버 명예의 전당 (공개 함수 founding_wall 이 있을 때만 노출) -->
+      <div id="foundWall" class="hidden mt-10 rounded-2xl overflow-hidden text-left" style="background:#0d1730">
+        <div class="text-center px-5 pt-7">
+          <div style="font-size:24px">🏆</div>
+          <p style="font-size:10.5px;letter-spacing:.28em;color:#f0cd82;margin-top:6px">FOUNDING MEMBERS</p>
+          <p class="text-white mt-2" style="font-size:18px">1기 창립 멤버 명예의 전당</p>
+          <p style="font-size:11.5px;color:#ffffff77;margin-top:7px">가장 먼저 함께해 주신 <span id="fwCount" style="color:#f0cd82">—</span>의 이름을 영구히 새깁니다</p>
+        </div>
+        <div id="fwTop" class="flex justify-center flex-wrap gap-2 px-5 mt-4"></div>
+        <div id="fwGrid" class="grid gap-2 px-5 mt-3" style="grid-template-columns:repeat(auto-fit,minmax(92px,1fr))"></div>
+        <div class="mt-5 space-y-2 pb-1">
+          <div class="fwMask"><div id="fwMq1" class="fwRow"></div></div>
+          <div class="fwMask"><div id="fwMq2" class="fwRow rev"></div></div>
+        </div>
+        <div class="text-center px-5 pb-7 pt-5">
+          <a href="founding.html" class="inline-block font-bold rounded-full px-7 py-3 text-sm" style="background:#f0cd82;color:#2b2205">내 이름 새기러 가기</a>
+        </div>
+      </div>
+
       <p class="mt-7 text-neutral-900/55 text-sm">지금은 <b class="text-neutral-900/75">전부 무료</b> — 모든 강의·요약노트·퀴즈를 끝까지 소장하세요.</p>
       <a href="founding.html" class="mt-6 inline-flex items-center gap-2 bg-gold text-white font-bold text-lg px-9 py-4 rounded-full hover:opacity-90 transition shadow-xl">
         1기 창립 멤버 되기 · 무료
@@ -965,31 +1002,20 @@
        아래 <li> 목록만 교체하면 됩니다. 최종 갱신: 2026-07-30 -->
   <section class="py-14 md:py-16 bg-sand/40 border-b border-ink/8">
     <div class="max-w-3xl mx-auto px-5 text-center">
-      <p class="eyebrow text-gold text-xs font-semibold mb-4">THANK YOU · 함께해 주신 분들</p>
+      <p class="eyebrow text-gold text-xs font-semibold mb-4" style="letter-spacing:.3em">HALL OF FAME · 명예의 전당</p>
       <h2 class="text-2xl md:text-[30px] font-bold leading-snug">댓글로 <span class="text-gold">함께 걸어와 주신</span> 분들</h2>
       <p class="text-neutral-900/60 text-[15px] leading-relaxed mt-4 max-w-xl mx-auto">
         강의마다 정성스러운 묵상과 질문, 따뜻한 응원을 남겨 주신 분들입니다.<br class="hidden sm:block"/>
         여러분의 한 줄이 이 사역을 여기까지 오게 했습니다. 진심으로 감사드립니다.
       </p>
-      <ul class="flex flex-wrap justify-center gap-2 mt-8">
-        <li class="bg-white border border-ink/10 rounded-full px-4 py-2 text-[13.5px] font-semibold text-neutral-900/80 shadow-soft">@마라나타144</li>
-        <li class="bg-white border border-ink/10 rounded-full px-4 py-2 text-[13.5px] font-semibold text-neutral-900/80 shadow-soft">@PERHAPSTODAY-vf2bn</li>
-        <li class="bg-white border border-ink/10 rounded-full px-4 py-2 text-[13.5px] font-semibold text-neutral-900/80 shadow-soft">@디카페인-k9b</li>
-        <li class="bg-white border border-ink/10 rounded-full px-4 py-2 text-[13.5px] font-semibold text-neutral-900/80 shadow-soft">@w24hourprayhouse11</li>
-        <li class="bg-white border border-ink/10 rounded-full px-4 py-2 text-[13.5px] font-semibold text-neutral-900/80 shadow-soft">@고창휘-y8r</li>
-        <li class="bg-white border border-ink/10 rounded-full px-4 py-2 text-[13.5px] font-semibold text-neutral-900/80 shadow-soft">@Hur-hd4vo</li>
-        <li class="bg-white border border-ink/10 rounded-full px-4 py-2 text-[13.5px] font-semibold text-neutral-900/80 shadow-soft">@문이재76587</li>
-        <li class="bg-white border border-ink/10 rounded-full px-4 py-2 text-[13.5px] font-semibold text-neutral-900/80 shadow-soft">@TV-cute-u9w</li>
-        <li class="bg-white border border-ink/10 rounded-full px-4 py-2 text-[13.5px] font-semibold text-neutral-900/80 shadow-soft">@seungjaeyune2008</li>
-        <li class="bg-white border border-ink/10 rounded-full px-4 py-2 text-[13.5px] font-semibold text-neutral-900/80 shadow-soft">@boniwoni1</li>
-        <li class="bg-white border border-ink/10 rounded-full px-4 py-2 text-[13.5px] font-semibold text-neutral-900/80 shadow-soft">@강경숙-f9x</li>
-        <li class="bg-white border border-ink/10 rounded-full px-4 py-2 text-[13.5px] font-semibold text-neutral-900/80 shadow-soft">@KSU-f8d</li>
-        <li class="bg-white border border-ink/10 rounded-full px-4 py-2 text-[13.5px] font-semibold text-neutral-900/80 shadow-soft">@cmg9011</li>
-        <li class="bg-white border border-ink/10 rounded-full px-4 py-2 text-[13.5px] font-semibold text-neutral-900/80 shadow-soft">@father1N2</li>
-        <li class="bg-white border border-ink/10 rounded-full px-4 py-2 text-[13.5px] font-semibold text-neutral-900/80 shadow-soft">@myongsoonlee5506</li>
-      </ul>
+      <p id="hofBasis" class="text-[12.5px] text-neutral-900/45 mt-3"></p>
+      <!-- 방목(榜目) 명단 — content/hall-of-fame.json 에서 순위대로 렌더 -->
+      <div id="hofBoard" class="mt-8 mx-auto max-w-lg text-left rounded-xl overflow-hidden border" style="background:#f6f0e2;border-color:#d9cbaa">
+        <div id="hofTop" class="text-center px-5 py-5" style="background:#fffdf7;border-bottom:1px solid rgba(90,70,40,.16)"></div>
+        <ol id="hofList" class="px-1 py-1"></ol>
+      </div>
       <p class="text-[12.5px] text-neutral-900/45 mt-6 leading-relaxed">
-        가나다·순위 구분 없이 나란히 적었습니다. 이 자리에 담지 못한 모든 시청자 한 분 한 분께도 같은 마음으로 감사드립니다.
+        순위는 감사의 표시일 뿐입니다. 이 자리에 담지 못한 모든 시청자 한 분 한 분께도 같은 마음으로 감사드립니다.
       </p>
       <a href="https://www.youtube.com/channel/UC82IOMnZud8NNt3BYzAxTMg" target="_blank" rel="noopener"
          class="inline-block mt-7 bg-gold text-white font-semibold text-sm px-6 py-3 rounded-full hover:opacity-90 transition">
@@ -2065,6 +2091,72 @@
     document.body.appendChild(rail);
   })();
   </script>
+  <script>
+  /* 명예의 전당(방목 명단) — content/hall-of-fame.json 의 순서(rank)대로 렌더.
+     명단 갱신은 그 JSON 하나만 고치면 됩니다. */
+  (function(){
+    var board=document.getElementById('hofBoard'); if(!board) return;
+    function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+    fetch('content/hall-of-fame.json?t='+Date.now()).then(function(r){ return r.json(); }).then(function(d){
+      var m=(d&&d.members)||[]; if(!m.length){ board.style.display='none'; return; }
+      m = m.slice().sort(function(a,b){ return (a.rank||0)-(b.rank||0); });
+      var bs=document.getElementById('hofBasis');
+      if(bs && d.basis) bs.textContent = d.basis;
+      var first=m[0];
+      document.getElementById('hofTop').innerHTML =
+        '<span style="display:inline-block;background:#b99b5e;color:#fff;font-size:11px;border-radius:3px;padding:3px 12px;letter-spacing:.12em">壯元 · 1위</span>'
+        + '<p class="font-serifkr mt-3" style="font-size:21px;color:#2c2418;word-break:break-all">'+esc(first.handle)+'</p>';
+      document.getElementById('hofList').innerHTML = m.slice(1).map(function(x,i,arr){
+        var last = i===arr.length-1;
+        return '<li class="flex items-center gap-3 px-4 py-2.5'+(last?'':' border-b')+'" style="border-color:rgba(90,70,40,.14)">'
+          + '<span class="shrink-0 text-right" style="width:22px;font-size:12.5px;color:#8a7350">'+(x.rank||(i+2))+'</span>'
+          + '<span style="font-size:13.5px;color:#2c2418;word-break:break-all">'+esc(x.handle)+'</span></li>';
+      }).join('');
+    }).catch(function(){ board.style.display='none'; });
+  })();
+  </script>
+
+  <script>
+  /* 1기 창립 멤버 명예의 전당 — 공개 함수 founding_wall() 이 마스킹된 이름만 반환.
+     함수가 없거나(SQL 미실행) 명단이 비면 블록 전체를 숨깁니다(기존 CTA는 유지). */
+  (function(){
+    var wrap=document.getElementById('foundWall'); if(!wrap) return;
+    var SB='https://bmxkndkwefdgsomlznoo.supabase.co';
+    var KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+    function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+    function no(n){ return '#'+String(n==null?'':n).padStart(3,'0'); }
+    fetch(SB+'/rest/v1/rpc/founding_wall',{ method:'POST', headers:{apikey:KEY,Authorization:'Bearer '+KEY,'Content-Type':'application/json'}, body:'{}' })
+      .then(function(r){ return r.ok? r.json() : []; })
+      .then(function(rows){
+        rows=(rows||[]).filter(function(x){ return x && x.masked_name; });
+        if(!rows.length){ wrap.remove(); return; }
+        document.getElementById('fwCount').textContent = rows.length+'분';
+        var top=rows.slice(0,3), rest=rows.slice(3);
+        document.getElementById('fwTop').innerHTML = top.map(function(x){
+          return '<div class="text-center rounded-lg px-4 py-3" style="background:#1d3157;border:1.5px solid #f0cd82;min-width:104px">'
+            + '<div style="font-size:15px">👑</div>'
+            + '<div style="font-size:10px;color:#f0cd82;letter-spacing:.08em;margin-top:3px">FOUNDER '+no(x.member_no)+'</div>'
+            + '<div style="font-size:14px;color:#fff;margin-top:3px">'+esc(x.masked_name)+'</div></div>';
+        }).join('');
+        document.getElementById('fwGrid').innerHTML = rest.map(function(x){
+          return '<div class="fwPlate"><span class="fwStar">✦</span><div class="fwNo">'+no(x.member_no)+'</div>'
+            + '<div class="fwNm">'+esc(x.masked_name)+'</div></div>';
+        }).join('') + '<div class="fwPlate" style="border-style:dashed;border-color:rgba(240,205,130,.4)">'
+            + '<div class="fwNo">'+no((rows[rows.length-1].member_no||rows.length)+1)+'</div>'
+            + '<div class="fwNm" style="color:#f0cd82">비어 있음</div></div>';
+        // 흐르는 전광판 — 목록을 2회 복제해 끊김 없이 순환
+        var chips=rows.map(function(x){
+          return '<span class="fwLed"><b>'+no(x.member_no)+'</b> '+esc(x.masked_name)+'</span>';
+        });
+        while(chips.length<10) chips=chips.concat(chips);   // 인원이 적어도 빈 티가 나지 않게
+        var half=Math.ceil(chips.length/2);
+        document.getElementById('fwMq1').innerHTML = chips.slice(0,half).join('')+chips.slice(0,half).join('');
+        document.getElementById('fwMq2').innerHTML = chips.slice(half).join('')+chips.slice(half).join('');
+        wrap.classList.remove('hidden');
+      }).catch(function(){ wrap.remove(); });
+  })();
+  </script>
+
   <script>
   /* 통신판매업 신고번호 단일화 — 푸터 data-biz="eco" 를 content/site.json 값으로 채움
      (index.html 은 site-header.js 미사용이라 별도 처리. 내일 site.json ecommerce_no 한 곳만 채우면 반영) */
