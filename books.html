@@ -39,8 +39,14 @@
     .buyBtn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;font-weight:700;font-size:.875rem;border-radius:.75rem;padding:.72rem 1.15rem;transition:all .16s}
     .buyPrimary{background:#00704a;color:#fff}
     .buyPrimary:hover{opacity:.9;transform:translateY(-1px)}
+    /* 판매처 버튼 — 기본은 모두 중립, 마우스를 올린 것만 색이 차오름 */
     .buyGhost{background:#fff;color:#213a6b;border:1px solid #213a6b22}
-    .buyGhost:hover{border-color:#00704a66;color:#00704a}
+    .buyGhost:hover,.buyGhost:focus-visible{background:#00704a;border-color:#00704a;color:#fff;transform:translateY(-1px);
+                    box-shadow:0 6px 16px -8px rgba(0,112,74,.55)}
+    /* 한 곳에 마우스를 올리면 같은 줄의 나머지는 살짝 물러남 — 선택한 것이 도드라지게 */
+    .storeRow:hover .buyGhost:not(:hover){opacity:.5}
+    .storeRow .buyGhost{transition:all .18s}
+    @media (hover:none){ .storeRow:hover .buyGhost:not(:hover){opacity:1} }
     .storeLbl{font-size:.72rem;font-weight:700;color:#3a425477;letter-spacing:.02em;margin-bottom:.5rem}
     .metaRow{display:flex;gap:.5rem;font-size:.8rem;color:#3a425499;padding:.42rem 0;border-bottom:1px solid #213a6b0f}
     .metaRow b{color:#2a3446;font-weight:700;min-width:4.2rem;display:inline-block}
@@ -120,12 +126,12 @@
           <div class="mt-7">
             <p class="text-[13px] font-bold text-neutral-900/80 mb-3">구매하기</p>
             <p class="storeLbl">📙 종이책</p>
-            <div class="flex flex-wrap gap-2.5">
+            <div class="storeRow flex flex-wrap gap-2.5">
               <a href="https://bookk.co.kr/bookStore/6a6a0c4395abf14e3149db81" target="_blank" rel="noopener"
-                 class="buyBtn buyPrimary">부크크</a>
+                 class="buyBtn buyGhost">부크크</a>
             </div>
             <p class="storeLbl mt-4">📱 전자책</p>
-            <div class="flex flex-wrap gap-2.5">
+            <div class="storeRow flex flex-wrap gap-2.5">
               <a href="https://bookk.co.kr/bookStore/6a6a245161d874f9bfc0bb16" target="_blank" rel="noopener"
                  class="buyBtn buyGhost">부크크 eBook</a>
             </div>
@@ -189,16 +195,16 @@
           <div class="mt-7">
             <p class="text-[13px] font-bold text-neutral-900/80 mb-3">구매하기</p>
             <p class="storeLbl">📕 종이책</p>
-            <div class="flex flex-wrap gap-2.5">
+            <div class="storeRow flex flex-wrap gap-2.5">
               <a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=399528996" target="_blank" rel="noopener"
-                 class="buyBtn buyPrimary">알라딘</a>
+                 class="buyBtn buyGhost">알라딘</a>
               <a href="https://www.yes24.com/product/goods/194522386" target="_blank" rel="noopener"
                  class="buyBtn buyGhost">예스24</a>
               <a href="https://bookk.co.kr/bookStore/6a58ffb7518c404ea3b94c33" target="_blank" rel="noopener"
                  class="buyBtn buyGhost">부크크</a>
             </div>
             <p class="storeLbl mt-4">📱 전자책</p>
-            <div class="flex flex-wrap gap-2.5">
+            <div class="storeRow flex flex-wrap gap-2.5">
               <a href="https://www.yes24.com/product/goods/194508906" target="_blank" rel="noopener"
                  class="buyBtn buyGhost">예스24 eBook</a>
             </div>
@@ -253,12 +259,12 @@
           <div class="mt-7">
             <p class="text-[13px] font-bold text-neutral-900/80 mb-3">구매하기</p>
             <p class="storeLbl">📗 종이책</p>
-            <div class="flex flex-wrap gap-2.5">
+            <div class="storeRow flex flex-wrap gap-2.5">
               <a href="https://bookk.co.kr/bookStore/6a622e3fd942b1c7dbeb5ab3" target="_blank" rel="noopener"
-                 class="buyBtn buyPrimary">부크크</a>
+                 class="buyBtn buyGhost">부크크</a>
             </div>
             <p class="storeLbl mt-4">📱 전자책</p>
-            <div class="flex flex-wrap gap-2.5">
+            <div class="storeRow flex flex-wrap gap-2.5">
               <a href="https://bookk.co.kr/bookStore/6a6a14189a2afee41d9024c2" target="_blank" rel="noopener"
                  class="buyBtn buyGhost">부크크 eBook</a>
             </div>
