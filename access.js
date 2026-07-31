@@ -16,6 +16,20 @@
       }
     }catch(e){}
     try{ const { data } = await sb.from('member_access').select('kind,expires_at,referrer_name').eq('user_id', user.id).maybeSingle(); acc = data || null; }catch(e){}
+    // 로그인 전에 창립 멤버를 신청하신 분 자동 구제 — 예약된 혜택이 있으면 이용권으로 옮긴다.
+    // 이용권 행이 아직 없을 때만, 세션당 1회. RPC가 없으면(SQL 미실행) 조용히 지나간다.
+    if(!acc){
+      try{
+        if(!sessionStorage.getItem('_bfclaim')){
+          sessionStorage.setItem('_bfclaim','1');
+          const { data:cl } = await sb.rpc('claim_founding');
+          if(cl === 'OK'){
+            const { data } = await sb.from('member_access').select('kind,expires_at,referrer_name').eq('user_id', user.id).maybeSingle();
+            acc = data || null;
+          }
+        }
+      }catch(e){}
+    }
     const now = Date.now();
     let expired=false, daysLeft=null, expiresAt=null, kind='none', founding=false;
     if(acc){

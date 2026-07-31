@@ -317,17 +317,29 @@
         mailed = r.ok;
       }catch(err){}
 
-      // ② Supabase 저장 (founding_members 테이블 — 없으면 조용히 통과)
-      try{ await sb.from('founding_members').insert(rec); }catch(err){}
+      // ② Supabase 저장 — 가입 때 이미 창립 번호를 받은 분은 이메일이 중복이라 insert 가 실패한다.
+      //    그때 신청서 내용이 통째로 사라지지 않도록 update 로 이어서 채운다.
+      let saved=false;
+      try{
+        const { error } = await sb.from('founding_members').insert(rec);
+        if(!error) saved = true;
+        else {
+          const { error:e2 } = await sb.from('founding_members').update(rec).eq('email', rec.email);
+          saved = !e2;
+        }
+      }catch(err){}
 
-      if(mailed){
+      // ③ 이용권 — 메일 발송 성공 여부와 무관하게 시도한다(약속한 혜택이 누락되지 않도록).
+      //    로그인 전이면 여기서는 부여할 수 없고, 나중에 로그인할 때 access.js 의 claim_founding 이 살린다.
+      let activated=false;
+      if(__user && window.biblyGrantAccess){ try{ activated = await biblyGrantAccess(sb, __user, 'founding', 12); }catch(e){} }
+
+      if(mailed || saved){
         document.getElementById('founderForm').reset();
-        let activated=false;
-        if(__user && window.biblyGrantAccess){ try{ activated = await biblyGrantAccess(sb, __user, 'founding', 12); }catch(e){} }
         msg.style.color='#16a34a';
         msg.innerHTML = activated
           ? '환영합니다! <b>창립 멤버 1년 무료 이용</b>이 바로 활성화됐어요. <a href="mylearning.html" class="text-gold underline">내 강의실</a>에서 확인하세요.'
-          : '신청이 접수되었습니다! 확인 후 <b>창립 멤버 번호</b>와 1년 무료 안내를 이메일로 보내드릴게요. <span class="text-neutral-900/50">(로그인 후 신청하시면 1년 무료가 즉시 활성화됩니다.)</span>';
+          : '신청이 접수되었습니다! <b>로그인하시면 1년 무료 이용이 바로 열립니다.</b> <a href="index.html" class="text-gold underline">로그인하기</a> <span class="text-neutral-900/50">(창립 멤버 번호와 안내도 이메일로 보내드릴게요.)</span>';
       } else {
         msg.style.color='#dc2626';
         msg.innerHTML='전송에 실패했어요. 잠시 후 다시 시도하시거나 <a href="mailto:contact@biblynote.com" class="text-gold underline">contact@biblynote.com</a> 으로 보내 주세요.';
