@@ -243,13 +243,28 @@
         <p class="text-[12.5px] text-neutral-900/55 mt-1.5 leading-relaxed">${esc(s.d||'')}</p>
       </div>`).join('');
     }
+    // 계좌번호 원터치 복사 — 휴대폰에서 은행 앱으로 옮겨 붙이기 쉽게
+    function copyGiftAcct(){
+      const t = SUP.bank_account || ''; if(!t) return;
+      const done = () => alert('계좌번호를 복사했어요!\n' + t + '  (' + (SUP.bank_name||'') + ' · 예금주 ' + (SUP.bank_holder||'') + ')');
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(done).catch(()=>prompt('아래 계좌번호를 복사하세요:', t)); }
+      else prompt('아래 계좌번호를 복사하세요:', t);
+    }
     function renderPay(){
       const el = document.getElementById('payInfo'); if(!el) return;
-      const parts = [];
-      if(SUP.bank_account) parts.push(`<b class="text-neutral-900">${esc(SUP.bank_name||'')} ${esc(SUP.bank_account)}</b> (예금주 ${esc(SUP.bank_holder||'')})`);
-      if(SUP.kakaopay_url) parts.push(`카카오페이: <a href="${esc(SUP.kakaopay_url)}" target="_blank" rel="noopener" class="text-gold underline">송금 링크</a>`);
-      if(SUP.paypal_url) parts.push(`PayPal: <a href="${esc(SUP.paypal_url)}" target="_blank" rel="noopener" class="text-gold underline">paypal.me</a>`);
-      el.innerHTML = parts.length ? parts.join('<br/>') : '입금 안내는 신청 후 이메일로 보내드립니다.';
+      if(!SUP.bank_account && !SUP.kakaopay_url){ el.innerHTML = '입금 안내는 신청 후 이메일로 보내드립니다.'; return; }
+      const btn = 'flex-1 min-w-[130px] text-center text-[13px] font-semibold px-3 py-2.5 rounded-xl bg-white border border-ink/15 hover:border-gold';
+      const alt = [];
+      if(SUP.kakaopay_url) alt.push(`<a href="${esc(SUP.kakaopay_url)}" target="_blank" rel="noopener" class="${btn}">카카오페이로 송금</a>`);
+      if(SUP.simplepay_url) alt.push(`<a href="${esc(SUP.simplepay_url)}" target="_blank" rel="noopener" class="${btn}">간편결제 링크</a>`);
+      if(SUP.paypal_url) alt.push(`<a href="${esc(SUP.paypal_url)}" target="_blank" rel="noopener" class="${btn}">PayPal</a>`);
+      el.innerHTML =
+        (SUP.bank_account ? `<div class="flex items-center justify-between gap-3">
+            <div><p><b class="text-neutral-900">${esc(SUP.bank_name||'')} ${esc(SUP.bank_account)}</b></p>
+                 <p class="text-xs text-neutral-500 mt-0.5">예금주 ${esc(SUP.bank_holder||'')}</p></div>
+            <button type="button" onclick="copyGiftAcct()" class="shrink-0 text-white text-xs font-bold px-4 py-2.5 rounded-lg hover:opacity-90" style="background:#00704a">계좌번호 복사</button>
+          </div>` : '')
+        + (alt.length ? `<p class="text-[11px] font-bold text-neutral-500 mt-3 mb-2">간편하게 보내기</p><div class="flex flex-wrap gap-2">${alt.join('')}</div>` : '');
     }
 
     function setMode(m){

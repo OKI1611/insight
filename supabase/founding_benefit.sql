@@ -163,8 +163,81 @@ begin
   return 'OK';
 end; $$;
 
+-- ── 6-2) 신청 즉시 혜택 적용 (founding.html 신청 폼이 부른다) ──
+-- 신청서를 저장하고 창립 번호를 부여한 뒤, 1년 혜택을 바로 건다.
+--  · 로그인 상태면 member_access 까지 만들어 그 자리에서 활성화
+--  · 로그인 전이면 founding_benefits 에 예약 → 나중에 로그인할 때 claim_founding 이 활성화
+-- ON CONFLICT 를 쓰지 않고 존재 여부로 분기한다(표의 기본키가 email 이든 id 든 동작하도록).
+create or replace function apply_founding(
+  p_name text, p_email text,
+  p_phone text default null, p_region text default null, p_church text default null,
+  p_faith_years text default null, p_motivation text default null,
+  p_ideal_church text default null, p_ideal_pastor text default null,
+  p_prayer text default null, p_promise boolean default false,
+  p_months int default 12
+) returns jsonb language plpgsql security definer as $$
+declare em text; uid uuid; no int; exp timestamptz; activated boolean := false;
+declare nm text;
+begin
+  em := lower(trim(coalesce(p_email,'')));
+  if em = '' or position('@' in em) = 0 then
+    return jsonb_build_object('ok', false, 'error', 'NO_EMAIL');
+  end if;
+  nm := nullif(trim(coalesce(p_name,'')), '');
+
+  if exists (select 1 from public.founding_members where lower(trim(email)) = em) then
+    -- 이미 번호가 있는 분(가입 시 자동 등록) — 빈 칸만 신청서 내용으로 채운다
+    update public.founding_members set
+      name         = coalesce(nm,           name),
+      phone        = coalesce(nullif(trim(coalesce(p_phone,'')),''),        phone),
+      region       = coalesce(nullif(trim(coalesce(p_region,'')),''),       region),
+      church       = coalesce(nullif(trim(coalesce(p_church,'')),''),       church),
+      faith_years  = coalesce(nullif(trim(coalesce(p_faith_years,'')),''),  faith_years),
+      motivation   = coalesce(nullif(trim(coalesce(p_motivation,'')),''),   motivation),
+      ideal_church = coalesce(nullif(trim(coalesce(p_ideal_church,'')),''), ideal_church),
+      ideal_pastor = coalesce(nullif(trim(coalesce(p_ideal_pastor,'')),''), ideal_pastor),
+      prayer       = coalesce(nullif(trim(coalesce(p_prayer,'')),''),       prayer),
+      promise      = coalesce(p_promise, promise)
+     where lower(trim(email)) = em;
+  else
+    insert into public.founding_members(email, name, member_no, phone, region, church,
+                                        faith_years, motivation, ideal_church, ideal_pastor, prayer, promise)
+    values (em, nm, (select coalesce(max(member_no),0) + 1 from public.founding_members),
+            nullif(trim(coalesce(p_phone,'')),''),  nullif(trim(coalesce(p_region,'')),''),
+            nullif(trim(coalesce(p_church,'')),''), nullif(trim(coalesce(p_faith_years,'')),''),
+            nullif(trim(coalesce(p_motivation,'')),''),   nullif(trim(coalesce(p_ideal_church,'')),''),
+            nullif(trim(coalesce(p_ideal_pastor,'')),''), nullif(trim(coalesce(p_prayer,'')),''),
+            coalesce(p_promise, false));
+  end if;
+
+  select member_no into no from public.founding_members where lower(trim(email)) = em;
+  exp := now() + (greatest(coalesce(p_months, 12), 1) || ' months')::interval;
+
+  insert into public.founding_benefits(email, expires_at, granted_by, note)
+  values (em, exp, 'apply', '창립 멤버 신청 — 1년 무료')
+  on conflict (email) do update
+    set expires_at = greatest(public.founding_benefits.expires_at, excluded.expires_at);
+
+  -- 로그인 상태라면 그 자리에서 이용권까지 만든다
+  uid := auth.uid();
+  if uid is not null then
+    insert into public.member_access(user_id, email, kind, started_at, expires_at, updated_at)
+    values (uid, em, 'founding', now(), exp, now())
+    on conflict (user_id) do update
+      set kind       = 'founding',
+          email      = coalesce(public.member_access.email, excluded.email),
+          expires_at = greatest(public.member_access.expires_at, excluded.expires_at),
+          updated_at = now();
+    update public.founding_benefits set claimed_at = now() where email = em;
+    activated := true;
+  end if;
+
+  return jsonb_build_object('ok', true, 'member_no', no, 'activated', activated, 'expires_at', exp);
+end; $$;
+
 grant execute on function
-  list_founding_full(), grant_founding(text,int), revoke_founding(text), claim_founding()
+  list_founding_full(), grant_founding(text,int), revoke_founding(text), claim_founding(),
+  apply_founding(text,text,text,text,text,text,text,text,text,text,boolean,int)
 to anon, authenticated;
 
 -- ── 7) 기존 창립 번호 보유자 전원에게 오늘부터 1년 부여 ──

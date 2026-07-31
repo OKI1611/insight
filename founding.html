@@ -317,29 +317,38 @@
         mailed = r.ok;
       }catch(err){}
 
-      // ② Supabase 저장 — 가입 때 이미 창립 번호를 받은 분은 이메일이 중복이라 insert 가 실패한다.
-      //    그때 신청서 내용이 통째로 사라지지 않도록 update 로 이어서 채운다.
-      let saved=false;
+      // ② 신청서 저장 + 1년 혜택 즉시 적용 — 서버 RPC 한 번으로 처리한다.
+      //    로그인 상태면 그 자리에서 활성화, 로그인 전이면 예약해 두었다가 로그인할 때 자동 활성화.
+      let saved=false, activated=false, memberNo=null;
       try{
-        const { error } = await sb.from('founding_members').insert(rec);
-        if(!error) saved = true;
-        else {
-          const { error:e2 } = await sb.from('founding_members').update(rec).eq('email', rec.email);
-          saved = !e2;
-        }
+        const { data, error } = await sb.rpc('apply_founding', {
+          p_name: rec.name, p_email: rec.email, p_phone: rec.phone, p_region: rec.region,
+          p_church: rec.church, p_faith_years: rec.faith_years, p_motivation: rec.motivation,
+          p_ideal_church: rec.ideal_church, p_ideal_pastor: rec.ideal_pastor,
+          p_prayer: rec.prayer, p_promise: rec.promise
+        });
+        if(!error && data && data.ok){ saved=true; activated=!!data.activated; memberNo=data.member_no; }
       }catch(err){}
 
-      // ③ 이용권 — 메일 발송 성공 여부와 무관하게 시도한다(약속한 혜택이 누락되지 않도록).
-      //    로그인 전이면 여기서는 부여할 수 없고, 나중에 로그인할 때 access.js 의 claim_founding 이 살린다.
-      let activated=false;
-      if(__user && window.biblyGrantAccess){ try{ activated = await biblyGrantAccess(sb, __user, 'founding', 12); }catch(e){} }
+      // ③ RPC가 아직 배포되지 않았을 때의 폴백 — 직접 저장 + 이용권 부여
+      if(!saved){
+        try{
+          const { error } = await sb.from('founding_members').insert(rec);
+          if(!error) saved = true;
+          else { const { error:e2 } = await sb.from('founding_members').update(rec).eq('email', rec.email); saved = !e2; }
+        }catch(err){}
+      }
+      if(!activated && __user && window.biblyGrantAccess){
+        try{ activated = await biblyGrantAccess(sb, __user, 'founding', 12); }catch(e){}
+      }
 
       if(mailed || saved){
         document.getElementById('founderForm').reset();
+        const noTag = memberNo!=null ? ' 회원님은 <b class="text-gold">창립 멤버 #'+String(memberNo).padStart(3,'0')+'</b> 이십니다.' : '';
         msg.style.color='#16a34a';
         msg.innerHTML = activated
-          ? '환영합니다! <b>창립 멤버 1년 무료 이용</b>이 바로 활성화됐어요. <a href="mylearning.html" class="text-gold underline">내 강의실</a>에서 확인하세요.'
-          : '신청이 접수되었습니다! <b>로그인하시면 1년 무료 이용이 바로 열립니다.</b> <a href="index.html" class="text-gold underline">로그인하기</a> <span class="text-neutral-900/50">(창립 멤버 번호와 안내도 이메일로 보내드릴게요.)</span>';
+          ? '환영합니다!'+noTag+' <b>1년 무료 이용</b>이 바로 활성화됐어요. <a href="mylearning.html" class="text-gold underline">내 강의실</a>에서 확인하세요.'
+          : '신청이 접수되었습니다!'+noTag+' <b>로그인하시면 1년 무료 이용이 바로 열립니다.</b> <a href="index.html" class="text-gold underline">로그인하기</a>';
       } else {
         msg.style.color='#dc2626';
         msg.innerHTML='전송에 실패했어요. 잠시 후 다시 시도하시거나 <a href="mailto:contact@biblynote.com" class="text-gold underline">contact@biblynote.com</a> 으로 보내 주세요.';
