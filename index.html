@@ -352,7 +352,7 @@
       {bg:'#2b5fb0',href:'curriculum.html',tab:'대표 시리즈',badge:'우리 사이트 간판',title:'천년왕국 세미나<br><span style="color:#ffe08a">예언의 기초부터 완주까지</span>',sub:'유튜브 <span data-stat="views">150만+</span> 조회 · 단계별 커리큘럼으로 완주',cta:'지금 정주행하기'},
       {bg:'#0e7a68',href:'bible.html',tab:'성경 공부 도구',badge:'전부 무료',title:'성경, <span style="color:#ffe08a">직접 읽고 공부하다</span>',sub:'성경 읽기·성경사전 3,000+·성경 Q&A·통독·암송, 모두 무료',cta:'공부 시작하기'},
       {bg:'#9a6a1b',href:'academy.html',tab:'인증과정·창립멤버',badge:'선착순 1기',title:'아카데미 <span style="color:#fff3d6">인증과정</span>',sub:'체계적 급수·수료증 · 1기 창립멤버 20% 평생할인',cta:'인증과정 보기'},
-      {bg:'#21342a',href:'books.html',tab:'저자의 책',badge:'출간 도서',title:'강의로 다 담지 못한 이야기,<br><span style="color:#e4c07a">책으로 만나다</span>',sub:'『교회를 떠나고서야, 예수를 만났다』 · 『엄마 향기』 — 종이책·전자책 판매 중',cta:'책 보러 가기'}
+      {bg:'#21342a',href:'books.html',tab:'저자의 책',badge:'출간 도서',title:'강의로 다 담지 못한 이야기,<br><span style="color:#e4c07a">책으로 만나다</span>',sub:'신간 『가면의 시대』 · 『교회를 떠나고서야, 예수를 만났다』 · 『엄마 향기』 — 종이책·전자책 판매 중',cta:'책 보러 가기'}
     ];
     var hero=document.getElementById('hpHero'); if(!hero) return;
     hero.style.transition='background .5s ease';
@@ -403,7 +403,25 @@
         <p class="text-[13px] md:text-sm text-neutral-900/60 mt-2">강의로 다 담지 못한 이야기를, 책으로 만나실 수 있습니다</p>
       </div>
 
-      <div class="grid sm:grid-cols-2 gap-4 md:gap-6 max-w-3xl mx-auto">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-3xl lg:max-w-4xl mx-auto">
+        <!-- 가면의 시대 (신간) -->
+        <div class="bg-white rounded-2xl p-5 md:p-6 text-center shadow-soft relative">
+          <span class="absolute top-3 right-3 text-[10.5px] font-bold text-white bg-gold rounded-full px-2 py-0.5">신간</span>
+          <a href="books.html#mask" class="block group">
+            <img src="https://file.bookk.co.kr/thumbnails/products/6a6a0c4395abf14e3149db81/thumbnail?q=100&w=500" alt="가면의 시대 표지" loading="lazy"
+                 class="w-[118px] md:w-[142px] mx-auto rounded-[3px] shadow-card group-hover:-translate-y-1 transition-transform"/>
+            <p class="font-bold text-[14.5px] md:text-[15.5px] leading-snug mt-4 group-hover:text-gold transition-colors">가면의 시대</p>
+          </a>
+          <p class="text-[12px] text-neutral-900/55 mt-2 leading-relaxed">옳은 말을 하고도 쫓겨난 당신에게</p>
+          <div class="flex gap-2 mt-4">
+            <a href="https://bookk.co.kr/bookStore/6a6a0c4395abf14e3149db81" target="_blank" rel="noopener"
+               class="flex-1 bg-gold text-white text-[12px] font-bold rounded-lg py-2.5 hover:opacity-90 transition">종이책 구매</a>
+            <a href="https://bookk.co.kr/bookStore/6a6a245161d874f9bfc0bb16" target="_blank" rel="noopener"
+               class="flex-1 bg-white text-ink border border-ink/15 text-[12px] font-bold rounded-lg py-2.5 hover:border-gold/60 hover:text-gold transition">전자책 구매</a>
+          </div>
+          <a href="books.html#mask" class="inline-block text-[11.5px] text-gold font-semibold mt-3 hover:underline">책 소개 자세히 보기 →</a>
+        </div>
+
         <!-- 교회를 떠나고서야, 예수를 만났다 -->
         <div class="bg-white rounded-2xl p-5 md:p-6 text-center shadow-soft">
           <a href="books.html#church" class="block group">
@@ -869,6 +887,16 @@
               <p class="text-[11px] font-bold text-gold" style="letter-spacing:.18em">저서</p>
               <ul class="mt-2.5 space-y-2.5">
                 <li>
+                  <p class="text-[13px] font-semibold leading-snug">『가면의 시대』 <span class="text-[10.5px] font-bold text-white bg-gold rounded px-1.5 py-0.5 align-middle">신간</span></p>
+                  <p class="text-[11.5px] text-neutral-900/45 mt-0.5">옳은 말을 하고도 쫓겨난 당신에게</p>
+                  <div class="flex flex-wrap gap-1.5 mt-1.5">
+                    <a href="https://bookk.co.kr/bookStore/6a6a0c4395abf14e3149db81" target="_blank" rel="noopener"
+                       class="inline-flex items-center gap-1 text-[11px] font-bold text-white bg-gold rounded-md px-2 py-1 hover:opacity-90 transition">📙 종이책</a>
+                    <a href="https://bookk.co.kr/bookStore/6a6a245161d874f9bfc0bb16" target="_blank" rel="noopener"
+                       class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📱 전자책</a>
+                  </div>
+                </li>
+                <li>
                   <p class="text-[13px] font-semibold leading-snug">『교회를 떠나고서야, 예수를 만났다』</p>
                   <p class="text-[11.5px] text-neutral-900/45 mt-0.5">환멸의 시대를 건너, 다시 찾은 진짜 교회</p>
                   <div class="flex flex-wrap gap-1.5 mt-1.5">
@@ -1331,6 +1359,7 @@
       ]},
       { label:'저자의 책', href:'books.html', children:[
         { label:'저자의 책 전체', href:'books.html' },
+        { label:'가면의 시대 (신간)', href:'books.html#mask' },
         { label:'교회를 떠나고서야, 예수를 만났다', href:'books.html#church' },
         { label:'엄마 향기', href:'books.html#mom' }
       ]},

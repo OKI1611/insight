@@ -66,6 +66,7 @@
     ]},
     { label:'저자의 책', href:'books.html', children:[
       { label:'저자의 책 전체', href:'books.html' },
+      { label:'가면의 시대 (신간)', href:'books.html#mask' },
       { label:'교회를 떠나고서야, 예수를 만났다', href:'books.html#church' },
       { label:'엄마 향기', href:'books.html#mom' }
     ]},
