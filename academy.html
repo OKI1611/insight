@@ -219,7 +219,7 @@
       <!-- 급수 사다리(입문 → 최고) -->
       <div id="pkgLadder" class="mb-8"></div>
       <div id="pkgGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">불러오는 중…</div>
-      <p class="text-center text-neutral-900/40 text-xs mt-5"><b class="text-neutral-900/55">카드로 결제하면 즉시 수강이 열려요.</b> 계좌이체를 원하시거나 문의가 있으시면 이메일 <b class="text-neutral-900/55">contact@biblynote.com</b> 으로 신청해 주시면 등록을 도와드립니다.<br/>신청 전 <a href="terms.html" class="text-gold underline">수강 기간·환불·휴학 규정</a>을 확인해 주세요.</p>
+      <p class="text-center text-neutral-900/40 text-xs mt-5"><b class="text-neutral-900/55">지금은 계좌이체로 등록하실 수 있어요.</b> 신청하시면 계좌·간편송금 안내가 바로 뜨고, 입금이 확인되는 대로 수강권을 열어 드립니다. (카드 결제는 준비 중)<br/>문의는 <b class="text-neutral-900/55">contact@biblynote.com</b> · 신청 전 <a href="terms.html" class="text-gold underline">수강 기간·환불·휴학 규정</a>을 확인해 주세요.</p>
     </section>
 
     <!-- 신청 폼 -->
@@ -228,7 +228,7 @@
         <div class="text-center mb-6">
           <p class="text-gold text-xs font-bold tracking-[0.25em] uppercase mb-2">Apply</p>
           <h2 class="text-xl md:text-2xl font-bold">인증 과정 등록 신청</h2>
-          <p class="text-neutral-900/55 text-sm mt-2 leading-relaxed"><b class="text-neutral-900">카드로 결제하면 즉시 수강이 열립니다.</b> 계좌이체를 원하시면 신청 후 이메일 <b class="text-neutral-900">contact@biblynote.com</b> 으로 입금·등록 안내를 드리고, 입금이 확인되면 수강권을 열어 드려요.</p>
+          <p class="text-neutral-900/55 text-sm mt-2 leading-relaxed"><b class="text-neutral-900">계좌이체로 신청</b>을 누르시면 입금 계좌와 <b class="text-neutral-900">간편송금 바로가기</b>가 바로 나옵니다. 입금이 확인되면 수강권을 열어 드려요. <span class="text-neutral-900/40">(카드 결제는 심사 진행 중이라 잠시 준비 중입니다)</span></p>
         </div>
 
         <div class="space-y-3">
@@ -251,8 +251,9 @@
             <span>위 안내(수강료의 <b class="text-neutral-900">미디어 선교 후원 사용</b> · 기부금 영수증 미발행)를 확인하였으며 이에 동의합니다. *</span>
           </label>
           <input id="aHp" type="text" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
-          <button id="aCard" onclick="payCardAcademy()" class="w-full bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition flex items-center justify-center gap-2"><span id="aCardLabel">카드로 결제하고 바로 수강</span> <span class="text-[10.5px] font-bold text-gold bg-white/90 px-2 py-0.5 rounded-full">즉시 개설</span></button>
-          <button id="aSubmit" onclick="submitApp()" class="w-full mt-2 bg-white border border-ink/20 text-neutral-900/70 font-semibold py-3 rounded-xl hover:bg-neutral-50 transition text-sm"><span id="aBankLabel">계좌이체로 신청 (입금 확인 후 개설)</span></button>
+          <!-- 카드 심사 대기 동안은 계좌이체가 주 결제 수단. CARD_PAY_READY=true 가 되면 카드가 다시 살아난다 -->
+          <button id="aSubmit" onclick="submitApp()" class="w-full text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition leading-tight" style="background:#00704a"><span id="aBankLabel" class="block text-[15.5px]">계좌이체로 신청</span><span class="block text-[11.5px] font-medium text-white/75 mt-1">입금 확인 후 바로 개설 · 계좌 복사·간편송금 안내</span></button>
+          <button id="aCard" onclick="payCardAcademy()" class="w-full mt-2 bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition flex items-center justify-center gap-2"><span id="aCardLabel">카드로 결제하고 바로 수강</span> <span id="aCardBadge" class="text-[10.5px] font-bold text-gold bg-white/90 px-2 py-0.5 rounded-full">즉시 개설</span></button>
           <p id="aMsg" class="text-center text-sm min-h-[18px]"></p>
           <p class="text-center text-neutral-900/40 text-xs leading-relaxed">신청 정보는 정규 과정 안내 목적으로만 사용되며, 원치 않으시면 언제든 삭제 요청하실 수 있어요.</p>
         </div>
@@ -301,7 +302,7 @@
     let PROG = null;
     function won(n){ return '₩' + (Number(n)||0).toLocaleString(); }
     function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-    (async () => { try { PROG = await (await fetch('content/program.json?t=' + Date.now())).json(); renderPkgs(); applyFromURL(); updateApplySummary(); prefillApply(); } catch(e){ const g=document.getElementById('pkgGrid'); if(g) g.innerHTML=''; } })();
+    (async () => { try { PROG = await (await fetch('content/program.json?t=' + Date.now())).json(); renderPkgs(); applyFromURL(); updateApplySummary(); prefillApply(); } catch(e){ const g=document.getElementById('pkgGrid'); if(g) g.innerHTML=''; } finally { applyCardReady(); } })();
     // 진단(find.html)에서 ?apply=패키지명 으로 들어오면 해당 급수를 자동 선택하고 신청 폼으로 이동
     function applyFromURL(){
       const p = new URLSearchParams(location.search).get('apply');
@@ -375,7 +376,7 @@
     function updateApplySummary(){
       const box=document.getElementById('aPkgSummary'), cl=document.getElementById('aCardLabel'), bl=document.getElementById('aBankLabel');
       const rk=findRankByInterest((document.getElementById('aInterest')||{}).value||'');
-      if(!rk){ if(box){box.classList.add('hidden');box.innerHTML='';} if(cl)cl.textContent='카드로 결제하고 바로 수강'; if(bl)bl.textContent='계좌이체로 신청 (입금 확인 후 개설)'; return; }
+      if(!rk){ if(box){box.classList.add('hidden');box.innerHTML='';} if(cl)cl.textContent='카드로 결제하고 바로 수강'; if(bl)bl.textContent='계좌이체로 신청'; applyCardReady(); return; }
       const HIDE=!!(PROG&&PROG.hidePrice), amt=rk.earlybird||rk.price||0, accent=rk.color||'#00704a', wonAmt=HIDE?'':won(amt);
       if(box){
         box.classList.remove('hidden');
@@ -388,10 +389,43 @@
           +'</div></div>';
       }
       if(cl) cl.textContent = wonAmt ? ('카드로 '+wonAmt+' 결제하고 바로 수강') : '카드로 결제하고 바로 수강';
-      if(bl) bl.textContent = wonAmt ? ('계좌이체로 신청 · '+wonAmt) : '계좌이체로 신청 (입금 확인 후 개설)';
+      if(bl) bl.textContent = wonAmt ? ('계좌이체로 신청 · '+wonAmt) : '계좌이체로 신청';
+      applyCardReady();   // 라벨을 새로 쓴 뒤 다시 '준비 중'으로 되돌린다
     }
     function restoreCardBtn(){ const b=document.getElementById('aCard'); if(b) b.disabled=false; updateApplySummary(); }
-    function copyAcademyAcct(){ const t='1006-301-266177'; const done=()=>alert('계좌번호를 복사했어요!\n'+t+'  (우리은행 · 예금주 오광일)'); if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(done).catch(()=>prompt('아래 계좌번호를 복사하세요:',t)); } else prompt('아래 계좌번호를 복사하세요:',t); }
+    // ── 계좌이체(간편송금) — 값은 content/site.json 의 support 를 단일 출처로 삼고, 못 읽으면 아래 기본값 사용 ──
+    const PAY = { bank:'우리은행', acct:'1006-301-266177', holder:'오광일',
+                  kakaopay:'https://qr.kakaopay.com/FKQjD73PQ', simplepay:'https://link2.my/@insight?e=link' };
+    (async () => { try{
+      const s = (await (await fetch('content/site.json?t=' + Date.now())).json()).support || {};
+      if(s.bank_name) PAY.bank=s.bank_name; if(s.bank_account) PAY.acct=s.bank_account; if(s.bank_holder) PAY.holder=s.bank_holder;
+      if(s.kakaopay_url) PAY.kakaopay=s.kakaopay_url; if(s.simplepay_url) PAY.simplepay=s.simplepay_url;
+    }catch(e){} })();
+    function copyAcademyAcct(){ const t=PAY.acct; const done=()=>alert('계좌번호를 복사했어요!\n'+t+'  ('+PAY.bank+' · 예금주 '+PAY.holder+')'); if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(done).catch(()=>prompt('아래 계좌번호를 복사하세요:',t)); } else prompt('아래 계좌번호를 복사하세요:',t); }
+    function isMobileUA(){ return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent); }
+    // 토스 앱 송금 딥링크 — 앱이 없으면 아무 일도 일어나지 않으므로 안내로 폴백
+    function tossTransfer(amount){
+      const url = 'supertoss://send?bank=' + encodeURIComponent(PAY.bank) + '&accountNo=' + PAY.acct.replace(/[^0-9]/g,'') + (amount?('&amount='+amount):'');
+      const t = setTimeout(()=>{ alert('토스 앱을 열지 못했어요.\n계좌번호를 복사해 은행 앱에서 이체해 주세요.\n\n'+PAY.bank+' '+PAY.acct+' (예금주 '+PAY.holder+')'); }, 1500);
+      window.addEventListener('pagehide', ()=>clearTimeout(t), { once:true });
+      location.href = url;
+    }
+    // 접수 완료 화면의 '입금 안내' 패널 (계좌 복사 + 간편송금 바로가기)
+    function payPanelHTML(wonAmt, amount, interest){
+      const btn = 'flex-1 min-w-[132px] text-center text-[13px] font-semibold px-3 py-2.5 rounded-xl border transition';
+      return '<div class="bg-sand/50 border border-ink/10 rounded-2xl p-5 text-left mt-5">'
+        + '<p class="text-[11px] font-bold text-neutral-500 mb-2">입금 계좌</p>'
+        + '<div class="flex items-center justify-between gap-3"><div><p class="font-bold text-neutral-900" id="acctNo">'+esc(PAY.bank)+' '+esc(PAY.acct)+'</p><p class="text-xs text-neutral-500 mt-0.5">예금주 '+esc(PAY.holder)+'</p></div>'
+        + '<button onclick="copyAcademyAcct()" class="shrink-0 text-white text-xs font-bold px-4 py-2.5 rounded-lg hover:opacity-90 transition" style="background:#00704a">계좌번호 복사</button></div>'
+        + (wonAmt?('<div class="flex items-center justify-between border-t border-ink/8 mt-3 pt-3"><span class="text-sm text-neutral-500">입금액</span><span class="font-extrabold text-neutral-900">'+wonAmt+'</span></div>'):'')
+        + '<p class="text-[11px] font-bold text-neutral-500 mt-4 mb-2">간편하게 보내기</p>'
+        + '<div class="flex flex-wrap gap-2">'
+        + (isMobileUA()?('<button onclick="tossTransfer('+(amount||0)+')" class="'+btn+' bg-white border-ink/15 text-neutral-800 hover:border-gold">토스로 송금</button>'):'')
+        + '<a href="'+esc(PAY.kakaopay)+'" target="_blank" rel="noopener" class="'+btn+' bg-white border-ink/15 text-neutral-800 hover:border-gold">카카오페이로 송금</a>'
+        + '<a href="'+esc(PAY.simplepay)+'" target="_blank" rel="noopener" class="'+btn+' bg-white border-ink/15 text-neutral-800 hover:border-gold">간편결제 링크</a>'
+        + '</div>'
+        + '<p class="text-[11.5px] text-neutral-500 mt-3 leading-relaxed">입금자명에 <b class="text-neutral-700">신청자 성함</b>을 남겨 주세요. 입금이 확인되면 <b class="text-neutral-700">'+(interest?esc(interest):'신청하신 과정')+'</b> 수강권을 바로 열어 드려요. 안내 메일도 함께 보내드립니다.</p></div>';
+    }
     // 로그인 시 이름·이메일 자동 채움(수정 가능)
     async function prefillApply(){
       try{
@@ -438,7 +472,20 @@
     function withTimeout(p, ms){ return Promise.race([ Promise.resolve(p), new Promise((_, rej) => setTimeout(() => rej(new Error('TIMEOUT')), ms)) ]); }
     // ── 카드결제(토스페이먼츠) — 급수 수강권은 로그인 계정에 부여 ──
     const TOSS_CLIENT_KEY_A = 'test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq'; // 토스 테스트 클라이언트키(실결제 전 교체)
+    // ★ 토스페이먼츠 심사가 승인되면 이 한 줄만 true 로 바꾸세요 — 카드 버튼이 다시 살아납니다.
+    const CARD_PAY_READY = false;
+    // 카드 준비 중일 때 버튼을 '준비 중'으로 잠금(라벨을 다시 쓰는 updateApplySummary 에서도 호출됨)
+    function applyCardReady(){
+      const btn=document.getElementById('aCard'), cl=document.getElementById('aCardLabel'), bd=document.getElementById('aCardBadge');
+      if(CARD_PAY_READY || !btn) return false;
+      btn.disabled = true;
+      btn.className = 'w-full mt-2 bg-neutral-100 text-neutral-400 border border-ink/10 font-semibold py-3.5 rounded-xl cursor-not-allowed flex items-center justify-center gap-2';
+      if(cl) cl.textContent = '카드 결제 준비 중';
+      if(bd){ bd.textContent = '심사 진행 중'; bd.className = 'text-[10.5px] font-bold text-neutral-500 bg-white px-2 py-0.5 rounded-full border border-ink/10'; }
+      return true;
+    }
     async function payCardAcademy(){
+      if(!CARD_PAY_READY){ applyCardReady(); return; }   // 준비 중 — 직접 호출 방어
       const msg = document.getElementById('aMsg'); msg.style.color = '#dc2626'; msg.textContent = '';
       if (document.getElementById('aHp').value) return;
       const email = document.getElementById('aEmail').value.trim();
@@ -487,11 +534,7 @@
       }
       notifyApplication({ name, email, phone, interest, motivation });   // 관리자 이메일 알림(비차단)
       const _rk=findRankByInterest(interest), _amt=_rk?(_rk.earlybird||_rk.price||0):0, _wa=(PROG&&PROG.hidePrice)?'':won(_amt);
-      const _acct = '<div class="bg-sand/50 border border-ink/10 rounded-2xl p-5 text-left mt-5">'
-        + '<p class="text-[11px] font-bold text-neutral-500 mb-2">입금 계좌</p>'
-        + '<div class="flex items-center justify-between gap-3"><div><p class="font-bold text-neutral-900" id="acctNo">우리은행 1006-301-266177</p><p class="text-xs text-neutral-500 mt-0.5">예금주 오광일</p></div><button onclick="copyAcademyAcct()" class="shrink-0 bg-neutral-900/[0.06] hover:bg-gold hover:text-white text-neutral-700 text-xs font-semibold px-3.5 py-2 rounded-lg transition">복사</button></div>'
-        + (_wa?('<div class="flex items-center justify-between border-t border-ink/8 mt-3 pt-3"><span class="text-sm text-neutral-500">입금액</span><span class="font-extrabold text-neutral-900">'+_wa+'</span></div>'):'')
-        + '<p class="text-[11.5px] text-neutral-500 mt-3 leading-relaxed">입금자명에 <b class="text-neutral-700">신청자 성함</b>을 남겨 주세요. 입금이 확인되면 <b class="text-neutral-700">'+(interest?esc(interest):'신청하신 과정')+'</b> 수강권을 바로 열어 드려요. 안내 메일도 함께 보내드립니다.</p></div>';
+      const _acct = payPanelHTML(_wa, (PROG&&PROG.hidePrice)?0:_amt, interest);
       document.getElementById('apply').innerHTML = '<div class="bg-white rounded-3xl border border-gold/30 shadow-card p-8 md:p-9 max-w-xl mx-auto text-center"><h2 class="text-xl md:text-2xl font-bold">등록 신청이 접수됐어요!</h2><p class="text-neutral-900/60 text-sm mt-3 leading-relaxed">아래 계좌로 입금해 주시면 <b class="text-neutral-900">확인 후 수강권을 바로 열어</b> 드려요.</p>' + _acct + '<div class="flex gap-2 justify-center mt-6"><a href="mylearning.html" class="text-gold font-semibold hover:underline text-sm">내 강의실 →</a><span class="text-neutral-900/20">·</span><a href="index.html" class="text-neutral-900/50 hover:text-gold text-sm">홈으로</a></div></div>';
       document.getElementById('apply').scrollIntoView({ behavior:'smooth', block:'center' });
     }
