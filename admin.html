@@ -629,10 +629,40 @@
     const _fdate=r=>{ const d=r.joined_at||r.created_at; return d? new Date(d).toLocaleDateString('ko') : '-'; };
     const _fno=r=>'#'+String(r.member_no==null?'':r.member_no).padStart(3,'0');
 
+    // 창립 명단(founding_members)에는 신청서를 낸 분의 연락처만 있다. 가입만 하고 번호를 받은 분의
+    // 전화·주소는 profiles 에 있으므로 이메일로 붙여 준다(회원 화면과 같은 정보를 창립 화면에서도 보이게).
+    async function mergeFoundingProfiles(){
+      let profs=null; try{ profs=await rest('profiles?select=*&limit=5000'); }catch(e){}
+      if(!profs) return;
+      let enr={},don={};
+      try{ const ed=await rest('enrollments?select=user_id,track'); (ed||[]).forEach(e=>{(enr[e.user_id]=enr[e.user_id]||[]).push(e.track);}); }catch(e){}
+      try{ const pd=await rest('lesson_progress?select=user_id,completed'); (pd||[]).forEach(p=>{ if(p.completed) don[p.user_id]=(don[p.user_id]||0)+1; }); }catch(e){}
+      const byEmail={}; profs.forEach(p=>{ const em=(p.email||'').trim().toLowerCase(); if(em) byEmail[em]=p; });
+      FOUNDING.forEach(r=>{
+        const p=byEmail[(r.email||'').trim().toLowerCase()]; if(!p) return;
+        r._account   = true;                       // 회원 계정 존재
+        r._pname     = p.full_name||'';
+        r._pphone    = p.phone||'';
+        r._paddress  = p.address||'';
+        r._pprovider = p.provider||'';
+        r._pconsent  = !!p.marketing_consent;
+        r._pcreated  = p.created_at||p.inserted_at||p.updated_at||null;
+        r._enr       = (enr[p.id]||[]).length;
+        r._done      = don[p.id]||0;
+      });
+    }
+    // 표시용 통합값 — 신청서 값이 있으면 그것을, 없으면 회원 프로필 값을 쓴다
+    const _fPhone = r => String(r.phone||'').trim() || String(r._pphone||'').trim();
+    const _fAddr  = r => String(r.address||r.region||'').trim() || String(r._paddress||'').trim();
+    const _fName  = r => String(r.name||'').trim() || String(r._pname||'').trim();
+    // 프로필에서 온 값인지(표에서 옅게 표시)
+    const _fromProfile = (r,k) => k==='phone' ? !String(r.phone||'').trim() : !String(r.address||r.region||'').trim();
+
     async function loadFounding(){
       const wrap=document.getElementById('foundingWrap'); if(!wrap) return;
       try{
         const data=await rpcFetch('list_founding',{}); FOUNDING=data||[];
+        await mergeFoundingProfiles();
         renderFounding();
       }catch(e){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">'+(_storeNeedSql(e)?'창립 멤버 기능 준비 중 — <code class="bg-ink/5 px-1 rounded">supabase/founding_members.sql</code> 실행 필요.':'불러오기 오류: '+esc(e.message||e))+'</p>'; }
     }
@@ -652,11 +682,12 @@
       });
       if(!FOUNDING.length){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">아직 창립 멤버가 없습니다.</p>'; return; }
       const rows=foundingFiltered();
-      const filled=k=>FOUNDING.filter(r=>String(r[k]||'').trim()).length;
       const wrote=FOUNDING.filter(r=>F_LONG.some(f=>String(r[f[0]]||'').trim())).length;
+      const nPhone=FOUNDING.filter(r=>_fPhone(r)).length, nAddr=FOUNDING.filter(r=>_fAddr(r)).length;
+      const nAcct=FOUNDING.filter(r=>r._account).length;
       const head=`<div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-neutral-900/50 mb-3">
           <span>총 <b class="text-neutral-900">${FOUNDING.length}</b>명 · 가입(번호)순${rows.length!==FOUNDING.length?` · <b class="text-gold">${rows.length}명 검색됨</b>`:''}</span>
-          <span class="text-xs">연락처 ${filled('phone')}명 · 주소 ${filled('address')||filled('region')}명 · 작성 내용 ${wrote}명</span>
+          <span class="text-xs">연락처 ${nPhone}명 · 주소 ${nAddr}명 · 작성 내용 ${wrote}명 · 회원 계정 ${nAcct}명</span>
         </div>`;
       if(!rows.length){ wrap.innerHTML=head+'<p class="text-neutral-900/50 text-sm">검색 결과가 없습니다.</p>'; return; }
 
@@ -680,44 +711,56 @@
         return;
       }
 
-      const _tel=v=>{ const s=(v==null?'':String(v)).trim(); return s? `<a href="tel:${esc(s.replace(/[^0-9+]/g,''))}" class="hover:text-gold">${esc(s)}</a>` : _fdash; };
+      // 프로필에서 가져온 값은 옅게 + 툴팁으로 출처를 알린다
+      const _dim=(html,soft)=> soft? `<span class="text-neutral-900/45" title="회원 프로필에서">${html}</span>` : html;
+      const _tel=(v,soft)=>{ const s=(v==null?'':String(v)).trim(); return s? _dim(`<a href="tel:${esc(s.replace(/[^0-9+]/g,''))}" class="hover:text-gold">${esc(s)}</a>`,soft) : _fdash; };
       const _mail=v=>{ const s=(v==null?'':String(v)).trim(); return s? `<a href="mailto:${esc(s)}" class="hover:text-gold">${esc(s)}</a>` : _fdash; };
       // '작성' 칸: 어떤 항목을 적었는지 배지로 한눈에
       const badges=r=>{ const b=F_LONG.filter(f=>String(r[f[0]]||'').trim()); return b.length
         ? b.map(f=>`<span class="inline-block bg-gold/10 text-gold text-[11px] font-semibold px-1.5 py-0.5 rounded mr-1">${f[2]}</span>`).join('')
         : _fdash; };
       wrap.innerHTML=head+`<div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">
-        <thead class="text-neutral-900/45 text-left border-b border-ink/5"><tr><th class="px-4 py-3 font-medium">번호</th><th class="px-4 py-3 font-medium">이름</th><th class="px-4 py-3 font-medium">전화번호</th><th class="px-4 py-3 font-medium">이메일</th><th class="px-4 py-3 font-medium">주소</th><th class="px-4 py-3 font-medium">출석 교회</th><th class="px-4 py-3 font-medium">작성</th><th class="px-4 py-3 font-medium">가입일</th><th class="px-4 py-3 font-medium"></th></tr></thead>
+        <thead class="text-neutral-900/45 text-left border-b border-ink/5"><tr><th class="px-4 py-3 font-medium">번호</th><th class="px-4 py-3 font-medium">이름</th><th class="px-4 py-3 font-medium">전화번호</th><th class="px-4 py-3 font-medium">이메일</th><th class="px-4 py-3 font-medium">주소</th><th class="px-4 py-3 font-medium">출석 교회</th><th class="px-4 py-3 font-medium">작성</th><th class="px-4 py-3 font-medium">수강</th><th class="px-4 py-3 font-medium">가입일</th><th class="px-4 py-3 font-medium"></th></tr></thead>
         <tbody>${rows.map(r=>`<tr class="border-b border-ink/5 hover:bg-sand/40">
           <td class="px-4 py-3 font-bold text-gold">${_fno(r)}</td>
-          <td class="px-4 py-3 font-medium">${_fv(r.name)}</td>
-          <td class="px-4 py-3">${_tel(r.phone)}</td>
+          <td class="px-4 py-3 font-medium">${_fv(_fName(r))}</td>
+          <td class="px-4 py-3">${_tel(_fPhone(r), _fromProfile(r,'phone'))}</td>
           <td class="px-4 py-3">${_mail(r.email)}</td>
-          <td class="px-4 py-3 whitespace-normal max-w-[260px]">${_fv(r.address||r.region)}</td>
+          <td class="px-4 py-3 whitespace-normal max-w-[260px]">${_dim(_fv(_fAddr(r)), _fromProfile(r,'address')&&!!_fAddr(r))}</td>
           <td class="px-4 py-3">${_fv(r.church)}</td>
           <td class="px-4 py-3">${badges(r)}</td>
+          <td class="px-4 py-3 text-neutral-900/60">${r._account?`${r._enr}트랙·${r._done}강`:'<span class="text-neutral-900/25">계정없음</span>'}</td>
           <td class="px-4 py-3 text-neutral-900/55">${_fdate(r)}</td>
           <td class="px-4 py-3"><button onclick="openFounder('${esc(String(r.member_no==null?r.email:r.member_no))}')" class="text-gold text-[13px] hover:underline">상세</button></td></tr>`).join('')}</tbody></table></div>`;
     }
     function openFounder(key){
       const r=FOUNDING.find(x=>String(x.member_no==null?x.email:x.member_no)===String(key)); if(!r) return;
       const row=(label,val)=>`<div class="flex gap-3 py-2 border-b border-ink/5"><span class="w-24 shrink-0 text-[13px] text-neutral-900/45">${label}</span><span class="text-[14px] flex-1 break-words">${val}</span></div>`;
-      const extra=Object.keys(r).filter(k=>!F_KNOWN.includes(k)&&String(r[k]||'').trim())
+      // '_' 로 시작하는 키는 회원 프로필에서 붙인 내부 값이므로 자동 노출에서 제외
+      const extra=Object.keys(r).filter(k=>k[0]!=='_'&&!F_KNOWN.includes(k)&&String(r[k]||'').trim())
         .map(k=>row(esc(k),_fv(r[k]))).join('');
+      const ph=_fPhone(r), ad=_fAddr(r);
+      const src=s=>s?' <span class="text-[11px] text-neutral-900/35">(회원 프로필)</span>':'';
+      const prov={google:'구글',kakao:'카카오',email:'이메일'}[r._pprovider]||r._pprovider||'';
       document.getElementById('founderModalBody').innerHTML=`
         <div class="flex items-center gap-3 px-6 py-4 border-b border-ink/8">
           <span class="font-bold text-gold text-lg">${_fno(r)}</span>
-          <span class="font-bold text-lg">${_fv(r.name)}</span>
+          <span class="font-bold text-lg">${_fv(_fName(r))}</span>
           <span class="text-sm text-neutral-900/40 ml-auto">${_fdate(r)} 가입</span>
           <button onclick="closeFounder()" class="text-neutral-900/40 hover:text-neutral-900 text-xl leading-none px-1" aria-label="닫기">×</button>
         </div>
         <div class="px-6 py-4">
+          <p class="text-[12px] font-semibold text-gold mb-1">연락처 · 회원 정보</p>
           ${row('이메일', r.email?`<a href="mailto:${esc(r.email)}" class="text-gold hover:underline">${esc(r.email)}</a>`:_fdash)}
-          ${row('전화번호', r.phone?`<a href="tel:${esc(String(r.phone).replace(/[^0-9+]/g,''))}" class="text-gold hover:underline">${esc(r.phone)}</a>`:_fdash)}
-          ${row('주소', _fv(r.address||r.region))}
+          ${row('전화번호', ph?`<a href="tel:${esc(ph.replace(/[^0-9+]/g,''))}" class="text-gold hover:underline">${esc(ph)}</a>`+src(_fromProfile(r,'phone')):_fdash)}
+          ${row('주소', ad? esc(ad)+src(_fromProfile(r,'address')) : _fdash)}
           ${row('출석 교회', _fv(r.church))}
           ${row('신앙 연수', _fv(r.faith_years))}
           ${row('홍보 약속', r.promise?'동의':_fdash)}
+          ${r._account
+            ? row('회원 가입', `${r._pcreated?new Date(r._pcreated).toLocaleDateString('ko'):'-'} · ${esc(prov||'-')} 로그인 · 마케팅 ${r._pconsent?'<b class="text-gold">동의</b>':'미동의'}`)
+              + row('수강 현황', `${r._enr}트랙 신청 · ${r._done}강 완료`)
+            : row('회원 계정', '<span class="text-neutral-900/45">아직 회원가입 기록이 없습니다</span>')}
           ${extra}
           ${F_LONG.map(f=>`<div class="mt-4">
             <p class="text-[12px] font-semibold text-gold mb-1">${f[1]}</p>
@@ -737,13 +780,15 @@
       // 전화번호 앞 0이 엑셀에서 사라지지 않도록 문자열로 고정
       const tel=v=>{ const s=String(v==null?'':v).trim(); return s?('​'+s):''; };
       const list=foundingFiltered();
+      const pv=p=>({google:'구글',kakao:'카카오',email:'이메일'}[p]||p||'');
       const rows=[
-        ['번호','이름','전화번호','이메일','주소','출석 교회','신앙 연수','홍보 약속','가입 동기','꿈꾸는 교회상','바라는 목회자상','기도 제목','가입일'],
+        ['번호','이름','전화번호','이메일','주소','출석 교회','신앙 연수','홍보 약속','가입 동기','꿈꾸는 교회상','바라는 목회자상','기도 제목','가입일','가입경로','마케팅동의','수강트랙','완료강의'],
         ...list.map(r=>[
-          _fno(r), r.name||'', tel(r.phone), r.email||'',
-          r.address||r.region||'', r.church||'', r.faith_years||'', r.promise?'동의':'',
+          _fno(r), _fName(r), tel(_fPhone(r)), r.email||'',
+          _fAddr(r), r.church||'', r.faith_years||'', r.promise?'동의':'',
           r.motivation||'', r.ideal_church||'', r.ideal_pastor||'', r.prayer||'',
-          fd(r.joined_at||r.created_at)
+          fd(r.joined_at||r.created_at),
+          pv(r._pprovider), r._account?(r._pconsent?'동의':'미동의'):'', r._account?r._enr:'', r._account?r._done:''
         ])
       ];
       downloadCSV('창립멤버_명단_'+new Date().toISOString().slice(0,10)+'.csv', rows);
