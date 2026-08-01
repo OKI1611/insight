@@ -142,10 +142,54 @@ async function confirmPay(request, env) {
   return json({ ok: true, amount: order.amount, method: (toss && toss.method) || '카드', receipt: (toss && toss.receipt && toss.receipt.url) || null, items: order.items });
 }
 
+// ===== 유튜브 채널 실적 실시간 조회 (/api/yt/stats) =====
+// API 키 없이 채널 페이지를 서버에서 읽어 파싱한다(키 노출 없음).
+// 엣지에서 10분 캐시하므로 방문자가 많아도 유튜브 요청은 10분에 1회 수준.
+const YT_CHANNEL_ID = 'UC82IOMnZud8NNt3BYzAxTMg';
+function ytFmtPlus(n, step) { return (Math.floor(n / step) * step).toLocaleString('en-US') + '+'; }
+function ytFmtMan(n) { return n >= 10000 ? Math.floor(n / 10000) + '만+' : ytFmtPlus(n, 100); }
+function ytParseSubs(text) {
+  const m = text.match(/"subscriberCountText":"구독자\s*([\d.]+)\s*(천|만)?\s*명"/);
+  if (!m) return null;
+  let v = parseFloat(m[1]);
+  if (m[2] === '만') v *= 10000; else if (m[2] === '천') v *= 1000;
+  return Math.round(v);
+}
+async function ytStats(env) {
+  try {
+    const r = await fetch('https://www.youtube.com/channel/' + YT_CHANNEL_ID + '/about', {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36',
+        'Accept-Language': 'ko-KR,ko',
+        'Cookie': 'CONSENT=YES+cb'
+      },
+      cf: { cacheTtl: 600, cacheEverything: true }   // 엣지 10분 캐시
+    });
+    if (!r.ok) return json({ ok: false }, 200);
+    const html = await r.text();
+    const subsN = ytParseSubs(html);
+    const mv = html.match(/"viewCountText":"조회수\s*([\d,]+)회"/);
+    const md = html.match(/"videoCountText":"동영상\s*([\d,]+)개"/);
+    const out = { ok: true };
+    if (subsN) out.subscribers = ytFmtPlus(subsN, 100);
+    if (mv) out.views = ytFmtMan(parseInt(mv[1].replace(/,/g, ''), 10));
+    if (md) out.videos = ytFmtPlus(parseInt(md[1].replace(/,/g, ''), 10), 10);
+    if (!out.subscribers && !out.views && !out.videos) return json({ ok: false }, 200);
+    return new Response(JSON.stringify(out), {
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        'Access-Control-Allow-Origin': '*',
+        'Cache-Control': 'public, max-age=300, s-maxage=600'   // 브라우저 5분 · 엣지 10분
+      }
+    });
+  } catch (e) { return json({ ok: false }, 200); }
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     const p = url.pathname;
+    if (p === '/api/yt/stats') return ytStats(env);
     if (p.startsWith('/api/pay/')) {
       if (request.method === 'OPTIONS') return new Response(null, { headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET,POST,OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type' } });
       if (p === '/api/pay/ping') return ping(env);

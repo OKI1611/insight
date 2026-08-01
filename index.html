@@ -1403,6 +1403,16 @@
           };
           const set = (k, v) => { if (!v) return; window.__biblyStats[k] = v; window.applyBiblyStats(); };
           window.applyBiblyStats();
+          // 실시간 갱신 — Worker(/api/yt/stats)가 유튜브를 서버에서 읽어 10분 캐시로 돌려준다.
+          // 실패하면 위 site.json 스냅샷 값이 그대로 유지된다(화면 깨지지 않음).
+          fetch('/api/yt/stats')
+            .then(r => r.ok ? r.json() : null)
+            .then(d => {
+              if (!d || !d.ok) return;
+              if (d.subscribers) set('subs', d.subscribers);
+              if (d.views) set('views', d.views);
+              if (d.videos) set('vids', d.videos);
+            }).catch(() => {});
           if (yt.api_key && yt.channel_id) {
             const fmtK = n => { n = +n || 0; return n >= 10000 ? Math.floor(n/10000).toLocaleString()+'만+' : n >= 1000 ? (Math.floor(n/100)*100).toLocaleString()+'+' : n.toLocaleString(); };
             fetch('https://www.googleapis.com/youtube/v3/channels?part=statistics&id=' + encodeURIComponent(yt.channel_id) + '&key=' + encodeURIComponent(yt.api_key))
