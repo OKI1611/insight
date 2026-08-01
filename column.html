@@ -86,7 +86,8 @@
         </div>
         <button id="writeBtn" onclick="openEditor()" class="hidden bg-gold text-white text-sm font-semibold px-4 py-2.5 rounded-full hover:opacity-90 transition shrink-0">새 글 쓰기</button>
       </div>
-      <div id="colList" class="space-y-4"><p class="text-neutral-900/40 text-sm text-center py-10">칼럼을 불러오는 중…</p></div>
+      <div id="colList" class="rounded-2xl border border-ink/10 bg-white overflow-hidden"><p class="text-neutral-900/40 text-sm text-center py-10">칼럼을 불러오는 중…</p></div>
+      <div id="colPager" class="flex flex-wrap items-center justify-center gap-1.5 mt-6"></div>
     </div>
 
     <!-- 읽기 화면 -->
@@ -186,24 +187,76 @@
     function showList(){ ['readView','editView'].forEach(id=>document.getElementById(id).classList.add('hidden')); document.getElementById('listView').classList.remove('hidden'); if(location.hash) history.replaceState(null,'',location.pathname); }
     function show(id){ ['listView','readView','editView'].forEach(x=>document.getElementById(x).classList.add('hidden')); document.getElementById(id).classList.remove('hidden'); }
 
+    /* 목록: 제목만 번호와 함께 한 줄씩 · 10개마다 페이지 나눔.
+       홈페이지 칼럼 + 네이버 블로그 글을 한 목록에 날짜순으로 합쳐 보여준다.
+       (블로그 글은 본문을 복제하지 않고 링크로 연결 — 중복 콘텐츠 감점 방지) */
+    const PER_PAGE = 10;
+    let ROWS = [], PAGE = 1;
+
     async function loadList(){
       const wrap=document.getElementById('colList');
       const { data, error } = await sb.from('columns').select('id,title,excerpt,cover_url,created_at,author_name').order('created_at',{ascending:false});
       if(error){ wrap.innerHTML=`<p class="text-neutral-900/40 text-sm text-center py-8">불러오기 오류: ${esc(error.message)}</p>`; return; }
       COLS = data||[];
-      if(!COLS.length){ wrap.innerHTML='<p class="text-neutral-900/40 text-sm text-center py-12">아직 칼럼이 없습니다.'+(isAdmin?' 첫 글을 써보세요!':'')+'</p>'; return; }
-      wrap.innerHTML = COLS.map(c=>`
-        <div onclick="openColumn('${c.id}')" class="group bg-white rounded-2xl border border-ink/8 shadow-soft p-5 sm:flex gap-4 cursor-pointer hover:shadow-card transition">
-          ${c.cover_url?`<div class="sm:w-40 h-28 rounded-xl bg-cover bg-center shrink-0 mb-3 sm:mb-0" style="background-image:url('${encodeURI(c.cover_url)}')"></div>`:''}
-          <div class="min-w-0">
-            <h3 class="font-bold text-lg leading-snug group-hover:text-gold transition">${esc(c.title||'')}</h3>
-            <p class="text-sm text-neutral-900/55 mt-1.5 line-clamp-2">${esc(c.excerpt||'')}</p>
-            <div class="flex items-center gap-2 mt-2">
-              <p class="text-xs text-neutral-900/40">${esc(c.author_name||'오광일')} · ${timeAgo(c.created_at)}</p>
-              <button onclick="event.stopPropagation();shareCol(this)" data-id="${c.id}" data-t="${esc(c.title||'').replace(/"/g,'&quot;')}" class="ml-auto text-neutral-900/35 hover:text-gold text-sm font-semibold" title="공유하기">공유</button>
-            </div>
-          </div>
-        </div>`).join('');
+
+      // 네이버 블로그 최신글 — content/blog-feed.json (6시간마다 자동 갱신)
+      let blog=[];
+      try{
+        const r=await fetch('content/blog-feed.json?t='+Date.now());
+        if(r.ok){ const j=await r.json(); blog=(j.items||[]); }
+      }catch(e){}
+
+      ROWS = COLS.map(c=>({ kind:'col', id:c.id, title:c.title||'', date:c.created_at }))
+        .concat(blog.map(b=>({ kind:'blog', link:b.link, title:b.title||'', date:(b.date||'')+'T09:00:00', cat:b.category })))
+        .filter(r=>r.title)
+        .sort((a,b)=> new Date(b.date) - new Date(a.date));
+
+      if(!ROWS.length){
+        wrap.innerHTML='<p class="text-neutral-900/40 text-sm text-center py-12">아직 칼럼이 없습니다.'+(isAdmin?' 첫 글을 써보세요!':'')+'</p>';
+        document.getElementById('colPager').innerHTML=''; return;
+      }
+      PAGE = 1; renderPage();
+    }
+
+    function renderPage(){
+      const wrap=document.getElementById('colList');
+      const total=ROWS.length, pages=Math.max(1, Math.ceil(total/PER_PAGE));
+      if(PAGE>pages) PAGE=pages;
+      const start=(PAGE-1)*PER_PAGE;
+      const rows=ROWS.slice(start, start+PER_PAGE);
+
+      wrap.innerHTML = rows.map((r,i)=>{
+        const no = total - start - i;                       // 최신 글이 가장 큰 번호
+        const d  = new Date(r.date);
+        const ds = isNaN(d) ? '' : `${d.getFullYear()}. ${d.getMonth()+1}. ${d.getDate()}.`;
+        const badge = r.kind==='blog'
+          ? '<span class="shrink-0 rounded-full bg-gold/10 text-gold text-[11px] font-semibold px-2 py-0.5">블로그</span>' : '';
+        const open = r.kind==='blog'
+          ? `window.open('${r.link}','_blank','noopener')` : `openColumn('${r.id}')`;
+        return `<div onclick="${open}" class="group flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-3.5 border-b border-ink/8 last:border-0 cursor-pointer hover:bg-sand/50 transition">
+            <span class="w-7 shrink-0 text-center text-[13px] text-neutral-900/35 tabular-nums">${no}</span>
+            <span class="min-w-0 flex-1 truncate font-semibold text-[15px] text-neutral-900/90 group-hover:text-gold transition">${esc(r.title)}</span>
+            ${badge}
+            <span class="shrink-0 text-xs text-neutral-900/40 tabular-nums hidden sm:block">${ds}</span>
+          </div>`;
+      }).join('');
+
+      // 페이지 번호
+      const pg=document.getElementById('colPager');
+      if(pages<=1){ pg.innerHTML=''; return; }
+      const btn=(label,p,on,dis)=>
+        `<button ${dis?'disabled':`onclick="gotoPage(${p})"`} class="min-w-[34px] h-[34px] px-2 rounded-lg text-sm font-semibold transition ${
+          on ? 'bg-gold text-white' : dis ? 'text-neutral-900/20 cursor-default' : 'text-neutral-900/60 hover:bg-sand'}">${label}</button>`;
+      let h = btn('‹', PAGE-1, false, PAGE<=1);
+      const from=Math.max(1, PAGE-2), to=Math.min(pages, from+4);
+      for(let p=Math.max(1,to-4); p<=to; p++) h += btn(p, p, p===PAGE, false);
+      h += btn('›', PAGE+1, false, PAGE>=pages);
+      pg.innerHTML = h;
+    }
+
+    function gotoPage(p){
+      PAGE=p; renderPage();
+      document.getElementById('listView').scrollIntoView({behavior:'smooth', block:'start'});
     }
 
     async function openColumn(id){
