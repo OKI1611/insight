@@ -218,6 +218,7 @@
 
   // 공통 푸터(하위 페이지) — 이미 footer가 있는 페이지는 건너뜀
   var YT = 'https://www.youtube.com/channel/UC82IOMnZud8NNt3BYzAxTMg';
+  var BLOG = 'https://blog.naver.com/gaonview';
   function footerHTML(){
     function lnk(href, label){ return '<a href="' + href + '" class="text-neutral-600 hover:text-gold transition">' + label + '</a>'; }
     return '<footer class="bibly-footer bg-paper border-t border-neutral-200 pt-14 pb-10 mt-16">'
@@ -233,7 +234,8 @@
       + lnk('about.html', '우리의 사명') + lnk('community.html', '질문·나눔')
       + lnk('resources.html', '자료실') + lnk('request.html', '강의 요청·건의')
       + lnk('mylearning.html', '내 강의실') + lnk(YT, '유튜브 채널')
-      + lnk('support.html', '후원 안내') + lnk('terms.html', '이용약관·환불 규정')
+      + lnk('support.html', '후원 안내') + lnk(BLOG, '네이버 블로그')
+      + lnk('terms.html', '이용약관·환불 규정')
       + '</nav>'
       + '</div>'
       + '<p class="text-center text-neutral-400 text-xs mt-12 pt-7 border-t border-neutral-200 max-w-6xl mx-auto px-5">© 2026 BIBLY · 바이블 인사이트 (오광일의 인사이트 브리핑). All rights reserved.</p>'
@@ -295,6 +297,8 @@
               + '<span style="color:#404040;font-size:12px;line-height:1.55">' + val + '</span></div>';
           };
           var ytSvg = '<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.5 15.6V8.4l6.3 3.6z"/></svg>';
+          var blogSvg = '<svg width="12" height="12" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16.273 12.845 7.376 0H0v24h7.726V11.156L16.624 24H24V0h-7.727v12.845z"/></svg>';
+          var blogUrl = (s && s.blog && s.blog.url) || BLOG;
           var bl = document.createElement('div');
           bl.setAttribute('data-bibly-bizinfo','');
           bl.style.cssText = 'max-width:1120px;margin:40px auto 0;padding:30px 20px 8px;text-align:left;border-top:1px solid #e5e5e5';
@@ -304,7 +308,10 @@
             +     '<img src="/images/logo-bible-insight.png?v=2" alt="바이블 인사이트" style="height:28px;width:auto"/>'
             +     '<span style="font-weight:700;font-size:14px;color:#262626;letter-spacing:-.01em">BIBLY <span style="color:#00704a">·</span> 바이블 인사이트</span>'
             +   '</div>'
-            +   '<a href="' + YT + '" target="_blank" rel="noopener" aria-label="YouTube" style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#00704a">' + ytSvg + '</a>'
+            +   '<div style="display:flex;align-items:center;gap:8px">'
+            +     '<a href="' + YT + '" target="_blank" rel="noopener" aria-label="YouTube" style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#00704a">' + ytSvg + '</a>'
+            +     '<a href="' + blogUrl + '" target="_blank" rel="noopener" aria-label="네이버 블로그" style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#00704a">' + blogSvg + '</a>'
+            +   '</div>'
             + '</div>'
             + '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px 34px">'
             +   cell('상호', biz.name)

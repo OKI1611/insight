@@ -1,0 +1,35 @@
+name: Update blog feed
+
+# 네이버 블로그(가온뷰) RSS 를 읽어 content/blog-feed.json 을 갱신·커밋한다.
+# 커밋되면 Cloudflare 가 자동 배포 → 홈페이지 '블로그 최신글' 섹션 갱신.
+# (네이버 글쓰기 API는 2020-05 폐지 → 홈→블로그 방향은 관리자 '블로그 원고 만들기'로 처리)
+on:
+  schedule:
+    - cron: '30 */6 * * *'   # 6시간마다 (KST 기준 06:30 / 12:30 / 18:30 / 00:30)
+  workflow_dispatch: {}       # 필요하면 수동으로도 실행 가능
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Fetch Naver blog RSS
+        run: python tools/fetch_blog_feed.py
+      - name: Commit if changed
+        run: |
+          if [ -n "$(git status --porcelain content/blog-feed.json)" ]; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add content/blog-feed.json
+            git commit -m "chore: 네이버 블로그 최신글 자동 갱신 [skip ci]"
+            git push
+            echo "blog feed updated & pushed"
+          else
+            echo "no change in blog feed"
+          fi

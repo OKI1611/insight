@@ -66,6 +66,7 @@
         <button data-sec="store"  class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">스토어 권한</button>
         <button data-sec="orders" class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">주문 내역(카드)</button>
         <button data-sec="tn"     class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">번역 노트</button>
+        <button data-sec="blog"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">블로그 원고 만들기</button>
         <button data-sec="cont"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">노트·퀴즈 현황</button>
         <button data-sec="site"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">사이트 설정</button>
       </nav>
@@ -267,6 +268,77 @@
             <button onclick="tnSave()" class="bg-gold text-white font-semibold px-5 py-2 rounded-lg text-sm hover:opacity-90">저장 (사이트 반영)</button>
             <button onclick="tnCloseEdit()" class="border border-ink/12 px-4 py-2 rounded-lg text-sm text-neutral-900/60">닫기</button>
             <span id="tnMsg" class="text-xs min-h-[16px]"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 블로그 원고 만들기 (홈페이지 → 네이버 블로그) =====
+           네이버 글쓰기 API는 2020년 5월 폐지되어 자동 발행이 불가능합니다.
+           대신 홈페이지 콘텐츠를 네이버 스마트에디터에 그대로 붙여넣을 수 있는
+           원고(제목안·본문·태그·CTA)를 만들어 줍니다. 복사 → 붙여넣기 → 발행. -->
+      <section id="sec-blog" class="secPanel hidden">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-1">
+          <h1 class="text-2xl font-bold">블로그 원고 만들기</h1>
+          <a href="https://blog.naver.com/gaonview/postwrite" target="_blank" class="text-xs text-gold hover:underline">네이버 글쓰기 창 열기 →</a>
+        </div>
+        <p class="text-neutral-900/50 text-sm mb-5">
+          홈페이지 콘텐츠를 <b>네이버 블로그용 원고</b>로 바꿔 줍니다.
+          <b>[본문 복사]</b>를 누르고 네이버 글쓰기 창에 <b>Ctrl+V</b> 하면 소제목·인용·링크 서식이 그대로 들어갑니다.
+        </p>
+
+        <div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-5 max-w-4xl mb-5">
+          <div class="grid sm:grid-cols-3 gap-3">
+            <label class="block text-xs font-semibold text-neutral-900/60">① 소스 종류
+              <select id="bgSrc" class="mt-1 w-full border border-ink/12 rounded-lg px-3 py-2 text-sm">
+                <option value="note">강의 노트</option>
+                <option value="tn">성경 번역 이야기</option>
+                <option value="daily">오늘의 말씀 묵상</option>
+              </select>
+            </label>
+            <label class="block text-xs font-semibold text-neutral-900/60" id="bgLvWrap">② 과정
+              <select id="bgLevel" class="mt-1 w-full border border-ink/12 rounded-lg px-3 py-2 text-sm"></select>
+            </label>
+            <label class="block text-xs font-semibold text-neutral-900/60">③ 글 고르기
+              <select id="bgItem" class="mt-1 w-full border border-ink/12 rounded-lg px-3 py-2 text-sm"></select>
+            </label>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 mt-4">
+            <button onclick="bgBuild()" class="bg-gold text-white font-semibold px-5 py-2 rounded-lg text-sm hover:opacity-90">원고 만들기</button>
+            <span id="bgMsg" class="text-xs min-h-[16px] text-neutral-900/50"></span>
+          </div>
+        </div>
+
+        <div id="bgOut" class="hidden max-w-4xl space-y-5">
+          <div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-5">
+            <div class="flex items-center justify-between gap-3 mb-3">
+              <h2 class="font-bold text-sm">제목 후보 <span class="font-normal text-neutral-900/45">— 마음에 드는 것을 눌러 복사하세요</span></h2>
+            </div>
+            <div id="bgTitles" class="space-y-2"></div>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-5">
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+              <h2 class="font-bold text-sm">본문 <span class="font-normal text-neutral-900/45">— 아래 미리보기가 그대로 붙습니다</span></h2>
+              <div class="flex items-center gap-2">
+                <button onclick="bgCopyBody()" class="bg-gold text-white font-semibold px-4 py-2 rounded-lg text-xs hover:opacity-90">본문 복사 (서식 유지)</button>
+                <button onclick="bgCopyText()" class="border border-ink/12 px-3 py-2 rounded-lg text-xs text-neutral-900/60">글자만 복사</button>
+              </div>
+            </div>
+            <div id="bgBody" class="border border-ink/10 rounded-xl p-5 max-h-[460px] overflow-auto text-[14px] leading-[1.85] bg-paper"></div>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-5">
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+              <h2 class="font-bold text-sm">태그 <span class="font-normal text-neutral-900/45">— 네이버 글쓰기 하단 태그 칸에 붙여넣기</span></h2>
+              <button onclick="bgCopyTags()" class="border border-ink/12 px-3 py-2 rounded-lg text-xs text-neutral-900/60">태그 복사</button>
+            </div>
+            <p id="bgTags" class="text-[13px] text-neutral-900/70 leading-relaxed"></p>
+          </div>
+
+          <div class="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 text-[13px] text-amber-900 leading-relaxed">
+            <b>발행 순서</b> — ① 제목 복사 → ② 네이버 글쓰기 창에 붙여넣기 → ③ [본문 복사] 후 본문 칸에 Ctrl+V →
+            ④ 태그 붙여넣기 → ⑤ 카테고리 선택 후 발행.
+            발행한 글은 <b>최대 6시간 안에 홈페이지 ‘블로그 최신글’</b>에 자동으로 올라옵니다.
           </div>
         </div>
       </section>
@@ -1465,6 +1537,227 @@
         }
       }catch(e){}
     })();
+    /* ================================================================
+       블로그 원고 만들기 — 홈페이지 콘텐츠 → 네이버 스마트에디터용 원고
+       네이버 글쓰기 API 폐지(2020-05)로 자동 발행은 불가. 붙여넣기용 원고를 만든다.
+       ================================================================ */
+    const BG_SITE = 'https://biblynote.com';
+    const BG_YT   = 'https://www.youtube.com/channel/UC82IOMnZud8NNt3BYzAxTMg';
+    let bgData = null;            // 현재 소스의 목록 데이터
+    let bgBuilt = null;           // 마지막으로 만든 원고 {titles, html, text, tags}
+
+    function bgSetMsg(t, ok){
+      const m = document.getElementById('bgMsg'); if(!m) return;
+      m.textContent = t || ''; m.className = 'text-xs min-h-[16px] ' + (ok ? 'text-emerald-600' : 'text-neutral-900/50');
+    }
+    function bgYtId(u){ const m = String(u||'').match(/(?:youtu\.be\/|v=)([\w-]{11})/); return m ? m[1] : ''; }
+
+    // ── 소스 선택 → 목록 채우기 ─────────────────────────────
+    async function bgLoadSource(){
+      const src  = document.getElementById('bgSrc').value;
+      const lvW  = document.getElementById('bgLvWrap');
+      const lvEl = document.getElementById('bgLevel');
+      const itEl = document.getElementById('bgItem');
+      document.getElementById('bgOut').classList.add('hidden');
+      lvW.style.display = (src === 'note') ? '' : 'none';
+      itEl.innerHTML = '<option>불러오는 중…</option>';
+      bgSetMsg('');
+      try{
+        if(src === 'note'){
+          if(!bgData || bgData.__src !== 'note'){
+            const c = await (await fetch('content/course.json?t=' + Date.now())).json();
+            bgData = { __src:'note', levels:(c.levels||[]) };
+          }
+          lvEl.innerHTML = bgData.levels.map((l,i)=>'<option value="'+i+'">'+esc(l.name)+'</option>').join('');
+          bgFillLessons();
+        }else if(src === 'tn'){
+          const t = await (await fetch('content/translation-notes.json?t=' + Date.now())).json();
+          const arr = Array.isArray(t) ? t : (t.notes || []);
+          bgData = { __src:'tn', items:arr };
+          itEl.innerHTML = arr.map((n,i)=>'<option value="'+i+'">'+esc(n.title)+'</option>').join('');
+        }else{
+          const idx = await (await fetch('content/daily/index.json?t=' + Date.now())).json();
+          const days = (idx.items || idx.dates || []).slice().reverse();
+          bgData = { __src:'daily', items:days };
+          itEl.innerHTML = days.map(d=>{
+            const dt = (typeof d === 'string') ? d : d.date;
+            const ti = (typeof d === 'string') ? d : (d.title || d.ref || d.date);
+            return '<option value="'+esc(dt)+'">'+esc(dt + ' · ' + ti)+'</option>';
+          }).join('');
+        }
+      }catch(e){ itEl.innerHTML = '<option>불러오기 실패</option>'; bgSetMsg('목록을 불러오지 못했습니다.'); }
+    }
+    function bgFillLessons(){
+      const li = Number(document.getElementById('bgLevel').value || 0);
+      const ls = ((bgData.levels[li] || {}).lessons) || [];
+      document.getElementById('bgItem').innerHTML =
+        ls.map((l,i)=>'<option value="'+i+'">'+esc(l.title)+'</option>').join('') || '<option>강의 없음</option>';
+    }
+
+    // ── 원고 조립 ───────────────────────────────────────────
+    function bgP(t){ return '<p style="line-height:1.9;margin:0 0 14px">' + esc(t) + '</p>'; }
+    function bgH(t){ return '<h3 style="font-size:17px;font-weight:700;margin:26px 0 10px">' + esc(t) + '</h3>'; }
+    function bgQuote(t){ return '<blockquote style="margin:14px 0;padding:12px 16px;border-left:3px solid #00704a;background:#f7f9f8;line-height:1.85">' + esc(t) + '</blockquote>'; }
+    function bgUl(a){ return '<ul style="margin:0 0 14px;padding-left:20px;line-height:1.9">' + a.map(x=>'<li>' + esc(x) + '</li>').join('') + '</ul>'; }
+
+    function bgCta(o){
+      let h = '<hr style="margin:32px 0;border:0;border-top:1px solid #e5e5e5"/>';
+      if(o.youtube) h += bgP('▶ 이 내용을 영상으로 보기') + '<p style="margin:0 0 14px"><a href="'+esc(o.youtube)+'">'+esc(o.youtube)+'</a></p>';
+      h += '<p style="line-height:1.9;margin:0 0 6px"><b>더 깊이 공부하고 싶으시다면</b></p>'
+        +  '<ul style="margin:0 0 14px;padding-left:20px;line-height:1.9">'
+        +    '<li>전체 강의·성경사전·성경 읽기 → <a href="'+BG_SITE+'">'+BG_SITE.replace('https://','')+'</a></li>'
+        +    '<li>유튜브 「오광일의 인사이트 브리핑」 → <a href="'+BG_YT+'">채널 바로가기</a></li>'
+        +    '<li>저자의 책 → <a href="'+BG_SITE+'/books.html">'+BG_SITE.replace('https://','')+'/books.html</a></li>'
+        +  '</ul>'
+        +  '<p style="color:#888;font-size:13px;line-height:1.8;margin:0">바이블 인사이트 · 오광일 — 말씀으로 시대를 읽다.</p>';
+      return h;
+    }
+    function bgTags(base){
+      // 네이버 태그는 특수문자·괄호를 받지 않는다 → 한글·영문·숫자만 남기고 길이 제한
+      const fixed = ['바이블인사이트','오광일','성경공부','성경강의','기독교'];
+      const out = [];
+      base.concat(fixed).forEach(t=>{
+        const v = String(t||'').replace(/\(.*?\)/g,'').replace(/[^0-9A-Za-z가-힣]/g,'');
+        if(v && v.length >= 2 && v.length <= 12 && out.indexOf(v) < 0) out.push(v);
+      });
+      return out.slice(0,10);
+    }
+
+    function bgFromNote(lesson, note){
+      const yid = bgYtId(lesson.youtube);
+      const t   = String(lesson.title||'').split('|')[0].trim();
+      const titles = [ t, t + ' — 성경은 뭐라고 말하는가', '[성경공부] ' + t ];
+      let h = '';
+      if(note.thesis)   h += bgQuote(note.thesis);
+      if(note.overview) h += bgP(note.overview);
+      (note.sections||[]).forEach(s=>{
+        h += bgH(s.heading || '');
+        if(s.body) h += bgP(s.body);
+        if(s.points && s.points.length) h += bgUl(s.points);
+      });
+      if((note.scriptures||[]).length){
+        h += bgH('함께 읽을 말씀');
+        h += bgUl(note.scriptures.map(s=>s.ref + (s.note ? ' — ' + s.note : '')));
+      }
+      if((note.misconceptions||[]).length){
+        h += bgH('흔한 오해 바로잡기');
+        note.misconceptions.forEach(m=>{ h += bgP('오해 — ' + m.wrong); h += bgQuote('바로잡기 — ' + m.right); });
+      }
+      if((note.takeaways||[]).length){ h += bgH('핵심 정리'); h += bgUl(note.takeaways); }
+      if((note.application||[]).length){ h += bgH('삶에 적용하기'); h += bgUl(note.application); }
+      h += bgCta({ youtube: yid ? ('https://youtu.be/' + yid) : lesson.youtube });
+      return { titles, html:h, tags:bgTags((lesson.tags||[]).concat((note.terms||[]).map(x=>x.term))) };
+    }
+    function bgFromTn(n){
+      const titles = [ n.title, (n.verse ? n.verse + ' 번역, 무엇이 맞는가' : n.title), '[성경 번역 이야기] ' + n.title ];
+      let h = '';
+      if(n.summary) h += bgQuote(n.summary);
+      const body = n.body;
+      if(Array.isArray(body)){
+        body.forEach(b=>{
+          if(b.h) h += bgH(b.h);
+          else if(b.v) h += bgQuote(String(b.v).replace(/<[^>]+>/g,''));
+          else if(b.p) h += bgP(String(b.p).replace(/<[^>]+>/g,''));
+        });
+      }else if(typeof body === 'string'){
+        String(body).split(/\n{2,}/).forEach(p=>{
+          const s = p.trim(); if(!s) return;
+          if(s.indexOf('## ') === 0) h += bgH(s.slice(3));
+          else if(s.indexOf('> ') === 0) h += bgQuote(s.slice(2));
+          else h += bgP(s.replace(/\*\*(.+?)\*\*/g,'$1'));
+        });
+      }
+      h += bgCta({});
+      return { titles, html:h, tags:bgTags((n.tags||[]).concat(['성경번역','킹제임스성경'])) };
+    }
+    function bgFromDaily(d){
+      const titles = [ d.title, d.ref + ' 묵상 — ' + d.title, '[오늘의 말씀] ' + d.title ];
+      let h = bgP(d.ref + (d.focus ? ' (' + d.focus + ')' : ''));
+      if(d.verse_kr) h += bgQuote(d.verse_kr);
+      if(d.verse_en) h += '<p style="color:#666;font-size:13px;line-height:1.8;margin:0 0 14px">' + esc(d.verse_en) + '</p>';
+      (d.sections||[]).forEach(s=>{ if(s.h) h += bgH(s.h); if(s.p) h += bgP(s.p); });
+      if(d.prayer){ h += bgH('기도'); h += bgQuote(d.prayer); }
+      h += bgCta({});
+      return { titles, html:h, tags:bgTags(['오늘의말씀','묵상','큐티', d.ref]) };
+    }
+
+    async function bgBuild(){
+      const src = document.getElementById('bgSrc').value;
+      const itEl = document.getElementById('bgItem');
+      bgSetMsg('원고를 만드는 중…');
+      try{
+        let built;
+        if(src === 'note'){
+          const li = Number(document.getElementById('bgLevel').value || 0);
+          const lesson = bgData.levels[li].lessons[Number(itEl.value || 0)];
+          const yid = bgYtId(lesson.youtube);
+          const r = await fetch('content/notes/' + yid + '.json?t=' + Date.now());
+          if(!r.ok){ bgSetMsg('이 강의는 아직 노트가 없습니다. 다른 강의를 골라 주세요.'); return; }
+          built = bgFromNote(lesson, await r.json());
+        }else if(src === 'tn'){
+          built = bgFromTn(bgData.items[Number(itEl.value || 0)]);
+        }else{
+          const d = await (await fetch('content/daily/' + itEl.value + '.json?t=' + Date.now())).json();
+          built = bgFromDaily(d);
+        }
+        bgBuilt = built;
+        document.getElementById('bgTitles').innerHTML = built.titles.map(t=>
+          '<button onclick="bgCopyTitle(this)" data-t="' + esc(t) + '" class="w-full text-left border border-ink/10 rounded-lg px-4 py-2.5 text-sm hover:border-gold hover:bg-gold/5 transition">'
+          + esc(t) + ' <span class="text-[11px] text-neutral-900/35">— 눌러서 복사</span></button>').join('');
+        document.getElementById('bgBody').innerHTML = built.html;
+        document.getElementById('bgTags').textContent = built.tags.map(t=>'#' + t).join(' ');
+        document.getElementById('bgOut').classList.remove('hidden');
+        bgSetMsg('원고가 완성되었습니다.', true);
+      }catch(e){ bgSetMsg('원고를 만들지 못했습니다: ' + (e.message || e)); }
+    }
+
+    // ── 복사 ────────────────────────────────────────────────
+    async function bgWrite(html, text){
+      // 서식(소제목·인용·링크)을 살리려면 text/html 로 써야 스마트에디터가 그대로 받는다.
+      try{
+        if(html && window.ClipboardItem && navigator.clipboard && navigator.clipboard.write){
+          await navigator.clipboard.write([new ClipboardItem({
+            'text/html':  new Blob([html], {type:'text/html'}),
+            'text/plain': new Blob([text], {type:'text/plain'})
+          })]);
+          return true;
+        }
+        await navigator.clipboard.writeText(text);
+        return true;
+      }catch(e){
+        const ta = document.createElement('textarea');
+        ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+        document.body.appendChild(ta); ta.select();
+        const ok = document.execCommand('copy'); ta.remove();
+        return ok;
+      }
+    }
+    async function bgCopyBody(){
+      if(!bgBuilt) return;
+      const ok = await bgWrite(bgBuilt.html, document.getElementById('bgBody').innerText);
+      bgSetMsg(ok ? '본문을 복사했습니다. 네이버 글쓰기 창에서 Ctrl+V 하세요.' : '복사에 실패했습니다.', ok);
+    }
+    async function bgCopyText(){
+      if(!bgBuilt) return;
+      const ok = await bgWrite(null, document.getElementById('bgBody').innerText);
+      bgSetMsg(ok ? '글자만 복사했습니다.' : '복사에 실패했습니다.', ok);
+    }
+    async function bgCopyTags(){
+      if(!bgBuilt) return;
+      const ok = await bgWrite(null, bgBuilt.tags.map(t=>'#' + t).join(' '));
+      bgSetMsg(ok ? '태그를 복사했습니다.' : '복사에 실패했습니다.', ok);
+    }
+    async function bgCopyTitle(btn){
+      const ok = await bgWrite(null, btn.getAttribute('data-t'));
+      bgSetMsg(ok ? '제목을 복사했습니다.' : '복사에 실패했습니다.', ok);
+    }
+
+    document.getElementById('bgSrc').addEventListener('change', bgLoadSource);
+    document.getElementById('bgLevel').addEventListener('change', function(){
+      bgFillLessons(); document.getElementById('bgOut').classList.add('hidden');
+    });
+    bgLoadSource();
+
     // ② 인증 적용 — 이 시점엔 COURSE·mkCard·loadDash 등 모든 정의가 끝나 안전함
     applyAuth(readStored());
   </script>
