@@ -25,8 +25,16 @@ except Exception:
     pass
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUT  = os.path.join(ROOT, "책원고", "성경전서_한영대역_KJV.docx")
 books = json.load(io.open(os.path.join(ROOT, "bible", "books.json"), encoding="utf-8"))
+
+# 인수로 앞 N권만 생성(무결성 스모크 테스트용). 없으면 전권 정본.
+LIMIT = int(sys.argv[1]) if len(sys.argv) > 1 else 0
+if LIMIT:
+    books = books[:LIMIT]
+    OUT = os.path.join(ROOT, "책원고", "출판준비", "_smoke_parallel.docx")
+else:
+    OUT = os.path.join(ROOT, "책원고", "성경전서_한영대역_KJV.docx")
+os.makedirs(os.path.dirname(OUT), exist_ok=True)
 
 try:
     HEADINGS = json.load(io.open(os.path.join(ROOT, "bible", "headings", "ko.json"), encoding="utf-8"))
