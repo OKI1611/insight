@@ -267,12 +267,19 @@
         <h2 data-cms="about-sec5" class="text-2xl md:text-3xl font-bold">대표강사 오광일</h2>
         <p class="text-neutral-900/55 mt-3 text-base">강단을 넘어, 성도가 스스로 성경을 읽는 눈을 길러온 사람</p>
       </div>
-      <div class="grid md:grid-cols-[260px_1fr] gap-8 items-start">
+      <div class="grid md:grid-cols-[340px_1fr] gap-8 lg:gap-10 items-start">
         <!-- 사진 + 약력 -->
         <div>
-          <div class="aspect-[4/5] rounded-3xl overflow-hidden bg-gold shadow-card">
-            <img src="/images/프로필사진.jpg" alt="오광일 대표강사" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='&lt;div class=&quot;w-full h-full flex flex-col items-center justify-center gap-2&quot;&gt;&lt;span class=&quot;font-display text-5xl text-gold&quot;&gt;吳&lt;/span&gt;&lt;span class=&quot;text-paper/50 text-xs&quot;&gt;오광일&lt;/span&gt;&lt;/div&gt;'" />
-          </div>
+          <!-- 2:3 헤드샷 · 인물 상단 기준으로 담아 얼굴이 잘리지 않게 -->
+          <figure class="relative aspect-[2/3] max-w-[340px] mx-auto rounded-[22px] overflow-hidden bg-gradient-to-br from-navy to-ink ring-1 ring-ink/10 shadow-[0_30px_70px_-32px_rgba(21,32,58,.6)]">
+            <img src="/images/프로필사진.jpg?v=2" alt="오광일 대표강사" class="w-full h-full object-cover object-top" onerror="this.parentElement.innerHTML='&lt;div class=&quot;w-full h-full flex flex-col items-center justify-center gap-2&quot;&gt;&lt;span class=&quot;font-display text-5xl text-gold&quot;&gt;吳&lt;/span&gt;&lt;span class=&quot;text-white/50 text-xs&quot;&gt;오광일&lt;/span&gt;&lt;/div&gt;'" />
+            <div class="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-ink/85 via-ink/35 to-transparent"></div>
+            <figcaption class="pointer-events-none absolute inset-x-0 bottom-0 p-5">
+              <p class="text-[10px] font-semibold tracking-[0.32em] text-gold/90">OH KWANG-IL</p>
+              <p class="mt-1.5 text-white font-bold text-[23px] leading-none">오광일</p>
+              <p class="mt-1.5 text-white/70 text-[12px]">바이블 인사이트 대표강사</p>
+            </figcaption>
+          </figure>
           <div class="mt-4 bg-paper border border-ink/8 rounded-2xl p-4">
             <p class="font-bold text-[15px]">오광일 <span class="text-neutral-900/45 text-sm font-normal">· 바이블 인사이트 대표</span></p>
             <ul class="mt-3 space-y-1.5 text-sm text-neutral-900/70">

@@ -839,23 +839,25 @@
   <!-- ===== 강사 소개 ===== -->
   <section id="instructor" class="py-16 bg-sand relative overflow-hidden border-y border-ink/8">
     <div class="blob bg-gold w-[360px] h-[360px] -top-20 right-10 opacity-25"></div>
-    <div class="relative max-w-5xl mx-auto px-5 z-10">
+    <div class="relative max-w-6xl mx-auto px-5 z-10">
       <div class="text-center mb-14">
         <p class="eyebrow text-gold text-xs font-semibold mb-4">INSTRUCTOR</p>
         <h2 data-cms="home-sec10" class="text-2xl md:text-[34px] font-bold leading-snug">신학 · 인문학 · 교육학,<br class="sm:hidden"/> 한 사람에게서</h2>
         <p class="text-neutral-900/60 mt-4">강단을 넘어, 성경을 직접 읽는 눈을 길러온 강사 오광일</p>
       </div>
 
-      <div class="grid md:grid-cols-5 gap-10 items-start">
-        <!-- 사진 + 약력 카드 -->
-        <div class="md:col-span-2">
-          <div id="instructorPhoto" class="aspect-[4/5] rounded-3xl bg-gradient-to-br from-navy to-ink border border-ink/10 flex flex-col items-center justify-center gap-3 relative overflow-hidden">
-            <div class="absolute inset-0 opacity-15" style="background-image:radial-gradient(circle at 50% 30%, #00704a 0, transparent 55%)"></div>
-            <span class="relative font-display text-5xl text-gold/80">吳</span>
-            <span class="relative text-neutral-900/40 text-xs tracking-[0.3em]">OH KWANG-IL</span>
-            <span class="relative text-neutral-900/25 text-[11px]">강사 사진이 들어갈 자리</span>
-          </div>
-          <div class="mt-4 bg-ink/5 border border-ink/10 rounded-2xl p-5">
+      <div class="grid md:grid-cols-12 gap-10 lg:gap-12 items-start">
+        <!-- 프로필 사진(2:3 헤드샷) + 약력 카드 -->
+        <div class="md:col-span-5">
+          <!-- 사진은 site.json instructor.photo 로 교체됩니다(아래 스크립트) -->
+          <figure id="instructorPhoto" class="group relative aspect-[2/3] max-w-[420px] md:max-w-none mx-auto rounded-[22px] overflow-hidden bg-gradient-to-br from-navy to-ink ring-1 ring-ink/10 shadow-[0_34px_80px_-34px_rgba(21,32,58,.6)]">
+            <div class="absolute inset-0 flex flex-col items-center justify-center gap-3">
+              <div class="absolute inset-0 opacity-15" style="background-image:radial-gradient(circle at 50% 30%, #00704a 0, transparent 55%)"></div>
+              <span class="relative font-display text-5xl text-gold/80">吳</span>
+              <span class="relative text-white/40 text-xs tracking-[0.3em]">OH KWANG-IL</span>
+            </div>
+          </figure>
+          <div class="mt-5 bg-ink/5 border border-ink/10 rounded-2xl p-5">
             <p class="font-bold text-lg">오광일 <span class="text-neutral-900/45 text-sm font-normal">· 바이블 인사이트 대표</span></p>
             <ul class="mt-3 space-y-2 text-sm text-neutral-900/70">
               <li class="flex gap-2.5"><span class="text-gold shrink-0"></span> West Coast Baptist College 신학 석사 (M.R.E)</li>
@@ -909,7 +911,7 @@
         </div>
 
         <!-- 스토리 -->
-        <div class="md:col-span-3">
+        <div class="md:col-span-7">
           <h3 data-cms="home-sec11" class="text-xl md:text-2xl font-bold leading-snug mb-6">
             “옳은 말을 했는데,<br class="hidden sm:block"/> 왜 내가 쫓겨나야 했을까?”
           </h3>
@@ -1531,7 +1533,15 @@
         const ph = document.getElementById('instructorPhoto');
         if (ph) {
           const probe = new Image();
-          probe.onload = () => { ph.innerHTML = `<img src="${photoSrc}" alt="오광일 강사" class="w-full h-full object-cover">`; };
+          // 배우 프로필처럼 — 인물 상단 기준(object-top)으로 담고, 하단에 이름 명판을 얹는다
+          probe.onload = () => { ph.innerHTML =
+              `<img src="${photoSrc}" alt="오광일 대표강사" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]">`
+            + `<div class="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-ink/85 via-ink/35 to-transparent"></div>`
+            + `<figcaption class="pointer-events-none absolute inset-x-0 bottom-0 p-6">`
+            +   `<p class="text-[10.5px] font-semibold tracking-[0.32em] text-gold/90">OH KWANG-IL</p>`
+            +   `<p class="mt-1.5 text-white font-bold text-[26px] leading-none">오광일</p>`
+            +   `<p class="mt-2 text-white/70 text-[12.5px]">바이블 인사이트 대표강사</p>`
+            + `</figcaption>`; };
           probe.src = photoSrc; // 파일이 없으면 onload가 호출되지 않아 기본 자리표시가 유지됩니다.
         }
 
