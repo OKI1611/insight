@@ -8,7 +8,7 @@
   소스: bible/books.json + bible/en/<파일>-<장>.json  각 절 {ko, en}
   실행: python tools/build_epub_parallel.py
 """
-import json, io, os, sys, zipfile, html, uuid, time
+import json, io, os, re, sys, zipfile, html, uuid, time
 
 try:
     sys.stdout.reconfigure(encoding="utf-8")
@@ -22,6 +22,19 @@ COVER = os.path.join(ROOT, "책원고", "출판준비", "_cover_parallel.jpg")
 books = json.load(io.open(os.path.join(ROOT, "bible", "books.json"), encoding="utf-8"))
 E = html.escape
 BOOK_ID = str(uuid.uuid4())
+
+# 자체 집필 소제목 + 한글 따옴표류 제거(2026-08-03) — build_pdfs.py 와 동일 규칙
+try:
+    HEADINGS = json.load(io.open(os.path.join(ROOT, "bible", "headings", "ko.json"), encoding="utf-8"))
+except Exception:
+    HEADINGS = {}
+
+def headings_for(book, ch):
+    return {v: t for v, t in HEADINGS.get(book, {}).get(str(ch), [])}
+
+_KO_QUOTES = re.compile(u'[“”‘’"\'「」『』《》〈〉]')
+def clean_ko(s):
+    return re.sub(r"\s{2,}", " ", _KO_QUOTES.sub("", str(s))).strip()
 
 
 def en_ch(b, c):
@@ -66,6 +79,7 @@ def make_cover():
 CSS = """body{font-family:serif;line-height:1.7;margin:0.4em 0.55em;}
 h1{font-size:1.5em;text-align:center;margin:1.2em 0 0.9em;color:#00593c;}
 h2{font-size:1.2em;margin:1em 0 .6em;color:#00593c;}
+h3.sub{font-size:1em;margin:1em 0 .4em;color:#4a5a52;}
 p.v{margin:0 0 0.12em 0;text-indent:0;}
 p.e{margin:0 0 0.85em 0;text-indent:0;font-size:0.92em;color:#4a5a52;padding-left:0.9em;
     border-left:2px solid #dfe6e1;}
@@ -119,6 +133,7 @@ def main():
         '독자적인 번역이며, 번역 원칙 전문은 biblynote.com/translation 에 공개되어 있습니다.</p>'
         '<p>절마다 한국어 본문을 먼저 싣고 그 아래에 King James Version 영어 본문을 함께 담아, 두 본문을 한 절씩 대조하며 '
         '읽을 수 있도록 하였습니다. 글자 크기는 보시는 기기에서 자유롭게 조정하실 수 있습니다.</p>'
+        '<p>본문 소제목은 독자의 이해를 돕기 위하여 바이블 인사이트가 새로 지은 것으로, 성경 원문의 일부가 아닙니다.</p>'
         '<p>영어 본문(King James Version, 1611)은 대한민국 저작권법상 보호 기간이 만료된 퍼블릭 도메인 저작물입니다.</p>'
         '<p>한국어 번역 저작권 ⓒ 오광일 · 바이블 인사이트, 2026. 이 책의 한국어 본문을 출판사의 서면 허락 없이 복제·전재·배포할 수 없습니다. '
         '다만 개인 묵상·설교·강의·논문에서의 통상적인 인용은 출처(인사이트 킹제임스 성경)를 밝히는 조건으로 허용합니다.</p>'
@@ -146,10 +161,13 @@ def main():
 
         for c in range(1, bk["ch"] + 1):
             vs = en_ch(bk["file"], c) or []
+            hd = headings_for(bk["file"], c)
             parts = []
             for n, v in enumerate(vs):
-                ko = (v.get("ko") or "").strip()
+                ko = clean_ko(v.get("ko") or "")
                 en = (v.get("en") or "").strip()
+                if (n + 1) in hd:
+                    parts.append('<h3 class="sub">%s</h3>' % E(hd[n + 1]))
                 if ko:
                     parts.append('<p class="v" id="v%d"><sup class="n">%d</sup>%s</p>' % (n + 1, n + 1, E(ko)))
                 if en:
