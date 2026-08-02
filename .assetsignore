@@ -10,5 +10,10 @@
 /_*.md
 /계획-*.md
 /bible/matthew-book
+# 책 원고 원본·백업 — 로컬 wrangler deploy 시에도 업로드되지 않도록 이중 차단
+/책원고
+/책원고_로컬백업_2245
+/성경사전
+/scratchpad
 *.log
 .DS_Store

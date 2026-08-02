@@ -32,6 +32,11 @@ _mkdoc.py
 _*.py
 _*.txt
 성경사전/
+
+# 책 원고 원본·백업 폴더 — wrangler assets.directory 가 "./" 이므로
+# 커밋되는 순간 https://biblynote.com/책원고/... 로 그대로 공개된다. 절대 커밋 금지.
+책원고/
+책원고_로컬백업_*/
 _book_t.png
 PAYMENT_SETUP.md
 
