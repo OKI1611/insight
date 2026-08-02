@@ -101,35 +101,34 @@ def front_matter(sub, page, big=False):
     out.append(PageBreak())
     return out
 
-# ───────────────────────── ① 큰글자판 (A4 유지 · 자간 균일화) ─────────────────────────
+# ───────────────────────── ① 큰글자판 (A4 · 2단 · 자간 균일) ─────────────────────────
 def build_bigprint():
     out = os.path.join(ROOT, "책원고", "인사이트킹제임스성경_큰글자판.pdf")
-    doc = BaseDocTemplate(out, pagesize=A4, leftMargin=2.4*cm, rightMargin=2.4*cm,
-                          topMargin=2.2*cm, bottomMargin=2.0*cm,
-                          title="인사이트 킹제임스 성경 (큰글자판)", author="오광일", subject="한글 전용 큰글자 성경")
-    def foot(cv, d):
-        if d.page > 2:
-            cv.setFont("NSK", 8.5); cv.setFillColor(GRAY)
-            cv.drawCentredString(A4[0]/2, 1.15*cm, str(d.page))
-    f = Frame(doc.leftMargin, doc.bottomMargin, doc.width, doc.height, id="n",
-              leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0)
-    doc.addPageTemplates([PageTemplate(id="p", frames=[f], onPage=foot)])
+    doc = HeadedDoc(out, A4, 1.9*cm, 1.9*cm, 2.2*cm, 1.8*cm, ncols=2, gutter=9*mm, head_size=9,
+                    title="인사이트 킹제임스 성경 (큰글자판)", author="오광일", subject="한글 전용 큰글자 성경")
 
-    s_bk  = ParagraphStyle("bk",  fontName="NSKB", fontSize=26, leading=36, alignment=TA_CENTER, textColor=GREEN, spaceAfter=4)
-    s_bke = ParagraphStyle("bke", fontName="NSK",  fontSize=12, leading=18, alignment=TA_CENTER, textColor=GRAY, spaceAfter=16)
-    s_ch  = ParagraphStyle("ch",  fontName="NSKB", fontSize=17, leading=24, textColor=GREEN, spaceBefore=14, spaceAfter=8)
-    s_v   = ParagraphStyle("v",   fontName="NSK",  fontSize=14, leading=25, alignment=TA_JUSTIFY, textColor=INK,
-                           spaceAfter=5, wordWrap="CJK")          # ★자간 균일(CJK 균등 분배)
-    s_sub = ParagraphStyle("sub", fontName="NSKB", fontSize=13, leading=19, textColor=HexColor("#4a5a52"),
-                           spaceBefore=11, spaceAfter=5)          # 소제목
-    story = front_matter("큰글자판", A4, big=True)                 # '한글 전용' 표기 삭제(2026-08-03)
+    # 자이언트 프린트형(미국 Giant Print 계열 · 2026-08-03 사용자 확정)
+    #   큰 숫자 장 표기 + 영문 책명 병기 + 초록 소제목 — 한영대역판과 디자인 통일
+    s_bk  = ParagraphStyle("bk",  fontName="NSKB", fontSize=25, leading=34, alignment=TA_CENTER, textColor=INK,
+                           spaceBefore=10, spaceAfter=2)
+    s_bke = ParagraphStyle("bke", fontName="NSK",  fontSize=11, leading=16, alignment=TA_CENTER, textColor=GRAY, spaceAfter=12)
+    s_ch  = ParagraphStyle("ch",  fontName="NSKB", fontSize=30, leading=33, textColor=GREEN, spaceBefore=10, spaceAfter=5)
+    s_v   = ParagraphStyle("v",   fontName="NSK",  fontSize=14, leading=24.5, alignment=TA_JUSTIFY, textColor=INK,
+                           spaceAfter=4.5, wordWrap="CJK")        # ★자간 균일(CJK 균등 분배)
+    s_sub = ParagraphStyle("sub", fontName="NSKB", fontSize=13.5, leading=19.5, textColor=GREEN,
+                           spaceBefore=11, spaceAfter=4)          # 소제목
+    story = front_matter("큰글자판", A4, big=True)
     t0 = time.time()
     for bi, bk in enumerate(books):
-        story += [Spacer(1, 2.2*cm), Paragraph(esc(bk["ko"]), s_bk), Paragraph(esc(bk["en"]), s_bke)]
+        bt = Paragraph(esc(bk["ko"]), s_bk)
+        bt._bibly_head = (bk["ko"], bk["en"])
+        story += [bt, Paragraph(esc(bk["en"]).upper(), s_bke)]
         for c in range(1, bk["ch"]+1):
             vs = kr(bk["file"], c)
             hd = headings_for(bk["file"], c)
-            story.append(Paragraph("제%d장" % c, s_ch))
+            chp = Paragraph('%d <font size="11" color="#8a8a8a">%s</font>' % (c, esc(bk["ko"])), s_ch)
+            chp._bibly_head = ("%s %d장" % (bk["ko"], c), bk["en"] + " %d" % c)
+            story.append(chp)
             for n, v in enumerate(vs):
                 if not isinstance(v, str):
                     continue
@@ -143,20 +142,25 @@ def build_bigprint():
     print("큰글자판 PDF:", round(os.path.getsize(out)/1e6, 1), "MB ·", doc.page, "쪽 · %.0fs" % (time.time()-t0))
     return out
 
-# ───────────────────────── ② 한영대역 (신국판 · 존더반 병렬 표준) ─────────────────────────
-P_PAGE = (152*mm, 225*mm)                      # 신국판
-P_ML = P_MR = 12*mm; P_MT = 18*mm; P_MB = 13*mm
-
-class ParallelDoc(BaseDocTemplate):
-    """러닝헤드: afterFlowable 로 현재 책·장을 추적해 페이지 끝에 그린다."""
-    def __init__(self, path, **kw):
-        BaseDocTemplate.__init__(self, path, pagesize=P_PAGE,
-                                 leftMargin=P_ML, rightMargin=P_MR,
-                                 topMargin=P_MT, bottomMargin=P_MB, **kw)
+# ───────────────────────── 공용: 러닝헤드 달린 문서 (1단/다단) ─────────────────────────
+class HeadedDoc(BaseDocTemplate):
+    """러닝헤드(바깥 책·장, 중앙 쪽번호) + 다단이면 단 구분선.
+       afterFlowable 로 _bibly_head 마커를 추적해 페이지 끝에 그린다."""
+    def __init__(self, path, page, ml, mr, mt, mb, ncols=1, gutter=8*mm, head_size=8, **kw):
+        BaseDocTemplate.__init__(self, path, pagesize=page,
+                                 leftMargin=ml, rightMargin=mr,
+                                 topMargin=mt, bottomMargin=mb, **kw)
+        self._page = page; self._ml, self._mr, self._mt, self._mb = ml, mr, mt, mb
+        self._gutter = gutter; self._ncols = ncols; self._hs = head_size
         self._head = ("", "")
-        f = Frame(P_ML, P_MB, P_PAGE[0]-P_ML-P_MR, P_PAGE[1]-P_MT-P_MB, id="n",
-                  leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0)
-        self.addPageTemplates([PageTemplate(id="p", frames=[f], onPageEnd=self._draw_head)])
+        self._head_skip = 2                     # 표지·판권 쪽수(러닝헤드 제외) — 샘플은 0으로
+        W = page[0] - ml - mr
+        cw = (W - gutter*(ncols-1)) / ncols
+        frames = [Frame(ml + i*(cw+gutter), mb, cw, page[1]-mt-mb, id="c%d" % i,
+                        leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0)
+                  for i in range(ncols)]
+        self._colw = cw
+        self.addPageTemplates([PageTemplate(id="p", frames=frames, onPageEnd=self._draw_head)])
 
     def afterFlowable(self, fl):
         h = getattr(fl, "_bibly_head", None)
@@ -164,22 +168,32 @@ class ParallelDoc(BaseDocTemplate):
             self._head = h
 
     def _draw_head(self, cv, doc):
-        if doc.page <= 2:                       # 표지·판권 제외
+        if doc.page <= self._head_skip:         # 표지·판권 제외
             return
-        w, h = P_PAGE
-        cv.setFont("NSKB", 8); cv.setFillColor(INK)
-        cv.drawString(P_ML, h - 11*mm, self._head[0])
-        cv.setFont("NSK", 8)
-        cv.drawRightString(w - P_MR, h - 11*mm, self._head[1])
+        w, h = self._page
+        cv.setFont("NSKB", self._hs); cv.setFillColor(INK)
+        cv.drawString(self._ml, h - 11*mm, self._head[0])
+        cv.setFont("NSK", self._hs)
+        cv.drawRightString(w - self._mr, h - 11*mm, self._head[1])
         cv.setFillColor(GRAY)
         cv.drawCentredString(w/2, h - 11*mm, str(doc.page))
         cv.setStrokeColor(RULE); cv.setLineWidth(0.5)
-        cv.line(P_ML, h - 13*mm, w - P_MR, h - 13*mm)
+        cv.line(self._ml, h - 13*mm, w - self._mr, h - 13*mm)
+        if self._ncols > 1:                     # 단 구분선
+            cv.setLineWidth(0.4)
+            for i in range(1, self._ncols):
+                x = self._ml + i*self._colw + (i - 0.5)*self._gutter
+                cv.line(x, self._mb, x, h - self._mt)
+
+# ───────────────────────── ② 한영대역 (신국판 · 존더반 병렬 표준) ─────────────────────────
+P_PAGE = (152*mm, 225*mm)                      # 신국판
+P_ML = P_MR = 12*mm; P_MT = 18*mm; P_MB = 13*mm
 
 def build_parallel():
     out = os.path.join(ROOT, "책원고", "성경전서_한영대역_KJV.pdf")
-    doc = ParallelDoc(out, title="인사이트 킹제임스 성경 (한영대역)", author="오광일",
-                      subject="KJV 한영대역 성경 · 존더반 병렬 표준형")
+    doc = HeadedDoc(out, P_PAGE, P_ML, P_MR, P_MT, P_MB, ncols=1,
+                    title="인사이트 킹제임스 성경 (한영대역)", author="오광일",
+                    subject="KJV 한영대역 성경 · 존더반 병렬 표준형")
 
     s_bk  = ParagraphStyle("bk",  fontName="NSKB", fontSize=19, leading=26, alignment=TA_CENTER, textColor=INK, spaceBefore=10, spaceAfter=2)
     s_bke = ParagraphStyle("bke", fontName="NSK",  fontSize=9.5, leading=14, alignment=TA_CENTER, textColor=GRAY, spaceAfter=9)
