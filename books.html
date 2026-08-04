@@ -50,6 +50,30 @@
     .storeLbl{font-size:.72rem;font-weight:700;color:#3a425477;letter-spacing:.02em;margin-bottom:.5rem}
     .metaRow{display:flex;gap:.5rem;font-size:.8rem;color:#3a425499;padding:.42rem 0;border-bottom:1px solid #213a6b0f}
     .metaRow b{color:#2a3446;font-weight:700;min-width:4.2rem;display:inline-block}
+
+    /* ── 책 가판대 — 표지를 선반 위에 나란히 진열 ── */
+    .shelf{display:flex;justify-content:center;align-items:flex-end;gap:clamp(14px,4.5vw,42px)}
+    .shelfBook{position:relative;display:block;width:clamp(88px,22vw,152px);text-align:center}
+    .shelfBook img{display:block;width:100%;height:auto;border-radius:2px;
+      box-shadow:0 10px 22px -10px rgba(21,32,58,.45), 0 2px 5px -2px rgba(21,32,58,.3);
+      transition:transform .28s cubic-bezier(.2,.8,.3,1), box-shadow .28s}
+    .shelfBook:hover img,.shelfBook:focus-visible img{transform:translateY(-10px) rotate(-1.2deg);
+      box-shadow:0 22px 34px -14px rgba(21,32,58,.5), 0 3px 8px -2px rgba(21,32,58,.3)}
+    /* 책등 느낌의 얇은 안쪽 그림자 */
+    .shelfBook img{border-left:1px solid rgba(255,255,255,.22)}
+    .shelfNew{position:absolute;top:-9px;right:-7px;z-index:2;background:#00704a;color:#fff;
+      font-size:10px;font-weight:800;letter-spacing:.02em;padding:3px 7px;border-radius:999px;
+      box-shadow:0 4px 10px -3px rgba(0,112,74,.6)}
+    /* 선반 널판 */
+    .shelfPlank{height:9px;border-radius:3px;margin-top:-1px;
+      background:linear-gradient(180deg,#d9e2ef 0%,#c3cfe0 55%,#aab8cc 100%);
+      box-shadow:0 8px 18px -10px rgba(21,32,58,.55)}
+    .shelfPlankEdge{height:5px;margin:0 auto;width:96%;border-radius:0 0 6px 6px;
+      background:linear-gradient(180deg,#aab8cc,#eaf0f8);opacity:.65}
+    .shelfCap{font-size:12.5px;font-weight:700;color:#2a3446;margin-top:.6rem;line-height:1.35}
+    .shelfSub{font-size:11px;color:#3a425488;margin-top:.2rem;line-height:1.4}
+    .shelfBook:hover .shelfCap{color:#00704a}
+    @media (max-width:400px){ .shelfSub{display:none} }
   </style>
 </head>
 <body class="font-sans bg-paper text-neutral-900 antialiased min-h-screen">
@@ -66,6 +90,39 @@
         무너진 자리에서 다시 시작한 신앙의 고백, 한 어머니의 삶을 아들의 눈으로 담아낸 이야기 —
         세 권의 책으로 만나실 수 있습니다.
       </p>
+
+      <!-- 책 가판대 — 표지를 눌러 각 책 소개로 이동. 새 책은 맨 앞에 두고 shelfNew 배지를 단다 -->
+      <div class="mt-9 md:mt-11">
+        <div class="shelf">
+          <a href="#mask" class="shelfBook" aria-label="가면의 시대 소개 보기">
+            <span class="shelfNew">신간</span>
+            <img src="images/books/mask.jpg" alt="가면의 시대 표지" />
+          </a>
+          <a href="#church" class="shelfBook" aria-label="교회를 떠나고서야, 예수를 만났다 소개 보기">
+            <img src="images/books/church.jpg" alt="교회를 떠나고서야, 예수를 만났다 표지" />
+          </a>
+          <a href="#mom" class="shelfBook" aria-label="엄마 향기 소개 보기">
+            <img src="images/books/mom.jpg" alt="엄마 향기 표지" />
+          </a>
+        </div>
+        <div class="shelfPlank"></div>
+        <div class="shelfPlankEdge"></div>
+
+        <div class="shelf items-start mt-3">
+          <a href="#mask" class="shelfBook">
+            <p class="shelfCap">가면의 시대</p>
+            <p class="shelfSub">옳은 말을 하고도 쫓겨난 당신에게</p>
+          </a>
+          <a href="#church" class="shelfBook">
+            <p class="shelfCap">교회를 떠나고서야,<br/>예수를 만났다</p>
+            <p class="shelfSub">교회를 세 번 떠났던 사람의 고백</p>
+          </a>
+          <a href="#mom" class="shelfBook">
+            <p class="shelfCap">엄마 향기</p>
+            <p class="shelfSub">계속 사랑하는 일에 관하여</p>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -215,6 +272,8 @@
             <div class="storeRow flex flex-wrap gap-2.5">
               <a href="https://www.yes24.com/product/goods/194508906" target="_blank" rel="noopener"
                  class="buyBtn buyGhost">예스24</a>
+              <a href="https://bookk.co.kr/bookStore/6a60d54eed7b8f6d07f927c4" target="_blank" rel="noopener"
+                 class="buyBtn buyGhost">부크크</a>
             </div>
             <p class="storeLbl mt-4">📄 무료 자료</p>
             <div class="storeRow flex flex-wrap gap-2.5">
