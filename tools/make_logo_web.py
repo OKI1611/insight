@@ -37,12 +37,48 @@ def save(im, path, **kw):
                                     os.path.getsize(path) / 1024))
 
 
-# ── ① 가로형 록업 (흰 배경용 네이비) ─────────────────────────
+# ── ① 가로형 록업 — 직접 조판(2026-08-05 사용자 피드백 반영) ──
+#    원본 wide 로고의 영문이 가늘어 헤더에서 약해 보임 →
+#    DB 마크 + 굵은 세리프 "BIBLE INSIGHT" + 아랫줄 한글 "바이블 인사이트" 소자.
+FB_TTF = os.path.join(ROOT, "tools", "fonts", "NotoSerifKR-Bold.ttf")
+FR_TTF = os.path.join(ROOT, "tools", "fonts", "NotoSerifKR-Regular.ttf")
+
+def _tracked(draw, xy, txt, font, fill, tracking):
+    """자간(tracking px)을 주며 한 글자씩 그리기 — 반환: 전체 폭"""
+    x, y = xy
+    for ch in txt:
+        draw.text((x, y), ch, font=font, fill=fill)
+        x += draw.textlength(ch, font=font) + tracking
+    return x - tracking - xy[0]
+
+def compose_lockup(dark_bg=False, h=200):
+    """마크 + BIBLE INSIGHT(굵게) + 바이블 인사이트(소자) 2줄 록업.
+       dark_bg=False → 흰 배경용(네이비/muted), True → 네이비 배경용(크림)."""
+    mark = (cutout if dark_bg else to_light)(monogram(SQ))
+    mark = fit(mark, h=h)
+    c_main = CREAM if dark_bg else NAVY
+    c_sub  = (196, 205, 224) if dark_bg else (98, 112, 140)
+    f_en = ImageFont.truetype(FB_TTF, int(h * 0.40))       # 굵은 세리프 영문
+    f_ko = ImageFont.truetype(FR_TTF, int(h * 0.155))      # 한글 소자
+    tr_en = int(h * 0.055); tr_ko = int(h * 0.09)
+
+    tmp = Image.new("RGBA", (10, 10)); dt = ImageDraw.Draw(tmp)
+    w_en = sum(dt.textlength(c, font=f_en) + tr_en for c in "BIBLE INSIGHT") - tr_en
+    w_ko = sum(dt.textlength(c, font=f_ko) + tr_ko for c in "바이블 인사이트") - tr_ko
+    gap = int(h * 0.22)
+    W = mark.width + gap + int(max(w_en, w_ko)) + 4
+    im = Image.new("RGBA", (W, h), (0, 0, 0, 0))
+    im.paste(mark, (0, 0), mark)
+    d = ImageDraw.Draw(im)
+    tx = mark.width + gap
+    y_en = int(h * 0.16)
+    _tracked(d, (tx, y_en), "BIBLE INSIGHT", f_en, c_main, tr_en)
+    y_ko = y_en + int(h * 0.40 * 1.38)
+    _tracked(d, (tx + int(h * 0.02), y_ko), "바이블 인사이트", f_ko, c_sub, tr_ko)
+    return im
+
 def wide_light():
-    box = HZ.crop(content_box(HZ))
-    light = to_light(box)                       # 크림 획 → 네이비, 배경 투명
-    light = fit(light, h=200)                   # 헤더 최대 56px 표시 → 200px이면 레티나 3배도 충분
-    save(light, os.path.join(IMG, "logo-heritage-wide.png"))
+    save(compose_lockup(dark_bg=False, h=200), os.path.join(IMG, "logo-heritage-wide.png"))
 
 
 # ── ② 정사각 512 (JSON-LD Organization.logo 용) ─────────────
@@ -55,7 +91,7 @@ def square():
 def og_cover():
     W, H = 1200, 630
     im = glow_bg(W, H)
-    lock = cutout(HZ.crop(content_box(HZ)))
+    lock = compose_lockup(dark_bg=True, h=200)
     lock = fit(lock, w=640)
     im.paste(lock, ((W - lock.width) // 2, 150), lock)
     d = ImageDraw.Draw(im)

@@ -115,7 +115,7 @@
   // 옆에 한글 브랜드명을 병기하면 중복 + 헤더 폭 초과 → 로고 단독 사용(2026-08-05).
   var LOGO =
     '<a href="index.html" onclick="return __biblyHome(event)" class="flex items-center shrink-0" aria-label="바이블 인사이트 홈">'
-    + '<img src="/images/logo-heritage-wide.png?v=1" alt="바이블 인사이트 로고" class="h-7 md:h-8 w-auto shrink-0" /></a>';
+    + '<img src="/images/logo-heritage-wide.png?v=2" alt="바이블 인사이트 로고" class="h-7 md:h-8 w-auto shrink-0" /></a>';
 
   var mount, active;
 
@@ -305,7 +305,7 @@
           bl.innerHTML =
             '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:22px">'
             +   '<div style="display:flex;align-items:center;gap:10px">'
-            +     '<img src="/images/logo-heritage-wide.png?v=1" alt="바이블 인사이트" style="height:28px;width:auto"/>'
+            +     '<img src="/images/logo-heritage-wide.png?v=2" alt="바이블 인사이트" style="height:28px;width:auto"/>'
             +     '<span style="font-weight:700;font-size:14px;color:#262626;letter-spacing:-.01em">BIBLY <span style="color:#00704a">·</span> 바이블 인사이트</span>'
             +   '</div>'
             +   '<div style="display:flex;align-items:center;gap:8px">'
