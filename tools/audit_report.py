@@ -13,7 +13,8 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='repla
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 AUD = os.path.join(ROOT, 'tools', '_audit')
 BIBLE = os.path.join(ROOT, 'bible')
-OUT = r'C:\Users\SIMSTER\Desktop\정본역킹제임스성경_감수'
+# 출력 경로 — 특정 PC 하드코딩 금지, 저장소 상대 경로 사용(2026-08-05 수정)
+OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'tools', '_audit', 'report')
 os.makedirs(OUT, exist_ok=True)
 
 cands = [json.loads(l) for l in open(os.path.join(AUD, 'candidates.jsonl'), encoding='utf-8')]

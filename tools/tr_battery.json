@@ -1,0 +1,55 @@
+{
+  "_doc": "정본역 TR 정합 배터리 — 방어 감수 상시 검사 목록. 실행: python tools/tr_battery_run.py. 2차 감수(2026-07-31, 커밋 717523c)에서 소실된 배터리를 재구축(2026-08-05). 항목 추가 시 reason을 반드시 기록.",
+
+  "verses_must_exist": [
+    {"ref": "Matthew-17-21",  "reason": "통절 삭제 논쟁 — 기도와 금식"},
+    {"ref": "Matthew-18-11",  "reason": "통절 — 인자가 잃은 자를 구원하러 옴"},
+    {"ref": "Matthew-23-14",  "reason": "통절 — 과부의 집을 삼키는 자들"},
+    {"ref": "Mark-7-16",      "reason": "통절 — 들을 귀 있는 자는 들으라"},
+    {"ref": "Mark-9-44",      "reason": "통절 — 벌레도 죽지 않고"},
+    {"ref": "Mark-9-46",      "reason": "통절 — 벌레도 죽지 않고(반복)"},
+    {"ref": "Mark-11-26",     "reason": "통절 — 너희가 용서하지 아니하면"},
+    {"ref": "Mark-15-28",     "reason": "통절 — 범죄자와 함께 헤아림"},
+    {"ref": "Luke-17-36",     "reason": "통절 — 두 사람이 밭에 있으매"},
+    {"ref": "Luke-23-17",     "reason": "통절 — 명절에 한 사람을 놓아주다"},
+    {"ref": "John-5-4",       "reason": "통절 — 천사가 못에 내려와 물을 움직임"},
+    {"ref": "Acts-8-37",      "reason": "통절 — 내시의 신앙고백(네가 마음을 다하여 믿으면)"},
+    {"ref": "Acts-15-34",     "reason": "통절 — 실라가 머물기로 작정"},
+    {"ref": "Acts-24-7",      "reason": "통절 — 루시아가 강제로 빼앗아감"},
+    {"ref": "Acts-28-29",     "reason": "통절 — 유대인들이 서로 크게 다투며 떠남"},
+    {"ref": "Romans-16-24",   "reason": "통절 — 주 예수 그리스도의 은혜 축도"},
+    {"ref": "Mark-16-9",      "reason": "대형 단락 막 16:9-20 시작절"},
+    {"ref": "Mark-16-20",     "reason": "대형 단락 막 16:9-20 끝절"},
+    {"ref": "John-7-53",      "reason": "대형 단락 요 7:53-8:11 시작절"},
+    {"ref": "John-8-11",      "reason": "대형 단락 요 7:53-8:11 끝절"}
+  ],
+
+  "tr_phrases": [
+    {"ref": "1John-5-7",       "must": "하늘에",        "reason": "콤마 요한네움 — 하늘에서 증언하는 셋(TR 특유)"},
+    {"ref": "Revelation-22-14","must": "계명",          "reason": "TR do his commandments vs CT wash their robes"},
+    {"ref": "Revelation-22-19","must": "생명책",        "reason": "TR book of life vs CT tree of life"},
+    {"ref": "Revelation-1-11", "must": "알파와 오메가",  "reason": "TR I am Alpha and Omega… (CT 생략)"},
+    {"ref": "John-3-15",       "must": "멸망하지",      "reason": "TR should not perish (CT 생략)"},
+    {"ref": "John-3-13",       "must": "하늘에 있는",    "reason": "TR which is in heaven (CT 생략)"},
+    {"ref": "John-6-11",       "must": "제자들에게",     "reason": "TR to the disciples, and the disciples… (CT 생략)"},
+    {"ref": "Acts-2-47",       "must": "교회에",        "reason": "TR added to the church (CT 다르게)"},
+    {"ref": "Luke-22-64",      "must": "얼굴을",        "reason": "TR struck him on the face (CT 생략)"},
+    {"ref": "1Peter-1-22",     "must": "성령",          "reason": "TR through the Spirit (CT 생략)"},
+    {"ref": "Colossians-1-14", "must": "피",            "reason": "TR through his blood (CT 생략) — 보혈 교리 시금석"},
+    {"ref": "Matthew-6-13",    "must": "왕국과 권세와 영광", "reason": "주기도문 송영 — TR 보존(CT 생략)"},
+    {"ref": "Luke-4-4",        "must": "말씀으로",       "reason": "TR by every word of God (CT 생략)"},
+    {"ref": "1Timothy-3-16",   "must": "하나님",        "reason": "TR God was manifest in the flesh vs CT He who — 신성 시금석"},
+    {"ref": "Acts-12-4",       "must": "유월절",        "reason": "KJV Easter — 파스카 원문 근거 유월절 번역(각주 방어)"}
+  ],
+
+  "counts": [
+    {"name": "셀라(시편+하박국)", "scope": "books:Psalms,Habakkuk", "pattern": "셀라", "expect": 74, "op": "=",
+     "note": "전권으로 세면 인명 셀라(창세기 족보 등)·지명 셀라(왕하 14:7)가 섞여 108이 됨 — 시가서 셀라만 74"},
+    {"name": "독생자",           "scope": "all", "pattern": "독생자", "expect": 6,  "op": "="},
+    {"name": "신약 '여호와' 금지", "scope": "nt",  "pattern": "여호와", "expect": 0,  "op": "="}
+  ],
+
+  "forbidden": ["세례", "흠정역", "마제스티", "예언자", "야훼", "천국", "부활절"],
+
+  "structure": {"chapters": 1189, "verses": 31102}
+}
