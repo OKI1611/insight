@@ -43,7 +43,7 @@
   // 콘솔 경고(개발자도구 통한 수집 억제)
   try{
     console.log('%c저작권 보호 콘텐츠','color:#00704a;font-size:18px;font-weight:bold');
-    console.log('%cBIBLY 바이블 인사이트의 「인사이트 킹제임스 성경」·영어/신학 학습 자료는 저작권 보호 대상입니다.\n무단 복제·자동 수집(크롤링·스크래핑)·배포 시 민·형사상 책임을 질 수 있습니다.','color:#171717;font-size:13px');
+    console.log('%cBIBLY 바이블 인사이트의 「정본역 킹제임스 성경」·영어/신학 학습 자료는 저작권 보호 대상입니다.\n무단 복제·자동 수집(크롤링·스크래핑)·배포 시 민·형사상 책임을 질 수 있습니다.','color:#171717;font-size:13px');
   }catch(_){}
 
   // 푸터 저작권 고지 1줄 자동 삽입
@@ -51,7 +51,7 @@
     if(document.getElementById('cprtNotice')) return;
     var p=document.createElement('p'); p.id='cprtNotice';
     p.style.cssText='text-align:center;font-size:11px;color:rgba(33,58,107,.4);padding:18px 16px 24px;line-height:1.6';
-    p.innerHTML='© BIBLY 바이블 인사이트 · 「인사이트 킹제임스 성경」 및 영어·신학 학습 자료의 <b>무단 복제·자동 수집·배포를 금합니다.</b>';
+    p.innerHTML='© BIBLY 바이블 인사이트 · 「정본역 킹제임스 성경」 및 영어·신학 학습 자료의 <b>무단 복제·자동 수집·배포를 금합니다.</b>';
     document.body.appendChild(p);
   }
   if(document.body) addNotice(); else document.addEventListener('DOMContentLoaded', addNotice);

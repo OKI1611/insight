@@ -112,7 +112,7 @@ HTML = f"""<title>마태복음 2단 영한대역 + 절별 단어</title>
   </div>
   <div class="book" id="book">
     <div class="masthead">
-      <div class="eyebrow">KJV 새번역 · 영한대역</div>
+      <div class="eyebrow">정본역 킹제임스 성경 · 영한대역</div>
       <h1 class="booktitle">마태복음</h1>
       <div class="booten">The Gospel According to St. Matthew</div>
       <div class="blurb">흠정역(KJV) 본문 · 새로운 우리말 번역 · 장별 영어 단어 정리</div>

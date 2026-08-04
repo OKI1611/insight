@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""audit_fetch_morph.py — KJV 새번역 감수 2단계: STEPBible 원어 형태소 도입.
+"""audit_fetch_morph.py — 정본역 킹제임스 성경 감수 2단계: STEPBible 원어 형태소 도입.
 
 데이터: STEPBible-Data (CC BY 4.0, https://github.com/STEPBible/STEPBible-Data)
   - TAHOT (히브리어 구약, 형태소 태깅)  - TAGNT (헬라어 신약, TR 이문 포함)

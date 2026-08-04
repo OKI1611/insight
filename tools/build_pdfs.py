@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""인사이트 킹제임스 성경 — PDF 직접 생성(ReportLab)
+"""정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션 — PDF 직접 생성(ReportLab)
 
   ① 큰글자판  A4 · 1단 14pt (어르신용 · 자간 균일 CJK 조판)
   ② 한영대역  신국판 152×225 · 존더반 병렬 표준형
@@ -68,14 +68,16 @@ def en(b, c):
     return json.loads(io.open(p, encoding="utf-8").read()) if os.path.exists(p) else None
 
 COPY = [
- ("도서명  인사이트 킹제임스 성경", True),
+ ("도서명  정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션", True),
+ ("‘정본역(正本譯)’은 공인본문(Textus Receptus)과 맛소라 본문을 저본으로 삼았음을 뜻하는 말이며, "
+  "다른 번역본의 가치를 부정하는 표현이 아닙니다.", False),
  ("이 책의 한국어 본문은 킹제임스 성경(KJV, 1611)의 영어 본문과 그 저본인 공인본문(Textus Receptus)·맛소라 본문을 "
   "히브리어·아람어·헬라어 원문과 대조하여 바이블 인사이트가 직접 번역한 것입니다. 기존 한국어 역본을 저본으로 삼지 않은 "
   "독자적인 번역이며, 번역 원칙 전문은 biblynote.com/translation 에 공개되어 있습니다.", False),
  ("영어 본문(King James Version, 1611)은 대한민국 저작권법상 보호 기간이 만료된 퍼블릭 도메인 저작물입니다.", False),
  ("본문 서체는 SIL Open Font License로 배포되는 Noto Serif KR을 사용하였습니다.", False),
  ("한국어 번역 저작권 ⓒ 오광일 · 바이블 인사이트, 2026. 이 책의 한국어 본문을 출판사의 서면 허락 없이 복제·전재·배포할 수 "
-  "없습니다. 다만 개인 묵상·설교·강의·논문에서의 통상적인 인용은 출처(인사이트 킹제임스 성경)를 밝히는 조건으로 허용합니다.", False),
+  "없습니다. 다만 개인 묵상·설교·강의·논문에서의 통상적인 인용은 출처(정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션)를 밝히는 조건으로 허용합니다.", False),
  ("펴낸곳  바이블 인사이트 출판사", False),
  ("옮긴이  오광일", False),
  ("문의  contact@biblynote.com · biblynote.com", False),
@@ -84,16 +86,18 @@ COPY = [
 def front_matter(sub, page, big=False):
     """표지 + 판권 — 판형에 비례해 여백 계산"""
     ph = page[1]
-    s_t  = ParagraphStyle("t",  fontName="NSKB", fontSize=30 if big else 24, leading=40 if big else 32, alignment=TA_CENTER, textColor=INK)
+    # 역본명이 27자로 길어 한 줄이면 판형 폭을 넘는다 → 2줄 배치 + 크기 하향
+    s_t  = ParagraphStyle("t",  fontName="NSKB", fontSize=25 if big else 19, leading=34 if big else 27, alignment=TA_CENTER, textColor=INK)
     s_s  = ParagraphStyle("s",  fontName="NSKB", fontSize=21 if big else 17, leading=30, alignment=TA_CENTER, textColor=GREEN)
     s_e  = ParagraphStyle("e",  fontName="NSK",  fontSize=11, leading=17, alignment=TA_CENTER, textColor=GRAY)
     s_p  = ParagraphStyle("pb", fontName="NSK",  fontSize=11, leading=17, alignment=TA_CENTER, textColor=INK)
     s_h  = ParagraphStyle("h",  fontName="NSKB", fontSize=13, leading=20, textColor=GREEN, spaceAfter=9)
     s_b  = ParagraphStyle("b",  fontName="NSK",  fontSize=9,  leading=14.2, alignment=TA_JUSTIFY, textColor=INK, spaceAfter=5, wordWrap="CJK")
     s_bb = ParagraphStyle("bb", parent=s_b, fontName="NSKB")
-    out = [Spacer(1, ph*0.21), Paragraph("인사이트 킹제임스 성경", s_t), Spacer(1, ph*0.018),
+    out = [Spacer(1, ph*0.21),
+           Paragraph("정본역(正本譯) 킹제임스 성경<br/>헤리티지 에디션", s_t), Spacer(1, ph*0.018),
            Paragraph(sub, s_s), Spacer(1, ph*0.012),
-           Paragraph("THE INSIGHT KING JAMES BIBLE · 1611", s_e),
+           Paragraph("THE HERITAGE KJV · AUTHENTIC VERSION · 1611", s_e),
            Spacer(1, ph*0.26), Paragraph("바이블 인사이트 출판사", s_p), PageBreak(),
            Spacer(1, ph*0.05), Paragraph("일러두기 · 판권", s_h)]
     for txt, bold in COPY:
@@ -103,9 +107,9 @@ def front_matter(sub, page, big=False):
 
 # ───────────────────────── ① 큰글자판 (A4 · 2단 · 자간 균일) ─────────────────────────
 def build_bigprint():
-    out = os.path.join(ROOT, "책원고", "인사이트킹제임스성경_큰글자판.pdf")
+    out = os.path.join(ROOT, "책원고", "정본역킹제임스성경_큰글자판.pdf")
     doc = HeadedDoc(out, A4, 1.9*cm, 1.9*cm, 2.2*cm, 1.8*cm, ncols=2, gutter=9*mm, head_size=9,
-                    title="인사이트 킹제임스 성경 (큰글자판)", author="오광일", subject="한글 전용 큰글자 성경")
+                    title="정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션 (큰글자판)", author="오광일", subject="한글 전용 큰글자 성경")
 
     # 자이언트 프린트형(미국 Giant Print 계열 · 2026-08-03 사용자 확정)
     #   큰 숫자 장 표기 + 영문 책명 병기 + 초록 소제목 — 한영대역판과 디자인 통일
@@ -190,9 +194,9 @@ P_PAGE = (152*mm, 225*mm)                      # 신국판
 P_ML = P_MR = 12*mm; P_MT = 18*mm; P_MB = 13*mm
 
 def build_parallel():
-    out = os.path.join(ROOT, "책원고", "성경전서_한영대역_KJV.pdf")
+    out = os.path.join(ROOT, "책원고", "정본역킹제임스성경_한영대역.pdf")
     doc = HeadedDoc(out, P_PAGE, P_ML, P_MR, P_MT, P_MB, ncols=1,
-                    title="인사이트 킹제임스 성경 (한영대역)", author="오광일",
+                    title="정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션 (한영대역)", author="오광일",
                     subject="KJV 한영대역 성경 · 존더반 병렬 표준형")
 
     s_bk  = ParagraphStyle("bk",  fontName="NSKB", fontSize=19, leading=26, alignment=TA_CENTER, textColor=INK, spaceBefore=10, spaceAfter=2)

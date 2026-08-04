@@ -97,7 +97,7 @@ HTML = f"""<title>마태복음 KJV 영한대역 · 인쇄 조판 샘플</title>
 <div class="rfoot">✦</div>
 
 <section class="title">
-  <div class="series">KJV 새번역 · 영한대역 스터디 바이블</div>
+  <div class="series">정본역 킹제임스 성경 · 영한대역 스터디 바이블</div>
   <div class="rule"></div>
   <h1>마태복음</h1>
   <div class="en">The Gospel According to St. Matthew</div>

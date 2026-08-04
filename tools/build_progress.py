@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""KJV 새번역 진행현황 빌드 — bible/kr/*.json 을 스캔해 bible/progress.json 생성.
+"""정본역 킹제임스 성경 진행현황 빌드 — bible/kr/*.json 을 스캔해 bible/progress.json 생성.
 번역을 추가한 뒤 `python tools/build_progress.py` 를 다시 실행하면 작업현황이 갱신된다.
 (이 파일은 관리자 작업현황 페이지 kjv-admin.html 이 읽는 데이터다.)"""
 import os, json, glob, re

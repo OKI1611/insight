@@ -146,7 +146,7 @@ HTML = f"""<title>마태복음 KJV 영한대역 샘플 (1–2장)</title>
 
   <div class="book" id="book">
     <div class="masthead">
-      <div class="eyebrow">KJV 새번역 · 영한대역 스터디 바이블</div>
+      <div class="eyebrow">정본역 킹제임스 성경 · 영한대역 스터디 바이블</div>
       <h1 class="booktitle">마태복음</h1>
       <div class="booten">The Gospel According to St. Matthew</div>
       <div class="blurb">흠정역(KJV) 본문 · 새로운 우리말 번역 · 절별 주해와 원어 어휘 · KJV 어법 풀이</div>

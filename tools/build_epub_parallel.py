@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""인사이트 킹제임스 성경 · 한영대역 — EPUB 2.0 빌더
+"""정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션 · 한영대역 — EPUB 2.0 빌더
 
   절마다 한국어 본문과 KJV 영어 본문을 이어서 배치한다.
   (전자책은 화면 폭이 제각각이라 인쇄판의 좌우 2단 대신 위·아래 대역이 읽기 좋다)
@@ -16,7 +16,7 @@ except Exception:
     pass
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUT = os.path.join(ROOT, "책원고", "인사이트킹제임스성경_한영대역.epub")
+OUT = os.path.join(ROOT, "책원고", "정본역킹제임스성경_한영대역.epub")
 COVER = os.path.join(ROOT, "책원고", "출판준비", "_cover_parallel.jpg")
 
 books = json.load(io.open(os.path.join(ROOT, "bible", "books.json"), encoding="utf-8"))
@@ -64,12 +64,14 @@ def make_cover():
         f = ImageFont.truetype(fp, size)
         d.text(((W - d.textlength(txt, font=f)) // 2, y), txt, font=f, fill=fill)
 
-    center(300, "B I B L E   I N S I G H T", fr, 44, GOLD)
-    center(560, "인사이트", fb, 150, INK)
-    center(740, "킹제임스 성경", fb, 150, INK)
-    d.line([(W // 2 - 200, 1030), (W // 2 + 200, 1030)], fill=GOLD, width=3)
-    center(1100, "한영대역", fb, 96, GREEN)
-    center(1250, "한국어 · King James Version · 전 66권", fr, 46, GRAY)
+    # 역본명이 길어져 3줄 구성 — 정본역(正本譯) / 킹제임스 성경 / 헤리티지 에디션
+    center(280, "B I B L E   I N S I G H T", fr, 42, GOLD)
+    center(500, "정본역(正本譯)", fb, 128, INK)
+    center(660, "킹제임스 성경", fb, 128, INK)
+    center(830, "헤리티지 에디션", fr, 66, GRAY)
+    d.line([(W // 2 - 200, 1000), (W // 2 + 200, 1000)], fill=GOLD, width=3)
+    center(1070, "한영대역", fb, 96, GREEN)
+    center(1220, "한국어 · King James Version · 전 66권", fr, 46, GRAY)
     center(1900, "바이블 인사이트 출판사", fr, 48, GRAY)
     os.makedirs(os.path.dirname(COVER), exist_ok=True)
     img.save(COVER, "JPEG", quality=90)
@@ -113,21 +115,22 @@ def main():
     print("표지 생성:", cover)
 
     add("OEBPS/cover.xhtml",
-        xhtml("표지", '<p class="center"><img src="images/cover.jpg" alt="인사이트 킹제임스 성경 한영대역" style="max-width:100%;"/></p>'),
+        xhtml("표지", '<p class="center"><img src="images/cover.jpg" alt="정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션 한영대역" style="max-width:100%;"/></p>'),
         "cover-page", "application/xhtml+xml")
     add("OEBPS/images/cover.jpg", open(cover, "rb").read(), "cover-img", "image/jpeg", spine=False)
     add("OEBPS/style.css", CSS, "css", "text/css", spine=False)
 
     front = ('<div style="margin-top:28%;"></div>'
-             '<h1 style="font-size:1.9em;">인사이트 킹제임스 성경</h1>'
+             '<h1 style="font-size:1.9em;">정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션</h1>'
              '<p class="center" style="font-size:1.25em;color:#00593c;font-weight:bold;">한영대역</p>'
-             '<p class="center small">THE INSIGHT KING JAMES BIBLE · 1611</p>'
+             '<p class="center small">THE HERITAGE KJV · AUTHENTIC VERSION · 1611</p>'
              '<div style="margin-top:34%;"></div>'
              '<p class="center">바이블 인사이트 출판사</p>')
     add("OEBPS/titlepage.xhtml", xhtml("속표지", front), "titlepage", "application/xhtml+xml")
 
     colophon = ('<h1>일러두기 · 판권</h1>'
-        '<p><b>도서명</b>  인사이트 킹제임스 성경 (한영대역)</p>'
+        '<p><b>도서명</b>  정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션 (한영대역)</p>'
+        '<p>‘정본역(正本譯)’은 공인본문(Textus Receptus)과 맛소라 본문을 저본으로 삼았음을 뜻하는 말이며, 다른 번역본의 가치를 부정하는 표현이 아닙니다.</p>'
         '<p>이 책의 한국어 본문은 킹제임스 성경(KJV, 1611)의 영어 본문과 그 저본인 공인본문(Textus Receptus)·맛소라 본문을 '
         '히브리어·아람어·헬라어 원문과 대조하여 바이블 인사이트가 직접 번역한 것입니다. 기존 한국어 역본을 저본으로 삼지 않은 '
         '독자적인 번역이며, 번역 원칙 전문은 biblynote.com/translation 에 공개되어 있습니다.</p>'
@@ -136,7 +139,7 @@ def main():
         '<p>본문 소제목은 독자의 이해를 돕기 위하여 바이블 인사이트가 새로 지은 것으로, 성경 원문의 일부가 아닙니다.</p>'
         '<p>영어 본문(King James Version, 1611)은 대한민국 저작권법상 보호 기간이 만료된 퍼블릭 도메인 저작물입니다.</p>'
         '<p>한국어 번역 저작권 ⓒ 오광일 · 바이블 인사이트, 2026. 이 책의 한국어 본문을 출판사의 서면 허락 없이 복제·전재·배포할 수 없습니다. '
-        '다만 개인 묵상·설교·강의·논문에서의 통상적인 인용은 출처(인사이트 킹제임스 성경)를 밝히는 조건으로 허용합니다.</p>'
+        '다만 개인 묵상·설교·강의·논문에서의 통상적인 인용은 출처(정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션)를 밝히는 조건으로 허용합니다.</p>'
         '<p><b>펴낸곳</b>  바이블 인사이트 출판사<br/><b>옮긴이</b>  오광일<br/>'
         '<b>문의</b>  contact@biblynote.com · biblynote.com</p>')
     add("OEBPS/colophon.xhtml", xhtml("판권", colophon), "colophon", "application/xhtml+xml")
@@ -188,7 +191,7 @@ def main():
     opf = ('<?xml version="1.0" encoding="utf-8"?>\n'
         '<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="bid" version="2.0">\n'
         '<metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">\n'
-        '<dc:title>인사이트 킹제임스 성경 (한영대역)</dc:title>\n'
+        '<dc:title>정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션 (한영대역)</dc:title>\n'
         '<dc:creator opf:role="trl">오광일</dc:creator>\n'
         '<dc:publisher>바이블 인사이트 출판사</dc:publisher>\n'
         '<dc:language>ko</dc:language>\n<dc:language>en</dc:language>\n'
@@ -226,7 +229,7 @@ def main():
         '<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">\n'
         '<head><meta name="dtb:uid" content="urn:uuid:%s"/><meta name="dtb:depth" content="2"/>'
         '<meta name="dtb:totalPageCount" content="0"/><meta name="dtb:maxPageNumber" content="0"/></head>\n'
-        '<docTitle><text>인사이트 킹제임스 성경 (한영대역)</text></docTitle>\n'
+        '<docTitle><text>정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션 (한영대역)</text></docTitle>\n'
         '<navMap>%s</navMap></ncx>') % (BOOK_ID, "".join(np))
 
     os.makedirs(os.path.dirname(OUT), exist_ok=True)

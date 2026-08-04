@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""인사이트 킹제임스 성경 · 한영대역 — Word(.docx) 생성
+"""정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션 · 한영대역 — Word(.docx) 생성
 
   PDF 정본(tools/build_pdfs.py build_parallel)과 같은 기준(2026-08-03 확정):
     신국판 152×225 · 존더반 병렬 표준형(좌 한글/우 영어 절 정렬) ·
@@ -33,7 +33,7 @@ if LIMIT:
     books = books[:LIMIT]
     OUT = os.path.join(ROOT, "책원고", "출판준비", "_smoke_parallel.docx")
 else:
-    OUT = os.path.join(ROOT, "책원고", "성경전서_한영대역_KJV.docx")
+    OUT = os.path.join(ROOT, "책원고", "정본역킹제임스성경_한영대역.docx")
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 
 try:
@@ -103,9 +103,11 @@ def set_insideV(tbl):
 
 # ── 표지 (1단) ──
 for _ in range(5): doc.add_paragraph()
-center("인사이트 킹제임스 성경", 26, True, INK)
+# 역본명이 27자라 한 줄에 안 들어감 → 2줄로 나눠 배치
+center("정본역(正本譯) 킹제임스 성경", 24, True, INK, 0, 2)
+center("헤리티지 에디션", 16, True, INK)
 center("한영대역", 19, True, GREEN)
-center("THE INSIGHT KING JAMES BIBLE · 1611", 10, False, GRAY)
+center("THE HERITAGE KJV · AUTHENTIC VERSION · 1611", 10, False, GRAY)
 for _ in range(8): doc.add_paragraph()
 center("바이블 인사이트 출판사", 12, True)
 
@@ -117,13 +119,14 @@ def line(txt, size=9, bold=False, color=None, after=4):
     p.paragraph_format.line_spacing = 1.35
     kf(p.add_run(txt), size, bold, color)
 line("일러두기 · 판권", 13, True, GREEN, 10)
-line("도서명  인사이트 킹제임스 성경 (한영대역)", 9, True)
+line("도서명  정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션 (한영대역)", 9, True)
+line("‘정본역(正本譯)’은 공인본문(Textus Receptus)과 맛소라 본문을 저본으로 삼았음을 뜻하는 말이며, 다른 번역본의 가치를 부정하는 표현이 아닙니다.")
 line("이 책의 한국어 본문은 킹제임스 성경(KJV, 1611)의 영어 본문과 그 저본인 공인본문(Textus Receptus)·맛소라 본문을 히브리어·아람어·헬라어 원문과 대조하여 바이블 인사이트가 직접 번역한 것입니다. 기존 한국어 역본을 저본으로 삼지 않은 독자적인 번역이며, 번역 원칙 전문은 biblynote.com/translation 에 공개되어 있습니다.")
 line("절마다 왼쪽에 한국어 본문, 오른쪽에 King James Version 영어 본문을 나란히 배치하여 한 절씩 대조하며 읽을 수 있습니다.")
 line("본문 소제목은 독자의 이해를 돕기 위하여 바이블 인사이트가 새로 지은 것으로, 성경 원문의 일부가 아닙니다.")
 line("영어 본문(King James Version, 1611)은 대한민국 저작권법상 보호 기간이 만료된 퍼블릭 도메인 저작물입니다.")
 line("본문 서체는 SIL Open Font License로 배포되는 Noto Serif CJK KR을 사용하였습니다.")
-line("한국어 번역 저작권 ⓒ 오광일 · 바이블 인사이트, 2026. 이 책의 한국어 본문을 출판사의 서면 허락 없이 복제·전재·배포할 수 없습니다. 다만 개인 묵상·설교·강의·논문에서의 통상적인 인용은 출처(인사이트 킹제임스 성경)를 밝히는 조건으로 허용합니다.")
+line("한국어 번역 저작권 ⓒ 오광일 · 바이블 인사이트, 2026. 이 책의 한국어 본문을 출판사의 서면 허락 없이 복제·전재·배포할 수 없습니다. 다만 개인 묵상·설교·강의·논문에서의 통상적인 인용은 출처(정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션)를 밝히는 조건으로 허용합니다.")
 line("펴낸곳  바이블 인사이트 출판사", 9, False, None, 8)
 line("옮긴이  오광일")
 line("문의  contact@biblynote.com · biblynote.com")

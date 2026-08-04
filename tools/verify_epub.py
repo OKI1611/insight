@@ -4,7 +4,7 @@ import sys, io, os, zipfile, re
 import xml.etree.ElementTree as ET
 sys.stdout.reconfigure(encoding="utf-8")
 
-P = sys.argv[1] if len(sys.argv) > 1 else r"책원고\인사이트킹제임스성경_한영대역.epub"
+P = sys.argv[1] if len(sys.argv) > 1 else r"책원고\정본역킹제임스성경_한영대역.epub"
 z = zipfile.ZipFile(P)
 names = z.namelist()
 ok = True

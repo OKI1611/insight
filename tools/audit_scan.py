@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""audit_scan.py — KJV 새번역 감수 1단계: 전권 규칙 스캔.
+"""audit_scan.py — 정본역 킹제임스 성경 감수 1단계: 전권 규칙 스캔.
 
 기준쌍: bible/kjv/<Book>.json (영문) ↔ bible/kr/<Book>-<ch>.json (한국어, 사이트 표시본).
 (bible/en/ 은 일부 책에서 절 분할·본문이 낡아 감수 기준으로 쓰지 않음 — precheck 참조)

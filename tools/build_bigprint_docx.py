@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""인사이트 킹제임스 성경 · 큰글자판 — Word(.docx) 생성
+"""정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션 · 큰글자판 — Word(.docx) 생성
 
   PDF 정본(tools/build_pdfs.py)과 같은 기준(2026-08-03 확정):
     2단 배열(자이언트 프린트형) · 큰 숫자 장 표기 · 소제목 수록 ·
@@ -21,7 +21,7 @@ except Exception:
     pass
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUT  = os.path.join(ROOT, "책원고", "인사이트킹제임스성경_큰글자판.docx")
+OUT  = os.path.join(ROOT, "책원고", "정본역킹제임스성경_큰글자판.docx")
 books = json.load(io.open(os.path.join(ROOT, "bible", "books.json"), encoding="utf-8"))
 
 try:
@@ -89,7 +89,9 @@ def add_page_number(section):
 
 # ── 표지 (1단 섹션) ──
 for _ in range(6): doc.add_paragraph()
-center("인사이트 킹제임스 성경", 32, True, INK)
+# 역본명이 27자라 한 줄에 안 들어감 → 2줄로 나눠 배치
+center("정본역(正本譯) 킹제임스 성경", 30, True, INK, 0, 2)
+center("헤리티지 에디션", 20, True, INK)
 center("큰글자판", 24, True, GREEN)
 center("전 66권", 14, False, GRAY)
 for _ in range(9): doc.add_paragraph()
@@ -103,12 +105,13 @@ def line(txt, size=11, bold=False, color=None, after=4):
     p.paragraph_format.line_spacing = 1.35
     kf(p.add_run(txt), size, bold, color)
 line("일러두기 · 판권", 15, True, GREEN, 12)
-line("도서명  인사이트 킹제임스 성경 (큰글자판)", 11, True)
+line("도서명  정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션 (큰글자판)", 11, True)
+line("‘정본역(正本譯)’은 공인본문(Textus Receptus)과 맛소라 본문을 저본으로 삼았음을 뜻하는 말이며, 다른 번역본의 가치를 부정하는 표현이 아닙니다.")
 line("이 책의 한국어 본문은 킹제임스 성경(KJV, 1611)의 영어 본문과 그 저본인 공인본문(Textus Receptus)·맛소라 본문을 히브리어·아람어·헬라어 원문과 대조하여 바이블 인사이트가 직접 번역한 것입니다. 기존 한국어 역본을 저본으로 삼지 않은 독자적인 번역이며, 번역 원칙 전문은 biblynote.com/translation 에 공개되어 있습니다.")
 line("본문 소제목은 독자의 이해를 돕기 위하여 바이블 인사이트가 새로 지은 것으로, 성경 원문의 일부가 아닙니다.")
 line("눈이 편안하도록 본문 글자를 크게 하고 줄 간격을 넉넉하게 조판하였습니다.")
 line("본문 서체는 SIL Open Font License로 배포되는 Noto Serif CJK KR을 사용하였습니다.")
-line("한국어 번역 저작권 ⓒ 오광일 · 바이블 인사이트, 2026. 이 책의 한국어 본문을 출판사의 서면 허락 없이 복제·전재·배포할 수 없습니다. 다만 개인 묵상·설교·강의·논문에서의 통상적인 인용은 출처(인사이트 킹제임스 성경)를 밝히는 조건으로 허용합니다.")
+line("한국어 번역 저작권 ⓒ 오광일 · 바이블 인사이트, 2026. 이 책의 한국어 본문을 출판사의 서면 허락 없이 복제·전재·배포할 수 없습니다. 다만 개인 묵상·설교·강의·논문에서의 통상적인 인용은 출처(정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션)를 밝히는 조건으로 허용합니다.")
 line("펴낸곳  바이블 인사이트 출판사", 11, False, None, 10)
 line("옮긴이  오광일")
 line("문의  contact@biblynote.com · biblynote.com")

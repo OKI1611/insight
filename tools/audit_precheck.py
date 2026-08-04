@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""audit_precheck.py — KJV 새번역 감수 0단계: 3중 정합성 사전 점검.
+"""audit_precheck.py — 정본역 킹제임스 성경 감수 0단계: 3중 정합성 사전 점검.
 
 bible/kjv/<Book>.json (영문 원본) · bible/en/<Book>-<ch>.json (ko 필드) ·
 bible/kr/<Book>-<ch>.json (번역 사본) 세 데이터가 장·절 단위로 일치하는지 확인한다.

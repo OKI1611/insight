@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-"""audit_report.py — KJV 새번역 감수 4단계: 바탕화면 보고서 생성.
+"""audit_report.py — 정본역 킹제임스 성경 감수 4단계: 바탕화면 보고서 생성.
 
-산출: 바탕화면/KJV새번역_감수/ 폴더
+산출: 바탕화면/정본역킹제임스성경_감수/ 폴더
   00_감수요약.md  10_인칭단복수.md  20_수동태.md  30_성별.md  40_고유명사.md  50_신명표기.md
 
 승인 방식: 각 md의 체크박스를 [x] 로 바꾸면 tools/audit_collect_approved.py 가 수집.
@@ -13,7 +13,7 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='repla
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 AUD = os.path.join(ROOT, 'tools', '_audit')
 BIBLE = os.path.join(ROOT, 'bible')
-OUT = r'C:\Users\SIMSTER\Desktop\KJV새번역_감수'
+OUT = r'C:\Users\SIMSTER\Desktop\정본역킹제임스성경_감수'
 os.makedirs(OUT, exist_ok=True)
 
 cands = [json.loads(l) for l in open(os.path.join(AUD, 'candidates.jsonl'), encoding='utf-8')]
@@ -193,7 +193,7 @@ open(os.path.join(OUT, '50_신명표기.md'), 'w', encoding='utf-8').write('\n'.
 
 # ═════ 00 요약 ═════
 n_err = len(err) + len(p13_err) + len([c for c in dvA if verdicts.get(c['id'], {}).get('verdict') == 'error'])
-md = ['# KJV 새번역 전수 감수 보고서', '',
+md = ['# 정본역 킹제임스 성경 전수 감수 보고서', '',
       '영어 KJV(31,102절)와 원어(히브리어 TAHOT·헬라어 TAGNT/TR)를 전권 비교대조한 결과입니다.', '',
       '## 한눈 요약', '',
       '| 범주 | 스캔 후보 | 자동 판별 | 남은 결정 |',
