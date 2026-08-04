@@ -2,7 +2,7 @@
 """Insert OG/Twitter/canonical meta into pages missing them."""
 import io, os
 
-IMG = "https://biblynote.com/images/og-cover.png?v=2"
+IMG = "https://biblynote.com/images/og-cover.png?v=7"
 SITE = "BIBLY 바이블 인사이트"
 ANCHOR = '<link rel="icon" href="/favicon.ico" sizes="any" />'
 
