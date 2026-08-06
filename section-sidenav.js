@@ -79,6 +79,9 @@
     var curSec = pickSection(nav);
     if(!curSec) return; // 어느 섹션에도 속하지 않는 페이지(홈 등)에는 사이드바 없음
     var W = 216;
+    // 왼쪽은 사이드바 폭만큼 항상 비우고, 오른쪽은 화면이 넓어질 때만 같은 폭까지 따라 붙는다.
+    var PL = 'max(0px, (100vw - 1360px) / 2) + ' + W + 'px';
+    var PR = 'max(0px, (100vw - 1360px) / 2) + min(' + W + 'px, max(24px, 100vw - 1168px))';
     var st = document.createElement('style');
     st.id = '__sectionNavStyle';
     st.textContent =
@@ -106,10 +109,12 @@
       + '#sectionSideNav .sn-gkids a{display:block;padding:6px 12px 6px 38px;border-radius:8px;font-size:12.3px;font-weight:600;color:#6a7080;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:background .15s,transform .15s}'
       + '#sectionSideNav .sn-gkids a:hover{background:#f4f6fa;color:#00704a;transform:translateX(2px)}'
       + '#sectionSideNav .foot{margin-top:auto;padding:12px 10px 2px;font-size:10.5px;color:rgba(33,58,107,.4);line-height:1.55;border-top:1px solid rgba(33,58,107,.06)}'
+      // 오른쪽 여백: 사이드바 폭을 그대로 마주 비우면 1024~1360px 구간에서 본문이 되레 좁아진다
+      // (1024px에서 본문 열이 768px일 때보다 좁아지던 문제). 여유가 생기는 만큼만 대칭을 맞춘다.
       + '@media(min-width:1024px){'
-      + 'body{padding-left:calc(max(0px, (100vw - 1360px) / 2) + ' + W + 'px);padding-right:calc(max(0px, (100vw - 1360px) / 2) + ' + W + 'px)}'
+      + 'body{padding-left:calc(' + PL + ');padding-right:calc(' + PR + ')}'
       + '#sectionSideNav{display:flex;left:max(0px, calc((100vw - 1360px) / 2))}'
-      + 'body>.bibly-topbar,body>header{margin-left:calc(-1 * (max(0px, (100vw - 1360px) / 2) + ' + W + 'px));width:calc(100% + 2 * (max(0px, (100vw - 1360px) / 2) + ' + W + 'px))}'
+      + 'body>.bibly-topbar,body>header{margin-left:calc(-1 * (' + PL + '));width:calc(100% + (' + PL + ') + (' + PR + '))}'
       + 'body #biblyRail{display:none}'   // 섹션 사이드바가 뜨는 데스크톱에선 겹치는 빠른이동 레일 숨김(중복·로드순서 무관하게 우선)
       + '}';
     document.head.appendChild(st);

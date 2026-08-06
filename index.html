@@ -403,7 +403,8 @@
         <p class="text-[13px] md:text-sm text-neutral-900/60 mt-2">강의로 다 담지 못한 이야기를, 책으로 만나실 수 있습니다</p>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-3xl lg:max-w-4xl mx-auto">
+      <!-- 세 권이라 2열이면 한 권이 홀로 내려간다 → sm 이상은 항상 3열(640px에서도 판매처 버튼이 들어감) -->
+      <div class="grid sm:grid-cols-3 gap-4 md:gap-6 max-w-3xl lg:max-w-4xl mx-auto">
         <!-- 가면의 시대 (신간) -->
         <div class="bg-white rounded-2xl p-5 md:p-6 text-center shadow-soft relative">
           <span class="absolute top-3 right-3 text-[10.5px] font-bold text-white bg-gold rounded-full px-2 py-0.5">신간</span>
