@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <script src="/content-loader.js?v=20260703f"></script>
   <script src="/site-header.js?v=20260805a"></script>
+  <script src="/pager.js?v=1"></script>
   <script src="/section-sidenav.js?v=16"></script>
   <script src="/recent-ticker.js?v=2"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -110,6 +111,7 @@
     <div id="resList" class="bg-white rounded-2xl border border-ink/8 shadow-soft divide-y divide-ink/5 overflow-hidden">
       <p class="text-neutral-900/40 text-sm text-center py-10">자료를 불러오는 중…</p>
     </div>
+    <div id="resPager"></div>
   </main>
 
   <script>
@@ -168,12 +170,23 @@
       document.getElementById('fFile').value=''; document.getElementById('fFileName').textContent=''; document.getElementById('fMsg').textContent='';
     }
 
+    let RES = [], PAGE = 1;   // 자료 목록 페이지(10개씩)
     async function loadList(){
       const wrap = document.getElementById('resList');
       const { data, error } = await sb.from('resources').select('*').order('created_at',{ascending:false});
       if(error){ wrap.innerHTML = `<p class="text-neutral-900/40 text-sm text-center py-8">불러오기 오류: ${esc(error.message)}</p>`; return; }
-      if(!data.length){ wrap.innerHTML = '<p class="text-neutral-900/40 text-sm text-center py-10">아직 자료가 없습니다.'+(isAdmin?' 첫 자료를 올려보세요!':'')+'</p>'; return; }
-      wrap.innerHTML = data.map(r => {
+      if(!data.length){ wrap.innerHTML = '<p class="text-neutral-900/40 text-sm text-center py-10">아직 자료가 없습니다.'+(isAdmin?' 첫 자료를 올려보세요!':'')+'</p>'; document.getElementById('resPager').innerHTML=''; return; }
+      RES = data;
+      // 공유 링크(#res-id)로 들어왔다면 그 자료가 있는 쪽부터
+      if(location.hash && location.hash.startsWith('#res-')){
+        const idx = RES.findIndex(r => 'res-' + r.id === location.hash.slice(1));
+        if(idx >= 0) PAGE = Math.floor(idx / BiblyPager.PER) + 1;
+      }
+      BiblyPager.render(document.getElementById('resPager'), {
+        total: RES.length, page: PAGE, scrollTo: '#resList',
+        onGo: p => { PAGE = p; loadList(); }
+      });
+      wrap.innerHTML = BiblyPager.slice(RES, PAGE).map(r => {
         const url = (r.file_url || r.link || '').trim();
         const hasBody = !!(r.description && r.description.trim());
         return `<div id="res-${r.id}" class="px-5 py-4 scroll-mt-24">

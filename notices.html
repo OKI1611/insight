@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <script src="/content-loader.js?v=20260703f"></script>
   <script src="/site-header.js?v=20260805a"></script>
+  <script src="/pager.js?v=1"></script>
   <script src="/section-sidenav.js?v=16"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>공지사항 · 이벤트 — BIBLY 바이블 인사이트</title>
@@ -62,6 +63,7 @@
     </div>
 
     <div id="list" class="space-y-3"><p class="text-neutral-900/40 text-sm py-8 text-center">불러오는 중…</p></div>
+    <div id="listPager"></div>
   </main>
 
   <script>
@@ -71,8 +73,9 @@
     const IS_ADMIN = !!(SESSION && SESSION.user && (SESSION.user.email||'').toLowerCase()===ADMIN_EMAIL);
     const esc = s => String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
     let tab = (new URLSearchParams(location.search).get('tab')==='event') ? 'event' : 'notice';
+    let PAGE = 1;   // 목록 페이지(10개씩) — 고정 글은 정렬상 늘 앞이라 1쪽에 모인다
 
-    function setTab(t){ tab=t; renderTabs(); load(); history.replaceState(null,'', 'notices.html'+(t==='event'?'?tab=event':'')); }
+    function setTab(t){ tab=t; PAGE=1; renderTabs(); load(); history.replaceState(null,'', 'notices.html'+(t==='event'?'?tab=event':'')); }
     function renderTabs(){
       const on='bg-white text-neutral-900 shadow-soft', off='text-neutral-900/50';
       document.getElementById('tab-notice').className='px-5 py-2 rounded-full text-sm font-semibold transition '+(tab==='notice'?on:off);
@@ -86,8 +89,12 @@
       try{
         const { data, error } = await sb.from('notices').select('*').eq('kind',tab).order('pinned',{ascending:false}).order('created_at',{ascending:false}).limit(50);
         if(error) throw error;
-        if(!data||!data.length){ box.innerHTML=`<p class="text-neutral-900/40 text-sm py-12 text-center">아직 ${tab==='event'?'이벤트':'공지'}가 없습니다.</p>`; return; }
-        box.innerHTML = data.map(n=>`
+        if(!data||!data.length){ box.innerHTML=`<p class="text-neutral-900/40 text-sm py-12 text-center">아직 ${tab==='event'?'이벤트':'공지'}가 없습니다.</p>`; document.getElementById('listPager').innerHTML=''; return; }
+        BiblyPager.render(document.getElementById('listPager'), {
+          total: data.length, page: PAGE, scrollTo: '#list',
+          onGo: p => { PAGE = p; load(); }
+        });
+        box.innerHTML = BiblyPager.slice(data, PAGE).map(n=>`
           <div class="bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden">
             <button onclick="this.nextElementSibling.classList.toggle('hidden')" class="w-full flex items-center gap-3 px-5 py-4 text-left">
               ${n.pinned?'<span class="shrink-0 text-[10px] font-bold text-white bg-gold px-1.5 py-0.5 rounded">고정</span>':''}

@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <script src="/content-loader.js?v=20260703f"></script>
   <script src="/site-header.js?v=20260805a"></script>
+  <script src="/pager.js?v=1"></script>
   <script src="/section-sidenav.js?v=16"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>강의 요청·건의 — BIBLY 바이블 인사이트</title>
@@ -136,6 +137,7 @@
     </div>
 
     <div id="list" class="space-y-4"></div>
+    <div id="listPager"></div>
 
       </div><!-- /우측 콘텐츠 -->
     </div><!-- /grid -->
@@ -147,6 +149,7 @@
     const STATUSES = ['접수','검토중','제작확정','완료'];
     let currentUser = null, currentName = '회원', isAdmin = false;
     let curType = 'request', curSort = 'votes', curFilter = 'all', ROWS = [], VOTES = {}, MYVOTES = new Set();
+    let PAGE = 1;   // 목록 페이지(10개씩)
 
     function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
     function sanitize(html){ const d=document.createElement('div'); d.innerHTML=html||''; d.querySelectorAll('script,style,iframe,object,embed,link,meta,base,form,input,button,textarea,svg,math,frame,frameset,applet,noscript').forEach(n=>n.remove()); d.querySelectorAll('*').forEach(el=>{ [...el.attributes].forEach(a=>{ const name=a.name.toLowerCase(), val=a.value||''; if(/^on/i.test(name)){ el.removeAttribute(a.name); return; } if(/^(href|src|xlink:href|formaction|action|srcdoc|srcset|data|background|poster)$/.test(name)){ const v=val.replace(/\s+/g,'').toLowerCase(), okImg=(name==='src')&&/^data:image\//i.test(val.trim()); if(!okImg && /^(javascript:|data:|vbscript:)/.test(v)){ el.removeAttribute(a.name); return; } } if(name==='style' && /expression\(|javascript:|behavior:|@import|url\(/i.test(val)){ el.removeAttribute(a.name); } }); if(el.tagName==='A'){ el.setAttribute('rel','noopener noreferrer nofollow'); } }); return d.innerHTML; }
@@ -240,7 +243,7 @@
       title.placeholder = t==='request' ? '제목 (예: 다니엘서 70이레를 자세히 다뤄주세요)' : '제목 (예: 강의 자막을 키워주세요)';
     }
     function setSort(s){
-      curSort = s;
+      curSort = s; PAGE = 1;
       const on = 'bg-gold/15 text-gold border-gold', off = 'bg-white text-neutral-900/50 border-ink/15 hover:bg-ink/5';
       const base = 'px-3.5 py-1.5 rounded-full text-xs font-semibold border transition ';
       document.getElementById('sort-votes').className = base + (s==='votes'?on:off);
@@ -249,7 +252,7 @@
     }
     // 좌측 사이드 메뉴: 목록 필터(+작성 폼 종류 동기화)
     function setFilter(f){
-      curFilter = f;
+      curFilter = f; PAGE = 1;
       ['all','request','feedback'].forEach(x => { const el = document.getElementById('rtab-' + x); if(el) el.className = 'boardBtn' + (f === x ? ' on' : ''); });
       if(f === 'request' || f === 'feedback') setType(f);
       // 사이드바로 종류가 정해지면 작성폼 토글 숨김(중복 방지), '전체'면 토글 노출
@@ -313,8 +316,12 @@
         ? ((VOTES[b.id]||0) - (VOTES[a.id]||0)) || (new Date(b.created_at) - new Date(a.created_at))
         : (new Date(b.created_at) - new Date(a.created_at)));
       document.getElementById('reqCount').textContent = `총 ${rows.length}건`;
-      if(!rows.length){ list.innerHTML = `<div class="text-center text-neutral-900/45 py-12"><p class="text-3xl mb-2"></p><p class="text-sm">아직 등록된 요청이 없어요.<br>가장 먼저 듣고 싶은 주제를 신청해 보세요!</p></div>`; return; }
-      list.innerHTML = rows.map(cardHTML).join('');
+      if(!rows.length){ list.innerHTML = `<div class="text-center text-neutral-900/45 py-12"><p class="text-3xl mb-2"></p><p class="text-sm">아직 등록된 요청이 없어요.<br>가장 먼저 듣고 싶은 주제를 신청해 보세요!</p></div>`; document.getElementById('listPager').innerHTML=''; return; }
+      list.innerHTML = BiblyPager.slice(rows, PAGE).map(cardHTML).join('');
+      BiblyPager.render(document.getElementById('listPager'), {
+        total: rows.length, page: PAGE, scrollTo: '#list',
+        onGo: p => { PAGE = p; render(); }
+      });
     }
 
     function statusBadge(s){
