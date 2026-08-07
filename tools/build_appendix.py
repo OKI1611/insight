@@ -283,6 +283,191 @@ def resolve_verses(sections):
                 b["text"] = verse_text(b["ref"])
     return sections
 
+# ═══════════════════ 공용 렌더러 ═══════════════════
+# 5개 빌더(PDF 2·Word 2·EPUB 2)가 아래 렌더러만 호출한다.
+
+def pdf_flowables(sections, col_w, big=False):
+    """reportlab 플로어블 목록 — 섹션마다 새 페이지 + 러닝헤드 마커(_bibly_head)"""
+    from reportlab.lib.styles import ParagraphStyle
+    from reportlab.lib.enums import TA_JUSTIFY, TA_CENTER
+    from reportlab.lib.colors import HexColor
+    from reportlab.lib.units import mm
+    from reportlab.platypus import Paragraph, Spacer, PageBreak, Table, TableStyle
+    from reportlab.platypus import Image as RLImage
+    GREEN = HexColor("#00593c"); INK = HexColor("#232d28"); GRAY = HexColor("#8a8a8a")
+    RULE = HexColor("#c9c2b4"); SUB = HexColor("#4a5a52")
+    bs = 11.5 if big else 9.2                       # 본문 크기(판형별)
+    s_t  = ParagraphStyle("axt",  fontName="NSKB", fontSize=bs+7, leading=(bs+7)*1.4,
+                          textColor=INK, spaceBefore=6, spaceAfter=10)
+    s_h  = ParagraphStyle("axh",  fontName="NSKB", fontSize=bs+1.5, leading=(bs+1.5)*1.45,
+                          textColor=GREEN, spaceBefore=9, spaceAfter=4)
+    s_p  = ParagraphStyle("axp",  fontName="NSK",  fontSize=bs, leading=bs*1.72,
+                          alignment=TA_JUSTIFY, textColor=INK, spaceAfter=5, wordWrap="CJK")
+    s_ld = ParagraphStyle("axl",  parent=s_p, fontName="NSKB", textColor=SUB,
+                          spaceBefore=3, spaceAfter=8)
+    s_kv = ParagraphStyle("axk",  parent=s_p, spaceAfter=6)
+    s_v  = ParagraphStyle("axv",  parent=s_p, leftIndent=4*mm, spaceAfter=7)
+    s_nt = ParagraphStyle("axn",  fontName="NSK", fontSize=bs-1.2, leading=(bs-1.2)*1.6,
+                          textColor=GRAY, spaceBefore=6)
+    s_tb = ParagraphStyle("axtb", fontName="NSK", fontSize=bs-0.8, leading=(bs-0.8)*1.5,
+                          textColor=INK, wordWrap="CJK")
+    s_th = ParagraphStyle("axth", parent=s_tb, fontName="NSKB", textColor=GREEN)
+    s_ct = ParagraphStyle("axc",  parent=s_p, alignment=TA_CENTER)
+    def E(x):
+        return str(x).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    out = []
+    for sec in sections:
+        out.append(PageBreak())
+        tp = Paragraph(E(sec["title"]), s_t)
+        tp._bibly_head = (sec["title"].split(" · ")[-1], "APPENDIX" if "부록" in sec["title"] else "")
+        out.append(tp)
+        for b in sec["blocks"]:
+            t = b["t"]
+            if t == "p":
+                out.append(Paragraph(E(b["text"]), s_p))
+            elif t == "h":
+                out.append(Paragraph(E(b["text"]), s_h))
+            elif t == "lead":
+                out.append(Paragraph(E(b["text"]), s_ld))
+            elif t == "note":
+                out.append(Paragraph(E(b["text"]), s_nt))
+            elif t == "kv":
+                out.append(Paragraph('<font name="NSKB">%s</font>  %s' % (E(b["term"]), E(b["desc"])), s_kv))
+            elif t == "verse":
+                out.append(Paragraph('<font name="NSKB" color="#00593c">%s</font>  %s'
+                                     % (E(b["ref"]), E(b.get("text", ""))), s_v))
+            elif t == "table":
+                ncol = len(b["head"])
+                data = [[Paragraph(E(h), s_th) for h in b["head"]]] + \
+                       [[Paragraph(E(c), s_tb) for c in row] for row in b["rows"]]
+                if ncol == 3:                       # 첫 열(단위·용어)을 살짝 넓게
+                    w0 = col_w * 0.34
+                    ws = [w0] + [(col_w - w0) / 2] * 2
+                else:
+                    ws = [col_w / ncol] * ncol
+                tb = Table(data, colWidths=ws, repeatRows=1)
+                tb.setStyle(TableStyle([
+                    ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                    ("LINEBELOW", (0, 0), (-1, 0), 0.8, GREEN),
+                    ("LINEBELOW", (0, 1), (-1, -1), 0.3, RULE),
+                    ("TOPPADDING", (0, 0), (-1, -1), 2.5), ("BOTTOMPADDING", (0, 0), (-1, -1), 2.5),
+                    ("LEFTPADDING", (0, 0), (-1, -1), 2), ("RIGHTPADDING", (0, 0), (-1, -1), 4)]))
+                out += [Spacer(1, 2), tb, Spacer(1, 5)]
+            elif t == "qr":
+                make_qr()
+                out += [Spacer(1, 8), RLImage(QR_PNG, width=30*mm, height=30*mm, hAlign="CENTER"),
+                        Spacer(1, 3), Paragraph(E(b.get("caption", b["url"])), s_ct)]
+    return out
+
+
+def docx_render(doc, sections, font, base=10.5, first_break=True):
+    """python-docx 렌더 — 호출부의 현재 섹션(1단 권장)에 이어서 그린다.
+       표는 내장 Table Grid 스타일만 사용(tblPr 수동 조작 금지 — 과거 손상 사고 예방)."""
+    from docx.shared import Pt, Cm, RGBColor
+    from docx.enum.text import WD_ALIGN_PARAGRAPH
+    from docx.oxml.ns import qn
+    GREEN = RGBColor(0x00, 0x59, 0x3c); INK = RGBColor(0x23, 0x2d, 0x28)
+    GRAY = RGBColor(0x8a, 0x8a, 0x8a); SUB = RGBColor(0x4a, 0x5a, 0x52)
+    def kf(run, size=None, bold=False, color=None):
+        run.font.name = font
+        run._element.get_or_add_rPr().get_or_add_rFonts().set(qn("w:eastAsia"), font)
+        if size: run.font.size = Pt(size)
+        run.bold = bold
+        if color: run.font.color.rgb = color
+        return run
+    def para(after=4, before=0, line=1.5):
+        p = doc.add_paragraph()
+        p.paragraph_format.space_after = Pt(after); p.paragraph_format.space_before = Pt(before)
+        p.paragraph_format.line_spacing = line
+        return p
+    for si, sec in enumerate(sections):
+        if si > 0 or first_break:
+            doc.add_page_break()
+        tp = para(after=10, before=4)
+        kf(tp.add_run(sec["title"]), base + 7, True, INK)
+        for b in sec["blocks"]:
+            t = b["t"]
+            if t == "p":
+                kf(para().add_run(b["text"]), base)
+            elif t == "h":
+                p = para(after=3, before=8); p.paragraph_format.keep_with_next = True
+                kf(p.add_run(b["text"]), base + 1.5, True, GREEN)
+            elif t == "lead":
+                kf(para(after=8, before=2).add_run(b["text"]), base, True, SUB)
+            elif t == "note":
+                kf(para(before=6).add_run(b["text"]), base - 1.5, False, GRAY)
+            elif t == "kv":
+                p = para(after=5)
+                kf(p.add_run(b["term"] + "  "), base, True, INK)
+                kf(p.add_run(b["desc"]), base)
+            elif t == "verse":
+                p = para(after=6); p.paragraph_format.left_indent = Cm(0.35)
+                kf(p.add_run(b["ref"] + "  "), base, True, GREEN)
+                kf(p.add_run(b.get("text", "")), base)
+            elif t == "table":
+                tbl = doc.add_table(rows=1, cols=len(b["head"]))
+                tbl.style = "Table Grid"
+                for h, cell in zip(b["head"], tbl.rows[0].cells):
+                    kf(cell.paragraphs[0].add_run(h), base - 1, True, GREEN)
+                for row in b["rows"]:
+                    cells = tbl.add_row().cells
+                    for c, cell in zip(row, cells):
+                        cp = cell.paragraphs[0]
+                        cp.paragraph_format.space_after = Pt(1)
+                        kf(cp.add_run(str(c)), base - 1)
+                para(after=6)
+            elif t == "qr":
+                make_qr()
+                p = para(before=8); p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                p.add_run().add_picture(QR_PNG, width=Cm(3.2))
+                p2 = para(); p2.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                kf(p2.add_run(b.get("caption", b["url"])), base - 0.5)
+
+
+EPUB_CSS = """
+h1.apx{font-size:1.35em;text-align:left;margin:1.1em 0 0.8em;color:#232d28;}
+p.lead{font-weight:bold;color:#4a5a52;margin:0.4em 0 0.9em;}
+p.kv{margin:0 0 0.55em;}
+p.apxv{margin:0 0 0.6em 0.7em;}
+table.apx{border-collapse:collapse;width:100%;margin:0.5em 0 1em;font-size:0.92em;}
+table.apx th{border-bottom:2px solid #00593c;color:#00593c;text-align:left;padding:0.25em 0.4em;}
+table.apx td{border-bottom:1px solid #d9d3c6;padding:0.25em 0.4em;vertical-align:top;}
+"""
+
+def epub_xhtml_sections(sections, qr_src="images/qr.png"):
+    """섹션별 (id, title, body_html) 목록 — 빌더가 자기 xhtml() 래퍼로 감싼다"""
+    import html as _h
+    E = _h.escape
+    out = []
+    for sec in sections:
+        parts = ['<h1 class="apx">%s</h1>' % E(sec["title"])]
+        for b in sec["blocks"]:
+            t = b["t"]
+            if t == "p":
+                parts.append("<p>%s</p>" % E(b["text"]))
+            elif t == "h":
+                parts.append("<h2>%s</h2>" % E(b["text"]))
+            elif t == "lead":
+                parts.append('<p class="lead">%s</p>' % E(b["text"]))
+            elif t == "note":
+                parts.append('<p class="small">%s</p>' % E(b["text"]))
+            elif t == "kv":
+                parts.append('<p class="kv"><b>%s</b>  %s</p>' % (E(b["term"]), E(b["desc"])))
+            elif t == "verse":
+                parts.append('<p class="apxv"><b style="color:#00593c;">%s</b>  %s</p>'
+                             % (E(b["ref"]), E(b.get("text", ""))))
+            elif t == "table":
+                rows = ["<tr>%s</tr>" % "".join("<th>%s</th>" % E(h) for h in b["head"])]
+                rows += ["<tr>%s</tr>" % "".join("<td>%s</td>" % E(c) for c in row) for row in b["rows"]]
+                parts.append('<table class="apx">%s</table>' % "".join(rows))
+            elif t == "qr":
+                make_qr()
+                parts.append('<p class="center"><img src="%s" alt="QR" style="width:9em;max-width:60%%;"/><br/>%s</p>'
+                             % (qr_src, E(b.get("caption", b["url"]))))
+        out.append((sec["id"], sec["title"], "".join(parts)))
+    return out
+
+
 if __name__ == "__main__":
     import sys
     try:

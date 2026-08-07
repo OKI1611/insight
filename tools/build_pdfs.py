@@ -26,6 +26,9 @@ try:
 except Exception:
     pass
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import build_appendix as APX                       # 앞·뒤 부록(2026-08-05 확정 구성)
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FDIR = os.path.join(ROOT, "tools", "fonts")
 pdfmetrics.registerFont(TTFont("NSK",  os.path.join(FDIR, "NotoSerifKR-Regular.ttf")))
@@ -122,6 +125,9 @@ def build_bigprint():
     s_sub = ParagraphStyle("sub", fontName="NSKB", fontSize=13.5, leading=19.5, textColor=GREEN,
                            spaceBefore=11, spaceAfter=4)          # 소제목
     story = front_matter("큰글자판", A4, big=True)
+    # 앞부록(펴내며·번역 원칙·저본·일러두기·약자표) — front_matter가 이미 PageBreak로 끝나므로 선두 것은 제거
+    story += APX.pdf_flowables(APX.resolve_verses(APX.front_sections()), doc._colw, big=True)[1:]
+    story.append(PageBreak())
     t0 = time.time()
     for bi, bk in enumerate(books):
         bt = Paragraph(esc(bk["ko"]), s_bk)
@@ -142,6 +148,8 @@ def build_bigprint():
         story.append(PageBreak())
         if (bi+1) % 10 == 0:
             print("  큰글자 %d/66 %.0fs" % (bi+1, time.time()-t0), flush=True)
+    # 뒤부록(교리 용어·원어 도표·구원의 길·환산표·암송 30선·QR) — 본문이 PageBreak로 끝나므로 선두 것은 제거
+    story += APX.pdf_flowables(APX.resolve_verses(APX.back_sections("bigprint")), doc._colw, big=True)[1:]
     doc.build(story)
     print("큰글자판 PDF:", round(os.path.getsize(out)/1e6, 1), "MB ·", doc.page, "쪽 · %.0fs" % (time.time()-t0))
     return out
@@ -219,6 +227,8 @@ def build_parallel():
         return '<font size="6.2" color="#00593c"><b>%d</b></font> ' % n
 
     story = front_matter("한영대역", P_PAGE)
+    story += APX.pdf_flowables(APX.resolve_verses(APX.front_sections()), W, big=False)[1:]
+    story.append(PageBreak())
     t0 = time.time()
     for bi, bk in enumerate(books):
         bt = Paragraph(esc(bk["ko"]), s_bk)
@@ -249,6 +259,7 @@ def build_parallel():
         story.append(PageBreak())
         if (bi+1) % 10 == 0:
             print("  대역 %d/66 %.0fs" % (bi+1, time.time()-t0), flush=True)
+    story += APX.pdf_flowables(APX.resolve_verses(APX.back_sections("parallel")), W, big=False)[1:]
     doc.build(story)
     print("한영대역 PDF:", round(os.path.getsize(out)/1e6, 1), "MB ·", doc.page, "쪽 · %.0fs" % (time.time()-t0))
     return out

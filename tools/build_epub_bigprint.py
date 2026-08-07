@@ -12,6 +12,9 @@ try:
 except Exception:
     pass
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import build_appendix as APX                       # 앞·뒤 부록(2026-08-05 확정 구성)
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT  = os.path.join(ROOT, "책원고", "정본역킹제임스성경_큰글자판.epub")
 COVER_JPG = os.path.join(ROOT, "책원고", "출판준비", "_cover_bigprint.jpg")
@@ -76,7 +79,7 @@ a{color:#00593c;text-decoration:none;}
 .tocbook{display:block;padding:0.5em 0.2em;border-bottom:1px solid #e2e6e2;font-size:1.08em;}
 .small{font-size:0.85em;color:#555;}
 .part{margin:1.4em 0 0.4em;font-weight:bold;color:#8a7350;}
-"""
+""" + APX.EPUB_CSS
 
 def xhtml(title, body):
     return ('<?xml version="1.0" encoding="utf-8"?>\n'
@@ -114,6 +117,11 @@ colophon = ('<h1>일러두기 · 판권</h1>'
  '<b>문의</b>  contact@biblynote.com · biblynote.com</p>')
 add("OEBPS/colophon.xhtml", xhtml("판권", colophon), "colophon", "application/xhtml+xml")
 
+# ── 앞부록(펴내며·번역 원칙·저본·일러두기·약자표) ──
+APX_FRONT = APX.epub_xhtml_sections(APX.resolve_verses(APX.front_sections()))
+for _sid, _ttl, _bd in APX_FRONT:
+    add("OEBPS/apx-f-%s.xhtml" % _sid, xhtml(_ttl, _bd), "apxf-%s" % _sid, "application/xhtml+xml")
+
 toc_body = ['<h1>목차</h1>', '<p class="part">구약전서</p>']
 for i, bk in enumerate(books):
     if bk.get("nt") and '<p class="part">신약전서</p>' not in toc_body:
@@ -140,6 +148,12 @@ for i, bk in enumerate(books):
         nav = '<p class="center small"><a href="b%02d.xhtml">%s 장 목차</a> · <a href="toc.xhtml">전체 목차</a></p>' % (i, E(bk["ko"]))
         cb = '<h2>%s %d장</h2>%s%s' % (E(bk["ko"]), c, "".join(parts), nav)
         add("OEBPS/b%02dc%03d.xhtml" % (i, c), xhtml("%s %d장" % (bk["ko"], c), cb), "b%02dc%03d" % (i, c), "application/xhtml+xml")
+
+# ── 뒤부록(교리 용어·원어 도표·구원의 길·환산표·암송 30선·QR) ──
+APX_BACK = APX.epub_xhtml_sections(APX.resolve_verses(APX.back_sections("bigprint")))
+for _sid, _ttl, _bd in APX_BACK:
+    add("OEBPS/apx-b-%s.xhtml" % _sid, xhtml(_ttl, _bd), "apxb-%s" % _sid, "application/xhtml+xml")
+add("OEBPS/images/qr.png", open(APX.QR_PNG, "rb").read(), "qr-img", "image/png", spine=False)
 
 manifest = "\n".join('<item id="%s" href="%s" media-type="%s"/>' % (fid, path.replace("OEBPS/", ""), mt)
                      for path, _, fid, mt, _ in files)
@@ -168,6 +182,8 @@ def navp(pid, label, src):
 np_xml.append(navp("np-cover", "표지", "cover.xhtml"))
 np_xml.append(navp("np-title", "속표지", "titlepage.xhtml"))
 np_xml.append(navp("np-colo", "판권", "colophon.xhtml"))
+for _sid, _ttl, _bd in APX_FRONT:
+    np_xml.append(navp("np-apxf-%s" % _sid, _ttl, "apx-f-%s.xhtml" % _sid))
 np_xml.append(navp("np-toc", "목차", "toc.xhtml"))
 for i, bk in enumerate(books):
     parent = '<navPoint id="np-b%02d" playOrder="%d"><navLabel><text>%s</text></navLabel><content src="b%02d.xhtml"/>' % (i, order, E(bk["ko"]), i)
@@ -177,6 +193,8 @@ for i, bk in enumerate(books):
         kids.append('<navPoint id="np-b%02dc%03d" playOrder="%d"><navLabel><text>%s %d장</text></navLabel><content src="b%02dc%03d.xhtml"/></navPoint>' % (i, c, order, E(bk["ko"]), c, i, c))
         order += 1
     np_xml.append(parent + "".join(kids) + "</navPoint>")
+for _sid, _ttl, _bd in APX_BACK:
+    np_xml.append(navp("np-apxb-%s" % _sid, _ttl, "apx-b-%s.xhtml" % _sid))
 ncx = ('<?xml version="1.0" encoding="utf-8"?>\n'
  '<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">\n'
  '<head><meta name="dtb:uid" content="urn:uuid:%s"/><meta name="dtb:depth" content="2"/>'

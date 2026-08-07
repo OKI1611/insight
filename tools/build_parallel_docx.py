@@ -24,6 +24,9 @@ try:
 except Exception:
     pass
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import build_appendix as APX                       # 앞·뒤 부록(2026-08-05 확정 구성)
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 books = json.load(io.open(os.path.join(ROOT, "bible", "books.json"), encoding="utf-8"))
 
@@ -131,6 +134,9 @@ line("펴낸곳  바이블 인사이트 출판사", 9, False, None, 8)
 line("옮긴이  오광일")
 line("문의  contact@biblynote.com · biblynote.com")
 
+# ── 앞부록 ──
+APX.docx_render(doc, APX.resolve_verses(APX.front_sections()), FONT, base=9.5)
+
 # ── 본문 ──
 body = doc.add_section(WD_SECTION.NEW_PAGE)
 body.page_width, body.page_height = Cm(15.2), Cm(22.5)
@@ -188,6 +194,9 @@ for bi, bk in enumerate(books):
             add_seg_table(seg)
     if (bi+1) % 10 == 0:
         print("  [%d/66] %s %.0fs" % (bi+1, bk["ko"], time.time()-t0), flush=True)
+
+# ── 뒤부록 ──
+APX.docx_render(doc, APX.resolve_verses(APX.back_sections("parallel")), FONT, base=9.5)
 
 doc.save(OUT)
 print("저장:", OUT, "| 절 %s | %.0fs |" % (format(total_v, ","), time.time()-t0),

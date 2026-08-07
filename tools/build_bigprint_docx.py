@@ -20,6 +20,9 @@ try:
 except Exception:
     pass
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import build_appendix as APX                       # 앞·뒤 부록(2026-08-05 확정 구성)
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT  = os.path.join(ROOT, "책원고", "정본역킹제임스성경_큰글자판.docx")
 books = json.load(io.open(os.path.join(ROOT, "bible", "books.json"), encoding="utf-8"))
@@ -116,6 +119,9 @@ line("펴낸곳  바이블 인사이트 출판사", 11, False, None, 10)
 line("옮긴이  오광일")
 line("문의  contact@biblynote.com · biblynote.com")
 
+# ── 앞부록 (1단 유지 — 표 조판에 유리) ──
+APX.docx_render(doc, APX.resolve_verses(APX.front_sections()), FONT, base=12)
+
 # ── 본문 (2단 섹션) ──
 body = doc.add_section(WD_SECTION.NEW_PAGE)
 body.page_width, body.page_height = Cm(21), Cm(29.7)
@@ -151,6 +157,15 @@ for bi, bk in enumerate(books):
             kf(p.add_run(clean_ko(v)))
     if (bi+1) % 10 == 0:
         print("  [%d/66] %s %.0fs" % (bi+1, bk["ko"], time.time()-t0), flush=True)
+
+# ── 뒤부록 (1단 새 섹션) ──
+apx = doc.add_section(WD_SECTION.NEW_PAGE)
+apx.page_width, apx.page_height = Cm(21), Cm(29.7)
+apx.top_margin = Cm(2.2); apx.bottom_margin = Cm(1.8)
+apx.left_margin = apx.right_margin = Cm(1.9)
+set_columns(apx, 1)
+add_page_number(apx)
+APX.docx_render(doc, APX.resolve_verses(APX.back_sections("bigprint")), FONT, base=12, first_break=False)
 
 doc.save(OUT)
 print("저장:", OUT, "| %.0fs |" % (time.time()-t0), round(os.path.getsize(OUT)/1e6, 1), "MB")
