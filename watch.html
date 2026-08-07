@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <script src="/content-loader.js?v=20260703f"></script>
   <script src="/site-header.js?v=20260805a"></script>
+  <script src="/pager.js?v=1"></script>
   <script src="/section-sidenav.js?v=16"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>무료 강의 시청 · 천년왕국·종말론 — 바이블 인사이트</title>
@@ -234,6 +235,7 @@
       <p class="text-sm text-neutral-900/55 mb-4"><b class="text-neutral-900">공개 질문</b>에는 강사뿐 아니라 <b class="text-neutral-900">수강생끼리도 댓글로 함께 토론</b>할 수 있어요. <b class="text-neutral-900">비밀 질문</b>은 강사만 볼 수 있습니다.</p>
       <div id="qaComposer"></div>
       <div id="qaList" class="mt-6 space-y-4"></div>
+      <div id="qaPager"></div>
     </div>
   </section>
 
@@ -840,6 +842,7 @@
       renderNote(l);
       renderQuiz(l);
       refreshLearningUI();
+      QA_PAGE = 1;   // 다른 강의로 옮기면 질의응답도 첫 쪽부터
       loadQuestions();
       const noteCard = document.getElementById('noteCard');
       const noteBtn = document.getElementById('noteToggleBtn');
@@ -1115,6 +1118,7 @@
         ${ canDel ? `<button onclick="delReply('${r.id}')" class="text-neutral-900/25 hover:text-red-500 text-base leading-none shrink-0">×</button>` : '' }
       </div>`;
     }
+    let QA_PAGE = 1;   // 질의응답 목록 페이지(10개씩)
     async function loadQuestions(){
       const list = document.getElementById('qaList'); if(!list) return;
       const id = curId(); const cnt = document.getElementById('qaCount');
@@ -1124,16 +1128,22 @@
         list.innerHTML = `<p class="text-neutral-900/40 text-sm text-center py-6">${ /relation|does not exist|schema cache|find the table/i.test(error.message||'') ? '질의응답 기능을 준비 중이에요. (관리자: lecture_questions 테이블 생성 필요)' : '불러오기 오류: ' + escQ(error.message) }</p>`;
         if(cnt) cnt.textContent = ''; return;
       }
+      if(cnt) cnt.textContent = data.length ? data.length + '개의 질문' : '';
+      // 10개씩 나눠 보여준다 — 답글도 현재 쪽 질문 것만 불러온다
+      const pageQs = BiblyPager.slice(data, QA_PAGE);
+      BiblyPager.render(document.getElementById('qaPager'), {
+        total: data.length, page: QA_PAGE, scrollTo: '#qaList',
+        onGo: p => { QA_PAGE = p; loadQuestions(); }
+      });
       // 답글(토론) 불러오기 — 테이블 없으면 조용히 건너뜀
       REPLIES_BY_Q = {};
-      if(data.length){
+      if(pageQs.length){
         try {
-          const { data: rdata, error: rerr } = await lsb.from('lecture_replies').select('*').in('question_id', data.map(q => q.id)).order('created_at', { ascending: true });
+          const { data: rdata, error: rerr } = await lsb.from('lecture_replies').select('*').in('question_id', pageQs.map(q => q.id)).order('created_at', { ascending: true });
           if(!rerr && rdata){ rdata.forEach(r => { (REPLIES_BY_Q[r.question_id] = REPLIES_BY_Q[r.question_id] || []).push(r); }); }
         } catch(e){}
       }
-      if(cnt) cnt.textContent = data.length ? data.length + '개의 질문' : '';
-      list.innerHTML = data.length ? data.map(renderQ).join('') : `<p class="text-neutral-900/40 text-sm text-center py-6">아직 질문이 없어요. 첫 질문을 남겨보세요! </p>`;
+      list.innerHTML = pageQs.length ? pageQs.map(renderQ).join('') : `<p class="text-neutral-900/40 text-sm text-center py-6">아직 질문이 없어요. 첫 질문을 남겨보세요! </p>`;
     }
     async function submitReply(qid){
       const ta = document.getElementById('rep-' + qid); const content = (ta ? ta.value : '').trim();

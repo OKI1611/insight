@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <script src="/content-loader.js?v=20260703f"></script>
   <script src="/site-header.js?v=20260805a"></script>
+  <script src="/pager.js?v=1"></script>
   <script src="/section-sidenav.js?v=16"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>성경 번역 이야기 — 번역 노트 · BIBLY 바이블 인사이트</title>
@@ -83,6 +84,7 @@
       <div id="chips" class="flex flex-wrap gap-2 mb-4"></div>
       <p id="countTxt" class="text-xs text-neutral-900/50 mb-3"></p>
       <div id="cards" class="grid gap-3"></div>
+      <div id="cardsPager"></div>
     </main>
 
     <!-- 관리자 편집 모달 -->
@@ -221,7 +223,7 @@
         return '<button class="chip'+(CAT===c[0]?' on':'')+'" data-c="'+c[0]+'">'+esc(c[1])+'</button>';
       }).join('');
       document.querySelectorAll('#chips .chip').forEach(function(b){
-        b.onclick=function(){ CAT=b.dataset.c; renderChips(); renderCards(); };
+        b.onclick=function(){ CAT=b.dataset.c; NOTE_PAGE=1; renderChips(); renderCards(); };
       });
     }
     // 본문 블록에서 검색용 평문 추출
@@ -235,6 +237,7 @@
       try{ return s.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig'),'<mark class="bg-gold/25 rounded px-0.5">$1</mark>'); }
       catch(e){ return s; }
     }
+    var NOTE_PAGE = 1;   // 노트 목록 페이지(10개씩)
     function renderCards(){
       var q=(document.getElementById('q').value||'').trim().toLowerCase();
       document.getElementById('qClear').classList.toggle('hidden', !q);
@@ -246,7 +249,11 @@
       cnt.innerHTML = q
         ? '<b class="text-gold">'+list.length+'</b>편 검색됨 <span class="text-neutral-900/35">· 전체 '+DATA.notes.length+'편</span>'
         : '모두 <b class="text-gold">'+DATA.notes.length+'</b>편'+(CAT!=='all'? ' <span class="text-neutral-900/35">· 이 분류 '+list.length+'편</span>':'');
-      document.getElementById('cards').innerHTML = list.map(function(n){
+      BiblyPager.render(document.getElementById('cardsPager'), {
+        total: list.length, page: NOTE_PAGE, scrollTo: '#cards',
+        onGo: function(p){ NOTE_PAGE = p; renderCards(); }
+      });
+      document.getElementById('cards').innerHTML = BiblyPager.slice(list, NOTE_PAGE).map(function(n){
         return '<a class="noteCard relative" href="translation-notes.html?id='+encodeURIComponent(n.id)+'">'
           + '<div class="flex items-center gap-2 mb-1.5">'
           + '<span class="shrink-0 w-6 h-6 rounded-full bg-ink/5 text-neutral-900/50 text-[11px] font-bold grid place-items-center">'+numOf[n.id]+'</span>'
@@ -372,8 +379,8 @@
         renderChips(); renderCards();
         // 검색
         var qi=el('q'), t=null;
-        qi.addEventListener('input', function(){ clearTimeout(t); t=setTimeout(renderCards, 120); });
-        el('qClear').onclick=function(){ qi.value=''; qi.focus(); renderCards(); };
+        qi.addEventListener('input', function(){ clearTimeout(t); t=setTimeout(function(){ NOTE_PAGE=1; renderCards(); }, 120); });
+        el('qClear').onclick=function(){ qi.value=''; qi.focus(); NOTE_PAGE=1; renderCards(); };
         // 편집기 버튼
         el('btnNew').onclick=function(){ openEditor(null); };
         el('edClose').onclick=closeEditor;

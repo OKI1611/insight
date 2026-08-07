@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <script src="/content-loader.js?v=20260703f"></script>
   <script src="/site-header.js?v=20260805a"></script>
+  <script src="/pager.js?v=1"></script>
   <script src="/section-sidenav.js?v=16"></script>
   <script src="/protect.js?v=1"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -73,6 +74,7 @@
       </div>
       <!-- 검색 결과 -->
       <div id="searchResults" class="hidden"></div>
+      <div id="searchPager"></div>
 
       <div id="themeGrid" class="grid sm:grid-cols-2 gap-4">
         <p class="text-neutral-900/40 text-sm text-center py-16 col-span-2">불러오는 중…</p>
@@ -111,6 +113,7 @@
 
       <!-- 탭② 묻고 답하기 (Q&A) -->
       <div id="qaPanel" class="hidden"></div>
+      <div id="qaPagerBox"></div>
 
       <div class="text-center mt-8">
         <button onclick="showGrid()" class="text-sm text-gold hover:underline">← 다른 주제 보기</button>
@@ -212,6 +215,7 @@
     function openTheme(id, noScroll){
       const t = THEMES.find(x=>x.id===id); if(!t) return;
       CURRENT = t;
+      QA_PAGE = 1;   // 다른 주제로 옮기면 첫 쪽부터
       const ord = (t.levels?levelOrder():[]); CUR_LEVEL = ord.length?ord[0]:'beginner';
       history.replaceState(null,'','?theme='+id);
       const sub = t.levels ? `초급 → 고급, 단계별로 깊어지는 ${(t.levels.advanced||[]).length}절` : `${(t.verses||[]).length}개 핵심 성구 · 한국어 새 번역`;
@@ -245,13 +249,17 @@
       if(!isV) renderQa();
     }
     // 현재 주제의 Q&A 목록
+    var QA_PAGE = 1, SEARCH_PAGE = 1, LAST_Q = '';   // 주제별 Q&A·검색 결과 페이지(10개씩)
     function renderQa(){
       var list=(QA_BY_THEME[CURRENT.id]||[]);
       var admin=isAdmin();
       var head = `<div class="flex items-center justify-between mb-3"><p class="text-[13px] text-neutral-900/50">이 주제의 자주 묻는 질문 <b class="text-gold">${list.length}</b>개 · 제목을 누르면 답변이 펼쳐집니다.</p>${admin?`<button onclick="openEditor()" class="text-[12px] font-bold text-gold border border-gold/30 rounded-full px-3 py-1 hover:bg-gold/10 shrink-0">＋ 작성</button>`:''}</div>`;
-      $('qaPanel').innerHTML = head + (list.length ? qaListHtml(list,'') : '<p class="text-neutral-900/45 py-10 text-center text-sm">이 주제의 질문은 곧 추가됩니다.</p>');
+      var start=(QA_PAGE-1)*BiblyPager.PER;
+      $('qaPanel').innerHTML = head + (list.length ? qaListHtml(BiblyPager.slice(list,QA_PAGE),'',start) : '<p class="text-neutral-900/45 py-10 text-center text-sm">이 주제의 질문은 곧 추가됩니다.</p>');
+      BiblyPager.render($('qaPagerBox'), { total:list.length, page:QA_PAGE, scrollTo:'#qaPanel',
+        onGo: function(p){ QA_PAGE=p; renderQa(); } });
     }
-    function qaListHtml(arr,q){ return '<div class="bg-white rounded-2xl border border-ink/8 shadow-soft px-4 divide-y divide-ink/6">'+arr.map((e,i)=>qRow(e,q,i+1)).join('')+'</div>'; }
+    function qaListHtml(arr,q,start){ return '<div class="bg-white rounded-2xl border border-ink/8 shadow-soft px-4 divide-y divide-ink/6">'+arr.map((e,i)=>qRow(e,q,(start||0)+i+1)).join('')+'</div>'; }
     function hl(text,q){ if(!q) return esc(text); var safe=esc(text); try{ var re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig'); return safe.replace(re,'<mark>$1</mark>'); }catch(e){ return safe; } }
     function qRow(e,q,num){
       var ans=(e.def||'').replace(/^\s*한마디로\s*[—-]\s*/,'');
@@ -283,13 +291,17 @@
     // 통합 검색(주제 전체 Q&A) — 히어로 검색창
     function onSearch(){
       var q=($('q').value||'').trim().toLowerCase();
-      if(!q){ $('searchResults').classList.add('hidden'); $('searchResults').innerHTML=''; $('themeGrid').classList.remove('hidden'); return; }
+      if(q!==LAST_Q){ SEARCH_PAGE=1; LAST_Q=q; }   // 검색어가 바뀌면 첫 쪽부터
+      if(!q){ $('searchResults').classList.add('hidden'); $('searchResults').innerHTML=''; $('searchPager').innerHTML=''; $('themeGrid').classList.remove('hidden'); return; }
       $('themeGrid').classList.add('hidden'); $('searchResults').classList.remove('hidden');
       var all=[]; Object.keys(QA_BY_THEME).forEach(k=>{ (QA_BY_THEME[k]||[]).forEach(e=>all.push(e)); });
       var list=all.filter(function(e){ var deep=(e.deep||[]).map(s=>(s.h||'')+' '+(s.p||'')).join(' '); return ((e.term||'')+' '+(e.def||'')+' '+deep).toLowerCase().indexOf(q)>=0; });
       var themeHit=THEMES.filter(t=>((t.title||'')+' '+(t.intro||'')).toLowerCase().indexOf(q)>=0);
       var th = themeHit.length?`<p class="text-sm text-neutral-900/60 mb-2">주제 <b class="text-gold">${themeHit.length}</b></p><div class="flex flex-wrap gap-2 mb-5">${themeHit.map(t=>`<button onclick="$('q').value='';onSearch();openTheme('${t.id}')" class="text-sm font-semibold text-gold bg-gold/10 border border-gold/25 rounded-full px-3.5 py-1.5 hover:bg-gold/15">${esc(t.title)} →</button>`).join('')}</div>`:'';
-      $('searchResults').innerHTML = th + `<p class="text-sm text-neutral-900/60 mb-3">‘<b class="text-gold">${esc(q)}</b>’ 질문 검색 — <b>${list.length}</b>개</p>` + (list.length?qaListHtml(list,q):'<p class="text-neutral-900/45 py-10 text-center text-sm">검색 결과가 없어요. 다른 검색어로 찾아보세요.</p>');
+      var sstart=(SEARCH_PAGE-1)*BiblyPager.PER;
+      $('searchResults').innerHTML = th + `<p class="text-sm text-neutral-900/60 mb-3">‘<b class="text-gold">${esc(q)}</b>’ 질문 검색 — <b>${list.length}</b>개</p>` + (list.length?qaListHtml(BiblyPager.slice(list,SEARCH_PAGE),q,sstart):'<p class="text-neutral-900/45 py-10 text-center text-sm">검색 결과가 없어요. 다른 검색어로 찾아보세요.</p>');
+      BiblyPager.render($('searchPager'), { total:list.length, page:SEARCH_PAGE, scrollTo:'#searchResults',
+        onGo: function(p){ SEARCH_PAGE=p; onSearch(); } });
     }
     function searchFor(t){ showGrid(); $('q').value=t; onSearch(); window.scrollTo({top:0,behavior:'smooth'}); }
     function setLevel(k){ CUR_LEVEL=k; renderLevelTabs(); renderVerses(); window.scrollTo({top:document.getElementById('levelTabs').offsetTop-80,behavior:'smooth'}); }

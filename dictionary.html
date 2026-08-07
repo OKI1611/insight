@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <script src="/content-loader.js?v=20260703f"></script>
   <script src="/site-header.js?v=20260805a"></script>
+  <script src="/pager.js?v=1"></script>
   <script src="/section-sidenav.js?v=16"></script>
   <script src="/protect.js?v=1"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -101,6 +102,7 @@
     <div id="index" class="flex flex-wrap gap-1 mb-5 text-sm"></div>
 
     <div id="results" class="space-y-3"></div>
+    <div id="dictPager"></div>
     <div id="empty" class="hidden text-center text-neutral-900/45 py-16">
       <p class="text-4xl mb-3"></p>
       <p class="font-semibold">찾으시는 단어가 아직 없어요.</p>
@@ -117,8 +119,9 @@
     const $=id=>document.getElementById(id);
     const esc=s=>String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
     let DATA=[], CAT='전체', INITIAL='', FAQ_TOPIC='';
-    let BROWSE=24, LASTSIG='';   // '전체' 둘러보기 시 24개씩 '더 보기'로 점진 표시(스크롤 단축)
-    function showMore(){ BROWSE+=24; render(); }
+    let LASTSIG='';   // 필터가 바뀌었는지 판단해 쪽 번호를 되돌리는 데 쓴다
+    let DICT_PAGE = 1;
+    const DICT_PER = 20;   // 사전은 항목이 길어 한 쪽에 20개
     const CATS=['전체','자주 묻는 질문','교리','인물','지명','사물·자연','절기·제도','종말론','기타'];
     const FAQ_TOPICS=[
       {n:'구원·믿음', ic:''},{n:'하나님·예수·삼위일체', ic:''},{n:'성경·창조', ic:''},
@@ -203,18 +206,16 @@
       $('count').textContent=list.length.toLocaleString();
       if(!list.length){ $('results').innerHTML=''; $('empty').classList.remove('hidden'); return; }
       $('empty').classList.add('hidden');
-      // 필터(카테고리·초성·검색어)가 바뀌면 '더 보기' 개수 초기화
+      // 필터(카테고리·초성·검색어)가 바뀌면 첫 쪽으로
       const sig=CAT+'|'+INITIAL+'|'+q;
-      if(sig!==LASTSIG){ BROWSE=24; LASTSIG=sig; }
-      const cap = q ? 400 : (INITIAL ? 400 : BROWSE);
-      const shown=list.slice(0,cap);
-      let moreHtml='';
-      if(list.length>cap){
-        moreHtml = (!q && !INITIAL)
-          ? `<div class="text-center py-6"><button onclick="showMore()" class="bg-gold/10 text-gold border border-gold/30 font-semibold text-sm px-8 py-3 rounded-full hover:bg-gold/20 transition">더 보기 <span class="text-neutral-900/40 font-normal ml-1">${cap.toLocaleString()} / ${list.length.toLocaleString()}</span></button><p class="text-neutral-900/35 text-xs mt-3">위 검색창이나 초성(ㄱㄴㄷ)으로 더 빠르게 찾을 수 있어요</p></div>`
-          : `<p class="text-center text-neutral-900/40 text-sm py-4">검색어를 입력하면 더 정확히 찾을 수 있어요 (${list.length.toLocaleString()}개 중 ${cap}개 표시)</p>`;
-      }
-      $('results').innerHTML=shown.map(e=>card(e,q)).join('') + moreHtml;
+      if(sig!==LASTSIG){ DICT_PAGE=1; LASTSIG=sig; }
+      // 예전에는 400개에서 잘려 나머지를 볼 방법이 없었다 → 쪽 번호로 전부 접근 가능
+      const shown=BiblyPager.slice(list, DICT_PAGE, DICT_PER);
+      $('results').innerHTML=shown.map(e=>card(e,q)).join('');
+      BiblyPager.render($('dictPager'), {
+        total: list.length, page: DICT_PAGE, per: DICT_PER, scrollTo: '#results',
+        onGo: p => { DICT_PAGE = p; render(); }
+      });
     }
 
     function card(e,q){

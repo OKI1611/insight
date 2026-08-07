@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <script src="/content-loader.js?v=20260703f"></script>
   <script src="/site-header.js?v=20260805a"></script>
+  <script src="/pager.js?v=1"></script>
   <script src="/section-sidenav.js?v=16"></script>
   <script src="/protect.js?v=1"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -93,12 +94,14 @@
         </div>
       </div>
       <div id="postList" class="space-y-3"></div>
+      <div id="postPager"></div>
     </section>
 
     <!-- 보관함 -->
     <div id="archive" class="hidden mt-7 bg-white rounded-2xl border border-ink/8 shadow-soft p-5">
       <div class="flex items-center justify-between mb-3"><p class="font-bold text-sm">지난 묵상</p><button onclick="closeArchive()" class="text-xs text-neutral-900/40 hover:text-neutral-900">✕ 닫기</button></div>
       <div id="archiveList" class="grid sm:grid-cols-2 gap-2"></div>
+      <div id="archivePager"></div>
     </div>
 
     <p class="text-[11px] text-neutral-900/40 text-center mt-8 leading-relaxed">매일 새 묵상이 맥체인 읽기표에 따라 자동으로 발행됩니다. 본문은 정본역 킹제임스 성경·원어 대조를 따릅니다.</p>
@@ -170,7 +173,7 @@
     CUR_DOC=d;
     render(d);
     if($('devEditBtn')) $('devEditBtn').classList.toggle('hidden', !IS_ADMIN);
-    REF=d.ref||''; loadPosts(date);
+    REF=d.ref||''; POST_PAGE=1; loadPosts(date);   // 날짜를 바꾸면 나눔도 첫 쪽부터
     const i=INDEX.indexOf(date);
     $('prevBtn').disabled=(i<=0); $('prevBtn').classList.toggle('opacity-30',i<=0);
     $('nextBtn').disabled=(i>=INDEX.length-1); $('nextBtn').classList.toggle('opacity-30',i>=INDEX.length-1);
@@ -199,7 +202,15 @@
 
   function openArchive(){
     const box=$('archiveList');
-    box.innerHTML=INDEX.slice().reverse().map(d=>`<button onclick="load('${d}');closeArchive()" class="text-left text-[13px] px-3 py-2 rounded-lg border border-ink/8 hover:border-gold/40 hover:bg-gold/5 transition ${d===CUR?'border-gold/50 bg-gold/5':''}">${fmtK(d)}</button>`).join('') || '<p class="text-xs text-neutral-900/40">아직 보관된 묵상이 없어요.</p>';
+    const all=INDEX.slice().reverse();
+    // 지금 보고 있는 날짜가 들어 있는 쪽부터 연다
+    const i=all.indexOf(CUR); if(i>=0) ARC_PAGE=Math.floor(i/BiblyPager.PER)+1;
+    box.innerHTML=BiblyPager.slice(all, ARC_PAGE).map(d=>`<button onclick="load('${d}');closeArchive()" class="text-left text-[13px] px-3 py-2 rounded-lg border border-ink/8 hover:border-gold/40 hover:bg-gold/5 transition ${d===CUR?'border-gold/50 bg-gold/5':''}">${fmtK(d)}</button>`).join('') || '<p class="text-xs text-neutral-900/40">아직 보관된 묵상이 없어요.</p>';
+    BiblyPager.render($('archivePager'), {
+      total: all.length, page: ARC_PAGE, scrollTo: '#archiveList',
+      onGo: p => { ARC_PAGE = p; const b=$('archiveList');
+        b.innerHTML=BiblyPager.slice(all, p).map(d=>`<button onclick="load('${d}');closeArchive()" class="text-left text-[13px] px-3 py-2 rounded-lg border border-ink/8 hover:border-gold/40 hover:bg-gold/5 transition ${d===CUR?'border-gold/50 bg-gold/5':''}">${fmtK(d)}</button>`).join(''); }
+    });
     $('archive').classList.remove('hidden'); $('archive').scrollIntoView({behavior:'smooth',block:'nearest'});
   }
   function closeArchive(){ $('archive').classList.add('hidden'); }
@@ -234,18 +245,25 @@
     if(!USER){ if(confirm('로그인하면 묵상을 나눌 수 있어요. 로그인하시겠어요?')) location.href='index.html'; return; }
     const c=$('composer'); c.classList.toggle('hidden'); if(!c.classList.contains('hidden')) $('pContent').focus();
   }
+  let POST_PAGE = 1, ARC_PAGE = 1;   // 묵상 나눔·보관함 페이지(10개씩)
   async function loadPosts(date){
     $('shareRef').textContent = REF || '';
     const list=$('postList'); list.innerHTML='<p class="text-neutral-900/35 text-sm py-3 text-center">불러오는 중…</p>';
     let posts=[];
     try{ const { data } = await sb.from('daily_posts').select('id,author_id,author_name,title,content,created_at').eq('devo_date',date).order('created_at',{ascending:false}); posts=data||[]; }catch(e){ posts=[]; }
     $('postCount').textContent=posts.length;
-    if(!posts.length){ list.innerHTML='<p class="text-neutral-900/40 text-sm py-6 text-center bg-white rounded-2xl border border-ink/8">아직 이 날의 수강생 묵상이 없어요.<br/>첫 나눔을 남겨보세요 </p>'; return; }
-    const ids=posts.map(p=>p.id); let likeRows=[];
+    if(!posts.length){ list.innerHTML='<p class="text-neutral-900/40 text-sm py-6 text-center bg-white rounded-2xl border border-ink/8">아직 이 날의 수강생 묵상이 없어요.<br/>첫 나눔을 남겨보세요 </p>'; $('postPager').innerHTML=''; return; }
+    // 10개씩 나눠 보여주고, 좋아요도 현재 쪽 글만 조회한다
+    const pagePosts=BiblyPager.slice(posts, POST_PAGE);
+    BiblyPager.render($('postPager'), {
+      total: posts.length, page: POST_PAGE, scrollTo: '#postList',
+      onGo: p => { POST_PAGE = p; loadPosts(date); }
+    });
+    const ids=pagePosts.map(p=>p.id); let likeRows=[];
     try{ const { data } = await sb.from('daily_post_likes').select('post_id,user_id').in('post_id',ids); likeRows=data||[]; }catch(e){}
     const lc={}, mine={}; likeRows.forEach(r=>{ lc[r.post_id]=(lc[r.post_id]||0)+1; if(USER&&r.user_id===USER.id) mine[r.post_id]=true; });
     POSTS=posts;
-    list.innerHTML=posts.map(p=>postCard(p,lc[p.id]||0,!!mine[p.id])).join('');
+    list.innerHTML=pagePosts.map(p=>postCard(p,lc[p.id]||0,!!mine[p.id])).join('');
   }
   function postCard(p,likes,liked){
     const own = USER && p.author_id===USER.id;
