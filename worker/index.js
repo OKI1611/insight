@@ -185,11 +185,35 @@ async function ytStats(env) {
   } catch (e) { return json({ ok: false }, 200); }
 }
 
+// ── 관리자 공지 작성 API ─────────────────────────────────────
+// notices 테이블은 RLS로 관리자 JWT만 쓰기 가능 → 운영 자동화를 위해
+// 토큰(X-Admin-Token) 검증 후 service_role로 대신 씀.
+// 코드에는 토큰의 SHA-256 해시만 둔다(원문 토큰은 로컬 운영도구에만 보관).
+const ADMIN_TOKEN_SHA256 = 'f790dff64b077b5cbdbb829e5ef0c785c1b288d7f8d63f92f649adff40cb1893';
+async function adminNotice(request, env) {
+  const tok = request.headers.get('X-Admin-Token') || '';
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(tok));
+  const hex = [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+  if (hex !== ADMIN_TOKEN_SHA256) return json({ error: '인증 실패' }, 403);
+  if (!env.SUPABASE_SERVICE_KEY) return json({ error: 'SUPABASE_SERVICE_KEY 환경변수가 설정되지 않았습니다' }, 500);
+  let body; try { body = await request.json(); } catch (e) { return json({ error: 'bad json' }, 400); }
+  const { kind, title, pinned } = body || {};
+  if (!title || !body.body) return json({ error: 'title/body 필수' }, 400);
+  const row = { kind: kind === 'event' ? 'event' : 'notice', title: String(title).slice(0, 200), body: String(body.body), pinned: !!pinned };
+  const r = await fetch(SUPABASE_URL + '/rest/v1/notices', {
+    method: 'POST', headers: { ...sbH(env), Prefer: 'return=representation' }, body: JSON.stringify(row)
+  });
+  if (!r.ok) return json({ error: '작성 실패', detail: (await r.text()).slice(0, 200) }, 500);
+  const rows = await r.json();
+  return json({ ok: true, id: rows[0] && rows[0].id });
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     const p = url.pathname;
     if (p === '/api/yt/stats') return ytStats(env);
+    if (p === '/api/admin/notice' && request.method === 'POST') return adminNotice(request, env);
     if (p.startsWith('/api/pay/')) {
       if (request.method === 'OPTIONS') return new Response(null, { headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET,POST,OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type' } });
       if (p === '/api/pay/ping') return ping(env);
