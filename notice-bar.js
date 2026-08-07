@@ -15,20 +15,23 @@
     var isNew = (Date.now() - new Date(n.created_at).getTime()) < 7 * 864e5;
     var css = document.createElement('style');
     css.textContent =
-      '#biblyNoticeBar{position:relative;background:linear-gradient(90deg,#0a3d2b,#00704a);color:#fff;overflow:hidden;}' +
-      '#biblyNoticeBar .nbIn{max-width:72rem;margin:0 auto;padding:9px 20px;display:flex;align-items:center;gap:11px;font-size:13.5px;font-family:Pretendard,system-ui,sans-serif;}' +
+      '#biblyNoticeBar{position:relative;background:linear-gradient(90deg,#0a3d2b,#00704a);color:#fff;overflow:hidden;box-shadow:0 3px 14px -6px rgba(10,61,43,.5);}' +
+      '#biblyNoticeBar .nbIn{max-width:72rem;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:13px;font-size:16px;font-family:Pretendard,system-ui,sans-serif;}' +
       '#biblyNoticeBar a{color:#fff;text-decoration:none;}' +
-      '#biblyNoticeBar .nbPill{background:#fff;color:#00704a;font-weight:800;font-size:10.5px;padding:2.5px 9px;border-radius:999px;flex-shrink:0;display:flex;align-items:center;gap:5px;}' +
-      '#biblyNoticeBar .nbDot{width:6px;height:6px;border-radius:999px;background:#e0442c;animation:nbPing 1.4s cubic-bezier(0,0,.2,1) infinite;}' +
-      '@keyframes nbPing{0%{box-shadow:0 0 0 0 rgba(224,68,44,.55)}70%{box-shadow:0 0 0 6px rgba(224,68,44,0)}100%{box-shadow:0 0 0 0 rgba(224,68,44,0)}}' +
-      '#biblyNoticeBar .nbTitle{font-weight:600;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}' +
-      '#biblyNoticeBar .nbNew{flex-shrink:0;background:#ffd76a;color:#5a4000;font-weight:800;font-size:10px;padding:2px 7px;border-radius:999px;animation:nbGlow 1.6s ease-in-out infinite;}' +
-      '@keyframes nbGlow{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(255,215,106,.0)}50%{transform:scale(1.08);box-shadow:0 0 12px 2px rgba(255,215,106,.55)}}' +
-      '#biblyNoticeBar .nbMore{flex-shrink:0;font-size:12px;font-weight:700;color:#d9f2e6;}' +
-      '#biblyNoticeBar .nbX{flex-shrink:0;background:none;border:none;color:rgba(255,255,255,.55);font-size:15px;cursor:pointer;padding:2px 4px;line-height:1;}' +
+      '#biblyNoticeBar .nbPill{background:#fff;color:#00704a;font-weight:800;font-size:12.5px;padding:4px 12px;border-radius:999px;flex-shrink:0;display:flex;align-items:center;gap:6px;}' +
+      '#biblyNoticeBar .nbDot{width:7px;height:7px;border-radius:999px;background:#e0442c;animation:nbPing 1.4s cubic-bezier(0,0,.2,1) infinite;}' +
+      '@keyframes nbPing{0%{box-shadow:0 0 0 0 rgba(224,68,44,.55)}70%{box-shadow:0 0 0 7px rgba(224,68,44,0)}100%{box-shadow:0 0 0 0 rgba(224,68,44,0)}}' +
+      '#biblyNoticeBar .nbTitle{font-weight:700;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.01em;}' +
+      '#biblyNoticeBar .nbTitle:hover{text-decoration:underline;text-underline-offset:3px;}' +
+      '#biblyNoticeBar .nbNew{flex-shrink:0;background:#ffd76a;color:#5a4000;font-weight:800;font-size:11.5px;padding:3px 9px;border-radius:999px;animation:nbGlow 1.6s ease-in-out infinite;}' +
+      '@keyframes nbGlow{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(255,215,106,.0)}50%{transform:scale(1.1);box-shadow:0 0 14px 3px rgba(255,215,106,.6)}}' +
+      '#biblyNoticeBar .nbMore{flex-shrink:0;font-size:13.5px;font-weight:800;color:#0a3d2b;background:#d9f2e6;padding:6px 14px;border-radius:999px;transition:opacity .15s;}' +
+      '#biblyNoticeBar .nbMore:hover{opacity:.85;}' +
+      '#biblyNoticeBar .nbX{flex-shrink:0;background:none;border:none;color:rgba(255,255,255,.55);font-size:17px;cursor:pointer;padding:2px 4px;line-height:1;}' +
       '#biblyNoticeBar .nbX:hover{color:#fff;}' +
-      '#biblyNoticeBar .nbShimmer{position:absolute;top:0;bottom:0;width:45%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.16),transparent);animation:nbSweep 2.6s ease-in-out .6s 3;pointer-events:none;transform:translateX(-130%);}' +
-      '@keyframes nbSweep{to{transform:translateX(330%)}}';
+      '#biblyNoticeBar .nbShimmer{position:absolute;top:0;bottom:0;width:45%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.18),transparent);animation:nbSweep 2.6s ease-in-out .6s 3;pointer-events:none;transform:translateX(-130%);}' +
+      '@keyframes nbSweep{to{transform:translateX(330%)}}' +
+      '@media(max-width:640px){#biblyNoticeBar .nbIn{padding:11px 14px;gap:9px;font-size:14px;}#biblyNoticeBar .nbMore{display:none;}}';
     document.head.appendChild(css);
 
     var bar = document.createElement('div');
