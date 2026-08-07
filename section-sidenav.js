@@ -28,7 +28,7 @@
       { label:'강의 요청·건의함', href:'request.html' }, { label:'자료실', href:'resources.html' },
       { label:'칼럼', href:'column.html' } ]},
     { label:'스토어', href:'booklet.html', children:[
-      { label:'PDF 책자·이용권', href:'booklet.html' }, { label:'선물·후원 좌석', href:'gift.html' },
+      { label:'PDF 책자·이용권', href:'booklet.html' },
       { label:'고객센터(주문·배송·반품)', href:'store-help.html' }, { label:'내 구매·자료', href:'mylearning.html' } ]},
     { label:'저자의 책', href:'books.html', children:[
       { label:'저자의 책 전체', href:'books.html' },
