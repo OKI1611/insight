@@ -197,11 +197,13 @@ async function adminNotice(request, env) {
   if (hex !== ADMIN_TOKEN_SHA256) return json({ error: '인증 실패' }, 403);
   if (!env.SUPABASE_SERVICE_KEY) return json({ error: 'SUPABASE_SERVICE_KEY 환경변수가 설정되지 않았습니다' }, 500);
   let body; try { body = await request.json(); } catch (e) { return json({ error: 'bad json' }, 400); }
-  const { kind, title, pinned } = body || {};
+  const { id, kind, title, pinned } = body || {};
   if (!title || !body.body) return json({ error: 'title/body 필수' }, 400);
   const row = { kind: kind === 'event' ? 'event' : 'notice', title: String(title).slice(0, 200), body: String(body.body), pinned: !!pinned };
-  const r = await fetch(SUPABASE_URL + '/rest/v1/notices', {
-    method: 'POST', headers: { ...sbH(env), Prefer: 'return=representation' }, body: JSON.stringify(row)
+  // id가 오면 해당 글 수정(PATCH), 없으면 새 글 작성(POST)
+  const url = SUPABASE_URL + '/rest/v1/notices' + (id ? '?id=eq.' + Number(id) : '');
+  const r = await fetch(url, {
+    method: id ? 'PATCH' : 'POST', headers: { ...sbH(env), Prefer: 'return=representation' }, body: JSON.stringify(row)
   });
   if (!r.ok) return json({ error: '작성 실패', detail: (await r.text()).slice(0, 200) }, 500);
   const rows = await r.json();

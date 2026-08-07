@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <script src="/content-loader.js?v=20260703f"></script>
-  <script src="/site-header.js?v=20260805a"></script>
+  <script src="/site-header.js?v=20260808a"></script>
   <script src="/pager.js?v=1"></script>
-  <script src="/section-sidenav.js?v=16"></script>
+  <script src="/section-sidenav.js?v=17"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>공지사항 · 이벤트 — BIBLY 바이블 인사이트</title>
   <meta name="description" content="BIBLY의 새 소식과 이벤트를 확인하세요." />
@@ -84,6 +84,21 @@
       document.getElementById('composeKind').textContent = tab==='event'?'이벤트':'공지';
     }
     function fdate(s){ try{ const d=new Date(s); return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`; }catch(e){ return ''; } }
+    // 본문 서식: ■ 줄=소제목 · "1)" 줄=단계 배지 · · 줄=목록 · 이메일/URL 자동 링크
+    function fmtBody(raw){
+      const link = s => s
+        .replace(/([\w.+-]+@[\w-]+\.[\w.]+)/g, '<a href="mailto:$1" class="text-gold font-semibold underline decoration-gold/40 underline-offset-2">$1</a>')
+        .replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener" class="text-gold font-semibold underline decoration-gold/40 underline-offset-2">$1</a>');
+      return (raw||'').split('\n').map(l=>{
+        const t = esc(l.trim());
+        if(!t) return '<div class="h-3"></div>';
+        if(/^■/.test(t)) return `<p class="mt-5 mb-2 font-bold text-[15px] text-gold flex items-center gap-2"><span class="w-1 h-4 bg-gold rounded-full inline-block"></span>${link(t.replace(/^■\s*/,''))}</p>`;
+        const st = t.match(/^(\d)\)\s*(.*)$/);
+        if(st) return `<div class="flex gap-2.5 items-start my-1.5"><span class="shrink-0 w-6 h-6 rounded-full bg-gold text-white text-[12px] font-bold flex items-center justify-center mt-0.5">${st[1]}</span><p class="leading-relaxed">${link(st[2])}</p></div>`;
+        if(/^[·•]/.test(t)) return `<p class="pl-1 leading-relaxed">・ ${link(t.replace(/^[·•]\s*/,''))}</p>`;
+        return `<p class="leading-relaxed">${link(t)}</p>`;
+      }).join('');
+    }
     async function load(){
       const box=document.getElementById('list'); box.innerHTML='<p class="text-neutral-900/40 text-sm py-8 text-center">불러오는 중…</p>';
       try{
@@ -94,15 +109,16 @@
           total: data.length, page: PAGE, scrollTo: '#list',
           onGo: p => { PAGE = p; load(); }
         });
+        // 고정 공지는 접지 않고 본문을 펼친 채로 보여 준다(숨어 있으면 못 본다는 피드백 반영)
         box.innerHTML = BiblyPager.slice(data, PAGE).map(n=>`
-          <div class="bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden">
+          <div class="bg-white rounded-2xl border ${n.pinned?'border-gold/40 ring-1 ring-gold/20':'border-ink/8'} shadow-soft overflow-hidden">
             <button onclick="this.nextElementSibling.classList.toggle('hidden')" class="w-full flex items-center gap-3 px-5 py-4 text-left">
               ${n.pinned?'<span class="shrink-0 text-[10px] font-bold text-white bg-gold px-1.5 py-0.5 rounded">고정</span>':''}
               <span class="font-bold flex-1 min-w-0">${esc(n.title)}</span>
               <span class="text-xs text-neutral-900/40 shrink-0">${fdate(n.created_at)}</span>
               ${IS_ADMIN?`<span onclick="event.stopPropagation();delNotice(${n.id})" class="shrink-0 text-xs text-red-400 hover:text-red-600 cursor-pointer">삭제</span>`:''}
             </button>
-            <div class="hidden px-5 pb-5 text-sm text-neutral-900/75 leading-relaxed whitespace-pre-wrap border-t border-ink/5 pt-3">${esc(n.body||'')}</div>
+            <div class="${n.pinned?'':'hidden '}px-5 pb-5 text-sm text-neutral-900/75 border-t border-ink/5 pt-3">${fmtBody(n.body)}</div>
           </div>`).join('');
       }catch(e){ box.innerHTML='<p class="text-neutral-900/50 text-sm py-8 text-center">'+( /relation|does not exist|schema cache/i.test(e.message||'') ? '게시판 준비 중 — 관리자: <code class="bg-ink/5 px-1 rounded">supabase/notices.sql</code> 를 실행하세요.' : '불러오기 오류: '+esc(e.message||e))+'</p>'; }
     }
