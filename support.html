@@ -103,13 +103,23 @@
             </a>
             <p id="kakaoHint" class="text-neutral-400 text-xs" style="display:none">카카오페이는 모바일에서 바로 열리고, PC에서는 QR코드가 떠요.</p>
 
-            <!-- 계좌이체 -->
-            <div class="bg-sand/50 border border-neutral-200 rounded-2xl p-4 text-left flex items-center justify-between gap-3">
-              <div class="min-w-0">
-                <p id="bankLabel" class="text-neutral-500 text-xs mb-1">계좌이체 · 우리은행</p>
-                <p id="bankAccount" class="text-base font-semibold tracking-tight text-neutral-900">1006-301-266177 <span class="text-neutral-500 text-xs font-normal">예금주 오광일</span></p>
+            <!-- 계좌이체 — 위 결제 버튼 3개와 같은 무게의 '네 번째 수단'.
+                 연한 카드였을 때 눈에 띄지 않는다는 지적을 반영해 브랜드 초록 머리띠 + 실선 테두리로 승격 -->
+            <div class="rounded-2xl border-2 border-gold/60 bg-white overflow-hidden text-left shadow-[0_8px_22px_-12px_rgba(0,112,74,.5)]">
+              <div class="flex items-center gap-1.5 bg-gold text-white px-4 py-2.5">
+                <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3 10h18M5 10V20M19 10V20M3 20h18M12 3 3 8h18z"/>
+                </svg>
+                <span class="font-semibold text-sm">계좌이체로 후원하기</span>
               </div>
-              <button onclick="copyBankAcct()" class="shrink-0 bg-neutral-900/[0.06] hover:bg-gold hover:text-white text-neutral-700 text-xs font-semibold px-3.5 py-2 rounded-lg transition">복사</button>
+              <div class="flex items-center justify-between gap-3 px-4 py-3.5">
+                <div class="min-w-0">
+                  <p id="bankLabel" class="text-neutral-500 text-xs mb-1">계좌이체 · 우리은행</p>
+                  <p id="bankAccount" class="text-[17px] font-bold tracking-tight text-neutral-900">1006-301-266177 <span class="text-neutral-500 text-xs font-normal">예금주 오광일</span></p>
+                </div>
+                <button onclick="copyBankAcct()" class="shrink-0 bg-gold text-white text-xs font-bold px-4 py-2.5 rounded-lg hover:opacity-90 transition">복사</button>
+              </div>
             </div>
 
             <!-- 해외에서 후원 (국제 송금) -->
