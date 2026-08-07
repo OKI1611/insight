@@ -403,6 +403,59 @@
         <p class="text-[13px] md:text-sm text-neutral-900/60 mt-2">강의로 다 담지 못한 이야기를, 책으로 만나실 수 있습니다</p>
       </div>
 
+      <!-- ── 이달의 책 스포트라이트 ─────────────────────────────────────────
+           전국 오프라인 서점(교보·영풍) 입점을 알리는 자리. 다른 책으로 교체할 때는
+           표지·제목·후킹 문구·판매처 링크 네 곳만 바꾸면 된다. -->
+      <div class="mb-9 md:mb-11 rounded-3xl overflow-hidden bg-white shadow-soft ring-1 ring-ink/8">
+        <div class="grid md:grid-cols-[210px_1fr] gap-0">
+          <!-- 표지 -->
+          <a href="books.html#church" class="block bg-gradient-to-br from-navy to-ink px-8 py-8 md:py-9 group">
+            <img src="images/books/church.jpg" alt="교회를 떠나고서야, 예수를 만났다 표지"
+                 loading="lazy"
+                 class="w-[132px] md:w-full mx-auto rounded-[3px] shadow-[0_18px_40px_-12px_rgba(0,0,0,.55)] group-hover:-translate-y-1 transition-transform"/>
+          </a>
+          <!-- 본문 -->
+          <div class="p-6 md:p-8">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="inline-flex text-[10.5px] font-bold text-white bg-[#00704a] rounded-full px-2.5 py-1">전국 서점 입점</span>
+              <span class="inline-flex text-[10.5px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200/70 rounded-full px-2.5 py-1">기독교 에세이</span>
+            </div>
+            <h3 class="text-lg md:text-2xl font-bold leading-snug mt-3">교회를 떠나고서야, 예수를 만났다</h3>
+            <p class="text-[13px] md:text-sm text-neutral-900/55 mt-1.5">환멸의 시대를 건너, 다시 찾은 진짜 교회</p>
+
+            <blockquote class="mt-4 pl-4 border-l-[3px] border-gold/70 text-[13.5px] md:text-[15px] leading-[1.85] text-neutral-900/80">
+              저는 교회를 세 번 떠났습니다.<br class="hidden sm:block"/>
+              믿음이 없어서가 아니었습니다. <b class="text-neutral-900">너무 믿었기 때문에 아팠습니다.</b>
+            </blockquote>
+
+            <p class="text-[13px] leading-[1.9] text-neutral-900/65 mt-4">
+              교회를 때리는 책이 아닙니다. 떠나 본 사람이 쓴, <b class="text-neutral-900/85">다시 돌아오는 길에 대한 기록</b>입니다.
+              각 장 끝의 <b class="text-neutral-900/85">셀프체크</b>와 책 끝의 <b class="text-neutral-900/85">교회 건강검진표 10문항</b>으로
+              혼자서도, 소그룹에서도 나눌 수 있습니다.
+            </p>
+
+            <p class="text-[10.5px] font-bold text-neutral-900/40 mt-5 mb-2">📕 종이책 · 지금 주문하실 수 있습니다</p>
+            <div class="flex flex-wrap gap-2">
+              <a href="https://product.kyobobook.co.kr/detail/S000220782156" target="_blank" rel="noopener"
+                 class="inline-flex items-center text-[12.5px] font-bold text-white bg-gold rounded-lg px-4 py-2.5 hover:opacity-90 transition">교보문고</a>
+              <a href="https://www.ypbooks.co.kr/books/202608046881765202" target="_blank" rel="noopener"
+                 class="inline-flex items-center text-[12.5px] font-bold text-ink bg-white border border-ink/15 rounded-lg px-4 py-2.5 hover:border-gold/60 hover:text-gold transition">영풍문고</a>
+              <a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=399528996" target="_blank" rel="noopener"
+                 class="inline-flex items-center text-[12.5px] font-bold text-ink bg-white border border-ink/15 rounded-lg px-4 py-2.5 hover:border-gold/60 hover:text-gold transition">알라딘</a>
+              <a href="https://www.yes24.com/product/goods/194522386" target="_blank" rel="noopener"
+                 class="inline-flex items-center text-[12.5px] font-bold text-ink bg-white border border-ink/15 rounded-lg px-4 py-2.5 hover:border-gold/60 hover:text-gold transition">예스24</a>
+              <a href="https://bookk.co.kr/bookStore/6a58ffb7518c404ea3b94c33" target="_blank" rel="noopener"
+                 class="inline-flex items-center text-[12.5px] font-bold text-ink bg-white border border-ink/15 rounded-lg px-4 py-2.5 hover:border-gold/60 hover:text-gold transition">부크크</a>
+            </div>
+            <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mt-3.5">
+              <a href="books.html#church" class="text-[12px] font-semibold text-gold hover:underline">책 소개 자세히 보기 →</a>
+              <a href="/files/교회를떠나고서야-핵심요약.pdf" target="_blank" rel="noopener"
+                 class="text-[12px] font-semibold text-neutral-900/50 hover:text-gold transition">핵심 요약본 PDF 무료 받기</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- 세 권이라 2열이면 한 권이 홀로 내려간다 → sm 이상은 항상 3열(640px에서도 판매처 버튼이 들어감) -->
       <div class="grid sm:grid-cols-3 gap-4 md:gap-6 max-w-3xl lg:max-w-4xl mx-auto">
         <!-- 가면의 시대 (신간) -->
@@ -439,12 +492,15 @@
           </a>
           <p class="text-[12px] text-neutral-900/55 mt-2 leading-relaxed">교회를 세 번 떠났던 사람의 고백</p>
           <!-- 판매처를 직접 고를 수 있게 종이책·전자책으로 나눠 표시 -->
+          <!-- 종이책 판매처 5곳 — min-w로 3+2 두 줄이 되게 두어 다른 카드와 높이 차를 최소화 -->
           <div class="mt-4 text-left">
             <p class="text-[10.5px] font-bold text-neutral-900/40 mb-1.5">📕 종이책</p>
             <div class="flex flex-wrap gap-1.5">
-              <a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=399528996" target="_blank" rel="noopener" class="flex-1 text-center bg-gold text-white text-[11.5px] font-bold rounded-lg py-2 hover:opacity-90 transition">알라딘</a>
-              <a href="https://www.yes24.com/product/goods/194522386" target="_blank" rel="noopener" class="flex-1 text-center bg-white text-ink border border-ink/15 text-[11.5px] font-bold rounded-lg py-2 hover:border-gold/60 hover:text-gold transition">예스24</a>
-              <a href="https://bookk.co.kr/bookStore/6a58ffb7518c404ea3b94c33" target="_blank" rel="noopener" class="flex-1 text-center bg-white text-ink border border-ink/15 text-[11.5px] font-bold rounded-lg py-2 hover:border-gold/60 hover:text-gold transition">부크크</a>
+              <a href="https://product.kyobobook.co.kr/detail/S000220782156" target="_blank" rel="noopener" class="flex-1 min-w-[68px] text-center bg-gold text-white text-[11.5px] font-bold rounded-lg py-2 hover:opacity-90 transition">교보문고</a>
+              <a href="https://www.ypbooks.co.kr/books/202608046881765202" target="_blank" rel="noopener" class="flex-1 min-w-[68px] text-center bg-white text-ink border border-ink/15 text-[11.5px] font-bold rounded-lg py-2 hover:border-gold/60 hover:text-gold transition">영풍문고</a>
+              <a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=399528996" target="_blank" rel="noopener" class="flex-1 min-w-[62px] text-center bg-white text-ink border border-ink/15 text-[11.5px] font-bold rounded-lg py-2 hover:border-gold/60 hover:text-gold transition">알라딘</a>
+              <a href="https://www.yes24.com/product/goods/194522386" target="_blank" rel="noopener" class="flex-1 min-w-[62px] text-center bg-white text-ink border border-ink/15 text-[11.5px] font-bold rounded-lg py-2 hover:border-gold/60 hover:text-gold transition">예스24</a>
+              <a href="https://bookk.co.kr/bookStore/6a58ffb7518c404ea3b94c33" target="_blank" rel="noopener" class="flex-1 min-w-[62px] text-center bg-white text-ink border border-ink/15 text-[11.5px] font-bold rounded-lg py-2 hover:border-gold/60 hover:text-gold transition">부크크</a>
             </div>
             <p class="text-[10.5px] font-bold text-neutral-900/40 mt-2.5 mb-1.5">📱 전자책</p>
             <div class="flex flex-wrap gap-1.5">
@@ -896,8 +952,12 @@
                   <p class="text-[13px] font-semibold leading-snug">『교회를 떠나고서야, 예수를 만났다』</p>
                   <p class="text-[11.5px] text-neutral-900/45 mt-0.5">환멸의 시대를 건너, 다시 찾은 진짜 교회</p>
                   <div class="flex flex-wrap gap-1.5 mt-1.5">
+                    <a href="https://product.kyobobook.co.kr/detail/S000220782156" target="_blank" rel="noopener"
+                       class="inline-flex items-center gap-1 text-[11px] font-bold text-white bg-gold rounded-md px-2 py-1 hover:opacity-90 transition">📕 교보문고</a>
+                    <a href="https://www.ypbooks.co.kr/books/202608046881765202" target="_blank" rel="noopener"
+                       class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📕 영풍문고</a>
                     <a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=399528996" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-white bg-gold rounded-md px-2 py-1 hover:opacity-90 transition">📕 알라딘</a>
+                       class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📕 알라딘</a>
                     <a href="https://www.yes24.com/product/goods/194522386" target="_blank" rel="noopener"
                        class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📕 예스24</a>
                     <a href="https://bookk.co.kr/bookStore/6a58ffb7518c404ea3b94c33" target="_blank" rel="noopener"
