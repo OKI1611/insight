@@ -5,6 +5,7 @@
   <meta name="google-site-verification" content="ePoQhpRI_U9FHknceSegrMcQqU0yJ_MZCevD-10C4AM" />
   <meta name="naver-site-verification" content="154ec5de3c19670f42623f5224d43fa2b4a030d6" />
   <script src="/content-loader.js?v=20260703f"></script>
+  <script src="/notice-bar.js?v=1" defer></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>오광일의 인사이트 브리핑 공식 강의 · 바이블 인사이트</title>
   <link rel="manifest" href="/manifest.json" />
@@ -372,6 +373,42 @@
     }
     function restart(){ clearInterval(timer); timer=setInterval(function(){ paint((idx+1)%S.length); },3500); }
     paint(0); restart();
+  })();
+  </script>
+
+  <!-- ===== 공지사항 카드 (A+B안의 B — 최신 공지 상시 노출, 새 글은 NEW 반짝) ===== -->
+  <section id="homeNoticeSec" class="hidden bg-[#f2f7f4] border-b border-ink/8">
+    <div class="max-w-4xl mx-auto px-5 py-6 md:py-7">
+      <div class="bg-white border border-gold/25 rounded-2xl shadow-[0_10px_30px_-18px_rgba(0,112,74,.35)] overflow-hidden">
+        <div class="flex items-center justify-between px-5 py-3 border-b border-ink/5">
+          <p class="font-bold text-[14.5px] text-[#0a3d2b] flex items-center gap-1.5">📢 공지사항</p>
+          <a href="notices.html" class="text-[12px] font-bold text-gold hover:underline">전체 보기 →</a>
+        </div>
+        <div id="homeNoticeList"></div>
+      </div>
+    </div>
+  </section>
+  <script>
+  (function(){
+    var SB='https://bmxkndkwefdgsomlznoo.supabase.co';
+    var KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+    function fd(s){try{var d=new Date(s);return String(d.getMonth()+1).padStart(2,'0')+'.'+String(d.getDate()).padStart(2,'0');}catch(e){return'';}}
+    fetch(SB+'/rest/v1/notices?select=id,title,created_at,pinned&kind=eq.notice&order=pinned.desc,created_at.desc&limit=3',
+      {headers:{apikey:KEY,Authorization:'Bearer '+KEY}})
+    .then(function(r){return r.ok?r.json():[];})
+    .then(function(rows){
+      if(!rows||!rows.length) return;
+      document.getElementById('homeNoticeList').innerHTML = rows.map(function(n){
+        var isNew=(Date.now()-new Date(n.created_at).getTime())<7*864e5;
+        return '<a href="notices.html" class="flex items-center gap-2.5 px-5 py-3 border-b border-ink/5 last:border-0 hover:bg-sand/30 transition">'
+          +(n.pinned?'<span class="shrink-0 text-[10px] font-bold text-white bg-gold px-1.5 py-0.5 rounded">고정</span>':'')
+          +'<span class="flex-1 min-w-0 text-[13.5px] font-semibold text-neutral-900/85 truncate">'+esc(n.title)+'</span>'
+          +(isNew?'<span class="shrink-0 text-[10px] font-extrabold text-amber-800 bg-amber-200 px-1.5 py-0.5 rounded-full animate-pulse">NEW</span>':'')
+          +'<span class="shrink-0 text-[11.5px] text-neutral-900/35">'+fd(n.created_at)+'</span></a>';
+      }).join('');
+      document.getElementById('homeNoticeSec').classList.remove('hidden');
+    }).catch(function(){});
   })();
   </script>
 
@@ -1433,7 +1470,6 @@
       ]},
       { label:'스토어', href:'booklet.html', children:[
         { label:'PDF 책자·이용권', href:'booklet.html' },
-        { label:'선물·후원 좌석', href:'gift.html' },
         { label:'고객센터(주문·배송·반품)', href:'store-help.html' },
         { label:'내 구매·자료', href:'mylearning.html' }
       ]},

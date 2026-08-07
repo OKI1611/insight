@@ -60,7 +60,6 @@
     ]},
     { label:'스토어', href:'booklet.html', children:[
       { label:'PDF 책자·이용권', href:'booklet.html' },
-      { label:'선물·후원 좌석', href:'gift.html' },
       { label:'고객센터(주문·배송·반품)', href:'store-help.html' },
       { label:'내 구매·자료', href:'mylearning.html' }
     ]},
@@ -388,4 +387,11 @@
 
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
   else build();
+})();
+
+// ── 공지 바 자동 로드(전 페이지 공통) — 헤더 아래 상시 노출, notice-bar.js 참조 ──
+(function(){
+  var s = document.createElement('script');
+  s.src = '/notice-bar.js?v=1'; s.defer = true;
+  document.head.appendChild(s);
 })();
