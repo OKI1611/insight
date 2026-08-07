@@ -392,6 +392,6 @@
 // ── 공지 바 자동 로드(전 페이지 공통) — 헤더 아래 상시 노출, notice-bar.js 참조 ──
 (function(){
   var s = document.createElement('script');
-  s.src = '/notice-bar.js?v=2'; s.defer = true;
+  s.src = '/notice-bar.js?v=3'; s.defer = true;
   document.head.appendChild(s);
 })();

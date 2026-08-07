@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <script src="/content-loader.js?v=20260703f"></script>
+  <script src="/site-header.js?v=20260808b"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>앱 테스터 신청 — BIBLY 바이블 인사이트</title>
+  <meta name="description" content="바이블 인사이트 앱 정식 출시 전 비공개 테스트에 함께해 주실 첫 테스터 25분을 모십니다. 완주하시면 저자 도서 1권을 무료로 드립니다." />
+  <meta name="theme-color" content="#213a6b" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="canonical" href="https://biblynote.com/tester" />
+  <meta property="og:title" content="앱 테스터 25분을 모십니다 — 완주 시 저자 도서 증정" />
+  <meta property="og:description" content="바이블 인사이트 앱, 정식 출시 전 마지막 관문. 14일만 함께해 주세요." />
+  <meta property="og:image" content="https://biblynote.com/images/promo/tester/card1.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink:'#213a6b', navy:'#182c54', gold:'#00704a', sand:'#eaf0f8', paper:'#ffffff' },
+      fontFamily: { sans:['Pretendard','system-ui','sans-serif'] },
+      boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
+    }}}
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
+    const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+    const ADMIN_EMAIL = 'josephoh1611@gmail.com';
+  </script>
+  <style> h1,h2{font-family:'Pretendard',system-ui,sans-serif} </style>
+</head>
+<body class="font-sans bg-paper text-neutral-900 antialiased min-h-screen">
+
+  <div id="siteHeader" data-active=""></div>
+
+  <!-- 히어로 -->
+  <section class="bg-gradient-to-b from-navy to-[#0a3d2b] text-white">
+    <div class="max-w-3xl mx-auto px-5 py-14 md:py-16 text-center">
+      <span class="inline-flex text-[11.5px] font-bold text-[#0a3d2b] bg-[#ffd76a] rounded-full px-3.5 py-1.5">선착순 25명 모집</span>
+      <h1 class="text-2xl md:text-4xl font-bold leading-snug mt-5">바이블 인사이트가<br/><span class="text-[#ffd76a]">‘앱’이 됩니다</span></h1>
+      <p class="text-white/70 text-sm md:text-base mt-5 leading-relaxed">
+        정식 출시 전, 구글 규정에 따라 14일간의 비공개 테스트를 거쳐야 합니다.<br class="hidden sm:block"/>
+        그 마지막 문을 함께 열어 주실 첫 테스터를 모십니다.
+      </p>
+      <div class="mt-7 inline-block rounded-2xl border-2 border-[#ffd76a]/60 bg-white/10 px-6 py-4">
+        <p class="text-[13px] text-[#ffd76a] font-semibold">완주하신 모든 분께</p>
+        <p class="text-lg md:text-xl font-bold mt-1">저자 도서 1권 무료 증정 🎁</p>
+      </div>
+    </div>
+  </section>
+
+  <main class="max-w-3xl mx-auto px-5 py-10 md:py-14">
+
+    <!-- 신청 폼 -->
+    <div id="applyBox" class="bg-white rounded-2xl border-2 border-gold/40 shadow-card p-6 md:p-8">
+      <h2 class="text-lg md:text-xl font-bold">테스터 신청하기</h2>
+      <p class="text-[13px] text-neutral-900/55 mt-1.5 leading-relaxed">구글 계정(Gmail)만 있으면 신청됩니다. 등록이 끝나면 참여 링크를 메일로 보내 드립니다.</p>
+
+      <div class="mt-6 space-y-4">
+        <div>
+          <label class="block text-[13px] font-bold mb-1.5">구글 계정 (Gmail) <span class="text-red-500">*</span></label>
+          <input id="fGmail" type="email" inputmode="email" placeholder="예) myname@gmail.com"
+                 class="w-full border border-ink/15 rounded-xl px-4 py-3 text-[15px] outline-none focus:border-gold"/>
+          <p class="text-[11.5px] text-neutral-900/40 mt-1.5">플레이 스토어에 로그인하실 때 쓰는 계정이어야 테스터 등록이 됩니다.</p>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-[13px] font-bold mb-1.5">성함 <span class="text-neutral-900/35 font-normal">(선물 배송용)</span></label>
+            <input id="fName" placeholder="홍길동" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-[15px] outline-none focus:border-gold"/>
+          </div>
+          <div>
+            <label class="block text-[13px] font-bold mb-1.5">연락처 <span class="text-neutral-900/35 font-normal">(선택)</span></label>
+            <input id="fPhone" inputmode="tel" placeholder="010-0000-0000" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-[15px] outline-none focus:border-gold"/>
+          </div>
+        </div>
+        <div>
+          <label class="block text-[13px] font-bold mb-1.5">완주 선물로 받고 싶은 책 <span class="text-neutral-900/35 font-normal">(나중에 바꾸실 수 있어요)</span></label>
+          <select id="fBook" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-[15px] outline-none focus:border-gold bg-white">
+            <option value="">— 선택 —</option>
+            <option>가면의 시대</option>
+            <option>교회를 떠나고서야, 예수를 만났다</option>
+            <option>엄마 향기</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-[13px] font-bold mb-1.5">남기실 말씀 <span class="text-neutral-900/35 font-normal">(선택)</span></label>
+          <textarea id="fMemo" rows="2" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-[15px] outline-none focus:border-gold"></textarea>
+        </div>
+        <button onclick="apply()" class="w-full bg-gold text-white font-bold text-[16px] py-4 rounded-xl hover:opacity-90 transition">신청하기</button>
+        <p id="applyMsg" class="text-[13px] text-center"></p>
+        <p class="text-[11.5px] text-neutral-900/40 text-center leading-relaxed">
+          수집한 정보는 테스터 등록과 선물 발송에만 사용하며, 테스트 종료 후 파기합니다.
+        </p>
+      </div>
+    </div>
+
+    <!-- 안내 -->
+    <div class="mt-10 space-y-6">
+      <div>
+        <h3 class="font-bold text-[15px] text-gold mb-2.5">신청 후 어떻게 되나요?</h3>
+        <ol class="space-y-2.5">
+          <li class="flex gap-3 items-start"><span class="shrink-0 w-6 h-6 rounded-full bg-gold text-white text-[12px] font-bold flex items-center justify-center">1</span><p class="text-[14px] text-neutral-900/75 leading-relaxed">테스터 등록이 끝나면 <b>참여 링크</b>를 메일로 보내 드립니다.</p></li>
+          <li class="flex gap-3 items-start"><span class="shrink-0 w-6 h-6 rounded-full bg-gold text-white text-[12px] font-bold flex items-center justify-center">2</span><p class="text-[14px] text-neutral-900/75 leading-relaxed">링크를 열어 <b>「테스터 되기」</b>를 누르고, 플레이 스토어에서 앱을 설치해 주세요.</p></li>
+          <li class="flex gap-3 items-start"><span class="shrink-0 w-6 h-6 rounded-full bg-gold text-white text-[12px] font-bold flex items-center justify-center">3</span><p class="text-[14px] text-neutral-900/75 leading-relaxed"><b>14일 동안 앱을 지우지 말고</b> 가끔 열어 주세요. 그게 전부입니다.</p></li>
+        </ol>
+      </div>
+      <div class="rounded-2xl bg-sand/50 border border-ink/8 p-5">
+        <p class="text-[13px] font-bold text-neutral-900/80 mb-1.5">🙏 꼭 부탁드립니다</p>
+        <p class="text-[13px] text-neutral-900/65 leading-relaxed">구글은 테스터가 14일을 <b>연속으로</b> 유지해야 정식 출시를 허가합니다. 중간에 앱을 지우시면 기간이 처음부터 다시 시작됩니다. 2주만 함께 완주해 주시면 큰 힘이 됩니다.</p>
+        <p class="text-[12px] text-neutral-900/45 leading-relaxed mt-2.5">※ 안드로이드 스마트폰에서만 참여하실 수 있습니다. 아이폰은 이번 출시 대상이 아닙니다.</p>
+      </div>
+    </div>
+
+    <!-- 관리자 명단 -->
+    <div id="adminBox" class="hidden mt-12">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-lg font-bold">신청 명단 <span id="cnt" class="text-gold"></span></h2>
+        <div class="flex gap-2">
+          <button onclick="copyGmails()" class="text-[12px] font-bold bg-gold text-white px-3.5 py-2 rounded-lg hover:opacity-90">Gmail 전체 복사</button>
+          <button onclick="loadList()" class="text-[12px] font-bold border border-ink/15 px-3.5 py-2 rounded-lg hover:border-gold">새로고침</button>
+        </div>
+      </div>
+      <p class="text-[12px] text-neutral-900/45 mb-3">복사 버튼 → Play Console → 테스트 → 비공개 테스트 → 테스터 목록에 그대로 붙여넣으세요.</p>
+      <div id="tlist" class="space-y-2"></div>
+    </div>
+  </main>
+
+  <script>
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType:'implicit', autoRefreshToken:false, lock: async (_n,_t,fn)=>await fn() } });
+    const esc = s => String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    function readStored(){ try{ for(const k of Object.keys(localStorage)){ if(!/auth-token/.test(k)) continue; const v=JSON.parse(localStorage.getItem(k)); const s=(v&&v.user)?v:(v&&v.currentSession)?v.currentSession:null; if(s&&s.user){ if(s.expires_at&&s.expires_at*1000<Date.now())return null; return s; } } }catch(e){} return null; }
+    const SESSION = readStored();
+    const IS_ADMIN = !!(SESSION && SESSION.user && (SESSION.user.email||'').toLowerCase()===ADMIN_EMAIL);
+
+    async function apply(){
+      const m = document.getElementById('applyMsg');
+      const gmail = document.getElementById('fGmail').value.trim();
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(gmail)){ m.style.color='#dc2626'; m.textContent='구글 계정(Gmail) 주소를 정확히 입력해 주세요.'; return; }
+      m.style.color='#6b7280'; m.textContent='신청 중…';
+      const row = { gmail, name: document.getElementById('fName').value.trim()||null,
+                    phone: document.getElementById('fPhone').value.trim()||null,
+                    book: document.getElementById('fBook').value||null,
+                    memo: document.getElementById('fMemo').value.trim()||null };
+      const { error } = await sb.from('app_testers').insert(row);
+      if(error){
+        if(/duplicate|unique/i.test(error.message)){ m.style.color='#16a34a'; m.textContent='이미 신청이 접수되어 있습니다. 곧 참여 링크를 보내 드릴게요!'; return; }
+        if(/relation|does not exist|schema cache/i.test(error.message)){ m.style.color='#dc2626'; m.innerHTML='접수 준비 중입니다 — 관리자: <code class="bg-ink/5 px-1 rounded">supabase/app_testers.sql</code> 실행 필요'; return; }
+        m.style.color='#dc2626'; m.textContent='오류: '+error.message; return;
+      }
+      document.getElementById('applyBox').innerHTML =
+        '<div class="text-center py-8"><p class="text-4xl mb-4">🙏</p>'
+        +'<p class="text-lg font-bold">신청이 접수되었습니다!</p>'
+        +'<p class="text-[14px] text-neutral-900/60 mt-3 leading-relaxed">테스터 등록을 마치는 대로<br/>참여 링크를 메일로 보내 드리겠습니다.<br/>함께해 주셔서 감사합니다.</p></div>';
+    }
+
+    async function loadList(){
+      const box = document.getElementById('tlist');
+      const { data, error } = await sb.from('app_testers').select('*').order('created_at',{ascending:true});
+      if(error){ box.innerHTML='<p class="text-[13px] text-red-500">'+esc(error.message)+'</p>'; return; }
+      window.__testers = data||[];
+      document.getElementById('cnt').textContent = '('+(data?data.length:0)+'명)';
+      box.innerHTML = (data||[]).map((t,i)=>`
+        <div class="flex items-center gap-3 bg-white border border-ink/8 rounded-xl px-4 py-3">
+          <span class="text-[12px] text-neutral-900/35 w-6">${i+1}</span>
+          <div class="flex-1 min-w-0">
+            <p class="text-[14px] font-semibold truncate">${esc(t.gmail)}</p>
+            <p class="text-[12px] text-neutral-900/45 truncate">${esc(t.name||'')} ${t.phone?'· '+esc(t.phone):''} ${t.book?'· '+esc(t.book):''}</p>
+          </div>
+          <select onchange="setStatus(${t.id}, this.value)" class="text-[12px] border border-ink/15 rounded-lg px-2 py-1.5">
+            ${['applied','registered','installed','done','dropped'].map(s=>`<option value="${s}" ${t.status===s?'selected':''}>${({applied:'신청',registered:'등록됨',installed:'설치확인',done:'완주',dropped:'이탈'})[s]}</option>`).join('')}
+          </select>
+        </div>`).join('') || '<p class="text-[13px] text-neutral-900/40 py-6 text-center">아직 신청자가 없습니다.</p>';
+    }
+    async function setStatus(id, status){ await sb.from('app_testers').update({status}).eq('id',id); }
+    function copyGmails(){
+      const t = (window.__testers||[]).map(x=>x.gmail).join('\n');
+      navigator.clipboard.writeText(t).then(()=>alert((window.__testers||[]).length+'개 Gmail을 복사했습니다.\n\nPlay Console 테스터 목록에 붙여넣으세요.'))
+        .catch(()=>prompt('복사하세요:', t));
+    }
+    if(IS_ADMIN){ document.getElementById('adminBox').classList.remove('hidden'); loadList(); }
+  </script>
+</body>
+</html>

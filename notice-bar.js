@@ -1,13 +1,13 @@
 // 공지 바 — 전 페이지 헤더 아래 상시 노출 (2026-08-08, A+B안의 A)
 // · 고정 공지(pinned) 우선, 없으면 최신 공지(14일 이내)
 // · 새 글(7일 이내)은 NEW 배지 + 은은한 반짝(shimmer) 효과로 시선 유도
-// · ✕ 닫으면 그 공지 id는 다시 안 뜸 — 새 공지가 오면 다시 나타남
+// · ✕ 닫아도 이번 탭에서만 숨김(sessionStorage) — 홈에 다시 들어오면 또 보인다
 // 로드: site-header.js가 자동 주입(서브 페이지 전체) + index.html 직접 포함
 (function () {
   if (/notices\.html/.test(location.pathname)) return;            // 게시판 자체에는 불필요
   var SB = 'https://bmxkndkwefdgsomlznoo.supabase.co';
   var KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
-  var DKEY = 'bibly_notice_bar_dismiss';
+  var DKEY = 'bibly_notice_bar_dismiss';   // sessionStorage 키 — 탭을 닫으면 초기화된다
 
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
@@ -46,7 +46,7 @@
       '<button class="nbX" aria-label="공지 닫기">✕</button>' +
       '</div>';
     bar.querySelector('.nbX').addEventListener('click', function () {
-      try { localStorage.setItem(DKEY, String(n.id)); } catch (e) {}
+      try { sessionStorage.setItem(DKEY, String(n.id)); } catch (e) {}
       bar.remove();
     });
 
@@ -64,7 +64,8 @@
         if (!n) return;
         var fresh = (Date.now() - new Date(n.created_at).getTime()) < 14 * 864e5;
         if (!n.pinned && !fresh) return;                           // 오래된 일반 글이면 숨김
-        try { if (localStorage.getItem(DKEY) === String(n.id)) return; } catch (e) {}
+        try { if (sessionStorage.getItem(DKEY) === String(n.id)) return; } catch (e) {}
+        try { localStorage.removeItem(DKEY); } catch (e) {}   // 구버전(영구 숨김) 흔적 제거
         render(n);
       }).catch(function () {});
   }
