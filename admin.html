@@ -25,6 +25,7 @@
     const ADMIN_EMAIL = 'josephoh1611@gmail.com';
   </script>
   <style>input,select,textarea{outline:none}</style>
+  <script src="/pager.js?v=1"></script>
 </head>
 <body class="font-sans bg-paper text-neutral-900 antialiased">
 
@@ -141,7 +142,7 @@
         <p class="text-neutral-900/50 text-sm mb-4">홈에서 ‘1기 창립 멤버 되기’로 가입한 분들입니다. (가입 순서대로 멤버 번호 부여)</p>
         <!-- 검색 + 보기 전환(명단 표 / 작성 내용 전문) -->
         <div class="flex flex-wrap items-center gap-2 mb-4">
-          <input id="foundingQ" type="search" oninput="renderFounding()" placeholder="이름·이메일·교회·작성 내용 검색" class="flex-1 min-w-[200px] max-w-sm border border-ink/15 rounded-lg px-3 py-2 text-sm outline-none focus:border-gold" />
+          <input id="foundingQ" type="search" oninput="admReset('founding');renderFounding()" placeholder="이름·이메일·교회·작성 내용 검색" class="flex-1 min-w-[200px] max-w-sm border border-ink/15 rounded-lg px-3 py-2 text-sm outline-none focus:border-gold" />
           <div class="flex rounded-lg border border-ink/15 overflow-hidden text-sm">
             <button id="fvTable" onclick="setFoundingView('table')" class="px-3 py-2">명단 표</button>
             <button id="fvCard" onclick="setFoundingView('card')" class="px-3 py-2 border-l border-ink/15">작성 내용</button>
@@ -419,6 +420,31 @@
     // detectSessionFromUrl:false — OAuth 해시는 스크립트 끝 handleOAuthRedirect()에서 직접 처리(SDK 비동기 race·hang 차단)
     const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType: 'implicit', autoRefreshToken: false, persistSession: false, detectSessionFromUrl: false, lock: async (_n,_t,fn)=>await fn() } });
     let USER = null;
+    // ── 관리자 목록 공용 페이지 나누기 ──────────────────────────────
+    // 표가 길어지면 한 화면에 다 그리지 않고 쪽으로 나눈다. 목록마다 키 하나로 현재 쪽을 기억한다.
+    const ADM_PER = 25;                 // 관리자 표는 한 쪽에 25행(사용자 화면 10개와 별도)
+    const ADM_PAGE = {};
+    function admPage(k){ return ADM_PAGE[k] || 1; }
+    function admReset(k){ ADM_PAGE[k] = 1; }
+    // 현재 쪽 항목만 돌려준다(쪽 번호가 범위를 넘으면 보정)
+    function admSlice(k, rows, per){
+      per = per || ADM_PER;
+      const p = Math.min(admPage(k), BiblyPager.pages(rows.length, per));
+      ADM_PAGE[k] = p;
+      return BiblyPager.slice(rows, p, per);
+    }
+    // 목록 컨테이너 바로 뒤에 페이저를 붙인다(없으면 만들고, 있으면 다시 그린다)
+    function admPager(k, wrap, total, rerender, per){
+      if(!wrap) return;
+      let el = wrap.nextElementSibling;
+      if(!el || !el.classList.contains('admPager')){
+        el = document.createElement('div'); el.className = 'admPager';
+        wrap.parentNode.insertBefore(el, wrap.nextSibling);
+      }
+      BiblyPager.render(el, { total: total, page: admPage(k), per: per || ADM_PER, scrollTo: wrap,
+        onGo: function(p){ ADM_PAGE[k] = p; rerender(); } });
+    }
+
     function esc(s){ return (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
     function withTimeout(p,ms){ return Promise.race([Promise.resolve(p), new Promise((_,r)=>setTimeout(()=>r(new Error('TIMEOUT')),ms))]); }
     function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.classList.remove('hidden'); setTimeout(()=>t.classList.add('hidden'),2200); }
@@ -626,8 +652,9 @@
       let rows,err; try{ rows=await rest('lecture_requests?select=*&order=created_at.desc&limit=200'); }catch(e){ err=e; }
       if(err){ wrap.innerHTML = tableMissing(err)? '<p class="text-neutral-900/50 text-sm">요청함 테이블이 아직 없습니다. (supabase_lecture_requests.sql 실행 필요)</p>':'<p class="text-red-500 text-sm">불러오기 오류: '+esc(err.message||err)+'</p>'; return; }
       let votes={}; try{ const vd=await rest('lecture_request_votes?select=request_id'); (vd||[]).forEach(v=>votes[v.request_id]=(votes[v.request_id]||0)+1); }catch(e){}
-      if(!rows.length){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">아직 등록된 요청이 없습니다.</p>'; return; }
-      wrap.innerHTML = rows.map(r=>`<div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-4 mb-3">
+      if(!rows.length){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">아직 등록된 요청이 없습니다.</p>'; admPager('reqs',wrap,0,loadReqs); return; }
+      admPager('reqs', wrap, rows.length, loadReqs);
+      wrap.innerHTML = admSlice('reqs', rows).map(r=>`<div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-4 mb-3">
         <div class="flex items-center gap-2 flex-wrap mb-1">
           <span class="text-[11px] font-bold px-2 py-0.5 rounded-full ${r.type==='feedback'?'bg-gold/15 text-gold':'bg-gold text-white'}">${r.type==='feedback'?'건의':'요청'}</span>
           <span class="text-[11px] text-neutral-900/40">${votes[r.id]||0}</span>
@@ -657,8 +684,9 @@
       if(err){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">'+(tableMissing(err)?'커뮤니티 테이블이 없습니다.':'불러오기 오류: '+esc(err.message||err))+'</p>'; return; }
       if(!rows.length){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">게시물이 없습니다.</p>'; return; }
       const strip=h=>{const d=document.createElement('div');d.innerHTML=h||'';return (d.textContent||'').slice(0,120);};
+      admPager('comm', wrap, rows.length, loadComm);
       wrap.innerHTML = '<p class="text-sm text-neutral-900/50 mb-3">최근 '+rows.length+'개 · 전체 관리는 <a href="community.html" class="text-gold underline">커뮤니티 페이지</a>에서도 가능합니다.</p>'+
-        rows.map(p=>`<div class="bg-white rounded-xl border border-ink/5 shadow-sm p-4 mb-2 flex items-start justify-between gap-3">
+        admSlice('comm', rows).map(p=>`<div class="bg-white rounded-xl border border-ink/5 shadow-sm p-4 mb-2 flex items-start justify-between gap-3">
           <div class="min-w-0"><p class="text-[11px] text-neutral-900/40 mb-0.5">${esc(p.author_name||'회원')} · ${esc(p.board||'')} · ${new Date(p.created_at).toLocaleDateString('ko')}</p><p class="text-sm text-neutral-900/80 truncate">${esc(strip(p.content))}</p></div>
           <button onclick="delPost('${p.id}')" class="text-xs text-red-500 hover:underline shrink-0">삭제</button>
         </div>`).join('');
@@ -679,12 +707,13 @@
       if(!MEMBERS.length){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">표시할 회원이 없습니다. (RLS 정책상 본인 정보만 조회될 수 있어요 — 전체 회원 조회가 필요하면 <code class="bg-ink/5 px-1 rounded">supabase_admin_profiles.sql</code>을 실행하세요.)</p>'; return; }
       const fdate=d=> d? new Date(d).toLocaleDateString('ko') : '—';
       const prov=p=>({google:'구글',kakao:'카카오',email:'이메일'}[p]||p||'-');
+      admPager('mem', wrap, MEMBERS.length, loadMem);
       wrap.innerHTML = `<p class="text-sm text-neutral-900/50 mb-3">총 <b class="text-neutral-900">${MEMBERS.length}</b>명 · 최신 가입순 · 표를 좌우로 넘기면 모든 정보가 보여요</p>
         <div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">
         <thead class="text-neutral-900/45 text-left border-b border-ink/5"><tr>
           <th class="px-4 py-3 font-medium">이름</th><th class="px-4 py-3 font-medium">전화번호</th><th class="px-4 py-3 font-medium">이메일</th><th class="px-4 py-3 font-medium">주소</th><th class="px-4 py-3 font-medium">가입일</th><th class="px-4 py-3 font-medium">가입경로</th><th class="px-4 py-3 font-medium">마케팅</th><th class="px-4 py-3 font-medium">창립#</th><th class="px-4 py-3 font-medium">수강</th>
         </tr></thead>
-        <tbody>${MEMBERS.map(m=>`<tr class="border-b border-ink/5">
+        <tbody>${admSlice('mem', MEMBERS).map(m=>`<tr class="border-b border-ink/5">
           <td class="px-4 py-3 font-medium">${esc(m.name)}</td>
           <td class="px-4 py-3 text-neutral-900/70">${esc(m.phone||'-')}</td>
           <td class="px-4 py-3 text-neutral-900/70">${esc(m.email||'-')}</td>
@@ -790,8 +819,8 @@
         renderFounding();
       }catch(e){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">'+(_storeNeedSql(e)?'창립 멤버 기능 준비 중 — <code class="bg-ink/5 px-1 rounded">supabase/founding_members.sql</code> 실행 필요.':'불러오기 오류: '+esc(e.message||e))+'</p>'; }
     }
-    function setFoundingView(v){ FOUNDING_VIEW=v; renderFounding(); }
-    function setFoundingFilter(v){ FOUNDING_FILTER=v; renderFounding(); }
+    function setFoundingView(v){ FOUNDING_VIEW=v; admReset('founding'); renderFounding(); }
+    function setFoundingFilter(v){ FOUNDING_FILTER=v; admReset('founding'); renderFounding(); }
     // 검색어가 어느 항목에든 들어 있으면 통과(작성 내용 본문 포함) + 이용권 상태 필터
     function foundingFiltered(){
       const q=(document.getElementById('foundingQ')?.value||'').trim().toLowerCase();
@@ -842,8 +871,9 @@
         const on=b.dataset.ff===FOUNDING_FILTER;
         b.className='px-3 py-1.5 rounded-full border '+(on?'border-gold bg-gold text-white font-semibold':'border-ink/15 hover:bg-ink/5');
       });
-      if(!FOUNDING.length){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">아직 창립 멤버가 없습니다.</p>'; return; }
+      if(!FOUNDING.length){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">아직 창립 멤버가 없습니다.</p>'; admPager('founding',wrap,0,renderFounding); return; }
       const rows=foundingFiltered();
+      admPager('founding', wrap, rows.length, renderFounding);
       const wrote=FOUNDING.filter(r=>F_LONG.some(f=>String(r[f[0]]||'').trim())).length;
       const nPhone=FOUNDING.filter(r=>_fPhone(r)).length, nAddr=FOUNDING.filter(r=>_fAddr(r)).length;
       const nAcct=FOUNDING.filter(r=>r._account).length;
@@ -855,7 +885,7 @@
 
       if(FOUNDING_VIEW==='card'){
         // 작성 내용 전문 보기 — 신청서에 적어 주신 글을 그대로 읽는 화면
-        wrap.innerHTML=head+rows.map(r=>{
+        wrap.innerHTML=head+admSlice('founding', rows).map(r=>{
           const body=F_LONG.filter(f=>String(r[f[0]]||'').trim()).map(f=>`
             <div class="mt-3"><p class="text-[12px] font-semibold text-gold mb-1">${f[1]}</p>
               <p class="text-[14px] leading-relaxed text-neutral-900/80 whitespace-pre-line">${_fnl(r[f[0]])}</p></div>`).join('');
@@ -883,7 +913,7 @@
         : _fdash; };
       wrap.innerHTML=head+`<div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">
         <thead class="text-neutral-900/45 text-left border-b border-ink/5"><tr><th class="px-4 py-3 font-medium">번호</th><th class="px-4 py-3 font-medium">이름</th><th class="px-4 py-3 font-medium">전화번호</th><th class="px-4 py-3 font-medium">이메일</th><th class="px-4 py-3 font-medium">주소</th><th class="px-4 py-3 font-medium">출석 교회</th><th class="px-4 py-3 font-medium">작성</th><th class="px-4 py-3 font-medium">이용권</th><th class="px-4 py-3 font-medium">수강</th><th class="px-4 py-3 font-medium">가입일</th><th class="px-4 py-3 font-medium"></th></tr></thead>
-        <tbody>${rows.map(r=>`<tr class="border-b border-ink/5 hover:bg-sand/40">
+        <tbody>${admSlice('founding', rows).map(r=>`<tr class="border-b border-ink/5 hover:bg-sand/40">
           <td class="px-4 py-3 font-bold text-gold">${_fno(r)}</td>
           <td class="px-4 py-3 font-medium">${_fv(_fName(r))}</td>
           <td class="px-4 py-3">${_tel(_fPhone(r), _fromProfile(r,'phone'))}</td>
@@ -983,10 +1013,11 @@
       if(err){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">'+(tableMissing(err)?'신청 테이블이 아직 없습니다. (course_applications — setup.sql 5번 실행 필요)':'불러오기 오류: '+esc(err.message||err))+'</p>'; return; }
       APPS=rows||[];
       if(!rows||!rows.length){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">아직 등록 신청이 없습니다.</p>'; return; }
+      admPager('apps', wrap, rows.length, loadApps);
       wrap.innerHTML = '<p class="text-sm text-neutral-900/50 mb-3">총 <b class="text-neutral-900">'+rows.length+'</b>건 · 최신순</p>'
         + '<div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">'
         + '<thead class="text-neutral-900/45 text-left border-b border-ink/5"><tr><th class="px-5 py-3 font-medium">신청일</th><th class="px-5 py-3 font-medium">패키지</th><th class="px-5 py-3 font-medium">이름</th><th class="px-5 py-3 font-medium">이메일</th><th class="px-5 py-3 font-medium">연락처</th><th class="px-5 py-3 font-medium">메모</th></tr></thead><tbody>'
-        + rows.map(r=>`<tr class="border-b border-ink/5"><td class="px-5 py-3 text-neutral-900/55">${new Date(r.created_at).toLocaleDateString('ko')}</td><td class="px-5 py-3 font-medium text-gold">${esc(r.interest||'')}</td><td class="px-5 py-3">${esc(r.name||'')}</td><td class="px-5 py-3 text-neutral-900/70">${esc(r.email||'')}</td><td class="px-5 py-3 text-neutral-900/60">${esc(r.phone||'')}</td><td class="px-5 py-3 text-neutral-900/55 max-w-[260px] truncate" title="${esc(r.motivation||'')}">${esc(r.motivation||'')}</td></tr>`).join('')
+        + admSlice('apps', rows).map(r=>`<tr class="border-b border-ink/5"><td class="px-5 py-3 text-neutral-900/55">${new Date(r.created_at).toLocaleDateString('ko')}</td><td class="px-5 py-3 font-medium text-gold">${esc(r.interest||'')}</td><td class="px-5 py-3">${esc(r.name||'')}</td><td class="px-5 py-3 text-neutral-900/70">${esc(r.email||'')}</td><td class="px-5 py-3 text-neutral-900/60">${esc(r.phone||'')}</td><td class="px-5 py-3 text-neutral-900/55 max-w-[260px] truncate" title="${esc(r.motivation||'')}">${esc(r.motivation||'')}</td></tr>`).join('')
         + '</tbody></table></div>';
     }
 
@@ -997,9 +1028,10 @@
       try{
         const data=await rpcFetch('list_cert',{}); CERT=data||[];
         if(!data||!data.length){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">아직 수강권 보유자가 없습니다.</p>'; return; }
+        admPager('cert', wrap, (data||[]).length, loadCert);
         wrap.innerHTML = `<div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">
           <thead class="text-neutral-900/45 text-left border-b border-ink/5"><tr><th class="px-5 py-3 font-medium">이메일</th><th class="px-5 py-3 font-medium">등급</th><th class="px-5 py-3 font-medium">부여일</th><th class="px-5 py-3"></th></tr></thead>
-          <tbody>${data.map(r=>`<tr class="border-b border-ink/5"><td class="px-5 py-3">${esc(r.email)}</td><td class="px-5 py-3 font-medium text-gold">${esc(CERT_TIERNAME[r.tier]||r.tier)}</td><td class="px-5 py-3 text-neutral-900/55">${new Date(r.granted_at).toLocaleDateString('ko')}</td><td class="px-5 py-3 text-right"><button onclick="revokeCert(this.dataset.e)" data-e="${esc(r.email)}" class="text-xs text-red-500 hover:underline">회수</button></td></tr>`).join('')}</tbody></table></div>`;
+          <tbody>${admSlice('cert', data).map(r=>`<tr class="border-b border-ink/5"><td class="px-5 py-3">${esc(r.email)}</td><td class="px-5 py-3 font-medium text-gold">${esc(CERT_TIERNAME[r.tier]||r.tier)}</td><td class="px-5 py-3 text-neutral-900/55">${new Date(r.granted_at).toLocaleDateString('ko')}</td><td class="px-5 py-3 text-right"><button onclick="revokeCert(this.dataset.e)" data-e="${esc(r.email)}" class="text-xs text-red-500 hover:underline">회수</button></td></tr>`).join('')}</tbody></table></div>`;
       }catch(e){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">'+(tableMissing(e)||/function|does not exist|schema cache/i.test(e.message||'')?'수강권 기능을 준비 중입니다. (관리자: <code class="bg-ink/5 px-1 rounded">db/admin_grant.sql</code> 실행 필요)':'불러오기 오류: '+esc(e.message||e))+'</p>'; }
     }
     async function grantCert(){
@@ -1081,7 +1113,8 @@
 
     function renderTnList(){
       const rows=tnMerged();
-      document.getElementById('tnList').innerHTML = rows.length? rows.map(r=>{
+      admPager('tn', document.getElementById('tnList'), rows.length, renderTnList);
+      document.getElementById('tnList').innerHTML = rows.length? admSlice('tn', rows).map(r=>{
         const badge = r.src==='기본글'? '<span class="text-[11px] px-2 py-0.5 rounded-full bg-ink/5 text-neutral-900/50">기본글</span>'
           : r.src==='수정됨'? '<span class="text-[11px] px-2 py-0.5 rounded-full bg-gold/10 text-gold font-bold">수정됨</span>'
           : '<span class="text-[11px] px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-bold">신규</span>';
@@ -1188,7 +1221,7 @@
     // ===== 과제 첨삭 =====
     let ASG_ROWS=[], ASG_FILTER='submitted', ASG_TITLES=null;
     async function asgTitles(){ if(ASG_TITLES) return ASG_TITLES; ASG_TITLES={}; try{ const c=await getCourse(); (c.levels||[]).forEach(lv=>(lv.lessons||[]).forEach(l=>{ const m=/(?:v=|be\/|embed\/)([\w-]{11})/.exec(l.youtube||''); if(m) ASG_TITLES[m[1]]=l.title||''; })); }catch(e){} return ASG_TITLES; }
-    function asgFilter(f){ ASG_FILTER=f;
+    function asgFilter(f){ ASG_FILTER=f; admReset('asg');
       document.getElementById('asgFilterNew').className='text-sm font-semibold px-4 py-2 rounded-full '+(f==='submitted'?'bg-gold text-white':'bg-white border border-ink/12 text-neutral-900/60');
       document.getElementById('asgFilterAll').className='text-sm font-semibold px-4 py-2 rounded-full '+(f==='all'?'bg-gold text-white':'bg-white border border-ink/12 text-neutral-900/60');
       document.getElementById('asgFilterDone').className='text-sm font-semibold px-4 py-2 rounded-full '+(f==='passed'?'bg-gold text-white':'bg-white border border-ink/12 text-neutral-900/60');
@@ -1212,8 +1245,9 @@
       else rows.sort((a,b)=>new Date(b.submitted_at)-new Date(a.submitted_at));
       const nNew=ASG_ROWS.filter(r=>r.status==='submitted').length;
       document.getElementById('asgFilterNew').textContent='첨삭 대기'+(nNew?(' ('+nNew+')'):'');
-      if(!rows.length){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm py-6 text-center">'+(ASG_FILTER==='submitted'?'첨삭 대기 중인 과제가 없습니다. 👍':'해당하는 과제가 없습니다.')+'</p>'; return; }
-      wrap.innerHTML=rows.map(r=>{
+      if(!rows.length){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm py-6 text-center">'+(ASG_FILTER==='submitted'?'첨삭 대기 중인 과제가 없습니다. 👍':'해당하는 과제가 없습니다.')+'</p>'; admPager('asg',wrap,0,renderAsg); return; }
+      admPager('asg', wrap, rows.length, renderAsg);
+      wrap.innerHTML=admSlice('asg', rows).map(r=>{
         const title=ASG_TITLES[r.lesson_id]||r.lesson_id;
         const passed=r.status==='passed';
         return `<div class="bg-white rounded-2xl border border-ink/6 shadow-sm p-5 mb-4">
@@ -1318,9 +1352,10 @@
       try{
         const data=await rpcFetch('list_pass',{}); PASSHOLDERS=data||[];
         if(!data||!data.length){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">아직 이용권 보유자가 없습니다.</p>'; return; }
+        admPager('pass', wrap, (data||[]).length, loadPassList);
         wrap.innerHTML=`<div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">
           <thead class="text-neutral-900/45 text-left border-b border-ink/5"><tr><th class="px-5 py-3 font-medium">이메일</th><th class="px-5 py-3 font-medium">종류</th><th class="px-5 py-3 font-medium">만료</th><th class="px-5 py-3 font-medium">부여일</th><th class="px-5 py-3"></th></tr></thead>
-          <tbody>${data.map(r=>`<tr class="border-b border-ink/5"><td class="px-5 py-3">${esc(r.email)}</td><td class="px-5 py-3 font-medium text-gold">${esc(passName(r.type))}</td><td class="px-5 py-3 text-neutral-900/55">${r.expires_at?new Date(r.expires_at).toLocaleDateString('ko'):'평생'}</td><td class="px-5 py-3 text-neutral-900/55">${r.created_at?new Date(r.created_at).toLocaleDateString('ko'):'-'}</td><td class="px-5 py-3 text-right whitespace-nowrap"><button onclick="showUserAccess(this.dataset.e)" data-e="${esc(r.email)}" class="text-xs text-neutral-900/60 hover:text-gold hover:underline mr-3">기록보기</button><button onclick="revokePass(this.dataset.e)" data-e="${esc(r.email)}" class="text-xs text-red-500 hover:underline">회수</button></td></tr>`).join('')}</tbody></table></div>`;
+          <tbody>${admSlice('pass', data).map(r=>`<tr class="border-b border-ink/5"><td class="px-5 py-3">${esc(r.email)}</td><td class="px-5 py-3 font-medium text-gold">${esc(passName(r.type))}</td><td class="px-5 py-3 text-neutral-900/55">${r.expires_at?new Date(r.expires_at).toLocaleDateString('ko'):'평생'}</td><td class="px-5 py-3 text-neutral-900/55">${r.created_at?new Date(r.created_at).toLocaleDateString('ko'):'-'}</td><td class="px-5 py-3 text-right whitespace-nowrap"><button onclick="showUserAccess(this.dataset.e)" data-e="${esc(r.email)}" class="text-xs text-neutral-900/60 hover:text-gold hover:underline mr-3">기록보기</button><button onclick="revokePass(this.dataset.e)" data-e="${esc(r.email)}" class="text-xs text-red-500 hover:underline">회수</button></td></tr>`).join('')}</tbody></table></div>`;
       }catch(e){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">'+(_storeNeedSql(e)?'스토어 권한 기능 준비 중 — 관리자: <code class="bg-ink/5 px-1 rounded">supabase/store_grant.sql</code> 를 먼저 실행하세요.':'불러오기 오류: '+esc(e.message||e))+'</p>'; }
     }
     async function loadBookList(){
@@ -1328,9 +1363,10 @@
       try{
         const data=await rpcFetch('list_book',{}); BOOKHOLDERS=data||[];
         if(!data||!data.length){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">아직 개별 교재 권한이 없습니다.</p>'; return; }
+        admPager('book', wrap, (data||[]).length, loadBookList);
         wrap.innerHTML=`<div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">
           <thead class="text-neutral-900/45 text-left border-b border-ink/5"><tr><th class="px-5 py-3 font-medium">이메일</th><th class="px-5 py-3 font-medium">책(과정)</th><th class="px-5 py-3 font-medium">부여일</th><th class="px-5 py-3"></th></tr></thead>
-          <tbody>${data.map(r=>`<tr class="border-b border-ink/5"><td class="px-5 py-3">${esc(r.email)}</td><td class="px-5 py-3 font-medium">${esc(r.track)}</td><td class="px-5 py-3 text-neutral-900/55">${r.created_at?new Date(r.created_at).toLocaleDateString('ko'):'-'}</td><td class="px-5 py-3 text-right whitespace-nowrap"><button onclick="showUserAccess(this.dataset.e)" data-e="${esc(r.email)}" class="text-xs text-neutral-900/60 hover:text-gold hover:underline mr-3">기록보기</button><button onclick="revokeBook(this.dataset.e,this.dataset.t)" data-e="${esc(r.email)}" data-t="${esc(r.track)}" class="text-xs text-red-500 hover:underline">회수</button></td></tr>`).join('')}</tbody></table></div>`;
+          <tbody>${admSlice('book', data).map(r=>`<tr class="border-b border-ink/5"><td class="px-5 py-3">${esc(r.email)}</td><td class="px-5 py-3 font-medium">${esc(r.track)}</td><td class="px-5 py-3 text-neutral-900/55">${r.created_at?new Date(r.created_at).toLocaleDateString('ko'):'-'}</td><td class="px-5 py-3 text-right whitespace-nowrap"><button onclick="showUserAccess(this.dataset.e)" data-e="${esc(r.email)}" class="text-xs text-neutral-900/60 hover:text-gold hover:underline mr-3">기록보기</button><button onclick="revokeBook(this.dataset.e,this.dataset.t)" data-e="${esc(r.email)}" data-t="${esc(r.track)}" class="text-xs text-red-500 hover:underline">회수</button></td></tr>`).join('')}</tbody></table></div>`;
       }catch(e){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">'+(_storeNeedSql(e)?'스토어 권한 기능 준비 중 — <code class="bg-ink/5 px-1 rounded">supabase/store_grant.sql</code> 실행 필요.':'불러오기 오류: '+esc(e.message||e))+'</p>'; }
     }
     const AC_LABEL={view:'열람',download:'다운로드'};
@@ -1341,9 +1377,10 @@
         const data=await rpcFetch('list_access',{p_limit:300});
         _ACCESS_CACHE = data||[];
         if(!data||!data.length){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">아직 이용 기록이 없습니다.</p>'; return; }
+        admPager('access', wrap, (data||[]).length, loadAccessLogs);
         wrap.innerHTML=`<div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">
           <thead class="text-neutral-900/45 text-left border-b border-ink/5"><tr><th class="px-5 py-3 font-medium">일시</th><th class="px-5 py-3 font-medium">이메일</th><th class="px-5 py-3 font-medium">행위</th><th class="px-5 py-3 font-medium">자료</th><th class="px-5 py-3"></th></tr></thead>
-          <tbody>${data.map(r=>`<tr class="border-b border-ink/5"><td class="px-5 py-3 text-neutral-900/55">${r.created_at?new Date(r.created_at).toLocaleString('ko'):'-'}</td><td class="px-5 py-3">${esc(r.email)}</td><td class="px-5 py-3 font-medium ${r.action==='download'?'text-gold':'text-neutral-900/70'}">${AC_LABEL[r.action]||esc(r.action)}</td><td class="px-5 py-3 text-neutral-900/70">${esc(r.track||'-')}</td><td class="px-5 py-3 text-right"><button onclick="showUserAccess(this.dataset.e)" data-e="${esc(r.email)}" class="text-xs text-neutral-900/50 hover:text-gold hover:underline">이 사용자</button></td></tr>`).join('')}</tbody></table></div>`;
+          <tbody>${admSlice('access', data).map(r=>`<tr class="border-b border-ink/5"><td class="px-5 py-3 text-neutral-900/55">${r.created_at?new Date(r.created_at).toLocaleString('ko'):'-'}</td><td class="px-5 py-3">${esc(r.email)}</td><td class="px-5 py-3 font-medium ${r.action==='download'?'text-gold':'text-neutral-900/70'}">${AC_LABEL[r.action]||esc(r.action)}</td><td class="px-5 py-3 text-neutral-900/70">${esc(r.track||'-')}</td><td class="px-5 py-3 text-right"><button onclick="showUserAccess(this.dataset.e)" data-e="${esc(r.email)}" class="text-xs text-neutral-900/50 hover:text-gold hover:underline">이 사용자</button></td></tr>`).join('')}</tbody></table></div>`;
       }catch(e){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">'+(_storeNeedSql(e)?'이용기록 기능 준비 중 — <code class="bg-ink/5 px-1 rounded">supabase/access_logs.sql</code> 실행 필요.':'불러오기 오류: '+esc(e.message||e))+'</p>'; }
     }
     // 특정 사용자의 열람·다운로드 기록만 모아 보기(모달)
@@ -1446,12 +1483,13 @@
         mkCard('매출(완료 합계)',_wonA(revenue),'테스트 포함'),
         mkCard('대기·실패',(rows.length-paid.length)+'건','미완료'),
       ].join('');
-      if(!rows.length){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">아직 카드결제 주문이 없습니다.</p>'; return; }
+      if(!rows.length){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">아직 카드결제 주문이 없습니다.</p>'; admPager('orders',wrap,0,loadOrders); return; }
+      admPager('orders', wrap, rows.length, loadOrders);
       wrap.innerHTML='<div class="bg-white rounded-2xl border border-ink/5 shadow-sm overflow-x-auto"><table class="w-full text-sm whitespace-nowrap">'
         +'<thead class="text-neutral-900/45 text-left border-b border-ink/5"><tr>'
         +'<th class="px-4 py-3 font-medium">일시</th><th class="px-4 py-3 font-medium">주문번호</th><th class="px-4 py-3 font-medium">구매자</th><th class="px-4 py-3 font-medium">상품</th><th class="px-4 py-3 font-medium text-right">금액</th><th class="px-4 py-3 font-medium">상태</th>'
         +'</tr></thead><tbody>'
-        +rows.map(r=>{
+        +admSlice('orders', rows).map(r=>{
           const dt=r.paid_at||r.created_at; const when=dt?new Date(dt).toLocaleString('ko',{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}):'-';
           const items=Array.isArray(r.items)?r.items.map(i=>i.name).join(', '):'-';
           return '<tr class="border-b border-ink/5 align-top">'
