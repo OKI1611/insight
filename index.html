@@ -2243,16 +2243,43 @@
       {ic:'',lb:'장바구니',href:'booklet.html#cart'},{ic:'',lb:'후원',href:'support.html'}
     ];
     var st=document.createElement('style'); st.id='biblyRailCSS';
-    st.textContent='#biblyRail{position:fixed;left:12px;top:50%;transform:translateY(-50%);z-index:44;display:flex;flex-direction:column;gap:1px;background:#fff;border:1px solid rgba(33,58,107,.1);border-radius:16px;box-shadow:0 12px 34px -14px rgba(21,32,58,.35);padding:6px}'
+    // 헤더 아래~화면 끝 구간 안에서만 세로 중앙 정렬(margin:auto).
+    // top:50% 로 두면 화면이 짧거나 확대했을 때 상단이 스티키 헤더 밑으로 들어가 잘렸다.
+    st.textContent='#biblyRail{position:fixed;left:12px;top:var(--railTop,150px);bottom:12px;height:max-content;margin:auto 0;'
+      +'max-height:calc(100vh - var(--railTop,150px) - 24px);overflow-y:auto;overscroll-behavior:contain;'
+      +'z-index:44;display:flex;flex-direction:column;gap:1px;background:#fff;border:1px solid rgba(33,58,107,.1);border-radius:16px;box-shadow:0 12px 34px -14px rgba(21,32,58,.35);padding:6px}'
+      +'#biblyRail::-webkit-scrollbar{width:0;height:0}'
       +'#biblyRail a{display:flex;flex-direction:column;align-items:center;gap:2px;width:48px;padding:9px 0;border-radius:12px;text-decoration:none;color:#42506c;transition:background .15s,color .15s;cursor:pointer}'
       +'#biblyRail a:hover{background:#f4f7fc;color:#00704a}#biblyRail .ic{font-size:17px;line-height:1}#biblyRail .lb{font-size:10px;font-weight:700;letter-spacing:-.02em}'
       +'#biblyRail .rtop{border-top:1px solid rgba(33,58,107,.08);margin-top:3px;padding-top:9px;color:rgba(33,58,107,.45)}'
-      +'@media(max-width:767px){#biblyRail{display:none}}';
+      +'@media(max-width:767px){#biblyRail{display:none}}'
+      +'@media(max-height:420px){#biblyRail{display:none}}';
     document.head.appendChild(st);
     var rail=document.createElement('nav'); rail.id='biblyRail'; rail.setAttribute('aria-label','빠른 이동 메뉴');
     rail.innerHTML=items.map(function(it){return '<a href="'+it.href+'"'+(it.ext?' target="_blank" rel="noopener"':'')+' title="'+it.lb+'"><span class="ic">'+it.ic+'</span><span class="lb">'+it.lb+'</span></a>';}).join('')
       +'<a class="rtop" title="맨 위로" onclick="window.scrollTo({top:0,behavior:\'smooth\'});return false;"><span class="ic">⤴</span><span class="lb">TOP</span></a>';
     document.body.appendChild(rail);
+
+    // 상단 스티키 헤더 높이를 실측해 레일 시작 위치로 넘긴다(리사이즈·스크롤 때 재측정).
+    function syncRailTop(){
+      var h=0;
+      try{
+        var cand=document.querySelectorAll('header');
+        for(var i=0;i<cand.length;i++){
+          var cs=getComputedStyle(cand[i]);
+          if(cs.position!=='sticky'&&cs.position!=='fixed') continue;
+          var b=cand[i].getBoundingClientRect();
+          if(b.top<=1&&b.height>30&&b.height>h) h=b.height;
+        }
+      }catch(e){}
+      if(!h) h=138;
+      document.documentElement.style.setProperty('--railTop', Math.round(h+12)+'px');
+    }
+    syncRailTop();
+    var t=null;
+    function later(){ clearTimeout(t); t=setTimeout(syncRailTop,120); }
+    window.addEventListener('resize', later);
+    window.addEventListener('scroll', later, { passive:true });
   })();
   </script>
   <script>
