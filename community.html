@@ -12,8 +12,8 @@
   <link rel="manifest" href="/manifest.json" />
   <meta name="theme-color" content="#213a6b" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png?v=6" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png?v=6" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png?v=7" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png?v=7" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="canonical" href="https://biblynote.com/community" />
   <meta property="og:type" content="website" />
@@ -26,7 +26,7 @@
   <meta name="twitter:title" content="질문·나눔·기도요청 — BIBLY 바이블 인사이트" />
   <meta name="twitter:description" content="성경·신앙·삶의 질문을 나누고 함께 답을 찾는 커뮤니티 · 자유게시판 · 기도요청." />
   <meta name="twitter:image" content="https://biblynote.com/images/og-cover.png?v=7" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7" />
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
@@ -426,7 +426,7 @@
         const canDel = mine || isAdmin;
         const adminBadge = c.is_admin ? ' <span class="ml-1 inline-flex items-center gap-0.5 text-[10px] bg-gradient-to-r from-gold to-[#0a3d2b] text-white px-2 py-0.5 rounded-full align-middle font-bold shadow-sm">✓ 대표</span>' : '';
         const cAvatar = c.is_admin
-          ? `<img src="images/apple-touch-icon.png?v=6" alt="대표" class="w-7 h-7 rounded-full object-cover ring-2 ring-gold/50 bg-white shrink-0">`
+          ? `<img src="images/apple-touch-icon.png?v=7" alt="대표" class="w-7 h-7 rounded-full object-cover ring-2 ring-gold/50 bg-white shrink-0">`
           : `<div class="w-7 h-7 rounded-full bg-ink/10 text-neutral-900/55 flex items-center justify-center font-bold text-xs shrink-0">${esc((c.author_name||'?').slice(0,1))}</div>`;
         return `<div class="flex items-start gap-2.5">
           ${cAvatar}
