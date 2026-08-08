@@ -38,9 +38,12 @@ jobs:
       - name: 명예의 전당 집계
         env:
           YT_API_KEY: ${{ secrets.YT_API_KEY }}
-          WINDOW_DAYS: '30'      # 최근 30일 집계. 'month' 로 바꾸면 이번 달 1일부터
+          WINDOW_DAYS: '90'      # 최근 3개월 누적 집계
           TOP_N: '15'            # 화면에 노출할 인원
-          SCAN_VIDEOS: '120'     # 훑을 최근 영상 수(할당량 여유 있음)
+          SCAN_VIDEOS: '200'     # 훑을 최근 영상 수(할당량 여유 있음)
+          MIN_DAYS: '3'          # 최소 활동 일수 — 하루 몰아쓰기 배제
+          MIN_LIKES: '3'         # 받은 좋아요 최소치 — 공감 없는 도배/안티 배제
+          MIN_LIKE_RATIO: '0.2'  # 댓글 1건당 최소 평균 좋아요
         run: node tools/build_hall_of_fame.mjs
 
       - name: 변경분 커밋

@@ -9,9 +9,10 @@
  *
  * 환경변수
  *   YT_API_KEY   (필수) 유튜브 Data API v3 키
- *   WINDOW_DAYS  집계 구간(기본 30). 'month' 로 두면 이번 달 1일부터 집계
+ *   WINDOW_DAYS  집계 구간(기본 90 = 최근 3개월). 'month' 로 두면 이번 달 1일부터
  *   TOP_N        노출 인원(기본 15)
- *   SCAN_VIDEOS  훑을 최근 영상 수(기본 120)
+ *   SCAN_VIDEOS  훑을 최근 영상 수(기본 200)
+ *   MIN_DAYS     최소 활동 일수(기본 3) — 하루에 몰아쓴 사람이 상위에 오르지 않게
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -26,14 +27,24 @@ const API = 'https://www.googleapis.com/youtube/v3';
 const KEY = process.env.YT_API_KEY || '';
 const MOCK = process.env.MOCK === '1';
 const TOP_N = Number(process.env.TOP_N || 15);
-const SCAN_VIDEOS = Number(process.env.SCAN_VIDEOS || 120);
-const WINDOW = process.env.WINDOW_DAYS || '30';
+const SCAN_VIDEOS = Number(process.env.SCAN_VIDEOS || 200);
+const WINDOW = process.env.WINDOW_DAYS || '90';        // 최근 3개월 누적
+const MIN_DAYS = Number(process.env.MIN_DAYS || 3);    // 최소 활동 일수
 
 // ── 점수 규칙 (그대로 화면 안내문에 쓰이니 바꾸면 basis 문구도 함께 바뀜) ──
-const PT_COMMENT = 3;   // 댓글 1건
-const PT_LIKE    = 1;   // 받은 좋아요 1개
-const PT_RECENT  = 2;   // 최근 7일 이내 댓글은 건당 추가
-const RECENT_DAYS = 7;
+//   설계 의도: '많이 쓴 사람'이 아니라 '꾸준히 쓰고 공감받은 사람'이 위로 오도록 한다.
+//   ① 하루에 몰아쓰는 것을 막기 위해 하루 인정 댓글 수에 상한을 둔다.
+//   ② 좋아요(=다른 시청자의 공감)에 큰 가중치를 준다. 적대적 댓글은 좋아요를 못 받는다.
+//   ③ 여러 날에 걸쳐 참여한 사람에게 꾸준함 점수를 준다.
+const PT_COMMENT   = 3;   // 댓글 1건
+const PT_LIKE      = 4;   // 받은 좋아요 1개 (공감 = 가장 신뢰할 신호이므로 가장 큰 가중치)
+const PT_ACTIVEDAY = 3;   // 댓글을 남긴 날 하루당 (꾸준함)
+const DAILY_CAP    = 5;   // 하루에 점수로 인정하는 댓글 최대 건수
+
+// ④ 공감 관문 — 아무도 공감하지 않는 댓글만 잔뜩 쓴 사람은 후보에서 제외한다.
+//    (적대적·일방적 댓글은 다른 시청자의 좋아요를 받지 못한다는 점을 이용)
+const MIN_LIKES = Number(process.env.MIN_LIKES || 3);        // 받은 좋아요 총합 최소치
+const MIN_LIKE_RATIO = Number(process.env.MIN_LIKE_RATIO || 0.2);  // 댓글 1건당 최소 평균 좋아요
 
 function windowStart() {
   const now = new Date();
@@ -104,40 +115,67 @@ async function commentsOf(videoId, since) {
 
 /** 가짜 데이터(로직 점검용) */
 function mockComments(since) {
-  const names = ['@디카페인-k9b', '@마라나타144', '@PERHAPSTODAY-vf2bn', '@w24hourprayhouse11',
-                 '@고창휘-y8r', '@Hur-hd4vo', '@문이재76587', '@TV-cute-u9w', '@신규참여자-a1b'];
   const out = [];
+  const push = (id, handle, daysAgo, likes) => {
+    const at = new Date(Date.now() - daysAgo * 86400000);
+    if (at >= since) out.push({ authorId: id, handle, likes, at });
+  };
+  // 정상 참여자: 여러 날에 걸쳐 꾸준히, 공감(좋아요)도 받음
+  const names = ['@디카페인-k9b', '@마라나타144', '@PERHAPSTODAY-vf2bn', '@w24hourprayhouse11',
+                 '@고창휘-y8r', '@Hur-hd4vo', '@문이재76587', '@TV-cute-u9w'];
   names.forEach((h, i) => {
-    const n = 12 - i;                                  // 앞사람일수록 댓글 많게
-    for (let k = 0; k < n; k++) {
-      const daysAgo = (i + k) % 20;
-      const at = new Date(Date.now() - daysAgo * 86400000);
-      if (at < since) continue;
-      out.push({ authorId: 'uid_' + i, handle: h, likes: (i + k) % 5, at });
-    }
+    for (let k = 0; k < 12 - i; k++) push('uid_' + i, h, (k * 3 + i) % 80, (i + k) % 6);
   });
+  // ① 도배형: 하루에 60건 몰아씀, 좋아요 0 → 하루 상한 + 최소 활동일수로 걸러져야 함
+  for (let k = 0; k < 60; k++) push('uid_spam', '@도배테스트-zzz', 1, 0);
+  // ② 안티형: 여러 날 쓰지만 아무도 공감 안 함(좋아요 0) → 상위권 진입 못해야 함
+  for (let k = 0; k < 25; k++) push('uid_anti', '@안티테스트-yyy', k * 2, 0);
+  // ③ 신규 진입자
+  for (let k = 0; k < 6; k++) push('uid_new', '@신규참여자-a1b', k * 4, 3);
   return out;
 }
 
+/** 명예의 전당에서 제외할 핸들 (관리자가 content/hall-of-fame-exclude.json 에서 관리) */
+function loadExcludes() {
+  try {
+    const p = path.join(ROOT, 'content', 'hall-of-fame-exclude.json');
+    const d = JSON.parse(fs.readFileSync(p, 'utf8'));
+    return new Set((d.exclude || []).map(s => String(s).trim().toLowerCase()).filter(Boolean));
+  } catch (e) { return new Set(); }
+}
+
 function aggregate(comments) {
-  const now = Date.now();
-  const recentCut = now - RECENT_DAYS * 86400000;
+  const excludes = loadExcludes();
   const by = new Map();
   for (const c of comments) {
     if (!c.authorId) continue;
-    const cur = by.get(c.authorId) || { handle: c.handle, comments: 0, likes: 0, recent: 0, lastAt: 0 };
+    const cur = by.get(c.authorId) || { handle: c.handle, comments: 0, likes: 0, days: new Map(), lastAt: 0 };
     cur.handle = c.handle || cur.handle;
     cur.comments += 1;
     cur.likes += c.likes;
-    if (c.at.getTime() >= recentCut) cur.recent += 1;
+    const day = c.at.toISOString().slice(0, 10);              // 날짜별로 묶어 하루 상한 적용
+    cur.days.set(day, (cur.days.get(day) || 0) + 1);
     cur.lastAt = Math.max(cur.lastAt, c.at.getTime());
     by.set(c.authorId, cur);
   }
-  const rows = [...by.entries()].map(([id, v]) => ({
-    id, handle: v.handle, comments: v.comments, likes: v.likes, recent: v.recent, lastAt: v.lastAt,
-    score: v.comments * PT_COMMENT + v.likes * PT_LIKE + v.recent * PT_RECENT
-  }));
-  rows.sort((a, b) => b.score - a.score || b.comments - a.comments || b.lastAt - a.lastAt);
+
+  const rows = [];
+  for (const [id, v] of by) {
+    if (excludes.has(String(v.handle || '').trim().toLowerCase())) continue;   // 제외 명단
+    const activeDays = v.days.size;
+    if (activeDays < MIN_DAYS) continue;                                       // 하루 몰아쓰기 배제
+    if (v.likes < MIN_LIKES) continue;                                         // 공감 관문(절대치)
+    if (v.likes / Math.max(1, v.comments) < MIN_LIKE_RATIO) continue;          // 공감 관문(비율)
+    // 하루 DAILY_CAP 건까지만 점수로 인정 (도배 방지)
+    let counted = 0;
+    for (const n of v.days.values()) counted += Math.min(n, DAILY_CAP);
+    rows.push({
+      id, handle: v.handle, comments: v.comments, counted, likes: v.likes,
+      activeDays, lastAt: v.lastAt,
+      score: counted * PT_COMMENT + v.likes * PT_LIKE + activeDays * PT_ACTIVEDAY
+    });
+  }
+  rows.sort((a, b) => b.score - a.score || b.likes - a.likes || b.activeDays - a.activeDays || b.lastAt - a.lastAt);
   return rows;
 }
 
@@ -176,6 +214,7 @@ function main() {
         score: Math.round(r.score),
         comments: r.comments,
         likes: r.likes,
+        activeDays: r.activeDays,
         prev: p ? p.rank : null,
         delta: p ? (p.rank - rank) : null,     // 양수면 상승
         isNew: !p,
@@ -185,15 +224,16 @@ function main() {
 
     const now = new Date();
     const kst = new Date(now.getTime() + 9 * 3600000);
-    const windowLabel = WINDOW === 'month' ? '이번 달' : ('최근 ' + WINDOW + '일');
+    const windowLabel = WINDOW === 'month' ? '이번 달'
+                      : (Number(WINDOW) % 30 === 0 ? ('최근 ' + (Number(WINDOW) / 30) + '개월') : ('최근 ' + WINDOW + '일'));
     const out = {
       period: kst.toISOString().slice(0, 7),
       updated: kst.toISOString().slice(0, 19).replace('T', ' ') + ' KST',
       cadence: 'daily',
       windowLabel,
-      basis: windowLabel + ' 댓글 ' + comments.length.toLocaleString() + '건 집계 · '
-           + '댓글 ' + PT_COMMENT + '점 + 좋아요 ' + PT_LIKE + '점 + 최근 ' + RECENT_DAYS + '일 댓글 ' + PT_RECENT + '점',
-      note: '매일 자동 집계됩니다. 점수 규칙은 tools/build_hall_of_fame.mjs 상단에서 바꿀 수 있습니다.',
+      basis: windowLabel + ' 누적 댓글 ' + comments.length.toLocaleString() + '건 집계 · '
+           + '댓글 ' + PT_COMMENT + '점(하루 ' + DAILY_CAP + '건까지) + 좋아요 ' + PT_LIKE + '점 + 참여한 날 ' + PT_ACTIVEDAY + '점',
+      note: '매일 자동 집계 · ' + windowLabel + ' 누적 기준. 꾸준히 참여하고 공감받은 분이 상위에 오릅니다.',
       members: top
     };
 
