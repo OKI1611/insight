@@ -365,13 +365,19 @@
     if(!document.getElementById('biblyRailCSS')){
       var st = document.createElement('style'); st.id='biblyRailCSS';
       st.textContent =
-        '#biblyRail{position:fixed;left:12px;top:50%;transform:translateY(-50%);z-index:44;display:flex;flex-direction:column;gap:1px;background:#fff;border:1px solid rgba(33,58,107,.1);border-radius:16px;box-shadow:0 12px 34px -14px rgba(21,32,58,.35);padding:6px}'
+        // 위아래를 헤더 아래~화면 끝으로 묶고 margin:auto 로 그 사이에서만 세로 중앙 정렬한다.
+        // (top:50% 로 중앙에 두면 화면이 짧을 때 상단이 스티키 헤더 밑으로 들어가 잘렸다)
+        '#biblyRail{position:fixed;left:12px;top:var(--railTop,150px);bottom:12px;height:max-content;margin:auto 0;'
+        + 'max-height:calc(100vh - var(--railTop,150px) - 24px);overflow-y:auto;overscroll-behavior:contain;'
+        + 'z-index:44;display:flex;flex-direction:column;gap:1px;background:#fff;border:1px solid rgba(33,58,107,.1);border-radius:16px;box-shadow:0 12px 34px -14px rgba(21,32,58,.35);padding:6px}'
+        + '#biblyRail::-webkit-scrollbar{width:0;height:0}'
         + '#biblyRail a{display:flex;flex-direction:column;align-items:center;gap:2px;width:48px;padding:9px 0;border-radius:12px;text-decoration:none;color:#42506c;transition:background .15s,color .15s;cursor:pointer}'
         + '#biblyRail a:hover{background:#f4f7fc;color:#00704a}'
         + '#biblyRail .ic{font-size:17px;line-height:1}'
         + '#biblyRail .lb{font-size:10px;font-weight:700;letter-spacing:-.02em}'
         + '#biblyRail .rtop{border-top:1px solid rgba(33,58,107,.08);margin-top:3px;padding-top:9px;color:rgba(33,58,107,.45)}'
-        + '@media(max-width:767px){#biblyRail{display:none}}';   // 모바일에선 본문 가림 방지로 숨김
+        + '@media(max-width:767px){#biblyRail{display:none}}'    // 모바일에선 본문 가림 방지로 숨김
+        + '@media(max-height:420px){#biblyRail{display:none}}';  // 화면이 너무 낮으면(가로 모드 등) 숨김
       document.head.appendChild(st);
     }
     var rail = document.createElement('nav'); rail.id='biblyRail'; rail.setAttribute('aria-label','빠른 이동 메뉴');
@@ -383,6 +389,28 @@
     document.body.appendChild(rail);
     // 퀵바는 항상 화면 맨 왼쪽 가장자리에 고정
     rail.style.left = '12px'; rail.style.right = 'auto';
+
+    // 상단 스티키 헤더 높이를 재서 레일 시작 위치(--railTop)로 넘긴다.
+    // 헤더 높이는 페이지·화면폭·스크롤에 따라 달라지므로 리사이즈·스크롤 때 다시 잰다.
+    function syncRailTop(){
+      var h = 0;
+      try{
+        var cand = document.querySelectorAll('header');
+        for(var i=0;i<cand.length;i++){
+          var cs = getComputedStyle(cand[i]);
+          if(cs.position!=='sticky' && cs.position!=='fixed') continue;
+          var b = cand[i].getBoundingClientRect();
+          if(b.top<=1 && b.height>30 && b.height>h) h = b.height;
+        }
+      }catch(e){}
+      if(!h) h = 138;                                   // 헤더를 못 찾으면 안전한 기본값
+      document.documentElement.style.setProperty('--railTop', Math.round(h+12)+'px');
+    }
+    syncRailTop();
+    var t=null;
+    function later(){ clearTimeout(t); t=setTimeout(syncRailTop,120); }
+    window.addEventListener('resize', later);
+    window.addEventListener('scroll', later, { passive:true });
   }
 
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
