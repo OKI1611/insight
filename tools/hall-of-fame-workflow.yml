@@ -39,7 +39,7 @@ jobs:
         env:
           YT_API_KEY: ${{ secrets.YT_API_KEY }}
           WINDOW_DAYS: '90'      # 최근 3개월 누적 집계
-          TOP_N: '15'            # 화면에 노출할 인원
+          TOP_N: '10'            # 화면에 노출할 인원
           SCAN_VIDEOS: '200'     # 훑을 최근 영상 수(할당량 여유 있음)
           MIN_DAYS: '3'          # 최소 활동 일수 — 하루 몰아쓰기 배제
           MIN_LIKES: '3'         # 받은 좋아요 최소치 — 공감 없는 도배/안티 배제

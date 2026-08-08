@@ -20,13 +20,14 @@ import { fileURLToPath } from 'node:url';
 
 // 저장소 경로에 한글이 있어도 안전하도록 fileURLToPath 사용(퍼센트 인코딩 방지)
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const OUT = path.join(ROOT, 'content', 'hall-of-fame.json');
 
 const CHANNEL_ID = 'UC82IOMnZud8NNt3BYzAxTMg';
 const API = 'https://www.googleapis.com/youtube/v3';
 const KEY = process.env.YT_API_KEY || '';
 const MOCK = process.env.MOCK === '1';
-const TOP_N = Number(process.env.TOP_N || 15);
+// 로직 점검(MOCK)이 실제 명단 파일을 덮어쓰지 않도록 출력 경로를 분리한다.
+const OUT = path.join(ROOT, 'content', MOCK ? 'hall-of-fame.mock.json' : 'hall-of-fame.json');
+const TOP_N = Number(process.env.TOP_N || 10);
 const SCAN_VIDEOS = Number(process.env.SCAN_VIDEOS || 200);
 const WINDOW = process.env.WINDOW_DAYS || '90';        // 최근 3개월 누적
 const MIN_DAYS = Number(process.env.MIN_DAYS || 3);    // 최소 활동 일수
@@ -39,7 +40,9 @@ const MIN_DAYS = Number(process.env.MIN_DAYS || 3);    // 최소 활동 일수
 const PT_COMMENT   = 3;   // 댓글 1건
 const PT_LIKE      = 4;   // 받은 좋아요 1개 (공감 = 가장 신뢰할 신호이므로 가장 큰 가중치)
 const PT_ACTIVEDAY = 3;   // 댓글을 남긴 날 하루당 (꾸준함)
-const DAILY_CAP    = 5;   // 하루에 점수로 인정하는 댓글 최대 건수
+const DAILY_CAP    = 8;   // 하루에 점수로 인정하는 댓글 최대 건수
+                          //  ↑ 댓글 참여도를 더 반영하려고 5→8 로 올림. 도배 방어는 아래 공감
+                          //    관문(좋아요 절대치·비율)이 맡는다 — 많이 쓸수록 비율 관문이 빡빡해진다.
 
 // ④ 공감 관문 — 아무도 공감하지 않는 댓글만 잔뜩 쓴 사람은 후보에서 제외한다.
 //    (적대적·일방적 댓글은 다른 시청자의 좋아요를 받지 못한다는 점을 이용)
