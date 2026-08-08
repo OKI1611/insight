@@ -31,6 +31,24 @@
 - ⚠️ `wrangler dev` 를 저장소 루트에서 **직접** 실행하면 무한 리로드 루프에 빠진다(자산 디렉터리가 `./` 라서 wrangler 의 `.wrangler` 상태 쓰기를 감시기가 계속 감지). 그래서 반드시 `dev-local.ps1`(저장소 밖 임시 폴더에서 실행) 을 사용한다.
 - `Request.cf` 타임아웃 경고, 채널톡/Supabase 실시간 위젯의 반복 연결 시도는 로컬에서 정상(무시).
 
+## 자동 집계 스크립트 (tools/)
+- `node tools/build_stats.mjs` → `content/stats.json` 갱신.
+  guide.html 의 '한눈에 보는 바이블 인사이트' 숫자판이 이 파일을 읽는다.
+  **강의·사전·Q&A 자료를 추가·수정했으면 이 스크립트를 실행하고 함께 커밋**할 것
+  (원본이 사전 12.9MB·권별 Q&A 4.1MB 라 브라우저에서 직접 셀 수 없다).
+- `YT_API_KEY=… node tools/build_hall_of_fame.mjs` → `content/hall-of-fame.json` 갱신.
+  평소엔 `.github/workflows/update-hall-of-fame.yml` 이 매일 05:00(KST) 자동 실행한다.
+  로직만 점검할 땐 `MOCK=1` (실제 명단 파일 대신 `hall-of-fame.mock.json` 에 쓴다).
+  제외할 계정은 `content/hall-of-fame-exclude.json` 에 핸들을 넣는다.
+  ⚠️ 이 워크플로 커밋 메시지에 `[skip ci]` 를 넣지 말 것 — Cloudflare 가 배포까지 건너뛴다.
+
+## 주의 — 홈(index.html)은 공통 컴포넌트를 쓰지 않는 곳이 있다
+- 왼쪽 퀵메뉴(`#biblyRail`)는 `site-header.js` 에도 있고 **index.html 안에 인라인 사본**도 있다
+  (index 는 자체 헤더를 쓰기 때문). **한쪽만 고치면 홈 화면에는 반영되지 않는다.**
+- 파비콘·아이콘 교체 시에는 `favicon.ico`, `favicon.svg`, `images/favicon-*.png`,
+  `images/apple-touch-icon.png`, `images/icon-192/512`, `icon-maskable-512` 를 모두 바꾸고
+  전 페이지의 `?v=N` 캐시 무효화 번호와 `sw.js` 의 `CACHE` 버전을 함께 올린다.
+
 ## 작업 관례
 - 커밋 메시지·UI 문구·주석은 **한국어**로 작성합니다(기존 커밋 히스토리 참고).
 - 개인/비공개 파일(`*.docx`, `*.pdf`(단 `files/*.pdf` 제외), `PLAN.md`, 키스토어 등)은 `.gitignore`로 제외되어 있습니다.
