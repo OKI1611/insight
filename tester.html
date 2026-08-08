@@ -167,6 +167,7 @@
           <div class="flex-1 min-w-0">
             <p class="text-[14px] font-semibold truncate">${esc(t.gmail)}</p>
             <p class="text-[12px] text-neutral-900/45 truncate">${esc(t.name||'')} ${t.phone?'· '+esc(t.phone):''} ${t.book?'· '+esc(t.book):''}</p>
+            ${t.gift_submitted_at ? `<p class="text-[12px] text-gold mt-1">📦 ${esc(t.ship_name||'')} · ${esc(t.ship_phone||'')} · ${esc(t.ship_address||'')}${t.gift_book?' · <b>'+esc(t.gift_book)+'</b>':''}</p>` : ''}
           </div>
           <select onchange="setStatus(${t.id}, this.value)" class="text-[12px] border border-ink/15 rounded-lg px-2 py-1.5">
             ${['applied','registered','installed','done','dropped'].map(s=>`<option value="${s}" ${t.status===s?'selected':''}>${({applied:'신청',registered:'등록됨',installed:'설치확인',done:'완주',dropped:'이탈'})[s]}</option>`).join('')}

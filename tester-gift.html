@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <script src="/content-loader.js?v=20260703f"></script>
+  <script src="/site-header.js?v=20260808b"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>완주 선물 배송지 입력 — BIBLY 바이블 인사이트</title>
+  <meta name="description" content="앱 테스트를 완주해 주신 분들께 저자 도서 1권을 보내 드립니다. 받으실 주소를 남겨 주세요." />
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#213a6b" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="canonical" href="https://biblynote.com/tester-gift" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink:'#213a6b', navy:'#182c54', gold:'#00704a', sand:'#eaf0f8', paper:'#ffffff' },
+      fontFamily: { sans:['Pretendard','system-ui','sans-serif'] },
+      boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
+    }}}
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
+    const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+  </script>
+  <style> h1,h2{font-family:'Pretendard',system-ui,sans-serif} </style>
+</head>
+<body class="font-sans bg-paper text-neutral-900 antialiased min-h-screen">
+
+  <div id="siteHeader" data-active=""></div>
+
+  <!-- 히어로 -->
+  <section class="bg-gradient-to-b from-navy to-[#0a3d2b] text-white">
+    <div class="max-w-3xl mx-auto px-5 py-12 md:py-14 text-center">
+      <span class="inline-flex text-[11.5px] font-bold text-[#0a3d2b] bg-[#ffd76a] rounded-full px-3.5 py-1.5">14일 완주 감사</span>
+      <h1 class="text-2xl md:text-3xl font-bold leading-snug mt-5">끝까지 함께해 주셔서<br/><span class="text-[#ffd76a]">감사합니다</span></h1>
+      <p class="text-white/70 text-sm md:text-base mt-5 leading-relaxed">
+        약속드린 <b class="text-white">저자 도서 1권</b>을 보내 드리려 합니다.<br class="hidden sm:block"/>
+        받으실 주소를 남겨 주세요.
+      </p>
+    </div>
+  </section>
+
+  <main class="max-w-2xl mx-auto px-5 py-10 md:py-14">
+
+    <div id="box" class="bg-white rounded-2xl border-2 border-gold/40 shadow-card p-6 md:p-8">
+      <h2 class="text-lg md:text-xl font-bold">배송지 입력</h2>
+      <p class="text-[13px] text-neutral-900/55 mt-1.5 leading-relaxed">
+        테스터 신청 때 남기신 <b class="text-neutral-900/75">구글 계정(Gmail)</b>으로 확인합니다.
+      </p>
+
+      <div class="mt-6 space-y-4">
+        <div>
+          <label class="block text-[13px] font-bold text-neutral-900/70 mb-1.5">신청하신 Gmail <span class="text-gold">*</span></label>
+          <input id="fGmail" type="email" inputmode="email" placeholder="example@gmail.com"
+            class="w-full border border-ink/15 rounded-xl px-4 py-3 text-[15px] outline-none focus:border-gold" />
+        </div>
+        <div>
+          <label class="block text-[13px] font-bold text-neutral-900/70 mb-1.5">받으실 분 성함 <span class="text-gold">*</span></label>
+          <input id="fName" placeholder="홍길동"
+            class="w-full border border-ink/15 rounded-xl px-4 py-3 text-[15px] outline-none focus:border-gold" />
+        </div>
+        <div>
+          <label class="block text-[13px] font-bold text-neutral-900/70 mb-1.5">연락처 <span class="text-gold">*</span></label>
+          <input id="fPhone" inputmode="tel" placeholder="010-0000-0000"
+            class="w-full border border-ink/15 rounded-xl px-4 py-3 text-[15px] outline-none focus:border-gold" />
+          <p class="text-[12px] text-neutral-900/40 mt-1.5">배송 확인용으로만 씁니다.</p>
+        </div>
+        <div>
+          <label class="block text-[13px] font-bold text-neutral-900/70 mb-1.5">주소 <span class="text-gold">*</span></label>
+          <input id="fAddr1" placeholder="도로명 주소 (예: 서울 강남구 논현로10길 30)"
+            class="w-full border border-ink/15 rounded-xl px-4 py-3 text-[15px] outline-none focus:border-gold" />
+          <input id="fAddr2" placeholder="상세 주소 (동·호수 등)"
+            class="w-full border border-ink/15 rounded-xl px-4 py-3 text-[15px] outline-none focus:border-gold mt-2" />
+          <input id="fZip" inputmode="numeric" placeholder="우편번호 (5자리)"
+            class="w-full border border-ink/15 rounded-xl px-4 py-3 text-[15px] outline-none focus:border-gold mt-2" />
+        </div>
+        <div>
+          <label class="block text-[13px] font-bold text-neutral-900/70 mb-1.5">받으실 책 <span class="text-gold">*</span></label>
+          <select id="fBook" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-[15px] outline-none focus:border-gold bg-white">
+            <option value="">— 한 권 골라 주세요 —</option>
+            <option value="가면의 시대">가면의 시대</option>
+            <option value="교회를 떠나고서야, 예수를 만났다">교회를 떠나고서야, 예수를 만났다</option>
+            <option value="엄마 향기">엄마 향기</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-[13px] font-bold text-neutral-900/70 mb-1.5">남기실 말씀 <span class="text-neutral-900/35 font-normal">(선택)</span></label>
+          <textarea id="fMemo" rows="2" placeholder="앱을 써 보신 소감이나 하고 싶은 말씀이 있으면 남겨 주세요"
+            class="w-full border border-ink/15 rounded-xl px-4 py-3 text-[15px] outline-none focus:border-gold"></textarea>
+        </div>
+      </div>
+
+      <button onclick="submitGift()" id="btn"
+        class="w-full mt-6 bg-gold text-white font-bold text-[16px] py-4 rounded-xl hover:opacity-90 transition">
+        배송지 제출하기
+      </button>
+      <p id="msg" class="text-[13.5px] text-center mt-3 min-h-[20px]"></p>
+
+      <p class="text-[12px] text-neutral-900/40 mt-4 leading-relaxed text-center">
+        주소는 <b class="text-neutral-900/55">책 발송에만</b> 사용하고, 발송이 끝나면 파기합니다.
+      </p>
+    </div>
+
+  </main>
+
+  <script>
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { persistSession: false } });
+    const $ = id => document.getElementById(id);
+
+    async function submitGift(){
+      const m = $('msg'), btn = $('btn');
+      const gmail = $('fGmail').value.trim();
+      const name  = $('fName').value.trim();
+      const phone = $('fPhone').value.trim();
+      const addr1 = $('fAddr1').value.trim();
+      const addr2 = $('fAddr2').value.trim();
+      const zip   = $('fZip').value.trim();
+      const book  = $('fBook').value;
+
+      const bad = t => { m.style.color = '#dc2626'; m.textContent = t; };
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(gmail)) return bad('신청하실 때 쓰신 Gmail 주소를 정확히 입력해 주세요.');
+      if(!name)  return bad('받으실 분 성함을 입력해 주세요.');
+      if(!phone) return bad('연락처를 입력해 주세요.');
+      if(!addr1) return bad('주소를 입력해 주세요.');
+      if(!book)  return bad('받으실 책을 골라 주세요.');
+
+      m.style.color = '#6b7280'; m.textContent = '제출 중…';
+      btn.disabled = true;
+
+      const address = [addr1, addr2].filter(Boolean).join(' ') + (zip ? ' (' + zip + ')' : '');
+      const { error } = await sb.rpc('submit_tester_gift', {
+        p_gmail: gmail, p_name: name, p_phone: phone, p_address: address,
+        p_book: book, p_memo: $('fMemo').value.trim() || null
+      });
+
+      btn.disabled = false;
+      if(error){
+        if(/not found|없습니다/i.test(error.message)){
+          return bad('신청 내역을 찾지 못했습니다. 테스터 신청 때 쓰신 Gmail이 맞는지 확인해 주세요.');
+        }
+        if(/function|does not exist|schema cache/i.test(error.message)){
+          m.style.color = '#dc2626';
+          m.innerHTML = '접수 준비 중입니다 — 관리자: <code class="bg-ink/5 px-1 rounded">supabase_tester_gift.sql</code> 실행 필요';
+          return;
+        }
+        return bad('오류: ' + error.message);
+      }
+
+      $('box').innerHTML =
+        '<div class="text-center py-10">'
+        + '<p class="text-4xl mb-4">📦</p>'
+        + '<p class="text-lg font-bold">배송지가 접수되었습니다!</p>'
+        + '<p class="text-[14px] text-neutral-900/60 mt-3 leading-relaxed">'
+        + '정성껏 포장해서 보내 드리겠습니다.<br/>14일 동안 함께해 주셔서 진심으로 감사합니다.</p>'
+        + '<a href="/" class="inline-block mt-6 bg-gold text-white font-bold text-sm px-6 py-3 rounded-xl hover:opacity-90 transition">홈으로 돌아가기</a>'
+        + '</div>';
+    }
+    window.submitGift = submitGift;
+  </script>
+
+  <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script src="auth-header.js?v=20260619c"></script>
+</body>
+</html>
