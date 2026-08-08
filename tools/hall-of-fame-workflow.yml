@@ -1,0 +1,57 @@
+# ============================================================
+# 명예의 전당 매일 자동 갱신
+#
+# ⚠️ 이 파일은 그대로 두면 동작하지 않습니다.
+#    GitHub 저장소의 .github/workflows/update-hall-of-fame.yml 로 만들어야 합니다.
+#    (Claude 의 GitHub 토큰에 workflow 권한이 없어 대신 올려 드릴 수 없습니다)
+#
+# 만드는 법
+#   1) GitHub → OKI1611/insight → Add file → Create new file
+#   2) 파일 이름에  .github/workflows/update-hall-of-fame.yml  입력
+#   3) 아래 내용 전체 복사 → 붙여넣기 → Commit
+#
+# 사전 준비 (한 번만)
+#   · 유튜브 Data API v3 키 발급 → 저장소 Settings → Secrets and variables →
+#     Actions → New repository secret → 이름 YT_API_KEY, 값에 키 붙여넣기
+# ============================================================
+
+name: Update hall of fame
+
+on:
+  schedule:
+    - cron: '0 20 * * *'    # 매일 05:00 (KST) 자동 실행  ※ UTC 기준 20:00
+  workflow_dispatch: {}      # 필요하면 수동 실행도 가능
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 명예의 전당 집계
+        env:
+          YT_API_KEY: ${{ secrets.YT_API_KEY }}
+          WINDOW_DAYS: '30'      # 최근 30일 집계. 'month' 로 바꾸면 이번 달 1일부터
+          TOP_N: '15'            # 화면에 노출할 인원
+          SCAN_VIDEOS: '120'     # 훑을 최근 영상 수(할당량 여유 있음)
+        run: node tools/build_hall_of_fame.mjs
+
+      - name: 변경분 커밋
+        run: |
+          if [ -n "$(git status --porcelain content/hall-of-fame.json)" ]; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add content/hall-of-fame.json
+            git commit -m "chore: 명예의 전당 자동 갱신 [skip ci]"
+            git push
+            echo "순위 갱신됨"
+          else
+            echo "순위 변동 없음"
+          fi

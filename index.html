@@ -1135,7 +1135,7 @@
         <ol id="hofList" class="px-1 py-1"></ol>
       </div>
       <p class="text-[12.5px] text-neutral-900/45 mt-6 leading-relaxed">
-        우수 멤버는 <b class="text-neutral-900/60">매달 새로 선정</b>합니다. 이 자리에 담지 못한 모든 시청자 한 분 한 분께도 같은 마음으로 감사드립니다.
+        순위는 <b class="text-neutral-900/60">매일 새벽 자동 갱신</b>됩니다. 이 자리에 담지 못한 모든 시청자 한 분 한 분께도 같은 마음으로 감사드립니다.
       </p>
       <a href="https://www.youtube.com/channel/UC82IOMnZud8NNt3BYzAxTMg" target="_blank" rel="noopener"
          class="inline-block mt-7 bg-gold text-white font-semibold text-sm px-6 py-3 rounded-full hover:opacity-90 transition">
@@ -2307,10 +2307,23 @@
         return (r>=1&&r<=3) ? '<span class="medal m'+r+'">'+r+'</span>'
                             : '<span class="n">'+(r||'')+'</span>';
       }
+      // 순위 변동 배지 — 상승 ▲ / 하락 ▼ / 신규 NEW / 연속 유지
+      function moveBadge(x){
+        if(x.isNew) return '<span style="font-size:10.5px;font-weight:800;color:#fff;background:#00704a;border-radius:9999px;padding:1px 6px;margin-left:6px">NEW</span>';
+        if(typeof x.delta!=='number' || x.delta===0) return '';
+        var up=x.delta>0;
+        return '<span style="font-size:10.5px;font-weight:800;color:'+(up?'#c0392b':'#2c6fbb')+';margin-left:6px">'
+             + (up?'▲':'▼') + Math.abs(x.delta) + '</span>';
+      }
       var first=m[0];
+      var streakTxt = (first.streak && first.streak>1)
+        ? '<p style="font-size:11.5px;color:#8a7350;margin-top:6px">'+first.streak+'일 연속 1위 🔥</p>' : '';
       document.getElementById('hofTop').innerHTML =
         '<span class="medal m1" style="width:30px;height:30px;font-size:15px">1</span>'
-        + '<p class="font-serifkr mt-3" style="font-size:21px;color:#2c2418;word-break:break-all">'+esc(first.handle)+'</p>';
+        + '<p class="font-serifkr mt-3" style="font-size:21px;color:#2c2418;word-break:break-all">'+esc(first.handle)
+        + moveBadge(first)+'</p>'
+        + (first.score ? '<p style="font-size:11.5px;color:#8a7350;margin-top:4px">'+first.score+'점 · 댓글 '+(first.comments||0)+' · 좋아요 '+(first.likes||0)+'</p>' : '')
+        + streakTxt;
       // 히어로 상단 띠에도 순위를 흘려보냄
       var barRow=document.getElementById('hofBarRow');
       if(barRow){
@@ -2329,7 +2342,9 @@
           : '<span class="shrink-0 text-right" style="width:19px;font-size:12.5px;color:#8a7350">'+r+'</span>';
         return '<li class="flex items-center gap-3 px-4 py-2.5'+(last?'':' border-b')+'" style="border-color:rgba(90,70,40,.14)">'
           + mark
-          + '<span style="font-size:13.5px;color:#2c2418;word-break:break-all">'+esc(x.handle)+'</span></li>';
+          + '<span class="flex-1 min-w-0" style="font-size:13.5px;color:#2c2418;word-break:break-all">'+esc(x.handle)+moveBadge(x)+'</span>'
+          + (x.score ? '<span class="shrink-0" style="font-size:11px;color:#a08a63;font-variant-numeric:tabular-nums">'+x.score+'점</span>' : '')
+          + '</li>';
       }).join('');
     }).catch(function(){ board.style.display='none'; });
   })();
