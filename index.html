@@ -2264,12 +2264,19 @@
     function syncRailTop(){
       var h=0;
       try{
-        var cand=document.querySelectorAll('header');
+        // 스크롤 전에는 헤더가 아직 상단에 붙어 있지 않으므로 '현재 위치'가 아니라
+        // 'top:0 으로 붙게 되어 있는가(css top)'로 판별하고 높이만 가져온다.
+        var cand=document.querySelectorAll('header,[data-sticky-header]');
         for(var i=0;i<cand.length;i++){
           var cs=getComputedStyle(cand[i]);
           if(cs.position!=='sticky'&&cs.position!=='fixed') continue;
+          if(cs.display==='none') continue;
+          var ct=parseFloat(cs.top);
+          if(isNaN(ct)||ct>2) continue;                       // 상단 고정이 아닌 것 제외
           var b=cand[i].getBoundingClientRect();
-          if(b.top<=1&&b.height>30&&b.height>h) h=b.height;
+          if(b.width<innerWidth*0.7) continue;                // 전체폭 헤더만
+          if(b.height<30||b.height>innerHeight*0.6) continue;  // 전면 오버레이 등 제외
+          if(b.height>h) h=b.height;
         }
       }catch(e){}
       if(!h) h=138;
