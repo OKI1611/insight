@@ -15,7 +15,8 @@ create table if not exists public.app_testers (
   phone      text,
   book       text,                             -- 완주 선물로 고를 책
   memo       text,
-  status     text not null default 'pending'   -- pending(접수) / invited(초대발송) / installed(설치확인) / done(완주) / dropped(이탈)
+  status     text not null default 'applied'   -- applied(신청) / registered(등록됨) / installed(설치확인) / done(완주) / dropped(이탈)
+                                               -- ※ 값은 관리자 화면(tester.html)의 드롭다운과 반드시 일치해야 함
 );
 
 -- 같은 Gmail 중복 신청 방지 (대소문자 무시)
@@ -35,9 +36,10 @@ drop policy if exists "app_testers_select_admin" on public.app_testers;
 drop policy if exists "app_testers_update_admin" on public.app_testers;
 drop policy if exists "app_testers_delete_admin" on public.app_testers;
 
--- 신청: 누구나 가능(로그인 불필요). 단 status 는 항상 'pending' 으로만 등록되게 강제.
+-- 신청: 누구나 가능(로그인 불필요). 단 status 는 항상 'applied'(신청) 로만 등록되게 강제
+-- (신청자가 임의로 '완주' 등으로 조작하는 것 방지)
 create policy "app_testers_insert_anyone" on public.app_testers
-  for insert with check (status = 'pending');
+  for insert with check (status = 'applied');
 
 -- 조회·수정·삭제: 관리자만 (개인정보 보호 — 익명 조회 차단)
 create policy "app_testers_select_admin" on public.app_testers
