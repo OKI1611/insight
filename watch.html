@@ -965,7 +965,7 @@
             <p class="text-sm font-bold text-neutral-900">이 강의는 <span style="color:${c}">${esc(rk.rank)} ${esc(rk.name)}</span> 인증과정 과목입니다</p>
             <p class="text-xs text-neutral-900/55 mt-0.5">강의마다 시험으로 학점을 쌓고, 과목을 완주하면 급수 수료증과 휘장을 받아요 · ${priceTxt}</p>
           </div>
-          <a href="${rankApplyURL(rk, 'watch-bar')}" class="shrink-0 text-sm font-semibold text-white rounded-full px-4 py-2 hover:opacity-90 transition" style="background:${c}">과정 살펴보기 →</a>
+          <a href="${rankApplyURL(rk, 'watch-bar')}" class="shrink-0 w-full sm:w-auto text-center text-sm font-semibold text-white rounded-full px-5 py-3 sm:py-2.5 hover:opacity-90 transition" style="background:${c}">과정 살펴보기 →</a>
         </div>${LUSER ? '' : `<p class="text-[12px] text-neutral-900/50 mt-2 px-1">아직 고민되시나요? <button type="button" onclick="openLogin()" class="font-semibold underline underline-offset-2 hover:text-gold">무료 가입</button>하면 <b>5일 무료체험</b>으로 시험·요약노트를 먼저 써볼 수 있어요.</p>`}`;
         box.style.display = '';
       }catch(e){}
@@ -983,7 +983,7 @@
           <div class="flex-1">
             <p class="text-[13px] font-bold" style="color:${c}">방금 푼 이 시험, 정식 학점이 될 수 있어요</p>
             <p class="text-sm text-neutral-900/75 leading-relaxed mt-1">이 강의는 <b>${esc(rk.rank)} ${esc(rk.name)}</b> 인증과정 과목입니다. 등록하면 지금 같은 확인학습이 학점 시험이 되고, 과목을 완주할 때마다 급수 수료증과 휘장을 받습니다.</p>
-            <a href="${rankApplyURL(rk, 'watch-quiz')}" class="inline-flex items-center gap-1.5 mt-3 text-sm font-bold text-white rounded-full px-5 py-2.5 hover:opacity-90 transition" style="background:${c}">${esc(rk.rank)} 과정 등록하기 · ${priceTxt} →</a>${ebLine}
+            <a href="${rankApplyURL(rk, 'watch-quiz')}" class="flex sm:inline-flex items-center justify-center gap-1.5 mt-3 text-sm font-bold text-white rounded-full px-5 py-3.5 sm:py-3 hover:opacity-90 transition" style="background:${c}">${esc(rk.rank)} 과정 등록하기 · ${priceTxt} →</a>${ebLine}
           </div>
         </div>
       </div>`;
