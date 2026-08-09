@@ -42,6 +42,15 @@
   제외할 계정은 `content/hall-of-fame-exclude.json` 에 핸들을 넣는다.
   ⚠️ 이 워크플로 커밋 메시지에 `[skip ci]` 를 넣지 말 것 — Cloudflare 가 배포까지 건너뛴다.
 
+## 인강 판매 — 기수(cohort) 운영
+- 급수 가격·과목·기수는 **`content/program.json` 한 곳**이 단일 출처다.
+- `cohort.deadline`(KST, YYYY-MM-DD)이 지나면 `academy.html`·`watch.html` 양쪽에서
+  **얼리버드가 자동으로 걷히고 정가로 돌아간다.** 다음 기수를 열 땐 `cohort`의 이름·마감일만 바꾼다.
+- 판매 유입 측정: 프로모 링크의 `?src=` 값이 `site_visits`에 경로로 함께 기록된다
+  (`watch-bar` 시청 페이지 띠 / `watch-quiz` 확인학습 직후 / `yt` 유튜브). 관리자 방문통계에서 비교한다.
+- 유튜브 설명란·고정댓글 문구와 급수별 딥링크는 `유튜브_판매연결_문구.md` 참고.
+- 등록 버튼 등 주요 터치 영역은 **모바일에서 44px 이상** 유지할 것(이용자 연령대가 높다).
+
 ## 주의 — 홈(index.html)은 공통 컴포넌트를 쓰지 않는 곳이 있다
 - 왼쪽 퀵메뉴(`#biblyRail`)는 `site-header.js` 에도 있고 **index.html 안에 인라인 사본**도 있다
   (index 는 자체 헤더를 쓰기 때문). **한쪽만 고치면 홈 화면에는 반영되지 않는다.**
