@@ -24,6 +24,17 @@
     }
   }catch(e){}
 
+  // 전환 추적 — 프로모 카드 등에서 src= 를 달고 들어온 방문은 세션당 1회 제한 없이 따로 남긴다.
+  // (어느 자리의 제안이 실제 등록 페이지 유입을 만드는지 관리자 방문통계에서 path 로 구분된다)
+  try{
+    var _src=new URLSearchParams(location.search).get('src');
+    if(_src){
+      var SB2='https://bmxkndkwefdgsomlznoo.supabase.co';
+      var AK2='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+      fetch(SB2+'/rest/v1/site_visits',{method:'POST',headers:{apikey:AK2,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify({path:location.pathname+'?src='+String(_src).slice(0,40)})}).catch(function(){});
+    }
+  }catch(e){}
+
   // ===== PWA 자동 업데이트 (모든 페이지) =====
   // 설치형 앱이 새 배포를 자동 감지해 최신 상태로 갱신한다.
   try{

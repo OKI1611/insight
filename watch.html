@@ -113,6 +113,9 @@
       <!-- 내 학습 (수강신청 / 진도 체크) — 제목 바로 아래, 잘 보이게 -->
       <div id="learnBar" class="mt-4 flex flex-wrap items-center gap-2 text-sm bg-white border border-ink/[0.07] rounded-2xl px-4 py-3.5 shadow-soft"></div>
 
+      <!-- 이 강의가 속한 급수 안내(한 줄) — 급수 미보유자에게만 보임 -->
+      <div id="rankPromo" class="mt-4" style="display:none"></div>
+
       <div id="lessonDesc" class="mt-4 bg-white rounded-2xl border border-ink/[0.07] p-5 shadow-soft text-[15px] text-neutral-900/75 leading-relaxed" style="display:none"></div>
 
       <div id="lessonChapters" class="mt-4 bg-white rounded-2xl border border-ink/[0.07] p-5 shadow-soft" style="display:none"></div>
@@ -583,7 +586,8 @@
           growth = `<p class="text-sm text-neutral-900/70 mt-2 pt-2 border-t border-gold/20">강의 전 진단평가 <b>${pre.score}점</b> → 강의 후 <b>${correct}점</b> · ${tag}</p>`;
         }
         done.style.display = '';
-        done.innerHTML = `<div class="inline-block bg-gold/10 rounded-2xl px-6 py-4"><p class="text-xl font-bold text-gold mb-1">최종 ${correct} / ${total}점</p><p class="text-sm text-neutral-900/65">${msg}</p>${growth}<button type="button" onclick="retakeQuiz()" class="mt-3 inline-flex items-center gap-1.5 bg-gold text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition">다시 도전</button></div>`;
+        done.innerHTML = `<div class="inline-block bg-gold/10 rounded-2xl px-6 py-4"><p class="text-xl font-bold text-gold mb-1">최종 ${correct} / ${total}점</p><p class="text-sm text-neutral-900/65">${msg}</p>${growth}<button type="button" onclick="retakeQuiz()" class="mt-3 inline-flex items-center gap-1.5 bg-gold text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition">다시 도전</button></div>`
+          + (CUR_RANK ? rankPromoQuizHTML(CUR_RANK) : '');   // 확인학습 직후 = 등록 동기가 가장 높은 순간
         // 진단평가를 모두 풀면 핵심 요약을 자동으로 펼친다
         if(typeof revealSummary === 'function') setTimeout(revealSummary, 600);
       }
@@ -842,6 +846,7 @@
       renderNote(l);
       renderQuiz(l);
       refreshLearningUI();
+      renderRankPromo();   // 이 강의가 속한 급수 안내(미보유자에게만)
       QA_PAGE = 1;   // 다른 강의로 옮기면 질의응답도 첫 쪽부터
       loadQuestions();
       const noteCard = document.getElementById('noteCard');
@@ -902,9 +907,86 @@
     }
     async function loadAccessBanner(){
       const el = document.getElementById('accessBanner'); if(!el || !window.biblyAccess) return;
-      if(!LUSER){ el.innerHTML = ''; return; }
-      try{ const st = await biblyAccess(lsb, LUSER); el.innerHTML = (window.biblyAccessBanner ? biblyAccessBanner(st) : '') || ''; }
+      if(!LUSER){ el.innerHTML = ''; ACCESS_ST = null; renderRankPromo(); return; }
+      try{ const st = await biblyAccess(lsb, LUSER); ACCESS_ST = st; el.innerHTML = (window.biblyAccessBanner ? biblyAccessBanner(st) : '') || ''; }
       catch(e){ el.innerHTML = ''; }
+      renderRankPromo();   // 급수 보유 여부가 확정된 뒤 과정 안내 카드 갱신
+    }
+
+    // ===== 이 강의가 속한 급수 안내 =====
+    // 무료로 강의를 다 본 사람이 가장 뜨거운 잠재 수강생이다. 지금 보는 강의가 어느 급수
+    // 과목인지 알려 주고, 확인학습을 끝낸 직후(가장 동기가 높은 순간) 등록을 제안한다.
+    // 이미 해당 급수 이상을 보유한 회원에게는 보이지 않는다.
+    let ACCESS_ST = null, CUR_RANK = null, PROG_CACHE = null, CUR_EB_END = '';
+    async function getProgSafe(){
+      if(typeof getProg === 'function') return getProg();       // 뒤쪽 블록의 캐시 재사용
+      if(!PROG_CACHE){ try{ PROG_CACHE = await (await fetch('content/program.json?t=' + Date.now())).json(); }catch(e){ PROG_CACHE = { ranks: [] }; } }
+      return PROG_CACHE;
+    }
+    function rankWon(n){ return (Number(n)||0).toLocaleString('ko-KR') + '원'; }
+    function rankApplyURL(rk, src){
+      return 'academy.html?apply=' + encodeURIComponent(rk.name + ' (' + rk.rank + ')') + '&src=' + src;
+    }
+    function rankSeal(rk, size){
+      const c = rk.color || '#00704a';
+      return `<span class="inline-flex items-center justify-center rounded-full shrink-0" style="width:${size}px;height:${size}px;background:radial-gradient(circle at 32% 26%, rgba(255,255,255,.55), transparent 58%), linear-gradient(145deg,${c},${c}cc);box-shadow:0 6px 14px -6px ${c}, inset 0 0 0 2px rgba(255,255,255,.3)"><span style="font-size:${Math.round(size*0.44)}px;color:#fff;font-family:Georgia,serif;font-weight:700;text-shadow:0 1px 2px rgba(0,0,0,.28)">${6-(rk.tier||1)}</span></span>`;
+    }
+    async function renderRankPromo(){
+      const box = document.getElementById('rankPromo'); if(!box) return;
+      CUR_RANK = null; box.style.display = 'none'; box.innerHTML = '';
+      try{
+        const track = (typeof LESSON_TRACK !== 'undefined' && LESSON_TRACK[cur]) || '';
+        if(!track) return;
+        const prog = await getProgSafe();
+        // 기수 마감이 지났으면 얼리버드를 걷어내고 정가로(아카데미 페이지와 같은 규칙)
+        CUR_EB_END = '';
+        try{
+          const co = prog && prog.cohort;
+          if(co && co.deadline){
+            const end = new Date(co.deadline + 'T23:59:59+09:00');
+            if(!isNaN(end)){
+              if(end < new Date()){ (prog.ranks || []).forEach(r => { delete r.earlybird; }); }
+              else { const d = new Date(co.deadline + 'T00:00:00+09:00'); CUR_EB_END = (d.getMonth()+1) + '월 ' + d.getDate() + '일 마감'; }
+            }
+          }
+        }catch(e){}
+        const rk = (prog.ranks || []).find(r => (r.tracks || []).includes(track));
+        if(!rk) return;                                                            // 급수 밖 과목(단편 등)
+        if(ACCESS_ST && Number(ACCESS_ST.paidTier || 0) >= Number(rk.tier || 99)) return;  // 이미 보유
+        CUR_RANK = rk;
+        const c = rk.color || '#00704a';
+        const amt = rk.earlybird || rk.price || 0;
+        const priceTxt = rk.earlybird
+          ? `얼리버드 <b>${rankWon(rk.earlybird)}</b> <span class="line-through opacity-50">${rankWon(rk.price)}</span>${CUR_EB_END ? ` · <span class="text-rose-500 font-semibold">${CUR_EB_END}</span>` : ''}`
+          : `<b>${rankWon(amt)}</b>`;
+        box.innerHTML = `<div class="bg-white border border-ink/[0.07] rounded-2xl px-4 py-3.5 shadow-soft flex flex-wrap items-center gap-3">
+          ${rankSeal(rk, 34)}
+          <div class="flex-1 min-w-[220px]">
+            <p class="text-sm font-bold text-neutral-900">이 강의는 <span style="color:${c}">${esc(rk.rank)} ${esc(rk.name)}</span> 인증과정 과목입니다</p>
+            <p class="text-xs text-neutral-900/55 mt-0.5">강의마다 시험으로 학점을 쌓고, 과목을 완주하면 급수 수료증과 휘장을 받아요 · ${priceTxt}</p>
+          </div>
+          <a href="${rankApplyURL(rk, 'watch-bar')}" class="shrink-0 text-sm font-semibold text-white rounded-full px-4 py-2 hover:opacity-90 transition" style="background:${c}">과정 살펴보기 →</a>
+        </div>${LUSER ? '' : `<p class="text-[12px] text-neutral-900/50 mt-2 px-1">아직 고민되시나요? <button type="button" onclick="openLogin()" class="font-semibold underline underline-offset-2 hover:text-gold">무료 가입</button>하면 <b>5일 무료체험</b>으로 시험·요약노트를 먼저 써볼 수 있어요.</p>`}`;
+        box.style.display = '';
+      }catch(e){}
+    }
+    function rankPromoQuizHTML(rk){
+      const c = rk.color || '#00704a';
+      const priceTxt = rk.earlybird
+        ? `얼리버드 ${rankWon(rk.earlybird)} <span class="line-through opacity-60">${rankWon(rk.price)}</span>`
+        : rankWon(rk.price);
+      const ebLine = (rk.earlybird && CUR_EB_END)
+        ? `<p class="text-[12px] font-semibold mt-2" style="color:#e11d48">얼리버드 ${esc(CUR_EB_END)} — 이후 정가로 돌아갑니다</p>` : '';
+      return `<div class="mt-5 text-left bg-white border rounded-2xl p-5" style="border-color:${c}55;background:linear-gradient(135deg,#ffffff, ${c}0d)">
+        <div class="flex items-start gap-3">
+          ${rankSeal(rk, 38)}
+          <div class="flex-1">
+            <p class="text-[13px] font-bold" style="color:${c}">방금 푼 이 시험, 정식 학점이 될 수 있어요</p>
+            <p class="text-sm text-neutral-900/75 leading-relaxed mt-1">이 강의는 <b>${esc(rk.rank)} ${esc(rk.name)}</b> 인증과정 과목입니다. 등록하면 지금 같은 확인학습이 학점 시험이 되고, 과목을 완주할 때마다 급수 수료증과 휘장을 받습니다.</p>
+            <a href="${rankApplyURL(rk, 'watch-quiz')}" class="inline-flex items-center gap-1.5 mt-3 text-sm font-bold text-white rounded-full px-5 py-2.5 hover:opacity-90 transition" style="background:${c}">${esc(rk.rank)} 과정 등록하기 · ${priceTxt} →</a>${ebLine}
+          </div>
+        </div>
+      </div>`;
     }
     async function lAuth(session){
       const wasLogged = !!LUSER;
