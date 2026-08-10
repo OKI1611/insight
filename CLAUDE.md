@@ -51,6 +51,17 @@
 - 유튜브 설명란·고정댓글 문구와 급수별 딥링크는 `유튜브_판매연결_문구.md` 참고.
 - 등록 버튼 등 주요 터치 영역은 **모바일에서 44px 이상** 유지할 것(이용자 연령대가 높다).
 
+## 정본역 성경 본문을 고칠 때 (3곳 동시 갱신)
+- 같은 절이 **`bible/kr/<Book>-<장>.json`**(낭독용)과 **`bible/en/<Book>-<장>.json`의 `ko` 필드**(대조·학습용)에
+  중복 저장돼 있다. en 쪽은 note(주석)·voc(어휘)·idi(숙어)에도 해당 표현이 인용돼 있으면 같이 고친다.
+- 고친 뒤 `python tools/build_search_index.py` 실행 → `bible/search-index.json` 갱신(안 돌리면 옛 표현으로 검색됨).
+- 번역 원칙: **KJV가 구체어를 쓴 자리는 해석어로 바꾸지 않는다** (예: cut down = '베어 내다', '개간/개척' ✗).
+
+## 새 HTML 페이지를 만들 때 (아이폰 PWA)
+- 아이폰은 '홈 화면에 추가'를 누른 **그 페이지의 head**를 읽는다. `</title>` 아래에 반드시 넣을 것:
+  `manifest` 링크, `theme-color`, `apple-touch-icon`(?v=7), `apple-mobile-web-app-capable`, `apple-mobile-web-app-title`
+  (관리자 전용 페이지는 manifest 생략 가능. 기존 54페이지는 2026-08 통일 완료).
+
 ## 주의 — 홈(index.html)은 공통 컴포넌트를 쓰지 않는 곳이 있다
 - 왼쪽 퀵메뉴(`#biblyRail`)는 `site-header.js` 에도 있고 **index.html 안에 인라인 사본**도 있다
   (index 는 자체 헤더를 쓰기 때문). **한쪽만 고치면 홈 화면에는 반영되지 않는다.**
