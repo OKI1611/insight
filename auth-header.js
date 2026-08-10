@@ -136,7 +136,9 @@
           + '<li class="flex gap-2"><span style="color:#171717;font-weight:700">2.</span><span><b>‘앱 설치’</b> 또는 <b>‘홈 화면에 추가’</b>를 누르세요.</span></li>'
           + '<li class="flex gap-2"><span style="color:#171717;font-weight:700">3.</span><span><b>‘설치’</b>를 누르면 완료 — 홈 화면에 BIBLY 앱이 생겨요!</span></li>'
           + '</ol><p class="text-xs text-gray-400 mt-3">※ 삼성 인터넷·크롬에서 진행해 주세요.</p></div>'
-          + '<div id="installIOS" style="display:none"><ol class="text-sm text-gray-700 space-y-3">'
+          + '<div id="installIOS" style="display:none">'
+          + '<div id="installIOSSafari" style="display:none"><p class="text-sm" style="color:#8a4b00;background:#fff7e6;border:1px solid #ffd591;border-radius:12px;padding:10px 12px;margin:0 0 14px"><b>지금 브라우저에서는 설치할 수 없어요.</b><br/>카카오톡·네이버 앱 안에서 열린 화면이거나 크롬이면 ‘홈 화면에 추가’가 나오지 않습니다.<br/>오른쪽 아래 <b>⋯</b> 또는 <b>공유</b> → <b>‘다른 브라우저로 열기 / Safari로 열기’</b> 를 누른 뒤 아래 순서대로 하세요.</p></div>'
+          + '<ol class="text-sm text-gray-700 space-y-3">'
           + '<li class="flex gap-2"><span style="color:#171717;font-weight:700">1.</span><span>화면 아래(또는 위)의 <b>공유 버튼</b>(네모 상자에서 위로 향한 <b>↑ 화살표</b> 모양)을 누르세요.</span></li>'
           + '<li class="flex gap-2"><span style="color:#171717;font-weight:700">2.</span><span>메뉴를 아래로 내려 <b>‘홈 화면에 추가’</b>를 누르세요.</span></li>'
           + '<li class="flex gap-2"><span style="color:#171717;font-weight:700">3.</span><span>오른쪽 위 <b>‘추가’</b>를 누르면 완료 — 홈 화면에 BIBLY 앱이 생겨요!</span></li>'
@@ -149,7 +151,11 @@
 
         var biDP = null;
         var biStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-        var biIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
+        var biUA = navigator.userAgent;
+        // 아이패드(iPadOS 13+)는 UA 를 'Macintosh' 로 보내므로 터치 지원 여부로 함께 걸러낸다.
+        var biIOS = (/iphone|ipad|ipod/i.test(biUA) || (/Macintosh/.test(biUA) && navigator.maxTouchPoints > 1)) && !window.MSStream;
+        // 아이폰은 사파리에서만 '홈 화면에 추가'가 있다. 카카오톡·네이버 등 앱 내 브라우저와 크롬은 불가.
+        var biIOSNotSafari = biIOS && (/crios|fxios|edgios|opios/i.test(biUA) || /kakaotalk|naver|instagram|fban|fbav|line\//i.test(biUA) || !/safari/i.test(biUA));
         var biAndroid = /android/i.test(navigator.userAgent);
         var __biReveal = function(){ if(biStandalone) return; var b = document.getElementById('installBtn'); if(b) b.style.display = 'inline-flex'; };
         window.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); biDP = e; __biReveal(); });
@@ -160,6 +166,7 @@
           document.getElementById('installAndroid').style.display = biDP ? 'block' : 'none';
           document.getElementById('installAndroidManual').style.display = (biAndroid && !biDP) ? 'block' : 'none';
           document.getElementById('installIOS').style.display = (biIOS && !biDP) ? 'block' : 'none';
+          document.getElementById('installIOSSafari').style.display = (biIOS && !biDP && biIOSNotSafari) ? 'block' : 'none';
           document.getElementById('installOther').style.display = (!biDP && !biIOS && !biAndroid) ? 'block' : 'none';
           document.getElementById('installModal').style.display = 'flex';
         };
