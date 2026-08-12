@@ -96,18 +96,20 @@ async function createOrder(request, env) {
   return json({ orderId, amount, orderName });
 }
 
+// 권한 부여 — ⚠서비스 제공기간은 전자결제 정책상 12개월을 넘길 수 없다(2026-08-13 정비).
+// pass(전체 이용권)·cert(인증과정) = 12개월. book(개별 책자)은 PDF 즉시 다운로드 상품이라
+// 다운로드본은 영구 소장이며, 온라인 열람 권한만 12개월로 둔다.
 async function grant(env, order) {
   const now = new Date();
+  const plusYear = () => { const e = new Date(now); e.setFullYear(e.getFullYear() + 1); return e.toISOString(); };
   for (const it of (order.items || [])) {
     if (it.kind === 'pass') {
-      const e = new Date(now); if (it.itemId === 'pass-life') e.setFullYear(e.getFullYear() + 100); else e.setFullYear(e.getFullYear() + 1);
-      await upsert(env, 'pass_members', { email: order.email, expires_at: e.toISOString() }, 'email');
+      // pass-life(평생소장)는 판매 중단 — 혹시 남은 주문이 들어와도 1년으로 부여한다.
+      await upsert(env, 'pass_members', { email: order.email, expires_at: plusYear() }, 'email');
     } else if (it.kind === 'book') {
-      const e = new Date(now); e.setFullYear(e.getFullYear() + 100);
-      await upsert(env, 'book_access', { email: order.email, track: it.itemId, expires_at: e.toISOString() }, 'email,track');
+      await upsert(env, 'book_access', { email: order.email, track: it.itemId, expires_at: plusYear() }, 'email,track');
     } else if (it.kind === 'cert') {
-      const e = new Date(now); e.setMonth(e.getMonth() + 18);
-      if (order.user_id) await upsert(env, 'cert_access', { user_id: order.user_id, tier: it.tier || 1, expires_at: e.toISOString() }, 'user_id');
+      if (order.user_id) await upsert(env, 'cert_access', { user_id: order.user_id, tier: it.tier || 1, expires_at: plusYear() }, 'user_id');
     }
   }
 }

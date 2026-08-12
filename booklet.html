@@ -154,6 +154,8 @@
           <span class="self-start text-[11px] font-bold text-gold bg-gold/10 px-2.5 py-1 rounded-full">유료</span>
           <h3 class="font-bold text-lg mt-3">과정 합본 책자 (PDF 교재)</h3>
           <p class="text-neutral-900/60 text-sm mt-1.5 leading-relaxed flex-1">한 과정의 <b class="text-neutral-900">전 강의 요약노트 + 필기 공간</b>을 한 권으로 엮은 소장용 교재. 낱권 구매 또는 <b class="text-neutral-900">전체 이용권</b>으로 만나보세요.</p>
+          <!-- 서비스 제공기간 고지 — 전자결제 심사 필수 항목 -->
+          <p class="text-neutral-900/45 text-[11.5px] mt-2"><b class="text-neutral-900/65">서비스 제공기간</b> : 결제 확인 즉시 PDF 제공(다운로드본은 영구 소장) · 온라인 열람은 <b class="text-neutral-900/65">12개월(1년)</b></p>
           <button onclick="scrollToBooks()" class="self-start inline-flex items-center gap-1 text-gold font-semibold text-sm mt-4 hover:underline">책자 둘러보기 ↓</button>
         </div>
       </div>
@@ -166,11 +168,13 @@
           <div class="text-center max-w-xl mx-auto">
             <span class="inline-flex items-center gap-1.5 bg-gold text-white text-[11px] font-bold tracking-[0.2em] px-3.5 py-1.5 rounded-full">BIBLY PASS</span>
             <h2 class="text-2xl md:text-[30px] font-bold mt-4 leading-tight">한 번 끊고, <span class="text-gold">전부 누리세요</span></h2>
-            <p class="text-neutral-900/60 text-sm md:text-[15px] mt-3 leading-relaxed">지금 있는 <b class="text-neutral-900">모든 책자</b>는 물론, 앞으로 나올 책자까지 — 이용권 하나로 무제한 열람·PDF 저장.</p>
+            <p class="text-neutral-900/60 text-sm md:text-[15px] mt-3 leading-relaxed">지금 있는 <b class="text-neutral-900">모든 책자</b>는 물론, 이용 기간 중 새로 나오는 책자까지 — 이용권 하나로 무제한 열람·PDF 저장.</p>
           </div>
           <div id="passSavings" class="max-w-md mx-auto mt-6"></div>
           <div id="passCards" class="grid sm:grid-cols-2 gap-4 mt-5 max-w-2xl mx-auto"></div>
           <p class="text-center text-neutral-900/40 text-[11px] mt-5">결제(입금·송금) 확인 후 <b class="text-neutral-900/55">로그인 계정 기준</b>으로 즉시 이용권이 부여됩니다.</p>
+          <!-- 서비스 제공기간 고지 — 전자결제 심사 필수 항목 -->
+          <p class="text-center text-neutral-900/45 text-[11.5px] mt-2"><b class="text-neutral-900/65">서비스 제공기간</b> : 이용권 부여일로부터 <b class="text-neutral-900/65">12개월(1년)</b> · 기간 중 열람·PDF 다운로드 무제한</p>
         </div>
       </div>
     </section>
@@ -286,8 +290,9 @@
     let PRICE_TIERS = [ [12,2900],[24,4900],[40,7900],[70,12900],[Infinity,17900] ]; // [최대쪽수, 가격]
     let PRICE_OVERRIDE = {};   // { "책(과정) 이름": { pages?:Number, price?:Number } }
     let PASSES = [
-      { id:'pass-1y',   name:'BIBLY 전체 이용권 · 1년',     price:29000, term:'1년',   desc:'1년간 모든 책자 PDF 무제한 열람·다운로드' },
-      { id:'pass-life', name:'BIBLY 전체 이용권 · 평생소장', price:49000, term:'평생', desc:'기간 제한 없이 모든 책자 무제한 + 새로 나오는 책자까지' }
+      // 평생소장(pass-life)은 2026-08-13 판매 중단 — 전자결제 정책상 서비스 제공기간 12개월 초과 불가.
+      // 기존 구매자 권한은 pass_members에 그대로 남아 계속 이용된다.
+      { id:'pass-1y',   name:'BIBLY 전체 이용권 · 1년',     price:29000, term:'1년',   desc:'1년간 모든 책자 PDF 무제한 열람·다운로드' }
     ];
     function priceByPages(p){ for(const [mx,pr] of PRICE_TIERS){ if(p<=mx) return pr; } return PRICE_TIERS[PRICE_TIERS.length-1][1]; }
     function bookPages(t){ const o=PRICE_OVERRIDE[t.name]; return (o&&o.pages)?o.pages:estPages(t.lessons.length); }
@@ -427,12 +432,10 @@
       pc.innerHTML=PASSES.map((p,idx)=>{
         const best=idx===0;
         const monthly=/1년|연/.test(p.term||'')?Math.round(p.price/12):null;
-        const bullets=/평생/.test(p.term||'')
-          ? ['모든 책자 무제한 열람·PDF 저장','앞으로 나오는 책자까지 평생','기간 제한 없이 소장']
-          : ['모든 책자 무제한 열람·PDF 저장','1년 내내 자유롭게','기간 중 추가되는 책자도 포함'];
+        const bullets=['모든 책자 무제한 열람·PDF 저장','1년 내내 자유롭게','기간 중 추가되는 책자도 포함'];
         const badge=best
           ? '<span class="absolute -top-2.5 left-5 bg-gold text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">가장 인기</span>'
-          : '<span class="absolute -top-2.5 left-5 bg-gold text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">평생 소장</span>';
+          : '';
         return `<div onclick="addToCart('pass','${p.id}')" class="pass-card relative bg-white rounded-2xl border ${best?'border-gold/50 ring-1 ring-gold/15':'border-ink/12'} shadow-soft p-5 pt-6 flex flex-col text-left cursor-pointer">
           ${badge}
           <p class="font-bold text-[15px]">${esc(p.name)}</p>
