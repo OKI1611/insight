@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <script src="/content-loader.js?v=20260703f"></script>
-  <script src="/site-header.js?v=20260808b"></script>
+  <script src="/site-header.js?v=20260813a"></script>
   <script src="/section-sidenav.js?v=17"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BIBLY 북스토어 — 과정별 요약노트 합본 책자</title>
@@ -661,7 +661,7 @@
         BIZ.name?['상호',BIZ.name]:null, BIZ.ceo?['대표',BIZ.ceo]:null,
         BIZ.reg_no?['사업자등록번호',BIZ.reg_no]:null,
         (BIZ.ecommerce_no?['통신판매업 신고','제 '+BIZ.ecommerce_no+' 호']:['통신판매업 신고','신고 준비 중']),
-        BIZ.address?['주소',BIZ.address]:null, BIZ.contact_email?['문의',BIZ.contact_email]:null
+        BIZ.address?['주소',BIZ.address]:null, BIZ.phone?['전화',BIZ.phone]:null, BIZ.contact_email?['문의',BIZ.contact_email]:null
       ].filter(Boolean).map(r=>`<tr><td style="padding:3px 0;color:#8a94a8;width:120px;vertical-align:top">${r[0]}</td><td style="padding:3px 0;color:#2a3a55">${esc(r[1])}</td></tr>`).join('');
       const html=`<div style="max-width:640px;margin:0 auto;font-family:'Pretendard',system-ui,sans-serif;color:#1c2b46;padding:8px 4px">
         <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid #213a6b;padding-bottom:16px;margin-bottom:22px">

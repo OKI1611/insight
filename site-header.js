@@ -318,6 +318,7 @@
             +   cell('사업자등록번호', biz.reg_no)
             +   cell('통신판매업 신고', eco)
             +   cell('주소', addr)
+            +   cell('전화', biz.phone || '')
             +   cell('문의', biz.contact_email || '')
             + '</div>';
           var f = document.querySelector('footer');

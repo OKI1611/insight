@@ -1284,6 +1284,7 @@
         <div class="flex gap-3"><span class="shrink-0 w-[92px] text-neutral-400 font-semibold text-[11px]">사업자등록번호</span><span class="text-neutral-600 text-[12px]">251-07-03623</span></div>
         <div class="flex gap-3"><span class="shrink-0 w-[92px] text-neutral-400 font-semibold text-[11px]">통신판매업 신고</span><span class="text-neutral-600 text-[12px]" data-biz="eco">신고 준비 중</span></div>
         <div class="flex gap-3"><span class="shrink-0 w-[92px] text-neutral-400 font-semibold text-[11px]">주소</span><span class="text-neutral-600 text-[12px]">서울특별시 <span class="text-gold font-semibold">강남구</span> 논현로10길 30, 505-S264호</span></div>
+        <div class="flex gap-3"><span class="shrink-0 w-[92px] text-neutral-400 font-semibold text-[11px]">전화</span><span class="text-neutral-600 text-[12px]" data-biz="phone">010-8165-9688</span></div>
         <div class="flex gap-3"><span class="shrink-0 w-[92px] text-neutral-400 font-semibold text-[11px]">문의</span><span class="text-neutral-600 text-[12px]">contact@biblynote.com</span></div>
       </div>
     </div>
@@ -2435,6 +2436,8 @@
       var t = b.ecommerce_no ? ('제 '+b.ecommerce_no+' 호') : (b.ecommerce_status || '신고 준비 중');
       var n = document.querySelectorAll('[data-biz="eco"]');
       for(var i=0;i<n.length;i++){ n[i].textContent = t; }
+      if(b.phone){ var ph = document.querySelectorAll('[data-biz="phone"]');
+        for(var j=0;j<ph.length;j++){ ph[j].textContent = b.phone; } }
     }).catch(function(){});
   }catch(e){} })();
   </script>
