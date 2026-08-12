@@ -250,7 +250,7 @@
           <input id="bHp" type="text" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
           <button id="bSubmit" onclick="placeOrder()" class="w-full bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition">결제하기</button>
           <p id="bMsg" class="text-center text-sm min-h-[18px]"></p>
-          <p class="text-center text-neutral-900/40 text-xs leading-relaxed"><b class="text-neutral-900/55">지금은 무통장입금·카카오페이 송금으로 주문하실 수 있어요.</b> 주문하시면 계좌와 간편송금 안내가 바로 뜨고, 입금이 확인되면 발송·부여해 드립니다. (카드 결제는 심사 진행 중이라 준비 중) 문의는 contact@biblynote.com 으로 주세요.</p>
+          <p class="text-center text-neutral-900/40 text-xs leading-relaxed"><b class="text-neutral-900/55">신용·체크카드로 결제하시면 이용권이 즉시 부여됩니다.</b> 무통장입금·카카오페이 송금으로도 주문하실 수 있으며, 이 경우 계좌·간편송금 안내가 바로 뜨고 입금이 확인되면 발송·부여해 드립니다. 문의는 contact@biblynote.com 으로 주세요.</p>
         </div>
       </div>
     </div>
@@ -521,9 +521,12 @@
           '주문번호':o.no,'상품':o.items,'합계':won(o.price),'형태':o.format,'결제수단':o.pay,'이름':o.name,'이메일':o.email,'연락처':o.phone,'배송지':o.addr||'-'})});}catch(e){} }
 
     // ── 카드결제(토스페이먼츠) ──
-    const TOSS_CLIENT_KEY = 'test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq'; // 토스 테스트 클라이언트키(실결제 전 교체)
-    // ★ 토스페이먼츠 심사가 승인되면 이 한 줄만 true 로 바꾸세요 — 카드 결제가 다시 살아납니다.
-    const CARD_PAY_READY = false;
+    // ⚠️ 현재 테스트 키 — 실제 카드 청구가 일어나지 않는다(서버도 TOSS_TEST_SECRET 사용).
+    //    토스 심사 승인 후 아래 클라이언트 키를 라이브 키(live_ck_...)로 바꾸고,
+    //    Cloudflare Worker 환경변수 TOSS_SECRET_KEY 에 라이브 시크릿을 넣어야 실결제가 된다.
+    const TOSS_CLIENT_KEY = 'test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq';
+    // 카드 결제 노출 스위치 — 2026-08-13 심사용으로 활성화(심사자가 결제창 연동을 확인해야 함).
+    const CARD_PAY_READY = true;
     // 카드 준비 중이면 결제수단에서 카드를 잠그고 무통장입금을 기본·추천으로 올린다
     function applyCardReady(){
       if(CARD_PAY_READY) return;
