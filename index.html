@@ -2486,33 +2486,46 @@
   <!-- ====================================================================== -->
   <div id="bookPopup" class="fixed inset-0 z-[120] hidden items-end sm:items-center justify-center p-0 sm:p-4">
     <div id="bookPopupBg" class="absolute inset-0 bg-ink/55 backdrop-blur-[2px]"></div>
-    <!-- max-h-[90vh]+스크롤: 표지를 키워도 낮은 화면에서 하단 버튼이 잘리지 않게 -->
-    <div class="relative bg-white w-full sm:max-w-md rounded-t-3xl sm:rounded-3xl shadow-2xl overflow-y-auto max-h-[90vh]">
+    <!-- 대문은 가로 배치(표지 옆에 카피) — 세로로 세우면 낮은 화면에서 아래 책들이 잘린다.
+         책이 네 권이므로 나머지 세 권은 3열 그리드. 전체 높이 500px 안쪽으로 유지할 것. -->
+    <div class="relative bg-white w-full sm:max-w-lg rounded-t-3xl sm:rounded-3xl shadow-2xl overflow-y-auto max-h-[92vh]">
       <button id="bookPopupX" aria-label="닫기"
-              class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/90 border border-ink/10 text-neutral-900/50 hover:text-neutral-900 text-lg leading-none">✕</button>
-      <!-- 주인공 도서 — 표지를 세로로 크게 세운 대문. 교체 시 표지·배지·제목·후킹·링크만 수정 -->
-      <a href="books.html#church" class="block px-5 pt-6 pb-5 bg-gradient-to-b from-navy to-ink text-center group">
+              class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/15 border border-white/25 text-white/70 hover:bg-white/25 hover:text-white text-lg leading-none">✕</button>
+      <!-- 주인공 도서 — 교체 시 표지·배지·제목·후킹·링크만 수정 -->
+      <a href="books.html#church" class="flex items-center gap-4 sm:gap-5 px-5 py-5 bg-gradient-to-br from-navy to-ink group">
         <img src="images/books/church.jpg" alt="교회를 떠나고서야, 예수를 만났다 표지"
-             class="w-[136px] sm:w-[150px] mx-auto rounded-[3px] shadow-[0_22px_50px_-14px_rgba(0,0,0,.65)] group-hover:-translate-y-1.5 transition-transform"/>
-        <span class="inline-flex text-[10.5px] font-bold text-white bg-[#00704a] rounded-full px-3 py-1 mt-4">전국 서점 입점</span>
-        <p class="font-bold text-white text-[18px] sm:text-[20px] leading-snug mt-2.5">교회를 떠나고서야,<br/>예수를 만났다</p>
-        <p class="text-[12.5px] text-white/70 leading-relaxed mt-2">“저는 교회를 세 번 떠났습니다.<br/>너무 믿었기 때문에 아팠습니다”</p>
-        <p class="text-[11px] text-white/45 mt-2">환멸의 시대를 건너, 다시 찾은 진짜 교회 — 오광일 지음</p>
+             class="w-[88px] sm:w-[102px] shrink-0 rounded-[3px] shadow-[0_18px_40px_-12px_rgba(0,0,0,.7)] group-hover:-translate-y-1 transition-transform"/>
+        <div class="min-w-0">
+          <span class="inline-flex text-[10px] font-bold text-white bg-[#00704a] rounded-full px-2.5 py-1">전국 서점 입점</span>
+          <p class="font-bold text-white text-[17px] sm:text-[19px] leading-snug mt-2">교회를 떠나고서야,<br/>예수를 만났다</p>
+          <p class="text-[12px] text-white/70 leading-relaxed mt-1.5">“저는 교회를 세 번 떠났습니다.<br/>너무 믿었기 때문에 아팠습니다”</p>
+          <p class="text-[10.5px] text-white/45 mt-1.5">환멸의 시대를 건너, 다시 찾은 진짜 교회</p>
+        </div>
       </a>
-      <div class="px-5 pt-4 pb-2">
-        <p class="text-[11px] font-bold text-neutral-900/40 tracking-wide mb-2">함께 만나보세요</p>
-        <div class="flex gap-3">
-          <a href="books.html#mask" class="flex items-center gap-2 min-w-0 flex-1 rounded-xl border border-ink/8 p-2 hover:border-gold/50 transition">
-            <img src="images/books/mask.jpg" alt="" class="w-9 rounded shadow-soft shrink-0"/>
-            <span class="text-[11.5px] leading-tight text-neutral-900/70">가면의 시대 <span class="text-[9.5px] font-bold text-white bg-gold rounded px-1 py-px align-middle">신간</span></span>
+
+      <div class="px-5 pt-4">
+        <div class="flex items-baseline justify-between mb-2.5">
+          <p class="text-[11px] font-bold text-neutral-900/40 tracking-wide">저자의 다른 책</p>
+          <a href="books.html" class="text-[11px] font-semibold text-gold hover:underline">전체 보기 →</a>
+        </div>
+        <div class="grid grid-cols-3 gap-2.5">
+          <a href="books.html#caesar" class="relative block rounded-xl border border-ink/8 px-2 py-2.5 text-center hover:border-gold/50 hover:shadow-soft transition">
+            <span class="absolute -top-1.5 -right-1.5 text-[9px] font-bold text-white bg-gold rounded-full px-1.5 py-0.5 shadow-soft">신간</span>
+            <img src="images/books/caesar.jpg" alt="" class="w-[46px] mx-auto rounded-[2px] shadow-soft"/>
+            <p class="text-[10.5px] leading-tight text-neutral-900/70 mt-2">가이사의 교회,<br/>하나님의 교회</p>
           </a>
-          <a href="books.html#mom" class="flex items-center gap-2 min-w-0 flex-1 rounded-xl border border-ink/8 p-2 hover:border-gold/50 transition">
-            <img src="images/books/mom.jpg" alt="" class="w-9 rounded shadow-soft shrink-0"/>
-            <span class="text-[11.5px] leading-tight text-neutral-900/70">엄마 향기</span>
+          <a href="books.html#mask" class="block rounded-xl border border-ink/8 px-2 py-2.5 text-center hover:border-gold/50 hover:shadow-soft transition">
+            <img src="images/books/mask.jpg" alt="" class="w-[46px] mx-auto rounded-[2px] shadow-soft"/>
+            <p class="text-[10.5px] leading-tight text-neutral-900/70 mt-2">가면의 시대</p>
+          </a>
+          <a href="books.html#mom" class="block rounded-xl border border-ink/8 px-2 py-2.5 text-center hover:border-gold/50 hover:shadow-soft transition">
+            <img src="images/books/mom.jpg" alt="" class="w-[46px] mx-auto rounded-[2px] shadow-soft"/>
+            <p class="text-[10.5px] leading-tight text-neutral-900/70 mt-2">엄마 향기</p>
           </a>
         </div>
       </div>
-      <div class="p-5 pt-4">
+
+      <div class="px-5 pt-4 pb-5">
         <a href="books.html#church" class="block w-full text-center bg-gold text-white font-bold text-[15px] py-3.5 rounded-xl hover:opacity-90 transition">이 책 보러 가기 →</a>
         <div class="flex items-center justify-between mt-3.5">
           <label class="flex items-center gap-1.5 text-[12px] text-neutral-900/45 cursor-pointer select-none">
