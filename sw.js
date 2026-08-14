@@ -1,6 +1,6 @@
-// 오광일 인사이트 브리핑 — 서비스 워커 (PWA)
-// 전략: HTML은 항상 네트워크(최신 유지), 정적자원만 캐시. 오프라인 시 폴백.
-const CACHE = 'bibleinsight-v236';
+﻿// ?ㅺ킅???몄궗?댄듃 釉뚮━?????쒕퉬???뚯빱 (PWA)
+// ?꾨왂: HTML? ??긽 ?ㅽ듃?뚰겕(理쒖떊 ?좎?), ?뺤쟻?먯썝留?罹먯떆. ?ㅽ봽?쇱씤 ???대갚.
+const CACHE = 'bibleinsight-v237';
 const SHELL = ['/manifest.json'];
 
 self.addEventListener('install', (e) => {
@@ -17,23 +17,23 @@ self.addEventListener('fetch', (e) => {
   const req = e.request;
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
-  if (url.origin !== location.origin) return; // 외부(유튜브·Supabase·CDN)는 통과
+  if (url.origin !== location.origin) return; // ?몃?(?좏뒠釉뙿톁upabase쨌CDN)???듦낵
 
-  // HTML/문서: 항상 네트워크 최신 (캐시 저장 안 함, 오프라인만 폴백)
+  // HTML/臾몄꽌: ??긽 ?ㅽ듃?뚰겕 理쒖떊 (罹먯떆 ??????? ?ㅽ봽?쇱씤留??대갚)
   const isDoc = req.mode === 'navigate' || url.pathname === '/' || url.pathname.endsWith('.html');
   if (isDoc) {
-    // HTTP 캐시까지 우회해 항상 최신 문서 — 오프라인이면 캐시 폴백
+    // HTTP 罹먯떆源뚯? ?고쉶????긽 理쒖떊 臾몄꽌 ???ㅽ봽?쇱씤?대㈃ 罹먯떆 ?대갚
     e.respondWith(fetch(req, { cache: 'no-store' }).catch(() => caches.match(req).then((r) => r || caches.match('/index.html'))));
     return;
   }
 
-  // 공유 스크립트(.js): 항상 최신으로 받음(HTTP 캐시까지 우회), 오프라인이면 캐시 폴백
+  // 怨듭쑀 ?ㅽ겕由쏀듃(.js): ??긽 理쒖떊?쇰줈 諛쏆쓬(HTTP 罹먯떆源뚯? ?고쉶), ?ㅽ봽?쇱씤?대㈃ 罹먯떆 ?대갚
   if (url.pathname.endsWith('.js')) {
     e.respondWith(fetch(req, { cache: 'no-store' }).then((res) => { const copy = res.clone(); caches.open(CACHE).then((c) => c.put(req, copy)).catch(() => {}); return res; }).catch(() => caches.match(req)));
     return;
   }
 
-  // 그 외 정적 자원: 네트워크 우선 + 캐시 갱신
+  // 洹????뺤쟻 ?먯썝: ?ㅽ듃?뚰겕 ?곗꽑 + 罹먯떆 媛깆떊
   e.respondWith(
     fetch(req)
       .then((res) => { const copy = res.clone(); caches.open(CACHE).then((c) => c.put(req, copy)).catch(() => {}); return res; })
