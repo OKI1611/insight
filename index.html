@@ -458,11 +458,29 @@
         </div>
       </div>
 
-      <!-- 세 권이라 2열이면 한 권이 홀로 내려간다 → sm 이상은 항상 3열(640px에서도 판매처 버튼이 들어감) -->
-      <div class="grid sm:grid-cols-3 gap-4 md:gap-6 max-w-3xl lg:max-w-4xl mx-auto">
-        <!-- 가면의 시대 (신간) -->
+      <!-- 네 권이므로 2열(짝수로 떨어짐) → lg에서 4열 한 줄. 책이 늘면 열 수만 조정하면 된다 -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-3xl lg:max-w-6xl mx-auto">
+        <!-- 가이사의 교회, 하나님의 교회 (신간) — 부크크 단독 판매, 서점 입점 전 -->
         <div class="bg-white rounded-2xl p-5 md:p-6 text-center shadow-soft relative">
           <span class="absolute top-3 right-3 text-[10.5px] font-bold text-white bg-gold rounded-full px-2 py-0.5">신간</span>
+          <a href="books.html#caesar" class="block group">
+            <img src="images/books/caesar.jpg" alt="가이사의 교회, 하나님의 교회 표지" loading="lazy"
+                 class="w-[118px] md:w-[142px] mx-auto rounded-[3px] shadow-card group-hover:-translate-y-1 transition-transform"/>
+            <p class="font-bold text-[14.5px] md:text-[15.5px] leading-snug mt-4 group-hover:text-gold transition-colors">가이사의 교회,<br class="hidden md:block"/> 하나님의 교회</p>
+          </a>
+          <p class="text-[12px] text-neutral-900/55 mt-2 leading-relaxed">정치에 무릎 꿇은 한국교회에 던지는 질문</p>
+          <div class="mt-4 text-left">
+            <p class="text-[10.5px] font-bold text-neutral-900/40 mb-1.5">📘 종이책</p>
+            <div class="flex flex-wrap gap-1.5">
+              <a href="https://bookk.co.kr/bookStore/6a7c642baa96398e79cfcc45" target="_blank" rel="noopener" class="flex-1 text-center bg-gold text-white text-[11.5px] font-bold rounded-lg py-2 hover:opacity-90 transition">부크크</a>
+            </div>
+            <p class="text-[10.5px] text-neutral-900/40 mt-2 leading-relaxed">교보문고·영풍문고·알라딘·YES24는 입점 준비 중입니다.</p>
+          </div>
+          <a href="books.html#caesar" class="inline-block text-[11.5px] text-gold font-semibold mt-3 hover:underline">책 소개 자세히 보기 →</a>
+        </div>
+
+        <!-- 가면의 시대 -->
+        <div class="bg-white rounded-2xl p-5 md:p-6 text-center shadow-soft">
           <a href="books.html#mask" class="block group">
             <img src="images/books/mask.jpg" alt="가면의 시대 표지" loading="lazy"
                  class="w-[118px] md:w-[142px] mx-auto rounded-[3px] shadow-card group-hover:-translate-y-1 transition-transform"/>
@@ -943,7 +961,15 @@
               <p class="text-[11px] font-bold text-gold" style="letter-spacing:.18em">저서</p>
               <ul class="mt-2.5 space-y-2.5">
                 <li>
-                  <p class="text-[13px] font-semibold leading-snug">『가면의 시대』 <span class="text-[10.5px] font-bold text-white bg-gold rounded px-1.5 py-0.5 align-middle">신간</span></p>
+                  <p class="text-[13px] font-semibold leading-snug">『가이사의 교회, 하나님의 교회』 <span class="text-[10.5px] font-bold text-white bg-gold rounded px-1.5 py-0.5 align-middle">신간</span></p>
+                  <p class="text-[11.5px] text-neutral-900/45 mt-0.5">정치에 무릎 꿇은 한국교회에 던지는 질문</p>
+                  <div class="flex flex-wrap gap-1.5 mt-1.5">
+                    <a href="https://bookk.co.kr/bookStore/6a7c642baa96398e79cfcc45" target="_blank" rel="noopener"
+                       class="inline-flex items-center gap-1 text-[11px] font-bold text-white bg-gold rounded-md px-2 py-1 hover:opacity-90 transition">📘 부크크</a>
+                  </div>
+                </li>
+                <li>
+                  <p class="text-[13px] font-semibold leading-snug">『가면의 시대』</p>
                   <p class="text-[11.5px] text-neutral-900/45 mt-0.5">옳은 말을 하고도 쫓겨난 당신에게</p>
                   <div class="flex flex-wrap gap-1.5 mt-1.5">
                     <a href="https://product.kyobobook.co.kr/detail/S000220854296" target="_blank" rel="noopener"
