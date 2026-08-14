@@ -2488,7 +2488,7 @@
     <div id="bookPopupBg" class="absolute inset-0 bg-ink/55 backdrop-blur-[2px]"></div>
     <!-- 대문은 가로 배치(표지 옆에 카피) — 세로로 세우면 낮은 화면에서 아래 책들이 잘린다.
          책이 네 권이므로 나머지 세 권은 3열 그리드. 전체 높이 500px 안쪽으로 유지할 것. -->
-    <div class="relative bg-white w-full sm:max-w-lg rounded-t-3xl sm:rounded-3xl shadow-2xl overflow-y-auto max-h-[92vh]">
+    <div class="relative bg-white w-full max-w-full sm:max-w-lg rounded-t-3xl sm:rounded-3xl shadow-2xl overflow-y-auto overflow-x-hidden max-h-[92vh]">
       <button id="bookPopupX" aria-label="닫기"
               class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/15 border border-white/25 text-white/70 hover:bg-white/25 hover:text-white text-lg leading-none">✕</button>
       <!-- 주인공 도서 — 교체 시 표지·배지·제목·후킹·링크만 수정 -->
@@ -2509,16 +2509,16 @@
           <a href="books.html" class="text-[11px] font-semibold text-gold hover:underline">전체 보기 →</a>
         </div>
         <div class="grid grid-cols-3 gap-2.5">
-          <a href="books.html#caesar" class="relative block rounded-xl border border-ink/8 px-2 py-2.5 text-center hover:border-gold/50 hover:shadow-soft transition">
+          <a href="books.html#caesar" class="relative block min-w-0 rounded-xl border border-ink/8 px-2 py-2.5 text-center hover:border-gold/50 hover:shadow-soft transition">
             <span class="absolute -top-1.5 -right-1.5 text-[9px] font-bold text-white bg-gold rounded-full px-1.5 py-0.5 shadow-soft">신간</span>
             <img src="images/books/caesar.jpg" alt="" class="w-[46px] mx-auto rounded-[2px] shadow-soft"/>
             <p class="text-[10.5px] leading-tight text-neutral-900/70 mt-2">가이사의 교회,<br/>하나님의 교회</p>
           </a>
-          <a href="books.html#mask" class="block rounded-xl border border-ink/8 px-2 py-2.5 text-center hover:border-gold/50 hover:shadow-soft transition">
+          <a href="books.html#mask" class="block min-w-0 rounded-xl border border-ink/8 px-2 py-2.5 text-center hover:border-gold/50 hover:shadow-soft transition">
             <img src="images/books/mask.jpg" alt="" class="w-[46px] mx-auto rounded-[2px] shadow-soft"/>
             <p class="text-[10.5px] leading-tight text-neutral-900/70 mt-2">가면의 시대</p>
           </a>
-          <a href="books.html#mom" class="block rounded-xl border border-ink/8 px-2 py-2.5 text-center hover:border-gold/50 hover:shadow-soft transition">
+          <a href="books.html#mom" class="block min-w-0 rounded-xl border border-ink/8 px-2 py-2.5 text-center hover:border-gold/50 hover:shadow-soft transition">
             <img src="images/books/mom.jpg" alt="" class="w-[46px] mx-auto rounded-[2px] shadow-soft"/>
             <p class="text-[10.5px] leading-tight text-neutral-900/70 mt-2">엄마 향기</p>
           </a>
