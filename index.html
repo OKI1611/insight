@@ -354,7 +354,7 @@
       {bg:'#2b5fb0',href:'curriculum.html',tab:'대표 시리즈',badge:'우리 사이트 간판',title:'천년왕국 세미나<br><span style="color:#ffe08a">예언의 기초부터 완주까지</span>',sub:'유튜브 <span data-stat="views">161만+</span> 조회 · 단계별 커리큘럼으로 완주',cta:'지금 정주행하기'},
       {bg:'#0e7a68',href:'bible.html',tab:'성경 공부 도구',badge:'전부 무료',title:'성경, <span style="color:#ffe08a">직접 읽고 공부하다</span>',sub:'성경 읽기·성경사전 3,000+·성경 Q&A·통독·암송, 모두 무료',cta:'공부 시작하기'},
       {bg:'#9a6a1b',href:'academy.html',tab:'인증과정·창립멤버',badge:'선착순 1기',title:'아카데미 <span style="color:#fff3d6">인증과정</span>',sub:'체계적 급수·수료증 · 1기 창립멤버 20% 평생할인',cta:'인증과정 보기'},
-      {bg:'#21342a',href:'books.html',tab:'저자의 책',badge:'출간 도서',title:'강의로 다 담지 못한 이야기,<br><span style="color:#e4c07a">책으로 만나다</span>',sub:'신간 『가면의 시대』 · 『교회를 떠나고서야, 예수를 만났다』 · 『엄마 향기』 — 종이책·전자책 판매 중',cta:'책 보러 가기'}
+      {bg:'#21342a',href:'books.html',tab:'저자의 책',badge:'출간 도서',title:'강의로 다 담지 못한 이야기,<br><span style="color:#e4c07a">책으로 만나다</span>',sub:'신간 『마귀는 거짓말을 하지 않는다』 · 『가이사의 교회, 하나님의 교회』 · 『가면의 시대』 — 종이책 판매 중',cta:'책 보러 가기'}
     ];
     var hero=document.getElementById('hpHero'); if(!hero) return;
     hero.style.transition='background .5s ease';
@@ -458,11 +458,29 @@
         </div>
       </div>
 
-      <!-- 네 권이므로 2열(짝수로 떨어짐) → lg에서 4열 한 줄. 책이 늘면 열 수만 조정하면 된다 -->
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-3xl lg:max-w-6xl mx-auto">
-        <!-- 가이사의 교회, 하나님의 교회 (신간) — 부크크 단독 판매, 서점 입점 전 -->
-        <div class="bg-white rounded-2xl p-5 md:p-6 text-center shadow-soft relative">
+      <!-- 다섯 권 → lg에서 5열 한 줄. 책이 늘면 lg:grid-cols-N 만 조정하면 된다 -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-5 max-w-3xl lg:max-w-7xl mx-auto">
+        <!-- 마귀는 거짓말을 하지 않는다 (신간) — 부크크 단독 판매, 서점 입점 전 -->
+        <div class="bg-white rounded-2xl p-5 md:p-6 lg:p-4 text-center shadow-soft relative">
           <span class="absolute top-3 right-3 text-[10.5px] font-bold text-white bg-gold rounded-full px-2 py-0.5">신간</span>
+          <a href="books.html#devil" class="block group">
+            <img src="images/books/devil.jpg" alt="마귀는 거짓말을 하지 않는다 표지" loading="lazy"
+                 class="w-[118px] md:w-[142px] mx-auto rounded-[3px] shadow-card group-hover:-translate-y-1 transition-transform"/>
+            <p class="font-bold text-[14.5px] md:text-[15.5px] leading-snug mt-4 group-hover:text-gold transition-colors">마귀는 거짓말을<br class="hidden md:block"/> 하지 않는다</p>
+          </a>
+          <p class="text-[12px] text-neutral-900/55 mt-2 leading-relaxed">요한계시록 바벨론의 신비, 그리고 확신이라는 미혹</p>
+          <div class="mt-4 text-left">
+            <p class="text-[10.5px] font-bold text-neutral-900/40 mb-1.5">📘 종이책</p>
+            <div class="flex flex-wrap gap-1.5">
+              <a href="https://bookk.co.kr/bookStore/6a7de93beb0b10d4f487625a" target="_blank" rel="noopener" class="flex-1 text-center bg-gold text-white text-[11.5px] font-bold rounded-lg py-2 hover:opacity-90 transition">부크크</a>
+            </div>
+            <p class="text-[10.5px] text-neutral-900/40 mt-2 leading-relaxed">교보문고·영풍문고·알라딘·YES24는 입점 준비 중입니다.</p>
+          </div>
+          <a href="books.html#devil" class="inline-block text-[11.5px] text-gold font-semibold mt-3 hover:underline">책 소개 자세히 보기 →</a>
+        </div>
+
+        <!-- 가이사의 교회, 하나님의 교회 — 부크크 단독 판매, 서점 입점 전 -->
+        <div class="bg-white rounded-2xl p-5 md:p-6 lg:p-4 text-center shadow-soft">
           <a href="books.html#caesar" class="block group">
             <img src="images/books/caesar.jpg" alt="가이사의 교회, 하나님의 교회 표지" loading="lazy"
                  class="w-[118px] md:w-[142px] mx-auto rounded-[3px] shadow-card group-hover:-translate-y-1 transition-transform"/>
@@ -480,7 +498,7 @@
         </div>
 
         <!-- 가면의 시대 -->
-        <div class="bg-white rounded-2xl p-5 md:p-6 text-center shadow-soft">
+        <div class="bg-white rounded-2xl p-5 md:p-6 lg:p-4 text-center shadow-soft">
           <a href="books.html#mask" class="block group">
             <img src="images/books/mask.jpg" alt="가면의 시대 표지" loading="lazy"
                  class="w-[118px] md:w-[142px] mx-auto rounded-[3px] shadow-card group-hover:-translate-y-1 transition-transform"/>
@@ -507,7 +525,7 @@
         </div>
 
         <!-- 교회를 떠나고서야, 예수를 만났다 -->
-        <div class="bg-white rounded-2xl p-5 md:p-6 text-center shadow-soft">
+        <div class="bg-white rounded-2xl p-5 md:p-6 lg:p-4 text-center shadow-soft">
           <a href="books.html#church" class="block group">
             <img src="images/books/church.jpg" alt="교회를 떠나고서야, 예수를 만났다 표지" loading="lazy"
                  class="w-[118px] md:w-[142px] mx-auto rounded-[3px] shadow-card group-hover:-translate-y-1 transition-transform"/>
@@ -536,7 +554,7 @@
         </div>
 
         <!-- 엄마 향기 -->
-        <div class="bg-white rounded-2xl p-5 md:p-6 text-center shadow-soft">
+        <div class="bg-white rounded-2xl p-5 md:p-6 lg:p-4 text-center shadow-soft">
           <a href="books.html#mom" class="block group">
             <img src="images/books/mom.jpg" alt="엄마 향기 표지" loading="lazy"
                  class="w-[118px] md:w-[142px] mx-auto rounded-[3px] shadow-card group-hover:-translate-y-1 transition-transform"/>
@@ -961,7 +979,15 @@
               <p class="text-[11px] font-bold text-gold" style="letter-spacing:.18em">저서</p>
               <ul class="mt-2.5 space-y-2.5">
                 <li>
-                  <p class="text-[13px] font-semibold leading-snug">『가이사의 교회, 하나님의 교회』 <span class="text-[10.5px] font-bold text-white bg-gold rounded px-1.5 py-0.5 align-middle">신간</span></p>
+                  <p class="text-[13px] font-semibold leading-snug">『마귀는 거짓말을 하지 않는다』 <span class="text-[10.5px] font-bold text-white bg-gold rounded px-1.5 py-0.5 align-middle">신간</span></p>
+                  <p class="text-[11.5px] text-neutral-900/45 mt-0.5">요한계시록 바벨론의 신비, 그리고 확신이라는 미혹</p>
+                  <div class="flex flex-wrap gap-1.5 mt-1.5">
+                    <a href="https://bookk.co.kr/bookStore/6a7de93beb0b10d4f487625a" target="_blank" rel="noopener"
+                       class="inline-flex items-center gap-1 text-[11px] font-bold text-white bg-gold rounded-md px-2 py-1 hover:opacity-90 transition">📘 부크크</a>
+                  </div>
+                </li>
+                <li>
+                  <p class="text-[13px] font-semibold leading-snug">『가이사의 교회, 하나님의 교회』</p>
                   <p class="text-[11.5px] text-neutral-900/45 mt-0.5">정치에 무릎 꿇은 한국교회에 던지는 질문</p>
                   <div class="flex flex-wrap gap-1.5 mt-1.5">
                     <a href="https://bookk.co.kr/bookStore/6a7c642baa96398e79cfcc45" target="_blank" rel="noopener"
@@ -2508,9 +2534,13 @@
           <p class="text-[11px] font-bold text-neutral-900/40 tracking-wide">저자의 다른 책</p>
           <a href="books.html" class="text-[11px] font-semibold text-gold hover:underline">전체 보기 →</a>
         </div>
-        <div class="grid grid-cols-3 gap-2.5">
-          <a href="books.html#caesar" class="relative block min-w-0 rounded-xl border border-ink/8 px-2 py-2.5 text-center hover:border-gold/50 hover:shadow-soft transition">
+        <div class="grid grid-cols-4 gap-2">
+          <a href="books.html#devil" class="relative block min-w-0 rounded-xl border border-ink/8 px-2 py-2.5 text-center hover:border-gold/50 hover:shadow-soft transition">
             <span class="absolute -top-1.5 -right-1.5 text-[9px] font-bold text-white bg-gold rounded-full px-1.5 py-0.5 shadow-soft">신간</span>
+            <img src="images/books/devil.jpg" alt="" class="w-[46px] mx-auto rounded-[2px] shadow-soft"/>
+            <p class="text-[10.5px] leading-tight text-neutral-900/70 mt-2">마귀는 거짓말을<br/>하지 않는다</p>
+          </a>
+          <a href="books.html#caesar" class="block min-w-0 rounded-xl border border-ink/8 px-2 py-2.5 text-center hover:border-gold/50 hover:shadow-soft transition">
             <img src="images/books/caesar.jpg" alt="" class="w-[46px] mx-auto rounded-[2px] shadow-soft"/>
             <p class="text-[10.5px] leading-tight text-neutral-900/70 mt-2">가이사의 교회,<br/>하나님의 교회</p>
           </a>

@@ -32,7 +32,8 @@
       { label:'고객센터(주문·배송·반품)', href:'store-help.html' }, { label:'내 구매·자료', href:'mylearning.html' } ]},
     { label:'저자의 책', href:'books.html', children:[
       { label:'저자의 책 전체', href:'books.html' },
-      { label:'가이사의 교회, 하나님의 교회 (신간)', href:'books.html#caesar' },
+      { label:'마귀는 거짓말을 하지 않는다 (신간)', href:'books.html#devil' },
+      { label:'가이사의 교회, 하나님의 교회', href:'books.html#caesar' },
       { label:'가면의 시대', href:'books.html#mask' },
       { label:'교회를 떠나고서야, 예수를 만났다', href:'books.html#church' },
       { label:'엄마 향기', href:'books.html#mom' } ]},
