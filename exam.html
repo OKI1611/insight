@@ -101,10 +101,12 @@
         if(s&&s.user){ if(s.expires_at&&s.expires_at*1000<Date.now()) return null; return s; } } }catch(e){}
       return null;
     }
+    // authShown 은 onAuth 안에서 읽으므로 첫 호출보다 먼저 선언해야 한다
+    // (let 의 TDZ 때문에 순서가 뒤바뀌면 첫 호출이 예외로 죽어, 로그인 화면이 3초 폴백으로만 떴다)
+    let authShown=false;
     sb.auth.onAuthStateChange((_e,s)=>onAuth(s));
     onAuth(readStoredSession());
     setTimeout(()=>{ if($('loginView').classList.contains('hidden') && !$('view').innerHTML) $('loginView').classList.remove('hidden'); }, 3000);
-    let authShown=false;
     async function onAuth(session){
       if(session && session.user){
         if(authShown && user && user.id===session.user.id) return;
