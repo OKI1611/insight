@@ -235,3 +235,83 @@
   }
   render();
 })();
+
+/* ── 모바일 터치 영역 확장 (공통 모듈 · 중복 실행 방지 가드 있음) ── */
+(function(){
+  // ===== 모바일 터치 영역 넓히기 (모든 페이지 공통) =====
+  //  40~60대 이용자가 많아 손가락으로 누르기 좋아야 한다. 다만 글자 크기나 줄 간격을
+  //  바꾸면 디자인이 흐트러지므로, 보이는 모습은 그대로 두고 '누를 수 있는 범위'만
+  //  가상 요소(::after)로 위아래로 넓힌다.
+  //  이웃한 다른 링크와 겹치면 엉뚱한 곳이 눌리므로, 위아래 여유만큼만 넓힌다.
+  try{
+    (function(){
+      if(window.__biTapInit) return; window.__biTapInit = true;
+      var MQ = window.matchMedia('(max-width: 767px)');
+      var TARGET = 40;     // 목표 최소 탭 높이(px)
+      var MINGAIN = 6;     // 이보다 적게 넓어지면 굳이 손대지 않는다
+
+      function injectCSS(){
+        if(document.getElementById('biTapCSS')) return;
+        var st = document.createElement('style'); st.id = 'biTapCSS';
+        st.textContent =
+          '@media(max-width:767px){'
+          + '.biTap{position:relative}'
+          + '.biTap::after{content:"";position:absolute;left:0;right:0;top:50%;'
+          +   'transform:translateY(-50%);height:var(--biTapH,100%);'
+          +   'min-height:100%;pointer-events:auto}'
+          + '}';
+        document.head.appendChild(st);
+      }
+
+      function run(){
+        if(!MQ.matches) return;
+        injectCSS();
+        var nodes = [];
+        document.querySelectorAll('a[href],button').forEach(function(el){
+          var cs = getComputedStyle(el);
+          if(cs.display === 'none' || cs.visibility === 'hidden') return;
+          var r = el.getBoundingClientRect();
+          if(r.width < 8 || r.height <= 0) return;
+          nodes.push({ el: el, r: r, cs: cs });
+        });
+
+        nodes.forEach(function(n){
+          var el = n.el, r = n.r;
+          if(r.height >= 32) return;                       // 이미 충분함
+          if(!(el.textContent || '').trim()) return;        // 아이콘 전용은 건드리지 않음
+          if(el.closest('.biTap')) return;                  // 중첩 방지
+          // 문단 속에 끼인 인라인 링크는 제외 — 넓히면 윗줄·아랫줄 글자를 덮는다
+          if(n.cs.display === 'inline'){
+            var p = el.parentElement;
+            if(p && p.textContent.trim().length > (el.textContent || '').trim().length + 12) return;
+          }
+          // 위아래로 얼마나 여유가 있는지 — 가로가 겹치는 다른 클릭 요소까지의 거리
+          var up = Infinity, down = Infinity;
+          nodes.forEach(function(o){
+            if(o.el === el || el.contains(o.el) || o.el.contains(el)) return;
+            var q = o.r;
+            if(q.right <= r.left + 1 || q.left >= r.right - 1) return;   // 가로로 안 겹치면 무관
+            if(q.bottom <= r.top + 1) up = Math.min(up, r.top - q.bottom);
+            else if(q.top >= r.bottom - 1) down = Math.min(down, q.top - r.bottom);
+          });
+          var room = Math.max(0, Math.min(up, down));
+
+          // 이웃도 같이 넓어지므로 여유의 '절반'까지만 차지한다(서로 겹치지 않게)
+          var grow = isFinite(room) ? Math.max(0, room / 2 - 1) : TARGET;
+          var h = Math.min(TARGET, r.height + grow * 2);
+          if(h - r.height < MINGAIN) return;                // 효과가 미미하면 건너뜀
+          el.classList.add('biTap');
+          el.style.setProperty('--biTapH', Math.round(h) + 'px');
+        });
+      }
+
+      var t = null;
+      function later(){ clearTimeout(t); t = setTimeout(run, 300); }
+      if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', later);
+      else later();
+      window.addEventListener('load', later);
+      window.addEventListener('resize', later);
+    })();
+  }catch(e){}
+
+})();
