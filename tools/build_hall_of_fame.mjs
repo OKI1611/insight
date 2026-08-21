@@ -201,12 +201,19 @@ function main() {
     const rows = aggregate(comments);
     if (!rows.length) { console.log('집계할 댓글이 없어 기존 파일을 유지합니다.'); return; }
 
-    // 이전 순위를 읽어 변동(delta)·연속 진입(streak) 계산
+    // 이전 순위를 읽어 변동(delta)·순위 유지 일수(streak) 계산
+    //  streak = '같은 순위를 며칠째 지키고 있는가'. 순위가 바뀌면 1로 초기화한다.
+    //  (예전에는 명단에 남아 있기만 하면 계속 더해져, 2위가 1위보다 큰 값을 갖는 일이 있었다)
     let prev = {};
+    let prevDay = '';
     try {
       const old = JSON.parse(fs.readFileSync(OUT, 'utf8'));
       (old.members || []).forEach(m => { prev[m.handle] = { rank: m.rank, streak: m.streak || 1 }; });
+      prevDay = String(old.updated || '').slice(0, 10);
     } catch (e) {}
+    // 같은 날 두 번 이상 돌려도 하루로만 센다(수동 실행으로 부풀지 않도록)
+    const todayKst = new Date(Date.now() + 9 * 3600000).toISOString().slice(0, 10);
+    const sameDay = prevDay === todayKst;
 
     const top = rows.slice(0, TOP_N).map((r, i) => {
       const rank = i + 1;
@@ -221,7 +228,8 @@ function main() {
         prev: p ? p.rank : null,
         delta: p ? (p.rank - rank) : null,     // 양수면 상승
         isNew: !p,
-        streak: p ? (p.streak || 1) + 1 : 1
+        // 순위를 그대로 지켰을 때만 하루 더한다
+        streak: (p && p.rank === rank) ? ((p.streak || 1) + (sameDay ? 0 : 1)) : 1
       };
     });
 
