@@ -56,6 +56,11 @@
   중복 저장돼 있다. en 쪽은 note(주석)·voc(어휘)·idi(숙어)에도 해당 표현이 인용돼 있으면 같이 고친다.
 - 고친 뒤 `python tools/build_search_index.py` 실행 → `bible/search-index.json` 갱신(안 돌리면 옛 표현으로 검색됨).
 - 번역 원칙: **KJV가 구체어를 쓴 자리는 해석어로 바꾸지 않는다** (예: cut down = '베어 내다', '개간/개척' ✗).
+- **전수 검토(2026-08-22~)**: 기준은 `bible/번역지침.md` §9. 도구 순서 `tools/review_scan.py --book X --emit-input`
+  → 장별 에이전트(`tools/review_agent_prompt.md`) → `review_report.py --book X`(검수표, `tools/_review/report/`)
+  → 역자 승인 → `review_report.py --collect` → `review_apply.py --approved` → `build_search_index.py` → `tr_battery_run.py`.
+  타 역본 본문(`tools/_review/sources/`)은 **저장소·노트·커밋 메시지에 절대 인용 금지**(gitignore). Python은 이 PC에
+  `%LOCALAPPDATA%\Programs\Python\Python312\python.exe` 로 설치돼 있다(PATH 미등록 — 전체 경로로 실행).
 
 ## 새 HTML 페이지를 만들 때 (아이폰 PWA)
 - 아이폰은 '홈 화면에 추가'를 누른 **그 페이지의 head**를 읽는다. `</title>` 아래에 반드시 넣을 것:
