@@ -29,6 +29,7 @@ REV = os.path.join(ROOT, 'tools', '_review')
 os.makedirs(REV, exist_ok=True)
 LOG = os.path.join(REV, 'apply_log.tsv')
 BOOKS = json.load(open(os.path.join(BIBLE, 'books.json'), encoding='utf-8'))
+EN_ONLY = False   # --en-only: kr 은 이미 적용됐고 en 의 note/voc 만 다시 맞출 때
 
 def read_bytes(p):
     return open(p, 'rb').read()
@@ -110,23 +111,26 @@ def apply_items(items, dry):
             ref = it['ref']; i = v - 1
             if i >= len(kr): log.write(f'{ref}\tSKIP\tno-such-verse\n'); res['skipped'] += 1; continue
             cur = kr[i]; old = it.get('old'); new = it.get('new')
-            if not new or new == cur: log.write(f'{ref}\tSKIP\tno-change\n'); res['skipped'] += 1; continue
-            if old is not None and cur != old:
-                log.write(f'{ref}\tSKIP\tkr-changed-since-approval\n'); res['skipped'] += 1; continue
-            # kr: 원문 바이트 치환(정확히 1회) → 아니면 인덱스 교체
-            tok = '"' + jstr(cur) + '"'
-            if kr_text.count(tok) == 1:
-                kr_text = kr_text.replace(tok, '"' + jstr(new) + '"')
+            if EN_ONLY:
+                if new != cur: log.write(f'{ref}\tSKIP\ten-only: kr not yet applied\n'); res['skipped'] += 1; continue
             else:
-                kr_text = None   # 재직렬화 경로로
-            kr[i] = new; kr_changed = True
-            log.write(f'{ref}\tAPPLY\tkr\t{len(cur)}->{len(new)}\n'); res['applied'] += 1
+                if not new or new == cur: log.write(f'{ref}\tSKIP\tno-change\n'); res['skipped'] += 1; continue
+                if old is not None and cur != old:
+                    log.write(f'{ref}\tSKIP\tkr-changed-since-approval\n'); res['skipped'] += 1; continue
+                # kr: 원문 바이트 치환(정확히 1회) → 아니면 인덱스 교체
+                tok = '"' + jstr(cur) + '"'
+                if kr_text.count(tok) == 1:
+                    kr_text = kr_text.replace(tok, '"' + jstr(new) + '"')
+                else:
+                    kr_text = None   # 재직렬화 경로로
+                kr[i] = new; kr_changed = True
+                log.write(f'{ref}\tAPPLY\tkr\t{len(cur)}->{len(new)}\n'); res['applied'] += 1
             # en
             if en is None: log.write(f'{ref}\tEN-SKIP\tno-en-file\n'); res['en_skipped'] += 1; continue
             if len(en) != len(kr): log.write(f'{ref}\tEN-SKIP\tlen-mismatch {len(en)} vs {len(kr)}\n'); res['en_skipped'] += 1; continue
             e = en[i]
             if isinstance(e, dict):
-                if e.get('ko') != cur:
+                if e.get('ko') != cur and not EN_ONLY:
                     log.write(f'{ref}\tEN-STALE\toverwritten\n'); res['en_stale'] += 1
                 e['ko'] = new
                 eu = it.get('en') or {}
@@ -137,7 +141,13 @@ def apply_items(items, dry):
                         o, nw = pair
                         for ent in e.get(key, []) or []:
                             for k2 in range(len(ent)):
-                                if isinstance(ent[k2], str) and ent[k2] == o: ent[k2] = nw
+                                if isinstance(ent[k2], str) and o and o in ent[k2]:
+                                    ent[k2] = ent[k2].replace(o, nw)      # 뜻 문자열 안의 부분 치환('생명, 살아나심' → '생명')
+                                    if ', ' in ent[k2]:                   # 치환으로 생긴 중복 뜻 제거('생명, 생명' → '생명')
+                                        dd = []
+                                        for part in [x.strip() for x in ent[k2].split(',')]:
+                                            if part and part not in dd: dd.append(part)
+                                        ent[k2] = ', '.join(dd)
                 en_changed = True; en_need_reserialize = True; res['en_updated'] += 1
         if dry: continue
         if kr_changed:
@@ -172,7 +182,9 @@ def main():
     ap.add_argument('--selftest', action='store_true')
     ap.add_argument('--approved'); ap.add_argument('--mechanical')
     ap.add_argument('--dry-run', action='store_true')
+    ap.add_argument('--en-only', action='store_true', help='kr 은 두고 en(ko·note·voc·idi)만 갱신')
     a = ap.parse_args()
+    global EN_ONLY; EN_ONLY = a.en_only
     if a.selftest:
         ok = selftest(); sys.exit(0 if ok else 1)
     src = a.approved or a.mechanical

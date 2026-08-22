@@ -1,91 +1,2297 @@
 {
-  "_doc": "정본역 전수 검토용 KJV 핵심어 사전. kjvre=KJV 본문에서 찾을 정규식(소문자), lex={스트롱: {ko:[한국어 어간 정규식…], agrees:true/false}} — agrees=false 는 그 원어가 KJV 단어의 뜻과 어긋나는 경우(KJV≠원어 → 사장님 결정 후보). ko(최상위)=스트롱을 못 찾았을 때 쓰는 허용 어간. 파일럿(로마서)에서 증설·보정한다. 타 역본 문구는 넣지 않는다.",
-  "entries": [
-    {"id":"unbelief","kjvre":"\\bunbelief\\b","ko":["믿지 아니","믿지 않","불신","믿음이 없","믿지 못"],
-     "lex":{"G0570":{"ko":["믿지 아니","믿지 않","불신","믿음이 없","믿지 못"],"agrees":true},
-            "G0543":{"ko":["믿지 아니","믿지 않","불신","순종하지 아니","순종하지 않","불순종"],"agrees":false,"sense":"ἀπείθεια 불순종·설득되지 않음(KJV는 unbelief)"}}},
-    {"id":"unbelieving","kjvre":"\\bunbelieving\\b","ko":["믿지 아니","믿지 않","불신"],
-     "lex":{"G0571":{"ko":["믿지 아니","믿지 않","불신"],"agrees":true},
-            "G0544":{"ko":["믿지 아니","믿지 않","순종하지 아니","순종하지 않","불순종"],"agrees":false,"sense":"ἀπειθέω 순종하지 않다"},
-            "G0545":{"ko":["믿지 아니","믿지 않","순종하지 아니","불순종"],"agrees":false,"sense":"ἀπειθής 불순종하는"}}},
-    {"id":"believe","kjvre":"\\bbeliev(e|ed|eth|est|ing)\\b","ko":["믿"],
-     "lex":{"G4100":{"ko":["믿"],"agrees":true},"G3982":{"ko":["믿","확신","설득","따르"],"agrees":false,"sense":"πείθω 설득되다·확신하다(KJV believe 로 옮긴 곳)"}}},
-    {"id":"repent","kjvre":"\\brepent(ed|eth|est|ing|s)?\\b","ko":["회개","뉘우","후회"],
-     "lex":{"G3340":{"ko":["회개"],"agrees":true},"G3338":{"ko":["뉘우","후회","한탄"],"agrees":false,"sense":"μεταμέλομαι 후회·뉘우침(회개 μετανοέω 와 다른 단어)"},"H5162":{"ko":["뜻을 돌이","후회","한탄","뉘우","위로"],"agrees":true}}},
-    {"id":"repentance","kjvre":"\\brepentance\\b","ko":["회개","후회","뉘우"],
-     "lex":{"G3341":{"ko":["회개"],"agrees":true},"G0278":{"ko":["후회","철회","뉘우","돌이키"],"agrees":true,"sense":"ἀμεταμέλητος 후회 없는(롬 11:29)"}}},
-    {"id":"charity","kjvre":"\\bcharity\\b","ko":["사랑"],"lex":{"G0026":{"ko":["사랑"],"agrees":true}}},
-    {"id":"conversation","kjvre":"\\bconversations?\\b","ko":["행실","행동","처신","생활","삶","시민권"],
-     "lex":{"G0391":{"ko":["행실","행동","처신","생활","삶"],"agrees":true},"G0390":{"ko":["행실","행동","처신","생활","살"],"agrees":true},"G4175":{"ko":["시민권","나라"],"agrees":true,"sense":"πολίτευμα 시민권(빌 3:20)"},"G4176":{"ko":["생활","살","시민"],"agrees":true}}},
-    {"id":"prevent","kjvre":"\\bprevent(ed|eth|est)?\\b","ko":["앞서","먼저","미리"],"lex":{"G5348":{"ko":["앞서","먼저","미리","이르"],"agrees":true},"H6923":{"ko":["앞서","먼저","맞","미리","마주"],"agrees":true}}},
-    {"id":"let-hinder","kjvre":"\\blet(teth|ted)?\\b","ko":["막","금하","방해"],"only_if_lex":["G2722","G2967"],
-     "lex":{"G2722":{"ko":["막","금하","방해","붙들"],"agrees":true,"sense":"κατέχω 막다(살후 2:7 — 고어 let=hinder)"},"G2967":{"ko":["막","금하","방해"],"agrees":true}}},
-    {"id":"meat","kjvre":"\\bmeats?\\b","ko":["양식","음식","먹을 것","먹","식물","고기"],"lex":{"G1033":{"ko":["양식","음식","먹을 것","먹","식물"],"agrees":true},"G1035":{"ko":["양식","음식","먹"],"agrees":true},"G5160":{"ko":["양식","음식","먹"],"agrees":true},"H0400":{"ko":["양식","음식","먹","식물"],"agrees":true}}},
-    {"id":"quick","kjvre":"\\bquick(en|ened|eneth|ening)?\\b","ko":["살아","산 자","살리","살았","살게"],"lex":{"G2198":{"ko":["살아","산 자","살리","살았","살게"],"agrees":true},"G2227":{"ko":["살리","살아","살게"],"agrees":true},"G4806":{"ko":["살리","살아","살게"],"agrees":true}}},
-    {"id":"hell","kjvre":"\\bhell\\b","ko":["지옥","음부"],
-     "lex":{"G1067":{"ko":["지옥"],"agrees":true,"sense":"γέεννα 게헨나=지옥"},"G0086":{"ko":["음부"],"agrees":true,"sense":"ᾅδης 하데스=음부(지옥 아님)"},"G5020":{"ko":["지옥"],"agrees":true,"sense":"ταρταρόω(벧후 2:4)"},"H7585":{"ko":["음부"],"agrees":true,"sense":"שְׁאוֹל 스올=음부"}}},
-    {"id":"grave","kjvre":"\\bgraves?\\b","ko":["무덤","음부"],
-     "lex":{"H7585":{"ko":["음부"],"agrees":true,"sense":"KJV grave 로 옮긴 스올 → 정본역은 음부"},"H6913":{"ko":["무덤"],"agrees":true},"H6900":{"ko":["무덤","매장"],"agrees":true},"G3419":{"ko":["무덤"],"agrees":true},"G3418":{"ko":["무덤"],"agrees":true},"G0086":{"ko":["음부"],"agrees":true}}},
-    {"id":"pit","kjvre":"\\bpits?\\b","ko":["구덩이","함정","웅덩이","음부","무저갱"],
-     "lex":{"H7585":{"ko":["음부"],"agrees":true,"sense":"KJV pit 로 옮긴 스올 → 음부"},"H0953":{"ko":["구덩이","웅덩이","함정"],"agrees":true},"H7845":{"ko":["구덩이","함정","멸망"],"agrees":true},"G0012":{"ko":["무저갱","깊음"],"agrees":true},"G5421":{"ko":["구덩이","웅덩이","함정"],"agrees":true}}},
-    {"id":"ghost","kjvre":"\\bghost\\b","ko":["영","성령","숨","혼"],"lex":{"G4151":{"ko":["영","성령"],"agrees":true},"G1606":{"ko":["숨","영혼","혼","목숨"],"agrees":true}}},
-    {"id":"justify","kjvre":"\\bjustif(y|ied|ieth|ier|ication)\\b","ko":["의롭다 하","의롭다 함","칭의","의롭게","의롭다 여"],"lex":{"G1344":{"ko":["의롭다 하","의롭다 함","칭의","의롭게","의롭다 여"],"agrees":true},"G1347":{"ko":["의롭다 하","칭의"],"agrees":true},"H6663":{"ko":["의롭다 하","의롭다 함","의롭게","의롭다 여","공의"],"agrees":true}}},
-    {"id":"sanctify","kjvre":"\\bsanctif(y|ied|ieth|ication)\\b","ko":["거룩하게","거룩히","성화","거룩하"],"lex":{"G0037":{"ko":["거룩하게","거룩히","성화","거룩하"],"agrees":true},"G0038":{"ko":["거룩하게","성화","거룩"],"agrees":true},"H6942":{"ko":["거룩하게","거룩히","성별","거룩하"],"agrees":true}}},
-    {"id":"redeem","kjvre":"\\bredeem(ed|er|eth|ing)?\\b|\\bredemption\\b","ko":["구속","속량","건지","무르","대속"],"lex":{"G0629":{"ko":["구속","속량"],"agrees":true},"G3084":{"ko":["구속","속량","대속","건지"],"agrees":true},"G1805":{"ko":["구속","속량","사","아끼"],"agrees":true},"G0059":{"ko":["사","값을 주","구속","속량"],"agrees":true},"H1350":{"ko":["구속","무르","건지","속량","가까운 친족","기업 무를"],"agrees":true},"H6299":{"ko":["구속","속량","건지","대속"],"agrees":true}}},
-    {"id":"atonement","kjvre":"\\batonements?\\b","ko":["속죄","화목"],"lex":{"G2643":{"ko":["화목"],"agrees":false,"sense":"καταλλαγή 화목(롬 5:11 KJV atonement)"},"H3722":{"ko":["속죄","덮"],"agrees":true},"H3725":{"ko":["속죄"],"agrees":true}}},
-    {"id":"propitiation","kjvre":"\\bpropitiation\\b","ko":["화목제물","화목"],"lex":{"G2434":{"ko":["화목제물","화목"],"agrees":true},"G2435":{"ko":["화목제물","화목","속죄소"],"agrees":true}}},
-    {"id":"godliness","kjvre":"\\bgodliness\\b","ko":["경건"],"lex":{"G2150":{"ko":["경건"],"agrees":true}}},
-    {"id":"righteousness","kjvre":"\\brighteousness\\b","ko":["의"],"lex":{"G1343":{"ko":["의"],"agrees":true},"H6666":{"ko":["의","공의"],"agrees":true},"H6664":{"ko":["의","공의"],"agrees":true}}},
-    {"id":"condemnation","kjvre":"\\b(condemnation|damnation)\\b","ko":["정죄","심판","형벌","저주"],"lex":{"G2631":{"ko":["정죄","심판"],"agrees":true},"G2633":{"ko":["정죄","심판"],"agrees":true},"G2917":{"ko":["심판","정죄","판단"],"agrees":true},"G2920":{"ko":["심판","정죄","판단"],"agrees":true},"G0684":{"ko":["멸망","파멸"],"agrees":true}}},
-    {"id":"salvation","kjvre":"\\bsalvation\\b","ko":["구원"],"lex":{"G4991":{"ko":["구원"],"agrees":true},"H3444":{"ko":["구원"],"agrees":true},"H8668":{"ko":["구원"],"agrees":true}}},
-    {"id":"grace","kjvre":"\\bgrace\\b","ko":["은혜","은총"],"lex":{"G5485":{"ko":["은혜","은총"],"agrees":true},"H2580":{"ko":["은혜","은총","호의"],"agrees":true}}},
-    {"id":"mercy","kjvre":"\\bmerc(y|ies|iful)\\b","ko":["긍휼","자비","인자","불쌍히"],"lex":{"G1656":{"ko":["긍휼","자비","인자","불쌍히"],"agrees":true},"G1653":{"ko":["긍휼","자비","불쌍히"],"agrees":true},"G3628":{"ko":["긍휼","자비","불쌍히"],"agrees":true},"H2617":{"ko":["인자","자비","긍휼","은혜"],"agrees":true},"H7355":{"ko":["긍휼","자비","불쌍히"],"agrees":true},"H7356":{"ko":["긍휼","자비"],"agrees":true}}},
-    {"id":"faith","kjvre":"\\bfaith\\b","ko":["믿음","신실"],"lex":{"G4102":{"ko":["믿음","신실"],"agrees":true},"H0530":{"ko":["믿음","신실","성실"],"agrees":true}}},
-    {"id":"hope","kjvre":"\\bhope(d|th|s)?\\b","ko":["소망","바라","희망"],"lex":{"G1680":{"ko":["소망","바라","희망"],"agrees":true},"G1679":{"ko":["소망","바라","희망"],"agrees":true}}},
-    {"id":"obey","kjvre":"\\bobe(y|ys|yed|yeth|ying|dience|dient)\\b","ko":["순종","청종","듣"],"forbid_ko":["복종"],
-     "lex":{"G5219":{"ko":["순종","청종","듣"],"agrees":true},"G5218":{"ko":["순종"],"agrees":true},"G5255":{"ko":["순종"],"agrees":true},"G3980":{"ko":["순종","복종","따르"],"agrees":true},"H8085":{"ko":["순종","청종","듣"],"agrees":true}}},
-    {"id":"submit","kjvre":"\\b(submit|submitted|submitting|subject|subjection)\\b","ko":["복종","순복","굴복","굴하"],"forbid_ko":["순종"],
-     "lex":{"G5293":{"ko":["복종","순복","굴복","굴하","따르"],"agrees":true},"G5292":{"ko":["복종","순복"],"agrees":true},"G5226":{"ko":["복종","순복","굴복"],"agrees":true}}},
-    {"id":"kingdom-of-god","kjvre":"\\bkingdom of god\\b","ko":["하나님의 왕국"],"forbid_ko":["하나님의 나라","하나님 나라"],"lex":{"G0932":{"ko":["하나님의 왕국"],"agrees":true}}},
-    {"id":"kingdom-of-heaven","kjvre":"\\bkingdom of heaven\\b","ko":["하늘의 왕국"],"forbid_ko":["천국","하늘나라","하늘 나라"],"lex":{"G0932":{"ko":["하늘의 왕국"],"agrees":true}}},
-    {"id":"baptize","kjvre":"\\bbaptiz(e|ed|eth|ing|est)\\b|\\bbaptism\\b|\\bbaptist\\b","ko":["침례"],"forbid_ko":["세례"],"lex":{"G0907":{"ko":["침례"],"agrees":true},"G0908":{"ko":["침례"],"agrees":true},"G0910":{"ko":["침례"],"agrees":true}}},
-    {"id":"bishop","kjvre":"\\bbishops?\\b","ko":["감독"],"lex":{"G1985":{"ko":["감독"],"agrees":true},"G1984":{"ko":["감독"],"agrees":true}}},
-    {"id":"elder","kjvre":"\\belders?\\b","ko":["장로","어른","노인","연장"],"lex":{"G4245":{"ko":["장로","어른","노인","연장"],"agrees":true},"H2205":{"ko":["장로","노인","늙은","어른"],"agrees":true}}},
-    {"id":"deacon","kjvre":"\\bdeacons?\\b","ko":["집사"],"lex":{"G1249":{"ko":["집사","일꾼","섬기"],"agrees":true}}},
-    {"id":"church","kjvre":"\\bchurch(es)?\\b","ko":["교회"],"lex":{"G1577":{"ko":["교회","회중","모임"],"agrees":true}}},
-    {"id":"gospel","kjvre":"\\bgospel\\b","ko":["복음"],"lex":{"G2098":{"ko":["복음"],"agrees":true},"G2097":{"ko":["복음"],"agrees":true}}},
-    {"id":"iniquity","kjvre":"\\biniquit(y|ies)\\b","ko":["죄악","불법","불의","악"],"lex":{"G0458":{"ko":["불법","죄악"],"agrees":true},"G0093":{"ko":["불의","죄악"],"agrees":true},"H5771":{"ko":["죄악","악","허물"],"agrees":true},"H0205":{"ko":["죄악","악","허망","헛"],"agrees":true},"H5766":{"ko":["불의","악","죄악"],"agrees":true}}},
-    {"id":"transgression","kjvre":"\\btransgress(ion|ions|or|ors|ed|eth)?\\b|\\btrespass(es)?\\b","ko":["범죄","범법","허물","죄","어기","넘"],"lex":{"G3847":{"ko":["범죄","범법","허물","어기"],"agrees":true},"G3900":{"ko":["허물","범죄","죄"],"agrees":true},"G3845":{"ko":["범","어기","넘"],"agrees":true},"H6588":{"ko":["허물","범죄","죄","반역"],"agrees":true},"H0817":{"ko":["죄","속건","허물"],"agrees":true}}},
-    {"id":"wrath","kjvre":"\\bwrath\\b","ko":["진노","분노","노","격노"],"lex":{"G3709":{"ko":["진노","분노","노"],"agrees":true},"G2372":{"ko":["진노","분노","격노","노"],"agrees":true},"H0639":{"ko":["진노","노","분노"],"agrees":true},"H2534":{"ko":["진노","분노","격노"],"agrees":true},"H5678":{"ko":["진노","분노","격노"],"agrees":true}}},
-    {"id":"soul","kjvre":"\\bsouls?\\b","ko":["영혼","혼","생명","목숨","사람"],"lex":{"G5590":{"ko":["영혼","혼","생명","목숨","사람","마음"],"agrees":true},"H5315":{"ko":["영혼","혼","생명","목숨","사람","마음","생물"],"agrees":true}}},
-    {"id":"flesh","kjvre":"\\bflesh\\b","ko":["육","육신","육체","살","고기","몸"],"lex":{"G4561":{"ko":["육","육신","육체","살","몸"],"agrees":true},"H1320":{"ko":["육","육체","살","고기","몸","혈육"],"agrees":true}}},
-    {"id":"everlasting","kjvre":"\\b(everlasting|eternal)\\b","ko":["영원","영생","영영"],"lex":{"G0166":{"ko":["영원","영생","영영"],"agrees":true},"G0126":{"ko":["영원","영영"],"agrees":true},"H5769":{"ko":["영원","영영","옛"],"agrees":true}}},
-    {"id":"world-aion","kjvre":"\\bworlds?\\b","ko":["세상","세대","시대","영원","땅"],"lex":{"G2889":{"ko":["세상"],"agrees":true},"G0165":{"ko":["세상","세대","시대","영원"],"agrees":false,"sense":"αἰών 세대·시대(KJV world)"},"G3625":{"ko":["세상","땅","천하"],"agrees":true}}},
-    {"id":"tribulation","kjvre":"\\btribulations?\\b","ko":["환난","고난"],"lex":{"G2347":{"ko":["환난","고난","압박"],"agrees":true}}},
-    {"id":"perfect","kjvre":"\\bperfect(ed|ly|ing|ion|ness)?\\b","ko":["온전","완전","성숙","이루"],"lex":{"G5046":{"ko":["온전","완전","성숙"],"agrees":true},"G5048":{"ko":["온전","완전","이루","마치"],"agrees":true},"H8549":{"ko":["온전","완전","흠 없"],"agrees":true},"H8003":{"ko":["온전","완전","화평"],"agrees":true}}},
-    {"id":"saint","kjvre":"\\bsaints?\\b","ko":["성도","거룩한 자","거룩한 이","거룩한 백성"],"lex":{"G0040":{"ko":["성도","거룩"],"agrees":true},"H6918":{"ko":["성도","거룩"],"agrees":true},"H2623":{"ko":["성도","경건","거룩"],"agrees":true}}},
-    {"id":"elect","kjvre":"\\belect(ed|ion)?\\b","ko":["택하","택함","선택","택한"],"lex":{"G1588":{"ko":["택하","택함","선택","택한"],"agrees":true},"G1589":{"ko":["택하","택함","선택"],"agrees":true}}},
-    {"id":"predestinate","kjvre":"\\bpredestinat(e|ed)\\b","ko":["예정","미리 정하","미리 작정"],"lex":{"G4309":{"ko":["예정","미리 정하","미리 작정"],"agrees":true}}},
-    {"id":"mystery","kjvre":"\\bmyster(y|ies)\\b","ko":["비밀","신비","오묘"],"lex":{"G3466":{"ko":["비밀","신비","오묘"],"agrees":true}}},
-    {"id":"testament","kjvre":"\\btestaments?\\b","ko":["언약","유언","계약"],"lex":{"G1242":{"ko":["언약","유언","계약"],"agrees":true,"sense":"διαθήκη 언약 — 히 9:16-17 문맥은 유언"}}},
-    {"id":"covenant","kjvre":"\\bcovenants?\\b","ko":["언약","계약","약속"],"lex":{"G1242":{"ko":["언약","계약"],"agrees":true},"H1285":{"ko":["언약","계약"],"agrees":true}}},
-    {"id":"law","kjvre":"\\blaws?\\b","ko":["율법","법"],"lex":{"G3551":{"ko":["율법","법"],"agrees":true},"H8451":{"ko":["율법","법"],"agrees":true}}},
-    {"id":"prophesy","kjvre":"\\bprophes(y|ied|ieth|ying|ies|yings)\\b","ko":["예언","대언"],"lex":{"G4395":{"ko":["예언","대언"],"agrees":true},"H5012":{"ko":["예언","대언"],"agrees":true}}},
-    {"id":"devil","kjvre":"\\bdevil\\b","ko":["마귀","귀신"],"lex":{"G1228":{"ko":["마귀"],"agrees":true},"G1140":{"ko":["귀신","마귀"],"agrees":false,"sense":"δαιμόνιον 귀신(KJV devil 단수로 쓴 곳)"},"G1142":{"ko":["귀신","마귀"],"agrees":false}}},
-    {"id":"devils","kjvre":"\\bdevils\\b","ko":["귀신","마귀"],"lex":{"G1140":{"ko":["귀신","마귀"],"agrees":false,"sense":"δαιμόνιον 귀신들(KJV devils)"},"G1142":{"ko":["귀신","마귀"],"agrees":false},"H7700":{"ko":["귀신","마귀"],"agrees":false},"H8163":{"ko":["귀신","숫염소","염소"],"agrees":false}}},
-    {"id":"only-begotten","kjvre":"\\bonly begotten\\b","ko":["독생"],"lex":{"G3439":{"ko":["독생"],"agrees":true}}},
-    {"id":"easter","kjvre":"\\beaster\\b","ko":["유월절"],"lex":{"G3957":{"ko":["유월절"],"agrees":false,"sense":"πάσχα 유월절(KJV Easter) — 지침 §1 예시"}}},
-    {"id":"passover","kjvre":"\\bpassover\\b","ko":["유월절"],"lex":{"G3957":{"ko":["유월절"],"agrees":true},"H6453":{"ko":["유월절"],"agrees":true}}},
-    {"id":"comforter","kjvre":"\\bcomforter\\b","ko":["보혜사","위로자","대언자","돕는 이"],"lex":{"G3875":{"ko":["보혜사","위로자","대언자","돕는 이"],"agrees":true}}},
-    {"id":"advocate","kjvre":"\\badvocate\\b","ko":["대언자","변호","보혜사"],"lex":{"G3875":{"ko":["대언자","변호","보혜사"],"agrees":true}}},
-    {"id":"lovingkindness","kjvre":"\\bloving.?kindness(es)?\\b","ko":["인자","인애","자비"],"lex":{"H2617":{"ko":["인자","인애","자비","은혜"],"agrees":true}}},
-    {"id":"verily","kjvre":"\\bverily\\b","ko":["진실로","참으로","실로"],"lex":{"G0281":{"ko":["진실로","참으로","실로"],"agrees":true},"G0230":{"ko":["참으로","진실로","실로"],"agrees":true},"G3303":{"ko":["진실로","참으로","실로","과연"],"agrees":true}}},
-    {"id":"gentiles","kjvre":"\\b(gentiles?|heathen|nations)\\b","ko":["이방","민족","나라","열국","백성"],"lex":{"G1484":{"ko":["이방","민족","나라","열국","백성"],"agrees":true},"G1672":{"ko":["헬라","그리스","이방"],"agrees":true},"H1471":{"ko":["이방","민족","나라","열국","백성"],"agrees":true}}},
-    {"id":"holy-ghost","kjvre":"\\bholy ghost\\b","ko":["성령"],"lex":{"G4151":{"ko":["성령"],"agrees":true}}},
-    {"id":"suffer-allow","kjvre":"\\bsuffer(ed|eth|est|ing)?\\b","ko":["허락","용납","내버려","두","고난","고통","받","당하","참"],"lex":{"G0863":{"ko":["허락","용납","내버려","두","놓아"],"agrees":true,"sense":"ἀφίημι 허락하다(고어 suffer=allow)"},"G1439":{"ko":["허락","용납","내버려","두"],"agrees":true},"G2010":{"ko":["허락","용납","허용"],"agrees":true},"G3958":{"ko":["고난","고통","받","당하","겪"],"agrees":true},"G4310":{"ko":["고난","받","당하"],"agrees":true}}},
-    {"id":"strait","kjvre":"\\bstrait(ly|ened|ness|s)?\\b","ko":["좁","엄히","곤란","답답","비좁","엄중"],"lex":{"G4728":{"ko":["좁","비좁"],"agrees":true},"G4183":{"ko":["엄히","엄중","단단히","많"],"agrees":true},"G4912":{"ko":["답답","압박","눌","사로"],"agrees":true}}},
-    {"id":"mansions","kjvre":"\\bmansions\\b","ko":["거할 곳","거처","처소","집"],"lex":{"G3438":{"ko":["거할 곳","거처","처소","집"],"agrees":true}}},
-    {"id":"carriage","kjvre":"\\bcarriages?\\b","ko":["짐","행장","행낭"],"lex":{"G0643":{"ko":["짐","행장","행낭","채비"],"agrees":true,"sense":"ἀποσκευάζω 짐을 꾸리다(행 21:15 고어 carriages=baggage)"},"H3627":{"ko":["짐","기구","물건","행장"],"agrees":true}}},
-    {"id":"study","kjvre":"\\bstud(y|ied)\\b","ko":["힘쓰","애쓰","노력","부지런","생각"],"lex":{"G4704":{"ko":["힘쓰","애쓰","노력","부지런"],"agrees":true,"sense":"σπουδάζω 힘쓰다(딤후 2:15 고어 study=be diligent)"},"G5389":{"ko":["힘쓰","애쓰","노력","목표"],"agrees":true}}}
-  ]
+ "_doc": "정본역 전수 검토용 KJV 핵심어 사전. kjvre=KJV 본문에서 찾을 정규식(소문자), lex={스트롱: {ko:[한국어 어간 정규식…], agrees:true/false}} — agrees=false 는 그 원어가 KJV 단어의 뜻과 어긋나는 경우(KJV≠원어 → 사장님 결정 후보). ko(최상위)=스트롱을 못 찾았을 때 쓰는 허용 어간. 파일럿(로마서)에서 증설·보정한다. 타 역본 문구는 넣지 않는다.",
+ "entries": [
+  {
+   "id": "unbelief",
+   "kjvre": "\\bunbelief\\b",
+   "ko": [
+    "믿지 아니",
+    "믿지 않",
+    "불신",
+    "믿음이 없",
+    "믿지 못"
+   ],
+   "lex": {
+    "G0570": {
+     "ko": [
+      "믿지 아니",
+      "믿지 않",
+      "불신",
+      "믿음이 없",
+      "믿지 못"
+     ],
+     "agrees": true
+    },
+    "G0543": {
+     "ko": [
+      "믿지 아니",
+      "믿지 않",
+      "불신",
+      "순종하지 아니",
+      "순종하지 않",
+      "불순종"
+     ],
+     "agrees": false,
+     "sense": "ἀπείθεια 불순종·설득되지 않음(KJV는 unbelief)"
+    }
+   }
+  },
+  {
+   "id": "unbelieving",
+   "kjvre": "\\bunbelieving\\b",
+   "ko": [
+    "믿지 아니",
+    "믿지 않",
+    "불신"
+   ],
+   "lex": {
+    "G0571": {
+     "ko": [
+      "믿지 아니",
+      "믿지 않",
+      "불신"
+     ],
+     "agrees": true
+    },
+    "G0544": {
+     "ko": [
+      "믿지 아니",
+      "믿지 않",
+      "순종하지 아니",
+      "순종하지 않",
+      "불순종"
+     ],
+     "agrees": false,
+     "sense": "ἀπειθέω 순종하지 않다"
+    },
+    "G0545": {
+     "ko": [
+      "믿지 아니",
+      "믿지 않",
+      "순종하지 아니",
+      "불순종"
+     ],
+     "agrees": false,
+     "sense": "ἀπειθής 불순종하는"
+    }
+   }
+  },
+  {
+   "id": "believe",
+   "kjvre": "\\bbeliev(e|ed|eth|est|ing)\\b",
+   "ko": [
+    "믿"
+   ],
+   "lex": {
+    "G4100": {
+     "ko": [
+      "믿"
+     ],
+     "agrees": true
+    },
+    "G3982": {
+     "ko": [
+      "믿",
+      "확신",
+      "설득",
+      "따르"
+     ],
+     "agrees": false,
+     "sense": "πείθω 설득되다·확신하다(KJV believe 로 옮긴 곳)"
+    }
+   }
+  },
+  {
+   "id": "repent",
+   "kjvre": "\\brepent(ed|eth|est|ing|s)?\\b",
+   "ko": [
+    "회개",
+    "뉘우",
+    "후회"
+   ],
+   "lex": {
+    "G3340": {
+     "ko": [
+      "회개"
+     ],
+     "agrees": true
+    },
+    "G3338": {
+     "ko": [
+      "뉘우",
+      "후회",
+      "한탄"
+     ],
+     "agrees": false,
+     "sense": "μεταμέλομαι 후회·뉘우침(회개 μετανοέω 와 다른 단어)"
+    },
+    "H5162": {
+     "ko": [
+      "뜻을 돌이",
+      "후회",
+      "한탄",
+      "뉘우",
+      "위로"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "repentance",
+   "kjvre": "\\brepentance\\b",
+   "ko": [
+    "회개",
+    "후회",
+    "뉘우"
+   ],
+   "lex": {
+    "G3341": {
+     "ko": [
+      "회개"
+     ],
+     "agrees": true
+    },
+    "G0278": {
+     "ko": [
+      "후회",
+      "철회",
+      "뉘우",
+      "돌이키"
+     ],
+     "agrees": true,
+     "sense": "ἀμεταμέλητος 후회 없는(롬 11:29)"
+    }
+   }
+  },
+  {
+   "id": "charity",
+   "kjvre": "\\bcharity\\b",
+   "ko": [
+    "사랑"
+   ],
+   "lex": {
+    "G0026": {
+     "ko": [
+      "사랑"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "conversation",
+   "kjvre": "\\bconversations?\\b",
+   "ko": [
+    "행실",
+    "행동",
+    "처신",
+    "생활",
+    "삶",
+    "시민권"
+   ],
+   "lex": {
+    "G0391": {
+     "ko": [
+      "행실",
+      "행동",
+      "처신",
+      "생활",
+      "삶"
+     ],
+     "agrees": true
+    },
+    "G0390": {
+     "ko": [
+      "행실",
+      "행동",
+      "처신",
+      "생활",
+      "살"
+     ],
+     "agrees": true
+    },
+    "G4175": {
+     "ko": [
+      "시민권",
+      "나라"
+     ],
+     "agrees": true,
+     "sense": "πολίτευμα 시민권(빌 3:20)"
+    },
+    "G4176": {
+     "ko": [
+      "생활",
+      "살",
+      "시민"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "prevent",
+   "kjvre": "\\bprevent(ed|eth|est)?\\b",
+   "ko": [
+    "앞서",
+    "먼저",
+    "미리"
+   ],
+   "lex": {
+    "G5348": {
+     "ko": [
+      "앞서",
+      "먼저",
+      "미리",
+      "이르"
+     ],
+     "agrees": true
+    },
+    "H6923": {
+     "ko": [
+      "앞서",
+      "먼저",
+      "맞",
+      "미리",
+      "마주"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "let-hinder",
+   "kjvre": "\\blet(teth|ted)?\\b",
+   "ko": [
+    "막",
+    "금하",
+    "방해"
+   ],
+   "only_if_lex": [
+    "G2722",
+    "G2967"
+   ],
+   "lex": {
+    "G2722": {
+     "ko": [
+      "막",
+      "금하",
+      "방해",
+      "붙들"
+     ],
+     "agrees": true,
+     "sense": "κατέχω 막다(살후 2:7 — 고어 let=hinder)"
+    },
+    "G2967": {
+     "ko": [
+      "막",
+      "금하",
+      "방해"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "meat",
+   "kjvre": "\\bmeats?\\b",
+   "ko": [
+    "양식",
+    "음식",
+    "먹을 것",
+    "먹",
+    "식물",
+    "고기"
+   ],
+   "lex": {
+    "G1033": {
+     "ko": [
+      "양식",
+      "음식",
+      "먹을 것",
+      "먹",
+      "식물"
+     ],
+     "agrees": true
+    },
+    "G1035": {
+     "ko": [
+      "양식",
+      "음식",
+      "먹"
+     ],
+     "agrees": true
+    },
+    "G5160": {
+     "ko": [
+      "양식",
+      "음식",
+      "먹"
+     ],
+     "agrees": true
+    },
+    "H0400": {
+     "ko": [
+      "양식",
+      "음식",
+      "먹",
+      "식물"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "quick",
+   "kjvre": "\\bquick(en|ened|eneth|ening)?\\b",
+   "ko": [
+    "살아",
+    "산 자",
+    "살리",
+    "살았",
+    "살게"
+   ],
+   "lex": {
+    "G2198": {
+     "ko": [
+      "살아",
+      "산 자",
+      "살리",
+      "살았",
+      "살게"
+     ],
+     "agrees": true
+    },
+    "G2227": {
+     "ko": [
+      "살리",
+      "살아",
+      "살게"
+     ],
+     "agrees": true
+    },
+    "G4806": {
+     "ko": [
+      "살리",
+      "살아",
+      "살게"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "hell",
+   "kjvre": "\\bhell\\b",
+   "ko": [
+    "지옥",
+    "음부"
+   ],
+   "lex": {
+    "G1067": {
+     "ko": [
+      "지옥"
+     ],
+     "agrees": true,
+     "sense": "γέεννα 게헨나=지옥"
+    },
+    "G0086": {
+     "ko": [
+      "음부"
+     ],
+     "agrees": true,
+     "sense": "ᾅδης 하데스=음부(지옥 아님)"
+    },
+    "G5020": {
+     "ko": [
+      "지옥"
+     ],
+     "agrees": true,
+     "sense": "ταρταρόω(벧후 2:4)"
+    },
+    "H7585": {
+     "ko": [
+      "음부"
+     ],
+     "agrees": true,
+     "sense": "שְׁאוֹל 스올=음부"
+    }
+   }
+  },
+  {
+   "id": "grave",
+   "kjvre": "\\bgraves?\\b",
+   "ko": [
+    "무덤",
+    "음부"
+   ],
+   "lex": {
+    "H7585": {
+     "ko": [
+      "음부"
+     ],
+     "agrees": true,
+     "sense": "KJV grave 로 옮긴 스올 → 정본역은 음부"
+    },
+    "H6913": {
+     "ko": [
+      "무덤"
+     ],
+     "agrees": true
+    },
+    "H6900": {
+     "ko": [
+      "무덤",
+      "매장"
+     ],
+     "agrees": true
+    },
+    "G3419": {
+     "ko": [
+      "무덤"
+     ],
+     "agrees": true
+    },
+    "G3418": {
+     "ko": [
+      "무덤"
+     ],
+     "agrees": true
+    },
+    "G0086": {
+     "ko": [
+      "음부"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "pit",
+   "kjvre": "\\bpits?\\b",
+   "ko": [
+    "구덩이",
+    "함정",
+    "웅덩이",
+    "음부",
+    "무저갱"
+   ],
+   "lex": {
+    "H7585": {
+     "ko": [
+      "음부"
+     ],
+     "agrees": true,
+     "sense": "KJV pit 로 옮긴 스올 → 음부"
+    },
+    "H0953": {
+     "ko": [
+      "구덩이",
+      "웅덩이",
+      "함정"
+     ],
+     "agrees": true
+    },
+    "H7845": {
+     "ko": [
+      "구덩이",
+      "함정",
+      "멸망"
+     ],
+     "agrees": true
+    },
+    "G0012": {
+     "ko": [
+      "무저갱",
+      "깊음"
+     ],
+     "agrees": true
+    },
+    "G5421": {
+     "ko": [
+      "구덩이",
+      "웅덩이",
+      "함정"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "ghost",
+   "kjvre": "\\bghost\\b",
+   "ko": [
+    "영",
+    "성령",
+    "숨",
+    "혼"
+   ],
+   "lex": {
+    "G4151": {
+     "ko": [
+      "영",
+      "성령"
+     ],
+     "agrees": true
+    },
+    "G1606": {
+     "ko": [
+      "숨",
+      "영혼",
+      "혼",
+      "목숨"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "justify",
+   "kjvre": "\\bjustif(y|ied|ieth|ier|ication)\\b",
+   "ko": [
+    "의롭다 하",
+    "의롭다 함",
+    "칭의",
+    "의롭게",
+    "의롭다 여"
+   ],
+   "lex": {
+    "G1344": {
+     "ko": [
+      "의롭다 하",
+      "의롭다 함",
+      "칭의",
+      "의롭게",
+      "의롭다 여"
+     ],
+     "agrees": true
+    },
+    "G1347": {
+     "ko": [
+      "의롭다 하",
+      "칭의"
+     ],
+     "agrees": true
+    },
+    "H6663": {
+     "ko": [
+      "의롭다 하",
+      "의롭다 함",
+      "의롭게",
+      "의롭다 여",
+      "공의"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "sanctify",
+   "kjvre": "\\bsanctif(y|ied|ieth|ication)\\b",
+   "ko": [
+    "거룩하게",
+    "거룩히",
+    "성화",
+    "거룩하"
+   ],
+   "lex": {
+    "G0037": {
+     "ko": [
+      "거룩하게",
+      "거룩히",
+      "성화",
+      "거룩하"
+     ],
+     "agrees": true
+    },
+    "G0038": {
+     "ko": [
+      "거룩하게",
+      "성화",
+      "거룩"
+     ],
+     "agrees": true
+    },
+    "H6942": {
+     "ko": [
+      "거룩하게",
+      "거룩히",
+      "성별",
+      "거룩하"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "redeem",
+   "kjvre": "\\bredeem(ed|er|eth|ing)?\\b|\\bredemption\\b",
+   "ko": [
+    "구속",
+    "속량",
+    "건지",
+    "무르",
+    "대속"
+   ],
+   "lex": {
+    "G0629": {
+     "ko": [
+      "구속",
+      "속량"
+     ],
+     "agrees": true
+    },
+    "G3084": {
+     "ko": [
+      "구속",
+      "속량",
+      "대속",
+      "건지"
+     ],
+     "agrees": true
+    },
+    "G1805": {
+     "ko": [
+      "구속",
+      "속량",
+      "사",
+      "아끼"
+     ],
+     "agrees": true
+    },
+    "G0059": {
+     "ko": [
+      "사",
+      "값을 주",
+      "구속",
+      "속량"
+     ],
+     "agrees": true
+    },
+    "H1350": {
+     "ko": [
+      "구속",
+      "무르",
+      "건지",
+      "속량",
+      "가까운 친족",
+      "기업 무를"
+     ],
+     "agrees": true
+    },
+    "H6299": {
+     "ko": [
+      "구속",
+      "속량",
+      "건지",
+      "대속"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "atonement",
+   "kjvre": "\\batonements?\\b",
+   "ko": [
+    "속죄",
+    "화목"
+   ],
+   "lex": {
+    "G2643": {
+     "ko": [
+      "화목"
+     ],
+     "agrees": false,
+     "sense": "καταλλαγή 화목(롬 5:11 KJV atonement)"
+    },
+    "H3722": {
+     "ko": [
+      "속죄",
+      "덮"
+     ],
+     "agrees": true
+    },
+    "H3725": {
+     "ko": [
+      "속죄"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "propitiation",
+   "kjvre": "\\bpropitiation\\b",
+   "ko": [
+    "화목제물",
+    "화목"
+   ],
+   "lex": {
+    "G2434": {
+     "ko": [
+      "화목제물",
+      "화목"
+     ],
+     "agrees": true
+    },
+    "G2435": {
+     "ko": [
+      "화목제물",
+      "화목",
+      "속죄소"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "godliness",
+   "kjvre": "\\bgodliness\\b",
+   "ko": [
+    "경건"
+   ],
+   "lex": {
+    "G2150": {
+     "ko": [
+      "경건"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "righteousness",
+   "kjvre": "\\brighteousness\\b",
+   "ko": [
+    "의"
+   ],
+   "lex": {
+    "G1343": {
+     "ko": [
+      "의"
+     ],
+     "agrees": true
+    },
+    "H6666": {
+     "ko": [
+      "의",
+      "공의"
+     ],
+     "agrees": true
+    },
+    "H6664": {
+     "ko": [
+      "의",
+      "공의"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "condemnation",
+   "kjvre": "\\b(condemnation|damnation)\\b",
+   "ko": [
+    "정죄",
+    "심판",
+    "형벌",
+    "저주"
+   ],
+   "lex": {
+    "G2631": {
+     "ko": [
+      "정죄",
+      "심판"
+     ],
+     "agrees": true
+    },
+    "G2633": {
+     "ko": [
+      "정죄",
+      "심판"
+     ],
+     "agrees": true
+    },
+    "G2917": {
+     "ko": [
+      "심판",
+      "정죄",
+      "판단"
+     ],
+     "agrees": true
+    },
+    "G2920": {
+     "ko": [
+      "심판",
+      "정죄",
+      "판단"
+     ],
+     "agrees": true
+    },
+    "G0684": {
+     "ko": [
+      "멸망",
+      "파멸"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "salvation",
+   "kjvre": "\\bsalvation\\b",
+   "ko": [
+    "구원"
+   ],
+   "lex": {
+    "G4991": {
+     "ko": [
+      "구원"
+     ],
+     "agrees": true
+    },
+    "H3444": {
+     "ko": [
+      "구원"
+     ],
+     "agrees": true
+    },
+    "H8668": {
+     "ko": [
+      "구원"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "grace",
+   "kjvre": "\\bgrace\\b",
+   "ko": [
+    "은혜",
+    "은총"
+   ],
+   "lex": {
+    "G5485": {
+     "ko": [
+      "은혜",
+      "은총"
+     ],
+     "agrees": true
+    },
+    "H2580": {
+     "ko": [
+      "은혜",
+      "은총",
+      "호의"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "mercy",
+   "kjvre": "\\bmerc(y|ies|iful)\\b",
+   "ko": [
+    "긍휼",
+    "자비",
+    "인자",
+    "불쌍히"
+   ],
+   "lex": {
+    "G1656": {
+     "ko": [
+      "긍휼",
+      "자비",
+      "인자",
+      "불쌍히"
+     ],
+     "agrees": true
+    },
+    "G1653": {
+     "ko": [
+      "긍휼",
+      "자비",
+      "불쌍히"
+     ],
+     "agrees": true
+    },
+    "G3628": {
+     "ko": [
+      "긍휼",
+      "자비",
+      "불쌍히"
+     ],
+     "agrees": true
+    },
+    "H2617": {
+     "ko": [
+      "인자",
+      "자비",
+      "긍휼",
+      "은혜"
+     ],
+     "agrees": true
+    },
+    "H7355": {
+     "ko": [
+      "긍휼",
+      "자비",
+      "불쌍히"
+     ],
+     "agrees": true
+    },
+    "H7356": {
+     "ko": [
+      "긍휼",
+      "자비"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "faith",
+   "kjvre": "\\bfaith\\b",
+   "ko": [
+    "믿음",
+    "신실"
+   ],
+   "lex": {
+    "G4102": {
+     "ko": [
+      "믿음",
+      "신실"
+     ],
+     "agrees": true
+    },
+    "H0530": {
+     "ko": [
+      "믿음",
+      "신실",
+      "성실"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "hope",
+   "kjvre": "\\bhope(d|th|s)?\\b",
+   "ko": [
+    "소망",
+    "바라",
+    "바란",
+    "바랄",
+    "희망"
+   ],
+   "lex": {
+    "G1680": {
+     "ko": [
+      "소망",
+      "바라",
+      "바란",
+      "바랄",
+      "희망"
+     ],
+     "agrees": true
+    },
+    "G1679": {
+     "ko": [
+      "소망",
+      "바라",
+      "바란",
+      "바랄",
+      "희망"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "obey",
+   "kjvre": "\\bobe(y|ys|yed|yeth|ying|dience|dient)\\b",
+   "ko": [
+    "순종",
+    "청종",
+    "듣"
+   ],
+   "forbid_ko": [
+    "복종"
+   ],
+   "lex": {
+    "G5219": {
+     "ko": [
+      "순종",
+      "청종",
+      "듣"
+     ],
+     "agrees": true
+    },
+    "G5218": {
+     "ko": [
+      "순종"
+     ],
+     "agrees": true
+    },
+    "G5255": {
+     "ko": [
+      "순종"
+     ],
+     "agrees": true
+    },
+    "G3980": {
+     "ko": [
+      "순종",
+      "복종",
+      "따르"
+     ],
+     "agrees": true
+    },
+    "H8085": {
+     "ko": [
+      "순종",
+      "청종",
+      "듣"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "submit",
+   "kjvre": "\\b(submit|submitted|submitting|subject|subjection)\\b",
+   "ko": [
+    "복종",
+    "순복",
+    "굴복",
+    "굴하"
+   ],
+   "forbid_ko": [
+    "순종"
+   ],
+   "lex": {
+    "G5293": {
+     "ko": [
+      "복종",
+      "순복",
+      "굴복",
+      "굴하",
+      "따르"
+     ],
+     "agrees": true
+    },
+    "G5292": {
+     "ko": [
+      "복종",
+      "순복"
+     ],
+     "agrees": true
+    },
+    "G5226": {
+     "ko": [
+      "복종",
+      "순복",
+      "굴복"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "kingdom-of-god",
+   "kjvre": "\\bkingdom of god\\b",
+   "ko": [
+    "하나님의 왕국"
+   ],
+   "forbid_ko": [
+    "하나님의 나라",
+    "하나님 나라"
+   ],
+   "lex": {
+    "G0932": {
+     "ko": [
+      "하나님의 왕국"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "kingdom-of-heaven",
+   "kjvre": "\\bkingdom of heaven\\b",
+   "ko": [
+    "하늘의 왕국"
+   ],
+   "forbid_ko": [
+    "천국",
+    "하늘나라",
+    "하늘 나라"
+   ],
+   "lex": {
+    "G0932": {
+     "ko": [
+      "하늘의 왕국"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "baptize",
+   "kjvre": "\\bbaptiz(e|ed|eth|ing|est)\\b|\\bbaptism\\b|\\bbaptist\\b",
+   "ko": [
+    "침례"
+   ],
+   "forbid_ko": [
+    "세례"
+   ],
+   "lex": {
+    "G0907": {
+     "ko": [
+      "침례"
+     ],
+     "agrees": true
+    },
+    "G0908": {
+     "ko": [
+      "침례"
+     ],
+     "agrees": true
+    },
+    "G0910": {
+     "ko": [
+      "침례"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "bishop",
+   "kjvre": "\\bbishops?\\b",
+   "ko": [
+    "감독"
+   ],
+   "lex": {
+    "G1985": {
+     "ko": [
+      "감독"
+     ],
+     "agrees": true
+    },
+    "G1984": {
+     "ko": [
+      "감독"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "elder",
+   "kjvre": "\\belders?\\b",
+   "ko": [
+    "장로",
+    "어른",
+    "노인",
+    "연장"
+   ],
+   "lex": {
+    "G4245": {
+     "ko": [
+      "장로",
+      "어른",
+      "노인",
+      "연장"
+     ],
+     "agrees": true
+    },
+    "H2205": {
+     "ko": [
+      "장로",
+      "노인",
+      "늙은",
+      "어른"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "deacon",
+   "kjvre": "\\bdeacons?\\b",
+   "ko": [
+    "집사"
+   ],
+   "lex": {
+    "G1249": {
+     "ko": [
+      "집사",
+      "일꾼",
+      "섬기"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "church",
+   "kjvre": "\\bchurch(es)?\\b",
+   "ko": [
+    "교회"
+   ],
+   "lex": {
+    "G1577": {
+     "ko": [
+      "교회",
+      "회중",
+      "모임"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "gospel",
+   "kjvre": "\\bgospel\\b",
+   "ko": [
+    "복음"
+   ],
+   "lex": {
+    "G2098": {
+     "ko": [
+      "복음"
+     ],
+     "agrees": true
+    },
+    "G2097": {
+     "ko": [
+      "복음"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "iniquity",
+   "kjvre": "\\biniquit(y|ies)\\b",
+   "ko": [
+    "죄악",
+    "불법",
+    "불의",
+    "악"
+   ],
+   "lex": {
+    "G0458": {
+     "ko": [
+      "불법",
+      "죄악"
+     ],
+     "agrees": true
+    },
+    "G0093": {
+     "ko": [
+      "불의",
+      "죄악"
+     ],
+     "agrees": true
+    },
+    "H5771": {
+     "ko": [
+      "죄악",
+      "악",
+      "허물"
+     ],
+     "agrees": true
+    },
+    "H0205": {
+     "ko": [
+      "죄악",
+      "악",
+      "허망",
+      "헛"
+     ],
+     "agrees": true
+    },
+    "H5766": {
+     "ko": [
+      "불의",
+      "악",
+      "죄악"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "transgression",
+   "kjvre": "\\btransgress(ion|ions|or|ors|ed|eth)?\\b|\\btrespass(es)?\\b",
+   "ko": [
+    "범죄",
+    "범법",
+    "허물",
+    "죄",
+    "어기",
+    "넘"
+   ],
+   "lex": {
+    "G3847": {
+     "ko": [
+      "범죄",
+      "범법",
+      "허물",
+      "어기"
+     ],
+     "agrees": true
+    },
+    "G3900": {
+     "ko": [
+      "허물",
+      "범죄",
+      "죄"
+     ],
+     "agrees": true
+    },
+    "G3845": {
+     "ko": [
+      "범",
+      "어기",
+      "넘"
+     ],
+     "agrees": true
+    },
+    "H6588": {
+     "ko": [
+      "허물",
+      "범죄",
+      "죄",
+      "반역"
+     ],
+     "agrees": true
+    },
+    "H0817": {
+     "ko": [
+      "죄",
+      "속건",
+      "허물"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "wrath",
+   "kjvre": "\\bwrath\\b",
+   "ko": [
+    "진노",
+    "분노",
+    "노",
+    "격노"
+   ],
+   "lex": {
+    "G3709": {
+     "ko": [
+      "진노",
+      "분노",
+      "노"
+     ],
+     "agrees": true
+    },
+    "G2372": {
+     "ko": [
+      "진노",
+      "분노",
+      "격노",
+      "노"
+     ],
+     "agrees": true
+    },
+    "H0639": {
+     "ko": [
+      "진노",
+      "노",
+      "분노"
+     ],
+     "agrees": true
+    },
+    "H2534": {
+     "ko": [
+      "진노",
+      "분노",
+      "격노"
+     ],
+     "agrees": true
+    },
+    "H5678": {
+     "ko": [
+      "진노",
+      "분노",
+      "격노"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "soul",
+   "kjvre": "\\bsouls?\\b",
+   "ko": [
+    "영혼",
+    "혼",
+    "생명",
+    "목숨",
+    "사람"
+   ],
+   "lex": {
+    "G5590": {
+     "ko": [
+      "영혼",
+      "혼",
+      "생명",
+      "목숨",
+      "사람",
+      "마음"
+     ],
+     "agrees": true
+    },
+    "H5315": {
+     "ko": [
+      "영혼",
+      "혼",
+      "생명",
+      "목숨",
+      "사람",
+      "마음",
+      "생물"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "flesh",
+   "kjvre": "\\bflesh\\b",
+   "ko": [
+    "육",
+    "육신",
+    "육체",
+    "살",
+    "고기",
+    "몸"
+   ],
+   "lex": {
+    "G4561": {
+     "ko": [
+      "육",
+      "육신",
+      "육체",
+      "살",
+      "몸"
+     ],
+     "agrees": true
+    },
+    "H1320": {
+     "ko": [
+      "육",
+      "육체",
+      "살",
+      "고기",
+      "몸",
+      "혈육"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "everlasting",
+   "kjvre": "\\b(everlasting|eternal)\\b",
+   "ko": [
+    "영원",
+    "영생",
+    "영영"
+   ],
+   "lex": {
+    "G0166": {
+     "ko": [
+      "영원",
+      "영생",
+      "영영"
+     ],
+     "agrees": true
+    },
+    "G0126": {
+     "ko": [
+      "영원",
+      "영영"
+     ],
+     "agrees": true
+    },
+    "H5769": {
+     "ko": [
+      "영원",
+      "영영",
+      "옛"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "world-aion",
+   "kjvre": "\\bworlds?\\b",
+   "ko": [
+    "세상",
+    "세대",
+    "시대",
+    "영원",
+    "땅"
+   ],
+   "lex": {
+    "G2889": {
+     "ko": [
+      "세상"
+     ],
+     "agrees": true
+    },
+    "G0165": {
+     "ko": [
+      "세상",
+      "세대",
+      "시대",
+      "영원"
+     ],
+     "agrees": false,
+     "sense": "αἰών 세대·시대(KJV world)"
+    },
+    "G3625": {
+     "ko": [
+      "세상",
+      "땅",
+      "천하"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "tribulation",
+   "kjvre": "\\btribulations?\\b",
+   "ko": [
+    "환난",
+    "고난"
+   ],
+   "lex": {
+    "G2347": {
+     "ko": [
+      "환난",
+      "고난",
+      "압박"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "perfect",
+   "kjvre": "\\bperfect(ed|ly|ing|ion|ness)?\\b",
+   "ko": [
+    "온전",
+    "완전",
+    "성숙",
+    "이루"
+   ],
+   "lex": {
+    "G5046": {
+     "ko": [
+      "온전",
+      "완전",
+      "성숙"
+     ],
+     "agrees": true
+    },
+    "G5048": {
+     "ko": [
+      "온전",
+      "완전",
+      "이루",
+      "마치"
+     ],
+     "agrees": true
+    },
+    "H8549": {
+     "ko": [
+      "온전",
+      "완전",
+      "흠 없"
+     ],
+     "agrees": true
+    },
+    "H8003": {
+     "ko": [
+      "온전",
+      "완전",
+      "화평"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "saint",
+   "kjvre": "\\bsaints?\\b",
+   "ko": [
+    "성도",
+    "거룩한 자",
+    "거룩한 이",
+    "거룩한 백성"
+   ],
+   "lex": {
+    "G0040": {
+     "ko": [
+      "성도",
+      "거룩"
+     ],
+     "agrees": true
+    },
+    "H6918": {
+     "ko": [
+      "성도",
+      "거룩"
+     ],
+     "agrees": true
+    },
+    "H2623": {
+     "ko": [
+      "성도",
+      "경건",
+      "거룩"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "elect",
+   "kjvre": "\\belect(ed|ion)?\\b",
+   "ko": [
+    "택하",
+    "택함",
+    "선택",
+    "택한"
+   ],
+   "lex": {
+    "G1588": {
+     "ko": [
+      "택하",
+      "택함",
+      "선택",
+      "택한"
+     ],
+     "agrees": true
+    },
+    "G1589": {
+     "ko": [
+      "택하",
+      "택함",
+      "선택"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "predestinate",
+   "kjvre": "\\bpredestinat(e|ed)\\b",
+   "ko": [
+    "예정",
+    "미리 정하",
+    "미리 작정"
+   ],
+   "lex": {
+    "G4309": {
+     "ko": [
+      "예정",
+      "미리 정하",
+      "미리 작정"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "mystery",
+   "kjvre": "\\bmyster(y|ies)\\b",
+   "ko": [
+    "비밀",
+    "신비",
+    "오묘"
+   ],
+   "lex": {
+    "G3466": {
+     "ko": [
+      "비밀",
+      "신비",
+      "오묘"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "testament",
+   "kjvre": "\\btestaments?\\b",
+   "ko": [
+    "언약",
+    "유언",
+    "계약"
+   ],
+   "lex": {
+    "G1242": {
+     "ko": [
+      "언약",
+      "유언",
+      "계약"
+     ],
+     "agrees": true,
+     "sense": "διαθήκη 언약 — 히 9:16-17 문맥은 유언"
+    }
+   }
+  },
+  {
+   "id": "covenant",
+   "kjvre": "\\bcovenants?\\b",
+   "ko": [
+    "언약",
+    "계약",
+    "약속"
+   ],
+   "lex": {
+    "G1242": {
+     "ko": [
+      "언약",
+      "계약"
+     ],
+     "agrees": true
+    },
+    "H1285": {
+     "ko": [
+      "언약",
+      "계약"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "law",
+   "kjvre": "\\blaws?\\b",
+   "ko": [
+    "율법",
+    "법"
+   ],
+   "lex": {
+    "G3551": {
+     "ko": [
+      "율법",
+      "법"
+     ],
+     "agrees": true
+    },
+    "H8451": {
+     "ko": [
+      "율법",
+      "법"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "prophesy",
+   "kjvre": "\\bprophes(y|ied|ieth|ying|ies|yings)\\b",
+   "ko": [
+    "예언",
+    "대언"
+   ],
+   "lex": {
+    "G4395": {
+     "ko": [
+      "예언",
+      "대언"
+     ],
+     "agrees": true
+    },
+    "H5012": {
+     "ko": [
+      "예언",
+      "대언"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "devil",
+   "kjvre": "\\bdevil\\b",
+   "ko": [
+    "마귀",
+    "귀신"
+   ],
+   "lex": {
+    "G1228": {
+     "ko": [
+      "마귀"
+     ],
+     "agrees": true
+    },
+    "G1140": {
+     "ko": [
+      "귀신",
+      "마귀"
+     ],
+     "agrees": false,
+     "sense": "δαιμόνιον 귀신(KJV devil 단수로 쓴 곳)"
+    },
+    "G1142": {
+     "ko": [
+      "귀신",
+      "마귀"
+     ],
+     "agrees": false
+    }
+   }
+  },
+  {
+   "id": "devils",
+   "kjvre": "\\bdevils\\b",
+   "ko": [
+    "귀신",
+    "마귀"
+   ],
+   "lex": {
+    "G1140": {
+     "ko": [
+      "귀신",
+      "마귀"
+     ],
+     "agrees": false,
+     "sense": "δαιμόνιον 귀신들(KJV devils)"
+    },
+    "G1142": {
+     "ko": [
+      "귀신",
+      "마귀"
+     ],
+     "agrees": false
+    },
+    "H7700": {
+     "ko": [
+      "귀신",
+      "마귀"
+     ],
+     "agrees": false
+    },
+    "H8163": {
+     "ko": [
+      "귀신",
+      "숫염소",
+      "염소"
+     ],
+     "agrees": false
+    }
+   }
+  },
+  {
+   "id": "only-begotten",
+   "kjvre": "\\bonly begotten\\b",
+   "ko": [
+    "독생"
+   ],
+   "lex": {
+    "G3439": {
+     "ko": [
+      "독생"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "easter",
+   "kjvre": "\\beaster\\b",
+   "ko": [
+    "유월절"
+   ],
+   "lex": {
+    "G3957": {
+     "ko": [
+      "유월절"
+     ],
+     "agrees": false,
+     "sense": "πάσχα 유월절(KJV Easter) — 지침 §1 예시"
+    }
+   }
+  },
+  {
+   "id": "passover",
+   "kjvre": "\\bpassover\\b",
+   "ko": [
+    "유월절"
+   ],
+   "lex": {
+    "G3957": {
+     "ko": [
+      "유월절"
+     ],
+     "agrees": true
+    },
+    "H6453": {
+     "ko": [
+      "유월절"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "comforter",
+   "kjvre": "\\bcomforter\\b",
+   "ko": [
+    "보혜사",
+    "위로자",
+    "대언자",
+    "돕는 이"
+   ],
+   "lex": {
+    "G3875": {
+     "ko": [
+      "보혜사",
+      "위로자",
+      "대언자",
+      "돕는 이"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "advocate",
+   "kjvre": "\\badvocate\\b",
+   "ko": [
+    "대언자",
+    "변호",
+    "보혜사"
+   ],
+   "lex": {
+    "G3875": {
+     "ko": [
+      "대언자",
+      "변호",
+      "보혜사"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "lovingkindness",
+   "kjvre": "\\bloving.?kindness(es)?\\b",
+   "ko": [
+    "인자",
+    "인애",
+    "자비"
+   ],
+   "lex": {
+    "H2617": {
+     "ko": [
+      "인자",
+      "인애",
+      "자비",
+      "은혜"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "verily",
+   "kjvre": "\\bverily\\b",
+   "ko": [
+    "진실로",
+    "참으로",
+    "실로"
+   ],
+   "lex": {
+    "G0281": {
+     "ko": [
+      "진실로",
+      "참으로",
+      "실로"
+     ],
+     "agrees": true
+    },
+    "G0230": {
+     "ko": [
+      "참으로",
+      "진실로",
+      "실로"
+     ],
+     "agrees": true
+    },
+    "G3303": {
+     "ko": [
+      "진실로",
+      "참으로",
+      "실로",
+      "과연"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "gentiles",
+   "kjvre": "\\b(gentiles?|heathen|nations)\\b",
+   "ko": [
+    "이방",
+    "민족",
+    "나라",
+    "열국",
+    "백성"
+   ],
+   "lex": {
+    "G1484": {
+     "ko": [
+      "이방",
+      "민족",
+      "나라",
+      "열국",
+      "백성"
+     ],
+     "agrees": true
+    },
+    "G1672": {
+     "ko": [
+      "헬라",
+      "그리스",
+      "이방"
+     ],
+     "agrees": true
+    },
+    "H1471": {
+     "ko": [
+      "이방",
+      "민족",
+      "나라",
+      "열국",
+      "백성"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "holy-ghost",
+   "kjvre": "\\bholy ghost\\b",
+   "ko": [
+    "성령"
+   ],
+   "lex": {
+    "G4151": {
+     "ko": [
+      "성령"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "suffer-allow",
+   "kjvre": "\\bsuffer(ed|eth|est|ing)?\\b",
+   "ko": [
+    "허락",
+    "용납",
+    "내버려",
+    "두",
+    "고난",
+    "고통",
+    "받",
+    "당하",
+    "참"
+   ],
+   "lex": {
+    "G0863": {
+     "ko": [
+      "허락",
+      "용납",
+      "내버려",
+      "두",
+      "놓아"
+     ],
+     "agrees": true,
+     "sense": "ἀφίημι 허락하다(고어 suffer=allow)"
+    },
+    "G1439": {
+     "ko": [
+      "허락",
+      "용납",
+      "내버려",
+      "두"
+     ],
+     "agrees": true
+    },
+    "G2010": {
+     "ko": [
+      "허락",
+      "용납",
+      "허용"
+     ],
+     "agrees": true
+    },
+    "G3958": {
+     "ko": [
+      "고난",
+      "고통",
+      "받",
+      "당하",
+      "겪"
+     ],
+     "agrees": true
+    },
+    "G4310": {
+     "ko": [
+      "고난",
+      "받",
+      "당하"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "strait",
+   "kjvre": "\\bstrait(ly|ened|ness|s)?\\b",
+   "ko": [
+    "좁",
+    "엄히",
+    "곤란",
+    "답답",
+    "비좁",
+    "엄중"
+   ],
+   "lex": {
+    "G4728": {
+     "ko": [
+      "좁",
+      "비좁"
+     ],
+     "agrees": true
+    },
+    "G4183": {
+     "ko": [
+      "엄히",
+      "엄중",
+      "단단히",
+      "많"
+     ],
+     "agrees": true
+    },
+    "G4912": {
+     "ko": [
+      "답답",
+      "압박",
+      "눌",
+      "사로"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "mansions",
+   "kjvre": "\\bmansions\\b",
+   "ko": [
+    "거할 곳",
+    "거처",
+    "처소",
+    "집"
+   ],
+   "lex": {
+    "G3438": {
+     "ko": [
+      "거할 곳",
+      "거처",
+      "처소",
+      "집"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "carriage",
+   "kjvre": "\\bcarriages?\\b",
+   "ko": [
+    "짐",
+    "행장",
+    "행낭"
+   ],
+   "lex": {
+    "G0643": {
+     "ko": [
+      "짐",
+      "행장",
+      "행낭",
+      "채비"
+     ],
+     "agrees": true,
+     "sense": "ἀποσκευάζω 짐을 꾸리다(행 21:15 고어 carriages=baggage)"
+    },
+    "H3627": {
+     "ko": [
+      "짐",
+      "기구",
+      "물건",
+      "행장"
+     ],
+     "agrees": true
+    }
+   }
+  },
+  {
+   "id": "study",
+   "kjvre": "\\bstud(y|ied)\\b",
+   "ko": [
+    "힘쓰",
+    "애쓰",
+    "노력",
+    "부지런",
+    "생각"
+   ],
+   "lex": {
+    "G4704": {
+     "ko": [
+      "힘쓰",
+      "애쓰",
+      "노력",
+      "부지런"
+     ],
+     "agrees": true,
+     "sense": "σπουδάζω 힘쓰다(딤후 2:15 고어 study=be diligent)"
+    },
+    "G5389": {
+     "ko": [
+      "힘쓰",
+      "애쓰",
+      "노력",
+      "목표"
+     ],
+     "agrees": true
+    }
+   }
+  }
+ ]
 }

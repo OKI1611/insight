@@ -23,7 +23,7 @@
 """
 import json, os, re, sys, io, argparse, glob, shutil
 
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+# (stdout 래핑은 review_scan import 시 1회 — 이중 래핑 금지)
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'tools'))
 BIBLE = os.path.join(ROOT, 'bible')
@@ -74,7 +74,9 @@ def build(bf):
     for p in sorted(glob.glob(os.path.join(REV, 'proposals', f'{bf}-*.json'))):
         try: d = json.load(open(p, encoding='utf-8'))
         except Exception as e: print('!! 제안 파일 파싱 실패', p, e); continue
-        ch = int(re.search(r'-(\d+)(?:-p\d+)?\.json$', p).group(1))
+        mm = re.search(r'-(\d+)(?:-p\d+)?\.json$', p)
+        if not mm: continue                      # Romans-pass2.json 같은 보조 파일은 건너뜀
+        ch = int(mm.group(1))
         for it in d.get('verses', d if isinstance(d, list) else []):
             props[f'{bf}-{ch}-{it["v"]}'] = it
     decide, cards = [], []
@@ -131,7 +133,9 @@ def collect(bf):
     md = open(path, encoding='utf-8').read()
     props = {}
     for p in sorted(glob.glob(os.path.join(REV, 'proposals', f'{bf}-*.json'))):
-        d = json.load(open(p, encoding='utf-8')); ch = int(re.search(r'-(\d+)(?:-p\d+)?\.json$', p).group(1))
+        mm = re.search(r'-(\d+)(?:-p\d+)?\.json$', p)
+        if not mm: continue
+        d = json.load(open(p, encoding='utf-8')); ch = int(mm.group(1))
         for it in d.get('verses', []): props[f'{bf}-{ch}-{it["v"]}'] = it
     out = []
     for m in re.finditer(r'### .*?<!--id:([A-Za-z0-9-]+)-->\n\n- \[x\]', md):
