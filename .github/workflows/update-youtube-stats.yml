@@ -26,7 +26,9 @@ jobs:
             git config user.name  "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
             git add content/site.json
-            git commit -m "chore: 유튜브 채널 실적 자동 갱신 [skip ci]"
+            # ⚠️ 커밋 메시지에 [skip ci] 를 넣지 말 것 —
+            # Cloudflare 가 배포까지 건너뛰어 GitHub 파일만 바뀌고 사이트 수치는 옛것으로 남는다.
+            git commit -m "chore: 유튜브 채널 실적 자동 갱신"
             git push
             echo "stats updated & pushed"
           else
