@@ -61,6 +61,28 @@
     .article a{color:#00704a;text-decoration:underline}
     .article img{max-width:100%;height:auto;border-radius:.75rem;margin:1em 0}
     .article strong{font-weight:700;color:#171717}
+    /* 첨부파일 카드 — 본문(.article)과 편집기(.ql-editor) 양쪽에서 같은 모양으로 보인다 */
+    .colFile{display:flex;align-items:center;gap:.75rem;margin:1.1em 0;padding:.85rem 1rem;
+      border:1px solid rgba(21,32,58,.12);border-radius:.85rem;background:#f7f9fc;text-decoration:none}
+    .colFile:hover{border-color:#00704a;background:#00704a0a}
+    .colFile .cfIcon{flex:none;width:40px;height:40px;border-radius:.6rem;display:flex;align-items:center;
+      justify-content:center;font-size:11px;font-weight:800;letter-spacing:.02em;color:#fff;background:#213a6b}
+    .colFile[data-kind="pdf"] .cfIcon{background:#c0392b}
+    .colFile[data-kind="doc"] .cfIcon{background:#1f5fa8}
+    .colFile[data-kind="xls"] .cfIcon{background:#1e7145}
+    .colFile[data-kind="ppt"] .cfIcon{background:#c55a11}
+    .colFile[data-kind="hwp"] .cfIcon{background:#0b57a4}
+    .colFile[data-kind="zip"] .cfIcon{background:#6b5b95}
+    .colFile .cfBody{min-width:0;flex:1}
+    .colFile .cfName{display:block;font-weight:700;font-size:15px;color:#171717;text-decoration:none;
+      overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .colFile .cfMeta{display:block;font-size:12px;color:rgba(23,23,23,.5);margin-top:2px}
+    .colFile .cfGo{flex:none;font-size:13px;font-weight:700;color:#00704a;white-space:nowrap}
+    .article .colFile{text-decoration:none}
+    .article .colFile .cfName{text-decoration:none}
+    /* 편집기 안에서는 클릭 대신 선택·삭제가 되도록 링크 동작을 막는다 */
+    .ql-editor .colFile{cursor:default}
+    .ql-editor .colFile .cfGo{color:rgba(23,23,23,.35)}
     .ql-container{font-family:'Pretendard',sans-serif;font-size:16px}
     .ql-editor{min-height:420px;font-size:16px;line-height:1.85}
     .ql-toolbar.ql-snow{border-color:rgba(21,32,58,.12);border-radius:.75rem .75rem 0 0;background:#fff}
@@ -126,7 +148,8 @@
       <div class="rounded-xl">
         <div id="editor"></div>
       </div>
-      <p class="text-xs text-neutral-900/40 mt-2">워드·한글 글을 복사해 붙여넣어도 깔끔하게 정리됩니다.</p>
+      <p class="text-xs text-neutral-900/40 mt-2">워드·한글 글을 복사해 붙여넣어도 깔끔하게 정리됩니다.
+        자료를 함께 올리려면 툴바의 <b>📎</b> 를 눌러 파일을 첨부하세요 — 본문에 내려받기 카드로 들어갑니다. (PDF·한글·워드 등, 20MB 이하)</p>
       <div class="mt-5 flex gap-2 justify-end">
         <button onclick="showList()" class="border border-ink/15 rounded-full px-5 py-2.5 text-sm hover:bg-ink/5">취소</button>
         <button id="saveBtn" onclick="saveColumn()" class="bg-gold text-white font-semibold rounded-full px-6 py-2.5 text-sm hover:opacity-90">발행하기</button>
@@ -330,6 +353,56 @@
 
     function registerQuillStyles(){ if(window.__qReg || !window.Quill) return; window.__qReg = true;
       /* 글자 크기·폰트 whitelist와 픽커 라벨/미리보기는 editor-enhance.js가 공통 등록 */
+
+      /* 첨부파일 카드를 Quill 이 정식 요소로 다루게 하는 커스텀 블롯.
+         이렇게 해야 저장·재편집을 반복해도 카드가 무너지지 않고, 본문(body_html)에
+         그대로 남아 별도 DB 칼럼 없이 동작한다. */
+      const BlockEmbed = Quill.import('blots/block/embed');
+      class AttachBlot extends BlockEmbed {
+        static create(v){
+          const n = super.create();
+          n.setAttribute('href', v.url);
+          n.setAttribute('target', '_blank');
+          n.setAttribute('rel', 'noopener noreferrer nofollow');
+          n.setAttribute('data-kind', v.kind || 'file');
+          n.setAttribute('data-name', v.name || '첨부파일');
+          n.setAttribute('data-size', v.size || '');
+          n.innerHTML =
+            '<span class="cfIcon">' + esc((v.kind || 'file').toUpperCase()) + '</span>'
+          + '<span class="cfBody"><span class="cfName">' + esc(v.name || '첨부파일') + '</span>'
+          + '<span class="cfMeta">' + esc(v.size || '') + '</span></span>'
+          + '<span class="cfGo">내려받기 ↓</span>';
+          return n;
+        }
+        static value(n){
+          return { url:n.getAttribute('href'), kind:n.getAttribute('data-kind'),
+                   name:n.getAttribute('data-name'), size:n.getAttribute('data-size') };
+        }
+      }
+      AttachBlot.blotName = 'biblyAttach';
+      AttachBlot.tagName  = 'a';
+      AttachBlot.className = 'colFile';
+      Quill.register(AttachBlot);
+    }
+    function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+    // 확장자 → 카드 색상·라벨용 분류
+    function fileKind(ext){
+      ext = (ext||'').toLowerCase();
+      if(ext==='pdf') return 'pdf';
+      if(['doc','docx','rtf','odt'].includes(ext)) return 'doc';
+      if(['xls','xlsx','csv','ods'].includes(ext)) return 'xls';
+      if(['ppt','pptx','odp'].includes(ext)) return 'ppt';
+      if(['hwp','hwpx'].includes(ext)) return 'hwp';
+      if(['zip','7z','rar'].includes(ext)) return 'zip';
+      if(['mp3','m4a','wav'].includes(ext)) return 'mp3';
+      if(['txt','md'].includes(ext)) return 'txt';
+      return ext ? ext.slice(0,4) : 'file';
+    }
+    function fileSize(bytes){
+      if(!bytes && bytes!==0) return '';
+      if(bytes < 1024) return bytes + ' B';
+      if(bytes < 1024*1024) return (bytes/1024).toFixed(0) + ' KB';
+      return (bytes/1024/1024).toFixed(1) + ' MB';
     }
     function ensureQuill(){
       if(quill) return quill;
@@ -345,10 +418,15 @@
           [{ align:[] }],
           [{ list:'ordered' }, { list:'bullet' }],
           ['blockquote'],
-          ['link','image'],
+          ['link','image','biblyAttach'],
           ['clean']
         ] }
       });
+      // 툴바의 첨부 버튼에 클립 아이콘과 안내문구를 입힌다
+      try{
+        const btn = document.querySelector('.ql-toolbar .ql-biblyAttach');
+        if(btn){ btn.innerHTML='<span style="font-size:15px;line-height:1">📎</span>'; btn.title='파일 첨부 (PDF·한글·워드 등)'; }
+      }catch(e){}
       // 이미지는 저장공간(community 버킷)에 업로드 후 본문에 삽입 (base64 방지·블로그식)
       quill.getModule('toolbar').addHandler('image', () => {
         const input = document.createElement('input');
@@ -366,6 +444,38 @@
           quill.setSelection(range.index + 1);
         };
         input.click();
+      });
+      // 파일 첨부 — 이미지와 같은 community 버킷에 올리고 본문에 첨부 카드로 삽입
+      quill.getModule('toolbar').addHandler('biblyAttach', () => {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.pdf,.hwp,.hwpx,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.csv,.txt,.md,.zip,.mp3,.m4a';
+        input.onchange = async () => {
+          const file = input.files[0]; if(!file) return;
+          if(file.size > 20*1024*1024){ alert('첨부파일은 20MB 이하만 가능해요.'); return; }
+          const btn = document.querySelector('.ql-toolbar .ql-biblyAttach');
+          if(btn){ btn.style.opacity='.4'; btn.style.pointerEvents='none'; }
+          const ext  = (file.name.split('.').pop() || '').toLowerCase();
+          // 한글 파일명은 저장소 경로에서 문제가 될 수 있어 경로는 안전한 이름으로,
+          // 화면에 보이는 이름은 원본 그대로 카드에 담는다.
+          const safe = file.name.replace(/\.[^.]+$/,'').replace(/[^\w\-]+/g,'_').slice(0,40) || 'file';
+          const path = `columns/files/${Date.now()}-${safe}.${ext || 'bin'}`;
+          const { error } = await sb.storage.from('community').upload(path, file);
+          if(btn){ btn.style.opacity=''; btn.style.pointerEvents=''; }
+          if(error){ alert('파일 업로드 오류: ' + error.message); return; }
+          const url = sb.storage.from('community').getPublicUrl(path).data.publicUrl;
+          const range = quill.getSelection(true) || { index: quill.getLength() };
+          quill.insertEmbed(range.index, 'biblyAttach', {
+            url, kind:fileKind(ext), name:file.name, size:fileSize(file.size)
+          }, 'user');
+          quill.setSelection(range.index + 1, 0);
+        };
+        input.click();
+      });
+      // 편집 중에는 카드를 눌러도 파일이 열리지 않게 한다(선택·삭제 편의)
+      quill.root.addEventListener('click', (e) => {
+        const card = e.target.closest && e.target.closest('a.colFile');
+        if(card){ e.preventDefault(); }
       });
       return quill;
     }
