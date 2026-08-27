@@ -19,18 +19,20 @@
     title = String(title || document.title || 'BIBLY 바이블 인사이트').trim();
     url = url || location.href;
     var eu=encodeURIComponent(url), et=encodeURIComponent(title), etxt=encodeURIComponent(title+' '+url);
+    // ⚠아이콘은 이모지 대신 글자·기호로 둔다 — 이모지는 인코딩 사고로 한 번 전량 유실된 적이 있다(2026-08-27 복구).
+    //   앞 칸이 비면 버튼이 아이콘 없이 렌더되므로 반드시 값을 채울 것.
     var rows = [
-      ['','네이버 블로그', function(){ open('https://blog.naver.com/openapi/share?url='+eu+'&title='+et); }],
-      ['','네이버 밴드',   function(){ open('https://www.band.us/plugin/share?body='+etxt+'&route='+eu); }],
-      ['','네이버 카페',   function(){ copy(url); }],
-      ['','카카오톡',      function(){ copy(url); }],
-      ['','텔레그램',      function(){ open('https://t.me/share/url?url='+eu+'&text='+et); }],
-      ['','쓰레드(Threads)', function(){ open('https://www.threads.net/intent/post?text='+etxt); }],
-      ['','인스타그램',    function(){ copy(url); }],
+      ['N','네이버 블로그', function(){ open('https://blog.naver.com/openapi/share?url='+eu+'&title='+et); }],
+      ['B','네이버 밴드',   function(){ open('https://www.band.us/plugin/share?body='+etxt+'&route='+eu); }],
+      ['C','네이버 카페',   function(){ copy(url); }],
+      ['K','카카오톡',      function(){ copy(url); }],
+      ['T','텔레그램',      function(){ open('https://t.me/share/url?url='+eu+'&text='+et); }],
+      ['@','쓰레드(Threads)', function(){ open('https://www.threads.net/intent/post?text='+etxt); }],
+      ['I','인스타그램',    function(){ copy(url); }],
       ['𝕏','X(트위터)',     function(){ open('https://twitter.com/intent/tweet?text='+et+'&url='+eu); }],
-      ['','페이스북',      function(){ open('https://www.facebook.com/sharer/sharer.php?u='+eu); }],
+      ['f','페이스북',      function(){ open('https://www.facebook.com/sharer/sharer.php?u='+eu); }],
       ['SEP'],
-      ['','링크 복사',     function(){ copy(url); }],
+      ['🔗','링크 복사',    function(){ copy(url); }],
       ['⋯','기타(앱으로 공유)', function(){ if(navigator.share){ navigator.share({ title:title, url:url }).catch(function(){}); } else copy(url); }]
     ];
     var ov=document.createElement('div');
@@ -42,7 +44,9 @@
     h+='<p style="text-align:center;color:#9aa0ab;font-size:12px;margin:2px 0 10px;padding:0 18px;line-height:1.5;word-break:break-all">'+title.replace(/</g,'&lt;').slice(0,64)+'</p>';
     rows.forEach(function(r,i){
       if(r[0]==='SEP'){ h+='<div style="height:1px;background:rgba(21,32,58,.08);margin:6px 12px"></div>'; return; }
-      h+='<button data-i="'+i+'" style="width:100%;text-align:left;display:flex;align-items:center;gap:13px;padding:12px 18px;border:0;background:none;font-size:15px;color:#171717;cursor:pointer;border-radius:10px"><span style="width:22px;text-align:center">'+r[0]+'</span>'+r[1]+'</button>';
+      h+='<button data-i="'+i+'" style="width:100%;text-align:left;display:flex;align-items:center;gap:13px;padding:10px 18px;border:0;background:none;font-size:15px;color:#171717;cursor:pointer;border-radius:10px">'
+       + '<span style="width:26px;height:26px;flex:none;display:inline-flex;align-items:center;justify-content:center;border-radius:9999px;background:#eef2f7;color:#3a4358;font-size:13px;font-weight:800;line-height:1">'+r[0]+'</span>'
+       + r[1]+'</button>';
     });
     sheet.innerHTML=h;
     sheet.querySelectorAll('button[data-i]').forEach(function(b){
