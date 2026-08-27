@@ -981,96 +981,157 @@
             <!-- 저서 · 구매 바로가기 -->
             <div class="mt-4 pt-4 border-t border-ink/10">
               <p class="text-[11px] font-bold text-gold" style="letter-spacing:.18em">저서</p>
-              <ul class="mt-2.5 space-y-2.5">
+              <p class="text-[11px] text-neutral-900/40 mt-1">제목을 누르면 구매처가 열립니다.</p>
+              <ul class="mt-2 border-y border-ink/8 divide-y divide-ink/8">
                 <li>
-                  <p class="text-[13px] font-semibold leading-snug">『마귀는 거짓말을 하지 않는다』 <span class="text-[10.5px] font-bold text-white bg-gold rounded px-1.5 py-0.5 align-middle">신간</span></p>
-                  <p class="text-[11.5px] text-neutral-900/45 mt-0.5">요한계시록 바벨론의 신비, 그리고 확신이라는 미혹</p>
-                  <div class="flex flex-wrap gap-1.5 mt-1.5">
-                    <a href="https://bookk.co.kr/bookStore/6a7de93beb0b10d4f487625a" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-white bg-gold rounded-md px-2 py-1 hover:opacity-90 transition">📘 부크크</a>
+                  <button type="button" onclick="toggleAuthorBook('bk1')" aria-expanded="false" aria-controls="bkbuy-bk1"
+                          class="w-full text-left flex items-start gap-2 py-2.5 group">
+                    <span class="min-w-0 flex-1">
+                      <span class="block text-[13px] font-semibold leading-snug group-hover:text-gold transition">『마귀는 거짓말을 하지 않는다』 <span class="text-[10.5px] font-bold text-white bg-gold rounded px-1.5 py-0.5 align-middle">신간</span></span>
+                      <span class="block text-[11.5px] text-neutral-900/45 mt-0.5">요한계시록 바벨론의 신비, 그리고 확신이라는 미혹</span>
+                    </span>
+                    <svg id="bkchev-bk1" class="w-4 h-4 mt-1 shrink-0 text-neutral-900/30 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></svg>
+                  </button>
+                  <div id="bkbuy-bk1" class="hidden pb-3">
+                    <div class="flex flex-wrap gap-1.5">
+                      <a href="https://bookk.co.kr/bookStore/6a7de93beb0b10d4f487625a" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📘 부크크</a>
+                    </div>
                   </div>
                 </li>
                 <li>
-                  <p class="text-[13px] font-semibold leading-snug">『가이사의 교회, 하나님의 교회』</p>
-                  <p class="text-[11.5px] text-neutral-900/45 mt-0.5">정치에 무릎 꿇은 한국교회에 던지는 질문</p>
-                  <div class="flex flex-wrap gap-1.5 mt-1.5">
-                    <a href="https://www.ypbooks.co.kr/books/202608194734832545?idKey=340" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-white bg-gold rounded-md px-2 py-1 hover:opacity-90 transition">📕 영풍문고</a>
-                    <a href="https://www.yes24.com/product/goods/195238527" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📘 YES24</a>
-                    <a href="https://bookk.co.kr/bookStore/6a7c642baa96398e79cfcc45" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📘 부크크</a>
+                  <button type="button" onclick="toggleAuthorBook('bk2')" aria-expanded="false" aria-controls="bkbuy-bk2"
+                          class="w-full text-left flex items-start gap-2 py-2.5 group">
+                    <span class="min-w-0 flex-1">
+                      <span class="block text-[13px] font-semibold leading-snug group-hover:text-gold transition">『가이사의 교회, 하나님의 교회』</span>
+                      <span class="block text-[11.5px] text-neutral-900/45 mt-0.5">정치에 무릎 꿇은 한국교회에 던지는 질문</span>
+                    </span>
+                    <svg id="bkchev-bk2" class="w-4 h-4 mt-1 shrink-0 text-neutral-900/30 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></svg>
+                  </button>
+                  <div id="bkbuy-bk2" class="hidden pb-3">
+                    <div class="flex flex-wrap gap-1.5">
+                      <a href="https://www.ypbooks.co.kr/books/202608194734832545?idKey=340" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📕 영풍문고</a>
+                      <a href="https://www.yes24.com/product/goods/195238527" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📘 YES24</a>
+                      <a href="https://bookk.co.kr/bookStore/6a7c642baa96398e79cfcc45" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📘 부크크</a>
+                    </div>
                   </div>
                 </li>
                 <li>
-                  <p class="text-[13px] font-semibold leading-snug">『가면의 시대』</p>
-                  <p class="text-[11.5px] text-neutral-900/45 mt-0.5">옳은 말을 하고도 쫓겨난 당신에게</p>
-                  <div class="flex flex-wrap gap-1.5 mt-1.5">
-                    <a href="https://product.kyobobook.co.kr/detail/S000220854296" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-white bg-gold rounded-md px-2 py-1 hover:opacity-90 transition">📙 교보문고</a>
-                    <a href="https://www.ypbooks.co.kr/books/202608078888620287?idKey=24" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📙 영풍문고</a>
-                    <a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=399917323" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📙 알라딘</a>
-                    <a href="https://www.yes24.com/product/goods/194853260" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📙 YES24</a>
-                    <a href="https://bookk.co.kr/bookStore/6a6a0c4395abf14e3149db81" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📙 부크크</a>
-                    <a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=400164657" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📱 알라딘</a>
-                    <a href="https://www.yes24.com/product/goods/194796999" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📱 YES24</a>
-                    <a href="https://bookk.co.kr/bookStore/6a6a245161d874f9bfc0bb16" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📱 부크크</a>
+                  <button type="button" onclick="toggleAuthorBook('bk3')" aria-expanded="false" aria-controls="bkbuy-bk3"
+                          class="w-full text-left flex items-start gap-2 py-2.5 group">
+                    <span class="min-w-0 flex-1">
+                      <span class="block text-[13px] font-semibold leading-snug group-hover:text-gold transition">『가면의 시대』</span>
+                      <span class="block text-[11.5px] text-neutral-900/45 mt-0.5">옳은 말을 하고도 쫓겨난 당신에게</span>
+                    </span>
+                    <svg id="bkchev-bk3" class="w-4 h-4 mt-1 shrink-0 text-neutral-900/30 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></svg>
+                  </button>
+                  <div id="bkbuy-bk3" class="hidden pb-3">
+                    <div class="flex flex-wrap gap-1.5">
+                      <a href="https://product.kyobobook.co.kr/detail/S000220854296" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📙 교보문고</a>
+                      <a href="https://www.ypbooks.co.kr/books/202608078888620287?idKey=24" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📙 영풍문고</a>
+                      <a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=399917323" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📙 알라딘</a>
+                      <a href="https://www.yes24.com/product/goods/194853260" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📙 YES24</a>
+                      <a href="https://bookk.co.kr/bookStore/6a6a0c4395abf14e3149db81" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📙 부크크</a>
+                      <a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=400164657" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📱 알라딘</a>
+                      <a href="https://www.yes24.com/product/goods/194796999" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📱 YES24</a>
+                      <a href="https://bookk.co.kr/bookStore/6a6a245161d874f9bfc0bb16" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📱 부크크</a>
+                    </div>
                   </div>
                 </li>
                 <li>
-                  <p class="text-[13px] font-semibold leading-snug">『교회를 떠나고서야, 예수를 만났다』</p>
-                  <p class="text-[11.5px] text-neutral-900/45 mt-0.5">환멸의 시대를 건너, 다시 찾은 진짜 교회</p>
-                  <div class="flex flex-wrap gap-1.5 mt-1.5">
-                    <a href="https://product.kyobobook.co.kr/detail/S000220782156" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-white bg-gold rounded-md px-2 py-1 hover:opacity-90 transition">📕 교보문고</a>
-                    <a href="https://www.ypbooks.co.kr/books/202608046881765202" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📕 영풍문고</a>
-                    <a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=399528996" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📕 알라딘</a>
-                    <a href="https://www.yes24.com/product/goods/194522386" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📕 YES24</a>
-                    <a href="https://bookk.co.kr/bookStore/6a58ffb7518c404ea3b94c33" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📕 부크크</a>
-                    <a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=400164842" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📱 알라딘</a>
-                    <a href="https://www.yes24.com/product/goods/194508906" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📱 YES24</a>
-                    <a href="https://bookk.co.kr/bookStore/6a60d54eed7b8f6d07f927c4" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📱 부크크</a>
+                  <button type="button" onclick="toggleAuthorBook('bk4')" aria-expanded="false" aria-controls="bkbuy-bk4"
+                          class="w-full text-left flex items-start gap-2 py-2.5 group">
+                    <span class="min-w-0 flex-1">
+                      <span class="block text-[13px] font-semibold leading-snug group-hover:text-gold transition">『교회를 떠나고서야, 예수를 만났다』</span>
+                      <span class="block text-[11.5px] text-neutral-900/45 mt-0.5">환멸의 시대를 건너, 다시 찾은 진짜 교회</span>
+                    </span>
+                    <svg id="bkchev-bk4" class="w-4 h-4 mt-1 shrink-0 text-neutral-900/30 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></svg>
+                  </button>
+                  <div id="bkbuy-bk4" class="hidden pb-3">
+                    <div class="flex flex-wrap gap-1.5">
+                      <a href="https://product.kyobobook.co.kr/detail/S000220782156" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📕 교보문고</a>
+                      <a href="https://www.ypbooks.co.kr/books/202608046881765202" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📕 영풍문고</a>
+                      <a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=399528996" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📕 알라딘</a>
+                      <a href="https://www.yes24.com/product/goods/194522386" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📕 YES24</a>
+                      <a href="https://bookk.co.kr/bookStore/6a58ffb7518c404ea3b94c33" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📕 부크크</a>
+                      <a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=400164842" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📱 알라딘</a>
+                      <a href="https://www.yes24.com/product/goods/194508906" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📱 YES24</a>
+                      <a href="https://bookk.co.kr/bookStore/6a60d54eed7b8f6d07f927c4" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📱 부크크</a>
+                    </div>
                   </div>
                 </li>
                 <li>
-                  <p class="text-[13px] font-semibold leading-snug">『엄마 향기』</p>
-                  <p class="text-[11.5px] text-neutral-900/45 mt-0.5">이해할 수 없는 사람을 계속 사랑하는 일에 관하여</p>
-                  <div class="flex flex-wrap gap-1.5 mt-1.5">
-                    <a href="https://product.kyobobook.co.kr/detail/S000220843327" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-white bg-gold rounded-md px-2 py-1 hover:opacity-90 transition">📗 교보문고</a>
-                    <a href="https://www.ypbooks.co.kr/books/202608078888531281?idKey=24" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📗 영풍문고</a>
-                    <a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=399973745" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📗 알라딘</a>
-                    <a href="https://www.yes24.com/product/goods/194853653" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📗 YES24</a>
-                    <a href="https://bookk.co.kr/bookStore/6a622e3fd942b1c7dbeb5ab3" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📗 부크크</a>
-                    <a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=400164620" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📱 알라딘</a>
-                    <a href="https://www.yes24.com/product/goods/194796997" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📱 YES24</a>
-                    <a href="https://bookk.co.kr/bookStore/6a6a14189a2afee41d9024c2" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📱 부크크</a>
+                  <button type="button" onclick="toggleAuthorBook('bk5')" aria-expanded="false" aria-controls="bkbuy-bk5"
+                          class="w-full text-left flex items-start gap-2 py-2.5 group">
+                    <span class="min-w-0 flex-1">
+                      <span class="block text-[13px] font-semibold leading-snug group-hover:text-gold transition">『엄마 향기』</span>
+                      <span class="block text-[11.5px] text-neutral-900/45 mt-0.5">이해할 수 없는 사람을 계속 사랑하는 일에 관하여</span>
+                    </span>
+                    <svg id="bkchev-bk5" class="w-4 h-4 mt-1 shrink-0 text-neutral-900/30 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></svg>
+                  </button>
+                  <div id="bkbuy-bk5" class="hidden pb-3">
+                    <div class="flex flex-wrap gap-1.5">
+                      <a href="https://product.kyobobook.co.kr/detail/S000220843327" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📗 교보문고</a>
+                      <a href="https://www.ypbooks.co.kr/books/202608078888531281?idKey=24" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📗 영풍문고</a>
+                      <a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=399973745" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📗 알라딘</a>
+                      <a href="https://www.yes24.com/product/goods/194853653" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📗 YES24</a>
+                      <a href="https://bookk.co.kr/bookStore/6a622e3fd942b1c7dbeb5ab3" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📗 부크크</a>
+                      <a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=400164620" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📱 알라딘</a>
+                      <a href="https://www.yes24.com/product/goods/194796997" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📱 YES24</a>
+                      <a href="https://bookk.co.kr/bookStore/6a6a14189a2afee41d9024c2" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📱 부크크</a>
+                    </div>
                   </div>
                 </li>
               </ul>
               <a href="books.html" class="inline-block mt-3 text-[11.5px] font-semibold text-gold hover:underline">저서 자세히 보기 →</a>
             </div>
+            <script>
+              // 저서 목록 — 한 번에 한 권만 펼친다(카드가 길어지지 않게)
+              function toggleAuthorBook(id){
+                var box = document.getElementById("bkbuy-" + id);
+                var chev = document.getElementById("bkchev-" + id);
+                var btn  = document.querySelector('[aria-controls="bkbuy-' + id + '"]');
+                if(!box) return;
+                var opening = box.classList.contains("hidden");
+                document.querySelectorAll('[id^="bkbuy-"]').forEach(function(el){
+                  el.classList.add("hidden");
+                  var c = document.getElementById("bkchev-" + el.id.slice(6)); if(c) c.classList.remove("rotate-180");
+                  var b = document.querySelector('[aria-controls="' + el.id + '"]'); if(b) b.setAttribute("aria-expanded","false");
+                });
+                if(opening){
+                  box.classList.remove("hidden");
+                  if(chev) chev.classList.add("rotate-180");
+                  if(btn) btn.setAttribute("aria-expanded","true");
+                }
+              }
+            </script>
           </div>
         </div>
 
