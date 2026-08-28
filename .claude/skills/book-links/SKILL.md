@@ -98,5 +98,5 @@ git pull origin main
 책 구매 링크 업데이트: 마귀는 거짓말을 하지 않는다(영풍문고·알라딘·YES24), 가이사의 교회(알라딘)
 
 - books.html·index.html·about.html 반영, '입점 준비 중' 안내 문구 갱신
-- sw.js 캐시 버전 v253
+- sw.js 캐시 버전 v260
 ```
