@@ -61,6 +61,40 @@
     .resbody p{margin:.2rem 0}.resbody h2{font-size:1.05rem;font-weight:700;margin:.4rem 0}.resbody h3{font-weight:700;margin:.3rem 0}
     .resbody blockquote{border-left:3px solid #d8c28a;padding-left:.7rem;color:rgba(21,32,58,.6);margin:.4rem 0}
     .resbody a{color:#00704a;text-decoration:underline}.resbody ul,.resbody ol{margin:.3rem 0 .3rem 1.2rem}.resbody li{list-style:disc}
+    /* ── 첨부 자료 카드 ─────────────────────────────────────────
+       자료실은 '받는 곳'이라 첨부가 가장 먼저 눈에 들어와야 한다.
+       .resFile = 글 상단 첨부(파일/링크 칼럼), .colFile = 본문 안에 끼워 넣은 첨부. */
+    .resFile,.resbody .colFile{display:flex;align-items:center;gap:.8rem;padding:.85rem 1rem;margin:.4rem 0;
+      border:1px solid rgba(21,32,58,.12);border-radius:.9rem;background:#f7f9fc;text-decoration:none;transition:.15s}
+    .resFile:hover,.resbody .colFile:hover{border-color:#00704a;background:rgba(0,112,74,.05);box-shadow:0 10px 22px -16px rgba(21,32,58,.7)}
+    .resFile .rfIcon,.resbody .colFile .cfIcon{flex:none;width:44px;height:44px;border-radius:.65rem;display:flex;
+      align-items:center;justify-content:center;font-size:11px;font-weight:800;letter-spacing:.02em;color:#fff;background:#213a6b}
+    .resFile[data-kind="pdf"] .rfIcon,.resbody .colFile[data-kind="pdf"] .cfIcon{background:#c0392b}
+    .resFile[data-kind="doc"] .rfIcon,.resbody .colFile[data-kind="doc"] .cfIcon{background:#1f5fa8}
+    .resFile[data-kind="xls"] .rfIcon,.resbody .colFile[data-kind="xls"] .cfIcon{background:#1e7145}
+    .resFile[data-kind="ppt"] .rfIcon,.resbody .colFile[data-kind="ppt"] .cfIcon{background:#c55a11}
+    .resFile[data-kind="hwp"] .rfIcon,.resbody .colFile[data-kind="hwp"] .cfIcon{background:#0b57a4}
+    .resFile[data-kind="zip"] .rfIcon,.resbody .colFile[data-kind="zip"] .cfIcon{background:#6b5b95}
+    .resFile[data-kind="img"] .rfIcon{background:#8e44ad}
+    .resFile[data-kind="link"] .rfIcon{background:#00704a;font-size:17px}
+    .resFile .rfBody,.resbody .colFile .cfBody{min-width:0;flex:1}
+    .resFile .rfName,.resbody .colFile .cfName{display:block;font-weight:700;font-size:15px;color:#171717;
+      text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .resFile .rfMeta,.resbody .colFile .cfMeta{display:block;font-size:12px;color:rgba(21,32,58,.45);margin-top:1px}
+    .resFile .rfGo,.resbody .colFile .cfGo{flex:none;display:inline-flex;align-items:center;gap:.25rem;background:#00704a;
+      color:#fff;font-size:13px;font-weight:700;padding:.55rem .95rem;border-radius:9999px;white-space:nowrap}
+    /* 좁은 화면에선 파일 이름을 줄여 감추지 말고 두 줄로 보여 준다(무슨 자료인지가 제일 중요) */
+    @media (max-width:480px){
+      .resFile .rfGo,.resbody .colFile .cfGo{padding:.5rem .7rem;font-size:12px}
+      .resFile .rfName,.resbody .colFile .cfName{white-space:normal;overflow:visible;font-size:14px;line-height:1.35}
+      .resFile,.resbody .colFile{gap:.6rem;padding:.75rem .8rem}
+    }
+    .ql-editor .colFile{cursor:default}
+    /* 첨부 버튼 — 아이콘만으로는 눈에 띄지 않아 글자를 넣은 알약 모양으로 키운다. */
+    .ql-toolbar.ql-snow button.ql-biblyAttach{width:auto;height:auto;padding:5px 12px;margin-left:2px;
+      display:inline-flex;align-items:center;gap:5px;vertical-align:middle;border:1px solid #00704a;border-radius:9999px;
+      background:rgba(0,112,74,.05);color:#00704a;font-size:13px;font-weight:700;line-height:1.2;float:none}
+    .ql-toolbar.ql-snow button.ql-biblyAttach:hover{background:#00704a;color:#fff}
     /* Quill 글자크기·폰트 드롭다운 한글 라벨 */
     .ql-snow .ql-picker.ql-size{width:82px}
     .ql-snow .ql-picker.ql-size .ql-picker-label:not([data-value])::before,.ql-snow .ql-picker.ql-size .ql-picker-item:not([data-value])::before{content:'보통'}
@@ -89,11 +123,14 @@
 
     <!-- 작성 폼 (관리자) -->
     <div id="formView" class="hidden bg-white rounded-2xl border border-ink/10 shadow-soft p-5 mb-6">
-      <h2 class="font-bold mb-4">자료 올리기</h2>
+      <h2 id="fHead" class="font-bold mb-4">자료 올리기</h2>
       <input id="fTitle" placeholder="자료 제목" class="w-full border border-ink/15 rounded-lg px-3 py-2.5 mb-2 outline-none focus:border-gold"/>
       <input id="fCategory" placeholder="분류 (예: 암송노트·강의노트·도표)" class="w-full border border-ink/15 rounded-lg px-3 py-2.5 mb-2 outline-none focus:border-gold"/>
       <label class="block text-xs font-semibold text-neutral-900/50 mb-1">설명 · 본문 (블로그처럼 서식·사진 가능)</label>
-      <div id="fEditor" class="mb-3"></div>
+      <div id="fEditor" class="mb-1"></div>
+      <p class="text-[11px] text-neutral-900/45 mb-3">본문 중간에도 자료를 넣으려면 툴바의 <b class="text-gold">📎 파일 첨부</b> 버튼을 누르세요. (20MB 이하)</p>
+      <!-- 수정할 때만 보이는 현재 첨부 안내 -->
+      <div id="fCurrent" class="hidden mb-3"></div>
       <div class="grid sm:grid-cols-2 gap-3 mb-3">
         <label class="border border-dashed border-ink/20 rounded-lg px-3 py-2.5 text-sm text-neutral-900/60 cursor-pointer hover:bg-ink/5 text-center">
           파일 첨부 (PDF 등)
@@ -118,14 +155,84 @@
 
   <script>
     const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType: 'implicit', lock: async (_n, _t, fn) => await fn() } });
-    let isAdmin = false;
-    function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    let isAdmin = false, SESSION = null;
+    function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+    function nl2(s){ return esc(s).replace(/\n/g,'<br>'); }
     function fmtDate(iso){ return new Date(iso).toLocaleDateString('ko-KR'); }
+    function timeAgo(iso){ const d=Math.floor((Date.now()-new Date(iso).getTime())/86400000);
+      if(d<1) return '오늘'; if(d<7) return d+'일 전'; return new Date(iso).toLocaleDateString('ko-KR'); }
+    function myName(){ const u=SESSION&&SESSION.user; if(!u) return '회원';
+      return (u.user_metadata&&(u.user_metadata.full_name||u.user_metadata.name))||(u.email?u.email.split('@')[0]:'회원'); }
+    // 확장자 → 카드 색상·라벨 분류
+    function fileKind(ext){
+      ext=(ext||'').toLowerCase();
+      if(ext==='pdf') return 'pdf';
+      if(['hwp','hwpx'].includes(ext)) return 'hwp';
+      if(['doc','docx','rtf'].includes(ext)) return 'doc';
+      if(['xls','xlsx','csv'].includes(ext)) return 'xls';
+      if(['ppt','pptx'].includes(ext)) return 'ppt';
+      if(['zip','7z','rar'].includes(ext)) return 'zip';
+      if(['png','jpg','jpeg','gif','webp'].includes(ext)) return 'img';
+      if(['mp3','m4a','wav'].includes(ext)) return 'mp3';
+      return 'file';
+    }
+    function fileSize(b){ return b>=1048576 ? (b/1048576).toFixed(1)+'MB' : Math.max(1,Math.round(b/1024))+'KB'; }
+    function extOf(s){ const m=String(s||'').split('?')[0].match(/\.([A-Za-z0-9]{1,5})$/); return m?m[1].toLowerCase():''; }
+    // 저장된 파일 이름이 없던 옛 자료는 주소 끝에서 이름을 만들어 준다
+    function urlName(u){
+      try{ const base=decodeURIComponent(String(u).split('?')[0].split('/').pop()||'');
+        return base.replace(/^\d{10,}-/,'') || ''; }catch(e){ return ''; }
+    }
+    // 내려받을 때 보여 줄 이름 — 저장된 이름 > 주소 속 이름 > 자료 제목.확장자
+    // (옛 자료는 주소가 '1788272661892.pdf' 라 이름이 없어 제목을 쓴다)
+    function attachName(r){
+      if(r.file_name) return r.file_name;
+      const ext = extOf(r.file_url) || 'file';
+      const raw = urlName(r.file_url);
+      if(raw && !/^\d{10,}\.[A-Za-z0-9]{1,5}$/.test(raw)) return raw;
+      const t = String(r.title||'첨부파일').replace(/[\\\/:*?"<>|]/g,' ').replace(/\s+/g,' ').trim().slice(0,60);
+      return (t || '첨부파일') + '.' + ext;
+    }
+    // Supabase 스토리지는 ?download=이름 을 붙이면 브라우저에서 바로 저장된다(원래 이름 유지)
+    function dlUrl(u,name){
+      if(!/\/storage\/v1\/object\/public\//.test(u||'')) return u;
+      return u + (u.includes('?')?'&':'?') + 'download=' + encodeURIComponent(name||'');
+    }
     function sanitize(html){ const d=document.createElement('div'); d.innerHTML=html||''; d.querySelectorAll('script,style,iframe,object,embed,link,meta,base,form,input,button,textarea,svg,math,frame,frameset,applet,noscript').forEach(n=>n.remove()); d.querySelectorAll('*').forEach(el=>{ [...el.attributes].forEach(a=>{ const name=a.name.toLowerCase(), val=a.value||''; if(/^on/i.test(name)){ el.removeAttribute(a.name); return; } if(/^(href|src|xlink:href|formaction|action|srcdoc|srcset|data|background|poster)$/.test(name)){ const v=val.replace(/\s+/g,'').toLowerCase(), okImg=(name==='src')&&/^data:image\//i.test(val.trim()); if(!okImg && /^(javascript:|data:|vbscript:)/.test(v)){ el.removeAttribute(a.name); return; } } if(name==='style' && /expression\(|javascript:|behavior:|@import|url\(/i.test(val)){ el.removeAttribute(a.name); } }); if(el.tagName==='A'){ el.setAttribute('rel','noopener noreferrer nofollow'); } }); return d.innerHTML; }
     function bodyHTML(b){ return /<[a-z][\s\S]*>/i.test(b||'') ? sanitize(b) : esc(b||'').replace(/\n/g,'<br>'); }
     // 글자 크기·폰트를 인라인 스타일로 등록 — 표시 페이지에서도 그대로 렌더(한 번만)
     function registerQuillStyles(){ if(window.__qReg || !window.Quill) return; window.__qReg = true;
       /* 글자 크기·폰트 whitelist와 픽커 라벨/미리보기는 editor-enhance.js가 공통 등록 */
+
+      /* 첨부파일 카드를 Quill 이 정식 요소로 다루게 하는 커스텀 블롯.
+         이렇게 해야 저장·재편집을 반복해도 카드가 무너지지 않고, 본문(description)에
+         그대로 남아 별도 DB 칼럼 없이 동작한다. (칼럼 페이지와 같은 방식) */
+      const BlockEmbed = Quill.import('blots/block/embed');
+      class AttachBlot extends BlockEmbed {
+        static create(v){
+          const n = super.create();
+          n.setAttribute('href', v.url);
+          n.setAttribute('target', '_blank');
+          n.setAttribute('rel', 'noopener noreferrer nofollow');
+          n.setAttribute('data-kind', v.kind || 'file');
+          n.setAttribute('data-name', v.name || '첨부파일');
+          n.setAttribute('data-size', v.size || '');
+          n.innerHTML =
+            '<span class="cfIcon">' + esc((v.kind || 'file').toUpperCase()) + '</span>'
+          + '<span class="cfBody"><span class="cfName">' + esc(v.name || '첨부파일') + '</span>'
+          + '<span class="cfMeta">' + esc(v.size || '') + '</span></span>'
+          + '<span class="cfGo">내려받기 ↓</span>';
+          return n;
+        }
+        static value(n){
+          return { url:n.getAttribute('href'), kind:n.getAttribute('data-kind'),
+                   name:n.getAttribute('data-name'), size:n.getAttribute('data-size') };
+        }
+      }
+      AttachBlot.blotName  = 'biblyAttach';
+      AttachBlot.tagName   = 'a';
+      AttachBlot.className = 'colFile';
+      Quill.register(AttachBlot);
     }
     // 블로그식 리치 에디터 (Quill)
     let resQuill = null;
@@ -135,7 +242,33 @@
       resQuill = new Quill('#fEditor', {
         theme:'snow',
         placeholder:'자료 설명·본문을 자유롭게 작성하세요. 서식·사진·링크를 넣을 수 있어요.',
-        modules:{ toolbar:[ [{ size: (window.BIBLY_EDITOR_SIZES || ['13px',false,'20px','24px']) },{ font: (window.BIBLY_EDITOR_FONTS || ['serif','monospace']) }], [{ header:[2,3,false] }], ['bold','italic','underline'], [{ color:[] },{ background:[] }], [{ list:'ordered' },{ list:'bullet' }], ['blockquote','link','image'], ['clean'] ] }
+        modules:{ toolbar:[ [{ size: (window.BIBLY_EDITOR_SIZES || ['13px',false,'20px','24px']) },{ font: (window.BIBLY_EDITOR_FONTS || ['serif','monospace']) }], [{ header:[2,3,false] }], ['bold','italic','underline'], [{ color:[] },{ background:[] }], [{ list:'ordered' },{ list:'bullet' }], ['blockquote','link','image','biblyAttach'], ['clean'] ] }
+      });
+      // 첨부 버튼은 아이콘만으론 못 찾으므로 '파일 첨부' 글자를 넣는다
+      const abtn = document.querySelector('#formView .ql-toolbar .ql-biblyAttach');
+      if(abtn){
+        abtn.innerHTML = '<span>📎</span><span>파일 첨부</span>';
+        abtn.title = 'PDF·한글·워드 등 자료를 본문에 첨부합니다 (20MB 이하)';
+      }
+      // 본문 안 첨부 — 원본 파일 이름을 그대로 보여 주는 카드로 삽입
+      resQuill.getModule('toolbar').addHandler('biblyAttach', () => {
+        const input=document.createElement('input'); input.type='file';
+        input.accept='.pdf,.hwp,.hwpx,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.csv,.txt,.md,.zip,.mp3,.m4a';
+        input.onchange=async()=>{
+          const file=input.files[0]; if(!file) return;
+          if(file.size>20*1024*1024){ alert('첨부파일은 20MB 이하만 가능해요.'); return; }
+          const ext=extOf(file.name)||'bin';
+          const safe=file.name.replace(/\.[^.]+$/,'').replace(/[^\w\-]+/g,'_').slice(0,40) || 'file';
+          const path=`resources/files/${Date.now()}-${safe}.${ext}`;
+          const { error }=await sb.storage.from('community').upload(path,file);
+          if(error){ alert('첨부 업로드 오류: '+error.message); return; }
+          const url=sb.storage.from('community').getPublicUrl(path).data.publicUrl;
+          const range=resQuill.getSelection(true);
+          resQuill.insertEmbed(range.index,'biblyAttach',
+            { url: dlUrl(url,file.name), kind:fileKind(ext), name:file.name, size:fileSize(file.size) }, 'user');
+          resQuill.setSelection(range.index+1);
+        };
+        input.click();
       });
       resQuill.getModule('toolbar').addHandler('image', () => {
         const input=document.createElement('input'); input.type='file'; input.accept='image/*';
@@ -158,24 +291,97 @@
     sb.auth.getSession().then(({data:{session}})=>setUser(session));
     sb.auth.onAuthStateChange((_e,session)=>setUser(session));
     function setUser(session){
+      SESSION = session;
       isAdmin = !!(session && session.user && session.user.email === ADMIN_EMAIL);
       document.getElementById('writeBtn').classList.toggle('hidden', !isAdmin);
       { var _nu=document.getElementById('navUser'); if(_nu) _nu.innerHTML = isAdmin ? '<span class="text-gold font-semibold">관리자</span>' : ''; }
       loadList();
     }
 
-    function openForm(){ document.getElementById('formView').classList.remove('hidden'); ensureResQuill(); }
+    // ===== 올리기 / 수정 =====
+    let EDIT_ID = null;        // null 이면 새 글, 아니면 수정 중인 자료 id
+    let CLEAR_FILE = false;    // 수정하면서 기존 첨부를 지우기로 했는지
+
+    function openForm(){
+      EDIT_ID = null; CLEAR_FILE = false;
+      document.getElementById('fHead').textContent = '자료 올리기';
+      document.getElementById('saveBtn').textContent = '올리기';
+      document.getElementById('fCurrent').classList.add('hidden');
+      document.getElementById('formView').classList.remove('hidden');
+      ensureResQuill();
+      document.getElementById('formView').scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    // 관리자 — 이미 올린 자료를 그대로 불러와 고친다
+    function editResource(id){
+      const r = RES.find(x => String(x.id) === String(id)); if(!r) return;
+      EDIT_ID = r.id; CLEAR_FILE = false;
+      ensureResQuill();
+      document.getElementById('fHead').textContent = '자료 수정';
+      document.getElementById('saveBtn').textContent = '수정 저장';
+      document.getElementById('fTitle').value = r.title || '';
+      document.getElementById('fCategory').value = r.category || '';
+      document.getElementById('fLink').value = r.link || '';
+      resQuill.root.innerHTML = sanitize(r.description || '');
+      document.getElementById('fFile').value = '';
+      document.getElementById('fFileName').textContent = '';
+      document.getElementById('fMsg').textContent = '';
+      renderCurrentFile(r);
+      document.getElementById('formView').classList.remove('hidden');
+      document.getElementById('formView').scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    // 수정 화면에서 '지금 붙어 있는 파일'을 보여 주고 지울 수 있게 한다
+    function renderCurrentFile(r){
+      const box = document.getElementById('fCurrent');
+      if(!r || !r.file_url || CLEAR_FILE){
+        box.innerHTML = CLEAR_FILE
+          ? `<div class="flex items-center gap-2 text-xs bg-red-50 border border-red-200 rounded-lg px-3 py-2.5 text-red-600">
+               기존 첨부를 지웁니다. <button type="button" onclick="undoClearFile()" class="ml-auto font-bold underline">되돌리기</button></div>`
+          : '';
+        box.classList.toggle('hidden', !CLEAR_FILE);
+        return;
+      }
+      const name = attachName(r);
+      box.innerHTML = `<div class="flex items-center gap-2 text-xs bg-sand/70 border border-ink/10 rounded-lg px-3 py-2.5">
+          <span class="text-neutral-900/50 shrink-0">현재 첨부</span>
+          <a href="${esc(dlUrl(r.file_url,name))}" target="_blank" rel="noopener" class="min-w-0 flex-1 truncate font-semibold text-gold hover:underline">${esc(name)}</a>
+          <button type="button" onclick="clearCurrentFile()" class="shrink-0 text-neutral-900/40 hover:text-red-500 font-semibold">첨부 지우기</button>
+        </div>
+        <p class="text-[11px] text-neutral-900/40 mt-1">새 파일을 고르면 이 첨부는 새것으로 바뀝니다.</p>`;
+      box.classList.remove('hidden');
+    }
+    function clearCurrentFile(){ CLEAR_FILE = true; renderCurrentFile(RES.find(x=>String(x.id)===String(EDIT_ID))); }
+    function undoClearFile(){ CLEAR_FILE = false; renderCurrentFile(RES.find(x=>String(x.id)===String(EDIT_ID))); }
+
     function closeForm(){
       document.getElementById('formView').classList.add('hidden');
       ['fTitle','fCategory','fLink'].forEach(id=>document.getElementById(id).value='');
       if(resQuill) resQuill.setText('');
-      document.getElementById('fFile').value=''; document.getElementById('fFileName').textContent=''; document.getElementById('fMsg').textContent='';
+      document.getElementById('fFile').value=''; document.getElementById('fFileName').textContent='';
+      const m = document.getElementById('fMsg'); m.textContent=''; m.className='text-red-500 text-xs mt-2 text-right min-h-[14px]';
+      document.getElementById('fCurrent').classList.add('hidden');
+      EDIT_ID = null; CLEAR_FILE = false;
     }
 
     let RES = [], PAGE = 1;   // 자료 목록 페이지(10개씩)
+    let CCOUNT = {};          // 자료별 댓글 수
+    let COMMENTS_OK = true;   // 댓글 테이블이 아직 없으면 false
+
+    // 댓글 수는 한 번에 모아서 센다(자료마다 따로 세면 목록이 느려진다)
+    async function loadCommentCounts(){
+      const { data, error } = await sb.from('resource_comments').select('resource_id');
+      if(error){ COMMENTS_OK = false; CCOUNT = {}; return; }
+      COMMENTS_OK = true; CCOUNT = {};
+      (data||[]).forEach(x => { CCOUNT[x.resource_id] = (CCOUNT[x.resource_id]||0) + 1; });
+    }
+
     async function loadList(){
       const wrap = document.getElementById('resList');
-      const { data, error } = await sb.from('resources').select('*').order('created_at',{ascending:false});
+      const [{ data, error }] = await Promise.all([
+        sb.from('resources').select('*').order('created_at',{ascending:false}),
+        loadCommentCounts()
+      ]);
       if(error){ wrap.innerHTML = `<p class="text-neutral-900/40 text-sm text-center py-8">불러오기 오류: ${esc(error.message)}</p>`; return; }
       if(!data.length){ wrap.innerHTML = '<p class="text-neutral-900/40 text-sm text-center py-10">아직 자료가 없습니다.'+(isAdmin?' 첫 자료를 올려보세요!':'')+'</p>'; document.getElementById('resPager').innerHTML=''; return; }
       RES = data;
@@ -189,21 +395,29 @@
         onGo: p => { PAGE = p; loadList(); }
       });
       wrap.innerHTML = BiblyPager.slice(RES, PAGE).map(r => {
-        const url = (r.file_url || r.link || '').trim();
+        const fname   = r.file_url ? (attachName(r)) : '';
+        const getUrl  = r.file_url ? dlUrl(r.file_url, fname) : (r.link||'').trim();
         const hasBody = !!(r.description && r.description.trim());
+        const nc      = CCOUNT[r.id] || 0;
         return `<div id="res-${r.id}" class="px-5 py-4 scroll-mt-24">
-          <div class="flex items-center gap-2.5 sm:gap-4 ${hasBody?'cursor-pointer':''}" ${hasBody?`onclick="toggleRes('${r.id}')"`:''}>
+          <div class="flex flex-wrap items-center gap-x-2.5 gap-y-2 sm:gap-4 cursor-pointer" onclick="toggleRes('${r.id}')">
             <div class="w-10 h-10 rounded-lg bg-gold/15 text-gold flex items-center justify-center shrink-0">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M14 3v5h5M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/></svg>
             </div>
             <div class="min-w-0 flex-1">
               ${ r.category ? `<span class="text-[11px] text-gold font-bold tracking-wide">${esc(r.category)}</span>` : '' }
               <p class="font-semibold leading-snug">${esc(r.title||'')}</p>
-              <p class="text-xs text-neutral-900/35 mt-0.5">${fmtDate(r.created_at)}${hasBody?' · 클릭하면 내용 보기':''}</p>
+              <p class="text-xs text-neutral-900/35 mt-0.5 flex items-center gap-1.5 flex-wrap">
+                <span>${fmtDate(r.created_at)}</span>
+                ${ r.file_url ? `<span class="inline-flex items-center gap-0.5 text-gold font-semibold">📎 첨부 1</span>` : '' }
+                ${ nc ? `<span class="inline-flex items-center gap-0.5 text-gold font-semibold">💬 ${nc}</span>` : '' }
+                <span>· 클릭하면 내용 보기</span>
+              </p>
             </div>
-            ${ hasBody ? `<svg id="rchev-${r.id}" class="w-5 h-5 text-neutral-900/25 shrink-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>` : '' }
-            ${ url ? `<a href="${encodeURI(url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="shrink-0 bg-gold text-white text-sm font-semibold px-3.5 sm:px-4 py-2 rounded-full hover:opacity-90">받기</a>`
-                   : (hasBody ? '' : `<span class="shrink-0 text-neutral-900/35 text-xs">준비 중</span>`) }
+            <svg id="rchev-${r.id}" class="w-5 h-5 text-neutral-900/25 shrink-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+            <!-- 버튼 묶음 — 좁은 화면에서는 제목 아래 줄로 내려간다(제목이 세로로 찌그러지지 않게) -->
+            <div class="flex items-center gap-1.5 sm:gap-2 basis-full sm:basis-auto justify-end pl-[52px] sm:pl-0">
+            ${ getUrl ? `<a href="${esc(getUrl)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="shrink-0 bg-gold text-white text-sm font-semibold px-4 py-2 rounded-full hover:opacity-90">받기</a>` : '' }
             <button onclick="event.stopPropagation();shareRes(this)" data-id="${r.id}" data-t="${esc(r.title||'').replace(/"/g,'&quot;')}"
                     class="shrink-0 inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-900/45 border border-ink/12 rounded-full px-2.5 sm:px-3 py-1.5 hover:text-gold hover:border-gold/50 transition"
                     title="이 자료 공유하기" aria-label="이 자료 공유하기">
@@ -216,12 +430,48 @@
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 13a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07L11.5 4.5M14 11a5 5 0 0 0-7.07 0L4.1 13.83a5 5 0 0 0 7.07 7.07l1.3-1.3"/></svg>
               <span class="hidden sm:inline">링크</span>
             </button>
-            ${ isAdmin ? `<button onclick="event.stopPropagation();delResource('${r.id}')" class="shrink-0 text-neutral-900/30 hover:text-red-500 text-sm">삭제</button>` : '' }
+            ${ isAdmin ? `<button onclick="event.stopPropagation();editResource('${r.id}')" class="shrink-0 text-neutral-900/45 hover:text-gold text-sm font-semibold px-1.5 py-2">수정</button>` : '' }
+            ${ isAdmin ? `<button onclick="event.stopPropagation();delResource('${r.id}')" class="shrink-0 text-neutral-900/30 hover:text-red-500 text-sm px-1.5 py-2">삭제</button>` : '' }
+            </div>
           </div>
-          ${ hasBody ? `<div id="resbody-${r.id}" class="hidden resbody text-sm text-neutral-900/70 mt-3 sm:pl-14 leading-relaxed border-t border-ink/5 pt-3">${bodyHTML(r.description)}</div>` : '' }
+          <div id="resbody-${r.id}" class="hidden mt-3 sm:pl-14 border-t border-ink/5 pt-3">
+            ${ attachHTML(r) }
+            ${ hasBody ? `<div class="resbody text-sm text-neutral-900/70 leading-relaxed">${bodyHTML(r.description)}</div>` : '' }
+            <div class="mt-5 border-t border-ink/8 pt-3">
+              <p class="text-sm font-bold mb-2">댓글 <span id="rccount-${r.id}" class="text-gold">${nc||''}</span></p>
+              <div id="rclist-${r.id}" class="space-y-2"><p class="text-neutral-900/35 text-sm py-2">댓글을 불러오는 중…</p></div>
+              <div id="rcform-${r.id}" class="mt-3"></div>
+            </div>
+          </div>
         </div>`;
       }).join('');
       openResFromHash();
+    }
+
+    // 첨부 자료 — 펼쳤을 때 가장 먼저 보이는 큰 카드
+    function attachHTML(r){
+      const cards = [];
+      if(r.file_url){
+        const name = attachName(r);
+        const kind = fileKind(extOf(r.file_name || r.file_url));
+        cards.push(`<a class="resFile" data-kind="${kind}" href="${esc(dlUrl(r.file_url,name))}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+            <span class="rfIcon">${esc(kind==='file'?'FILE':kind.toUpperCase())}</span>
+            <span class="rfBody"><span class="rfName">${esc(name)}</span><span class="rfMeta">눌러서 내 기기에 저장하세요</span></span>
+            <span class="rfGo">내려받기 ↓</span>
+          </a>`);
+      }
+      if(r.link && String(r.link).trim()){
+        cards.push(`<a class="resFile" data-kind="link" href="${esc(String(r.link).trim())}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">
+            <span class="rfIcon">🔗</span>
+            <span class="rfBody"><span class="rfName">연결된 자료 열기</span><span class="rfMeta">${esc(String(r.link).trim().replace(/^https?:\/\//,'').slice(0,60))}</span></span>
+            <span class="rfGo">열기 ↗</span>
+          </a>`);
+      }
+      if(!cards.length) return '';
+      return `<div class="mb-3">
+          <p class="text-[11px] font-bold tracking-[0.15em] text-neutral-900/40 mb-1">첨부 자료</p>
+          ${cards.join('')}
+        </div>`;
     }
 
     // 자료 공유 — 해당 자료로 바로 연결되는 링크 생성
@@ -269,33 +519,122 @@
       const title = document.getElementById('fTitle').value.trim();
       const category = document.getElementById('fCategory').value.trim();
       ensureResQuill();
-      const description = resQuill.getText().trim() ? sanitize(resQuill.root.innerHTML) : '';
+      // 본문에 첨부 카드만 있고 글자는 없을 수도 있으므로 HTML 로도 판단한다
+      const rawHTML = resQuill.root.innerHTML;
+      const hasContent = resQuill.getText().trim() || /colFile|<img/i.test(rawHTML);
+      const description = hasContent ? sanitize(rawHTML) : '';
       let link = document.getElementById('fLink').value.trim();
       const file = document.getElementById('fFile').files[0];
       const msg = document.getElementById('fMsg'); const btn = document.getElementById('saveBtn');
+      const editing = !!EDIT_ID;
       if(!title){ msg.textContent='제목을 입력하세요.'; return; }
-      btn.disabled = true; btn.textContent = '올리는 중…'; msg.textContent = '';
-      let file_url = null;
+      btn.disabled = true; const btnLabel = editing ? '수정 저장' : '올리기';
+      btn.textContent = editing ? '저장 중…' : '올리는 중…'; msg.textContent = '';
       try {
+        const row = { title, category: category||null, description: description||null, link: link||null };
         if(file){
           if(file.size > 20*1024*1024) throw new Error('파일은 20MB 이하만 가능해요.');
-          const ext = (file.name.split('.').pop() || 'file');
-          const path = `resources/${Date.now()}.${ext}`;
+          const ext = extOf(file.name) || 'file';
+          const safe = file.name.replace(/\.[^.]+$/,'').replace(/[^\w\-]+/g,'_').slice(0,40) || 'file';
+          const path = `resources/${Date.now()}-${safe}.${ext}`;
           const { error: upErr } = await sb.storage.from('community').upload(path, file);
           if(upErr) throw upErr;
-          file_url = sb.storage.from('community').getPublicUrl(path).data.publicUrl;
+          row.file_url  = sb.storage.from('community').getPublicUrl(path).data.publicUrl;
+          row.file_name = file.name;
+        } else if(!editing){
+          row.file_url = null; row.file_name = null;
+        } else if(CLEAR_FILE){
+          row.file_url = null; row.file_name = null;
         }
-        const { error } = await sb.from('resources').insert({ title, category: category||null, description: description||null, file_url, link: link||null });
+        // 새로 만든 file_name 칼럼이 아직 없는 DB 에서도 저장은 되게 한다
+        const send = async payload => editing
+          ? sb.from('resources').update(payload).eq('id', EDIT_ID)
+          : sb.from('resources').insert(payload);
+        let { error } = await send(row);
+        let noteSQL = false;
+        if(error && /file_name/.test(error.message||'')){
+          const { file_name, ...noName } = row;
+          ({ error } = await send(noName));
+          noteSQL = !error;
+        }
         if(error) throw error;
         closeForm(); loadList();
-      } catch(e){ msg.textContent = '오류: ' + (e.message || e); }
-      finally { btn.disabled = false; btn.textContent = '올리기'; }
+        if(noteSQL) alert('저장했습니다.\n첨부 파일 이름을 그대로 보여 주려면 Supabase SQL Editor 에서 db/resources_social.sql 을 한 번 실행하세요.');
+      } catch(e){ msg.className = 'text-red-500 text-xs mt-2 text-right min-h-[14px]'; msg.textContent = '오류: ' + (e.message || e); }
+      finally { btn.disabled = false; btn.textContent = btnLabel; }
     }
 
     function toggleRes(id){
       var b=document.getElementById('resbody-'+id), c=document.getElementById('rchev-'+id);
       if(!b) return; var closed=b.classList.toggle('hidden');
       if(c) c.style.transform = closed ? '' : 'rotate(180deg)';
+      if(!closed && !b.dataset.loaded){ b.dataset.loaded='1'; loadComments(id); }
+      if(!closed) renderCommentForm(id);
+    }
+
+    // ===== 댓글 =====
+    function renderCommentForm(id){
+      const f = document.getElementById('rcform-'+id); if(!f) return;
+      if(!COMMENTS_OK){
+        f.innerHTML = isAdmin
+          ? `<p class="text-xs text-red-500">댓글 기능을 켜려면 Supabase SQL Editor 에서 <b>db/resources_social.sql</b> 을 한 번 실행하세요.</p>` : '';
+        return;
+      }
+      if(SESSION && SESSION.user){
+        f.innerHTML = `<div class="bg-white border border-ink/12 rounded-2xl p-3.5">
+            <textarea id="rcin-${id}" rows="2" placeholder="자료를 보고 느낀 점·질문을 남겨 주세요…" class="w-full text-sm outline-none resize-none"></textarea>
+            <div class="flex items-center justify-between mt-2 pt-2 border-t border-ink/8">
+              <span class="text-xs text-neutral-900/40">${esc(myName())}님</span>
+              <button onclick="addComment('${id}')" class="bg-gold text-white text-sm font-semibold px-4 py-2 rounded-full hover:opacity-90 transition">등록</button>
+            </div></div>`;
+      } else {
+        f.innerHTML = `<div class="bg-ink/[0.03] border border-ink/8 rounded-2xl p-4 text-center text-sm text-neutral-900/55">댓글을 남기려면 <a href="index.html" class="text-gold font-semibold hover:underline">로그인</a> 해 주세요.</div>`;
+      }
+    }
+
+    async function loadComments(id){
+      const list = document.getElementById('rclist-'+id); if(!list) return;
+      const { data, error } = await sb.from('resource_comments').select('*').eq('resource_id', id).order('created_at',{ascending:true});
+      if(error){
+        COMMENTS_OK = false;
+        list.innerHTML = isAdmin
+          ? `<p class="text-neutral-900/40 text-sm py-2">댓글을 불러오지 못했습니다. (관리자: db/resources_social.sql 실행 필요)</p>`
+          : `<p class="text-neutral-900/35 text-sm py-2">댓글 기능을 준비 중입니다.</p>`;
+        renderCommentForm(id); return;
+      }
+      const rows = data || [];
+      CCOUNT[id] = rows.length;
+      const cnt = document.getElementById('rccount-'+id); if(cnt) cnt.textContent = rows.length || '';
+      if(!rows.length){ list.innerHTML = '<p class="text-neutral-900/35 text-sm py-2">첫 댓글을 남겨 보세요.</p>'; return; }
+      const myId = SESSION && SESSION.user && SESSION.user.id;
+      list.innerHTML = rows.map(c => {
+        const canDel = isAdmin || (myId && c.user_id === myId);
+        return `<div class="bg-white border border-ink/8 rounded-2xl px-4 py-3">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="font-semibold text-sm">${esc(c.author_name||'회원')}</span>
+              <span class="text-xs text-neutral-900/35">${timeAgo(c.created_at)}</span>
+              ${canDel?`<button onclick="delComment('${c.id}','${id}')" class="ml-auto text-xs text-neutral-900/30 hover:text-red-500">삭제</button>`:''}
+            </div>
+            <p class="text-[15px] text-neutral-900/80 leading-relaxed">${nl2(c.content)}</p>
+          </div>`;
+      }).join('');
+    }
+
+    async function addComment(id){
+      if(!(SESSION && SESSION.user)) return;
+      const el = document.getElementById('rcin-'+id); if(!el) return;
+      const content = (el.value||'').trim();
+      if(!content){ el.focus(); return; }
+      const { error } = await sb.from('resource_comments').insert({ resource_id: id, user_id: SESSION.user.id, author_name: myName(), content });
+      if(error){ alert('등록 오류: ' + error.message); return; }
+      el.value=''; loadComments(id);
+    }
+
+    async function delComment(cid, id){
+      if(!confirm('이 댓글을 삭제할까요?')) return;
+      const { error } = await sb.from('resource_comments').delete().eq('id', cid);
+      if(error){ alert('삭제 오류: ' + error.message); return; }
+      loadComments(id);
     }
 
     async function delResource(id){
