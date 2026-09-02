@@ -150,7 +150,8 @@
     <div id="resList" class="bg-white rounded-2xl border border-ink/8 shadow-soft divide-y divide-ink/5 overflow-hidden">
       <p class="text-neutral-900/40 text-sm text-center py-10">자료를 불러오는 중…</p>
     </div>
-    <div id="resPager"></div>
+    <!-- 쪽 번호 — 자료가 10개를 넘으면 번호가 생긴다(한 쪽이면 전체 개수만 표시) -->
+    <div id="resPager" class="biblyPager min-h-[40px] mb-6"></div>
   </main>
 
   <script>
@@ -376,6 +377,8 @@
       (data||[]).forEach(x => { CCOUNT[x.resource_id] = (CCOUNT[x.resource_id]||0) + 1; });
     }
 
+    let HASH_DONE = false;    // 공유 링크로 들어온 자료 펼치기는 첫 화면에서 한 번만
+
     async function loadList(){
       const wrap = document.getElementById('resList');
       const [{ data, error }] = await Promise.all([
@@ -385,23 +388,37 @@
       if(error){ wrap.innerHTML = `<p class="text-neutral-900/40 text-sm text-center py-8">불러오기 오류: ${esc(error.message)}</p>`; return; }
       if(!data.length){ wrap.innerHTML = '<p class="text-neutral-900/40 text-sm text-center py-10">아직 자료가 없습니다.'+(isAdmin?' 첫 자료를 올려보세요!':'')+'</p>'; document.getElementById('resPager').innerHTML=''; return; }
       RES = data;
-      // 공유 링크(#res-id)로 들어왔다면 그 자료가 있는 쪽부터
-      if(location.hash && location.hash.startsWith('#res-')){
+      // 공유 링크(#res-id)로 들어왔다면 그 자료가 있는 쪽부터 — 첫 화면에서만
+      if(!HASH_DONE && location.hash && location.hash.startsWith('#res-')){
         const idx = RES.findIndex(r => 'res-' + r.id === location.hash.slice(1));
         if(idx >= 0) PAGE = Math.floor(idx / BiblyPager.PER) + 1;
       }
-      BiblyPager.render(document.getElementById('resPager'), {
-        total: RES.length, page: PAGE, scrollTo: '#resList',
-        onGo: p => { PAGE = p; loadList(); }
+      renderList();
+    }
+
+    // 목록 그리기 — 쪽 번호를 눌렀을 때는 다시 불러오지 않고 이것만 다시 그린다
+    function renderList(){
+      const wrap  = document.getElementById('resList');
+      const pgEl  = document.getElementById('resPager');
+      const total = RES.length;
+      const pages = BiblyPager.render(pgEl, {
+        total, page: PAGE, scrollTo: '#resList',
+        onGo: p => { PAGE = p; renderList(); }
       });
-      wrap.innerHTML = BiblyPager.slice(RES, PAGE).map(r => {
+      // 한 쪽뿐이면 번호가 안 나오므로, 자리는 그대로 두고 전체 개수만 알린다
+      if(pages <= 1) pgEl.innerHTML = '<span class="pgInfo">전체 ' + total + '개</span>';
+      PAGE = Math.min(Math.max(1, PAGE), pages);   // 자료를 지워 쪽수가 줄었을 때 대비
+
+      wrap.innerHTML = BiblyPager.slice(RES, PAGE).map((r, i) => {
+        const no      = BiblyPager.no(total, PAGE, i);   // 최신 글이 가장 큰 번호
         const fname   = r.file_url ? (attachName(r)) : '';
         const getUrl  = r.file_url ? dlUrl(r.file_url, fname) : (r.link||'').trim();
         const hasBody = !!(r.description && r.description.trim());
         const nc      = CCOUNT[r.id] || 0;
         return `<div id="res-${r.id}" class="px-5 py-4 scroll-mt-24">
           <div class="flex flex-wrap items-center gap-x-2.5 gap-y-2 sm:gap-4 cursor-pointer" onclick="toggleRes('${r.id}')">
-            <div class="w-10 h-10 rounded-lg bg-gold/15 text-gold flex items-center justify-center shrink-0">
+            <span class="w-7 shrink-0 text-center text-[13px] text-neutral-900/35 tabular-nums">${no}</span>
+            <div class="w-10 h-10 rounded-lg bg-gold/15 text-gold hidden sm:flex items-center justify-center shrink-0">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M14 3v5h5M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/></svg>
             </div>
             <div class="min-w-0 flex-1">
@@ -445,7 +462,7 @@
           </div>
         </div>`;
       }).join('');
-      openResFromHash();
+      if(!HASH_DONE){ HASH_DONE = true; openResFromHash(); }
     }
 
     // 첨부 자료 — 펼쳤을 때 가장 먼저 보이는 큰 카드
