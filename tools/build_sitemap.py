@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """sitemap.xml 생성기.
-공개(인덱싱) 페이지 목록 + 기존 동적 URL(watch?l=N 등)을 보존하여 sitemap을 새로 쓴다.
-실행: python tools/build_sitemap.py  (lastmod는 인자로 받음 — 없으면 기존 동적은 보존, 정적은 STAMP)
+공개(인덱싱) 페이지 목록 + 개별 글 + 강의 낱개(watch?v=<유튜브ID>, course.json 기준)로 sitemap을 새로 쓴다.
+실행: python tools/build_sitemap.py 2026-09-04  (lastmod 인자 — 강의는 added 날짜 우선, 나머지는 인자값)
 """
 import os, re, sys, io, json
 
@@ -54,22 +54,34 @@ if th is not None:
         if t.get('id'):
             articles.append(('/themes?theme=%s' % t['id'], '0.6'))
 
-# 기존 sitemap에서 동적 URL(watch?l=N 등) 보존
-preserved = []
-if os.path.exists('sitemap.xml'):
-    old = open('sitemap.xml', encoding='utf-8').read()
-    for m in re.finditer(r'<loc>(https://biblynote\.com/watch\?[^<]+)</loc>', old):
-        preserved.append(m.group(1))
+# 강의 낱개 URL — watch?v=<유튜브ID>(안정 링크). Worker가 이 주소에 강의별 title·og·JSON-LD를 주입한다.
+# 예전 watch?l=N 은 전체 배열 인덱스라 강의를 중간에 끼우면 전부 어긋나므로 더 이상 쓰지 않는다.
+lectures = []
+course = load('content/course.json')
+if course is not None:
+    seen = set()
+    for lv in course.get('levels') or []:
+        for les in lv.get('lessons') or []:
+            y = (les.get('youtube', '') or '').strip()
+            m = re.search(r'(?:v=|youtu\.be/|embed/|shorts/)([\w-]{11})', y)
+            vid = m.group(1) if m else (y if re.match(r'^[\w-]{11}$', y) else '')   # 맨 11자 ID 형태도 43편 있다
+            if not vid or vid in seen:
+                continue
+            seen.add(vid)
+            added = str(les.get('added', '') or '')
+            lm = added if re.match(r'^\d{4}-\d{2}-\d{2}$', added) else STAMP
+            lectures.append(('/watch?v=%s' % vid, '0.7', lm))
 
 lines = ['<?xml version="1.0" encoding="UTF-8"?>',
          '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
 for path, pr in PAGES + articles:
     loc = f'{BASE}{path}'.replace('&', '&amp;')
     lines.append(f'  <url><loc>{loc}</loc><lastmod>{STAMP}</lastmod><priority>{pr}</priority></url>')
-for loc in preserved:
-    lines.append(f'  <url><loc>{loc}</loc><lastmod>{STAMP}</lastmod><priority>0.7</priority></url>')
+for path, pr, lm in lectures:
+    loc = f'{BASE}{path}'.replace('&', '&amp;')
+    lines.append(f'  <url><loc>{loc}</loc><lastmod>{lm}</lastmod><priority>{pr}</priority></url>')
 lines.append('</urlset>')
 
 open('sitemap.xml', 'w', encoding='utf-8').write('\n'.join(lines) + '\n')
-total = len(PAGES) + len(articles) + len(preserved)
-print(f'sitemap.xml: 정적 {len(PAGES)}개 + 개별 글 {len(articles)}개 + 강의(watch) {len(preserved)}개 = {total} URL (lastmod {STAMP})')
+total = len(PAGES) + len(articles) + len(lectures)
+print(f'sitemap.xml: 정적 {len(PAGES)}개 + 개별 글 {len(articles)}개 + 강의(watch?v=) {len(lectures)}개 = {total} URL (lastmod {STAMP})')

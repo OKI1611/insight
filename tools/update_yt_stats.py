@@ -76,7 +76,25 @@ def main():
         print("unchanged:", before); return 0
     io.open(path, "w", encoding="utf-8").write(json.dumps(site, ensure_ascii=False, indent=2) + "\n")
     print("updated:", json.dumps(new, ensure_ascii=False))
+    patch_index(site["youtube"]["stats"])
     return 0
+
+def patch_index(stats):
+    """index.html 에 박힌 폴백 수치(data-stat 스팬의 초기 텍스트)도 site.json 과 맞춘다.
+    JS 가 로드 전 첫 페인트에 보이는 값이라, 방치하면 몇 달 전 숫자가 잠깐씩 노출된다(2026-09-04 정비)."""
+    path = os.path.join(ROOT, "index.html")
+    try:
+        raw = io.open(path, encoding="utf-8", newline="").read()   # CRLF 보존
+    except Exception:
+        return
+    pairs = {"views": stats.get("views"), "subs": stats.get("subscribers"), "free": stats.get("free_lectures")}
+    out = raw
+    for key, val in pairs.items():
+        if not val: continue
+        out = re.sub(r'(data-stat="%s"[^>]*>)[^<]*' % key, lambda m, v=val: m.group(1) + v, out)
+    if out != raw:
+        io.open(path, "w", encoding="utf-8", newline="").write(out)
+        print("index.html fallback stats patched")
 
 if __name__ == "__main__":
     sys.exit(main())

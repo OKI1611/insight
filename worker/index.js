@@ -212,11 +212,76 @@ async function adminNotice(request, env) {
   return json({ ok: true, id: rows[0] && rows[0].id });
 }
 
+// ===== 강의별 메타 주입 (/watch?v=<유튜브ID>) =====
+// watch.html은 클라이언트 렌더라 title·og:*가 329편 모두 공통값이었다(카톡·네이버 공유 카드가 전부 같고, 검색엔진엔 한 페이지로 뭉침).
+// 여기서 course.json을 읽어 해당 강의의 제목·소개·썸네일로 <head>를 고쳐 보낸다. 못 찾으면 원본 그대로 통과.
+let COURSE_CACHE = { t: 0, data: null };
+async function courseJson(env, origin) {
+  if (COURSE_CACHE.data && Date.now() - COURSE_CACHE.t < 600000) return COURSE_CACHE.data;   // 10분 메모리 캐시
+  const d = await assetJson(env, origin, '/content/course.json');
+  if (d) COURSE_CACHE = { t: Date.now(), data: d };
+  return d || COURSE_CACHE.data;
+}
+// course.json의 youtube 필드는 URL 또는 맨 11자 ID(43편) 두 형태가 섞여 있다 — watch.html의 ytId와 같은 규칙
+function ytIdOf(u) { u = String(u || '').trim(); const m = u.match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/); return m ? m[1] : (/^[\w-]{11}$/.test(u) ? u : ''); }
+function attr(s) { return String(s || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+function isoDuration(s) {   // "12:34" / "1:02:03" → PT12M34S / PT1H2M3S
+  const p = String(s || '').split(':').map(Number);
+  if (!p.length || p.some(isNaN)) return null;
+  const [h, m, sec] = p.length === 3 ? p : p.length === 2 ? [0, p[0], p[1]] : [0, 0, p[0]];
+  return 'PT' + (h ? h + 'H' : '') + (m ? m + 'M' : '') + (sec ? sec + 'S' : '');
+}
+async function watchMeta(request, env, url) {
+  const res = await env.ASSETS.fetch(request);
+  if (!res.ok || !(res.headers.get('Content-Type') || '').includes('text/html')) return res;
+  const vid = (url.searchParams.get('v') || '').trim();
+  if (!/^[\w-]{11}$/.test(vid)) return res;
+  const course = await courseJson(env, url.origin);
+  let lesson = null, track = '', ti = -1;
+  ((course && course.levels) || []).some((lv, i) => {
+    const f = (lv.lessons || []).find(l => ytIdOf(l.youtube) === vid);
+    if (f) { lesson = f; track = lv.name || ''; ti = i; return true; }
+    return false;
+  });
+  if (!lesson) return res;
+  const title = String(lesson.title || '').trim();
+  const desc = String(lesson.summary || '').replace(/\s+/g, ' ').trim().slice(0, 160) || ('무료 강의 · ' + track + ' · 영상+요약노트+진단평가');
+  const canon = 'https://biblynote.com/watch?v=' + vid;
+  const thumb = 'https://i.ytimg.com/vi/' + vid + '/maxresdefault.jpg';
+  const video = { '@context': 'https://schema.org', '@type': 'VideoObject', name: title, description: desc, thumbnailUrl: [thumb, 'https://i.ytimg.com/vi/' + vid + '/hqdefault.jpg'],
+    embedUrl: 'https://www.youtube.com/embed/' + vid, url: canon, inLanguage: 'ko', isAccessibleForFree: true,
+    publisher: { '@type': 'Organization', name: 'BIBLY 바이블 인사이트', url: 'https://biblynote.com' } };
+  if (lesson.added) video.uploadDate = lesson.added;
+  const dur = isoDuration(lesson.duration); if (dur) video.duration = dur;
+  const crumb = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '홈', item: 'https://biblynote.com/' },
+    { '@type': 'ListItem', position: 2, name: '커리큘럼', item: 'https://biblynote.com/curriculum' },
+    { '@type': 'ListItem', position: 3, name: track, item: 'https://biblynote.com/curriculum?track=' + ti },
+    { '@type': 'ListItem', position: 4, name: title, item: canon }
+  ] };
+  const ld = s => '<script type="application/ld+json">' + JSON.stringify(s).replace(/<\//g, '<\\/') + '</script>';
+  const extra = `<meta property="og:url" content="${attr(canon)}" /><meta property="og:video" content="https://www.youtube.com/embed/${vid}" /><meta property="og:video:type" content="text/html" /><meta property="og:video:width" content="1280" /><meta property="og:video:height" content="720" />` + ld(video) + ld(crumb);
+  const out = new HTMLRewriter()
+    .on('title', { element(e) { e.setInnerContent(title + ' · 바이블 인사이트'); } })
+    .on('meta[name="description"]', { element(e) { e.setAttribute('content', desc); } })
+    .on('meta[property="og:title"]', { element(e) { e.setAttribute('content', title); } })
+    .on('meta[property="og:description"]', { element(e) { e.setAttribute('content', desc); } })
+    .on('meta[property="og:image"]', { element(e) { e.setAttribute('content', thumb); } })
+    .on('meta[name="twitter:image"]', { element(e) { e.setAttribute('content', thumb); } })
+    .on('link[rel="canonical"]', { element(e) { e.setAttribute('href', canon); } })
+    .on('head', { element(e) { e.append(extra, { html: true }); } })
+    .transform(res);
+  const h = new Headers(out.headers);
+  h.set('Cache-Control', 'public, max-age=600');
+  return new Response(out.body, { status: out.status, headers: h });
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     const p = url.pathname;
     if (p === '/api/yt/stats') return ytStats(env);
+    if ((p === '/watch' || p === '/watch.html') && request.method === 'GET' && url.searchParams.get('v')) return watchMeta(request, env, url);
     if (p === '/api/admin/notice' && request.method === 'POST') return adminNotice(request, env);
     if (p.startsWith('/api/pay/')) {
       if (request.method === 'OPTIONS') return new Response(null, { headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET,POST,OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type' } });

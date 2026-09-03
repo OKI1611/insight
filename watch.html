@@ -102,6 +102,7 @@
 
       <div class="mt-5 flex items-start justify-between gap-4">
         <div>
+          <nav id="crumb" aria-label="현재 위치" class="text-[11.5px] text-neutral-900/45 mb-1.5 flex flex-wrap items-center"></nav>
           <div id="lessonBadge" class="mb-2"></div>
           <h2 id="lessonTitle" class="text-lg md:text-xl font-bold leading-snug"></h2>
           <div id="lessonTags" class="mt-2.5 flex flex-wrap gap-1.5"></div>
@@ -815,6 +816,19 @@
       }
 
       document.getElementById('lessonTitle').textContent = l.title || '';
+
+      // 브레드크럼(홈 › 커리큘럼 › 트랙 › 강의) + 문서 제목 + 주소를 안정 링크(?v=)로 — 공유·검색·뒤로가기 모두 이 주소 기준
+      (function(){
+        const info = currentLevelInfo(), tIdx = LEVELS.indexOf(info.lv);
+        const crumb = document.getElementById('crumb');
+        const short = (l.title || '').length > 40 ? (l.title || '').slice(0, 40) + '…' : (l.title || '');
+        if(crumb) crumb.innerHTML = `<a href="index.html" class="hover:text-gold">홈</a><span class="mx-1.5">›</span><a href="curriculum.html" class="hover:text-gold">커리큘럼</a>`
+          + (info.lv.name ? `<span class="mx-1.5">›</span><a href="curriculum.html?track=${tIdx}" class="hover:text-gold">${esc(info.lv.name)}</a>` : '')
+          + `<span class="mx-1.5">›</span><span class="text-neutral-900/70">${esc(short)}</span>`;
+        document.title = (l.title ? l.title + ' · ' : '') + '바이블 인사이트';
+        if(id && history.replaceState){ try { const u = new URL(location.href); u.searchParams.delete('l'); u.searchParams.set('v', id); history.replaceState(null, '', u.pathname + u.search + u.hash); } catch(e){} }
+      })();
+
       const desc = document.getElementById('lessonDesc');
       if(l.summary){
         desc.style.display = '';
