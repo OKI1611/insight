@@ -171,7 +171,7 @@
           <span id="listCount" class="text-xs text-neutral-900/45"></span>
         </div>
         <ol id="lessonList" class="max-h-[60vh] overflow-auto divide-y divide-ink/5"></ol>
-        <a href="curriculum.html" class="block text-center text-xs text-gold/90 hover:text-gold font-semibold py-3 border-t border-ink/8">전체 커리큘럼 보기 (27트랙·255강) →</a>
+        <a href="curriculum.html" class="block text-center text-xs text-gold/90 hover:text-gold font-semibold py-3 border-t border-ink/8">전체 커리큘럼 보기 (27트랙·329강) →</a>
       </div>
     </aside>
   </main>
@@ -762,7 +762,7 @@
       }
       return { lv: LEVELS[0] || { name:'', lessons:[] }, start: 0 };
     }
-    // 강의 목차: 현재 보고 있는 트랙의 강의만 표시(전체 255강은 '커리큘럼'으로)
+    // 강의 목차: 현재 보고 있는 트랙의 강의만 표시(전체 329강은 '커리큘럼'으로)
     function renderList(){
       const info = currentLevelInfo(), lv = info.lv, start = info.start;
       let html = '';
