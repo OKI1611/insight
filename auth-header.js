@@ -111,7 +111,6 @@
         + '</div>'
         + '<div style="position:fixed;right:14px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:60" class="flex flex-col items-end gap-2.5">'
         + '<button id="installBtn" onclick="__biblyOpenInstall()" aria-label="앱 설치" class="inline-flex items-center gap-1.5 bg-ink text-white font-bold rounded-full shadow-xl hover:bg-navy transition" style="display:none;padding:11px 18px;font-size:15px"><span style="font-size:18px"></span> 앱 설치</button>'
-        + '<a href="' + SUP + '" aria-label="후원하기" class="inline-flex items-center gap-1.5 bg-rose-500 text-white font-bold rounded-full shadow-xl hover:bg-rose-600 transition" style="padding:11px 18px;font-size:15px"><span style="font-size:17px"></span> 후원</a>'
         + '<button onclick="__biblyChat()" aria-label="무엇이든 질문하기" class="inline-flex items-center gap-2 bg-gold text-white font-bold rounded-full shadow-xl hover:opacity-95 transition" style="border:none;cursor:pointer">'
         + '<span style="padding:13px 0 13px 18px;font-size:20px"></span>'
         + '<span class="hidden sm:inline" style="padding-right:20px;font-size:15px">무엇이든 물어보세요</span>'
@@ -220,7 +219,7 @@
   };
   function render(){
     var loggedIn = !!readStored();
-    var support = '<a href="' + SUP + '" aria-label="후원하기" title="후원하기" class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-rose-500/10 text-rose-500 border border-rose-300 hover:bg-rose-500 hover:text-white transition shrink-0" style="font-size:15px"></a>';
+    var support = '';  // 후원 진입은 상단바·헤더 배너로 일원화(2026-09-06)
     if(loggedIn){
       el.innerHTML =
         '<a href="mylearning.html" class="inline-flex items-center gap-1 bg-gold text-white font-semibold px-3 py-1.5 rounded-full hover:opacity-90 transition text-xs whitespace-nowrap">내 강의실</a>'
