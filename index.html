@@ -186,26 +186,45 @@
 
   <!-- ===== 헤더 (바이블 인사이트 ACADEMY · 가운데 로고 + 메뉴 줄) ===== -->
   <header class="sticky top-0 z-50 bg-paper/95 backdrop-blur-md border-b border-ink/8">
-    <!-- 로고(가운데 정렬) -->
-    <div class="max-w-7xl mx-auto px-5 pt-3.5 pb-2.5 relative flex items-center justify-center">
-      <!-- 새 로고에 BIBLE INSIGHT 워드마크 포함 — 한글 병기 제거(중복 방지), 아래에 ACADEMY 소라벨만 -->
-      <a href="#top" class="inline-flex flex-col items-center gap-1.5 leading-none" aria-label="바이블 인사이트">
-        <img src="/images/logo-heritage-wide.png?v=2" alt="바이블 인사이트 로고" class="h-10 md:h-12 w-auto shrink-0" />
-        <span class="inline-flex items-center gap-2">
+    <!-- 로고(좌) + 검색 + 대형 후원 배너(우) — 브래드TV식 배치 -->
+    <div class="max-w-7xl mx-auto px-5 pt-3 pb-2.5 flex items-center gap-4">
+      <a href="#top" class="inline-flex flex-col items-start gap-1 leading-none shrink-0" aria-label="바이블 인사이트">
+        <img src="/images/logo-heritage-wide.png?v=2" alt="바이블 인사이트 로고" class="h-11 md:h-14 w-auto shrink-0" />
+        <span class="inline-flex items-center gap-2 pl-0.5">
           <span class="h-px w-6 bg-gold/40"></span>
           <span class="text-[9.5px] md:text-[10px] font-semibold text-gold tracking-[0.34em]">ACADEMY</span>
           <span class="h-px w-6 bg-gold/40"></span>
         </span>
       </a>
-      <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="xl:hidden absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center text-neutral-900" aria-label="메뉴 열기">
+
+      <!-- 컴팩트 스마트 검색 -->
+      <form onsubmit="event.preventDefault();var v=document.getElementById('homeSearchQ').value.trim();location.href='search.html'+(v?('?q='+encodeURIComponent(v)):'');" class="hidden xl:block ml-auto">
+        <div class="relative">
+          <input id="homeSearchQ" type="text" autocomplete="off" aria-label="스마트 검색" placeholder="검색 — 666? 휴거?" class="w-52 2xl:w-64 rounded-full pl-4 pr-9 py-2 text-[13px] text-neutral-900 bg-white border border-ink/15 outline-none placeholder:text-neutral-400 hover:border-neutral-400 focus:border-gold transition" />
+          <button type="submit" aria-label="검색" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-gold/80 hover:text-gold"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></svg></button>
+        </div>
+      </form>
+
+      <!-- 대형 후원 배너 (브래드TV 벤치마킹 · 데스크톱) -->
+      <a href="support.html" class="hidden lg:flex ml-auto xl:ml-0 items-center gap-3.5 rounded-2xl pl-5 pr-6 py-3 min-h-[62px] text-white shadow-card hover:-translate-y-0.5 hover:shadow-xl transition relative overflow-hidden shrink-0" style="background:linear-gradient(105deg,#152747 0%,#213a6b 55%,#0e2a52 100%)">
+        <span class="absolute -right-6 -top-10 w-32 h-32 rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(231,214,172,.25),transparent 70%)"></span>
+        <span class="relative w-9 h-9 rounded-full bg-gold text-white flex items-center justify-center shrink-0"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7.5-4.9-10-9.6C.4 8 1.9 4.4 5.2 4.4c1.9 0 3.3 1.1 4.1 2.3.3.4.9.4 1.2 0 .8-1.2 2.2-2.3 4.1-2.3 3.3 0 4.8 3.6 3.2 7C19.5 16.1 12 21 12 21z"/></svg></span>
+        <span class="relative leading-tight">
+          <span class="block text-[17px] 2xl:text-[19px] font-extrabold tracking-tight whitespace-nowrap">바이블 인사이트 <span class="text-goldsoft">후원하기</span> <span class="text-gold">▶▶</span></span>
+          <span class="block text-[11px] text-white/65 mt-1 whitespace-nowrap">광고 없는 미디어 선교 — 여러분의 후원으로 이어집니다</span>
+        </span>
+      </a>
+
+      <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="xl:hidden ml-auto lg:ml-2 w-10 h-10 flex items-center justify-center text-neutral-900 shrink-0" aria-label="메뉴 열기">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
-      <!-- 컴팩트 스마트 검색 (데스크톱 헤더 · 히어로에서 이동) -->
-      <form onsubmit="event.preventDefault();var v=document.getElementById('homeSearchQ').value.trim();location.href='search.html'+(v?('?q='+encodeURIComponent(v)):'');" class="hidden xl:block absolute right-4 top-1/2 -translate-y-1/2">
-        <input id="homeSearchQ" type="text" autocomplete="off" aria-label="스마트 검색" placeholder="검색 — 666? 휴거? 죽으면 어디로?" class="w-64 rounded-full pl-4 pr-9 py-2 text-[13px] text-neutral-900 bg-white border border-ink/15 outline-none placeholder:text-neutral-400 hover:border-neutral-400 focus:border-gold transition" />
-        <button type="submit" aria-label="검색" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-gold/80 hover:text-gold"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></svg></button>
-      </form>
     </div>
+
+    <!-- 대형 후원 배너 (모바일·태블릿 — 헤더 아래 풀폭) -->
+    <a href="support.html" class="lg:hidden flex items-center justify-center gap-2.5 text-white text-[14px] font-extrabold tracking-tight py-3 px-4" style="background:linear-gradient(105deg,#152747 0%,#213a6b 55%,#0e2a52 100%)">
+      <span class="w-6 h-6 rounded-full bg-gold text-white flex items-center justify-center shrink-0" style="transform:scale(.9)"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7.5-4.9-10-9.6C.4 8 1.9 4.4 5.2 4.4c1.9 0 3.3 1.1 4.1 2.3.3.4.9.4 1.2 0 .8-1.2 2.2-2.3 4.1-2.3 3.3 0 4.8 3.6 3.2 7C19.5 16.1 12 21 12 21z"/></svg></span>
+      바이블 인사이트 <span class="text-goldsoft">후원하기</span> <span class="text-gold">▶▶</span>
+    </a>
     <!-- 메뉴 줄 (큰 폰트 + 호버 드롭다운) -->
     <nav class="hidden xl:block border-t border-ink/8">
       <!-- 1280px(xl) 노트북에서 메뉴+버튼이 가로로 넘치지 않도록 간격을 좁히고, 2xl 이상에서 원래 여백 복원 -->
@@ -214,7 +233,7 @@
         <div class="flex items-center gap-2 ml-auto shrink-0">
           <a href="welcome.html" style="background:#00704a" class="inline-flex items-center gap-1.5 text-white font-semibold text-[15px] px-4 2xl:px-5 py-2.5 rounded-full hover:opacity-90 transition">무료로 시작하기</a>
           <a href="mylearning.html" class="inline-flex items-center gap-1.5 border border-gold/45 text-gold font-semibold text-sm px-4 py-2.5 rounded-full hover:bg-gold/10 transition">내 강의실</a>
-          <a href="support.html" aria-label="후원하기" title="후원하기" class="inline-flex items-center gap-1 rounded-full bg-rose-500/10 text-rose-500 border border-rose-300 font-semibold text-sm px-4 py-2.5 hover:bg-rose-500 hover:text-white transition"><span style="font-size:15px"></span> 후원</a>
+          <a href="support.html" aria-label="후원하기" title="후원하기" class="inline-flex items-center gap-1.5 rounded-full bg-rose-500 text-white font-bold text-sm px-4 py-2.5 hover:opacity-90 transition shadow-soft"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7.5-4.9-10-9.6C.4 8 1.9 4.4 5.2 4.4c1.9 0 3.3 1.1 4.1 2.3.3.4.9.4 1.2 0 .8-1.2 2.2-2.3 4.1-2.3 3.3 0 4.8 3.6 3.2 7C19.5 16.1 12 21 12 21z"/></svg> 후원하기</a>
         </div>
       </div>
     </nav>
@@ -224,7 +243,7 @@
       <div id="mobilemenuLinks" class="flex flex-col"></div>
       <div class="flex gap-2 mt-3 pt-3 border-t border-ink/8">
         <a href="mylearning.html" class="flex-1 text-center border border-gold/45 text-gold font-semibold text-sm px-4 py-3 rounded-full">내 강의실</a>
-        <a href="support.html" onclick="closeMobileMenu()" aria-label="후원하기" class="text-center text-rose-500 border border-rose-300 font-semibold text-sm px-4 py-3 rounded-full hover:bg-rose-500/10 transition">후원</a>
+        <a href="support.html" onclick="closeMobileMenu()" aria-label="후원하기" class="text-center bg-rose-500 text-white font-bold text-sm px-4 py-3 rounded-full hover:opacity-90 transition">후원하기</a>
         <a href="academy.html#apply" onclick="closeMobileMenu()" class="flex-1 text-center bg-gold text-white font-semibold text-sm px-4 py-3 rounded-full">수강 신청</a>
       </div>
     </div>
@@ -239,7 +258,7 @@
     </div>
     <div class="max-w-6xl mx-auto px-5 pt-3 pb-2 text-center">
       <p class="mb-2"><span class="inline-block bg-sand text-navy text-[11px] md:text-[12px] font-semibold px-3 py-1 rounded-full">미디어 선교 전문 채널 · 유튜브 「오광일의 인사이트 브리핑」 공식 플랫폼</span></p>
-      <h1 data-cms="home.heroTitle" class="text-[24px] md:text-[32px] font-bold tracking-tight text-neutral-900">말씀으로 <span class="text-gold">시대를 읽다</span></h1>
+      <h1 data-cms="home.heroTitle" class="text-[27px] md:text-[40px] font-extrabold tracking-tight text-neutral-900">말씀으로 <span class="text-gold">시대를 읽다</span></h1>
       <p data-cms="home.heroSub" class="mt-2 text-neutral-900/55 text-[14px] md:text-[15px] leading-relaxed">성경을 스스로 읽는 눈을 길러, 흔들리지 않는 분별의 사람을 세웁니다 — <b class="text-neutral-900/75">전 강의 무료</b></p>
     </div>
 
@@ -384,7 +403,7 @@
       <div class="flex items-end justify-between gap-3 mb-5">
         <div>
           <p class="text-[11px] font-bold text-gold tracking-[0.15em] mb-1">PROGRAMS · 프로그램별</p>
-          <h2 class="text-xl md:text-2xl font-bold">시리즈마다, 가장 최근 강의부터</h2>
+          <h2 class="text-[22px] md:text-[28px] font-extrabold tracking-tight">시리즈마다, 가장 최근 강의부터</h2>
           <p class="text-neutral-900/50 text-sm mt-1">보고 싶은 주제를 고르면 그 시리즈의 최신 강의로 바로 들어갑니다.</p>
         </div>
         <div class="flex items-center gap-2 shrink-0">
@@ -405,7 +424,7 @@
     <div class="max-w-5xl mx-auto px-5">
       <div class="text-center mb-7 md:mb-9">
         <p class="text-gold text-[11px] font-bold tracking-[0.28em] uppercase">Books</p>
-        <h2 class="text-xl md:text-2xl font-bold leading-snug mt-1.5">저자가 쓴 책</h2>
+        <h2 class="text-[22px] md:text-[28px] font-extrabold tracking-tight leading-snug mt-1.5">저자가 쓴 책</h2>
         <p class="text-[13px] md:text-sm text-neutral-900/60 mt-2">강의로 다 담지 못한 이야기를, 책으로 만나실 수 있습니다</p>
       </div>
 
@@ -560,7 +579,7 @@
     <div class="max-w-5xl mx-auto px-5">
       <div class="text-center mb-6">
         <p class="text-gold text-[11px] font-bold tracking-[0.22em] uppercase mb-2">Bible Q&amp;A · 성경 궁금증</p>
-        <h2 class="text-xl md:text-2xl font-bold">성경, <span class="text-gold">궁금한 건 물어보세요</span></h2>
+        <h2 class="text-[22px] md:text-[28px] font-extrabold tracking-tight">성경, <span class="text-gold">궁금한 건 물어보세요</span></h2>
         <p class="text-neutral-900/55 text-[12.5px] md:text-[13px] mt-2 leading-relaxed max-w-lg mx-auto">666, 휴거, 죽으면 어디로… 창세기부터 요한계시록까지 <b class="text-neutral-900/80">2,100여 개의 질문</b>을 성경 본문과 함께 균형 있게 풀이합니다.</p>
       </div>
 
@@ -635,7 +654,7 @@
     <div class="max-w-6xl mx-auto px-5">
       <div class="text-center mb-9">
         <p class="eyebrow text-gold text-xs font-semibold mb-3 tracking-[0.2em]">HOW IT WORKS</p>
-        <h2 class="text-2xl md:text-[32px] font-bold">두 가지 방법으로 배웁니다</h2>
+        <h2 class="text-2xl md:text-[32px] font-extrabold tracking-tight">두 가지 방법으로 배웁니다</h2>
         <p class="text-neutral-900/55 text-sm md:text-base mt-3 max-w-xl mx-auto">가볍게 <b class="text-neutral-900/80">무료 강의</b>로 시작하고, 더 깊이 가고 싶다면 <b class="text-neutral-900/80">인증 과정</b>으로 단계를 밟아 오르세요.</p>
       </div>
 
@@ -693,7 +712,7 @@
     <div class="max-w-6xl mx-auto px-5">
       <div class="text-center mb-14">
         <p class="eyebrow text-gold text-xs font-semibold mb-4">WHY BIBLY · 왜 BIBLY일까요</p>
-        <h2 data-cms="home-sec6" class="text-2xl md:text-[34px] font-bold leading-[1.32]">유튜브를 그렇게 봤는데,<br/>왜 늘 <span class="text-gold">제자리</span>였을까요?</h2>
+        <h2 data-cms="home-sec6" class="text-2xl md:text-[34px] font-extrabold tracking-tight leading-[1.32]">유튜브를 그렇게 봤는데,<br/>왜 늘 <span class="text-gold">제자리</span>였을까요?</h2>
         <p class="text-neutral-900/65 mt-5 max-w-2xl mx-auto leading-relaxed text-[15px] md:text-base">
           이 영상 저 영상 따라다녀도 머릿속은 더 복잡해지고,<br class="hidden sm:block"/>
           무엇이 진짜인지 끝내 확신이 서지 않던 시간 — 문제는 <b class="text-neutral-900">당신</b>이 아니라 <b class="text-neutral-900">흩어진 조각들</b>이었습니다.<br/>
@@ -766,7 +785,7 @@
         </figure>
         <div class="text-center md:text-left">
           <p class="eyebrow text-gold text-xs font-semibold mb-2">INSTRUCTOR</p>
-          <h2 data-cms="home-sec10" class="text-2xl md:text-[30px] font-bold leading-snug">신학 · 인문학 · 교육학,<br class="sm:hidden"/> 한 사람에게서</h2>
+          <h2 data-cms="home-sec10" class="text-2xl md:text-[30px] font-extrabold tracking-tight leading-snug">신학 · 인문학 · 교육학,<br class="sm:hidden"/> 한 사람에게서</h2>
           <p class="mt-4 text-neutral-900/70 leading-relaxed text-[14.5px] md:text-[15px]">강사 <b class="text-neutral-900">오광일</b> — West Coast Baptist College 신학 석사(M.R.E) · 성균관대 교육학 박사 · 전북대 영문학 학사. 2012년부터 유튜브 「오광일의 인사이트 브리핑」에서 <b class="text-neutral-900"><span data-stat="views">179만+</span> 조회</b>로 검증받아 온 가르침을, 광고·협찬 없이 무료로 나눕니다.</p>
           <div class="mt-6 flex flex-wrap justify-center md:justify-start gap-3">
             <a href="about.html" class="border border-ink/25 text-neutral-900 text-sm font-semibold px-6 py-3 rounded-full hover:bg-ink/10 transition">강사 이야기 · 저서 더 보기 →</a>
@@ -782,7 +801,7 @@
     <div class="max-w-6xl mx-auto px-5">
       <div class="text-center mb-9">
         <p class="eyebrow text-gold text-xs font-semibold mb-4" style="letter-spacing:.3em">TOGETHER · 함께</p>
-        <h2 class="text-2xl md:text-[30px] font-bold leading-snug">함께 <span class="text-gold">걸어가는</span> 사람들</h2>
+        <h2 class="text-2xl md:text-[30px] font-extrabold tracking-tight leading-snug">함께 <span class="text-gold">걸어가는</span> 사람들</h2>
         <p class="text-neutral-900/60 text-[15px] leading-relaxed mt-4">댓글과 기도와 글로, 이 사역을 함께 세워 가는 자리입니다.</p>
       </div>
       <div class="grid gap-6 lg:grid-cols-3 items-start">
@@ -843,7 +862,7 @@
     <div class="max-w-3xl mx-auto px-5">
       <div class="text-center mb-12">
         <p class="eyebrow text-gold text-xs font-semibold mb-4">FAQ</p>
-        <h2 data-cms="home-sec19" class="text-2xl md:text-[32px] font-bold">자주 묻는 질문</h2>
+        <h2 data-cms="home-sec19" class="text-2xl md:text-[32px] font-extrabold tracking-tight">자주 묻는 질문</h2>
       </div>
       <div class="space-y-3">
         <details class="bg-white rounded-2xl border border-ink/8 px-6 py-4">
@@ -885,7 +904,7 @@
   <!-- ===== 최종 CTA ===== -->
   <section id="contact" class="py-14 bg-gold/15">
     <div class="max-w-2xl mx-auto px-5 text-center">
-      <h2 data-cms="home-sec22" class="text-2xl md:text-[32px] font-bold mb-5">지금, 성경을 직접 읽는 눈을 시작하세요</h2>
+      <h2 data-cms="home-sec22" class="text-2xl md:text-[32px] font-extrabold tracking-tight mb-5">지금, 성경을 직접 읽는 눈을 시작하세요</h2>
       <p class="text-neutral-900/70 mb-9">기초부터 차근차근. 먼저 무료 1강으로 만나보세요.</p>
       <a href="academy.html#apply" class="inline-block bg-ink text-paper font-semibold px-9 py-4 rounded-full hover:bg-navy transition shadow-card">수강 신청하기 →</a>
     </div>
