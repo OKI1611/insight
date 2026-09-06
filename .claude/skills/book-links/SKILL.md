@@ -32,7 +32,7 @@ git pull origin main
 
 ## 책 ↔ 앵커 대응
 
-| 책 | 앵커 | 아코디언 id |
+| 책 | 앵커 | 아코디언 id(about.html) |
 |---|---|---|
 | 마귀는 거짓말을 하지 않는다 (신간) | `#devil` | `bk1` |
 | 가이사의 교회, 하나님의 교회 | `#caesar` | `bk2` |
@@ -40,16 +40,15 @@ git pull origin main
 | 교회를 떠나고서야, 예수를 만났다 | `#church` | `bk4` |
 | 엄마 향기 | `#mom` | `bk5` |
 
-## 고쳐야 할 위치 (한 책당 4곳)
+## 고쳐야 할 위치 (한 책당 최대 3곳)
 
 먼저 `grep -n "<그 책의 기존 서점 URL 하나>" books.html index.html about.html` 로 실제 위치를 확인한다.
 
-1. **books.html** — 책 상세의 `구매하기` 블록 (`storeRow`)
-2. **index.html** — 홈 신간 카드의 `📘 종이책` 버튼 줄
-3. **index.html** — 하단 강사 소개의 **저서 아코디언** (`bkbuy-bkN`)
-4. **about.html** — 저자 소개의 저서 아코디언 (index와 같은 구조)
+1. **books.html** — 책 상세의 `구매하기` 블록 (`storeRow`) — 모든 책
+2. **index.html** — 홈 신간 카드의 `📘 종이책` 버튼 줄 — **신간 1권만**(2026-09-06 홈 다이어트로 나머지 책은 홈에서 표지 카드만 남고 구매 버튼이 books.html 로 위임됨. 홈의 저서 아코디언도 삭제됨)
+3. **about.html** — 저자 소개의 저서 아코디언 (`bkbuy-bkN`)
 
-확인: `grep -c "<새 URL 조각>" books.html index.html about.html` → **1 / 2 / 1** 이 나와야 한다(index는 카드 + 아코디언 두 곳).
+확인: `grep -c "<새 URL 조각>" books.html index.html about.html` → 신간은 **1 / 1 / 1**, 그 외 책은 **1 / 0 / 1** 이 나와야 한다.
 
 ## 서점 순서·스타일
 
