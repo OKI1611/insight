@@ -115,8 +115,10 @@
   // 새 로고(logo-heritage-wide)에 BIBLE INSIGHT 워드마크가 포함되어 있어
   // 옆에 한글 브랜드명을 병기하면 중복 + 헤더 폭 초과 → 로고 단독 사용(2026-08-05).
   var LOGO =
-    '<a href="index.html" onclick="return __biblyHome(event)" class="flex items-center shrink-0" aria-label="바이블 인사이트 홈">'
-    + '<img src="/images/logo-heritage-wide.png?v=2" alt="바이블 인사이트 로고" class="h-9 md:h-10 w-auto shrink-0" /></a>';
+    '<a href="index.html" onclick="return __biblyHome(event)" class="flex items-center gap-2.5 shrink-0" aria-label="바이블 인사이트 홈">'
+    + '<img src="/images/icon-192.png" alt="바이블 인사이트 모노그램" class="w-9 h-9 md:w-10 md:h-10 rounded-lg shadow-soft shrink-0" />'
+    + '<span class="leading-none"><span class="block font-display text-[17px] md:text-[19px] font-extrabold tracking-tight" style="color:#182c54">바이블 인사이트</span>'
+    + '<span class="mt-1 block text-[8.5px] font-bold tracking-[0.22em]" style="color:#00704a">BIBLE INSIGHT</span></span></a>';
 
   var mount, active;
 
@@ -144,7 +146,7 @@
   function mainCtaHTML(){
     return '<a href="search.html" aria-label="스마트 검색" title="스마트 검색" class="inline-flex items-center justify-center w-9 h-9 rounded-full hover:bg-ink/5 text-neutral-900/70"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></svg></a>'
       + '<a href="watch.html" class="inline-flex items-center gap-1 bg-gold text-white font-bold px-3.5 py-1.5 rounded-full hover:opacity-90 transition text-xs whitespace-nowrap shadow-soft">▶ 바로 수강</a>'
-      + '<a href="support.html" class="hidden md:inline-flex items-center gap-1 bg-rose-500 text-white font-bold px-3.5 py-1.5 rounded-full hover:opacity-90 transition text-xs whitespace-nowrap shadow-soft">후원하기</a>'
+      + '<a href="support.html" class="hidden md:inline-flex items-center gap-1.5 text-white font-bold px-4 py-1.5 rounded-full hover:opacity-90 transition text-xs whitespace-nowrap shadow-soft" style="background:linear-gradient(105deg,#e11d48,#9f1239)"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7.5-4.9-10-9.6C.4 8 1.9 4.4 5.2 4.4c1.9 0 3.3 1.1 4.1 2.3.3.4.9.4 1.2 0 .8-1.2 2.2-2.3 4.1-2.3 3.3 0 4.8 3.6 3.2 7C19.5 16.1 12 21 12 21z"/></svg> 후원하기</a>'
       + '<a href="mylearning.html" class="hidden xl:inline-flex items-center gap-1 border border-gold/45 text-gold font-semibold px-3 py-1.5 rounded-full hover:bg-gold/10 transition text-xs whitespace-nowrap">내 강의실</a>';
   }
   // 상단 퀵바(유틸리티) — 수학싸부식: 공지·이벤트·후원 + 로그인 상태/마이메뉴
