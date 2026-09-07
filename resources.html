@@ -260,7 +260,7 @@
           if(file.size>20*1024*1024){ alert('첨부파일은 20MB 이하만 가능해요.'); return; }
           const ext=extOf(file.name)||'bin';
           const safe=file.name.replace(/\.[^.]+$/,'').replace(/[^\w\-]+/g,'_').slice(0,40) || 'file';
-          const path=`resources/files/${Date.now()}-${safe}.${ext}`;
+          const path=`resources/files/${Date.now()}-${Math.random().toString(36).slice(2,10)}-${safe}.${ext}`;
           const { error }=await sb.storage.from('community').upload(path,file);
           if(error){ alert('첨부 업로드 오류: '+error.message); return; }
           const url=sb.storage.from('community').getPublicUrl(path).data.publicUrl;
@@ -277,7 +277,7 @@
           const file=input.files[0]; if(!file) return;
           if(file.size>5*1024*1024){ alert('이미지는 5MB 이하만 가능해요.'); return; }
           const ext=(file.name.split('.').pop()||'jpg').toLowerCase();
-          const path=`resources/img/${Date.now()}.${ext}`;
+          const path=`resources/img/${Date.now()}-${Math.random().toString(36).slice(2,10)}.${ext}`;
           const { error }=await sb.storage.from('community').upload(path,file);
           if(error){ alert('이미지 업로드 오류: '+error.message); return; }
           const url=sb.storage.from('community').getPublicUrl(path).data.publicUrl;
@@ -553,7 +553,7 @@
           if(file.size > 20*1024*1024) throw new Error('파일은 20MB 이하만 가능해요.');
           const ext = extOf(file.name) || 'file';
           const safe = file.name.replace(/\.[^.]+$/,'').replace(/[^\w\-]+/g,'_').slice(0,40) || 'file';
-          const path = `resources/${Date.now()}-${safe}.${ext}`;
+          const path = `resources/${Date.now()}-${Math.random().toString(36).slice(2,10)}-${safe}.${ext}`;
           const { error: upErr } = await sb.storage.from('community').upload(path, file);
           if(upErr) throw upErr;
           row.file_url  = sb.storage.from('community').getPublicUrl(path).data.publicUrl;

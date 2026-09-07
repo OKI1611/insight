@@ -1436,7 +1436,7 @@
 
     function submittedBlock(sub){
       return '<div class="text-[13px] text-neutral-900/55"><p class="font-bold text-neutral-900/70 mb-1">제출한 내용</p><div class="border border-ink/8 rounded-xl px-4 py-3 bg-neutral-50/60 leading-relaxed">'+nl2br(sub.body||'')+'</div>'
-        + (sub.image_url? '<a href="'+esc2(sub.image_url)+'" target="_blank" class="inline-block mt-2 text-gold text-[12px] font-semibold hover:underline">📎 첨부 사진 보기</a>':'')+'</div>';
+        + (sub.image_url? '<a href="javascript:void(0)" data-p="'+esc2(sub.image_url)+'" onclick="asgOpenImg(this.dataset.p)" class="inline-block mt-2 text-gold text-[12px] font-semibold hover:underline">📎 첨부 사진 보기</a>':'')+'</div>';
     }
 
     function formBlock(def, sub, minc, isEdit){
@@ -1447,7 +1447,7 @@
         +'<div class="mt-3 flex flex-wrap items-center gap-2">'
         +'<label class="inline-flex items-center gap-1.5 text-[13px] text-neutral-900/60 border border-ink/12 rounded-lg px-3 py-2 cursor-pointer hover:bg-ink/[0.03]"><span>📎 사진 첨부</span><input id="asgImg" type="file" accept="image/*" class="hidden" onchange="__asgPick(this)"></label>'
         +'<span id="asgImgName" class="text-[12px] text-neutral-900/45"></span>'
-        +(sub&&sub.image_url?'<a href="'+esc2(sub.image_url)+'" target="_blank" class="text-gold text-[12px] font-semibold hover:underline">기존 첨부 보기</a>':'')
+        +(sub&&sub.image_url?'<a href="javascript:void(0)" data-p="'+esc2(sub.image_url)+'" onclick="asgOpenImg(this.dataset.p)" class="text-gold text-[12px] font-semibold hover:underline">기존 첨부 보기</a>':'')
         +'</div>'
         +'<button id="asgSubmitBtn" onclick="__asgSubmit(\''+esc2(def.minChars||100)+'\')" class="mt-4 w-full bg-gold text-white font-bold text-[15px] py-3 rounded-xl hover:opacity-90 transition">'+(isEdit?'수정하여 다시 제출':'과제 제출하기')+'</button>'
         +'<p id="asgMsg" class="text-[12px] text-center mt-2 min-h-[16px]"></p>';
@@ -1457,6 +1457,27 @@
     document.addEventListener('input', function(e){ if(e.target && e.target.id==='asgInput'){ var c=document.getElementById('asgCount'); if(c) c.textContent=(e.target.value.trim().length)+'자'; } });
 
     window.__asgPick=function(inp){ var n=document.getElementById('asgImgName'); if(n) n.textContent = inp.files&&inp.files[0]? inp.files[0].name : ''; };
+
+    // 과제 첨부 사진 열기 — assignments 버킷이 비공개라 클릭 시점에 서명 URL(1시간)을 발급한다.
+    //   빈 창을 먼저 열어 사용자 클릭 컨텍스트를 유지해야 팝업 차단에 걸리지 않는다.
+    //   과거 방식으로 저장된 전체 URL(http…)도 그대로 열 수 있게 함께 처리한다.
+    window.asgOpenImg=async function(v){
+      if(!v) return;
+      var w=window.open('','_blank');
+      try{
+        var url=v;
+        if(!/^https?:\/\//i.test(v)){
+          var r=await lsb.storage.from('assignments').createSignedUrl(v, 3600);
+          if(r.error||!r.data||!r.data.signedUrl) throw new Error((r.error&&r.error.message)||'링크 생성 실패');
+          url=r.data.signedUrl;
+        }
+        if(w) w.location.href=url; else window.location.href=url;
+      }catch(e){
+        if(w) try{ w.close(); }catch(_){}
+        var m='사진을 열 수 없어요: '+(e.message||e);
+        if(typeof learnToast==='function') learnToast(m,false); else alert(m);
+      }
+    };
 
     window.__asgSubmit=async function(minc){
       if(busy) return; minc=parseInt(minc,10)||100;
@@ -1474,7 +1495,9 @@
           var path=LUSER.id+'/'+lid+'_'+Date.now()+'.'+ext;
           var up=await lsb.storage.from('assignments').upload(path, f, {upsert:true, contentType:f.type||'image/jpeg'});
           if(up.error) throw new Error('사진 업로드 실패: '+up.error.message);
-          var pu=lsb.storage.from('assignments').getPublicUrl(path); image_url=pu&&pu.data&&pu.data.publicUrl||null;
+          // ⚠assignments 버킷은 비공개다(db/storage_privacy.sql). 공개 URL을 만들지 않고
+          //   경로만 저장한 뒤, 열람 시점에 asgOpenImg()가 서명 URL을 발급한다.
+          image_url=path;
         }
       }catch(e){ busy=false; if(btn){ btn.disabled=false; btn.textContent='과제 제출하기'; } if(msg){ msg.style.color='#dc2626'; msg.textContent=e.message; } return; }
       var row={ user_id:LUSER.id, lesson_id:lid, track:track, user_name:uname, body:body, status:'submitted', submitted_at:new Date().toISOString() };
