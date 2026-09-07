@@ -109,8 +109,31 @@
     const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth:{ flowType:'implicit', lock: async (_n,_t,fn)=>await fn() } });
     let PROG=null;
 
-    function storedEmail(){ try{ for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); if(!/auth-token/.test(k)) continue; const v=JSON.parse(localStorage.getItem(k)); const s=(v&&v.user)?v:(v&&v.currentSession)?v.currentSession:null; if(s&&s.user&&s.user.email) return s.user.email; } }catch(e){} return null; }
-    async function isAdmin(){ if(storedEmail()===ADMIN_EMAIL) return true; try{ const {data}=await sb.auth.getSession(); return !!(data&&data.session&&data.session.user&&data.session.user.email===ADMIN_EMAIL); }catch(e){ return false; } }
+    // ★관리자 판별은 서버 검증으로만 한다 — localStorage 의 이메일 값은 브라우저에서 위조할 수 있다.
+    //   저장된 access_token 을 Supabase 인증 서버에 보내 이메일을 확인한다(위조 토큰은 여기서 걸린다).
+    function storedToken(){
+      try{
+        const raw=localStorage.getItem('bibly-admin-auth');
+        if(raw){ const v=JSON.parse(raw); if(v&&v.access_token) return v.access_token; }
+        for(let i=0;i<localStorage.length;i++){
+          const k=localStorage.key(i); if(!/auth-token/.test(k)) continue;
+          const v=JSON.parse(localStorage.getItem(k));
+          const s=(v&&v.access_token)?v:(v&&v.currentSession)?v.currentSession:null;
+          if(s&&s.access_token) return s.access_token;
+        }
+      }catch(e){} return null;
+    }
+    async function isAdmin(){
+      let tok=storedToken();
+      if(!tok){ try{ const {data}=await sb.auth.getSession(); tok=(data&&data.session&&data.session.access_token)||null; }catch(e){} }
+      if(!tok) return false;
+      try{
+        const r=await fetch(SUPABASE_URL+'/auth/v1/user',{ headers:{ apikey:SUPABASE_ANON, Authorization:'Bearer '+tok } });
+        if(!r.ok) return false;
+        const u=await r.json();
+        return !!(u && String(u.email||'').toLowerCase()===String(ADMIN_EMAIL).toLowerCase());
+      }catch(e){ return false; }
+    }
 
     (async function init(){
       const admin = await isAdmin();

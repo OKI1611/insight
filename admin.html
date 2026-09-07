@@ -541,18 +541,50 @@
       try{ localStorage.removeItem('bibly-admin-auth'); Object.keys(localStorage).forEach(k=>{ if(/sb-.*-auth-token|supabase\.auth\.token/.test(k)) localStorage.removeItem(k); }); }catch(e){}
       location.reload();
     }
-    function applyAuth(session){
-      USER = (session && session.user) || null;
-      const isAdmin = USER && USER.email === ADMIN_EMAIL;
+    // ★관리자 판별은 localStorage 값을 믿지 않는다.
+    //   localStorage 는 브라우저 개발자도구로 누구나 위조할 수 있어, 예전에는
+    //   {user:{email:'관리자주소'}} 만 넣으면 콘솔 화면이 열렸다(데이터는 RLS 가 막아 빈 화면이었지만
+    //   모든 방어가 RLS 한 겹에만 걸려 있었다).
+    //   이제 access_token 을 Supabase 인증 서버에 보내 **서버가 돌려준 이메일**로만 판단한다.
+    //   위조 토큰은 서버 검증에서 걸리므로 화면 자체가 열리지 않는다.
+    async function verifySession(session){
+      const tok = session && session.access_token;
+      if(!tok) return null;
+      const ctrl=new AbortController(); const to=setTimeout(()=>ctrl.abort(), 8000);
+      try{
+        const res = await fetch(SUPABASE_URL+'/auth/v1/user', {
+          signal: ctrl.signal,
+          headers:{ apikey: SUPABASE_ANON, Authorization: 'Bearer '+tok }
+        });
+        clearTimeout(to);
+        if(!res.ok) return null;                 // 만료·위조 토큰은 여기서 걸린다
+        const u = await res.json();
+        return (u && u.id) ? u : null;
+      }catch(e){ clearTimeout(to); return null; } // 네트워크 오류 시에도 열어 주지 않는다(안전 우선)
+    }
+
+    async function applyAuth(session){
+      const gate=document.getElementById('gate'), con=document.getElementById('console');
+      const gm=document.getElementById('gateMsg');
+      if(gm && session && session.access_token) gm.textContent = '관리자 확인 중…';
+
+      const verified = await verifySession(session);   // 서버가 확인해 준 사용자만 신뢰
+      USER = verified;
+      const email = String((verified && verified.email) || '').toLowerCase();
+      const isAdmin = !!email && email === String(ADMIN_EMAIL).toLowerCase();
+
       if(isAdmin){
-        document.getElementById('gate').classList.add('hidden');
-        const c=document.getElementById('console'); c.classList.remove('hidden'); c.classList.add('flex');
-        document.getElementById('adminWho').textContent = USER.email;
+        gate.classList.add('hidden');
+        con.classList.remove('hidden'); con.classList.add('flex');
+        document.getElementById('adminWho').textContent = verified.email;
         initConsole();
       } else {
-        document.getElementById('gate').classList.remove('hidden');
-        document.getElementById('console').classList.add('hidden');
-        if(USER) document.getElementById('gateMsg').innerHTML = '이 계정(<b>'+esc(USER.email)+'</b>)은 관리자가 아니에요.<br>관리자 계정으로 로그인하세요.';
+        gate.classList.remove('hidden');
+        con.classList.add('hidden');
+        if(gm){
+          if(verified) gm.innerHTML = '이 계정(<b>'+esc(verified.email||'')+'</b>)은 관리자가 아니에요.<br>관리자 계정으로 로그인하세요.';
+          else if(session && session.access_token) gm.textContent = '세션이 만료되었거나 확인에 실패했습니다. 다시 로그인해 주세요.';
+        }
       }
     }
 
