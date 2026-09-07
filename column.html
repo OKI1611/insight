@@ -171,7 +171,10 @@
   <script>
     const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType: 'implicit', lock: async (_n, _t, fn) => await fn() } });
     let isAdmin = false, SESSION = null, COLS = [], current = null, editingId = null, quill = null;
-    function myName(){ const u=SESSION&&SESSION.user; if(!u) return '회원'; return (u.user_metadata&&(u.user_metadata.full_name||u.user_metadata.name))||(u.email?u.email.split('@')[0]:'회원'); }
+    // 댓글은 공개 목록이라 실명·이메일을 그대로 쓰지 않는다(가려진 표시 이름을 저장).
+    function myName(){ const u=SESSION&&SESSION.user; if(!u) return '회원';
+      const n=(u.user_metadata&&(u.user_metadata.full_name||u.user_metadata.name))||'';
+      return window.biblyDisplayName ? window.biblyDisplayName(n, u.email===ADMIN_EMAIL) : '회원'; }
     function nl2(s){ return esc(s).replace(/\n/g,'<br>'); }
 
     function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }

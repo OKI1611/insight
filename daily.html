@@ -319,7 +319,9 @@
     const content=$('pContent').value.trim(), title=$('pTitle').value.trim();
     if(content.length<5){ $('pMsg').textContent='조금 더 적어주세요 (5자 이상).'; return; }
     $('pSubmit').disabled=true;
-    let nm='회원'; try{ const { data:prof }=await sb.from('profiles').select('full_name').eq('id',USER.id).maybeSingle(); nm=(prof&&prof.full_name)||(USER.email?USER.email.split('@')[0]:'회원'); }catch(e){ nm=USER.email?USER.email.split('@')[0]:'회원'; }
+    // 묵상 나눔은 공개 목록이라 실명·이메일을 그대로 쓰지 않는다(가려진 표시 이름을 저장).
+    let nm='회원'; try{ const { data:prof }=await sb.from('profiles').select('full_name').eq('id',USER.id).maybeSingle();
+      nm=(window.biblyDisplayName ? window.biblyDisplayName(prof&&prof.full_name, USER.email===ADMIN_EMAIL) : '회원'); }catch(e){ nm='회원'; }
     try{ await sb.from('daily_posts').insert({ author_id:USER.id, author_name:nm, devo_date:CUR, title:title||null, content }); }
     catch(e){ $('pMsg').textContent='저장 중 문제가 생겼어요. 잠시 후 다시 시도해 주세요.'; $('pSubmit').disabled=false; return; }
     $('pTitle').value=''; $('pContent').value=''; $('pMsg').textContent=''; $('pSubmit').disabled=false;

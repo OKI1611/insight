@@ -519,3 +519,27 @@
   }catch(e){}
 
 })();
+
+/* ===== 공개 게시판 표시 이름 (2026-09-07 신설) =====
+   게시판·댓글의 author_name 컬럼은 정책상 익명도 읽을 수 있다(select using(true)).
+   여기에 실명이나 이메일이 그대로 들어가면 그대로 공개 노출된다.
+   그래서 '저장 시점에' 가려서 넣는다. 화면에서만 가리는 것은 소용없다 —
+   API 로 표를 직접 조회하면 원본이 그대로 나오기 때문이다.
+   가리기 규칙은 db/founding_wall.sql 의 mask_name 과 동일하게 맞춘다.
+     1글자 → *  /  2글자 → 김*  /  3글자 이상 → 홍*동
+   ⚠이메일은 어떤 형태로도 쓰지 않는다. 앞부분만 잘라 써도 계정 추측에 쓰인다. */
+window.biblyMaskName = function(name){
+  var s = String(name == null ? '' : name).trim();
+  if(!s) return '회원';
+  var a = Array.from(s);                       // 이모지·결합문자 안전하게 분해
+  if(a.length === 1) return '*';
+  if(a.length === 2) return a[0] + '*';
+  return a[0] + new Array(a.length - 1).join('*') + a[a.length - 1];
+};
+/* profiles.full_name 을 받아 공개용 표시 이름을 만든다.
+   keepFull=true 는 운영자(강사) 전용 — 강사 이름은 채널 브랜드라 가리지 않는다. */
+window.biblyDisplayName = function(fullName, keepFull){
+  var s = String(fullName == null ? '' : fullName).trim();
+  if(!s || s.indexOf('@') >= 0) return '회원';  // 이메일이 흘러들어온 경우도 차단
+  return keepFull ? s : window.biblyMaskName(s);
+};

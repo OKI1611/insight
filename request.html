@@ -222,8 +222,10 @@
     async function setAuthUI(session){
       if(session && session.user){
         currentUser = session.user;
-        try { const { data: prof } = await withTimeout(sb.from('profiles').select('full_name').eq('id', currentUser.id).maybeSingle(), 6000); currentName = (prof && prof.full_name) || currentUser.email || '회원'; }
-        catch(e){ currentName = currentUser.email || '회원'; }
+        // 공개 목록이라 실명·이메일을 그대로 쓰지 않는다(가려진 표시 이름을 저장한다).
+        try { const { data: prof } = await withTimeout(sb.from('profiles').select('full_name').eq('id', currentUser.id).maybeSingle(), 6000);
+              currentName = (window.biblyDisplayName ? window.biblyDisplayName(prof && prof.full_name, currentUser.email === ADMIN_EMAIL) : '회원'); }
+        catch(e){ currentName = '회원'; }
         isAdmin = (currentUser.email === ADMIN_EMAIL);
         { const _nu = document.getElementById('navUser'); if(_nu) _nu.innerHTML = `${esc(currentName)}님${isAdmin ? ' <span class="text-gold font-semibold">· 관리자</span>' : ''} · <button onclick="logout()" class="hover:text-gold">로그아웃</button>`; }
         closeLoginModal();

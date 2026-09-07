@@ -180,7 +180,10 @@
       return tpl.innerHTML;
     }
     function timeAgo(iso){ const d=(Date.now()-new Date(iso))/86400000; if(d<1)return '오늘'; if(d<7)return Math.floor(d)+'일 전'; return new Date(iso).toLocaleDateString('ko-KR'); }
-    function myName(){ const u=SESSION&&SESSION.user; if(!u) return '회원'; return (u.user_metadata&&(u.user_metadata.full_name||u.user_metadata.name)) || (u.email?u.email.split('@')[0]:'회원'); }
+    // 댓글은 공개 목록이라 실명·이메일을 그대로 쓰지 않는다(가려진 표시 이름을 저장).
+    function myName(){ const u=SESSION&&SESSION.user; if(!u) return '회원';
+      const n=(u.user_metadata&&(u.user_metadata.full_name||u.user_metadata.name))||'';
+      return window.biblyDisplayName ? window.biblyDisplayName(n, u.email===ADMIN_EMAIL) : '회원'; }
 
     sb.auth.getSession().then(({data})=>{ setUser(data.session); init(); });
     sb.auth.onAuthStateChange((_e,s)=>{ setUser(s); if(CURRENT) renderCommentForm(); });

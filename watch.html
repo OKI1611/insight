@@ -1010,7 +1010,7 @@
       // 로그인 상태가 바뀌면(로그인/로그아웃) 현재 강의 플레이어를 다시 그려 게이트 적용/해제
       if(wasLogged !== !!LUSER && typeof cur === 'number' && cur >= 0 && typeof lessons !== 'undefined' && lessons.length){ loadLesson(cur); }
       ENROLLED = new Set(); DONE = new Set(); TABLES_READY = true;
-      QNAME = LUSER ? (LUSER.email || '회원') : '회원';
+      QNAME = '회원';   // ⚠이메일을 표시 이름으로 쓰지 않는다(질의응답은 공개된다)
       // ① UI를 먼저 그린다 — 데이터 로딩이 지연돼도 화면이 멈추지 않게
       setAuthState(); refreshLearningUI(); renderQaComposer(); loadQuestions(); refreshGatedTools();
       loadAccessBanner();
@@ -1018,7 +1018,8 @@
       if(LUSER){
         try { const { data, error } = await withTimeout(lsb.from('enrollments').select('track').eq('user_id', LUSER.id), 8000); if(error){ TABLES_READY = false; } else { (data||[]).forEach(e => ENROLLED.add(e.track)); } } catch(e){}
         try { const { data: p } = await withTimeout(lsb.from('lesson_progress').select('lesson_id').eq('user_id', LUSER.id).eq('completed', true), 8000); (p||[]).forEach(x => DONE.add(x.lesson_id)); } catch(e){}
-        try { const { data: prof } = await withTimeout(lsb.from('profiles').select('full_name').eq('id', LUSER.id).maybeSingle(), 8000); if(prof && prof.full_name) QNAME = prof.full_name; } catch(e){}
+        try { const { data: prof } = await withTimeout(lsb.from('profiles').select('full_name').eq('id', LUSER.id).maybeSingle(), 8000);
+              QNAME = (window.biblyDisplayName ? window.biblyDisplayName(prof && prof.full_name, isAdminW()) : '회원'); } catch(e){}
         setAuthState();
       }
       refreshLearningUI();
