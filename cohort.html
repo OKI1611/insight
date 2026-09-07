@@ -163,6 +163,10 @@
           </select>
           <textarea id="aMotive" rows="3" maxlength="600" placeholder="신청 동기나 듣고 싶은 점이 있다면 적어주세요 (선택)" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold resize-none"></textarea>
           <input id="aHp" type="text" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+          <label class="flex items-start gap-2.5 text-[13px] text-neutral-900/70 cursor-pointer bg-gold/[0.06] border border-gold/25 rounded-xl p-3.5">
+            <input id="aAgree" type="checkbox" class="mt-0.5 accent-gold w-4 h-4 shrink-0" />
+            <span><b class="text-neutral-900">[필수]</b> 완주반 안내를 위해 <b class="text-neutral-900">이름·이메일·연락처</b>를 수집·이용하는 데 동의합니다. 처리 목적 달성 후 1년 이내 파기하며, 요청하시면 즉시 삭제해 드립니다. <a href="privacy.html" class="text-gold underline" target="_blank">개인정보처리방침</a></span>
+          </label>
           <button id="aSubmit" onclick="submitApp()" class="w-full bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition">1기 사전 신청하기</button>
           <p id="aMsg" class="text-center text-sm min-h-[18px]"></p>
           <p class="text-center text-neutral-900/40 text-xs leading-relaxed">신청 정보는 완주반 안내 목적으로만 사용되며, 원치 않으시면 언제든 삭제 요청하실 수 있어요.</p>
@@ -266,6 +270,8 @@
       const motivation = document.getElementById('aMotive').value.trim();
       if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.textContent = '이메일을 정확히 입력해 주세요.'; return; }
       if (!interest) { msg.textContent = '신청할 완주반을 선택해 주세요.'; return; }
+      const ag = document.getElementById('aAgree');
+      if (ag && !ag.checked) { msg.textContent = '개인정보 수집·이용 동의에 체크해 주세요.'; return; }
       const btn = document.getElementById('aSubmit'); btn.disabled = true; btn.textContent = '신청 중…';
       let error;
       try { const res = await withTimeout(sb.from('course_applications').insert({ name: name || null, email, phone: phone || null, interest: interest || null, motivation: motivation || null }), 9000); error = res.error; }

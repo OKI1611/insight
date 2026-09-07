@@ -97,8 +97,13 @@
         </div>
       </div>
 
+      <label class="flex items-start gap-2.5 text-[13px] text-neutral-900/70 cursor-pointer bg-gold/[0.06] border border-gold/25 rounded-xl p-3.5 mt-5">
+        <input id="fAgree" type="checkbox" class="mt-0.5 accent-gold w-4 h-4 shrink-0" />
+        <span><b class="text-neutral-900">[필수]</b> 선물 발송을 위해 <b class="text-neutral-900">수령인 이름·연락처·배송지 주소</b>를 수집·이용하는 데 동의합니다. 배송 완료 후 6개월간 보관(교환·반품 대응)한 뒤 파기합니다. <a href="privacy.html" class="text-gold underline" target="_blank">개인정보처리방침</a></span>
+      </label>
+
       <button onclick="submitGift()" id="btn"
-        class="w-full mt-6 bg-gold text-white font-bold text-[16px] py-4 rounded-xl hover:opacity-90 transition">
+        class="w-full mt-4 bg-gold text-white font-bold text-[16px] py-4 rounded-xl hover:opacity-90 transition">
         배송지 제출하기
       </button>
       <p id="msg" class="text-[13.5px] text-center mt-3 min-h-[20px]"></p>
@@ -129,6 +134,8 @@
       if(!name)  return bad('받으실 분 성함을 입력해 주세요.');
       if(!phone) return bad('연락처를 입력해 주세요.');
       if(!addr1) return bad('주소를 입력해 주세요.');
+      const ag = $('fAgree');
+      if(ag && !ag.checked) return bad('개인정보 수집·이용 동의에 체크해 주세요.');
       if(!book)  return bad('받으실 책을 골라 주세요.');
 
       m.style.color = '#6b7280'; m.textContent = '제출 중…';

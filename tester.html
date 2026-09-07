@@ -91,6 +91,10 @@
           <label class="block text-[13px] font-bold mb-1.5">남기실 말씀 <span class="text-neutral-900/35 font-normal">(선택)</span></label>
           <textarea id="fMemo" rows="2" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-[15px] outline-none focus:border-gold"></textarea>
         </div>
+        <label class="flex items-start gap-2.5 text-[13px] text-neutral-900/70 cursor-pointer bg-gold/[0.06] border border-gold/25 rounded-xl p-3.5">
+          <input id="fAgree" type="checkbox" class="mt-0.5 accent-gold w-4 h-4 shrink-0" />
+          <span><b class="text-neutral-900">[필수]</b> 테스터 등록과 선물 발송을 위해 <b class="text-neutral-900">이름·구글 계정·연락처</b>를 수집·이용하는 데 동의합니다. 테스트 종료 후 지체 없이 파기합니다. <a href="privacy.html" class="text-gold underline" target="_blank">개인정보처리방침</a></span>
+        </label>
         <button onclick="apply()" class="w-full bg-gold text-white font-bold text-[16px] py-4 rounded-xl hover:opacity-90 transition">신청하기</button>
         <p id="applyMsg" class="text-[13px] text-center"></p>
         <p class="text-[11.5px] text-neutral-900/40 text-center leading-relaxed">
@@ -141,6 +145,8 @@
       const m = document.getElementById('applyMsg');
       const gmail = document.getElementById('fGmail').value.trim();
       if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(gmail)){ m.style.color='#dc2626'; m.textContent='구글 계정(Gmail) 주소를 정확히 입력해 주세요.'; return; }
+      const ag=document.getElementById('fAgree');
+      if(ag && !ag.checked){ m.style.color='#dc2626'; m.textContent='개인정보 수집·이용 동의에 체크해 주세요.'; return; }
       m.style.color='#6b7280'; m.textContent='신청 중…';
       const row = { gmail, name: document.getElementById('fName').value.trim()||null,
                     phone: document.getElementById('fPhone').value.trim()||null,
