@@ -188,10 +188,11 @@
   <header class="sticky top-0 z-50 bg-paper/95 backdrop-blur-md border-b border-ink/8">
     <!-- 로고(좌) + 검색 + 대형 후원 배너(우) — 브래드TV식 배치 -->
     <div class="max-w-7xl mx-auto px-5 pt-3 pb-2.5 flex items-center gap-4">
-      <a href="#top" class="flex items-center gap-3 shrink-0" aria-label="바이블 인사이트">
-        <img src="/images/icon-192.png" alt="바이블 인사이트 모노그램" class="w-11 h-11 md:w-[52px] md:h-[52px] rounded-xl shadow-soft shrink-0" />
+      <a href="#top" class="flex items-center gap-3 shrink-0" aria-label="바이블 인사이트 아카데미">
+        <img src="/images/icon-192.png" alt="바이블 인사이트 아카데미 모노그램" class="w-11 h-11 md:w-[52px] md:h-[52px] rounded-xl shadow-soft shrink-0" />
         <span class="leading-none">
-          <span class="block font-display text-[22px] md:text-[27px] font-extrabold tracking-tight text-navy">바이블 인사이트</span>
+          <!-- 이름이 13자라 화면 폭에 맞춰 글자 크기를 단계로 줄인다(좁은 휴대폰에서 줄바꿈 방지) -->
+          <span class="block font-display text-[21px] min-[390px]:text-[23px] sm:text-[25px] md:text-[27px] font-extrabold tracking-tight text-navy whitespace-nowrap">바이블 인사이트 아카데미</span>
           <span class="mt-1.5 flex items-center gap-1.5 text-[9px] md:text-[10px] font-bold text-gold tracking-[0.24em]">BIBLE INSIGHT<span class="w-1 h-1 rounded-full bg-gold/50"></span>ACADEMY</span>
         </span>
       </a>
@@ -2190,23 +2191,35 @@
   </div>
   <script>
   (function(){
-    var KEY='bibly_book_popup_until';
-    try{ if(Date.now() < (+localStorage.getItem(KEY)||0)) return; }catch(e){}
+    var KEY='bibly_book_popup_until';   // '오늘 하루 보지 않기' — 24시간
+    var SEEN='bibly_book_popup_seen';   // 한 번 보고 닫으면 이번 방문 동안은 그만
     var el=document.getElementById('bookPopup'); if(!el) return;
+    if(el.dataset.wired) return; el.dataset.wired='1';   // 혹시 두 번 실행돼도 한 번만
+    try{ if(Date.now() < (+localStorage.getItem(KEY)||0)) return; }catch(e){}
+    try{ if(sessionStorage.getItem(SEEN)) return; }catch(e){}
+
+    var timer = null;
+    // 닫거나 팝업 속 링크를 누르면 이번 방문에는 다시 띄우지 않는다
+    // (전에는 아무 기록을 남기지 않아, 책을 보러 갔다 돌아오면 또 떴다)
+    function markSeen(){ try{ sessionStorage.setItem(SEEN,'1'); }catch(e){} }
     function close(){
+      if(timer){ clearTimeout(timer); timer = null; }
       try{ if(document.getElementById('bookPopupToday').checked)
              localStorage.setItem(KEY, String(Date.now()+24*3600*1000)); }catch(e){}
+      markSeen();
       el.classList.add('hidden'); el.classList.remove('flex');
       document.removeEventListener('keydown', onKey);
     }
     function onKey(e){ if(e.key==='Escape') close(); }
-    setTimeout(function(){
+    timer = setTimeout(function(){
+      timer = null;
       el.classList.remove('hidden'); el.classList.add('flex');
       document.addEventListener('keydown', onKey);
     }, 1500);
     document.getElementById('bookPopupX').addEventListener('click', close);
     document.getElementById('bookPopupClose').addEventListener('click', close);
     document.getElementById('bookPopupBg').addEventListener('click', close);
+    el.querySelectorAll('a[href]').forEach(function(a){ a.addEventListener('click', markSeen); });
   })();
   </script>
 </body>
