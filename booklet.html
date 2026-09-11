@@ -794,8 +794,8 @@
       .book ul.bk-ul{margin:8px 0 10px 2px;padding:0;list-style:none}
       .book ul.bk-ul li{font-size:12.5px;line-height:2;padding-left:16px;position:relative;color:#33415e;margin:4px 0}
       .book ul.bk-ul li::before{content:'·';position:absolute;left:3px;color:#00704a;font-weight:700}
-      .book .bk-term{font-size:12px;line-height:1.9;margin:6px 0}.book .bk-term b{color:#171717}
-      .book .bk-mis{font-size:12px;line-height:1.85;margin:8px 0}.book .bk-mis .w{color:#b4524a}.book .bk-mis .r{color:#2f7d57}
+      .book .bk-term{font-size:12px;line-height:1.9;margin:6px 0;break-inside:avoid}.book .bk-term b{color:#171717}
+      .book .bk-mis{font-size:12px;line-height:1.85;margin:8px 0;break-inside:avoid}.book .bk-mis .w{color:#b4524a}.book .bk-mis .r{color:#2f7d57}
       .book .toc-list{list-style:none;margin:6px 0 0;padding:0}
       .book .toc-row{display:flex;align-items:baseline;gap:12px;padding:9px 2px;border-bottom:1px dotted #d6ddea}
       .book .toc-no{flex-shrink:0;font-size:11.5px;font-weight:800;color:#00704a;letter-spacing:.04em;min-width:42px}
@@ -804,6 +804,8 @@
       .book .note-h{font-size:11.5px;font-weight:800;letter-spacing:.04em;color:#00704a;margin:0 0 12px}
       .book .nline{height:30px;border-bottom:1px solid #d8dee9}
       h2.bk-title,h3.bk-h,.bk-thesis,.bk-scr,.note-h+.nline{break-inside:avoid}
+      /* 소제목이 쪽 맨 아래에 홀로 남지 않게 — 다음 내용과 붙여서 넘긴다 */
+      h2.bk-title,h3.bk-h,.book .note-h{break-after:avoid;page-break-after:avoid}
     `;
     // 인쇄(벡터) 방식 PDF — 길이 제한 없음 + 진짜 글자(검색 가능) + OFL 폰트 임베딩
     function printDoc(title, innerHTML){

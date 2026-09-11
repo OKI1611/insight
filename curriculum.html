@@ -56,6 +56,38 @@
     .mtab.active{background:#213a6b;color:#ffffff;border-color:#213a6b}
     .mtab-pro{background:linear-gradient(135deg,#213a6b,#182c54);color:#ffffff;border-color:rgba(0,112,74,.55)}
     .mtab-pro.active{box-shadow:0 0 0 2px #00704a}
+    /* ── 강의 목록 표 — 대학 온라인 강의실처럼 번호·사진·제목·시간을 줄로 정렬 ── */
+    .lecTable{border:1px solid rgba(33,58,107,.12);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 2px 10px -4px rgba(21,32,58,.10)}
+    .lecHead{display:flex;align-items:center;gap:14px;background:#213a6b;color:rgba(255,255,255,.85);font-size:13px;font-weight:700;padding:11px 14px}
+    .lecHead .lhNo{flex:none;width:34px;text-align:center}
+    .lecHead .lhThumb{flex:none;width:104px;text-align:center}
+    .lecHead .lhTitle{flex:1;min-width:0}
+    .lecHead .lhDur{flex:none;width:70px;text-align:right}
+    .lecHead .lhGo{flex:none;width:66px;text-align:center}
+    .lecRow{display:flex;align-items:center;gap:14px;padding:10px 14px;min-height:66px;border-top:1px solid rgba(33,58,107,.08);cursor:pointer;transition:background .12s}
+    .lecRow:hover{background:rgba(0,112,74,.045)}
+    .lecNo{flex:none;width:34px;text-align:center;font-size:15px;font-weight:700;color:rgba(33,58,107,.5);font-variant-numeric:tabular-nums}
+    .lecThumbWrap{flex:none;width:104px;height:58px;border-radius:8px;overflow:hidden;background:#eef2f8;display:flex;align-items:center;justify-content:center}
+    .lecThumb{width:100%;height:100%;object-fit:cover}
+    .lecThumbPh{color:#b9c3d4;font-size:18px}
+    .lecMain{flex:1;min-width:0}
+    .lecTitle{display:block;font-size:16px;font-weight:700;color:#171717;line-height:1.45}
+    .lecRow:hover .lecTitle{color:#00704a}
+    .lecInfo summary{display:inline-flex;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:rgba(33,58,107,.5);margin-top:4px}
+    .lecInfo summary:hover{color:#00704a}
+    .lecInfo[open] .chev{transform:rotate(180deg)}
+    .lecDur{flex:none;width:70px;text-align:right;font-size:13px;color:rgba(33,58,107,.55);white-space:nowrap;font-variant-numeric:tabular-nums}
+    .lecGo{flex:none;width:66px;display:inline-flex;align-items:center;justify-content:center;background:#00704a;color:#fff;font-size:13px;font-weight:700;padding:8px 0;border-radius:9999px;white-space:nowrap}
+    .lecMetaM{display:none}
+    @media (max-width:640px){
+      .lecHead{gap:10px}.lecRow{gap:10px;padding:10px 11px}
+      .lecHead .lhNo,.lecNo{width:22px;font-size:13px}
+      .lecHead .lhThumb,.lecThumbWrap{width:86px}
+      .lecThumbWrap{height:48px}
+      .lecTitle{font-size:15px}
+      .lecDur,.lecGo,.lecHead .lhDur,.lecHead .lhGo{display:none}
+      .lecMetaM{display:block;font-size:12.5px;color:rgba(33,58,107,.5);margin-top:3px}
+    }
   </style>
   <script type="application/ld+json">
 {
@@ -112,29 +144,14 @@
       <p class="text-neutral-900/60 text-base md:text-lg mt-4 max-w-2xl mx-auto leading-relaxed">처음 오신 분도 쉽게 — 관심 가는 <b class="text-neutral-900/80">주제를 고르고</b>, 바로 <b class="text-gold">무료로</b> 보실 수 있습니다.</p>
     </div>
 
-    <!-- 처음 오신 분 안내 (자유 학습일 때만) -->
-    <section id="onboard" class="bg-gradient-to-br from-ink to-navy text-paper rounded-3xl p-6 md:p-8 mb-7 shadow-card">
-      <div class="flex items-center gap-2.5 mb-5">
-        <span class="text-3xl"></span>
-        <h2 class="text-xl md:text-2xl font-bold">처음 오셨나요? 이렇게 보시면 됩니다</h2>
-      </div>
-      <div class="grid sm:grid-cols-3 gap-4">
-        <div class="bg-white/10 rounded-2xl p-5">
-          <p class="text-gold font-bold text-lg mb-1.5">① 주제 고르기</p>
-          <p class="text-paper/85 text-[15px] leading-relaxed">아래 목록에서 관심 있는 <b class="text-paper">주제</b>를 하나 누르세요. 신앙·성경·예언 등 27가지가 있습니다.</p>
-        </div>
-        <div class="bg-white/10 rounded-2xl p-5">
-          <p class="text-gold font-bold text-lg mb-1.5">② 강의 보기</p>
-          <p class="text-paper/85 text-[15px] leading-relaxed"><b class="text-paper">강의 제목(또는 카드)</b>을 누르면 강의 페이지로 바로 이동합니다. 무료 회원가입만 하면 모든 강의를 무료로 시청할 수 있어요.</p>
-        </div>
-        <div class="bg-white/10 rounded-2xl p-5">
-          <p class="text-gold font-bold text-lg mb-1.5">③ 차근차근</p>
-          <p class="text-paper/85 text-[15px] leading-relaxed">기초 → 초급 → 중급 → 고급 순서로 보시면 가장 쉽습니다.</p>
-        </div>
-      </div>
-      <div class="mt-5 bg-gold/15 border border-gold/30 rounded-2xl px-5 py-4 flex flex-col sm:flex-row sm:items-center gap-3">
-        <p class="text-[15px] md:text-base flex-1 leading-relaxed"><span class="font-bold text-gold">신앙이 처음이신가요?</span> <span class="text-paper/90">어디서 시작할지 모르겠다면, 가장 쉬운 기초 과정부터 천천히 보세요.</span></p>
-        <button onclick="startBeginner()" class="shrink-0 bg-gold text-neutral-900 font-bold text-[15px] px-6 py-3.5 rounded-full hover:opacity-90 transition">기초 과정부터 시작하기 →</button>
+    <!-- 보는 법 안내 — 한 줄 (자유 학습일 때만). 큰 배너 대신 얇은 안내로 화면을 정돈했다 -->
+    <section id="onboard" class="bg-white border border-ink/10 rounded-2xl px-5 py-4 mb-6 shadow-soft">
+      <div class="flex flex-col md:flex-row md:items-center gap-3">
+        <p class="flex-1 text-[15px] md:text-base text-neutral-900/80 leading-relaxed">
+          <b class="text-gold">보는 법</b> · ① 왼쪽 <b class="text-neutral-900">과목 목록</b>에서 과목을 고르고(휴대폰은 아래 선택칸)
+          ② 강의 목록에서 <b class="text-neutral-900">제목을 누르면</b> 무료로 바로 볼 수 있습니다.
+        </p>
+        <button onclick="startBeginner()" class="shrink-0 bg-gold text-white font-bold text-[15px] px-6 py-3 rounded-full hover:opacity-90 transition">처음이라면 — 기초 과정부터 →</button>
       </div>
     </section>
 
@@ -169,7 +186,7 @@
           </button>
         </div>
         <div id="freeSide" class="bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden">
-          <p class="px-4 py-3 text-sm font-bold text-neutral-900/55 border-b border-ink/8">주제를 골라보세요</p>
+          <p class="px-4 py-3 text-sm font-bold text-white" style="background:#213a6b">과목 목록</p>
           <div id="trackNav" class="max-h-[58vh] overflow-auto"></div>
         </div>
         <div id="academySide" class="hidden bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden">
@@ -184,7 +201,7 @@
         <section id="freeContent">
           <div class="flex items-center gap-2 mb-1.5"><span class="text-2xl"></span><h2 class="text-2xl font-bold">자유 학습</h2><span class="text-xs font-bold text-neutral-900/55 bg-ink/[0.06] px-2.5 py-0.5 rounded-full">무료</span></div>
           <p class="text-neutral-900/60 text-base mb-4 leading-relaxed">27개 주제의 강의를 시험 없이 자유롭게 — 누구나 <b class="text-neutral-900/80">무료</b>로 보실 수 있습니다.</p>
-          <label class="lg:hidden block text-sm font-bold text-neutral-900/55 mb-1.5">주제를 골라보세요</label>
+          <label class="lg:hidden block text-sm font-bold text-neutral-900/55 mb-1.5">과목 선택</label>
           <select id="trackSelect" onchange="selectTrack(+this.value)" class="lg:hidden w-full bg-white border border-ink/20 rounded-xl px-4 py-3.5 text-base font-semibold mb-4 outline-none focus:border-gold"></select>
           <p class="text-sm font-bold text-neutral-900/45 mb-2">난이도 단계</p>
           <div id="levelTabs" class="flex flex-wrap gap-2 mb-2.5"></div>
@@ -390,54 +407,58 @@
       const lv = LEVELS[ti]; if(!lv) return;
       const ls = lv.lessons || [];
       const start = STARTS[ti];
+      const L = lv.level || '초급';
       const tagline = esc(lv.tagline || '');
+      // 총 강의 시간(분) — "약 33분"·"1시간 12분" 형태를 합산
+      const mins = ls.reduce((s,l)=>{ const t=String(l.duration||''); const h=(t.match(/(\d+)\s*시간/)||[])[1], m=(t.match(/(\d+)\s*분/)||[])[1]; return s+(h?+h*60:0)+(m?+m:0); },0);
+      const timeTxt = mins ? ' · 약 ' + (mins>=600 ? Math.round(mins/60) : Math.round(mins/30)/2) + '시간' : '';
       const highlights = (lv.highlights || []).map(h =>
-        `<li class="flex gap-2 text-[15px] text-neutral-900/75 leading-relaxed"><span class="text-gold font-bold shrink-0">✓</span><span>${esc(h)}</span></li>`).join('');
-      const lessons = ls.map((l, li) => {
-        const gi = start + li;
-        const dur = l.duration ? `<span class="text-xs text-neutral-900/40 whitespace-nowrap shrink-0">⏱ ${esc(l.duration)}</span>` : '';
+        `<span class="inline-flex items-start gap-1.5 text-[13.5px] text-neutral-900/70"><span class="text-gold font-bold shrink-0">✓</span>${esc(h)}</span>`).join('');
+
+      // 강의 줄(행) — 번호·사진·제목·시간, 줄 전체를 누르면 강의로 이동
+      const rows = ls.map((l, li) => {
+        const gi = start + li, vid = ytId(l.youtube);
+        const thumb = vid
+          ? `<img class="lecThumb" loading="lazy" alt="" src="https://i.ytimg.com/vi/${vid}/mqdefault.jpg" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'lecThumbPh',textContent:'▶'}))"/>`
+          : `<span class="lecThumbPh">▶</span>`;
         const chapters = (l.chapters || []);
-        const chHtml = chapters.length ? `
-          <details class="mt-2.5">
-            <summary class="inline-flex items-center gap-1 text-sm font-semibold text-neutral-900/55 hover:text-gold">강의 목차 ${chapters.length}개 보기 <svg class="chev w-4 h-4 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary>
-            <ul class="mt-2.5 space-y-2 border-l-2 border-gold/20 pl-3.5">
-              ${chapters.map(ch => `<li class="text-[13.5px] text-neutral-900/65 leading-snug">${ ch.t ? `<span class="text-gold/70 font-semibold mr-1">${esc(ch.t)}</span>` : '' }${esc(ch.label)}</li>`).join('')}
-            </ul>
+        const info = (l.summary || chapters.length) ? `
+          <details class="lecInfo" onclick="event.stopPropagation()">
+            <summary>소개·목차 보기 <svg class="chev w-3.5 h-3.5 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary>
+            ${ l.summary ? `<p class="text-[13.5px] text-neutral-900/60 leading-relaxed mt-2">${esc(l.summary)}</p>` : '' }
+            ${ chapters.length ? `<ul class="mt-2 space-y-1.5 border-l-2 border-gold/20 pl-3">${chapters.map(ch => `<li class="text-[13px] text-neutral-900/60 leading-snug">${ ch.t ? `<span class="text-gold/70 font-semibold mr-1">${esc(ch.t)}</span>` : '' }${esc(ch.label)}</li>`).join('')}</ul>` : '' }
           </details>` : '';
-        return `<div onclick="if(!event.target.closest('details')&&!event.target.closest('a'))location.href='watch.html?l=${gi}'" class="group bg-white rounded-xl border border-ink/8 p-4 md:p-5 hover:border-gold/40 hover:shadow-soft transition cursor-pointer">
-          <div class="flex items-start gap-3">
-            <span class="shrink-0 w-8 h-8 rounded-full bg-gold/12 text-gold font-bold text-sm flex items-center justify-center mt-0.5 group-hover:bg-gold group-hover:text-white transition">${String(li+1).padStart(2,'0')}</span>
-            <div class="flex-1 min-w-0">
-              <div class="flex items-start justify-between gap-2">
-                <a href="watch.html?l=${gi}" class="font-bold text-[16px] leading-snug text-neutral-900 group-hover:text-gold transition">${esc(l.title||'')}</a>
-                ${dur}
-              </div>
-              ${ l.summary ? `<p class="text-[15px] text-neutral-900/60 leading-relaxed mt-2">${esc(l.summary)}</p>` : '' }
-              ${chHtml}
-            </div>
-            <svg class="shrink-0 w-5 h-5 text-neutral-900/20 group-hover:text-gold mt-1 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+        return `<div class="lecRow" onclick="if(!event.target.closest('details')&&!event.target.closest('a'))location.href='watch.html?l=${gi}'">
+          <span class="lecNo">${li+1}</span>
+          <span class="lecThumbWrap">${thumb}</span>
+          <div class="lecMain">
+            <a href="watch.html?l=${gi}" class="lecTitle">${esc(l.title||'')}</a>
+            <span class="lecMetaM">${ l.duration ? esc(l.duration) + ' · ' : '' }강사 오광일</span>
+            ${info}
           </div>
+          <span class="lecDur">${ l.duration ? esc(l.duration) : '' }</span>
+          <a href="watch.html?l=${gi}" class="lecGo">보기</a>
         </div>`;
       }).join('');
 
       document.getElementById('trackDetail').innerHTML = `
-        <div class="bg-gold text-white rounded-2xl p-6 md:p-7 mb-5 relative overflow-hidden">
-          <p class="text-gold text-xs font-bold tracking-[0.25em] mb-2">주제 ${String(ti+1).padStart(2,'0')} · 전체 무료</p>
-          <h2 class="text-2xl md:text-3xl font-bold leading-snug">${esc(lv.name||'')}</h2>
-          ${ tagline ? `<p class="text-gold font-semibold text-lg mt-2.5">${tagline}</p>` : '' }
-          ${ lv.desc ? `<p class="text-paper/75 text-[15px] mt-2.5 leading-relaxed">${esc(lv.desc)}</p>` : '' }
-          <div class="flex flex-wrap items-center gap-x-5 gap-y-1 mt-4 text-[15px] text-paper/75">
-            <span>총 ${ls.length}강</span><span>전체 무료 공개</span><span>무제한 시청</span>
+        <nav class="text-[13px] text-neutral-900/45 mb-2.5">강의·커리큘럼 <span class="mx-0.5">›</span> ${esc(L)} 단계 <span class="mx-0.5">›</span> <b class="text-neutral-900/75">${esc(lv.name||'')}</b></nav>
+        <div class="bg-white border border-ink/10 rounded-2xl shadow-soft p-5 md:p-6 mb-5">
+          <div class="flex flex-wrap items-center gap-1.5 mb-2">
+            <span class="text-[11px] font-bold text-white px-2.5 py-1 rounded-full" style="background:#213a6b">${esc(L)} 단계</span>
+            <span class="text-[11px] font-bold text-gold bg-gold/10 border border-gold/25 px-2.5 py-1 rounded-full">전체 무료</span>
           </div>
-          <a href="watch.html?l=${start}" class="inline-block mt-5 bg-gold text-white font-bold text-base px-7 py-3.5 rounded-full hover:opacity-90 transition shadow-card">▶ 첫 강의부터 보기</a>
+          <h2 class="text-[22px] md:text-[26px] font-bold leading-snug">${esc(lv.name||'')}</h2>
+          <p class="text-neutral-900/55 text-[14px] mt-1.5">강사 오광일 · 총 ${ls.length}강${timeTxt} · 무제한 시청</p>
+          ${ lv.desc ? `<p class="text-[15px] text-neutral-900/70 leading-relaxed mt-3">${esc(lv.desc)}</p>` : (tagline ? `<p class="text-[15px] text-neutral-900/70 mt-3">${tagline}</p>` : '') }
+          ${ highlights ? `<div class="flex flex-wrap gap-x-5 gap-y-1.5 mt-3.5 pt-3.5 border-t border-ink/6">${highlights}</div>` : '' }
+          <a href="watch.html?l=${start}" class="inline-flex items-center gap-1.5 mt-5 bg-gold text-white font-bold text-[15px] px-7 py-3.5 rounded-full hover:opacity-90 transition shadow-soft">▶ 첫 강의부터 순서대로 보기</a>
         </div>
-        ${ highlights ? `<div class="bg-white rounded-2xl border border-ink/8 shadow-soft p-5 md:p-6 mb-5">
-          <p class="font-bold text-lg mb-3 flex items-center gap-2">이 과정의 특장점</p>
-          <ul class="space-y-2.5">${highlights}</ul>
-        </div>` : '' }
-        <p class="font-bold text-lg mb-1 flex items-center gap-2">강의 목록 <span class="text-neutral-900/45 text-sm font-normal">· 총 ${ls.length}강</span></p>
-        <p class="text-[15px] text-neutral-900/55 mb-3.5">강의를 눌러 바로 무료로 보실 수 있습니다.</p>
-        <div class="space-y-2.5">${lessons}</div>`;
+        <p class="font-bold text-lg mb-2.5">강의 목록 <span class="text-neutral-900/45 text-sm font-normal">· 총 ${ls.length}강 — 제목이나 줄을 누르면 바로 시청</span></p>
+        <div class="lecTable">
+          <div class="lecHead"><span class="lhNo">번호</span><span class="lhThumb">화면</span><span class="lhTitle">강의 제목</span><span class="lhDur">시간</span><span class="lhGo">보기</span></div>
+          ${rows}
+        </div>`;
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   </script>

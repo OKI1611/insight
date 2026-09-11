@@ -418,18 +418,23 @@
       return noteHeader() + titleBlock(l) +
         ( l.summary ? `<div style="margin-bottom:18px"><p style="font-weight:700;color:#171717;margin:0 0 7px">강의 소개</p><p style="color:#44506a;line-height:1.75;margin:0">${esc(l.summary)}</p></div>` : '' ) +
         ( chaps ? `<div style="margin-bottom:18px"><p style="font-weight:700;color:#171717;margin:0 0 7px">핵심 내용</p><ol style="margin:0;padding-left:20px">${chaps}</ol></div>` : '' ) +
-        ( tags ? `<div style="margin-bottom:6px"><p style="font-weight:700;color:#171717;margin:0 0 7px">키워드</p>${tags}</div>` : '' ) +
+        ( tags ? `<div style="page-break-inside:avoid;break-inside:avoid;margin-bottom:6px"><p style="font-weight:700;color:#171717;margin:0 0 7px">키워드</p>${tags}</div>` : '' ) +
         noteFooter();
     }
     // 여러 문단 렌더(\n 기준 분리)
     function noteParas(t){
       return String(t || '').split(/\n+/).filter(x => x.trim()).map(p => `<p style="color:#44506a;line-height:1.85;margin:0 0 9px">${esc(p)}</p>`).join('');
     }
+    // PDF에서 상자·항목이 쪽 경계에 걸려 반으로 잘리지 않게 하는 지정
+    // (html2pdf 의 pagebreak css 모드가 이 스타일을 읽어 상자 전체를 다음 쪽으로 넘긴다)
+    const PB = 'page-break-inside:avoid;break-inside:avoid;';
+    // 소제목이 쪽 맨 아래에 홀로 남지 않게, 소제목 + 첫 항목을 한 덩어리로 묶는다
+    function pbGroup(headingHTML, firstItemHTML){ return `<div style="${PB}">${headingHTML}${firstItemHTML}</div>`; }
     // 풍성한 노트 — content/notes/<id>.json
     function richNoteHTML(l, n){
       let h = noteHeader() + titleBlock(l);
       if(n.thesis){
-        h += `<div style="background:linear-gradient(135deg,#fdfaf1,#fbf6e7);border:1px solid #f0e4c6;border-left:4px solid #c79a44;border-radius:14px;padding:15px 18px;margin-bottom:22px">
+        h += `<div style="${PB}background:linear-gradient(135deg,#fdfaf1,#fbf6e7);border:1px solid #f0e4c6;border-left:4px solid #c79a44;border-radius:14px;padding:15px 18px;margin-bottom:22px">
           <p style="font-size:11px;font-weight:700;letter-spacing:.06em;color:#00704a;margin:0 0 4px">핵심 한 문장</p>
           <p style="color:#2b3550;font-size:15px;font-weight:600;line-height:1.65;margin:0">${esc(n.thesis)}</p></div>`;
       }
@@ -437,59 +442,62 @@
         h += `<div style="margin-bottom:22px"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:15px">강의 개요</p>${noteParas(n.overview)}</div>`;
       }
       if(n.background){
-        h += `<div style="margin-bottom:22px;background:#f4f9ff;border:1px solid #e0ebfa;border-radius:14px;padding:16px 18px">
+        h += `<div style="${PB}margin-bottom:22px;background:#f4f9ff;border:1px solid #e0ebfa;border-radius:14px;padding:16px 18px">
           <p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">배경 — 역사적·신학적 맥락</p>${noteParas(n.background)}</div>`;
       }
       if(n.sections && n.sections.length){
-        h += `<p style="font-weight:700;color:#171717;margin:0 0 10px;font-size:15px">핵심 내용 정리</p>`;
-        n.sections.forEach((s, i) => {
+        const secHead = `<p style="font-weight:700;color:#171717;margin:0 0 10px;font-size:15px">핵심 내용 정리</p>`;
+        const secs = n.sections.map(s => {
           const pts = (s.points || []).map(p => `<li style="margin:5px 0;color:#44506a;line-height:1.6">${esc(p)}</li>`).join('');
-          h += `<div style="margin:0 0 16px;padding:0 0 0 2px">
+          return `<div style="${PB}margin:0 0 16px;padding:0 0 0 2px">
             <p style="margin:0 0 6px;color:#171717;font-weight:700;font-size:14.5px">${ s.t ? `<span style="display:inline-block;background:#213a6b;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;margin-right:8px">${esc(s.t)}</span>` : '' }${esc(s.heading || '')}</p>
             ${ s.body ? noteParas(s.body) : '' }
             ${ pts ? `<ul style="margin:4px 0 2px;padding-left:20px">${pts}</ul>` : '' }
           </div>`;
         });
+        h += pbGroup(secHead, secs[0]) + secs.slice(1).join('');
       }
       if(n.scriptures && n.scriptures.length){
-        h += `<div style="margin:20px 0;background:#f4f9ff;border:1px solid #e0ebfa;border-radius:14px;padding:15px 17px">
+        h += `<div style="${PB}margin:20px 0;background:#f4f9ff;border:1px solid #e0ebfa;border-radius:14px;padding:15px 17px">
           <p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">핵심 성구</p>` +
           n.scriptures.map(s => `<p style="margin:7px 0;color:#44506a;line-height:1.6"><b style="color:#182c54">${esc(s.ref)}</b>${ s.note ? ` — ${esc(s.note)}` : '' }</p>`).join('') + `</div>`;
       }
       if(n.terms && n.terms.length){
-        h += `<div style="margin:20px 0"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">핵심 용어</p>` +
-          n.terms.map(t => `<p style="margin:6px 0;color:#44506a;line-height:1.6"><b style="color:#8a6d2f">${esc(t.term)}</b> · ${esc(t.def)}</p>`).join('') + `</div>`;
+        const termHead = `<p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">핵심 용어</p>`;
+        const terms = n.terms.map(t => `<p style="${PB}margin:6px 0;color:#44506a;line-height:1.6"><b style="color:#8a6d2f">${esc(t.term)}</b> · ${esc(t.def)}</p>`);
+        h += `<div style="margin:20px 0">` + pbGroup(termHead, terms[0]) + terms.slice(1).join('') + `</div>`;
       }
       if(n.misconceptions && n.misconceptions.length){
-        h += `<div style="margin:20px 0"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">흔한 오해 vs 바른 이해</p>` +
-          n.misconceptions.map(m => `<div style="border:1px solid #eee;border-radius:10px;padding:10px 13px;margin:0 0 8px">
+        const misHead = `<p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">흔한 오해 vs 바른 이해</p>`;
+        const cards = n.misconceptions.map(m => `<div style="${PB}border:1px solid #eee;border-radius:10px;padding:10px 13px;margin:0 0 8px">
             <p style="margin:0 0 4px;color:#b4453a;line-height:1.6"><b>오해</b> · ${esc(m.wrong)}</p>
             <p style="margin:0;color:#2f7d4f;line-height:1.6"><b>바른 이해</b> · ${esc(m.right)}</p>
-          </div>`).join('') + `</div>`;
+          </div>`);
+        h += `<div style="margin:20px 0">` + pbGroup(misHead, cards[0]) + cards.slice(1).join('') + `</div>`;
       }
       if(n.takeaways && n.takeaways.length){
-        h += `<div style="margin:20px 0;background:linear-gradient(135deg,#fdfaf1,#fbf6e7);border:1px solid #f1e6cb;border-radius:14px;padding:15px 17px">
+        h += `<div style="${PB}margin:20px 0;background:linear-gradient(135deg,#fdfaf1,#fbf6e7);border:1px solid #f1e6cb;border-radius:14px;padding:15px 17px">
           <p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">한눈에 정리</p>
           <ul style="margin:0;padding-left:20px">` + n.takeaways.map(t => `<li style="margin:5px 0;color:#2b3550;line-height:1.65">${esc(t)}</li>`).join('') + `</ul></div>`;
       }
       if(n.application && n.application.length){
-        h += `<div style="margin:20px 0"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">삶으로 가져가기</p>` +
+        h += `<div style="${PB}margin:20px 0"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">삶으로 가져가기</p>` +
           (Array.isArray(n.application)
             ? `<ul style="margin:0;padding-left:20px">` + n.application.map(a => `<li style="margin:5px 0;color:#44506a;line-height:1.7">${esc(a)}</li>`).join('') + `</ul>`
             : noteParas(n.application)) + `</div>`;
       }
       if(n.questions && n.questions.length){
-        h += `<div style="margin:20px 0"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">묵상·토론 질문</p>
+        h += `<div style="${PB}margin:20px 0"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">묵상·토론 질문</p>
           <ol style="margin:0;padding-left:20px">` + n.questions.map(q => `<li style="margin:6px 0;color:#44506a;line-height:1.65">${esc(q)}</li>`).join('') + `</ol></div>`;
       }
       if(n.furtherStudy && n.furtherStudy.length){
-        h += `<div style="margin:20px 0;background:#f4f9ff;border:1px solid #e0ebfa;border-radius:14px;padding:15px 17px"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">더 깊이 공부하려면</p>` +
+        h += `<div style="${PB}margin:20px 0;background:#f4f9ff;border:1px solid #e0ebfa;border-radius:14px;padding:15px 17px"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">더 깊이 공부하려면</p>` +
           (Array.isArray(n.furtherStudy)
             ? `<ul style="margin:0;padding-left:20px">` + n.furtherStudy.map(f => `<li style="margin:5px 0;color:#44506a;line-height:1.65">${esc(f)}</li>`).join('') + `</ul>`
             : noteParas(n.furtherStudy)) + `</div>`;
       }
       const tags = (l.tags || []).map(t => `<span style="display:inline-block;background:#f4eedd;color:#8a6d2f;font-size:12px;font-weight:600;padding:3px 11px;border-radius:999px;margin:3px 5px 3px 0">#${esc(t)}</span>`).join('');
-      if(tags){ h += `<div style="margin:18px 0 4px"><p style="font-weight:700;color:#171717;margin:0 0 7px;font-size:14px">키워드</p>${tags}</div>`; }
+      if(tags){ h += `<div style="${PB}margin:18px 0 4px"><p style="font-weight:700;color:#171717;margin:0 0 7px;font-size:14px">키워드</p>${tags}</div>`; }
       return h + noteFooter();
     }
     function renderNote(l){
@@ -690,6 +698,7 @@
         image: { type: 'jpeg', quality: 0.97 },
         html2canvas: { scale: 2, backgroundColor: '#ffffff', useCORS: true },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        // css: 각 상자의 page-break-inside:avoid 를 읽어 쪽 경계에서 상자가 잘리지 않게 한다
         pagebreak: { mode: ['css', 'legacy'] }
       };
       try { await html2pdf().set(opt).from(document.getElementById('noteSheet')).save(); }
