@@ -150,7 +150,7 @@
     return '<a href="search.html" aria-label="스마트 검색" title="스마트 검색" class="inline-flex items-center justify-center w-9 h-9 rounded-full hover:bg-ink/5 text-neutral-900/70"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></svg></a>'
       + '<a href="watch.html" class="inline-flex items-center gap-1 bg-gold text-white font-bold px-3.5 py-1.5 rounded-full hover:opacity-90 transition text-xs whitespace-nowrap shadow-soft">▶ 바로 수강</a>'
       + '<a href="support.html" class="hidden md:inline-flex items-center gap-1.5 text-white font-bold px-4 py-1.5 rounded-full hover:opacity-90 transition text-xs whitespace-nowrap shadow-soft" style="background:linear-gradient(105deg,#e11d48,#9f1239)"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7.5-4.9-10-9.6C.4 8 1.9 4.4 5.2 4.4c1.9 0 3.3 1.1 4.1 2.3.3.4.9.4 1.2 0 .8-1.2 2.2-2.3 4.1-2.3 3.3 0 4.8 3.6 3.2 7C19.5 16.1 12 21 12 21z"/></svg> 후원하기</a>'
-      + '<a href="mylearning.html" class="hidden xl:inline-flex items-center gap-1 border border-gold/45 text-gold font-semibold px-3 py-1.5 rounded-full hover:bg-gold/10 transition text-xs whitespace-nowrap">내 강의실</a>';
+      + '<a href="mylearning.html" class="hidden 2xl:inline-flex items-center gap-1 border border-gold/45 text-gold font-semibold px-3 py-1.5 rounded-full hover:bg-gold/10 transition text-xs whitespace-nowrap">내 강의실</a>';
   }
   // 상단 퀵바(유틸리티) — 수학싸부식: 공지·이벤트·후원 + 로그인 상태/마이메뉴
   function topbarHTML(){
@@ -200,7 +200,8 @@
       + '<header class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-ink/8">'
       + '<div class="max-w-7xl mx-auto px-4 h-14 flex items-center gap-3">'
       + LOGO
-      + '<nav id="navmenu" class="hidden xl:flex items-center gap-5 text-[14.5px] font-medium text-neutral-900 whitespace-nowrap pl-1">' + menuHTML(menu) + '</nav>'
+      // 1280px(xl) 화면에서 로고+메뉴 9개+버튼이 가로로 넘치지 않게, 2xl 미만에서는 간격·글자를 좁힌다
+      + '<nav id="navmenu" class="hidden xl:flex items-center gap-3 2xl:gap-5 text-[13.5px] 2xl:text-[14.5px] font-medium text-neutral-900 whitespace-nowrap pl-1">' + menuHTML(menu) + '</nav>'
       + '<div class="ml-auto flex items-center gap-2 sm:gap-3 text-sm shrink-0">' + mainCtaHTML()
       + '<button id="biblyHamb" aria-label="메뉴 열기" onclick="__biblyToggleMenu()" class="xl:hidden w-9 h-9 -mr-1 flex items-center justify-center rounded-lg hover:bg-ink/5 text-neutral-900/70"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>'
       + '</div>'
