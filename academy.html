@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <script src="/content-loader.js?v=20260703f"></script>
-  <script src="/site-header.js?v=20260907a"></script>
+  <script src="/site-header.js?v=20260911a"></script>
   <script src="/section-sidenav.js?v=20260815a"></script>
   <script src="/recent-ticker.js?v=2"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -65,6 +65,10 @@
     #pkgModal .pm-card{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(560px,92vw);max-height:88vh;overflow:auto;background:#fff;border-radius:22px;box-shadow:0 30px 70px -20px rgba(21,32,58,.55);padding:0}
     #pkgModal .pm-x{position:absolute;top:14px;right:16px;font-size:20px;color:#b6bcc7;background:none;border:0;cursor:pointer;line-height:1;z-index:2}
     #pkgModal .pm-x:hover{color:#4b5563}
+    /* 급수별 커리큘럼 — 과목 아코디언 */
+    .curSubj summary{list-style:none}
+    .curSubj summary::-webkit-details-marker{display:none}
+    .curSubj[open] .chev{transform:rotate(180deg)}
   </style>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://biblynote.com/"},{"@type":"ListItem","position":2,"name":"강의·커리큘럼","item":"https://biblynote.com/curriculum"},{"@type":"ListItem","position":3,"name":"정규 심화 과정(아카데미)","item":"https://biblynote.com/academy"}]}
@@ -223,6 +227,20 @@
       <div id="cohortBanner" class="mb-6" style="display:none"></div>
       <!-- 급수 사다리(입문 → 최고) -->
       <div id="pkgLadder" class="mb-8"></div>
+      <!-- 급수별 커리큘럼 — content/course.json(실제 강의 목록)과 과목 이름으로 연결해
+           신청 전에 "이 급수에 무엇이 들어 있는지"를 과목·강의 단위로 펼쳐 보여 준다.
+           course.json 을 못 읽으면 이 칸은 조용히 숨는다(기존 화면 유지). -->
+      <div id="curriculum" class="scroll-mt-24 mb-8" style="display:none">
+        <div class="bg-white border border-ink/8 rounded-2xl shadow-soft p-5 md:p-7">
+          <div class="text-center mb-5">
+            <p class="text-gold text-[11px] font-bold tracking-[0.22em] uppercase mb-2">Curriculum · 급수별 커리큘럼</p>
+            <h3 class="text-lg md:text-xl font-bold">내 급수에는 어떤 과목이 들어 있나요?</h3>
+            <p class="text-neutral-900/50 text-[13px] mt-2 leading-relaxed">급수를 고르면 포함 과목과 강의 목록을 신청 전에 모두 보실 수 있어요.</p>
+          </div>
+          <div id="curTabs" class="flex gap-2 overflow-x-auto pb-1.5 -mx-1 px-1 sm:flex-wrap sm:justify-center" style="scrollbar-width:none"></div>
+          <div id="curBody" class="mt-4"></div>
+        </div>
+      </div>
       <div id="pkgGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">불러오는 중…</div>
       <!-- 서비스 제공기간 고지 — 전자결제 심사 필수 항목(구매자가 결제 전 인지 가능해야 함) -->
       <p class="text-center text-neutral-900/50 text-[12.5px] mt-5"><b class="text-neutral-900/70">서비스 제공기간</b> : 수강권 부여일(입금 확인일)로부터 <b class="text-neutral-900/70">12개월(1년)</b></p>
@@ -309,7 +327,94 @@
     let PROG = null;
     function won(n){ return '₩' + (Number(n)||0).toLocaleString(); }
     function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-    (async () => { try { PROG = await (await fetch('content/program.json?t=' + Date.now())).json(); applyCohort(PROG); renderCohortBanner(); renderPkgs(); applyFromURL(); updateApplySummary(); prefillApply(); } catch(e){ const g=document.getElementById('pkgGrid'); if(g) g.innerHTML=''; } finally { applyCardReady(); } })();
+    (async () => { try { PROG = await (await fetch('content/program.json?t=' + Date.now())).json(); applyCohort(PROG); renderCohortBanner(); renderPkgs(); renderCurriculum(); applyFromURL(); updateApplySummary(); prefillApply(); } catch(e){ const g=document.getElementById('pkgGrid'); if(g) g.innerHTML=''; } finally { applyCardReady(); } })();
+
+    // ── 급수별 커리큘럼 — course.json(실제 강의 목록)을 과목 이름으로 연결 ──
+    //  program.json 의 ranks[].tracks(과목명)와 course.json 의 levels[].name 이 같은 이름을 쓴다.
+    //  course.json 은 비차단으로 따로 불러오고, 도착하면 강의 수·시간이 필요한 화면을 다시 그린다.
+    let COURSE = null, CUR_RANK = 0;
+    (async () => { try {
+      const c = await (await fetch('content/course.json?t=' + Date.now())).json();
+      COURSE = c.levels || [];
+      renderPkgs(); renderCurriculum();
+    } catch(e){} })();
+    function courseIdx(name){ if(!COURSE) return -1; return COURSE.findIndex(l => l.name === name); }
+    function durMin(s){ s = String(s||''); const h=(s.match(/(\d+)\s*시간/)||[])[1], m=(s.match(/(\d+)\s*분/)||[])[1]; return (h?+h*60:0)+(m?+m:0); }
+    function hourTxt(min){ if(!min) return ''; const h=min/60; return '약 ' + (h>=10 ? Math.round(h) : Math.round(h*2)/2) + '시간'; }
+    // 이 급수에 '새로 ' 들어 있는 과목들의 합계
+    function rankStats(rk){
+      const st = { subj:0, lessons:0, min:0 };
+      (rk.tracks||[]).forEach(t => { const i = courseIdx(t); if(i < 0) return;
+        st.subj++; const ls = COURSE[i].lessons || []; st.lessons += ls.length;
+        ls.forEach(x => st.min += durMin(x.duration)); });
+      return st;
+    }
+    // 하위 급수까지 전부 포함한 누적 합계 (상위 등급은 하위 과목을 모두 포함)
+    function cumStats(upto){
+      const st = { subj:0, lessons:0, min:0 };
+      for(let i=0; i<=upto; i++){ const s = rankStats(PROG.ranks[i]); st.subj+=s.subj; st.lessons+=s.lessons; st.min+=s.min; }
+      return st;
+    }
+    function selectRank(i){ CUR_RANK = i; renderCurriculum(); }
+    // 급수 카드에서 '과목 보기'를 누르면 커리큘럼 칸으로 이동해 그 급수 탭을 펼친다
+    function gotoCurr(i){
+      CUR_RANK = i; renderCurriculum();
+      const el = document.getElementById('curriculum');
+      if(el && el.style.display !== 'none') el.scrollIntoView({ behavior:'smooth', block:'start' });
+    }
+    function renderCurriculum(){
+      const wrap = document.getElementById('curriculum');
+      if(!wrap || !PROG || !PROG.ranks || !COURSE) return;   // 둘 다 도착해야 그린다
+      wrap.style.display = '';
+      const ranks = PROG.ranks;
+      CUR_RANK = Math.min(Math.max(0, CUR_RANK), ranks.length-1);
+      // 급수 탭
+      document.getElementById('curTabs').innerHTML = ranks.map((rk,i) => {
+        const on = i === CUR_RANK, accent = rk.color || '#00704a';
+        return `<button type="button" onclick="selectRank(${i})" class="shrink-0 inline-flex items-center gap-1.5 min-h-[44px] px-4 py-2 rounded-full border text-[13px] font-bold transition"
+          style="${on ? `background:${accent};border-color:${accent};color:#fff` : 'background:#fff;border-color:rgba(33,58,107,.16);color:#42506c'}">${esc(rk.rank)} ${esc(rk.name)}</button>`;
+      }).join('');
+      // 본문 — 요약 줄 + 과목 아코디언
+      const rk = ranks[CUR_RANK], accent = rk.color || '#00704a';
+      const st = rankStats(rk), cum = cumStats(CUR_RANK);
+      const incTxt = CUR_RANK > 0
+        ? `<span class="block sm:inline text-[12px] text-neutral-900/50 sm:ml-2 mt-1 sm:mt-0">+ 하위 급수 과목까지 <b class="text-neutral-900/70">총 ${cum.subj}과목 · ${cum.lessons}강</b> 포함</span>` : '';
+      const subjects = (rk.tracks||[]).map(t => {
+        const ci = courseIdx(t);
+        if(ci < 0) return `<div class="border border-ink/8 rounded-xl bg-white px-4 py-3.5 flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full shrink-0" style="background:${accent}"></span><span class="flex-1 font-bold text-[14.5px] text-neutral-900">${esc(t)}</span><span class="text-[11px] text-neutral-400">준비 중</span></div>`;
+        const lv = COURSE[ci], ls = lv.lessons || [];
+        const min = ls.reduce((s,x) => s + durMin(x.duration), 0);
+        const rows = ls.map((x,li) => `<li class="flex gap-2.5 items-baseline">
+            <span class="shrink-0 w-6 text-right text-[11px] text-neutral-900/35 tabular-nums">${li+1}</span>
+            <span class="flex-1 min-w-0 text-[13.5px] text-neutral-900/75 leading-snug">${esc(x.title)}</span>
+            ${x.duration ? `<span class="shrink-0 text-[11px] text-neutral-900/40 whitespace-nowrap">${esc(x.duration)}</span>` : ''}
+          </li>`).join('');
+        return `<details class="curSubj border border-ink/8 rounded-xl bg-white overflow-hidden">
+          <summary class="flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-ink/[0.02] transition min-h-[52px]">
+            <span class="w-1.5 h-1.5 rounded-full shrink-0" style="background:${accent}"></span>
+            <span class="flex-1 min-w-0">
+              <span class="block font-bold text-[14.5px] text-neutral-900 leading-snug">${esc(t)}</span>
+              <span class="block text-[12px] text-neutral-900/45 mt-0.5">${ls.length}강${min ? ' · ' + hourTxt(min) : ''} · 눌러서 강의 목록 보기</span>
+            </span>
+            <svg class="chev w-4 h-4 text-neutral-900/30 shrink-0 transition" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="border-t border-ink/6 px-4 py-4" style="background:${hexToRgba(accent,.03)}">
+            ${lv.desc ? `<p class="text-[12.5px] text-neutral-900/55 leading-relaxed mb-3">${esc(lv.desc)}</p>` : ''}
+            <ul class="space-y-2">${rows}</ul>
+            <a href="curriculum.html?track=${ci}" class="inline-flex items-center gap-1 mt-4 min-h-[36px] text-[13px] font-bold hover:underline" style="color:${accent==='#c7b07a'?'#9a7a34':accent}">이 과목 강의실 바로 가기 →</a>
+          </div>
+        </details>`;
+      }).join('');
+      document.getElementById('curBody').innerHTML = `
+        <div class="rounded-xl px-4 py-3.5 mb-3 text-center sm:text-left" style="background:${hexToRgba(accent,.07)}">
+          <p class="text-[13.5px] text-neutral-900/80 leading-relaxed"><b style="color:${accent==='#c7b07a'?'#9a7a34':accent}">${esc(rk.rank)} ${esc(rk.name)}</b> 새 과목
+            <b class="text-neutral-900">${st.subj}과목 · ${st.lessons}강${st.min ? ' · ' + hourTxt(st.min) : ''}</b>${incTxt}</p>
+        </div>
+        <div class="space-y-2.5">${subjects}</div>
+        <div class="text-center mt-5">
+          <a href="#apply" onclick="pickPkg('${rk.name} (${rk.rank})')" class="inline-flex items-center justify-center min-h-[48px] px-8 text-white text-sm font-bold rounded-full hover:opacity-90 transition shadow-soft" style="background:${accent==='#1f2d4d'?'#1f2d4d':'#00704a'}">${esc(rk.rank)} ${esc(rk.name)} 과정으로 신청하기 →</a>
+        </div>`;
+    }
 
     // ── 기수(cohort) — 얼리버드에 '마감'을 부여한다 ──
     //  program.json 의 cohort.deadline(KST, YYYY-MM-DD)이 지나면 얼리버드 가격을 걷어내
@@ -371,7 +476,7 @@
                 <div class="w-full border-t-2 pt-1.5" style="border-color:${accent}">
                   <p class="text-[11px] md:text-sm font-bold text-neutral-900 leading-tight">${rk.name}</p>
                   <p class="text-[8.5px] md:text-[10px] font-bold tracking-wider mt-0.5" style="color:${accent}">${rk.en||''}</p>
-                  <p class="text-[9px] md:text-[11px] text-neutral-900/45 mt-0.5">${(rk.tracks||[]).length}과목</p>
+                  <p class="text-[9px] md:text-[11px] text-neutral-900/45 mt-0.5">${(rk.tracks||[]).length}과목${COURSE?`<span class="hidden md:inline"> · ${rankStats(rk).lessons}강</span>`:''}</p>
                 </div>
               </a>`;
             }).join('')}
@@ -400,13 +505,18 @@
           <p class="pkg-hint mb-2.5">제목을 탭하면 이 급수 소개·홍보를 볼 수 있어요</p>
           <p class="text-xs text-neutral-500 mb-3">${rk.tagline||''}</p>
           <p class="text-[12.5px] text-neutral-700 leading-relaxed mb-3 bg-neutral-50 border border-neutral-200/80 rounded-lg p-2.5"><b class="text-neutral-900">이 등급을 받으면 ›</b> ${rk.outcome||''}</p>
-          <p class="text-[11px] text-neutral-500 font-semibold mb-3">${(rk.tracks||[]).length}개 과목 과정</p>
+          ${(()=>{ // 과목·강의 수 요약 — 누르면 급수별 커리큘럼 칸으로 이동해 이 급수를 펼친다
+            const s = COURSE ? rankStats(rk) : null;
+            const txt = s ? `${s.subj}과목 · ${s.lessons}강${s.min?' · '+hourTxt(s.min):''}` : `${(rk.tracks||[]).length}개 과목 과정`;
+            return `<button type="button" onclick="gotoCurr(${i})" class="mb-3 inline-flex items-center gap-1 text-[11.5px] font-bold text-left hover:underline" style="color:${accent==='#c7b07a'?'#9a7a34':accent}">${txt} — 과목 전체 보기 ›</button>`; })()}
           <p class="mb-4">${HIDE ? '<span class="text-lg font-bold text-neutral-900">가격 추후 안내</span>' : `<span class="text-2xl font-bold text-neutral-900">${won(main)}</span>${rk.earlybird?` <span class="text-sm text-neutral-400 line-through">${won(rk.price)}</span> <span class="text-[11px] font-bold text-rose-500">얼리버드</span>`:''}`}</p>
           <ul class="text-sm text-neutral-600 space-y-1.5 mb-5 flex-1">${perks}</ul>
           <a href="#apply" onclick="pickPkg('${rk.name} (${rk.rank})')" class="block text-center text-sm font-semibold py-2.5 rounded-xl hover:opacity-90 transition" style="${btnStyle}">이 패키지로 신청 →</a>
         </div>`;
       }).join('');
-      if(sel) sel.innerHTML = '<option value="">신청할 패키지를 골라주세요 *</option>' + ranks.map(rk => `<option>${rk.name} (${rk.rank})</option>`).join('');
+      if(sel){ const keep = sel.value;   // course.json 도착 후 다시 그릴 때 선택을 잃지 않게
+        sel.innerHTML = '<option value="">신청할 패키지를 골라주세요 *</option>' + ranks.map(rk => `<option>${rk.name} (${rk.rank})</option>`).join('');
+        if(keep) sel.value = keep; }
     }
     function pickPkg(v){ const s = document.getElementById('aInterest'); if(s) s.value = v; updateApplySummary(); }
     function findRankByInterest(v){ if(!PROG||!PROG.ranks) return null; return PROG.ranks.find(rk => (rk.name+' ('+rk.rank+')') === v) || null; }
@@ -482,7 +592,8 @@
       if(!PROG||!PROG.ranks) return; const rk=PROG.ranks[i]; if(!rk) return;
       const accent=rk.color||'#00704a', HIDE=!!PROG.hidePrice, main=rk.earlybird||rk.price||0;
       const able=(rk.able||[]).map(a=>`<li class="flex gap-2.5"><svg viewBox="0 0 20 20" class="w-4 h-4 shrink-0 mt-0.5" style="color:${accent}" fill="none"><path d="M5 10.5l3.2 3.2L15 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>${a}</span></li>`).join('');
-      const tracks=(rk.tracks||[]).map(t=>`<li class="flex gap-2"><span class="shrink-0 text-neutral-300">•</span><span>${t}</span></li>`).join('');
+      const tracks=(rk.tracks||[]).map(t=>{ const ci=courseIdx(t); const n=ci>=0?(COURSE[ci].lessons||[]).length:0;
+        return `<li class="flex gap-2 items-baseline"><span class="shrink-0 text-neutral-300">•</span><span class="flex-1">${t}</span>${n?`<span class="shrink-0 text-[11px] text-neutral-400 tabular-nums">${n}강</span>`:''}</li>`; }).join('');
       const perks=(rk.perks||[]).map(p=>`<li class="flex gap-2"><svg viewBox="0 0 20 20" class="w-3.5 h-3.5 shrink-0 mt-0.5 text-neutral-400" fill="none"><path d="M5 10.5l3.2 3.2L15 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>${p}</span></li>`).join('');
       let m=document.getElementById('pkgModal');
       if(!m){ m=document.createElement('div'); m.id='pkgModal'; m.innerHTML='<div class="pm-bd" onclick="closePkgModal()"></div><div class="pm-card"><button type="button" class="pm-x" onclick="closePkgModal()">✕</button><div class="pm-body"></div></div>'; document.body.appendChild(m); }

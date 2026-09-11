@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <script src="/content-loader.js?v=20260703f"></script>
-  <script src="/site-header.js?v=20260907a"></script>
+  <script src="/site-header.js?v=20260911a"></script>
   <script src="/section-sidenav.js?v=20260815a"></script>
   <script src="/recent-ticker.js?v=2"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -233,7 +233,7 @@
     // 아카데미 인증 과정 — program.json 등급별 소개
     function renderAcademy(){
       const host = document.getElementById('academyGrades'); if(!host) return;
-      const byName = {}; LEVELS.forEach(lv => { byName[lv.name] = (lv.lessons||[]).length; });
+      const byName = {}; LEVELS.forEach((lv, i) => { byName[lv.name] = { n:(lv.lessons||[]).length, i }; });   // 강 수 + 트랙 인덱스
       fetch('content/program.json?t=' + Date.now()).then(r => r.json()).then(P => {
         const won = n => '₩' + (Number(n)||0).toLocaleString();
         const HIDE = !!P.hidePrice;
@@ -243,9 +243,10 @@
           for(const [k,e] of map){ if(new RegExp(k).test(n)) return e; } return ''; };
         host.innerHTML = (P.ranks||[]).map(rk => {
           const tracks = (rk.tracks||[]).filter(t => byName[t] != null);
-          const lessons = tracks.reduce((s,t) => s + byName[t], 0);
+          const lessons = tracks.reduce((s,t) => s + byName[t].n, 0);
           const main = rk.earlybird || rk.price || 0;
-          const trackCards = tracks.map(t => `<a href="curriculum.html" class="group flex flex-col rounded-xl border border-ink/8 bg-white hover:shadow-card hover:-translate-y-0.5 transition overflow-hidden">
+          // 과목 카드를 누르면 그 과목의 강의 목록(자유 학습 화면 ?track=N)으로 간다
+          const trackCards = tracks.map(t => `<a href="curriculum.html?track=${byName[t].i}" class="group flex flex-col rounded-xl border border-ink/8 bg-white hover:shadow-card hover:-translate-y-0.5 transition overflow-hidden">
             <div class="px-3.5 pt-3.5 pb-3" style="background:linear-gradient(135deg, ${rk.color}14, ${rk.color}05)">
               <div class="flex items-start gap-2">
                 <span class="text-2xl leading-none shrink-0">${SUBJ_EMOJI(t)}</span>
@@ -253,7 +254,7 @@
               </div>
             </div>
             <div class="px-3.5 py-2 flex items-center justify-between border-t border-ink/5">
-              <span class="text-[11px] text-neutral-900/45">${byName[t]}강</span>
+              <span class="text-[11px] text-neutral-900/45">${byName[t].n}강</span>
               <span class="text-[11px] font-bold" style="color:${rk.color}">수강 →</span>
             </div></a>`).join('');
           const perks = (rk.perks||[]).map(p => `<li class="flex gap-1.5 text-sm text-neutral-900/65"><span class="text-gold shrink-0">✓</span><span>${esc(p)}</span></li>`).join('');
