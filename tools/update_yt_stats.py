@@ -58,7 +58,9 @@ def main():
     videos_n = int(md.group(1).replace(",", "")) if md else None
 
     new = {}
-    if subs_n:   new["subscribers"] = fmt_plus(subs_n, 100)
+    # 구독자는 1만 미만일 때 10 단위로 — 100 단위 내림이면 며칠씩 같은 숫자로 보여
+    # '갱신이 안 된다'는 인상을 준다. (worker /api/yt/stats 도 같은 규칙)
+    if subs_n:   new["subscribers"] = fmt_plus(subs_n, 10 if subs_n < 10000 else 100)
     if views_n:  new["views"] = fmt_man(views_n)
     if videos_n: new["videos"] = fmt_plus(videos_n, 10)
     fl = free_lectures()
@@ -73,7 +75,9 @@ def main():
     before = dict(site["youtube"]["stats"])
     site["youtube"]["stats"].update(new)
     if site["youtube"]["stats"] == before:
-        print("unchanged:", before); return 0
+        print("unchanged:", before)
+        patch_index(site["youtube"]["stats"])   # 값이 같아도 index.html 폴백이 뒤처져 있으면 맞춘다
+        return 0
     io.open(path, "w", encoding="utf-8").write(json.dumps(site, ensure_ascii=False, indent=2) + "\n")
     print("updated:", json.dumps(new, ensure_ascii=False))
     patch_index(site["youtube"]["stats"])

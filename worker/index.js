@@ -173,7 +173,8 @@ async function ytStats(env) {
     const mv = html.match(/"viewCountText":"조회수\s*([\d,]+)회"/);
     const md = html.match(/"videoCountText":"동영상\s*([\d,]+)개"/);
     const out = { ok: true };
-    if (subsN) out.subscribers = ytFmtPlus(subsN, 100);
+    // 1만 미만은 10 단위 내림 — 100 단위면 며칠씩 같은 숫자로 보여 '갱신이 안 된다'는 인상을 준다
+    if (subsN) out.subscribers = ytFmtPlus(subsN, subsN < 10000 ? 10 : 100);
     if (mv) out.views = ytFmtMan(parseInt(mv[1].replace(/,/g, ''), 10));
     if (md) out.videos = ytFmtPlus(parseInt(md[1].replace(/,/g, ''), 10), 10);
     if (!out.subscribers && !out.views && !out.videos) return json({ ok: false }, 200);

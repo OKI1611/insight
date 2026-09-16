@@ -22,10 +22,12 @@ jobs:
         run: python tools/update_yt_stats.py
       - name: Commit if changed
         run: |
-          if [ -n "$(git status --porcelain content/site.json)" ]; then
+          # index.html 도 함께 — 스크립트가 첫 화면 폴백 숫자(data-stat)를 같이 고친다.
+          # (site.json 만 add 하면 index.html 수정분이 버려져 첫 화면에 옛 숫자가 남는다)
+          if [ -n "$(git status --porcelain content/site.json index.html)" ]; then
             git config user.name  "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add content/site.json
+            git add content/site.json index.html
             # ⚠️ 커밋 메시지에 [skip ci] 를 넣지 말 것 —
             # Cloudflare 가 배포까지 건너뛰어 GitHub 파일만 바뀌고 사이트 수치는 옛것으로 남는다.
             git commit -m "chore: 유튜브 채널 실적 자동 갱신"
