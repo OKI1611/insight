@@ -73,6 +73,14 @@ def main():
     site = json.loads(io.open(path, encoding="utf-8-sig").read())
     site.setdefault("youtube", {}).setdefault("stats", {})
     before = dict(site["youtube"]["stats"])
+    # 구독자·조회수는 내려가지 않는 값 — 유튜브 공개 카운터가 실수치보다 늦게 따라올 때
+    # 운영자가 올려 둔 값(예: 1만 돌파 직후 10,000+)을 더 낮은 공개 값으로 되돌리지 않는다.
+    def stat_num(s):
+        s = str(s or ""); n = int(re.sub(r"[^0-9]", "", s) or 0)
+        return n * 10000 if "만" in s else n
+    for k in ("subscribers", "views"):
+        if k in new and stat_num(new[k]) < stat_num(before.get(k)):
+            del new[k]
     site["youtube"]["stats"].update(new)
     if site["youtube"]["stats"] == before:
         print("unchanged:", before)
