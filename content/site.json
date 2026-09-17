@@ -43,46 +43,144 @@
           "href": "curriculum-guide.html"
         },
         {
-          "label": "전체 커리큘럼",
-          "href": "curriculum.html",
+          "label": "커리큘럼 전체 보기",
+          "href": "curriculum.html"
+        },
+        {
+          "label": "기초 단계",
+          "href": "curriculum.html?track=0",
           "children": [
             {
-              "label": "신앙의 기초",
+              "label": "기독교 기초 · 처음 만나는 신앙",
               "href": "curriculum.html?track=0"
             },
             {
-              "label": "성경으로 더 깊이",
+              "label": "교회 생활 안내",
+              "href": "curriculum.html?track=1"
+            },
+            {
+              "label": "구원 · 복음의 핵심",
+              "href": "curriculum.html?track=2"
+            },
+            {
+              "label": "예수 그리스도 · 그분은 누구신가",
+              "href": "curriculum.html?track=3"
+            },
+            {
+              "label": "기도 · 하나님과의 대화",
+              "href": "curriculum.html?track=9"
+            },
+            {
+              "label": "크리스천 인간관계 · 사람과 사랑",
+              "href": "curriculum.html?track=20"
+            },
+            {
+              "label": "다시 일어서는 힘 · 동기부여",
+              "href": "curriculum.html?track=21"
+            }
+          ]
+        },
+        {
+          "label": "초급 단계",
+          "href": "curriculum.html?track=4",
+          "children": [
+            {
+              "label": "성경 궁금증 · 자주 묻는 질문",
+              "href": "curriculum.html?track=4"
+            },
+            {
+              "label": "성경 각 권 강해 · 통독",
               "href": "curriculum.html?track=5"
             },
             {
-              "label": "종말과 예언",
+              "label": "성령의 열매",
+              "href": "curriculum.html?track=8"
+            },
+            {
+              "label": "사도바울 — 은혜와 근성의 사람",
+              "href": "curriculum.html?track=18"
+            },
+            {
+              "label": "위대한 설교자",
+              "href": "curriculum.html?track=19"
+            },
+            {
+              "label": "크리스천 리더십",
+              "href": "curriculum.html?track=22"
+            },
+            {
+              "label": "영화를 읽다 · 문화 속 진리",
+              "href": "curriculum.html?track=23"
+            },
+            {
+              "label": "신앙 에세이 · 분별",
+              "href": "curriculum.html?track=24"
+            },
+            {
+              "label": "단편 강의 · 그 외 말씀",
+              "href": "curriculum.html?track=25"
+            }
+          ]
+        },
+        {
+          "label": "중급 단계",
+          "href": "curriculum.html?track=6",
+          "children": [
+            {
+              "label": "레위기 강해",
+              "href": "curriculum.html?track=6"
+            },
+            {
+              "label": "로마서 핵심 강해",
+              "href": "curriculum.html?track=7"
+            },
+            {
+              "label": "기독교 세계관 · 들리는 강의",
+              "href": "curriculum.html?track=10"
+            },
+            {
+              "label": "신학노트 · 핵심 교리",
+              "href": "curriculum.html?track=11"
+            },
+            {
+              "label": "이단·사이비 분별",
+              "href": "curriculum.html?track=12"
+            },
+            {
+              "label": "예언의 기초 · 구약과 다니엘",
               "href": "curriculum.html?track=13"
+            },
+            {
+              "label": "성경예언 마스터 · 개념잡기",
+              "href": "curriculum.html?track=14"
+            }
+          ]
+        },
+        {
+          "label": "고급 단계",
+          "href": "curriculum.html?track=15",
+          "children": [
+            {
+              "label": "천년왕국 세미나",
+              "href": "curriculum.html?track=15"
+            },
+            {
+              "label": "요한계시록 강해 · 짐승의 정체",
+              "href": "curriculum.html?track=16"
+            },
+            {
+              "label": "종말과 국제정세 · 제3성전",
+              "href": "curriculum.html?track=17"
             },
             {
               "label": "요한계시록 강해",
               "href": "curriculum.html?track=27"
-            },
-            {
-              "label": "세계관과 분별",
-              "href": "curriculum.html?track=10"
-            },
-            {
-              "label": "인물에게 배우다",
-              "href": "curriculum.html?track=18"
-            },
-            {
-              "label": "삶으로 살아내기",
-              "href": "curriculum.html?track=20"
-            },
-            {
-              "label": "교양 · 특강",
-              "href": "curriculum.html?track=26"
-            },
-            {
-              "label": "그 외 · 단편 강의",
-              "href": "curriculum.html?track=25"
             }
           ]
+        },
+        {
+          "label": "교양 · 특강",
+          "href": "curriculum.html?track=26"
         }
       ]
     },

@@ -19,20 +19,46 @@
       { label:'1기 창립 멤버', href:'founding.html' }
     ]},
     { label:'강의·커리큘럼', href:'curriculum.html', children:[
-      { label:'무료로 시작하기', href:'welcome.html' },
-      { label:'나에게 맞는 강의 찾기', href:'find.html' },
-      { label:'커리큘럼 소개', href:'curriculum-guide.html' },
-      { label:'전체 커리큘럼', href:'curriculum.html', children:[
-        { label:'신앙의 기초', href:'curriculum.html?track=0' },
-        { label:'성경으로 더 깊이', href:'curriculum.html?track=5' },
-        { label:'종말과 예언', href:'curriculum.html?track=13' },
-        { label:'요한계시록 강해', href:'curriculum.html?track=27' },
-        { label:'세계관과 분별', href:'curriculum.html?track=10' },
-        { label:'인물에게 배우다', href:'curriculum.html?track=18' },
-        { label:'삶으로 살아내기', href:'curriculum.html?track=20' },
-        { label:'교양 · 특강', href:'curriculum.html?track=26' },
-        { label:'그 외 · 단편 강의', href:'curriculum.html?track=25' }
-      ]}
+      { label:"무료로 시작하기", href:"welcome.html" },
+      { label:"나에게 맞는 강의 찾기", href:"find.html" },
+      { label:"커리큘럼 소개", href:"curriculum-guide.html" },
+      { label:"커리큘럼 전체 보기", href:"curriculum.html" },
+      { label:"기초 단계", href:"curriculum.html?track=0", children:[
+          { label:"기독교 기초 · 처음 만나는 신앙", href:"curriculum.html?track=0" },
+          { label:"교회 생활 안내", href:"curriculum.html?track=1" },
+          { label:"구원 · 복음의 핵심", href:"curriculum.html?track=2" },
+          { label:"예수 그리스도 · 그분은 누구신가", href:"curriculum.html?track=3" },
+          { label:"기도 · 하나님과의 대화", href:"curriculum.html?track=9" },
+          { label:"크리스천 인간관계 · 사람과 사랑", href:"curriculum.html?track=20" },
+          { label:"다시 일어서는 힘 · 동기부여", href:"curriculum.html?track=21" }
+        ]},
+      { label:"초급 단계", href:"curriculum.html?track=4", children:[
+          { label:"성경 궁금증 · 자주 묻는 질문", href:"curriculum.html?track=4" },
+          { label:"성경 각 권 강해 · 통독", href:"curriculum.html?track=5" },
+          { label:"성령의 열매", href:"curriculum.html?track=8" },
+          { label:"사도바울 — 은혜와 근성의 사람", href:"curriculum.html?track=18" },
+          { label:"위대한 설교자", href:"curriculum.html?track=19" },
+          { label:"크리스천 리더십", href:"curriculum.html?track=22" },
+          { label:"영화를 읽다 · 문화 속 진리", href:"curriculum.html?track=23" },
+          { label:"신앙 에세이 · 분별", href:"curriculum.html?track=24" },
+          { label:"단편 강의 · 그 외 말씀", href:"curriculum.html?track=25" }
+        ]},
+      { label:"중급 단계", href:"curriculum.html?track=6", children:[
+          { label:"레위기 강해", href:"curriculum.html?track=6" },
+          { label:"로마서 핵심 강해", href:"curriculum.html?track=7" },
+          { label:"기독교 세계관 · 들리는 강의", href:"curriculum.html?track=10" },
+          { label:"신학노트 · 핵심 교리", href:"curriculum.html?track=11" },
+          { label:"이단·사이비 분별", href:"curriculum.html?track=12" },
+          { label:"예언의 기초 · 구약과 다니엘", href:"curriculum.html?track=13" },
+          { label:"성경예언 마스터 · 개념잡기", href:"curriculum.html?track=14" }
+        ]},
+      { label:"고급 단계", href:"curriculum.html?track=15", children:[
+          { label:"천년왕국 세미나", href:"curriculum.html?track=15" },
+          { label:"요한계시록 강해 · 짐승의 정체", href:"curriculum.html?track=16" },
+          { label:"종말과 국제정세 · 제3성전", href:"curriculum.html?track=17" },
+          { label:"요한계시록 강해", href:"curriculum.html?track=27" }
+        ]},
+      { label:"교양 · 특강", href:"curriculum.html?track=26" }
     ]},
     { label:'성경', href:'bible.html', children:[
       { label:'성경 읽기', href:'bible.html' },
@@ -149,9 +175,10 @@
   // 메인 헤더 우측 CTA — 두란노식 강조 '바로 수강' + 내 강의실(로그인/로그아웃은 상단 퀵바)
   function mainCtaHTML(){
     return '<a href="search.html" aria-label="스마트 검색" title="스마트 검색" class="inline-flex items-center justify-center w-9 h-9 rounded-full hover:bg-ink/5 text-neutral-900/70"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></svg></a>'
+      // 색은 초록(주 버튼) 하나만 — 후원·내 강의실은 무채색 테두리 버튼으로(2026-09-18 정돈)
       + '<a href="watch.html" class="inline-flex items-center gap-1 bg-gold text-white font-bold px-3.5 py-1.5 rounded-full hover:opacity-90 transition text-xs whitespace-nowrap shadow-soft">▶ 바로 수강</a>'
-      + '<a href="support.html" class="hidden md:inline-flex items-center gap-1.5 text-white font-bold px-4 py-1.5 rounded-full hover:opacity-90 transition text-xs whitespace-nowrap shadow-soft" style="background:linear-gradient(105deg,#e11d48,#9f1239)"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7.5-4.9-10-9.6C.4 8 1.9 4.4 5.2 4.4c1.9 0 3.3 1.1 4.1 2.3.3.4.9.4 1.2 0 .8-1.2 2.2-2.3 4.1-2.3 3.3 0 4.8 3.6 3.2 7C19.5 16.1 12 21 12 21z"/></svg> 후원하기</a>'
-      + '<a href="mylearning.html" class="hidden 2xl:inline-flex items-center gap-1 border border-gold/45 text-gold font-semibold px-3 py-1.5 rounded-full hover:bg-gold/10 transition text-xs whitespace-nowrap">내 강의실</a>';
+      + '<a href="support.html" class="hidden md:inline-flex items-center gap-1.5 border border-neutral-300 bg-white text-neutral-700 font-bold px-4 py-1.5 rounded-full hover:border-neutral-500 hover:text-neutral-900 transition text-xs whitespace-nowrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="#e11d48" aria-hidden="true"><path d="M12 21s-7.5-4.9-10-9.6C.4 8 1.9 4.4 5.2 4.4c1.9 0 3.3 1.1 4.1 2.3.3.4.9.4 1.2 0 .8-1.2 2.2-2.3 4.1-2.3 3.3 0 4.8 3.6 3.2 7C19.5 16.1 12 21 12 21z"/></svg> 후원하기</a>'
+      + '<a href="mylearning.html" class="hidden 2xl:inline-flex items-center gap-1 border border-neutral-300 bg-white text-neutral-700 font-semibold px-3 py-1.5 rounded-full hover:border-neutral-500 hover:text-neutral-900 transition text-xs whitespace-nowrap">내 강의실</a>';
   }
   // 상단 퀵바(유틸리티) — 수학싸부식: 공지·이벤트·후원 + 로그인 상태/마이메뉴
   function topbarHTML(){
@@ -254,22 +281,24 @@
   function injectNavCSS(){
     if(document.getElementById('biblyNavCSS')) return;
     var st = document.createElement('style'); st.id = 'biblyNavCSS';
+    // 2026-09-18 전면 정돈 — 색을 검정 글자 + 초록 포인트 하나로 줄인 깔끔한 메뉴(언론사 헤더 참고).
+    // 금색 그라데이션 밑줄·초록 점·색 배경을 걷어내고, 선택/호버는 초록 글자 + 가는 초록 밑줄만 쓴다.
     st.textContent = '.navItem{position:relative}.navItem>a{cursor:pointer}'
-      + '.biblyTop{position:relative;padding:6px 2px;letter-spacing:-.005em;transition:color .18s}'
-      + '.biblyTop::after{content:"";position:absolute;left:2px;right:2px;bottom:0;height:2px;background:linear-gradient(90deg,#00704a,#dcb866);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .22s cubic-bezier(.4,0,.2,1)}'
+      + '.biblyTop{position:relative;padding:6px 2px;letter-spacing:-.005em;color:#222;transition:color .15s}'
+      + '.biblyTop:hover,.navItem:hover>.biblyTop,.biblyOn{color:#00704a}'
+      + '.biblyTop::after{content:"";position:absolute;left:2px;right:2px;bottom:0;height:2px;background:#00704a;border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .18s ease}'
       + '.biblyTop:hover::after,.navItem:hover>.biblyTop::after,.biblyOn::after{transform:scaleX(1)}'
       + '.navDrop{position:absolute;left:0;top:100%;padding-top:12px;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .16s,transform .16s,visibility .16s;z-index:60}'
       + '.navItem:hover .navDrop{opacity:1;visibility:visible;transform:none}'
-      + '.navDropCard{background:#fff;border:1px solid rgba(21,32,58,.08);border-radius:.9rem;box-shadow:0 18px 50px -20px rgba(21,32,58,.45);padding:.45rem;min-width:212px}'
-      + '.navDropCard a{display:flex;align-items:center;gap:.6rem;padding:.62rem .85rem;border-radius:.65rem;font-size:.9rem;font-weight:600;color:#171717;white-space:nowrap;transition:background .15s,color .15s,transform .15s}'
-      + '.navDropCard a::before{content:"";width:6px;height:6px;border-radius:50%;background:rgba(0,112,74,.4);flex:none;transition:transform .15s,background .15s}'
-      + '.navDropCard a:hover{background:#eef3fb;color:#00704a;transform:translateX(2px)}'
-      + '.navDropCard a:hover::before{background:#00704a;transform:scale(1.4)}'
-      + '.navDropCard a.navGroupHead{margin-top:.2rem;padding-top:.6rem;border-top:1px solid rgba(21,32,58,.08);font-weight:700}'
-      + '.navDropCard a.navSub{padding:.42rem .85rem .42rem 1.75rem;font-size:.82rem;font-weight:500;color:#44506a}'
-      + '.navDropCard a.navSub::before{width:4px;height:4px;background:rgba(0,112,74,.32)}'
+      + '.navDropCard{background:#fff;border:1px solid rgba(21,32,58,.12);border-radius:.8rem;box-shadow:0 18px 50px -22px rgba(21,32,58,.4);padding:.4rem;min-width:220px;'
+      + 'max-height:calc(100vh - 170px);overflow-y:auto;overscroll-behavior:contain}'   // 단계별 과목 목록이 길어져 세로 스크롤
+      + '.navDropCard a{display:block;padding:.55rem .85rem;border-radius:.5rem;font-size:.9rem;font-weight:600;color:#222;white-space:nowrap;transition:background .12s,color .12s}'
+      + '.navDropCard a:hover{background:#f4f5f7;color:#00704a}'
+      + '.navDropCard a.navGroupHead{margin-top:.3rem;padding-top:.65rem;border-top:1px solid rgba(21,32,58,.09);font-size:.78rem;font-weight:800;color:#8a94a6;letter-spacing:.06em}'
+      + '.navDropCard a.navGroupHead:hover{background:none;color:#00704a}'
+      + '.navDropCard a.navSub{padding:.42rem .85rem .42rem 1.35rem;font-size:.84rem;font-weight:500;color:#3c485e}'
       + '.bibly-topbar a,.bibly-topbar button{color:rgba(247,249,252,.72);white-space:nowrap;transition:color .15s}'
-      + '.bibly-topbar a:hover,.bibly-topbar button:hover{color:#dcb866}'
+      + '.bibly-topbar a:hover,.bibly-topbar button:hover{color:#ffffff}'
       + '.bibly-topbar .sep{color:rgba(247,249,252,.22)}'
       + '.bibly-topbar>div{scrollbar-width:none}.bibly-topbar>div::-webkit-scrollbar{display:none}';
     document.head.appendChild(st);
