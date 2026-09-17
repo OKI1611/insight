@@ -1080,19 +1080,46 @@
         { label:'1기 창립 멤버', href:'founding.html' }
       ]},
       { label:'강의·커리큘럼', href:'curriculum.html', children:[
-        { label:'무료로 시작하기', href:'welcome.html' },
-        { label:'나에게 맞는 강의 찾기', href:'find.html' },
-        { label:'커리큘럼 소개', href:'curriculum-guide.html' },
-        { label:'전체 커리큘럼', href:'curriculum.html', children:[
-          { label:'신앙의 기초', href:'curriculum.html?track=0' },
-          { label:'성경으로 더 깊이', href:'curriculum.html?track=5' },
-          { label:'종말과 예언', href:'curriculum.html?track=13' },
-          { label:'세계관과 분별', href:'curriculum.html?track=10' },
-          { label:'인물에게 배우다', href:'curriculum.html?track=18' },
-          { label:'삶으로 살아내기', href:'curriculum.html?track=20' },
-          { label:'교양 · 특강', href:'curriculum.html?track=26' },
-          { label:'그 외 · 단편 강의', href:'curriculum.html?track=25' }
-        ]}
+      { label:"무료로 시작하기", href:"welcome.html" },
+      { label:"나에게 맞는 강의 찾기", href:"find.html" },
+      { label:"커리큘럼 소개", href:"curriculum-guide.html" },
+      { label:"커리큘럼 전체 보기", href:"curriculum.html" },
+      { label:"기초 단계", href:"curriculum.html?track=0", children:[
+          { label:"기독교 기초 · 처음 만나는 신앙", href:"curriculum.html?track=0" },
+          { label:"교회 생활 안내", href:"curriculum.html?track=1" },
+          { label:"구원 · 복음의 핵심", href:"curriculum.html?track=2" },
+          { label:"예수 그리스도 · 그분은 누구신가", href:"curriculum.html?track=3" },
+          { label:"기도 · 하나님과의 대화", href:"curriculum.html?track=9" },
+          { label:"크리스천 인간관계 · 사람과 사랑", href:"curriculum.html?track=20" },
+          { label:"다시 일어서는 힘 · 동기부여", href:"curriculum.html?track=21" }
+        ]},
+      { label:"초급 단계", href:"curriculum.html?track=4", children:[
+          { label:"성경 궁금증 · 자주 묻는 질문", href:"curriculum.html?track=4" },
+          { label:"성경 각 권 강해 · 통독", href:"curriculum.html?track=5" },
+          { label:"성령의 열매", href:"curriculum.html?track=8" },
+          { label:"사도바울 — 은혜와 근성의 사람", href:"curriculum.html?track=18" },
+          { label:"위대한 설교자", href:"curriculum.html?track=19" },
+          { label:"크리스천 리더십", href:"curriculum.html?track=22" },
+          { label:"영화를 읽다 · 문화 속 진리", href:"curriculum.html?track=23" },
+          { label:"신앙 에세이 · 분별", href:"curriculum.html?track=24" },
+          { label:"단편 강의 · 그 외 말씀", href:"curriculum.html?track=25" }
+        ]},
+      { label:"중급 단계", href:"curriculum.html?track=6", children:[
+          { label:"레위기 강해", href:"curriculum.html?track=6" },
+          { label:"로마서 핵심 강해", href:"curriculum.html?track=7" },
+          { label:"기독교 세계관 · 들리는 강의", href:"curriculum.html?track=10" },
+          { label:"신학노트 · 핵심 교리", href:"curriculum.html?track=11" },
+          { label:"이단·사이비 분별", href:"curriculum.html?track=12" },
+          { label:"예언의 기초 · 구약과 다니엘", href:"curriculum.html?track=13" },
+          { label:"성경예언 마스터 · 개념잡기", href:"curriculum.html?track=14" }
+        ]},
+      { label:"고급 단계", href:"curriculum.html?track=15", children:[
+          { label:"천년왕국 세미나", href:"curriculum.html?track=15" },
+          { label:"요한계시록 강해 · 짐승의 정체", href:"curriculum.html?track=16" },
+          { label:"종말과 국제정세 · 제3성전", href:"curriculum.html?track=17" },
+          { label:"요한계시록 강해", href:"curriculum.html?track=27" }
+        ]},
+      { label:"교양 · 특강", href:"curriculum.html?track=26" }
       ]},
       { label:'성경', href:'bible.html', children:[
         { label:'성경 읽기', href:'bible.html' },
@@ -1137,8 +1164,22 @@
     function _hrefI(h){ return String(h).charAt(0)==='#' ? ('index.html'+h) : h; }
     function renderMenu(menu){
       if(!document.getElementById('biblyNavCSS')){
+        // 2026-09-18 정돈 — 하위 페이지(site-header.js)와 같은 규칙: 검정 글자 + 초록 포인트 하나,
+        // 금색 그라데이션·초록 점 제거, 긴 드롭다운(단계별 과목)은 세로 스크롤
         var st=document.createElement('style'); st.id='biblyNavCSS';
-        st.textContent='.navItem{position:relative}.navItem>a{cursor:pointer}.biblyTop{position:relative;padding:6px 2px;letter-spacing:-.005em;transition:color .18s}.biblyTop::after{content:"";position:absolute;left:2px;right:2px;bottom:0;height:2px;background:linear-gradient(90deg,#00704a,#dcb866);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .22s cubic-bezier(.4,0,.2,1)}.biblyTop:hover::after,.navItem:hover>.biblyTop::after,.biblyOn::after{transform:scaleX(1)}.navDrop{position:absolute;left:0;top:100%;padding-top:12px;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .16s,transform .16s,visibility .16s;z-index:60}.navItem:hover .navDrop{opacity:1;visibility:visible;transform:none}.navDropCard{background:#fff;border:1px solid rgba(21,32,58,.08);border-radius:.9rem;box-shadow:0 18px 50px -20px rgba(21,32,58,.45);padding:.45rem;min-width:212px}.navDropCard a{display:flex;align-items:center;gap:.6rem;padding:.62rem .85rem;border-radius:.65rem;font-size:.9rem;font-weight:600;color:#171717;white-space:nowrap;transition:background .15s,color .15s,transform .15s}.navDropCard a::before{content:"";width:6px;height:6px;border-radius:50%;background:rgba(0,112,74,.4);flex:none;transition:transform .15s,background .15s}.navDropCard a:hover{background:#eef3fb;color:#00704a;transform:translateX(2px)}.navDropCard a:hover::before{background:#00704a;transform:scale(1.4)}';
+        st.textContent='.navItem{position:relative}.navItem>a{cursor:pointer}'
+          +'.biblyTop{position:relative;padding:6px 2px;letter-spacing:-.005em;color:#222;transition:color .15s}'
+          +'.biblyTop:hover,.navItem:hover>.biblyTop,.biblyOn{color:#00704a}'
+          +'.biblyTop::after{content:"";position:absolute;left:2px;right:2px;bottom:0;height:2px;background:#00704a;border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .18s ease}'
+          +'.biblyTop:hover::after,.navItem:hover>.biblyTop::after,.biblyOn::after{transform:scaleX(1)}'
+          +'.navDrop{position:absolute;left:0;top:100%;padding-top:12px;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .16s,transform .16s,visibility .16s;z-index:60}'
+          +'.navItem:hover .navDrop{opacity:1;visibility:visible;transform:none}'
+          +'.navDropCard{background:#fff;border:1px solid rgba(21,32,58,.12);border-radius:.8rem;box-shadow:0 18px 50px -22px rgba(21,32,58,.4);padding:.4rem;min-width:220px;max-height:calc(100vh - 190px);overflow-y:auto;overscroll-behavior:contain}'
+          +'.navDropCard a{display:block;padding:.55rem .85rem;border-radius:.5rem;font-size:.9rem;font-weight:600;color:#222;white-space:nowrap;transition:background .12s,color .12s}'
+          +'.navDropCard a:hover{background:#f4f5f7;color:#00704a}'
+          +'.navDropCard a.navGroupHead{margin-top:.3rem;padding-top:.65rem;border-top:1px solid rgba(21,32,58,.09);font-size:.78rem;font-weight:800;color:#8a94a6;letter-spacing:.06em}'
+          +'.navDropCard a.navGroupHead:hover{background:none;color:#00704a}'
+          +'.navDropCard a.navSub{padding:.42rem .85rem .42rem 1.35rem;font-size:.84rem;font-weight:500;color:#3c485e}';
         document.head.appendChild(st);
       }
       document.getElementById('mainmenu').innerHTML = (menu || []).map(m => {
@@ -1146,17 +1187,28 @@
         const gold = (m.label||'').indexOf('아카데미')>=0;
         const goldCls = gold ? ' text-gold' : '';
         const label = m.label + (gold ? ' <span style="font-size:9px;background:#00704a;color:#fff;border-radius:4px;padding:2px 5px;vertical-align:2px;font-weight:700">NEW</span>' : '');
-        if(!kids.length) return `<a href="${href}" class="biblyTop hover:text-gold transition whitespace-nowrap${goldCls}">${label}</a>`;
+        if(!kids.length) return `<a href="${href}" class="biblyTop transition whitespace-nowrap${goldCls}">${label}</a>`;
         const caret='<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="ml-0.5 opacity-60"><path d="M6 9l6 6 6-6"/></svg>';
-        const sub=kids.map(c=>`<a href="${_hrefI(c.href)}">${c.label}</a>`).join('');
-        return `<div class="navItem"><a href="${href}" class="biblyTop hover:text-gold transition whitespace-nowrap inline-flex items-center${goldCls}">${label}${caret}</a><div class="navDrop"><div class="navDropCard">${sub}</div></div></div>`;
+        // 3단(단계 › 과목)까지 그린다 — 하위 페이지 헤더와 동일
+        const sub=kids.map(c=>{
+          const gk=c.children||[];
+          const head=`<a href="${_hrefI(c.href)}"${gk.length?' class="navGroupHead"':''}>${c.label}</a>`;
+          if(!gk.length) return head;
+          return head + gk.map(g=>`<a href="${_hrefI(g.href)}" class="navSub">${g.label}</a>`).join('');
+        }).join('');
+        return `<div class="navItem"><a href="${href}" class="biblyTop transition whitespace-nowrap inline-flex items-center${goldCls}">${label}${caret}</a><div class="navDrop"><div class="navDropCard">${sub}</div></div></div>`;
       }).join('');
       const mob = document.getElementById('mobilemenuLinks');
       if(mob) mob.innerHTML = (menu || []).map(m => {
         const href=_hrefI(m.href), kids=m.children||[];
         if(!kids.length) return `<a href="${href}" onclick="closeMobileMenu()" class="py-2.5 border-b border-ink/5 text-neutral-900/80 font-medium hover:text-gold transition">${m.label}</a>`;
         const head=`<a href="${href}" onclick="closeMobileMenu()" class="pt-2.5 pb-1 font-bold text-neutral-900/80">${m.label}</a>`;
-        const sub=kids.map(c=>`<a href="${_hrefI(c.href)}" onclick="closeMobileMenu()" class="py-2 pl-4 border-b border-ink/5 text-[14px] text-neutral-900/60 hover:text-gold transition">└ ${c.label}</a>`).join('');
+        const sub=kids.map(c=>{
+          const gk=c.children||[];
+          const a=`<a href="${_hrefI(c.href)}" onclick="closeMobileMenu()" class="py-2 pl-4 border-b border-ink/5 text-[14px] text-neutral-900/60 hover:text-gold transition">└ ${c.label}</a>`;
+          if(!gk.length) return a;
+          return a + gk.map(g=>`<a href="${_hrefI(g.href)}" onclick="closeMobileMenu()" class="py-1.5 pl-9 border-b border-ink/5 text-[13px] text-neutral-900/50 hover:text-gold transition">· ${g.label}</a>`).join('');
+        }).join('');
         return head+sub;
       }).join('');
     }
