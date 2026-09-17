@@ -26,6 +26,7 @@
         { label:'신앙의 기초', href:'curriculum.html?track=0' },
         { label:'성경으로 더 깊이', href:'curriculum.html?track=5' },
         { label:'종말과 예언', href:'curriculum.html?track=13' },
+        { label:'요한계시록 강해', href:'curriculum.html?track=27' },
         { label:'세계관과 분별', href:'curriculum.html?track=10' },
         { label:'인물에게 배우다', href:'curriculum.html?track=18' },
         { label:'삶으로 살아내기', href:'curriculum.html?track=20' },
