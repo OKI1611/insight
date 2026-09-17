@@ -244,6 +244,10 @@
       '고급': { emoji:'', desc:'종말·예언을 깊이 파고드는 심화 단계' },
       '교양': { emoji:'', desc:'신앙 외 일반 교양·특강' },
     };
+    // 과목 목록 세분화 — 난이도 5칸 대신 주제 그룹 8칸으로 나눠 보여 준다(상단 메뉴 분류와 동일).
+    // 난이도는 각 과목 줄의 작은 배지로 표시하고, 난이도 탭은 거름망(필터)으로 그대로 쓴다.
+    const GROUP_ORDER = ['신앙의 기초','성경으로 더 깊이','종말과 예언','세계관과 분별','인물에게 배우다','삶으로 살아내기','교양 · 특강','그 외'];
+    const LV_COLOR = { '기초':'#2f7d4f', '초급':'#1f5fa8', '중급':'#9a7a34', '고급':'#8a2f3d', '교양':'#6b5b95' };
     function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
     function ytId(u){ const m = String(u||'').match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/); return m ? m[1] : ''; }
 
@@ -349,12 +353,17 @@
       document.getElementById('trackDetail').innerHTML = '<p class="text-red-500 text-sm text-center py-20">커리큘럼을 불러오지 못했습니다.</p>';
     });
 
-    // 단계 순서대로(필터 적용) 트랙 목록 반환 — 원래 인덱스(ti) 유지
-    function tracksByLevel(){
+    // 주제 그룹 → 그룹 안에서는 난이도 순으로(필터 적용) 트랙 목록 반환 — 원래 인덱스(ti) 유지
+    function tracksByGroup(){
       const out = [];
-      LV_ORDER.forEach(L => {
-        LEVELS.forEach((lv, ti) => {
-          if((lv.level || '초급') === L && (FILTER === '전체' || FILTER === L)) out.push({ ti, lv, L });
+      const groups = [...GROUP_ORDER];
+      LEVELS.forEach(lv => { const g = lv.group || '그 외'; if(!groups.includes(g)) groups.push(g); });   // 새 그룹도 누락 없이
+      groups.forEach(G => {
+        LV_ORDER.forEach(L => {
+          LEVELS.forEach((lv, ti) => {
+            if((lv.group || '그 외') === G && (lv.level || '초급') === L && (FILTER === '전체' || FILTER === L))
+              out.push({ ti, lv, L, G });
+          });
         });
       });
       return out;
@@ -373,28 +382,28 @@
     }
     function setFilter(L){
       FILTER = L; renderTabs(); renderNav();
-      const first = tracksByLevel()[0]; if(first) selectTrack(first.ti);
+      const first = tracksByGroup()[0]; if(first) selectTrack(first.ti);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     function renderNav(){
-      const items = tracksByLevel();
-      let html = '', lastL = null;
-      items.forEach(({ ti, lv, L }) => {
-        if(L !== lastL){ lastL = L; const inf = LV_INFO[L] || {}; html += `<p class="px-4 ${ html ? 'pt-4 mt-1 border-t border-ink/8' : 'pt-3' } pb-1 text-[11px] font-bold text-gold/90 tracking-wide">${ inf.emoji || '' } ${esc(L)} 단계</p>`; }
+      const items = tracksByGroup();
+      let html = '', lastG = null;
+      items.forEach(({ ti, lv, L, G }) => {
+        if(G !== lastG){ lastG = G; html += `<p class="px-4 ${ html ? 'pt-4 mt-1 border-t border-ink/8' : 'pt-3' } pb-1 text-[11px] font-bold text-gold/90 tracking-wide">${esc(G)}</p>`; }
         html += `<button onclick="selectTrack(${ti})" id="tb-${ti}" class="trackBtn w-full text-left px-4 py-3 hover:bg-ink/[0.03] transition flex items-center gap-2">
           <span class="flex-1 min-w-0">
             <span class="block font-semibold text-[15px] leading-snug truncate">${esc(lv.name||'')}</span>
-            <span class="tbCnt block text-[13px] text-neutral-900/45 mt-0.5">${(lv.lessons||[]).length}강</span>
+            <span class="tbCnt block text-[13px] text-neutral-900/45 mt-0.5"><b style="color:${LV_COLOR[L]||'#6b7280'}">${esc(L)}</b> · ${(lv.lessons||[]).length}강</span>
           </span>
           <svg class="w-4 h-4 text-neutral-900/25 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
         </button>`;
       });
-      document.getElementById('trackNav').innerHTML = html || '<p class="px-4 py-6 text-sm text-neutral-900/40 text-center">해당 단계의 트랙이 없어요.</p>';
-      // 모바일 드롭다운 — 단계(optgroup)
+      document.getElementById('trackNav').innerHTML = html || '<p class="px-4 py-6 text-sm text-neutral-900/40 text-center">해당 단계의 과목이 없어요.</p>';
+      // 모바일 드롭다운 — 주제 그룹(optgroup) + 과목 (난이도 · 강 수)
       let so = '', lg = null;
-      items.forEach(({ ti, lv, L }) => {
-        if(L !== lg){ if(lg !== null) so += '</optgroup>'; so += `<optgroup label="${esc((LV_INFO[L]?.emoji||'') + ' ' + L + ' 단계')}">`; lg = L; }
-        so += `<option value="${ti}">${esc(lv.name||'')} (${(lv.lessons||[]).length}강)</option>`;
+      items.forEach(({ ti, lv, L, G }) => {
+        if(G !== lg){ if(lg !== null) so += '</optgroup>'; so += `<optgroup label="${esc(G)}">`; lg = G; }
+        so += `<option value="${ti}">${esc(lv.name||'')} (${esc(L)} · ${(lv.lessons||[]).length}강)</option>`;
       });
       if(lg !== null) so += '</optgroup>';
       document.getElementById('trackSelect').innerHTML = so;
@@ -442,7 +451,7 @@
       }).join('');
 
       document.getElementById('trackDetail').innerHTML = `
-        <nav class="text-[13px] text-neutral-900/45 mb-2.5">강의·커리큘럼 <span class="mx-0.5">›</span> ${esc(L)} 단계 <span class="mx-0.5">›</span> <b class="text-neutral-900/75">${esc(lv.name||'')}</b></nav>
+        <nav class="text-[13px] text-neutral-900/45 mb-2.5">강의·커리큘럼 <span class="mx-0.5">›</span> ${esc(lv.group||'그 외')} <span class="mx-0.5">›</span> <b class="text-neutral-900/75">${esc(lv.name||'')}</b></nav>
         <div class="bg-white border border-ink/10 rounded-2xl shadow-soft p-5 md:p-6 mb-5">
           <div class="flex flex-wrap items-center gap-1.5 mb-2">
             <span class="text-[11px] font-bold text-white px-2.5 py-1 rounded-full" style="background:#213a6b">${esc(L)} 단계</span>
