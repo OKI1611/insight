@@ -137,23 +137,12 @@
 
   <div id="siteHeader" data-active="curriculum.html"></div>
 
-  <main class="max-w-6xl mx-auto px-4 py-9">
-    <div class="text-center mb-6">
-      <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">CURRICULUM</p>
-      <h1 class="text-3xl md:text-4xl font-bold">전체 강의 안내</h1>
-      <p class="text-neutral-900/60 text-base md:text-lg mt-4 max-w-2xl mx-auto leading-relaxed">처음 오신 분도 쉽게 — 관심 가는 <b class="text-neutral-900/80">주제를 고르고</b>, 바로 <b class="text-gold">무료로</b> 보실 수 있습니다.</p>
+  <main class="max-w-6xl mx-auto px-4 py-6 md:py-8">
+    <!-- 얇은 머리 줄 — 제목만 남기고 소개문·보는 법 카드를 걷어냄(2026-09-17 단순화) -->
+    <div class="flex items-baseline justify-between gap-3 mb-5">
+      <h1 class="text-xl md:text-2xl font-bold">강의 커리큘럼</h1>
+      <p class="hidden sm:block text-[13px] text-neutral-900/45">과목을 고르면 강의 목록이 바로 나옵니다 · 전 강의 무료</p>
     </div>
-
-    <!-- 보는 법 안내 — 한 줄 (자유 학습일 때만). 큰 배너 대신 얇은 안내로 화면을 정돈했다 -->
-    <section id="onboard" class="bg-white border border-ink/10 rounded-2xl px-5 py-4 mb-6 shadow-soft">
-      <div class="flex flex-col md:flex-row md:items-center gap-3">
-        <p class="flex-1 text-[15px] md:text-base text-neutral-900/80 leading-relaxed">
-          <b class="text-gold">보는 법</b> · ① <span class="hidden lg:inline">왼쪽 <b class="text-neutral-900">과목 목록</b>에서</span><span class="lg:hidden">아래 <b class="text-neutral-900">과목 선택</b>칸에서</span> 과목을 고르고
-          ② 강의 목록에서 <b class="text-neutral-900">제목을 누르면</b> 무료로 바로 볼 수 있습니다.
-        </p>
-        <button onclick="startBeginner()" class="shrink-0 bg-gold text-white font-bold text-[15px] px-6 py-3 rounded-full hover:opacity-90 transition">처음이라면 — 기초 과정부터 →</button>
-      </div>
-    </section>
 
     <!-- 모바일 과정 탭 -->
     <div class="lg:hidden grid grid-cols-2 gap-2 mb-5">
@@ -199,13 +188,8 @@
       <div class="min-w-0">
         <!-- 자유 학습 -->
         <section id="freeContent">
-          <div class="flex items-center gap-2 mb-1.5"><span class="text-2xl"></span><h2 class="text-2xl font-bold">자유 학습</h2><span class="text-xs font-bold text-neutral-900/55 bg-ink/[0.06] px-2.5 py-0.5 rounded-full">무료</span></div>
-          <p class="text-neutral-900/60 text-base mb-4 leading-relaxed">28개 주제의 강의를 시험 없이 자유롭게 — 누구나 <b class="text-neutral-900/80">무료</b>로 보실 수 있습니다.</p>
-          <label class="lg:hidden block text-sm font-bold text-neutral-900/55 mb-1.5">과목 선택</label>
+          <label class="lg:hidden block text-sm font-bold text-neutral-900/55 mb-1.5">과목 선택 <span class="font-normal text-neutral-900/40">— 기초 → 고급 순서</span></label>
           <select id="trackSelect" onchange="selectTrack(+this.value)" class="lg:hidden w-full bg-white border border-ink/20 rounded-xl px-4 py-3.5 text-base font-semibold mb-4 outline-none focus:border-gold"></select>
-          <p class="text-sm font-bold text-neutral-900/45 mb-2">난이도 단계</p>
-          <div id="levelTabs" class="flex flex-wrap gap-2 mb-2.5"></div>
-          <p id="levelDesc" class="text-[15px] text-neutral-900/55 mb-5 leading-relaxed"></p>
           <p id="curSub" class="hidden"></p>
           <section id="trackDetail" class="min-h-[420px]"><p class="text-neutral-900/40 text-sm text-center py-20">커리큘럼을 불러오는 중…</p></section>
         </section>
@@ -235,19 +219,9 @@
   </main>
 
   <script>
-    let LEVELS = [], STARTS = [], CUR = 0, FILTER = '전체';
+    let LEVELS = [], STARTS = [], CUR = 0;
+    // 과목 목록은 난이도 순서(기초 → 초급 → 중급 → 고급 → 교양)로만 보여 준다(2026-09-17 단순화).
     const LV_ORDER = ['기초','초급','중급','고급','교양'];
-    const LV_INFO = {
-      '기초': { emoji:'', desc:'신앙을 처음 시작하거나 기초를 다지는 단계' },
-      '초급': { emoji:'', desc:'성경을 스스로 읽고 삶에 적용하는 단계' },
-      '중급': { emoji:'', desc:'교리·세계관·예언의 기초를 세우는 단계' },
-      '고급': { emoji:'', desc:'종말·예언을 깊이 파고드는 심화 단계' },
-      '교양': { emoji:'', desc:'신앙 외 일반 교양·특강' },
-    };
-    // 과목 목록 세분화 — 난이도 5칸 대신 주제 그룹 8칸으로 나눠 보여 준다(상단 메뉴 분류와 동일).
-    // 난이도는 각 과목 줄의 작은 배지로 표시하고, 난이도 탭은 거름망(필터)으로 그대로 쓴다.
-    const GROUP_ORDER = ['신앙의 기초','성경으로 더 깊이','종말과 예언','세계관과 분별','인물에게 배우다','삶으로 살아내기','교양 · 특강','그 외'];
-    const LV_COLOR = { '기초':'#2f7d4f', '초급':'#1f5fa8', '중급':'#9a7a34', '고급':'#8a2f3d', '교양':'#6b5b95' };
     function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
     function ytId(u){ const m = String(u||'').match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/); return m ? m[1] : ''; }
 
@@ -316,20 +290,12 @@
       }).catch(() => { host.innerHTML = '<p class="text-neutral-900/40 text-sm text-center py-8">인증 과정 정보를 불러오지 못했습니다.</p>'; });
     }
 
-    // "기초 과정부터 시작하기" — 자유 학습 + 기초 단계로 안내
-    function startBeginner(){
-      showCourse('free');
-      setFilter('기초');
-      setTimeout(() => { const el = document.getElementById('freeContent'); if(el) el.scrollIntoView({ behavior:'smooth', block:'start' }); }, 120);
-    }
-
     // 과정 탭 전환 (자유 학습 / 아카데미 인증 과정)
     function showCourse(which){
       const free = which !== 'academy';
       const tog = (id, hide) => { const e = document.getElementById(id); if(e) e.classList.toggle('hidden', hide); };
       tog('freeContent', !free); tog('academyContent', free);
       tog('freeSide', !free); tog('academySide', free);
-      tog('onboard', !free);   // 처음 오신 분 안내는 자유 학습일 때만
       ['tab-free','mtab-free'].forEach(id => { const e=document.getElementById(id); if(e) e.classList.toggle('active', free); });
       ['tab-academy','mtab-academy'].forEach(id => { const e=document.getElementById(id); if(e) e.classList.toggle('active', !free); });
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -341,75 +307,52 @@
       const totalLessons = acc;
       const sub = document.getElementById('curSub');
       if(sub) sub.textContent = `${LEVELS.length}개 트랙 · 총 ${totalLessons}강 — 기초부터 고급까지 단계별로 골라 들으세요.`;
-      renderTabs();
       renderNav();
       renderAcademy();
-      // URL ?t=인덱스 또는 기본 0
+      // URL ?t=인덱스 또는 기본 0 — 첫 진입에는 스크롤하지 않는다
       const qp = parseInt(new URLSearchParams(location.search).get('track'), 10);
-      selectTrack((!isNaN(qp) && qp >= 0 && qp < LEVELS.length) ? qp : 0);
+      selectTrack((!isNaN(qp) && qp >= 0 && qp < LEVELS.length) ? qp : 0, false);
       const tabParam = (new URLSearchParams(location.search).get('tab') || '').toLowerCase();
       showCourse((tabParam === 'academy' || location.hash === '#academy') ? 'academy' : 'free');
     }).catch(() => {
       document.getElementById('trackDetail').innerHTML = '<p class="text-red-500 text-sm text-center py-20">커리큘럼을 불러오지 못했습니다.</p>';
     });
 
-    // 주제 그룹 → 그룹 안에서는 난이도 순으로(필터 적용) 트랙 목록 반환 — 원래 인덱스(ti) 유지
-    function tracksByGroup(){
+    // 난이도 순서(기초 → 초급 → 중급 → 고급 → 교양)로 트랙 목록 반환 — 원래 인덱스(ti) 유지
+    function tracksByLevel(){
       const out = [];
-      const groups = [...GROUP_ORDER];
-      LEVELS.forEach(lv => { const g = lv.group || '그 외'; if(!groups.includes(g)) groups.push(g); });   // 새 그룹도 누락 없이
-      groups.forEach(G => {
-        LV_ORDER.forEach(L => {
-          LEVELS.forEach((lv, ti) => {
-            if((lv.group || '그 외') === G && (lv.level || '초급') === L && (FILTER === '전체' || FILTER === L))
-              out.push({ ti, lv, L, G });
-          });
+      LV_ORDER.forEach(L => {
+        LEVELS.forEach((lv, ti) => {
+          if((lv.level || '초급') === L) out.push({ ti, lv, L });
         });
       });
       return out;
     }
-    function renderTabs(){
-      const counts = {}; LEVELS.forEach(lv => { const L = lv.level || '초급'; counts[L] = (counts[L]||0)+1; });
-      const tabs = ['전체', ...LV_ORDER.filter(L => counts[L])];
-      document.getElementById('levelTabs').innerHTML = tabs.map(L => {
-        const on = FILTER === L;
-        const label = L === '전체' ? '전체' : `${LV_INFO[L].emoji} ${L}`;
-        const n = L === '전체' ? LEVELS.length : counts[L];
-        return `<button onclick="setFilter('${L}')" class="px-4 py-2 rounded-full text-sm font-semibold border transition ${ on ? 'bg-gold text-white border-ink' : 'bg-white text-neutral-900/60 border-ink/15 hover:bg-ink/5' }">${label} <span class="${ on ? 'text-paper/50' : 'text-neutral-900/30' }">${n}</span></button>`;
-      }).join('');
-      const d = document.getElementById('levelDesc');
-      if(d) d.textContent = FILTER === '전체' ? '기초 → 초급 → 중급 → 고급 순서로 차근차근 올라가세요.' : (LV_INFO[FILTER]?.desc || '');
-    }
-    function setFilter(L){
-      FILTER = L; renderTabs(); renderNav();
-      const first = tracksByGroup()[0]; if(first) selectTrack(first.ti);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
     function renderNav(){
-      const items = tracksByGroup();
-      let html = '', lastG = null;
-      items.forEach(({ ti, lv, L, G }) => {
-        if(G !== lastG){ lastG = G; html += `<p class="px-4 ${ html ? 'pt-4 mt-1 border-t border-ink/8' : 'pt-3' } pb-1 text-[11px] font-bold text-gold/90 tracking-wide">${esc(G)}</p>`; }
+      const items = tracksByLevel();
+      let html = '', lastL = null;
+      items.forEach(({ ti, lv, L }) => {
+        if(L !== lastL){ lastL = L; html += `<p class="px-4 ${ html ? 'pt-4 mt-1 border-t border-ink/8' : 'pt-3' } pb-1 text-[11px] font-bold text-gold/90 tracking-wide">${esc(L)} 단계</p>`; }
         html += `<button onclick="selectTrack(${ti})" id="tb-${ti}" class="trackBtn w-full text-left px-4 py-3 hover:bg-ink/[0.03] transition flex items-center gap-2">
           <span class="flex-1 min-w-0">
             <span class="block font-semibold text-[15px] leading-snug truncate">${esc(lv.name||'')}</span>
-            <span class="tbCnt block text-[13px] text-neutral-900/45 mt-0.5"><b style="color:${LV_COLOR[L]||'#6b7280'}">${esc(L)}</b> · ${(lv.lessons||[]).length}강</span>
+            <span class="tbCnt block text-[13px] text-neutral-900/45 mt-0.5">${(lv.lessons||[]).length}강</span>
           </span>
           <svg class="w-4 h-4 text-neutral-900/25 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
         </button>`;
       });
-      document.getElementById('trackNav').innerHTML = html || '<p class="px-4 py-6 text-sm text-neutral-900/40 text-center">해당 단계의 과목이 없어요.</p>';
-      // 모바일 드롭다운 — 주제 그룹(optgroup) + 과목 (난이도 · 강 수)
+      document.getElementById('trackNav').innerHTML = html;
+      // 모바일 드롭다운 — 단계(optgroup) + 과목 (강 수)
       let so = '', lg = null;
-      items.forEach(({ ti, lv, L, G }) => {
-        if(G !== lg){ if(lg !== null) so += '</optgroup>'; so += `<optgroup label="${esc(G)}">`; lg = G; }
-        so += `<option value="${ti}">${esc(lv.name||'')} (${esc(L)} · ${(lv.lessons||[]).length}강)</option>`;
+      items.forEach(({ ti, lv, L }) => {
+        if(L !== lg){ if(lg !== null) so += '</optgroup>'; so += `<optgroup label="${esc(L)} 단계">`; lg = L; }
+        so += `<option value="${ti}">${esc(lv.name||'')} (${(lv.lessons||[]).length}강)</option>`;
       });
       if(lg !== null) so += '</optgroup>';
       document.getElementById('trackSelect').innerHTML = so;
     }
 
-    function selectTrack(ti){
+    function selectTrack(ti, scroll){
       CUR = ti;
       LEVELS.forEach((_, i) => { const b = document.getElementById('tb-'+i); if(b) b.classList.toggle('active', i===ti); });
       const sel = document.getElementById('trackSelect'); if(sel) sel.value = ti;
@@ -451,7 +394,7 @@
       }).join('');
 
       document.getElementById('trackDetail').innerHTML = `
-        <nav class="text-[13px] text-neutral-900/45 mb-2.5">강의·커리큘럼 <span class="mx-0.5">›</span> ${esc(lv.group||'그 외')} <span class="mx-0.5">›</span> <b class="text-neutral-900/75">${esc(lv.name||'')}</b></nav>
+        <nav class="text-[13px] text-neutral-900/45 mb-2.5">강의·커리큘럼 <span class="mx-0.5">›</span> ${esc(L)} 단계 <span class="mx-0.5">›</span> <b class="text-neutral-900/75">${esc(lv.name||'')}</b></nav>
         <div class="bg-white border border-ink/10 rounded-2xl shadow-soft p-5 md:p-6 mb-5">
           <div class="flex flex-wrap items-center gap-1.5 mb-2">
             <span class="text-[11px] font-bold text-white px-2.5 py-1 rounded-full" style="background:#213a6b">${esc(L)} 단계</span>
@@ -468,7 +411,12 @@
           <div class="lecHead"><span class="lhNo">번호</span><span class="lhThumb">화면</span><span class="lhTitle">강의 제목</span><span class="lhDur">시간</span><span class="lhGo">보기</span></div>
           ${rows}
         </div>`;
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // 과목을 고르면 맨 위(안내문)가 아니라 방금 고른 과목 상세가 바로 보이게 스크롤
+      // (첫 진입에는 scroll === false 로 호출되어 움직이지 않는다)
+      if(scroll !== false){
+        const el = document.getElementById('trackDetail');
+        if(el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 74, behavior: 'smooth' });
+      }
     }
   </script>
 
