@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <script src="/content-loader.js?v=20260703f"></script>
+  <script src="/site-header.js?v=20260920a"></script>
+  <script src="/section-sidenav.js?v=20260920a"></script>
+  <script src="/protect.js?v=1"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>질의응답 — BIBLY 바이블 인사이트 | 요한계시록 자주 묻는 질문</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="BIBLY" />
+  <meta name="description" content="유튜브에서 가장 많이 받은 요한계시록 질문과 신앙의 궁금증을, 성경 본문에 근거해 답합니다. 질문을 남기면 답변이 이 코너에 공개됩니다." />
+  <meta name="theme-color" content="#213a6b" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="canonical" href="https://biblynote.com/qna" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BIBLY 바이블 인사이트" />
+  <meta property="og:title" content="질의응답 · 요한계시록 자주 묻는 질문 — BIBLY" />
+  <meta property="og:description" content="유튜브에서 가장 많이 받은 질문을 한자리에. 성경 본문으로 답합니다." />
+  <meta property="og:image" content="https://biblynote.com/images/og-cover.png?v=7" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink:'#213a6b', navy:'#182c54', gold:'#00704a', sand:'#eaf0f8', paper:'#ffffff' },
+      fontFamily: { sans:['Pretendard','system-ui','sans-serif'] },
+      boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
+    }}}
+  </script>
+  <style>
+    mark{background:#fbeec2;color:inherit;border-radius:3px;padding:0 1px}
+    details.qrow summary::-webkit-details-marker{display:none}
+    details.qrow[open]{background:#fbfcfe}
+    details.qrow[open] .qcaret{transform:rotate(180deg)}
+    details.qrow[open] .qtitle{color:#00704a}
+    .chip{display:inline-flex;align-items:center;gap:.3rem;padding:.38rem .8rem;border-radius:999px;font-size:12.5px;font-weight:600;border:1px solid rgba(33,58,107,.12);color:rgba(33,58,107,.72);background:#fff;cursor:pointer;transition:all .13s;white-space:nowrap}
+    .chip:hover{border-color:rgba(0,112,74,.45);color:#00704a}
+    .chip.on{background:#00704a;border-color:#00704a;color:#fff}
+    .pgbtn{min-width:34px;height:34px;padding:0 9px;border-radius:9px;font-size:13px;font-weight:600;color:rgba(33,58,107,.62);background:#fff;border:1px solid rgba(33,58,107,.09);cursor:pointer;transition:all .12s}
+    .pgbtn:hover:not(:disabled){border-color:rgba(0,112,74,.42);color:#00704a}
+    .pgbtn:disabled{opacity:.32;cursor:default}
+    .pgbtn.pgon{background:#00704a;color:#fff;border-color:#00704a}
+    .scrchip{cursor:pointer;border:0}
+    #scrBubble{position:absolute;z-index:130;background:#fff;border:1px solid rgba(33,58,107,.12);border-radius:14px;box-shadow:0 14px 40px -10px rgba(21,32,58,.32);max-width:92vw}
+    #scrBubble .bh{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 13px;border-bottom:1px solid rgba(33,58,107,.07)}
+    #scrBubble .bh b{color:#00704a;font-size:12.5px}
+    #scrBubble .bh button{border:0;background:transparent;color:rgba(33,58,107,.4);cursor:pointer;font-size:13px}
+    #scrBubble .bbody{padding:11px 14px 13px;max-height:48vh;overflow:auto}
+    #scrBubble .bbody p{color:rgba(33,58,107,.88);line-height:1.78;font-size:13px;margin-bottom:5px}
+    #scrBubble .bbody p b{color:#00704a;font-weight:700;margin-right:3px;font-size:11px}
+    #scrBubble .blink{display:inline-block;margin-top:6px;color:#00704a;font-weight:600;font-size:12.5px;text-decoration:none}
+    .roomcard{position:relative;overflow:hidden;text-align:left;border-radius:18px;padding:18px 20px;transition:all .16s;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:#fff}
+    .roomcard:hover{background:rgba(255,255,255,.12)}
+    .roomcard.on{background:#fff;color:#213a6b;border-color:#fff;box-shadow:0 14px 34px -16px rgba(0,0,0,.5)}
+    .roomcard.on .rc-sub{color:rgba(33,58,107,.6)}
+    .roomcard.on .rc-count{background:rgba(0,112,74,.1);color:#00704a}
+  </style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"홈","item":"https://biblynote.com/"},
+    {"@type":"ListItem","position":2,"name":"질의응답","item":"https://biblynote.com/qna"}]}
+  </script>
+</head>
+<body class="font-sans bg-[#f7f9fc] text-neutral-900 antialiased min-h-screen">
+
+  <div id="siteHeader" data-active="qna.html"></div>
+
+  <!-- ===== 히어로 : 두 개의 방 ===== -->
+  <section class="bg-gradient-to-br from-navy to-ink text-white">
+    <div class="max-w-5xl mx-auto px-5 pt-11 pb-8 md:pt-14 md:pb-10">
+      <p class="text-[11px] font-bold tracking-[0.34em] text-white/45 uppercase">Questions &amp; Answers</p>
+      <h1 class="text-[26px] md:text-[34px] font-bold leading-tight mt-2.5">묻고, <span class="text-[#7fd4b0]">답이 남는 곳</span></h1>
+      <p class="text-white/60 text-[14px] md:text-[15px] mt-3 leading-relaxed max-w-2xl">한 번 답한 질문은 사라지지 않습니다. 유튜브 댓글과 메일로 가장 많이 받은 질문을 성경 본문에 근거해 정리해 둡니다.</p>
+
+      <div class="relative mt-6 max-w-xl">
+        <input id="q" type="search" autocomplete="off" placeholder="궁금한 것을 검색하세요 (예: 666, 휴거, 십사만 사천…)" oninput="onSearch()" class="w-full rounded-full pl-12 pr-4 py-3.5 text-[15px] text-neutral-900 outline-none bg-white shadow-card placeholder:text-neutral-900/35" />
+        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-900/30"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></svg></span>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-3 mt-7">
+        <button type="button" id="roomRev" onclick="pickRoom('rev')" class="roomcard">
+          <span class="absolute right-0 top-0 w-24 h-24 rounded-full bg-[#7fd4b0]/10 -mr-9 -mt-9"></span>
+          <span class="relative block">
+            <span class="flex items-center gap-2">
+              <span class="font-bold text-[16px]">요한계시록 질의응답</span>
+              <span class="rc-count text-[11px] font-bold px-2 py-0.5 rounded-full bg-white/15" id="cntRev">0</span>
+            </span>
+            <span class="rc-sub block text-[12.5px] mt-1.5 text-white/55 leading-relaxed">유튜브에서 가장 많이 받은 질문 · 장별로 정리</span>
+          </span>
+        </button>
+        <button type="button" id="roomGen" onclick="pickRoom('gen')" class="roomcard">
+          <span class="absolute right-0 top-0 w-24 h-24 rounded-full bg-white/[0.07] -mr-9 -mt-9"></span>
+          <span class="relative block">
+            <span class="flex items-center gap-2">
+              <span class="font-bold text-[16px]">신앙·성경 질의응답</span>
+              <span class="rc-count text-[11px] font-bold px-2 py-0.5 rounded-full bg-white/15" id="cntGen">0</span>
+            </span>
+            <span class="rc-sub block text-[12.5px] mt-1.5 text-white/55 leading-relaxed">구원·분별·신앙생활, 그 밖의 모든 궁금증</span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 관리자 바 ===== -->
+  <div id="adminBar" class="hidden max-w-5xl mx-auto px-5 mt-5">
+    <div class="flex flex-wrap items-center justify-between gap-2 bg-white border border-gold/25 rounded-xl px-4 py-2.5 shadow-soft">
+      <span class="text-[12.5px] text-gold font-semibold">관리자 모드</span>
+      <span class="flex gap-2">
+        <button onclick="openInbox()" class="border border-ink/15 text-[12.5px] font-semibold px-3 py-1.5 rounded-full hover:border-gold hover:text-gold transition">받은 질문함 <span id="inboxCount" class="text-gold font-bold"></span></button>
+        <button onclick="openEditor()" class="bg-gold text-white text-[12.5px] font-bold px-3.5 py-1.5 rounded-full hover:opacity-90 transition">＋ 새 질의응답</button>
+      </span>
+    </div>
+  </div>
+
+  <main class="max-w-5xl mx-auto px-5 py-7">
+    <!-- 분류 칩 -->
+    <div class="flex items-start gap-2 flex-wrap mb-4" id="catRail"></div>
+
+    <div class="flex items-center justify-between gap-3 mb-3">
+      <p id="listCount" class="text-[13px] text-neutral-900/45"></p>
+      <button onclick="scrollAsk()" class="text-[12.5px] font-semibold text-gold hover:underline shrink-0">질문 남기기 →</button>
+    </div>
+
+    <div id="results"></div>
+    <div id="pager" class="mt-6"></div>
+    <div id="empty" class="hidden text-center text-neutral-900/45 py-16 bg-white rounded-2xl border border-ink/8">
+      <p class="font-semibold">아직 등록된 질문이 없어요.</p>
+      <p class="text-sm mt-1">다른 분류를 골라 보시거나, 아래에서 직접 질문을 남겨 주세요.</p>
+    </div>
+
+    <!-- ===== 질문 남기기 ===== -->
+    <section id="ask" class="mt-10 bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden">
+      <div class="bg-sand/60 px-5 py-4 border-b border-ink/8">
+        <p class="font-bold text-[15px]">답을 찾지 못하셨나요?</p>
+        <p class="text-[13px] text-neutral-900/55 mt-1 leading-relaxed">질문을 남겨 주시면 확인 후 답변을 작성해 이 코너에 공개합니다. 같은 질문으로 막혀 있던 분들에게 함께 도움이 됩니다.</p>
+      </div>
+      <div class="p-5">
+        <div id="askLoggedOut" class="text-center py-6">
+          <p class="text-[13.5px] text-neutral-900/60">질문을 남기려면 로그인이 필요합니다.</p>
+          <a href="start.html" class="inline-block mt-3 bg-gold text-white font-bold text-sm px-6 py-2.5 rounded-full hover:opacity-90 transition">무료 로그인 · 회원가입</a>
+        </div>
+        <div id="askForm" class="hidden">
+          <div class="flex flex-wrap gap-2 mb-3">
+            <label class="text-xs font-bold text-neutral-900/55 self-center mr-1">어느 방의 질문인가요?</label>
+            <button type="button" onclick="setAskRoom('rev')" id="askRev" class="chip">요한계시록</button>
+            <button type="button" onclick="setAskRoom('gen')" id="askGen" class="chip">신앙·성경</button>
+          </div>
+          <textarea id="askText" rows="4" maxlength="1000" placeholder="궁금한 점을 구체적으로 적어 주세요. 관련 성경 구절이나 강의 회차를 함께 적어 주시면 더 정확히 답변드릴 수 있어요." class="w-full border border-ink/15 rounded-xl px-3.5 py-3 text-sm outline-none focus:border-gold resize-y"></textarea>
+          <div class="flex items-center justify-between gap-3 mt-3">
+            <p id="askMsg" class="text-[12.5px] text-gold min-h-[18px]"></p>
+            <button onclick="submitAsk()" id="askBtn" class="bg-gold text-white font-bold text-sm px-6 py-2.5 rounded-full hover:opacity-90 transition shrink-0">질문 보내기</button>
+          </div>
+          <p class="text-[11.5px] text-neutral-900/40 mt-2">답변은 이 코너에 공개됩니다. 개인적인 사정이 담긴 내용은 적지 말아 주세요.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== 관리자: 편집 모달 ===== -->
+  <div id="qaModal" class="hidden fixed inset-0 z-[120] bg-ink/40 backdrop-blur-sm flex items-start justify-center overflow-auto p-4">
+    <div class="bg-white rounded-2xl shadow-card w-full max-w-lg my-8 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 id="qaModalTitle" class="text-lg font-bold">새 질의응답 작성</h3>
+        <button onclick="closeEditor()" class="text-neutral-900/40 hover:text-neutral-900 text-xl">✕</button>
+      </div>
+      <div class="space-y-3">
+        <div class="grid grid-cols-2 gap-3">
+          <div><label class="text-xs font-bold text-neutral-900/55">방 *</label>
+            <select id="fRoom" onchange="syncCatSel()" class="w-full border border-ink/15 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold mt-1 bg-white">
+              <option value="rev">요한계시록 질의응답</option><option value="gen">신앙·성경 질의응답</option>
+            </select></div>
+          <div><label class="text-xs font-bold text-neutral-900/55">분류 *</label>
+            <select id="fCat" class="w-full border border-ink/15 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold mt-1 bg-white"></select></div>
+        </div>
+        <div><label class="text-xs font-bold text-neutral-900/55">질문 *</label>
+          <input id="fQ" type="text" maxlength="160" class="w-full border border-ink/15 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold mt-1" /></div>
+        <div><label class="text-xs font-bold text-neutral-900/55">한마디 답 *</label>
+          <textarea id="fA" rows="2" maxlength="400" class="w-full border border-ink/15 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold mt-1 resize-none"></textarea></div>
+        <div><label class="text-xs font-bold text-neutral-900/55">자세한 답변</label>
+          <p class="text-[11px] text-neutral-900/40 mb-1">문단은 빈 줄로 나눕니다. 소제목은 <b>소제목 | 내용</b> 형식. 소제목을 <b>흔한 오해</b>로 쓰면 강조 상자로 표시됩니다.</p>
+          <textarea id="fDeep" rows="8" class="w-full border border-ink/15 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold mt-1 resize-y"></textarea></div>
+        <div class="grid grid-cols-2 gap-3">
+          <div><label class="text-xs font-bold text-neutral-900/55">관련 성구</label>
+            <input id="fScr" type="text" placeholder="예: 계 1:19, 살전 4:16" class="w-full border border-ink/15 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold mt-1" /></div>
+          <div><label class="text-xs font-bold text-neutral-900/55">태그</label>
+            <input id="fTags" type="text" placeholder="예: 휴거, 환난 전" class="w-full border border-ink/15 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold mt-1" /></div>
+        </div>
+        <label class="flex items-center gap-2 text-[13px] text-neutral-900/70"><input id="fPin" type="checkbox" class="accent-[#00704a] w-4 h-4" /> 자주 묻는 질문으로 맨 위에 고정</label>
+        <p id="fMsg" class="text-center text-sm text-gold min-h-[18px]"></p>
+        <div class="flex gap-2 pt-1">
+          <button onclick="saveQa()" id="fSave" class="flex-1 bg-gold text-white font-bold py-3 rounded-xl hover:opacity-90 transition">저장</button>
+          <button onclick="closeEditor()" class="px-5 bg-white border border-ink/20 text-neutral-900/70 font-semibold rounded-xl hover:bg-neutral-50 transition text-sm">취소</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 관리자: 받은 질문함 ===== -->
+  <div id="inboxModal" class="hidden fixed inset-0 z-[120] bg-ink/40 backdrop-blur-sm flex items-start justify-center overflow-auto p-4">
+    <div class="bg-white rounded-2xl shadow-card w-full max-w-2xl my-8 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-bold">받은 질문함</h3>
+        <button onclick="closeInbox()" class="text-neutral-900/40 hover:text-neutral-900 text-xl">✕</button>
+      </div>
+      <p class="text-[12.5px] text-neutral-900/50 mb-3">‘답변 작성’을 누르면 질문이 채워진 편집창이 열립니다. 공개 후에는 ‘처리 완료’로 목록에서 지워 주세요.</p>
+      <div id="inboxList" class="space-y-2.5 max-h-[60vh] overflow-auto"></div>
+    </div>
+  </div>
+
+  <script>
+    const $=id=>document.getElementById(id);
+    const esc=s=>String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+    const SB='https://bmxkndkwefdgsomlznoo.supabase.co';
+    const AK='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+    const ADMIN='josephoh1611@gmail.com';
+    const CATS={
+      rev:['구조·해석 방법','1장 · 영광의 그리스도','2~3장 · 일곱 교회','4~5장 · 하늘 보좌','6~19장 · 7년 환난','20장 · 천년왕국·백보좌','21~22장 · 새 하늘 새 땅','이단·오해 바로잡기'],
+      gen:['구원·믿음','종말·재림','성경 읽기·번역','신앙생활·교회','이단·분별','삶의 질문']
+    };
+    const ROOM_NAME={rev:'요한계시록 질의응답', gen:'신앙·성경 질의응답'};
+    const ABBR_F={'창':'Genesis','출':'Exodus','레':'Leviticus','민':'Numbers','신':'Deuteronomy','수':'Joshua','삿':'Judges','룻':'Ruth','삼상':'1Samuel','삼하':'2Samuel','왕상':'1Kings','왕하':'2Kings','대상':'1Chronicles','대하':'2Chronicles','스':'Ezra','느':'Nehemiah','에':'Esther','욥':'Job','시':'Psalms','잠':'Proverbs','전':'Ecclesiastes','아':'SongofSolomon','사':'Isaiah','렘':'Jeremiah','애':'Lamentations','겔':'Ezekiel','단':'Daniel','호':'Hosea','욜':'Joel','암':'Amos','옵':'Obadiah','욘':'Jonah','미':'Micah','나':'Nahum','합':'Habakkuk','습':'Zephaniah','학':'Haggai','슥':'Zechariah','말':'Malachi','마':'Matthew','막':'Mark','눅':'Luke','요':'John','행':'Acts','롬':'Romans','고전':'1Corinthians','고후':'2Corinthians','갈':'Galatians','엡':'Ephesians','빌':'Philippians','골':'Colossians','살전':'1Thessalonians','살후':'2Thessalonians','딤전':'1Timothy','딤후':'2Timothy','딛':'Titus','몬':'Philemon','히':'Hebrews','약':'James','벧전':'1Peter','벧후':'2Peter','요일':'1John','요이':'2John','요삼':'3John','유':'Jude','계':'Revelation'};
+
+    let BASE=[], ADMIN_ITEMS=[], ALL=[], ROOM='rev', CAT='', PAGE=1, EDIT_ID=null, ASK_ROOM='rev', INBOX=[];
+    const PER=10;
+
+    /* ---------- 세션 ---------- */
+    function sess(){ try{ for(var i=0;i<localStorage.length;i++){ var k=localStorage.key(i); if(!/auth-token/.test(k)) continue; var v=JSON.parse(localStorage.getItem(k)); var s=(v&&v.user)?v:(v&&v.currentSession)?v.currentSession:null; if(s&&s.user){ if(s.expires_at&&s.expires_at*1000<Date.now()) return null; return s; } } }catch(e){} return null; }
+    function isAdmin(){ var s=sess(); return !!(s&&s.user&&s.user.email===ADMIN); }
+    function userName(){ var s=sess(); if(!s||!s.user) return '회원'; var m=s.user.user_metadata||{}; return m.name||m.full_name||(s.user.email||'').split('@')[0]||'회원'; }
+    function renderAuth(){
+      var a=isAdmin(); var b=$('adminBar'); if(b) b.classList.toggle('hidden', !a);
+      var logged=!!sess();
+      $('askLoggedOut').classList.toggle('hidden', logged);
+      $('askForm').classList.toggle('hidden', !logged);
+      if(a && !INBOX.length) loadInbox();
+      render();
+    }
+
+    /* ---------- 로드 ---------- */
+    $('results').innerHTML='<div class="text-center text-neutral-900/40 py-16">질문을 불러오는 중…</div>';
+    Promise.all([
+      fetch('content/qna.json').then(r=>r.ok?r.json():[]).catch(()=>[]),
+      fetch(SB+'/rest/v1/site_content?select=data&key=eq.qna_posts',{headers:{apikey:AK,Authorization:'Bearer '+AK}}).then(r=>r.ok?r.json():[]).catch(()=>[])
+    ]).then(function(res){
+      BASE=Array.isArray(res[0])?res[0]:[];
+      ADMIN_ITEMS=(res[1]&&res[1][0]&&Array.isArray(res[1][0].data))?res[1][0].data:[];
+      merge();
+      var sp=new URLSearchParams(location.search);
+      if(sp.get('room')==='gen') ROOM='gen';
+      if(sp.get('cat')) CAT=sp.get('cat');
+      if(sp.get('q')) $('q').value=sp.get('q');
+      ASK_ROOM=ROOM;
+      renderAuth(); setTimeout(renderAuth,1500);
+    }).catch(()=>{ $('results').innerHTML='<p class="text-center text-neutral-900/40 py-10">질문을 불러오지 못했어요.</p>'; });
+
+    function merge(){
+      var adminIds={}; ADMIN_ITEMS.forEach(function(x){ x._admin=true; adminIds[x.id]=1; });
+      ALL=ADMIN_ITEMS.concat(BASE.filter(function(x){ return !adminIds[x.id]; }));
+    }
+
+    /* ---------- 필터 · 렌더 ---------- */
+    function roomOf(e){ return e.room==='gen'?'gen':'rev'; }
+    function onSearch(){ PAGE=1; render(); syncUrl(); }
+    function pickRoom(r){ ROOM=r; CAT=''; PAGE=1; $('q').value=''; ASK_ROOM=r; render(); syncUrl(); document.querySelector('main').scrollIntoView({behavior:'smooth',block:'start'}); }
+    function pickCat(c){ CAT=(CAT===c?'':c); PAGE=1; render(); syncUrl(); }
+    function syncUrl(){ try{ var p=new URLSearchParams(); if(ROOM!=='rev') p.set('room',ROOM); if(CAT) p.set('cat',CAT); var q=($('q').value||'').trim(); if(q) p.set('q',q); var s=p.toString(); history.replaceState(null,'',location.pathname+(s?('?'+s):'')); }catch(e){} }
+
+    function listFor(){
+      var q=($('q').value||'').trim().toLowerCase();
+      if(q){
+        return ALL.filter(function(e){
+          var deep=(e.deep||[]).map(s=>(s.h||'')+' '+(s.p||'')).join(' ');
+          return ((e.q||'')+' '+(e.a||'')+' '+deep+' '+(e.cat||'')+' '+((e.tags||[]).join(' '))).toLowerCase().indexOf(q)>=0;
+        });
+      }
+      var l=ALL.filter(e=>roomOf(e)===ROOM);
+      if(CAT) l=l.filter(e=>e.cat===CAT);
+      return l.slice().sort(function(a,b){ return (b.pinned?1:0)-(a.pinned?1:0); });
+    }
+    function counts(){
+      var c={rev:0,gen:0}; ALL.forEach(function(e){ c[roomOf(e)]++; }); return c;
+    }
+    function renderRooms(){
+      var c=counts();
+      $('cntRev').textContent=c.rev; $('cntGen').textContent=c.gen;
+      $('roomRev').className='roomcard'+(ROOM==='rev'?' on':'');
+      $('roomGen').className='roomcard'+(ROOM==='gen'?' on':'');
+    }
+    function renderRail(){
+      var per={}; ALL.filter(e=>roomOf(e)===ROOM).forEach(function(e){ per[e.cat]=(per[e.cat]||0)+1; });
+      var html='<button type="button" onclick="pickCat(\'\')" class="chip'+(CAT?'':' on')+'">전체</button>';
+      html+=CATS[ROOM].map(function(c){
+        var n=per[c]||0;
+        return '<button type="button" onclick="pickCat(\''+esc(c).replace(/'/g,"\\'")+'\')" class="chip'+(CAT===c?' on':'')+(n?'':' opacity-40')+'">'+esc(c)+(n?'<span class="opacity-60 font-normal">'+n+'</span>':'')+'</button>';
+      }).join('');
+      $('catRail').innerHTML=html;
+    }
+    function render(){
+      renderRooms(); renderRail();
+      var q=($('q').value||'').trim(), list=listFor();
+      $('empty').classList.add('hidden');
+      $('listCount').textContent = q ? ('‘'+q+'’ 검색 결과 '+list.length+'개') : (ROOM_NAME[ROOM]+' · '+list.length+'개 질문');
+      if(!list.length){ $('results').innerHTML=''; $('pager').innerHTML=''; $('empty').classList.remove('hidden'); return; }
+      var pages=Math.ceil(list.length/PER); if(PAGE>pages) PAGE=pages; if(PAGE<1) PAGE=1;
+      var start=(PAGE-1)*PER, items=list.slice(start,start+PER);
+      $('results').innerHTML='<div class="bg-white rounded-2xl border border-ink/8 shadow-soft px-4 divide-y divide-ink/6">'+items.map((e,i)=>row(e,q.toLowerCase(),start+i+1)).join('')+'</div>';
+      $('pager').innerHTML=pager(pages);
+    }
+    function hl(t,q){ if(!q) return esc(t); var safe=esc(t); try{ var re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig'); return safe.replace(re,'<mark>$1</mark>'); }catch(e){ return safe; } }
+    function row(e,q,num){
+      var deep='';
+      if(Array.isArray(e.deep)&&e.deep.length){
+        deep='<div class="mt-4 space-y-3.5">'+e.deep.map(function(s){
+          if(s.misc||s.h==='흔한 오해'){ return '<div class="bg-[#fff8ec] border-l-[3px] border-gold/60 rounded-r-lg px-4 py-3"><p class="text-[12.5px] font-bold text-gold mb-1">'+esc(s.h||'흔한 오해')+'</p><p class="text-[13.5px] text-neutral-900/80 leading-[1.85]">'+esc(s.p||'')+'</p></div>'; }
+          return '<div>'+(s.h?'<h4 class="font-bold text-neutral-900 text-[14px] mb-1">'+esc(s.h)+'</h4>':'')+'<p class="text-[13.5px] text-neutral-900/80 leading-[1.9]">'+esc(s.p||'')+'</p></div>';
+        }).join('')+'</div>';
+      }
+      var scr=(e.scriptures||[]).map(s=>'<button type="button" class="scrchip inline-block bg-sand/70 hover:bg-gold/15 text-neutral-900/70 text-[11px] px-2 py-0.5 rounded mr-1 mb-1 transition" onclick="showScr(event,\''+esc(s).replace(/'/g,"\\'")+'\')">'+esc(s)+'</button>').join('');
+      var tags=(e.tags||[]).map(t=>'<button onclick="searchFor(\''+esc(t).replace(/'/g,"\\'")+'\')" class="text-gold/90 text-[11.5px] hover:underline mr-2.5">#'+esc(t)+'</button>').join('');
+      return '<details class="qrow rounded-lg -mx-2 px-2">'
+        +'<summary class="cursor-pointer select-none flex items-center gap-3 py-4 hover:bg-sand/25 rounded-lg px-2 -mx-2 transition">'
+        +(e.pinned?'<span class="shrink-0 text-[10px] font-bold text-gold bg-gold/10 border border-gold/25 px-1.5 py-0.5 rounded">자주</span>':'<span class="text-[13px] font-semibold text-neutral-900/30 shrink-0 w-6 text-right" style="font-variant-numeric:tabular-nums">'+num+'</span>')
+        +'<span class="qtitle flex-1 min-w-0 font-semibold text-[15px] leading-snug transition">'+hl(e.q||'',q)+'</span>'
+        +'<span class="hidden sm:inline shrink-0 text-[11px] text-neutral-900/45 bg-sand/70 px-2 py-0.5 rounded-full whitespace-nowrap">'+esc(e.cat||'')+'</span>'
+        +'<span class="qcaret text-neutral-900/25 shrink-0 text-xs transition">▼</span></summary>'
+        +'<div class="pl-2 sm:pl-10 pr-1 pb-6 pt-1">'
+        +'<div class="border-l-[3px] border-gold pl-4 py-0.5"><p class="text-[14.5px] text-neutral-900 font-medium leading-[1.9]">'+hl(e.a||'',q)+'</p></div>'
+        +deep
+        +(scr?'<div class="mt-4">'+scr+'</div>':'')
+        +(tags?'<div class="mt-2.5">'+tags+'</div>':'')
+        +(isAdmin()?'<div class="mt-3 flex gap-1.5"><button onclick="event.preventDefault();editQa(\''+e.id+'\')" class="text-[11px] text-gold border border-gold/30 rounded-full px-2.5 py-0.5 hover:bg-gold/10">수정</button>'+(e._admin?'<button onclick="event.preventDefault();deleteQa(\''+e.id+'\')" class="text-[11px] text-rose-500 border border-rose-200 rounded-full px-2.5 py-0.5 hover:bg-rose-50">삭제</button>':'<span class="text-[11px] text-neutral-900/30 px-1 py-0.5">기본 제공</span>')+'</div>':'')
+        +'</div></details>';
+    }
+    function searchFor(t){ $('q').value=t; PAGE=1; render(); syncUrl(); window.scrollTo({top:0,behavior:'smooth'}); }
+    function goPage(p){ PAGE=p; render(); window.scrollTo({top:240,behavior:'smooth'}); }
+    function pager(pages){
+      if(pages<=1) return '';
+      var win=2,s=Math.max(1,PAGE-win),e=Math.min(pages,PAGE+win),h='<div class="flex items-center justify-center gap-1.5 flex-wrap">';
+      h+='<button '+(PAGE>1?'onclick="goPage('+(PAGE-1)+')"':'disabled')+' class="pgbtn">‹</button>';
+      if(s>1){ h+='<button onclick="goPage(1)" class="pgbtn">1</button>'; if(s>2) h+='<span class="text-neutral-900/25 px-0.5">…</span>'; }
+      for(var i=s;i<=e;i++) h+='<button onclick="goPage('+i+')" class="pgbtn '+(i===PAGE?'pgon':'')+'">'+i+'</button>';
+      if(e<pages){ if(e<pages-1) h+='<span class="text-neutral-900/25 px-0.5">…</span>'; h+='<button onclick="goPage('+pages+')" class="pgbtn">'+pages+'</button>'; }
+      return h+'<button '+(PAGE<pages?'onclick="goPage('+(PAGE+1)+')"':'disabled')+' class="pgbtn">›</button></div>';
+    }
+
+    /* ---------- 질문 남기기 ---------- */
+    function scrollAsk(){ $('ask').scrollIntoView({behavior:'smooth',block:'start'}); }
+    function setAskRoom(r){ ASK_ROOM=r; $('askRev').className='chip'+(r==='rev'?' on':''); $('askGen').className='chip'+(r==='gen'?' on':''); }
+    function submitAsk(){
+      var s=sess(); if(!s){ $('askMsg').textContent='로그인이 필요합니다'; return; }
+      var t=($('askText').value||'').trim();
+      if(t.length<5){ $('askMsg').textContent='질문을 조금 더 자세히 적어 주세요'; return; }
+      var tag=(ASK_ROOM==='rev'?'[요한계시록] ':'[신앙·성경] ');
+      $('askBtn').disabled=true; $('askMsg').textContent='보내는 중…';
+      fetch(SB+'/rest/v1/community_posts',{method:'POST',headers:{apikey:AK,Authorization:'Bearer '+(s.access_token||AK),'Content-Type':'application/json',Prefer:'return=minimal'},
+        body:JSON.stringify({author_id:s.user.id,author_name:userName(),board:'qna',content:tag+t})})
+        .then(function(r){
+          $('askBtn').disabled=false;
+          if(r.ok){ $('askText').value=''; $('askMsg').textContent='질문이 접수되었습니다. 답변이 완료되면 이 코너에 공개됩니다.'; }
+          else return r.text().then(function(x){ $('askMsg').textContent='전송 오류: '+x.slice(0,80); });
+        }).catch(function(){ $('askBtn').disabled=false; $('askMsg').textContent='네트워크 오류'; });
+    }
+
+    /* ---------- 관리자: 받은 질문함 ---------- */
+    function loadInbox(){
+      fetch(SB+'/rest/v1/community_posts?select=id,author_name,content,created_at&board=eq.qna&order=created_at.desc&limit=60',{headers:{apikey:AK,Authorization:'Bearer '+AK}})
+        .then(r=>r.ok?r.json():[]).then(function(rows){ INBOX=rows||[]; var c=$('inboxCount'); if(c) c.textContent=INBOX.length?('('+INBOX.length+')'):''; }).catch(()=>{});
+    }
+    function openInbox(){ renderInbox(); $('inboxModal').classList.remove('hidden'); document.body.style.overflow='hidden'; }
+    function closeInbox(){ $('inboxModal').classList.add('hidden'); document.body.style.overflow=''; }
+    function stripTags(h){ var d=document.createElement('div'); d.innerHTML=String(h||''); return (d.textContent||'').trim(); }
+    function renderInbox(){
+      if(!INBOX.length){ $('inboxList').innerHTML='<p class="text-center text-neutral-900/40 py-10 text-sm">받은 질문이 없습니다.</p>'; return; }
+      $('inboxList').innerHTML=INBOX.map(function(p){
+        var txt=stripTags(p.content);
+        return '<div class="border border-ink/10 rounded-xl p-3.5">'
+          +'<p class="text-[11.5px] text-neutral-900/45 mb-1">'+esc(p.author_name||'회원')+' · '+new Date(p.created_at).toLocaleDateString('ko-KR')+'</p>'
+          +'<p class="text-[13.5px] text-neutral-900/85 leading-relaxed whitespace-pre-wrap">'+esc(txt)+'</p>'
+          +'<div class="flex gap-1.5 mt-2.5"><button onclick="answerFrom(\''+p.id+'\')" class="text-[11.5px] font-semibold text-white bg-gold rounded-full px-3 py-1">답변 작성</button>'
+          +'<button onclick="dropInbox(\''+p.id+'\')" class="text-[11.5px] text-neutral-900/50 border border-ink/15 rounded-full px-3 py-1 hover:border-rose-300 hover:text-rose-500">처리 완료</button></div></div>';
+      }).join('');
+    }
+    function answerFrom(id){
+      var p=INBOX.find(x=>x.id===id); if(!p) return;
+      var txt=stripTags(p.content), room='gen';
+      if(/^\[요한계시록\]/.test(txt)){ room='rev'; }
+      txt=txt.replace(/^\[[^\]]+\]\s*/,'');
+      closeInbox(); openEditor(); $('fRoom').value=room; syncCatSel(); $('fQ').value=txt.slice(0,160);
+    }
+    function dropInbox(id){
+      if(!confirm('이 질문을 목록에서 지울까요?')) return;
+      var s=sess(); if(!s) return;
+      fetch(SB+'/rest/v1/community_posts?id=eq.'+id,{method:'DELETE',headers:{apikey:AK,Authorization:'Bearer '+(s.access_token||AK)}})
+        .then(function(){ INBOX=INBOX.filter(x=>x.id!==id); var c=$('inboxCount'); if(c) c.textContent=INBOX.length?('('+INBOX.length+')'):''; renderInbox(); }).catch(()=>{});
+    }
+
+    /* ---------- 관리자: 작성/수정/삭제 ---------- */
+    function syncCatSel(){ var r=$('fRoom').value; $('fCat').innerHTML=CATS[r].map(c=>'<option value="'+esc(c)+'">'+esc(c)+'</option>').join(''); }
+    function openEditor(e){
+      EDIT_ID=(e&&e.id)?e.id:null;
+      $('fRoom').value=e?roomOf(e):ROOM; syncCatSel();
+      if(e&&e.cat&&CATS[roomOf(e)].indexOf(e.cat)<0){ $('fCat').innerHTML+='<option value="'+esc(e.cat)+'">'+esc(e.cat)+'</option>'; }
+      $('fCat').value=e?(e.cat||CATS[roomOf(e)][0]):(CAT||CATS[ROOM][0]);
+      $('qaModalTitle').textContent=e?'질의응답 수정':'새 질의응답 작성';
+      $('fQ').value=e?(e.q||''):''; $('fA').value=e?(e.a||''):'';
+      $('fDeep').value=(e&&e.deep)?e.deep.map(s=>(s.h?s.h+' | ':'')+(s.p||'')).join('\n\n'):'';
+      $('fScr').value=(e&&e.scriptures)?e.scriptures.join(', '):'';
+      $('fTags').value=(e&&e.tags)?e.tags.join(', '):'';
+      $('fPin').checked=!!(e&&e.pinned);
+      $('fMsg').textContent=''; $('qaModal').classList.remove('hidden');
+    }
+    function closeEditor(){ $('qaModal').classList.add('hidden'); EDIT_ID=null; }
+    function parseDeep(txt){ return String(txt||'').split(/\n\s*\n/).map(function(b){ b=b.trim(); if(!b) return null; var i=b.indexOf('|'); if(i>0&&i<40){ var h=b.slice(0,i).trim(); var o={h:h,p:b.slice(i+1).trim()}; if(h==='흔한 오해') o.misc=true; return o; } return {p:b}; }).filter(Boolean); }
+    function push(arr,onOk){
+      var s=sess(); if(!s){ $('fMsg').textContent='로그인이 필요합니다'; return; }
+      fetch(SB+'/rest/v1/site_content',{method:'POST',headers:{apikey:AK,Authorization:'Bearer '+(s.access_token||AK),'Content-Type':'application/json',Prefer:'resolution=merge-duplicates,return=minimal'},
+        body:JSON.stringify({key:'qna_posts',data:arr,updated_at:new Date().toISOString()})})
+        .then(function(r){ if(r.ok) onOk(); else return r.text().then(t=>{ $('fMsg').textContent='저장 오류: '+t.slice(0,90); }); })
+        .catch(function(){ $('fMsg').textContent='네트워크 오류'; });
+    }
+    function saveQa(){
+      var q=$('fQ').value.trim(), a=$('fA').value.trim();
+      if(!q||!a){ $('fMsg').textContent='질문과 한마디 답은 필수입니다'; return; }
+      var obj={ id:EDIT_ID||('q'+Date.now()), room:$('fRoom').value, cat:$('fCat').value, q:q, a:a,
+        deep:parseDeep($('fDeep').value),
+        scriptures:$('fScr').value.split(/[,\n]/).map(x=>x.trim()).filter(Boolean),
+        tags:$('fTags').value.split(/[,\n]/).map(x=>x.trim()).filter(Boolean),
+        pinned:$('fPin').checked, _admin:true, updated:new Date().toISOString() };
+      obj=JSON.parse(JSON.stringify(obj).replace(/세례/g,'침례'));
+      var arr=ADMIN_ITEMS.slice(), i=arr.findIndex(x=>x.id===obj.id);
+      if(i>=0) arr[i]=obj; else arr.unshift(obj);
+      $('fSave').disabled=true; $('fMsg').textContent='저장 중…';
+      push(arr,function(){ $('fSave').disabled=false; ADMIN_ITEMS=arr; merge(); closeEditor(); ROOM=obj.room; CAT=''; $('q').value=''; PAGE=1; render(); syncUrl(); });
+    }
+    function editQa(id){ var e=ALL.find(x=>x.id===id); if(e) openEditor(e); }
+    function deleteQa(id){
+      if(!confirm('이 질의응답을 삭제할까요?')) return;
+      var arr=ADMIN_ITEMS.filter(x=>x.id!==id);
+      push(arr,function(){ ADMIN_ITEMS=arr; merge(); render(); });
+    }
+
+    /* ---------- 성구 말풍선 ---------- */
+    var chCache={};
+    function parseRef(s){ var m=String(s||'').trim().match(/^(.+?)\s*(\d+):(\d+)(?:[-~](\d+))?$/); if(!m) return null; var f=ABBR_F[m[1].trim()]; if(!f) return null; return {file:f,ch:+m[2],v1:+m[3],v2:m[4]?+m[4]:+m[3]}; }
+    function getChapter(file,ch){ var k=file+'-'+ch; if(chCache[k]!==undefined) return Promise.resolve(chCache[k]); return fetch('bible/kr/'+k+'.json').then(r=>r.ok?r.json():null).then(j=>{chCache[k]=j;return j;}).catch(()=>{chCache[k]=null;return null;}); }
+    function closeBubble(){ var b=$('scrBubble'); if(b) b.remove(); }
+    function showBubble(anchor,title,html){ closeBubble(); var b=document.createElement('div'); b.id='scrBubble'; b.innerHTML='<div class="bh"><b>'+esc(title)+'</b><button type="button" onclick="closeBubble()">✕</button></div><div class="bbody">'+html+'</div>'; document.body.appendChild(b); var bw=Math.min(340,window.innerWidth-24); b.style.width=bw+'px'; var r=anchor.getBoundingClientRect(); var left=r.left+window.scrollX+r.width/2-bw/2; left=Math.max(window.scrollX+12,Math.min(left,window.scrollX+window.innerWidth-bw-12)); b.style.left=left+'px'; b.style.top=(r.bottom+window.scrollY+9)+'px'; var bh=b.offsetHeight; if(r.bottom+bh+16>window.innerHeight&&r.top-bh-9>0){ b.style.top=(r.top+window.scrollY-bh-9)+'px'; } }
+    function showScr(ev,ref){ ev.stopPropagation(); ev.preventDefault(); var anchor=ev.currentTarget, p=parseRef(ref);
+      if(!p){ showBubble(anchor,ref,'<p>구절을 찾을 수 없어요.</p>'); return; }
+      var linkHtml='<a class="blink" href="bible.html?b='+p.file+'&c='+p.ch+'&v='+p.v1+'">본문에서 보기 →</a>';
+      showBubble(anchor,ref,'<p>불러오는 중…</p>');
+      getChapter(p.file,p.ch).then(function(ch){ var h='';
+        if(ch){ var lines=[]; for(var v=p.v1; v<=p.v2&&v<=p.v1+3; v++){ if(ch[v-1]) lines.push('<p><b>'+v+'</b>'+esc(ch[v-1])+'</p>'); } h=lines.length?lines.join(''):'<p>이 구절은 번역 준비 중입니다.</p>'; }
+        else h='<p>이 책은 곧 제공됩니다.</p>';
+        showBubble(anchor,ref,h+linkHtml); });
+    }
+    document.addEventListener('click', function(e){ if(!e.target.closest('#scrBubble') && !e.target.closest('.scrchip')) closeBubble(); });
+
+    setAskRoom('rev');
+    window.onSearch=onSearch; window.pickRoom=pickRoom; window.pickCat=pickCat; window.searchFor=searchFor; window.goPage=goPage;
+    window.scrollAsk=scrollAsk; window.setAskRoom=setAskRoom; window.submitAsk=submitAsk;
+    window.openEditor=openEditor; window.closeEditor=closeEditor; window.saveQa=saveQa; window.editQa=editQa; window.deleteQa=deleteQa; window.syncCatSel=syncCatSel;
+    window.openInbox=openInbox; window.closeInbox=closeInbox; window.answerFrom=answerFrom; window.dropInbox=dropInbox;
+    window.showScr=showScr; window.closeBubble=closeBubble;
+  </script>
+
+  <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script src="auth-header.js?v=20260906a"></script>
+</body>
+</html>

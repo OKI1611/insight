@@ -265,7 +265,7 @@
       {ic:'dove', name:'위대한 믿음', href:'preachers.html', what:'시대를 깨운 위대한 설교자와 기도자의 삶과 메시지에서 배웁니다.', when:'신앙의 본을 찾고 싶을 때'},
       {ic:'chat', name:'스마트 검색', href:'search.html', what:'“666? 휴거? 죽으면 어디로?”처럼 궁금증을 물으면 관련 강의·성경·사전·Q&A를 모아줍니다.', when:'질문이 떠올랐을 때 바로'},
       {ic:'award', name:'아카데미 인증과정', href:'academy.html', what:'급수별 시험으로 배운 것을 점검하고 수료·자격을 받습니다.', when:'실력을 검증하고 싶을 때'},
-      {ic:'chat', name:'소통·나눔', href:'community.html', what:'질문·나눔·기도요청, 신앙상담, 자료실, 칼럼으로 함께 신앙을 나눕니다.', when:'묻고 나누고 싶을 때'}
+      {ic:'chat', name:'질의응답', href:'qna.html', what:'유튜브에서 가장 많이 받은 요한계시록 질문과 신앙의 궁금증을 성경 본문으로 답합니다. 질문을 남기면 답변이 코너에 공개됩니다.', when:'궁금한 것이 생겼을 때'}
     ];
     $('cornerGrid').innerHTML=CORNERS.map(c=>`
       <a href="${c.href}" class="group bg-white border border-ink/10 rounded-2xl shadow-soft p-5 hover:border-gold/40 hover:shadow-card transition flex flex-col">
@@ -282,7 +282,7 @@
       {q:'로그인이 꼭 필요한가요?', a:'대부분의 콘텐츠는 로그인 없이 볼 수 있습니다. 진도·포인트·구매한 자료를 저장하려면 로그인하시면 됩니다.'},
       {q:'앱으로도 볼 수 있나요?', a:'모바일에서 ‘앱 설치’로 홈 화면에 추가하면 앱처럼 사용할 수 있고, 안드로이드 앱도 준비 중입니다.'},
       {q:'어디서부터 시작하면 좋을까요?', a:'위 ‘목적별 학습 루트’에서 나에게 맞는 길을 고르세요. 막막하다면 ‘무료로 시작하기’가 가장 쉽습니다.'},
-      {q:'질문이 생기면 어디에 하나요?', a:'‘소통·나눔’의 질문·나눔 게시판이나 신앙상담을 이용하세요. 궁금한 성경 주제는 스마트 검색에 바로 물어봐도 됩니다.'}
+      {q:'질문이 생기면 어디에 하나요?', a:'‘질의응답’ 코너에서 먼저 검색해 보세요. 같은 질문에 이미 답이 있을 수 있습니다. 없으면 그 자리에서 질문을 남기시면 답변을 작성해 공개합니다.'}
     ];
     $('faqList').innerHTML=FAQS.map(f=>`
       <details class="faq">

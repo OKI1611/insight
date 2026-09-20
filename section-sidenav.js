@@ -23,9 +23,9 @@
       { label:'주제별 성경', href:'themes.html' } ]},
     { label:'위대한 믿음', href:'preachers.html', children:[
       { label:'위대한 설교자', href:'preachers.html' }, { label:'위대한 기도자', href:'prayers.html' } ]},
-    { label:'소통·나눔', href:'community.html', children:[
-      { label:'질문·나눔·기도요청', href:'community.html' }, { label:'신앙상담', href:'counsel.html' },
-      { label:'강의 요청·건의함', href:'request.html' }, { label:'자료실', href:'resources.html' },
+    { label:'질의응답', href:'qna.html', children:[
+      { label:'질의응답 전체', href:'qna.html' }, { label:'요한계시록 Q&A', href:'qna.html?room=rev' },
+      { label:'신앙·성경 Q&A', href:'qna.html?room=gen' }, { label:'자료실', href:'resources.html' },
       { label:'칼럼', href:'column.html' } ]},
     { label:'스토어', href:'booklet.html', children:[
       { label:'PDF 책자·이용권', href:'booklet.html' },

@@ -78,10 +78,10 @@
       { label:'위대한 기도자', href:'prayers.html' },
       { label:'이단 바로 알기', href:'heresy.html' }
     ]},
-    { label:'소통·나눔', href:'community.html', children:[
-      { label:'질문·나눔·기도요청', href:'community.html' },
-      { label:'신앙상담', href:'counsel.html' },
-      { label:'강의 요청·건의함', href:'request.html' },
+    { label:'질의응답', href:'qna.html', children:[
+      { label:'질의응답 전체', href:'qna.html' },
+      { label:'요한계시록 Q&A', href:'qna.html?room=rev' },
+      { label:'신앙·성경 Q&A', href:'qna.html?room=gen' },
       { label:'자료실', href:'resources.html' },
       { label:'칼럼', href:'column.html' }
     ]},
@@ -267,8 +267,8 @@
       + '</div>'
       + '<nav class="grid grid-cols-2 gap-x-8 gap-y-3 text-sm">'
       + lnk('curriculum.html', '커리큘럼') + lnk('academy.html', '정규 심화 과정')
-      + lnk('about.html', '우리의 사명') + lnk('community.html', '질문·나눔')
-      + lnk('resources.html', '자료실') + lnk('request.html', '강의 요청·건의')
+      + lnk('about.html', '우리의 사명') + lnk('qna.html', '질의응답')
+      + lnk('resources.html', '자료실') + lnk('column.html', '칼럼')
       + lnk('mylearning.html', '내 강의실') + lnk(YT, '유튜브 채널')
       + lnk('support.html', '후원 안내') + lnk(BLOG, '네이버 블로그')
       + lnk('terms.html', '이용약관·환불 규정')
