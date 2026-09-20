@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <script src="/content-loader.js?v=20260703f"></script>
-  <script src="/site-header.js?v=20260920a"></script>
-  <script src="/section-sidenav.js?v=20260920a"></script>
+  <script src="/site-header.js?v=20260920b"></script>
+  <script src="/section-sidenav.js?v=20260920b"></script>
   <script src="/protect.js?v=1"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>질의응답 — BIBLY 바이블 인사이트 | 요한계시록 자주 묻는 질문</title>
@@ -75,6 +75,7 @@
       <p class="text-[11px] font-bold tracking-[0.34em] text-white/45 uppercase">Questions &amp; Answers</p>
       <h1 class="text-[26px] md:text-[34px] font-bold leading-tight mt-2.5">묻고, <span class="text-[#7fd4b0]">답이 남는 곳</span></h1>
       <p class="text-white/60 text-[14px] md:text-[15px] mt-3 leading-relaxed max-w-2xl">한 번 답한 질문은 사라지지 않습니다. 유튜브 댓글과 메일로 가장 많이 받은 질문을 성경 본문에 근거해 정리해 둡니다.</p>
+      <p class="text-[12.5px] text-white/45 mt-3">찾는 답이 없다면 <a href="qna-board.html" class="text-[#7fd4b0] font-semibold hover:underline">수강생 질문방</a>에 자유롭게 올려 주세요.</p>
 
       <div class="relative mt-6 max-w-xl">
         <input id="q" type="search" autocomplete="off" placeholder="궁금한 것을 검색하세요 (예: 666, 휴거, 십사만 사천…)" oninput="onSearch()" class="w-full rounded-full pl-12 pr-4 py-3.5 text-[15px] text-neutral-900 outline-none bg-white shadow-card placeholder:text-neutral-900/35" />
@@ -123,7 +124,10 @@
 
     <div class="flex items-center justify-between gap-3 mb-3">
       <p id="listCount" class="text-[13px] text-neutral-900/45"></p>
-      <button onclick="scrollAsk()" class="text-[12.5px] font-semibold text-gold hover:underline shrink-0">질문 남기기 →</button>
+      <span class="flex items-center gap-3 shrink-0">
+        <button id="adminWrite" onclick="openEditor()" class="hidden text-[12.5px] font-bold text-white bg-gold px-3 py-1.5 rounded-full hover:opacity-90 transition">＋ 새 글 쓰기</button>
+        <button onclick="scrollAsk()" class="text-[12.5px] font-semibold text-gold hover:underline">질문 남기기 →</button>
+      </span>
     </div>
 
     <div id="results"></div>
@@ -131,13 +135,17 @@
     <div id="empty" class="hidden text-center text-neutral-900/45 py-16 bg-white rounded-2xl border border-ink/8">
       <p class="font-semibold">아직 등록된 질문이 없어요.</p>
       <p class="text-sm mt-1">다른 분류를 골라 보시거나, 아래에서 직접 질문을 남겨 주세요.</p>
+      <button id="emptyWrite" onclick="openEditor()" class="hidden mt-4 bg-gold text-white font-bold text-sm px-5 py-2.5 rounded-full hover:opacity-90 transition">＋ 이 분류에 새 글 쓰기</button>
     </div>
 
     <!-- ===== 질문 남기기 ===== -->
     <section id="ask" class="mt-10 bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden">
-      <div class="bg-sand/60 px-5 py-4 border-b border-ink/8">
-        <p class="font-bold text-[15px]">답을 찾지 못하셨나요?</p>
-        <p class="text-[13px] text-neutral-900/55 mt-1 leading-relaxed">질문을 남겨 주시면 확인 후 답변을 작성해 이 코너에 공개합니다. 같은 질문으로 막혀 있던 분들에게 함께 도움이 됩니다.</p>
+      <div class="bg-sand/60 px-5 py-4 border-b border-ink/8 flex flex-wrap items-center justify-between gap-3">
+        <div class="min-w-0">
+          <p class="font-bold text-[15px]">답을 찾지 못하셨나요?</p>
+          <p class="text-[13px] text-neutral-900/55 mt-1 leading-relaxed">질문을 남기면 <b class="text-neutral-900">수강생 질문방</b>에 올라가고, 강사가 답글을 답니다. 자주 나오는 질문은 이 코너에 따로 정리됩니다.</p>
+        </div>
+        <a href="qna-board.html" class="shrink-0 text-[12.5px] font-semibold text-gold border border-gold/30 rounded-full px-3.5 py-1.5 hover:bg-gold/8 transition">질문방 전체 보기 →</a>
       </div>
       <div class="p-5">
         <div id="askLoggedOut" class="text-center py-6">
@@ -155,7 +163,7 @@
             <p id="askMsg" class="text-[12.5px] text-gold min-h-[18px]"></p>
             <button onclick="submitAsk()" id="askBtn" class="bg-gold text-white font-bold text-sm px-6 py-2.5 rounded-full hover:opacity-90 transition shrink-0">질문 보내기</button>
           </div>
-          <p class="text-[11.5px] text-neutral-900/40 mt-2">답변은 이 코너에 공개됩니다. 개인적인 사정이 담긴 내용은 적지 말아 주세요.</p>
+          <p class="text-[11.5px] text-neutral-900/40 mt-2">누구나 볼 수 있는 공개 질문방에 올라갑니다. 개인적인 사정이 담긴 내용은 적지 말아 주세요.</p>
         </div>
       </div>
     </section>
@@ -234,6 +242,8 @@
     function userName(){ var s=sess(); if(!s||!s.user) return '회원'; var m=s.user.user_metadata||{}; return m.name||m.full_name||(s.user.email||'').split('@')[0]||'회원'; }
     function renderAuth(){
       var a=isAdmin(); var b=$('adminBar'); if(b) b.classList.toggle('hidden', !a);
+      var aw=$('adminWrite'); if(aw) aw.classList.toggle('hidden', !a);
+      var ew=$('emptyWrite'); if(ew) ew.classList.toggle('hidden', !a);
       var logged=!!sess();
       $('askLoggedOut').classList.toggle('hidden', logged);
       $('askForm').classList.toggle('hidden', !logged);
@@ -256,6 +266,9 @@
       if(sp.get('q')) $('q').value=sp.get('q');
       ASK_ROOM=ROOM;
       renderAuth(); setTimeout(renderAuth,1500);
+      // 질문방에서 「질의응답에 정리」로 넘어온 경우 — 편집창을 질문이 채워진 채로 연다
+      var draft=sp.get('draft');
+      if(draft){ setTimeout(function(){ if(isAdmin()){ openEditor(); $('fQ').value=draft.slice(0,160); } }, 1600); }
     }).catch(()=>{ $('results').innerHTML='<p class="text-center text-neutral-900/40 py-10">질문을 불러오지 못했어요.</p>'; });
 
     function merge(){
@@ -322,7 +335,7 @@
       }
       var scr=(e.scriptures||[]).map(s=>'<button type="button" class="scrchip inline-block bg-sand/70 hover:bg-gold/15 text-neutral-900/70 text-[11px] px-2 py-0.5 rounded mr-1 mb-1 transition" onclick="showScr(event,\''+esc(s).replace(/'/g,"\\'")+'\')">'+esc(s)+'</button>').join('');
       var tags=(e.tags||[]).map(t=>'<button onclick="searchFor(\''+esc(t).replace(/'/g,"\\'")+'\')" class="text-gold/90 text-[11.5px] hover:underline mr-2.5">#'+esc(t)+'</button>').join('');
-      return '<details class="qrow rounded-lg -mx-2 px-2">'
+      return '<details class="qrow rounded-lg -mx-2 px-2" ontoggle="onQToggle(event,\''+e.id+'\')">'
         +'<summary class="cursor-pointer select-none flex items-center gap-3 py-4 hover:bg-sand/25 rounded-lg px-2 -mx-2 transition">'
         +(e.pinned?'<span class="shrink-0 text-[10px] font-bold text-gold bg-gold/10 border border-gold/25 px-1.5 py-0.5 rounded">자주</span>':'<span class="text-[13px] font-semibold text-neutral-900/30 shrink-0 w-6 text-right" style="font-variant-numeric:tabular-nums">'+num+'</span>')
         +'<span class="qtitle flex-1 min-w-0 font-semibold text-[15px] leading-snug transition">'+hl(e.q||'',q)+'</span>'
@@ -334,6 +347,10 @@
         +(scr?'<div class="mt-4">'+scr+'</div>':'')
         +(tags?'<div class="mt-2.5">'+tags+'</div>':'')
         +(isAdmin()?'<div class="mt-3 flex gap-1.5"><button onclick="event.preventDefault();editQa(\''+e.id+'\')" class="text-[11px] text-gold border border-gold/30 rounded-full px-2.5 py-0.5 hover:bg-gold/10">수정</button>'+(e._admin?'<button onclick="event.preventDefault();deleteQa(\''+e.id+'\')" class="text-[11px] text-rose-500 border border-rose-200 rounded-full px-2.5 py-0.5 hover:bg-rose-50">삭제</button>':'<span class="text-[11px] text-neutral-900/30 px-1 py-0.5">기본 제공</span>')+'</div>':'')
+        +'<div class="mt-6 pt-4 border-t border-ink/8">'
+        +'<p class="text-[12.5px] font-bold text-neutral-900/50 mb-2.5">댓글 <span id="qcn-'+e.id+'"></span></p>'
+        +'<div id="qcl-'+e.id+'" class="space-y-2"></div>'
+        +'<div id="qcf-'+e.id+'" class="mt-3"></div></div>'
         +'</div></details>';
     }
     function searchFor(t){ $('q').value=t; PAGE=1; render(); syncUrl(); window.scrollTo({top:0,behavior:'smooth'}); }
@@ -361,7 +378,7 @@
         body:JSON.stringify({author_id:s.user.id,author_name:userName(),board:'qna',content:tag+t})})
         .then(function(r){
           $('askBtn').disabled=false;
-          if(r.ok){ $('askText').value=''; $('askMsg').textContent='질문이 접수되었습니다. 답변이 완료되면 이 코너에 공개됩니다.'; }
+          if(r.ok){ $('askText').value=''; $('askMsg').innerHTML='질문방에 등록되었습니다. <a href="qna-board.html" class="font-bold underline">보러 가기 →</a>'; }
           else return r.text().then(function(x){ $('askMsg').textContent='전송 오류: '+x.slice(0,80); });
         }).catch(function(){ $('askBtn').disabled=false; $('askMsg').textContent='네트워크 오류'; });
     }
@@ -444,6 +461,66 @@
       push(arr,function(){ ADMIN_ITEMS=arr; merge(); render(); });
     }
 
+    /* ---------- 답변에 달리는 댓글 (qna_comments) ---------- */
+    var QC={};
+    function hdr(json){ var s=sess(); var h={apikey:AK,Authorization:'Bearer '+((s&&s.access_token)||AK)}; if(json) h['Content-Type']='application/json'; return h; }
+    function timeAgo(t){ var d=new Date(t), s=(Date.now()-d)/1000;
+      if(s<60) return '방금'; if(s<3600) return Math.floor(s/60)+'분 전'; if(s<86400) return Math.floor(s/3600)+'시간 전';
+      if(s<604800) return Math.floor(s/86400)+'일 전'; return d.toLocaleDateString('ko-KR'); }
+    function nl2(t){ return esc(t).replace(/\n/g,'<br/>'); }
+    function onQToggle(ev,id){ if(!ev.target.open) return; loadQC(id); drawQCForm(id); }
+    function loadQC(id){
+      var box=$('qcl-'+id); if(!box) return;
+      if(!QC[id]) box.innerHTML='<p class="text-[13px] text-neutral-900/35 py-1.5">불러오는 중…</p>';
+      fetch(SB+'/rest/v1/qna_comments?select=*&qa_id=eq.'+encodeURIComponent(id)+'&order=created_at.asc',{headers:hdr()})
+        .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+        .then(function(rows){ QC[id]=rows||[]; drawQC(id); })
+        .catch(function(){ box.innerHTML='<p class="text-[12.5px] text-neutral-900/35 py-1.5">댓글을 불러오지 못했어요.'+(isAdmin()?' (관리자: db/qna.sql 실행 필요)':'')+'</p>'; });
+    }
+    function drawQC(id){
+      var box=$('qcl-'+id); if(!box) return;
+      var rows=QC[id]||[], cn=$('qcn-'+id); if(cn) cn.textContent=rows.length||'';
+      if(!rows.length){ box.innerHTML='<p class="text-[13px] text-neutral-900/35 py-1.5">첫 댓글을 남겨 보세요.</p>'; return; }
+      var s=sess(), me=s&&s.user?s.user.id:null, adm=isAdmin();
+      box.innerHTML=rows.map(function(c){
+        var canDel=adm||(me&&c.user_id===me);
+        return '<div class="flex items-start gap-2.5 '+(c.is_admin?'bg-gold/[0.05] border border-gold/20':'bg-sand/40')+' rounded-xl px-3.5 py-2.5">'
+          +'<span class="qcava'+(c.is_admin?' adm':'')+'">'+esc((c.author_name||'회')[0])+'</span>'
+          +'<div class="flex-1 min-w-0"><div class="flex items-center gap-1.5 mb-0.5">'
+          +'<span class="text-[12.5px] font-semibold '+(c.is_admin?'text-gold':'text-neutral-900/75')+'">'+esc(c.author_name||'회원')+'</span>'
+          +(c.is_admin?'<span class="text-[10px] font-bold text-white bg-gold px-1.5 py-0.5 rounded">강사</span>':'')
+          +'<span class="text-[11px] text-neutral-900/35">'+timeAgo(c.created_at)+'</span>'
+          +(canDel?'<button onclick="event.preventDefault();delQC(\''+id+'\',\''+c.id+'\')" class="ml-auto text-[11px] text-neutral-900/30 hover:text-rose-500">삭제</button>':'')
+          +'</div><p class="text-[13.5px] text-neutral-900/80 leading-[1.8]">'+nl2(c.content||'')+'</p></div></div>';
+      }).join('');
+    }
+    function drawQCForm(id){
+      var f=$('qcf-'+id); if(!f) return;
+      if(!sess()){ f.innerHTML='<p class="text-[12.5px] text-neutral-900/45 bg-sand/40 rounded-xl px-3.5 py-2.5 text-center">댓글을 남기려면 <a href="start.html" class="text-gold font-semibold hover:underline">로그인</a> 해 주세요.</p>'; return; }
+      f.innerHTML='<div class="flex items-end gap-2">'
+        +'<textarea id="qci-'+id+'" rows="2" maxlength="1000" placeholder="이 답변에 대해 더 묻고 싶은 점을 남겨 주세요" class="flex-1 border border-ink/15 rounded-xl px-3.5 py-2.5 text-[13.5px] outline-none focus:border-gold resize-none"></textarea>'
+        +'<button onclick="event.preventDefault();addQC(\''+id+'\')" class="shrink-0 bg-gold text-white text-[13px] font-bold px-4 py-2.5 rounded-xl hover:opacity-90 transition">등록</button></div>'
+        +'<p id="qcm-'+id+'" class="text-[12px] text-gold mt-1.5 min-h-[16px]"></p>';
+    }
+    function addQC(id){
+      var s=sess(); if(!s) return;
+      var el=$('qci-'+id), t=(el.value||'').trim(); if(!t){ el.focus(); return; }
+      $('qcm-'+id).textContent='등록 중…';
+      fetch(SB+'/rest/v1/qna_comments',{method:'POST',headers:hdr(true),
+        body:JSON.stringify({qa_id:id,user_id:s.user.id,author_name:userName(),content:t,is_admin:isAdmin()})})
+        .then(function(r){ if(r.ok){ el.value=''; $('qcm-'+id).textContent=''; loadQC(id); }
+          else return r.text().then(x=>{ $('qcm-'+id).textContent='등록 오류: '+x.slice(0,80); }); })
+        .catch(function(){ $('qcm-'+id).textContent='네트워크 오류'; });
+    }
+    function delQC(qid,cid){
+      if(!confirm('이 댓글을 삭제할까요?')) return;
+      fetch(SB+'/rest/v1/qna_comments?id=eq.'+cid,{method:'DELETE',headers:hdr()}).then(function(){ loadQC(qid); }).catch(()=>{});
+    }
+    (function(){ var st=document.createElement('style'); st.textContent=
+      '.qcava{display:flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:999px;background:#eaf0f8;color:#213a6b;font-weight:700;font-size:12px;flex:none}'
+      +'.qcava.adm{background:#00704a;color:#fff}';
+      document.head.appendChild(st); })();
+
     /* ---------- 성구 말풍선 ---------- */
     var chCache={};
     function parseRef(s){ var m=String(s||'').trim().match(/^(.+?)\s*(\d+):(\d+)(?:[-~](\d+))?$/); if(!m) return null; var f=ABBR_F[m[1].trim()]; if(!f) return null; return {file:f,ch:+m[2],v1:+m[3],v2:m[4]?+m[4]:+m[3]}; }
@@ -467,6 +544,7 @@
     window.openEditor=openEditor; window.closeEditor=closeEditor; window.saveQa=saveQa; window.editQa=editQa; window.deleteQa=deleteQa; window.syncCatSel=syncCatSel;
     window.openInbox=openInbox; window.closeInbox=closeInbox; window.answerFrom=answerFrom; window.dropInbox=dropInbox;
     window.showScr=showScr; window.closeBubble=closeBubble;
+    window.onQToggle=onQToggle; window.addQC=addQC; window.delQC=delQC;
   </script>
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
