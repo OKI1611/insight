@@ -54,6 +54,15 @@
 
   function base(h){ return String(h||'').split('#')[0].split('?')[0].toLowerCase(); }
   function hashOf(h){ var i = String(h).indexOf('#'); return i >= 0 ? String(h).slice(i) : ''; }
+  function queryOf(h){ var q = String(h||'').split('#')[0].split('?')[1]; return q || ''; }
+  // 메뉴 주소의 쿼리(예: qna.html?room=rev)가 지금 보고 있는 주소와 맞는지.
+  // 메뉴에 적힌 값만 따지므로 현재 주소에 cat 같은 값이 더 붙어 있어도 상관없다.
+  function queryMatch(q){
+    if(!q) return false;
+    var cur = new URLSearchParams(location.search || ''), want = new URLSearchParams(q), ok = true;
+    want.forEach(function(v, k){ if(cur.get(k) !== v) ok = false; });
+    return ok;
+  }
 
   // 현재 페이지가 속한 섹션 찾기
   function pickSection(nav){
@@ -65,15 +74,25 @@
     return null;
   }
 
-  // 섹션 안에서 현재 페이지에 해당하는 자식이 활성인지 판단(같은 페이지 앵커 메뉴 대응)
+  // 섹션 안에서 현재 페이지에 해당하는 자식이 활성인지 판단.
+  // 같은 파일을 가리키는 메뉴가 둘 이상이면(books.html#devil 앵커, qna.html?room=rev 쿼리)
+  // 뒤에 붙은 값까지 맞아야 켠다. 뒤에 아무것도 없는 '전체' 항목은 형제 중 맞는 것이
+  // 하나도 없을 때만 켜서, 방을 골라 들어왔는데 세 개가 동시에 칠해지지 않게 한다.
   function makeIsOn(kids){
-    var anchorMode = kids.filter(function(c){ return base(c.href) === page; }).length > 1;
-    function anyHashMatch(){ var cur = location.hash || ''; return kids.some(function(k){ return base(k.href) === page && hashOf(k.href) && cur === hashOf(k.href); }); }
+    var sibs = kids.filter(function(c){ return base(c.href) === page; });
+    var variantMode = sibs.length > 1;
+    function variantOn(href){
+      var hh = hashOf(href), qq = queryOf(href);
+      if(hh) return (location.hash || '') === hh;
+      if(qq) return queryMatch(qq);
+      return false;
+    }
+    function anySiblingOn(){ return sibs.some(function(k){ return variantOn(k.href); }); }
     return function(href){
-      var cb = base(href), hh = hashOf(href), cur = location.hash || '';
-      if(cb !== page) return false;
-      if(anchorMode) return hh ? (cur === hh) : !anyHashMatch();
-      return true;
+      if(base(href) !== page) return false;
+      if(!variantMode) return true;
+      if(hashOf(href) || queryOf(href)) return variantOn(href);
+      return !anySiblingOn();
     };
   }
 
@@ -180,13 +199,17 @@
       sh.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); sub.classList.toggle('open'); } });
     });
 
-    // 앵커(#) 이동 시 현재 섹션의 활성 표시 실시간 갱신
-    window.addEventListener('hashchange', function(){
+    // 앵커(#) 이동, 또는 페이지가 주소의 쿼리를 바꿨을 때(질의응답 방 전환 등)
+    // 현재 섹션의 활성 표시를 다시 맞춘다
+    function resync(){
       var links = rail.querySelectorAll('.sn-grp.cur .sn-kids a');
       var kids = curSec.children || [];
       var isOn = makeIsOn(kids);
       links.forEach(function(a){ a.classList.toggle('on', isOn(a.getAttribute('href'))); });
-    });
+    }
+    window.addEventListener('hashchange', resync);
+    window.addEventListener('popstate', resync);
+    window.addEventListener('bibly:urlchange', resync);
   }
 
   function sig(nav){ try{ return JSON.stringify(nav); }catch(e){ return ''; } }

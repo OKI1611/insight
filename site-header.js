@@ -155,6 +155,22 @@
 
   function _hrefOf(h){ return String(h).charAt(0) === '#' ? ('index.html' + h) : h; }
   function _isOn(h){ return _hrefOf(h).split('?')[0] === active; }
+  function _qsOf(h){ var q = String(h||'').split('#')[0].split('?')[1]; return q || ''; }
+  function _qsOn(h){
+    var q = _qsOf(h); if(!q) return false;
+    var cur = new URLSearchParams(location.search || ''), want = new URLSearchParams(q), ok = true;
+    want.forEach(function(v, k){ if(cur.get(k) !== v) ok = false; });
+    return ok;
+  }
+  // 같은 파일을 가리키는 형제가 여럿이면(질의응답 전체 / ?room=rev / ?room=gen)
+  // 쿼리까지 맞는 하나만 켠다. 쿼리가 없는 '전체'는 나머지가 다 어긋날 때만 켠다.
+  function _kidOn(h, sibs){
+    if(!_isOn(h)) return false;
+    var same = (sibs || []).filter(function(c){ return _isOn(c.href); });
+    if(same.length < 2) return true;
+    if(_qsOf(h)) return _qsOn(h);
+    return !same.some(function(c){ return _qsOf(c.href) && _qsOn(c.href); });
+  }
   function menuHTML(menu){
     return menu.map(function(m){
       var href = _hrefOf(m.href), kids = m.children || [];
@@ -210,9 +226,9 @@
       var head = '<a href="' + href + '" class="pt-3 pb-1 font-bold ' + (_isOn(m.href) ? 'text-gold' : 'text-neutral-900/80') + '">' + esc(m.label) + '</a>';
       var sub = kids.map(function(c){
         var gk = c.children || [];
-        var a = '<a href="' + _hrefOf(c.href) + '" class="py-2 pl-4 border-b border-ink/5 text-[14px] ' + (_isOn(c.href) ? 'text-gold font-semibold' : 'text-neutral-900/60') + '">└ ' + esc(c.label) + '</a>';
+        var a = '<a href="' + _hrefOf(c.href) + '" class="py-2 pl-4 border-b border-ink/5 text-[14px] ' + (_kidOn(c.href, kids) ? 'text-gold font-semibold' : 'text-neutral-900/60') + '">└ ' + esc(c.label) + '</a>';
         if(!gk.length) return a;
-        return a + gk.map(function(g){ return '<a href="' + _hrefOf(g.href) + '" class="py-1.5 pl-9 border-b border-ink/5 text-[13px] ' + (_isOn(g.href) ? 'text-gold font-semibold' : 'text-neutral-900/50') + '">· ' + esc(g.label) + '</a>'; }).join('');
+        return a + gk.map(function(g){ return '<a href="' + _hrefOf(g.href) + '" class="py-1.5 pl-9 border-b border-ink/5 text-[13px] ' + (_kidOn(g.href, gk) ? 'text-gold font-semibold' : 'text-neutral-900/50') + '">· ' + esc(g.label) + '</a>'; }).join('');
       }).join('');
       return head + sub;
     }).join('');
