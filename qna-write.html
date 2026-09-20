@@ -9,19 +9,19 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+  <script src="/editor-enhance.js"></script>
   <style>
     /* ── 글쓰기 전용 화면: 사이트 헤더·공지바·플로팅 위젯을 일절 두지 않는다 ── */
     *{box-sizing:border-box}
-    :root{
-      --ink:#213a6b; --green:#00704a; --line:#e8ecf3; --muted:#8a93a6;
-      --bar:56px;
-    }
+    :root{ --ink:#213a6b; --green:#00704a; --line:#e8ecf3; --muted:#8a93a6; --bar:56px; }
     html,body{margin:0;padding:0}
     body{font-family:'Pretendard',system-ui,-apple-system,sans-serif;background:#fff;color:#1a1f2b;-webkit-font-smoothing:antialiased}
     #biblyRail,.ch-plugin,#ch-plugin,#cprtToast{display:none!important}
     button{font-family:inherit}
 
-    /* ── 상단 바 ── */
     .topbar{position:sticky;top:0;z-index:50;height:var(--bar);background:#fff;border-bottom:1px solid var(--line);
       display:flex;align-items:center;gap:14px;padding:0 20px}
     .brand{display:flex;align-items:center;gap:9px;min-width:0}
@@ -37,50 +37,25 @@
     .btn.ghost{border-color:transparent;color:var(--muted);padding:8px 10px}
     .btn.ghost:hover{color:#1a1f2b;background:#f5f7fa}
 
-    /* ── 분류 줄 ── */
-    .catbar{position:sticky;top:var(--bar);z-index:49;background:#fff;border-bottom:1px solid var(--line);
-      padding:10px 20px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-    .catbar .lbl{font-size:12px;font-weight:700;color:var(--muted);margin-right:2px}
-    .chip{padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;border:1px solid var(--line);
-      color:#5a6478;background:#fff;cursor:pointer;transition:.12s;white-space:nowrap}
-    .chip:hover{border-color:var(--green);color:var(--green)}
-    .chip.on{background:var(--green);border-color:var(--green);color:#fff}
-    .catbar .sep{width:1px;height:18px;background:var(--line);margin:0 4px}
-
-    /* ── 원고지 ── */
-    .sheet{max-width:760px;margin:0 auto;padding:46px 24px 120px}
+    .sheet{max-width:860px;margin:0 auto;padding:34px 24px 40px}
     .bare{width:100%;border:0;outline:0;background:transparent;resize:none;overflow:hidden;font-family:inherit;color:inherit;padding:0}
     .bare::placeholder{color:#c3cad8}
-    .title{font-size:31px;font-weight:800;line-height:1.38;letter-spacing:-.025em}
-    .rule{height:1px;background:var(--line);margin:22px 0 26px}
-    .leadwrap{border-left:3px solid var(--green);padding-left:16px;margin-bottom:34px}
-    .leadlbl{font-size:11.5px;font-weight:800;color:var(--green);letter-spacing:.02em;margin-bottom:5px}
-    .lead{font-size:17px;font-weight:500;line-height:1.85}
+    .title{font-size:30px;font-weight:800;line-height:1.4;letter-spacing:-.025em}
+    .rule{height:1px;background:var(--line);margin:20px 0 22px}
+    .leadwrap{border-left:3px solid var(--green);padding-left:15px;margin-bottom:26px}
+    .leadlbl{font-size:11.5px;font-weight:800;color:var(--green);margin:0 0 4px}
+    .leadlbl em{font-style:normal;font-weight:600;color:var(--muted)}
+    .lead{font-size:16.5px;font-weight:500;line-height:1.8}
 
-    /* ── 본문 블록 ── */
-    .blk{position:relative;padding:4px 0 4px 0;margin-bottom:6px}
-    .blk .bh{font-size:17px;font-weight:700;line-height:1.5;margin-bottom:4px}
-    .blk .bp{font-size:15.5px;line-height:2.0;color:#2c3446}
-    .blk .tools{position:absolute;left:-46px;top:6px;display:flex;flex-direction:column;gap:3px;opacity:0;transition:opacity .13s}
-    .blk:hover .tools,.blk:focus-within .tools{opacity:1}
-    .tbtn{width:26px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:7px;
-      border:1px solid var(--line);background:#fff;color:#a3abbc;font-size:11px;cursor:pointer;transition:.12s;line-height:1}
-    .tbtn:hover{border-color:var(--green);color:var(--green)}
-    .tbtn.del:hover{border-color:#f43f5e;color:#f43f5e}
-    .blk.misc{background:#fffaf0;border:1px solid #f0e2c6;border-radius:12px;padding:16px 18px;margin:26px 0}
-    .blk.misc .bh{font-size:13.5px;color:var(--green);margin-bottom:6px}
-    .blk.misc .bp{font-size:14.5px;line-height:1.9}
-    .blk.misc .tools{left:-46px}
-    @media(max-width:900px){ .blk .tools{position:static;flex-direction:row;opacity:1;margin-bottom:6px} }
+    /* Quill */
+    .ql-container{font-family:'Pretendard',sans-serif;font-size:16px}
+    .ql-editor{min-height:520px;font-size:16px;line-height:1.9;padding:22px 20px}
+    .ql-editor p{margin-bottom:.7em}
+    .ql-toolbar.ql-snow{position:sticky;top:var(--bar);z-index:40;border-color:var(--line);border-radius:10px 10px 0 0;background:#fff}
+    .ql-container.ql-snow{border-color:var(--line);border-radius:0 0 10px 10px}
+    .ql-container:focus-within .ql-editor.ql-blank::before{content:''}
 
-    .addrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px;padding-top:22px;border-top:1px dashed var(--line)}
-    .add{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:999px;font-size:13.5px;font-weight:700;
-      border:1px solid var(--line);color:#5a6478;background:#fff;cursor:pointer;transition:.13s}
-    .add:hover{border-color:var(--green);color:var(--green);background:#f4faf7}
-    .hint{font-size:13.5px;color:#b6bdcb;padding:10px 0 4px}
-
-    /* ── 발행 설정 ── */
-    .pub{max-width:760px;margin:0 auto;padding:0 24px 90px}
+    .pub{max-width:860px;margin:0 auto;padding:26px 24px 90px}
     .pubbox{border:1px solid var(--line);border-radius:14px;padding:22px 24px;background:#fbfcfe}
     .pubttl{font-size:13px;font-weight:800;color:#4a5568;margin:0 0 16px}
     .frow{margin-bottom:16px}
@@ -90,11 +65,19 @@
     .fld:focus{border-color:var(--green)}
     .chk{display:flex;align-items:center;gap:8px;font-size:13.5px;color:#3d4657;cursor:pointer}
     .chk input{accent-color:var(--green);width:16px;height:16px}
-    .foot{max-width:760px;margin:0 auto;padding:0 24px 80px;display:flex;align-items:center;gap:10px}
+    .chip{padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;border:1px solid var(--line);
+      color:#5a6478;background:#fff;cursor:pointer;transition:.12s;white-space:nowrap}
+    .chip:hover{border-color:var(--green);color:var(--green)}
+    .chip.on{background:var(--green);border-color:var(--green);color:#fff}
+    .chiprow{display:flex;gap:8px;flex-wrap:wrap}
+    .foot{max-width:860px;margin:0 auto;padding:0 24px 80px;display:flex;align-items:center;gap:10px}
 
-    /* ── 미리보기 ── */
     .pv{max-width:760px;margin:0 auto;padding:40px 24px 120px}
     .pvnote{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:20px}
+    .pvhtml{font-size:15px;line-height:1.95;color:#2c3446}
+    .pvhtml img{max-width:100%;height:auto;border-radius:8px}
+    .pvhtml h1,.pvhtml h2,.pvhtml h3{font-weight:800;margin:1.2em 0 .4em;line-height:1.45}
+    .pvhtml blockquote{border-left:3px solid var(--green);padding-left:14px;color:#3d4657;margin:1em 0}
     #denied{max-width:420px;margin:0 auto;padding:110px 24px;text-align:center}
   </style>
 </head>
@@ -122,37 +105,37 @@
       </div>
     </div>
 
-    <div class="catbar" id="catbar">
-      <span class="lbl">방</span>
-      <button type="button" onclick="setRoom('rev')" id="rRev" class="chip">요한계시록</button>
-      <button type="button" onclick="setRoom('gen')" id="rGen" class="chip">신앙·성경</button>
-      <span class="sep"></span>
-      <span class="lbl">분류</span>
-      <span id="catChips" style="display:flex;gap:8px;flex-wrap:wrap"></span>
-    </div>
-
     <!-- 작성 -->
     <div id="writeView">
       <div class="sheet">
-        <textarea id="fQ" rows="1" maxlength="160" oninput="grow(this)" placeholder="질문을 입력하세요" class="bare title"></textarea>
+        <textarea id="fQ" rows="1" maxlength="200" oninput="grow(this)" placeholder="제목(질문)을 입력하세요" class="bare title"></textarea>
         <div class="rule"></div>
 
         <div class="leadwrap">
-          <p class="leadlbl">한마디 답</p>
-          <textarea id="fA" rows="1" maxlength="400" oninput="grow(this)" placeholder="핵심만 한두 문장으로 먼저 답해 주세요" class="bare lead"></textarea>
+          <p class="leadlbl">한마디 답 <em>· 선택 · 목록에 미리보기로 보입니다</em></p>
+          <textarea id="fA" rows="1" maxlength="400" oninput="grow(this)" placeholder="비워 두어도 됩니다" class="bare lead"></textarea>
         </div>
 
-        <div id="blocks"></div>
-
-        <div class="addrow">
-          <button type="button" onclick="addBlock()" class="add">＋ 문단</button>
-          <button type="button" onclick="addBlock(true)" class="add">＋ 흔한 오해 상자</button>
-        </div>
+        <!-- 본문: 칼럼과 같은 편집기 -->
+        <div id="qeditor"></div>
       </div>
 
       <div class="pub">
         <div class="pubbox">
           <p class="pubttl">발행 설정</p>
+          <div class="frow">
+            <span class="flbl">방</span>
+            <p class="fhint">요한계시록 질문은 따로 모아 관리됩니다</p>
+            <div class="chiprow">
+              <button type="button" onclick="setRoom('rev')" id="rRev" class="chip">요한계시록</button>
+              <button type="button" onclick="setRoom('gen')" id="rGen" class="chip">신앙·성경</button>
+            </div>
+          </div>
+          <div class="frow">
+            <span class="flbl">분류</span>
+            <p class="fhint">목록 위쪽 칩으로 걸러 볼 수 있습니다</p>
+            <div class="chiprow" id="catChips"></div>
+          </div>
           <div class="frow">
             <label class="flbl" for="fScr">관련 성구</label>
             <p class="fhint">쉼표로 구분 · 「계 1:19」처럼 적으면 독자가 눌렀을 때 성경 본문이 뜹니다</p>
@@ -189,44 +172,74 @@
     const SB='https://bmxkndkwefdgsomlznoo.supabase.co';
     const AK='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
     const ADMIN='josephoh1611@gmail.com';
+    const sb = window.supabase.createClient(SB, AK, { auth:{ flowType:'implicit', lock: async (_n,_t,fn)=>await fn() } });
     const CATS={
       rev:['구조·해석 방법','1장 · 영광의 그리스도','2~3장 · 일곱 교회','4~5장 · 하늘 보좌','6~19장 · 7년 환난','20장 · 천년왕국·백보좌','21~22장 · 새 하늘 새 땅','이단·오해 바로잡기'],
       gen:['구원·믿음','종말·재림','성경 읽기·번역','신앙생활·교회','이단·분별','삶의 질문']
     };
-    let ROOM='rev', CAT='', EDIT_ID=null, ADMIN_ITEMS=[], BASE=[], BLOCKS=[], DIRTY=false;
+    let ROOM='rev', CAT='', EDIT_ID=null, ADMIN_ITEMS=[], BASE=[], quill=null, DIRTY=false;
 
     function sess(){ try{ for(var i=0;i<localStorage.length;i++){ var k=localStorage.key(i); if(!/auth-token/.test(k)) continue; var v=JSON.parse(localStorage.getItem(k)); var s=(v&&v.user)?v:(v&&v.currentSession)?v.currentSession:null; if(s&&s.user){ if(s.expires_at&&s.expires_at*1000<Date.now()) return null; return s; } } }catch(e){} return null; }
     function isAdmin(){ var s=sess(); return !!(s&&s.user&&s.user.email===ADMIN); }
     function grow(el){ el.style.height='auto'; el.style.height=el.scrollHeight+'px'; DIRTY=true; }
-    function growAll(){ document.querySelectorAll('textarea').forEach(function(t){ t.style.height='auto'; t.style.height=t.scrollHeight+'px'; }); }
 
-    /* ---------- 본문 블록 ---------- */
-    function addBlock(misc,h,p){
-      BLOCKS.push({h:(h!==undefined?h:(misc?'흔한 오해':'')),p:p||'',misc:!!misc}); DIRTY=true;
-      drawBlocks();
-      var all=document.querySelectorAll('#blocks .blk');
-      if(all.length){ var t=all[all.length-1].querySelector('textarea'); if(t) t.focus(); }
+    /* 칼럼과 동일한 본문 정화 */
+    function sanitize(html){
+      const d=document.createElement('div'); d.innerHTML=html||'';
+      d.querySelectorAll('script,style,iframe,object,embed,link,meta,base,form,input,button,textarea,svg,math,frame,frameset,applet,noscript').forEach(n=>n.remove());
+      d.querySelectorAll('*').forEach(el=>{
+        [...el.attributes].forEach(a=>{
+          const name=a.name.toLowerCase(), val=a.value||'';
+          if(/^on/i.test(name)){ el.removeAttribute(a.name); return; }
+          if(/^(href|src|xlink:href|formaction|action|srcdoc|srcset|data|background|poster)$/.test(name)){
+            const v=val.replace(/\s+/g,'').toLowerCase(), okImg=(name==='src')&&/^data:image\//i.test(val.trim());
+            if(!okImg && /^(javascript:|data:|vbscript:)/.test(v)){ el.removeAttribute(a.name); return; }
+          }
+          if(name==='style' && /expression\(|javascript:|behavior:|@import|url\(/i.test(val)){ el.removeAttribute(a.name); }
+        });
+      });
+      return d.innerHTML;
     }
-    function drawBlocks(){
-      var box=$('blocks');
-      if(!BLOCKS.length){ box.innerHTML='<p class="hint">아래 「＋ 문단」을 눌러 답변을 이어 가세요. 소제목은 비워 두어도 됩니다.</p>'; return; }
-      box.innerHTML=BLOCKS.map(function(b,i){
-        return '<div class="blk'+(b.misc?' misc':'')+'">'
-          +'<div class="tools">'
-          +'<button type="button" class="tbtn" onclick="moveBlock('+i+',-1)" title="위로">▲</button>'
-          +'<button type="button" class="tbtn" onclick="moveBlock('+i+',1)" title="아래로">▼</button>'
-          +'<button type="button" class="tbtn del" onclick="delBlock('+i+')" title="삭제">✕</button>'
-          +'</div>'
-          +'<input type="text" value="'+esc(b.h||'')+'" oninput="setH('+i+',this.value)" placeholder="'+(b.misc?'흔한 오해':'소제목 (비워도 됩니다)')+'" class="bare bh" />'
-          +'<textarea rows="1" class="bare bp" oninput="setP('+i+',this.value);grow(this)" placeholder="내용을 입력하세요">'+esc(b.p||'')+'</textarea>'
-          +'</div>';
-      }).join('');
-      box.querySelectorAll('textarea').forEach(function(t){ t.style.height='auto'; t.style.height=t.scrollHeight+'px'; });
+
+    /* ---------- 편집기 (칼럼과 동일 구성) ---------- */
+    function ensureQuill(){
+      if(quill) return quill;
+      quill = new Quill('#qeditor', {
+        theme:'snow',
+        placeholder:'블로그처럼 자유롭게 작성하세요… (워드·한글 글 복붙 OK)',
+        modules:{ toolbar:[
+          [{ size: (window.BIBLY_EDITOR_SIZES || ['13px',false,'20px','24px']) }, { font: (window.BIBLY_EDITOR_FONTS || ['serif','monospace']) }],
+          [{ header:[1,2,3,false] }],
+          ['bold','italic','underline','strike'],
+          [{ color:[] }, { background:[] }],
+          [{ align:[] }],
+          [{ list:'ordered' }, { list:'bullet' }],
+          ['blockquote'],
+          ['link','image'],
+          ['clean']
+        ] }
+      });
+      quill.on('text-change', function(){ DIRTY=true; });
+      // 이미지는 community 버킷에 올린 뒤 본문에 삽입(base64 방지)
+      quill.getModule('toolbar').addHandler('image', () => {
+        const input=document.createElement('input');
+        input.type='file'; input.accept='image/*';
+        input.onchange=async () => {
+          const file=input.files[0]; if(!file) return;
+          if(file.size > 5*1024*1024){ alert('이미지는 5MB 이하만 가능해요.'); return; }
+          const ext=(file.name.split('.').pop()||'jpg').toLowerCase();
+          const path=`qna/${Date.now()}-${Math.random().toString(36).slice(2,10)}.${ext}`;
+          const { error } = await sb.storage.from('community').upload(path, file);
+          if(error){ alert('이미지 업로드 오류: '+error.message); return; }
+          const url=sb.storage.from('community').getPublicUrl(path).data.publicUrl;
+          const range=quill.getSelection(true);
+          quill.insertEmbed(range.index,'image',url);
+          quill.setSelection(range.index+1);
+        };
+        input.click();
+      });
+      return quill;
     }
-    function setH(i,v){ BLOCKS[i].h=v; DIRTY=true; }
-    function setP(i,v){ BLOCKS[i].p=v; DIRTY=true; }
-    function delBlock(i){ BLOCKS.splice(i,1); DIRTY=true; drawBlocks(); }
-    function moveBlock(i,d){ var j=i+d; if(j<0||j>=BLOCKS.length) return; var t=BLOCKS[i]; BLOCKS[i]=BLOCKS[j]; BLOCKS[j]=t; DIRTY=true; drawBlocks(); }
 
     /* ---------- 방·분류 ---------- */
     function setRoom(r){ ROOM=r; DIRTY=true;
@@ -246,16 +259,12 @@
       var on=($('pvView').style.display==='none');
       $('pvView').style.display=on?'':'none';
       $('writeView').style.display=on?'none':'';
-      $('catbar').style.display=on?'none':'';
       $('pvBtn').textContent=on?'계속 쓰기':'미리보기';
-      if(on) drawPreview(); else growAll();
+      if(on) drawPreview();
     }
     function drawPreview(){
-      var q=$('fQ').value.trim()||'(질문을 입력하세요)', a=$('fA').value.trim()||'(한마디 답을 입력하세요)';
-      var deep=BLOCKS.filter(function(b){ return (b.p||'').trim(); }).map(function(b){
-        if(b.misc) return '<div style="background:#fffaf0;border-left:3px solid rgba(0,112,74,.6);border-radius:0 8px 8px 0;padding:14px 18px;margin:18px 0"><p style="font-size:12.5px;font-weight:800;color:#00704a;margin:0 0 5px">'+esc(b.h||'흔한 오해')+'</p><p style="font-size:14px;line-height:1.85;color:#2c3446;margin:0">'+esc(b.p)+'</p></div>';
-        return '<div style="margin-bottom:18px">'+(b.h?'<h4 style="font-size:15px;font-weight:800;margin:0 0 5px">'+esc(b.h)+'</h4>':'')+'<p style="font-size:14.5px;line-height:1.95;color:#2c3446;margin:0">'+esc(b.p)+'</p></div>';
-      }).join('');
+      var q=$('fQ').value.trim()||'(제목을 입력하세요)', a=$('fA').value.trim();
+      var body=sanitize(ensureQuill().root.innerHTML);
       var scr=$('fScr').value.split(/[,\n]/).map(function(x){return x.trim();}).filter(Boolean)
         .map(function(s){ return '<span style="display:inline-block;background:#eef3fa;color:#5a6478;font-size:11.5px;padding:2px 9px;border-radius:5px;margin:0 5px 5px 0">'+esc(s)+'</span>'; }).join('');
       var tg=$('fTags').value.split(/[,\n]/).map(function(x){return x.trim();}).filter(Boolean)
@@ -264,8 +273,9 @@
         +($('fPin').checked?'<span style="font-size:11px;font-weight:800;color:#00704a;background:rgba(0,112,74,.09);border:1px solid rgba(0,112,74,.22);padding:2px 7px;border-radius:5px;margin-right:6px">자주</span>':'')
         +'<span style="font-size:11.5px;color:#8a93a6;background:#eef3fa;padding:3px 10px;border-radius:999px">'+esc(CAT)+'</span></div>'
         +'<p style="font-size:19px;font-weight:700;line-height:1.5;margin:0 0 18px">'+esc(q)+'</p>'
-        +'<div style="border-left:3px solid #00704a;padding-left:16px;margin-bottom:24px"><p style="font-size:15.5px;font-weight:500;line-height:1.95;margin:0">'+esc(a)+'</p></div>'
-        +deep+(scr?'<div style="margin-top:20px">'+scr+'</div>':'')+(tg?'<div style="margin-top:8px">'+tg+'</div>':'');
+        +(a?'<div style="border-left:3px solid #00704a;padding-left:16px;margin-bottom:24px"><p style="font-size:15.5px;font-weight:500;line-height:1.95;margin:0">'+esc(a)+'</p></div>':'')
+        +'<div class="pvhtml">'+body+'</div>'
+        +(scr?'<div style="margin-top:22px">'+scr+'</div>':'')+(tg?'<div style="margin-top:8px">'+tg+'</div>':'');
     }
 
     /* ---------- 진입 ---------- */
@@ -273,8 +283,20 @@
       var ok=isAdmin();
       $('denied').style.display=ok?'none':'';
       $('editor').style.display=ok?'':'none';
+      if(ok) ensureQuill();
     }
     boot(); setTimeout(boot,1000); setTimeout(boot,2200);
+
+    // 기존 구조형(deep) 글을 편집기용 HTML로 변환
+    function deepToHtml(e){
+      if(e.html) return e.html;
+      return (e.deep||[]).map(function(b){
+        if(b.misc||b.h==='흔한 오해'){
+          return '<blockquote><strong>'+esc(b.h||'흔한 오해')+'</strong><br>'+esc(b.p||'')+'</blockquote>';
+        }
+        return (b.h?'<h3>'+esc(b.h)+'</h3>':'')+'<p>'+esc(b.p||'').replace(/\n/g,'<br>')+'</p>';
+      }).join('');
+    }
 
     Promise.all([
       fetch('content/qna.json').then(function(r){ return r.ok?r.json():[]; }).catch(function(){ return []; }),
@@ -292,8 +314,8 @@
       ROOM=(sp.get('room')==='gen')?'gen':'rev';
       CAT=(sp.get('cat')&&CATS[ROOM].indexOf(sp.get('cat'))>=0)?sp.get('cat'):CATS[ROOM][0];
       setRoom(ROOM);
-      if(sp.get('draft')){ $('fQ').value=sp.get('draft').slice(0,160); grow($('fQ')); }
-      BLOCKS=[]; drawBlocks(); DIRTY=false;
+      if(sp.get('draft')){ $('fQ').value=sp.get('draft').slice(0,200); grow($('fQ')); }
+      DIRTY=false;
       setTimeout(function(){ $('fQ').focus(); },300);
     });
 
@@ -302,12 +324,11 @@
       if(CATS[ROOM].indexOf(CAT)<0) CATS[ROOM].push(CAT);
       setRoom(ROOM);
       $('fQ').value=e.q||''; $('fA').value=e.a||'';
-      BLOCKS=(e.deep||[]).map(function(b){ return {h:b.h||'',p:b.p||'',misc:!!(b.misc||b.h==='흔한 오해')}; });
-      drawBlocks();
+      grow($('fQ')); grow($('fA'));
+      ensureQuill().root.innerHTML=sanitize(deepToHtml(e));
       $('fScr').value=(e.scriptures||[]).join(', ');
       $('fTags').value=(e.tags||[]).join(', ');
       $('fPin').checked=!!e.pinned;
-      setTimeout(growAll,60);
     }
 
     /* ---------- 저장 ---------- */
@@ -320,13 +341,13 @@
     }
     function save(){
       if($('pvView').style.display!=='none') togglePreview();
-      var q=$('fQ').value.trim(), a=$('fA').value.trim();
-      if(!q){ $('saveMsg').textContent='질문을 입력해 주세요'; $('fQ').focus(); return; }
-      if(!a){ $('saveMsg').textContent='한마디 답을 입력해 주세요'; $('fA').focus(); return; }
-      var obj={ id:EDIT_ID||('q'+Date.now()), room:ROOM, cat:CAT, q:q, a:a,
-        deep:BLOCKS.filter(function(b){ return (b.p||'').trim(); }).map(function(b){
-          var o={p:b.p.trim()}; if((b.h||'').trim()) o.h=b.h.trim();
-          if(b.misc){ o.misc=true; if(!o.h) o.h='흔한 오해'; } return o; }),
+      var q=$('fQ').value.trim();
+      var html=sanitize(ensureQuill().root.innerHTML);
+      var textOnly=ensureQuill().getText().replace(/\s/g,'');
+      if(!q){ $('saveMsg').textContent='제목을 입력해 주세요'; $('fQ').focus(); return; }
+      if(!textOnly && !$('fA').value.trim()){ $('saveMsg').textContent='본문을 입력해 주세요'; ensureQuill().focus(); return; }
+      var obj={ id:EDIT_ID||('q'+Date.now()), room:ROOM, cat:CAT, q:q, a:$('fA').value.trim(),
+        html:html, deep:[],
         scriptures:$('fScr').value.split(/[,\n]/).map(function(x){return x.trim();}).filter(Boolean),
         tags:$('fTags').value.split(/[,\n]/).map(function(x){return x.trim();}).filter(Boolean),
         pinned:$('fPin').checked, _admin:true, updated:new Date().toISOString() };
@@ -342,13 +363,10 @@
       push(ADMIN_ITEMS.filter(function(x){return x.id!==EDIT_ID;}),function(){ DIRTY=false; location.href='qna.html'; });
     }
 
-    // 실수로 창을 닫을 때 경고
     window.addEventListener('beforeunload', function(e){ if(DIRTY){ e.preventDefault(); e.returnValue=''; } });
-    // Ctrl/Cmd + S 저장
     document.addEventListener('keydown', function(e){ if((e.ctrlKey||e.metaKey)&&e.key==='s'){ e.preventDefault(); save(); } });
 
     window.setRoom=setRoom; window.setCat=setCat; window.grow=grow;
-    window.addBlock=addBlock; window.delBlock=delBlock; window.moveBlock=moveBlock; window.setH=setH; window.setP=setP;
     window.togglePreview=togglePreview; window.save=save; window.removeQa=removeQa;
   </script>
 </body>
