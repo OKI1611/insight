@@ -274,18 +274,18 @@
     <!-- 새 소식 티커 (히어로 배너 바로 위 · 첫 화면 노출) -->
     <div id="recentTicker" class="hidden max-w-6xl mx-auto px-5 pt-2">
       <div class="rounded-2xl border border-ink/8 bg-white shadow-soft flex items-center gap-3 px-4 md:px-5 py-2.5">
-        <span class="shrink-0 inline-flex items-center gap-1.5 bg-ink text-paper text-[11px] font-bold px-3 py-1 rounded-full">새 소식</span>
-        <div class="flex-1 min-w-0 relative h-5 overflow-hidden">
+        <span class="shrink-0 inline-flex items-center gap-1.5 bg-ink text-paper text-[12.5px] md:text-[13.5px] font-bold px-3.5 py-1.5 rounded-full">새 소식</span>
+        <div class="flex-1 min-w-0 relative h-7 overflow-hidden">
           <a id="tkItem" href="#" class="absolute inset-0 flex items-center gap-2 transition-opacity duration-500">
-            <span id="tkCat" class="shrink-0 text-[10px] font-bold text-gold bg-gold/10 px-1.5 py-0.5 rounded"></span>
-            <span id="tkTitle" class="flex-1 min-w-0 text-sm text-neutral-900/80 truncate"></span>
-            <span id="tkDate" class="shrink-0 text-xs text-neutral-900/35 hidden sm:inline"></span>
+            <span id="tkCat" class="shrink-0 text-[11.5px] font-bold text-gold bg-gold/10 px-2 py-0.5 rounded"></span>
+            <span id="tkTitle" class="flex-1 min-w-0 text-[15.5px] md:text-[17px] font-medium text-neutral-900/85 truncate"></span>
+            <span id="tkDate" class="shrink-0 text-[13px] text-neutral-900/40 hidden sm:inline"></span>
           </a>
         </div>
         <div class="shrink-0 flex items-center gap-0.5 text-neutral-900/40">
-          <button onclick="tkStep(-1)" title="이전" class="w-6 h-6 rounded-full hover:bg-ink/5 hover:text-neutral-900 transition">‹</button>
+          <button onclick="tkStep(-1)" title="이전" class="w-7 h-7 text-lg leading-none rounded-full hover:bg-ink/5 hover:text-neutral-900 transition">‹</button>
           <button id="tkPlay" onclick="tkToggle()" title="멈춤/재생" class="w-6 h-6 rounded-full hover:bg-ink/5 hover:text-neutral-900 transition text-[11px]"></button>
-          <button onclick="tkStep(1)" title="다음" class="w-6 h-6 rounded-full hover:bg-ink/5 hover:text-neutral-900 transition">›</button>
+          <button onclick="tkStep(1)" title="다음" class="w-7 h-7 text-lg leading-none rounded-full hover:bg-ink/5 hover:text-neutral-900 transition">›</button>
         </div>
       </div>
     </div>
