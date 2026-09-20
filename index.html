@@ -271,19 +271,21 @@
       <p data-cms="home.heroSub" class="mt-2 text-neutral-900/55 text-[14px] md:text-[15px] leading-relaxed">성경을 스스로 읽는 눈을 길러, 흔들리지 않는 분별의 사람을 세웁니다 — <b class="text-neutral-900/75">전 강의 무료</b></p>
     </div>
 
-    <!-- 함께해 주신 분들 띠 (히어로 배너 바로 위 · 첫 화면 노출) -->
-    <div id="fameBar" class="hidden max-w-6xl mx-auto px-5 pt-2">
-      <div class="rounded-2xl border border-ink/8 bg-white shadow-soft overflow-hidden">
-        <div id="hofBarWrap" class="hidden flex items-center gap-3 px-4 md:px-5 py-2.5">
-          <span id="hofBarLabel" class="shrink-0 text-[11px] font-bold text-gold whitespace-nowrap">우수 멤버</span>
-          <div class="fwHeroMask flex-1 min-w-0"><div id="hofBarRow" class="fwHeroRow"></div></div>
+    <!-- 새 소식 티커 (히어로 배너 바로 위 · 첫 화면 노출) -->
+    <div id="recentTicker" class="hidden max-w-6xl mx-auto px-5 pt-2">
+      <div class="rounded-2xl border border-ink/8 bg-white shadow-soft flex items-center gap-3 px-4 md:px-5 py-2.5">
+        <span class="shrink-0 inline-flex items-center gap-1.5 bg-ink text-paper text-[11px] font-bold px-3 py-1 rounded-full">새 소식</span>
+        <div class="flex-1 min-w-0 relative h-5 overflow-hidden">
+          <a id="tkItem" href="#" class="absolute inset-0 flex items-center gap-2 transition-opacity duration-500">
+            <span id="tkCat" class="shrink-0 text-[10px] font-bold text-gold bg-gold/10 px-1.5 py-0.5 rounded"></span>
+            <span id="tkTitle" class="flex-1 min-w-0 text-sm text-neutral-900/80 truncate"></span>
+            <span id="tkDate" class="shrink-0 text-xs text-neutral-900/35 hidden sm:inline"></span>
+          </a>
         </div>
-        <div id="fwBarWrap" class="fwFound hidden flex items-center gap-3 px-4 md:px-5 py-2.5 border-t border-ink/6">
-          <span class="shrink-0 inline-flex items-center gap-1.5 text-[11px] font-bold whitespace-nowrap" style="color:#1b2c52">
-            <span class="fwDot"></span>창립 멤버
-          </span>
-          <div class="fwHeroMask flex-1 min-w-0"><div id="fwHeroRow" class="fwHeroRow slow"></div></div>
-          <a href="founding.html" class="shrink-0 hidden sm:inline text-[11.5px] font-bold hover:underline whitespace-nowrap" style="color:#b99b5e">이름 올리기 ›</a>
+        <div class="shrink-0 flex items-center gap-0.5 text-neutral-900/40">
+          <button onclick="tkStep(-1)" title="이전" class="w-6 h-6 rounded-full hover:bg-ink/5 hover:text-neutral-900 transition">‹</button>
+          <button id="tkPlay" onclick="tkToggle()" title="멈춤/재생" class="w-6 h-6 rounded-full hover:bg-ink/5 hover:text-neutral-900 transition text-[11px]"></button>
+          <button onclick="tkStep(1)" title="다음" class="w-6 h-6 rounded-full hover:bg-ink/5 hover:text-neutral-900 transition">›</button>
         </div>
       </div>
     </div>
@@ -384,21 +386,19 @@
   })();
   </script>
 
-  <!-- ===== 새 소식 티커 (대표 시리즈 바로 아래) ===== -->
-  <div id="recentTicker" class="hidden bg-white border-b border-ink/8">
-    <div class="max-w-6xl mx-auto px-5 py-2.5 flex items-center gap-3">
-      <span class="shrink-0 inline-flex items-center gap-1.5 bg-ink text-paper text-[11px] font-bold px-3 py-1 rounded-full">새 소식</span>
-      <div class="flex-1 min-w-0 relative h-5 overflow-hidden">
-        <a id="tkItem" href="#" class="absolute inset-0 flex items-center gap-2 transition-opacity duration-500">
-          <span id="tkCat" class="shrink-0 text-[10px] font-bold text-gold bg-gold/10 px-1.5 py-0.5 rounded"></span>
-          <span id="tkTitle" class="flex-1 min-w-0 text-sm text-neutral-900/80 truncate"></span>
-          <span id="tkDate" class="shrink-0 text-xs text-neutral-900/35 hidden sm:inline"></span>
-        </a>
+  <!-- ===== 함께해 주신 분들 띠 (히어로 아래 · 새 소식과 자리 맞바꿈) ===== -->
+  <div id="fameBar" class="hidden bg-white border-b border-ink/8">
+    <div class="max-w-6xl mx-auto px-5">
+      <div id="hofBarWrap" class="hidden flex items-center gap-3 py-2.5">
+        <span id="hofBarLabel" class="shrink-0 text-[11px] font-bold text-gold whitespace-nowrap">우수 멤버</span>
+        <div class="fwHeroMask flex-1 min-w-0"><div id="hofBarRow" class="fwHeroRow"></div></div>
       </div>
-      <div class="shrink-0 flex items-center gap-0.5 text-neutral-900/40">
-        <button onclick="tkStep(-1)" title="이전" class="w-6 h-6 rounded-full hover:bg-ink/5 hover:text-neutral-900 transition">‹</button>
-        <button id="tkPlay" onclick="tkToggle()" title="멈춤/재생" class="w-6 h-6 rounded-full hover:bg-ink/5 hover:text-neutral-900 transition text-[11px]"></button>
-        <button onclick="tkStep(1)" title="다음" class="w-6 h-6 rounded-full hover:bg-ink/5 hover:text-neutral-900 transition">›</button>
+      <div id="fwBarWrap" class="fwFound hidden flex items-center gap-3 py-2.5 border-t border-ink/6">
+        <span class="shrink-0 inline-flex items-center gap-1.5 text-[11px] font-bold whitespace-nowrap" style="color:#1b2c52">
+          <span class="fwDot"></span>창립 멤버
+        </span>
+        <div class="fwHeroMask flex-1 min-w-0"><div id="fwHeroRow" class="fwHeroRow slow"></div></div>
+        <a href="founding.html" class="shrink-0 hidden sm:inline text-[11.5px] font-bold hover:underline whitespace-nowrap" style="color:#b99b5e">이름 올리기 ›</a>
       </div>
     </div>
   </div>
