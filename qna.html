@@ -208,6 +208,7 @@
     const ABBR_F={'창':'Genesis','출':'Exodus','레':'Leviticus','민':'Numbers','신':'Deuteronomy','수':'Joshua','삿':'Judges','룻':'Ruth','삼상':'1Samuel','삼하':'2Samuel','왕상':'1Kings','왕하':'2Kings','대상':'1Chronicles','대하':'2Chronicles','스':'Ezra','느':'Nehemiah','에':'Esther','욥':'Job','시':'Psalms','잠':'Proverbs','전':'Ecclesiastes','아':'SongofSolomon','사':'Isaiah','렘':'Jeremiah','애':'Lamentations','겔':'Ezekiel','단':'Daniel','호':'Hosea','욜':'Joel','암':'Amos','옵':'Obadiah','욘':'Jonah','미':'Micah','나':'Nahum','합':'Habakkuk','습':'Zephaniah','학':'Haggai','슥':'Zechariah','말':'Malachi','마':'Matthew','막':'Mark','눅':'Luke','요':'John','행':'Acts','롬':'Romans','고전':'1Corinthians','고후':'2Corinthians','갈':'Galatians','엡':'Ephesians','빌':'Philippians','골':'Colossians','살전':'1Thessalonians','살후':'2Thessalonians','딤전':'1Timothy','딤후':'2Timothy','딛':'Titus','몬':'Philemon','히':'Hebrews','약':'James','벧전':'1Peter','벧후':'2Peter','요일':'1John','요이':'2John','요삼':'3John','유':'Jude','계':'Revelation'};
 
     let BASE=[], ADMIN_ITEMS=[], ALL=[], ROOM='rev', CAT='', PAGE=1, EDIT_ID=null, ASK_ROOM='rev', INBOX=[];
+    let FOCUS_ID=null, FOCUS_SCROLLED=false;
     const PER=10;
 
     /* ---------- 세션 ---------- */
@@ -240,6 +241,7 @@
       if(sp.get('q')) $('q').value=sp.get('q');
       ASK_ROOM=ROOM;
       renderAuth(); setTimeout(renderAuth,1500);
+      if(sp.get('id')) focusQa(sp.get('id'));
       // 질문방에서 「질의응답에 정리」로 넘어온 경우 — 전용 글쓰기 페이지로 넘긴다
       var draft=sp.get('draft');
       if(draft){ setTimeout(function(){ if(isAdmin()) location.href='qna-write.html?room='+ROOM+'&draft='+encodeURIComponent(draft); }, 1400); }
@@ -252,9 +254,10 @@
 
     /* ---------- 필터 · 렌더 ---------- */
     function roomOf(e){ return e.room==='gen'?'gen':'rev'; }
-    function onSearch(){ PAGE=1; render(); syncUrl(); }
-    function pickRoom(r){ ROOM=r; CAT=''; PAGE=1; $('q').value=''; ASK_ROOM=r; render(); syncUrl(); document.querySelector('main').scrollIntoView({behavior:'smooth',block:'start'}); }
-    function pickCat(c){ CAT=(CAT===c?'':c); PAGE=1; render(); syncUrl(); }
+    function clearFocus(){ FOCUS_ID=null; }
+    function onSearch(){ clearFocus(); PAGE=1; render(); syncUrl(); }
+    function pickRoom(r){ clearFocus(); ROOM=r; CAT=''; PAGE=1; $('q').value=''; ASK_ROOM=r; render(); syncUrl(); document.querySelector('main').scrollIntoView({behavior:'smooth',block:'start'}); }
+    function pickCat(c){ clearFocus(); CAT=(CAT===c?'':c); PAGE=1; render(); syncUrl(); }
     function syncUrl(){ try{ var p=new URLSearchParams(); if(ROOM!=='rev') p.set('room',ROOM); if(CAT) p.set('cat',CAT); var q=($('q').value||'').trim(); if(q) p.set('q',q); var s=p.toString(); history.replaceState(null,'',location.pathname+(s?('?'+s):'')); }catch(e){} }
 
     function listFor(){
@@ -297,6 +300,7 @@
       var start=(PAGE-1)*PER, items=list.slice(start,start+PER);
       $('results').innerHTML='<div class="bg-white rounded-2xl border border-ink/8 shadow-soft px-4 divide-y divide-ink/6">'+items.map((e,i)=>row(e,q.toLowerCase(),start+i+1)).join('')+'</div>';
       $('pager').innerHTML=pager(pages);
+      applyFocus();
     }
     function hl(t,q){ if(!q) return esc(t); var safe=esc(t); try{ var re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig'); return safe.replace(re,'<mark>$1</mark>'); }catch(e){ return safe; } }
     // 관리자가 편집기로 쓴 본문 — 저장 때 한 번 정화하지만 표시 직전에도 한 번 더 거른다
@@ -328,7 +332,7 @@
       }
       var scr=(e.scriptures||[]).map(s=>'<button type="button" class="scrchip inline-block bg-sand/70 hover:bg-gold/15 text-neutral-900/70 text-[11px] px-2 py-0.5 rounded mr-1 mb-1 transition" onclick="showScr(event,\''+esc(s).replace(/'/g,"\\'")+'\')">'+esc(s)+'</button>').join('');
       var tags=(e.tags||[]).map(t=>'<button onclick="searchFor(\''+esc(t).replace(/'/g,"\\'")+'\')" class="text-gold/90 text-[11.5px] hover:underline mr-2.5">#'+esc(t)+'</button>').join('');
-      return '<details class="qrow rounded-lg -mx-2 px-2" ontoggle="onQToggle(event,\''+e.id+'\')">'
+      return '<details class="qrow rounded-lg -mx-2 px-2" data-id="'+esc(e.id)+'" ontoggle="onQToggle(event,\''+e.id+'\')">'
         +'<summary class="cursor-pointer select-none flex items-center gap-3 py-4 hover:bg-sand/25 rounded-lg px-2 -mx-2 transition">'
         +(e.pinned?'<span class="shrink-0 text-[10px] font-bold text-gold bg-gold/10 border border-gold/25 px-1.5 py-0.5 rounded">자주</span>':'<span class="text-[13px] font-semibold text-neutral-900/30 shrink-0 w-6 text-right" style="font-variant-numeric:tabular-nums">'+num+'</span>')
         +'<span class="qtitle flex-1 min-w-0 font-semibold text-[15px] leading-snug transition">'+hl(e.q||'',q)+'</span>'
@@ -339,6 +343,10 @@
         +deep
         +(scr?'<div class="mt-4">'+scr+'</div>':'')
         +(tags?'<div class="mt-2.5">'+tags+'</div>':'')
+        +'<div class="mt-4 flex items-center gap-2">'
+        +'<button onclick="event.preventDefault();shareQa(\''+e.id+'\')" class="inline-flex items-center gap-1.5 text-[12px] font-semibold text-neutral-900/55 border border-ink/12 rounded-full px-3 py-1.5 hover:border-gold hover:text-gold transition"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>공유</button>'
+        +'<button onclick="event.preventDefault();copyQaLink(\''+e.id+'\')" class="text-[12px] font-semibold text-neutral-900/45 hover:text-gold transition px-1">링크 복사</button>'
+        +'</div>'
         +(isAdmin()?'<div class="mt-3 flex gap-1.5"><button onclick="event.preventDefault();editQa(\''+e.id+'\')" class="text-[11px] text-gold border border-gold/30 rounded-full px-2.5 py-0.5 hover:bg-gold/10">수정</button>'+(e._admin?'<button onclick="event.preventDefault();deleteQa(\''+e.id+'\')" class="text-[11px] text-rose-500 border border-rose-200 rounded-full px-2.5 py-0.5 hover:bg-rose-50">삭제</button>':'<span class="text-[11px] text-neutral-900/30 px-1 py-0.5">기본 제공</span>')+'</div>':'')
         +'<div class="mt-6 pt-4 border-t border-ink/8">'
         +'<p class="text-[12.5px] font-bold text-neutral-900/50 mb-2.5">댓글 <span id="qcn-'+e.id+'"></span></p>'
@@ -347,7 +355,52 @@
         +'</div></details>';
     }
     function searchFor(t){ $('q').value=t; PAGE=1; render(); syncUrl(); window.scrollTo({top:0,behavior:'smooth'}); }
-    function goPage(p){ PAGE=p; render(); window.scrollTo({top:240,behavior:'smooth'}); }
+
+    /* ---------- 글 하나 공유 ---------- */
+    function qaLink(id){ return location.origin+'/qna?id='+encodeURIComponent(id); }
+    function shareQa(id){
+      var e=ALL.find(function(x){ return x.id===id; }); if(!e) return;
+      var title=(e.q||'질의응답')+' — 바이블 인사이트';
+      if(window.biblyShare) window.biblyShare(title, qaLink(id));
+      else copyQaLink(id);
+    }
+    function copyQaLink(id){
+      var url=qaLink(id);
+      function done(){ toast('링크가 복사됐어요'); }
+      if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done,fb); else fb();
+      function fb(){ try{ var ta=document.createElement('textarea'); ta.value=url; ta.style.cssText='position:fixed;left:-9999px'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); done(); }catch(err){ prompt('아래 링크를 복사하세요', url); } }
+    }
+    function toast(m){
+      var t=document.createElement('div'); t.textContent=m;
+      t.style.cssText='position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:#213a6b;color:#fff;padding:10px 18px;border-radius:9999px;font-size:14px;z-index:2147483647;box-shadow:0 8px 28px rgba(0,0,0,.3)';
+      document.body.appendChild(t); setTimeout(function(){ t.remove(); },1800);
+    }
+    /* 공유 링크(?id=)로 들어왔을 때 그 글을 펴서 보여 준다.
+       뒤늦은 renderAuth()가 목록을 다시 그려도 닫히지 않도록 render()마다 다시 적용한다. */
+    function focusQa(id){
+      var e=ALL.find(function(x){ return x.id===id; });
+      if(!e){ toast('글을 찾을 수 없어요'); return; }
+      FOCUS_ID=id; FOCUS_SCROLLED=false;
+      ROOM=roomOf(e); CAT=''; $('q').value='';
+      var list=listFor(), idx=list.findIndex(function(x){ return x.id===id; });
+      PAGE=idx>=0?Math.floor(idx/PER)+1:1;
+      render();
+    }
+    function applyFocus(){
+      if(!FOCUS_ID) return;
+      var sel=(window.CSS&&CSS.escape)?CSS.escape(FOCUS_ID):FOCUS_ID;
+      var d=document.querySelector('#results details[data-id="'+sel+'"]');
+      if(!d) return;
+      d.open=true;
+      if(FOCUS_SCROLLED) return;
+      FOCUS_SCROLLED=true;
+      setTimeout(function(){
+        d.scrollIntoView({behavior:'smooth',block:'center'});
+        d.style.transition='box-shadow .4s'; d.style.boxShadow='0 0 0 3px rgba(0,112,74,.35)';
+        setTimeout(function(){ d.style.boxShadow=''; },2400);
+      },120);
+    }
+    function goPage(p){ clearFocus(); PAGE=p; render(); window.scrollTo({top:240,behavior:'smooth'}); }
     function pager(pages){
       if(pages<=1) return '';
       var win=2,s=Math.max(1,PAGE-win),e=Math.min(pages,PAGE+win),h='<div class="flex items-center justify-center gap-1.5 flex-wrap">';
@@ -506,9 +559,11 @@
     window.openInbox=openInbox; window.closeInbox=closeInbox; window.answerFrom=answerFrom; window.dropInbox=dropInbox;
     window.showScr=showScr; window.closeBubble=closeBubble;
     window.onQToggle=onQToggle; window.addQC=addQC; window.delQC=delQC;
+    window.shareQa=shareQa; window.copyQaLink=copyQaLink;
   </script>
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script src="/share.js?v=2"></script>
   <script src="auth-header.js?v=20260906a"></script>
 </body>
 </html>

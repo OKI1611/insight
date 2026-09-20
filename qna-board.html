@@ -129,6 +129,7 @@
     const ADMIN='josephoh1611@gmail.com';
     const PER=10;
     let POSTS=[], CMT={}, CNT={}, FILTER='', PAGE=1, WROOM='rev';
+    let FOCUS_ID=null, FOCUS_SCROLLED=false;
 
     function sess(){ try{ for(var i=0;i<localStorage.length;i++){ var k=localStorage.key(i); if(!/auth-token/.test(k)) continue; var v=JSON.parse(localStorage.getItem(k)); var s=(v&&v.user)?v:(v&&v.currentSession)?v.currentSession:null; if(s&&s.user){ if(s.expires_at&&s.expires_at*1000<Date.now()) return null; return s; } } }catch(e){} return null; }
     function isAdmin(){ var s=sess(); return !!(s&&s.user&&s.user.email===ADMIN); }
@@ -156,7 +157,11 @@
             .then(r=>r.ok?r.json():[]).then(function(cs){ CNT={}; (cs||[]).forEach(function(c){ CNT[c.post_id]=(CNT[c.post_id]||0)+1; }); });
         }).catch(()=>{});
     }
-    load().then(function(){ syncAuth(); setTimeout(syncAuth,1500); });
+    load().then(function(){
+      syncAuth(); setTimeout(syncAuth,1500);
+      var sp=new URLSearchParams(location.search);
+      if(sp.get('post')) focusPost(sp.get('post'));
+    });
 
     function syncAuth(){
       var logged=!!sess(), adm=isAdmin();
@@ -168,9 +173,9 @@
     }
 
     /* ---------- 필터 ---------- */
-    function setFilter(f){ FILTER=f; PAGE=1; ['fAll','fWait','fDone','fRev'].forEach(function(id){ $(id).classList.remove('on'); });
+    function setFilter(f){ clearFocus(); FILTER=f; PAGE=1; ['fAll','fWait','fDone','fRev'].forEach(function(id){ $(id).classList.remove('on'); });
       $({'':'fAll','wait':'fWait','done':'fDone','rev':'fRev'}[f]).classList.add('on'); render(); }
-    function onSearch(){ PAGE=1; render(); }
+    function onSearch(){ clearFocus(); PAGE=1; render(); }
     function current(){
       var q=($('q').value||'').trim().toLowerCase(), l=POSTS.slice();
       if(FILTER==='wait') l=l.filter(p=>!p.answered);
@@ -189,6 +194,7 @@
       var pages=Math.ceil(l.length/PER); if(PAGE>pages) PAGE=pages; if(PAGE<1) PAGE=1;
       $('results').innerHTML=l.slice((PAGE-1)*PER,(PAGE-1)*PER+PER).map(p=>card(p,q)).join('');
       $('pager').innerHTML=pager(pages);
+      applyFocus();
     }
     function hl(t,q){ if(!q) return esc(t); var s=esc(t); try{ return s.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig'),'<mark>$1</mark>'); }catch(e){ return s; } }
     function card(p,q){
@@ -198,7 +204,7 @@
       var head=(isNotice?'<span class="shrink-0 text-[10.5px] font-bold text-white bg-navy px-2 py-0.5 rounded">공지</span>':'')
         +(p.answered?'<span class="shrink-0 text-[10.5px] font-bold text-gold bg-gold/10 border border-gold/25 px-2 py-0.5 rounded">답변 완료</span>':'<span class="shrink-0 text-[10.5px] font-semibold text-neutral-900/40 bg-neutral-100 px-2 py-0.5 rounded">답변 대기</span>')
         +(tag&&tag!=='공지'?'<span class="shrink-0 text-[10.5px] font-semibold text-ink/60 bg-sand px-2 py-0.5 rounded">'+esc(tag)+'</span>':'');
-      return '<details class="post bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden transition" ontoggle="onToggle(event,\''+p.id+'\')">'
+      return '<details class="post bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden transition" data-id="'+p.id+'" ontoggle="onToggle(event,\''+p.id+'\')">'
         +'<summary class="cursor-pointer select-none px-5 py-4 hover:bg-sand/25 transition">'
         +'<div class="flex items-start gap-3">'
         +'<span class="ava'+(isNotice?' adm':'')+'">'+esc((p.author_name||'회')[0])+'</span>'
@@ -213,6 +219,10 @@
         +'</div></summary>'
         +'<div class="px-5 pb-5 border-t border-ink/6 pt-4">'
         +'<p class="text-[14.5px] text-neutral-900/85 leading-[1.9] whitespace-pre-wrap">'+hl(body,q)+'</p>'
+        +'<div class="mt-3 flex items-center gap-2">'
+        +'<button onclick="sharePost(\''+p.id+'\')" class="inline-flex items-center gap-1.5 text-[12px] font-semibold text-neutral-900/55 border border-ink/12 rounded-full px-3 py-1.5 hover:border-gold hover:text-gold transition"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>공유</button>'
+        +'<button onclick="copyPostLink(\''+p.id+'\')" class="text-[12px] font-semibold text-neutral-900/45 hover:text-gold transition px-1">링크 복사</button>'
+        +'</div>'
         +(adm||mine?'<div class="flex flex-wrap gap-1.5 mt-3">'
             +(adm?'<button onclick="toggleAnswered(\''+p.id+'\','+(p.answered?'false':'true')+')" class="text-[11.5px] font-semibold '+(p.answered?'text-neutral-900/55 border-ink/15':'text-gold border-gold/30')+' border rounded-full px-3 py-1 hover:bg-gold/8">'+(p.answered?'답변 대기로':'답변 완료로')+'</button>':'')
             +(adm?'<button onclick="toQna(\''+p.id+'\')" class="text-[11.5px] font-semibold text-ink/70 border border-ink/15 rounded-full px-3 py-1 hover:border-gold hover:text-gold">질의응답에 정리</button>':'')
@@ -232,7 +242,7 @@
       if(e<pages){ if(e<pages-1) h+='<span class="text-neutral-900/25 px-0.5">…</span>'; h+='<button onclick="goPage('+pages+')" class="pgbtn">'+pages+'</button>'; }
       return h+'<button '+(PAGE<pages?'onclick="goPage('+(PAGE+1)+')"':'disabled')+' class="pgbtn">›</button></div>';
     }
-    function goPage(p){ PAGE=p; render(); window.scrollTo({top:300,behavior:'smooth'}); }
+    function goPage(p){ clearFocus(); PAGE=p; render(); window.scrollTo({top:300,behavior:'smooth'}); }
 
     /* ---------- 답글 ---------- */
     function onToggle(ev,id){ if(!ev.target.open) return; loadCmt(id); renderCmtForm(id); }
@@ -314,13 +324,58 @@
       location.href='qna-write.html?room='+room+'&draft='+encodeURIComponent(bodyOf(txt).slice(0,160));
     }
 
+    /* ---------- 공유 ---------- */
+    function postLink(id){ return location.origin+'/qna-board?post='+encodeURIComponent(id); }
+    function sharePost(id){
+      var p=POSTS.find(function(x){ return x.id===id; }); if(!p) return;
+      var t=bodyOf(plain(p.content)).split(String.fromCharCode(10))[0].slice(0,80)||'수강생 질문방';
+      if(window.biblyShare) window.biblyShare(t+' — 바이블 인사이트', postLink(id)); else copyPostLink(id);
+    }
+    function copyPostLink(id){
+      var url=postLink(id);
+      function done(){ toast('링크가 복사됐어요'); }
+      if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done,fb); else fb();
+      function fb(){ try{ var ta=document.createElement('textarea'); ta.value=url; ta.style.cssText='position:fixed;left:-9999px'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); done(); }catch(err){ prompt('아래 링크를 복사하세요', url); } }
+    }
+    function toast(m){
+      var t=document.createElement('div'); t.textContent=m;
+      t.style.cssText='position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:#213a6b;color:#fff;padding:10px 18px;border-radius:9999px;font-size:14px;z-index:2147483647;box-shadow:0 8px 28px rgba(0,0,0,.3)';
+      document.body.appendChild(t); setTimeout(function(){ t.remove(); },1800);
+    }
+    function focusPost(id){
+      var i=POSTS.findIndex(function(x){ return x.id===id; });
+      if(i<0){ toast('글을 찾을 수 없어요'); return; }
+      FOCUS_ID=id; FOCUS_SCROLLED=false;
+      FILTER=''; $('q').value='';
+      ['fAll','fWait','fDone','fRev'].forEach(function(x){ $(x).classList.remove('on'); }); $('fAll').classList.add('on');
+      PAGE=Math.floor(i/PER)+1; render();
+    }
+    // 뒤늦은 syncAuth()의 재렌더에도 펼침이 유지되도록 render()마다 다시 적용
+    function applyFocus(){
+      if(!FOCUS_ID) return;
+      var sel=(window.CSS&&CSS.escape)?CSS.escape(FOCUS_ID):FOCUS_ID;
+      var d=document.querySelector('#results details[data-id="'+sel+'"]');
+      if(!d) return;
+      if(!d.open){ d.open=true; loadCmt(FOCUS_ID); renderCmtForm(FOCUS_ID); }
+      if(FOCUS_SCROLLED) return;
+      FOCUS_SCROLLED=true;
+      setTimeout(function(){
+        d.scrollIntoView({behavior:'smooth',block:'center'});
+        d.style.transition='box-shadow .4s'; d.style.boxShadow='0 0 0 3px rgba(0,112,74,.35)';
+        setTimeout(function(){ d.style.boxShadow=''; },2400);
+      },120);
+    }
+    function clearFocus(){ FOCUS_ID=null; }
+
     setWRoom('rev');
     window.setFilter=setFilter; window.onSearch=onSearch; window.goPage=goPage; window.onToggle=onToggle;
     window.addCmt=addCmt; window.delCmt=delCmt; window.focusWrite=focusWrite; window.setWRoom=setWRoom;
     window.submitPost=submitPost; window.toggleAnswered=toggleAnswered; window.delPost=delPost; window.toQna=toQna;
+    window.sharePost=sharePost; window.copyPostLink=copyPostLink;
   </script>
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script src="/share.js?v=2"></script>
   <script src="auth-header.js?v=20260906a"></script>
 </body>
 </html>
