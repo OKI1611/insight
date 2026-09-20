@@ -113,7 +113,7 @@
       <span class="text-[12.5px] text-gold font-semibold">관리자 모드</span>
       <span class="flex gap-2">
         <button onclick="openInbox()" class="border border-ink/15 text-[12.5px] font-semibold px-3 py-1.5 rounded-full hover:border-gold hover:text-gold transition">받은 질문함 <span id="inboxCount" class="text-gold font-bold"></span></button>
-        <button onclick="openEditor()" class="bg-gold text-white text-[12.5px] font-bold px-3.5 py-1.5 rounded-full hover:opacity-90 transition">＋ 새 질의응답</button>
+        <a id="barWrite" href="qna-write.html" class="bg-gold text-white text-[12.5px] font-bold px-3.5 py-1.5 rounded-full hover:opacity-90 transition">＋ 새 질의응답</a>
       </span>
     </div>
   </div>
@@ -125,7 +125,7 @@
     <div class="flex items-center justify-between gap-3 mb-3">
       <p id="listCount" class="text-[13px] text-neutral-900/45"></p>
       <span class="flex items-center gap-3 shrink-0">
-        <button id="adminWrite" onclick="openEditor()" class="hidden text-[12.5px] font-bold text-white bg-gold px-3 py-1.5 rounded-full hover:opacity-90 transition">＋ 새 글 쓰기</button>
+        <a id="adminWrite" href="qna-write.html" class="hidden text-[12.5px] font-bold text-white bg-gold px-3 py-1.5 rounded-full hover:opacity-90 transition">＋ 새 글 쓰기</a>
         <button onclick="scrollAsk()" class="text-[12.5px] font-semibold text-gold hover:underline">질문 남기기 →</button>
       </span>
     </div>
@@ -135,7 +135,7 @@
     <div id="empty" class="hidden text-center text-neutral-900/45 py-16 bg-white rounded-2xl border border-ink/8">
       <p class="font-semibold">아직 등록된 질문이 없어요.</p>
       <p class="text-sm mt-1">다른 분류를 골라 보시거나, 아래에서 직접 질문을 남겨 주세요.</p>
-      <button id="emptyWrite" onclick="openEditor()" class="hidden mt-4 bg-gold text-white font-bold text-sm px-5 py-2.5 rounded-full hover:opacity-90 transition">＋ 이 분류에 새 글 쓰기</button>
+      <a id="emptyWrite" href="qna-write.html" class="hidden mt-4 inline-block bg-gold text-white font-bold text-sm px-5 py-2.5 rounded-full hover:opacity-90 transition">＋ 이 분류에 새 글 쓰기</a>
     </div>
 
     <!-- ===== 질문 남기기 ===== -->
@@ -168,45 +168,6 @@
       </div>
     </section>
   </main>
-
-  <!-- ===== 관리자: 편집 모달 ===== -->
-  <div id="qaModal" class="hidden fixed inset-0 z-[120] bg-ink/40 backdrop-blur-sm flex items-start justify-center overflow-auto p-4">
-    <div class="bg-white rounded-2xl shadow-card w-full max-w-lg my-8 p-6">
-      <div class="flex items-center justify-between mb-4">
-        <h3 id="qaModalTitle" class="text-lg font-bold">새 질의응답 작성</h3>
-        <button onclick="closeEditor()" class="text-neutral-900/40 hover:text-neutral-900 text-xl">✕</button>
-      </div>
-      <div class="space-y-3">
-        <div class="grid grid-cols-2 gap-3">
-          <div><label class="text-xs font-bold text-neutral-900/55">방 *</label>
-            <select id="fRoom" onchange="syncCatSel()" class="w-full border border-ink/15 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold mt-1 bg-white">
-              <option value="rev">요한계시록 질의응답</option><option value="gen">신앙·성경 질의응답</option>
-            </select></div>
-          <div><label class="text-xs font-bold text-neutral-900/55">분류 *</label>
-            <select id="fCat" class="w-full border border-ink/15 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold mt-1 bg-white"></select></div>
-        </div>
-        <div><label class="text-xs font-bold text-neutral-900/55">질문 *</label>
-          <input id="fQ" type="text" maxlength="160" class="w-full border border-ink/15 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold mt-1" /></div>
-        <div><label class="text-xs font-bold text-neutral-900/55">한마디 답 *</label>
-          <textarea id="fA" rows="2" maxlength="400" class="w-full border border-ink/15 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold mt-1 resize-none"></textarea></div>
-        <div><label class="text-xs font-bold text-neutral-900/55">자세한 답변</label>
-          <p class="text-[11px] text-neutral-900/40 mb-1">문단은 빈 줄로 나눕니다. 소제목은 <b>소제목 | 내용</b> 형식. 소제목을 <b>흔한 오해</b>로 쓰면 강조 상자로 표시됩니다.</p>
-          <textarea id="fDeep" rows="8" class="w-full border border-ink/15 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold mt-1 resize-y"></textarea></div>
-        <div class="grid grid-cols-2 gap-3">
-          <div><label class="text-xs font-bold text-neutral-900/55">관련 성구</label>
-            <input id="fScr" type="text" placeholder="예: 계 1:19, 살전 4:16" class="w-full border border-ink/15 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold mt-1" /></div>
-          <div><label class="text-xs font-bold text-neutral-900/55">태그</label>
-            <input id="fTags" type="text" placeholder="예: 휴거, 환난 전" class="w-full border border-ink/15 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold mt-1" /></div>
-        </div>
-        <label class="flex items-center gap-2 text-[13px] text-neutral-900/70"><input id="fPin" type="checkbox" class="accent-[#00704a] w-4 h-4" /> 자주 묻는 질문으로 맨 위에 고정</label>
-        <p id="fMsg" class="text-center text-sm text-gold min-h-[18px]"></p>
-        <div class="flex gap-2 pt-1">
-          <button onclick="saveQa()" id="fSave" class="flex-1 bg-gold text-white font-bold py-3 rounded-xl hover:opacity-90 transition">저장</button>
-          <button onclick="closeEditor()" class="px-5 bg-white border border-ink/20 text-neutral-900/70 font-semibold rounded-xl hover:bg-neutral-50 transition text-sm">취소</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- ===== 관리자: 받은 질문함 ===== -->
   <div id="inboxModal" class="hidden fixed inset-0 z-[120] bg-ink/40 backdrop-blur-sm flex items-start justify-center overflow-auto p-4">
@@ -266,9 +227,9 @@
       if(sp.get('q')) $('q').value=sp.get('q');
       ASK_ROOM=ROOM;
       renderAuth(); setTimeout(renderAuth,1500);
-      // 질문방에서 「질의응답에 정리」로 넘어온 경우 — 편집창을 질문이 채워진 채로 연다
+      // 질문방에서 「질의응답에 정리」로 넘어온 경우 — 전용 글쓰기 페이지로 넘긴다
       var draft=sp.get('draft');
-      if(draft){ setTimeout(function(){ if(isAdmin()){ openEditor(); $('fQ').value=draft.slice(0,160); } }, 1600); }
+      if(draft){ setTimeout(function(){ if(isAdmin()) location.href='qna-write.html?room='+ROOM+'&draft='+encodeURIComponent(draft); }, 1400); }
     }).catch(()=>{ $('results').innerHTML='<p class="text-center text-neutral-900/40 py-10">질문을 불러오지 못했어요.</p>'; });
 
     function merge(){
@@ -314,7 +275,7 @@
       $('catRail').innerHTML=html;
     }
     function render(){
-      renderRooms(); renderRail();
+      renderRooms(); renderRail(); syncWriteLinks();
       var q=($('q').value||'').trim(), list=listFor();
       $('empty').classList.add('hidden');
       $('listCount').textContent = q ? ('‘'+q+'’ 검색 결과 '+list.length+'개') : (ROOM_NAME[ROOM]+' · '+list.length+'개 질문');
@@ -407,7 +368,7 @@
       var txt=stripTags(p.content), room='gen';
       if(/^\[요한계시록\]/.test(txt)){ room='rev'; }
       txt=txt.replace(/^\[[^\]]+\]\s*/,'');
-      closeInbox(); openEditor(); $('fRoom').value=room; syncCatSel(); $('fQ').value=txt.slice(0,160);
+      location.href='qna-write.html?room='+room+'&draft='+encodeURIComponent(txt.slice(0,160));
     }
     function dropInbox(id){
       if(!confirm('이 질문을 목록에서 지울까요?')) return;
@@ -416,49 +377,17 @@
         .then(function(){ INBOX=INBOX.filter(x=>x.id!==id); var c=$('inboxCount'); if(c) c.textContent=INBOX.length?('('+INBOX.length+')'):''; renderInbox(); }).catch(()=>{});
     }
 
-    /* ---------- 관리자: 작성/수정/삭제 ---------- */
-    function syncCatSel(){ var r=$('fRoom').value; $('fCat').innerHTML=CATS[r].map(c=>'<option value="'+esc(c)+'">'+esc(c)+'</option>').join(''); }
-    function openEditor(e){
-      EDIT_ID=(e&&e.id)?e.id:null;
-      $('fRoom').value=e?roomOf(e):ROOM; syncCatSel();
-      if(e&&e.cat&&CATS[roomOf(e)].indexOf(e.cat)<0){ $('fCat').innerHTML+='<option value="'+esc(e.cat)+'">'+esc(e.cat)+'</option>'; }
-      $('fCat').value=e?(e.cat||CATS[roomOf(e)][0]):(CAT||CATS[ROOM][0]);
-      $('qaModalTitle').textContent=e?'질의응답 수정':'새 질의응답 작성';
-      $('fQ').value=e?(e.q||''):''; $('fA').value=e?(e.a||''):'';
-      $('fDeep').value=(e&&e.deep)?e.deep.map(s=>(s.h?s.h+' | ':'')+(s.p||'')).join('\n\n'):'';
-      $('fScr').value=(e&&e.scriptures)?e.scriptures.join(', '):'';
-      $('fTags').value=(e&&e.tags)?e.tags.join(', '):'';
-      $('fPin').checked=!!(e&&e.pinned);
-      $('fMsg').textContent=''; $('qaModal').classList.remove('hidden');
-    }
-    function closeEditor(){ $('qaModal').classList.add('hidden'); EDIT_ID=null; }
-    function parseDeep(txt){ return String(txt||'').split(/\n\s*\n/).map(function(b){ b=b.trim(); if(!b) return null; var i=b.indexOf('|'); if(i>0&&i<40){ var h=b.slice(0,i).trim(); var o={h:h,p:b.slice(i+1).trim()}; if(h==='흔한 오해') o.misc=true; return o; } return {p:b}; }).filter(Boolean); }
-    function push(arr,onOk){
-      var s=sess(); if(!s){ $('fMsg').textContent='로그인이 필요합니다'; return; }
-      fetch(SB+'/rest/v1/site_content',{method:'POST',headers:{apikey:AK,Authorization:'Bearer '+(s.access_token||AK),'Content-Type':'application/json',Prefer:'resolution=merge-duplicates,return=minimal'},
-        body:JSON.stringify({key:'qna_posts',data:arr,updated_at:new Date().toISOString()})})
-        .then(function(r){ if(r.ok) onOk(); else return r.text().then(t=>{ $('fMsg').textContent='저장 오류: '+t.slice(0,90); }); })
-        .catch(function(){ $('fMsg').textContent='네트워크 오류'; });
-    }
-    function saveQa(){
-      var q=$('fQ').value.trim(), a=$('fA').value.trim();
-      if(!q||!a){ $('fMsg').textContent='질문과 한마디 답은 필수입니다'; return; }
-      var obj={ id:EDIT_ID||('q'+Date.now()), room:$('fRoom').value, cat:$('fCat').value, q:q, a:a,
-        deep:parseDeep($('fDeep').value),
-        scriptures:$('fScr').value.split(/[,\n]/).map(x=>x.trim()).filter(Boolean),
-        tags:$('fTags').value.split(/[,\n]/).map(x=>x.trim()).filter(Boolean),
-        pinned:$('fPin').checked, _admin:true, updated:new Date().toISOString() };
-      obj=JSON.parse(JSON.stringify(obj).replace(/세례/g,'침례'));
-      var arr=ADMIN_ITEMS.slice(), i=arr.findIndex(x=>x.id===obj.id);
-      if(i>=0) arr[i]=obj; else arr.unshift(obj);
-      $('fSave').disabled=true; $('fMsg').textContent='저장 중…';
-      push(arr,function(){ $('fSave').disabled=false; ADMIN_ITEMS=arr; merge(); closeEditor(); ROOM=obj.room; CAT=''; $('q').value=''; PAGE=1; render(); syncUrl(); });
-    }
-    function editQa(id){ var e=ALL.find(x=>x.id===id); if(e) openEditor(e); }
+    /* ---------- 관리자: 작성/수정/삭제 (전용 글쓰기 페이지) ---------- */
+    function writeHref(){ var p=new URLSearchParams(); p.set('room',ROOM); if(CAT) p.set('cat',CAT); return 'qna-write.html?'+p.toString(); }
+    function syncWriteLinks(){ var h=writeHref(); ['barWrite','adminWrite','emptyWrite'].forEach(function(id){ var el=$(id); if(el) el.setAttribute('href',h); }); }
+    function editQa(id){ location.href='qna-write.html?id='+encodeURIComponent(id); }
     function deleteQa(id){
       if(!confirm('이 질의응답을 삭제할까요?')) return;
-      var arr=ADMIN_ITEMS.filter(x=>x.id!==id);
-      push(arr,function(){ ADMIN_ITEMS=arr; merge(); render(); });
+      var arr=ADMIN_ITEMS.filter(function(x){ return x.id!==id; });
+      var s=sess(); if(!s) return;
+      fetch(SB+'/rest/v1/site_content',{method:'POST',headers:{apikey:AK,Authorization:'Bearer '+(s.access_token||AK),'Content-Type':'application/json',Prefer:'resolution=merge-duplicates,return=minimal'},
+        body:JSON.stringify({key:'qna_posts',data:arr,updated_at:new Date().toISOString()})})
+        .then(function(r){ if(r.ok){ ADMIN_ITEMS=arr; merge(); render(); } else alert('삭제 오류'); }).catch(function(){ alert('네트워크 오류'); });
     }
 
     /* ---------- 답변에 달리는 댓글 (qna_comments) ---------- */
@@ -541,7 +470,7 @@
     setAskRoom('rev');
     window.onSearch=onSearch; window.pickRoom=pickRoom; window.pickCat=pickCat; window.searchFor=searchFor; window.goPage=goPage;
     window.scrollAsk=scrollAsk; window.setAskRoom=setAskRoom; window.submitAsk=submitAsk;
-    window.openEditor=openEditor; window.closeEditor=closeEditor; window.saveQa=saveQa; window.editQa=editQa; window.deleteQa=deleteQa; window.syncCatSel=syncCatSel;
+    window.editQa=editQa; window.deleteQa=deleteQa;
     window.openInbox=openInbox; window.closeInbox=closeInbox; window.answerFrom=answerFrom; window.dropInbox=dropInbox;
     window.showScr=showScr; window.closeBubble=closeBubble;
     window.onQToggle=onQToggle; window.addQC=addQC; window.delQC=delQC;

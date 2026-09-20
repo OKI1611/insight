@@ -311,7 +311,7 @@
     function toQna(id){
       var p=POSTS.find(x=>x.id===id); if(!p) return;
       var txt=plain(p.content), room=(tagOf(txt)==='요한계시록')?'rev':'gen';
-      location.href='qna.html?room='+room+'&draft='+encodeURIComponent(bodyOf(txt).slice(0,160));
+      location.href='qna-write.html?room='+room+'&draft='+encodeURIComponent(bodyOf(txt).slice(0,160));
     }
 
     setWRoom('rev');
