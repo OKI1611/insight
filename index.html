@@ -1263,7 +1263,7 @@
           });
           // 구독자 1만 돌파 축하 띠 — 운영자가 켜기로 결정하면 아래 스위치를 true 로 바꾼다.
           // (자동 점화는 운영자 뜻으로 보류 2026-09-16 — true 여도 표시 수치가 1만 미만이면 안 뜬다)
-          const SUBS_10K_BANNER_ON = true;   // 2026-09-16 운영자 요청으로 켬 (끌 때 false 로)
+          const SUBS_10K_BANNER_ON = false;  // 2026-09-16 켬 → 2026-09-22 운영자 요청으로 내림(메인을 깔끔하게). 다시 켤 땐 true
           function maybeCelebrate(){
             try{
               const el = document.getElementById('subs10k'); if(!el) return;
