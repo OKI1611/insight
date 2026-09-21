@@ -6,36 +6,35 @@
   <script src="/site-header.js?v=20260921a"></script>
   <script src="/section-sidenav.js?v=20260921a"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>칼럼 — BIBLY 바이블 인사이트 (오광일)</title>
-  <meta name="description" content="오광일이 전하는 성경과 시대를 읽는 칼럼." />
+  <title>말씀묵상 노트 — BIBLY 바이블 인사이트 (오광일)</title>
+  <meta name="description" content="시편묵상을 비롯해 말씀을 읽고 남긴 묵상 노트를 나눕니다. 오광일의 인사이트 브리핑." />
   <link rel="manifest" href="/manifest.json" />
   <meta name="theme-color" content="#213a6b" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png?v=7" />
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png?v=7" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
-  <link rel="canonical" href="https://biblynote.com/column" />
+  <link rel="canonical" href="https://biblynote.com/meditation" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="BIBLY 바이블 인사이트" />
-  <meta property="og:title" content="인사이트 칼럼 — BIBLY 바이블 인사이트" />
-  <meta property="og:description" content="오광일이 전하는 성경과 시대를 읽는 칼럼." />
-  <meta property="og:url" content="https://biblynote.com/column" />
+  <meta property="og:title" content="말씀묵상 노트 — BIBLY 바이블 인사이트" />
+  <meta property="og:description" content="시편묵상을 비롯해 말씀을 읽고 남긴 묵상 노트를 나눕니다." />
+  <meta property="og:url" content="https://biblynote.com/meditation" />
   <meta property="og:image" content="https://biblynote.com/images/og-cover.png?v=7" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="인사이트 칼럼 — BIBLY 바이블 인사이트" />
-  <meta name="twitter:description" content="오광일이 전하는 성경과 시대를 읽는 칼럼." />
+  <meta name="twitter:title" content="말씀묵상 노트 — BIBLY 바이블 인사이트" />
+  <meta name="twitter:description" content="시편묵상을 비롯해 말씀을 읽고 남긴 묵상 노트를 나눕니다." />
   <meta name="twitter:image" content="https://biblynote.com/images/og-cover.png?v=7" />
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="BIBLY" />
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { theme: { extend: {
       colors: { ink:'#213a6b', navy:'#182c54', gold:'#00704a', sand:'#eaf0f8', paper:'#ffffff' },
-      fontFamily: { sans:['Pretendard','system-ui','sans-serif'], display:['Pretendard','system-ui','sans-serif'] },
+      fontFamily: { sans:['Pretendard','system-ui','sans-serif'] },
       boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 14px 40px -18px rgba(21,32,58,.22)' }
     }}}
   </script>
@@ -48,8 +47,7 @@
     const ADMIN_EMAIL = 'josephoh1611@gmail.com';
   </script>
   <style>
-    h1,h2,.serif{font-family:'Pretendard',system-ui,sans-serif}
-    /* 칼럼 본문(블로그) 스타일 */
+    /* 묵상 본문(블로그) 스타일 — 칼럼과 동일 */
     .article h1{font-size:1.6rem;font-weight:700;margin:1em 0 .4em}
     .article h2{font-size:1.35rem;font-weight:700;margin:1em 0 .4em}
     .article h3{font-size:1.15rem;font-weight:700;margin:.9em 0 .3em}
@@ -61,6 +59,7 @@
     .article a{color:#00704a;text-decoration:underline}
     .article img{max-width:100%;height:auto;border-radius:.75rem;margin:1em 0}
     .article strong{font-weight:700;color:#171717}
+    .article .ql-align-center{text-align:center}.article .ql-align-right{text-align:right}.article .ql-align-justify{text-align:justify}
     /* 첨부파일 카드 — 본문(.article)과 편집기(.ql-editor) 양쪽에서 같은 모양으로 보인다 */
     .colFile{display:flex;align-items:center;gap:.75rem;margin:1.1em 0;padding:.85rem 1rem;
       border:1px solid rgba(21,32,58,.12);border-radius:.85rem;background:#f7f9fc;text-decoration:none}
@@ -83,8 +82,7 @@
     /* 편집기 안에서는 클릭 대신 선택·삭제가 되도록 링크 동작을 막는다 */
     .ql-editor .colFile{cursor:default}
     .ql-editor .colFile .cfGo{color:rgba(23,23,23,.35)}
-    /* 첨부 버튼 — 아이콘만으로는 눈에 띄지 않아 글자를 넣은 알약 모양으로 키운다.
-       Quill 기본 버튼은 24px 정사각이라 폭·정렬을 따로 풀어 준다. */
+    /* 첨부 버튼 — 아이콘만으로는 눈에 띄지 않아 글자를 넣은 알약 모양으로 키운다 */
     .ql-toolbar.ql-snow button.ql-biblyAttach{
       width:auto;height:auto;padding:5px 12px;margin-left:2px;
       display:inline-flex;align-items:center;gap:5px;vertical-align:middle;
@@ -97,42 +95,46 @@
     .ql-editor{min-height:420px;font-size:16px;line-height:1.85}
     .ql-toolbar.ql-snow{border-color:rgba(21,32,58,.12);border-radius:.75rem .75rem 0 0;background:#fff}
     .ql-container.ql-snow{border-color:rgba(21,32,58,.12);border-radius:0 0 .75rem .75rem}
-    /* 한글 입력(조합) 중 안내문구 겹침 방지 — 포커스 시 placeholder 숨김 */
     .ql-container:focus-within .ql-editor.ql-blank::before{content:''}
+    /* 분류 칩 */
+    .chip{display:inline-flex;align-items:center;gap:.3rem;padding:.38rem .85rem;border-radius:999px;font-size:12.5px;font-weight:600;border:1px solid rgba(33,58,107,.12);color:rgba(33,58,107,.72);background:#fff;cursor:pointer;transition:all .13s;white-space:nowrap}
+    .chip:hover{border-color:rgba(0,112,74,.45);color:#00704a}
+    .chip.on{background:#00704a;border-color:#00704a;color:#fff}
   </style>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://biblynote.com/"},{"@type":"ListItem","position":2,"name":"소통·나눔","item":"https://biblynote.com/community"},{"@type":"ListItem","position":3,"name":"칼럼","item":"https://biblynote.com/column"}]}
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://biblynote.com/"},{"@type":"ListItem","position":2,"name":"성경","item":"https://biblynote.com/bible"},{"@type":"ListItem","position":3,"name":"말씀묵상 노트","item":"https://biblynote.com/meditation"}]}
   </script>
 </head>
 <body class="font-sans bg-paper text-neutral-900 antialiased min-h-screen">
 
-  <div id="siteHeader" data-active="column.html"></div>
+  <div id="siteHeader" data-active="meditation.html"></div>
 
   <main class="max-w-3xl mx-auto px-4 py-10">
 
     <!-- 목록 화면 -->
     <div id="listView">
-      <div class="flex items-end justify-between mb-8">
+      <div class="flex items-end justify-between mb-6">
         <div>
-          <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">COLUMN</p>
-          <h1 class="text-2xl md:text-3xl font-bold">인사이트 칼럼</h1>
-          <p class="text-neutral-900/55 text-sm mt-2">유튜브에서 다 못한 이야기, 시대를 읽는 묵상을 글로 나눕니다.</p>
+          <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">MEDITATION</p>
+          <h1 class="text-2xl md:text-3xl font-bold">말씀묵상 노트</h1>
+          <p class="text-neutral-900/55 text-sm mt-2">말씀을 읽고 남긴 묵상을 나눕니다. 시편묵상부터 차례로 쌓아 갑니다.</p>
         </div>
         <button id="writeBtn" onclick="openEditor()" class="hidden bg-gold text-white text-sm font-semibold px-4 py-2.5 rounded-full hover:opacity-90 transition shrink-0">새 글 쓰기</button>
       </div>
-      <div id="colList" class="rounded-2xl border border-ink/10 bg-white overflow-hidden"><p class="text-neutral-900/40 text-sm text-center py-10">칼럼을 불러오는 중…</p></div>
-      <div id="colPager" class="flex flex-wrap items-center justify-center gap-1.5 mt-6"></div>
+      <div id="catRail" class="flex flex-wrap items-center gap-2 mb-4"></div>
+      <div id="medList" class="rounded-2xl border border-ink/10 bg-white overflow-hidden"><p class="text-neutral-900/40 text-sm text-center py-10">묵상 노트를 불러오는 중…</p></div>
+      <div id="medPager" class="flex flex-wrap items-center justify-center gap-1.5 mt-6"></div>
     </div>
 
     <!-- 읽기 화면 -->
     <article id="readView" class="hidden">
       <button onclick="showList()" class="text-sm text-neutral-900/50 hover:text-gold mb-6">← 목록으로</button>
-      <p id="rDate" class="text-gold text-xs font-bold tracking-widest mb-2"></p>
+      <p id="rCat" class="text-gold text-xs font-bold tracking-widest mb-2"></p>
       <h1 id="rTitle" class="text-2xl md:text-[28px] font-bold leading-snug"></h1>
       <p id="rMeta" class="text-neutral-900/45 text-sm mt-2 mb-6 pb-6 border-b border-ink/10"></p>
       <div id="rBody" class="article text-neutral-900/85"></div>
       <div class="mt-10 pt-6 border-t border-ink/10 flex items-center gap-3">
-        <span class="text-sm text-neutral-900/50">이 칼럼이 좋았다면 공유해 주세요</span>
+        <span class="text-sm text-neutral-900/50">이 묵상이 은혜가 되었다면 공유해 주세요</span>
         <button id="rShare" class="ml-auto bg-gold text-white text-sm font-semibold px-4 py-2 rounded-full hover:opacity-90 transition">↗ 공유하기</button>
         <span id="rAdmin" class="hidden gap-2 text-sm">
           <button onclick="editCurrent()" class="text-neutral-900/50 hover:text-gold">수정</button>
@@ -143,7 +145,7 @@
       <!-- 댓글 -->
       <section class="mt-12 pt-8 border-t border-ink/10">
         <h2 class="font-bold text-xl mb-1">댓글 <span id="cCount" class="text-neutral-900/40 text-base font-normal"></span></h2>
-        <p class="text-neutral-900/50 text-sm mb-5">이 칼럼에 대한 생각을 자유롭게 나눠 주세요.</p>
+        <p class="text-neutral-900/50 text-sm mb-5">이 묵상에 대한 은혜와 생각을 자유롭게 나눠 주세요.</p>
         <div id="cForm" class="mb-6"></div>
         <div id="cList" class="space-y-4"><p class="text-neutral-900/40 text-sm text-center py-6">댓글을 불러오는 중…</p></div>
       </section>
@@ -152,17 +154,22 @@
     <!-- 글쓰기 화면 -->
     <div id="editView" class="hidden">
       <button onclick="showList()" class="text-sm text-neutral-900/50 hover:text-gold mb-6">← 취소</button>
-      <h1 class="text-xl font-bold mb-4">칼럼 작성</h1>
-      <input id="eTitle" placeholder="제목을 입력하세요" class="w-full text-xl font-bold border-b border-ink/15 pb-3 mb-3 outline-none focus:border-gold bg-transparent"/>
-      <input id="eCover" placeholder="대표 이미지 URL (선택)" class="w-full text-sm border border-ink/12 rounded-lg px-3 py-2 mb-4 outline-none focus:border-gold"/>
+      <h1 class="text-xl font-bold mb-4">묵상 노트 작성</h1>
+      <div class="flex flex-wrap items-center gap-2 mb-4">
+        <label for="eCat" class="text-sm font-bold text-neutral-900/60">분류</label>
+        <input id="eCat" list="catSuggest" placeholder="예: 시편묵상" class="border border-ink/12 rounded-lg px-3 py-2 text-sm outline-none focus:border-gold w-44"/>
+        <datalist id="catSuggest"></datalist>
+        <span class="text-xs text-neutral-900/40">같은 분류끼리 모아 볼 수 있어요 (자유 입력)</span>
+      </div>
+      <input id="eTitle" placeholder="제목을 입력하세요 (예: 시편 23편 — 여호와는 나의 목자시니)" class="w-full text-xl font-bold border-b border-ink/15 pb-3 mb-4 outline-none focus:border-gold bg-transparent"/>
       <div class="rounded-xl">
         <div id="editor"></div>
       </div>
-      <p class="text-xs text-neutral-900/40 mt-2">워드·한글 글을 복사해 붙여넣어도 깔끔하게 정리됩니다.
+      <p class="text-xs text-neutral-900/40 mt-2">유튜브 게시판·워드·한글 글을 복사해 붙여넣어도 깔끔하게 정리됩니다.
         자료를 함께 올리려면 툴바의 <b class="text-gold">📎 파일 첨부</b> 버튼을 누르세요 — 본문에 내려받기 카드로 들어갑니다. (PDF·한글·워드 등, 20MB 이하)</p>
       <div class="mt-5 flex gap-2 justify-end">
         <button onclick="showList()" class="border border-ink/15 rounded-full px-5 py-2.5 text-sm hover:bg-ink/5">취소</button>
-        <button id="saveBtn" onclick="saveColumn()" class="bg-gold text-white font-semibold rounded-full px-6 py-2.5 text-sm hover:opacity-90">발행하기</button>
+        <button id="saveBtn" onclick="saveMed()" class="bg-gold text-white font-semibold rounded-full px-6 py-2.5 text-sm hover:opacity-90">발행하기</button>
       </div>
       <p id="eMsg" class="text-red-500 text-xs mt-2 text-right min-h-[14px]"></p>
     </div>
@@ -170,14 +177,14 @@
 
   <script>
     const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType: 'implicit', lock: async (_n, _t, fn) => await fn() } });
-    let isAdmin = false, SESSION = null, COLS = [], current = null, editingId = null, quill = null;
+    let isAdmin = false, SESSION = null, MEDS = [], current = null, editingId = null, quill = null;
     // 댓글은 공개 목록이라 실명·이메일을 그대로 쓰지 않는다(가려진 표시 이름을 저장).
     function myName(){ const u=SESSION&&SESSION.user; if(!u) return '회원';
       const n=(u.user_metadata&&(u.user_metadata.full_name||u.user_metadata.name))||'';
       return window.biblyDisplayName ? window.biblyDisplayName(n, u.email===ADMIN_EMAIL) : '회원'; }
     function nl2(s){ return esc(s).replace(/\n/g,'<br>'); }
 
-    function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
     function plain(html){ const d=document.createElement('div'); d.innerHTML=html||''; return (d.textContent||'').trim(); }
     function sanitize(html){
       const d=document.createElement('div'); d.innerHTML=html||'';
@@ -207,10 +214,6 @@
       if(navigator.share){ navigator.share({title:title||document.title,url:u}).catch(()=>{}); }
       else { try{ navigator.clipboard.writeText(u); alert('링크가 복사되었어요!'); }catch(e){ prompt('링크 복사', u); } }
     }
-    // 목록 카드에서 칼럼 공유 (해당 칼럼으로 바로 연결)
-    function shareCol(el){
-      shareItem(el.dataset.t, location.origin + location.pathname + '#col-' + el.dataset.id);
-    }
 
     sb.auth.getSession().then(({data:{session}})=>setUser(session));
     sb.auth.onAuthStateChange((_e,session)=>setUser(session));
@@ -218,46 +221,60 @@
       SESSION = session;
       isAdmin = !!(session && session.user && session.user.email === ADMIN_EMAIL);
       document.getElementById('writeBtn').classList.toggle('hidden', !isAdmin);
-      { var _nu=document.getElementById('navUser'); if(_nu) _nu.innerHTML = isAdmin ? '<span class="text-gold font-semibold">관리자</span>' : ''; }
+      // 로그인이 뒤늦게 확인되면 목록 안내문(관리자 힌트 포함)을 다시 그린다
+      if(isAdmin && !MEDS.length) loadList();
       if(current) renderCommentForm();
     }
 
     function showList(){ ['readView','editView'].forEach(id=>document.getElementById(id).classList.add('hidden')); document.getElementById('listView').classList.remove('hidden'); if(location.hash) history.replaceState(null,'',location.pathname); }
     function show(id){ ['listView','readView','editView'].forEach(x=>document.getElementById(x).classList.add('hidden')); document.getElementById(id).classList.remove('hidden'); }
 
-    /* 목록: 제목만 번호와 함께 한 줄씩 · 10개마다 페이지 나눔.
-       홈페이지 칼럼 + 네이버 블로그 글을 한 목록에 날짜순으로 합쳐 보여준다.
-       (블로그 글은 본문을 복제하지 않고 링크로 연결 — 중복 콘텐츠 감점 방지) */
+    /* 목록: 분류 칩으로 걸러 보고, 10개마다 페이지 나눔 */
     const PER_PAGE = 10;
-    let ROWS = [], PAGE = 1;
+    let ROWS = [], PAGE = 1, CAT = '';
 
     async function loadList(){
-      const wrap=document.getElementById('colList');
-      const { data, error } = await sb.from('columns').select('id,title,excerpt,cover_url,created_at,author_name').order('created_at',{ascending:false});
-      if(error){ wrap.innerHTML=`<p class="text-neutral-900/40 text-sm text-center py-8">불러오기 오류: ${esc(error.message)}</p>`; return; }
-      COLS = data||[];
-
-      // 네이버 블로그 최신글 — content/blog-feed.json (6시간마다 자동 갱신)
-      let blog=[];
-      try{
-        const r=await fetch('content/blog-feed.json?t='+Date.now());
-        if(r.ok){ const j=await r.json(); blog=(j.items||[]); }
-      }catch(e){}
-
-      ROWS = COLS.map(c=>({ kind:'col', id:c.id, title:c.title||'', date:c.created_at }))
-        .concat(blog.map(b=>({ kind:'blog', link:b.link, title:b.title||'', date:(b.date||'')+'T09:00:00', cat:b.category })))
-        .filter(r=>r.title)
-        .sort((a,b)=> new Date(b.date) - new Date(a.date));
-
-      if(!ROWS.length){
-        wrap.innerHTML='<p class="text-neutral-900/40 text-sm text-center py-12">아직 칼럼이 없습니다.'+(isAdmin?' 첫 글을 써보세요!':'')+'</p>';
-        document.getElementById('colPager').innerHTML=''; return;
+      const wrap=document.getElementById('medList');
+      const { data, error } = await sb.from('meditations').select('id,category,title,excerpt,views,created_at,author_name').order('created_at',{ascending:false});
+      if(error){
+        wrap.innerHTML='<p class="text-neutral-900/40 text-sm text-center py-10">묵상 노트를 불러오지 못했습니다.'
+          +(isAdmin?' (관리자: db/meditation.sql 을 Supabase에서 한 번 실행해야 합니다)':'')+'</p>';
+        return;
+      }
+      MEDS = data||[];
+      renderCats();
+      if(!MEDS.length){
+        wrap.innerHTML='<p class="text-neutral-900/40 text-sm text-center py-12">아직 묵상 노트가 없습니다.'+(isAdmin?' 첫 글을 써보세요!':'')+'</p>';
+        document.getElementById('medPager').innerHTML=''; return;
       }
       PAGE = 1; renderPage();
     }
 
+    function cats(){
+      const seen={}, out=[];
+      MEDS.forEach(m=>{ const c=(m.category||'').trim(); if(c && !seen[c]){ seen[c]=1; out.push(c); } });
+      return out;
+    }
+    function renderCats(){
+      const rail=document.getElementById('catRail');
+      const list=cats();
+      if(!list.length){ rail.innerHTML=''; return; }
+      let h='<button type="button" onclick="pickCat(\'\')" class="chip'+(CAT?'':' on')+'">전체 <span class="opacity-60 font-normal">'+MEDS.length+'</span></button>';
+      h+=list.map(c=>{
+        const n=MEDS.filter(m=>(m.category||'').trim()===c).length;
+        return '<button type="button" onclick="pickCat(\''+esc(c).replace(/'/g,"\\'")+'\')" class="chip'+(CAT===c?' on':'')+'">'+esc(c)+' <span class="opacity-60 font-normal">'+n+'</span></button>';
+      }).join('');
+      rail.innerHTML=h;
+    }
+    function pickCat(c){ CAT=c; PAGE=1; renderCats(); renderPage(); }
+
     function renderPage(){
-      const wrap=document.getElementById('colList');
+      const wrap=document.getElementById('medList');
+      ROWS = CAT ? MEDS.filter(m=>(m.category||'').trim()===CAT) : MEDS;
+      if(!ROWS.length){
+        wrap.innerHTML='<p class="text-neutral-900/40 text-sm text-center py-12">이 분류에는 아직 글이 없습니다.</p>';
+        document.getElementById('medPager').innerHTML=''; return;
+      }
       const total=ROWS.length, pages=Math.max(1, Math.ceil(total/PER_PAGE));
       if(PAGE>pages) PAGE=pages;
       const start=(PAGE-1)*PER_PAGE;
@@ -265,13 +282,10 @@
 
       wrap.innerHTML = rows.map((r,i)=>{
         const no = total - start - i;                       // 최신 글이 가장 큰 번호
-        const d  = new Date(r.date);
+        const d  = new Date(r.created_at);
         const ds = isNaN(d) ? '' : `${d.getFullYear()}. ${d.getMonth()+1}. ${d.getDate()}.`;
-        const badge = r.kind==='blog'
-          ? '<span class="shrink-0 rounded-full bg-gold/10 text-gold text-[11px] font-semibold px-2 py-0.5">블로그</span>' : '';
-        const open = r.kind==='blog'
-          ? `window.open('${r.link}','_blank','noopener')` : `openColumn('${r.id}')`;
-        return `<div onclick="${open}" class="group flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-3.5 border-b border-ink/8 last:border-0 cursor-pointer hover:bg-sand/50 transition">
+        const badge = r.category ? '<span class="shrink-0 rounded-full bg-gold/10 text-gold text-[11px] font-semibold px-2 py-0.5">'+esc(r.category)+'</span>' : '';
+        return `<div onclick="openMed('${r.id}')" class="group flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-3.5 border-b border-ink/8 last:border-0 cursor-pointer hover:bg-sand/50 transition">
             <span class="w-7 shrink-0 text-center text-[13px] text-neutral-900/35 tabular-nums">${no}</span>
             <span class="min-w-0 flex-1 truncate font-semibold text-[15px] text-neutral-900/90 group-hover:text-gold transition">${esc(r.title)}</span>
             ${badge}
@@ -279,8 +293,7 @@
           </div>`;
       }).join('');
 
-      // 페이지 번호
-      const pg=document.getElementById('colPager');
+      const pg=document.getElementById('medPager');
       if(pages<=1){ pg.innerHTML=''; return; }
       const btn=(label,p,on,dis)=>
         `<button ${dis?'disabled':`onclick="gotoPage(${p})"`} class="min-w-[34px] h-[34px] px-2 rounded-lg text-sm font-semibold transition ${
@@ -297,20 +310,20 @@
       document.getElementById('listView').scrollIntoView({behavior:'smooth', block:'start'});
     }
 
-    async function openColumn(id){
-      const { data, error } = await sb.from('columns').select('*').eq('id', id).single();
+    async function openMed(id){
+      const { data, error } = await sb.from('meditations').select('*').eq('id', id).single();
       if(error || !data){ alert('글을 불러오지 못했습니다.'); return; }
       current = data;
-      history.replaceState(null,'','#col-'+id);
+      history.replaceState(null,'','#med-'+id);
+      document.getElementById('rCat').textContent = data.category || 'MEDITATION';
       document.getElementById('rTitle').textContent = data.title||'';
-      document.getElementById('rDate').textContent = 'COLUMN';
       document.getElementById('rMeta').innerHTML = esc(data.author_name||'오광일') + ' · ' + new Date(data.created_at).toLocaleDateString('ko-KR') + ' · ' + ((Number(data.views)||0)+1).toLocaleString();
       document.getElementById('rBody').innerHTML = sanitize(data.body_html||'');
-      const url = location.origin + location.pathname + '#col-' + id;
-      document.getElementById('rShare').onclick = ()=>shareItem(data.title, url);
+      const url = location.origin + location.pathname + '#med-' + id;
+      document.getElementById('rShare').onclick = ()=>shareItem((data.title||'말씀묵상 노트')+' — 바이블 인사이트', url);
       document.getElementById('rAdmin').classList.toggle('hidden', !isAdmin);
       document.getElementById('rAdmin').classList.toggle('flex', isAdmin);
-      try{ sb.rpc('bump_column_views', { p_id: id }); }catch(e){}
+      try{ sb.rpc('bump_meditation_views', { p_id: id }); }catch(e){}
       renderCommentForm(); loadComments(id);
       show('readView'); window.scrollTo(0,0);
     }
@@ -326,22 +339,23 @@
             <button onclick="addComment()" class="bg-gold text-white text-sm font-semibold px-4 py-2 rounded-full hover:opacity-90 transition">등록</button>
           </div></div>`;
       } else {
-        f.innerHTML = `<div class="bg-ink/[0.03] border border-ink/8 rounded-2xl p-5 text-center text-sm text-neutral-900/55">댓글을 남기려면 <a href="index.html" class="text-gold font-semibold hover:underline">로그인</a> 해 주세요.</div>`;
+        f.innerHTML = `<div class="bg-ink/[0.03] border border-ink/8 rounded-2xl p-5 text-center text-sm text-neutral-900/55">댓글을 남기려면 <a href="start.html" class="text-gold font-semibold hover:underline">로그인</a> 해 주세요.</div>`;
       }
     }
-    async function loadComments(colId){
+    async function loadComments(medId){
       const list = document.getElementById('cList');
-      const { data, error } = await sb.from('column_comments').select('*').eq('column_id', colId).order('created_at',{ascending:true});
-      if(error){ list.innerHTML = `<p class="text-neutral-900/40 text-sm text-center py-4">댓글을 불러오지 못했습니다. (관리자: db/column_social.sql 실행 필요)</p>`; document.getElementById('cCount').textContent=''; return; }
+      const { data, error } = await sb.from('meditation_comments').select('*').eq('meditation_id', medId).order('created_at',{ascending:true});
+      if(error){ list.innerHTML = `<p class="text-neutral-900/40 text-sm text-center py-4">댓글을 불러오지 못했습니다.${isAdmin?' (관리자: db/meditation.sql 실행 필요)':''}</p>`; document.getElementById('cCount').textContent=''; return; }
       const rows = data||[];
       document.getElementById('cCount').textContent = rows.length || '';
       if(!rows.length){ list.innerHTML = '<p class="text-neutral-900/35 text-sm text-center py-6">첫 댓글을 남겨 보세요.</p>'; return; }
       const myId = SESSION&&SESSION.user&&SESSION.user.id;
       list.innerHTML = rows.map(c=>{
         const canDel = isAdmin || (myId && c.user_id===myId);
-        return `<div class="bg-white border border-ink/8 rounded-2xl px-4 py-3.5">
+        return `<div class="bg-white border ${c.is_admin?'border-gold/25 bg-gold/[0.04]':'border-ink/8'} rounded-2xl px-4 py-3.5">
           <div class="flex items-center gap-2 mb-1.5">
-            <span class="font-semibold text-sm">${esc(c.author_name||'회원')}</span>
+            <span class="font-semibold text-sm ${c.is_admin?'text-gold':''}">${esc(c.author_name||'회원')}</span>
+            ${c.is_admin?'<span class="text-[10px] font-bold text-white bg-gold px-1.5 py-0.5 rounded">저자</span>':''}
             <span class="text-xs text-neutral-900/35">${timeAgo(c.created_at)}</span>
             ${canDel?`<button onclick="delComment('${c.id}')" class="ml-auto text-xs text-neutral-900/30 hover:text-red-500">삭제</button>`:''}
           </div>
@@ -353,23 +367,21 @@
       if(!(SESSION&&SESSION.user) || !current) return;
       const el = document.getElementById('cInput'); const content = (el.value||'').trim();
       if(!content){ el.focus(); return; }
-      const { error } = await sb.from('column_comments').insert({ column_id: current.id, user_id: SESSION.user.id, author_name: myName(), content });
+      const { error } = await sb.from('meditation_comments').insert({ meditation_id: current.id, user_id: SESSION.user.id, author_name: myName(), content, is_admin: isAdmin });
       if(error){ alert('등록 오류: ' + error.message); return; }
       el.value=''; loadComments(current.id);
     }
     async function delComment(id){
       if(!confirm('이 댓글을 삭제할까요?')) return;
-      const { error } = await sb.from('column_comments').delete().eq('id', id);
+      const { error } = await sb.from('meditation_comments').delete().eq('id', id);
       if(error){ alert('삭제 오류: ' + error.message); return; }
       if(current) loadComments(current.id);
     }
 
+    // ===== 편집기 (칼럼과 동일 구성) =====
     function registerQuillStyles(){ if(window.__qReg || !window.Quill) return; window.__qReg = true;
-      /* 글자 크기·폰트 whitelist와 픽커 라벨/미리보기는 editor-enhance.js가 공통 등록 */
-
-      /* 첨부파일 카드를 Quill 이 정식 요소로 다루게 하는 커스텀 블롯.
-         이렇게 해야 저장·재편집을 반복해도 카드가 무너지지 않고, 본문(body_html)에
-         그대로 남아 별도 DB 칼럼 없이 동작한다. */
+      /* 첨부파일 카드를 Quill 이 정식 요소로 다루게 하는 커스텀 블롯(칼럼과 동일).
+         저장·재편집을 반복해도 카드가 무너지지 않고, 본문(body_html)에 그대로 남는다. */
       const BlockEmbed = Quill.import('blots/block/embed');
       class AttachBlot extends BlockEmbed {
         static create(v){
@@ -397,7 +409,6 @@
       AttachBlot.className = 'colFile';
       Quill.register(AttachBlot);
     }
-    function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
     // 확장자 → 카드 색상·라벨용 분류
     function fileKind(ext){
       ext = (ext||'').toLowerCase();
@@ -422,7 +433,7 @@
       registerQuillStyles();
       quill = new Quill('#editor', {
         theme:'snow',
-        placeholder:'블로그처럼 자유롭게 작성하세요… (워드·한글 글 복붙 OK)',
+        placeholder:'블로그처럼 자유롭게 작성하세요… (유튜브 게시판 글 복붙 OK)',
         modules:{ toolbar:[
           [{ size: (window.BIBLY_EDITOR_SIZES || ['13px',false,'20px','24px']) }, { font: (window.BIBLY_EDITOR_FONTS || ['serif','monospace']) }],
           [{ header:[1,2,3,false] }],
@@ -443,7 +454,7 @@
           btn.title = 'PDF·한글·워드 등 자료를 본문에 첨부합니다 (20MB 이하)';
         }
       }catch(e){}
-      // 이미지는 저장공간(community 버킷)에 업로드 후 본문에 삽입 (base64 방지·블로그식)
+      // 이미지는 저장공간(community 버킷)에 업로드 후 본문에 삽입 (base64 방지)
       quill.getModule('toolbar').addHandler('image', () => {
         const input = document.createElement('input');
         input.type = 'file'; input.accept = 'image/*';
@@ -451,8 +462,7 @@
           const file = input.files[0]; if(!file) return;
           if(file.size > 5*1024*1024){ alert('이미지는 5MB 이하만 가능해요.'); return; }
           const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
-          // 타임스텝만 쓰면 밀리초 대입으로 주소를 추측할 수 있어 난수를 덧붙인다(2026-09-07 보안 조치)
-          const path = `columns/${Date.now()}-${Math.random().toString(36).slice(2,10)}.${ext}`;
+          const path = `meditation/${Date.now()}-${Math.random().toString(36).slice(2,10)}.${ext}`;
           const { error } = await sb.storage.from('community').upload(path, file);
           if(error){ alert('이미지 업로드 오류: ' + error.message); return; }
           const url = sb.storage.from('community').getPublicUrl(path).data.publicUrl;
@@ -462,7 +472,7 @@
         };
         input.click();
       });
-      // 파일 첨부 — 이미지와 같은 community 버킷에 올리고 본문에 첨부 카드로 삽입
+      // 파일 첨부 — 이미지와 같은 community 버킷에 올리고 본문에 내려받기 카드로 삽입
       quill.getModule('toolbar').addHandler('biblyAttach', () => {
         const input = document.createElement('input');
         input.type = 'file';
@@ -476,7 +486,7 @@
           // 한글 파일명은 저장소 경로에서 문제가 될 수 있어 경로는 안전한 이름으로,
           // 화면에 보이는 이름은 원본 그대로 카드에 담는다.
           const safe = file.name.replace(/\.[^.]+$/,'').replace(/[^\w\-]+/g,'_').slice(0,40) || 'file';
-          const path = `columns/files/${Date.now()}-${Math.random().toString(36).slice(2,10)}-${safe}.${ext || 'bin'}`;
+          const path = `meditation/files/${Date.now()}-${Math.random().toString(36).slice(2,10)}-${safe}.${ext || 'bin'}`;
           const { error } = await sb.storage.from('community').upload(path, file);
           if(btn){ btn.style.opacity=''; btn.style.pointerEvents=''; }
           if(error){ alert('파일 업로드 오류: ' + error.message); return; }
@@ -496,43 +506,62 @@
       });
       return quill;
     }
+    function fillCatSuggest(){
+      const dl=document.getElementById('catSuggest');
+      const base=['시편묵상','잠언묵상','복음서묵상','말씀묵상'];
+      const seen={}, out=[];
+      cats().concat(base).forEach(c=>{ if(c && !seen[c]){ seen[c]=1; out.push(c); } });
+      dl.innerHTML=out.map(c=>'<option value="'+esc(c)+'"></option>').join('');
+    }
     function openEditor(){
-      editingId=null; document.getElementById('eTitle').value=''; document.getElementById('eCover').value=''; document.getElementById('eMsg').textContent='';
+      editingId=null;
+      document.getElementById('eTitle').value='';
+      document.getElementById('eCat').value=CAT||'시편묵상';
+      document.getElementById('eMsg').textContent='';
+      fillCatSuggest();
       show('editView'); ensureQuill(); quill.setText(''); window.scrollTo(0,0);
     }
     function editCurrent(){
       if(!current) return;
-      editingId=current.id; document.getElementById('eTitle').value=current.title||''; document.getElementById('eCover').value=current.cover_url||''; document.getElementById('eMsg').textContent='';
+      editingId=current.id;
+      document.getElementById('eTitle').value=current.title||'';
+      document.getElementById('eCat').value=current.category||'';
+      document.getElementById('eMsg').textContent='';
+      fillCatSuggest();
       show('editView'); ensureQuill(); quill.root.innerHTML = sanitize(current.body_html||''); window.scrollTo(0,0);
     }
-    async function saveColumn(){
+    async function saveMed(){
       const title=document.getElementById('eTitle').value.trim();
-      const cover=document.getElementById('eCover').value.trim();
+      const category=document.getElementById('eCat').value.trim()||'말씀묵상';
       const body=sanitize(quill.root.innerHTML);
       const msg=document.getElementById('eMsg'); const btn=document.getElementById('saveBtn');
       if(!title){ msg.textContent='제목을 입력하세요.'; return; }
       if(plain(body).length<1){ msg.textContent='내용을 입력하세요.'; return; }
       btn.disabled=true; btn.textContent='저장 중…'; msg.textContent='';
-      const row={ title, body_html:body, excerpt:plain(body).slice(0,100), cover_url:cover||null };
+      const row={ title, category, body_html:body, excerpt:plain(body).slice(0,100), updated_at:new Date().toISOString() };
       let res;
-      if(editingId) res=await sb.from('columns').update(row).eq('id',editingId);
-      else res=await sb.from('columns').insert(row);
+      if(editingId) res=await sb.from('meditations').update(row).eq('id',editingId);
+      else res=await sb.from('meditations').insert(row);
       btn.disabled=false; btn.textContent='발행하기';
       if(res.error){ msg.textContent='저장 오류: '+res.error.message; return; }
       await loadList(); showList();
     }
     async function deleteCurrent(){
-      if(!current || !confirm('이 칼럼을 삭제할까요?')) return;
-      const { error } = await sb.from('columns').delete().eq('id', current.id);
+      if(!current || !confirm('이 묵상 노트를 삭제할까요? 댓글도 함께 지워집니다.')) return;
+      const { error } = await sb.from('meditations').delete().eq('id', current.id);
       if(error){ alert('삭제 오류: '+error.message); return; }
-      await loadList(); showList();
+      current=null; await loadList(); showList();
     }
 
     (async()=>{
       await loadList();
-      const m = location.hash.match(/^#col-(.+)$/);
-      if(m) openColumn(m[1]);
+      const m = location.hash.match(/^#med-(.+)$/);
+      if(m) openMed(m[1]);
     })();
+
+    window.pickCat=pickCat; window.gotoPage=gotoPage; window.openMed=openMed;
+    window.openEditor=openEditor; window.editCurrent=editCurrent; window.deleteCurrent=deleteCurrent;
+    window.saveMed=saveMed; window.addComment=addComment; window.delComment=delComment; window.showList=showList;
   </script>
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
