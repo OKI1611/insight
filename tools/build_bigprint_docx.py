@@ -98,7 +98,7 @@ center("헤리티지 에디션", 20, True, INK)
 center("큰글자판", 24, True, GREEN)
 center("전 66권", 14, False, GRAY)
 for _ in range(9): doc.add_paragraph()
-center("바이블 인사이트 출판사", 13, True)
+center("바이블 인사이트", 13, True)
 
 # ── 판권 ──
 doc.add_page_break()
@@ -110,14 +110,13 @@ def line(txt, size=11, bold=False, color=None, after=4):
 line("일러두기 · 판권", 15, True, GREEN, 12)
 line("도서명  정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션 (큰글자판)", 11, True)
 line("‘정본역(正本譯)’은 공인본문(Textus Receptus)과 맛소라 본문을 저본으로 삼았음을 뜻하는 말이며, 다른 번역본의 가치를 부정하는 표현이 아닙니다.")
-line("이 책의 한국어 본문은 킹제임스 성경(KJV, 1611)의 영어 본문과 그 저본인 공인본문(Textus Receptus)·맛소라 본문을 히브리어·아람어·헬라어 원문과 대조하여 바이블 인사이트가 직접 번역한 것입니다. 기존 한국어 역본을 저본으로 삼지 않은 독자적인 번역이며, 번역 원칙 전문은 biblynote.com/translation 에 공개되어 있습니다.")
+line("이 책의 한국어 본문은 킹제임스 성경(KJV — 1611년 흠정, 1769년 표준 본문)의 영어 본문과 그 저본인 공인본문(Textus Receptus)·맛소라 본문을 히브리어·아람어·헬라어 원문과 대조하여 바이블 인사이트가 직접 번역한 것입니다. 기존 한국어 역본을 저본으로 삼지 않은 독자적인 번역이며, 번역 원칙 전문은 biblynote.com/translation 에 공개되어 있습니다.")
 line("본문 소제목은 독자의 이해를 돕기 위하여 바이블 인사이트가 새로 지은 것으로, 성경 원문의 일부가 아닙니다.")
 line("눈이 편안하도록 본문 글자를 크게 하고 줄 간격을 넉넉하게 조판하였습니다.")
 line("본문 서체는 SIL Open Font License로 배포되는 Noto Serif CJK KR을 사용하였습니다.")
 line("한국어 번역 저작권 ⓒ 오광일 · 바이블 인사이트, 2026. 이 책의 한국어 본문을 출판사의 서면 허락 없이 복제·전재·배포할 수 없습니다. 다만 개인 묵상·설교·강의·논문에서의 통상적인 인용은 출처(정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션)를 밝히는 조건으로 허용합니다.")
-line("펴낸곳  바이블 인사이트 출판사", 11, False, None, 10)
-line("옮긴이  오광일")
-line("문의  contact@biblynote.com · biblynote.com")
+for _i, (_k, _v) in enumerate(APX.colophon_lines("bigprint", "docx")):
+    line("%s  %s" % (_k, _v), 11, False, None, 10 if _i == 0 else 4)
 
 # ── 앞부록 (1단 유지 — 표 조판에 유리) ──
 APX.docx_render(doc, APX.resolve_verses(APX.front_sections()), FONT, base=12)

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션 — PDF 직접 생성(ReportLab)
 
-  ① 큰글자판  A4 · 1단 14pt (어르신용 · 자간 균일 CJK 조판)
+  ① 큰글자판  A4 · 2단 14pt (어르신용 · 자간 균일 CJK 조판 · 앞부분/부록은 전폭 1단)
   ② 한영대역  신국판 152×225 · 존더반 병렬 표준형
      - 좌 한글 / 우 영어, 절 단위 정렬(verse-for-verse)
      - 러닝헤드(바깥 책·장, 중앙 쪽번호) + 단 구분선 + 큰 장번호
@@ -19,7 +19,7 @@ from reportlab.lib.colors import HexColor
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (BaseDocTemplate, PageTemplate, Frame, Paragraph,
-                                Spacer, PageBreak, Table, TableStyle)
+                                Spacer, PageBreak, Table, TableStyle, NextPageTemplate)
 
 try:
     sys.stdout.reconfigure(encoding="utf-8")
@@ -34,6 +34,19 @@ FDIR = os.path.join(ROOT, "tools", "fonts")
 pdfmetrics.registerFont(TTFont("NSK",  os.path.join(FDIR, "NotoSerifKR-Regular.ttf")))
 pdfmetrics.registerFont(TTFont("NSKB", os.path.join(FDIR, "NotoSerifKR-Bold.ttf")))
 pdfmetrics.registerFontFamily("NSK", normal="NSK", bold="NSKB")
+# 원어 표기용 보조 서체(2026-09-21): Noto Serif KR에는 히브리 글리프와 악센트 붙은 헬라 글리프가 없어
+# 부록의 יהוה·שאול·ᾅδης 가 빈 네모로 찍혔다 → 히브리어 = Noto Serif Hebrew, 헬라어 = Noto Serif (둘 다 SIL OFL)
+pdfmetrics.registerFont(TTFont("NSH", os.path.join(FDIR, "NotoSerifHebrew-Regular.ttf")))
+pdfmetrics.registerFont(TTFont("NSG", os.path.join(FDIR, "NotoSerif-Regular.ttf")))
+_HEB = re.compile(u"[\u0590-\u05FF]+"); _HEB_MARK = re.compile(u"[\u0591-\u05C7]")
+_GRK = re.compile(u"[\u0370-\u03FF\u1F00-\u1FFF]+")
+def script_runs(s):
+    """이스케이프된 문자열 안의 히브리·헬라 구간에 보조 서체를 지정한다.
+       reportlab은 양방향 배치를 못 하므로 히브리어는 모음점을 떼고 글자 순서를 뒤집어 오른쪽→왼쪽으로 보이게 한다."""
+    s = _HEB.sub(lambda m: '<font name="NSH">%s</font>' % _HEB_MARK.sub("", m.group())[::-1], s)
+    return _GRK.sub(lambda m: '<font name="NSG">%s</font>' % m.group(), s)
+APX.PDF_TEXT_HOOK = script_runs
+KEYWORDS = "성경, 킹제임스 성경, KJV, 정본역, 한영대역, 큰글자 성경, 바이블 인사이트"
 
 GREEN = HexColor("#00593c"); GRAY = HexColor("#8a8a8a"); INK = HexColor("#232d28")
 RULE  = HexColor("#c9c2b4")
@@ -70,21 +83,19 @@ def en(b, c):
     p = os.path.join(ROOT, "bible", "en", f"{b}-{c}.json")
     return json.loads(io.open(p, encoding="utf-8").read()) if os.path.exists(p) else None
 
-COPY = [
+def copy_lines(edition):
+  return [
  ("도서명  정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션", True),
  ("‘정본역(正本譯)’은 공인본문(Textus Receptus)과 맛소라 본문을 저본으로 삼았음을 뜻하는 말이며, "
   "다른 번역본의 가치를 부정하는 표현이 아닙니다.", False),
- ("이 책의 한국어 본문은 킹제임스 성경(KJV, 1611)의 영어 본문과 그 저본인 공인본문(Textus Receptus)·맛소라 본문을 "
+ ("이 책의 한국어 본문은 킹제임스 성경(KJV — 1611년 흠정, 1769년 표준 본문)의 영어 본문과 그 저본인 공인본문(Textus Receptus)·맛소라 본문을 "
   "히브리어·아람어·헬라어 원문과 대조하여 바이블 인사이트가 직접 번역한 것입니다. 기존 한국어 역본을 저본으로 삼지 않은 "
   "독자적인 번역이며, 번역 원칙 전문은 biblynote.com/translation 에 공개되어 있습니다.", False),
- ("영어 본문(King James Version, 1611)은 대한민국 저작권법상 보호 기간이 만료된 퍼블릭 도메인 저작물입니다.", False),
- ("본문 서체는 SIL Open Font License로 배포되는 Noto Serif KR을 사용하였습니다.", False),
+ ("영어 본문(King James Version — 1611년 흠정, 1769년 표준 본문)은 대한민국 저작권법상 보호 기간이 만료된 퍼블릭 도메인 저작물입니다.", False),
+ ("본문 서체는 SIL Open Font License로 배포되는 Noto Serif KR을, 원어 표기에는 Noto Serif와 Noto Serif Hebrew를 사용하였습니다.", False),
  ("한국어 번역 저작권 ⓒ 오광일 · 바이블 인사이트, 2026. 이 책의 한국어 본문을 출판사의 서면 허락 없이 복제·전재·배포할 수 "
   "없습니다. 다만 개인 묵상·설교·강의·논문에서의 통상적인 인용은 출처(정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션)를 밝히는 조건으로 허용합니다.", False),
- ("펴낸곳  바이블 인사이트 출판사", False),
- ("옮긴이  오광일", False),
- ("문의  contact@biblynote.com · biblynote.com", False),
-]
+ ] + [("%s  %s" % kv, False) for kv in APX.colophon_lines(edition, "pdf")]
 
 def front_matter(sub, page, big=False):
     """표지 + 판권 — 판형에 비례해 여백 계산"""
@@ -101,9 +112,9 @@ def front_matter(sub, page, big=False):
            Paragraph("정본역(正本譯) 킹제임스 성경<br/>헤리티지 에디션", s_t), Spacer(1, ph*0.018),
            Paragraph(sub, s_s), Spacer(1, ph*0.012),
            Paragraph("THE HERITAGE KJV · AUTHENTIC VERSION · 1611", s_e),
-           Spacer(1, ph*0.26), Paragraph("바이블 인사이트 출판사", s_p), PageBreak(),
+           Spacer(1, ph*0.26), Paragraph(APX.PUB["publisher"], s_p), PageBreak(),
            Spacer(1, ph*0.05), Paragraph("일러두기 · 판권", s_h)]
-    for txt, bold in COPY:
+    for txt, bold in copy_lines("bigprint" if big else "parallel"):
         out.append(Paragraph(esc(txt), s_bb if bold else s_b))
     out.append(PageBreak())
     return out
@@ -126,18 +137,20 @@ def build_bigprint():
                            spaceBefore=11, spaceAfter=4)          # 소제목
     story = front_matter("큰글자판", A4, big=True)
     # 앞부록(펴내며·번역 원칙·저본·일러두기·약자표) — front_matter가 이미 PageBreak로 끝나므로 선두 것은 제거
-    story += APX.pdf_flowables(APX.resolve_verses(APX.front_sections()), doc._colw, big=True)[1:]
-    story.append(PageBreak())
+    story += APX.pdf_flowables(APX.resolve_verses(APX.front_sections()), doc._fullw, big=True)[1:]
+    story += [NextPageTemplate("p"), PageBreak()]
     t0 = time.time()
     for bi, bk in enumerate(books):
         bt = Paragraph(esc(bk["ko"]), s_bk)
         bt._bibly_head = (bk["ko"], bk["en"])
+        bt._bibly_mark = (bk["ko"], 0, True)
         story += [bt, Paragraph(esc(bk["en"]).upper(), s_bke)]
         for c in range(1, bk["ch"]+1):
             vs = kr(bk["file"], c)
             hd = headings_for(bk["file"], c)
             chp = Paragraph('%d <font size="11" color="#8a8a8a">%s</font>' % (c, esc(bk["ko"])), s_ch)
             chp._bibly_head = ("%s %d장" % (bk["ko"], c), bk["en"] + " %d" % c)
+            chp._bibly_mark = ("%s %d장" % (bk["ko"], c), 1, None)
             story.append(chp)
             for n, v in enumerate(vs):
                 if not isinstance(v, str):
@@ -149,7 +162,8 @@ def build_bigprint():
         if (bi+1) % 10 == 0:
             print("  큰글자 %d/66 %.0fs" % (bi+1, time.time()-t0), flush=True)
     # 뒤부록(교리 용어·원어 도표·구원의 길·환산표·암송 30선·QR) — 본문이 PageBreak로 끝나므로 선두 것은 제거
-    story += APX.pdf_flowables(APX.resolve_verses(APX.back_sections("bigprint")), doc._colw, big=True)[1:]
+    story[-1:] = [NextPageTemplate("one"), PageBreak()]
+    story += APX.pdf_flowables(APX.resolve_verses(APX.back_sections("bigprint")), doc._fullw, big=True)[1:]
     doc.build(story)
     print("큰글자판 PDF:", round(os.path.getsize(out)/1e6, 1), "MB ·", doc.page, "쪽 · %.0fs" % (time.time()-t0))
     return out
@@ -159,6 +173,7 @@ class HeadedDoc(BaseDocTemplate):
     """러닝헤드(바깥 책·장, 중앙 쪽번호) + 다단이면 단 구분선.
        afterFlowable 로 _bibly_head 마커를 추적해 페이지 끝에 그린다."""
     def __init__(self, path, page, ml, mr, mt, mb, ncols=1, gutter=8*mm, head_size=8, **kw):
+        kw.setdefault("keywords", KEYWORDS)
         BaseDocTemplate.__init__(self, path, pagesize=page,
                                  leftMargin=ml, rightMargin=mr,
                                  topMargin=mt, bottomMargin=mb, **kw)
@@ -171,15 +186,33 @@ class HeadedDoc(BaseDocTemplate):
         frames = [Frame(ml + i*(cw+gutter), mb, cw, page[1]-mt-mb, id="c%d" % i,
                         leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0)
                   for i in range(ncols)]
-        self._colw = cw
-        self.addPageTemplates([PageTemplate(id="p", frames=frames, onPageEnd=self._draw_head)])
+        self._colw = cw; self._fullw = W
+        # 앞부분(속표지·판권·펴내며·약자표)과 뒤부록은 전폭 1단("one"), 본문은 판형별 단수("p").
+        # 다단 판에서 앞부분까지 좁은 단에 갇혀 제목이 3줄로 꺾이고 표 낱말이 잘리던 것을 고침(2026-09-21)
+        one = Frame(ml, mb, W, page[1]-mt-mb, id="one",
+                    leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0)
+        self.addPageTemplates([PageTemplate(id="one", frames=[one], onPageEnd=self._draw_head),
+                               PageTemplate(id="p", frames=frames, onPageEnd=self._draw_head)])
+        self._nmark = 0
 
     def afterFlowable(self, fl):
         h = getattr(fl, "_bibly_head", None)
         if h:
             self._head = h
+        m = getattr(fl, "_bibly_mark", None)   # PDF 책갈피 — 그려진 바로 그 쪽·높이에 건다
+        if m:
+            title, level, closed = m
+            self._nmark += 1; key = "bm%d" % self._nmark
+            try:
+                top = self.frame._y + getattr(fl, "height", 0) + 8
+                self.canv.bookmarkPage(key, fit="XYZ", top=top, left=0, zoom=0)
+            except Exception:
+                self.canv.bookmarkPage(key)
+            self.canv.addOutlineEntry(title, key, level, closed)
 
     def _draw_head(self, cv, doc):
+        if doc.page == 1:
+            cv.showOutline()                     # 뷰어를 열면 책갈피 창이 보이게
         if doc.page <= self._head_skip:         # 표지·판권 제외
             return
         w, h = self._page
@@ -191,7 +224,7 @@ class HeadedDoc(BaseDocTemplate):
         cv.drawCentredString(w/2, h - 11*mm, str(doc.page))
         cv.setStrokeColor(RULE); cv.setLineWidth(0.5)
         cv.line(self._ml, h - 13*mm, w - self._mr, h - 13*mm)
-        if self._ncols > 1:                     # 단 구분선
+        if self._ncols > 1 and doc.pageTemplate.id == "p":   # 단 구분선(본문 쪽만)
             cv.setLineWidth(0.4)
             for i in range(1, self._ncols):
                 x = self._ml + i*self._colw + (i - 0.5)*self._gutter
@@ -233,6 +266,7 @@ def build_parallel():
     for bi, bk in enumerate(books):
         bt = Paragraph(esc(bk["ko"]), s_bk)
         bt._bibly_head = (bk["ko"], bk["en"])
+        bt._bibly_mark = (bk["ko"], 0, True)
         story += [bt, Paragraph(esc(bk["en"]).upper(), s_bke)]
         for c in range(1, bk["ch"]+1):
             vs = en(bk["file"], c)
@@ -241,6 +275,7 @@ def build_parallel():
             chp = Paragraph('%d <font size="8" color="#8a8a8a">%s · %s %d</font>'
                             % (c, esc(bk["ko"]), esc(bk["en"]), c), s_ch)
             chp._bibly_head = ("%s %d장" % (bk["ko"], c), "%s %d" % (bk["en"], c))
+            chp._bibly_mark = ("%s %d장" % (bk["ko"], c), 1, None)
             story.append(chp)
             # 소제목 절에서 표를 끊고, 소제목을 전체 폭으로 얹은 뒤 다음 구간 표를 이어 붙인다
             hd = headings_for(bk["file"], c)

@@ -20,6 +20,40 @@
 import json, io, os, re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# ═══ 출판 정보(2026-09-21 사용자 확정) — 6개 빌더가 공통으로 읽는다 ═══
+#   펴낸곳은 출판사 신고확인증 상호와 한 글자도 다르면 안 된다. ISBN·정가는 수령 후 여기만 채우고 재빌드.
+PUB = {
+    "publisher": "바이블 인사이트",
+    "translator": "오광일",
+    "date": "2026년 10월 31일",                 # 발행일(초판 1쇄)
+    "date_iso": "2026-10-31",
+    "address": "서울특별시 강남구 논현로10길 30, 505-S264호",
+    "reg_no": "",                                # 출판사 신고번호(예: 제 2026-000000호) — 확인 후 기입
+    "isbn": {"bigprint_pdf": "", "parallel_pdf": "", "bigprint_epub": "", "parallel_epub": ""},
+    "price": {"bigprint": "", "parallel": ""},
+    "rights": "ⓒ 오광일 · 바이블 인사이트, 2026",
+}
+
+def colophon_lines(edition, fmt):
+    """판권 하단 항목 [(라벨, 값)] — 비어 있는 값(ISBN·정가·신고번호)은 줄 자체를 내지 않는다"""
+    L = []
+    isbn = PUB["isbn"].get("%s_%s" % (edition, fmt), "")
+    if isbn:
+        L.append(("ISBN", isbn))
+    L.append(("발행일", PUB["date"] + " 초판 1쇄"))
+    if PUB["price"].get(edition):
+        L.append(("정가", PUB["price"][edition]))
+    L.append(("펴낸곳", PUB["publisher"]))
+    if PUB["reg_no"]:
+        L.append(("출판사 신고", PUB["reg_no"]))
+    L.append(("주소", PUB["address"]))
+    L.append(("옮긴이", PUB["translator"]))
+    L.append(("문의", "contact@biblynote.com · biblynote.com"))
+    return L
+
+# PDF 빌더가 원어(히브리·헬라) 구간에 보조 서체를 지정하려고 끼우는 후처리 — 이스케이프 뒤에 적용된다
+PDF_TEXT_HOOK = None
 _books = json.load(io.open(os.path.join(ROOT, "bible", "books.json"), encoding="utf-8"))
 
 _KO_QUOTES = re.compile(u'[“”‘’"\'「」『』《》〈〉]')
@@ -59,10 +93,10 @@ def front_sections():
     S = []
     S.append({"id": "preface", "title": "펴내며", "blocks": [
         {"t": "p", "text": "성경은 하나님의 말씀입니다. 그러므로 성경을 옮기는 일은 한 글자도 가볍게 다룰 수 없는 일이었습니다."},
-        {"t": "p", "text": "이 성경은 킹제임스 성경(KJV, 1611)과 그 저본인 공인본문(Textus Receptus)·맛소라 본문을 히브리어·아람어·헬라어 원문과 한 절씩 대조하며, 다섯 해에 걸쳐 새로 옮긴 것입니다. 기존 한국어 역본을 저본으로 삼지 않았고, 핵심 교리 용어는 한국 교회가 백여 년 지켜 온 전통 표기를 그대로 보존하였습니다. 새롭게 하되 바꾸지 말아야 할 것은 바꾸지 않는 것 — 그것이 이 번역이 지킨 첫 원칙입니다."},
+        {"t": "p", "text": "이 성경은 킹제임스 성경(KJV — 1611년 흠정, 1769년 표준 본문)과 그 저본인 공인본문(Textus Receptus)·맛소라 본문을 히브리어·아람어·헬라어 원문과 한 절씩 대조하며 새로 옮긴 것입니다. 열 해에 걸쳐 기존 킹제임스 성경 한국어 역본들을 절마다 전수 검토하고, 원문과 어긋나거나 미흡한 곳을 히브리어·아람어·헬라어 원어와 다시 대조하여 바로잡는 작업을 거쳤습니다. 기존 한국어 역본을 저본으로 삼지 않았고, 핵심 교리 용어는 한국 교회가 백여 년 지켜 온 전통 표기를 그대로 보존하였습니다. 새롭게 하되 바꾸지 말아야 할 것은 바꾸지 않는 것 — 그것이 이 번역이 지킨 첫 원칙입니다."},
         {"t": "p", "text": "성경을 읽는 사람이 누구의 해석에도 기대지 않고 말씀 앞에 바로 서는 것, 그리하여 스스로 읽고 분별하는 성도가 세워지는 것이 이 책의 기도입니다."},
         {"t": "p", "text": "말씀으로 시대를 읽는 모든 분들에게 이 성경을 드립니다."},
-        {"t": "note", "text": "바이블 인사이트 출판사 · 옮긴이 오광일"},
+        {"t": "note", "text": PUB["publisher"] + " · 옮긴이 " + PUB["translator"]},
     ]})
     S.append({"id": "principles", "title": "번역 원칙", "blocks": [
         {"t": "kv", "term": "1. 공인본문의 온전한 보존",
@@ -84,7 +118,7 @@ def front_sections():
         {"t": "table", "head": ["구분", "저본", "비고"],
          "rows": [["구약", "맛소라 본문 (Masoretic Text)", "히브리어·아람어"],
                   ["신약", "공인본문 (Textus Receptus)", "헬라어"],
-                  ["대조", "킹제임스 성경 (KJV, 1611)", "영어 — 대한민국 저작권법상 퍼블릭 도메인"]]},
+                  ["대조", "킹제임스 성경 (KJV, 1611 흠정 · 1769 표준 본문)", "영어 — 대한민국 저작권법상 퍼블릭 도메인"]]},
         {"t": "p", "text": "본문 구성은 KJV와 동일한 66권 1,189장 31,102절이며, 절 구분도 1:1로 일치합니다."},
     ]})
     S.append({"id": "guide", "title": "일러두기", "blocks": [
@@ -314,12 +348,14 @@ def pdf_flowables(sections, col_w, big=False):
     s_th = ParagraphStyle("axth", parent=s_tb, fontName="NSKB", textColor=GREEN)
     s_ct = ParagraphStyle("axc",  parent=s_p, alignment=TA_CENTER)
     def E(x):
-        return str(x).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+        s = str(x).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+        return PDF_TEXT_HOOK(s) if PDF_TEXT_HOOK else s
     out = []
     for sec in sections:
         out.append(PageBreak())
         tp = Paragraph(E(sec["title"]), s_t)
         tp._bibly_head = (sec["title"].split(" · ")[-1], "APPENDIX" if "부록" in sec["title"] else "")
+        tp._bibly_mark = (sec["title"], 0, None)          # PDF 책갈피
         out.append(tp)
         for b in sec["blocks"]:
             t = b["t"]

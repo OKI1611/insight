@@ -36,7 +36,7 @@ langs = [e.text for e in opf.findall(".//dc:language", NS)]
 chk("dc:title", bool(title), title)
 is_parallel = "en" in langs                       # 한영대역판인지 — 이후 검사 분기
 chk("dc:language 유효", "ko" in langs, str(langs) + (" · 한영대역" if is_parallel else " · 한글 전용"))
-chk("dc:publisher", opf.find(".//dc:publisher", NS).text == "바이블 인사이트 출판사")
+chk("dc:publisher", opf.find(".//dc:publisher", NS).text == "바이블 인사이트")   # 신고확인증 상호(2026-09-21)
 
 items = {it.get("id"): it.get("href") for it in opf.findall(".//opf:manifest/opf:item", NS)}
 base = os.path.dirname(opf_path)

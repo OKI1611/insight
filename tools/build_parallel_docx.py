@@ -112,7 +112,7 @@ center("헤리티지 에디션", 16, True, INK)
 center("한영대역", 19, True, GREEN)
 center("THE HERITAGE KJV · AUTHENTIC VERSION · 1611", 10, False, GRAY)
 for _ in range(8): doc.add_paragraph()
-center("바이블 인사이트 출판사", 12, True)
+center("바이블 인사이트", 12, True)
 
 # ── 판권 ──
 doc.add_page_break()
@@ -124,15 +124,14 @@ def line(txt, size=9, bold=False, color=None, after=4):
 line("일러두기 · 판권", 13, True, GREEN, 10)
 line("도서명  정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션 (한영대역)", 9, True)
 line("‘정본역(正本譯)’은 공인본문(Textus Receptus)과 맛소라 본문을 저본으로 삼았음을 뜻하는 말이며, 다른 번역본의 가치를 부정하는 표현이 아닙니다.")
-line("이 책의 한국어 본문은 킹제임스 성경(KJV, 1611)의 영어 본문과 그 저본인 공인본문(Textus Receptus)·맛소라 본문을 히브리어·아람어·헬라어 원문과 대조하여 바이블 인사이트가 직접 번역한 것입니다. 기존 한국어 역본을 저본으로 삼지 않은 독자적인 번역이며, 번역 원칙 전문은 biblynote.com/translation 에 공개되어 있습니다.")
+line("이 책의 한국어 본문은 킹제임스 성경(KJV — 1611년 흠정, 1769년 표준 본문)의 영어 본문과 그 저본인 공인본문(Textus Receptus)·맛소라 본문을 히브리어·아람어·헬라어 원문과 대조하여 바이블 인사이트가 직접 번역한 것입니다. 기존 한국어 역본을 저본으로 삼지 않은 독자적인 번역이며, 번역 원칙 전문은 biblynote.com/translation 에 공개되어 있습니다.")
 line("절마다 왼쪽에 한국어 본문, 오른쪽에 King James Version 영어 본문을 나란히 배치하여 한 절씩 대조하며 읽을 수 있습니다.")
 line("본문 소제목은 독자의 이해를 돕기 위하여 바이블 인사이트가 새로 지은 것으로, 성경 원문의 일부가 아닙니다.")
-line("영어 본문(King James Version, 1611)은 대한민국 저작권법상 보호 기간이 만료된 퍼블릭 도메인 저작물입니다.")
+line("영어 본문(King James Version — 1611년 흠정, 1769년 표준 본문)은 대한민국 저작권법상 보호 기간이 만료된 퍼블릭 도메인 저작물입니다.")
 line("본문 서체는 SIL Open Font License로 배포되는 Noto Serif CJK KR을 사용하였습니다.")
 line("한국어 번역 저작권 ⓒ 오광일 · 바이블 인사이트, 2026. 이 책의 한국어 본문을 출판사의 서면 허락 없이 복제·전재·배포할 수 없습니다. 다만 개인 묵상·설교·강의·논문에서의 통상적인 인용은 출처(정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션)를 밝히는 조건으로 허용합니다.")
-line("펴낸곳  바이블 인사이트 출판사", 9, False, None, 8)
-line("옮긴이  오광일")
-line("문의  contact@biblynote.com · biblynote.com")
+for _i, (_k, _v) in enumerate(APX.colophon_lines("parallel", "docx")):
+    line("%s  %s" % (_k, _v), 9, False, None, 8 if _i == 0 else 4)
 
 # ── 앞부록 ──
 APX.docx_render(doc, APX.resolve_verses(APX.front_sections()), FONT, base=9.5)
