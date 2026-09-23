@@ -9,8 +9,8 @@
     t.style.cssText='position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:#213a6b;color:#ffffff;padding:10px 18px;border-radius:9999px;font-size:14px;z-index:2147483647;font-family:Pretendard,system-ui,sans-serif;box-shadow:0 8px 28px rgba(0,0,0,.3)';
     document.body.appendChild(t); setTimeout(function(){ t.remove(); }, 1800);
   }
-  function copy(url){
-    function done(){ toast('링크가 복사됐어요'); }
+  function copy(url, msg){
+    function done(){ toast(msg || '링크가 복사됐어요'); }
     if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(url).then(done, fallback); }
     else fallback();
     function fallback(){ try{ var ta=document.createElement('textarea'); ta.value=url; ta.style.cssText='position:fixed;left:-9999px'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); done(); }catch(e){ prompt('아래 링크를 복사하세요', url); } }
@@ -24,11 +24,11 @@
     var rows = [
       ['N','네이버 블로그', function(){ open('https://blog.naver.com/openapi/share?url='+eu+'&title='+et); }],
       ['B','네이버 밴드',   function(){ open('https://www.band.us/plugin/share?body='+etxt+'&route='+eu); }],
-      ['C','네이버 카페',   function(){ copy(url); }],
-      ['K','카카오톡',      function(){ copy(url); }],
+      ['C','네이버 카페',   function(){ copy(url, '링크가 복사됐어요 — 카페 글쓰기에 붙여넣어 주세요'); }],
+      ['K','카카오톡',      function(){ copy(url, '링크가 복사됐어요 — 카카오톡 채팅방에 붙여넣어 주세요'); }],
       ['T','텔레그램',      function(){ open('https://t.me/share/url?url='+eu+'&text='+et); }],
       ['@','쓰레드(Threads)', function(){ open('https://www.threads.net/intent/post?text='+etxt); }],
-      ['I','인스타그램',    function(){ copy(url); }],
+      ['I','인스타그램',    function(){ copy(url, '링크가 복사됐어요 — 인스타그램에 붙여넣어 주세요'); }],
       ['𝕏','X(트위터)',     function(){ open('https://twitter.com/intent/tweet?text='+et+'&url='+eu); }],
       ['f','페이스북',      function(){ open('https://www.facebook.com/sharer/sharer.php?u='+eu); }],
       ['SEP'],
