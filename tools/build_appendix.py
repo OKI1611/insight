@@ -129,6 +129,23 @@ def front_sections():
         {"t": "kv", "term": "왕국", "desc": "'하나님의 왕국'과 '하늘의 왕국'(마태복음 고유 표현)은 원문의 구분을 따라 나누어 옮겼습니다."},
         {"t": "kv", "term": "문장기호", "desc": "대화문에도 따옴표를 쓰지 않는 한글 성경의 관례를 따랐습니다."},
     ]})
+    # 1611년 킹제임스 성경 서문 — 헌정사 + 역자가 독자에게 (content/kjv-preface-1611.json, 한국어만)
+    try:
+        KP = json.load(io.open(os.path.join(ROOT, "content", "kjv-preface-1611.json"), encoding="utf-8"))
+        D, P = KP["dedication"], KP["preface"]
+        S.append({"id": "kjv-dedication", "title": "1611년 킹제임스 성경 헌정사", "blocks":
+            [{"t": "note", "text": KP["meta"]["note_ko"]},
+             {"t": "lead", "text": D["salutation_ko"]}]
+            + [{"t": "p", "text": x["ko"]} for x in D["paras"]]
+            + [{"t": "note", "text": "— " + D["sign_ko"] + " (" + D["sign_en"] + ")"}]})
+        blocks = [{"t": "lead", "text": "성경 번역자들이 독자에게 — 1611년 초판 서문 「The Translators to the Reader」"}]
+        for sec in P["sections"]:
+            blocks.append({"t": "h", "text": sec["h_ko"]})
+            blocks += [{"t": "p", "text": x["ko"]} for x in sec["paras"]]
+        blocks.append({"t": "note", "text": "영어 원문은 biblynote.com/kjv-preface 에서 문단마다 대조하여 읽을 수 있습니다."})
+        S.append({"id": "kjv-preface", "title": "1611년 킹제임스 성경 역자 서문", "blocks": blocks})
+    except Exception as e:
+        print("[build_appendix] 1611 서문 생략:", e)
     # 약자표
     rows, half = [], (len(_books) + 1) // 2
     for i in range(half):
