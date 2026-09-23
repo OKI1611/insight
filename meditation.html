@@ -96,8 +96,8 @@
     .ql-toolbar.ql-snow{border-color:rgba(21,32,58,.12);border-radius:.75rem .75rem 0 0;background:#fff}
     .ql-container.ql-snow{border-color:rgba(21,32,58,.12);border-radius:0 0 .75rem .75rem}
     .ql-container:focus-within .ql-editor.ql-blank::before{content:''}
-    /* 분류 칩 */
-    .chip{display:inline-flex;align-items:center;gap:.3rem;padding:.38rem .85rem;border-radius:999px;font-size:12.5px;font-weight:600;border:1px solid rgba(33,58,107,.12);color:rgba(33,58,107,.72);background:#fff;cursor:pointer;transition:all .13s;white-space:nowrap}
+    /* 분류 칩 — 이용자 연령대가 높아 글자·터치 영역을 넉넉히 둔다 */
+    .chip{display:inline-flex;align-items:center;gap:.3rem;padding:.55rem 1.05rem;border-radius:999px;font-size:13.5px;font-weight:600;border:1px solid rgba(33,58,107,.12);color:rgba(33,58,107,.72);background:#fff;cursor:pointer;transition:all .13s;white-space:nowrap}
     .chip:hover{border-color:rgba(0,112,74,.45);color:#00704a}
     .chip.on{background:#00704a;border-color:#00704a;color:#fff}
   </style>
@@ -128,14 +128,14 @@
 
     <!-- 읽기 화면 -->
     <article id="readView" class="hidden">
-      <button onclick="showList()" class="text-sm text-neutral-900/50 hover:text-gold mb-6">← 목록으로</button>
+      <button onclick="showList()" class="inline-flex items-center min-h-[44px] text-[15px] font-semibold text-neutral-900/60 hover:text-gold mb-3">← 목록으로</button>
       <p id="rCat" class="text-gold text-xs font-bold tracking-widest mb-2"></p>
       <h1 id="rTitle" class="text-2xl md:text-[28px] font-bold leading-snug"></h1>
       <p id="rMeta" class="text-neutral-900/45 text-sm mt-2 mb-6 pb-6 border-b border-ink/10"></p>
       <div id="rBody" class="article text-neutral-900/85"></div>
-      <div class="mt-10 pt-6 border-t border-ink/10 flex items-center gap-3">
+      <div class="mt-10 pt-6 border-t border-ink/10 flex flex-wrap items-center gap-3">
         <span class="text-sm text-neutral-900/50">이 묵상이 은혜가 되었다면 공유해 주세요</span>
-        <button id="rShare" class="ml-auto bg-gold text-white text-sm font-semibold px-4 py-2 rounded-full hover:opacity-90 transition">↗ 공유하기</button>
+        <button id="rShare" class="ml-auto bg-gold text-white text-[15px] font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition">↗ 공유하기</button>
         <span id="rAdmin" class="hidden gap-2 text-sm">
           <button onclick="editCurrent()" class="text-neutral-900/50 hover:text-gold">수정</button>
           <button onclick="deleteCurrent()" class="text-neutral-900/40 hover:text-red-500">삭제</button>
@@ -149,11 +149,16 @@
         <div id="cForm" class="mb-6"></div>
         <div id="cList" class="space-y-4"><p class="text-neutral-900/40 text-sm text-center py-6">댓글을 불러오는 중…</p></div>
       </section>
+
+      <!-- 긴 글을 다 읽은 뒤 맨 위로 올라가지 않아도 되도록 하단에도 큰 목록 버튼을 둔다 -->
+      <div class="mt-10 text-center">
+        <button onclick="showList()" class="inline-flex items-center justify-center gap-1.5 border border-ink/15 rounded-full px-8 py-3 text-[15px] font-semibold text-neutral-900/70 hover:border-gold hover:text-gold transition">← 목록으로 돌아가기</button>
+      </div>
     </article>
 
     <!-- 글쓰기 화면 -->
     <div id="editView" class="hidden">
-      <button onclick="showList()" class="text-sm text-neutral-900/50 hover:text-gold mb-6">← 취소</button>
+      <button onclick="showList()" class="inline-flex items-center min-h-[44px] text-[15px] font-semibold text-neutral-900/60 hover:text-gold mb-3">← 취소</button>
       <h1 class="text-xl font-bold mb-4">묵상 노트 작성</h1>
       <div class="flex flex-wrap items-center gap-2 mb-4">
         <label for="eCat" class="text-sm font-bold text-neutral-900/60">분류</label>
@@ -226,7 +231,7 @@
       if(current) renderCommentForm();
     }
 
-    function showList(){ ['readView','editView'].forEach(id=>document.getElementById(id).classList.add('hidden')); document.getElementById('listView').classList.remove('hidden'); if(location.hash) history.replaceState(null,'',location.pathname); }
+    function showList(){ ['readView','editView'].forEach(id=>document.getElementById(id).classList.add('hidden')); document.getElementById('listView').classList.remove('hidden'); if(location.hash) history.replaceState(null,'',location.pathname); window.scrollTo(0,0); }
     function show(id){ ['listView','readView','editView'].forEach(x=>document.getElementById(x).classList.add('hidden')); document.getElementById(id).classList.remove('hidden'); }
 
     /* 목록: 분류 칩으로 걸러 보고, 10개마다 페이지 나눔 */
@@ -284,19 +289,20 @@
         const no = total - start - i;                       // 최신 글이 가장 큰 번호
         const d  = new Date(r.created_at);
         const ds = isNaN(d) ? '' : `${d.getFullYear()}. ${d.getMonth()+1}. ${d.getDate()}.`;
-        const badge = r.category ? '<span class="shrink-0 rounded-full bg-gold/10 text-gold text-[11px] font-semibold px-2 py-0.5">'+esc(r.category)+'</span>' : '';
-        return `<div onclick="openMed('${r.id}')" class="group flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-3.5 border-b border-ink/8 last:border-0 cursor-pointer hover:bg-sand/50 transition">
+        // 분류 배지는 모바일에서 숨긴다 — 위의 분류 칩과 중복이고, 제목 자리가 좁아진다
+        const badge = r.category ? '<span class="hidden sm:inline-flex shrink-0 rounded-full bg-gold/10 text-gold text-[11px] font-semibold px-2 py-0.5">'+esc(r.category)+'</span>' : '';
+        return `<div onclick="openMed('${r.id}')" class="group flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-4 border-b border-ink/8 last:border-0 cursor-pointer hover:bg-sand/50 transition">
             <span class="w-7 shrink-0 text-center text-[13px] text-neutral-900/35 tabular-nums">${no}</span>
-            <span class="min-w-0 flex-1 truncate font-semibold text-[15px] text-neutral-900/90 group-hover:text-gold transition">${esc(r.title)}</span>
+            <span class="min-w-0 flex-1 line-clamp-2 font-semibold text-[15px] leading-snug text-neutral-900/90 group-hover:text-gold transition">${esc(r.title)}</span>
             ${badge}
-            <span class="shrink-0 text-xs text-neutral-900/40 tabular-nums hidden sm:block">${ds}</span>
+            <span class="shrink-0 text-xs text-neutral-900/40 tabular-nums">${ds}</span>
           </div>`;
       }).join('');
 
       const pg=document.getElementById('medPager');
       if(pages<=1){ pg.innerHTML=''; return; }
       const btn=(label,p,on,dis)=>
-        `<button ${dis?'disabled':`onclick="gotoPage(${p})"`} class="min-w-[34px] h-[34px] px-2 rounded-lg text-sm font-semibold transition ${
+        `<button ${dis?'disabled':`onclick="gotoPage(${p})"`} class="min-w-[42px] h-[42px] px-2 rounded-lg text-[15px] font-semibold transition ${
           on ? 'bg-gold text-white' : dis ? 'text-neutral-900/20 cursor-default' : 'text-neutral-900/60 hover:bg-sand'}">${label}</button>`;
       let h = btn('‹', PAGE-1, false, PAGE<=1);
       const from=Math.max(1, PAGE-2), to=Math.min(pages, from+4);
@@ -333,10 +339,10 @@
       const f = document.getElementById('cForm'); if(!f) return;
       if(SESSION && SESSION.user){
         f.innerHTML = `<div class="bg-white border border-ink/12 rounded-2xl p-4">
-          <textarea id="cInput" rows="3" placeholder="댓글을 남겨 주세요…" class="w-full text-sm outline-none resize-none"></textarea>
+          <textarea id="cInput" rows="3" placeholder="댓글을 남겨 주세요…" class="w-full text-[15px] outline-none resize-none"></textarea>
           <div class="flex items-center justify-between mt-2 pt-2 border-t border-ink/8">
-            <span class="text-xs text-neutral-900/40">${esc(myName())}님</span>
-            <button onclick="addComment()" class="bg-gold text-white text-sm font-semibold px-4 py-2 rounded-full hover:opacity-90 transition">등록</button>
+            <span class="text-[13px] text-neutral-900/40">${esc(myName())}님</span>
+            <button onclick="addComment()" class="bg-gold text-white text-[15px] font-semibold px-6 py-2.5 rounded-full hover:opacity-90 transition">등록</button>
           </div></div>`;
       } else {
         f.innerHTML = `<div class="bg-ink/[0.03] border border-ink/8 rounded-2xl p-5 text-center text-sm text-neutral-900/55">댓글을 남기려면 <a href="start.html" class="text-gold font-semibold hover:underline">로그인</a> 해 주세요.</div>`;
@@ -357,7 +363,7 @@
             <span class="font-semibold text-sm ${c.is_admin?'text-gold':''}">${esc(c.author_name||'회원')}</span>
             ${c.is_admin?'<span class="text-[10px] font-bold text-white bg-gold px-1.5 py-0.5 rounded">저자</span>':''}
             <span class="text-xs text-neutral-900/35">${timeAgo(c.created_at)}</span>
-            ${canDel?`<button onclick="delComment('${c.id}')" class="ml-auto text-xs text-neutral-900/30 hover:text-red-500">삭제</button>`:''}
+            ${canDel?`<button onclick="delComment('${c.id}')" class="ml-auto text-xs text-neutral-900/30 hover:text-red-500 px-2 py-1.5 -mr-2">삭제</button>`:''}
           </div>
           <p class="text-[15px] text-neutral-900/80 leading-relaxed">${nl2(c.content)}</p>
         </div>`;
