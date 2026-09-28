@@ -363,7 +363,7 @@
       {bg:'#2b5fb0',href:'curriculum.html',tab:'대표 시리즈',badge:'우리 사이트 간판',title:'천년왕국 세미나<br><span style="color:#ffe08a">예언의 기초부터 완주까지</span>',sub:'유튜브 <span data-stat="views">212만+</span> 조회 · 단계별 커리큘럼으로 완주',cta:'지금 정주행하기'},
       {bg:'#0e7a68',href:'bible.html',tab:'성경 공부 도구',badge:'전부 무료',title:'성경, <span style="color:#ffe08a">직접 읽고 공부하다</span>',sub:'성경 읽기·성경사전 3,000+·성경 Q&A·통독·암송, 모두 무료',cta:'공부 시작하기'},
       {bg:'#9a6a1b',href:'academy.html',tab:'인증과정·창립멤버',badge:'선착순 1기',title:'아카데미 <span style="color:#fff3d6">인증과정</span>',sub:'체계적 급수·수료증 · 1기 창립멤버 20% 평생할인',cta:'인증과정 보기'},
-      {bg:'#21342a',href:'books.html',tab:'저자의 책',badge:'출간 도서',title:'강의로 다 담지 못한 이야기,<br><span style="color:#e4c07a">책으로 만나다</span>',sub:'신간 『마귀는 거짓말을 하지 않는다』 · 『가이사의 교회, 하나님의 교회』 · 『가면의 시대』 — 종이책 판매 중',cta:'책 보러 가기'}
+      {bg:'#21342a',href:'books.html',tab:'저자의 책',badge:'출간 도서',title:'강의로 다 담지 못한 이야기,<br><span style="color:#e4c07a">책으로 만나다</span>',sub:'신간 『천년왕국을 아십니까』 · 『마귀는 거짓말을 하지 않는다』 · 『가이사의 교회, 하나님의 교회』 — 종이책 판매 중',cta:'책 보러 가기'}
     ];
     var hero=document.getElementById('hpHero'); if(!hero) return;
     hero.style.transition='background .5s ease';
@@ -490,30 +490,34 @@
       </div>
 
       <!-- 신간(구매 버튼 포함) + 나머지 저서 컴팩트 카드 — 구매처 전체는 books.html -->
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 max-w-3xl lg:max-w-6xl mx-auto">
-        <!-- 마귀는 거짓말을 하지 않는다 (신간) — 대형서점 전권 입점 완료 -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-5 max-w-3xl lg:max-w-6xl mx-auto">
+        <!-- 천년왕국을 아십니까 (신간) — YES24·부크크 판매, 교보·영풍·알라딘 입점 준비 중 -->
         <div class="bg-white rounded-2xl p-5 md:p-6 lg:p-4 text-center shadow-soft relative">
           <span class="absolute top-3 right-3 text-[10.5px] font-bold text-white bg-gold rounded-full px-2 py-0.5">신간</span>
-          <a href="books.html#devil" class="block group">
-            <img src="images/books/devil.jpg" alt="마귀는 거짓말을 하지 않는다 표지" loading="lazy"
+          <a href="books.html#millennium" class="block group">
+            <img src="images/books/millennium.jpg" alt="천년왕국을 아십니까 표지" loading="lazy"
                  class="w-[118px] md:w-[142px] mx-auto rounded-[3px] shadow-card group-hover:-translate-y-1 transition-transform"/>
-            <p class="font-bold text-[14.5px] md:text-[15.5px] leading-snug mt-4 group-hover:text-gold transition-colors">마귀는 거짓말을<br class="hidden md:block"/> 하지 않는다</p>
+            <p class="font-bold text-[14.5px] md:text-[15.5px] leading-snug mt-4 group-hover:text-gold transition-colors">천년왕국을<br class="hidden md:block"/> 아십니까</p>
           </a>
-          <p class="text-[12px] text-neutral-900/55 mt-2 leading-relaxed">요한계시록 바벨론의 신비, 그리고 확신이라는 미혹</p>
+          <p class="text-[12px] text-neutral-900/55 mt-2 leading-relaxed">성경이 약속한 1,000년의 진짜 나라 — 천년왕국 세미나 완결판</p>
           <div class="mt-4 text-left">
             <p class="text-[10.5px] font-bold text-neutral-900/40 mb-1.5">📘 종이책</p>
             <div class="flex flex-wrap gap-1.5">
-              <a href="https://product.kyobobook.co.kr/detail/S000221175384" target="_blank" rel="noopener" class="flex-1 min-w-[68px] text-center bg-gold text-white text-[11.5px] font-bold rounded-lg py-2 hover:opacity-90 transition">교보문고</a>
-              <a href="https://www.ypbooks.co.kr/books/202608256736947200?idKey=340" target="_blank" rel="noopener" class="flex-1 min-w-[62px] text-center bg-white text-ink border border-ink/15 text-[11.5px] font-bold rounded-lg py-2 hover:border-gold/60 hover:text-gold transition">영풍문고</a>
-              <a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=401116286" target="_blank" rel="noopener" class="flex-1 min-w-[62px] text-center bg-white text-ink border border-ink/15 text-[11.5px] font-bold rounded-lg py-2 hover:border-gold/60 hover:text-gold transition">알라딘</a>
-              <a href="https://www.yes24.com/product/goods/195412749" target="_blank" rel="noopener" class="flex-1 min-w-[62px] text-center bg-white text-ink border border-ink/15 text-[11.5px] font-bold rounded-lg py-2 hover:border-gold/60 hover:text-gold transition">YES24</a>
-              <a href="https://bookk.co.kr/bookStore/6a7de93beb0b10d4f487625a" target="_blank" rel="noopener" class="flex-1 min-w-[62px] text-center bg-white text-ink border border-ink/15 text-[11.5px] font-bold rounded-lg py-2 hover:border-gold/60 hover:text-gold transition">부크크</a>
+              <a href="https://www.yes24.com/product/goods/196822943" target="_blank" rel="noopener" class="flex-1 min-w-[68px] text-center bg-gold text-white text-[11.5px] font-bold rounded-lg py-2 hover:opacity-90 transition">YES24</a>
+              <a href="https://bookk.co.kr/bookStore/6aaa9a93550dd177e37471c5" target="_blank" rel="noopener" class="flex-1 min-w-[62px] text-center bg-white text-ink border border-ink/15 text-[11.5px] font-bold rounded-lg py-2 hover:border-gold/60 hover:text-gold transition">부크크</a>
             </div>
-            <p class="text-[10.5px] font-bold text-neutral-900/40 mt-2.5 mb-1.5">📄 무료 자료</p>
-            <a href="/files/마귀는거짓말을하지않는다-미리보기요약본.pdf" target="_blank" rel="noopener" class="block text-center bg-white text-gold border border-gold/45 text-[11.5px] font-bold rounded-lg py-2 hover:bg-gold hover:text-white transition">미리보기 요약본 PDF</a>
+            <p class="text-[10.5px] font-bold text-neutral-900/40 mt-2.5 mb-1.5">📱 전자책</p>
+            <a href="https://bookk.co.kr/bookStore/6ab289b3f1f47e9648aaffc3" target="_blank" rel="noopener" class="block text-center bg-white text-ink border border-ink/15 text-[11.5px] font-bold rounded-lg py-2 hover:border-gold/60 hover:text-gold transition">부크크 (12,900원)</a>
           </div>
-          <a href="books.html#devil" class="inline-block text-[11.5px] text-gold font-semibold mt-3 hover:underline">책 소개 자세히 보기 →</a>
+          <a href="books.html#millennium" class="inline-block text-[11.5px] text-gold font-semibold mt-3 hover:underline">책 소개 자세히 보기 →</a>
         </div>
+        <a href="books.html#devil" class="group bg-white rounded-2xl p-5 lg:p-4 text-center shadow-soft flex flex-col hover:shadow-card hover:-translate-y-0.5 transition">
+          <img src="images/books/devil.jpg" alt="마귀는 거짓말을 하지 않는다 표지" loading="lazy"
+               class="w-[112px] md:w-[128px] mx-auto rounded-[3px] shadow-card group-hover:-translate-y-1 transition-transform"/>
+          <p class="font-bold text-[14.5px] leading-snug mt-4 group-hover:text-gold transition-colors">마귀는 거짓말을<br class="hidden md:block"/> 하지 않는다</p>
+          <p class="text-[12px] text-neutral-900/55 mt-2 leading-relaxed flex-1">요한계시록 바벨론의 신비, 그리고 확신이라는 미혹</p>
+          <span class="inline-block text-[11.5px] text-gold font-semibold mt-3">소개 · 구매처 보기 →</span>
+        </a>
         <a href="books.html#caesar" class="group bg-white rounded-2xl p-5 lg:p-4 text-center shadow-soft flex flex-col hover:shadow-card hover:-translate-y-0.5 transition">
           <img src="images/books/caesar.jpg" alt="가이사의 교회, 하나님의 교회 표지" loading="lazy"
                class="w-[112px] md:w-[128px] mx-auto rounded-[3px] shadow-card group-hover:-translate-y-1 transition-transform"/>
@@ -1155,7 +1159,8 @@
       ]},
       { label:'저자의 책', href:'books.html', children:[
         { label:'저자의 책 전체', href:'books.html' },
-        { label:'마귀는 거짓말을 하지 않는다 (신간)', href:'books.html#devil' },
+        { label:'천년왕국을 아십니까 (신간)', href:'books.html#millennium' },
+        { label:'마귀는 거짓말을 하지 않는다', href:'books.html#devil' },
         { label:'가이사의 교회, 하나님의 교회', href:'books.html#caesar' },
         { label:'가면의 시대', href:'books.html#mask' },
         { label:'교회를 떠나고서야, 예수를 만났다', href:'books.html#church' },
@@ -2232,14 +2237,14 @@
       <button id="bookPopupX" aria-label="닫기"
               class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/15 border border-white/25 text-white/70 hover:bg-white/25 hover:text-white text-lg leading-none">✕</button>
       <!-- 주인공 도서 — 교체 시 표지·배지·제목·후킹·링크만 수정 -->
-      <a href="books.html#church" class="flex items-center gap-4 sm:gap-5 px-5 py-5 bg-gradient-to-br from-navy to-ink group">
-        <img src="images/books/church.jpg" alt="교회를 떠나고서야, 예수를 만났다 표지"
+      <a href="books.html#millennium" class="flex items-center gap-4 sm:gap-5 px-5 py-5 bg-gradient-to-br from-navy to-ink group">
+        <img src="images/books/millennium.jpg" alt="천년왕국을 아십니까 표지"
              class="w-[88px] sm:w-[102px] shrink-0 rounded-[3px] shadow-[0_18px_40px_-12px_rgba(0,0,0,.7)] group-hover:-translate-y-1 transition-transform"/>
         <div class="min-w-0">
-          <span class="inline-flex text-[10px] font-bold text-white bg-[#00704a] rounded-full px-2.5 py-1">전국 서점 입점</span>
-          <p class="font-bold text-white text-[17px] sm:text-[19px] leading-snug mt-2">교회를 떠나고서야,<br/>예수를 만났다</p>
-          <p class="text-[12px] text-white/70 leading-relaxed mt-1.5">“저는 교회를 세 번 떠났습니다.<br/>너무 믿었기 때문에 아팠습니다”</p>
-          <p class="text-[10.5px] text-white/45 mt-1.5">환멸의 시대를 건너, 다시 찾은 진짜 교회</p>
+          <span class="inline-flex text-[10px] font-bold text-white bg-gold rounded-full px-2.5 py-1">신간 출간</span>
+          <p class="font-bold text-white text-[17px] sm:text-[19px] leading-snug mt-2">천년왕국을<br/>아십니까</p>
+          <p class="text-[12px] text-white/70 leading-relaxed mt-1.5">“죽으면 구름 위 천국으로 간다고 믿고 계십니까.<br/>성경은 그런 천국을 약속한 적이 없습니다”</p>
+          <p class="text-[10.5px] text-white/45 mt-1.5">149만 회 시청 천년왕국 세미나의 완결판 · 전 28장</p>
         </div>
       </a>
 
@@ -2249,10 +2254,13 @@
           <a href="books.html" class="text-[11px] font-semibold text-gold hover:underline">전체 보기 →</a>
         </div>
         <div class="grid grid-cols-4 gap-2">
-          <a href="books.html#devil" class="relative block min-w-0 rounded-xl border border-ink/8 px-2 py-2.5 text-center hover:border-gold/50 hover:shadow-soft transition">
-            <span class="absolute -top-1.5 -right-1.5 text-[9px] font-bold text-white bg-gold rounded-full px-1.5 py-0.5 shadow-soft">신간</span>
+          <a href="books.html#devil" class="block min-w-0 rounded-xl border border-ink/8 px-2 py-2.5 text-center hover:border-gold/50 hover:shadow-soft transition">
             <img src="images/books/devil.jpg" alt="" class="w-[46px] mx-auto rounded-[2px] shadow-soft"/>
             <p class="text-[10.5px] leading-tight text-neutral-900/70 mt-2">마귀는 거짓말을<br/>하지 않는다</p>
+          </a>
+          <a href="books.html#church" class="block min-w-0 rounded-xl border border-ink/8 px-2 py-2.5 text-center hover:border-gold/50 hover:shadow-soft transition">
+            <img src="images/books/church.jpg" alt="" class="w-[46px] mx-auto rounded-[2px] shadow-soft"/>
+            <p class="text-[10.5px] leading-tight text-neutral-900/70 mt-2">교회를 떠나고서야,<br/>예수를 만났다</p>
           </a>
           <a href="books.html#caesar" class="block min-w-0 rounded-xl border border-ink/8 px-2 py-2.5 text-center hover:border-gold/50 hover:shadow-soft transition">
             <img src="images/books/caesar.jpg" alt="" class="w-[46px] mx-auto rounded-[2px] shadow-soft"/>
@@ -2262,15 +2270,11 @@
             <img src="images/books/mask.jpg" alt="" class="w-[46px] mx-auto rounded-[2px] shadow-soft"/>
             <p class="text-[10.5px] leading-tight text-neutral-900/70 mt-2">가면의 시대</p>
           </a>
-          <a href="books.html#mom" class="block min-w-0 rounded-xl border border-ink/8 px-2 py-2.5 text-center hover:border-gold/50 hover:shadow-soft transition">
-            <img src="images/books/mom.jpg" alt="" class="w-[46px] mx-auto rounded-[2px] shadow-soft"/>
-            <p class="text-[10.5px] leading-tight text-neutral-900/70 mt-2">엄마 향기</p>
-          </a>
         </div>
       </div>
 
       <div class="px-5 pt-4 pb-5">
-        <a href="books.html#church" class="block w-full text-center bg-gold text-white font-bold text-[15px] py-3.5 rounded-xl hover:opacity-90 transition">이 책 보러 가기 →</a>
+        <a href="books.html#millennium" class="block w-full text-center bg-gold text-white font-bold text-[15px] py-3.5 rounded-xl hover:opacity-90 transition">이 책 보러 가기 →</a>
         <div class="flex items-center justify-between mt-3.5">
           <label class="flex items-center gap-1.5 text-[12px] text-neutral-900/45 cursor-pointer select-none">
             <input id="bookPopupToday" type="checkbox" class="accent-[#00704a]"/> 오늘 하루 보지 않기
