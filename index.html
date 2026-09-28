@@ -1964,7 +1964,7 @@
   </script>
 
   <script src="/access.js?v=1"></script>
-  <script src="auth-header.js?v=20260906a"></script>
+  <script src="auth-header.js?v=20260928a"></script>
   <script src="/cms.js"></script>
   <script>
     // 후원 등 앵커로 들어왔을 때 콘텐츠 로드 후 확실히 스크롤
@@ -2305,6 +2305,9 @@
     timer = setTimeout(function(){
       timer = null;
       el.classList.remove('hidden'); el.classList.add('flex');
+      // 화면에 뜬 순간 '봤다'로 기록 — 자동 새로고침 등 어떤 경로로 페이지가 다시 열려도
+      // 같은 방문에서 팝업이 두 번 뜨지 않게 한다(2026-09-28)
+      markSeen();
       document.addEventListener('keydown', onKey);
     }, 1500);
     document.getElementById('bookPopupX').addEventListener('click', close);

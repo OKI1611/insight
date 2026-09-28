@@ -41,9 +41,16 @@
     if('serviceWorker' in navigator){
       var __biHadCtrl = !!navigator.serviceWorker.controller;
       var __biReloading = false;
+      var __biLoadedAt = Date.now();
       var __biReload = function(){ if(__biReloading) return; __biReloading = true; location.reload(); };
-      // 1) 새 서비스워커가 활성화되면(=새 버전 배포) 자동 새로고침
-      navigator.serviceWorker.addEventListener('controllerchange', function(){ if(__biHadCtrl) __biReload(); });
+      // 1) 새 서비스워커가 활성화되면(=새 버전 배포) 자동 새로고침.
+      //    단, 접속 직후의 교대는 건너뛴다 — 문서·공용 스크립트는 network-first(no-store)라
+      //    방금 받은 페이지가 이미 최신본이고, 이때 리로드하면 홈 책 팝업이 두 번 뜬다(2026-09-28 수정).
+      navigator.serviceWorker.addEventListener('controllerchange', function(){
+        if(!__biHadCtrl) return;
+        if(Date.now() - __biLoadedAt < 60000) return;
+        __biReload();
+      });
       // 2) 콘텐츠 변경 감지: 현재 문서의 ETag가 바뀌면 갱신
       var __biTag = null;
       var __biGetTag = function(cb){
