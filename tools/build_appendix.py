@@ -31,7 +31,8 @@ PUB = {
     "address": "서울특별시 강남구 논현로10길 30, 505-S264호",
     "reg_no": "",                                # 출판사 신고번호(예: 제 2026-000000호) — 확인 후 기입
     "isbn": {"bigprint_pdf": "", "parallel_pdf": "", "bigprint_epub": "", "parallel_epub": ""},
-    "price": {"bigprint": "", "parallel": ""},
+    # 2026-09-29 신청 중(승인 후 기입): 한영대역 PDF 979-11-220586-7-3 · EPUB 979-11-220586-1-1 · 6번(…-6-6)은 쓰지 않음
+    "price": {"bigprint": "", "parallel": "15,000원"},  # 한영대역 2026-09-29 확정(PDF·EPUB 동일)
     "rights": "ⓒ 오광일 · 바이블 인사이트, 2026",
 }
 

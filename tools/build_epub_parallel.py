@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션 · 한영대역 — EPUB 2.0 빌더
+"""킹제임스 성경 정본역(正本譯) : 헤리티지 에디션 · 한영대역 — EPUB 2.0 빌더
 
   절마다 한국어 본문과 KJV 영어 본문을 이어서 배치한다.
   (전자책은 화면 폭이 제각각이라 인쇄판의 좌우 2단 대신 위·아래 대역이 읽기 좋다)
@@ -67,10 +67,10 @@ def make_cover():
         f = ImageFont.truetype(fp, size)
         d.text(((W - d.textlength(txt, font=f)) // 2, y), txt, font=f, fill=fill)
 
-    # 역본명이 길어져 3줄 구성 — 정본역(正本譯) / 킹제임스 성경 / 헤리티지 에디션
+    # 3줄 구성 — 킹제임스 성경 / 정본역(正本譯) / 헤리티지 에디션 (2026-09-29 제목 순서 변경)
     center(280, "B I B L E   I N S I G H T", fr, 42, GOLD)
-    center(500, "정본역(正本譯)", fb, 128, INK)
-    center(660, "킹제임스 성경", fb, 128, INK)
+    center(660, "정본역(正本譯)", fb, 128, INK)
+    center(500, "킹제임스 성경", fb, 128, INK)
     center(830, "헤리티지 에디션", fr, 66, GRAY)
     d.line([(W // 2 - 200, 1000), (W // 2 + 200, 1000)], fill=GOLD, width=3)
     center(1070, "한영대역", fb, 96, GREEN)
@@ -118,13 +118,13 @@ def main():
     print("표지 생성:", cover)
 
     add("OEBPS/cover.xhtml",
-        xhtml("표지", '<p class="center"><img src="images/cover.jpg" alt="정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션 한영대역" style="max-width:100%;"/></p>'),
+        xhtml("표지", '<p class="center"><img src="images/cover.jpg" alt="킹제임스 성경 정본역(正本譯) : 헤리티지 에디션 한영대역" style="max-width:100%;"/></p>'),
         "cover-page", "application/xhtml+xml")
     add("OEBPS/images/cover.jpg", open(cover, "rb").read(), "cover-img", "image/jpeg", spine=False)
     add("OEBPS/style.css", CSS, "css", "text/css", spine=False)
 
     front = ('<div style="margin-top:28%;"></div>'
-             '<h1 style="font-size:1.9em;">정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션</h1>'
+             '<h1 style="font-size:1.9em;">킹제임스 성경 정본역(正本譯) : 헤리티지 에디션</h1>'
              '<p class="center" style="font-size:1.25em;color:#00593c;font-weight:bold;">한영대역</p>'
              '<p class="center small">THE HERITAGE KJV · AUTHENTIC VERSION · 1611</p>'
              '<div style="margin-top:34%;"></div>'
@@ -132,7 +132,7 @@ def main():
     add("OEBPS/titlepage.xhtml", xhtml("속표지", front), "titlepage", "application/xhtml+xml")
 
     colophon = ('<h1>일러두기 · 판권</h1>'
-        '<p><b>도서명</b>  정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션 (한영대역)</p>'
+        '<p><b>도서명</b>  킹제임스 성경 정본역(正本譯) : 헤리티지 에디션 (한영대역)</p>'
         '<p>‘정본역(正本譯)’은 공인본문(Textus Receptus)과 맛소라 본문을 저본으로 삼았음을 뜻하는 말이며, 다른 번역본의 가치를 부정하는 표현이 아닙니다.</p>'
         '<p>이 책의 한국어 본문은 킹제임스 성경(KJV — 1611년 흠정, 1769년 표준 본문)의 영어 본문과 그 저본인 공인본문(Textus Receptus)·맛소라 본문을 '
         '히브리어·아람어·헬라어 원문과 대조하여 바이블 인사이트가 직접 번역한 것입니다. 기존 한국어 역본을 저본으로 삼지 않은 '
@@ -142,7 +142,7 @@ def main():
         '<p>본문 소제목은 독자의 이해를 돕기 위하여 바이블 인사이트가 새로 지은 것으로, 성경 원문의 일부가 아닙니다.</p>'
         '<p>영어 본문(King James Version — 1611년 흠정, 1769년 표준 본문)은 대한민국 저작권법상 보호 기간이 만료된 퍼블릭 도메인 저작물입니다.</p>'
         '<p>한국어 번역 저작권 ⓒ 오광일 · 바이블 인사이트, 2026. 이 책의 한국어 본문을 출판사의 서면 허락 없이 복제·전재·배포할 수 없습니다. '
-        '다만 개인 묵상·설교·강의·논문에서의 통상적인 인용은 출처(정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션)를 밝히는 조건으로 허용합니다.</p>'
+        '다만 개인 묵상·설교·강의·논문에서의 통상적인 인용은 출처(킹제임스 성경 정본역(正本譯) : 헤리티지 에디션)를 밝히는 조건으로 허용합니다.</p>'
         '<p>' + '<br/>'.join('<b>%s</b>  %s' % kv for kv in APX.colophon_lines("parallel", "epub")) + '</p>')
     add("OEBPS/colophon.xhtml", xhtml("판권", colophon), "colophon", "application/xhtml+xml")
 
@@ -206,7 +206,7 @@ def main():
     opf = ('<?xml version="1.0" encoding="utf-8"?>\n'
         '<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="bid" version="2.0">\n'
         '<metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">\n'
-        '<dc:title>정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션 (한영대역)</dc:title>\n'
+        '<dc:title>킹제임스 성경 정본역(正本譯) : 헤리티지 에디션 (한영대역)</dc:title>\n'
         '<dc:creator opf:role="trl">오광일</dc:creator>\n'
         '<dc:publisher>' + APX.PUB["publisher"] + '</dc:publisher>\n'
         '<dc:language>ko</dc:language>\n<dc:language>en</dc:language>\n'
@@ -249,7 +249,7 @@ def main():
         '<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">\n'
         '<head><meta name="dtb:uid" content="urn:uuid:%s"/><meta name="dtb:depth" content="2"/>'
         '<meta name="dtb:totalPageCount" content="0"/><meta name="dtb:maxPageNumber" content="0"/></head>\n'
-        '<docTitle><text>정본역(正本譯) 킹제임스 성경 : 헤리티지 에디션 (한영대역)</text></docTitle>\n'
+        '<docTitle><text>킹제임스 성경 정본역(正本譯) : 헤리티지 에디션 (한영대역)</text></docTitle>\n'
         '<navMap>%s</navMap></ncx>') % (BOOK_ID, "".join(np))
 
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
