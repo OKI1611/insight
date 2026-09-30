@@ -1472,7 +1472,8 @@
           const all = [];
           levels.forEach((lv, ti) => (lv.lessons || []).forEach((l, li) => all.push({ l, track: lv.name || '', gi: starts[ti] + li })));
           const dated = all.filter(x => x.l.added).sort((a, b) => String(b.l.added).localeCompare(String(a.l.added)) || (b.gi - a.gi));
-          const pick = dated[0] || all.find(x => ytId(x.l.youtube));
+          // featured: true 인 강의가 있으면 최신순보다 우선해 히어로에 고정한다(course.json에서 지정)
+          const pick = all.find(x => x.l.featured) || dated[0] || all.find(x => ytId(x.l.youtube));
           if(!pick) return;
           const id = ytId(pick.l.youtube);
           heroA.href = id ? 'watch.html?v=' + id : 'watch.html?l=' + pick.gi;
