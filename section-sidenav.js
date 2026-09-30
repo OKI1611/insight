@@ -35,7 +35,8 @@
       { label:'고객센터(주문·배송·반품)', href:'store-help.html' }, { label:'내 구매·자료', href:'mylearning.html' } ]},
     { label:'저자의 책', href:'books.html', children:[
       { label:'저자의 책 전체', href:'books.html' },
-      { label:'천년왕국을 아십니까 (신간)', href:'books.html#millennium' },
+      { label:'그 나라에서 만나요 (신간)', href:'books.html#seeyou' },
+      { label:'천년왕국을 아십니까', href:'books.html#millennium' },
       { label:'마귀는 거짓말을 하지 않는다', href:'books.html#devil' },
       { label:'가이사의 교회, 하나님의 교회', href:'books.html#caesar' },
       { label:'가면의 시대', href:'books.html#mask' },
