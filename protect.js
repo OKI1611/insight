@@ -5,9 +5,14 @@
    ※ 사이트의 정식 '구절 복사/공유 버튼'(출처 자동첨부)과 소량 인용은 그대로 허용. */
 (function(){
   if(window.__biblyProtect) return; window.__biblyProtect = true;
-  var LIMIT = 400; // 한 번에 복사 허용 글자수(이 이상이면 대량으로 간주, 차단)
+  var LIMIT = 400;       // 한 번에 복사 허용 글자수(이 이상이면 대량으로 간주, 차단)
+  var ZONE_LIMIT = 1200; // data-free-copy 영역(성경 본문 등 인용이 목적인 곳)의 허용 글자수 — 5~6절 분량
 
   function isField(el){ return el && el.closest && el.closest('input,textarea,[contenteditable="true"]'); }
+  // 인용 복사를 허용하는 영역(예: bible.html #reader — 복사 시 출처가 자동 첨부됨).
+  // 우클릭·롱프레스 선택을 막으면 어르신들의 '드래그→우클릭→복사'와
+  // 안드로이드의 길게 눌러 선택하기까지 막혀서, 이 영역에서는 열어 둔다.
+  function freeZone(el){ return el && el.closest && el.closest('[data-free-copy]'); }
   function toast(m){
     var t = document.getElementById('cprtToast');
     if(!t){ t = document.createElement('div'); t.id='cprtToast';
@@ -16,16 +21,18 @@
     t.textContent = m; t.style.display=''; clearTimeout(t._t); t._t=setTimeout(function(){ t.style.display='none'; }, 2400);
   }
 
-  // 우클릭(컨텍스트 메뉴) 차단 — 입력창 제외
-  document.addEventListener('contextmenu', function(e){ if(isField(e.target)) return; e.preventDefault(); toast('이 콘텐츠는 저작권 보호 대상입니다.'); });
-  // 이미지·텍스트 드래그 차단
-  document.addEventListener('dragstart', function(e){ if(isField(e.target)) return; e.preventDefault(); });
+  // 우클릭(컨텍스트 메뉴) 차단 — 입력창·인용 허용 영역 제외
+  document.addEventListener('contextmenu', function(e){ if(isField(e.target) || freeZone(e.target)) return; e.preventDefault(); toast('이 콘텐츠는 저작권 보호 대상입니다.'); });
+  // 이미지·텍스트 드래그 차단 — 인용 허용 영역 제외
+  document.addEventListener('dragstart', function(e){ if(isField(e.target) || freeZone(e.target)) return; e.preventDefault(); });
 
   // 대량 복사/잘라내기 차단(임계값 초과 시). 소량 인용은 허용(공유 기능과 호환)
+  // 인용 허용 영역은 한·영 본문이 함께 선택되는 점을 감안해 한도를 넉넉히 둔다.
   function guard(e){
     if(isField(e.target)) return;
     var s=''; try{ s=(window.getSelection&&window.getSelection().toString())||''; }catch(_){}
-    if(s.length > LIMIT){ e.preventDefault(); e.stopImmediatePropagation(); toast('대량 복제는 제한됩니다 · 구절별 공유 버튼을 이용해 주세요'); }
+    var lim = freeZone(e.target) ? ZONE_LIMIT : LIMIT;
+    if(s.length > lim){ e.preventDefault(); e.stopImmediatePropagation(); toast('대량 복제는 제한됩니다 · 구절별 공유 버튼을 이용해 주세요'); }
   }
   document.addEventListener('copy', guard, true);
   document.addEventListener('cut', guard, true);
