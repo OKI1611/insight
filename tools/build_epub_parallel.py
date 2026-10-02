@@ -40,11 +40,21 @@ def clean_ko(s):
     return re.sub(r"\s{2,}", " ", _KO_QUOTES.sub("", str(s))).strip()
 
 
-def en_ch(b, c):
-    p = os.path.join(ROOT, "bible", "en", "%s-%d.json" % (b, c))
-    if not os.path.exists(p):
+_KJV_CACHE = {}
+def _verses_from_source(b, c):
+    """한영대역 본문 = bible/kr(한국어) + bible/kjv(영어). 2026-10-03: 학습 코너 사본(bible/en)을
+    읽던 것을 바로잡음 — 그 사본은 영어가 생략(…)된 절·절 수가 다른 장이 있어 책 본문으로 쓸 수 없다."""
+    kp = os.path.join(ROOT, "bible", "kr", "%s-%d.json" % (b, c))
+    if not os.path.exists(kp):
         return None
-    return json.loads(io.open(p, encoding="utf-8").read())
+    ko = json.loads(io.open(kp, encoding="utf-8-sig").read())
+    if b not in _KJV_CACHE:
+        _KJV_CACHE[b] = json.loads(io.open(os.path.join(ROOT, "bible", "kjv", "%s.json" % b), encoding="utf-8").read())
+    en_ = _KJV_CACHE[b].get(str(c), [])
+    return [{"ko": ko[i], "en": (en_[i] if i < len(en_) else "")} for i in range(len(ko))]
+
+def en_ch(b, c):
+    return _verses_from_source(b, c)
 
 
 # ───────────────── 표지 (큰글자판과 같은 시리즈 디자인) ─────────────────
