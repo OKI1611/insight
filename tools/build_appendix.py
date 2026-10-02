@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """정본역 킹제임스 성경 — 앞·뒤 부록 공용 데이터 모듈 (2026-08-05 구성 확정)
 
-  앞부분: ①간행사 ②번역 원칙 6개조 ③저본 명세·정본역 정의 ④일러두기 ⑤약자표
+  앞부분: ①간행사 ②일러두기 ③약자표  (번역 원칙·저본·1611 서문은 2026-10-02 권말로 이동)
   뒷부분: A 교리 용어 해설 · B 죽음과 심판 원어 도표 · D 구원으로 가는 길 ·
           G 도량형·화폐 환산표 · L QR 안내
   판별 특화: J 암송 구절 30선(큰글자판) · K KJV 고어 사전(한영대역)
@@ -99,29 +99,6 @@ def front_sections():
         {"t": "p", "text": "말씀으로 시대를 읽는 모든 분들에게 이 성경을 드립니다."},
         {"t": "note", "text": PUB["publisher"] + " · 옮긴이 " + PUB["translator"]},
     ]})
-    S.append({"id": "principles", "title": "번역 원칙", "blocks": [
-        {"t": "kv", "term": "1. 공인본문의 온전한 보존",
-         "desc": "공인본문(Textus Receptus)에 있는 어구와 절은 하나도 덜어내지 않고 전부 옮겼습니다. 현대 비평 본문이 생략하는 구절들(마태복음 17:21, 사도행전 8:37, 요한일서 5:7 등)도 본문 그대로 보존하였습니다."},
-        {"t": "kv", "term": "2. 원문이 최종 근거",
-         "desc": "KJV 영어 본문을 출발점으로 삼되, 핵심 단어는 히브리어·아람어·헬라어 원문을 직접 확인하여 원문이 최종 근거가 되게 하였습니다."},
-        {"t": "kv", "term": "3. 죽음과 심판 용어의 구분",
-         "desc": "원어가 구분하는 것은 번역도 구분합니다. 스올·하데스는 '음부'로, 게헨나는 '지옥'으로 옮겨 죽은 자의 세계와 최후의 형벌 장소를 섞지 않았습니다."},
-        {"t": "kv", "term": "4. 하나님의 이름",
-         "desc": "구약의 신명사문자(יהוה)는 전권에서 '여호와'로 통일하였습니다. 신약에는 '여호와'가 한 번도 등장하지 않습니다 — 신약 원문에 신명사문자가 없기 때문입니다."},
-        {"t": "kv", "term": "5. 핵심 교리 용어의 전통 보존",
-         "desc": "독생자·칭의·성화·구속·중생·영생·침례 등 교리의 뼈대가 되는 용어는 새 말을 만들지 않고 한국 교회의 전통 표기를 지켰습니다."},
-        {"t": "kv", "term": "6. 문체와 문장기호",
-         "desc": "본문은 권위 있는 성경 문어체로 통일하고, 따옴표류 문장기호는 한글 성경의 관례를 따라 쓰지 않았습니다. 문장의 구성과 어순은 어느 역본도 베끼지 않은 독자적 번역입니다."},
-        {"t": "note", "text": "번역 원칙 전문과 절별 번역 해설은 biblynote.com/translation 에 공개되어 있습니다."},
-    ]})
-    S.append({"id": "sources", "title": "저본(底本)", "blocks": [
-        {"t": "lead", "text": "'정본역(正本譯)'은 공인본문(Textus Receptus)과 맛소라 본문을 저본으로 삼았음을 뜻하는 이름이며, 다른 번역본의 가치를 부정하는 표현이 아닙니다."},
-        {"t": "table", "head": ["구분", "저본", "비고"],
-         "rows": [["구약", "맛소라 본문 (Masoretic Text)", "히브리어·아람어"],
-                  ["신약", "공인본문 (Textus Receptus)", "헬라어"],
-                  ["대조", "킹제임스 성경 (KJV, 1611 흠정 · 1769 표준 본문)", "영어 — 대한민국 저작권법상 퍼블릭 도메인"]]},
-        {"t": "p", "text": "본문 구성은 KJV와 동일한 66권 1,189장 31,102절이며, 절 구분도 1:1로 일치합니다."},
-    ]})
     S.append({"id": "guide", "title": "일러두기", "blocks": [
         {"t": "kv", "term": "소제목", "desc": "본문 중의 소제목은 독자의 이해를 돕기 위하여 바이블 인사이트가 새로 지은 것으로, 성경 원문의 일부가 아닙니다."},
         {"t": "kv", "term": "절 번호", "desc": "각 절 앞의 작은 숫자는 절 번호입니다. 장 시작의 큰 숫자는 장 번호입니다."},
@@ -129,24 +106,8 @@ def front_sections():
         {"t": "kv", "term": "음부와 지옥", "desc": "'음부'(스올·하데스)는 죽은 자들이 머무는 곳을, '지옥'(게헨나)은 최후의 불 형벌을 가리킵니다. 원어가 다르므로 번역도 구분하였습니다."},
         {"t": "kv", "term": "왕국", "desc": "'하나님의 왕국'과 '하늘의 왕국'(마태복음 고유 표현)은 원문의 구분을 따라 나누어 옮겼습니다."},
         {"t": "kv", "term": "문장기호", "desc": "대화문에도 따옴표를 쓰지 않는 한글 성경의 관례를 따랐습니다."},
+        {"t": "kv", "term": "권말 자료", "desc": "번역 원칙, 저본(底本), 1611년 킹제임스 성경의 헌정사와 역자 서문은 본문 뒤에 실었습니다. 영어 본문과 한국어 본문이 달리 읽히는 자리는 원문을 따른 것이며, 그 까닭은 biblynote.com의 절별 해설에서 볼 수 있습니다."},
     ]})
-    # 1611년 킹제임스 성경 서문 — 헌정사 + 역자가 독자에게 (content/kjv-preface-1611.json, 한국어만)
-    try:
-        KP = json.load(io.open(os.path.join(ROOT, "content", "kjv-preface-1611.json"), encoding="utf-8"))
-        D, P = KP["dedication"], KP["preface"]
-        S.append({"id": "kjv-dedication", "title": "1611년 킹제임스 성경 헌정사", "blocks":
-            [{"t": "note", "text": KP["meta"]["note_ko"]},
-             {"t": "lead", "text": D["salutation_ko"]}]
-            + [{"t": "p", "text": x["ko"]} for x in D["paras"]]
-            + [{"t": "note", "text": "— " + D["sign_ko"] + " (" + D["sign_en"] + ")"}]})
-        blocks = [{"t": "lead", "text": "성경 번역자들이 독자에게 — 1611년 초판 서문 「The Translators to the Reader」"}]
-        for sec in P["sections"]:
-            blocks.append({"t": "h", "text": sec["h_ko"]})
-            blocks += [{"t": "p", "text": x["ko"]} for x in sec["paras"]]
-        blocks.append({"t": "note", "text": "영어 원문은 biblynote.com/kjv-preface 에서 문단마다 대조하여 읽을 수 있습니다."})
-        S.append({"id": "kjv-preface", "title": "1611년 킹제임스 성경 역자 서문", "blocks": blocks})
-    except Exception as e:
-        print("[build_appendix] 1611 서문 생략:", e)
     # 약자표
     rows, half = [], (len(_books) + 1) // 2
     for i in range(half):
@@ -249,8 +210,53 @@ _ARCHAIC = [
     ("God forbid", "결코 그럴 수 없느니라(메 게노이토)"),
 ]
 
-def back_sections(edition="bigprint"):
+def _reference_sections():
+    """권말 자료 — 번역 원칙 · 저본 · 1611년 서문 (2026-10-02 사용자 지시로 앞부분에서 권말로 이동)"""
     S = []
+    S.append({"id": "principles", "title": "번역 원칙", "blocks": [
+        {"t": "kv", "term": "1. 공인본문의 온전한 보존",
+         "desc": "공인본문(Textus Receptus)에 있는 어구와 절은 하나도 덜어내지 않고 전부 옮겼습니다. 현대 비평 본문이 생략하는 구절들(마태복음 17:21, 사도행전 8:37, 요한일서 5:7 등)도 본문 그대로 보존하였습니다."},
+        {"t": "kv", "term": "2. 원문이 최종 근거",
+         "desc": "KJV 영어 본문을 출발점으로 삼되, 핵심 단어는 히브리어·아람어·헬라어 원문을 직접 확인하여 원문이 최종 근거가 되게 하였습니다."},
+        {"t": "kv", "term": "3. 죽음과 심판 용어의 구분",
+         "desc": "원어가 구분하는 것은 번역도 구분합니다. 스올·하데스는 '음부'로, 게헨나는 '지옥'으로 옮겨 죽은 자의 세계와 최후의 형벌 장소를 섞지 않았습니다."},
+        {"t": "kv", "term": "4. 하나님의 이름",
+         "desc": "구약의 신명사문자(יהוה)는 전권에서 '여호와'로 통일하였습니다. 신약에는 '여호와'가 한 번도 등장하지 않습니다 — 신약 원문에 신명사문자가 없기 때문입니다."},
+        {"t": "kv", "term": "5. 핵심 교리 용어의 전통 보존",
+         "desc": "독생자·칭의·성화·구속·중생·영생·침례 등 교리의 뼈대가 되는 용어는 새 말을 만들지 않고 한국 교회의 전통 표기를 지켰습니다."},
+        {"t": "kv", "term": "6. 문체와 문장기호",
+         "desc": "본문은 권위 있는 성경 문어체로 통일하고, 따옴표류 문장기호는 한글 성경의 관례를 따라 쓰지 않았습니다. 문장의 구성과 어순은 어느 역본도 베끼지 않은 독자적 번역입니다."},
+        {"t": "note", "text": "번역 원칙 전문과 절별 번역 해설은 biblynote.com/translation 에 공개되어 있습니다."},
+    ]})
+    S.append({"id": "sources", "title": "저본(底本)", "blocks": [
+        {"t": "lead", "text": "'정본역(正本譯)'은 공인본문(Textus Receptus)과 맛소라 본문을 저본으로 삼았음을 뜻하는 이름이며, 다른 번역본의 가치를 부정하는 표현이 아닙니다."},
+        {"t": "table", "head": ["구분", "저본", "비고"],
+         "rows": [["구약", "맛소라 본문 (Masoretic Text)", "히브리어·아람어"],
+                  ["신약", "공인본문 (Textus Receptus)", "헬라어"],
+                  ["대조", "킹제임스 성경 (KJV, 1611 흠정 · 1769 표준 본문)", "영어 — 대한민국 저작권법상 퍼블릭 도메인"]]},
+        {"t": "p", "text": "본문 구성은 KJV와 동일한 66권 1,189장 31,102절이며, 절 구분도 1:1로 일치합니다."},
+    ]})
+    # 1611년 킹제임스 성경 서문 — 헌정사 + 역자가 독자에게 (content/kjv-preface-1611.json, 한국어만)
+    try:
+        KP = json.load(io.open(os.path.join(ROOT, "content", "kjv-preface-1611.json"), encoding="utf-8"))
+        D, P = KP["dedication"], KP["preface"]
+        S.append({"id": "kjv-dedication", "title": "1611년 킹제임스 성경 헌정사", "blocks":
+            [{"t": "note", "text": KP["meta"]["note_ko"]},
+             {"t": "lead", "text": D["salutation_ko"]}]
+            + [{"t": "p", "text": x["ko"]} for x in D["paras"]]
+            + [{"t": "note", "text": "— " + D["sign_ko"] + " (" + D["sign_en"] + ")"}]})
+        blocks = [{"t": "lead", "text": "성경 번역자들이 독자에게 — 1611년 초판 서문 「The Translators to the Reader」"}]
+        for sec in P["sections"]:
+            blocks.append({"t": "h", "text": sec["h_ko"]})
+            blocks += [{"t": "p", "text": x["ko"]} for x in sec["paras"]]
+        blocks.append({"t": "note", "text": "영어 원문은 biblynote.com/kjv-preface 에서 문단마다 대조하여 읽을 수 있습니다."})
+        S.append({"id": "kjv-preface", "title": "1611년 킹제임스 성경 역자 서문", "blocks": blocks})
+    except Exception as e:
+        print("[build_appendix] 1611 서문 생략:", e)
+    return S
+
+def back_sections(edition="bigprint"):
+    S = _reference_sections()
     S.append({"id": "terms", "title": "부록 1 · 핵심 교리 용어 해설", "blocks":
         [{"t": "p", "text": "이 성경이 지켜 쓴 전통 교리 용어들의 뜻을 간추렸습니다. 더 자세한 풀이는 biblynote.com 성경사전에서 볼 수 있습니다."}]
         + [{"t": "kv", "term": t, "desc": d} for t, d in _TERMS]})
