@@ -135,9 +135,8 @@
   <main class="max-w-5xl mx-auto px-4 py-6">
     <div class="text-center mb-5">
       <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">HOLY BIBLE · 성경 읽기</p>
-      <h1 class="text-2xl md:text-[1.7rem] font-bold tracking-tight">정본역(正本譯) <span class="text-gold">킹제임스 성경</span></h1>
+      <h1 class="text-2xl md:text-[1.7rem] font-bold tracking-tight">킹제임스 성경 <span class="text-gold">정본역(正本譯)</span></h1>
       <p class="text-neutral-900/55 text-sm mt-3 leading-relaxed max-w-xl mx-auto">King James Version 영어 성경과 <b class="text-neutral-900">히브리어·헬라어 원문</b>을 한 절 한 절 비교 대조하여, <b class="text-neutral-900">표준 국어 어법</b>에 맞게 새로 옮긴 번역입니다. 영어 KJV 본문과 나란히 읽습니다.</p>
-      <p class="text-neutral-900/40 text-[11px] mt-2.5 tracking-[0.12em]">KJV &middot; 히브리어 &middot; 헬라어 원문 대조 &middot; 표준 국어 어법</p>
     </div>
 
     <!-- ===== 본문 단어 검색 ===== -->
@@ -162,15 +161,6 @@
         </button>
       </div>
     </div>
-
-    <a id="themesBanner" href="themes.html" class="block bg-gold text-white rounded-2xl px-5 py-4 mb-5 hover:opacity-95 transition flex items-center gap-3">
-      <span class="text-2xl shrink-0"></span>
-      <span class="flex-1 min-w-0">
-        <span class="block font-bold text-[15px]">주제별 성경 읽기 — 교리로 읽는 성경</span>
-        <span class="block text-paper/65 text-xs mt-0.5">핵심 교리별 성구를 원어 참고 새 번역 + 영어 학습 각주로</span>
-      </span>
-      <span class="text-gold font-bold text-sm shrink-0">바로가기 →</span>
-    </a>
 
     <!-- 컨트롤 -->
     <div id="ctrlBar" class="sticky top-14 z-30 bg-paper/95 backdrop-blur py-2 -mx-4 px-4 border-b border-ink/8">
@@ -598,7 +588,7 @@
 
     /* ===================== 본문 단어 검색 ===================== */
     let SIDX=null, SLOADING=null;
-    const READ_IDS=['themesBanner','ctrlBar','picker','readWrap','bottomNav','footerNote','copyHint'];
+    const READ_IDS=['ctrlBar','picker','readWrap','bottomNav','footerNote','copyHint'];
     function setSearchMode(on){
       READ_IDS.forEach(id=>{ const el=$(id); if(el) el.classList.toggle('hidden', on); });
       $('searchView').classList.toggle('hidden', !on);
