@@ -52,15 +52,26 @@ def cmd_emit(a):
         refs = [f'{bf}-{ch}-{i+1}' for i in range(len(kr(bf, int(ch))))]
     else:
         refs = [l.strip() for l in open(a.refs, encoding='utf-8') if l.strip()]
-    L = []
+    L = []; skipped = []; done = 0
+    COMMON = {'LORD', 'Lord', 'God', 'GOD', 'I', 'O', 'Israel', 'Jesus', 'Christ', 'Holy', 'Ghost', 'Spirit', 'Father', 'Son', 'Jews', 'Amen'}
     for ref in refs:
         bf, ch, v = split(ref)
         cur = kr(bf, ch)[v - 1]
-        g = grades(cur, ref)
-        tag = ' '.join(f'{k}:{x[0]}' for k, x in g.items())
-        L.append(f'## {ref}  [{tag}]\nEN: {kjv(bf, ch, v)}\nKO: {cur}')
+        en = kjv(bf, ch, v)
+        if not a.chapter:
+            g = grades(cur, ref)
+            if not any(x[0] == 'A' for x in g.values()):      # 이미 고쳐졌거나 A 가 아닌 절은 건너뜀
+                done += 1; continue
+            ws = re.findall(r"[A-Za-z']+", en)
+            caps = [w for w in ws[1:] if w[0].isupper() and w not in COMMON]
+            if ws and len(caps) / len(ws) >= 0.28:           # 이름 나열 — 표현 선택의 여지 없음
+                skipped.append(ref); continue
+        L.append(f'## {ref}\nEN: {en}\nKO: {cur}')
     open(a.out, 'w', encoding='utf-8').write('\n'.join(L) + '\n')
-    print(f'{len(refs)}절 → {a.out}')
+    if skipped:
+        with open(os.path.join(os.path.dirname(a.out), 'unavoidable_names.refs'), 'a', encoding='utf-8') as f:
+            f.write('\n'.join(skipped) + '\n')
+    print(f'{len(L)}절 → {a.out} (이름 나열 제외 {len(skipped)} · 이미 해결 {done})')
 
 def cmd_check(a):
     new = json.load(open(a.new, encoding='utf-8'))
