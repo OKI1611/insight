@@ -119,7 +119,7 @@ def apply_items(items, dry):
                     log.write(f'{ref}\tSKIP\tkr-changed-since-approval\n'); res['skipped'] += 1; continue
                 # kr: 원문 바이트 치환(정확히 1회) → 아니면 인덱스 교체
                 tok = '"' + jstr(cur) + '"'
-                if kr_text.count(tok) == 1:
+                if kr_text is not None and kr_text.count(tok) == 1:
                     kr_text = kr_text.replace(tok, '"' + jstr(new) + '"')
                 else:
                     kr_text = None   # 재직렬화 경로로
