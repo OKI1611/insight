@@ -106,7 +106,7 @@ def front_sections():
         {"t": "kv", "term": "음부와 지옥", "desc": "'음부'(스올·하데스)는 죽은 자들이 머무는 곳을, '지옥'(게헨나)은 최후의 불 형벌을 가리킵니다. 원어가 다르므로 번역도 구분하였습니다."},
         {"t": "kv", "term": "왕국", "desc": "'하나님의 왕국'과 '하늘의 왕국'(마태복음 고유 표현)은 원문의 구분을 따라 나누어 옮겼습니다."},
         {"t": "kv", "term": "문장기호", "desc": "대화문에도 따옴표를 쓰지 않는 한글 성경의 관례를 따랐습니다."},
-        {"t": "kv", "term": "권말 자료", "desc": "번역 원칙, 저본(底本), 1611년 킹제임스 성경의 헌정사와 역자 서문은 본문 뒤에 실었습니다. 영어 본문과 한국어 본문이 달리 읽히는 자리는 원문을 따른 것이며, 그 까닭은 biblynote.com의 절별 해설에서 볼 수 있습니다."},
+        {"t": "kv", "term": "권말 자료", "desc": "번역 원칙과 저본(底本)은 본문 뒤에 실었습니다. 영어 본문과 한국어 본문이 달리 읽히는 자리는 원문을 따른 것이며, 그 까닭은 biblynote.com의 절별 해설에서 볼 수 있습니다. 1611년 초판 킹제임스 성경의 헌정사와 역자 서문 한국어 번역은 biblynote.com/kjv-preface 에 있습니다."},
     ]})
     # 약자표
     rows, half = [], (len(_books) + 1) // 2
@@ -210,6 +210,8 @@ _ARCHAIC = [
     ("God forbid", "결코 그럴 수 없느니라(메 게노이토)"),
 ]
 
+INCLUDE_1611_PREFACE = False   # True 로 바꾸면 권말에 1611년 헌정사·역자 서문을 다시 싣는다
+
 def _reference_sections():
     """권말 자료 — 번역 원칙 · 저본 · 1611년 서문 (2026-10-02 사용자 지시로 앞부분에서 권말로 이동)"""
     S = []
@@ -237,6 +239,9 @@ def _reference_sections():
         {"t": "p", "text": "본문 구성은 KJV와 동일한 66권 1,189장 31,102절이며, 절 구분도 1:1로 일치합니다."},
     ]})
     # 1611년 킹제임스 성경 서문 — 헌정사 + 역자가 독자에게 (content/kjv-preface-1611.json, 한국어만)
+    # 2026-10-03 사용자 결정: 책에는 싣지 않고 홈페이지(kjv-preface.html)에만 둔다 — 번역 미검수·분량 22쪽.
+    if not INCLUDE_1611_PREFACE:
+        return S
     try:
         KP = json.load(io.open(os.path.join(ROOT, "content", "kjv-preface-1611.json"), encoding="utf-8"))
         D, P = KP["dedication"], KP["preface"]
