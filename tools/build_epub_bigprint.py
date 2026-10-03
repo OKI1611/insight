@@ -125,7 +125,7 @@ toc_body = ['<h1>목차</h1>', '<p class="part">구약전서</p>']
 for i, bk in enumerate(books):
     if bk.get("nt") and '<p class="part">신약전서</p>' not in toc_body:
         toc_body.append('<p class="part">신약전서</p>')
-    toc_body.append('<a class="tocbook" href="b%02d.xhtml">%s <span class="small">%s · %d장</span></a>' % (i, E(bk["ko"]), E(bk["en"]), bk["ch"]))
+    toc_body.append('<div><a class="tocbook" href="b%02d.xhtml">%s <span class="small">%s · %d장</span></a></div>' % (i, E(bk["ko"]), E(bk["en"]), bk["ch"]))
 add("OEBPS/toc.xhtml", xhtml("목차", "".join(toc_body)), "tocpage", "application/xhtml+xml")
 
 for i, bk in enumerate(books):
@@ -199,10 +199,10 @@ for _sid, _ttl, _bd in APX_BACK:
     np_xml.append(navp("np-apxb-%s" % _sid, _ttl, "apx-b-%s.xhtml" % _sid))
 ncx = ('<?xml version="1.0" encoding="utf-8"?>\n'
  '<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">\n'
- '<head><meta name="dtb:uid" content="urn:uuid:%s"/><meta name="dtb:depth" content="2"/>'
+ '<head><meta name="dtb:uid" content="%s"/><meta name="dtb:depth" content="2"/>'
  '<meta name="dtb:totalPageCount" content="0"/><meta name="dtb:maxPageNumber" content="0"/></head>\n'
  '<docTitle><text>킹제임스 성경 정본역(正本譯) : 헤리티지 에디션 (큰글자판)</text></docTitle>\n'
- '<navMap>%s</navMap></ncx>') % (BOOK_ID, "".join(np_xml))
+ '<navMap>%s</navMap></ncx>') % (_ident, "".join(np_xml))
 
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 with zipfile.ZipFile(OUT, "w") as z:
