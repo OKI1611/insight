@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <script src="/content-loader.js?v=20260703f"></script>
-  <script src="/site-header.js?v=20260930a"></script>
+  <script src="/site-header.js?v=20261005a"></script>
   <script src="/section-sidenav.js?v=20260930a"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>저자의 책 — 오광일 출간 도서 · BIBLY 바이블 인사이트</title>
@@ -76,6 +76,17 @@
     .shelfSub{font-size:11px;color:#3a425488;margin-top:.2rem;line-height:1.4}
     .shelfBook:hover .shelfCap{color:#00704a}
     @media (max-width:400px){ .shelfSub{display:none} }
+    /* 좁은 화면 — 일곱 권을 한 줄에 욱여넣지 않고 선반째 옆으로 민다(제목 잘림·가로 넘침 방지) */
+    .shelfHint{display:none}
+    @media (max-width:640px){
+      .shelfScroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -1.25rem;padding:12px 1.25rem 6px;scrollbar-width:none}
+      .shelfScroll::-webkit-scrollbar{display:none}
+      .shelfInner{width:max-content}
+      .shelf{justify-content:flex-start;gap:14px}
+      .shelfBook{flex:0 0 80px;width:80px}
+      .shelfCap{font-size:12px;word-break:keep-all}
+      .shelfHint{display:block;font-size:11.5px;color:#3a425477;margin-top:.35rem}
+    }
   </style>
 </head>
 <body class="font-sans bg-paper text-neutral-900 antialiased min-h-screen">
@@ -96,6 +107,7 @@
 
       <!-- 책 가판대 — 표지를 눌러 각 책 소개로 이동. 새 책은 맨 앞에 두고 shelfNew 배지를 단다 -->
       <div class="mt-9 md:mt-11">
+        <div class="shelfScroll"><div class="shelfInner">
         <div class="shelf">
           <a href="#seeyou" class="shelfBook" aria-label="그 나라에서 만나요 소개 보기">
             <span class="shelfNew">신간</span>
@@ -153,6 +165,8 @@
             <p class="shelfSub">계속 사랑하는 일에 관하여</p>
           </a>
         </div>
+        </div></div>
+        <p class="shelfHint">옆으로 밀면 일곱 권을 모두 볼 수 있습니다 →</p>
       </div>
     </div>
   </section>

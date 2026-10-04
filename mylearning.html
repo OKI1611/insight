@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <script src="/content-loader.js?v=20260703f"></script>
-  <script src="/site-header.js?v=20260930a"></script>
+  <script src="/site-header.js?v=20261005a"></script>
   <script src="/section-sidenav.js?v=20260930a"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>내 강의실 — BIBLY 바이블 인사이트</title>
@@ -348,6 +348,8 @@
       } catch(e){}
       return null;
     }
+    // onAuth가 아래에서 바로 호출되므로 authShown은 그보다 먼저 선언해야 한다(뒤에 두면 첫 호출이 초기화 전 접근 오류로 죽는다)
+    let authShown = false;
     sb.auth.onAuthStateChange((_e, s) => onAuth(s));
     onAuth(readStoredSession());
     // 인증이 어떤 이유로도 안 잡히면 빈 화면 대신 로그인 화면 (폴백)
@@ -359,7 +361,6 @@
     function withTimeout(p, ms){ return Promise.race([ Promise.resolve(p), new Promise((_, rej) => setTimeout(() => rej(new Error('TIMEOUT')), ms)) ]); }
     function setNav(){ var n=document.getElementById('navUser'); if(n) n.innerHTML = `${esc(uname)}님 · <button onclick="logout()" class="hover:text-gold">로그아웃</button>`; }
     window.biblyHeaderLogin = function(){ var lv=document.getElementById('loginView'); if(lv){ lv.classList.remove('hidden'); lv.scrollIntoView({behavior:'smooth',block:'center'}); } };
-    let authShown = false;
     async function onAuth(session){
       if(session && session.user){
         if(authShown && user && user.id === session.user.id) return; // 중복 호출 방지

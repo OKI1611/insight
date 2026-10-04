@@ -247,11 +247,12 @@
   function headerHTML(menu){
     return topbarHTML()
       + '<header class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-ink/8">'
-      + '<div class="max-w-7xl mx-auto px-4 h-14 flex items-center gap-3">'
+      + '<div class="max-w-7xl mx-auto px-3 sm:px-4 h-14 flex items-center gap-2 sm:gap-3">'
       + LOGO
       // 1280px(xl) 화면에서 로고+메뉴 9개+버튼이 가로로 넘치지 않게, 2xl 미만에서는 간격·글자를 좁힌다
       + '<nav id="navmenu" class="hidden xl:flex items-center gap-3 2xl:gap-5 text-[13.5px] 2xl:text-[14.5px] font-medium text-neutral-900 whitespace-nowrap pl-1">' + menuHTML(menu) + '</nav>'
-      + '<div class="ml-auto flex items-center gap-2 sm:gap-3 text-sm shrink-0">' + mainCtaHTML()
+      // 360px 폭(갤럭시 계열)에서 메뉴 버튼이 화면 밖으로 7px 밀려나지 않게 sm 미만의 여백·간격을 줄인다
+      + '<div class="ml-auto flex items-center gap-1 sm:gap-3 text-sm shrink-0">' + mainCtaHTML()
       + '<button id="biblyHamb" aria-label="메뉴 열기" onclick="__biblyToggleMenu()" class="xl:hidden w-9 h-9 -mr-1 flex items-center justify-center rounded-lg hover:bg-ink/5 text-neutral-900/70"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>'
       + '</div>'
       + '</div>'
