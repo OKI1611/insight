@@ -76,6 +76,14 @@ _ABBR = ["창","출","레","민","신","수","삿","룻","삼상","삼하","왕�
          "마","막","눅","요","행","롬","고전","고후","갈","엡","빌","골","살전","살후","딤전","딤후","딛","몬",
          "히","약","벧전","벧후","요일","요이","요삼","유","계"]
 
+# 영어권 성경·성구 사전에서 널리 쓰는 표준 약자(2026-10-07 사용자 요청 — 한영대역 약자표에 병기)
+_ABBR_EN = ["Gen","Exod","Lev","Num","Deut","Josh","Judg","Ruth","1 Sam","2 Sam","1 Kgs","2 Kgs",
+            "1 Chr","2 Chr","Ezra","Neh","Esth","Job","Ps","Prov","Eccl","Song","Isa","Jer","Lam",
+            "Ezek","Dan","Hos","Joel","Amos","Obad","Jonah","Mic","Nah","Hab","Zeph","Hag","Zech","Mal",
+            "Matt","Mark","Luke","John","Acts","Rom","1 Cor","2 Cor","Gal","Eph","Phil","Col",
+            "1 Thess","2 Thess","1 Tim","2 Tim","Titus","Philem","Heb","Jas","1 Pet","2 Pet",
+            "1 John","2 John","3 John","Jude","Rev"]
+
 QR_URL = "https://biblynote.com/bible"
 QR_PNG = os.path.join(ROOT, "책원고", "출판준비", "_qr_bible.png")
 
@@ -108,13 +116,16 @@ def front_sections():
         {"t": "kv", "term": "문장기호", "desc": "대화문에도 따옴표를 쓰지 않는 한글 성경의 관례를 따랐습니다."},
         {"t": "kv", "term": "권말 자료", "desc": "번역 원칙과 저본(底本)은 본문 뒤에 실었습니다. 영어 본문과 한국어 본문이 달리 읽히는 자리는 원문을 따른 것이며, 그 까닭은 biblynote.com의 절별 해설에서 볼 수 있습니다. 1611년 초판 킹제임스 성경의 헌정사와 역자 서문 한국어 번역은 biblynote.com/kjv-preface 에 있습니다."},
     ]})
-    # 약자표
-    rows, half = [], (len(_books) + 1) // 2
-    for i in range(half):
-        L = _books[i]; R = _books[i + half] if i + half < len(_books) else None
-        rows.append([L["ko"], _ABBR[i], (R["ko"] if R else ""), (_ABBR[i + half] if R else "")])
+    # 약자표 — 한글 책명·약자에 영어 책명·약자를 병기(2026-10-07 사용자 요청)
+    W4 = [0.30, 0.13, 0.41, 0.16]
+    rows_ot = [[b["ko"], _ABBR[i], b["en"], _ABBR_EN[i]] for i, b in enumerate(_books) if b["t"] == "ot"]
+    rows_nt = [[b["ko"], _ABBR[i], b["en"], _ABBR_EN[i]] for i, b in enumerate(_books) if b["t"] == "nt"]
     S.append({"id": "abbr", "title": "성경 각 권과 약자", "blocks": [
-        {"t": "table", "head": ["책명", "약자", "책명", "약자"], "rows": rows},
+        {"t": "note", "text": "영어 약자는 영어권 성경과 성구 사전에서 널리 쓰는 표준 표기입니다."},
+        {"t": "h", "text": "구약 Old Testament · 39권"},
+        {"t": "table", "head": ["책명", "약자", "영어 책명", "영어 약자"], "widths": W4, "rows": rows_ot},
+        {"t": "h", "text": "신약 New Testament · 27권"},
+        {"t": "table", "head": ["책명", "약자", "영어 책명", "영어 약자"], "widths": W4, "rows": rows_nt},
     ]})
     return S
 
@@ -405,7 +416,9 @@ def pdf_flowables(sections, col_w, big=False):
                 ncol = len(b["head"])
                 data = [[Paragraph(E(h), s_th) for h in b["head"]]] + \
                        [[Paragraph(E(c), s_tb) for c in row] for row in b["rows"]]
-                if ncol == 3:                       # 첫 열(단위·용어)을 살짝 넓게
+                if b.get("widths"):                 # 블록이 열 비율을 직접 지정한 경우(합=1)
+                    ws = [col_w * f for f in b["widths"]]
+                elif ncol == 3:                     # 첫 열(단위·용어)을 살짝 넓게
                     w0 = col_w * 0.34
                     ws = [w0] + [(col_w - w0) / 2] * 2
                 else:
