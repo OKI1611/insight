@@ -9,12 +9,31 @@
     t.style.cssText='position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:#213a6b;color:#ffffff;padding:10px 18px;border-radius:9999px;font-size:14px;z-index:2147483647;font-family:Pretendard,system-ui,sans-serif;box-shadow:0 8px 28px rgba(0,0,0,.3)';
     document.body.appendChild(t); setTimeout(function(){ t.remove(); }, 1800);
   }
+  // 자동 복사가 모두 막힌 기기(보안 정책 PC 등)를 위한 '직접 복사' 창 — 내용이 선택된 채 떠서 Ctrl+C 한 번이면 된다
+  window.biblyManualCopy = function(text){
+    var ov=document.createElement('div');
+    ov.style.cssText='position:fixed;inset:0;z-index:2147483647;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;padding:20px;font-family:Pretendard,system-ui,sans-serif';
+    ov.onclick=function(e){ if(e.target===ov) ov.remove(); };
+    var box=document.createElement('div');
+    box.style.cssText='background:#fff;border-radius:16px;max-width:430px;width:100%;padding:20px 18px;box-shadow:0 20px 60px rgba(0,0,0,.35)';
+    box.innerHTML='<p style="font-weight:700;font-size:15px;color:#171717;margin:0 0 6px">직접 복사해 주세요</p>'
+      +'<p style="font-size:12.5px;color:#6b7280;margin:0 0 10px;line-height:1.6">이 기기에서는 자동 복사가 막혀 있어요. 아래 내용이 선택되어 있으니 <b>Ctrl+C</b>(휴대폰은 길게 눌러 복사)를 눌러 주세요.</p>'
+      +'<textarea readonly style="width:100%;height:110px;border:1.5px solid #d6dbe4;border-radius:10px;padding:10px;font-size:13px;line-height:1.6;color:#171717;resize:none;box-sizing:border-box;font-family:inherit"></textarea>'
+      +'<div style="display:flex;gap:8px;margin-top:12px"><button data-x="copy" style="flex:1;background:#00704a;color:#fff;border:0;border-radius:10px;padding:11px;font-weight:700;font-size:14px;cursor:pointer">복사</button>'
+      +'<button data-x="close" style="flex:1;background:#f3f5f9;color:#49536a;border:0;border-radius:10px;padding:11px;font-weight:700;font-size:14px;cursor:pointer">닫기</button></div>';
+    var ta=box.querySelector('textarea'); ta.value=text;
+    function selAll(){ try{ ta.focus(); ta.select(); ta.setSelectionRange(0, text.length); }catch(e){} }
+    box.querySelector('[data-x=copy]').onclick=function(){ selAll(); var ok=false; try{ ok=document.execCommand('copy'); }catch(e){} if(ok){ toast('복사했어요'); ov.remove(); } else selAll(); };
+    box.querySelector('[data-x=close]').onclick=function(){ ov.remove(); };
+    ov.appendChild(box); document.body.appendChild(ov);
+    setTimeout(selAll, 60);
+  };
   function copy(url, msg){
     function done(){ toast(msg || '링크가 복사됐어요'); }
     if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(url).then(done, fallback); }
     else fallback();
-    // execCommand가 false를 돌려주는(조용히 실패하는) 환경이 있어 결과를 확인하고, 실패 시 수동 복사 창을 띄운다
-    function fallback(){ var ok=false; try{ var ta=document.createElement('textarea'); ta.value=url; ta.style.cssText='position:fixed;left:-9999px'; document.body.appendChild(ta); ta.focus(); ta.select(); ta.setSelectionRange(0, url.length); ok=document.execCommand('copy'); ta.remove(); }catch(e){ ok=false; } if(ok) done(); else prompt('자동 복사가 안 되는 환경입니다. 아래 링크를 복사하세요 (Ctrl+C)', url); }
+    // execCommand가 false를 돌려주는(조용히 실패하는) 환경이 있어 결과를 확인하고, 실패 시 직접 복사 창을 띄운다
+    function fallback(){ var ok=false; try{ var ta=document.createElement('textarea'); ta.value=url; ta.style.cssText='position:fixed;left:-9999px'; document.body.appendChild(ta); ta.focus(); ta.select(); ta.setSelectionRange(0, url.length); ok=document.execCommand('copy'); ta.remove(); }catch(e){ ok=false; } if(ok) done(); else window.biblyManualCopy(url); }
   }
   window.biblyShare = function(title, url){
     title = String(title || document.title || 'BIBLY 바이블 인사이트').trim();

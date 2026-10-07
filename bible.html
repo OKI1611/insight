@@ -6,6 +6,7 @@
   <script src="/site-header.js?v=20260930a"></script>
   <script src="/section-sidenav.js?v=20260930a"></script>
   <script src="/protect.js?v=2"></script>
+  <script src="/share.js?v=5"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>킹제임스 성경 정본역(正本譯) — 원문 대조 한국어 성경 · BIBLY 바이블 인사이트</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7" />
@@ -135,7 +136,7 @@
   <main class="max-w-5xl mx-auto px-4 py-6">
     <div class="text-center mb-5">
       <p class="text-gold text-xs font-bold tracking-[0.3em] mb-2">HOLY BIBLE · 성경 읽기</p>
-      <h1 class="text-2xl md:text-[1.7rem] font-bold tracking-tight">킹제임스 성경 <span class="text-gold">정본역</span></h1>
+      <h1 class="text-2xl md:text-[1.7rem] font-bold tracking-tight">킹제임스 성경 <span class="text-gold">정본역(正本譯)</span></h1>
       <p class="text-neutral-900/55 text-sm mt-3 leading-relaxed max-w-xl mx-auto">King James Version 영어 성경과 <b class="text-neutral-900">히브리어·헬라어 원문</b>을 한 절 한 절 비교 대조하여, <b class="text-neutral-900">표준 국어 어법</b>에 맞게 새로 옮긴 번역입니다. 영어 KJV 본문과 나란히 읽습니다.</p>
     </div>
 
@@ -488,9 +489,10 @@
     }
     async function clip(text){
       try{ await navigator.clipboard.writeText(text); return true; }
-      catch(e){ const ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); let ok=false; try{ ok=document.execCommand('copy'); }catch(_){} ta.remove(); return ok; }
+      catch(e){ const ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.focus(); ta.select(); try{ ta.setSelectionRange(0, text.length); }catch(_){} let ok=false; try{ ok=document.execCommand('copy'); }catch(_){} ta.remove(); return ok; }
     }
-    async function copyVerse(v){ const ok=await clip(verseText(v,true)); bToast(ok?'구절을 복사했어요 · 붙여넣기 하면 출처가 함께 붙어요':'복사에 실패했어요'); closeVerseActions(); }
+    // 자동 복사가 모두 막힌 기기에서는 내용이 선택된 '직접 복사' 창(share.js)으로 넘긴다
+    async function copyVerse(v){ const text=verseText(v,true); const ok=await clip(text); if(ok) bToast('구절을 복사했어요 · 붙여넣기 하면 출처가 함께 붙어요'); else if(window.biblyManualCopy) biblyManualCopy(text); else bToast('복사에 실패했어요'); closeVerseActions(); }
     function shareUrl(){ return 'https://biblynote.com/bible?b='+CUR.file+'&c='+CH+'&v='+SHARE_V; }
     // SNS용 공유 본문(따옴표 구절 + 출처). 출처 표기는 attrib() 한 곳에서 관리.
     function shareBody(v){ const i=v-1; const kr=(KR&&KR[i])||''; const en=(BOOK&&BOOK[CH]&&BOOK[CH][i])||''; const line=kr||en; return '"'+line+'"\n'+attrib(verseRef(v), false); }
@@ -499,8 +501,8 @@
     async function shareNative(v){ const body=verseText(v,false), url='https://biblynote.com/bible?b='+CUR.file+'&c='+CH;
       if(navigator.share){ try{ await navigator.share({ title:verseRef(v), text:body, url }); }catch(e){} }
       else { await shareCopy(v,'카카오톡·메신저'); } closeShareSheet(); }
-    async function shareCopy(v, where){ const ok=await clip(verseText(v,true)+'\n'+shareUrl()); bToast(ok?('복사됐어요 · '+where+'에 붙여넣으세요'):'복사에 실패했어요'); closeShareSheet(); }
-    async function shareLink(v){ const ok=await clip(shareUrl()); bToast(ok?'링크를 복사했어요':'복사에 실패했어요'); closeShareSheet(); }
+    async function shareCopy(v, where){ const text=verseText(v,true)+'\n'+shareUrl(); const ok=await clip(text); if(ok) bToast('복사됐어요 · '+where+'에 붙여넣으세요'); else if(window.biblyManualCopy) biblyManualCopy(text); else bToast('복사에 실패했어요'); closeShareSheet(); }
+    async function shareLink(v){ const url=shareUrl(); const ok=await clip(url); if(ok) bToast('링크를 복사했어요'); else if(window.biblyManualCopy) biblyManualCopy(url); else bToast('복사에 실패했어요'); closeShareSheet(); }
     function closeShareSheet(){ var s=document.getElementById('shareSheet'); if(s) s.remove(); }
     function openShareSheet(v){
       SHARE_V=v; closeVerseActions(); closeShareSheet();

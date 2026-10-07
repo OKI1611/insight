@@ -336,7 +336,7 @@
       function done(){ toast('링크가 복사됐어요'); }
       if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done,fb); else fb();
       // execCommand가 false를 돌려주는(조용히 실패하는) 환경이 있어 결과를 확인하고, 실패 시 수동 복사 창을 띄운다
-      function fb(){ var ok=false; try{ var ta=document.createElement('textarea'); ta.value=url; ta.style.cssText='position:fixed;left:-9999px'; document.body.appendChild(ta); ta.focus(); ta.select(); ta.setSelectionRange(0, url.length); ok=document.execCommand('copy'); ta.remove(); }catch(err){ ok=false; } if(ok) done(); else prompt('자동 복사가 안 되는 환경입니다. 아래 링크를 복사하세요 (Ctrl+C)', url); }
+      function fb(){ var ok=false; try{ var ta=document.createElement('textarea'); ta.value=url; ta.style.cssText='position:fixed;left:-9999px'; document.body.appendChild(ta); ta.focus(); ta.select(); ta.setSelectionRange(0, url.length); ok=document.execCommand('copy'); ta.remove(); }catch(err){ ok=false; } if(ok) done(); else (window.biblyManualCopy?biblyManualCopy(url):prompt('아래 링크를 복사하세요 (Ctrl+C)', url)); }
     }
     function toast(m){
       var t=document.createElement('div'); t.textContent=m;
@@ -376,7 +376,7 @@
   </script>
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
-  <script src="/share.js?v=4"></script>
+  <script src="/share.js?v=5"></script>
   <script src="auth-header.js?v=20260928a"></script>
 </body>
 </html>
