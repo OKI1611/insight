@@ -515,22 +515,11 @@
       else copyResLink(el);
     }
     // 링크만 바로 복사 — 카카오톡·카페처럼 붙여넣기로 퍼나를 때 가장 빠른 경로
+    // 복사는 share.js의 공용 biblyCopy — 클릭 즉시 끝나는 동기 복사 우선(보안 정책 PC의 지연 방지)
     function copyResLink(el){
       const url = resLink(el.dataset.id);
-      const done = () => resToast('링크가 복사됐어요');
-      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(url).then(done, fb); }
-      else fb();
-      // execCommand가 false를 돌려주는(조용히 실패하는) 환경이 있어 결과를 확인하고, 실패 시 수동 복사 창을 띄운다
-      function fb(){
-        let ok = false;
-        try{
-          const ta = document.createElement('textarea');
-          ta.value = url; ta.style.cssText = 'position:fixed;left:-9999px';
-          document.body.appendChild(ta); ta.focus(); ta.select(); ta.setSelectionRange(0, url.length);
-          ok = document.execCommand('copy'); ta.remove();
-        }catch(e){ ok = false; }
-        if(ok) done(); else (window.biblyManualCopy?biblyManualCopy(url):prompt('아래 링크를 복사하세요 (Ctrl+C)', url));
-      }
+      if(window.biblyCopy){ biblyCopy(url, '링크가 복사됐어요'); return; }
+      prompt('아래 링크를 복사하세요 (Ctrl+C)', url);
     }
     function resToast(msg){
       const t = document.createElement('div');
@@ -687,7 +676,7 @@
   </script>
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
-  <script src="/share.js?v=5"></script>
+  <script src="/share.js?v=6"></script>
   <script src="auth-header.js?v=20260928a"></script>
 </body>
 </html>

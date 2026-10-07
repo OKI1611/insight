@@ -28,13 +28,22 @@
     ov.appendChild(box); document.body.appendChild(ov);
     setTimeout(selAll, 60);
   };
-  function copy(url, msg){
-    function done(){ toast(msg || '링크가 복사됐어요'); }
-    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(url).then(done, fallback); }
-    else fallback();
-    // execCommand가 false를 돌려주는(조용히 실패하는) 환경이 있어 결과를 확인하고, 실패 시 직접 복사 창을 띄운다
-    function fallback(){ var ok=false; try{ var ta=document.createElement('textarea'); ta.value=url; ta.style.cssText='position:fixed;left:-9999px'; document.body.appendChild(ta); ta.focus(); ta.select(); ta.setSelectionRange(0, url.length); ok=document.execCommand('copy'); ta.remove(); }catch(e){ ok=false; } if(ok) done(); else window.biblyManualCopy(url); }
-  }
+  // 공용 복사기 — 클릭 즉시 끝나는 동기(구식) 복사를 먼저 쓴다.
+  // 최신 API(writeText)를 먼저 쓰면 보안 정책 PC에서 바로 거부되지 않고 한참 기다리다
+  // 실패해 '로딩이 오래 걸리는' 증상이 되므로 두 번째로 미루고, 그마저 0.8초만 기다린다.
+  window.biblyCopy = function(text, msg){
+    var ok=false;
+    try{ var ta=document.createElement('textarea'); ta.value=text; ta.style.cssText='position:fixed;left:-9999px'; document.body.appendChild(ta); ta.focus(); ta.select(); ta.setSelectionRange(0, text.length); ok=document.execCommand('copy'); ta.remove(); }catch(e){ ok=false; }
+    if(ok){ toast(msg || '복사했어요'); return; }
+    var finished=false;
+    function good(){ if(finished) return; finished=true; toast(msg || '복사했어요'); }
+    function fail(){ if(finished) return; finished=true; window.biblyManualCopy(text); }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      var timer=setTimeout(fail, 800);
+      navigator.clipboard.writeText(text).then(function(){ clearTimeout(timer); good(); }, function(){ clearTimeout(timer); fail(); });
+    } else fail();
+  };
+  function copy(url, msg){ window.biblyCopy(url, msg || '링크가 복사됐어요'); }
   window.biblyShare = function(title, url){
     title = String(title || document.title || 'BIBLY 바이블 인사이트').trim();
     url = url || location.href;

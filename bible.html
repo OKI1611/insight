@@ -6,7 +6,7 @@
   <script src="/site-header.js?v=20260930a"></script>
   <script src="/section-sidenav.js?v=20260930a"></script>
   <script src="/protect.js?v=2"></script>
-  <script src="/share.js?v=5"></script>
+  <script src="/share.js?v=6"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>킹제임스 성경 정본역(正本譯) — 원문 대조 한국어 성경 · BIBLY 바이블 인사이트</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7" />
@@ -488,8 +488,12 @@
       return t+attrib(verseRef(v), withSite);
     }
     async function clip(text){
-      try{ await navigator.clipboard.writeText(text); return true; }
-      catch(e){ const ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.focus(); ta.select(); try{ ta.setSelectionRange(0, text.length); }catch(_){} let ok=false; try{ ok=document.execCommand('copy'); }catch(_){} ta.remove(); return ok; }
+      // 클릭 즉시 끝나는 동기(구식) 복사 먼저 — 보안 정책 PC에서 최신 API가 한참 기다리다 실패하는 지연 방지
+      try{ const ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.focus(); ta.select(); try{ ta.setSelectionRange(0, text.length); }catch(_){} let ok=false; try{ ok=document.execCommand('copy'); }catch(_){} ta.remove(); if(ok) return true; }catch(e){}
+      // 최신 API는 0.8초만 기다려 본다
+      if(!(navigator.clipboard&&navigator.clipboard.writeText)) return false;
+      try{ return await Promise.race([ navigator.clipboard.writeText(text).then(()=>true), new Promise(res=>setTimeout(()=>res(false),800)) ]); }
+      catch(e){ return false; }
     }
     // 자동 복사가 모두 막힌 기기에서는 내용이 선택된 '직접 복사' 창(share.js)으로 넘긴다
     async function copyVerse(v){ const text=verseText(v,true); const ok=await clip(text); if(ok) bToast('구절을 복사했어요 · 붙여넣기 하면 출처가 함께 붙어요'); else if(window.biblyManualCopy) biblyManualCopy(text); else bToast('복사에 실패했어요'); closeVerseActions(); }

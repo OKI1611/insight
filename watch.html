@@ -721,11 +721,9 @@
                : kind === 'cafe' ? '링크를 복사했어요! 원하는 네이버 카페 글쓰기에 붙여넣어 공유하세요.'
                : kind === 'kakao' ? '링크를 복사했어요! 카카오톡 대화창에 붙여넣어 공유하세요.'
                : '강의 링크를 복사했어요!';
-      const done = () => alert(msg);
-      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(url).then(done).catch(fb); }
-      else { fb(); }
-      // 최신 복사 API가 막힌 환경 대비: 구식 복사를 시도하고, 그마저 실패하면 수동 복사 창
-      function fb(){ let ok=false; try{ const ta=document.createElement('textarea'); ta.value=url; ta.style.cssText='position:fixed;left:-9999px'; document.body.appendChild(ta); ta.focus(); ta.select(); ta.setSelectionRange(0, url.length); ok=document.execCommand('copy'); ta.remove(); }catch(e){ ok=false; } if(ok) done(); else (window.biblyManualCopy?biblyManualCopy(url):prompt('아래 링크를 복사하세요 (Ctrl+C)', url)); }
+      // 복사는 share.js의 공용 biblyCopy — 클릭 즉시 끝나는 동기 복사 우선(보안 정책 PC의 지연 방지)
+      if(window.biblyCopy){ biblyCopy(url, msg); return; }
+      prompt('아래 링크를 복사하세요 (Ctrl+C)', url);
     }
     function shareTo(platform){
       const l = lessons[cur] || {};
