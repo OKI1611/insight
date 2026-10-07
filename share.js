@@ -13,7 +13,8 @@
     function done(){ toast(msg || '링크가 복사됐어요'); }
     if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(url).then(done, fallback); }
     else fallback();
-    function fallback(){ try{ var ta=document.createElement('textarea'); ta.value=url; ta.style.cssText='position:fixed;left:-9999px'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); done(); }catch(e){ prompt('아래 링크를 복사하세요', url); } }
+    // execCommand가 false를 돌려주는(조용히 실패하는) 환경이 있어 결과를 확인하고, 실패 시 수동 복사 창을 띄운다
+    function fallback(){ var ok=false; try{ var ta=document.createElement('textarea'); ta.value=url; ta.style.cssText='position:fixed;left:-9999px'; document.body.appendChild(ta); ta.focus(); ta.select(); ta.setSelectionRange(0, url.length); ok=document.execCommand('copy'); ta.remove(); }catch(e){ ok=false; } if(ok) done(); else prompt('자동 복사가 안 되는 환경입니다. 아래 링크를 복사하세요 (Ctrl+C)', url); }
   }
   window.biblyShare = function(title, url){
     title = String(title || document.title || 'BIBLY 바이블 인사이트').trim();

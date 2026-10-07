@@ -545,8 +545,10 @@
     function copyCommLink(){
       const txt = SHARE_CTX.url;
       const done = () => alert('링크를 복사했어요! 원하는 곳(카카오톡·카페 등)에 붙여넣어 공유하세요.');
-      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done).catch(() => prompt('아래 링크를 복사하세요:', txt)); }
-      else { prompt('아래 링크를 복사하세요:', txt); }
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done).catch(fb); }
+      else { fb(); }
+      // 최신 복사 API가 막힌 환경 대비: 구식 복사를 시도하고, 그마저 실패하면 수동 복사 창
+      function fb(){ let ok=false; try{ const ta=document.createElement('textarea'); ta.value=txt; ta.style.cssText='position:fixed;left:-9999px'; document.body.appendChild(ta); ta.focus(); ta.select(); ta.setSelectionRange(0, txt.length); ok=document.execCommand('copy'); ta.remove(); }catch(e){ ok=false; } if(ok) done(); else prompt('자동 복사가 안 되는 환경입니다. 아래 링크를 복사하세요 (Ctrl+C)', txt); }
     }
     function shareCommExec(platform){
       const url = SHARE_CTX.url, text = SHARE_CTX.text;
@@ -626,7 +628,7 @@
 
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
-  <script src="/share.js?v=3"></script>
+  <script src="/share.js?v=4"></script>
   <script src="auth-header.js?v=20260928a"></script>
 </body>
 </html>
