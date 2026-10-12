@@ -7,7 +7,7 @@
   <script src="/section-sidenav.js?v=20260930a"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>저자의 책 — 오광일 출간 도서 · BIBLY 바이블 인사이트</title>
-  <meta name="description" content="오광일 저자의 출간 도서 — 신간 『그 나라에서 만나요』, 『천년왕국을 아십니까』, 『마귀는 거짓말을 하지 않는다』, 『가이사의 교회, 하나님의 교회』, 『가면의 시대』, 『교회를 떠나고서야, 예수를 만났다』, 『엄마 향기』. 책 소개와 구매 안내." />
+  <meta name="description" content="오광일 저자의 출간 도서 — 신간 『킹제임스 성경 정본역 : 헤리티지 에디션 한영대역』, 『그 나라에서 만나요』, 『천년왕국을 아십니까』, 『마귀는 거짓말을 하지 않는다』, 『가이사의 교회, 하나님의 교회』, 『가면의 시대』, 『교회를 떠나고서야, 예수를 만났다』, 『엄마 향기』. 책 소개와 구매 안내." />
   <meta name="theme-color" content="#213a6b" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png?v=7" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="BIBLY 바이블 인사이트" />
   <meta property="og:title" content="저자의 책 — 오광일 출간 도서" />
-  <meta property="og:description" content="강의로 다 담지 못한 이야기를 책으로 만나세요. 신간 『그 나라에서 만나요』 · 『천년왕국을 아십니까』 · 『마귀는 거짓말을 하지 않는다』 · 『가이사의 교회, 하나님의 교회』 · 『가면의 시대』 · 『교회를 떠나고서야, 예수를 만났다』 · 『엄마 향기』" />
+  <meta property="og:description" content="강의로 다 담지 못한 이야기를 책으로 만나세요. 신간 『킹제임스 성경 정본역 한영대역』 · 『그 나라에서 만나요』 · 『천년왕국을 아십니까』 · 『마귀는 거짓말을 하지 않는다』 · 『가이사의 교회, 하나님의 교회』 · 『가면의 시대』 · 『교회를 떠나고서야, 예수를 만났다』 · 『엄마 향기』" />
   <meta property="og:url" content="https://biblynote.com/books" />
   <meta property="og:image" content="https://biblynote.com/images/og-cover.png?v=7" />
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7" />
@@ -55,7 +55,7 @@
 
     /* ── 책 가판대 — 표지를 선반 위에 나란히 진열 ── */
     .shelf{display:flex;justify-content:center;align-items:flex-end;gap:clamp(14px,4.5vw,42px)}
-    .shelfBook{position:relative;display:block;width:clamp(88px,22vw,152px);text-align:center}
+    .shelfBook{position:relative;display:block;width:clamp(88px,22vw,136px);text-align:center}
     .shelfBook img{display:block;width:100%;height:auto;border-radius:2px;
       box-shadow:0 10px 22px -10px rgba(21,32,58,.45), 0 2px 5px -2px rgba(21,32,58,.3);
       transition:transform .28s cubic-bezier(.2,.8,.3,1), box-shadow .28s}
@@ -76,7 +76,7 @@
     .shelfSub{font-size:11px;color:#3a425488;margin-top:.2rem;line-height:1.4}
     .shelfBook:hover .shelfCap{color:#00704a}
     @media (max-width:400px){ .shelfSub{display:none} }
-    /* 좁은 화면 — 일곱 권을 한 줄에 욱여넣지 않고 선반째 옆으로 민다(제목 잘림·가로 넘침 방지) */
+    /* 좁은 화면 — 여덟 권을 한 줄에 욱여넣지 않고 선반째 옆으로 민다(제목 잘림·가로 넘침 방지) */
     .shelfHint{display:none}
     @media (max-width:640px){
       .shelfScroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -1.25rem;padding:12px 1.25rem 6px;scrollbar-width:none}
@@ -102,15 +102,19 @@
         강의로 다 담지 못한 이야기가 있습니다. 정치에 갈라진 교회 앞에 성경을 펼친 질문,
         옳은 말을 하고도 잘려 나간 자리에서 쓴 기록, 무너진 자리에서 다시 시작한 신앙의 고백,
         한 어머니의 삶을 아들의 눈으로 담아낸 이야기, 성경이 약속한 1,000년의 나라를 완주하는 지도,
-        그리고 그 나라에 관한 100가지 질문에 성경으로 답한 문답집 — 일곱 권의 책으로 만나실 수 있습니다.
+        그 나라에 관한 100가지 질문에 성경으로 답한 문답집,
+        그리고 공인본문을 저본으로 66권 전권을 새로 옮긴 한영대역 성경 — 여덟 권의 책으로 만나실 수 있습니다.
       </p>
 
       <!-- 책 가판대 — 표지를 눌러 각 책 소개로 이동. 새 책은 맨 앞에 두고 shelfNew 배지를 단다 -->
       <div class="mt-9 md:mt-11">
         <div class="shelfScroll"><div class="shelfInner">
         <div class="shelf">
-          <a href="#seeyou" class="shelfBook" aria-label="그 나라에서 만나요 소개 보기">
+          <a href="#kjv" class="shelfBook" aria-label="킹제임스 성경 정본역 한영대역 소개 보기">
             <span class="shelfNew">신간</span>
+            <img src="images/books/kjv.jpg" alt="킹제임스 성경 정본역 헤리티지 에디션 한영대역 표지" />
+          </a>
+          <a href="#seeyou" class="shelfBook" aria-label="그 나라에서 만나요 소개 보기">
             <img src="images/books/seeyou.jpg" alt="그 나라에서 만나요 표지" />
           </a>
           <a href="#millennium" class="shelfBook" aria-label="천년왕국을 아십니까 소개 보기">
@@ -136,6 +140,10 @@
         <div class="shelfPlankEdge"></div>
 
         <div class="shelf items-start mt-3">
+          <a href="#kjv" class="shelfBook">
+            <p class="shelfCap">킹제임스 성경<br/>정본역</p>
+            <p class="shelfSub">헤리티지 에디션 한영대역 · 전 66권</p>
+          </a>
           <a href="#seeyou" class="shelfBook">
             <p class="shelfCap">그 나라에서<br/>만나요</p>
             <p class="shelfSub">천년왕국 100가지 질문과 성경의 대답</p>
@@ -166,14 +174,102 @@
           </a>
         </div>
         </div></div>
-        <p class="shelfHint">옆으로 밀면 일곱 권을 모두 볼 수 있습니다 →</p>
+        <p class="shelfHint">옆으로 밀면 여덟 권을 모두 볼 수 있습니다 →</p>
       </div>
     </div>
   </section>
 
   <main class="max-w-4xl mx-auto px-5 py-12 md:py-16 space-y-16">
 
-    <!-- ⓪ 그 나라에서 만나요 (신간) -->
+    <!-- ⓪ 킹제임스 성경 정본역 한영대역 (신간 · 전자책) -->
+    <article id="kjv" class="scroll-mt-24">
+      <div class="grid md:grid-cols-[220px_1fr] gap-7 md:gap-9">
+        <div>
+          <img src="images/books/kjv.jpg" alt="킹제임스 성경 정본역 헤리티지 에디션 한영대역 표지"
+               class="w-[180px] md:w-full mx-auto rounded-xl shadow-card"/>
+          <div class="mt-5 text-xs">
+            <div class="metaRow"><b>옮긴이</b><span>오광일</span></div>
+            <div class="metaRow"><b>분야</b><span>성경 (한영대역)</span></div>
+            <div class="metaRow"><b>구성</b><span>구약 39권 · 신약 27권 · 부록 6편 · 신국판 3,351쪽</span></div>
+            <div class="metaRow"><b>펴낸곳</b><span>바이블 인사이트</span></div>
+            <div class="metaRow"><b>발행</b><span>2026년 10월 31일</span></div>
+            <div class="metaRow"><b>형식</b><span>전자책 PDF</span></div>
+            <div class="metaRow"><b>정가</b><span>15,000원</span></div>
+          </div>
+        </div>
+
+        <div>
+          <span class="inline-flex text-[11px] font-bold text-emerald-800 bg-emerald-50 rounded-full px-2.5 py-1 mb-3">성경 · 한영대역 · 전 66권</span>
+          <h2 class="text-xl md:text-2xl font-bold leading-snug">킹제임스 성경 정본역(正本譯)</h2>
+          <p class="text-neutral-900/55 text-sm mt-2">헤리티지 에디션 한영대역 — 한국어 · King James Version · 전 66권</p>
+
+          <div class="quote">
+            원문이 말하는 대로,<br/>
+            한 절도 빼지 않고,<br/>
+            한국 교회가 읽어 온 말로.
+          </div>
+
+          <div class="text-[14px] text-neutral-900/75 leading-[1.95] space-y-3 mt-5">
+            <p>1611년 흠정, 1769년 표준 본문의 <b>킹제임스 성경 영어 본문</b>과, 그것을 히브리어·헬라어 원문과 대조해 새로 옮긴 <b>한국어 본문</b>을 절 번호에 맞춰 나란히 실은 대역 성경입니다. 구약 39권과 신약 27권, 66권 1,189장 31,102절을 모두 담았습니다.</p>
+            <p>'정본역'이라는 이름은 구약은 <b>맛소라 본문</b>을, 신약은 <b>공인본문(Textus Receptus)</b>을 저본으로 삼았다는 뜻입니다. 다른 번역의 가치를 부정하는 말이 아닙니다. 옮긴이는 10년에 걸쳐 기존 킹제임스 성경 한국어 역본들을 절마다 검토하고, 원어와 다시 대조해 바로잡았습니다.</p>
+            <p>왼쪽에 한국어, 오른쪽에 영어를 절 단위로 맞추어 어느 쪽을 읽다가도 바로 건너갈 수 있고, 이해를 돕기 위해 새로 지은 <b>소제목</b>과 <b>책갈피 목차</b>가 전권에 들어 있습니다. 권말에는 번역 원칙과 저본 해설, 그리고 여섯 편의 부록을 실었습니다.</p>
+            <p>같은 본문을 이 홈페이지의 <a href="bible.html" class="text-gold font-bold hover:underline">성경 코너</a>에서 절별 번역 해설·각주와 함께 무료로 읽을 수 있습니다. 책은 그 본문을 손에 들고 밑줄 그으며 읽기 위한 것입니다.</p>
+          </div>
+
+          <div class="mt-6 rounded-2xl border border-ink/10 bg-white px-5 py-4">
+            <p class="text-[13px] font-bold text-neutral-900/80 mb-2">이 번역이 지킨 여섯 가지 원칙</p>
+            <div class="text-[13px] text-neutral-900/70 leading-[1.9] space-y-2">
+              <p>· <b>빼지 않는다</b> — 공인본문의 어구와 절을 하나도 빼지 않았습니다. 마태복음 17:21, 사도행전 8:37, 요한일서 5:7도 그대로입니다.</p>
+              <p>· <b>원문이 최종 근거</b> — 영어 본문을 출발점으로 삼되, 핵심 단어는 원문을 직접 확인했습니다.</p>
+              <p>· <b>원어가 나누면 번역도 나눈다</b> — 스올·하데스는 '음부'로, 게헨나는 '지옥'으로 구분했습니다.</p>
+              <p>· <b>하나님의 이름</b> — 구약의 신명사문자는 전권에서 '여호와'로 통일했습니다.</p>
+              <p>· <b>교리 용어는 전통 표기</b> — 독생자·칭의·영생처럼 뼈대가 되는 말은 새로 만들지 않고 한국 교회의 표기를 지켰습니다.</p>
+              <p>· <b>권위 있는 문어체</b> — 본문 전체를 성경 문어체로 통일했습니다.</p>
+            </div>
+          </div>
+
+          <div class="mt-6 rounded-2xl border border-ink/10 bg-sand/40 px-5 py-4">
+            <p class="text-[13px] font-bold text-neutral-900/80 mb-2">이런 분께 권합니다</p>
+            <ul class="text-[13px] text-neutral-900/70 leading-relaxed space-y-1">
+              <li>· 원문에 가까운 말씀을 곁에 두고 묵상하려는 성도</li>
+              <li>· 설교와 강의를 준비하며 영어 본문과 한국어 본문을 함께 대조하려는 목회자·신학생</li>
+              <li>· 영어 성경으로 신앙과 언어를 함께 익히려는 분</li>
+              <li>· 킹제임스 성경이 왜 그렇게 읽는지 그 저본부터 확인하고 싶은 분</li>
+            </ul>
+          </div>
+
+          <div class="mt-6 rounded-2xl border border-gold/25 bg-gold/5 px-5 py-4">
+            <p class="text-[14px] font-bold text-gold text-center leading-relaxed">구약은 맛소라 본문, 신약은 공인본문 — 66권 31,102절, 한 절도 빼지 않고.</p>
+          </div>
+
+          <div class="mt-7">
+            <p class="text-[13px] font-bold text-neutral-900/80 mb-3">차례</p>
+            <div class="rounded-2xl border border-ink/10 bg-white px-5 py-4 text-[13px] text-neutral-900/70 leading-[1.9]">
+              <p class="text-neutral-900/50">펴내며 · 일러두기 · 성경 각 권과 약자</p>
+              <p class="mt-2"><b class="text-neutral-900/80">구약 39권</b> — 창세기부터 말라기까지</p>
+              <p><b class="text-neutral-900/80">신약 27권</b> — 마태복음부터 요한계시록까지</p>
+              <p class="mt-2"><b class="text-neutral-900/80">번역 원칙 · 저본(底本)</b></p>
+              <p><b class="text-neutral-900/80">부록</b> — 1 핵심 교리 용어 해설 · 2 죽음과 심판, 원어 구분 도표 · 3 구원으로 가는 길 · 4 도량형과 화폐 환산표 · 5 킹제임스 성경 고어 작은 사전 · 6 온라인에서 더 깊이</p>
+            </div>
+          </div>
+
+          <div class="mt-7">
+            <p class="text-[13px] font-bold text-neutral-900/80 mb-3">구매하기</p>
+            <p class="storeLbl">📱 전자책 (PDF · 15,000원)</p>
+            <div class="storeRow flex flex-wrap gap-2.5">
+              <a href="https://www.yes24.com/product/goods/197975490" target="_blank" rel="noopener"
+                 class="buyBtn buyPrimary">YES24에서 구매하기</a>
+              <a href="bible.html" class="buyBtn buyGhost">홈페이지에서 본문 읽기</a>
+            </div>
+            <p class="text-[11.5px] text-neutral-900/45 mt-3">다른 판매처와 큰글자판은 등록되는 대로 안내하겠습니다. 원하시는 판매처를 선택하시면 새 창으로 열립니다.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <div class="h-px bg-ink/8"></div>
+
+    <!-- ① 그 나라에서 만나요 -->
     <article id="seeyou" class="scroll-mt-24">
       <div class="grid md:grid-cols-[220px_1fr] gap-7 md:gap-9">
         <div>

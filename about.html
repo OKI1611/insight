@@ -298,10 +298,28 @@
               <p class="text-[11px] text-neutral-900/40 mt-1">제목을 누르면 구매처가 열립니다.</p>
               <ul class="mt-2 border-y border-ink/8 divide-y divide-ink/8">
                 <li>
+                  <button type="button" onclick="toggleAuthorBook('bk8')" aria-expanded="false" aria-controls="bkbuy-bk8"
+                          class="w-full text-left flex items-start gap-2 py-2.5 group">
+                    <span class="min-w-0 flex-1">
+                      <span class="block text-[13px] font-semibold leading-snug group-hover:text-gold transition">『킹제임스 성경 정본역』 <span class="text-[10.5px] font-bold text-white bg-gold rounded px-1.5 py-0.5 align-middle">신간</span></span>
+                      <span class="block text-[11.5px] text-neutral-900/45 mt-0.5">헤리티지 에디션 한영대역 · 전 66권 · 주 번역</span>
+                    </span>
+                    <svg id="bkchev-bk8" class="w-4 h-4 mt-1 shrink-0 text-neutral-900/30 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></svg>
+                  </button>
+                  <div id="bkbuy-bk8" class="hidden pb-3">
+                    <div class="flex flex-wrap gap-1.5">
+                      <a href="https://www.yes24.com/product/goods/197975490" target="_blank" rel="noopener"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📱 YES24</a>
+                      <a href="bible.html"
+                         class="inline-flex items-center gap-1 text-[11px] font-bold text-ink bg-white border border-ink/15 rounded-md px-2 py-1 hover:border-gold/60 hover:text-gold transition">📖 홈페이지에서 읽기</a>
+                    </div>
+                  </div>
+                </li>
+                <li>
                   <button type="button" onclick="toggleAuthorBook('bk7')" aria-expanded="false" aria-controls="bkbuy-bk7"
                           class="w-full text-left flex items-start gap-2 py-2.5 group">
                     <span class="min-w-0 flex-1">
-                      <span class="block text-[13px] font-semibold leading-snug group-hover:text-gold transition">『그 나라에서 만나요』 <span class="text-[10.5px] font-bold text-white bg-gold rounded px-1.5 py-0.5 align-middle">신간</span></span>
+                      <span class="block text-[13px] font-semibold leading-snug group-hover:text-gold transition">『그 나라에서 만나요』</span>
                       <span class="block text-[11.5px] text-neutral-900/45 mt-0.5">천년왕국에 관한 100가지 질문과 성경의 대답</span>
                     </span>
                     <svg id="bkchev-bk7" class="w-4 h-4 mt-1 shrink-0 text-neutral-900/30 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></svg>
