@@ -2317,6 +2317,7 @@
     function onKey(e){ if(e.key==='Escape') close(); }
     timer = setTimeout(function(){
       timer = null;
+      if(window.__meetPopupShown) return;   // 북토크 모임 팝업이 먼저 떠 있으면 이번 방문엔 생략(2026-10-12)
       el.classList.remove('hidden'); el.classList.add('flex');
       // 화면에 뜬 순간 '봤다'로 기록 — 자동 새로고침 등 어떤 경로로 페이지가 다시 열려도
       // 같은 방문에서 팝업이 두 번 뜨지 않게 한다(2026-09-28)
@@ -2326,6 +2327,79 @@
     document.getElementById('bookPopupX').addEventListener('click', close);
     document.getElementById('bookPopupClose').addEventListener('click', close);
     document.getElementById('bookPopupBg').addEventListener('click', close);
+    el.querySelectorAll('a[href]').forEach(function(a){ a.addEventListener('click', markSeen); });
+  })();
+  </script>
+  <!-- ====================================================================== -->
+  <!--  북토크 모임 안내 팝업 — 2026-10-31 14:00(KST) 이후 자동 미노출            -->
+  <!--  다시 안 보임 조건: localStorage bibly_meet_popup_until (24시간)          -->
+  <!-- ====================================================================== -->
+  <div id="meetPopup" class="fixed inset-0 z-[120] hidden items-end sm:items-center justify-center p-0 sm:p-4">
+    <div id="meetPopupBg" class="absolute inset-0 bg-ink/55 backdrop-blur-[2px]"></div>
+    <div class="relative bg-white w-full max-w-full sm:max-w-md rounded-t-3xl sm:rounded-3xl shadow-2xl overflow-y-auto overflow-x-hidden max-h-[92vh]">
+      <button id="meetPopupX" aria-label="닫기"
+              class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/15 border border-white/25 text-white/70 hover:bg-white/25 hover:text-white text-lg leading-none">✕</button>
+      <div class="px-6 pt-6 pb-5 bg-gradient-to-br from-navy to-ink">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="inline-flex text-[11px] font-black text-navy bg-[#ffd76a] rounded-full px-2.5 py-1 tracking-wide">10.31 SAT 2PM</span>
+          <span class="text-[11px] font-bold text-white/60">『천년왕국을 아십니까』 출간 기념</span>
+        </div>
+        <p class="font-black text-white text-[25px] leading-snug mt-3">강의 말고,<br/><span class="text-[#ffd76a]">이야기</span>하러 오세요</p>
+        <p class="text-[13px] text-white/70 leading-relaxed mt-2">차 한잔을 사이에 두고 둘러앉는 작은 모임 —<br class="sm:hidden"/> 듣기만 해도, 차만 마셔도 충분합니다</p>
+      </div>
+      <div class="flex items-center gap-4 px-6 py-4">
+        <img src="images/book-millennium-cover.jpg" alt="천년왕국을 아십니까 표지"
+             class="w-[62px] shrink-0 rounded-[3px] shadow-[0_10px_24px_-8px_rgba(0,0,0,.45)]"/>
+        <div class="min-w-0 text-[13.5px] leading-relaxed text-neutral-900/80">
+          <p class="font-bold text-ink text-[14.5px]">10월 31일(토) 오후 2시 ~ 5시</p>
+          <p>강변역 테크노마트 9층 코아레스 B룸</p>
+          <p class="text-[12px] text-neutral-900/50 mt-1">참가비 없음 · 다과 준비 · 좌석 한정, 신청 순 마감</p>
+        </div>
+      </div>
+      <div class="px-6 pb-5">
+        <a href="https://forms.gle/o8ugvCtKe2FEPwcH7" target="_blank" rel="noopener"
+           class="block w-full text-center bg-navy text-[#ffd76a] font-bold text-[15px] py-3.5 rounded-xl hover:opacity-90 transition">참가 신청하기 (1분이면 끝나요) →</a>
+        <div class="flex items-center justify-between mt-3.5">
+          <label class="flex items-center gap-1.5 text-[12px] text-neutral-900/45 cursor-pointer select-none">
+            <input id="meetPopupToday" type="checkbox" class="accent-[#00704a]"/> 오늘 하루 보지 않기
+          </label>
+          <button id="meetPopupClose" class="text-[12px] text-neutral-900/45 hover:text-neutral-900">닫기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var KEY='bibly_meet_popup_until';   // '오늘 하루 보지 않기' — 24시간
+    var SEEN='bibly_meet_popup_seen';   // 한 번 보면 이번 방문 동안은 그만
+    // 모임 시작(2026-10-31 14:00 KST) 이후에는 아예 동작하지 않는다 — 행사 뒤 제거 커밋 불필요
+    if(Date.now() >= new Date('2026-10-31T14:00:00+09:00').getTime()) return;
+    var el=document.getElementById('meetPopup'); if(!el) return;
+    if(el.dataset.wired) return; el.dataset.wired='1';
+    try{ if(Date.now() < (+localStorage.getItem(KEY)||0)) return; }catch(e){}
+    try{ if(sessionStorage.getItem(SEEN)) return; }catch(e){}
+
+    var timer = null;
+    function markSeen(){ try{ sessionStorage.setItem(SEEN,'1'); }catch(e){} }
+    function close(){
+      if(timer){ clearTimeout(timer); timer = null; }
+      try{ if(document.getElementById('meetPopupToday').checked)
+             localStorage.setItem(KEY, String(Date.now()+24*3600*1000)); }catch(e){}
+      markSeen();
+      el.classList.add('hidden'); el.classList.remove('flex');
+      document.removeEventListener('keydown', onKey);
+    }
+    function onKey(e){ if(e.key==='Escape') close(); }
+    timer = setTimeout(function(){
+      timer = null;
+      window.__meetPopupShown = true;   // 책 홍보 팝업은 이번 방문엔 양보
+      el.classList.remove('hidden'); el.classList.add('flex');
+      markSeen();
+      document.addEventListener('keydown', onKey);
+    }, 1200);
+    document.getElementById('meetPopupX').addEventListener('click', close);
+    document.getElementById('meetPopupClose').addEventListener('click', close);
+    document.getElementById('meetPopupBg').addEventListener('click', close);
     el.querySelectorAll('a[href]').forEach(function(a){ a.addEventListener('click', markSeen); });
   })();
   </script>
