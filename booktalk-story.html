@@ -66,20 +66,20 @@
       pointer-events:none; visibility:hidden;
       background:radial-gradient(1400px 900px at 75% -15%, #192a58 0%, var(--bg) 62%)}
     .slide.on{opacity:1; transform:none; pointer-events:auto; visibility:visible}
-    .eyebrow{font-size:clamp(12px,1.7vmin,16px); font-weight:700; letter-spacing:.22em; color:var(--gold);
+    .eyebrow{font-size:clamp(13px,2vmin,20px); font-weight:700; letter-spacing:.22em; color:var(--gold);
       text-transform:uppercase; margin-bottom:2.6vmin}
     .eyebrow .n{color:var(--dim); margin-right:1em; letter-spacing:.1em}
-    h2{font-size:clamp(26px,6vmin,62px); line-height:1.28; font-weight:900; letter-spacing:-.01em; max-width:22em; text-wrap:balance}
+    h2{font-size:clamp(28px,7vmin,76px); line-height:1.26; font-weight:900; letter-spacing:-.01em; max-width:22em; text-wrap:balance}
     h2 em{font-style:normal; color:var(--gold)}
-    .lines{margin-top:4vmin; display:flex; flex-direction:column; gap:1.9vmin; max-width:34em}
-    .lines p{font-size:clamp(15px,2.6vmin,26px); line-height:1.65; color:var(--sub)}
+    .lines{margin-top:4vmin; display:flex; flex-direction:column; gap:2vmin; max-width:30em}
+    .lines p{font-size:clamp(17px,3.2vmin,34px); line-height:1.6; color:var(--sub)}
     .lines p b{color:var(--ink); font-weight:700}
-    .verse{margin-top:4vmin; border-left:3px solid var(--gold); padding:1vmin 0 1vmin 2.4vmin; max-width:30em}
-    .verse p{font-size:clamp(16px,2.9vmin,30px); line-height:1.6; color:var(--ink)}
-    .verse cite{display:block; margin-top:1.2vmin; font-size:clamp(12px,1.8vmin,16px); color:var(--gold); font-style:normal; letter-spacing:.08em}
-    .verse.sm{margin-top:2.4vmin; max-width:36em}
-    .verse.sm p{font-size:clamp(14px,2.3vmin,24px)}
-    .big{font-size:clamp(30px,7.4vmin,84px) !important; line-height:1.3 !important}
+    .big{font-size:clamp(34px,8.4vmin,96px) !important; line-height:1.28 !important}
+    /* 성경 전문 슬라이드 */
+    .vs .vtext{border-left:4px solid var(--gold); padding:1.4vmin 0 1.4vmin 3vmin; max-width:36em}
+    .vs .vtext p{font-family:'Noto Serif KR','Pretendard',serif; font-size:clamp(19px,3.6vmin,42px); line-height:1.8; color:var(--ink)}
+    .vs .vtext.xl p{font-size:clamp(21px,4.2vmin,50px)}
+    .vs .vtext sup{color:var(--gold); font-size:.55em; font-weight:700; margin:0 .3em 0 .15em}
     .fr{opacity:0; transform:translateY(16px); transition:opacity .45s ease, transform .45s ease}
     .fr.show{opacity:1; transform:none}
     .notes{display:none}
@@ -89,7 +89,7 @@
     .cover .txt{flex:1; min-width:0}
     .cover img{height:min(62vh,520px); max-width:38vw; border-radius:10px; object-fit:contain;
       box-shadow:0 30px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.08)}
-    .cover .sub1{font-size:clamp(14px,2.2vmin,22px); color:var(--sub); margin-top:3vmin; line-height:1.7}
+    .cover .sub1{font-size:clamp(16px,2.6vmin,26px); color:var(--sub); margin-top:3vmin; line-height:1.7}
     .center{align-items:center; text-align:center}
     .center h2{max-width:none}
     .center .lines{align-items:center}
@@ -190,18 +190,26 @@
     <section class="slide">
       <p class="eyebrow"><span class="n">셋째 이야기</span>천둥소리</p>
       <h2 class="serif">할아버지의 임종,<br/>그날 들린 <em>말씀</em></h2>
-      <div class="verse fr">
-        <p class="serif">"나는 부활이요 생명이니, 나를 믿는 자는 죽어도 살겠고,<br/>무릇 살아서 나를 믿는 자는 영원히 죽지 아니하리니,<br/>네가 이것을 믿느냐?"</p>
-        <cite>— 요한복음 11:25–26</cite>
+      <div class="lines">
+        <p class="fr">그 임종의 자리에서 — <b>요한복음 11장</b> 말씀이 들렸습니다</p>
+      </div>
+      <aside class="notes">속도를 늦추는 첫 지점. 짧게 말하고 바로 다음 장으로 넘겨 말씀 전문을 띄운 뒤 직접 낭독.</aside>
+    </section>
+
+    <!-- 6. 요한복음 11:25-26 전문 -->
+    <section class="slide vs">
+      <p class="eyebrow">요한복음 11:25–26 · 킹제임스 정본역</p>
+      <div class="vtext xl">
+        <p><sup>25</sup>예수께서 이르시되, "나는 부활이요 생명이니, 나를 믿는 자는 죽어도 살겠고, <sup>26</sup>무릇 살아서 나를 믿는 자는 영원히 죽지 아니하리니, 네가 이것을 믿느냐?" 하시니라.</p>
       </div>
       <div class="lines">
         <p class="fr">수십 번 읽던 구절이, 그날은 <b>천둥처럼</b> 울렸습니다</p>
         <p class="fr">그렇다면 나는 — <b>남은 인생을 무엇을 위해 살아야 하는가</b></p>
       </div>
-      <aside class="notes">속도를 늦추고. 말씀 구절은 <b>직접 낭독</b>. 글자가 아니라 소리로, 지식이 아니라 사건으로 쳤다. 장례 후 돌아오는 길의 질문 하나가 놓아주지 않았다 — 여기서 잠시 멈춤.</aside>
+      <aside class="notes">말씀 전문을 천천히 <b>직접 낭독</b>. 글자가 아니라 소리로, 지식이 아니라 사건으로 쳤다. 네가 이것을 믿느냐 — 참석자들에게 그대로 던져도 좋음. 마지막 질문에서 충분히 멈춤.</aside>
     </section>
 
-    <!-- 6. 다시 문을 두드리다 -->
+    <!-- 7. 다시 문을 두드리다 -->
     <section class="slide">
       <p class="eyebrow"><span class="n">셋째 이야기</span>다시 문을 두드리다</p>
       <h2 class="serif">"여보, 나<br/>다시 <em>공부</em>하고 싶어"</h2>
@@ -213,7 +221,7 @@
       <aside class="notes">아내 이야기에서 진심을 담아(현장에 계시면 눈 맞추기). 나이 들어 하는 공부의 혹독함 — 해 보신 분은 아실 거라고 공감 유도. 고통과 감사가 겹친 시간이었다고.</aside>
     </section>
 
-    <!-- 7. 그 사이, 교회는 -->
+    <!-- 8. 그 사이, 교회는 -->
     <section class="slide">
       <p class="eyebrow"><span class="n">넷째 이야기</span>그 사이, 교회는</p>
       <h2 class="serif">사랑했던 교회가<br/><em>변해</em> 가고 있었습니다</h2>
@@ -221,18 +229,31 @@
         <p class="fr">겉과 속이 다른 이중성 — 저는 <b>본질로 돌아가자</b>고 외쳤습니다</p>
         <p class="fr">어느 날, 개역성경으로 읽은 <b>로마서 12:1–2</b></p>
       </div>
-      <div class="verse sm fr">
-        <p class="serif">"너희 몸을 거룩하고 하나님께 받으실 만한 산 제물로 드리라 …<br/>너희는 이 세상을 본뜨지 말고, 오직 마음이 새로워짐으로 변화를 입으라"</p>
-        <cite>— 로마서 12:1–2</cite>
-      </div>
-      <div class="lines" style="margin-top:2.4vmin">
-        <p class="fr">그것이 빌미가 되어 — 내보내는 절차가 시작되었습니다</p>
-        <p class="fr">나중에야 알았습니다. 유학 전부터 이미 지시가 내려와 있었다는 것을</p>
-      </div>
-      <aside class="notes">담담하게, 비난조가 되지 않게. 거룩한 산 제사로 드리라, 이 세대를 본받지 말라 — 그 말씀을 읽은 것이 빌미였다. 마지막 줄 후 잠시 멈추고: 열다섯 해였습니다. 제 아이들이 태어나 자란 곳이었습니다.</aside>
+      <aside class="notes">담담하게, 비난조가 되지 않게. 본질로 돌아가자고 외쳤던 시간을 말하고, 다음 장으로 넘겨 로마서 본문을 띄운 뒤 낭독.</aside>
     </section>
 
-    <!-- 8. 가장 어두운 터널 -->
+    <!-- 9. 로마서 12:1-2 전문 -->
+    <section class="slide vs">
+      <p class="eyebrow">로마서 12:1–2 · 킹제임스 정본역</p>
+      <div class="vtext">
+        <p><sup>1</sup>그러므로 형제들아, 내가 하나님의 자비하심을 힘입어 너희에게 권하노니, 너희 몸을 거룩하고 하나님께 받으실 만한 산 제물로 드리라. 이것이 너희의 합당한 예배니라. <sup>2</sup>너희는 이 세상을 본뜨지 말고, 오직 마음이 새로워짐으로 변화를 입으라. 이는 하나님의 뜻 곧 선하시고 기뻐 받으실 만하며 온전하신 그 뜻이 무엇인지 너희가 헤아려 알게 하려 함이니라.</p>
+      </div>
+      <aside class="notes">본문을 천천히 낭독. 그날 읽은 말씀이 이것이었다 — 몸을 산 제물로, 이 세상을 본뜨지 말라. 낭독 후 한 박자 쉬고 다음 장으로.</aside>
+    </section>
+
+    <!-- 10. 빌미 -->
+    <section class="slide">
+      <p class="eyebrow"><span class="n">넷째 이야기</span>빌미</p>
+      <h2 class="serif">그것이<br/><em>빌미</em>가 되었습니다</h2>
+      <div class="lines">
+        <p class="fr">저를 내보내는 절차가 시작되었습니다</p>
+        <p class="fr">나중에야 알았습니다 — 유학 전부터 <b>이미 지시가 내려와 있었다</b>는 것을</p>
+        <p class="fr"><b>열다섯 해</b>였습니다. 제 아이들이 태어나 자란 곳이었습니다</p>
+      </div>
+      <aside class="notes">말씀을 읽은 것이 빌미가 되었다는 사실을 담담하게. 마지막 줄 — 열다섯 해였습니다, 제 아이들이 태어나 자란 곳이었습니다 — 뒤에 충분히 멈춤.</aside>
+    </section>
+
+    <!-- 11. 가장 어두운 터널 -->
     <section class="slide">
       <p class="eyebrow"><span class="n">다섯째 이야기</span>가장 어두운 터널</p>
       <h2 class="serif">기도가<br/>나오지 <em>않았습니다</em></h2>
@@ -245,7 +266,7 @@
       <aside class="notes"><b>눈물 포인트.</b> 천천히, 낮게. 참석자에게 다리 놓기: 여러분 중에도 기도가 말이 되어 나오지 않고 눈물로만 드려 본 분이 계실 것이다. 하나님은 그 눈물을 다 받고 계셨다 — 여기서 충분히 멈춤.</aside>
     </section>
 
-    <!-- 9. 광야 -->
+    <!-- 12. 광야 -->
     <section class="slide">
       <p class="eyebrow"><span class="n">여섯째 이야기</span>광야</p>
       <h2 class="serif">학위, 그리고<br/><em>맨땅</em></h2>
@@ -258,7 +279,7 @@
       <aside class="notes">그때는 원망스러웠지만 지금은 고백할 수 있다 — <b>하나님이 일부러 그렇게 하셨다.</b> 광야가 버림이 아니라 준비였다는 암시를 깔고 다음 슬라이드로.</aside>
     </section>
 
-    <!-- 10. 음성 -->
+    <!-- 13. 음성 -->
     <section class="slide center">
       <p class="eyebrow"><span class="n">일곱째 이야기</span>음성</p>
       <h2 class="serif big fr">"너는 <em>천년왕국</em>을<br/>선포하라"</h2>
@@ -270,7 +291,7 @@
       <aside class="notes">음성 문구는 띄우자마자 잠시 침묵. 양털 기도처럼 재확인한 과정. <b>웃음+공감 포인트</b>: 차라리 사랑이나 축복을 전하라고 하시지, 하필 천년왕국이라니 하나님도 참 너무하신다 싶었다. 마지막 — 그래도 순종했다에 무게.</aside>
     </section>
 
-    <!-- 11. 그래도, 순종 -->
+    <!-- 14. 그래도, 순종 -->
     <section class="slide">
       <p class="eyebrow"><span class="n">일곱째 이야기</span>그래도, 순종</p>
       <h2 class="serif">아무도 기다리지 않는<br/>원고를 <em>매일</em> 썼습니다</h2>
@@ -281,7 +302,7 @@
       <aside class="notes">짧게 치고 넘어가는 슬라이드. 아무도 시키지 않았고 아무도 기다리지 않는 원고를 매일 썼다 — 담백하게.</aside>
     </section>
 
-    <!-- 12. 일하심 -->
+    <!-- 15. 일하심 -->
     <section class="slide">
       <p class="eyebrow"><span class="n">여덟째 이야기</span>일하심</p>
       <h2 class="serif">순종의 한 걸음에<br/><em>부어 주신</em> 것들</h2>
@@ -294,7 +315,7 @@
       <aside class="notes">톤을 밝게 끌어올리기. 하나님이 순종하는지 보고 계셨던 것 같다. 쓰는 내가 배우고 쓰는 내가 은혜받는 시간. 마지막 문장은 또박또박 — 저는 그것을 그 책상에서 배웠습니다.</aside>
     </section>
 
-    <!-- 13. 열매 -->
+    <!-- 16. 열매 -->
     <section class="slide center">
       <p class="eyebrow"><span class="n">아홉째 이야기</span>열매</p>
       <h2 class="serif">33강 완강 —<br/>한 권의 책 — <em>오늘</em></h2>
@@ -305,7 +326,7 @@
       <aside class="notes">천년왕국 세미나 33강이 완강되고, 그 강의가 책이 되고, 그 책이 오늘 이 자리를 만들었다 — 리듬 있게. 은혜 고백은 힘 있게.</aside>
     </section>
 
-    <!-- 14. 가장 큰 열매 -->
+    <!-- 17. 가장 큰 열매 -->
     <section class="slide center">
       <p class="eyebrow">가장 큰 열매</p>
       <h2 class="serif big fr">이 일로 얻은<br/>가장 큰 기쁨은 — <em>여러분</em>입니다</h2>
@@ -315,7 +336,7 @@
       <aside class="notes"><b>눈물 포인트.</b> 청중을 한 분 한 분 둘러보며. 책을 내서 무엇이 제일 좋으냐 물으면 주저 없이 — 여러분을 얻었다고 답한다.</aside>
     </section>
 
-    <!-- 15. 맡김 -->
+    <!-- 18. 맡김 -->
     <section class="slide">
       <p class="eyebrow"><span class="n">열째 이야기</span>맡김</p>
       <h2 class="serif">이후의 걸음도<br/>온전히 <em>주님께</em></h2>
@@ -327,7 +348,7 @@
       <aside class="notes">마무리 감사. 축복의 말은 기도하듯. 이어서 자연스럽게 마지막 슬라이드로 넘기고 인사.</aside>
     </section>
 
-    <!-- 16. 엔딩 -->
+    <!-- 19. 엔딩 -->
     <section class="slide cover">
       <div class="txt">
         <h2 class="serif">감사합니다</h2>
