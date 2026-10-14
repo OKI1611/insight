@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>이 책이 나오기까지 — 북토크 간증 슬라이드</title>
+  <!-- 관리자(발표자) 전용 페이지 — 검색엔진 색인 금지, 어디에도 링크하지 않는다 -->
+  <meta name="robots" content="noindex, nofollow"/>
+  <meta name="theme-color" content="#0b1530"/>
+  <link rel="icon" href="/favicon.ico"/>
+  <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700;900&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
+    const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+    const ADMIN_EMAIL = 'josephoh1611@gmail.com';
+  </script>
+  <style>
+    :root{
+      --bg:#0b1530; --bg2:#13224a; --ink:#f4f7ff; --sub:#9fb3d9; --dim:#67789f;
+      --gold:#ffd76a; --gold-deep:#e8b84a; --line:rgba(255,255,255,.12);
+    }
+    *{box-sizing:border-box; margin:0; padding:0}
+    html,body{height:100%}
+    body{
+      font-family:'Pretendard',system-ui,sans-serif; background:var(--bg); color:var(--ink);
+      overflow:hidden; -webkit-font-smoothing:antialiased;
+    }
+    .serif{font-family:'Noto Serif KR','Pretendard',serif}
+
+    /* ===== 로그인 게이트 ===== */
+    #gate{position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center; padding:20px;
+      background:radial-gradient(1200px 700px at 70% -10%, #1b2c5c 0%, var(--bg) 60%)}
+    .gateCard{width:100%; max-width:360px; background:rgba(255,255,255,.05); border:1px solid var(--line);
+      border-radius:20px; padding:32px 26px; text-align:center; backdrop-filter:blur(8px)}
+    .gateCard h1{font-size:17px; font-weight:800; margin-bottom:4px}
+    .gateCard p{font-size:12.5px; color:var(--sub); margin-bottom:20px}
+    .gateCard input{width:100%; background:rgba(255,255,255,.07); border:1px solid var(--line); border-radius:12px;
+      color:var(--ink); padding:11px 14px; font-size:14px; margin-bottom:8px; outline:none}
+    .gateCard input:focus{border-color:var(--gold)}
+    .btn{width:100%; border:0; border-radius:12px; padding:12px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit}
+    .btnGoogle{background:#fff; color:#1c2440; display:flex; align-items:center; justify-content:center; gap:9px; margin-bottom:14px}
+    .btnMail{background:var(--gold); color:#2a2000}
+    #gateErr{font-size:12px; color:#ff9d9d; min-height:16px; margin-top:8px}
+    .gateHome{display:inline-block; margin-top:10px; font-size:12px; color:var(--dim); text-decoration:none}
+
+    /* ===== 덱 공통 ===== */
+    #deck{position:fixed; inset:0; display:none}
+    #deck.open{display:block}
+    #bar{position:fixed; top:0; left:0; height:4px; background:linear-gradient(90deg,var(--gold),var(--gold-deep));
+      width:0%; z-index:40; transition:width .35s ease}
+    #count{position:fixed; right:18px; bottom:14px; z-index:40; font-size:12px; color:var(--dim); letter-spacing:.06em;
+      font-variant-numeric:tabular-nums}
+    #clock{position:fixed; left:18px; bottom:14px; z-index:40; font-size:12px; color:var(--dim); font-variant-numeric:tabular-nums}
+    #hint{position:fixed; left:50%; bottom:14px; transform:translateX(-50%); z-index:40; font-size:11.5px; color:var(--dim);
+      background:rgba(255,255,255,.05); border:1px solid var(--line); padding:6px 14px; border-radius:999px; white-space:nowrap;
+      transition:opacity .8s}
+    #hint.off{opacity:0; pointer-events:none}
+
+    /* ===== 슬라이드 ===== */
+    .slide{position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center;
+      padding:7vmin 9vmin 10vmin; opacity:0; transform:translateY(14px); transition:opacity .55s ease, transform .55s ease;
+      pointer-events:none; visibility:hidden;
+      background:radial-gradient(1400px 900px at 75% -15%, #192a58 0%, var(--bg) 62%)}
+    .slide.on{opacity:1; transform:none; pointer-events:auto; visibility:visible}
+    .eyebrow{font-size:clamp(12px,1.7vmin,16px); font-weight:700; letter-spacing:.22em; color:var(--gold);
+      text-transform:uppercase; margin-bottom:2.6vmin}
+    .eyebrow .n{color:var(--dim); margin-right:1em; letter-spacing:.1em}
+    h2{font-size:clamp(26px,6vmin,62px); line-height:1.28; font-weight:900; letter-spacing:-.01em; max-width:22em; text-wrap:balance}
+    h2 em{font-style:normal; color:var(--gold)}
+    .lines{margin-top:4vmin; display:flex; flex-direction:column; gap:1.9vmin; max-width:34em}
+    .lines p{font-size:clamp(15px,2.6vmin,26px); line-height:1.65; color:var(--sub)}
+    .lines p b{color:var(--ink); font-weight:700}
+    .verse{margin-top:4vmin; border-left:3px solid var(--gold); padding:1vmin 0 1vmin 2.4vmin; max-width:30em}
+    .verse p{font-size:clamp(16px,2.9vmin,30px); line-height:1.6; color:var(--ink)}
+    .verse cite{display:block; margin-top:1.2vmin; font-size:clamp(12px,1.8vmin,16px); color:var(--gold); font-style:normal; letter-spacing:.08em}
+    .big{font-size:clamp(30px,7.4vmin,84px) !important; line-height:1.3 !important}
+    .fr{opacity:0; transform:translateY(16px); transition:opacity .45s ease, transform .45s ease}
+    .fr.show{opacity:1; transform:none}
+    .notes{display:none}
+
+    /* 타이틀·엔딩 슬라이드 */
+    .cover{flex-direction:row; align-items:center; gap:7vmin}
+    .cover .txt{flex:1; min-width:0}
+    .cover img{height:min(62vh,520px); max-width:38vw; border-radius:10px; object-fit:contain;
+      box-shadow:0 30px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.08)}
+    .cover .sub1{font-size:clamp(14px,2.2vmin,22px); color:var(--sub); margin-top:3vmin; line-height:1.7}
+    .center{align-items:center; text-align:center}
+    .center h2{max-width:none}
+    .center .lines{align-items:center}
+    @media (max-width:760px), (orientation:portrait){
+      .cover{flex-direction:column; justify-content:center; text-align:center; gap:4vmin}
+      .cover img{height:34vh; max-width:70vw}
+      .slide{padding:7vmin 6vmin 12vmin}
+    }
+
+    /* 발표자 노트 패널 (N 키) */
+    #notes{position:fixed; left:0; right:0; bottom:0; z-index:50; max-height:38vh; overflow:auto; display:none;
+      background:rgba(6,12,30,.94); border-top:1px solid var(--gold); padding:16px 22px 22px; backdrop-filter:blur(6px)}
+    #notes.open{display:block}
+    #notes .nTitle{font-size:11px; letter-spacing:.2em; color:var(--gold); font-weight:700; margin-bottom:8px}
+    #notes .nBody{font-size:14.5px; line-height:1.75; color:#dbe4f7; max-width:860px}
+    #notes .nBody b{color:var(--gold)}
+
+    /* 암전 (B 키) */
+    #blackout{position:fixed; inset:0; z-index:60; background:#000; display:none}
+    #blackout.open{display:block}
+  </style>
+</head>
+<body>
+
+  <!-- ===== 로그인 게이트 (admin.html 과 동일한 서버 검증 방식·같은 세션 키) ===== -->
+  <div id="gate">
+    <div class="gateCard">
+      <h1>북토크 간증 슬라이드</h1>
+      <p>발표자 계정으로 로그인하세요.</p>
+      <button class="btn btnGoogle" onclick="googleLogin()">
+        <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C39.9 36.5 44 31 44 24c0-1.3-.1-2.3-.4-3.5z"/></svg>
+        구글로 로그인
+      </button>
+      <input id="ge" type="email" placeholder="이메일" autocomplete="username"/>
+      <input id="gp" type="password" placeholder="비밀번호" autocomplete="current-password"/>
+      <button class="btn btnMail" onclick="emailLogin()">이메일로 로그인</button>
+      <p id="gateErr"></p>
+      <a class="gateHome" href="/">← 홈페이지로</a>
+    </div>
+  </div>
+
+  <!-- ===== 슬라이드 덱 ===== -->
+  <div id="deck">
+    <div id="bar"></div>
+    <div id="count"></div>
+    <div id="clock"></div>
+    <div id="hint">→ 다음 · ← 이전 · <b>F</b> 전체화면 · <b>N</b> 대본 · <b>B</b> 암전</div>
+
+    <!-- 1. 타이틀 -->
+    <section class="slide cover">
+      <div class="txt">
+        <p class="eyebrow">출간 기념 나눔의 오후 · 2026. 10. 31</p>
+        <h2 class="serif">한 권의 책,<br/>그 <em>뒤</em>의 이야기</h2>
+        <p class="sub1">『천년왕국을 아십니까』가 나오기까지<br/>하나님께서 하신 일들 — 오광일</p>
+      </div>
+      <img src="/images/book-millennium-cover.jpg" alt="천년왕국을 아십니까 표지"/>
+      <aside class="notes">환영 인사 후 낮은 목소리로. <b>오늘은 책 강의가 아니라 책의 뒷이야기</b>를 나누겠다고 예고. 웃기도 하고 울기도 할 테니 편안하게 들어 달라고 청하기.</aside>
+    </section>
+
+    <!-- 2. 프롤로그 -->
+    <section class="slide">
+      <p class="eyebrow">프롤로그</p>
+      <h2 class="serif">모든 책에는<br/>쓰여진 <em>이유</em>가 있습니다</h2>
+      <div class="lines">
+        <p class="fr">어떤 책은 지식이 쓰게 하고, 어떤 책은 밥벌이가 쓰게 합니다.</p>
+        <p class="fr">이 책은 — 제가 쓰고 싶어서 쓴 책이 <b>아닙니다.</b></p>
+        <p class="fr">쓰지 않으면 안 되도록, 하나님이 저를 몰아가셨습니다.</p>
+      </div>
+      <aside class="notes">짧게. <b>쓰고 싶어서 쓴 책이 아니다</b>에 힘. 오늘은 그 몰아가신 길을 처음부터 말씀드리겠다고 하고 넘어가기.</aside>
+    </section>
+
+    <!-- 3. 열다섯 해 -->
+    <section class="slide">
+      <p class="eyebrow"><span class="n">첫째 이야기</span>열다섯 해</p>
+      <h2 class="serif">제 청춘이 통째로<br/>담긴 <em>교회</em>가 있었습니다</h2>
+      <div class="lines">
+        <p class="fr"><b>15년</b> — 두 아이가 태어나고, 그 마룻바닥에서 걸음마를 배운 곳</p>
+        <p class="fr">교회학교 총괄 · 평신도 신학원 총괄 — 커리큘럼과 체계를 세우던 시간</p>
+        <p class="fr">집보다 교회에 있던 시간이 더 길었습니다</p>
+      </div>
+      <aside class="notes">애정을 듬뿍 담아서. <b>웃음 포인트</b>: 아내가 나를 찾으려면 집이 아니라 교회로 전화해야 했다. 마지막에 복선 — 뒤에 나올 이야기가 바로 이 교회에서 일어난 일이라고.</aside>
+    </section>
+
+    <!-- 4. 어머니의 서원 -->
+    <section class="slide">
+      <p class="eyebrow"><span class="n">둘째 이야기</span>어머니의 서원</p>
+      <h2 class="serif">"이 아들,<br/><em>목사로</em> 드리겠습니다"</h2>
+      <div class="lines">
+        <p class="fr">그런데 정작 저는, 저를 볼 때마다 고개를 저었습니다</p>
+        <p class="fr">일반 대학으로 — 그래도 젊은 날, 미국 신학대학원에 <b>합격</b></p>
+        <p class="fr">그러나 <b>비자 거절.</b> 아, 나에게는 소명이 없구나</p>
+        <p class="fr">그렇게 아주 평범하게 살았습니다</p>
+      </div>
+      <aside class="notes"><b>웃음 포인트</b>: 거울을 보면 답이 나왔다, 나는 도저히 그런 그릇이 아니다. 비자 거절을 하나님의 대답으로 읽고 접었던 것 — 담담하게. 직장 다니고 아이 키우는 어디에나 있는 평신도였다고.</aside>
+    </section>
+
+    <!-- 5. 천둥소리 -->
+    <section class="slide">
+      <p class="eyebrow"><span class="n">셋째 이야기</span>천둥소리</p>
+      <h2 class="serif">할아버지의 임종,<br/>그날 들린 <em>말씀</em></h2>
+      <div class="verse fr">
+        <p class="serif">"나는 부활이요 생명이니<br/>나를 믿는 자는 죽어도 살겠고"</p>
+        <cite>— 요한복음 11:25</cite>
+      </div>
+      <div class="lines">
+        <p class="fr">수십 번 읽던 구절이, 그날은 <b>천둥처럼</b> 울렸습니다</p>
+        <p class="fr">그렇다면 나는 — <b>남은 인생을 무엇을 위해 살아야 하는가</b></p>
+      </div>
+      <aside class="notes">속도를 늦추고. 말씀 구절은 <b>직접 낭독</b>. 글자가 아니라 소리로, 지식이 아니라 사건으로 쳤다. 장례 후 돌아오는 길의 질문 하나가 놓아주지 않았다 — 여기서 잠시 멈춤.</aside>
+    </section>
+
+    <!-- 6. 다시 문을 두드리다 -->
+    <section class="slide">
+      <p class="eyebrow"><span class="n">셋째 이야기</span>다시 문을 두드리다</p>
+      <h2 class="serif">"여보, 나<br/>다시 <em>공부</em>하고 싶어"</h2>
+      <div class="lines">
+        <p class="fr">아내의 동의 — 그 동의가 없었다면 오늘 이 책도 없습니다</p>
+        <p class="fr">젊은 날 닫혔던 그 문이, 이번에는 <b>열렸습니다</b></p>
+        <p class="fr">2년 반 — 파편처럼 흩어져 있던 신학이 <b>하나로 꿰어지던</b>, 아프지만 감사한 시간</p>
+      </div>
+      <aside class="notes">아내 이야기에서 진심을 담아(현장에 계시면 눈 맞추기). 나이 들어 하는 공부의 혹독함 — 해 보신 분은 아실 거라고 공감 유도. 고통과 감사가 겹친 시간이었다고.</aside>
+    </section>
+
+    <!-- 7. 그 사이, 교회는 -->
+    <section class="slide">
+      <p class="eyebrow"><span class="n">넷째 이야기</span>그 사이, 교회는</p>
+      <h2 class="serif">사랑했던 교회가<br/><em>변해</em> 가고 있었습니다</h2>
+      <div class="lines">
+        <p class="fr">겉과 속이 다른 이중성 — 저는 <b>본질로 돌아가자</b>고 외쳤습니다</p>
+        <p class="fr">어느 날, 개역성경으로 읽은 <b>로마서 12:1–2</b></p>
+        <p class="fr">그것이 빌미가 되어 — 내보내는 절차가 시작되었습니다</p>
+        <p class="fr">나중에야 알았습니다. 유학 전부터 이미 지시가 내려와 있었다는 것을</p>
+      </div>
+      <aside class="notes">담담하게, 비난조가 되지 않게. 거룩한 산 제사로 드리라, 이 세대를 본받지 말라 — 그 말씀을 읽은 것이 빌미였다. 마지막 줄 후 잠시 멈추고: 열다섯 해였습니다. 제 아이들이 태어나 자란 곳이었습니다.</aside>
+    </section>
+
+    <!-- 8. 가장 어두운 터널 -->
+    <section class="slide">
+      <p class="eyebrow"><span class="n">다섯째 이야기</span>가장 어두운 터널</p>
+      <h2 class="serif">기도가<br/>나오지 <em>않았습니다</em></h2>
+      <div class="lines">
+        <p class="fr">복음의 본질을 외친 것이 문제였을까 — 번역본이 출교 사유가 되는가</p>
+        <p class="fr">억울함, 아픔, 그리고 겹쳐 온 졸업 논문</p>
+        <p class="fr">무릎을 꿇고 <b>"주여—"</b> 하면, 그다음은 그저 <b>눈물만</b> 흘렀습니다</p>
+        <p class="fr">그런데 지나고 보니 — <b>그 눈물이 기도였습니다</b></p>
+      </div>
+      <aside class="notes"><b>눈물 포인트.</b> 천천히, 낮게. 참석자에게 다리 놓기: 여러분 중에도 기도가 말이 되어 나오지 않고 눈물로만 드려 본 분이 계실 것이다. 하나님은 그 눈물을 다 받고 계셨다 — 여기서 충분히 멈춤.</aside>
+    </section>
+
+    <!-- 9. 광야 -->
+    <section class="slide">
+      <p class="eyebrow"><span class="n">여섯째 이야기</span>광야</p>
+      <h2 class="serif">학위, 그리고<br/><em>맨땅</em></h2>
+      <div class="lines">
+        <p class="fr">독립침례교회 — 부류를 벗어나면 <b>어떤 연결고리도 없습니다</b></p>
+        <p class="fr">추천해 줄 사람도, 불러 줄 교회도 없이, 모든 것을 맨땅에서</p>
+        <p class="fr">사람도 조직도 경력도 — <b>아무것도 의지할 수 없는 자리</b></p>
+        <p class="fr">하나님 한 분만 남을 때까지</p>
+      </div>
+      <aside class="notes">그때는 원망스러웠지만 지금은 고백할 수 있다 — <b>하나님이 일부러 그렇게 하셨다.</b> 광야가 버림이 아니라 준비였다는 암시를 깔고 다음 슬라이드로.</aside>
+    </section>
+
+    <!-- 10. 음성 -->
+    <section class="slide center">
+      <p class="eyebrow"><span class="n">일곱째 이야기</span>음성</p>
+      <h2 class="serif big fr">"너는 <em>천년왕국</em>을<br/>선포하라"</h2>
+      <div class="lines">
+        <p class="fr">기드온의 양털처럼 — 몇 차례나 다시 묻고, 그때마다 확인받았습니다</p>
+        <p class="fr">에너지도 바닥, 미래도 막막 — 게다가 하필, 비난받기 딱 좋은 주제</p>
+        <p class="fr"><b>"하나님, 너무하십니다"</b> — 그래도, 순종했습니다</p>
+      </div>
+      <aside class="notes">음성 문구는 띄우자마자 잠시 침묵. 양털 기도처럼 재확인한 과정. <b>웃음+공감 포인트</b>: 차라리 사랑이나 축복을 전하라고 하시지, 하필 천년왕국이라니 하나님도 참 너무하신다 싶었다. 마지막 — 그래도 순종했다에 무게.</aside>
+    </section>
+
+    <!-- 11. 그래도, 순종 -->
+    <section class="slide">
+      <p class="eyebrow"><span class="n">일곱째 이야기</span>그래도, 순종</p>
+      <h2 class="serif">아무도 기다리지 않는<br/>원고를 <em>매일</em> 썼습니다</h2>
+      <div class="lines">
+        <p class="fr">자료를 모으고 — 책을 찾고 — 기획하고 — 한 줄 한 줄</p>
+        <p class="fr">순종은 거창한 것이 아니었습니다. 그저 <b>책상에 앉는 일</b>이었습니다</p>
+      </div>
+      <aside class="notes">짧게 치고 넘어가는 슬라이드. 아무도 시키지 않았고 아무도 기다리지 않는 원고를 매일 썼다 — 담백하게.</aside>
+    </section>
+
+    <!-- 12. 일하심 -->
+    <section class="slide">
+      <p class="eyebrow"><span class="n">여덟째 이야기</span>일하심</p>
+      <h2 class="serif">순종의 한 걸음에<br/><em>부어 주신</em> 것들</h2>
+      <div class="lines">
+        <p class="fr">성경을 읽으면, 전에 보이지 않던 것들이 보이고</p>
+        <p class="fr">신약과 구약이 <b>하나의 그림</b>으로 꿰어지는 통찰</p>
+        <p class="fr">필요한 바로 그때에 만나지는 신학 논문들</p>
+        <p class="fr">하나님은 능력 있는 사람을 쓰시는 것이 아니라 —<br/><b>순종하는 사람에게 능력을 부어 주십니다</b></p>
+      </div>
+      <aside class="notes">톤을 밝게 끌어올리기. 하나님이 순종하는지 보고 계셨던 것 같다. 쓰는 내가 배우고 쓰는 내가 은혜받는 시간. 마지막 문장은 또박또박 — 저는 그것을 그 책상에서 배웠습니다.</aside>
+    </section>
+
+    <!-- 13. 열매 -->
+    <section class="slide center">
+      <p class="eyebrow"><span class="n">아홉째 이야기</span>열매</p>
+      <h2 class="serif">33강 완강 —<br/>한 권의 책 — <em>오늘</em></h2>
+      <div class="lines">
+        <p class="fr">이 모든 과정에 제 공로는 없습니다</p>
+        <p class="fr"><b>전적인 하나님의 은혜입니다</b></p>
+      </div>
+      <aside class="notes">천년왕국 세미나 33강이 완강되고, 그 강의가 책이 되고, 그 책이 오늘 이 자리를 만들었다 — 리듬 있게. 은혜 고백은 힘 있게.</aside>
+    </section>
+
+    <!-- 14. 가장 큰 열매 -->
+    <section class="slide center">
+      <p class="eyebrow">가장 큰 열매</p>
+      <h2 class="serif big fr">이 일로 얻은<br/>가장 큰 기쁨은 — <em>여러분</em>입니다</h2>
+      <div class="lines">
+        <p class="fr">영상 너머에 계시던 분들이, 오늘 제 눈앞에 앉아 계십니다</p>
+      </div>
+      <aside class="notes"><b>눈물 포인트.</b> 청중을 한 분 한 분 둘러보며. 책을 내서 무엇이 제일 좋으냐 물으면 주저 없이 — 여러분을 얻었다고 답한다.</aside>
+    </section>
+
+    <!-- 15. 맡김 -->
+    <section class="slide">
+      <p class="eyebrow"><span class="n">열째 이야기</span>맡김</p>
+      <h2 class="serif">이후의 걸음도<br/>온전히 <em>주님께</em></h2>
+      <div class="lines">
+        <p class="fr">어디로 이끄실지 다 알지 못하지만 —<br/>지금까지 걸어온 길을 보면, <b>앞으로의 길도 믿을 수 있습니다</b></p>
+        <p class="fr">천하보다 귀한 한 분 한 분, 찾아와 주셔서 감사합니다</p>
+        <p class="fr">여러분의 가정과 여정 위에 <b>주님의 크신 축복</b>이 함께하시기를</p>
+      </div>
+      <aside class="notes">마무리 감사. 축복의 말은 기도하듯. 이어서 자연스럽게 마지막 슬라이드로 넘기고 인사.</aside>
+    </section>
+
+    <!-- 16. 엔딩 -->
+    <section class="slide cover">
+      <div class="txt">
+        <h2 class="serif">감사합니다</h2>
+        <p class="sub1 serif" style="font-size:clamp(18px,3.2vmin,30px); color:var(--gold); margin-top:2.6vmin">그 나라에서, 꼭 다시 만나요</p>
+      </div>
+      <img src="/images/book-millennium-cover.jpg" alt="천년왕국을 아십니까 표지"/>
+      <aside class="notes">표지 화면을 띄워 둔 채 인사. 이후 나눔 순서 안내로 전환. <b>B 키</b>로 암전해 두고 자유 나눔을 진행해도 좋음.</aside>
+    </section>
+
+    <div id="notes"><p class="nTitle">발표자 메모</p><div class="nBody"></div></div>
+    <div id="blackout"></div>
+  </div>
+
+  <script>
+    /* ===== 인증 — admin.html 과 동일한 패턴(토큰을 서버로 검증, 세션 키 공유) ===== */
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType:'implicit', autoRefreshToken:false, persistSession:false, detectSessionFromUrl:false, lock: async (_n,_t,fn)=>await fn() } });
+
+    function jwtPayload(tok){
+      let s=tok.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'); while(s.length%4) s+='=';
+      const json=decodeURIComponent(atob(s).split('').map(c=>'%'+('00'+c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+      return JSON.parse(json);
+    }
+    (function handleOAuthRedirect(){
+      try{
+        if(location.hash && location.hash.indexOf('access_token=')>=0){
+          const p=new URLSearchParams(location.hash.slice(1));
+          const at=p.get('access_token'), rt=p.get('refresh_token'), ei=Number(p.get('expires_in')||3600);
+          if(at){
+            const payload=jwtPayload(at);
+            const user={ id:payload.sub, email:payload.email, role:payload.role, user_metadata:payload.user_metadata||{} };
+            localStorage.setItem('bibly-admin-auth', JSON.stringify({ access_token:at, token_type:'bearer', expires_in:ei, refresh_token:rt, expires_at:(payload.exp||Math.floor(Date.now()/1000)+ei), user }));
+            history.replaceState(null,'',location.pathname);
+          }
+        }
+      }catch(e){}
+    })();
+
+    function readStored(){
+      try{
+        const raw=localStorage.getItem('bibly-admin-auth');
+        if(raw){ const v=JSON.parse(raw); if(v&&v.user){ if(v.expires_at&&v.expires_at*1000<Date.now()){ localStorage.removeItem('bibly-admin-auth'); } else { return v; } } }
+        for(const k of Object.keys(localStorage)){ if(!/auth-token/.test(k)) continue; const v=JSON.parse(localStorage.getItem(k)); const s=(v&&v.user)?v:(v&&v.currentSession)?v.currentSession:null; if(s&&s.user){ if(s.expires_at&&s.expires_at*1000<Date.now()) return null; return s; } }
+      }catch(e){} return null;
+    }
+    async function verifySession(session){
+      const tok = session && session.access_token;
+      if(!tok) return null;
+      const ctrl=new AbortController(); const to=setTimeout(()=>ctrl.abort(), 8000);
+      try{
+        const res = await fetch(SUPABASE_URL+'/auth/v1/user', { signal:ctrl.signal, headers:{ apikey:SUPABASE_ANON, Authorization:'Bearer '+tok } });
+        clearTimeout(to);
+        if(!res.ok) return null;
+        const u = await res.json();
+        return (u && u.id) ? u : null;
+      }catch(e){ clearTimeout(to); return null; }
+    }
+    async function googleLogin(){
+      try{ await sb.auth.signInWithOAuth({ provider:'google', options:{ redirectTo: location.origin+location.pathname } }); }catch(e){}
+    }
+    async function emailLogin(){
+      const email=document.getElementById('ge').value.trim(), pw=document.getElementById('gp').value;
+      const m=document.getElementById('gateErr'); m.textContent='';
+      if(!email||!pw){ m.textContent='이메일과 비밀번호를 입력하세요.'; return; }
+      m.textContent='로그인 중…';
+      const ctrl=new AbortController(); const to=setTimeout(()=>ctrl.abort(),8000);
+      try{
+        const res=await fetch(SUPABASE_URL+'/auth/v1/token?grant_type=password',{ method:'POST', signal:ctrl.signal, headers:{ apikey:SUPABASE_ANON,'Content-Type':'application/json' }, body:JSON.stringify({email,password:pw}) });
+        clearTimeout(to);
+        const d=await res.json();
+        if(d.error||!d.access_token){ m.textContent='로그인 실패: '+(d.error_description||d.msg||d.error||'알 수 없는 오류'); return; }
+        localStorage.setItem('bibly-admin-auth', JSON.stringify({ access_token:d.access_token, token_type:'bearer', expires_in:d.expires_in, refresh_token:d.refresh_token, expires_at:Math.floor(Date.now()/1000)+d.expires_in, user:d.user }));
+        location.reload();
+      }catch(e){ clearTimeout(to); m.textContent='네트워크 오류. 다시 시도해 주세요.'; }
+    }
+    async function applyAuth(){
+      const session = readStored();
+      const gm=document.querySelector('.gateCard p');
+      if(gm && session && session.access_token) gm.textContent='발표자 확인 중…';
+      const verified = await verifySession(session);
+      const email = String((verified && verified.email) || '').toLowerCase();
+      if(email && email === String(ADMIN_EMAIL).toLowerCase()){
+        document.getElementById('gate').style.display='none';
+        document.getElementById('deck').classList.add('open');
+        initDeck();
+      } else {
+        if(gm) gm.textContent='발표자 계정으로 로그인하세요.';
+      }
+    }
+
+    /* ===== 슬라이드 엔진 ===== */
+    let S=[], cur=0, started=false;
+    function frs(i){ return Array.from(S[i].querySelectorAll('.fr')); }
+    function sync(){
+      S.forEach((s,i)=>s.classList.toggle('on', i===cur));
+      document.getElementById('bar').style.width=(((cur+1)/S.length)*100)+'%';
+      document.getElementById('count').textContent=(cur+1)+' / '+S.length;
+      const n=S[cur].querySelector('.notes');
+      document.querySelector('#notes .nBody').innerHTML = n ? n.innerHTML : '';
+    }
+    function go(i, revealAll){
+      cur=Math.max(0, Math.min(S.length-1, i));
+      frs(cur).forEach(f=>f.classList.toggle('show', !!revealAll));
+      sync();
+    }
+    function next(){
+      hideHint();
+      const pend=frs(cur).find(f=>!f.classList.contains('show'));
+      if(pend){ pend.classList.add('show'); return; }
+      if(cur<S.length-1) go(cur+1, false);
+    }
+    function prev(){
+      hideHint();
+      const shown=frs(cur).filter(f=>f.classList.contains('show'));
+      if(shown.length){ shown[shown.length-1].classList.remove('show'); return; }
+      if(cur>0) go(cur-1, true);
+    }
+    let hintT=null;
+    function hideHint(){ const h=document.getElementById('hint'); if(h) h.classList.add('off'); }
+    function initDeck(){
+      S=Array.from(document.querySelectorAll('.slide'));
+      go(0,false);
+      hintT=setTimeout(hideHint, 9000);
+      setInterval(()=>{ const d=new Date(); document.getElementById('clock').textContent=('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2); }, 1000);
+
+      document.addEventListener('keydown', (e)=>{
+        if(/input|textarea/i.test(e.target.tagName)) return;
+        const k=e.key;
+        if(k==='ArrowRight'||k===' '||k==='PageDown'||k==='Enter'){ e.preventDefault(); next(); }
+        else if(k==='ArrowLeft'||k==='PageUp'||k==='Backspace'){ e.preventDefault(); prev(); }
+        else if(k==='Home'){ go(0,false); }
+        else if(k==='End'){ go(S.length-1,true); }
+        else if(k==='f'||k==='F'){ if(document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen().catch(()=>{}); }
+        else if(k==='n'||k==='N'){ document.getElementById('notes').classList.toggle('open'); }
+        else if(k==='b'||k==='B'||k==='.'){ document.getElementById('blackout').classList.toggle('open'); }
+        else if(k==='Escape'){ document.getElementById('blackout').classList.remove('open'); document.getElementById('notes').classList.remove('open'); }
+      });
+      document.getElementById('blackout').addEventListener('click', function(){ this.classList.remove('open'); });
+      // 클릭: 왼쪽 1/4 = 이전, 나머지 = 다음 (노트 패널 안 클릭은 제외)
+      document.getElementById('deck').addEventListener('click', (e)=>{
+        if(e.target.closest('#notes') || e.target.closest('#blackout')) return;
+        if(e.clientX < window.innerWidth*0.25) prev(); else next();
+      });
+      // 터치 스와이프
+      let tx=null;
+      document.addEventListener('touchstart', e=>{ tx=e.touches[0].clientX; }, {passive:true});
+      document.addEventListener('touchend', e=>{
+        if(tx===null) return;
+        const dx=e.changedTouches[0].clientX - tx; tx=null;
+        if(Math.abs(dx)>50){ if(dx<0) next(); else prev(); }
+      }, {passive:true});
+    }
+
+    applyAuth();
+  </script>
+</body>
+</html>
