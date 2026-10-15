@@ -61,7 +61,7 @@
     #hint.off{opacity:0; pointer-events:none}
 
     /* ===== 슬라이드 ===== */
-    .slide{position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center;
+    .slide{position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
       padding:7vmin 9vmin 10vmin; opacity:0; transform:translateY(14px); transition:opacity .55s ease, transform .55s ease;
       pointer-events:none; visibility:hidden;
       background:radial-gradient(1400px 900px at 75% -15%, #192a58 0%, var(--bg) 62%)}
@@ -78,7 +78,7 @@
     /* 성경 전문 슬라이드 — 왼쪽 한글, 오른쪽 영어 KJV */
     .vs .vwrap{display:grid; grid-template-columns:1.08fr 1fr; gap:4.5vmin; align-items:start; max-width:64em}
     .vs .vtext{border-left:4px solid var(--gold); padding:1.4vmin 0 1.4vmin 3vmin}
-    .vs .vtext p{font-family:'Noto Serif KR','Pretendard',serif; font-size:clamp(18px,3.2vmin,38px); line-height:1.8; color:var(--ink)}
+    .vs .vtext p{font-family:'Noto Serif KR','Pretendard',serif; font-size:clamp(18px,3.2vmin,38px); line-height:1.8; color:var(--ink); text-align:left}
     .vs .vtext.xl p{font-size:clamp(19px,3.6vmin,44px)}
     .vs .vtext sup{color:var(--gold); font-size:.55em; font-weight:700; margin:0 .3em 0 .15em}
     .vs .vtext.en{border-left-color:rgba(201,162,75,.45)}
@@ -89,7 +89,7 @@
     .notes{display:none}
 
     /* 타이틀·엔딩 슬라이드 */
-    .cover{flex-direction:row; align-items:center; gap:7vmin}
+    .cover{flex-direction:row; align-items:center; gap:7vmin; text-align:left}
     .cover .txt{flex:1; min-width:0}
     .cover img{height:min(62vh,520px); max-width:38vw; border-radius:10px; object-fit:contain;
       box-shadow:0 30px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.08)}
