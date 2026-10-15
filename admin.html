@@ -59,6 +59,7 @@
       </div>
       <nav id="nav" class="flex-1 px-3 py-4 space-y-1 text-sm overflow-auto">
         <button data-sec="dash"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">대시보드</button>
+        <button data-sec="maranatha" class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">마라나타 모임</button>
         <button data-sec="curr"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">커리큘럼 편집</button>
         <button data-sec="reqs"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">강의 요청·건의</button>
         <button data-sec="comm"   class="navItem w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg">커뮤니티</button>
@@ -91,6 +92,28 @@
         <div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-5">
           <h2 class="font-bold mb-3">콘텐츠 요약</h2>
           <div id="contentSummary" class="text-sm text-neutral-900/70 leading-relaxed">불러오는 중…</div>
+        </div>
+      </section>
+
+      <!-- 마라나타 모임 — 모임·발표 자료 모음 (정적 패널, 로더 불필요) -->
+      <section id="sec-maranatha" class="secPanel hidden">
+        <h1 class="text-2xl font-bold mb-1">마라나타 모임</h1>
+        <p class="text-neutral-900/50 text-sm mb-6">모임·발표 자료 모음 — 새 자료가 생기면 이 목록에 추가됩니다. 슬라이드는 새 탭에서 열리며, 이 콘솔에 로그인돼 있으면 추가 로그인 없이 바로 열립니다.</p>
+        <div class="grid md:grid-cols-2 gap-4 max-w-4xl">
+          <a href="booktalk-story.html" target="_blank" rel="noopener" class="block bg-white rounded-2xl border border-ink/5 shadow-sm p-5 hover:border-gold transition">
+            <p class="text-xs font-semibold text-gold mb-1">출간 기념 나눔의 오후 · 2026.10.31</p>
+            <p class="font-bold text-lg leading-snug">북토크 간증 슬라이드<br/><span class="text-sm font-medium text-neutral-900/55">「천년왕국을 아십니까」가 나오기까지 · 19장</span></p>
+            <p class="text-xs text-neutral-900/45 mt-3">간증 토크 발표용 — 요 11:25–26 · 롬 12:1–2 정본역 전문 포함</p>
+          </a>
+          <a href="lecture-first-resurrection.html" target="_blank" rel="noopener" class="block bg-white rounded-2xl border border-ink/5 shadow-sm p-5 hover:border-gold transition">
+            <p class="text-xs font-semibold text-gold mb-1">종말론 Q&amp;A · 독자 질문 3차</p>
+            <p class="font-bold text-lg leading-snug">첫째 부활 강의 슬라이드<br/><span class="text-sm font-medium text-neutral-900/55">세 가지만 구분하면 끝납니다 · 29장</span></p>
+            <p class="text-xs text-neutral-900/45 mt-3">소생≠부활 · 본성≠직분 · 증거≠원인 — 도표·비교표·행렬 도해 포함</p>
+          </a>
+        </div>
+        <div class="mt-6 bg-white rounded-2xl border border-ink/5 shadow-sm p-5 max-w-4xl">
+          <h2 class="font-bold mb-2 text-sm">슬라이드 조작법</h2>
+          <p class="text-sm text-neutral-900/60 leading-relaxed">→ 또는 화면 클릭 = 다음 문장·다음 장 · ← = 이전 · <b>F</b> 전체화면 · <b>N</b> 발표자 대본 표시 · <b>B</b> 암전(기도·나눔 시간) · Esc = 해제 · 휴대폰/태블릿은 좌우로 쓸어 넘기기</p>
         </div>
       </section>
 

@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>첫째 부활 세 가지 구분 — 강의 슬라이드</title>
+  <!-- 관리자(발표자) 전용 페이지 — 검색엔진 색인 금지, 어디에도 공개 링크하지 않는다 -->
+  <meta name="robots" content="noindex, nofollow"/>
+  <meta name="theme-color" content="#0b1530"/>
+  <link rel="icon" href="/favicon.ico"/>
+  <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700;900&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
+    const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+    const ADMIN_EMAIL = 'josephoh1611@gmail.com';
+  </script>
+  <style>
+    :root{
+      --bg:#0b1530; --bg2:#13224a; --ink:#f4f7ff; --sub:#9fb3d9; --dim:#67789f;
+      --gold:#ffd76a; --gold-deep:#e8b84a; --line:rgba(255,255,255,.12);
+    }
+    *{box-sizing:border-box; margin:0; padding:0}
+    html,body{height:100%}
+    body{
+      font-family:'Pretendard',system-ui,sans-serif; background:var(--bg); color:var(--ink);
+      overflow:hidden; -webkit-font-smoothing:antialiased;
+      word-break:keep-all; overflow-wrap:break-word;   /* 한국어 어절 단위 줄바꿈 */
+    }
+    h2, .lines p, .eyebrow{text-wrap:balance}
+    .serif{font-family:'Noto Serif KR','Pretendard',serif}
+
+    /* ===== 로그인 게이트 ===== */
+    #gate{position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center; padding:20px;
+      background:radial-gradient(1200px 700px at 70% -10%, #1b2c5c 0%, var(--bg) 60%)}
+    .gateCard{width:100%; max-width:360px; background:rgba(255,255,255,.05); border:1px solid var(--line);
+      border-radius:20px; padding:32px 26px; text-align:center; backdrop-filter:blur(8px)}
+    .gateCard h1{font-size:17px; font-weight:800; margin-bottom:4px}
+    .gateCard p{font-size:12.5px; color:var(--sub); margin-bottom:20px}
+    .gateCard input{width:100%; background:rgba(255,255,255,.07); border:1px solid var(--line); border-radius:12px;
+      color:var(--ink); padding:11px 14px; font-size:14px; margin-bottom:8px; outline:none}
+    .gateCard input:focus{border-color:var(--gold)}
+    .btn{width:100%; border:0; border-radius:12px; padding:12px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit}
+    .btnGoogle{background:#fff; color:#1c2440; display:flex; align-items:center; justify-content:center; gap:9px; margin-bottom:14px}
+    .btnMail{background:var(--gold); color:#2a2000}
+    #gateErr{font-size:12px; color:#ff9d9d; min-height:16px; margin-top:8px}
+    .gateHome{display:inline-block; margin-top:10px; font-size:12px; color:var(--dim); text-decoration:none}
+
+    /* ===== 덱 공통 ===== */
+    #deck{position:fixed; inset:0; display:none}
+    #deck.open{display:block}
+    #bar{position:fixed; top:0; left:0; height:4px; background:linear-gradient(90deg,var(--gold),var(--gold-deep));
+      width:0%; z-index:40; transition:width .35s ease}
+    #count{position:fixed; right:18px; bottom:14px; z-index:40; font-size:12px; color:var(--dim); letter-spacing:.06em;
+      font-variant-numeric:tabular-nums}
+    #clock{position:fixed; left:18px; bottom:14px; z-index:40; font-size:12px; color:var(--dim); font-variant-numeric:tabular-nums}
+    #hint{position:fixed; left:50%; bottom:14px; transform:translateX(-50%); z-index:40; font-size:11.5px; color:var(--dim);
+      background:rgba(255,255,255,.05); border:1px solid var(--line); padding:6px 14px; border-radius:999px; white-space:nowrap;
+      transition:opacity .8s}
+    #hint.off{opacity:0; pointer-events:none}
+
+    /* ===== 슬라이드 ===== */
+    .slide{position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center;
+      padding:7vmin 9vmin 10vmin; opacity:0; transform:translateY(14px); transition:opacity .55s ease, transform .55s ease;
+      pointer-events:none; visibility:hidden;
+      background:radial-gradient(1400px 900px at 75% -15%, #192a58 0%, var(--bg) 62%)}
+    .slide.on{opacity:1; transform:none; pointer-events:auto; visibility:visible}
+    .eyebrow{font-size:clamp(13px,2vmin,20px); font-weight:700; letter-spacing:.22em; color:var(--gold);
+      text-transform:uppercase; margin-bottom:2.6vmin}
+    .eyebrow .n{color:var(--dim); margin-right:1em; letter-spacing:.1em}
+    h2{font-size:clamp(28px,7vmin,76px); line-height:1.26; font-weight:900; letter-spacing:-.01em; max-width:22em; text-wrap:balance}
+    h2 em{font-style:normal; color:var(--gold)}
+    .lines{margin-top:4vmin; display:flex; flex-direction:column; gap:2vmin; max-width:32em}
+    .lines p{font-size:clamp(17px,3.2vmin,34px); line-height:1.6; color:var(--sub)}
+    .lines p b{color:var(--ink); font-weight:700}
+    .big{font-size:clamp(34px,8.4vmin,96px) !important; line-height:1.28 !important}
+    .fr{opacity:0; transform:translateY(16px); transition:opacity .45s ease, transform .45s ease}
+    .fr.show{opacity:1; transform:none}
+    .notes{display:none}
+    .center{align-items:center; text-align:center}
+    .center h2{max-width:none}
+    .center .lines{align-items:center}
+
+    /* 성경 전문 블록 */
+    .vtext{border-left:4px solid var(--gold); padding:1.4vmin 0 1.4vmin 3vmin; max-width:38em; margin-top:1vmin}
+    .vtext p{font-family:'Noto Serif KR','Pretendard',serif; font-size:clamp(18px,3.3vmin,38px); line-height:1.8; color:var(--ink)}
+    .vtext.xl p{font-size:clamp(21px,4.2vmin,50px)}
+    .vtext.md p{font-size:clamp(16px,2.8vmin,32px)}
+    .vtext sup{color:var(--gold); font-size:.55em; font-weight:700; margin:0 .3em 0 .15em}
+    .vtext cite{display:block; margin-top:1.4vmin; font-size:clamp(12px,1.9vmin,18px); color:var(--gold); font-style:normal; letter-spacing:.08em}
+    .vtext + .vtext{margin-top:3vmin}
+    /* 한글 정본역 + 영어 KJV 병행 */
+    .vwrap{display:grid; grid-template-columns:1.08fr 1fr; gap:4.5vmin; align-items:start; max-width:66em; margin-top:1vmin}
+    .vwrap .vtext{margin-top:0}
+    .vwrap .vtext p{font-size:clamp(17px,3vmin,36px)}
+    .vwrap .vtext.xl p{font-size:clamp(19px,3.6vmin,44px)}
+    .vtext.en{border-left-color:rgba(201,162,75,.45)}
+    .vwrap .vtext.en p{font-size:clamp(14px,2.5vmin,28px); line-height:1.75; color:var(--sub)}
+    @media (max-aspect-ratio:4/3){ .vwrap{grid-template-columns:1fr; gap:2.5vmin} }
+
+    /* 세 쌍 칩 */
+    .chips{display:flex; gap:1.8vmin; margin-top:4vmin; flex-wrap:wrap}
+    .chip{border:1.5px solid var(--line); border-radius:999px; padding:1.3vmin 3vmin; font-size:clamp(14px,2.5vmin,26px);
+      color:var(--dim); font-weight:700; letter-spacing:.02em}
+    .chip.now{border-color:var(--gold); color:var(--gold)}
+    .chip.done{background:var(--gold); border-color:var(--gold); color:#2a2000}
+    .center .chips{justify-content:center}
+
+    /* 표 */
+    table.tbl{margin-top:3.6vmin; border-collapse:collapse; max-width:100%}
+    .tbl th,.tbl td{border:1px solid var(--line); padding:1.5vmin 2.4vmin; font-size:clamp(14px,2.5vmin,27px);
+      text-align:left; line-height:1.55; vertical-align:top}
+    .tbl th{background:rgba(255,215,106,.10); color:var(--gold); font-weight:800; white-space:nowrap}
+    .tbl td{color:var(--sub)}
+    .tbl td b{color:var(--ink)}
+    .tbl td.gd{color:var(--gold); font-weight:700}
+
+    /* 질문 카드 */
+    .qcard{border:1px solid var(--line); border-left:4px solid var(--gold); border-radius:12px;
+      padding:2vmin 2.8vmin; background:rgba(255,255,255,.04); max-width:40em}
+    .qcard .qn{font-size:clamp(12px,1.9vmin,18px); color:var(--gold); font-weight:800; letter-spacing:.12em; margin-bottom:.8vmin}
+    .qcard p{font-size:clamp(15px,2.6vmin,28px); line-height:1.6; color:var(--sub)}
+    .qcard p b{color:var(--ink)}
+    .qwrap{display:flex; flex-direction:column; gap:2.2vmin; margin-top:3.6vmin}
+
+    /* 도해 */
+    .svgwrap{margin-top:3.6vmin; max-width:100%}
+    .svgwrap svg{width:100%; height:auto; display:block}
+    .srcnote{margin-top:2.4vmin; font-size:clamp(11px,1.8vmin,16px); color:var(--dim); line-height:1.6; max-width:44em}
+
+    /* 2단 카드 */
+    .cols{display:flex; gap:3vmin; margin-top:3.6vmin; flex-wrap:wrap; max-width:60em}
+    .col{flex:1; min-width:230px; border:1px solid var(--line); border-radius:14px; padding:2.6vmin 3vmin;
+      background:rgba(255,255,255,.04)}
+    .col h3{font-size:clamp(16px,2.8vmin,30px); font-weight:800; margin-bottom:1.4vmin}
+    .col.gold{border-color:var(--gold)}
+    .col.gold h3{color:var(--gold)}
+    .col p{font-size:clamp(14px,2.3vmin,24px); line-height:1.6; color:var(--sub)}
+    .col p b{color:var(--ink)}
+
+    @media (max-width:760px), (orientation:portrait){
+      .slide{padding:7vmin 6vmin 12vmin}
+    }
+
+    /* 발표자 노트 패널 (N 키) */
+    #notes{position:fixed; left:0; right:0; bottom:0; z-index:50; max-height:38vh; overflow:auto; display:none;
+      background:rgba(6,12,30,.94); border-top:1px solid var(--gold); padding:16px 22px 22px; backdrop-filter:blur(6px)}
+    #notes.open{display:block}
+    #notes .nTitle{font-size:11px; letter-spacing:.2em; color:var(--gold); font-weight:700; margin-bottom:8px}
+    #notes .nBody{font-size:14.5px; line-height:1.75; color:#dbe4f7; max-width:860px}
+    #notes .nBody b{color:var(--gold)}
+
+    /* 암전 (B 키) */
+    #blackout{position:fixed; inset:0; z-index:60; background:#000; display:none}
+    #blackout.open{display:block}
+  </style>
+</head>
+<body>
+
+  <!-- ===== 로그인 게이트 (admin.html 과 동일한 서버 검증 방식·같은 세션 키) ===== -->
+  <div id="gate">
+    <div class="gateCard">
+      <h1>첫째 부활 강의 슬라이드</h1>
+      <p>발표자 계정으로 로그인하세요.</p>
+      <button class="btn btnGoogle" onclick="googleLogin()">
+        <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C39.9 36.5 44 31 44 24c0-1.3-.1-2.3-.4-3.5z"/></svg>
+        구글로 로그인
+      </button>
+      <input id="ge" type="email" placeholder="이메일" autocomplete="username"/>
+      <input id="gp" type="password" placeholder="비밀번호" autocomplete="current-password"/>
+      <button class="btn btnMail" onclick="emailLogin()">이메일로 로그인</button>
+      <p id="gateErr"></p>
+      <a class="gateHome" href="/admin">← 관리자 콘솔로</a>
+    </div>
+  </div>
+
+  <!-- ===== 슬라이드 덱 ===== -->
+  <div id="deck">
+    <div id="bar"></div>
+    <div id="count"></div>
+    <div id="clock"></div>
+    <div id="hint">→ 다음 · ← 이전 · <b>F</b> 전체화면 · <b>N</b> 대본 · <b>B</b> 암전</div>
+
+    <!-- 1. 타이틀 -->
+    <section class="slide">
+      <p class="eyebrow">종말론 Q&amp;A · 독자 질문 3차 답변</p>
+      <h2 class="serif">첫째 부활,<br/><em>세 가지만 구분하면</em> 끝납니다</h2>
+      <div class="lines">
+        <p>마 27장의 성도는 첫째 부활인가 · 천년왕국 자연인도 영화로운 몸이 되는가 · 환난 성도는 행위로 구원받는가</p>
+        <p style="color:var(--dim); font-size:clamp(13px,2.2vmin,22px)">본문 계 20:4–6 · 고전 15장 · 눅 20:35–36 · 마 27:52–53 외 — 오광일</p>
+      </div>
+      <aside class="notes">인사 후 바로 편지 소개로. 오늘은 독자 질문 세 개를 한 번에 푸는 시간 — "세 가지만 구분하면 끝납니다"를 예고.</aside>
+    </section>
+
+    <!-- 2. 세 가지 질문 -->
+    <section class="slide">
+      <p class="eyebrow">세 번째 편지</p>
+      <h2 class="serif">세 가지 <em>질문</em>이 왔습니다</h2>
+      <div class="qwrap">
+        <div class="qcard fr"><p class="qn">질문 1</p><p>예수님 부활 때 무덤에서 살아난 성도들(마 27장) — 다시 죽었을 텐데도 <b>첫째 부활</b>인가요? 첫째 부활은 어디까지 포함하나요?</p></div>
+        <div class="qcard fr"><p class="qn">질문 2</p><p>천년왕국의 자연인도 결국 몸이 영화롭게 변하나요? 그러면 통치하던 부활체 성도들과 <b>다 똑같아지는</b> 건가요?</p></div>
+        <div class="qcard fr"><p class="qn">질문 3</p><p>환난을 통과하는 성도는 <b>행위로 구원</b>받는다던데, 가능한가요? 그렇다면 그 성도는 교만해지지 않을까요?</p></div>
+      </div>
+      <aside class="notes">세 질문을 또박또박 읽어 주기 — 시청자(참석자)가 자기 질문이라 느끼게. 읽은 뒤: 세 질문처럼 보이지만 사실 한 질문입니다.</aside>
+    </section>
+
+    <!-- 3. 사실은 한 질문 — 오늘의 답 -->
+    <section class="slide center">
+      <p class="eyebrow">오늘의 답</p>
+      <h2 class="serif">세 쌍의 <em>단어</em>만<br/>구분하면 됩니다</h2>
+      <div class="chips">
+        <span class="chip fr">소생 ≠ 부활</span>
+        <span class="chip fr">본성 ≠ 직분</span>
+        <span class="chip fr">증거 ≠ 원인</span>
+      </div>
+      <div class="lines">
+        <p class="fr">살아난 사람은 다 부활 아닌가요? — 영화로운 몸이면 다 똑같은 것 아닌가요? — 행위로 들어가면 행위 구원 아닌가요?</p>
+        <p class="fr"><b>이 세 쌍만 구분하면, 세 질문이 한꺼번에 풀립니다</b></p>
+      </div>
+      <aside class="notes">세 질문의 공통 뿌리: "그거 다 똑같은 거 아닌가요?" 칩 세 개를 하나씩 띄우며 오늘의 지도를 보여 주기. 강의 내내 이 칩이 하나씩 채워진다.</aside>
+    </section>
+
+    <!-- 4. 디바이더 1 -->
+    <section class="slide center">
+      <p class="eyebrow">첫째 구분</p>
+      <h2 class="serif big">소생 <em>≠</em> 부활</h2>
+      <div class="chips">
+        <span class="chip now">소생 ≠ 부활</span>
+        <span class="chip">본성 ≠ 직분</span>
+        <span class="chip">증거 ≠ 원인</span>
+      </div>
+      <aside class="notes">첫 번째 질문 — 마태복음 27장의 성도들 — 부터 시작.</aside>
+    </section>
+
+    <!-- 5. 마 27:52-53 전문 -->
+    <section class="slide">
+      <p class="eyebrow">마태복음 27:52–53</p>
+      <div class="vwrap">
+        <div class="vtext xl">
+          <p><sup>52</sup>무덤들이 열리며 잠자던 성도의 몸이 여럿 일어나 <sup>53</sup>예수의 부활 후에 무덤에서 나와 거룩한 성에 들어가 많은 사람에게 나타나니라.</p>
+          <cite>— 킹제임스 정본역</cite>
+        </div>
+        <div class="vtext en">
+          <p><sup>52</sup>And the graves were opened; and many bodies of the saints which slept arose, <sup>53</sup>And came out of the graves after his resurrection, and went into the holy city, and appeared unto many.</p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <aside class="notes">본문 낭독. 질문자의 전제 — "그 후에 다시 죽었을 텐데" — 를 먼저 점검하겠다고 예고.</aside>
+    </section>
+
+    <!-- 6. 성경은 침묵합니다 — 소생 사례 7건 -->
+    <section class="slide">
+      <p class="eyebrow"><span class="n">점검</span>성경은 침묵합니다</p>
+      <h2 class="serif">"다시 죽었을 텐데"는<br/>성경이 아니라 <em>추측</em>입니다</h2>
+      <div class="lines">
+        <p class="fr">성경은 그들이 다시 죽었다고도, 죽지 않았다고도 말하지 않습니다 — 추측 위에 교리를 세울 수 없습니다</p>
+        <p class="fr">성경에서 죽었다가 살아난 사람들 — <b>사르밧 과부의 아들 · 수넴 여인의 아들 · 나인성 과부의 아들 · 야이로의 딸 · 나사로 · 도르가 · 유두고</b></p>
+        <p class="fr">이 일곱 사람의 공통점 — <b>전부 다시 죽었습니다.</b> 나사로는 지금 무덤에 있습니다. 그러면 나사로는 부활한 것입니까?</p>
+      </div>
+      <aside class="notes">7건: 왕상 17, 왕하 4, 눅 7, 막 5, 요 11, 행 9, 행 20. 나사로 질문을 던져 놓고 다음 장(부활의 정의)으로.</aside>
+    </section>
+
+    <!-- 7. 눅 20:35-36 전문 — 부활의 정의 -->
+    <section class="slide">
+      <p class="eyebrow">부활의 정의 · 누가복음 20:35–36</p>
+      <div class="vwrap">
+        <div class="vtext">
+          <p><sup>35</sup>저 세상과 죽은 자 가운데서의 부활에 합당하다 여겨지는 자들은 장가도 가지 아니하고 시집도 가지 아니하느니라. <sup>36</sup>그들은 <b style="color:var(--gold)">다시 죽을 수도 없으니</b>, 이는 그들이 천사들과 같고, 부활의 자녀로서 하나님의 자녀가 됨이라.</p>
+          <cite>— 킹제임스 정본역</cite>
+        </div>
+        <div class="vtext en">
+          <p><sup>35</sup>But they which shall be accounted worthy to obtain that world, and the resurrection from the dead, neither marry, nor are given in marriage: <sup>36</sup>Neither can they die any more: for they are equal unto the angels; and are the children of God, being the children of the resurrection.</p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <div class="lines">
+        <p class="fr"><b>다시 죽을 수 있으면 부활이 아니라 소생입니다</b> — 나사로는 소생했고, 예수님은 부활하셨습니다</p>
+      </div>
+      <aside class="notes"><b>WOW 포인트.</b> "다시 죽을 수도 없으니" — 예수님이 직접 주신 부활의 정의. 같은 살아남이지만 종류가 다르다.</aside>
+    </section>
+
+    <!-- 8. 비교표: 소생 vs 부활 -->
+    <section class="slide">
+      <p class="eyebrow"><span class="n">정리</span>소생과 부활</p>
+      <h2 class="serif">같은 "살아남",<br/>다른 <em>종류</em></h2>
+      <table class="tbl">
+        <tr><th></th><th>소생 (蘇生)</th><th>부활 (復活)</th></tr>
+        <tr class="fr"><th>어떤 몸</th><td>원래의 몸으로 돌아옴</td><td class="gd">새 몸 — 썩지 않는 몸 (고전 15:53)</td></tr>
+        <tr class="fr"><th>죽음</th><td>다시 죽는다</td><td class="gd">다시 죽을 수 없다 (눅 20:36)</td></tr>
+        <tr class="fr"><th>사례</th><td>나사로 외 일곱 사람</td><td class="gd">그리스도 — 잠든 자들의 첫 열매 (고전 15:20)</td></tr>
+      </table>
+      <aside class="notes">표를 한 줄씩 띄우며. 고전 15:53 — 이 썩을 것이 반드시 썩지 아니할 것을 입겠고. 첫째 부활은 정의상 다시 죽을 수 없는 몸으로의 부활.</aside>
+    </section>
+
+    <!-- 9. 첫 열매의 단 -->
+    <section class="slide">
+      <p class="eyebrow"><span class="n">열쇠 1</span>첫 열매의 단</p>
+      <h2 class="serif">흔들어 바친 것은 낟알이 아니라<br/>한 <em>단(sheaf)</em>이었습니다</h2>
+      <div class="vtext md fr">
+        <p><sup>10</sup>… 너희 곡식의 첫 이삭 <b style="color:var(--gold)">한 단</b>을 제사장에게로 가져갈지니라. <sup>11</sup>그가 너희를 위하여 기쁘게 받으심이 되도록 그 단을 여호와 앞에 흔들지니, 안식일 이튿날에 제사장이 그것을 흔들지니라.</p>
+        <cite>— 레위기 23:10–11 · 킹제임스 정본역</cite>
+      </div>
+      <div class="lines">
+        <p class="fr">예수님이 부활하신 날이 정확히 이 <b>첫 열매의 날</b> — 그래서 "잠든 자들의 첫 열매"(고전 15:20)</p>
+        <p class="fr">마 27장의 "여럿 일어난 몸"은 <b>첫 열매의 단이 한 다발</b>이었음을 보여 주는 장면으로 읽힙니다 — 이 읽기에서 그들은 다시 죽지 않았습니다</p>
+      </div>
+      <p class="srcnote fr">※ 다만 성경이 그 뒤를 기록하지 않았으므로, 이것은 본문이 허용하는 가장 자연스러운 읽기이지 확정된 교리는 아닙니다.</p>
+      <aside class="notes">유월절 다음 안식일 이튿날 = 부활의 날. 단(sheaf)은 한 줄기가 아니라 한 다발 — 그리스도와 함께 일어난 많은 몸. 마지막 줄의 정직한 단서(추론 표시)를 반드시 말하기.</aside>
+    </section>
+
+    <!-- 10. 고전 15:23 전문 — 타그마 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 2 · 고린도전서 15:23</p>
+      <div class="vwrap">
+        <div class="vtext xl">
+          <p><sup>23</sup>그러나 각각 자기 <b style="color:var(--gold)">차례</b>대로 되리니, 먼저는 첫 열매이신 그리스도요 다음은 그가 강림하실 때에 그리스도께 속한 자들이라.</p>
+          <cite>— 킹제임스 정본역</cite>
+        </div>
+        <div class="vtext en">
+          <p><sup>23</sup>But every man in his own <b style="color:var(--gold)">order</b>: Christ the firstfruits; afterward they that are Christ&rsquo;s at his coming.</p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <div class="lines">
+        <p class="fr">"차례" = 헬라어 <b>타그마(τάγμα)</b> — 부대·대열을 뜻하는 <b>군대 용어</b></p>
+        <p class="fr">첫째 부활은 한 번의 사건이 아니라, <b>여러 부대가 차례로 지나가는 하나의 행렬</b>입니다</p>
+      </div>
+      <aside class="notes"><b>WOW 포인트.</b> 군대가 행진할 때 선두·중간·후미 부대가 차례로 지나가듯. 다음 장에서 행렬 전체를 그림으로.</aside>
+    </section>
+
+    <!-- 11. 행렬 타임라인 도해 -->
+    <section class="slide">
+      <p class="eyebrow"><span class="n">도해</span>첫째 부활의 행렬</p>
+      <div class="svgwrap">
+        <svg viewBox="0 0 1240 430" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard,sans-serif">
+          <!-- 첫째 부활 묶음 괄호 -->
+          <path d="M40 60 L40 42 L880 42 L880 60" fill="none" stroke="#ffd76a" stroke-width="2.5"/>
+          <text x="460" y="28" fill="#ffd76a" font-size="26" font-weight="800" text-anchor="middle">첫째 부활 — 한 행렬 (타그마 τάγμα)</text>
+          <!-- 부대 1 -->
+          <rect x="40" y="110" width="245" height="150" rx="14" fill="rgba(255,215,106,.10)" stroke="#ffd76a" stroke-width="2"/>
+          <text x="162" y="150" fill="#67789f" font-size="19" font-weight="700" text-anchor="middle">1부대 · 부활절</text>
+          <text x="162" y="188" fill="#f4f7ff" font-size="26" font-weight="800" text-anchor="middle">그리스도</text>
+          <text x="162" y="222" fill="#ffd76a" font-size="21" font-weight="700" text-anchor="middle">+ 첫 열매의 단</text>
+          <text x="162" y="248" fill="#9fb3d9" font-size="17" text-anchor="middle">고전 15:20 · 마 27:52</text>
+          <!-- 화살표 -->
+          <path d="M292 185 L330 185" stroke="#67789f" stroke-width="2.5" marker-end="url(#ar)"/>
+          <!-- 부대 2 -->
+          <rect x="340" y="110" width="230" height="150" rx="14" fill="rgba(255,215,106,.10)" stroke="#ffd76a" stroke-width="2"/>
+          <text x="455" y="150" fill="#67789f" font-size="19" font-weight="700" text-anchor="middle">2부대 · 휴거</text>
+          <text x="455" y="192" fill="#f4f7ff" font-size="26" font-weight="800" text-anchor="middle">교회</text>
+          <text x="455" y="226" fill="#9fb3d9" font-size="17" text-anchor="middle">그리스도 안에서 죽은 자들</text>
+          <text x="455" y="248" fill="#9fb3d9" font-size="17" text-anchor="middle">살전 4:16</text>
+          <!-- 화살표 -->
+          <path d="M577 185 L615 185" stroke="#67789f" stroke-width="2.5" marker-end="url(#ar)"/>
+          <!-- 부대 3 -->
+          <rect x="625" y="110" width="255" height="150" rx="14" fill="rgba(255,215,106,.10)" stroke="#ffd76a" stroke-width="2"/>
+          <text x="752" y="150" fill="#67789f" font-size="19" font-weight="700" text-anchor="middle">3부대 · 재림</text>
+          <text x="752" y="188" fill="#f4f7ff" font-size="25" font-weight="800" text-anchor="middle">구약 성도</text>
+          <text x="752" y="220" fill="#f4f7ff" font-size="25" font-weight="800" text-anchor="middle">환난 순교자</text>
+          <text x="752" y="248" fill="#9fb3d9" font-size="17" text-anchor="middle">단 12:2 · 계 20:4</text>
+          <!-- 계 20:5b 표지 -->
+          <line x1="905" y1="90" x2="905" y2="290" stroke="#ffd76a" stroke-width="2" stroke-dasharray="7 6"/>
+          <text x="905" y="320" fill="#ffd76a" font-size="19" font-weight="700" text-anchor="middle">"이것이 첫째 부활이라"</text>
+          <text x="905" y="344" fill="#67789f" font-size="16" text-anchor="middle">계 20:5</text>
+          <!-- 천 년 -->
+          <text x="1000" y="150" fill="#9fb3d9" font-size="20" font-weight="700" text-anchor="middle">천 년</text>
+          <path d="M930 185 L1065 185" stroke="#67789f" stroke-width="2.5" stroke-dasharray="3 7" marker-end="url(#ar)"/>
+          <!-- 둘째 부활 -->
+          <rect x="1075" y="110" width="150" height="150" rx="14" fill="rgba(255,255,255,.04)" stroke="#67789f" stroke-width="1.6"/>
+          <text x="1150" y="152" fill="#67789f" font-size="18" font-weight="700" text-anchor="middle">둘째 부활</text>
+          <text x="1150" y="188" fill="#dbe4f7" font-size="21" font-weight="800" text-anchor="middle">나머지</text>
+          <text x="1150" y="214" fill="#dbe4f7" font-size="21" font-weight="800" text-anchor="middle">죽은 자들</text>
+          <text x="1150" y="246" fill="#9fb3d9" font-size="16" text-anchor="middle">백보좌 → 둘째 사망</text>
+          <defs>
+            <marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+              <path d="M0 0 L9 4.5 L0 9 Z" fill="#67789f"/>
+            </marker>
+          </defs>
+        </svg>
+      </div>
+      <aside class="notes">행렬을 왼쪽부터 차례로 — 1부대 그리스도와 첫 열매의 단, 2부대 교회(휴거), 3부대 구약 성도·환난 순교자(재림). 요한이 "이것이 첫째 부활이라"를 순교자 부활 바로 뒤에 붙였다는 것이 핵심. 그 뒤는 천 년 뒤 백보좌의 둘째 부활뿐.</aside>
+    </section>
+
+    <!-- 12. 계 20:5-6 전문 -->
+    <section class="slide">
+      <p class="eyebrow">요한계시록 20:5–6</p>
+      <div class="vwrap">
+        <div class="vtext">
+          <p><sup>5</sup>(그러나 죽은 자들 가운데 나머지는 천 년이 끝나기까지 다시 살지 못하더라.) <b style="color:var(--gold)">이것이 첫째 부활이라.</b> <sup>6</sup>이 첫째 부활에 참여하는 자는 복이 있고 거룩하도다. 이런 자들에게는 둘째 사망이 권세를 부리지 못하고, 도리어 그들이 하나님과 그리스도의 제사장이 되어 천 년 동안 그와 더불어 왕 노릇 하리라.</p>
+          <cite>— 킹제임스 정본역</cite>
+        </div>
+        <div class="vtext en">
+          <p><sup>5</sup>But the rest of the dead lived not again until the thousand years were finished. <b style="color:var(--gold)">This is the first resurrection.</b> <sup>6</sup>Blessed and holy is he that hath part in the first resurrection: on such the second death hath no power, but they shall be priests of God and of Christ, and shall reign with him a thousand years.</p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <aside class="notes">낭독. "이것이 첫째 부활이라"가 환난 순교자들의 부활(4절) 바로 뒤에 위치 — 첫째 부활의 마지막 부대가 환난 순교자라는 뜻.</aside>
+    </section>
+
+    <!-- 13. 바로잡기 + 첫째 칸 채움 -->
+    <section class="slide">
+      <p class="eyebrow"><span class="n">바로잡기</span>환난 중간 휴거는 없습니다</p>
+      <h2 class="serif">환난 중에 믿은 사람의<br/>길은 <em>둘</em>입니다</h2>
+      <table class="tbl">
+        <tr class="fr"><th>순교하면</th><td><b>재림 때 부활</b>하여 천 년 동안 왕 노릇 (계 20:4)</td></tr>
+        <tr class="fr"><th>살아남으면</th><td><b>자연의 몸 그대로</b> 왕국에 들어감 (마 25:34)</td></tr>
+      </table>
+      <div class="lines">
+        <p class="fr">계 11장의 두 증인이 살아나 올라가는 장면은 <b>두 사람의 특별한 사건</b>이지, 성도 전체의 휴거가 아닙니다</p>
+      </div>
+      <div class="chips">
+        <span class="chip done fr">소생 ≠ 부활</span>
+        <span class="chip">본성 ≠ 직분</span>
+        <span class="chip">증거 ≠ 원인</span>
+      </div>
+      <aside class="notes">질문자의 표현("환난 중에 휴거받는 성도들")을 부드럽게 교정. 정리: 첫째 부활은 생명의 부활(요 5:29) 한 종류, 그리스도—교회—구약 성도·환난 순교자의 한 행렬. 다시 죽는 소생은 이 행렬에 없다. <b>첫째 칸 채움.</b></aside>
+    </section>
+
+    <!-- 14. 디바이더 2 -->
+    <section class="slide center">
+      <p class="eyebrow">둘째 구분</p>
+      <h2 class="serif big">본성 <em>≠</em> 직분</h2>
+      <div class="chips">
+        <span class="chip done">소생 ≠ 부활</span>
+        <span class="chip now">본성 ≠ 직분</span>
+        <span class="chip">증거 ≠ 원인</span>
+      </div>
+      <aside class="notes">두 번째 질문 — 천년왕국 자연인도 영화로운 몸이 되는가? 된다. 그러면 다 똑같아지는가? 여기서 본성과 직분을 가른다.</aside>
+    </section>
+
+    <!-- 15. 고전 15:50 + 계 21:4 전문 -->
+    <section class="slide">
+      <p class="eyebrow">두 구절이 만드는 필연 · 킹제임스 정본역</p>
+      <div class="vtext md">
+        <p><sup>50</sup>형제들아, 내가 이것을 말하노니, 혈과 육은 하나님의 왕국을 유업으로 받을 수 없고, 썩을 것은 썩지 아니할 것을 유업으로 받지 못하느니라.</p>
+        <cite>— 고린도전서 15:50</cite>
+      </div>
+      <div class="vtext md fr">
+        <p><sup>4</sup>하나님께서 그들의 눈에서 모든 눈물을 씻어 주시매, <b style="color:var(--gold)">다시는 사망이 없고</b> 슬픔이나 곡이나 아픔도 다시 있지 아니하리니, 이는 처음 것들이 다 지나갔음이라" 하더라.</p>
+        <cite>— 요한계시록 21:4</cite>
+      </div>
+      <div class="lines">
+        <p class="fr">사망이 없다 = 그곳의 <b>모든 사람이 죽을 수 없는 몸</b> — 천년왕국의 자연인 신자도 그 문을 지나기 전에 반드시 썩지 않을 것을 입습니다</p>
+      </div>
+      <aside class="notes"><b>WOW 포인트.</b> 어떻게 변하는지는 성경이 침묵 — 고전 15:51의 패턴("다 잠잘 것이 아니요 다 변화되리라")이 적용된다고 보는 것이 자연스러운 추론임을 정직하게 표시.</aside>
+    </section>
+
+    <!-- 16. 고전 15:41-42 전문 -->
+    <section class="slide">
+      <p class="eyebrow">그러나 영광은 다르다 · 고린도전서 15:41–42</p>
+      <div class="vwrap">
+        <div class="vtext">
+          <p><sup>41</sup>해의 영광이 다르고 달의 영광이 다르며 별들의 영광이 다르니, <b style="color:var(--gold)">별과 별의 영광이 다름이라.</b> <sup>42</sup>죽은 자의 부활도 이와 같으니, 썩을 것으로 뿌려져 썩지 아니할 것으로 다시 살아나며,</p>
+          <cite>— 킹제임스 정본역</cite>
+        </div>
+        <div class="vtext en">
+          <p><sup>41</sup>There is one glory of the sun, and another glory of the moon, and another glory of the stars: for <b style="color:var(--gold)">one star differeth from another star in glory.</b> <sup>42</sup>So also is the resurrection of the dead. It is sown in corruption; it is raised in incorruption:</p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <div class="lines">
+        <p class="fr">부활한 뒤에도 <b>영광의 차이</b>가 있습니다 — "죽은 자의 부활도 이와 같으니"</p>
+        <p class="fr">"지혜로운 자는 하늘의 빛과 같이 빛날 것이요, 많은 사람을 의로 돌이킨 자는 별과 같이 <b>영원토록</b> 빛나리라" (단 12:3) — 천 년 동안만이 아닙니다</p>
+      </div>
+      <aside class="notes">본성(몸의 종류)은 같아진다 — 빌 3:21 그의 영광의 몸과 같은 형체. 일등 몸·이등 몸은 없다. 그러나 영광의 정도는 별과 별처럼 다르고, 그것이 "영원토록"이다.</aside>
+    </section>
+
+    <!-- 17. 영원한 도시에도 나라와 왕 -->
+    <section class="slide">
+      <p class="eyebrow">영원한 도시의 구별 · 요한계시록 21:24</p>
+      <div class="vwrap">
+        <div class="vtext">
+          <p><sup>24</sup>구원받은 백성들이 그 빛 가운데로 다니고, <b style="color:var(--gold)">땅의 왕들이</b> 자기 영광과 존귀를 가지고 그리로 들어오리라.</p>
+          <cite>— 킹제임스 정본역</cite>
+        </div>
+        <div class="vtext en">
+          <p><sup>24</sup>And the nations of them which are saved shall walk in the light of it: and <b style="color:var(--gold)">the kings of the earth</b> do bring their glory and honour into it.</p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <div class="lines">
+        <p class="fr">"그들이 <b>세세토록 왕 노릇 하리로다</b>" (계 22:5) — 통치는 통치받는 대상이 있어야 성립합니다</p>
+        <p class="fr">영원한 상태에도 <b>백성들이 있고, 왕들이 있습니다</b> — 새 예루살렘은 모두가 똑같은 회색 옷을 입는 도시가 아닙니다</p>
+      </div>
+      <aside class="notes"><b>WOW 포인트.</b> 나라가 있고 왕이 있고 영광과 존귀가 흘러들어오는 도시(21:26). 다음 장 — 그리고 교회만의 자리가 하나 있다.</aside>
+    </section>
+
+    <!-- 18. 신부·친구·손님 -->
+    <section class="slide">
+      <p class="eyebrow"><span class="n">관계의 구별</span>신부는 한 분입니다</p>
+      <h2 class="serif">같은 잔치,<br/>다른 <em>자리</em></h2>
+      <table class="tbl">
+        <tr><th>자리</th><th>누구</th><th>근거</th></tr>
+        <tr class="fr"><td class="gd">신부</td><td><b>교회</b> — 새 예루살렘은 어린양의 신부</td><td>계 21:9</td></tr>
+        <tr class="fr"><td>신랑의 친구</td><td>세례 요한 — "신랑의 친구"</td><td>요 3:29</td></tr>
+        <tr class="fr"><td>청함 받은 손님</td><td>혼인 잔치에 청함을 받은 자들</td><td>계 19:9</td></tr>
+      </table>
+      <div class="lines">
+        <p class="fr">다 같은 잔치에 있고, 다 기뻐하고, 다 영원히 삽니다 — 그러나 <b>신부는 한 분</b>이며, 관계는 나중에 획득할 수 없습니다</p>
+      </div>
+      <aside class="notes">교회에게는 아무도 대신할 수 없는 자리가 있다. 비난이 아니라 각자의 영광 — 톤 주의.</aside>
+    </section>
+
+    <!-- 19. 비유: 같은 졸업장, 다른 자리 + 둘째 칸 -->
+    <section class="slide">
+      <p class="eyebrow"><span class="n">비유</span>같은 졸업장, 다른 자리</p>
+      <h2 class="serif">학위는 같고<br/><em>자리</em>는 다릅니다</h2>
+      <div class="cols">
+        <div class="col gold fr"><h3>같은 것 — 본성</h3><p><b>영화로운 몸 = 졸업장.</b> 썩지 않고 죄 없고 죽지 않는 같은 종류의 몸. 졸업장에는 등급이 없습니다.</p></div>
+        <div class="col fr"><h3>다른 것 — 직분</h3><p><b>직분·영광·관계 = 자리.</b> 충성에 따라 다릅니다 — "네가 지극히 작은 일에 충성하였으니 열 고을을 다스리는 권세를 가지라" (눅 19:17)</p></div>
+      </div>
+      <div class="lines">
+        <p class="fr">다 똑같아지는 것이 아니라 — <b>다 같은 생명을 가지되, 각자 다른 영광을 가지는 것</b>입니다</p>
+      </div>
+      <div class="chips">
+        <span class="chip done">소생 ≠ 부활</span>
+        <span class="chip done fr">본성 ≠ 직분</span>
+        <span class="chip">증거 ≠ 원인</span>
+      </div>
+      <aside class="notes">총장·교수·설립자의 가족 — 학위는 같고 자리는 다르다. 교회가 신부인 것은 자리가 아니라 관계. <b>둘째 칸 채움.</b></aside>
+    </section>
+
+    <!-- 20. 디바이더 3 -->
+    <section class="slide center">
+      <p class="eyebrow">셋째 구분</p>
+      <h2 class="serif big">증거 <em>≠</em> 원인</h2>
+      <div class="chips">
+        <span class="chip done">소생 ≠ 부활</span>
+        <span class="chip done">본성 ≠ 직분</span>
+        <span class="chip now">증거 ≠ 원인</span>
+      </div>
+      <aside class="notes">세 번째 질문 — 환난 성도는 행위로 구원받는가? 결론부터: 아니다. 어느 시대에도 행위로 구원받은 사람은 없다. 설교자를 비난하지 않고 선의로 해석하며 바로잡는 톤.</aside>
+    </section>
+
+    <!-- 21. 엡 2:8-9 전문 -->
+    <section class="slide">
+      <p class="eyebrow">불변의 설계 · 에베소서 2:8–9</p>
+      <div class="vwrap">
+        <div class="vtext">
+          <p><sup>8</sup>너희가 구원을 받은 것은 은혜로 된 것이요 믿음을 통하여 된 것이니, 이는 너희 자신에게서 난 것이 아니라 곧 하나님의 선물이니라. <sup>9</sup>행위로 된 것도 아니라, 이는 <b style="color:var(--gold)">어느 누구도 자랑하지 못하도록</b> 하심이니라.</p>
+          <cite>— 킹제임스 정본역</cite>
+        </div>
+        <div class="vtext en">
+          <p><sup>8</sup>For by grace are ye saved through faith; and that not of yourselves: it is the gift of God: <sup>9</sup>Not of works, <b style="color:var(--gold)">lest any man should boast.</b></p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <div class="lines">
+        <p class="fr">질문자가 걱정하신 <b>교만의 문제를 하나님이 먼저 걱정하셨습니다</b> — 구원은 처음부터 자랑할 수 없는 방식으로 설계되었습니다</p>
+      </div>
+      <aside class="notes">이 설계는 시대에 따라 바뀌지 않는다 — 아브라함도 믿으매 의로 여겨졌고(롬 4:3), 히 11장의 모든 사람이 믿음으로 살았다. 그러면 환난 성도는? 다음 장.</aside>
+    </section>
+
+    <!-- 22. 계 7:14 전문 -->
+    <section class="slide">
+      <p class="eyebrow">환난 성도의 옷 · 요한계시록 7:14</p>
+      <div class="vwrap">
+        <div class="vtext">
+          <p><sup>14</sup>… "이들은 큰 환난에서 나온 자들이니, <b style="color:var(--gold)">어린양의 피에 그 옷을 빨아</b> 희게 한 자들이라.</p>
+          <cite>— 킹제임스 정본역</cite>
+        </div>
+        <div class="vtext en">
+          <p><sup>14</sup>… These are they which came out of great tribulation, and have washed their robes, and made them white <b style="color:var(--gold)">in the blood of the Lamb.</b></p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <div class="lines">
+        <p class="fr">환난 성도의 옷은 <b>어린양의 피에</b> 씻겼습니다 — 자기 행위에 씻긴 것이 아닙니다</p>
+        <p class="fr">"우리 형제들이 <b>어린양의 피와</b> 자기들이 증언하는 말씀으로 그를 이겼으니" (계 12:11) — <b>피가 먼저입니다</b></p>
+      </div>
+      <aside class="notes"><b>WOW 포인트.</b> 환난 시대에도 구원의 근거는 십자가 하나.</aside>
+    </section>
+
+    <!-- 23. 시대별 표 -->
+    <section class="slide">
+      <p class="eyebrow"><span class="n">정리</span>시대마다 달라지는 것, 달라지지 않는 것</p>
+      <h2 class="serif">바뀌는 것은<br/><em>계시의 양</em>뿐입니다</h2>
+      <table class="tbl">
+        <tr><th></th><th>아브라함</th><th>교회</th><th>환난 성도</th></tr>
+        <tr class="fr"><th>구원의 근거</th><td colspan="3" class="gd">그리스도의 피 — 불변</td></tr>
+        <tr class="fr"><th>구원의 수단</th><td colspan="3" class="gd">믿음 — 불변</td></tr>
+        <tr class="fr"><th>믿음의 내용</th><td>오실 분을 믿음</td><td>오신 분을 믿음</td><td>다시 오실 분을 믿음</td></tr>
+      </table>
+      <div class="lines">
+        <p class="fr">믿음으로 은혜를 받는 방식은 창세기부터 요한계시록까지 <b>한 번도 바뀐 적이 없습니다</b> — 이것을 놓치면 "환난 시대는 행위 구원"이라는 오해가 생깁니다</p>
+      </div>
+      <aside class="notes">근거(피)·수단(믿음)은 불변, 계시의 내용만 누적. 표의 처음 두 줄이 금색으로 하나로 이어지는 것이 포인트.</aside>
+    </section>
+
+    <!-- 24. 열 처녀 바로 읽기 -->
+    <section class="slide">
+      <p class="eyebrow"><span class="n">본문 교정</span>열 처녀 비유 (마 25:1–13)</p>
+      <h2 class="serif">문제는 행위 부족이 아니라<br/><em>실체 없음</em>이었습니다</h2>
+      <div class="cols">
+        <div class="col fr"><h3>등 — 겉으로 보이는 고백</h3><p>열 처녀가 <b>다 등을 가졌고, 다 신랑을 기다렸습니다.</b> 겉모습으로는 구별되지 않았습니다.</p></div>
+        <div class="col gold fr"><h3>기름 — 안에 있는 실체</h3><p>성경 전체에서 기름은 <b>성령</b>을 가리킵니다. 미련한 다섯은 등은 있는데 <b>생명이 없었습니다.</b></p></div>
+      </div>
+      <div class="lines">
+        <p class="fr">이 비유는 "환난 때는 행위로 구원받으라"가 아니라 — <b>"신자인 척하는 것으로는 안 된다, 진짜여야 한다"</b>는 거짓 고백에 대한 경고입니다</p>
+      </div>
+      <aside class="notes">그 설교자가 말하려던 것도 아마 이것이었을 것 — 선의로 해석하며 바로잡기. 행위 구원이 아니라 실체에 대한 경고.</aside>
+    </section>
+
+    <!-- 25. 마 24:13·22 전문 -->
+    <section class="slide">
+      <p class="eyebrow">"구원"의 뜻 · 킹제임스 정본역</p>
+      <div class="vtext md">
+        <p><sup>13</sup>그러나 끝까지 견디는 자, 그 사람은 <b style="color:var(--gold)">구원</b>을 얻으리라.</p>
+        <cite>— 마태복음 24:13</cite>
+      </div>
+      <div class="vtext md fr">
+        <p><sup>22</sup>만일 그날들이 줄어들지 아니하면 <b style="color:var(--gold)">어떤 육체도 구원을</b> 얻지 못할 것이로되, 택하신 자들을 위하여 그날들이 줄어들리라.</p>
+        <cite>— 마태복음 24:22</cite>
+      </div>
+      <div class="lines">
+        <p class="fr">13절과 22절의 "구원"은 <b>같은 단어</b> — 22절이 뜻을 확정합니다: <b>육체의 구원, 곧 살아남는 것</b></p>
+        <p class="fr">그 생존조차 누구 덕분입니까 — <b>날들을 줄여 주신 분</b>이 있고, 광야에서 먹여 주신 분이 있습니다 (계 12:14)</p>
+      </div>
+      <aside class="notes"><b>WOW 포인트.</b> "끝까지 견디는 자는 구원을 받으리라"는 영혼 구원의 조건이 아니라 살아서 왕국에 들어간다는 육체적 생존의 약속. 내 힘으로 버텼다고 말할 사람은 한 명도 없다.</aside>
+    </section>
+
+    <!-- 26. 증거 ≠ 원인 — 냉수 한 그릇, 구명보트 -->
+    <section class="slide">
+      <p class="eyebrow"><span class="n">행위의 자리</span>증거이지 원인이 아닙니다</p>
+      <h2 class="serif">냉수가 구원하는 것이<br/><em>아닙니다</em></h2>
+      <div class="lines">
+        <p class="fr">"누구든지 <b>제자의 이름으로</b> 이 작은 자들 중 하나에게 냉수 한 그릇이라도 마시게 하는 자는 … 결코 그의 상을 잃지 아니하리라" (마 10:42)</p>
+        <p class="fr">쫓기는 형제에게 빵을 주는 사람은 그 빵 때문에 구원받는 것이 아니라 — <b>이미 어린양을 믿기 때문에</b> 목숨을 걸고 빵을 주는 것입니다 (마 25:40)</p>
+        <p class="fr"><b>구명보트의 비유</b> — 보트에 타는 것은 전적으로 구조대의 선물. 밤새 밧줄을 잡은 것은 보트 안에 있었다는 <b>증거</b>입니다. 폭풍을 줄여 준 것도, 풀린 손을 붙잡아 준 것도 구조대였습니다</p>
+      </div>
+      <aside class="notes">행위는 믿음이 있다는 증거이지 믿음을 만드는 원인이 아니다. 구명보트: 살아남은 자가 가장 겸손하다 — 다음 장 고전 4:7로 연결.</aside>
+    </section>
+
+    <!-- 27. 고전 4:7 전문 + 셋째 칸 -->
+    <section class="slide">
+      <p class="eyebrow">교만이 불가능한 이유 · 고린도전서 4:7</p>
+      <div class="vwrap">
+        <div class="vtext">
+          <p><sup>7</sup>누가 너를 남달리 구별하느냐? 네가 가진 것 중에 <b style="color:var(--gold)">받지 아니한 것이 무엇이냐?</b> 네가 받았을진대 어찌하여 받지 아니한 것같이 자랑하느냐?</p>
+          <cite>— 킹제임스 정본역</cite>
+        </div>
+        <div class="vtext en">
+          <p><sup>7</sup>For who maketh thee to differ from another? and <b style="color:var(--gold)">what hast thou that thou didst not receive?</b> now if thou didst receive it, why dost thou glory, as if thou hadst not received it?</p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <div class="lines">
+        <p class="fr">환난 성도가 가진 것 — 피로 씻긴 옷, 줄어든 날들, 광야의 양육, 견딜 힘 — <b>전부 받은 것입니다. 자랑할 재료가 없습니다</b></p>
+        <p class="fr">"그렇다면 자랑은 어디에 있느뇨? <b>내쳐졌느니라</b>" (롬 3:27)</p>
+      </div>
+      <div class="chips">
+        <span class="chip done">소생 ≠ 부활</span>
+        <span class="chip done">본성 ≠ 직분</span>
+        <span class="chip done fr">증거 ≠ 원인</span>
+      </div>
+      <aside class="notes">질문자의 마지막 걱정(교만)에 대한 답. 하나님은 어느 시대에도 사람이 자랑할 수 있는 구원을 주신 적이 없다. <b>셋째 칸 채움.</b></aside>
+    </section>
+
+    <!-- 28. 마무리 복습 -->
+    <section class="slide">
+      <p class="eyebrow">마무리</p>
+      <h2 class="serif">세 쌍의 단어,<br/>세 질문의 <em>답</em></h2>
+      <table class="tbl">
+        <tr class="fr"><th>소생 ≠ 부활</th><td>다시 죽으면 소생, 다시 죽을 수 없으면 부활. 첫째 부활은 그리스도—교회—구약 성도·환난 순교자가 차례로 지나가는 <b>하나의 행렬</b></td></tr>
+        <tr class="fr"><th>본성 ≠ 직분</th><td>모두 같은 영화로운 몸을 입지만, 별과 별의 영광이 다르듯 직분·영광·관계는 <b>영원히 구별</b>. 신부는 한 분</td></tr>
+        <tr class="fr"><th>증거 ≠ 원인</th><td>환난 성도도 <b>어린양의 피로</b> 구원받는다. 행위는 그 구원의 증거이지 원인이 아니다 — "받지 아니한 것이 무엇이냐"</td></tr>
+      </table>
+      <aside class="notes">30초 복습. 질문자 감사 — 이 세 질문은 종말론을 공부하는 사람들이 거의 다 걸려 넘어지는 자리. 다음 질문 환영.</aside>
+    </section>
+
+    <!-- 29. 엔딩 -->
+    <section class="slide center">
+      <h2 class="serif">분별은 날카롭게,<br/>태도는 <em>온유하게</em></h2>
+      <div class="lines">
+        <p class="fr serif" style="color:var(--gold); font-size:clamp(18px,3.4vmin,34px)">그 나라에서 만나요</p>
+      </div>
+      <aside class="notes">걸려 넘어진 구절이 있으면 나눠 달라 — 거기서 다음 강의가 시작된다. 마무리 인사.</aside>
+    </section>
+
+    <div id="notes"><p class="nTitle">발표자 메모</p><div class="nBody"></div></div>
+    <div id="blackout"></div>
+  </div>
+
+  <script>
+    /* ===== 인증 — admin.html 과 동일한 패턴(토큰을 서버로 검증, 세션 키 공유) ===== */
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType:'implicit', autoRefreshToken:false, persistSession:false, detectSessionFromUrl:false, lock: async (_n,_t,fn)=>await fn() } });
+
+    function jwtPayload(tok){
+      let s=tok.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'); while(s.length%4) s+='=';
+      const json=decodeURIComponent(atob(s).split('').map(c=>'%'+('00'+c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+      return JSON.parse(json);
+    }
+    (function handleOAuthRedirect(){
+      try{
+        if(location.hash && location.hash.indexOf('access_token=')>=0){
+          const p=new URLSearchParams(location.hash.slice(1));
+          const at=p.get('access_token'), rt=p.get('refresh_token'), ei=Number(p.get('expires_in')||3600);
+          if(at){
+            const payload=jwtPayload(at);
+            const user={ id:payload.sub, email:payload.email, role:payload.role, user_metadata:payload.user_metadata||{} };
+            localStorage.setItem('bibly-admin-auth', JSON.stringify({ access_token:at, token_type:'bearer', expires_in:ei, refresh_token:rt, expires_at:(payload.exp||Math.floor(Date.now()/1000)+ei), user }));
+            history.replaceState(null,'',location.pathname);
+          }
+        }
+      }catch(e){}
+    })();
+
+    function readStored(){
+      try{
+        const raw=localStorage.getItem('bibly-admin-auth');
+        if(raw){ const v=JSON.parse(raw); if(v&&v.user){ if(v.expires_at&&v.expires_at*1000<Date.now()){ localStorage.removeItem('bibly-admin-auth'); } else { return v; } } }
+        for(const k of Object.keys(localStorage)){ if(!/auth-token/.test(k)) continue; const v=JSON.parse(localStorage.getItem(k)); const s=(v&&v.user)?v:(v&&v.currentSession)?v.currentSession:null; if(s&&s.user){ if(s.expires_at&&s.expires_at*1000<Date.now()) return null; return s; } }
+      }catch(e){} return null;
+    }
+    async function verifySession(session){
+      const tok = session && session.access_token;
+      if(!tok) return null;
+      const ctrl=new AbortController(); const to=setTimeout(()=>ctrl.abort(), 8000);
+      try{
+        const res = await fetch(SUPABASE_URL+'/auth/v1/user', { signal:ctrl.signal, headers:{ apikey:SUPABASE_ANON, Authorization:'Bearer '+tok } });
+        clearTimeout(to);
+        if(!res.ok) return null;
+        const u = await res.json();
+        return (u && u.id) ? u : null;
+      }catch(e){ clearTimeout(to); return null; }
+    }
+    async function googleLogin(){
+      try{ await sb.auth.signInWithOAuth({ provider:'google', options:{ redirectTo: location.origin+location.pathname } }); }catch(e){}
+    }
+    async function emailLogin(){
+      const email=document.getElementById('ge').value.trim(), pw=document.getElementById('gp').value;
+      const m=document.getElementById('gateErr'); m.textContent='';
+      if(!email||!pw){ m.textContent='이메일과 비밀번호를 입력하세요.'; return; }
+      m.textContent='로그인 중…';
+      const ctrl=new AbortController(); const to=setTimeout(()=>ctrl.abort(),8000);
+      try{
+        const res=await fetch(SUPABASE_URL+'/auth/v1/token?grant_type=password',{ method:'POST', signal:ctrl.signal, headers:{ apikey:SUPABASE_ANON,'Content-Type':'application/json' }, body:JSON.stringify({email,password:pw}) });
+        clearTimeout(to);
+        const d=await res.json();
+        if(d.error||!d.access_token){ m.textContent='로그인 실패: '+(d.error_description||d.msg||d.error||'알 수 없는 오류'); return; }
+        localStorage.setItem('bibly-admin-auth', JSON.stringify({ access_token:d.access_token, token_type:'bearer', expires_in:d.expires_in, refresh_token:d.refresh_token, expires_at:Math.floor(Date.now()/1000)+d.expires_in, user:d.user }));
+        location.reload();
+      }catch(e){ clearTimeout(to); m.textContent='네트워크 오류. 다시 시도해 주세요.'; }
+    }
+    async function applyAuth(){
+      const session = readStored();
+      const gm=document.querySelector('.gateCard p');
+      if(gm && session && session.access_token) gm.textContent='발표자 확인 중…';
+      const verified = await verifySession(session);
+      const email = String((verified && verified.email) || '').toLowerCase();
+      if(email && email === String(ADMIN_EMAIL).toLowerCase()){
+        document.getElementById('gate').style.display='none';
+        document.getElementById('deck').classList.add('open');
+        initDeck();
+      } else {
+        if(gm) gm.textContent='발표자 계정으로 로그인하세요.';
+      }
+    }
+
+    /* ===== 슬라이드 엔진 ===== */
+    let S=[], cur=0;
+    function frs(i){ return Array.from(S[i].querySelectorAll('.fr')); }
+    function sync(){
+      S.forEach((s,i)=>s.classList.toggle('on', i===cur));
+      document.getElementById('bar').style.width=(((cur+1)/S.length)*100)+'%';
+      document.getElementById('count').textContent=(cur+1)+' / '+S.length;
+      const n=S[cur].querySelector('.notes');
+      document.querySelector('#notes .nBody').innerHTML = n ? n.innerHTML : '';
+    }
+    function go(i, revealAll){
+      cur=Math.max(0, Math.min(S.length-1, i));
+      frs(cur).forEach(f=>f.classList.toggle('show', !!revealAll));
+      sync();
+    }
+    function next(){
+      hideHint();
+      const pend=frs(cur).find(f=>!f.classList.contains('show'));
+      if(pend){ pend.classList.add('show'); return; }
+      if(cur<S.length-1) go(cur+1, false);
+    }
+    function prev(){
+      hideHint();
+      const shown=frs(cur).filter(f=>f.classList.contains('show'));
+      if(shown.length){ shown[shown.length-1].classList.remove('show'); return; }
+      if(cur>0) go(cur-1, true);
+    }
+    function hideHint(){ const h=document.getElementById('hint'); if(h) h.classList.add('off'); }
+    function initDeck(){
+      S=Array.from(document.querySelectorAll('.slide'));
+      go(0,false);
+      setTimeout(hideHint, 9000);
+      setInterval(()=>{ const d=new Date(); document.getElementById('clock').textContent=('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2); }, 1000);
+
+      document.addEventListener('keydown', (e)=>{
+        if(/input|textarea/i.test(e.target.tagName)) return;
+        const k=e.key;
+        if(k==='ArrowRight'||k===' '||k==='PageDown'||k==='Enter'){ e.preventDefault(); next(); }
+        else if(k==='ArrowLeft'||k==='PageUp'||k==='Backspace'){ e.preventDefault(); prev(); }
+        else if(k==='Home'){ go(0,false); }
+        else if(k==='End'){ go(S.length-1,true); }
+        else if(k==='f'||k==='F'){ if(document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen().catch(()=>{}); }
+        else if(k==='n'||k==='N'){ document.getElementById('notes').classList.toggle('open'); }
+        else if(k==='b'||k==='B'||k==='.'){ document.getElementById('blackout').classList.toggle('open'); }
+        else if(k==='Escape'){ document.getElementById('blackout').classList.remove('open'); document.getElementById('notes').classList.remove('open'); }
+      });
+      document.getElementById('blackout').addEventListener('click', function(){ this.classList.remove('open'); });
+      document.getElementById('deck').addEventListener('click', (e)=>{
+        if(e.target.closest('#notes') || e.target.closest('#blackout')) return;
+        if(e.clientX < window.innerWidth*0.25) prev(); else next();
+      });
+      let tx=null;
+      document.addEventListener('touchstart', e=>{ tx=e.touches[0].clientX; }, {passive:true});
+      document.addEventListener('touchend', e=>{
+        if(tx===null) return;
+        const dx=e.changedTouches[0].clientX - tx; tx=null;
+        if(Math.abs(dx)>50){ if(dx<0) next(); else prev(); }
+      }, {passive:true});
+    }
+
+    applyAuth();
+  </script>
+</body>
+</html>
