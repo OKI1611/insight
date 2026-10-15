@@ -28,7 +28,9 @@
     body{
       font-family:'Pretendard',system-ui,sans-serif; background:var(--bg); color:var(--ink);
       overflow:hidden; -webkit-font-smoothing:antialiased;
+      word-break:keep-all; overflow-wrap:break-word;   /* 한국어 어절 단위 줄바꿈 */
     }
+    h2, .lines p, .eyebrow{text-wrap:balance}          /* 가운데 정렬에서 두 줄 균형 */
     .serif{font-family:'Noto Serif KR','Pretendard',serif}
 
     /* ===== 로그인 게이트 ===== */
