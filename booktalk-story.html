@@ -75,11 +75,15 @@
     .lines p{font-size:clamp(17px,3.2vmin,34px); line-height:1.6; color:var(--sub)}
     .lines p b{color:var(--ink); font-weight:700}
     .big{font-size:clamp(34px,8.4vmin,96px) !important; line-height:1.28 !important}
-    /* 성경 전문 슬라이드 */
-    .vs .vtext{border-left:4px solid var(--gold); padding:1.4vmin 0 1.4vmin 3vmin; max-width:36em}
-    .vs .vtext p{font-family:'Noto Serif KR','Pretendard',serif; font-size:clamp(19px,3.6vmin,42px); line-height:1.8; color:var(--ink)}
-    .vs .vtext.xl p{font-size:clamp(21px,4.2vmin,50px)}
+    /* 성경 전문 슬라이드 — 왼쪽 한글, 오른쪽 영어 KJV */
+    .vs .vwrap{display:grid; grid-template-columns:1.08fr 1fr; gap:4.5vmin; align-items:start; max-width:64em}
+    .vs .vtext{border-left:4px solid var(--gold); padding:1.4vmin 0 1.4vmin 3vmin}
+    .vs .vtext p{font-family:'Noto Serif KR','Pretendard',serif; font-size:clamp(18px,3.2vmin,38px); line-height:1.8; color:var(--ink)}
+    .vs .vtext.xl p{font-size:clamp(19px,3.6vmin,44px)}
     .vs .vtext sup{color:var(--gold); font-size:.55em; font-weight:700; margin:0 .3em 0 .15em}
+    .vs .vtext.en{border-left-color:rgba(201,162,75,.45)}
+    .vs .vtext.en p{font-size:clamp(14px,2.5vmin,28px); line-height:1.75; color:var(--sub)}
+    @media (max-aspect-ratio:4/3){ .vs .vwrap{grid-template-columns:1fr; gap:2.5vmin} }
     .fr{opacity:0; transform:translateY(16px); transition:opacity .45s ease, transform .45s ease}
     .fr.show{opacity:1; transform:none}
     .notes{display:none}
@@ -198,9 +202,14 @@
 
     <!-- 6. 요한복음 11:25-26 전문 -->
     <section class="slide vs">
-      <p class="eyebrow">요한복음 11:25–26 · 킹제임스 정본역</p>
-      <div class="vtext xl">
-        <p><sup>25</sup>예수께서 이르시되, "나는 부활이요 생명이니, 나를 믿는 자는 죽어도 살겠고, <sup>26</sup>무릇 살아서 나를 믿는 자는 영원히 죽지 아니하리니, 네가 이것을 믿느냐?" 하시니라.</p>
+      <p class="eyebrow">요한복음 11:25–26</p>
+      <div class="vwrap">
+        <div class="vtext xl">
+          <p><sup>25</sup>예수께서 이르시되, "나는 부활이요 생명이니, 나를 믿는 자는 죽어도 살겠고, <sup>26</sup>무릇 살아서 나를 믿는 자는 영원히 죽지 아니하리니, 네가 이것을 믿느냐?" 하시니라.</p>
+        </div>
+        <div class="vtext en">
+          <p><sup>25</sup>Jesus said unto her, I am the resurrection, and the life: he that believeth in me, though he were dead, yet shall he live: <sup>26</sup>And whosoever liveth and believeth in me shall never die. Believest thou this?</p>
+        </div>
       </div>
       <div class="lines">
         <p class="fr">수십 번 읽던 구절이, 그날은 <b>천둥처럼</b> 울렸습니다</p>
@@ -234,9 +243,14 @@
 
     <!-- 9. 로마서 12:1-2 전문 -->
     <section class="slide vs">
-      <p class="eyebrow">로마서 12:1–2 · 킹제임스 정본역</p>
-      <div class="vtext">
-        <p><sup>1</sup>그러므로 형제들아, 내가 하나님의 자비하심을 힘입어 너희에게 권하노니, 너희 몸을 거룩하고 하나님께 받으실 만한 산 제물로 드리라. 이것이 너희의 합당한 예배니라. <sup>2</sup>너희는 이 세상을 본뜨지 말고, 오직 마음이 새로워짐으로 변화를 입으라. 이는 하나님의 뜻 곧 선하시고 기뻐 받으실 만하며 온전하신 그 뜻이 무엇인지 너희가 헤아려 알게 하려 함이니라.</p>
+      <p class="eyebrow">로마서 12:1–2</p>
+      <div class="vwrap">
+        <div class="vtext">
+          <p><sup>1</sup>그러므로 형제들아, 내가 하나님의 자비하심을 힘입어 너희에게 권하노니, 너희 몸을 거룩하고 하나님께 받으실 만한 산 제물로 드리라. 이것이 너희의 합당한 예배니라. <sup>2</sup>너희는 이 세상을 본뜨지 말고, 오직 마음이 새로워짐으로 변화를 입으라. 이는 하나님의 뜻 곧 선하시고 기뻐 받으실 만하며 온전하신 그 뜻이 무엇인지 너희가 헤아려 알게 하려 함이니라.</p>
+        </div>
+        <div class="vtext en">
+          <p><sup>1</sup>I beseech you therefore, brethren, by the mercies of God, that ye present your bodies a living sacrifice, holy, acceptable unto God, which is your reasonable service. <sup>2</sup>And be not conformed to this world: but be ye transformed by the renewing of your mind, that ye may prove what is that good, and acceptable, and perfect, will of God.</p>
+        </div>
       </div>
       <aside class="notes">본문을 천천히 낭독. 그날 읽은 말씀이 이것이었다 — 몸을 산 제물로, 이 세상을 본뜨지 말라. 낭독 후 한 박자 쉬고 다음 장으로.</aside>
     </section>
