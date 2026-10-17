@@ -11,7 +11,7 @@
   <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Serif+KR:wght@700&display=swap" rel="stylesheet"/>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
@@ -20,7 +20,9 @@
   </script>
   <style>
     :root{
-      --navy:#182c54; --ink:#213a6b; --gold:#b8892b; --line:#d8ddea; --paper:#ffffff; --sub:#5c6472;
+      /* J-1 확정 컨셉 — 고운바탕 × 웜 아이보리 (현수막과 동일 팔레트) */
+      --navy:#1d2b4e; --ink:#1d2b4e; --gold:#b8892b; --line:#e3dcc8; --paper:#f8f4ea; --sub:#6b7488;
+      --seal:#b43b2e; --tint:#f1ecdd;
       --screen-bg:#0b1530;
     }
     *{box-sizing:border-box; margin:0; padding:0}
@@ -28,7 +30,7 @@
       font-family:'Pretendard',system-ui,sans-serif; color:#1c2440; background:var(--screen-bg);
       word-break:keep-all; overflow-wrap:break-word; -webkit-font-smoothing:antialiased;
     }
-    .serif{font-family:'Noto Serif KR','Pretendard',serif}
+    .serif{font-family:'Gowun Batang','Noto Serif KR','Pretendard',serif}
 
     /* ===== 로그인 게이트 ===== */
     #gate{position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center; padding:20px;
@@ -63,7 +65,10 @@
     .pageL{width:297mm; height:209mm; background:var(--paper); color:#1c2440; display:flex;
       box-shadow:0 14px 50px rgba(0,0,0,.5); position:relative; overflow:hidden}
     .panel{width:50%; height:100%; padding:13mm 12mm 11mm; display:flex; flex-direction:column; position:relative}
-    .panel + .panel{border-left:1px dashed #eceff5}  /* 접는 선(연하게) */
+    .panel + .panel{border-left:1px dashed #ece5d2}  /* 접는 선(연하게) */
+    .cseal{position:absolute; right:11mm; bottom:12mm; width:13mm; height:13mm; border-radius:2.6mm;
+      background:var(--seal); color:#fff; display:flex; align-items:center; justify-content:center;
+      font-family:'Noto Serif KR',serif; font-size:11.5pt; font-weight:700; letter-spacing:.05em}
     .pfoot{margin-top:auto; padding-top:3.5mm; border-top:1px solid var(--line); display:flex; justify-content:space-between;
       font-size:7.5pt; color:var(--sub)}
 
@@ -86,34 +91,34 @@
 
     /* 순서표 */
     table.order{width:100%; border-collapse:collapse}
-    .order td{padding:2.75mm 1.5mm; border-bottom:1px solid #e7eaf2; vertical-align:top}
+    .order td{padding:2.75mm 1.5mm; border-bottom:1px solid var(--line); vertical-align:top}
     .order tr:last-child td{border-bottom:none}
     .order .t{width:17mm; font-weight:800; color:var(--gold); font-size:9.5pt; white-space:nowrap; font-variant-numeric:tabular-nums}
     .order .nm{font-size:10pt; font-weight:800; color:var(--navy)}
     .order .ds{font-size:7.8pt; color:var(--sub); margin-top:.8mm; line-height:1.5}
-    .order tr.rest td{background:#f6f3ea}
+    .order tr.rest td{background:#f1e9d2}
     .order tr.rest .nm{color:var(--gold)}
-    .flexNote{margin-top:3mm; font-size:7.8pt; color:var(--sub); line-height:1.6; background:#f2f5fb; border-radius:2mm; padding:2.6mm 3mm}
+    .flexNote{margin-top:3mm; font-size:7.8pt; color:var(--sub); line-height:1.6; background:var(--tint); border-radius:2mm; padding:2.6mm 3mm}
 
     /* 나눔 질문 */
     .tips{display:flex; flex-direction:column; gap:1.8mm; margin-bottom:3.6mm}
-    .tip{background:#f2f5fb; border-radius:2mm; padding:2.4mm 3mm; font-size:8pt; color:#394764; line-height:1.55}
+    .tip{background:var(--tint); border-radius:2mm; padding:2.4mm 3mm; font-size:8pt; color:#4a5068; line-height:1.55}
     .tip b{color:var(--navy)}
     .qbox{border:1.2px solid var(--line); border-radius:3mm; padding:3.4mm 4mm; margin-bottom:3.6mm}
     .qbox .qn{font-size:7.8pt; font-weight:800; color:var(--gold); letter-spacing:.14em; margin-bottom:1.2mm}
     .qbox .qt{font-size:9.8pt; font-weight:700; color:var(--navy); line-height:1.5}
     .writes{margin-top:2.6mm}
-    .writes div{border-bottom:1px dotted #b9c2d4; height:7.2mm}
+    .writes div{border-bottom:1px dotted #c6bda4; height:7.2mm}
 
     /* 뒷표지: 질문 카드 + 안내 */
-    .cardZone{border:1.6px dashed var(--gold); border-radius:3mm; padding:3.6mm 4.2mm; background:#fdfbf5}
+    .cardZone{border:1.6px dashed var(--gold); border-radius:3mm; padding:3.6mm 4.2mm; background:#fcf7e9}
     .cardZone .ct{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:1.2mm}
     .cardZone h3{font-size:11pt; font-weight:900; color:var(--navy)}
     .cardZone .nm{font-size:7.8pt; color:var(--sub)}
     .cardZone p.gd{font-size:7.8pt; color:var(--sub); line-height:1.6; margin-bottom:1.6mm}
-    .after{margin-top:4.5mm; background:#f2f5fb; border-radius:3mm; padding:3.6mm 4.2mm}
+    .after{margin-top:4.5mm; background:var(--tint); border-radius:3mm; padding:3.6mm 4.2mm}
     .after h3{font-size:10pt; font-weight:900; color:var(--navy); margin-bottom:1.6mm}
-    .after p{font-size:8.3pt; color:#394764; line-height:1.7}
+    .after p{font-size:8.3pt; color:#4a5068; line-height:1.7}
     .after b{color:var(--navy)}
     .thanks{margin-top:4.5mm; text-align:center}
     .thanks p{font-family:'Noto Serif KR',serif; font-size:10pt; color:var(--navy); line-height:1.8}
@@ -193,6 +198,7 @@
             <p class="serif">"이 예언의 말씀을 읽는 자와 듣고 그 가운데 기록된 것을<br/>지키는 자들은 복이 있나니, 때가 가까움이라."</p>
             <cite>— 요한계시록 1:3 · 킹제임스 정본역</cite>
           </div>
+          <div class="cseal">만남</div>
         </div>
       </section>
 
