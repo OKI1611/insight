@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>북 콘서트 순서지 — 10/31 나눔의 오후</title>
+  <!-- 관리자(발표자) 전용 페이지 — 검색엔진 색인 금지, 어디에도 공개 링크하지 않는다 -->
+  <meta name="robots" content="noindex, nofollow"/>
+  <meta name="theme-color" content="#0b1530"/>
+  <link rel="icon" href="/favicon.ico"/>
+  <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Serif+KR:wght@700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
+    const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+    const ADMIN_EMAIL = 'josephoh1611@gmail.com';
+  </script>
+  <style>
+    :root{
+      /* J-1 확정 컨셉 — 고운바탕 × 웜 아이보리 (현수막과 동일 팔레트) */
+      --navy:#1d2b4e; --ink:#1d2b4e; --gold:#b8892b; --line:#e3dcc8; --paper:#f8f4ea; --sub:#6b7488;
+      --seal:#b43b2e; --tint:#f1ecdd;
+      --screen-bg:#0b1530;
+    }
+    *{box-sizing:border-box; margin:0; padding:0}
+    body{
+      font-family:'Pretendard',system-ui,sans-serif; color:#1c2440; background:var(--screen-bg);
+      word-break:keep-all; overflow-wrap:break-word; -webkit-font-smoothing:antialiased;
+    }
+    .serif{font-family:'Gowun Batang','Noto Serif KR','Pretendard',serif}
+
+    /* ===== 로그인 게이트 ===== */
+    #gate{position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center; padding:20px;
+      background:radial-gradient(1200px 700px at 70% -10%, #1b2c5c 0%, var(--screen-bg) 60%)}
+    .gateCard{width:100%; max-width:360px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12);
+      border-radius:20px; padding:32px 26px; text-align:center; color:#f4f7ff; backdrop-filter:blur(8px)}
+    .gateCard h1{font-size:17px; font-weight:800; margin-bottom:4px}
+    .gateCard p{font-size:12.5px; color:#9fb3d9; margin-bottom:20px}
+    .gateCard input{width:100%; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); border-radius:12px;
+      color:#f4f7ff; padding:11px 14px; font-size:14px; margin-bottom:8px; outline:none}
+    .gateCard input:focus{border-color:#ffd76a}
+    .btn{width:100%; border:0; border-radius:12px; padding:12px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit}
+    .btnGoogle{background:#fff; color:#1c2440; display:flex; align-items:center; justify-content:center; gap:9px; margin-bottom:14px}
+    .btnMail{background:#ffd76a; color:#2a2000}
+    #gateErr{font-size:12px; color:#ff9d9d; min-height:16px; margin-top:8px}
+    .gateHome{display:inline-block; margin-top:10px; font-size:12px; color:#67789f; text-decoration:none}
+
+    /* ===== 화면 보기 ===== */
+    #wrap{display:none}
+    #wrap.open{display:block}
+    #toolbar{position:sticky; top:0; z-index:30; display:flex; gap:10px; align-items:center; justify-content:center; flex-wrap:wrap;
+      padding:12px; background:rgba(11,21,48,.92); backdrop-filter:blur(6px)}
+    #toolbar button,#toolbar a{border:0; border-radius:10px; padding:10px 22px; font-size:14px; font-weight:700;
+      cursor:pointer; font-family:inherit; text-decoration:none}
+    .tbPrint{background:#ffd76a; color:#2a2000}
+    .tbBack{background:rgba(255,255,255,.1); color:#dbe4f7}
+    #toolbar .tipTxt{width:100%; text-align:center; font-size:12px; color:#9fb3d9}
+    .sheets{display:flex; flex-direction:column; align-items:center; gap:24px; padding:24px 12px 60px}
+    .sheetLabel{color:#9fb3d9; font-size:12.5px; letter-spacing:.1em; margin-bottom:-14px}
+
+    /* ===== A4 가로 지면 (반 접지 → A5 4면 리플릿) ===== */
+    .pageL{width:297mm; height:209mm; background:var(--paper); color:#1c2440; display:flex;
+      box-shadow:0 14px 50px rgba(0,0,0,.5); position:relative; overflow:hidden}
+    .panel{width:50%; height:100%; padding:13mm 12mm 11mm; display:flex; flex-direction:column; position:relative}
+    .panel + .panel{border-left:1px dashed #ece5d2}  /* 접는 선(연하게) */
+    .cseal{position:absolute; right:11mm; bottom:12mm; width:13mm; height:13mm; border-radius:2.6mm;
+      background:var(--seal); color:#fff; display:flex; align-items:center; justify-content:center;
+      font-family:'Noto Serif KR',serif; font-size:11.5pt; font-weight:700; letter-spacing:.05em}
+    .pfoot{margin-top:auto; padding-top:3.5mm; border-top:1px solid var(--line); display:flex; justify-content:space-between;
+      font-size:7.5pt; color:var(--sub)}
+
+    /* 앞표지 */
+    .cover{align-items:center; text-align:center; justify-content:center}
+    .cover .ebrow{font-size:9.5pt; font-weight:700; letter-spacing:.32em; color:var(--gold); margin-bottom:6mm}
+    .cover .orn{width:34mm; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:0 auto 7mm}
+    .cover h1{font-size:21pt; font-weight:900; line-height:1.42; color:var(--navy); letter-spacing:-.01em}
+    .cover h1 em{font-style:normal; color:var(--gold)}
+    .cover img{width:40mm; margin:7mm auto; border-radius:1.5mm; box-shadow:0 4mm 10mm rgba(24,44,84,.25)}
+    .cover .meta{font-size:9.5pt; color:#394764; line-height:2}
+    .cover .meta b{color:var(--navy)}
+    .cover .verse{margin-top:7mm}
+    .cover .verse p{font-family:'Noto Serif KR',serif; font-size:8.8pt; color:var(--navy); line-height:1.75}
+    .cover .verse cite{display:block; margin-top:1.4mm; font-size:7.5pt; color:var(--gold); font-style:normal; letter-spacing:.08em}
+
+    /* 공통 패널 머리 */
+    .phead{font-size:13pt; font-weight:900; color:var(--navy); border-left:3.5px solid var(--gold); padding-left:3.5mm; margin-bottom:2.6mm}
+    .psub{font-size:8.3pt; color:var(--sub); line-height:1.65; margin-bottom:3.6mm}
+
+    /* 순서표 */
+    table.order{width:100%; border-collapse:collapse}
+    .order td{padding:2.75mm 1.5mm; border-bottom:1px solid var(--line); vertical-align:top}
+    .order tr:last-child td{border-bottom:none}
+    .order .t{width:17mm; font-weight:800; color:var(--gold); font-size:9.5pt; white-space:nowrap; font-variant-numeric:tabular-nums}
+    .order .nm{font-size:10pt; font-weight:800; color:var(--navy)}
+    .order .ds{font-size:7.8pt; color:var(--sub); margin-top:.8mm; line-height:1.5}
+    .order tr.rest td{background:#f1e9d2}
+    .order tr.rest .nm{color:var(--gold)}
+    .flexNote{margin-top:3mm; font-size:7.8pt; color:var(--sub); line-height:1.6; background:var(--tint); border-radius:2mm; padding:2.6mm 3mm}
+
+    /* 나눔 질문 */
+    .tips{display:flex; flex-direction:column; gap:1.8mm; margin-bottom:3.6mm}
+    .tip{background:var(--tint); border-radius:2mm; padding:2.4mm 3mm; font-size:8pt; color:#4a5068; line-height:1.55}
+    .tip b{color:var(--navy)}
+    .qbox{border:1.2px solid var(--line); border-radius:3mm; padding:3.4mm 4mm; margin-bottom:3.6mm}
+    .qbox .qn{font-size:7.8pt; font-weight:800; color:var(--gold); letter-spacing:.14em; margin-bottom:1.2mm}
+    .qbox .qt{font-size:9.8pt; font-weight:700; color:var(--navy); line-height:1.5}
+    .writes{margin-top:2.6mm}
+    .writes div{border-bottom:1px dotted #c6bda4; height:7.2mm}
+
+    /* 뒷표지: 질문 카드 + 안내 */
+    .cardZone{border:1.6px dashed var(--gold); border-radius:3mm; padding:3.6mm 4.2mm; background:#fcf7e9}
+    .cardZone .ct{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:1.2mm}
+    .cardZone h3{font-size:11pt; font-weight:900; color:var(--navy)}
+    .cardZone .nm{font-size:7.8pt; color:var(--sub)}
+    .cardZone p.gd{font-size:7.8pt; color:var(--sub); line-height:1.6; margin-bottom:1.6mm}
+    .after{margin-top:4.5mm; background:var(--tint); border-radius:3mm; padding:3.6mm 4.2mm}
+    .after h3{font-size:10pt; font-weight:900; color:var(--navy); margin-bottom:1.6mm}
+    .after p{font-size:8.3pt; color:#4a5068; line-height:1.7}
+    .after b{color:var(--navy)}
+    .thanks{margin-top:4.5mm; text-align:center}
+    .thanks p{font-family:'Noto Serif KR',serif; font-size:10pt; color:var(--navy); line-height:1.8}
+    .thanks .gd{font-size:8pt; color:var(--gold); margin-top:1mm; font-family:'Pretendard',sans-serif; font-weight:700; letter-spacing:.12em}
+
+    /* ===== 인쇄 ===== */
+    @page{size:A4 landscape; margin:0}
+    @media print{
+      body{background:#fff}
+      #gate,#toolbar,.sheetLabel{display:none !important}
+      #wrap{display:block !important}
+      .sheets{padding:0; gap:0; display:block}
+      .pageL{width:297mm; height:209mm; box-shadow:none; page-break-after:always}
+      .pageL:last-child{page-break-after:auto}
+    }
+    /* 화면에서 창이 좁을 때만 세로로 쌓기 — 인쇄(A4 가로≈1123px)에는 절대 적용 금지 */
+    @media screen and (max-width:1180px){ .pageL{width:100%; height:auto; flex-direction:column} .panel{width:100%; min-height:0} .panel + .panel{border-left:none; border-top:1px dashed #eceff5} }
+  </style>
+</head>
+<body>
+
+  <!-- ===== 로그인 게이트 (admin.html 과 동일한 서버 검증 방식·같은 세션 키) ===== -->
+  <div id="gate">
+    <div class="gateCard">
+      <h1>북 콘서트 순서지</h1>
+      <p>발표자 계정으로 로그인하세요.</p>
+      <button class="btn btnGoogle" onclick="googleLogin()">
+        <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C39.9 36.5 44 31 44 24c0-1.3-.1-2.3-.4-3.5z"/></svg>
+        구글로 로그인
+      </button>
+      <input id="ge" type="email" placeholder="이메일" autocomplete="username"/>
+      <input id="gp" type="password" placeholder="비밀번호" autocomplete="current-password"/>
+      <button class="btn btnMail" onclick="emailLogin()">이메일로 로그인</button>
+      <p id="gateErr"></p>
+      <a class="gateHome" href="/admin">← 관리자 콘솔로</a>
+    </div>
+  </div>
+
+  <!-- ===== 접지 순서지 (A4 가로 2장 → 반 접으면 A5 4면 리플릿) ===== -->
+  <div id="wrap">
+    <div id="toolbar">
+      <button class="tbPrint" onclick="window.print()">🖨 인쇄하기 (A4 가로 · 양면)</button>
+      <a class="tbBack" href="/admin">관리자 콘솔</a>
+      <p class="tipTxt">양면 인쇄 시 <b>"짧은 쪽으로 넘김(단변 뒤집기)"</b>을 선택하고, 인쇄 후 가운데를 반으로 접으면 소책자가 됩니다.</p>
+    </div>
+    <div class="sheets">
+
+      <!-- 1장 바깥면: [뒷표지 | 앞표지] -->
+      <p class="sheetLabel">1장 — 바깥면 (접으면 왼쪽이 뒷표지 · 오른쪽이 앞표지)</p>
+      <section class="pageL">
+        <!-- 뒷표지 (4면) -->
+        <div class="panel">
+          <p class="phead">질문 카드</p>
+          <p class="psub">나눔 중에 다 풀리지 않은 질문, 평소 마음에 걸려 넘어졌던 성경 구절을 적어 주세요. 마치기 전에 거둬 가며, 깊이 연구하여 다음 유튜브 강의와 후속 온라인 스터디에서 답해 드리겠습니다.</p>
+          <div class="cardZone">
+            <div class="ct"><h3>나의 질문</h3><span class="nm">성함(선택): ____________</span></div>
+            <div class="writes"><div></div><div></div><div></div><div></div></div>
+          </div>
+          <div class="after">
+            <h3>오늘 이후, 함께 공부하는 길</h3>
+            <p><b>biblynote.com</b> — 전 강의 355편·요약노트·확인학습·성경사전·성경 Q&amp;A를 모두 무료로 열어 두었습니다. 오늘 모임의 후속 스터디 소식도 홈페이지 공지로 안내드립니다.</p>
+          </div>
+          <div class="thanks">
+            <p class="serif">오늘 걸음 해 주신 한 분 한 분이<br/>이 사역의 가장 큰 열매입니다.</p>
+            <p class="gd">그 나라에서, 꼭 다시 만나요</p>
+          </div>
+          <div class="pfoot"><span>오광일의 인사이트 브리핑 · BIBLY 바이블 인사이트</span><span>biblynote.com</span></div>
+        </div>
+        <!-- 앞표지 (1면) -->
+        <div class="panel cover">
+          <p class="ebrow">출간 기념 나눔의 오후</p>
+          <div class="orn"></div>
+          <h1 class="serif">『천년왕국을 아십니까』<br/>북 <em>콘서트</em></h1>
+          <img src="/images/book-millennium-cover.jpg" alt="천년왕국을 아십니까 표지"/>
+          <p class="meta"><b>2026년 10월 31일(토) 오후 2시 – 5시</b><br/>강변역 테크노마트 9층 코아레스 공유회의실 B룸<br/>오광일의 인사이트 브리핑</p>
+          <div class="verse">
+            <p class="serif">"이 예언의 말씀을 읽는 자와 듣고 그 가운데 기록된 것을<br/>지키는 자들은 복이 있나니, 때가 가까움이라."</p>
+            <cite>— 요한계시록 1:3 · 킹제임스 정본역</cite>
+          </div>
+          <div class="cseal">만남</div>
+        </div>
+      </section>
+
+      <!-- 2장 안쪽면: [순서 | 나눔 질문] -->
+      <p class="sheetLabel">2장 — 안쪽면 (펼치면 왼쪽 순서 · 오른쪽 나눔 질문)</p>
+      <section class="pageL">
+        <!-- 오늘의 순서 (2면) -->
+        <div class="panel">
+          <p class="phead">오늘의 순서</p>
+          <p class="psub">오늘은 강의를 들으러 오신 자리가 아니라, 같은 소망을 품은 지체들이 처음으로 얼굴을 마주하는 자리입니다. 차 한잔 곁에 두시고 편안히 함께해 주세요.</p>
+          <table class="order">
+            <tr><td class="t">2:00</td><td><p class="nm">환영과 여는 기도</p></td></tr>
+            <tr><td class="t">2:05</td><td><p class="nm">처음 뵙겠습니다 — 자기소개 릴레이</p>
+              <p class="ds">한 분당 1분씩 — 이름, 사시는 곳, 이 말씀(채널·책)을 만난 계기 한 가지.</p></td></tr>
+            <tr><td class="t">2:25</td><td><p class="nm">이 책이 나오기까지 — 저자의 여정</p>
+              <p class="ds">유튜브 강의와 책이 세상에 나오기까지 하나님께서 하신 일들을 처음으로 나눕니다.</p></td></tr>
+            <tr class="rest"><td class="t">2:50</td><td><p class="nm">쉼 · 다과 (15분)</p>
+              <p class="ds">다과를 들며 테이블에서 자연스럽게 교제하는 시간입니다.</p></td></tr>
+            <tr><td class="t">3:05</td><td><p class="nm">미니 강의 — 보내 주신 질문 세 가지</p>
+              <p class="ds">사전 질문 가운데 세 가지를 뽑아 말씀으로 답합니다.</p></td></tr>
+            <tr><td class="t">3:45</td><td><p class="nm">테이블 나눔</p>
+              <p class="ds">앉으신 자리 그대로, 옆면의 나눔 질문을 따라 서로의 이야기를 듣습니다.</p></td></tr>
+            <tr><td class="t">4:15</td><td><p class="nm">나눔 함께 듣기 · 질문 카드</p>
+              <p class="ds">테이블마다 가장 은혜로웠던 깨달음 하나씩을 함께 듣고, 남은 질문은 뒷면 질문 카드에 적어 주세요.</p></td></tr>
+            <tr><td class="t">4:30</td><td><p class="nm">기념 촬영 — 다 함께</p></td></tr>
+            <tr><td class="t">4:40</td><td><p class="nm">자유 교제 · 도서 사인회</p>
+              <p class="ds">못다 한 이야기를 나누고, 책에 사인을 받아 가세요. 먼저 일어나셔도 괜찮습니다.</p></td></tr>
+            <tr><td class="t">5:00</td><td><p class="nm">마침 인사</p></td></tr>
+          </table>
+          <p class="flexNote">시간은 그날의 흐름에 따라 앞뒤로 여유 있게 조정됩니다 — 시계보다 이야기가 먼저입니다.</p>
+          <div class="pfoot"><span>출간 기념 나눔의 오후</span><span>2026. 10. 31</span></div>
+        </div>
+        <!-- 테이블 나눔 (3면) -->
+        <div class="panel">
+          <p class="phead">테이블 나눔 (3:45)</p>
+          <p class="psub">테이블마다 진행을 도울 한 분(서기)을 정해 주세요. 한 분당 2–3분씩, 끊지 않고 끝까지 듣는 것이 오늘의 약속입니다. 정답을 말하는 자리가 아니라 서로의 이야기를 듣는 자리입니다.</p>
+          <div class="tips">
+            <div class="tip"><b>①</b> 말씀은 짧게, 이야기는 솔직하게 — 내 경험으로 말해 주세요.</div>
+            <div class="tip"><b>②</b> 다른 분의 나눔에는 평가 대신 공감으로 반응해 주세요.</div>
+            <div class="tip"><b>③</b> 해결 안 된 질문은 뒷면 질문 카드로 — 끝까지 연구해 답해 드립니다.</div>
+          </div>
+          <div class="qbox">
+            <p class="qn">나눔 질문 1</p>
+            <p class="qt">강의와 책을 만난 뒤, 요한계시록을 보는 눈이 어떻게 달라지셨나요? 두려움이 소망으로 바뀐 대목이 있다면 나눠 주세요.</p>
+            <div class="writes"><div></div><div></div></div>
+          </div>
+          <div class="qbox">
+            <p class="qn">나눔 질문 2</p>
+            <p class="qt">오늘 들은 이야기 가운데 가장 마음에 와닿은 한 장면은 무엇이었나요? 그 이유도 함께 들려주세요.</p>
+            <div class="writes"><div></div><div></div></div>
+          </div>
+          <div class="pfoot"><span>『천년왕국을 아십니까』 북 콘서트</span><span>biblynote.com</span></div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    /* ===== 인증 — admin.html 과 동일한 패턴(토큰을 서버로 검증, 세션 키 공유) ===== */
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType:'implicit', autoRefreshToken:false, persistSession:false, detectSessionFromUrl:false, lock: async (_n,_t,fn)=>await fn() } });
+
+    function jwtPayload(tok){
+      let s=tok.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'); while(s.length%4) s+='=';
+      const json=decodeURIComponent(atob(s).split('').map(c=>'%'+('00'+c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+      return JSON.parse(json);
+    }
+    (function handleOAuthRedirect(){
+      try{
+        if(location.hash && location.hash.indexOf('access_token=')>=0){
+          const p=new URLSearchParams(location.hash.slice(1));
+          const at=p.get('access_token'), rt=p.get('refresh_token'), ei=Number(p.get('expires_in')||3600);
+          if(at){
+            const payload=jwtPayload(at);
+            const user={ id:payload.sub, email:payload.email, role:payload.role, user_metadata:payload.user_metadata||{} };
+            localStorage.setItem('bibly-admin-auth', JSON.stringify({ access_token:at, token_type:'bearer', expires_in:ei, refresh_token:rt, expires_at:(payload.exp||Math.floor(Date.now()/1000)+ei), user }));
+            history.replaceState(null,'',location.pathname);
+          }
+        }
+      }catch(e){}
+    })();
+
+    function readStored(){
+      try{
+        const raw=localStorage.getItem('bibly-admin-auth');
+        if(raw){ const v=JSON.parse(raw); if(v&&v.user){ if(v.expires_at&&v.expires_at*1000<Date.now()){ localStorage.removeItem('bibly-admin-auth'); } else { return v; } } }
+        for(const k of Object.keys(localStorage)){ if(!/auth-token/.test(k)) continue; const v=JSON.parse(localStorage.getItem(k)); const s=(v&&v.user)?v:(v&&v.currentSession)?v.currentSession:null; if(s&&s.user){ if(s.expires_at&&s.expires_at*1000<Date.now()) return null; return s; } }
+      }catch(e){} return null;
+    }
+    async function verifySession(session){
+      const tok = session && session.access_token;
+      if(!tok) return null;
+      const ctrl=new AbortController(); const to=setTimeout(()=>ctrl.abort(), 8000);
+      try{
+        const res = await fetch(SUPABASE_URL+'/auth/v1/user', { signal:ctrl.signal, headers:{ apikey:SUPABASE_ANON, Authorization:'Bearer '+tok } });
+        clearTimeout(to);
+        if(!res.ok) return null;
+        const u = await res.json();
+        return (u && u.id) ? u : null;
+      }catch(e){ clearTimeout(to); return null; }
+    }
+    async function googleLogin(){
+      try{ await sb.auth.signInWithOAuth({ provider:'google', options:{ redirectTo: location.origin+location.pathname } }); }catch(e){}
+    }
+    async function emailLogin(){
+      const email=document.getElementById('ge').value.trim(), pw=document.getElementById('gp').value;
+      const m=document.getElementById('gateErr'); m.textContent='';
+      if(!email||!pw){ m.textContent='이메일과 비밀번호를 입력하세요.'; return; }
+      m.textContent='로그인 중…';
+      const ctrl=new AbortController(); const to=setTimeout(()=>ctrl.abort(),8000);
+      try{
+        const res=await fetch(SUPABASE_URL+'/auth/v1/token?grant_type=password',{ method:'POST', signal:ctrl.signal, headers:{ apikey:SUPABASE_ANON,'Content-Type':'application/json' }, body:JSON.stringify({email,password:pw}) });
+        clearTimeout(to);
+        const d=await res.json();
+        if(d.error||!d.access_token){ m.textContent='로그인 실패: '+(d.error_description||d.msg||d.error||'알 수 없는 오류'); return; }
+        localStorage.setItem('bibly-admin-auth', JSON.stringify({ access_token:d.access_token, token_type:'bearer', expires_in:d.expires_in, refresh_token:d.refresh_token, expires_at:Math.floor(Date.now()/1000)+d.expires_in, user:d.user }));
+        location.reload();
+      }catch(e){ clearTimeout(to); m.textContent='네트워크 오류. 다시 시도해 주세요.'; }
+    }
+    async function applyAuth(){
+      const session = readStored();
+      const gm=document.querySelector('.gateCard p');
+      if(gm && session && session.access_token) gm.textContent='발표자 확인 중…';
+      const verified = await verifySession(session);
+      const email = String((verified && verified.email) || '').toLowerCase();
+      if(email && email === String(ADMIN_EMAIL).toLowerCase()){
+        document.getElementById('gate').style.display='none';
+        document.getElementById('wrap').classList.add('open');
+      } else {
+        if(gm) gm.textContent='발표자 계정으로 로그인하세요.';
+      }
+    }
+    applyAuth();
+  </script>
+</body>
+</html>
