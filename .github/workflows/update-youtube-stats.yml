@@ -4,7 +4,7 @@ name: Update YouTube stats
 # content/site.json 을 갱신·커밋한다. 커밋되면 Cloudflare 가 자동 배포 → 사이트 수치 갱신.
 on:
   schedule:
-    - cron: '0 21 * * *'   # 매일 06:00 (KST) 자동 실행
+    - cron: '0 21,3,9,15 * * *'   # 6시간마다 (KST 06·12·18·24시) — 구독자 반영 체감 속도 개선(2026-10-19)
   workflow_dispatch: {}     # 필요하면 수동으로도 실행 가능
 
 permissions:

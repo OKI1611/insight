@@ -26,7 +26,9 @@ def parse_subs(text):
     v = float(m.group(1)); unit = m.group(2)
     if unit == "만": v *= 10000
     elif unit == "천": v *= 1000
-    return int(v)
+    # int()로 자르면 1.13만 → 11299.999… → 11,299 → (100 내림) 11,200+ 로
+    # 한 계단 낮게 굳어 '갱신이 느리다'는 인상을 준다. worker 와 같이 반올림.
+    return int(round(v))
 
 def fmt_plus(n, step):           # n 을 step 단위로 내림 + "+"
     return "{:,}+".format((n // step) * step)
