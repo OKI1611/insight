@@ -190,11 +190,11 @@
                 <span class="text-2xl leading-none"></span>
                 <div class="flex-1 min-w-0">
                   <p class="font-bold text-sm leading-tight">아카데미 인증 과정</p>
-                  <p class="text-[10px] text-gold font-semibold tracking-[0.15em] mt-0.5">CERTIFICATION</p>
+                  <p class="text-[12px] text-gold font-semibold tracking-[0.15em] mt-0.5">CERTIFICATION</p>
                 </div>
                 <span class="text-[9px] font-bold text-neutral-900 bg-gold px-1.5 py-0.5 rounded-full shrink-0">유료</span>
               </div>
-              <p class="text-[11px] text-paper/65 leading-relaxed mb-3">시험·학점·<b class="text-paper">수료증</b>으로<br/>실력을 공인받는 과정</p>
+              <p class="text-[12.5px] text-paper/65 leading-relaxed mb-3">시험·학점·<b class="text-paper">수료증</b>으로<br/>실력을 공인받는 과정</p>
               <span class="inline-flex items-center gap-1 text-xs font-bold text-gold bg-gold/12 rounded-full px-3 py-1">자세히 보기 →</span>
             </div>
           </button>
@@ -281,13 +281,13 @@
               </div>
             </div>
             <div class="px-3.5 py-2 flex items-center justify-between border-t border-ink/5">
-              <span class="text-[11px] text-neutral-900/45">${byName[t].n}강</span>
-              <span class="text-[11px] font-bold" style="color:${rk.color}">수강 →</span>
+              <span class="text-[12.5px] text-neutral-900/45">${byName[t].n}강</span>
+              <span class="text-[12.5px] font-bold" style="color:${rk.color}">수강 →</span>
             </div></a>`).join('');
           const perks = (rk.perks||[]).map(p => `<li class="flex gap-1.5 text-sm text-neutral-900/65"><span class="text-gold shrink-0">✓</span><span>${esc(p)}</span></li>`).join('');
           const topTier = (rk.tier===5);
-          const tag = topTier ? '<span class="text-[10px] font-bold text-white border border-white/45 px-2 py-0.5 rounded-full">최고 등급</span>'
-                    : (rk.tier===1 ? '<span class="text-[10px] font-bold text-white bg-white/20 px-2 py-0.5 rounded-full">입문 추천</span>' : '');
+          const tag = topTier ? '<span class="text-[12px] font-bold text-white border border-white/45 px-2 py-0.5 rounded-full">최고 등급</span>'
+                    : (rk.tier===1 ? '<span class="text-[12px] font-bold text-white bg-white/20 px-2 py-0.5 rounded-full">입문 추천</span>' : '');
           return `<div id="grade-${rk.tier}" class="bg-white rounded-2xl border ${topTier?'border-2':'border'} shadow-soft overflow-hidden scroll-mt-20" style="border-color:${rk.color}55">
             <div class="px-6 py-5 text-white relative overflow-hidden" style="background:linear-gradient(135deg, ${rk.color}, ${rk.color}cc)">
               <span class="absolute -right-8 -top-8 w-28 h-28 rounded-full bg-white/10"></span>
@@ -295,11 +295,11 @@
                 <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/18 border border-white/35 text-white font-bold text-sm shrink-0" style="font-family:Georgia,serif">${6-rk.tier}</span>
                 <span class="bg-white text-xs font-bold px-2.5 py-1 rounded-full" style="color:${rk.color}">${esc(rk.rank)}</span>
                 <h3 class="text-xl font-bold">${esc(rk.name)}</h3>
-                <span class="text-[10px] font-bold tracking-wider text-white/65">${esc(rk.en||'')}</span>
+                <span class="text-[12px] font-bold tracking-wider text-white/65">${esc(rk.en||'')}</span>
                 ${tag}
               </div>
               <p class="relative text-white/75 text-sm">${esc(rk.tagline||'')}</p>
-              <p class="relative mt-3">${HIDE ? '<span class="text-lg font-bold">가격 추후 안내</span>' : `<span class="text-2xl font-bold">${won(main)}</span>${rk.earlybird?` <span class="text-sm text-white/50 line-through">${won(rk.price)}</span> <span class="text-[11px] font-bold bg-white/20 px-1.5 py-0.5 rounded">얼리버드</span>`:''}`}<span class="text-white/55 text-xs ml-2">· ${tracks.length}과목 ${lessons}강</span></p>
+              <p class="relative mt-3">${HIDE ? '<span class="text-lg font-bold">가격 추후 안내</span>' : `<span class="text-2xl font-bold">${won(main)}</span>${rk.earlybird?` <span class="text-sm text-white/50 line-through">${won(rk.price)}</span> <span class="text-[12.5px] font-bold bg-white/20 px-1.5 py-0.5 rounded">얼리버드</span>`:''}`}<span class="text-white/55 text-xs ml-2">· ${tracks.length}과목 ${lessons}강</span></p>
             </div>
             <div class="px-6 pt-5">
               <p class="text-xs font-bold text-gold mb-1.5">이 등급을 받으면</p>
@@ -367,7 +367,7 @@
       const items = tracksByLevel();
       let html = '', lastL = null;
       items.forEach(({ ti, lv, L }) => {
-        if(L !== lastL){ lastL = L; html += `<p class="px-4 ${ html ? 'pt-4 mt-1 border-t border-ink/8' : 'pt-3' } pb-1 text-[11px] font-bold text-gold/90 tracking-wide">${esc(L)} 단계</p>`; }
+        if(L !== lastL){ lastL = L; html += `<p class="px-4 ${ html ? 'pt-4 mt-1 border-t border-ink/8' : 'pt-3' } pb-1 text-[12.5px] font-bold text-gold/90 tracking-wide">${esc(L)} 단계</p>`; }
         html += `<button onclick="selectTrack(${ti})" id="tb-${ti}" class="trackBtn w-full text-left px-4 py-3 transition flex items-center gap-2">
           <span class="flex-1 min-w-0">
             <span class="block font-semibold text-[15px] leading-snug truncate">${esc(lv.name||'')}</span>
@@ -453,8 +453,8 @@
         <nav class="text-[13px] text-neutral-900/45 mb-2.5">강의·커리큘럼 <span class="mx-0.5">›</span> ${esc(L)} 단계 <span class="mx-0.5">›</span> <b class="text-neutral-900/75">${esc(lv.name||'')}</b></nav>
         <div class="bg-white border border-ink/10 rounded-2xl shadow-soft p-5 md:p-6 mb-5">
           <div class="flex flex-wrap items-center gap-1.5 mb-2">
-            <span class="text-[11px] font-bold text-white px-2.5 py-1 rounded-full" style="background:#213a6b">${esc(L)} 단계</span>
-            <span class="text-[11px] font-bold text-gold bg-gold/10 border border-gold/25 px-2.5 py-1 rounded-full">전체 무료</span>
+            <span class="text-[12.5px] font-bold text-white px-2.5 py-1 rounded-full" style="background:#213a6b">${esc(L)} 단계</span>
+            <span class="text-[12.5px] font-bold text-gold bg-gold/10 border border-gold/25 px-2.5 py-1 rounded-full">전체 무료</span>
           </div>
           <h2 class="text-[22px] md:text-[26px] font-bold leading-snug">${esc(lv.name||'')}</h2>
           <p class="text-neutral-900/55 text-[14px] mt-1.5">강사 오광일 · 총 ${ls.length}강${timeTxt} · 무제한 시청</p>
@@ -486,6 +486,6 @@
 
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
-  <script src="auth-header.js?v=20260928a"></script>
+  <script src="auth-header.js?v=20261021a"></script>
 </body>
 </html>

@@ -109,12 +109,18 @@
         document.documentElement.style.fontSize = SIZES[i];
         try{ localStorage.setItem('biblyFont', SIZES[i]); }catch(e){}
       };
+      // 저장해 둔 글자 크기를 페이지에 들어올 때마다 복원한다.
+      // (저장만 하고 복원이 없어 페이지를 옮기면 원래 크기로 돌아가던 문제 수정 2026-10-21)
+      try{
+        var __sv = localStorage.getItem('biblyFont');
+        if(__sv && SIZES.indexOf(__sv) > -1) document.documentElement.style.fontSize = __sv;
+      }catch(e){}
       var w = document.createElement('div'); w.id = 'biblyFab';
       w.innerHTML =
         '<div style="position:fixed;left:12px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:60" class="flex items-center gap-0.5 bg-white/95 backdrop-blur border border-ink/10 rounded-full shadow-lg px-1.5 py-1">'
         + '<span style="font-size:11px" class="text-neutral-900/45 px-1 select-none">글자</span>'
-        + '<button onclick="__biblyFont(-1)" aria-label="글자 작게" class="rounded-full hover:bg-ink/5 text-neutral-900/60" style="width:34px;height:34px;font-size:13px">가&minus;</button>'
-        + '<button onclick="__biblyFont(1)" aria-label="글자 크게" class="rounded-full hover:bg-ink/5 text-neutral-900 font-bold" style="width:34px;height:34px;font-size:18px">가&#43;</button>'
+        + '<button onclick="__biblyFont(-1)" aria-label="글자 작게" class="rounded-full hover:bg-ink/5 text-neutral-900/60" style="width:44px;height:44px;font-size:15px">가&minus;</button>'
+        + '<button onclick="__biblyFont(1)" aria-label="글자 크게" class="rounded-full hover:bg-ink/5 text-neutral-900 font-bold" style="width:44px;height:44px;font-size:20px">가&#43;</button>'
         + '</div>'
         + '<div style="position:fixed;right:14px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:60" class="flex flex-col items-end gap-2.5">'
         + '<button id="installBtn" onclick="__biblyOpenInstall()" aria-label="앱 설치" class="inline-flex items-center gap-1.5 bg-ink text-white font-bold rounded-full shadow-xl hover:bg-navy transition" style="display:none;padding:11px 18px;font-size:15px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M12 7v7M9.2 11.2 12 14l2.8-2.8"/><path d="M10 18.5h4"/></svg>앱 설치</button>'

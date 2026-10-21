@@ -154,7 +154,7 @@
           <p class="text-xs text-neutral-400 mt-4">— 앞으로도 <b class="text-neutral-600">계속 무료</b>입니다</p>
         </div>
         <div class="bg-gradient-to-br from-ink to-navy text-white rounded-2xl shadow-card p-6 relative overflow-hidden">
-          <span class="absolute top-5 right-5 bg-gold text-white text-[11px] font-bold px-2.5 py-1 rounded-full">정규 과정</span>
+          <span class="absolute top-5 right-5 bg-gold text-white text-[12.5px] font-bold px-2.5 py-1 rounded-full">정규 과정</span>
           <p class="font-bold text-gold mb-3">정규 인증 과정</p>
           <ul class="space-y-2.5 text-sm text-white/85 leading-relaxed">
             <li><span class="text-gold font-bold">✓</span> 정해진 커리큘럼·순서로 체계적 완주</li>
@@ -233,7 +233,7 @@
       <div id="curriculum" class="scroll-mt-24 mb-8" style="display:none">
         <div class="bg-white border border-ink/8 rounded-2xl shadow-soft p-5 md:p-7">
           <div class="text-center mb-5">
-            <p class="text-gold text-[11px] font-bold tracking-[0.22em] uppercase mb-2">Curriculum · 급수별 커리큘럼</p>
+            <p class="text-gold text-[12.5px] font-bold tracking-[0.22em] uppercase mb-2">Curriculum · 급수별 커리큘럼</p>
             <h3 class="text-lg md:text-xl font-bold">내 급수에는 어떤 과목이 들어 있나요?</h3>
             <p class="text-neutral-900/50 text-[13px] mt-2 leading-relaxed">급수를 고르면 포함 과목과 강의 목록을 신청 전에 모두 보실 수 있어요.</p>
           </div>
@@ -277,8 +277,8 @@
           </label>
           <input id="aHp" type="text" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
           <!-- 카드 심사 대기 동안은 계좌이체가 주 결제 수단. CARD_PAY_READY=true 가 되면 카드가 다시 살아난다 -->
-          <button id="aSubmit" onclick="submitApp()" class="w-full text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition leading-tight" style="background:#00704a"><span id="aBankLabel" class="block text-[15.5px]">계좌이체로 신청</span><span class="block text-[11.5px] font-medium text-white/75 mt-1">입금 확인 후 바로 개설 · 계좌 복사·간편송금 안내</span></button>
-          <button id="aCard" onclick="payCardAcademy()" class="w-full mt-2 bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition flex items-center justify-center gap-2"><span id="aCardLabel">카드로 결제하고 바로 수강</span> <span id="aCardBadge" class="text-[10.5px] font-bold text-gold bg-white/90 px-2 py-0.5 rounded-full">즉시 개설</span></button>
+          <button id="aSubmit" onclick="submitApp()" class="w-full text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition leading-tight" style="background:#00704a"><span id="aBankLabel" class="block text-[15.5px]">계좌이체로 신청</span><span class="block text-[12.5px] font-medium text-white/75 mt-1">입금 확인 후 바로 개설 · 계좌 복사·간편송금 안내</span></button>
+          <button id="aCard" onclick="payCardAcademy()" class="w-full mt-2 bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition flex items-center justify-center gap-2"><span id="aCardLabel">카드로 결제하고 바로 수강</span> <span id="aCardBadge" class="text-[12px] font-bold text-gold bg-white/90 px-2 py-0.5 rounded-full">즉시 개설</span></button>
           <p id="aMsg" class="text-center text-sm min-h-[18px]"></p>
           <p class="text-center text-neutral-900/40 text-xs leading-relaxed">신청 정보는 정규 과정 안내 목적으로만 사용되며, 원치 않으시면 언제든 삭제 요청하실 수 있어요.</p>
         </div>
@@ -381,13 +381,13 @@
         ? `<span class="block sm:inline text-[12px] text-neutral-900/50 sm:ml-2 mt-1 sm:mt-0">+ 하위 급수 과목까지 <b class="text-neutral-900/70">총 ${cum.subj}과목 · ${cum.lessons}강</b> 포함</span>` : '';
       const subjects = (rk.tracks||[]).map(t => {
         const ci = courseIdx(t);
-        if(ci < 0) return `<div class="border border-ink/8 rounded-xl bg-white px-4 py-3.5 flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full shrink-0" style="background:${accent}"></span><span class="flex-1 font-bold text-[14.5px] text-neutral-900">${esc(t)}</span><span class="text-[11px] text-neutral-400">준비 중</span></div>`;
+        if(ci < 0) return `<div class="border border-ink/8 rounded-xl bg-white px-4 py-3.5 flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full shrink-0" style="background:${accent}"></span><span class="flex-1 font-bold text-[14.5px] text-neutral-900">${esc(t)}</span><span class="text-[12.5px] text-neutral-400">준비 중</span></div>`;
         const lv = COURSE[ci], ls = lv.lessons || [];
         const min = ls.reduce((s,x) => s + durMin(x.duration), 0);
         const rows = ls.map((x,li) => `<li class="flex gap-2.5 items-baseline">
-            <span class="shrink-0 w-6 text-right text-[11px] text-neutral-900/35 tabular-nums">${li+1}</span>
+            <span class="shrink-0 w-6 text-right text-[12.5px] text-neutral-900/35 tabular-nums">${li+1}</span>
             <span class="flex-1 min-w-0 text-[13.5px] text-neutral-900/75 leading-snug">${esc(x.title)}</span>
-            ${x.duration ? `<span class="shrink-0 text-[11px] text-neutral-900/40 whitespace-nowrap">${esc(x.duration)}</span>` : ''}
+            ${x.duration ? `<span class="shrink-0 text-[12.5px] text-neutral-900/40 whitespace-nowrap">${esc(x.duration)}</span>` : ''}
           </li>`).join('');
         return `<details class="curSubj border border-ink/8 rounded-xl bg-white overflow-hidden">
           <summary class="flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-ink/[0.02] transition min-h-[52px]">
@@ -471,12 +471,12 @@
               return `<a href="#packages" title="${rk.name} 패키지 보기" class="flex-1 flex flex-col items-center justify-end text-center hover:opacity-80 transition">
                 <span class="mb-2">${seal(rk.tier, accent, 30)}</span>
                 <div class="w-full rounded-t-lg flex items-start justify-center pt-1.5" style="height:${h}px;background:linear-gradient(180deg,${accent},${accent}d0)">
-                  <span class="text-white text-[11px] md:text-sm font-bold">${rk.rank}</span>
+                  <span class="text-white text-[12.5px] md:text-sm font-bold">${rk.rank}</span>
                 </div>
                 <div class="w-full border-t-2 pt-1.5" style="border-color:${accent}">
-                  <p class="text-[11px] md:text-sm font-bold text-neutral-900 leading-tight">${rk.name}</p>
-                  <p class="text-[8.5px] md:text-[10px] font-bold tracking-wider mt-0.5" style="color:${accent}">${rk.en||''}</p>
-                  <p class="text-[9px] md:text-[11px] text-neutral-900/45 mt-0.5">${(rk.tracks||[]).length}과목${COURSE?`<span class="hidden md:inline"> · ${rankStats(rk).lessons}강</span>`:''}</p>
+                  <p class="text-[12.5px] md:text-sm font-bold text-neutral-900 leading-tight">${rk.name}</p>
+                  <p class="text-[8.5px] md:text-[12px] font-bold tracking-wider mt-0.5" style="color:${accent}">${rk.en||''}</p>
+                  <p class="text-[9px] md:text-[12.5px] text-neutral-900/45 mt-0.5">${(rk.tracks||[]).length}과목${COURSE?`<span class="hidden md:inline"> · ${rankStats(rk).lessons}강</span>`:''}</p>
                 </div>
               </a>`;
             }).join('')}
@@ -489,16 +489,16 @@
         const main = rk.earlybird || rk.price || 0, rec = rk.tier === 1, top = i===N-1, HIDE = !!PROG.hidePrice;
         const accent = rk.color || '#00704a';
         const perks = (rk.perks||[]).map(p => `<li class="flex gap-2"><svg viewBox="0 0 20 20" class="w-4 h-4 shrink-0 mt-0.5" style="color:${accent}" fill="none"><path d="M5 10.5l3.2 3.2L15 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>${p}</span></li>`).join('');
-        const tag = rec ? '<span class="ml-auto text-[10px] font-bold text-neutral-700 bg-neutral-100 border border-neutral-200 px-2.5 py-0.5 rounded-full">입문 추천</span>'
-                  : (top ? '<span class="ml-auto text-[10px] font-bold text-white px-2.5 py-0.5 rounded-full" style="background:#1f2d4d">최고 등급</span>' : '');
+        const tag = rec ? '<span class="ml-auto text-[12px] font-bold text-neutral-700 bg-neutral-100 border border-neutral-200 px-2.5 py-0.5 rounded-full">입문 추천</span>'
+                  : (top ? '<span class="ml-auto text-[12px] font-bold text-white px-2.5 py-0.5 rounded-full" style="background:#1f2d4d">최고 등급</span>' : '');
         const cssVars = `--acc:${accent};--accBg:${hexToRgba(accent,.055)};--accBorder:${hexToRgba(accent,.5)}`;
         const btnStyle = rec ? 'background:#00704a;color:#fff' : 'background:#1f2937;color:#fff';
         return `<div class="pkg-card bg-white rounded-2xl border ${rec?'border-neutral-200 shadow-card':(top?'border-neutral-200 shadow-card':'border-neutral-200 shadow-soft')} p-6 pt-7 flex flex-col" style="${cssVars}">
           <button type="button" class="pkg-title mb-1" onclick="openPkgModal(${i})" title="${rk.name} 과정 소개 보기">
             ${seal(rk.tier, accent, 34)}
             <span class="ml-0.5">
-              <span class="flex items-center gap-1.5"><span class="text-white text-[11px] font-bold px-2 py-0.5 rounded-full" style="background:${accent}">${rk.rank}</span><h3 class="font-bold text-lg leading-none text-neutral-900">${rk.name}</h3><span class="pkg-more">›</span></span>
-              <span class="block text-[10px] font-bold tracking-[.18em] text-neutral-400 mt-1">${rk.en||''}</span>
+              <span class="flex items-center gap-1.5"><span class="text-white text-[12.5px] font-bold px-2 py-0.5 rounded-full" style="background:${accent}">${rk.rank}</span><h3 class="font-bold text-lg leading-none text-neutral-900">${rk.name}</h3><span class="pkg-more">›</span></span>
+              <span class="block text-[12px] font-bold tracking-[.18em] text-neutral-400 mt-1">${rk.en||''}</span>
             </span>
             ${tag}
           </button>
@@ -508,8 +508,8 @@
           ${(()=>{ // 과목·강의 수 요약 — 누르면 급수별 커리큘럼 칸으로 이동해 이 급수를 펼친다
             const s = COURSE ? rankStats(rk) : null;
             const txt = s ? `${s.subj}과목 · ${s.lessons}강${s.min?' · '+hourTxt(s.min):''}` : `${(rk.tracks||[]).length}개 과목 과정`;
-            return `<button type="button" onclick="gotoCurr(${i})" class="mb-3 inline-flex items-center gap-1 text-[11.5px] font-bold text-left hover:underline" style="color:${accent==='#c7b07a'?'#9a7a34':accent}">${txt} — 과목 전체 보기 ›</button>`; })()}
-          <p class="mb-4">${HIDE ? '<span class="text-lg font-bold text-neutral-900">가격 추후 안내</span>' : `<span class="text-2xl font-bold text-neutral-900">${won(main)}</span>${rk.earlybird?` <span class="text-sm text-neutral-400 line-through">${won(rk.price)}</span> <span class="text-[11px] font-bold text-rose-500">얼리버드</span>`:''}`}</p>
+            return `<button type="button" onclick="gotoCurr(${i})" class="mb-3 inline-flex items-center gap-1 text-[12.5px] font-bold text-left hover:underline" style="color:${accent==='#c7b07a'?'#9a7a34':accent}">${txt} — 과목 전체 보기 ›</button>`; })()}
+          <p class="mb-4">${HIDE ? '<span class="text-lg font-bold text-neutral-900">가격 추후 안내</span>' : `<span class="text-2xl font-bold text-neutral-900">${won(main)}</span>${rk.earlybird?` <span class="text-sm text-neutral-400 line-through">${won(rk.price)}</span> <span class="text-[12.5px] font-bold text-rose-500">얼리버드</span>`:''}`}</p>
           <ul class="text-sm text-neutral-600 space-y-1.5 mb-5 flex-1">${perks}</ul>
           <a href="#apply" onclick="pickPkg('${rk.name} (${rk.rank})')" class="block text-center text-sm font-semibold py-2.5 rounded-xl hover:opacity-90 transition" style="${btnStyle}">이 패키지로 신청 →</a>
         </div>`;
@@ -530,11 +530,11 @@
       if(box){
         box.classList.remove('hidden');
         box.innerHTML='<div class="rounded-2xl border p-4" style="border-color:'+accent+'40;background:'+accent+'0d">'
-          +'<p class="text-[11px] font-bold tracking-wide mb-2.5" style="color:'+accent+'">선택한 급수 과정</p>'
+          +'<p class="text-[12.5px] font-bold tracking-wide mb-2.5" style="color:'+accent+'">선택한 급수 과정</p>'
           +'<div class="flex items-center justify-between gap-3">'
           +'<div class="flex items-center gap-2.5 min-w-0"><span class="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-[15px] shrink-0" style="background:'+accent+'">'+gradeDigit(rk)+'</span>'
-          +'<div class="min-w-0"><p class="font-bold text-neutral-900 text-[15px] leading-tight truncate">'+esc(rk.rank)+' · '+esc(rk.name)+'</p><p class="text-[11px] text-neutral-500 mt-0.5">'+(rk.tracks||[]).length+'개 과목 · 12개월 수강</p></div></div>'
-          +'<div class="text-right shrink-0">'+(HIDE?'<span class="font-bold text-neutral-900">가격 추후 안내</span>':('<p class="font-extrabold text-neutral-900 text-lg leading-none">'+wonAmt+'</p>'+(rk.earlybird?'<p class="text-[11px] mt-1"><s class="text-neutral-400">'+won(rk.price)+'</s> <span class="text-rose-500 font-bold">얼리버드</span></p>':'')))+'</div>'
+          +'<div class="min-w-0"><p class="font-bold text-neutral-900 text-[15px] leading-tight truncate">'+esc(rk.rank)+' · '+esc(rk.name)+'</p><p class="text-[12.5px] text-neutral-500 mt-0.5">'+(rk.tracks||[]).length+'개 과목 · 12개월 수강</p></div></div>'
+          +'<div class="text-right shrink-0">'+(HIDE?'<span class="font-bold text-neutral-900">가격 추후 안내</span>':('<p class="font-extrabold text-neutral-900 text-lg leading-none">'+wonAmt+'</p>'+(rk.earlybird?'<p class="text-[12.5px] mt-1"><s class="text-neutral-400">'+won(rk.price)+'</s> <span class="text-rose-500 font-bold">얼리버드</span></p>':'')))+'</div>'
           +'</div></div>';
       }
       if(cl) cl.textContent = wonAmt ? ('카드로 '+wonAmt+' 결제하고 바로 수강') : '카드로 결제하고 바로 수강';
@@ -563,17 +563,17 @@
     function payPanelHTML(wonAmt, amount, interest){
       const btn = 'flex-1 min-w-[132px] text-center text-[13px] font-semibold px-3 py-2.5 rounded-xl border transition';
       return '<div class="bg-sand/50 border border-ink/10 rounded-2xl p-5 text-left mt-5">'
-        + '<p class="text-[11px] font-bold text-neutral-500 mb-2">입금 계좌</p>'
+        + '<p class="text-[12.5px] font-bold text-neutral-500 mb-2">입금 계좌</p>'
         + '<div class="flex items-center justify-between gap-3"><div><p class="font-bold text-neutral-900" id="acctNo">'+esc(PAY.bank)+' '+esc(PAY.acct)+'</p><p class="text-xs text-neutral-500 mt-0.5">예금주 '+esc(PAY.holder)+'</p></div>'
         + '<button onclick="copyAcademyAcct()" class="shrink-0 text-white text-xs font-bold px-4 py-2.5 rounded-lg hover:opacity-90 transition" style="background:#00704a">계좌번호 복사</button></div>'
         + (wonAmt?('<div class="flex items-center justify-between border-t border-ink/8 mt-3 pt-3"><span class="text-sm text-neutral-500">입금액</span><span class="font-extrabold text-neutral-900">'+wonAmt+'</span></div>'):'')
-        + '<p class="text-[11px] font-bold text-neutral-500 mt-4 mb-2">간편하게 보내기</p>'
+        + '<p class="text-[12.5px] font-bold text-neutral-500 mt-4 mb-2">간편하게 보내기</p>'
         + '<div class="flex flex-wrap gap-2">'
         + (isMobileUA()?('<button onclick="tossTransfer('+(amount||0)+')" class="'+btn+' bg-white border-ink/15 text-neutral-800 hover:border-gold">토스로 송금</button>'):'')
         + '<a href="'+esc(PAY.kakaopay)+'" target="_blank" rel="noopener" class="'+btn+' bg-white border-ink/15 text-neutral-800 hover:border-gold">카카오페이로 송금</a>'
         + '<a href="'+esc(PAY.simplepay)+'" target="_blank" rel="noopener" class="'+btn+' bg-white border-ink/15 text-neutral-800 hover:border-gold">간편결제 링크</a>'
         + '</div>'
-        + '<p class="text-[11.5px] text-neutral-500 mt-3 leading-relaxed">입금자명에 <b class="text-neutral-700">신청자 성함</b>을 남겨 주세요. 입금이 확인되면 <b class="text-neutral-700">'+(interest?esc(interest):'신청하신 과정')+'</b> 수강권을 바로 열어 드려요. 안내 메일도 함께 보내드립니다.</p></div>';
+        + '<p class="text-[12.5px] text-neutral-500 mt-3 leading-relaxed">입금자명에 <b class="text-neutral-700">신청자 성함</b>을 남겨 주세요. 입금이 확인되면 <b class="text-neutral-700">'+(interest?esc(interest):'신청하신 과정')+'</b> 수강권을 바로 열어 드려요. 안내 메일도 함께 보내드립니다.</p></div>';
     }
     // 로그인 시 이름·이메일 자동 채움(수정 가능)
     async function prefillApply(){
@@ -593,25 +593,25 @@
       const accent=rk.color||'#00704a', HIDE=!!PROG.hidePrice, main=rk.earlybird||rk.price||0;
       const able=(rk.able||[]).map(a=>`<li class="flex gap-2.5"><svg viewBox="0 0 20 20" class="w-4 h-4 shrink-0 mt-0.5" style="color:${accent}" fill="none"><path d="M5 10.5l3.2 3.2L15 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>${a}</span></li>`).join('');
       const tracks=(rk.tracks||[]).map(t=>{ const ci=courseIdx(t); const n=ci>=0?(COURSE[ci].lessons||[]).length:0;
-        return `<li class="flex gap-2 items-baseline"><span class="shrink-0 text-neutral-300">•</span><span class="flex-1">${t}</span>${n?`<span class="shrink-0 text-[11px] text-neutral-400 tabular-nums">${n}강</span>`:''}</li>`; }).join('');
+        return `<li class="flex gap-2 items-baseline"><span class="shrink-0 text-neutral-300">•</span><span class="flex-1">${t}</span>${n?`<span class="shrink-0 text-[12.5px] text-neutral-400 tabular-nums">${n}강</span>`:''}</li>`; }).join('');
       const perks=(rk.perks||[]).map(p=>`<li class="flex gap-2"><svg viewBox="0 0 20 20" class="w-3.5 h-3.5 shrink-0 mt-0.5 text-neutral-400" fill="none"><path d="M5 10.5l3.2 3.2L15 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>${p}</span></li>`).join('');
       let m=document.getElementById('pkgModal');
       if(!m){ m=document.createElement('div'); m.id='pkgModal'; m.innerHTML='<div class="pm-bd" onclick="closePkgModal()"></div><div class="pm-card"><button type="button" class="pm-x" onclick="closePkgModal()">✕</button><div class="pm-body"></div></div>'; document.body.appendChild(m); }
       m.querySelector('.pm-body').innerHTML=`
         <div class="px-6 pt-7 pb-5 rounded-t-[22px]" style="background:linear-gradient(160deg,${hexToRgba(accent,.14)},${hexToRgba(accent,.03)})">
           <div class="flex items-center gap-3">${pkgSeal(rk.tier,accent,46)}
-            <div><div class="flex items-center gap-2"><span class="text-white text-[11px] font-bold px-2 py-0.5 rounded-full" style="background:${accent}">${rk.rank}</span><h3 class="font-bold text-2xl text-neutral-900 leading-none">${rk.name}</h3></div>
-            <span class="block text-[10px] font-bold tracking-[.2em] text-neutral-500 mt-1.5">${rk.en||''}</span></div>
+            <div><div class="flex items-center gap-2"><span class="text-white text-[12.5px] font-bold px-2 py-0.5 rounded-full" style="background:${accent}">${rk.rank}</span><h3 class="font-bold text-2xl text-neutral-900 leading-none">${rk.name}</h3></div>
+            <span class="block text-[12px] font-bold tracking-[.2em] text-neutral-500 mt-1.5">${rk.en||''}</span></div>
           </div>
           <p class="text-[13px] text-neutral-600 mt-3 leading-relaxed">${rk.tagline||''}</p>
         </div>
         <div class="px-6 py-5 space-y-5">
           <div class="bg-neutral-50 border border-neutral-200/80 rounded-xl p-3.5"><p class="text-[13px] text-neutral-700 leading-relaxed"><b class="text-neutral-900">이 등급을 받으면 ›</b> ${rk.outcome||''}</p></div>
-          ${able?`<div><p class="text-[11px] font-bold tracking-wide text-neutral-500 uppercase mb-2">이 급수를 마치면</p><ul class="text-[13.5px] text-neutral-700 space-y-1.5">${able}</ul></div>`:''}
-          ${tracks?`<div><p class="text-[11px] font-bold tracking-wide text-neutral-500 uppercase mb-2">포함 과목 (${(rk.tracks||[]).length}과목)</p><ul class="text-[13px] text-neutral-600 space-y-1">${tracks}</ul></div>`:''}
-          ${perks?`<div><p class="text-[11px] font-bold tracking-wide text-neutral-500 uppercase mb-2">혜택</p><ul class="text-[13px] text-neutral-600 space-y-1">${perks}</ul></div>`:''}
+          ${able?`<div><p class="text-[12.5px] font-bold tracking-wide text-neutral-500 uppercase mb-2">이 급수를 마치면</p><ul class="text-[13.5px] text-neutral-700 space-y-1.5">${able}</ul></div>`:''}
+          ${tracks?`<div><p class="text-[12.5px] font-bold tracking-wide text-neutral-500 uppercase mb-2">포함 과목 (${(rk.tracks||[]).length}과목)</p><ul class="text-[13px] text-neutral-600 space-y-1">${tracks}</ul></div>`:''}
+          ${perks?`<div><p class="text-[12.5px] font-bold tracking-wide text-neutral-500 uppercase mb-2">혜택</p><ul class="text-[13px] text-neutral-600 space-y-1">${perks}</ul></div>`:''}
           <div class="flex items-end justify-between pt-1 border-t border-neutral-200">
-            <div class="pt-4">${HIDE?'<span class="text-lg font-bold text-neutral-900">가격 추후 안내</span>':`<span class="text-2xl font-bold text-neutral-900">${won(main)}</span>${rk.earlybird?` <span class="text-sm text-neutral-400 line-through">${won(rk.price)}</span><br/><span class="text-[11px] font-bold text-rose-500">얼리버드 특가</span>`:''}`}</div>
+            <div class="pt-4">${HIDE?'<span class="text-lg font-bold text-neutral-900">가격 추후 안내</span>':`<span class="text-2xl font-bold text-neutral-900">${won(main)}</span>${rk.earlybird?` <span class="text-sm text-neutral-400 line-through">${won(rk.price)}</span><br/><span class="text-[12.5px] font-bold text-rose-500">얼리버드 특가</span>`:''}`}</div>
           </div>
           <a href="#apply" onclick="pickPkg('${rk.name} (${rk.rank})');closePkgModal()" class="block text-center text-white text-[15px] font-bold py-3.5 rounded-xl hover:opacity-90 transition" style="background:${accent==='#1f2d4d'?'#1f2d4d':'#00704a'}">이 패키지로 수강 신청하기 →</a>
         </div>`;
@@ -632,7 +632,7 @@
       btn.disabled = true;
       btn.className = 'w-full mt-2 bg-neutral-100 text-neutral-400 border border-ink/10 font-semibold py-3.5 rounded-xl cursor-not-allowed flex items-center justify-center gap-2';
       if(cl) cl.textContent = '카드 결제 준비 중';
-      if(bd){ bd.textContent = '심사 진행 중'; bd.className = 'text-[10.5px] font-bold text-neutral-500 bg-white px-2 py-0.5 rounded-full border border-ink/10'; }
+      if(bd){ bd.textContent = '심사 진행 중'; bd.className = 'text-[12px] font-bold text-neutral-500 bg-white px-2 py-0.5 rounded-full border border-ink/10'; }
       return true;
     }
     async function payCardAcademy(){
@@ -692,6 +692,6 @@
   </script>
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
-  <script src="auth-header.js?v=20260928a"></script>
+  <script src="auth-header.js?v=20261021a"></script>
 </body>
 </html>

@@ -112,7 +112,7 @@
       <p class="text-sm mt-1">다른 검색어로 찾아보시거나, 곧 더 많은 표제어가 추가됩니다.</p>
     </div>
 
-    <p class="text-[11px] text-neutral-900/35 text-center mt-10 leading-relaxed">
+    <p class="text-[12.5px] text-neutral-900/35 text-center mt-10 leading-relaxed">
       ※ 바이블 인사이트 성경사전은 히브리어·헬라어 원어와 성경 본문을 직접 참고하여 <b class="text-neutral-900/55">자체 집필</b>한 사전입니다.
       뜻풀이·영어 용어·관련 성구를 함께 제공하며, 표제어는 계속 추가됩니다.
     </p>
@@ -222,7 +222,7 @@
     }
 
     function card(e,q){
-      const scr=(e.scriptures||[]).map(s=>`<button type="button" class="scrchip inline-block bg-sand/70 hover:bg-gold/20 text-neutral-900/75 text-[11px] px-2 py-0.5 rounded mr-1 mb-1 transition" onclick="showScr(event,'${esc(s).replace(/'/g,"\\'")}')">${esc(s)} <span class="text-neutral-900/30"></span></button>`).join('');
+      const scr=(e.scriptures||[]).map(s=>`<button type="button" class="scrchip inline-block bg-sand/70 hover:bg-gold/20 text-neutral-900/75 text-[12.5px] px-2 py-0.5 rounded mr-1 mb-1 transition" onclick="showScr(event,'${esc(s).replace(/'/g,"\\'")}')">${esc(s)} <span class="text-neutral-900/30"></span></button>`).join('');
       const rel=(e.related||[]).map(r=>`<button onclick="searchTerm('${esc(r).replace(/'/g,"\\'")}')" class="text-gold text-xs hover:underline mr-2">#${esc(r)}</button>`).join('');
       const isFaq=e.category==='자주 묻는 질문';
       // 상세 설명(deep): 다단락 펼침
@@ -242,7 +242,7 @@
           ${isFaq?'<span class="text-gold font-bold text-lg shrink-0">Q.</span>':''}
           <h2 class="text-lg font-bold text-neutral-900 ${isFaq?'leading-snug':''}">${hl(e.term||'',q)}</h2>
           ${e.en&&!isFaq?`<span class="text-neutral-900/45 text-sm font-medium" style="font-family:Georgia,serif">${hl(e.en,q)}</span>`:''}
-          ${e.category?`<span class="ml-auto text-[10px] font-bold text-gold bg-gold/10 px-2 py-0.5 rounded-full shrink-0">${esc(e.category)}</span>`:''}
+          ${e.category?`<span class="ml-auto text-[12px] font-bold text-gold bg-gold/10 px-2 py-0.5 rounded-full shrink-0">${esc(e.category)}</span>`:''}
         </div>
         ${e.original?`<p class="text-[12px] text-neutral-900/45 mt-1">원어 · ${esc(e.original)}</p>`:''}
         <p class="text-[14px] text-neutral-900/80 leading-[1.85] mt-2.5">${isFaq?'<b class="text-neutral-900">한마디로 — </b>':''}${hl(e.def||'',q)}</p>
@@ -317,6 +317,6 @@
   </script>
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
-  <script src="auth-header.js?v=20260928a"></script>
+  <script src="auth-header.js?v=20261021a"></script>
 </body>
 </html>
