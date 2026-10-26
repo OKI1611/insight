@@ -5,6 +5,8 @@
   <script src="/content-loader.js?v=20260703f"></script>
   <script src="/site-header.js?v=20261005a"></script>
   <script src="/section-sidenav.js?v=20260930a"></script>
+  <link rel="stylesheet" href="/note.css?v=20261026a" />
+  <script src="/note-render.js?v=20261026a"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BIBLY 북스토어 — 과정별 요약노트 합본 책자</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7" />
@@ -80,6 +82,15 @@
     .book a.toc-t{text-decoration:none;cursor:pointer;transition:color .15s}.book a.toc-t:hover{color:#00704a}
     .lesson-check{width:14px;height:14px;accent-color:#00704a;cursor:pointer;flex-shrink:0;margin:0}
     .toc-dl{background:none;border:none;cursor:pointer;color:#00704a;opacity:.5;font-size:13px;padding:0 2px;transition:opacity .15s;flex-shrink:0}.toc-dl:hover{opacity:1}
+    /* 교재 읽기 레이아웃 — 1024px 이상에서 좌측 고정 목차(제N강 › 01~05), 본문은 오른쪽 */
+    #bookWrap{max-width:64rem;margin:0 auto;padding:24px 16px}
+    #bookTocBox{display:none;background:#fff;border:1px solid rgba(33,58,107,.08);border-radius:16px;padding:12px 8px;box-shadow:0 2px 16px -8px rgba(21,32,58,.12)}
+    @media (min-width:1024px){
+      #bookWrap{display:grid;grid-template-columns:256px minmax(0,1fr);gap:24px;align-items:start;padding:24px}
+      #bookTocBox.has{display:block;position:sticky;top:112px;max-height:calc(100vh - 128px);overflow:auto}
+    }
+    @media (min-width:1024px) and (max-width:1279px){ #bookWrap{padding-left:76px} } /* 좌측 떠 있는 퀵메뉴 띠와 겹치지 않게 */
+    .book .lesson{scroll-margin-top:112px}
     /* 필기 공간 — 화면에선 숨기고 인쇄(PDF)에서만 표시 */
     .book .note-area{display:none}
     @media print{ .no-print{display:none!important} }
@@ -272,8 +283,11 @@
         <a id="bvBuy" href="booklet.html#order" class="inline-block mt-3 bg-gold text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition">이 책 구매하기 →</a>
       </div>
     </div>
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-6">
-      <div id="book" class="book bg-white rounded-2xl border border-ink/8 shadow-soft p-7 sm:p-10 min-h-[400px]">불러오는 중…</div>
+    <div id="bookWrap">
+      <aside id="bookTocBox" class="no-print"><div id="bookToc"></div></aside>
+      <div class="min-w-0">
+        <div id="book" class="book bg-white rounded-2xl border border-ink/8 shadow-soft p-7 sm:p-10 min-h-[400px]">불러오는 중…</div>
+      </div>
     </div>
   </main>
 
@@ -711,19 +725,30 @@
     function cleanTitle(t){ return String(t||'').replace(/_/g,' · ').replace(/\s*\|\s*/g,' · ').replace(/\s+/g,' ').trim(); }
     // 강의별 필기 공간(괘선) — 화면엔 숨김, PDF에만 표시
     function noteAreaHTML(lines){ let n=''; const c=lines||7; for(let i=0;i<c;i++) n+='<div class="nline"></div>'; return `<div class="note-area"><p class="note-h">강의 필기</p>${n}</div>`; }
+    // 강의 노트 본문 — note-render.js 공용 렌더러(교재형 읽기). 절 앵커는 l<강>-s<절>
     function noteHTML(n,title,idx){ if(!n) return '';
-      let h=`<div class="lesson" id="lesson-${idx}"><p class="ch-label">제${idx}강</p><h2 class="bk-title">${esc(cleanTitle(title))}</h2>`;
-      if(n.thesis) h+=`<p class="bk-thesis">${esc(n.thesis)}</p>`;
-      if(n.overview) String(n.overview).split('\n').forEach(p=>{if(p.trim())h+=`<p class="bk-p">${esc(p.trim())}</p>`;});
-      if(n.background){h+=`<h3 class="bk-h">배경</h3>`;String(n.background).split('\n').forEach(p=>{if(p.trim())h+=`<p class="bk-p">${esc(p.trim())}</p>`;});}
-      (n.sections||[]).forEach(s=>{h+=`<h3 class="bk-h">${s.t?('<span style="color:#00704a">'+esc(s.t)+'</span> '):''}${esc(s.heading||'')}</h3>`;if(s.body)String(s.body).split('\n').forEach(p=>{if(p.trim())h+=`<p class="bk-p">${esc(p.trim())}</p>`;});if((s.points||[]).length)h+='<ul class="bk-ul">'+s.points.map(p=>`<li>${esc(p)}</li>`).join('')+'</ul>';});
-      if((n.scriptures||[]).length){h+=`<h3 class="bk-h">핵심 성구</h3>`;n.scriptures.forEach(s=>{h+=`<div class="bk-scr"><b>${esc(s.ref||'')}</b> — ${esc(s.note||'')}</div>`;});}
-      if((n.terms||[]).length){h+=`<h3 class="bk-h">핵심 용어</h3>`;n.terms.forEach(t=>{h+=`<p class="bk-term"><b>${esc(t.term||'')}</b> — ${esc(t.def||'')}</p>`;});}
-      if((n.misconceptions||[]).length){h+=`<h3 class="bk-h">오해 vs 바른 이해</h3>`;n.misconceptions.forEach(m=>{h+=`<p class="bk-mis"><span class="w">✗ ${esc(m.wrong||'')}</span><br/><span class="r">✓ ${esc(m.right||'')}</span></p>`;});}
-      if((n.takeaways||[]).length){h+=`<h3 class="bk-h">한눈 정리</h3><ul class="bk-ul">`+n.takeaways.map(t=>`<li>${esc(t)}</li>`).join('')+'</ul>';}
-      if((n.application||[]).length){const _ap=Array.isArray(n.application)?n.application:[n.application];h+=`<h3 class="bk-h">삶으로</h3><ul class="bk-ul">`+_ap.map(t=>`<li>${esc(t)}</li>`).join('')+'</ul>';}
-      if((n.questions||[]).length){h+=`<h3 class="bk-h">묵상 질문</h3><ul class="bk-ul">`+n.questions.map(t=>`<li>${esc(t)}</li>`).join('')+'</ul>';}
-      return h+'</div>';
+      const mobileToc = (window.innerWidth < 1024 && window.BiblyNote) ? BiblyNote.mobileTocHTML(BiblyNote.toc(n,'l'+idx+'-')) : '';
+      return `<div class="lesson" id="lesson-${idx}"><p class="ch-label">제${idx}강</p><h2 class="bk-title">${esc(cleanTitle(title))}</h2>`
+        + mobileToc + BiblyNote.render(n, { idPrefix:'l'+idx+'-', compact:true }) + '</div>';
+    }
+    // 좌측 고정 목차: 「제N강 제목」 묶음 아래 01~05 절, 스크롤 따라 현재 절 강조·현재 강의만 펼침
+    let BOOK_TOC_OFF=null;
+    function buildBookToc(notes, lessons){
+      const box=$('bookTocBox'), nav=$('bookToc'); if(!box||!nav||!window.BiblyNote) return;
+      if(BOOK_TOC_OFF){ BOOK_TOC_OFF(); BOOK_TOC_OFF=null; }
+      const groups=[];
+      notes.forEach((n,i)=>{
+        const g = n ? BiblyNote.toc(n,'l'+(i+1)+'-') : [];
+        const items = g.length ? g[0].items.filter(x=>x.no!=='★') : [];
+        groups.push({ label:'제'+(i+1)+'강 '+cleanTitle((lessons[i]||{}).title||''), id:'lesson-'+(i+1), items });
+      });
+      if(!groups.length){ box.classList.remove('has'); nav.innerHTML=''; return; }
+      nav.innerHTML = BiblyNote.tocHTML(groups, { title:'교재 목차', collapsible:true });
+      box.classList.add('has');
+      BiblyNote.setOffset(116);
+      BOOK_TOC_OFF = BiblyNote.track(nav, { offset:116 });
+      // 교재를 읽는 동안은 사이트 좌측 메뉴 레일을 치운다(그 자리에 교재 목차)
+      ['sectionSideNav','__sectionNavStyle'].forEach(id=>{ const el=document.getElementById(id); if(el) el.remove(); });
     }
     async function renderBook(trackName){
       $('bookView').classList.remove('hidden');
@@ -777,6 +802,7 @@
         if(selBtn) selBtn.classList.add('hidden');
       }
       $('book').innerHTML=h;
+      buildBookToc(notes, lessons);
     }
     // 책자 본문 스타일(인쇄 문서에 그대로 주입) — 모두 OFL 폰트 + hex 색상(저작권·렌더링 안전)
     const BOOK_CSS = `
@@ -818,6 +844,7 @@
       doc.write('<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><title>'+esc(title)+'</title>'
         +'<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">'
         +'<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet">'
+        +'<link rel="stylesheet" href="/note.css?v=20261026a">'
         +'<style>@page{size:A4;margin:14mm 14mm 16mm}'+BOOK_CSS+'</style></head>'
         +'<body class="book">'+innerHTML+'</body></html>');
       doc.close();

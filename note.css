@@ -1,0 +1,130 @@
+/* note.css — 강의 노트 「교재형 읽기」 스타일 (note-render.js 와 짝)
+   팔레트: 남색 #213a6b · 짙은 남색 #182c54 · 브랜드 초록 #00704a · 금 #c79a44 · 크림 #fdfaf1 · 하늘 #eef5fe */
+.nt{--nt-ink:#213a6b;--nt-navy:#182c54;--nt-green:#00704a;--nt-gold:#c79a44;--nt-text:#171717;--nt-body:#44506a;--nt-line:#e6ebf4;--nt-sky:#eef5fe;
+  color:var(--nt-text);font-size:15px;line-height:1.8;word-break:keep-all;overflow-wrap:anywhere}
+.nt p{margin:0 0 10px}
+.nt .nt-p{color:var(--nt-body);line-height:1.9}
+.nt-head{margin:0 0 20px}
+.nt-title{font-size:22px;font-weight:800;line-height:1.35;margin:0 0 6px;letter-spacing:-.01em;color:var(--nt-text)}
+.nt-meta{font-size:13px;color:#6b7280;margin:0}
+.nt-label{display:block;font-size:11.5px;font-weight:800;letter-spacing:.08em;color:var(--nt-green);margin:0 0 5px}
+.nt-box-h{font-weight:800;font-size:14.5px;color:var(--nt-text);margin:0 0 8px}
+.nt-lead{font-weight:700;color:var(--nt-text);font-size:15.5px;line-height:1.8}
+.nt-intro{margin:0 0 20px}
+
+/* 핵심 한 줄 — 크림 바탕 + 금색 왼쪽 띠 */
+.nt-key{background:linear-gradient(135deg,#fdfaf1,#fbf6e7);border:1px solid #f0e4c6;border-left:5px solid var(--nt-gold);border-radius:14px;padding:16px 20px;margin:0 0 20px}
+.nt-key p{font-size:16.5px;font-weight:700;color:#2b3550;line-height:1.65;margin:0}
+
+/* 이 강의의 흐름 — 단계 카드 + 화살표 */
+.nt-flow{background:var(--nt-sky);border:1px solid #dbe7f8;border-radius:18px;padding:18px 18px 10px;margin:0 0 26px}
+.nt-flow-h{font-size:15px;font-weight:800;color:var(--nt-navy);margin:0 0 12px}
+.nt-flow-h span{font-size:12px;font-weight:600;color:#7a86a0;margin-left:6px}
+.nt-flow-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;overflow:hidden;padding:2px 0 8px}
+.nt-step{position:relative;display:flex;flex-direction:column;gap:6px;background:#fff;border:1px solid #d9e3f3;border-radius:14px;padding:13px 14px 12px;text-decoration:none;color:inherit;min-height:112px;box-shadow:0 10px 24px -18px rgba(21,32,58,.25);transition:transform .15s,border-color .15s}
+.nt-step:hover{transform:translateY(-2px);border-color:var(--nt-ink)}
+.nt-step::after{content:'→';position:absolute;right:-13px;top:50%;transform:translateY(-50%);color:var(--nt-ink);font-weight:800;font-size:15px;opacity:.55}
+.nt-step:last-child::after{display:none}
+.nt-step-no{font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--nt-ink)}
+.nt-step-t{font-size:13.5px;font-weight:600;line-height:1.5;color:#2b3550;flex:1}
+.nt-step-next{font-size:12px;font-weight:700;color:var(--nt-green)}
+.nt-step-end{color:#9aa3b5}
+
+/* 번호 절 */
+.nt-sec{margin:0 0 30px;scroll-margin-top:100px}
+.nt-sec-head{display:flex;align-items:center;gap:12px;padding:0 0 10px;border-bottom:1px solid var(--nt-line);margin:0 0 14px}
+.nt-badge{flex:none;width:38px;height:38px;border-radius:11px;background:var(--nt-sky);color:var(--nt-ink);font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;letter-spacing:.06em}
+.nt-sec-head h3{margin:0;font-size:20px;font-weight:800;line-height:1.35;color:var(--nt-text);letter-spacing:-.01em}
+.nt-t{display:inline-block;background:var(--nt-ink);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;margin-right:8px;vertical-align:middle;letter-spacing:0}
+.nt-pts{margin:6px 0 2px;padding:0 0 0 2px;list-style:none}
+.nt-pts li{position:relative;padding-left:18px;margin:5px 0;color:var(--nt-body);line-height:1.7}
+.nt-pts li::before{content:'';position:absolute;left:3px;top:.72em;width:7px;height:7px;border-radius:50%;background:var(--nt-gold)}
+
+/* 상자들 */
+.nt-box{border-radius:14px;padding:16px 18px;margin:0 0 20px;background:#f4f9ff;border:1px solid #e0ebfa}
+.nt-box .nt-p:last-child,.nt-box p:last-child{margin-bottom:0}
+.nt-scr p{margin:7px 0;color:var(--nt-body);line-height:1.7}
+.nt-scr b{color:var(--nt-navy)}
+.nt-terms{margin:0 0 20px}
+.nt-terms p{margin:6px 0;color:var(--nt-body);line-height:1.7}
+.nt-terms b{color:#8a6d2f}
+.nt-part{margin:0 0 20px}
+.nt-list{margin:0;padding-left:20px;color:var(--nt-body)}
+.nt-list li{margin:5px 0;line-height:1.7}
+
+/* 흔한 오해 — 노란 주의 상자 */
+.nt-caveat{background:#fff8e6;border:1px solid #f3e3b5;border-left:5px solid #e3b84b;border-radius:14px;padding:16px 20px;margin:0 0 20px}
+.nt-caveat .nt-box-h{color:#7a5a12}
+.nt-mis{margin:0 0 10px;padding:0 0 10px;border-bottom:1px dashed #efdfb3}
+.nt-mis:last-child{border-bottom:0;margin:0;padding:0}
+.nt-mis p{margin:0 0 3px;line-height:1.7}
+.nt-mis .w{color:#9b3f36}.nt-mis .r{color:#245f3f}
+.nt-mis b{display:inline-block;font-size:11.5px;letter-spacing:.04em;margin-right:7px;padding:1px 7px;border-radius:6px;background:rgba(255,255,255,.7)}
+
+/* 한눈에 정리 — 번호 매긴 정리 */
+.nt-sum{background:linear-gradient(135deg,#fdfaf1,#fbf6e7);border:1px solid #f1e6cb}
+.nt-sum ol{margin:0;padding:0;list-style:none;counter-reset:nts}
+.nt-sum li{counter-increment:nts;position:relative;padding-left:30px;margin:7px 0;color:#2b3550;line-height:1.65;font-weight:500}
+.nt-sum li::before{content:counter(nts,decimal-leading-zero);position:absolute;left:0;top:.2em;font-size:11.5px;font-weight:800;color:var(--nt-gold);letter-spacing:.06em}
+
+.nt-tags{margin:18px 0 4px}
+.nt-tag{display:inline-block;background:#f4eedd;color:#8a6d2f;font-size:12px;font-weight:600;padding:3px 11px;border-radius:999px;margin:3px 5px 3px 0}
+
+/* 사이드 목차 */
+.nt-toc{font-size:13.5px}
+.nt-toc-title{font-size:11.5px;font-weight:800;letter-spacing:.1em;color:#00704a;margin:0 0 6px;padding:0 10px}
+.nt-toc-gh{font-size:12px;font-weight:800;color:#2b3550;margin:12px 0 4px;padding:0 10px;line-height:1.4}
+.nt-toc-gh[data-nt-go]{cursor:pointer}
+.nt-toc-gh[data-nt-go]:hover{color:#00704a}
+.nt-toc-g:first-child .nt-toc-gh{margin-top:2px}
+.nt-toc-i{display:flex;align-items:flex-start;gap:9px;padding:7px 10px;border-radius:10px;color:#42506c;text-decoration:none;cursor:pointer;line-height:1.45;transition:background .15s,color .15s}
+.nt-toc-i:hover{background:#f3f6fb;color:#182c54}
+.nt-toc-i.on{background:#eef5fe;color:#182c54;font-weight:700;box-shadow:inset 3px 0 0 #213a6b}
+.nt-toc-no{flex:none;font-size:11.5px;font-weight:800;color:#8a93a6;letter-spacing:.06em;min-width:20px;padding-top:2px}
+.nt-toc-i.on .nt-toc-no{color:#213a6b}
+/* 접이식 묶음(교재: 강의별) — 현재 강의만 펼침 */
+.nt-toc-col .nt-toc-i{display:none}
+.nt-toc-col.open .nt-toc-i{display:flex}
+.nt-toc-col .nt-toc-gh{display:flex;gap:8px;align-items:flex-start;padding:7px 10px;border-radius:10px;margin:2px 0}
+.nt-toc-col.open .nt-toc-gh{color:#00704a;background:#f3f8f5}
+
+/* 모바일 접이식 목차(본문 위) */
+.nt-toc-m{margin:0 0 18px;border:1px solid #e3e9f3;border-radius:12px;background:#f8fafd}
+.nt-toc-m summary{cursor:pointer;font-weight:700;font-size:13.5px;color:#2b3550;padding:10px 14px;list-style:none}
+.nt-toc-m summary::-webkit-details-marker{display:none}
+.nt-toc-m summary::before{content:'☰';margin-right:8px;color:#00704a}
+.nt-toc-m-body{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 12px}
+.nt-chip{font-size:12.5px;color:#42506c;background:#fff;border:1px solid #dde5f0;border-radius:999px;padding:5px 11px;text-decoration:none;line-height:1.3}
+.nt-chip b{color:#213a6b;margin-right:2px}
+@media (min-width:1024px){ .nt-toc-m{display:none} }
+
+/* 작은 화면 */
+@media (max-width:640px){
+  .nt{font-size:14.5px}
+  .nt-title{font-size:19px}
+  .nt-sec-head h3{font-size:17px}
+  .nt-badge{width:32px;height:32px;font-size:13px;border-radius:9px}
+  .nt-flow{padding:14px 14px 8px}
+  .nt-flow-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .nt-step{min-height:96px;padding:11px 12px 10px}
+  .nt-key p{font-size:15.5px}
+}
+
+/* 교재(booklet, 명조) · 압축형 */
+.nt-compact{font-size:14px}
+.nt-compact .nt-key{padding:13px 16px;margin-bottom:16px}
+.nt-compact .nt-key p{font-size:15px}
+.nt-compact .nt-flow{padding:14px 14px 6px;margin-bottom:20px}
+.nt-compact .nt-step{min-height:96px}
+.nt-compact .nt-sec{margin-bottom:24px}
+.nt-compact .nt-sec-head h3{font-size:17.5px}
+.nt-compact .nt-badge{width:34px;height:34px;font-size:13px}
+
+/* 인쇄(PDF) — 상자가 쪽 경계에서 잘리지 않게, 화살표·그림자 제거 */
+@media print{
+  .nt-step::after{display:none}
+  .nt-step{box-shadow:none}
+  .nt-key,.nt-flow,.nt-sec-head,.nt-box,.nt-caveat,.nt-mis,.nt-part,.nt-tags{break-inside:avoid;page-break-inside:avoid}
+  .nt-sec-head,.nt-box-h{break-after:avoid;page-break-after:avoid}
+  .nt-toc-m{display:none}
+}

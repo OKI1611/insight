@@ -6,6 +6,8 @@
   <script src="/site-header.js?v=20261005a"></script>
   <script src="/pager.js?v=1"></script>
   <script src="/section-sidenav.js?v=20260930a"></script>
+  <link rel="stylesheet" href="/note.css?v=20261026a" />
+  <script src="/note-render.js?v=20261026a"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>무료 강의 시청 · 천년왕국·종말론 — 바이블 인사이트</title>
   <meta name="description" content="BIBLY 강의실 — 천년왕국·종말론·성경적 세계관 무료 강의. 영상과 함께 강의 소개·목차·요약노트·확인 퀴즈·질의응답까지 한 곳에서." />
@@ -166,6 +168,14 @@
 
     <!-- 강의 목차 사이드바 -->
     <aside class="lg:sticky lg:top-20 h-fit">
+      <!-- 요약 노트 목차 (요약 노트 탭에서만, 스크롤 따라 현재 절 강조) -->
+      <div id="noteTocBox" class="hidden lg:block bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden mb-4">
+        <div class="px-5 py-3.5 border-b border-ink/8 flex items-center justify-between">
+          <h3 class="font-bold text-[15px]">노트 목차</h3>
+          <span class="text-[11.5px] text-neutral-900/45">누르면 이동</span>
+        </div>
+        <div id="noteToc" class="max-h-[42vh] overflow-auto px-2 py-2"></div>
+      </div>
       <div class="bg-white rounded-2xl border border-ink/8 shadow-soft overflow-hidden">
         <div class="px-5 py-4 border-b border-ink/8 flex items-center justify-between">
           <h3 class="font-bold">강의 목차</h3>
@@ -430,75 +440,35 @@
     const PB = 'page-break-inside:avoid;break-inside:avoid;';
     // 소제목이 쪽 맨 아래에 홀로 남지 않게, 소제목 + 첫 항목을 한 덩어리로 묶는다
     function pbGroup(headingHTML, firstItemHTML){ return `<div style="${PB}">${headingHTML}${firstItemHTML}</div>`; }
-    // 풍성한 노트 — content/notes/<id>.json
+    // 풍성한 노트 — content/notes/<id>.json → note-render.js 공용 렌더러(교재형 읽기: 핵심 한 줄·흐름 카드·번호 절·오해 상자)
     function richNoteHTML(l, n){
-      let h = noteHeader() + titleBlock(l);
-      if(n.thesis){
-        h += `<div style="${PB}background:linear-gradient(135deg,#fdfaf1,#fbf6e7);border:1px solid #f0e4c6;border-left:4px solid #c79a44;border-radius:14px;padding:15px 18px;margin-bottom:22px">
-          <p style="font-size:11px;font-weight:700;letter-spacing:.06em;color:#00704a;margin:0 0 4px">핵심 한 문장</p>
-          <p style="color:#2b3550;font-size:15px;font-weight:600;line-height:1.65;margin:0">${esc(n.thesis)}</p></div>`;
-      }
-      if(n.overview){
-        h += `<div style="margin-bottom:22px"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:15px">강의 개요</p>${noteParas(n.overview)}</div>`;
-      }
-      if(n.background){
-        h += `<div style="${PB}margin-bottom:22px;background:#f4f9ff;border:1px solid #e0ebfa;border-radius:14px;padding:16px 18px">
-          <p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">배경 — 역사적·신학적 맥락</p>${noteParas(n.background)}</div>`;
-      }
-      if(n.sections && n.sections.length){
-        const secHead = `<p style="font-weight:700;color:#171717;margin:0 0 10px;font-size:15px">핵심 내용 정리</p>`;
-        const secs = n.sections.map(s => {
-          const pts = (s.points || []).map(p => `<li style="margin:5px 0;color:#44506a;line-height:1.6">${esc(p)}</li>`).join('');
-          return `<div style="${PB}margin:0 0 16px;padding:0 0 0 2px">
-            <p style="margin:0 0 6px;color:#171717;font-weight:700;font-size:14.5px">${ s.t ? `<span style="display:inline-block;background:#213a6b;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;margin-right:8px">${esc(s.t)}</span>` : '' }${esc(s.heading || '')}</p>
-            ${ s.body ? noteParas(s.body) : '' }
-            ${ pts ? `<ul style="margin:4px 0 2px;padding-left:20px">${pts}</ul>` : '' }
-          </div>`;
-        });
-        h += pbGroup(secHead, secs[0]) + secs.slice(1).join('');
-      }
-      if(n.scriptures && n.scriptures.length){
-        h += `<div style="${PB}margin:20px 0;background:#f4f9ff;border:1px solid #e0ebfa;border-radius:14px;padding:15px 17px">
-          <p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">핵심 성구</p>` +
-          n.scriptures.map(s => `<p style="margin:7px 0;color:#44506a;line-height:1.6"><b style="color:#182c54">${esc(s.ref)}</b>${ s.note ? ` — ${esc(s.note)}` : '' }</p>`).join('') + `</div>`;
-      }
-      if(n.terms && n.terms.length){
-        const termHead = `<p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">핵심 용어</p>`;
-        const terms = n.terms.map(t => `<p style="${PB}margin:6px 0;color:#44506a;line-height:1.6"><b style="color:#8a6d2f">${esc(t.term)}</b> · ${esc(t.def)}</p>`);
-        h += `<div style="margin:20px 0">` + pbGroup(termHead, terms[0]) + terms.slice(1).join('') + `</div>`;
-      }
-      if(n.misconceptions && n.misconceptions.length){
-        const misHead = `<p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">흔한 오해 vs 바른 이해</p>`;
-        const cards = n.misconceptions.map(m => `<div style="${PB}border:1px solid #eee;border-radius:10px;padding:10px 13px;margin:0 0 8px">
-            <p style="margin:0 0 4px;color:#b4453a;line-height:1.6"><b>오해</b> · ${esc(m.wrong)}</p>
-            <p style="margin:0;color:#2f7d4f;line-height:1.6"><b>바른 이해</b> · ${esc(m.right)}</p>
-          </div>`);
-        h += `<div style="margin:20px 0">` + pbGroup(misHead, cards[0]) + cards.slice(1).join('') + `</div>`;
-      }
-      if(n.takeaways && n.takeaways.length){
-        h += `<div style="${PB}margin:20px 0;background:linear-gradient(135deg,#fdfaf1,#fbf6e7);border:1px solid #f1e6cb;border-radius:14px;padding:15px 17px">
-          <p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">한눈에 정리</p>
-          <ul style="margin:0;padding-left:20px">` + n.takeaways.map(t => `<li style="margin:5px 0;color:#2b3550;line-height:1.65">${esc(t)}</li>`).join('') + `</ul></div>`;
-      }
-      if(n.application && n.application.length){
-        h += `<div style="${PB}margin:20px 0"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">삶으로 가져가기</p>` +
-          (Array.isArray(n.application)
-            ? `<ul style="margin:0;padding-left:20px">` + n.application.map(a => `<li style="margin:5px 0;color:#44506a;line-height:1.7">${esc(a)}</li>`).join('') + `</ul>`
-            : noteParas(n.application)) + `</div>`;
-      }
-      if(n.questions && n.questions.length){
-        h += `<div style="${PB}margin:20px 0"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">묵상·토론 질문</p>
-          <ol style="margin:0;padding-left:20px">` + n.questions.map(q => `<li style="margin:6px 0;color:#44506a;line-height:1.65">${esc(q)}</li>`).join('') + `</ol></div>`;
-      }
-      if(n.furtherStudy && n.furtherStudy.length){
-        h += `<div style="${PB}margin:20px 0;background:#f4f9ff;border:1px solid #e0ebfa;border-radius:14px;padding:15px 17px"><p style="font-weight:700;color:#171717;margin:0 0 8px;font-size:14.5px">더 깊이 공부하려면</p>` +
-          (Array.isArray(n.furtherStudy)
-            ? `<ul style="margin:0;padding-left:20px">` + n.furtherStudy.map(f => `<li style="margin:5px 0;color:#44506a;line-height:1.65">${esc(f)}</li>`).join('') + `</ul>`
-            : noteParas(n.furtherStudy)) + `</div>`;
-      }
-      const tags = (l.tags || []).map(t => `<span style="display:inline-block;background:#f4eedd;color:#8a6d2f;font-size:12px;font-weight:600;padding:3px 11px;border-radius:999px;margin:3px 5px 3px 0">#${esc(t)}</span>`).join('');
-      if(tags){ h += `<div style="${PB}margin:18px 0 4px"><p style="font-weight:700;color:#171717;margin:0 0 7px;font-size:14px">키워드</p>${tags}</div>`; }
-      return h + noteFooter();
+      const mobileToc = (window.innerWidth < 1024 && window.BiblyNote) ? BiblyNote.mobileTocHTML(BiblyNote.toc(n, '')) : '';
+      return BiblyNote.render(n, {
+        header: noteHeader() + titleBlock(l) + mobileToc,
+        footer: noteFooter(),
+        tags: l.tags || []
+      });
+    }
+    // 우측 고정 칼럼의 노트 목차(스크롤 따라 현재 절 강조)
+    let NOTE_TOC_OFF = null;
+    function setNoteToc(n){
+      const box = document.getElementById('noteTocBox'), nav = document.getElementById('noteToc');
+      if(!box || !nav) return;
+      if(NOTE_TOC_OFF){ NOTE_TOC_OFF(); NOTE_TOC_OFF = null; }
+      const groups = n && window.BiblyNote ? BiblyNote.toc(n, '') : [];
+      if(!groups.length){ box.classList.add('hidden'); nav.innerHTML = ''; syncNoteToc(); return; }
+      nav.innerHTML = BiblyNote.tocHTML(groups);
+      NOTE_TOC_OFF = BiblyNote.track(nav, { offset: 92 });
+      syncNoteToc();
+    }
+    // 요약 노트 탭이 열려 있고 목차가 있을 때만 보인다
+    function syncNoteToc(){
+      const box = document.getElementById('noteTocBox'), nav = document.getElementById('noteToc'), list = document.getElementById('lessonList');
+      if(!box || !nav) return;
+      const onTab = document.querySelector('#learnTabs .learnTabBtn.on');
+      const show = !!nav.innerHTML && onTab && onTab.getAttribute('data-tab') === 'note';
+      box.classList.toggle('hidden', !show);
+      if(list){ list.classList.toggle('max-h-[60vh]', !show); list.classList.toggle('max-h-[34vh]', show); }
     }
     function renderNote(l){
       const sheet = document.getElementById('noteSheet');
@@ -512,7 +482,8 @@
           catch(e){ rich = null; }
           NOTE_CACHE[id] = rich;
         }
-        if(rich && cur === at){ sheet.innerHTML = richNoteHTML(l, rich); }   // 풍성한 노트로 업그레이드
+        if(rich && cur === at){ sheet.innerHTML = richNoteHTML(l, rich); setNoteToc(rich); }   // 풍성한 노트로 업그레이드 + 목차
+        else if(cur === at){ setNoteToc(null); }
       })();
     }
     // ===== 학습 도구 로그인 게이트 (영상은 누구나, 학습도구는 무료 회원) =====
@@ -1377,6 +1348,8 @@
     };
     if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', build); else build();
   })();
+  // 탭이 바뀌면 우측 노트 목차 표시 여부도 맞춘다
+  (function(){ var f = window.showLearnTab; window.showLearnTab = function(n){ f(n); if(window.syncNoteToc) syncNoteToc(); }; })();
   </script>
 
   <!-- ===== 과제 제출·피드백 (급수 인증 과목 전용) ===== -->
