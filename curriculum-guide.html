@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <script src="/content-loader.js?v=20260703f"></script>
   <script src="/site-header.js?v=20261005a"></script>
+  <link rel="stylesheet" href="/note.css?v=20261026a" />
   <script src="/section-sidenav.js?v=20260930a"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>커리큘럼 소개 · 학습 로드맵 — BIBLY 바이블 인사이트</title>
@@ -64,7 +65,7 @@
         <h2 class="text-2xl md:text-3xl font-bold">이 순서로 배워 보세요</h2>
         <p class="text-neutral-900/60 text-[15px] mt-3">막막하다면 아래 단계대로 — 기초를 다지고, 성경을 읽고, 예언·종말론으로 나아갑니다.</p>
       </div>
-      <div id="roadmap" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
+      <div id="roadmap" class="nt-flow-grid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;padding:4px 0 10px"></div>
     </section>
 
     <!-- 트랙별 시리즈 소개 -->
@@ -124,20 +125,21 @@
       $('heroStats').innerHTML=
         stat(totalSeries,'개 시리즈')+stat(totalLessons+'+','편 강의')+stat('6','단계 트랙');
       // 로드맵
-      $('roadmap').innerHTML=ROAD.map(function(s){ var n=levels.filter(x=>x.L.group===s.g).length;
-        return `<div class="bg-white border border-ink/10 rounded-2xl shadow-soft p-5">
-          <span class="text-[11px] font-bold text-gold">${esc(s.n)}</span>
-          <h3 class="font-bold text-[16px] mt-1 leading-snug">${esc(s.t)}</h3>
-          <p class="text-[13px] text-neutral-900/60 leading-relaxed mt-1.5">${esc(s.d)}</p>
-          <p class="text-[11.5px] text-neutral-900/40 mt-2.5">${esc(s.g)} · ${n}개 시리즈</p>
-        </div>`; }).join('');
+      $('roadmap').innerHTML=ROAD.map(function(s,si){ var n=levels.filter(x=>x.L.group===s.g).length; var gi=TRACK_ORDER.findIndex(function(t){return t[0]===s.g;});
+        return `<a href="#tg-${gi}" class="nt-step" style="min-height:0;gap:4px">
+          <span class="nt-step-no">${esc(s.n)}</span>
+          <h3 class="font-bold text-[16px] leading-snug">${esc(s.t)}</h3>
+          <p class="text-[13px] text-neutral-900/60 leading-relaxed">${esc(s.d)}</p>
+          <p class="text-[11.5px] text-neutral-900/40">${esc(s.g)} · ${n}개 시리즈</p>
+          <span class="nt-step-next mt-1">${si<ROAD.length-1?'이 단계 시리즈 보기 ↓':'시리즈 보기 ↓'}</span>
+        </a>`; }).join('');
       // 트랙별 시리즈
       var html='';
       TRACK_ORDER.forEach(function(tg){
         var name=tg[0], sub=tg[1];
         var items=levels.filter(x=>x.L.group===name);
         if(!items.length) return;
-        html+=`<div>
+        html+=`<div id="tg-${TRACK_ORDER.indexOf(tg)}" style="scroll-margin-top:96px">
           <div class="flex items-baseline gap-2 mb-1"><span class="w-6 h-1 rounded-full bg-gold/70"></span><h3 class="text-xl md:text-2xl font-bold">${esc(name)}</h3></div>
           <p class="text-[13.5px] text-neutral-900/55 mb-4 pl-8">${esc(sub)}</p>
           <div class="grid sm:grid-cols-2 gap-3">`
