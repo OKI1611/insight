@@ -363,7 +363,7 @@
       {bg:'#2b5fb0',href:'curriculum.html',tab:'대표 시리즈',badge:'우리 사이트 간판',title:'천년왕국 세미나<br><span style="color:#ffe08a">예언의 기초부터 완주까지</span>',sub:'유튜브 <span data-stat="views">246만+</span> 조회 · 단계별 커리큘럼으로 완주',cta:'지금 정주행하기'},
       {bg:'#0e7a68',href:'bible.html',tab:'성경 공부 도구',badge:'전부 무료',title:'성경, <span style="color:#ffe08a">직접 읽고 공부하다</span>',sub:'성경 읽기·성경사전 3,000+·성경 Q&A·통독·암송, 모두 무료',cta:'공부 시작하기'},
       {bg:'#9a6a1b',href:'academy.html',tab:'인증과정·창립멤버',badge:'선착순 1기',title:'아카데미 <span style="color:#fff3d6">인증과정</span>',sub:'체계적 급수·수료증 · 1기 창립멤버 20% 평생할인',cta:'인증과정 보기'},
-      {bg:'#21342a',href:'books.html',tab:'저자의 책',badge:'출간 도서',title:'강의로 다 담지 못한 이야기,<br><span style="color:#e4c07a">책으로 만나다</span>',sub:'신간 『킹제임스 성경 정본역 한영대역』 · 『그 나라에서 만나요』 · 『천년왕국을 아십니까』 — 전자책·종이책 판매 중',cta:'책 보러 가기'}
+      {bg:'#21342a',href:'books.html',tab:'저자의 책',badge:'출간 도서',title:'강의로 다 담지 못한 이야기,<br><span style="color:#e4c07a">책으로 만나다</span>',sub:'신간 『결말을 아는 사람』 · 『킹제임스 성경 정본역 한영대역』 · 『그 나라에서 만나요』 — 전자책·종이책 판매 중',cta:'책 보러 가기'}
     ];
     var hero=document.getElementById('hpHero'); if(!hero) return;
     hero.style.transition='background .5s ease';
@@ -490,10 +490,25 @@
       </div>
 
       <!-- 신간(구매 버튼 포함) + 나머지 저서 컴팩트 카드 — 구매처 전체는 books.html -->
-      <div class="grid sm:grid-cols-2 lg:grid-cols-7 gap-4 md:gap-5 lg:gap-3.5 max-w-3xl lg:max-w-6xl mx-auto">
-        <!-- 킹제임스 성경 정본역 한영대역 (신간) — 전자책 YES24, 다른 판매처·큰글자판은 등록 대기 -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-8 gap-4 md:gap-5 lg:gap-3.5 max-w-3xl lg:max-w-6xl mx-auto">
+        <!-- 결말을 아는 사람 (신간 · 미니북) — 종이책 YES24·부크크, 교보·영풍·알라딘 입점 준비 중 -->
         <div class="bg-white rounded-2xl p-5 md:p-6 lg:p-4 text-center shadow-soft relative">
           <span class="absolute top-3 right-3 text-[12px] font-bold text-white bg-gold rounded-full px-2 py-0.5">신간</span>
+          <a href="books.html#ending" class="block group">
+            <img src="images/books/ending.jpg" alt="결말을 아는 사람 표지" loading="lazy"
+                 class="w-[118px] md:w-[142px] lg:w-[128px] mx-auto rounded-[3px] shadow-card group-hover:-translate-y-1 transition-transform"/>
+            <p class="font-bold text-[14.5px] md:text-[15.5px] leading-snug mt-4 group-hover:text-gold transition-colors">결말을<br class="hidden md:block"/> 아는 사람</p>
+          </a>
+          <p class="text-[12px] text-neutral-900/55 mt-2 leading-relaxed">한눈에 보는 마지막 때의 순서 · 60쪽 컬러 미니북</p>
+          <div class="mt-4 text-left">
+            <p class="text-[12px] font-bold text-neutral-900/40 mb-1.5">📘 종이책 (8,900원)</p>
+            <a href="https://www.yes24.com/product/goods/199015392" target="_blank" rel="noopener" class="block text-center bg-gold text-white text-[12.5px] font-bold rounded-lg py-2 hover:opacity-90 transition">YES24</a>
+            <a href="https://bookk.co.kr/bookStore/6ad0349e94415abe18dfc56b" target="_blank" rel="noopener" class="block text-center bg-white text-ink border border-ink/15 text-[12.5px] font-bold rounded-lg py-2 mt-1.5 hover:border-gold/60 hover:text-gold transition">부크크</a>
+          </div>
+          <a href="books.html#ending" class="inline-block text-[12.5px] text-gold font-semibold mt-3 hover:underline">책 소개 자세히 보기 →</a>
+        </div>
+        <!-- 킹제임스 성경 정본역 한영대역 — 전자책 YES24, 다른 판매처·큰글자판은 등록 대기 -->
+        <div class="bg-white rounded-2xl p-5 md:p-6 lg:p-4 text-center shadow-soft relative">
           <a href="books.html#kjv" class="block group">
             <img src="images/books/kjv.jpg" alt="킹제임스 성경 정본역 한영대역 표지" loading="lazy"
                  class="w-[118px] md:w-[142px] lg:w-[128px] mx-auto rounded-[3px] shadow-card group-hover:-translate-y-1 transition-transform"/>
@@ -1188,7 +1203,8 @@
       ]},
       { label:'저자의 책', href:'books.html', children:[
         { label:'저자의 책 전체', href:'books.html' },
-        { label:'킹제임스 성경 정본역 한영대역 (신간)', href:'books.html#kjv' },
+        { label:'결말을 아는 사람 (신간)', href:'books.html#ending' },
+        { label:'킹제임스 성경 정본역 한영대역', href:'books.html#kjv' },
         { label:'그 나라에서 만나요', href:'books.html#seeyou' },
         { label:'천년왕국을 아십니까', href:'books.html#millennium' },
         { label:'마귀는 거짓말을 하지 않는다', href:'books.html#devil' },
@@ -2294,9 +2310,9 @@
             <img src="images/books/devil.jpg" alt="" class="w-[46px] mx-auto rounded-[2px] shadow-soft"/>
             <p class="text-[12px] leading-tight text-neutral-900/70 mt-2">마귀는 거짓말을<br/>하지 않는다</p>
           </a>
-          <a href="books.html#church" class="block min-w-0 rounded-xl border border-ink/8 px-2 py-2.5 text-center hover:border-gold/50 hover:shadow-soft transition">
-            <img src="images/books/church.jpg" alt="" class="w-[46px] mx-auto rounded-[2px] shadow-soft"/>
-            <p class="text-[12px] leading-tight text-neutral-900/70 mt-2">교회를 떠나고서야,<br/>예수를 만났다</p>
+          <a href="books.html#ending" class="block min-w-0 rounded-xl border border-ink/8 px-2 py-2.5 text-center hover:border-gold/50 hover:shadow-soft transition">
+            <img src="images/books/ending.jpg" alt="" class="w-[46px] mx-auto rounded-[2px] shadow-soft"/>
+            <p class="text-[12px] leading-tight text-neutral-900/70 mt-2">결말을<br/>아는 사람</p>
           </a>
           <a href="books.html#seeyou" class="block min-w-0 rounded-xl border border-ink/8 px-2 py-2.5 text-center hover:border-gold/50 hover:shadow-soft transition">
             <img src="images/books/seeyou.jpg" alt="" class="w-[46px] mx-auto rounded-[2px] shadow-soft"/>

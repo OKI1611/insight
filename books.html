@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <script src="/content-loader.js?v=20260703f"></script>
-  <script src="/site-header.js?v=20261005a"></script>
-  <script src="/section-sidenav.js?v=20260930a"></script>
+  <script src="/site-header.js?v=20261027a"></script>
+  <script src="/section-sidenav.js?v=20261027a"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>저자의 책 — 오광일 출간 도서 · BIBLY 바이블 인사이트</title>
-  <meta name="description" content="오광일 저자의 출간 도서 — 신간 『킹제임스 성경 정본역 : 헤리티지 에디션 한영대역』, 『그 나라에서 만나요』, 『천년왕국을 아십니까』, 『마귀는 거짓말을 하지 않는다』, 『가이사의 교회, 하나님의 교회』, 『가면의 시대』, 『교회를 떠나고서야, 예수를 만났다』, 『엄마 향기』. 책 소개와 구매 안내." />
+  <meta name="description" content="오광일 저자의 출간 도서 — 신간 『결말을 아는 사람』, 『킹제임스 성경 정본역 : 헤리티지 에디션 한영대역』, 『그 나라에서 만나요』, 『천년왕국을 아십니까』, 『마귀는 거짓말을 하지 않는다』, 『가이사의 교회, 하나님의 교회』, 『가면의 시대』, 『교회를 떠나고서야, 예수를 만났다』, 『엄마 향기』. 책 소개와 구매 안내." />
   <meta name="theme-color" content="#213a6b" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png?v=7" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="BIBLY 바이블 인사이트" />
   <meta property="og:title" content="저자의 책 — 오광일 출간 도서" />
-  <meta property="og:description" content="강의로 다 담지 못한 이야기를 책으로 만나세요. 신간 『킹제임스 성경 정본역 한영대역』 · 『그 나라에서 만나요』 · 『천년왕국을 아십니까』 · 『마귀는 거짓말을 하지 않는다』 · 『가이사의 교회, 하나님의 교회』 · 『가면의 시대』 · 『교회를 떠나고서야, 예수를 만났다』 · 『엄마 향기』" />
+  <meta property="og:description" content="강의로 다 담지 못한 이야기를 책으로 만나세요. 신간 『결말을 아는 사람』 · 『킹제임스 성경 정본역 한영대역』 · 『그 나라에서 만나요』 · 『천년왕국을 아십니까』 · 『마귀는 거짓말을 하지 않는다』 · 『가이사의 교회, 하나님의 교회』 · 『가면의 시대』 · 『교회를 떠나고서야, 예수를 만났다』 · 『엄마 향기』" />
   <meta property="og:url" content="https://biblynote.com/books" />
   <meta property="og:image" content="https://biblynote.com/images/og-cover.png?v=7" />
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7" />
@@ -76,7 +76,7 @@
     .shelfSub{font-size:11px;color:#3a425488;margin-top:.2rem;line-height:1.4}
     .shelfBook:hover .shelfCap{color:#00704a}
     @media (max-width:400px){ .shelfSub{display:none} }
-    /* 좁은 화면 — 여덟 권을 한 줄에 욱여넣지 않고 선반째 옆으로 민다(제목 잘림·가로 넘침 방지) */
+    /* 좁은 화면 — 아홉 권을 한 줄에 욱여넣지 않고 선반째 옆으로 민다(제목 잘림·가로 넘침 방지) */
     .shelfHint{display:none}
     @media (max-width:640px){
       .shelfScroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -1.25rem;padding:12px 1.25rem 6px;scrollbar-width:none}
@@ -103,15 +103,19 @@
         옳은 말을 하고도 잘려 나간 자리에서 쓴 기록, 무너진 자리에서 다시 시작한 신앙의 고백,
         한 어머니의 삶을 아들의 눈으로 담아낸 이야기, 성경이 약속한 1,000년의 나라를 완주하는 지도,
         그 나라에 관한 100가지 질문에 성경으로 답한 문답집,
-        그리고 공인본문을 저본으로 66권 전권을 새로 옮긴 한영대역 성경 — 여덟 권의 책으로 만나실 수 있습니다.
+        마지막 때의 순서를 일곱 걸음으로 간추린 손안의 지도,
+        그리고 공인본문을 저본으로 66권 전권을 새로 옮긴 한영대역 성경 — 아홉 권의 책으로 만나실 수 있습니다.
       </p>
 
       <!-- 책 가판대 — 표지를 눌러 각 책 소개로 이동. 새 책은 맨 앞에 두고 shelfNew 배지를 단다 -->
       <div class="mt-9 md:mt-11">
         <div class="shelfScroll"><div class="shelfInner">
         <div class="shelf">
-          <a href="#kjv" class="shelfBook" aria-label="킹제임스 성경 정본역 한영대역 소개 보기">
+          <a href="#ending" class="shelfBook" aria-label="결말을 아는 사람 소개 보기">
             <span class="shelfNew">신간</span>
+            <img src="images/books/ending.jpg" alt="결말을 아는 사람 표지" />
+          </a>
+          <a href="#kjv" class="shelfBook" aria-label="킹제임스 성경 정본역 한영대역 소개 보기">
             <img src="images/books/kjv.jpg" alt="킹제임스 성경 정본역 헤리티지 에디션 한영대역 표지" />
           </a>
           <a href="#seeyou" class="shelfBook" aria-label="그 나라에서 만나요 소개 보기">
@@ -140,6 +144,10 @@
         <div class="shelfPlankEdge"></div>
 
         <div class="shelf items-start mt-3">
+          <a href="#ending" class="shelfBook">
+            <p class="shelfCap">결말을<br/>아는 사람</p>
+            <p class="shelfSub">한눈에 보는 마지막 때의 순서 · 미니북</p>
+          </a>
           <a href="#kjv" class="shelfBook">
             <p class="shelfCap">킹제임스 성경<br/>정본역</p>
             <p class="shelfSub">헤리티지 에디션 한영대역 · 전 66권</p>
@@ -174,14 +182,88 @@
           </a>
         </div>
         </div></div>
-        <p class="shelfHint">옆으로 밀면 여덟 권을 모두 볼 수 있습니다 →</p>
+        <p class="shelfHint">옆으로 밀면 아홉 권을 모두 볼 수 있습니다 →</p>
       </div>
     </div>
   </section>
 
   <main class="max-w-4xl mx-auto px-5 py-12 md:py-16 space-y-16">
 
-    <!-- ⓪ 킹제임스 성경 정본역 한영대역 (신간 · 전자책) -->
+    <!-- ⓪ 결말을 아는 사람 (신간 · 미니북) -->
+    <article id="ending" class="scroll-mt-24">
+      <div class="grid md:grid-cols-[220px_1fr] gap-7 md:gap-9">
+        <div>
+          <img src="images/books/ending.jpg" alt="결말을 아는 사람 표지"
+               class="w-[180px] md:w-full mx-auto rounded-xl shadow-card"/>
+          <div class="mt-5 text-xs">
+            <div class="metaRow"><b>지은이</b><span>오광일</span></div>
+            <div class="metaRow"><b>분야</b><span>기독교 (종말론)</span></div>
+            <div class="metaRow"><b>구성</b><span>일곱 걸음 · 46판 60쪽 · 컬러</span></div>
+            <div class="metaRow"><b>펴낸곳</b><span>부크크</span></div>
+            <div class="metaRow"><b>출간</b><span>2026년 10월 15일</span></div>
+            <div class="metaRow"><b>정가</b><span>8,900원</span></div>
+          </div>
+        </div>
+
+        <div>
+          <span class="inline-flex text-[12.5px] font-bold text-amber-700 bg-amber-50 rounded-full px-2.5 py-1 mb-3">종말론 · 손안의 지도</span>
+          <h2 class="text-xl md:text-2xl font-bold leading-snug">결말을 아는 사람</h2>
+          <p class="text-neutral-900/55 text-sm mt-2">한눈에 보는 마지막 때의 순서</p>
+
+          <div class="quote">
+            예수님께서 다시 오시고<br/>
+            왕으로 다스리신다는 것 —<br/>
+            정말 믿으시냐고 물으면<br/>
+            "글쎄요"라고 답하게 되는 이유.
+          </div>
+
+          <div class="text-[14px] text-neutral-900/75 leading-[1.95] space-y-3 mt-5">
+            <p>많은 성도가 "주께서 다시 오신다"를 찬양하면서도, 정말 믿느냐고 물으면 머뭇거립니다. 그 사람의 잘못이 아닙니다. 다시 오셔서 <b>무엇을 하시는지</b> 차근차근 배운 적이 없기 때문입니다. 이 작은 책은 그 공백을 메우기 위해 만들었습니다.</p>
+            <p>휴거에서 새 하늘 새 땅까지, 성경이 말하는 마지막 때를 <b>일곱 걸음</b>으로 간추렸습니다. 걸음마다 성경 본문이 함께 있고, 전체 흐름은 <b>한 장의 타임라인 지도</b>로 먼저 보여 드립니다. 손안에 들어오는 46판 60쪽 컬러 — 지하철 한두 정거장이면 한 걸음씩 읽을 수 있습니다.</p>
+            <p>뒤에는 <b>자주 묻는 질문 열 가지</b>와 <b>핵심 용어 작은 사전</b>, 도표 모음, 일곱 걸음 성구 목록을 부록으로 담아, 읽고 난 뒤에도 곁에 두고 찾아보는 작은 참고서가 되게 했습니다. 『천년왕국을 아십니까』와 『그 나라에서 만나요』로 들어가기 전의 <b>첫 안내 지도</b>로, 또 전도와 선물용으로 부담 없는 책입니다.</p>
+          </div>
+
+          <div class="mt-6 rounded-2xl border border-ink/10 bg-sand/40 px-5 py-4">
+            <p class="text-[13px] font-bold text-neutral-900/80 mb-2">이런 분께 권합니다</p>
+            <ul class="text-[13px] text-neutral-900/70 leading-relaxed space-y-1">
+              <li>· 종말론이 궁금하지만 두꺼운 책은 부담스러운 분</li>
+              <li>· 마지막 때의 순서를 한 장의 그림으로 정리하고 싶은 분</li>
+              <li>· 가족·친구에게 부담 없이 건넬 선물용 책을 찾는 분</li>
+              <li>· 『천년왕국을 아십니까』 완독 전, 전체 지도를 먼저 쥐고 싶은 분</li>
+            </ul>
+          </div>
+
+          <div class="mt-6 rounded-2xl border border-gold/25 bg-gold/5 px-5 py-4">
+            <p class="text-[14px] font-bold text-gold text-center leading-relaxed">결말을 아는 사람의 월요일 아침은 다릅니다.</p>
+          </div>
+
+          <div class="mt-7">
+            <p class="text-[13px] font-bold text-neutral-900/80 mb-3">차례 — 일곱 걸음</p>
+            <div class="rounded-2xl border border-ink/10 bg-white px-5 py-4 text-[13px] text-neutral-900/70 leading-[1.9]">
+              <p class="text-neutral-900/50">이 지도를 읽는 법 · 지금 우리는 어디에 있는가 · 전체 타임라인 — 한 장의 지도</p>
+              <p class="mt-2"><b class="text-neutral-900/80">일곱 걸음</b> — 01 휴거 / 02 7년 환난 / 03 아마겟돈과 재림 / 04 75일의 전환기 / 05 천년왕국 / 06 사탄의 잠깐 석방 / 07 백보좌 심판과 새 하늘 새 땅</p>
+              <p class="mt-2 text-neutral-900/50">부록 — 자주 묻는 질문 열 가지 · 핵심 용어 작은 사전 · 도표로 다시 보는 마지막 때 · 일곱 걸음 성구 목록</p>
+            </div>
+          </div>
+
+          <div class="mt-7">
+            <p class="text-[13px] font-bold text-neutral-900/80 mb-3">구매하기</p>
+            <p class="storeLbl">📘 종이책</p>
+            <div class="storeRow flex flex-wrap gap-2.5">
+              <a href="https://www.yes24.com/product/goods/199015392" target="_blank" rel="noopener"
+                 class="buyBtn buyGhost">YES24</a>
+              <a href="https://bookk.co.kr/bookStore/6ad0349e94415abe18dfc56b" target="_blank" rel="noopener"
+                 class="buyBtn buyGhost">부크크</a>
+            </div>
+            <p class="text-[12.5px] text-neutral-900/45 mt-3">교보문고·영풍문고·알라딘은 입점 준비 중입니다. 원하시는 판매처를 선택하시면 새 창으로 열립니다.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <div class="h-px bg-ink/8"></div>
+
+    <!-- ① 킹제임스 성경 정본역 한영대역 (전자책) -->
     <article id="kjv" class="scroll-mt-24">
       <div class="grid md:grid-cols-[220px_1fr] gap-7 md:gap-9">
         <div>
