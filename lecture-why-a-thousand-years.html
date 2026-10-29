@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>천국 가면 끝 아닙니까? — 하나님은 왜 천 년을 남겨 두셨는가 · 북토크 특강 슬라이드</title>
+  <!-- 관리자(발표자) 전용 페이지 — 검색엔진 색인 금지, 어디에도 공개 링크하지 않는다 -->
+  <meta name="robots" content="noindex, nofollow"/>
+  <meta name="theme-color" content="#0b1530"/>
+  <link rel="icon" href="/favicon.ico"/>
+  <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700;900&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
+    const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+    const ADMIN_EMAIL = 'josephoh1611@gmail.com';
+  </script>
+  <style>
+    :root{
+      --bg:#0b1530; --bg2:#13224a; --ink:#f4f7ff; --sub:#9fb3d9; --dim:#67789f;
+      --gold:#ffd76a; --gold-deep:#e8b84a; --line:rgba(255,255,255,.12);
+    }
+    *{box-sizing:border-box; margin:0; padding:0}
+    html,body{height:100%}
+    body{
+      font-family:'Pretendard',system-ui,sans-serif; background:var(--bg); color:var(--ink);
+      overflow:hidden; -webkit-font-smoothing:antialiased;
+      word-break:keep-all; overflow-wrap:break-word;   /* 한국어 어절 단위 줄바꿈 */
+    }
+    h2, .lines p, .eyebrow{text-wrap:balance}
+    .serif{font-family:'Noto Serif KR','Pretendard',serif}
+
+    /* ===== 로그인 게이트 ===== */
+    #gate{position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center; padding:20px;
+      background:radial-gradient(1200px 700px at 70% -10%, #1b2c5c 0%, var(--bg) 60%)}
+    .gateCard{width:100%; max-width:360px; background:rgba(255,255,255,.05); border:1px solid var(--line);
+      border-radius:20px; padding:32px 26px; text-align:center; backdrop-filter:blur(8px)}
+    .gateCard h1{font-size:17px; font-weight:800; margin-bottom:4px}
+    .gateCard p{font-size:12.5px; color:var(--sub); margin-bottom:20px}
+    .gateCard input{width:100%; background:rgba(255,255,255,.07); border:1px solid var(--line); border-radius:12px;
+      color:var(--ink); padding:11px 14px; font-size:14px; margin-bottom:8px; outline:none}
+    .gateCard input:focus{border-color:var(--gold)}
+    .btn{width:100%; border:0; border-radius:12px; padding:12px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit}
+    .btnGoogle{background:#fff; color:#1c2440; display:flex; align-items:center; justify-content:center; gap:9px; margin-bottom:14px}
+    .btnMail{background:var(--gold); color:#2a2000}
+    #gateErr{font-size:12px; color:#ff9d9d; min-height:16px; margin-top:8px}
+    .gateHome{display:inline-block; margin-top:10px; font-size:12px; color:var(--dim); text-decoration:none}
+
+    /* ===== 덱 공통 ===== */
+    #deck{position:fixed; inset:0; display:none}
+    #deck.open{display:block}
+    #bar{position:fixed; top:0; left:0; height:4px; background:linear-gradient(90deg,var(--gold),var(--gold-deep));
+      width:0%; z-index:40; transition:width .35s ease}
+    #count{position:fixed; right:18px; bottom:14px; z-index:40; font-size:12px; color:var(--dim); letter-spacing:.06em;
+      font-variant-numeric:tabular-nums}
+    #clock{position:fixed; left:18px; bottom:14px; z-index:40; font-size:12px; color:var(--dim); font-variant-numeric:tabular-nums}
+    #hint{position:fixed; left:50%; bottom:14px; transform:translateX(-50%); z-index:40; font-size:11.5px; color:var(--dim);
+      background:rgba(255,255,255,.05); border:1px solid var(--line); padding:6px 14px; border-radius:999px; white-space:nowrap;
+      transition:opacity .8s}
+    #hint.off{opacity:0; pointer-events:none}
+
+    /* ===== 슬라이드 ===== */
+    .slide{position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center;
+      padding:7vmin 9vmin 10vmin; opacity:0; transform:translateY(14px); transition:opacity .55s ease, transform .55s ease;
+      pointer-events:none; visibility:hidden;
+      background:radial-gradient(1400px 900px at 75% -15%, #192a58 0%, var(--bg) 62%)}
+    .slide.on{opacity:1; transform:none; pointer-events:auto; visibility:visible}
+    .eyebrow{font-size:clamp(13px,2vmin,20px); font-weight:700; letter-spacing:.22em; color:var(--gold);
+      text-transform:uppercase; margin-bottom:2.6vmin}
+    .eyebrow .n{color:var(--dim); margin-right:1em; letter-spacing:.1em}
+    h2{font-size:clamp(28px,7vmin,76px); line-height:1.26; font-weight:900; letter-spacing:-.01em; max-width:22em; text-wrap:balance}
+    h2 em{font-style:normal; color:var(--gold)}
+    .lines{margin-top:4vmin; display:flex; flex-direction:column; gap:2vmin; max-width:32em}
+    .lines p{font-size:clamp(17px,3.2vmin,34px); line-height:1.6; color:var(--sub)}
+    .lines p b{color:var(--ink); font-weight:700}
+    .big{font-size:clamp(34px,8.4vmin,96px) !important; line-height:1.28 !important}
+    .fr{opacity:0; transform:translateY(16px); transition:opacity .45s ease, transform .45s ease}
+    .fr.show{opacity:1; transform:none}
+    .notes{display:none}
+    .center{align-items:center; text-align:center}
+    .center h2{max-width:none}
+    .center .lines{align-items:center}
+
+    /* ===== 성경 전문 블록 — 청중이 멀리서도 읽도록 한글을 크게, 영어는 그 아래 작게 ===== */
+    .vtext{border-left:4px solid var(--gold); padding:1.4vmin 0 1.4vmin 3vmin; max-width:38em; margin-top:1vmin}
+    .vtext p{font-family:'Noto Serif KR','Pretendard',serif; font-size:clamp(18px,3.3vmin,38px); line-height:1.8; color:var(--ink)}
+    .vtext.xl p{font-size:clamp(21px,4.2vmin,50px)}
+    .vtext.md p{font-size:clamp(16px,2.8vmin,32px)}
+    .vtext sup{color:var(--gold); font-size:.55em; font-weight:700; margin:0 .3em 0 .15em}
+    .vtext cite{display:block; margin-top:1.4vmin; font-size:clamp(12px,1.9vmin,18px); color:var(--gold); font-style:normal; letter-spacing:.08em}
+    .vtext + .vtext{margin-top:3vmin}
+    .hl{color:var(--gold); font-weight:700}
+    /* 세로 배치: 한글 정본역(크게) 위, KJV(작게) 아래 */
+    .vstack{max-width:46em; margin-top:1vmin}
+    .vstack .vtext{max-width:none; margin-top:0}
+    .vstack .vtext.ko p{font-size:clamp(21px,4vmin,48px); line-height:1.78}
+    .vstack.long .vtext.ko p{font-size:clamp(18px,3.2vmin,38px); line-height:1.75}
+    .vstack .vtext.en{border-left-color:rgba(255,215,106,.35); margin-top:2.2vmin; padding-top:.6vmin; padding-bottom:.6vmin}
+    .vstack .vtext.en p{font-size:clamp(13px,2.1vmin,23px); line-height:1.65; color:var(--sub)}
+    .vstack .vtext.en cite{margin-top:.8vmin; color:var(--dim)}
+    .vref{font-family:'Noto Serif KR',serif; font-size:clamp(20px,4.2vmin,48px); font-weight:900; color:var(--gold); letter-spacing:-.01em; margin-bottom:2.4vmin}
+    .vref small{font-family:'Pretendard',sans-serif; font-size:.46em; font-weight:700; color:var(--dim); letter-spacing:.14em; margin-left:.8em; vertical-align:middle}
+    /* 한글 정본역 + 영어 KJV 병행(좌우) — 짧은 구절 두 개 비교용 */
+    .vwrap{display:grid; grid-template-columns:1.08fr 1fr; gap:4.5vmin; align-items:start; max-width:66em; margin-top:1vmin}
+    .vwrap .vtext{margin-top:0}
+    .vwrap .vtext p{font-size:clamp(17px,3vmin,36px)}
+    .vtext.en{border-left-color:rgba(201,162,75,.45)}
+    .vwrap .vtext.en p{font-size:clamp(14px,2.5vmin,28px); line-height:1.75; color:var(--sub)}
+    @media (max-aspect-ratio:4/3){ .vwrap{grid-template-columns:1fr; gap:2.5vmin} }
+
+    /* 원어 단어 카드 */
+    .word{display:flex; align-items:baseline; gap:2.6vmin; flex-wrap:wrap; margin-top:3vmin}
+    .word .gk{font-family:'Noto Serif KR','Times New Roman',serif; font-size:clamp(40px,10vmin,120px); font-weight:700; color:var(--gold); line-height:1.1; letter-spacing:.01em}
+    .word .tr{font-size:clamp(16px,2.8vmin,30px); color:var(--sub); font-weight:700}
+    .word .tr b{color:var(--ink)}
+    .words{display:flex; gap:3vmin; margin-top:3.6vmin; flex-wrap:wrap; max-width:64em}
+    .words .w{flex:1; min-width:260px; border:1px solid var(--line); border-radius:16px; padding:3vmin 3.2vmin; background:rgba(255,255,255,.04)}
+    .words .w .gk{display:block; font-family:'Noto Serif KR','Times New Roman',serif; font-size:clamp(30px,6.4vmin,76px); font-weight:700; color:var(--gold); line-height:1.15}
+    .words .w .tr{display:block; font-size:clamp(15px,2.5vmin,27px); color:var(--sub); margin-top:1vmin; font-weight:700}
+    .words .w .tr b{color:var(--ink)}
+    .words .w .ref{display:block; font-size:clamp(12px,1.9vmin,18px); color:var(--dim); margin-top:1.4vmin; letter-spacing:.04em; line-height:1.6}
+    .words .w.gold{border-color:var(--gold)}
+
+    /* 네 열쇠 칩 */
+    .chips{display:flex; gap:1.8vmin; margin-top:4vmin; flex-wrap:wrap}
+    .chip{border:1.5px solid var(--line); border-radius:999px; padding:1.3vmin 3vmin; font-size:clamp(14px,2.5vmin,26px);
+      color:var(--dim); font-weight:700; letter-spacing:.02em}
+    .chip.now{border-color:var(--gold); color:var(--gold)}
+    .chip.done{background:var(--gold); border-color:var(--gold); color:#2a2000}
+    .center .chips{justify-content:center}
+
+    /* 표 */
+    table.tbl{margin-top:3.6vmin; border-collapse:collapse; max-width:100%}
+    .tbl th,.tbl td{border:1px solid var(--line); padding:1.5vmin 2.4vmin; font-size:clamp(14px,2.5vmin,27px);
+      text-align:left; line-height:1.55; vertical-align:top}
+    .tbl th{background:rgba(255,215,106,.10); color:var(--gold); font-weight:800; white-space:nowrap}
+    .tbl td{color:var(--sub)}
+    .tbl td b{color:var(--ink)}
+    .tbl td.gd{color:var(--gold); font-weight:700}
+    .tbl tr.now td{background:rgba(255,215,106,.08)}
+    .tbl tr.now td b{color:var(--gold)}
+
+    /* 질문 카드 */
+    .qcard{border:1px solid var(--line); border-left:4px solid var(--gold); border-radius:12px;
+      padding:2vmin 2.8vmin; background:rgba(255,255,255,.04); max-width:40em}
+    .qcard .qn{font-size:clamp(12px,1.9vmin,18px); color:var(--gold); font-weight:800; letter-spacing:.12em; margin-bottom:.8vmin}
+    .qcard p{font-size:clamp(15px,2.6vmin,28px); line-height:1.6; color:var(--sub)}
+    .qcard p b{color:var(--ink)}
+    .qcard.xl p{font-family:'Noto Serif KR',serif; font-size:clamp(19px,3.4vmin,40px); line-height:1.7; color:var(--ink)}
+    .qwrap{display:flex; flex-direction:column; gap:2.2vmin; margin-top:3.6vmin}
+
+    /* 도해 */
+    .svgwrap{margin-top:3.6vmin; max-width:100%}
+    .svgwrap svg{width:100%; height:auto; display:block}
+    .srcnote{margin-top:2.4vmin; font-size:clamp(11px,1.8vmin,16px); color:var(--dim); line-height:1.6; max-width:44em}
+
+    /* 2·3단 카드 */
+    .cols{display:flex; gap:3vmin; margin-top:3.6vmin; flex-wrap:wrap; max-width:64em}
+    .col{flex:1; min-width:230px; border:1px solid var(--line); border-radius:14px; padding:2.6vmin 3vmin;
+      background:rgba(255,255,255,.04)}
+    .col h3{font-size:clamp(16px,2.8vmin,30px); font-weight:800; margin-bottom:1.4vmin}
+    .col.gold{border-color:var(--gold)}
+    .col.gold h3{color:var(--gold)}
+    .col p{font-size:clamp(14px,2.3vmin,24px); line-height:1.6; color:var(--sub)}
+    .col p b{color:var(--ink)}
+    .col .vq{font-family:'Noto Serif KR',serif; font-size:clamp(16px,2.9vmin,32px); line-height:1.65; color:var(--ink); margin-bottom:1vmin}
+    .col .vq .hl{color:var(--gold)}
+    .col .vr{font-size:clamp(12px,1.9vmin,18px); color:var(--gold); letter-spacing:.08em}
+
+    /* 구름 목록 */
+    .ref-list{margin-top:3vmin; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.4vmin 3vmin; max-width:70em}
+    .ref-list .r{border-left:3px solid var(--gold); padding:.6vmin 0 .6vmin 2vmin}
+    .ref-list .r .k{font-size:clamp(12px,1.9vmin,19px); color:var(--gold); font-weight:800; letter-spacing:.06em}
+    .ref-list .r .t{font-family:'Noto Serif KR',serif; font-size:clamp(15px,2.6vmin,29px); line-height:1.55; color:var(--ink)}
+    @media (max-aspect-ratio:4/3){ .ref-list{grid-template-columns:1fr} }
+
+    @media (max-width:760px), (orientation:portrait){
+      .slide{padding:7vmin 6vmin 12vmin}
+    }
+
+    /* 전면 그림 슬라이드 — 1920×1080 도해 이미지를 화면에 맞춰 통째로 */
+    .slide.pic{padding:0; background:#070e22; align-items:center; justify-content:center}
+    .slide.pic img{width:100%; height:100%; object-fit:contain; display:block}
+    .slide.pic .picTag{position:absolute; left:2.2vmin; top:1.8vmin; font-size:clamp(11px,1.7vmin,16px); font-weight:700; letter-spacing:.18em; color:rgba(255,215,106,.75); background:rgba(7,14,34,.55); border:1px solid rgba(255,215,106,.25); border-radius:999px; padding:.5vmin 1.6vmin; backdrop-filter:blur(4px)}
+
+    /* 발표자 노트 패널 (N 키) */
+    #notes{position:fixed; left:0; right:0; bottom:0; z-index:50; max-height:38vh; overflow:auto; display:none;
+      background:rgba(6,12,30,.94); border-top:1px solid var(--gold); padding:16px 22px 22px; backdrop-filter:blur(6px)}
+    #notes.open{display:block}
+    #notes .nTitle{font-size:11px; letter-spacing:.2em; color:var(--gold); font-weight:700; margin-bottom:8px}
+    #notes .nBody{font-size:14.5px; line-height:1.75; color:#dbe4f7; max-width:860px}
+    #notes .nBody b{color:var(--gold)}
+
+    /* 암전 (B 키) */
+    #blackout{position:fixed; inset:0; z-index:60; background:#000; display:none}
+    #blackout.open{display:block}
+  </style>
+</head>
+<body>
+
+  <!-- ===== 로그인 게이트 (admin.html 과 동일한 서버 검증 방식·같은 세션 키) ===== -->
+  <div id="gate">
+    <div class="gateCard">
+      <h1>천년왕국 북토크 특강 슬라이드</h1>
+      <p>발표자 계정으로 로그인하세요.</p>
+      <button class="btn btnGoogle" onclick="googleLogin()">
+        <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C39.9 36.5 44 31 44 24c0-1.3-.1-2.3-.4-3.5z"/></svg>
+        구글로 로그인
+      </button>
+      <input id="ge" type="email" placeholder="이메일" autocomplete="username"/>
+      <input id="gp" type="password" placeholder="비밀번호" autocomplete="current-password"/>
+      <button class="btn btnMail" onclick="emailLogin()">이메일로 로그인</button>
+      <p id="gateErr"></p>
+      <a class="gateHome" href="/admin">← 관리자 콘솔로</a>
+    </div>
+  </div>
+
+  <!-- ===== 슬라이드 덱 ===== -->
+  <div id="deck">
+    <div id="bar"></div>
+    <div id="count"></div>
+    <div id="clock"></div>
+    <div id="hint">→ 다음 · ← 이전 · <b>F</b> 전체화면 · <b>N</b> 대본 · <b>B</b> 암전</div>
+
+    <!-- 1. 타이틀 -->
+    <section class="slide">
+      <p class="eyebrow">『천년왕국을 아십니까』 북토크 특강 · 얼굴과 얼굴을 마주하는 시간 · 2026.10.31</p>
+      <h2 class="serif">천국 가면 <em>끝</em> 아닙니까?</h2>
+      <div class="lines">
+        <p><b>하나님은 왜 '천 년'을 남겨 두셨는가</b> — 타임라인도, 휴거 시점 논쟁도 하지 않습니다. 오늘은 이 질문 하나에만 답합니다</p>
+        <p style="color:var(--dim); font-size:clamp(13px,2.2vmin,22px)">본문 계 20:2–9 · 눅 1:31–33 · 계 3:21 · 시 110:1 · 행 1:6–7 · 눅 19:12–17 · 요 19:15 · 슥 14:4 · 롬 8:19–22 · 사 65:20 · 렘 17:9 · 요 3:3 — 오광일</p>
+      </div>
+      <aside class="notes">인사는 짧게. 화면으로만 뵙던 분들을 얼굴로 뵙는 날 — 오늘은 일방적으로 말하는 날이 아니라 서로 묻고 답하는 날. 그래서 시작부터 질문 하나.</aside>
+    </section>
+
+    <!-- 2. 오늘의 길 -->
+    <section class="slide">
+      <p class="eyebrow">오늘의 길 · 25분</p>
+      <h2 class="serif">세 가지 이유를 <em>성경에서</em> 찾아 드리겠습니다</h2>
+      <table class="tbl">
+        <tr><th>구간</th><th>한 줄</th><th>핵심 본문</th></tr>
+        <tr class="fr"><td class="gd">훅</td><td><b>"천년왕국이 왜 필요합니까?"</b> — 여러분께 직접 묻겠습니다</td><td>계 20:2–7</td></tr>
+        <tr class="fr"><td class="gd">아하 ①</td><td>가브리엘의 한 문장 — <b>다윗의 보좌는 아직 비어 있다</b></td><td>눅 1:31–33 · 계 3:21 · 시 110:1 · 행 1:6–7</td></tr>
+        <tr class="fr"><td class="gd">아하 ②</td><td><b>거절당한 바로 그 땅</b>으로 돌아오신다</td><td>눅 19:12–14 · 요 19:15 · 슥 14:4 · 롬 8:19–22 · 사 65:20</td></tr>
+        <tr class="fr"><td class="gd">아하 ③</td><td>천 년 뒤의 반란 — <b>환경은 사람을 바꾸지 못한다</b></td><td>계 20:7–9 · 렘 17:9 · 요 3:3</td></tr>
+        <tr class="fr"><td class="gd">마무리</td><td>그 천 년을 <b>우리가 함께</b> 다스린다</td><td>계 20:4, 6 · 딤후 2:12 · 눅 19:17</td></tr>
+      </table>
+      <aside class="notes">세 번 다, 여러분이 백 번은 읽으셨지만 한 번도 눈여겨보지 않으셨을 <b>한 문장</b>에서 나온다. 이 질문 하나에 답을 얻고 돌아가시면 오늘 모임은 성공.</aside>
+    </section>
+
+    <!-- 3. [슬라이드 1] 참여 1 -->
+    <section class="slide">
+      <p class="eyebrow">참여 ① · 한 분 한 분 눈을 맞추며</p>
+      <h2 class="serif">천년왕국은 <em>왜</em> 필요합니까?</h2>
+      <div class="qwrap">
+        <div class="qcard xl fr"><p class="qn">질문</p><p>우리는 죽으면 천국에 갑니다. 예수님 믿으면 영원히 주님과 함께 삽니다. 그런데 성경은 그 영원 앞에 <b class="hl">천 년짜리 나라</b>를 하나 더 세우십니다. 천국으로 바로 가면 되지, <b>왜 굳이 이 땅에서 천 년을</b> 다스리십니까?</p></div>
+      </div>
+      <div class="lines">
+        <p class="fr" style="color:var(--dim)">어떤 답이든 — "좋습니다, 그 생각 기억해 두세요"</p>
+      </div>
+      <aside class="notes">대답을 기다린다. 2~3분께 들어 본다. 정답을 말해 주지 않는다. <b>침묵이 길어지면</b> "책을 읽으신 분도 이 질문엔 멈칫하시죠. 저도 그랬습니다." 교회를 수십 년 다닌 분도 이 질문에는 멈칫한다 — 천년왕국이 <b>있다</b>는 건 알지만 <b>왜 있어야 하는지</b>는 잘 묻지 않는다.</aside>
+    </section>
+
+    <!-- 4. [슬라이드 2] 일곱 절에 여섯 번 -->
+    <section class="slide">
+      <p class="eyebrow"><span class="n">계 20:2–7</span>일곱 절에 여섯 번</p>
+      <h2 class="serif">하나님이 같은 말을 <em>여섯 번</em> 반복하실 때</h2>
+      <div class="ref-list">
+        <div class="r fr"><p class="k">2절</p><p class="t">그를 붙잡아 <span class="hl">천 년 동안</span> 결박하여,</p></div>
+        <div class="r fr"><p class="k">3절</p><p class="t">이는 <span class="hl">천 년이</span> 차기까지 다시는 만국을 미혹하지 못하게 하려 함이라.</p></div>
+        <div class="r fr"><p class="k">4절</p><p class="t">살아서 그리스도와 더불어 <span class="hl">천 년 동안</span> 왕 노릇 하더라.</p></div>
+        <div class="r fr"><p class="k">5절</p><p class="t">죽은 자들 가운데 나머지는 <span class="hl">천 년이</span> 끝나기까지 다시 살지 못하더라.</p></div>
+        <div class="r fr"><p class="k">6절</p><p class="t">제사장이 되어 <span class="hl">천 년 동안</span> 그와 더불어 왕 노릇 하리라.</p></div>
+        <div class="r fr"><p class="k">7절</p><p class="t"><span class="hl">천 년이</span> 차매 사탄이 그 옥에서 놓여,</p></div>
+      </div>
+      <p class="srcnote">킹제임스 정본역 · 요한계시록 20:2–7</p>
+      <aside class="notes">일곱 절 안에 "천 년"이 여섯 번. 그냥 넘어가라는 뜻이 아니다. 오늘 25분 동안 다른 건 안 한다 — 타임라인 정리도, 휴거 시점 논쟁도. 그건 책에 있다. 오늘은 <b>하나님은 왜 천 년을 남겨 두셨는가</b>, 이 질문 하나.</aside>
+    </section>
+
+    <!-- 5. 디바이더 ① -->
+    <section class="slide center">
+      <p class="eyebrow">아하 ① · 3:00–9:00</p>
+      <h2 class="serif big">가브리엘의 <em>한 문장</em></h2>
+      <div class="chips">
+        <span class="chip now">① 가브리엘의 한 문장</span>
+        <span class="chip">② 거절당한 바로 그 땅</span>
+        <span class="chip">③ 천 년 뒤의 반란</span>
+        <span class="chip">마무리</span>
+      </div>
+      <aside class="notes">첫 번째 이유는 크리스마스 이야기 안에 있다. 누가복음 1장, 가브리엘이 마리아에게 한 말. 너무 익숙해서 그냥 지나가는 문장 — 오늘은 천천히 세어 본다.</aside>
+    </section>
+
+    <!-- 6. [슬라이드 3] 눅 1:31-33 전문 -->
+    <section class="slide">
+      <p class="vref">누가복음 1:31–33 <small>킹제임스 정본역</small></p>
+      <div class="vstack long">
+        <div class="vtext ko">
+          <p><sup>31</sup>보라, 그대가 <span class="hl">잉태하여</span> <span class="hl">아들을 낳으리니</span>, 그 이름을 <span class="hl">예수라 하라</span>. <sup>32</sup>그가 큰 자가 되며 지극히 높으신 분의 아들이라 일컬어지리니, 주 하나님께서 그의 조상 <span class="hl">다윗의 보좌를 그에게 주시리라</span>. <sup>33</sup>그가 <span class="hl">야곱의 집을 영원히 다스리리니</span>, 그의 왕국은 끝이 없으리라."</p>
+        </div>
+        <div class="vtext en">
+          <p><sup>31</sup>And, behold, thou shalt conceive in thy womb, and bring forth a son, and shalt call his name JESUS. <sup>32</sup>He shall be great, and shall be called the Son of the Highest: and the Lord God shall give unto him the throne of his father David: <sup>33</sup>And he shall reign over the house of Jacob for ever; and of his kingdom there shall be no end.</p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <aside class="notes">손가락으로 하나씩 세며 읽는다. 한 문장에 약속이 다섯 개.</aside>
+    </section>
+
+    <!-- 7. 한 문장에 다섯 약속 -->
+    <section class="slide">
+      <p class="eyebrow">한 문장에 다섯 약속</p>
+      <h2 class="serif">앞의 셋은 <em>어떻게</em> 이루어졌습니까?</h2>
+      <div class="ref-list">
+        <div class="r fr"><p class="k">첫째</p><p class="t">그대가 잉태하리라 — <span class="hl">정말로 잉태했다</span></p></div>
+        <div class="r fr"><p class="k">둘째</p><p class="t">아들을 낳으리라 — <span class="hl">정말로 아들이었다</span></p></div>
+        <div class="r fr"><p class="k">셋째</p><p class="t">이름을 예수라 하라 — <span class="hl">이름은 정말로 예수였다</span></p></div>
+        <div class="r fr"><p class="k">넷째</p><p class="t">다윗의 보좌를 그에게 주시리라 — ?</p></div>
+        <div class="r fr"><p class="k">다섯째</p><p class="t">야곱의 집을 다스리리라 — ?</p></div>
+      </div>
+      <div class="lines">
+        <p class="fr">앞의 셋은 <b>문자 그대로</b> 이루어졌습니다 — 영적으로 잉태한 게 아니라 <b>배가 불러 왔습니다</b></p>
+      </div>
+      <aside class="notes">(잠시 멈춤) 문자 그대로 이루어졌다. 처녀가 정말로 잉태했고, 정말로 아들이었고, 이름은 정말로 예수였다.</aside>
+    </section>
+
+    <!-- 8. [슬라이드 4] 앞의 셋이 문자라면 -->
+    <section class="slide">
+      <p class="eyebrow">같은 천사가, 같은 숨으로 한 말</p>
+      <h2 class="serif">앞의 셋이 문자라면,<br/><em>뒤의 둘은?</em></h2>
+      <div class="cols">
+        <div class="col gold fr">
+          <h3>① ② ③ — 문자 그대로</h3>
+          <p>잉태 · 아들 · 예수라는 이름 — 아무도 "영적으로"라고 읽지 않습니다</p>
+        </div>
+        <div class="col fr">
+          <h3>④ ⑤ — 갑자기 읽는 법을 바꿉니다</h3>
+          <p>"다윗의 보좌는 하늘 보좌를 <b>영적으로</b> 말한 것, 야곱의 집은 <b>교회</b>를 뜻한다" — 그렇게 읽을 근거가 본문 어디에 있습니까?</p>
+        </div>
+      </div>
+      <div class="lines">
+        <p class="fr">마리아가 들은 그대로라면 — 다윗의 보좌는 <b>다윗이 앉았던 그 보좌, 예루살렘의 보좌</b>입니다</p>
+        <p class="fr" style="color:var(--dim)">"예수님은 지금 왕이 아니신가요? 지금 보좌에 앉아 계시잖아요" — 맞습니다. 그런데 <b style="color:var(--sub)">어느 보좌냐</b>가 문제입니다</p>
+      </div>
+      <aside class="notes">한 문장이다. 같은 천사가 같은 숨으로 한 말. 앞의 셋은 문자 그대로인데 뒤의 둘만 상징으로 읽을 근거는 없다. 그러면 "지금 보좌에 앉아 계시잖아요" — 맞다. 앉아 계신다. 어느 보좌냐가 문제.</aside>
+    </section>
+
+    <!-- 9. [슬라이드 5] 계 3:21 -->
+    <section class="slide">
+      <p class="vref">요한계시록 3:21 <small>킹제임스 정본역</small></p>
+      <div class="vstack">
+        <div class="vtext ko">
+          <p><sup>21</sup>이기는 자에게는 내가 <span class="hl">내 보좌</span>에 나와 함께 앉게 하여 주기를, 내가 이기고 내 아버지와 함께 <span class="hl">그의 보좌</span>에 앉은 것과 같이 하리라.</p>
+        </div>
+        <div class="vtext en">
+          <p><sup>21</sup>To him that overcometh will I grant to sit with me in my throne, even as I also overcame, and am set down with my Father in his throne.</p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <div class="lines">
+        <p class="fr">예수님께서 직접 보좌를 <b>두 개</b>로 구별하십니다 — "내 보좌"와 "내 아버지의 보좌"</p>
+      </div>
+      <aside class="notes">천천히, 두 단어를 강조하며. 지금 예수님은 어디 계신가? 아버지의 보좌에, 아버지의 오른편에. 그건 시편 110편이 천 년 전에 미리 말한 자리.</aside>
+    </section>
+
+    <!-- 10. 두 개의 보좌 -->
+    <section class="slide">
+      <p class="eyebrow">두 개의 보좌</p>
+      <h2 class="serif">지금은 <em>아버지의 보좌</em> — 내 보좌는 아직</h2>
+      <div class="cols">
+        <div class="col fr">
+          <h3>아버지의 보좌</h3>
+          <p class="vq">"내 아버지와 함께 <span class="hl">그의 보좌에</span> 앉은 것과 같이"</p>
+          <p>지금 앉아 계신 자리 — 하늘, 아버지의 <b>오른편</b></p>
+        </div>
+        <div class="col gold fr">
+          <h3>내 보좌</h3>
+          <p class="vq">"주 하나님께서 그의 조상 <span class="hl">다윗의 보좌를</span> 그에게 주시리라"</p>
+          <p>예루살렘, 다윗이 앉았던 보좌 — <b>아직 비어 있다</b></p>
+        </div>
+      </div>
+      <aside class="notes">오른편은 영원한 자리가 아니라 기다리는 자리 — 다음 장 시 110:1의 "때까지".</aside>
+    </section>
+
+    <!-- 11. 시 110:1 -->
+    <section class="slide">
+      <p class="vref">시편 110:1 <small>킹제임스 정본역</small></p>
+      <div class="vstack">
+        <div class="vtext ko">
+          <p><sup>1</sup>여호와께서 내 주께 이르시되, 내가 네 원수들을 네 발등상이 되게 하기<span class="hl">까지</span> 너는 내 오른편에 앉으라 하셨도다.</p>
+        </div>
+        <div class="vtext en">
+          <p><sup>1</sup>The LORD said unto my Lord, Sit thou at my right hand, until I make thine enemies thy footstool.</p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <div class="lines">
+        <p class="fr">"<b>…까지</b>." 오른편은 영원한 자리가 아니라 <b>기다리는 자리</b>입니다</p>
+      </div>
+      <aside class="notes">"때까지." 히브리서 10장은 더 분명하다 — 다음 장.</aside>
+    </section>
+
+    <!-- 12. 히 10:12-13 -->
+    <section class="slide">
+      <p class="vref">히브리서 10:12–13 <small>킹제임스 정본역</small></p>
+      <div class="vstack long">
+        <div class="vtext ko">
+          <p><sup>12</sup>오직 이분은 죄를 위하여 한 영원한 제사를 드리시고 하나님 우편에 앉으사, <sup>13</sup>그 후로 자기 원수들이 자기 발등상이 될 때까지 <span class="hl">기다리시느니라</span>.</p>
+        </div>
+        <div class="vtext en">
+          <p><sup>12</sup>But this man, after he had offered one sacrifice for sins for ever, sat down on the right hand of God; <sup>13</sup>From henceforth expecting till his enemies be made his footstool.</p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <div class="lines">
+        <p class="fr">우주의 주인이 지금 <b>기다리고</b> 계십니다 — 무엇을요? <b>자기 보좌, 다윗의 보좌에 앉으실 날</b>을</p>
+      </div>
+      <aside class="notes">이게 억지 해석이 아니라는 증거를 하나 더 — 부활하신 예수님의 40일 강의, 그리고 제자들의 마지막 질문.</aside>
+    </section>
+
+    <!-- 13. [슬라이드 6] 행 1:6 -->
+    <section class="slide">
+      <p class="eyebrow"><span class="n">행 1:3</span>"하나님의 왕국에 관한 일" — 40일 집중 강의 끝의 마지막 질문</p>
+      <p class="vref">사도행전 1:6 <small>킹제임스 정본역</small></p>
+      <div class="vstack">
+        <div class="vtext ko">
+          <p><sup>6</sup>그러므로 그들이 함께 모였을 때 그에게 물어 이르되, "주여, 이 때에 <span class="hl">이스라엘에게 왕국을 다시 회복하여</span> 주시려 하나이까" 하니,</p>
+        </div>
+        <div class="vtext en">
+          <p><sup>6</sup>When they therefore were come together, they asked of him, saying, Lord, wilt thou at this time restore again the kingdom to Israel?</p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <div class="lines">
+        <p class="fr" style="color:var(--dim)">천년왕국이 없는 거라면, 주님은 이렇게 답하셨어야 합니다 — "얘들아, 40일 동안 뭘 들은 거냐. 그런 나라는 없다. 다 영적인 거다"</p>
+      </div>
+      <aside class="notes">40일 집중 강의(행 1:3)가 끝나고 제자들이 마지막으로 한 질문. 청중을 보며 — 문자 그대로의 나라가 회복될 일이 없다면 주님은 고치셨어야 한다. 그런데 주님의 답은…</aside>
+    </section>
+
+    <!-- 14. 행 1:7 -->
+    <section class="slide">
+      <p class="vref">사도행전 1:7 <small>킹제임스 정본역</small></p>
+      <div class="vstack">
+        <div class="vtext ko xl">
+          <p><sup>7</sup>그가 그들에게 이르시되, "<span class="hl">때와 시기</span>는 아버지께서 자기 권한에 두셨으니 너희가 알 바 아니니라.</p>
+        </div>
+        <div class="vtext en">
+          <p><sup>7</sup>And he said unto them, It is not for you to know the times or the seasons, which the Father hath put in his own power.</p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <div class="lines">
+        <p class="fr">주님은 <b>나라를 부정하지 않으셨습니다</b>. <b>때만</b> 바로잡으셨습니다 — "그 나라, 온다. 다만 언제인지는 너희가 알 바 아니다"</p>
+      </div>
+      <aside class="notes">40일 강의를 들은 제자들은 그 나라를 문자 그대로 기대했고, 선생님은 그 기대를 고치지 않으셨다.</aside>
+    </section>
+
+    <!-- 15. [슬라이드 7] 첫 번째 이유 -->
+    <section class="slide center">
+      <p class="eyebrow">첫 번째 이유</p>
+      <h2 class="serif">하나님은 자기 약속에<br/><em>빚을 지셨다</em></h2>
+      <div class="chips">
+        <span class="chip fr">아브라함에게 — 땅</span>
+        <span class="chip fr">다윗에게 — 보좌</span>
+        <span class="chip fr">마리아에게 — 그 보좌를 아들에게</span>
+      </div>
+      <div class="lines">
+        <p class="fr">그 보좌는 아직 비어 있습니다. 하나님이 거짓말쟁이가 되지 않으시려면, 그 보좌에 그분이 앉으시는 시간이 <b>역사 안에</b> 있어야 합니다</p>
+        <p class="fr serif" style="color:var(--gold)">그 시간의 이름이 천 년입니다</p>
+      </div>
+      <aside class="notes">(한 박자 쉬고) "약속을 지키시는 건 알겠는데, 꼭 <b>이 땅</b>이어야 합니까? 새 하늘 새 땅에서 지키시면 안 됩니까?" 좋은 질문 — 그게 두 번째 이유.</aside>
+    </section>
+
+    <!-- 16. 예비 — 아브라함의 땅 -->
+    <section class="slide">
+      <p class="eyebrow"><span class="n">예비 단락</span>시간이 남을 때 — 아브라함의 땅</p>
+      <p class="vref">창세기 15:18 <small>킹제임스 정본역</small></p>
+      <div class="vstack">
+        <div class="vtext ko">
+          <p><sup>18</sup>그날에 여호와께서 아브람과 더불어 언약을 세워 이르시되 "내가 이 땅을 <span class="hl">애굽 강에서부터 큰 강 곧 유브라데 강까지</span> 네 자손에게 주노니,</p>
+        </div>
+        <div class="vtext en">
+          <p><sup>18</sup>In the same day the LORD made a covenant with Abram, saying, Unto thy seed have I given this land, from the river of Egypt unto the great river, the river Euphrates:</p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <div class="lines">
+        <p class="fr">이 경계를 다 차지한 때가 있었습니까? 솔로몬 때 가장 넓었지만 <b>유프라테스까지 소유한 적은 없습니다</b> — 아브라함을 재우고 하나님 혼자 쪼갠 짐승 사이를 지나가신 <b>조건 없는 언약</b>(창 15:12, 17)</p>
+      </div>
+      <aside class="notes">예비 단락(약 1분) — 시간이 남으면 첫 번째 이유 직전에 넣는다. 경계가 아직 채워지지 않았다면, 채워질 시간이 역사 안에 남아 있어야 한다.</aside>
+    </section>
+
+    <!-- 17. 디바이더 ② -->
+    <section class="slide center">
+      <p class="eyebrow">아하 ② · 9:00–15:00</p>
+      <h2 class="serif big">거절당한 <em>바로 그 땅</em></h2>
+      <div class="chips">
+        <span class="chip done">① 가브리엘의 한 문장</span>
+        <span class="chip now">② 거절당한 바로 그 땅</span>
+        <span class="chip">③ 천 년 뒤의 반란</span>
+        <span class="chip">마무리</span>
+      </div>
+      <aside class="notes">예루살렘에 들어가시기 직전의 비유 — 누가복음 19장 열 므나 비유. 첫 줄이 천년왕국의 구조 전체.</aside>
+    </section>
+
+    <!-- 18. [슬라이드 8] 눅 19:12, 14 -->
+    <section class="slide">
+      <p class="vref">누가복음 19:12, 14 <small>킹제임스 정본역</small></p>
+      <div class="vstack long">
+        <div class="vtext ko">
+          <p><sup>12</sup>그러므로 이르시되, "어떤 귀인이 <span class="hl">왕위를 받아 돌아오려고</span> 먼 나라로 떠나며, … <sup>14</sup>그러나 그의 백성이 그를 미워하여 사자를 그 뒤로 보내어 이르되, '<span class="hl">우리는 이 사람이 우리를 다스리는 것을 원치 아니하노라</span>' 하였더라.</p>
+        </div>
+        <div class="vtext en">
+          <p><sup>12</sup>A certain nobleman went into a far country to receive for himself a kingdom, and to return. … <sup>14</sup>But his citizens hated him, and sent a message after him, saying, We will not have this man to reign over us.</p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <div class="lines">
+        <p class="fr">귀인은 먼 나라로 갔다가 <b>왕국을 받아 돌아옵니다</b>. 그 사이에 백성이 선언합니다 — 그리고 며칠 뒤, 그 선언이 <b>실제로 예루살렘에서</b> 터져 나옵니다</p>
+      </div>
+      <aside class="notes">이 비유를 하시고 며칠 뒤 그 선언이 실제로 예루살렘에서 터져 나온다 — 가시관, 그리고 "가이사 외에는".</aside>
+    </section>
+
+    <!-- 19. [슬라이드 9] 요 19:15 -->
+    <section class="slide">
+      <p class="eyebrow"><span class="n">마 27:29</span>가시로 관을 엮어 그 머리에 씌우고 … "유대인의 왕이여, 평안할지어다" — 조롱의 왕관</p>
+      <p class="vref">요한복음 19:15 <small>킹제임스 정본역</small></p>
+      <div class="vstack long">
+        <div class="vtext ko">
+          <p><sup>15</sup>그들이 소리쳐 이르되 "없이하소서, 없이하소서, 그를 십자가에 못 박으소서" 하거늘, 빌라도가 그들에게 이르되 "내가 너희의 왕을 십자가에 못 박으랴" 하니, 대제사장들이 대답하되 "<span class="hl">가이사 외에는 우리에게 왕이 없나이다</span>" 하더라.</p>
+        </div>
+        <div class="vtext en">
+          <p><sup>15</sup>But they cried out, Away with him, away with him, crucify him. Pilate saith unto them, Shall I crucify your King? The chief priests answered, We have no king but Caesar.</p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <aside class="notes">(낮게) 어디서 거절당하셨는가 — 예루살렘. 어느 땅에서 가시관을 쓰셨는가 — 이 땅. 어느 산에서 하늘로 올라가셨는가 — 올리브 산(행 1:12). 그때 천사가 말했다…</aside>
+    </section>
+
+    <!-- 20. 행 1:11 -->
+    <section class="slide">
+      <p class="vref">사도행전 1:11–12 <small>킹제임스 정본역</small></p>
+      <div class="vstack long">
+        <div class="vtext ko">
+          <p><sup>11</sup>"갈릴리 사람들아, 어찌하여 서서 하늘을 우러러보느냐? 너희를 떠나 하늘로 올려지신 이 예수는 너희가 하늘로 가심을 본 <span class="hl">그대로</span> 다시 오시리라" 하니라. <sup>12</sup>이에 그들이 <span class="hl">감람원이라 하는 산</span>에서 예루살렘으로 돌아오니, …</p>
+        </div>
+        <div class="vtext en">
+          <p><sup>11</sup>… this same Jesus, which is taken up from you into heaven, shall so come in like manner as ye have seen him go into heaven. <sup>12</sup>Then returned they unto Jerusalem from the mount called Olivet, …</p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <div class="lines">
+        <p class="fr">"<b>그대로</b>." 그리고 스가랴는 그 "그대로"의 <b>좌표</b>를 찍어 놓았습니다</p>
+      </div>
+      <aside class="notes">떠나신 산은 감람산. 스가랴 14:4로.</aside>
+    </section>
+
+    <!-- 21. 슥 14:4 -->
+    <section class="slide">
+      <p class="vref">스가랴 14:4 <small>킹제임스 정본역</small></p>
+      <div class="vstack long">
+        <div class="vtext ko">
+          <p><sup>4</sup>그 날에 그의 발이 <span class="hl">예루살렘 동편 앞에 있는 감람산 위에</span> 서실 것이요, 감람산이 그 한가운데서 동서로 갈라져 심히 큰 골짜기가 되리니, 산의 절반은 북으로 옮기고 절반은 남으로 옮기리라.</p>
+        </div>
+        <div class="vtext en">
+          <p><sup>4</sup>And his feet shall stand in that day upon the mount of Olives, which is before Jerusalem on the east, and the mount of Olives shall cleave in the midst thereof toward the east and toward the west, …</p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <aside class="notes">떠나신 그 산으로, 거절당한 그 도시로, 가시관을 쓰신 그 땅으로 돌아오신다.</aside>
+    </section>
+
+    <!-- 22. [슬라이드 10] 같은 땅, 같은 도시, 같은 산 -->
+    <section class="slide center">
+      <p class="eyebrow">왜 하늘이 아니라 땅인가</p>
+      <h2 class="serif">같은 땅, 같은 도시, <em>같은 산</em></h2>
+      <div class="chips">
+        <span class="chip fr">가시관을 쓰신 땅</span>
+        <span class="chip fr">"가이사 외에는" — 거절당한 도시</span>
+        <span class="chip fr">떠나신 감람산</span>
+      </div>
+      <div class="lines">
+        <p class="fr"><b>명예 회복은 모욕당한 자리에서</b> 이루어져야 합니다 — 쫓아낸 그 회사가 그를 다시 모셔 와서 그 자리에 앉혀야 회복입니다</p>
+        <p class="fr">"가이사 외에는 왕이 없다"고 외친 그 도시가 "<b>호산나, 주의 이름으로 오시는 왕이여</b>" 하고 그분을 왕으로 맞아야 합니다</p>
+      </div>
+      <aside class="notes">회사에서 억울하게 쫓겨난 사람 — 다른 회사에서 성공했다고 명예가 회복되는가? 아니다. 그래서 하늘이 아니라 땅, 그중에서도 예루살렘. 그리고 이 땅 자체가 그날을 기다리고 있다.</aside>
+    </section>
+
+    <!-- 23. [슬라이드 11] 롬 8:19, 22 -->
+    <section class="slide">
+      <p class="vref">로마서 8:19, 22 <small>킹제임스 정본역</small></p>
+      <div class="vstack long">
+        <div class="vtext ko">
+          <p><sup>19</sup>피조물은 하나님의 아들들이 드러나기를 <span class="hl">목을 빼고 간절히 기다리나니</span>, … <sup>22</sup>우리가 아노니, 모든 피조물이 이제까지 <span class="hl">함께 탄식하며 함께 진통을 겪고</span> 있느니라.</p>
+        </div>
+        <div class="vtext en">
+          <p><sup>19</sup>For the earnest expectation of the creature waiteth for the manifestation of the sons of God. … <sup>22</sup>For we know that the whole creation groaneth and travaileth in pain together until now.</p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <div class="lines">
+        <p class="fr">아담이 범죄했을 때 저주를 받은 것은 사람만이 아니었습니다 — "<b>땅이 너로 말미암아 저주를 받으리니</b>"(창 3:17). 구속도 사람만 받고 끝나면 안 됩니다</p>
+      </div>
+      <aside class="notes">땅도 회복되어야 한다. 그래서 이사야는 그 나라를 이렇게 그린다 — 사 11:6.</aside>
+    </section>
+
+    <!-- 24. 사 11:6 -->
+    <section class="slide">
+      <p class="vref">이사야 11:6 <small>킹제임스 정본역</small></p>
+      <div class="vstack long">
+        <div class="vtext ko">
+          <p><sup>6</sup>그때에 <span class="hl">이리가 어린양과 함께 거하며</span> 표범이 새끼 염소와 함께 누우며, 송아지와 어린 사자와 살진 짐승이 함께 있으되 <span class="hl">어린아이가 그것들을 이끌리라</span>.</p>
+        </div>
+        <div class="vtext en">
+          <p><sup>6</sup>The wolf also shall dwell with the lamb, and the leopard shall lie down with the kid; and the calf and the young lion and the fatling together; and a little child shall lead them.</p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <aside class="notes">(여기서 속도를 조금 높여) 그런데 이사야 65장에 아주 이상한 구절이 하나 있다 — 천년왕국과 영원한 천국이 다른 시간이라는 결정적 증거.</aside>
+    </section>
+
+    <!-- 25. 사 65:20 -->
+    <section class="slide">
+      <p class="vref">이사야 65:20 <small>킹제임스 정본역</small></p>
+      <div class="vstack long">
+        <div class="vtext ko">
+          <p><sup>20</sup>거기에는 날 수가 차지 못한 어린아이나 수한을 채우지 못한 노인이 다시는 없으리니, <span class="hl">백 세에 죽는 자는 아이로 여겨질 것이요</span>, 백 세에 이르지 못하는 죄인은 저주받은 자로 여겨지리라.</p>
+        </div>
+        <div class="vtext en">
+          <p><sup>20</sup>There shall be no more thence an infant of days, nor an old man that hath not filled his days: for the child shall die an hundred years old; but the sinner being an hundred years old shall be accursed.</p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <aside class="notes">새 하늘 새 땅에는 죽음이 없다(계 21:4). 그런데 이사야가 그린 그 평화의 나라에는 "백 세에 죽는" 사람이 있다 — 다음 장 비교.</aside>
+    </section>
+
+    <!-- 26. 죽음이 없는 영원 vs 죽음이 드문 천 년 -->
+    <section class="slide">
+      <p class="eyebrow">성경은 이 둘을 섞지 않습니다</p>
+      <h2 class="serif">죽음이 <em>없는</em> 영원, 죽음이 <em>드문</em> 천 년</h2>
+      <div class="cols">
+        <div class="col fr">
+          <h3>새 하늘 새 땅 — 영원</h3>
+          <p class="vq">"<span class="hl">다시는 사망이 없고</span> 슬픔이나 곡이나 아픔도 다시 있지 아니하리니"</p>
+          <p class="vr">— 요한계시록 21:4</p>
+        </div>
+        <div class="col gold fr">
+          <h3>천년왕국 — 천 년</h3>
+          <p class="vq">"<span class="hl">백 세에 죽는 자는 아이로</span> 여겨질 것이요"</p>
+          <p class="vr">— 이사야 65:20</p>
+        </div>
+      </div>
+      <div class="lines">
+        <p class="fr">죽음이 아직 있습니다. 다만 백 세에 죽으면 "아이"라고 부를 만큼 수명이 길어진 나라 — <b>다른 시간</b>입니다</p>
+      </div>
+      <aside class="notes">천년왕국과 영원한 천국이 다른 시간이라는 결정적 증거.</aside>
+    </section>
+
+    <!-- 27. [슬라이드 12] 두 번째 이유 -->
+    <section class="slide center">
+      <p class="eyebrow">두 번째 이유</p>
+      <h2 class="serif">거절당한 바로 그 땅에서의<br/><em>회복</em></h2>
+      <div class="lines">
+        <p class="fr">그분이 거절당한 바로 그 땅에서 <b>왕으로 영접받으시기 위해</b></p>
+        <p class="fr">저주받은 이 땅이, 신음하는 이 피조물이, 그분의 통치 아래 <b>회복되는 것을 역사가 보아야</b> 하기에</p>
+      </div>
+      <aside class="notes">(한 박자) 여기까지 들으시면 대개 이런 그림 — 완벽한 왕, 완벽한 평화, 천 년. 그런데 성경은 그 천 년의 끝에 우리가 상상도 못 한 장면을 하나 기록해 두었다. 세 번째 이유는 거기에.</aside>
+    </section>
+
+    <!-- 28. 디바이더 ③ -->
+    <section class="slide center">
+      <p class="eyebrow">아하 ③ · 15:00–21:00</p>
+      <h2 class="serif big">천 년 뒤의 <em>반란</em></h2>
+      <div class="chips">
+        <span class="chip done">① 가브리엘의 한 문장</span>
+        <span class="chip done">② 거절당한 바로 그 땅</span>
+        <span class="chip now">③ 천 년 뒤의 반란</span>
+        <span class="chip">마무리</span>
+      </div>
+      <aside class="notes">(속도를 늦추고, 한 절씩 또박또박) 요한계시록 20장을 다시 본다. 천 년 동안 사탄은 어디 있는가?</aside>
+    </section>
+
+    <!-- 29. [슬라이드 13] 계 20:2-3 -->
+    <section class="slide">
+      <p class="vref">요한계시록 20:2–3 <small>킹제임스 정본역</small></p>
+      <div class="vstack long">
+        <div class="vtext ko">
+          <p><sup>2</sup>용 곧 옛 뱀이요 마귀요 사탄인 그를 붙잡아 천 년 동안 <span class="hl">결박하여</span>, <sup>3</sup>무저갱에 <span class="hl">던져</span> <span class="hl">가두고</span> 그 위에 <span class="hl">인봉하니</span>, 이는 천 년이 차기까지 다시는 만국을 미혹하지 못하게 하려 함이라. 그 후에는 반드시 잠깐 놓이리라.</p>
+        </div>
+        <div class="vtext en">
+          <p><sup>2</sup>And he laid hold on the dragon, that old serpent, which is the Devil, and Satan, and bound him a thousand years, <sup>3</sup>And cast him into the bottomless pit, and shut him up, and set a seal upon him, that he should deceive the nations no more, till the thousand years should be fulfilled: and after that he must be loosed a little season.</p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <div class="lines">
+        <p class="fr">결박 · 던져 넣음 · 가둠 · 인봉 — <b>네 겹</b>. 천 년 동안 유혹하는 자가 없습니다</p>
+      </div>
+      <aside class="notes">왕은 눈에 보인다. 예루살렘에 가면 뵐 수 있다. 전쟁이 없고, 이리가 어린양과 눕고, 백 세에 죽으면 아이라고 한다. 인류가 꿈꾸던 모든 조건이 갖춰진 세상 — 그 세상에서 천 년을 산 사람들이 있다. 그리고 7절.</aside>
+    </section>
+
+    <!-- 30. 계 20:7-9 -->
+    <section class="slide">
+      <p class="vref">요한계시록 20:7–9 <small>킹제임스 정본역</small></p>
+      <div class="vstack long">
+        <div class="vtext ko">
+          <p><sup>7</sup><span class="hl">천 년이 차매</span> 사탄이 그 옥에서 놓여, <sup>8</sup>나와서 땅의 사방 백성 곧 곡과 마곡을 미혹하고 그들을 모아 싸움을 붙이리니, 그 수가 <span class="hl">바다의 모래 같더라</span>. <sup>9</sup>그들이 지면에 널리 올라와 <span class="hl">성도들의 진과 사랑하시는 성을 두르매</span>, 하늘에서 하나님께로부터 불이 내려와 그들을 삼키더라.</p>
+        </div>
+        <div class="vtext en">
+          <p><sup>7</sup>And when the thousand years are expired, Satan shall be loosed out of his prison, <sup>8</sup>And shall go out to deceive the nations … the number of whom is as the sand of the sea. <sup>9</sup>And they went up on the breadth of the earth, and compassed the camp of the saints about, and the beloved city: and fire came down from God out of heaven, and devoured them.</p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <aside class="notes">(멈춤) 바다의 모래 같은 수가 반역한다. 천 년 동안 완벽한 왕 아래 살던 사람들이, 사탄이 풀려나자마자 왕을 치러 올라온다.</aside>
+    </section>
+
+    <!-- 31. [슬라이드 14] 왜 허락하셨는가 -->
+    <section class="slide">
+      <p class="eyebrow">"하나님, 왜 풀어 주십니까? 그냥 가둬 두시지"</p>
+      <h2 class="serif">인류는 타락 이후 내내<br/><em>같은 변명</em>을 해 왔습니다</h2>
+      <div class="chips">
+        <span class="chip fr">"환경이 나빴다"</span>
+        <span class="chip fr">"사회가 그렇게 만들었다"</span>
+        <span class="chip fr">"유혹하는 자가 있었다"</span>
+        <span class="chip fr">"좋은 지도자만 있었다면"</span>
+      </div>
+      <div class="lines">
+        <p class="fr">에덴을 보십시오. 완벽한 환경, 하나님이 직접 거니시는 동산 — 거기서 넘어졌습니다. 그러면 사람들은 또 말합니다. <b>"뱀이 있었잖아요"</b></p>
+      </div>
+      <aside class="notes">바로 이 장면이 천년왕국이 존재하는 세 번째 이유. 좋다 — 그래서 하나님은 역사의 마지막에 실험실 하나를 세우신다.</aside>
+    </section>
+
+    <!-- 32. 실험실 -->
+    <section class="slide">
+      <p class="eyebrow">역사의 마지막에 세우신 실험실</p>
+      <h2 class="serif">그 조건에서 천 년을 살아 보라 —<br/>그리고 뱀을 <em>딱 한 번</em> 풀어 주겠다</h2>
+      <table class="tbl">
+        <tr><th>변명</th><th>천년왕국의 조건</th></tr>
+        <tr class="fr"><td>"뱀이 있었다"</td><td><b>뱀을 치우겠다</b> — 천 년 동안 묶어 두겠다</td></tr>
+        <tr class="fr"><td>"지도자가 나빴다"</td><td><b>완벽한 왕</b>이 직접 다스리겠다</td></tr>
+        <tr class="fr"><td>"환경이 나빴다"</td><td><b>땅의 저주</b>를 걷어 내겠다</td></tr>
+        <tr class="fr now"><td>천 년 뒤</td><td><b>결과 — "바다의 모래"</b></td></tr>
+      </table>
+      <aside class="notes">뱀을 치우겠다. 천 년 동안 묶어 두겠다. 완벽한 왕이 직접 다스리겠다. 땅의 저주를 걷어 내겠다. 그 조건에서 천 년을 살아 보라. 그리고 천 년 뒤에 뱀을 딱 한 번 풀어 주겠다. 결과가 "바다의 모래".</aside>
+    </section>
+
+    <!-- 33. [슬라이드 15] 렘 17:9 -->
+    <section class="slide">
+      <p class="vref">예레미야 17:9 <small>킹제임스 정본역</small></p>
+      <div class="vstack">
+        <div class="vtext ko xl">
+          <p><sup>9</sup><span class="hl">마음은 만물보다 거짓되고</span> 심히 부패하였으니, 누가 능히 그것을 알리요.</p>
+        </div>
+        <div class="vtext en">
+          <p><sup>9</sup>The heart is deceitful above all things, and desperately wicked: who can know it?</p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <div class="lines">
+        <p class="fr">환경 탓, 사회 탓, 사탄 탓을 다 걷어 낸 뒤에도 남는 것이 하나 있습니다 — <b>사람의 마음</b></p>
+        <p class="fr">천 년이 끝나면 곧바로 <b>크고 흰 보좌 심판</b>(계 20:11). 그 법정에서 누구도 "환경 때문이었다"고 말할 수 없습니다 — 하나님은 <b>천 년이라는 증거물</b>을 이미 제출하셨기 때문입니다</p>
+      </div>
+      <aside class="notes">거듭나지 않은 마음은 에덴에서도, 천년왕국에서도, 완벽한 왕의 발 앞에서도 반역한다. (가장 천천히, 가장 개인적으로) 이게 우리에게 무슨 뜻인가 — 환경이 바뀌면 내가 바뀔 거라는 생각을 내려놓으라는 뜻. 좋은 교회, 좋은 배우자, 나아진 형편… 그때 제대로 하겠다는 생각을 천년왕국이 반박한다.</aside>
+    </section>
+
+    <!-- 34. 요 3:3 -->
+    <section class="slide">
+      <p class="vref">요한복음 3:3 <small>킹제임스 정본역</small></p>
+      <div class="vstack">
+        <div class="vtext ko xl">
+          <p><sup>3</sup>예수께서 대답하여 이르시되 "진실로 진실로 네게 이르노니, 사람이 <span class="hl">거듭나지 아니하고는</span> 하나님의 왕국을 볼 수 없느니라."</p>
+        </div>
+        <div class="vtext en">
+          <p><sup>3</sup>Jesus answered and said unto him, Verily, verily, I say unto thee, Except a man be born again, he cannot see the kingdom of God.</p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <div class="lines">
+        <p class="fr">"하나님의 왕국"의 조건으로 거신 것은 <b>환경이 아니라 다시 태어남</b>이었습니다 — 천년왕국 끝의 반란은 니고데모에게 하신 이 한마디가 옳았다는 <b>천 년짜리 증명</b>입니다</p>
+      </div>
+      <aside class="notes">완벽한 환경에서 천 년을 살아도 마음이 새로워지지 않으면 똑같다.</aside>
+    </section>
+
+    <!-- 35. [슬라이드 16] 세 번째 이유 -->
+    <section class="slide center">
+      <p class="eyebrow">세 번째 이유</p>
+      <h2 class="serif">인류 최후의 <em>증거물</em></h2>
+      <div class="lines">
+        <p class="fr">"환경은 사람을 바꾸지 못한다, <b>오직 거듭남뿐이다</b>" — 온 역사 앞에 증명하기 위해</p>
+        <p class="fr">아직 거듭남을 확신하지 못하시는 분이 계시다면, 천년왕국을 기다리기 전에 먼저 하실 일 — 환경을 바꾸는 게 아니라 <b>마음을 새로 받는 것</b></p>
+        <p class="fr serif" style="color:var(--gold)">그건 천 년이 걸리지 않습니다. 오늘, 이 자리에서, 십자가 앞에 무릎 꿇는 순간 됩니다</p>
+      </div>
+      <aside class="notes">초청. 이어서 [진행] 카드 배포 — "하나 챙겨 가시라고 만들었습니다" 정도로만, 설명은 하지 않는다. (카드는 시작할 때 주면 결론을 미리 읽는다.)</aside>
+    </section>
+
+    <!-- 36. 예비 — 천년왕국의 복음 전파 -->
+    <section class="slide">
+      <p class="eyebrow"><span class="n">예비 단락</span>시간이 남을 때 — 천년왕국에도 복음이 전해집니다</p>
+      <div class="cols">
+        <div class="col fr">
+          <h3>이사야 2:3</h3>
+          <p class="vq">"많은 백성이 나아가 이르되, 오라, 우리가 여호와의 산에 오르며 … <span class="hl">그가 자기 길로 우리를 가르치시리니</span>"</p>
+        </div>
+        <div class="col gold fr">
+          <h3>스가랴 8:23</h3>
+          <p class="vq">"각 방언의 사람 <span class="hl">열 명이 유다 사람 하나의 옷자락을 붙잡고</span> … 하나님이 너희와 함께하심을 우리가 들었나니, 우리도 너희와 함께 가려 하노라"</p>
+        </div>
+      </div>
+      <div class="lines">
+        <p class="fr">왕이 눈앞에 계신 시대에도 사람은 <b>들어야 믿고, 믿어야 거듭납니다</b> — 지금 우리가 하는 일과 같은 일</p>
+      </div>
+      <aside class="notes">예비 단락(약 1분) — 세 번째 이유 뒤에 넣는다.</aside>
+    </section>
+
+    <!-- 37. 디바이더 마무리 -->
+    <section class="slide center">
+      <p class="eyebrow">클로징 · 21:00–25:00</p>
+      <h2 class="serif big">그 천 년을 <em>누가</em> 다스리는가</h2>
+      <div class="chips">
+        <span class="chip done">① 약속 때문에</span>
+        <span class="chip done">② 명예 회복 때문에</span>
+        <span class="chip done">③ 증명 때문에</span>
+        <span class="chip now">마무리</span>
+      </div>
+      <aside class="notes">세 가지를 보셨다 — 약속, 명예 회복, 증명. 그런데 성경은 그 천 년에 대해 한 가지를 더 말한다. 그 천 년을 누가 다스리느냐.</aside>
+    </section>
+
+    <!-- 38. [슬라이드 17] 계 20:4, 6 -->
+    <section class="slide">
+      <p class="vref">요한계시록 20:4, 6 <small>킹제임스 정본역</small></p>
+      <div class="vstack long">
+        <div class="vtext ko">
+          <p><sup>4</sup>… 그 표를 이마와 손에 받지 아니한 자들이 살아서 <span class="hl">그리스도와 더불어 천 년 동안 왕 노릇 하더라</span>. <sup>6</sup>이 첫째 부활에 참여하는 자는 복이 있고 거룩하도다. … 도리어 그들이 하나님과 그리스도의 제사장이 되어 천 년 동안 <span class="hl">그와 더불어</span> 왕 노릇 하리라.</p>
+        </div>
+        <div class="vtext en">
+          <p><sup>4</sup>… and they lived and reigned with Christ a thousand years. <sup>6</sup>Blessed and holy is he that hath part in the first resurrection: … but they shall be priests of God and of Christ, and shall reign with him a thousand years.</p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <div class="lines">
+        <p class="fr">"<b>더불어</b>." 그분 혼자 다스리시지 않습니다 — "우리가 참으면 또한 <b>함께 왕 노릇</b> 할 것이요"(딤후 2:12) · "<b>성도가 세상을 판단할 것</b>을 너희가 알지 못하느냐"(고전 6:2)</p>
+      </div>
+      <aside class="notes">아까 그 열 므나 비유로 돌아간다 — 귀인이 왕국을 받아 돌아왔다. 그리고 종들을 부른다.</aside>
+    </section>
+
+    <!-- 39. [슬라이드 18] 눅 19:17 -->
+    <section class="slide">
+      <p class="vref">누가복음 19:17 <small>킹제임스 정본역</small></p>
+      <div class="vstack">
+        <div class="vtext ko">
+          <p><sup>17</sup>그가 그에게 이르되, '잘하였도다, 착한 종아. 네가 <span class="hl">지극히 작은 일에 충성</span>하였으니 <span class="hl">열 고을을 다스리는 권세</span>를 가지라' 하니라.</p>
+        </div>
+        <div class="vtext en">
+          <p><sup>17</sup>And he said unto him, Well, thou good servant: because thou hast been faithful in a very little, have thou authority over ten cities.</p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <div class="lines">
+        <p class="fr">천년왕국에서 성도에게 맡겨지는 것은 구름 위의 하프가 아니라 <b>고을</b>입니다 — 실제 땅, 실제 사람들, 실제 행정</p>
+        <p class="fr">그 고을을 몇 개 맡느냐를 정하는 기준 — 큰 일이 아닙니다. <b>"지극히 작은 일에 충성하였으니"</b></p>
+      </div>
+      <aside class="notes">(청중을 한 사람씩 보며) 여러분의 이번 주 월요일이 천년왕국과 연결되어 있다. 아무도 안 보는 데서 지킨 정직, 교회에서 맡은 작은 섬김, 가정에서의 인내 — 그게 천 년의 직책을 정한다. 구원은 은혜로 이미 받았다, 흔들리지 않는다. 그런데 그 나라에서의 자리는 지금 쌓고 있는 것.</aside>
+    </section>
+
+    <!-- 40. 참여 2 -->
+    <section class="slide">
+      <p class="eyebrow">참여 ② · 옆 분과 30초</p>
+      <h2 class="serif">천년왕국에서 내가 맡고 싶은 <em>고을</em>은?</h2>
+      <div class="qwrap">
+        <div class="qcard xl fr"><p class="qn">가볍게, 웃으며</p><p>진지하게 말고, 가볍게요. <b>서울</b>이어도 되고, <b>고향</b>이어도 되고, <b>예루살렘 바로 옆 동네</b>여도 됩니다.</p></div>
+      </div>
+      <aside class="notes">30초~1분. 두세 분의 답을 큰 소리로 받아 웃음으로 마무리한다. 시간이 모자라면 30초로 줄인다.</aside>
+    </section>
+
+    <!-- 41. [슬라이드 19] 요이 1:12 -->
+    <section class="slide">
+      <p class="vref">요한이서 1:12 <small>킹제임스 정본역</small></p>
+      <div class="vstack long">
+        <div class="vtext ko">
+          <p><sup>12</sup>내가 너희에게 쓸 것이 많으나 종이와 먹으로 쓰기를 원치 아니하고, 도리어 너희에게 나아가 <span class="hl">얼굴을 마주하여 말하기를</span> 바라노니, 이는 <span class="hl">우리의 기쁨을 충만하게</span> 하려 함이라.</p>
+        </div>
+        <div class="vtext en">
+          <p><sup>12</sup>Having many things to write unto you, I would not write with paper and ink: but I trust to come unto you, and speak face to face, that our joy may be full.</p>
+          <cite>— KJV</cite>
+        </div>
+      </div>
+      <div class="lines">
+        <p class="fr">오늘 처음 뵌 이 얼굴들이, 성경대로라면, <b>천 년을 함께 다스릴 얼굴들</b>입니다</p>
+        <p class="fr">오늘 이 모임은 잠깐의 교제가 아니라 — <b>천 년짜리 동역의 첫 상견례</b>입니다</p>
+      </div>
+      <aside class="notes">(진심을 담아, 천천히) 지금은 화면 너머로 댓글을 주고받는 사이지만, 그날에는 같은 왕 아래서 같은 나라를 섬기는 동역자.</aside>
+    </section>
+
+    <!-- 42. [슬라이드 20] 다음 질문 -->
+    <section class="slide center">
+      <p class="eyebrow">정리는 하지 않겠습니다 — 손에 든 카드에 다 있습니다 · 대신 질문 하나</p>
+      <h2 class="serif">십자가가 완전한 제사였다면,<br/>왜 천년왕국에 <em>제사가 다시</em> 있습니까?</h2>
+      <div class="lines">
+        <p class="fr">에스겔 40–48장 — 그 천년왕국에 <b>성전이 다시 서고, 제사가 다시 드려집니다</b>. 짐승의 피가 다시 흐릅니다</p>
+        <p class="fr">이 질문, 지금은 답 안 드리겠습니다. 집에 가셔서 <b>에스겔 40장</b>을 한 번만 열어 보십시오 — 다음에 뵐 때, 그 이야기로 시작하겠습니다</p>
+      </div>
+      <aside class="notes">(한 박자) 마무리는 요약이 아니라 다음 모임의 질문으로. Q&amp;A에서 제사 질문이 나오면 — 다음 모임 주제라고 미룬다. 꼭 답해야 하면: 주의 만찬이 십자가를 뒤돌아보는 기념이듯, 천년왕국의 제사는 십자가를 뒤돌아보는 기념 제사다. 전체 논의는 다음에.</aside>
+    </section>
+
+    <!-- 43. 엔딩 -->
+    <section class="slide center">
+      <h2 class="serif">약속 때문에, 명예 회복 때문에, 증명 때문에 —<br/>그리고 <em>우리가 함께</em> 다스리기 때문에</h2>
+      <div class="lines">
+        <p class="fr serif" style="color:var(--gold); font-size:clamp(18px,3.4vmin,34px)">그 나라에서 만나요</p>
+        <p class="fr" style="color:var(--dim); font-size:clamp(13px,2.2vmin,22px)">감사합니다 · 이어서 질문과 답</p>
+      </div>
+      <aside class="notes">감사합니다. 별도 Q&amp;A로. 아래 부록 장은 질문이 나올 때만 띄운다.</aside>
+    </section>
+
+    <!-- 44. 부록 Q1 -->
+    <section class="slide">
+      <p class="eyebrow">부록 · Q&amp;A 대비 ①</p>
+      <h2 class="serif">"천 년은 <em>상징</em> 아닙니까?"</h2>
+      <div class="lines">
+        <p class="fr">계시록 20장은 같은 단락에서 <b>사탄의 결박 · 성도의 부활 · 반란 · 흰 보좌 심판</b>을 사건으로 기록합니다. 그 사이에 놓인 "천 년"만 상징이라면 나머지도 상징이어야 합니다</p>
+        <p class="fr">요한은 상징을 쓸 때 "<b>~같은</b>"이라고 표시합니다(계 1:14; 4:3). 20장의 "천 년"에는 그 표시가 없습니다</p>
+        <p class="fr">하나의 숫자를 일곱 절에 여섯 번 반복하는 것은 <b>상징의 문법이 아니라 강조의 문법</b>입니다</p>
+      </div>
+      <aside class="notes">무천년설 질문에 대한 답. 세 줄 — 사건 목록 안의 숫자, "~같은" 표시 없음, 반복은 강조.</aside>
+    </section>
+
+    <!-- 45. 부록 Q2 -->
+    <section class="slide">
+      <p class="eyebrow">부록 · Q&amp;A 대비 ②</p>
+      <h2 class="serif">"부활의 몸인데, 천년왕국에서 어떻게 <em>결혼하고 아이를</em> 낳습니까?"</h2>
+      <div class="cols">
+        <div class="col gold fr">
+          <h3>부활의 몸으로 통치하는 성도</h3>
+          <p>계 20:4–6 — 첫째 부활에 참여한 자들. 결혼·출산 없음</p>
+        </div>
+        <div class="col fr">
+          <h3>육체로 살아남아 들어간 사람들</h3>
+          <p>마 25:34 · 슥 14:16 — 7년 환난을 육체로 통과해 그 나라에 들어간 사람들. 결혼하고 출산하며(사 65:20–23), 천 년 뒤 반란에 가담하는 것은 <b>그들의 후손 중 거듭나지 않은 자들</b></p>
+        </div>
+      </div>
+      <div class="lines">
+        <p class="fr">그래서 천년왕국에도 <b>복음 전파</b>가 있습니다(사 2:3; 슥 8:23)</p>
+      </div>
+      <aside class="notes">거주자는 두 부류. 반란군은 두 번째 부류의 후손 중 거듭나지 않은 자들.</aside>
+    </section>
+
+    <div id="notes"><p class="nTitle">발표자 메모</p><div class="nBody"></div></div>
+    <div id="blackout"></div>
+  </div>
+
+  <script>
+    /* ===== 인증 — admin.html 과 동일한 패턴(토큰을 서버로 검증, 세션 키 공유) ===== */
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType:'implicit', autoRefreshToken:false, persistSession:false, detectSessionFromUrl:false, lock: async (_n,_t,fn)=>await fn() } });
+
+    function jwtPayload(tok){
+      let s=tok.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'); while(s.length%4) s+='=';
+      const json=decodeURIComponent(atob(s).split('').map(c=>'%'+('00'+c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+      return JSON.parse(json);
+    }
+    (function handleOAuthRedirect(){
+      try{
+        if(location.hash && location.hash.indexOf('access_token=')>=0){
+          const p=new URLSearchParams(location.hash.slice(1));
+          const at=p.get('access_token'), rt=p.get('refresh_token'), ei=Number(p.get('expires_in')||3600);
+          if(at){
+            const payload=jwtPayload(at);
+            const user={ id:payload.sub, email:payload.email, role:payload.role, user_metadata:payload.user_metadata||{} };
+            localStorage.setItem('bibly-admin-auth', JSON.stringify({ access_token:at, token_type:'bearer', expires_in:ei, refresh_token:rt, expires_at:(payload.exp||Math.floor(Date.now()/1000)+ei), user }));
+            history.replaceState(null,'',location.pathname);
+          }
+        }
+      }catch(e){}
+    })();
+
+    function readStored(){
+      try{
+        const raw=localStorage.getItem('bibly-admin-auth');
+        if(raw){ const v=JSON.parse(raw); if(v&&v.user){ if(v.expires_at&&v.expires_at*1000<Date.now()){ localStorage.removeItem('bibly-admin-auth'); } else { return v; } } }
+        for(const k of Object.keys(localStorage)){ if(!/auth-token/.test(k)) continue; const v=JSON.parse(localStorage.getItem(k)); const s=(v&&v.user)?v:(v&&v.currentSession)?v.currentSession:null; if(s&&s.user){ if(s.expires_at&&s.expires_at*1000<Date.now()) return null; return s; } }
+      }catch(e){} return null;
+    }
+    async function verifySession(session){
+      const tok = session && session.access_token;
+      if(!tok) return null;
+      const ctrl=new AbortController(); const to=setTimeout(()=>ctrl.abort(), 8000);
+      try{
+        const res = await fetch(SUPABASE_URL+'/auth/v1/user', { signal:ctrl.signal, headers:{ apikey:SUPABASE_ANON, Authorization:'Bearer '+tok } });
+        clearTimeout(to);
+        if(!res.ok) return null;
+        const u = await res.json();
+        return (u && u.id) ? u : null;
+      }catch(e){ clearTimeout(to); return null; }
+    }
+    async function googleLogin(){
+      try{ await sb.auth.signInWithOAuth({ provider:'google', options:{ redirectTo: location.origin+location.pathname } }); }catch(e){}
+    }
+    async function emailLogin(){
+      const email=document.getElementById('ge').value.trim(), pw=document.getElementById('gp').value;
+      const m=document.getElementById('gateErr'); m.textContent='';
+      if(!email||!pw){ m.textContent='이메일과 비밀번호를 입력하세요.'; return; }
+      m.textContent='로그인 중…';
+      const ctrl=new AbortController(); const to=setTimeout(()=>ctrl.abort(),8000);
+      try{
+        const res=await fetch(SUPABASE_URL+'/auth/v1/token?grant_type=password',{ method:'POST', signal:ctrl.signal, headers:{ apikey:SUPABASE_ANON,'Content-Type':'application/json' }, body:JSON.stringify({email,password:pw}) });
+        clearTimeout(to);
+        const d=await res.json();
+        if(d.error||!d.access_token){ m.textContent='로그인 실패: '+(d.error_description||d.msg||d.error||'알 수 없는 오류'); return; }
+        localStorage.setItem('bibly-admin-auth', JSON.stringify({ access_token:d.access_token, token_type:'bearer', expires_in:d.expires_in, refresh_token:d.refresh_token, expires_at:Math.floor(Date.now()/1000)+d.expires_in, user:d.user }));
+        location.reload();
+      }catch(e){ clearTimeout(to); m.textContent='네트워크 오류. 다시 시도해 주세요.'; }
+    }
+    async function applyAuth(){
+      const session = readStored();
+      const gm=document.querySelector('.gateCard p');
+      if(gm && session && session.access_token) gm.textContent='발표자 확인 중…';
+      const verified = await verifySession(session);
+      const email = String((verified && verified.email) || '').toLowerCase();
+      if(email && email === String(ADMIN_EMAIL).toLowerCase()){
+        document.getElementById('gate').style.display='none';
+        document.getElementById('deck').classList.add('open');
+        initDeck();
+      } else {
+        if(gm) gm.textContent='발표자 계정으로 로그인하세요.';
+      }
+    }
+
+    /* ===== 슬라이드 엔진 ===== */
+    let S=[], cur=0;
+    function frs(i){ return Array.from(S[i].querySelectorAll('.fr')); }
+    function sync(){
+      S.forEach((s,i)=>s.classList.toggle('on', i===cur));
+      document.getElementById('bar').style.width=(((cur+1)/S.length)*100)+'%';
+      document.getElementById('count').textContent=(cur+1)+' / '+S.length;
+      for(let j=Math.max(0,cur-1); j<=Math.min(S.length-1,cur+3); j++){ S[j].querySelectorAll('img[data-src]').forEach(im=>{ im.src=im.dataset.src; im.removeAttribute('data-src'); }); }
+      const n=S[cur].querySelector('.notes');
+      document.querySelector('#notes .nBody').innerHTML = n ? n.innerHTML : '';
+    }
+    function go(i, revealAll){
+      cur=Math.max(0, Math.min(S.length-1, i));
+      frs(cur).forEach(f=>f.classList.toggle('show', !!revealAll));
+      sync();
+    }
+    function next(){
+      hideHint();
+      const pend=frs(cur).find(f=>!f.classList.contains('show'));
+      if(pend){ pend.classList.add('show'); return; }
+      if(cur<S.length-1) go(cur+1, false);
+    }
+    function prev(){
+      hideHint();
+      const shown=frs(cur).filter(f=>f.classList.contains('show'));
+      if(shown.length){ shown[shown.length-1].classList.remove('show'); return; }
+      if(cur>0) go(cur-1, true);
+    }
+    function hideHint(){ const h=document.getElementById('hint'); if(h) h.classList.add('off'); }
+    function initDeck(){
+      S=Array.from(document.querySelectorAll('.slide'));
+      go(0,false);
+      setTimeout(hideHint, 9000);
+      setInterval(()=>{ const d=new Date(); document.getElementById('clock').textContent=('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2); }, 1000);
+
+      document.addEventListener('keydown', (e)=>{
+        if(/input|textarea/i.test(e.target.tagName)) return;
+        const k=e.key;
+        if(k==='ArrowRight'||k===' '||k==='PageDown'||k==='Enter'){ e.preventDefault(); next(); }
+        else if(k==='ArrowLeft'||k==='PageUp'||k==='Backspace'){ e.preventDefault(); prev(); }
+        else if(k==='Home'){ go(0,false); }
+        else if(k==='End'){ go(S.length-1,true); }
+        else if(k==='f'||k==='F'){ if(document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen().catch(()=>{}); }
+        else if(k==='n'||k==='N'){ document.getElementById('notes').classList.toggle('open'); }
+        else if(k==='b'||k==='B'||k==='.'){ document.getElementById('blackout').classList.toggle('open'); }
+        else if(k==='Escape'){ document.getElementById('blackout').classList.remove('open'); document.getElementById('notes').classList.remove('open'); }
+      });
+      document.getElementById('blackout').addEventListener('click', function(){ this.classList.remove('open'); });
+      document.getElementById('deck').addEventListener('click', (e)=>{
+        if(e.target.closest('#notes') || e.target.closest('#blackout')) return;
+        if(e.clientX < window.innerWidth*0.25) prev(); else next();
+      });
+      let tx=null;
+      document.addEventListener('touchstart', e=>{ tx=e.touches[0].clientX; }, {passive:true});
+      document.addEventListener('touchend', e=>{
+        if(tx===null) return;
+        const dx=e.changedTouches[0].clientX - tx; tx=null;
+        if(Math.abs(dx)>50){ if(dx<0) next(); else prev(); }
+      }, {passive:true});
+    }
+
+    applyAuth();
+  </script>
+</body>
+</html>
