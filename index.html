@@ -2073,6 +2073,8 @@
       get(3).forEach(r=>TK.push({cat:r.type==='feedback'?'건의':'요청',title:strip(r.title)||'(제목 없음)',date:fdate(r.created_at),href:'request.html',t:r.created_at}));
       // 최신순 정렬 + 최대 12개
       TK.sort((a,b)=>String(b.t||'').localeCompare(String(a.t||''))); TK.length=Math.min(TK.length,12);
+      // 앱 테스터 모집 고정 1번 항목 (모집 종료 시 이 줄 삭제)
+      TK.unshift({cat:'모집',title:'바이블 인사이트 앱(안드로이드) 테스터 모집 — 완주 선물 증정',date:'',href:'tester.html',t:''});
       if(TK.length){ $('recentTicker').classList.remove('hidden'); show(); reset();
         const band=$('recentTicker'); band.addEventListener('mouseenter',()=>clearInterval(timer)); band.addEventListener('mouseleave',()=>{ if(playing)reset(); });
       }
