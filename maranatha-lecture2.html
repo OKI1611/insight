@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>십자가 위의 강도는 부활에 참여하는가 · 마라나타 특강 2강 슬라이드</title>
+  <!-- 관리자(발표자) 전용 페이지 — 검색엔진 색인 금지, 어디에도 공개 링크하지 않는다 -->
+  <meta name="robots" content="noindex, nofollow"/>
+  <meta name="theme-color" content="#0b1530"/>
+  <link rel="icon" href="/favicon.ico"/>
+  <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700;900&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
+    const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+    const ADMIN_EMAIL = 'josephoh1611@gmail.com';
+  </script>
+  <style>
+    :root{
+      --bg:#0b1530; --bg2:#13224a; --ink:#f4f7ff; --sub:#9fb3d9; --dim:#67789f;
+      --gold:#ffd76a; --gold-deep:#e8b84a; --line:rgba(255,255,255,.12);
+    }
+    *{box-sizing:border-box; margin:0; padding:0}
+    html,body{height:100%}
+    body{
+      font-family:'Pretendard',system-ui,sans-serif; background:var(--bg); color:var(--ink);
+      overflow:hidden; -webkit-font-smoothing:antialiased;
+      word-break:keep-all; overflow-wrap:break-word;
+    }
+    h2, .lines p, .eyebrow{text-wrap:balance}
+    .serif{font-family:'Noto Serif KR','Pretendard',serif}
+
+    /* ===== 로그인 게이트 ===== */
+    #gate{position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center; padding:20px;
+      background:radial-gradient(1200px 700px at 70% -10%, #1b2c5c 0%, var(--bg) 60%)}
+    .gateCard{width:100%; max-width:360px; background:rgba(255,255,255,.05); border:1px solid var(--line);
+      border-radius:20px; padding:32px 26px; text-align:center; backdrop-filter:blur(8px)}
+    .gateCard h1{font-size:17px; font-weight:800; margin-bottom:4px}
+    .gateCard p{font-size:12.5px; color:var(--sub); margin-bottom:20px}
+    .gateCard input{width:100%; background:rgba(255,255,255,.07); border:1px solid var(--line); border-radius:12px;
+      color:var(--ink); padding:11px 14px; font-size:14px; margin-bottom:8px; outline:none}
+    .gateCard input:focus{border-color:var(--gold)}
+    .btn{width:100%; border:0; border-radius:12px; padding:12px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit}
+    .btnGoogle{background:#fff; color:#1c2440; display:flex; align-items:center; justify-content:center; gap:9px; margin-bottom:14px}
+    .btnMail{background:var(--gold); color:#2a2000}
+    #gateErr{font-size:12px; color:#ff9d9d; min-height:16px; margin-top:8px}
+    .gateHome{display:inline-block; margin-top:10px; font-size:12px; color:var(--dim); text-decoration:none}
+
+    /* ===== 덱 공통 ===== */
+    #deck{position:fixed; inset:0; display:none}
+    #deck.open{display:block}
+    #bar{position:fixed; top:0; left:0; height:4px; background:linear-gradient(90deg,var(--gold),var(--gold-deep));
+      width:0%; z-index:40; transition:width .35s ease}
+    #count{position:fixed; right:18px; bottom:14px; z-index:40; font-size:12px; color:var(--dim); letter-spacing:.06em;
+      font-variant-numeric:tabular-nums}
+    #clock{position:fixed; left:18px; bottom:14px; z-index:40; font-size:12px; color:var(--dim); font-variant-numeric:tabular-nums}
+    #hint{position:fixed; left:50%; bottom:14px; transform:translateX(-50%); z-index:40; font-size:11.5px; color:var(--dim);
+      background:rgba(255,255,255,.05); border:1px solid var(--line); padding:6px 14px; border-radius:999px; white-space:nowrap;
+      transition:opacity .8s}
+    #hint.off{opacity:0; pointer-events:none}
+
+    /* ===== 슬라이드 ===== */
+    .slide{position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center;
+      padding:7vmin 9vmin 10vmin; opacity:0; transform:translateY(14px); transition:opacity .55s ease, transform .55s ease;
+      pointer-events:none; visibility:hidden;
+      background:radial-gradient(1400px 900px at 75% -15%, #192a58 0%, var(--bg) 62%)}
+    .slide.on{opacity:1; transform:none; pointer-events:auto; visibility:visible}
+    .eyebrow{font-size:clamp(13px,2vmin,20px); font-weight:700; letter-spacing:.22em; color:var(--gold);
+      text-transform:uppercase; margin-bottom:2.6vmin}
+    .eyebrow .n{color:var(--dim); margin-right:1em; letter-spacing:.1em}
+    h2{font-size:clamp(28px,7vmin,76px); line-height:1.26; font-weight:900; letter-spacing:-.01em; max-width:22em; text-wrap:balance}
+    h2 em{font-style:normal; color:var(--gold)}
+    .lines{margin-top:4vmin; display:flex; flex-direction:column; gap:2vmin; max-width:36em}
+    .lines p{font-size:clamp(17px,3.2vmin,34px); line-height:1.6; color:var(--sub)}
+    .lines p b{color:var(--ink); font-weight:700}
+    .big{font-size:clamp(34px,8.4vmin,96px) !important; line-height:1.28 !important}
+    .fr{opacity:0; transform:translateY(16px); transition:opacity .45s ease, transform .45s ease}
+    .fr.show{opacity:1; transform:none}
+    .notes{display:none}
+    .center{align-items:center; text-align:center}
+    .center h2{max-width:none}
+    .center .lines{align-items:center}
+    .hl{color:var(--gold); font-weight:700}
+
+    /* 성경 전문 블록 */
+    .vtext{border-left:4px solid var(--gold); padding:1.4vmin 0 1.4vmin 3vmin; max-width:40em; margin-top:1vmin}
+    .vtext p{font-family:'Noto Serif KR','Pretendard',serif; font-size:clamp(18px,3.3vmin,38px); line-height:1.8; color:var(--ink)}
+    .vtext.md p{font-size:clamp(16px,2.8vmin,32px)}
+    .vtext cite{display:block; margin-top:1.4vmin; font-size:clamp(12px,1.9vmin,18px); color:var(--gold); font-style:normal; letter-spacing:.08em}
+    .vtext + .vtext{margin-top:3vmin}
+    .vwrap{display:grid; grid-template-columns:1fr 1fr; gap:4.5vmin; align-items:start; max-width:66em; margin-top:1vmin}
+    .vwrap .vtext{margin-top:0; max-width:none}
+    .vwrap .vtext p{font-size:clamp(15px,2.7vmin,32px)}
+
+    /* 칩 */
+    .chips{display:flex; gap:1.8vmin; margin-top:4vmin; flex-wrap:wrap}
+    .chip{border:1.5px solid var(--line); border-radius:999px; padding:1.3vmin 3vmin; font-size:clamp(14px,2.5vmin,26px);
+      color:var(--dim); font-weight:700; letter-spacing:.02em}
+    .chip.now{border-color:var(--gold); color:var(--gold)}
+    .center .chips{justify-content:center}
+
+    /* 표 */
+    table.tbl{margin-top:3.2vmin; border-collapse:collapse; max-width:100%}
+    .tbl th,.tbl td{border:1px solid var(--line); padding:1.3vmin 2vmin; font-size:clamp(13px,2.2vmin,24px);
+      text-align:left; line-height:1.5; vertical-align:top}
+    .tbl th{background:rgba(255,215,106,.10); color:var(--gold); font-weight:800; white-space:nowrap}
+    .tbl td{color:var(--sub)}
+    .tbl td b{color:var(--ink)}
+    .tbl td.gd{color:var(--gold); font-weight:700}
+    .tbl td.rd{color:#e39a8f; font-weight:700}
+
+    /* 질문 카드 */
+    .qcard{border:1px solid var(--line); border-left:4px solid var(--gold); border-radius:12px;
+      padding:2vmin 2.8vmin; background:rgba(255,255,255,.04); max-width:46em}
+    .qcard .qn{font-size:clamp(12px,1.9vmin,18px); color:var(--gold); font-weight:800; letter-spacing:.12em; margin-bottom:.8vmin}
+    .qcard p{font-size:clamp(15px,2.6vmin,28px); line-height:1.6; color:var(--sub)}
+    .qcard p b{color:var(--ink)}
+    .qcard.xl p{font-family:'Noto Serif KR',serif; font-size:clamp(18px,3.2vmin,38px); line-height:1.7; color:var(--ink)}
+    .qwrap{display:flex; flex-direction:column; gap:2vmin; margin-top:3.4vmin}
+
+    /* 2·3단 카드 */
+    .cols{display:flex; gap:3vmin; margin-top:3.6vmin; flex-wrap:wrap; max-width:70em}
+    .col{flex:1; min-width:230px; border:1px solid var(--line); border-radius:14px; padding:2.6vmin 3vmin;
+      background:rgba(255,255,255,.04)}
+    .col h3{font-size:clamp(16px,2.8vmin,30px); font-weight:800; margin-bottom:1.4vmin}
+    .col.gold{border-color:var(--gold)}
+    .col.gold h3{color:var(--gold)}
+    .col p{font-size:clamp(13px,2.2vmin,23px); line-height:1.62; color:var(--sub)}
+    .col p b{color:var(--ink)}
+    .col ul{margin:1vmin 0 0 1.1em}
+    .col li{font-size:clamp(13px,2.2vmin,23px); line-height:1.62; color:var(--sub); margin-bottom:.9vmin}
+    .col li b{color:var(--ink)}
+
+    /* 번호 목록 */
+    .ref-list{margin-top:3vmin; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.4vmin 3vmin; max-width:70em}
+    .ref-list.one{grid-template-columns:1fr}
+    .ref-list .r{border-left:3px solid var(--gold); padding:.6vmin 0 .6vmin 2vmin}
+    .ref-list .r .k{font-size:clamp(12px,1.9vmin,19px); color:var(--gold); font-weight:800; letter-spacing:.06em}
+    .ref-list .r .t{font-family:'Noto Serif KR',serif; font-size:clamp(15px,2.6vmin,29px); line-height:1.55; color:var(--ink)}
+    @media (max-aspect-ratio:4/3){ .ref-list{grid-template-columns:1fr} .vwrap{grid-template-columns:1fr; gap:2.5vmin} }
+
+    /* 열쇠 간지 */
+    .keyRound{width:clamp(90px,16vmin,170px); height:clamp(90px,16vmin,170px); border-radius:50%; background:var(--gold);
+      color:#241a00; display:flex; flex-direction:column; align-items:center; justify-content:center; margin:0 auto 4vmin}
+    .keyRound .kl{font-size:clamp(12px,1.9vmin,18px); font-weight:800; letter-spacing:.2em}
+    .keyRound .kn{font-size:clamp(34px,6.5vmin,70px); font-weight:900; line-height:1.05}
+
+    @media (max-width:760px), (orientation:portrait){
+      .slide{padding:7vmin 6vmin 12vmin}
+    }
+
+    /* 발표자 노트 패널 (N 키) */
+    #notes{position:fixed; left:0; right:0; bottom:0; z-index:50; max-height:38vh; overflow:auto; display:none;
+      background:rgba(6,12,30,.94); border-top:1px solid var(--gold); padding:16px 22px 22px; backdrop-filter:blur(6px)}
+    #notes.open{display:block}
+    #notes .nTitle{font-size:11px; letter-spacing:.2em; color:var(--gold); font-weight:700; margin-bottom:8px}
+    #notes .nBody{font-size:14.5px; line-height:1.75; color:#dbe4f7; max-width:860px}
+    #notes .nBody b{color:var(--gold)}
+
+    /* 암전 (B 키) */
+    #blackout{position:fixed; inset:0; z-index:60; background:#000; display:none}
+    #blackout.open{display:block}
+  </style>
+</head>
+<body>
+
+  <!-- ===== 로그인 게이트 ===== -->
+  <div id="gate">
+    <div class="gateCard">
+      <h1>마라나타 특강 2강 슬라이드</h1>
+      <p>발표자 계정으로 로그인하세요.</p>
+      <button class="btn btnGoogle" onclick="googleLogin()">
+        <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C39.9 36.5 44 31 44 24c0-1.3-.1-2.3-.4-3.5z"/></svg>
+        구글로 로그인
+      </button>
+      <input id="ge" type="email" placeholder="이메일" autocomplete="username"/>
+      <input id="gp" type="password" placeholder="비밀번호" autocomplete="current-password"/>
+      <button class="btn btnMail" onclick="emailLogin()">이메일로 로그인</button>
+      <p id="gateErr"></p>
+      <a class="gateHome" href="/admin">← 관리자 콘솔로</a>
+    </div>
+  </div>
+
+  <!-- ===== 슬라이드 덱 ===== -->
+  <div id="deck">
+    <div id="bar"></div>
+    <div id="count"></div>
+    <div id="clock"></div>
+    <div id="hint">→ 다음 · ← 이전 · <b>F</b> 전체화면 · <b>N</b> 대본 · <b>B</b> 암전</div>
+
+    <!-- 1. 타이틀 -->
+    <section class="slide center">
+      <p class="eyebrow">MARANATHA · 마라나타 특강 · 천년왕국과 부활 2강</p>
+      <h2 class="serif">십자가 위의 강도는<br/>부활에 <em>참여하는가</em></h2>
+      <div class="lines">
+        <p><b>믿음의 수준, 상급의 원리, 그리고 마지막 몇 시간의 믿음</b></p>
+        <p style="color:var(--dim); font-size:clamp(13px,2.2vmin,22px)">오광일 · 오광일의 인사이트 브리핑</p>
+      </div>
+      <aside class="notes">2강 시작. 골고다의 세 십자가 장면으로 바로 들어간다.</aside>
+    </section>
+
+    <!-- 2. 후킹 -->
+    <section class="slide">
+      <p class="eyebrow">후킹</p>
+      <h2 class="serif">처음에는, <em>둘 다</em> 욕했습니다</h2>
+      <div class="vtext md fr"><p>"함께 십자가에 못 박힌 <span class="hl">강도들</span>도 이와 같이 그를 욕하더라"</p><cite>마태복음 27:44 — The thieves also … 강도"들", 복수입니다. 두 사람 모두 욕했습니다.</cite></div>
+      <div class="qwrap"><div class="qcard fr"><p class="qn">그런데 몇 시간 뒤 (눅 23장)</p><p>한 사람이 다른 강도를 꾸짖고, 예수님을 "주여"라 부르고, 한 가지를 구합니다. 예수님은 성경에서 가장 빠르고 가장 확실한 구원의 약속으로 답하십니다 — <b>"오늘 네가 나와 함께 낙원에 있으리라."</b></p></div></div>
+      <div class="lines"><p class="fr"><b class="hl">세례도, 교회 생활도, 선행도 없이 — 믿은 지 몇 시간 만에 죽은 사람. 그도 첫째 부활에 참여합니까?</b></p></div>
+      <aside class="notes">마 27:44 — 강도'들', 복수. 처음엔 둘 다 욕했다. 몇 시간 만에 한 사람에게 무슨 일이 있었나. 수강생 질문 그대로 소개: 그 강도가 부활에 참여할 자격이 되는가.</aside>
+    </section>
+
+    <!-- 3. 오늘의 두 질문 + 세 가지 예고 -->
+    <section class="slide">
+      <p class="eyebrow">오늘의 질문 ③ ④</p>
+      <h2 class="serif">두 질문, 그리고 <em>세 가지 예고</em></h2>
+      <div class="cols">
+        <div class="col gold fr"><h3>③</h3><p><b>첫째 부활에 참여하려면 어느 수준의 믿음이 필요합니까?</b></p></div>
+        <div class="col gold fr"><h3>④</h3><p><b>예수님 우편의 강도는 부활에 참여할 자격이 됩니까?</b></p></div>
+      </div>
+      <div class="lines">
+        <p class="fr" style="color:var(--gold); font-weight:700">오늘 끝까지 보시면 확인하게 되는 세 가지</p>
+        <p class="fr">① 바울이 "우리가 다 변화되리니"를 써 보낸 교회가 <b>어떤 교회</b>였는지</p>
+        <p class="fr">② 그 강도가 구한 것이 사실은 <b>"낙원"이 아니었다</b>는 것</p>
+        <p class="fr">③ 그 강도가 예수님보다 <b>나중에 죽었다</b>는 사실이 무엇을 말하는지</p>
+      </div>
+      <aside class="notes">질문 ③④ 제시. 세 가지 예고 — 고린도 교회, '낙원이 아니었다', 예수님보다 나중에 죽었다. 이 셋이 두 질문의 답을 하나로 묶는다.</aside>
+    </section>
+
+    <!-- 4. 1강 복습 -->
+    <section class="slide">
+      <p class="eyebrow">1강 복습</p>
+      <h2 class="serif">부활의 대열 — 오늘 두 질문은 <em>이 대열 위에서</em></h2>
+      <div class="cols">
+        <div class="col fr"><h3>첫 열매</h3><p><b>그리스도</b></p></div>
+        <div class="col fr"><h3>본 추수</h3><p><b>교회 (휴거)</b></p></div>
+        <div class="col fr"><h3>이삭줍기</h3><p><b>구약 성도 · 환난 성도 (재림)</b></p></div>
+        <div class="col fr" style="border-color:rgba(227,154,143,.5)"><h3 style="color:#e39a8f">천 년 후</h3><p style="color:#e39a8f"><b>나머지 죽은 자들</b></p></div>
+      </div>
+      <div class="lines">
+        <p class="fr">입장 조건은 하나 — <b>거듭남</b></p>
+        <p class="fr">첫째 부활은 하루가 아니라 <b>"종류"의 이름</b> — 의인들의 부활, 생명의 부활</p>
+        <p class="fr">오늘: 그 대열에 서는 사람은 누구인가 — <b class="hl">그리고 강도는 어디에 서는가</b></p>
+      </div>
+      <aside class="notes">1강 요약 복습. 대열 그림을 다시 보여 주고, 오늘 두 질문을 이 대열 위에 올려놓는다.</aside>
+    </section>
+
+    <!-- 5. 열쇠 ① -->
+    <section class="slide center">
+      <div class="keyRound"><span class="kl">열쇠</span><span class="kn">①</span></div>
+      <h2 class="serif">"어느 수준의 믿음" — <em>질문부터 점검</em>합니다</h2>
+      <div class="lines"><p>숨은 전제: 믿음에 등급이 있고, 일정 등급 이상이어야 한다?</p></div>
+      <aside class="notes">질문 자체의 숨은 전제(믿음의 등급제)를 성경으로 점검한다.</aside>
+    </section>
+
+    <!-- 6. 원천·근거·수단 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ① 노트 ⑦</p>
+      <h2 class="serif">믿음은 구원을 "사는 돈"이 아니라 <em>"받는 손"</em></h2>
+      <div class="cols">
+        <div class="col fr"><h3>원천</h3><p><b>하나님의 은혜</b></p><p>"은혜로 말미암아"</p></div>
+        <div class="col fr"><h3>근거</h3><p><b>그리스도의 십자가 사역</b></p><p>값은 이미 치러졌다</p></div>
+        <div class="col gold fr"><h3>수단</h3><p><b>믿음</b></p><p>"믿음을 통하여"(엡 2:8) — '때문에'가 아니라</p></div>
+      </div>
+      <div class="vtext md fr" style="margin-top:3vmin"><p>"일을 아니할지라도 경건하지 아니한 자를 의롭다 하시는 이를 <span class="hl">믿는 자</span>에게는 그의 믿음을 의로 여기시나니"</p><cite>로마서 4:5</cite></div>
+      <div class="lines"><p class="fr"><b class="hl">중요한 것은 손의 크기가 아니라, 그 손에 무엇이 쥐어지느냐입니다</b></p></div>
+      <aside class="notes">구원의 원천(은혜)·근거(십자가)·수단(믿음). '믿음을 통하여'지 '믿음 때문에'가 아니다. 믿음이 값이라면 크기가 중요하지만, 손이라면 — 손에 쥐어진 분이 중요하다(롬 4:5).</aside>
+    </section>
+
+    <!-- 7. 구원하는 믿음의 세 요소 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ① 반대쪽 오해</p>
+      <h2 class="serif">귀신도 믿고 떱니다 — 구원하는 믿음의 <em>세 요소</em></h2>
+      <div class="cols">
+        <div class="col fr"><h3>노티티아 · 지식</h3><p>그리스도가 누구시며 무엇을 하셨는지 <b>아는 것</b></p></div>
+        <div class="col fr"><h3>아센수스 · 동의</h3><p>그것이 사실이라고 <b>인정하는 것</b></p></div>
+        <div class="col gold fr"><h3>피두키아 · 신뢰</h3><p>그분께 나 자신을 <b>맡기는 것</b> — 귀신에게 없는 것</p></div>
+      </div>
+      <div class="qwrap"><div class="qcard fr"><p class="qn">의자 비유</p><p>의자가 튼튼함을 아는 것(지식) · 나를 지탱할 수 있다고 인정하는 것(동의) · <b>실제로 앉는 것(신뢰)</b>. 구원하는 믿음은 앉는 것입니다 — 얼마나 우아하게 앉았는지는 중요하지 않습니다. 쓰러지듯 주저앉아도 앉은 것입니다. 열매는 구원의 조건이 아니라 증거입니다(약 2:18).</p></div></div>
+      <div class="lines"><p class="fr" style="color:var(--dim); font-size:clamp(13px,2.2vmin,22px)">[현장 문답] "구원하는 것은 믿음의 크기입니까, 믿음의 대상입니까?" — "대상!"</p></div>
+      <aside class="notes">'수준이 필요 없다'≠'아무렇게나 믿어도 된다'. 약 2:19 귀신의 믿음 — 지식·동의는 있으나 신뢰가 없다. 의자 비유. 첫 번째 답: 필요한 것은 수준이 아니라 그리스도를 믿는 참된 믿음.</aside>
+    </section>
+
+    <!-- 8. 열쇠 ② -->
+    <section class="slide center">
+      <div class="keyRound"><span class="kl">열쇠</span><span class="kn">②</span></div>
+      <h2 class="serif">요한계시록 20장에는 <em>두 부류만</em> 있습니다</h2>
+      <div class="lines"><p>셋째 칸 — "구원받았지만 첫째 부활에서 빠진 신자" — 는 본문에 없습니다</p></div>
+      <aside class="notes">계 20:4~6 다시. 죽은 자는 두 부류뿐 — 첫째 부활 참여자와 나머지 죽은 자들.</aside>
+    </section>
+
+    <!-- 9. 두 부류 표 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ② 본문의 지도</p>
+      <h2 class="serif">두 부류 — 그리고 존재하지 않는 <em>셋째 칸</em></h2>
+      <table class="tbl">
+        <tr><th></th><th>첫째 부활에 참여하는 자</th><th>나머지 죽은 자들</th></tr>
+        <tr class="fr"><td class="gd">부활 시점</td><td>천 년 전 (대열별로)</td><td>천 년이 끝난 후</td></tr>
+        <tr class="fr"><td class="gd">둘째 사망</td><td><b>"다스리는 권세가 없다"</b>(20:6)</td><td>불 못에 던져짐(20:14~15)</td></tr>
+        <tr class="fr"><td class="gd">신분</td><td>"복이 있고 거룩하도다" — 제사장, 왕</td><td>"죽은 자들"로서 백보좌 앞에 섬</td></tr>
+        <tr class="fr"><td class="gd">예수님의 표현</td><td>"생명의 부활" · "의인들의 부활"</td><td>"심판의 부활"(요 5:29)</td></tr>
+      </table>
+      <div class="qwrap"><div class="qcard fr"><p class="qn">반론 — "계 20:4는 순교자들이니 첫째 부활은 순교자급의 특권 아닌가?"</p><p>4절 맨 앞에 이미 "보좌들 위에 앉은" <b>휴거된 교회</b>가 있습니다. 순교자는 첫째 부활의 전부가 아니라 마지막 대열입니다.</p></div></div>
+      <aside class="notes">표: 두 부류의 대조. 셋째 칸(구원받았지만 빠진 신자)은 본문에 없다. 순교자 특권 반론 — 4절 첫 무리는 이미 앉은 교회. 노트⑧: 첫째 부활은 상급이 아니라 구원의 결과 — 생명은 믿음으로(요 3:36).</aside>
+    </section>
+
+    <!-- 10. 복이 있고 거룩하도다 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ② 그 "복"의 자리</p>
+      <h2 class="serif">훈장이 아니라 <em>위로</em>입니다 — 계시록의 일곱 복</h2>
+      <div class="ref-list">
+        <div class="r fr"><p class="k">1:3</p><p class="t">읽는 자와 듣는 자</p></div>
+        <div class="r fr"><p class="k">14:13</p><p class="t">주 안에서 죽는 자</p></div>
+        <div class="r fr"><p class="k">16:15</p><p class="t">깨어 옷을 지키는 자</p></div>
+        <div class="r fr"><p class="k">19:9</p><p class="t">혼인 잔치에 청함받은 자</p></div>
+        <div class="r fr"><p class="k">20:6</p><p class="t"><span class="hl">첫째 부활에 참여하는 자</span></p></div>
+        <div class="r fr"><p class="k">22:7 · 22:14</p><p class="t">예언을 지키는 자 · 두루마기를 빠는 자</p></div>
+      </div>
+      <div class="qwrap"><div class="qcard fr"><p class="qn">"복이 있고 거룩하도다"(계 20:6)</p><p>특별한 소수에게 주는 훈장이 아니라, 고난 속에서 끝까지 믿은 모든 성도에게 주는 <b>위로</b> — 특히 목 베임을 당한 성도들에게 "너희는 죽음으로 끝난 것이 아니다. 너희는 복되고 거룩하다"고 선언하시는 말씀입니다.</p></div></div>
+      <aside class="notes">왜 6절은 특별히 '복이 있고 거룩하도다'인가 — 계시록 일곱 복 중 다섯째. 훈장이 아니라 순교자들을 향한 위로의 선언.</aside>
+    </section>
+
+    <!-- 11. 열쇠 ③ -->
+    <section class="slide center">
+      <div class="keyRound"><span class="kl">열쇠</span><span class="kn">③</span></div>
+      <h2 class="serif">기준은 <em>"소속"</em>이지 "성적"이 아닙니다</h2>
+      <div class="lines"><p>"그가 오실 때에 그리스도께 속한 자들이요" (고전 15:23)</p></div>
+      <aside class="notes">부활 대열의 기준 — 충성한 자·이긴 자가 아니라 '그리스도께 속한 자(they that are Christ's)'.</aside>
+    </section>
+
+    <!-- 12. 고린도와 데살로니가 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ③ 두 교회의 증언</p>
+      <h2 class="serif">"우리가 다" — <em>미성숙해도, 잠들어도</em></h2>
+      <div class="cols">
+        <div class="col fr"><h3>고린도 교회에게</h3><ul>
+          <li>"육신에 속한 자 … 그리스도 안에서 어린아이들"(고전 3:1) — 시기와 분쟁의 교회</li>
+          <li>바로 그 교회에 쓴 말씀 — "우리가 <b>다</b> 잠잘 것이 아니요 마지막 나팔에 순식간에 홀연히 <b>다</b> 변화되리니"(15:51)</li>
+          <li><b>"다(all)" — 충성한 일부가 아니라</b></li>
+        </ul></div>
+        <div class="col fr"><h3>데살로니가 교회에게</h3><ul>
+          <li>"깨어 있든지 자든지 자기와 함께 살게 하려 하셨느니라"(살전 5:10)</li>
+          <li>바로 앞 절들에서 "깨어 정신을 차리자"(5:6) 권면한 직후의 말씀</li>
+          <li><b>영적으로 졸고 있는 신자라도 — 그리스도께 속했다면 함께 삽니다</b></li>
+        </ul></div>
+      </div>
+      <div class="qwrap"><div class="qcard fr"><p class="qn">부분 휴거설</p><p>"충성하고 깨어 있는 신자만 휴거된다"는 견해. 그러나 고전 15:51의 <b>"다"</b>와 살전 5:10의 <b>"자든지"</b>가 분명한 답입니다.</p></div></div>
+      <aside class="notes">예고한 첫 번째 — '우리가 다 변화되리니'를 받은 교회는 미성숙의 대명사 고린도 교회였다. 살전 5:10 '자든지 깨든지'. 부분 휴거설에 대한 본문의 답.</aside>
+    </section>
+
+    <!-- 13. 열 처녀 재해석 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ③ 반론 본문</p>
+      <h2 class="serif">열 처녀 비유 — <em>세 가지</em>를 보십시오</h2>
+      <div class="qwrap">
+        <div class="qcard fr"><p class="qn">1 · 시점</p><p>감람산 강화 한가운데 — 앞뒤가 모두 재림(마 24:29~30, 25:31). 교회의 휴거 장면이 아니라 <b>재림 때 맞이하는 장면</b></p></div>
+        <div class="qcard fr"><p class="qn">2 · 둘 다 잤습니다</p><p>"다 졸며 잘새"(25:5) — 가른 것은 '깨어 있음'이 아니라 <b>'기름'</b></p></div>
+        <div class="qcard fr"><p class="qn">3 · "알지 못하노라"</p><p>마 7:23과 같은 선언 — 상급을 잃은 신자가 아니라 <b>처음부터 속하지 않은 자</b>. 등(형식)은 있었지만 기름(생명)이 없었습니다</p></div>
+      </div>
+      <div class="lines"><p class="fr"><b class="hl">[노트 ⑨] 깨어 있으라는 권면은 구원을 잃지 않기 위해서가 아니라, 오실 때 부끄럽지 않기 위해서입니다</b>(요일 2:28)</p></div>
+      <aside class="notes">부분 휴거설의 단골 본문 열 처녀 — ①시점은 재림 ②둘 다 잠들었다(가른 건 기름) ③'알지 못하노라'=불신자 선언. 미련한 처녀는 미성숙 신자가 아니라 형식만 있는 불신자. <b>현장 문답: '기준은 소속입니까 성적입니까?' — '소속!'</b></aside>
+    </section>
+
+    <!-- 14. 열쇠 ④ -->
+    <section class="slide center">
+      <div class="keyRound"><span class="kl">열쇠</span><span class="kn">④</span></div>
+      <h2 class="serif">어려운 구절 셋 — <em>정직하게</em> 다룹니다</h2>
+      <div class="lines"><p>"얻어야" 하는 것처럼 보이는 본문들을 피하면, 답은 반쪽이 됩니다</p></div>
+      <aside class="notes">첫째 부활을 '얻어 내는' 것처럼 보이는 세 구절을 정면으로 다룬다.</aside>
+    </section>
+
+    <!-- 15. 세 구절 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ④ 세 구절</p>
+      <h2 class="serif">읽는 열쇠는 각 구절의 <em>"바로 옆"</em>에 있습니다</h2>
+      <div class="cols">
+        <div class="col fr"><h3>빌 3:11</h3><p><b>"어떻게 해서든지 … 부활에 이르려 하노니"</b></p><p>같은 장 20~21절에서 부활을 확신. "어떻게 해서든지"는 순교로든 살아서든 — 이르는 '방식'의 겸손한 기대. 지금 부활의 능력에 합당하게 살려는 소원(3:10)</p></div>
+        <div class="col fr"><h3>눅 20:35</h3><p><b>"부활함을 얻기에 합당히 여김을 받은 자들"</b></p><p>수동태 — <b>하나님이 여기신다.</b> 골 1:12 "합당하게 하신 아버지께" — 이미 완료. 합당함은 내 공로가 아니라 아버지의 일</p></div>
+        <div class="col fr"><h3>히 11:35</h3><p><b>"더 좋은 부활을 얻고자 하여"</b></p><p>비교 대상은 바로 앞 문장의 '소생'(다시 죽는 살아남 — 사르밧·수넴의 아들들). 더 좋은 부활 = <b>다시 죽지 않는 생명의 부활.</b> 등급이 아님</p></div>
+      </div>
+      <div class="lines"><p class="fr big serif" style="color:var(--gold)">[노트 ⑩] 첫째 부활은 은혜로 받고,<br/>그 부활에 합당한 삶은 감사로 삽니다</p></div>
+      <aside class="notes">세 구절 모두 '얻어 내는' 구절이 아니라 부활의 성격을 보여 주고 합당한 삶으로 부르는 구절. 한 문장: 은혜로 받고 감사로 산다.</aside>
+    </section>
+
+    <!-- 16. 열쇠 ⑤ -->
+    <section class="slide center">
+      <div class="keyRound"><span class="kl">열쇠</span><span class="kn">⑤</span></div>
+      <h2 class="serif">참여는 같고, <em>자리는 다릅니다</em></h2>
+      <div class="lines"><p>바울과 고린도의 미성숙한 신자와 몇 시간 믿은 강도 — 들어가는 것은 같지만, 받는 것은 다릅니다</p></div>
+      <aside class="notes">그럼 다 똑같은가? 아니다 — 들어가는 것은 같고 받는 것은 다르다.</aside>
+    </section>
+
+    <!-- 17. 기초와 건축 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ⑤ 노트 ⑪</p>
+      <h2 class="serif">구원은 <em>기초</em>에서, 상급은 그 위에 <em>지은 것</em>에서</h2>
+      <div class="vtext md fr"><p>"누구든지 그 공적이 불타면 해를 받으리니 그러나 <span class="hl">자신은 구원을 받되</span> 불 가운데서 받은 것 같으리라"</p><cite>고린도전서 3:15 — 불난 집에서 몸만 빠져나온 사람</cite></div>
+      <div class="lines">
+        <p class="fr">구원은 그리스도라는 <b>기초</b> 위에서 결정되고(고전 3:11), 상급은 그 위에 <b>무엇을 지었느냐</b>로 결정됩니다</p>
+        <p class="fr">므나 비유(눅 19장) — 열 므나 남긴 종은 열 고을, 다섯 므나는 다섯 고을. <b>둘 다 왕의 종, 둘 다 나라 안</b> — 다스리는 범위가 다릅니다</p>
+        <p class="fr">"지혜 있는 자는 궁창의 빛과 같이 … 별과 같이 영원토록 빛나리라"(단 12:3) · "별과 별의 영광이 다르도다"(고전 15:41)</p>
+        <p class="fr big serif" style="color:var(--gold)">참여는 은혜로, 상급은 충성으로</p>
+      </div>
+      <aside class="notes">고전 3장 불 시험 — 공적이 타도 구원은 받되. 므나 비유: 같은 나라, 다른 범위. 단 12:3, 고전 15:41. 구호: 참여는 은혜로, 상급은 충성으로.</aside>
+    </section>
+
+    <!-- 18. 다섯 면류관 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ⑤ 상급의 이름들</p>
+      <h2 class="serif">성경이 말하는 <em>다섯 면류관</em></h2>
+      <table class="tbl">
+        <tr><th>면류관</th><th>본문</th><th>누구에게</th></tr>
+        <tr class="fr"><td><b>썩지 아니할 면류관</b></td><td>고전 9:25</td><td>절제하며 경주를 끝까지 달린 자</td></tr>
+        <tr class="fr"><td><b>자랑(기쁨)의 면류관</b></td><td>살전 2:19~20</td><td>복음으로 다른 사람을 주께 인도한 자</td></tr>
+        <tr class="fr"><td class="gd">의의 면류관</td><td>딤후 4:8</td><td><b>"주의 나타나심을 사모하는 모든 자"</b></td></tr>
+        <tr class="fr"><td><b>생명의 면류관</b></td><td>약 1:12 · 계 2:10</td><td>시험을 참고 죽도록 충성한 자</td></tr>
+        <tr class="fr"><td><b>영광의 면류관</b></td><td>벧전 5:4</td><td>양 무리를 본으로 섬긴 목자</td></tr>
+      </table>
+      <div class="lines"><p class="fr"><b class="hl">의의 면류관 — 지금 이 강의를 들으며 그날을 사모하는 여러분에게 이미 약속된 면류관입니다</b></p></div>
+      <aside class="notes">다섯 면류관 표. 특히 의의 면류관 — '나타나심을 사모하는 모든 자에게'. 재림을 사랑하며 기다리는 것 자체가 상을 받는 일 — 청중에게 직접 적용.</aside>
+    </section>
+
+    <!-- 19. 상실도 실제 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ⑤ 균형</p>
+      <h2 class="serif">정죄는 없지만, <em>손실은 있습니다</em></h2>
+      <div class="lines">
+        <p class="fr">"선악 간에 그 몸으로 행한 것을 따라 받으려 함이라"(고후 5:10) · "온전한 상을 받으라"(요이 1:8)</p>
+        <p class="fr">그날 "내가 이것밖에 드릴 것이 없구나" 하는 <b>부끄러움</b>이 있을 수 있습니다(요일 2:28)</p>
+        <p class="fr">그러나 그 부끄러움조차 영원하지 않습니다 — "모든 눈물을 그 눈에서 닦아 주시니"(계 21:4). <b>심판석의 눈물까지 닦아 주십니다</b></p>
+      </div>
+      <div class="qwrap"><div class="qcard fr"><p class="qn">질문 ③의 답</p><p>첫째 부활에 필요한 믿음의 "수준"은 없습니다 — <b>그리스도께 속한 모든 사람이 참여합니다.</b> 그러나 천년왕국에서 받는 자리와 상급은 다릅니다 — 믿음의 수준이 아니라, <b>믿음으로 산 삶의 충성</b>이 결정합니다.</p></div></div>
+      <aside class="notes">상실의 실제(고후 5:10, 요이 1:8, 요일 2:28) — 그러나 계 21:4 눈물까지 닦아 주심. 상급 교리의 목적은 공포가 아니라 오늘을 진지하게 살게 함. 질문 ③ 답 정리.</aside>
+    </section>
+
+    <!-- 20. 열쇠 ⑥ -->
+    <section class="slide center">
+      <div class="keyRound"><span class="kl">열쇠</span><span class="kn">⑥</span></div>
+      <h2 class="serif">강도가 구한 것은 <em>"낙원"이 아니었습니다</em></h2>
+      <div class="lines"><p>누가복음 23장을 천천히 — 두 강도의 말을 나란히 놓습니다</p></div>
+      <aside class="notes">질문 ④로. 예고한 두 번째 — 그가 구한 것은 낙원이 아니었다.</aside>
+    </section>
+
+    <!-- 21. 두 강도의 대조 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ⑥ 두 개의 기도</p>
+      <h2 class="serif">같은 언덕, 같은 거리 — <em>전혀 다른 구함</em></h2>
+      <div class="cols">
+        <div class="col fr" style="border-color:rgba(201,138,138,.5)"><h3 style="color:#c98a8a">왼편 강도</h3><p><b>"네가 그리스도이면 너 자신과 우리를 구원하라"</b></p><p style="margin-top:1vmin">그가 원한 구원 — 십자가에서 내려가는 것. 고통에서, <b>지금 이 상황에서</b> 벗어나는 것</p></div>
+        <div class="col gold fr"><h3>오른편 강도</h3><p><b>"주여, 주의 나라에 임하실 때에 나를 기억하소서"</b></p><p style="margin-top:1vmin">내려 달라고 하지 않았습니다 — "마땅하거니와". 그가 구한 것은 상황의 구원이 아니라 <b>영혼의 구원, 그리고 그 나라</b></p></div>
+      </div>
+      <div class="lines"><p class="fr"><b class="hl">구원하는 믿음의 기도</b> — "내 상황에서"가 아니라 "내 죄에서 나를 구원해 주시고, 당신의 나라에서 나를 기억해 주십시오"</p></div>
+      <aside class="notes">두 기도의 대조 — 상황의 구원 vs 영혼의 구원과 그 나라. 오늘도 '내 상황에서 구해 달라'가 잘못은 아니나, 구원하는 믿음의 기도는 죄와 나라를 향한다.</aside>
+    </section>
+
+    <!-- 22. 여섯 가지 믿음 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ⑥ 노트 ⑫</p>
+      <h2 class="serif">짧은 말 속의 <em>여섯 가지 믿음</em></h2>
+      <div class="ref-list">
+        <div class="r fr"><p class="k">1 · 하나님 경외</p><p class="t">"네가 하나님을 두려워하지 아니하느냐"</p></div>
+        <div class="r fr"><p class="k">2 · 죄의 인정</p><p class="t">"우리는 … 마땅하거니와" — 핑계가 없음</p></div>
+        <div class="r fr"><p class="k">3 · 예수님의 무죄</p><p class="t">"이 사람은 잘못한 것이 하나도 없느니라"</p></div>
+        <div class="r fr"><p class="k">4 · 주되심 고백</p><p class="t">"주여"</p></div>
+        <div class="r fr"><p class="k">5 · 죽음 너머의 나라</p><p class="t">"주의 나라에 임하실 때에"</p></div>
+        <div class="r fr"><p class="k">6 · 은혜만 구함</p><p class="t">"나를 기억하소서" — 공로 없이</p></div>
+      </div>
+      <div class="lines"><p class="fr"><b class="hl">세례도 교회 생활도 없었지만 — 복음의 뼈대 전부가 이 몇 마디 안에 있습니다</b></p></div>
+      <aside class="notes">노트⑫ 여섯 가지 — 경외, 죄 인정, 무죄 고백, 주되심, 죽음 너머의 나라, 은혜만 구함.</aside>
+    </section>
+
+    <!-- 23. 나라를 구했다 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ⑥ 핵심</p>
+      <h2 class="serif">"주의 나라에 임하실 때에" — 그는 <em>왕국을 믿었습니다</em></h2>
+      <div class="vtext md fr"><p>"Lord, remember me when thou comest into <span class="hl">thy kingdom</span>"</p><cite>누가복음 23:42 (킹제임스 — 공인 본문) — "주의 왕권 안에서(왕으로) 오실 때". 마태복음 16:28 "인자가 그 왕권을 가지고 오는 것"과 같은 구조</cite></div>
+      <div class="lines">
+        <p class="fr">그는 "낙원에 보내 달라"고 하지 않았습니다 — 예수님이 <b>왕으로 다시 오시는 그 나라</b>에서 기억해 달라고 했습니다</p>
+        <p class="fr">십자가에 달린 채 죽어 가는 분을 보며 — <b>그분이 왕으로 다시 오신다는 것을 믿은 것</b>입니다</p>
+        <p class="fr">조롱의 팻말 "유대인의 왕"이 그에게는 <b>신앙고백의 제목</b>이 되었습니다</p>
+        <p class="fr" style="color:var(--dim); font-size:clamp(13px,2.2vmin,22px)">[현장 문답] "강도가 구한 것은 낙원이었습니까, 나라였습니까?" — "나라!"</p>
+      </div>
+      <aside class="notes">예고한 두 번째 확인 — 그가 구한 것은 '나라'. 죽어 가는 분을 왕으로 믿는 재림 신앙. 현장 문답.</aside>
+    </section>
+
+    <!-- 24. 열쇠 ⑦ -->
+    <section class="slide center">
+      <div class="keyRound"><span class="kl">열쇠</span><span class="kn">⑦</span></div>
+      <h2 class="serif">"그날"을 구했는데, <em>"오늘"</em>을 주셨습니다</h2>
+      <div class="lines"><p>그리고 — 그는 부활의 대열 어디에 서는가</p></div>
+      <aside class="notes">예수님의 답: 미래를 구한 자에게 현재까지. 그리고 질문의 핵심 — 부활 대열에서의 자리.</aside>
+    </section>
+
+    <!-- 25. 오늘, 낙원 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ⑦ 응답</p>
+      <h2 class="serif">구한 것보다 <em>더</em> 주셨습니다</h2>
+      <div class="vtext fr"><p>"진실로 내가 네게 이르노니, <span class="hl">오늘</span> 네가 <span class="hl">나와 함께</span> 낙원에 있으리라"</p><cite>누가복음 23:43</cite></div>
+      <div class="lines">
+        <p class="fr">그는 "그날(왕으로 오실 때)"을 구했는데 예수님은 "오늘"을 주셨습니다 — 그 나라는 그대로 약속되고, <b>그때까지의 시간도 "나와 함께"로</b> 채워 주셨습니다</p>
+        <p class="fr">쉼표 이동 해석("오늘 네게 이르노니")의 문제 — 예수님은 "진실로 네게 이르노니"를 수십 번 쓰셨지만 <b>'오늘'을 거기 붙이신 적은 한 번도 없습니다</b></p>
+        <p class="fr">낙원의 본질은 장소보다 <b>"나와 함께"</b> — "떠나서 그리스도와 함께 있는 것이 훨씬 더 좋으나"(빌 1:23)</p>
+      </div>
+      <aside class="notes">'오늘'의 선물 — 구한 것보다 더. 쉼표 이동 해석(영혼 수면설 옹호) 반박: '진실로 오늘 네게 이르노니' 용례가 없다. 낙원=셋째 하늘(고후 12장), 핵심은 '나와 함께'.</aside>
+    </section>
+
+    <!-- 26. 부활의 대열 + 세례 질문 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ⑦ 대열과 세례</p>
+      <h2 class="serif">그는 <em>어느 대열</em>에 서는가</h2>
+      <div class="cols">
+        <div class="col fr"><h3>구약 성도의 대열</h3><ul>
+          <li>그는 오순절(행 2장) 이전에 죽었습니다 — 교회의 시작 전</li>
+          <li>따라서 교회의 대열이 아니라 <b>구약 성도의 대열</b> — 아브라함, 모세, 다윗과 같은 줄</li>
+          <li>부활 '시점'은 견해가 나뉘어도, <b>첫째 부활 '참여'에는 이견이 없습니다</b></li>
+        </ul></div>
+        <div class="col fr"><h3>"세례를 못 받았는데요?"</h3><ul>
+          <li>고넬료의 집 — 세례 전에 성령을 받음(행 10:44~48). <b>구원이 먼저, 세례가 뒤따름</b></li>
+          <li>"그리스도께서 나를 보내심은 세례를 주게 하려 하심이 아니요"(고전 1:17)</li>
+          <li>그는 세례가 가리키는 실체를 문자 그대로 살았습니다 — <b>그리스도와 함께 못 박힘</b>(갈 2:20)</li>
+        </ul></div>
+      </div>
+      <div class="qwrap"><div class="qcard fr"><p class="qn">질문 ④의 답</p><p><b>네, 그는 첫째 부활에 참여합니다.</b> 그리스도께 속했고("나와 함께"), 계시록 20장에 셋째 칸이 없으며, 그가 구한 것 자체가 그 나라였기 때문입니다.</p></div></div>
+      <aside class="notes">예고한 세 번째 — 그는 예수님보다 나중에 죽었고(요 19:32~33 다리 꺾음), 오순절 전이므로 구약 성도의 대열. 세례 질문: 고넬료, 고전 1:17, 갈 2:20. 질문 ④ 답 선언.</aside>
+    </section>
+
+    <!-- 27. 그의 상급 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ⑦ 남은 질문</p>
+      <h2 class="serif">그의 상급 — <em>오후 다섯 시의 품꾼</em></h2>
+      <div class="lines">
+        <p class="fr">포도원 품꾼 비유(마 20장) — 해 지기 한 시간 전에 온 일꾼도 같은 한 데나리온. <b>"내 것을 가지고 내 뜻대로 할 것이 아니냐"</b></p>
+        <p class="fr">그가 십자가에서 한 일 — 다른 강도를 꾸짖고, 예수님의 무죄를 공개 증언하고, 재림을 고백한 것. <b>단 몇 시간의 사역</b></p>
+        <p class="fr">그 몇 시간의 증언이 2천 년 동안 수많은 사람에게 <b>"늦은 사람에게도 은혜가 있다"</b>는 소망을 전했습니다</p>
+        <p class="fr big serif" style="color:var(--gold)">그의 몇 시간이 얼마나 많은 열매를 맺었는지는 —<br/>그리스도의 심판석에서 드러날 것입니다</p>
+      </div>
+      <aside class="notes">상급은 우리가 정할 일이 아니나 — 포도원 품꾼의 은혜, 그리고 몇 시간의 증언이 맺은 2천 년의 열매.</aside>
+    </section>
+
+    <!-- 28. 오늘의 네 문장 -->
+    <section class="slide">
+      <p class="eyebrow">결론</p>
+      <h2 class="serif">오늘의 <em>네 문장</em></h2>
+      <div class="ref-list one">
+        <div class="r fr"><p class="k">1</p><p class="t">첫째 부활에 필요한 믿음의 "수준"은 없습니다 — 구원하는 것은 믿음의 크기가 아니라 <span class="hl">믿음의 대상</span>입니다.</p></div>
+        <div class="r fr"><p class="k">2</p><p class="t">요한계시록 20장에는 두 부류만 있습니다 — <span class="hl">구원받은 모든 사람</span>이 첫째 부활에 참여합니다.</p></div>
+        <div class="r fr"><p class="k">3</p><p class="t">참여는 같고 자리는 다릅니다 — 상급은 <span class="hl">충성</span>으로, 그리고 그 면류관도 결국 보좌 앞에 던져집니다.</p></div>
+        <div class="r fr"><p class="k">4</p><p class="t">십자가의 강도는 나라를 구했고, 예수님은 오늘의 낙원까지 더해 주셨습니다 — <span class="hl">그는 첫째 부활에 참여합니다.</span></p></div>
+      </div>
+      <aside class="notes">네 문장 정리 — 천천히.</aside>
+    </section>
+
+    <!-- 29. 세 가지 적용 -->
+    <section class="slide">
+      <p class="eyebrow">이것이 오늘 우리에게</p>
+      <h2 class="serif">확신 · 경계 · <em>충성</em></h2>
+      <div class="cols">
+        <div class="col fr"><h3>1 · 확신</h3><p>당신을 붙잡는 것은 믿음의 크기가 아니라 <b>그리스도의 손</b>(요 10:28). 점검 셋 — 그분께 맡겼는가 · 말씀을 지키려 하는가 · 형제를 사랑하는가(요일). 수준 시험이 아니라 생명의 맥박 — <b>맥박이 약해도 산 사람은 산 사람입니다.</b></p></div>
+        <div class="col fr"><h3>2 · 경계</h3><p>"아무도 절망하지 않도록 한 강도가 구원받았고, 아무도 방심하지 않도록 오직 한 강도만 구원받았다." 같은 거리의 다른 강도는 구원받지 못했습니다 — <b>"보라 지금은 구원의 날이로다"</b>(고후 6:2).</p></div>
+        <div class="col fr"><h3>3 · 충성</h3><p>구원이 확실하기에 충성합니다 — <b>두려움이 아니라 감사로.</b> 오늘 쌓는 것이 금·은·보석입니까, 나무·풀·짚입니까. 그 불은 나를 태우는 불이 아니라 영원히 남을 것을 드러내는 불입니다.</p></div>
+      </div>
+      <aside class="notes">적용 셋 — 확신(요일의 세 맥박), 경계(한 강도만 — 고후 6:2 '지금'), 충성(감사의 동기, 고전 3장의 불).</aside>
+    </section>
+
+    <!-- 30. 마침 -->
+    <section class="slide center">
+      <p class="eyebrow">두 강의 결론</p>
+      <h2 class="serif">그리스도께 속한 자는 <em>들어갑니다</em></h2>
+      <div class="lines">
+        <p class="fr">누가 들어가는가 · 어떻게 들어가는가 · 무엇으로 들어가는가 · 가장 늦게 믿은 사람도 들어가는가 — 답은 하나로 모입니다</p>
+        <p class="fr" style="color:var(--dim); font-size:clamp(13px,2.2vmin,22px)">다음 강의 — 요한계시록 7장, 인 맞은 십사만 사천과 셀 수 없는 큰 무리</p>
+        <p class="fr big serif" style="color:var(--gold)">마라나타 — 주 예수여, 오시옵소서</p>
+      </div>
+      <aside class="notes">두 강 결론 — 그리스도께 속한 자는 들어간다. 묵상 질문 안내, 다음 강의(계 7장) 예고, 마라나타 인사.</aside>
+    </section>
+
+    <div id="notes"><p class="nTitle">발표자 메모</p><div class="nBody"></div></div>
+    <div id="blackout"></div>
+  </div>
+
+  <script>
+    /* ===== 인증 — admin.html 과 동일한 패턴(토큰을 서버로 검증, 세션 키 공유) ===== */
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType:'implicit', autoRefreshToken:false, persistSession:false, detectSessionFromUrl:false, lock: async (_n,_t,fn)=>await fn() } });
+
+    function jwtPayload(tok){
+      let s=tok.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'); while(s.length%4) s+='=';
+      const json=decodeURIComponent(atob(s).split('').map(c=>'%'+('00'+c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+      return JSON.parse(json);
+    }
+    (function handleOAuthRedirect(){
+      try{
+        if(location.hash && location.hash.indexOf('access_token=')>=0){
+          const p=new URLSearchParams(location.hash.slice(1));
+          const at=p.get('access_token'), rt=p.get('refresh_token'), ei=Number(p.get('expires_in')||3600);
+          if(at){
+            const payload=jwtPayload(at);
+            const user={ id:payload.sub, email:payload.email, role:payload.role, user_metadata:payload.user_metadata||{} };
+            localStorage.setItem('bibly-admin-auth', JSON.stringify({ access_token:at, token_type:'bearer', expires_in:ei, refresh_token:rt, expires_at:(payload.exp||Math.floor(Date.now()/1000)+ei), user }));
+            history.replaceState(null,'',location.pathname);
+          }
+        }
+      }catch(e){}
+    })();
+
+    function readStored(){
+      try{
+        const raw=localStorage.getItem('bibly-admin-auth');
+        if(raw){ const v=JSON.parse(raw); if(v&&v.user){ if(v.expires_at&&v.expires_at*1000<Date.now()){ localStorage.removeItem('bibly-admin-auth'); } else { return v; } } }
+        for(const k of Object.keys(localStorage)){ if(!/auth-token/.test(k)) continue; const v=JSON.parse(localStorage.getItem(k)); const s=(v&&v.user)?v:(v&&v.currentSession)?v.currentSession:null; if(s&&s.user){ if(s.expires_at&&s.expires_at*1000<Date.now()) return null; return s; } }
+      }catch(e){} return null;
+    }
+    async function verifySession(session){
+      const tok = session && session.access_token;
+      if(!tok) return null;
+      const ctrl=new AbortController(); const to=setTimeout(()=>ctrl.abort(), 8000);
+      try{
+        const res = await fetch(SUPABASE_URL+'/auth/v1/user', { signal:ctrl.signal, headers:{ apikey:SUPABASE_ANON, Authorization:'Bearer '+tok } });
+        clearTimeout(to);
+        if(!res.ok) return null;
+        const u = await res.json();
+        return (u && u.id) ? u : null;
+      }catch(e){ clearTimeout(to); return null; }
+    }
+    async function googleLogin(){
+      try{ await sb.auth.signInWithOAuth({ provider:'google', options:{ redirectTo: location.origin+location.pathname } }); }catch(e){}
+    }
+    async function emailLogin(){
+      const email=document.getElementById('ge').value.trim(), pw=document.getElementById('gp').value;
+      const m=document.getElementById('gateErr'); m.textContent='';
+      if(!email||!pw){ m.textContent='이메일과 비밀번호를 입력하세요.'; return; }
+      m.textContent='로그인 중…';
+      const ctrl=new AbortController(); const to=setTimeout(()=>ctrl.abort(),8000);
+      try{
+        const res=await fetch(SUPABASE_URL+'/auth/v1/token?grant_type=password',{ method:'POST', signal:ctrl.signal, headers:{ apikey:SUPABASE_ANON,'Content-Type':'application/json' }, body:JSON.stringify({email,password:pw}) });
+        clearTimeout(to);
+        const d=await res.json();
+        if(d.error||!d.access_token){ m.textContent='로그인 실패: '+(d.error_description||d.msg||d.error||'알 수 없는 오류'); return; }
+        localStorage.setItem('bibly-admin-auth', JSON.stringify({ access_token:d.access_token, token_type:'bearer', expires_in:d.expires_in, refresh_token:d.refresh_token, expires_at:Math.floor(Date.now()/1000)+d.expires_in, user:d.user }));
+        location.reload();
+      }catch(e){ clearTimeout(to); m.textContent='네트워크 오류. 다시 시도해 주세요.'; }
+    }
+    async function applyAuth(){
+      const session = readStored();
+      const gm=document.querySelector('.gateCard p');
+      if(gm && session && session.access_token) gm.textContent='발표자 확인 중…';
+      const verified = await verifySession(session);
+      const email = String((verified && verified.email) || '').toLowerCase();
+      if(email && email === String(ADMIN_EMAIL).toLowerCase()){
+        document.getElementById('gate').style.display='none';
+        document.getElementById('deck').classList.add('open');
+        initDeck();
+      } else {
+        if(gm) gm.textContent='발표자 계정으로 로그인하세요.';
+      }
+    }
+
+    /* ===== 슬라이드 엔진 ===== */
+    let S=[], cur=0;
+    function frs(i){ return Array.from(S[i].querySelectorAll('.fr')); }
+    function sync(){
+      S.forEach((s,i)=>s.classList.toggle('on', i===cur));
+      document.getElementById('bar').style.width=(((cur+1)/S.length)*100)+'%';
+      document.getElementById('count').textContent=(cur+1)+' / '+S.length;
+      const n=S[cur].querySelector('.notes');
+      document.querySelector('#notes .nBody').innerHTML = n ? n.innerHTML : '';
+    }
+    function go(i, revealAll){
+      cur=Math.max(0, Math.min(S.length-1, i));
+      frs(cur).forEach(f=>f.classList.toggle('show', !!revealAll));
+      sync();
+    }
+    function next(){
+      hideHint();
+      const pend=frs(cur).find(f=>!f.classList.contains('show'));
+      if(pend){ pend.classList.add('show'); return; }
+      if(cur<S.length-1) go(cur+1, false);
+    }
+    function prev(){
+      hideHint();
+      const shown=frs(cur).filter(f=>f.classList.contains('show'));
+      if(shown.length){ shown[shown.length-1].classList.remove('show'); return; }
+      if(cur>0) go(cur-1, true);
+    }
+    function hideHint(){ const h=document.getElementById('hint'); if(h) h.classList.add('off'); }
+    function initDeck(){
+      S=Array.from(document.querySelectorAll('.slide'));
+      go(0,false);
+      setTimeout(hideHint, 9000);
+      setInterval(()=>{ const d=new Date(); document.getElementById('clock').textContent=('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2); }, 1000);
+
+      document.addEventListener('keydown', (e)=>{
+        if(/input|textarea/i.test(e.target.tagName)) return;
+        const k=e.key;
+        if(k==='ArrowRight'||k===' '||k==='PageDown'||k==='Enter'){ e.preventDefault(); next(); }
+        else if(k==='ArrowLeft'||k==='PageUp'||k==='Backspace'){ e.preventDefault(); prev(); }
+        else if(k==='Home'){ go(0,false); }
+        else if(k==='End'){ go(S.length-1,true); }
+        else if(k==='f'||k==='F'){ if(document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen().catch(()=>{}); }
+        else if(k==='n'||k==='N'){ document.getElementById('notes').classList.toggle('open'); }
+        else if(k==='b'||k==='B'||k==='.'){ document.getElementById('blackout').classList.toggle('open'); }
+        else if(k==='Escape'){ document.getElementById('blackout').classList.remove('open'); document.getElementById('notes').classList.remove('open'); }
+      });
+      document.getElementById('blackout').addEventListener('click', function(){ this.classList.remove('open'); });
+      document.getElementById('deck').addEventListener('click', (e)=>{
+        if(e.target.closest('#notes') || e.target.closest('#blackout')) return;
+        if(e.clientX < window.innerWidth*0.25) prev(); else next();
+      });
+      let tx=null;
+      document.addEventListener('touchstart', e=>{ tx=e.touches[0].clientX; }, {passive:true});
+      document.addEventListener('touchend', e=>{
+        if(tx===null) return;
+        const dx=e.changedTouches[0].clientX - tx; tx=null;
+        if(Math.abs(dx)>50){ if(dx<0) next(); else prev(); }
+      }, {passive:true});
+    }
+
+    applyAuth();
+  </script>
+</body>
+</html>

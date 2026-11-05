@@ -100,21 +100,27 @@
       <section id="sec-maranatha" class="secPanel hidden">
         <h1 class="text-2xl font-bold mb-1">마라나타 모임</h1>
         <p class="text-neutral-900/50 text-sm mb-6">모임·발표 자료 모음 — 새 자료가 생기면 이 목록에 추가됩니다. 슬라이드는 새 탭에서 열리며, 이 콘솔에 로그인돼 있으면 추가 로그인 없이 바로 열립니다.</p>
-        <!-- 폴더 1 · 마라나타 특강 (연속 강의) -->
-        <h2 class="font-bold text-lg mb-3 flex items-center gap-2">📖 마라나타 특강 <span class="text-xs font-medium text-neutral-900/40">연속 강의 시리즈 · 45분씩</span></h2>
-        <div class="grid md:grid-cols-2 gap-4 max-w-4xl mb-10">
-          <a href="files/maranatha-lecture1-millennium.pdf" target="_blank" rel="noopener" class="block bg-white rounded-2xl border border-ink/5 shadow-sm p-5 hover:border-gold transition">
-            <p class="text-xs font-semibold text-gold mb-1">특강 1강 · 45분</p>
-            <p class="font-bold text-lg leading-snug">천년왕국 첫날 — 누가 들어가는가<br/><span class="text-sm font-medium text-neutral-900/55">열쇠 7개 구조 · 30장 · 발표자 노트 포함</span></p>
-            <p class="text-xs text-neutral-900/45 mt-3">보기·투사용 PDF — 파워포인트 원본: <span class="underline" onclick="event.preventDefault();event.stopPropagation();location.href='files/maranatha-lecture1-millennium.pptx'">PPTX 내려받기</span></p>
-          </a>
-          <a href="files/maranatha-lecture2-thief.pdf" target="_blank" rel="noopener" class="block bg-white rounded-2xl border border-ink/5 shadow-sm p-5 hover:border-gold transition">
-            <p class="text-xs font-semibold text-gold mb-1">특강 2강 · 45분</p>
-            <p class="font-bold text-lg leading-snug">십자가의 강도 — 믿음의 수준과 구원<br/><span class="text-sm font-medium text-neutral-900/55">열쇠 7개 구조 · 30장 · 발표자 노트 포함</span></p>
-            <p class="text-xs text-neutral-900/45 mt-3">보기·투사용 PDF — 파워포인트 원본: <span class="underline" onclick="event.preventDefault();event.stopPropagation();location.href='files/maranatha-lecture2-thief.pptx'">PPTX 내려받기</span></p>
-          </a>
-          <div class="flex items-center justify-center bg-sand/40 rounded-2xl border border-dashed border-ink/15 p-5 text-center">
-            <p class="text-[13px] text-neutral-900/45 leading-relaxed">특강 3강 (계시록 7장 — 십사만 사천)<br/>원고 도착 후 추가 예정</p>
+        <!-- 폴더 1 · 마라나타 특강 (연속 강의) — 금색 폴더로 구분 -->
+        <div class="max-w-4xl mb-10 rounded-3xl border-2 border-gold/45 bg-gradient-to-br from-gold/[0.12] to-gold/[0.04] p-5 md:p-6">
+          <h2 class="font-bold text-lg mb-3 flex items-center gap-2 text-ink">📖 마라나타 특강 <span class="text-xs font-semibold text-gold">연속 강의 시리즈 · 45분씩 · 강의는 슬라이드로</span></h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            <a href="maranatha-lecture1.html" target="_blank" rel="noopener" class="block bg-white rounded-2xl border border-gold/30 shadow-sm p-5 hover:border-gold transition">
+              <p class="text-xs font-semibold text-gold mb-1">특강 1강 · 45분 · ▶ 슬라이드 열기</p>
+              <p class="font-bold text-lg leading-snug">천년왕국 첫날 — 누가 들어가는가<br/><span class="text-sm font-medium text-neutral-900/55">열쇠 7개 구조 · 30장 · N 키 발표자 노트</span></p>
+              <p class="text-xs text-neutral-900/45 mt-3">내려받기:
+                <span class="underline" onclick="event.preventDefault();event.stopPropagation();location.href='files/maranatha-lecture1-millennium.pptx'">PPT 원본</span> ·
+                <span class="underline" onclick="event.preventDefault();event.stopPropagation();window.open('files/maranatha-lecture1-millennium.pdf')">PDF</span></p>
+            </a>
+            <a href="maranatha-lecture2.html" target="_blank" rel="noopener" class="block bg-white rounded-2xl border border-gold/30 shadow-sm p-5 hover:border-gold transition">
+              <p class="text-xs font-semibold text-gold mb-1">특강 2강 · 45분 · ▶ 슬라이드 열기</p>
+              <p class="font-bold text-lg leading-snug">십자가의 강도 — 믿음의 수준과 구원<br/><span class="text-sm font-medium text-neutral-900/55">열쇠 7개 구조 · 30장 · N 키 발표자 노트</span></p>
+              <p class="text-xs text-neutral-900/45 mt-3">내려받기:
+                <span class="underline" onclick="event.preventDefault();event.stopPropagation();location.href='files/maranatha-lecture2-thief.pptx'">PPT 원본</span> ·
+                <span class="underline" onclick="event.preventDefault();event.stopPropagation();window.open('files/maranatha-lecture2-thief.pdf')">PDF</span></p>
+            </a>
+            <div class="flex items-center justify-center bg-white/50 rounded-2xl border border-dashed border-gold/40 p-5 text-center">
+              <p class="text-[13px] text-neutral-900/45 leading-relaxed">특강 3강 (계시록 7장 — 십사만 사천)<br/>원고 도착 후 추가 예정</p>
+            </div>
           </div>
         </div>
 

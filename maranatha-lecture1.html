@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>천년왕국 첫날, 누가 그 땅에 서 있는가 · 마라나타 특강 1강 슬라이드</title>
+  <!-- 관리자(발표자) 전용 페이지 — 검색엔진 색인 금지, 어디에도 공개 링크하지 않는다 -->
+  <meta name="robots" content="noindex, nofollow"/>
+  <meta name="theme-color" content="#0b1530"/>
+  <link rel="icon" href="/favicon.ico"/>
+  <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700;900&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
+    const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+    const ADMIN_EMAIL = 'josephoh1611@gmail.com';
+  </script>
+  <style>
+    :root{
+      --bg:#0b1530; --bg2:#13224a; --ink:#f4f7ff; --sub:#9fb3d9; --dim:#67789f;
+      --gold:#ffd76a; --gold-deep:#e8b84a; --line:rgba(255,255,255,.12);
+    }
+    *{box-sizing:border-box; margin:0; padding:0}
+    html,body{height:100%}
+    body{
+      font-family:'Pretendard',system-ui,sans-serif; background:var(--bg); color:var(--ink);
+      overflow:hidden; -webkit-font-smoothing:antialiased;
+      word-break:keep-all; overflow-wrap:break-word;
+    }
+    h2, .lines p, .eyebrow{text-wrap:balance}
+    .serif{font-family:'Noto Serif KR','Pretendard',serif}
+
+    /* ===== 로그인 게이트 ===== */
+    #gate{position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center; padding:20px;
+      background:radial-gradient(1200px 700px at 70% -10%, #1b2c5c 0%, var(--bg) 60%)}
+    .gateCard{width:100%; max-width:360px; background:rgba(255,255,255,.05); border:1px solid var(--line);
+      border-radius:20px; padding:32px 26px; text-align:center; backdrop-filter:blur(8px)}
+    .gateCard h1{font-size:17px; font-weight:800; margin-bottom:4px}
+    .gateCard p{font-size:12.5px; color:var(--sub); margin-bottom:20px}
+    .gateCard input{width:100%; background:rgba(255,255,255,.07); border:1px solid var(--line); border-radius:12px;
+      color:var(--ink); padding:11px 14px; font-size:14px; margin-bottom:8px; outline:none}
+    .gateCard input:focus{border-color:var(--gold)}
+    .btn{width:100%; border:0; border-radius:12px; padding:12px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit}
+    .btnGoogle{background:#fff; color:#1c2440; display:flex; align-items:center; justify-content:center; gap:9px; margin-bottom:14px}
+    .btnMail{background:var(--gold); color:#2a2000}
+    #gateErr{font-size:12px; color:#ff9d9d; min-height:16px; margin-top:8px}
+    .gateHome{display:inline-block; margin-top:10px; font-size:12px; color:var(--dim); text-decoration:none}
+
+    /* ===== 덱 공통 ===== */
+    #deck{position:fixed; inset:0; display:none}
+    #deck.open{display:block}
+    #bar{position:fixed; top:0; left:0; height:4px; background:linear-gradient(90deg,var(--gold),var(--gold-deep));
+      width:0%; z-index:40; transition:width .35s ease}
+    #count{position:fixed; right:18px; bottom:14px; z-index:40; font-size:12px; color:var(--dim); letter-spacing:.06em;
+      font-variant-numeric:tabular-nums}
+    #clock{position:fixed; left:18px; bottom:14px; z-index:40; font-size:12px; color:var(--dim); font-variant-numeric:tabular-nums}
+    #hint{position:fixed; left:50%; bottom:14px; transform:translateX(-50%); z-index:40; font-size:11.5px; color:var(--dim);
+      background:rgba(255,255,255,.05); border:1px solid var(--line); padding:6px 14px; border-radius:999px; white-space:nowrap;
+      transition:opacity .8s}
+    #hint.off{opacity:0; pointer-events:none}
+
+    /* ===== 슬라이드 ===== */
+    .slide{position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center;
+      padding:7vmin 9vmin 10vmin; opacity:0; transform:translateY(14px); transition:opacity .55s ease, transform .55s ease;
+      pointer-events:none; visibility:hidden;
+      background:radial-gradient(1400px 900px at 75% -15%, #192a58 0%, var(--bg) 62%)}
+    .slide.on{opacity:1; transform:none; pointer-events:auto; visibility:visible}
+    .eyebrow{font-size:clamp(13px,2vmin,20px); font-weight:700; letter-spacing:.22em; color:var(--gold);
+      text-transform:uppercase; margin-bottom:2.6vmin}
+    .eyebrow .n{color:var(--dim); margin-right:1em; letter-spacing:.1em}
+    h2{font-size:clamp(28px,7vmin,76px); line-height:1.26; font-weight:900; letter-spacing:-.01em; max-width:22em; text-wrap:balance}
+    h2 em{font-style:normal; color:var(--gold)}
+    .lines{margin-top:4vmin; display:flex; flex-direction:column; gap:2vmin; max-width:36em}
+    .lines p{font-size:clamp(17px,3.2vmin,34px); line-height:1.6; color:var(--sub)}
+    .lines p b{color:var(--ink); font-weight:700}
+    .big{font-size:clamp(34px,8.4vmin,96px) !important; line-height:1.28 !important}
+    .fr{opacity:0; transform:translateY(16px); transition:opacity .45s ease, transform .45s ease}
+    .fr.show{opacity:1; transform:none}
+    .notes{display:none}
+    .center{align-items:center; text-align:center}
+    .center h2{max-width:none}
+    .center .lines{align-items:center}
+    .hl{color:var(--gold); font-weight:700}
+
+    /* 성경 전문 블록 */
+    .vtext{border-left:4px solid var(--gold); padding:1.4vmin 0 1.4vmin 3vmin; max-width:40em; margin-top:1vmin}
+    .vtext p{font-family:'Noto Serif KR','Pretendard',serif; font-size:clamp(18px,3.3vmin,38px); line-height:1.8; color:var(--ink)}
+    .vtext.md p{font-size:clamp(16px,2.8vmin,32px)}
+    .vtext cite{display:block; margin-top:1.4vmin; font-size:clamp(12px,1.9vmin,18px); color:var(--gold); font-style:normal; letter-spacing:.08em}
+    .vtext + .vtext{margin-top:3vmin}
+    .vwrap{display:grid; grid-template-columns:1fr 1fr; gap:4.5vmin; align-items:start; max-width:66em; margin-top:1vmin}
+    .vwrap .vtext{margin-top:0; max-width:none}
+    .vwrap .vtext p{font-size:clamp(15px,2.7vmin,32px)}
+
+    /* 칩 */
+    .chips{display:flex; gap:1.8vmin; margin-top:4vmin; flex-wrap:wrap}
+    .chip{border:1.5px solid var(--line); border-radius:999px; padding:1.3vmin 3vmin; font-size:clamp(14px,2.5vmin,26px);
+      color:var(--dim); font-weight:700; letter-spacing:.02em}
+    .chip.now{border-color:var(--gold); color:var(--gold)}
+    .center .chips{justify-content:center}
+
+    /* 표 */
+    table.tbl{margin-top:3.2vmin; border-collapse:collapse; max-width:100%}
+    .tbl th,.tbl td{border:1px solid var(--line); padding:1.3vmin 2vmin; font-size:clamp(13px,2.2vmin,24px);
+      text-align:left; line-height:1.5; vertical-align:top}
+    .tbl th{background:rgba(255,215,106,.10); color:var(--gold); font-weight:800; white-space:nowrap}
+    .tbl td{color:var(--sub)}
+    .tbl td b{color:var(--ink)}
+    .tbl td.gd{color:var(--gold); font-weight:700}
+    .tbl td.rd{color:#e39a8f; font-weight:700}
+
+    /* 질문 카드 */
+    .qcard{border:1px solid var(--line); border-left:4px solid var(--gold); border-radius:12px;
+      padding:2vmin 2.8vmin; background:rgba(255,255,255,.04); max-width:46em}
+    .qcard .qn{font-size:clamp(12px,1.9vmin,18px); color:var(--gold); font-weight:800; letter-spacing:.12em; margin-bottom:.8vmin}
+    .qcard p{font-size:clamp(15px,2.6vmin,28px); line-height:1.6; color:var(--sub)}
+    .qcard p b{color:var(--ink)}
+    .qcard.xl p{font-family:'Noto Serif KR',serif; font-size:clamp(18px,3.2vmin,38px); line-height:1.7; color:var(--ink)}
+    .qwrap{display:flex; flex-direction:column; gap:2vmin; margin-top:3.4vmin}
+
+    /* 2·3단 카드 */
+    .cols{display:flex; gap:3vmin; margin-top:3.6vmin; flex-wrap:wrap; max-width:70em}
+    .col{flex:1; min-width:230px; border:1px solid var(--line); border-radius:14px; padding:2.6vmin 3vmin;
+      background:rgba(255,255,255,.04)}
+    .col h3{font-size:clamp(16px,2.8vmin,30px); font-weight:800; margin-bottom:1.4vmin}
+    .col.gold{border-color:var(--gold)}
+    .col.gold h3{color:var(--gold)}
+    .col p{font-size:clamp(13px,2.2vmin,23px); line-height:1.62; color:var(--sub)}
+    .col p b{color:var(--ink)}
+    .col ul{margin:1vmin 0 0 1.1em}
+    .col li{font-size:clamp(13px,2.2vmin,23px); line-height:1.62; color:var(--sub); margin-bottom:.9vmin}
+    .col li b{color:var(--ink)}
+
+    /* 번호 목록 */
+    .ref-list{margin-top:3vmin; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.4vmin 3vmin; max-width:70em}
+    .ref-list.one{grid-template-columns:1fr}
+    .ref-list .r{border-left:3px solid var(--gold); padding:.6vmin 0 .6vmin 2vmin}
+    .ref-list .r .k{font-size:clamp(12px,1.9vmin,19px); color:var(--gold); font-weight:800; letter-spacing:.06em}
+    .ref-list .r .t{font-family:'Noto Serif KR',serif; font-size:clamp(15px,2.6vmin,29px); line-height:1.55; color:var(--ink)}
+    @media (max-aspect-ratio:4/3){ .ref-list{grid-template-columns:1fr} .vwrap{grid-template-columns:1fr; gap:2.5vmin} }
+
+    /* 열쇠 간지 */
+    .keyRound{width:clamp(90px,16vmin,170px); height:clamp(90px,16vmin,170px); border-radius:50%; background:var(--gold);
+      color:#241a00; display:flex; flex-direction:column; align-items:center; justify-content:center; margin:0 auto 4vmin}
+    .keyRound .kl{font-size:clamp(12px,1.9vmin,18px); font-weight:800; letter-spacing:.2em}
+    .keyRound .kn{font-size:clamp(34px,6.5vmin,70px); font-weight:900; line-height:1.05}
+
+    @media (max-width:760px), (orientation:portrait){
+      .slide{padding:7vmin 6vmin 12vmin}
+    }
+
+    /* 발표자 노트 패널 (N 키) */
+    #notes{position:fixed; left:0; right:0; bottom:0; z-index:50; max-height:38vh; overflow:auto; display:none;
+      background:rgba(6,12,30,.94); border-top:1px solid var(--gold); padding:16px 22px 22px; backdrop-filter:blur(6px)}
+    #notes.open{display:block}
+    #notes .nTitle{font-size:11px; letter-spacing:.2em; color:var(--gold); font-weight:700; margin-bottom:8px}
+    #notes .nBody{font-size:14.5px; line-height:1.75; color:#dbe4f7; max-width:860px}
+    #notes .nBody b{color:var(--gold)}
+
+    /* 암전 (B 키) */
+    #blackout{position:fixed; inset:0; z-index:60; background:#000; display:none}
+    #blackout.open{display:block}
+  </style>
+</head>
+<body>
+
+  <!-- ===== 로그인 게이트 ===== -->
+  <div id="gate">
+    <div class="gateCard">
+      <h1>마라나타 특강 1강 슬라이드</h1>
+      <p>발표자 계정으로 로그인하세요.</p>
+      <button class="btn btnGoogle" onclick="googleLogin()">
+        <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C39.9 36.5 44 31 44 24c0-1.3-.1-2.3-.4-3.5z"/></svg>
+        구글로 로그인
+      </button>
+      <input id="ge" type="email" placeholder="이메일" autocomplete="username"/>
+      <input id="gp" type="password" placeholder="비밀번호" autocomplete="current-password"/>
+      <button class="btn btnMail" onclick="emailLogin()">이메일로 로그인</button>
+      <p id="gateErr"></p>
+      <a class="gateHome" href="/admin">← 관리자 콘솔로</a>
+    </div>
+  </div>
+
+  <!-- ===== 슬라이드 덱 ===== -->
+  <div id="deck">
+    <div id="bar"></div>
+    <div id="count"></div>
+    <div id="clock"></div>
+    <div id="hint">→ 다음 · ← 이전 · <b>F</b> 전체화면 · <b>N</b> 대본 · <b>B</b> 암전</div>
+
+    <!-- 1. 타이틀 -->
+    <section class="slide center">
+      <p class="eyebrow">MARANATHA · 마라나타 특강 · 천년왕국과 부활 1강</p>
+      <h2 class="serif">천년왕국 첫날,<br/>누가 그 땅에 <em>서 있는가</em></h2>
+      <div class="lines">
+        <p><b>입장 조건과 부활의 질서</b></p>
+        <p style="color:var(--dim); font-size:clamp(13px,2.2vmin,22px)">오광일 · 오광일의 인사이트 브리핑</p>
+      </div>
+      <aside class="notes">인사 후 바로 시작. 오늘은 질문 네 개로 시작하겠습니다 — 수강생 여러분이 실제로 보내 주신 질문입니다.</aside>
+    </section>
+
+    <!-- 2. 네 개의 질문 -->
+    <section class="slide">
+      <p class="eyebrow">오프닝</p>
+      <h2 class="serif">수강생이 보낸 <em>네 개의 질문</em></h2>
+      <div class="qwrap">
+        <div class="qcard fr"><p class="qn">① — 오늘 1강</p><p><b>천년왕국에는 어떤 사람이 들어갑니까?</b></p></div>
+        <div class="qcard fr"><p class="qn">② — 오늘 1강</p><p><b>새 하늘과 새 땅에 들어갈 때, 부활한 사람은 그냥 들어갑니까?</b></p></div>
+        <div class="qcard fr" style="border-left-color:var(--line)"><p class="qn" style="color:var(--dim)">③ — 다음 2강</p><p>첫째 부활에 참여하려면 어느 수준의 믿음이 필요합니까?</p></div>
+        <div class="qcard fr" style="border-left-color:var(--line)"><p class="qn" style="color:var(--dim)">④ — 다음 2강</p><p>예수님 우편의 강도는 부활에 참여할 자격이 됩니까?</p></div>
+      </div>
+      <div class="lines"><p class="fr" style="color:var(--dim); font-size:clamp(13px,2.2vmin,22px)">네 질문은 하나로 이어져 있습니다 — 누가 · 어떻게 · 무엇을 근거로 · 가장 극단적인 경우는</p></div>
+      <aside class="notes">실제 수강생 질문 네 개 소개. 따로따로가 아니라 하나로 이어진 질문임을 강조 — 누가 들어가는가, 어떻게 들어가는가, 무엇을 근거로, 극단적 경우는. 오늘 1강은 앞의 두 질문.</aside>
+    </section>
+
+    <!-- 3. 첫날 아침의 인구조사 -->
+    <section class="slide">
+      <p class="eyebrow">상상 하나</p>
+      <h2 class="serif">천년왕국 첫날 아침, <em>인구조사</em>를 한다면</h2>
+      <div class="lines"><p>예수님이 감람산에 발을 디디시고, 아마겟돈이 끝나고, 천년왕국이 시작되는 첫날 아침 — 그 명단에는 <b>종류가 전혀 다른 두 부류</b>가 함께 있습니다.</p></div>
+      <div class="cols">
+        <div class="col gold fr"><h3>✦ 부활체를 입은 사람들</h3><p>죽지 않는 몸 — 늙지 않고, 결혼하지 않고, <b>그리스도와 함께 다스립니다</b></p></div>
+        <div class="col fr"><h3 style="color:#8facdf">✧ 육체를 가진 사람들</h3><p>우리처럼 배고프고, 늙고, 아이를 낳는 몸 — <b>다스림을 받으며</b> 천 년을 삽니다</p></div>
+      </div>
+      <div class="lines"><p class="fr"><b class="hl">이 두 부류가 한 나라에서 천 년을 함께 삽니다</b></p></div>
+      <aside class="notes">상상: 첫날 아침 인구조사. 명단에 전혀 다른 두 부류 — 부활체(죽지 않는 몸)와 육체(배고프고 늙고 아이 낳는 몸). 이 둘이 한 나라에서 천 년을 함께 산다는 것이 오늘의 그림.</aside>
+    </section>
+
+    <!-- 4. 오늘 확인할 세 가지 -->
+    <section class="slide">
+      <p class="eyebrow">오늘 끝까지 함께하시면</p>
+      <h2 class="serif">세 가지를 <em>확인</em>하게 됩니다</h2>
+      <div class="qwrap">
+        <div class="qcard fr"><p class="qn">1 · 요한복음 5장의 "때" 한 단어</p><p>예수님이 쓰신 그 "때"가 <b>이미 2천 년째 계속되고 있다</b>는 것</p></div>
+        <div class="qcard fr"><p class="qn">2 · 완벽한 나라 마지막의 반역</p><p>의로운 왕이 다스리는 나라의 끝에 <b>왜 반역이 일어나는지</b></p></div>
+        <div class="qcard fr"><p class="qn">3 · 백보좌 앞의 생명책</p><p>요한계시록 20장, 심판대 앞에 <b>왜 생명책이 펼쳐지는지</b></p></div>
+      </div>
+      <aside class="notes">세 가지 예고 — ①요 5장의 '때' 한 단어가 2천 년째 계속 ②완벽한 나라 끝의 반역 이유 ③백보좌의 생명책. 이 셋을 붙잡으면 질문들이 하나의 그림으로 정리된다.</aside>
+    </section>
+
+    <!-- 5. 지도 — 세 시간대 -->
+    <section class="slide">
+      <p class="eyebrow">오늘의 지도</p>
+      <h2 class="serif">세 개의 시간대 — 지금 <em>몇 번째 칸</em>인가</h2>
+      <table class="tbl">
+        <tr><th>시간대</th><th>사건</th><th>부활 · 변화</th><th>심판</th></tr>
+        <tr class="fr"><td class="gd">① 휴거 ~ 7년 환난</td><td>교회가 공중에서 주님을 만남 <b>(살전 4:17)</b></td><td>죽은 성도의 부활 + 산 성도의 변화</td><td>그리스도의 심판석 — 상급 (고후 5:10)</td></tr>
+        <tr class="fr"><td class="gd">② 재림 ~ 천년왕국</td><td>감람산 강림(슥 14:4) · 천 년 통치(계 20:4~6)</td><td>구약 성도·환난 순교자의 부활 (단 12:2)</td><td>이스라엘 심판(겔 20) · 민족 심판(마 25)</td></tr>
+        <tr class="fr"><td class="gd">③ 천년 끝 ~ 영원</td><td>마지막 반역(계 20:7~10) · 새 하늘 새 땅(21:1)</td><td>나머지 죽은 자의 부활 (계 20:5, 12~13)</td><td>크고 흰 보좌 심판 (계 20:11~15)</td></tr>
+      </table>
+      <div class="lines"><p class="fr"><b class="hl">오늘의 모든 질문은 "지금 몇 번째 칸을 이야기하는가"를 확인하면 절반이 풀립니다</b></p></div>
+      <aside class="notes">강의 노트 첫 쪽의 표. 세 시간대 — 휴거~7년 환난 / 천년왕국 / 영원. 그리고 부활은 한 번에 모두가 아니라 순서가 있다는 것만 먼저 기억(열쇠 ②에서 상세).</aside>
+    </section>
+
+    <!-- 6. 열쇠 ① -->
+    <section class="slide center">
+      <div class="keyRound"><span class="kl">열쇠</span><span class="kn">①</span></div>
+      <h2 class="serif">입장 조건은 하나뿐입니다 — <em>거듭남</em></h2>
+      <div class="lines"><p>누가 들어가는지 명단을 보기 전에, 먼저 입장 조건부터</p></div>
+      <aside class="notes">첫 질문. 입장 조건을 가장 분명하게 말씀하신 분은 예수님, 처음 들은 사람은 니고데모.</aside>
+    </section>
+
+    <!-- 7. 요 3장 + 니고데모 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ① 거듭남</p>
+      <h2 class="serif">니고데모가 "나라"를 들었을 때 <em>떠올린 것</em></h2>
+      <div class="vtext md fr"><p>"사람이 거듭나지 아니하면 하나님의 나라를 <span class="hl">볼 수</span> 없느니라 … 사람이 물과 성령으로 나지 아니하면 하나님의 나라에 <span class="hl">들어갈 수</span> 없느니라"</p><cite>요한복음 3:3, 5</cite></div>
+      <div class="cols">
+        <div class="col fr"><h3>니고데모는</h3><ul><li>바리새인 · 유대인의 지도자</li><li>"이스라엘의 선생"(요 3:10)</li><li>"나라"를 들으면 — <b>메시아가 다스리실 회복된 나라</b>를 떠올리는 사람</li></ul></div>
+        <div class="col gold fr"><h3>노트 ①</h3><p><b>천년왕국에 들어가는 사람은 — 부활체든 육체든 — 예외 없이 모두 거듭난 사람입니다.</b></p><p style="margin-top:1vmin">오늘 강의의 다른 모든 내용이 이 원리 위에 섭니다.</p></div>
+      </div>
+      <aside class="notes">보통 '구원받으려면 거듭나야 한다'로 읽고, 맞다. 그러나 니고데모가 '하나님의 나라'에서 떠올린 것은 — 이스라엘의 선생으로서 — 메시아의 회복된 나라. <b>노트① 선언: 부활체든 육체든 예외 없이 거듭난 사람만 들어간다.</b></aside>
+    </section>
+
+    <!-- 8. 물과 성령 = 에스겔 36 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ① 거듭남</p>
+      <h2 class="serif">"물과 성령으로" — 세례가 아니라 <em>에스겔 36장</em></h2>
+      <div class="vtext md fr"><p>"<span class="hl">맑은 물</span>을 너희에게 뿌려서 너희로 정결하게 하되 … <span class="hl">새 영</span>을 너희 속에 두고 … 내 영을 너희 속에 두어"</p><cite>에스겔 36:25~27 — 니고데모가 알아들었어야 할 구절</cite></div>
+      <div class="lines">
+        <p class="fr">이 약속은 <b>이스라엘이 땅으로 돌아와 나라가 회복될 때</b> 이루어질 일로 주어졌습니다(겔 36:24, 28)</p>
+        <p class="fr">니고데모가 알아야 했던 것 — 그 나라에 들어가는 길은 에스겔이 말한 <b>새 마음, 새 영, 곧 거듭남</b></p>
+        <p class="fr" style="color:var(--dim)">성경은 재림 때 거듭나지 않은 사람을 걸러내는 장면도 보여 줍니다 → 열쇠 ④에서</p>
+      </div>
+      <aside class="notes">'물과 성령'을 세례로 읽는 분들이 있으나, 이스라엘의 선생이 알아들었어야 할 본문은 겔 36:25~27 — 물과 영이 함께 나오는 새 언약. 나라 회복과 함께 주어진 약속임을 강조.</aside>
+    </section>
+
+    <!-- 9. 열쇠 ② -->
+    <section class="slide center">
+      <div class="keyRound"><span class="kl">열쇠</span><span class="kn">②</span></div>
+      <h2 class="serif">첫째 부활은 "하루"가 아니라<br/><em>"한 종류"</em>입니다</h2>
+      <div class="lines"><p>"각 사람이 자기 차례대로" (고전 15:23)</p></div>
+      <aside class="notes">흔한 오해: 첫째 부활 = 어느 날 하루에 모든 의인이 한꺼번에. 그래서 '첫째 부활이 두 번이냐'는 질문이 꼬인다. 바울의 답 — 각 사람이 자기 차례대로(탁마).</aside>
+    </section>
+
+    <!-- 10. 추수의 그림 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ② 부활의 순서</p>
+      <h2 class="serif">이스라엘의 <em>추수</em>가 보여 주는 네 단계</h2>
+      <table class="tbl">
+        <tr><th>추수의 단계</th><th>부활의 단계</th><th>본문</th></tr>
+        <tr class="fr"><td>첫 열매 — 첫 이삭 한 단</td><td><b>그리스도의 부활</b></td><td>고전 15:20, 23 · 마 27:52~53</td></tr>
+        <tr class="fr"><td>본 추수</td><td><b>교회의 부활 — 휴거 때</b></td><td>살전 4:16 · 고전 15:51~52</td></tr>
+        <tr class="fr"><td>이삭줍기 — 모퉁이와 떨어진 이삭</td><td><b>구약 성도 · 환난 순교자의 부활 — 재림 때</b></td><td>단 12:2 · 사 26:19 · 계 20:4</td></tr>
+        <tr class="fr"><td style="color:var(--dim)">(첫째 부활 이후) 마지막</td><td class="rd">나머지 죽은 자의 부활 — 천 년 후</td><td>계 20:5, 12~13 · 요 5:29</td></tr>
+      </table>
+      <div class="lines"><p class="fr"><b class="hl">[노트 ②] 첫째 부활은 "하루"의 이름이 아니라 "종류"의 이름</b> — 의인들이 생명으로 살아나는 부활(눅 14:14, 요 5:29)</p></div>
+      <aside class="notes">레 23장 첫 이삭 한 단(첫 열매) → 본 추수 → 레 19:9 이삭줍기. 그리스도→교회→구약 성도·환난 순교자로 이어지는 한 대열이 모두 '첫째 부활'. 천 년 뒤 나머지 죽은 자들 = 둘째 부활(심판의 부활). <b>현장 문답: "첫째 부활은 하루의 이름입니까, 종류의 이름입니까?" — "종류!"</b></aside>
+    </section>
+
+    <!-- 11. '때' 논증 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ② 반론 검토</p>
+      <h2 class="serif">"같은 때에 살아난다?" — 그 "때"는 <em>몇 시간짜리</em>인가</h2>
+      <div class="vwrap">
+        <div class="vtext fr"><p>"죽은 자들이 하나님의 아들의 음성을 들을 <span class="hl">때</span>가 오나니 <span class="hl">곧 이 때라</span>"</p><cite>요한복음 5:25 — 영적으로 죽은 자가 살아나는 "때"</cite></div>
+        <div class="vtext fr"><p>"무덤 속에 있는 자가 다 그의 음성을 들을 <span class="hl">때</span>가 오나니 … 생명의 부활 … 심판의 부활"</p><cite>요한복음 5:28~29</cite></div>
+      </div>
+      <div class="qwrap"><div class="qcard fr"><p class="qn">같은 대화, 같은 단어 — "때"(호라)</p><p>25절의 "때"는 24시간이 아닙니다 — <b>이미 2천 년째 계속되고 있습니다.</b> 그렇다면 28절의 "때"도 하루로 읽을 근거가 없습니다. 그 "때" 안에 생명의 부활과 심판의 부활이 <b>순서를 두고</b> 들어 있습니다.</p></div></div>
+      <aside class="notes">반론: 요 5:28~29는 의인·악인이 같은 때 살아난다? — 세 절 앞 25절에서 예수님이 똑같은 단어 '때(호라)'를 쓰셨고, 그 때는 이미 2천 년째다. 같은 단어를 28절에서만 하루로 좁힐 근거가 없다.</aside>
+    </section>
+
+    <!-- 12. 에제산 논증 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ② 갈림길</p>
+      <h2 class="serif">"살아나서" — 같은 문단, <em>같은 동사</em></h2>
+      <div class="vtext md fr"><p>4절 "<span class="hl">살아나서</span>(ἔζησαν, 에제산) 그리스도와 더불어 천 년 동안 왕 노릇 하니" / 5절 "그 나머지 죽은 자들은 그 천 년이 차기까지 <span class="hl">살지</span>(ἔζησαν) 못하더라"</p><cite>요한계시록 20:4~5</cite></div>
+      <div class="lines">
+        <p class="fr">5절의 "살지 못하더라"는 누구나 <b>몸의 부활</b>로 읽습니다 — 백보좌 앞에 서는 부활이기 때문입니다</p>
+        <p class="fr">그렇다면 같은 문단·같은 동사·같은 형태인 4절도 몸의 부활입니다 — <b>한 문장 안에서 단어의 뜻을 바꿀 근거가 본문에 없습니다</b></p>
+        <p class="fr">부활이 둘이고 사이에 천 년이 있다면 — 아브라함·다윗·이스라엘에게 하신 <b>땅의 약속을 문자 그대로 지키실 시간</b>이 마련된 것입니다</p>
+        <p class="fr"><b class="hl">부활의 순서는 하나님의 신실하심의 순서입니다</b></p>
+      </div>
+      <aside class="notes">'일반 부활'(부활 1회) 견해는 계 20:4의 '살아나서'를 영적으로 읽는다. 그러나 4절과 5절은 같은 동사 에제산 — 5절이 몸의 부활이면 4절도 몸의 부활. 이것이 중요한 이유: 두 부활 사이의 천 년이 땅의 약속을 지키시는 시간이기 때문.</aside>
+    </section>
+
+    <!-- 13. 열쇠 ③ -->
+    <section class="slide center">
+      <div class="keyRound"><span class="kl">열쇠</span><span class="kn">③</span></div>
+      <h2 class="serif">부활체로 들어가는 <em>세 무리</em></h2>
+      <div class="lines"><p>요한계시록 20장 4절을 천천히 읽으면 세 무리가 보입니다</p></div>
+      <aside class="notes">이제 첫날 아침의 명단. 먼저 부활체 — 죽지 않는 몸을 입고 들어가는 사람들.</aside>
+    </section>
+
+    <!-- 14. 세 무리 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ③ 명단 1</p>
+      <h2 class="serif">계시록 20:4의 <em>세 무리</em> — 그리고 구약 성도</h2>
+      <div class="cols">
+        <div class="col fr"><h3>1 · 보좌들 위에 앉은 자들</h3><p>이미 앉아 있는 이들 — <b>휴거된 교회.</b> 7년 전에 이미 부활·변화되어, "살아나는" 자가 아니라 "앉은" 자로 등장 (계 3:21, 4장 24장로)</p></div>
+        <div class="col fr"><h3>2 · 목 베임을 당한 자들의 영혼들</h3><p>제단 아래 "어느 때까지" 외치던 영혼들(계 6:9). "동료 종들의 수가 차기까지" — <b>이제 그 수가 찼고, 살아납니다</b></p></div>
+        <div class="col fr"><h3>3 · 짐승에게 경배하지 않은 자들</h3><p>표를 받지 않고 믿음을 지키다 죽은 <b>환난기의 성도들</b> — 이때 살아납니다</p></div>
+      </div>
+      <div class="qwrap"><div class="qcard fr"><p class="qn">구약 성도는? — 다니엘 12:2</p><p>"땅의 티끌 가운데에서 자는 자 중에서 많은 사람이 깨어나" — 전무후무한 환난(단 12:1, 마 24:21) 끝에, <b>재림 때 부활합니다.</b> 이사야 26:19~20도 부활을 진노의 기간과 연결합니다.</p></div></div>
+      <aside class="notes">세 무리: ①보좌에 앉은 자들=휴거된 교회(이미 부활·변화, 그래서 '앉은' 자로) ②목 베임당한 영혼들(6:9 제단 아래, 수가 참) ③표 받지 않은 자들(환난기 성도). 구약 성도는 단 12:1~2 — 환난 끝 재림 때.</aside>
+    </section>
+
+    <!-- 15. 어떤 몸인가 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ③ 부활체 · 고전 15:42~44</p>
+      <h2 class="serif">어떤 몸입니까 — 씨앗과 열매의 <em>네 가지 대조</em></h2>
+      <div class="ref-list">
+        <div class="r fr"><p class="k">썩을 것으로 심고</p><p class="t">→ <span class="hl">썩지 아니할 것</span>으로</p></div>
+        <div class="r fr"><p class="k">욕된 것으로 심고</p><p class="t">→ <span class="hl">영광스러운 것</span>으로</p></div>
+        <div class="r fr"><p class="k">약한 것으로 심고</p><p class="t">→ <span class="hl">강한 것</span>으로</p></div>
+        <div class="r fr"><p class="k">육의 몸으로 심고</p><p class="t">→ <span class="hl">신령한 몸</span>으로</p></div>
+      </div>
+      <div class="vtext md fr" style="margin-top:3vmin"><p>"영은 살과 뼈가 없으되 너희가 보는 바와 같이 <span class="hl">나는 있느니라</span>"</p><cite>누가복음 24:39 (부활하신 예수님) — "신령한 몸"은 몸 없는 영이 아니라, 성령이 완전히 다스리는 만질 수 있는 실제 몸</cite></div>
+      <div class="lines"><p class="fr"><b class="hl">[노트 ③] 죽지 않고 · 늙지 않고 · 결혼하지 않으며(눅 20:35~36) — 그리스도와 함께 다스립니다</b></p></div>
+      <aside class="notes">고전 15:42~44 네 대조. '신령한 몸'을 몸 없는 영으로 오해 금지 — 눅 24:39. 같은 사람이 다른 차원의 몸을 입는 것(씨앗과 열매). 노트③ 정리: 교회·구약 성도·환난 성도 세 무리, 죽지 않고 늙지 않고 결혼하지 않으며 함께 다스린다.</aside>
+    </section>
+
+    <!-- 16. 열쇠 ④ -->
+    <section class="slide center">
+      <div class="keyRound"><span class="kl">열쇠</span><span class="kn">④</span></div>
+      <h2 class="serif">육체로 들어가는 <em>두 무리</em></h2>
+      <div class="lines"><p>7년 환난을 죽지 않고 살아서 통과한 신자들 — 그리고 걸러지는 자들</p></div>
+      <aside class="notes">낯설게 느껴지는 부분. 환난기에도 하나님은 구원하시며(계 7장의 큰 무리), 순교하지 않고 살아남아 재림 때 살아 있는 상태로 주님을 맞는 신자들이 있다.</aside>
+    </section>
+
+    <!-- 17. 두 무리 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ④ 명단 2</p>
+      <h2 class="serif">살아서 들어가는 <em>두 무리</em></h2>
+      <div class="cols">
+        <div class="col fr"><h3>1 · 이스라엘의 남은 자</h3><ul>
+          <li>"그들이 그 찌른 바 나를 바라보고"(슥 12:10) — 재림 때 메시아를 알아보고 <b>애통하며 회개</b></li>
+          <li>"온 이스라엘이 구원을 받으리라"(롬 11:26)의 성취</li>
+          <li>단, 모으신 뒤 <b>걸러내십니다</b>(겔 20:33~38) — "막대기 아래로"</li>
+        </ul></div>
+        <div class="col fr"><h3>2 · 양으로 판정된 민족들</h3><ul>
+          <li>"인자가 자기 영광으로 올 때"(마 25:31) — <b>재림 때, 땅에서, 살아 있는 모든 민족</b></li>
+          <li>양에게: "나라를 상속하라" — 천년왕국 입장</li>
+          <li>백보좌(죽은 자들, 계 20:12)와 <b>다른 심판</b> — 여기 서는 것은 살아 있는 민족들</li>
+        </ul></div>
+      </div>
+      <aside class="notes">①이스라엘의 남은 자 — 슥 12:10 '찌른 바 나를 바라보고', 롬 11:26의 성취. '온 이스라엘'≠모든 유대인: 겔 20 걸러냄. ②이방 민족 중 살아남은 신자 — 마 25 양과 염소. 시점은 재림, 장소는 땅, 대상은 살아 있는 민족 — 백보좌와 다른 심판.</aside>
+    </section>
+
+    <!-- 18. 행위는 증거 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ④ 오해 풀기</p>
+      <h2 class="serif">양과 염소 — <em>행위로 구원</em>받는다는 말입니까?</h2>
+      <div class="vtext md fr"><p>"내가 주릴 때에 너희가 먹을 것을 주었고 … 여기 내 형제 중에 <span class="hl">지극히 작은 자 하나</span>에게 한 것이 곧 내게 한 것이니라"</p><cite>마태복음 25:35, 40</cite></div>
+      <div class="lines">
+        <p class="fr">환난기의 상황 — 짐승의 표가 없으면 <b>사고팔 수 없습니다</b>(계 13:17)</p>
+        <p class="fr">박해받는 그리스도의 "형제들"에게 빵 한 조각을 주고 숨겨 주는 것은 <b>목숨을 거는 일</b> — 믿음 없이는 할 수 없는 일입니다</p>
+        <p class="fr">행위는 구원의 원인이 아니라, 그 믿음이 진짜라는 증거입니다 — "나는 행함으로 내 믿음을 네게 보이리라"(약 2:18)</p>
+        <p class="fr big serif" style="color:var(--gold)">원인이 아니라 증거</p>
+      </div>
+      <aside class="notes">기준이 이상해 보인다 — 행위 구원? 아니다. 표 없이는 사고팔 수 없는 시대에 쫓기는 형제들을 돕는 것은 목숨을 거는 일. 행위는 원인이 아니라 믿음이 진짜라는 증거(약 2:18).</aside>
+    </section>
+
+    <!-- 19. 걸러냄과 보호 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ④ 두 장면</p>
+      <h2 class="serif">먼저 <em>걸러내시고</em> — 끝까지 <em>지키십니다</em></h2>
+      <div class="cols">
+        <div class="col fr"><h3>걸러냄 — 불신자는 들어가지 못함</h3><ul>
+          <li>가라지 비유 — "그의 나라에서 거두어 내어 … 그때에 의인들은 나라에서 빛나리라"(마 13:41, 43)</li>
+          <li>그물 비유 — "의인 중에서 악인을 갈라내어"(마 13:49)</li>
+          <li><b>순서가 분명합니다: 먼저 걸러내고, 그 다음에 나라가 시작됩니다</b></li>
+        </ul></div>
+        <div class="col fr"><h3>보호 — 남은 자들이 살아남는 길</h3><ul>
+          <li>인치심 — 십사만 사천, 황충도 해치지 못함(계 7:3~4, 9:4)</li>
+          <li>광야 양육 — 용에게 쫓기는 여자를 3년 반 동안 기르심(계 12:6, 14; 마 24:16)</li>
+          <li>하나님은 천년왕국에 들어갈 백성을 <b>박해 속에서도 지키십니다</b></li>
+        </ul></div>
+      </div>
+      <div class="qwrap"><div class="qcard fr"><p class="qn">"휴거를 놓친 이류 신자"가 아닙니다</p><p>교회가 떠난 뒤 가장 어두운 시대에 믿은 사람들 — 하나님은 그들에게 <b>다른 부르심</b>을 주셨습니다. 노아의 가족이 홍수 뒤 새 세상의 첫 세대가 되었듯, <b>천년왕국의 첫 세대</b>가 되는 부르심입니다.</p></div></div>
+      <aside class="notes">걸러냄(가라지·그물: 먼저 걸러내고 나라 시작)과 보호(인치심·광야 양육). 오해 풀기: 이류 신자가 아니라 다른 부르심 — 노아 가족처럼 새 세상의 첫 세대.</aside>
+    </section>
+
+    <!-- 20. 첫날 명단 정리 -->
+    <section class="slide">
+      <p class="eyebrow">노트 ④</p>
+      <h2 class="serif">천년왕국 <em>첫날 아침의 명단</em></h2>
+      <div class="cols">
+        <div class="col gold fr"><h3>부활체 — 3무리</h3><ul><li>휴거된 교회</li><li>구약 성도</li><li>환난기 순교 성도</li></ul></div>
+        <div class="col fr"><h3 style="color:#8facdf">육체 — 2무리</h3><ul><li>거듭난 이스라엘의 남은 자</li><li>양으로 판정된 민족의 신자</li></ul></div>
+      </div>
+      <div class="lines"><p class="fr big serif">첫날 아침, 그 땅에 불신자는 <b class="hl">0명</b></p><p class="fr">— 모두 거듭난 사람입니다</p></div>
+      <aside class="notes">정리. 부활체 세 무리 + 육체 두 무리. 첫날 아침 그 땅에 불신자는 한 사람도 없다. <b>현장 문답: "부활체 몇 무리, 육체 몇 무리?" — "셋, 둘!"</b></aside>
+    </section>
+
+    <!-- 21. 열쇠 ⑤ -->
+    <section class="slide center">
+      <div class="keyRound"><span class="kl">열쇠</span><span class="kn">⑤</span></div>
+      <h2 class="serif">천년왕국에서 <em>태어나는</em> 사람들</h2>
+      <div class="lines"><p>육체를 가진 사람들은 결혼하고 아이를 낳습니다 — 그리고 마지막 반역</p></div>
+      <aside class="notes">이야기가 여기서 끝나지 않는다. 천년왕국에도 아기가 태어난다.</aside>
+    </section>
+
+    <!-- 22. 사 65:20 + 반역 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ⑤ 출생과 반역</p>
+      <h2 class="serif">믿음은 <em>유전되지 않습니다</em></h2>
+      <div class="vtext md fr"><p>아이가 있고 · 노인이 있고 · 백 세에 죽는 사람이 있고 · "죄인은 백 세가 되어도 저주받은 자이리라"</p><cite>이사야 65:20 — 죽음도 죄인도 없는 영원한 상태(계 21:4, 27)와 구별되는 시간</cite></div>
+      <div class="lines">
+        <p class="fr">부모는 거듭났지만 — 아이는 <b>아담의 본성</b>으로 태어납니다. 그 아이들도 니고데모처럼 다시 태어나야 합니다. 대부분은 믿겠지만, <b>모두가 믿지는 않습니다</b></p>
+      </div>
+      <div class="qwrap"><div class="qcard fr"><p class="qn">천 년 끝의 반역 — "그들의 수가 바다의 모래 같으리라"(계 20:8)</p><p>첫날에는 거듭난 사람만 있었는데, 천 년 뒤 반역자가 바다의 모래처럼 많습니다. 어디서 왔습니까 — 천 년 동안 태어나, <b>겉으로는 복종했지만 한 번도 거듭나지 않은 사람들</b>입니다. "이방인들이 내게 복종하는 척하리로다"(시 18:44, 히브리어로 '속이며 복종한다') — 겉의 복종과 속의 반역.</p></div></div>
+      <aside class="notes">사 65:20 — 천년왕국과 영원 상태를 구분하는 열쇠 구절(아이·노인·백세·죄인). 믿음은 유전되지 않는다. 천 년 끝 바다의 모래 같은 반역자 — 시 18:44 '속이며 복종'. 완벽한 환경 천 년의 실험이 보여 주는 것: <b>문제는 환경이 아니라 마음.</b></aside>
+    </section>
+
+    <!-- 23. 천 년의 관계 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ⑤ 함께 사는 법</p>
+      <h2 class="serif">다스리는 자와 <em>다스림을 받는 자</em></h2>
+      <div class="lines">
+        <p class="fr">"보라 한 왕이 공의로 통치할 것이요 <b>방백들이 정의로 다스릴 것이며</b>"(사 32:1) — 왕은 그리스도, 방백들은 함께 다스리는 성도들</p>
+        <p class="fr">므나 비유 — 충성한 종에게 "<b>열 고을</b>", 다른 종에게 "다섯 고을"(눅 19:17, 19). 고을이 있다 = <b>다스림을 받는 백성이 있다</b></p>
+        <p class="fr">"네 눈이 네 스승을 볼 것이며 … 이것이 바른 길이니 이리로 가라"(사 30:20~21) — <b>가르치고, 판결하고, 돌보는</b> 다스림</p>
+      </div>
+      <div class="qwrap"><div class="qcard fr"><p class="qn">미리 보여 준 장면 — 부활하신 예수님의 40일</p><p>부활체를 입으신 예수님이 육체를 가진 제자들 곁에서 함께 식사하시고, 가르치시고, "하나님 나라의 일을 말씀하셨습니다"(행 1:3). 천년왕국에서 부활한 성도가 육체의 백성을 대하는 방식의 <b>예고편</b>입니다.</p></div></div>
+      <aside class="notes">사 32:1 왕과 방백. 므나 비유의 고을 = 다스림받는 백성. 모델: 부활하신 예수님과 제자들의 40일(행 1:3).</aside>
+    </section>
+
+    <!-- 24. 열쇠 ⑥ -->
+    <section class="slide center">
+      <div class="keyRound"><span class="kl">열쇠</span><span class="kn">⑥</span></div>
+      <h2 class="serif">부활한 성도는 <em>"그냥"</em> 들어가는가</h2>
+      <div class="lines"><p>질문 ② — 새 하늘과 새 땅 앞에서 다시 심판을 받습니까?</p></div>
+      <aside class="notes">두 번째 질문. 백보좌 심판이 있다는데 부활한 성도도 거기 서야 하는가? 성경의 심판들을 한 번에 정리해야 답이 나온다.</aside>
+    </section>
+
+    <!-- 25. 심판 정리 표 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ⑥ 심판의 지도</p>
+      <h2 class="serif">성경의 심판들 — 부활한 성도는 <em>백보좌에 서지 않습니다</em></h2>
+      <table class="tbl">
+        <tr><th>심판</th><th>때 · 대상</th><th>기준</th><th>결과</th></tr>
+        <tr class="fr"><td><b>그리스도의 심판석</b> (고후 5:10)</td><td>휴거 후, 하늘 — 부활·변화된 교회</td><td>몸으로 행한 일</td><td>상급 — 구원은 잃지 않음(고전 3:15)</td></tr>
+        <tr class="fr"><td><b>이스라엘 심판</b> (겔 20:33~38)</td><td>재림 때 — 살아 있는 이스라엘</td><td>거듭났는가</td><td>남은 자는 입국 · 반역자는 제외</td></tr>
+        <tr class="fr"><td><b>민족 심판</b> (마 25:31~46)</td><td>재림 때, 땅 — 살아 있는 이방인</td><td>믿음과 그 증거</td><td>양은 나라 상속 · 염소는 영원한 불</td></tr>
+        <tr class="fr"><td class="rd">크고 흰 보좌 (계 20:11~15)</td><td>천 년 후 — "나머지 죽은 자들"</td><td>행위의 책들 + 생명책</td><td>불 못 (둘째 사망)</td></tr>
+      </table>
+      <div class="lines"><p class="fr"><b class="hl">"첫째 부활에 참여하는 자는 복이 있고 거룩하도다. 둘째 사망이 그들을 다스리는 권세가 없고"</b>(계 20:6)</p></div>
+      <aside class="notes">강의 노트 표 3. 눈에 띄는 것: 부활한 성도는 백보좌에 서지 않는다 — 백보좌는 둘째 사망을 선고하는 자리인데 첫째 부활 참여자에게는 둘째 사망의 권세가 없다(계 20:6).</aside>
+    </section>
+
+    <!-- 26. '그냥'의 뜻 -->
+    <section class="slide">
+      <p class="eyebrow">노트 ⑥</p>
+      <h2 class="serif">"그냥"의 뜻 — 모든 절차가 <em>이미 끝났다</em></h2>
+      <div class="cols">
+        <div class="col fr"><h3>✓ 죄의 심판</h3><p><b>십자가에서</b></p><p>"정죄에 이르지 아니하나니"(요 5:24) · 롬 8:1</p></div>
+        <div class="col fr"><h3>✓ 몸의 변화</h3><p><b>부활에서</b></p><p>이미 썩지 아니함을 입음(고전 15:53) — 혈과 육은 상속 불가(15:50)</p></div>
+        <div class="col fr"><h3>✓ 상급</h3><p><b>그리스도의 심판석에서</b></p><p>βῆμα(베마) — 정죄가 아니라 시상대 → 2강에서</p></div>
+      </div>
+      <div class="lines"><p class="fr">"그냥" = 아무 절차가 없다는 뜻이 아니라, <b class="hl">필요한 모든 절차가 이미 끝났다</b>는 뜻 — 남은 것은 상속뿐입니다</p></div>
+      <aside class="notes">답: 네, 그냥 들어간다. 그러나 '그냥'은 무절차가 아니라 기완료 — 죄의 심판은 십자가에서, 몸의 변화는 부활에서, 상급은 베마에서. 남은 것은 상속뿐.</aside>
+    </section>
+
+    <!-- 27. 열쇠 ⑦ 침묵과 생명책 -->
+    <section class="slide">
+      <p class="eyebrow">열쇠 ⑦</p>
+      <h2 class="serif">성경이 <em>침묵하는 곳</em> — 그리고 생명책</h2>
+      <div class="cols">
+        <div class="col fr"><h3>정직하게 남겨 둘 질문</h3><ul>
+          <li>천년왕국을 육체로 통과한 신자의 변화 시점 — <b>성경이 설명하지 않음</b>(고전 15:52 유비로 추론만)</li>
+          <li>천년왕국에서 죽은 신자의 부활 시점 — 명시되지 않음</li>
+          <li>"감추어진 일은 여호와께 속하였거니와"(신 29:29) — 확실한 것: <b>한 사람도 잃지 않으심</b>(요 6:39)</li>
+        </ul></div>
+        <div class="col fr"><h3>백보좌의 두 종류 책 (계 20:12)</h3><ul>
+          <li>"책들"(복수) — 행위의 기록 → <b>형벌의 정도</b>를 결정(눅 12:47~48 "많이 맞을 것이요 … 적게 맞으리라")</li>
+          <li>"생명책"(단수) — 하나님의 생명을 받은 자의 이름 → <b>불 못 여부</b>를 결정</li>
+          <li>"누구든지 생명책에 기록되지 못한 자는"(계 20:15)</li>
+        </ul></div>
+      </div>
+      <div class="lines">
+        <p class="fr"><b class="hl">행위는 정도를, 생명책은 운명을 가릅니다</b> — 행위와 믿음의 관계가 백보좌에서 풀립니다</p>
+        <p class="fr" style="color:var(--dim); font-size:clamp(13px,2.2vmin,22px)">[현장 문답] "확실한 것과 추론 — 지금 이 부분은 어느 쪽입니까?" — "추론!"</p>
+      </div>
+      <aside class="notes">정직한 침묵 — 육체로 통과한 신자의 변화와 천년왕국 내 죽은 신자의 부활 시점은 추론 영역(신 29:29). 확실한 것: 요 6:39. 그리고 예고했던 마지막 열쇠 — 두 종류의 책: 행위의 책들(형벌의 정도)과 생명책(불 못 여부).</aside>
+    </section>
+
+    <!-- 28. 오늘의 다섯 문장 -->
+    <section class="slide">
+      <p class="eyebrow">결론</p>
+      <h2 class="serif">오늘의 <em>다섯 문장</em></h2>
+      <div class="ref-list one">
+        <div class="r fr"><p class="k">1</p><p class="t">천년왕국의 입장 조건은 하나 — <span class="hl">거듭남</span>입니다.</p></div>
+        <div class="r fr"><p class="k">2</p><p class="t">첫째 부활은 하루가 아니라 <span class="hl">종류의 이름</span> — 그리스도에게서 시작되는 한 대열입니다.</p></div>
+        <div class="r fr"><p class="k">3</p><p class="t">첫날의 명단 — 부활체 세 무리, 육체 두 무리. <span class="hl">그날 그 땅에 불신자는 없습니다.</span></p></div>
+        <div class="r fr"><p class="k">4</p><p class="t">천년왕국에서 태어나 <span class="hl">겉으로만 복종한 자들</span>이 마지막에 드러납니다.</p></div>
+        <div class="r fr"><p class="k">5</p><p class="t">부활한 성도는 "그냥" 들어갑니다 — <span class="hl">필요한 모든 일이 이미 끝났기</span> 때문입니다.</p></div>
+      </div>
+      <aside class="notes">다섯 문장으로 1강 정리. 천천히 하나씩 읽어 주기.</aside>
+    </section>
+
+    <!-- 29. 세 가지 적용 -->
+    <section class="slide">
+      <p class="eyebrow">이것이 오늘 우리 삶에</p>
+      <h2 class="serif">세 가지를 <em>말합니다</em></h2>
+      <div class="cols">
+        <div class="col fr"><h3>1 · 나는 거듭났습니까?</h3><p>니고데모는 성경 지식도 직분도 경건도 있었지만 "다시 태어나야" 했습니다. 교회 문화 속에서 자란 것으로 충분할 리 없습니다. <b>"아들이 있는 자에게는 생명이 있고"</b>(요일 5:12)</p></div>
+        <div class="col fr"><h3>2 · 환경이 아니라 마음</h3><p>"환경만 바뀌면…" — 천년왕국은 그 생각이 틀렸음을 천 년의 실험으로 보여 줍니다. <b>"새 마음을 너희에게 주고 새 영을 너희 속에 두며"</b>(겔 36:26)</p></div>
+        <div class="col fr"><h3>3 · 이미 준비된 사람으로</h3><p>부활한 성도는 다시 시험을 치르지 않습니다. 날마다 "오늘 잘했나"를 계산하는 삶이 아니라, 이미 옮겨진 사람의 감사로 충성하는 삶 — <b>두려움이 아니라 감사가 동기</b>입니다.</p></div>
+      </div>
+      <aside class="notes">적용 셋 — ①나는 거듭났는가(요일 5:12) ②환경이 아니라 마음(겔 36:26) ③이미 준비된 사람으로, 두려움 아닌 감사의 충성.</aside>
+    </section>
+
+    <!-- 30. 2강 예고 + 마침 -->
+    <section class="slide center">
+      <p class="eyebrow">2강 예고</p>
+      <h2 class="serif">첫째 부활에 참여하려면<br/><em>어느 수준의 믿음</em>이 필요합니까?</h2>
+      <div class="lines">
+        <p class="fr">그리고 — 십자가 위의 강도. 그가 예수님께 구한 것은 "낙원"이 아니었습니다.<br/>그가 정확히 무엇을 구했는지 보시면 놀라실 것입니다.</p>
+        <p class="fr big serif" style="color:var(--gold)">마라나타 — 주 예수여, 오시옵소서</p>
+      </div>
+      <aside class="notes">2강 예고 — 질문 ③④: 첫째 부활의 자격 수준, 그리고 우편 강도(그가 구한 것은 낙원이 아니었다). 마라나타 인사로 마침.</aside>
+    </section>
+
+    <div id="notes"><p class="nTitle">발표자 메모</p><div class="nBody"></div></div>
+    <div id="blackout"></div>
+  </div>
+
+  <script>
+    /* ===== 인증 — admin.html 과 동일한 패턴(토큰을 서버로 검증, 세션 키 공유) ===== */
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType:'implicit', autoRefreshToken:false, persistSession:false, detectSessionFromUrl:false, lock: async (_n,_t,fn)=>await fn() } });
+
+    function jwtPayload(tok){
+      let s=tok.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'); while(s.length%4) s+='=';
+      const json=decodeURIComponent(atob(s).split('').map(c=>'%'+('00'+c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+      return JSON.parse(json);
+    }
+    (function handleOAuthRedirect(){
+      try{
+        if(location.hash && location.hash.indexOf('access_token=')>=0){
+          const p=new URLSearchParams(location.hash.slice(1));
+          const at=p.get('access_token'), rt=p.get('refresh_token'), ei=Number(p.get('expires_in')||3600);
+          if(at){
+            const payload=jwtPayload(at);
+            const user={ id:payload.sub, email:payload.email, role:payload.role, user_metadata:payload.user_metadata||{} };
+            localStorage.setItem('bibly-admin-auth', JSON.stringify({ access_token:at, token_type:'bearer', expires_in:ei, refresh_token:rt, expires_at:(payload.exp||Math.floor(Date.now()/1000)+ei), user }));
+            history.replaceState(null,'',location.pathname);
+          }
+        }
+      }catch(e){}
+    })();
+
+    function readStored(){
+      try{
+        const raw=localStorage.getItem('bibly-admin-auth');
+        if(raw){ const v=JSON.parse(raw); if(v&&v.user){ if(v.expires_at&&v.expires_at*1000<Date.now()){ localStorage.removeItem('bibly-admin-auth'); } else { return v; } } }
+        for(const k of Object.keys(localStorage)){ if(!/auth-token/.test(k)) continue; const v=JSON.parse(localStorage.getItem(k)); const s=(v&&v.user)?v:(v&&v.currentSession)?v.currentSession:null; if(s&&s.user){ if(s.expires_at&&s.expires_at*1000<Date.now()) return null; return s; } }
+      }catch(e){} return null;
+    }
+    async function verifySession(session){
+      const tok = session && session.access_token;
+      if(!tok) return null;
+      const ctrl=new AbortController(); const to=setTimeout(()=>ctrl.abort(), 8000);
+      try{
+        const res = await fetch(SUPABASE_URL+'/auth/v1/user', { signal:ctrl.signal, headers:{ apikey:SUPABASE_ANON, Authorization:'Bearer '+tok } });
+        clearTimeout(to);
+        if(!res.ok) return null;
+        const u = await res.json();
+        return (u && u.id) ? u : null;
+      }catch(e){ clearTimeout(to); return null; }
+    }
+    async function googleLogin(){
+      try{ await sb.auth.signInWithOAuth({ provider:'google', options:{ redirectTo: location.origin+location.pathname } }); }catch(e){}
+    }
+    async function emailLogin(){
+      const email=document.getElementById('ge').value.trim(), pw=document.getElementById('gp').value;
+      const m=document.getElementById('gateErr'); m.textContent='';
+      if(!email||!pw){ m.textContent='이메일과 비밀번호를 입력하세요.'; return; }
+      m.textContent='로그인 중…';
+      const ctrl=new AbortController(); const to=setTimeout(()=>ctrl.abort(),8000);
+      try{
+        const res=await fetch(SUPABASE_URL+'/auth/v1/token?grant_type=password',{ method:'POST', signal:ctrl.signal, headers:{ apikey:SUPABASE_ANON,'Content-Type':'application/json' }, body:JSON.stringify({email,password:pw}) });
+        clearTimeout(to);
+        const d=await res.json();
+        if(d.error||!d.access_token){ m.textContent='로그인 실패: '+(d.error_description||d.msg||d.error||'알 수 없는 오류'); return; }
+        localStorage.setItem('bibly-admin-auth', JSON.stringify({ access_token:d.access_token, token_type:'bearer', expires_in:d.expires_in, refresh_token:d.refresh_token, expires_at:Math.floor(Date.now()/1000)+d.expires_in, user:d.user }));
+        location.reload();
+      }catch(e){ clearTimeout(to); m.textContent='네트워크 오류. 다시 시도해 주세요.'; }
+    }
+    async function applyAuth(){
+      const session = readStored();
+      const gm=document.querySelector('.gateCard p');
+      if(gm && session && session.access_token) gm.textContent='발표자 확인 중…';
+      const verified = await verifySession(session);
+      const email = String((verified && verified.email) || '').toLowerCase();
+      if(email && email === String(ADMIN_EMAIL).toLowerCase()){
+        document.getElementById('gate').style.display='none';
+        document.getElementById('deck').classList.add('open');
+        initDeck();
+      } else {
+        if(gm) gm.textContent='발표자 계정으로 로그인하세요.';
+      }
+    }
+
+    /* ===== 슬라이드 엔진 ===== */
+    let S=[], cur=0;
+    function frs(i){ return Array.from(S[i].querySelectorAll('.fr')); }
+    function sync(){
+      S.forEach((s,i)=>s.classList.toggle('on', i===cur));
+      document.getElementById('bar').style.width=(((cur+1)/S.length)*100)+'%';
+      document.getElementById('count').textContent=(cur+1)+' / '+S.length;
+      const n=S[cur].querySelector('.notes');
+      document.querySelector('#notes .nBody').innerHTML = n ? n.innerHTML : '';
+    }
+    function go(i, revealAll){
+      cur=Math.max(0, Math.min(S.length-1, i));
+      frs(cur).forEach(f=>f.classList.toggle('show', !!revealAll));
+      sync();
+    }
+    function next(){
+      hideHint();
+      const pend=frs(cur).find(f=>!f.classList.contains('show'));
+      if(pend){ pend.classList.add('show'); return; }
+      if(cur<S.length-1) go(cur+1, false);
+    }
+    function prev(){
+      hideHint();
+      const shown=frs(cur).filter(f=>f.classList.contains('show'));
+      if(shown.length){ shown[shown.length-1].classList.remove('show'); return; }
+      if(cur>0) go(cur-1, true);
+    }
+    function hideHint(){ const h=document.getElementById('hint'); if(h) h.classList.add('off'); }
+    function initDeck(){
+      S=Array.from(document.querySelectorAll('.slide'));
+      go(0,false);
+      setTimeout(hideHint, 9000);
+      setInterval(()=>{ const d=new Date(); document.getElementById('clock').textContent=('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2); }, 1000);
+
+      document.addEventListener('keydown', (e)=>{
+        if(/input|textarea/i.test(e.target.tagName)) return;
+        const k=e.key;
+        if(k==='ArrowRight'||k===' '||k==='PageDown'||k==='Enter'){ e.preventDefault(); next(); }
+        else if(k==='ArrowLeft'||k==='PageUp'||k==='Backspace'){ e.preventDefault(); prev(); }
+        else if(k==='Home'){ go(0,false); }
+        else if(k==='End'){ go(S.length-1,true); }
+        else if(k==='f'||k==='F'){ if(document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen().catch(()=>{}); }
+        else if(k==='n'||k==='N'){ document.getElementById('notes').classList.toggle('open'); }
+        else if(k==='b'||k==='B'||k==='.'){ document.getElementById('blackout').classList.toggle('open'); }
+        else if(k==='Escape'){ document.getElementById('blackout').classList.remove('open'); document.getElementById('notes').classList.remove('open'); }
+      });
+      document.getElementById('blackout').addEventListener('click', function(){ this.classList.remove('open'); });
+      document.getElementById('deck').addEventListener('click', (e)=>{
+        if(e.target.closest('#notes') || e.target.closest('#blackout')) return;
+        if(e.clientX < window.innerWidth*0.25) prev(); else next();
+      });
+      let tx=null;
+      document.addEventListener('touchstart', e=>{ tx=e.touches[0].clientX; }, {passive:true});
+      document.addEventListener('touchend', e=>{
+        if(tx===null) return;
+        const dx=e.changedTouches[0].clientX - tx; tx=null;
+        if(Math.abs(dx)>50){ if(dx<0) next(); else prev(); }
+      }, {passive:true});
+    }
+
+    applyAuth();
+  </script>
+</body>
+</html>
