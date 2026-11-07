@@ -5,6 +5,8 @@ html.app{
   --ap-text:#17202e; --ap-sub:#6b7686; --ap-line:#e6eaf1; --ap-tab:58px; --ap-bar:48px;
   --ap-safe-b:env(safe-area-inset-bottom,0px); --ap-safe-t:env(safe-area-inset-top,0px);
 }
+/* 기본 글자 15px(웹은 저장된 17px). 사용자가 앱 메뉴에서 고르면 app-shell.js 가 인라인 !important 로 덮어쓴다 */
+html.app{ font-size:15px !important; }
 html.app body{
   background:var(--ap-bg) !important;
   padding-bottom:calc(var(--ap-tab) + var(--ap-safe-b) + 10px) !important;
@@ -46,14 +48,35 @@ html.app .lg\:sticky{ position:static !important; }
 html.app .ap-card{ background:var(--ap-card); border-radius:20px; border:1px solid var(--ap-line); box-shadow:0 10px 30px -22px rgba(21,32,58,.25); }
 html.app .ap-press{ transition:transform .12s ease; }
 html.app .ap-press:active{ transform:scale(.975); }
-html.app .ap-h{ font-size:17px; font-weight:800; letter-spacing:-.01em; color:var(--ap-text); }
-html.app .ap-sub{ font-size:13px; color:var(--ap-sub); }
+html.app .ap-h{ font-size:15.5px; font-weight:800; letter-spacing:-.01em; color:var(--ap-text); }
+html.app .ap-sub{ font-size:12.5px; color:var(--ap-sub); }
 html.app .ap-scroll{ display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 16px 10px; margin:0 -16px; scrollbar-width:none; }
 html.app .ap-scroll::-webkit-scrollbar{ display:none; }
 html.app .ap-scroll > *{ scroll-snap-align:start; flex:0 0 auto; }
 
 /* ── 앱 모드 밀도 조정(기존 페이지) ── */
-html.app main{ padding-top:14px !important; }
-html.app h1{ font-size:20px !important; line-height:1.3 !important; }
+html.app main{ padding-top:10px !important; }
+html.app h1{ font-size:18px !important; line-height:1.3 !important; }
 html.app .max-w-7xl, html.app .max-w-6xl, html.app .max-w-5xl{ padding-left:14px !important; padding-right:14px !important; }
 html.app #learnTabs .learnTabBtn{ font-size:13.5px; padding:9px 11px; }
+
+/* ── 내 강의실: 가로 스크롤 메뉴 → 3열 칩(앱에서는 옆으로 밀지 않게) ── */
+html.app #dashView nav.overflow-x-auto{ display:grid !important; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; overflow:visible !important; padding:8px; }
+html.app #dashView nav .sbItem{ width:auto; justify-content:center; text-align:center; padding:9px 4px; font-size:12.5px; border:1px solid var(--ap-line); border-radius:12px; white-space:normal; line-height:1.25; gap:0; }
+html.app #dashView nav .sbItem span{ white-space:normal; }
+html.app #dashView aside .rounded-2xl.p-5{ padding:12px 14px; }
+/* 긴 글 카드·제목 밀도 */
+html.app .text-2xl{ font-size:1.2rem !important; }
+html.app .text-xl{ font-size:1.12rem !important; }
+/* 앱 메뉴 시트(앱 홈) */
+#appMenu{ position:fixed; inset:0; z-index:80; display:none; }
+#appMenu.open{ display:block; }
+#appMenu .bg{ position:absolute; inset:0; background:rgba(11,21,48,.5); }
+#appMenu .sheet{ position:absolute; left:0; right:0; bottom:0; background:#fff; border-radius:22px 22px 0 0; padding:14px 16px calc(16px + var(--ap-safe-b)); max-height:80dvh; overflow:auto; }
+#appMenu .grab{ width:40px; height:4px; border-radius:2px; background:#dfe3ea; margin:0 auto 12px; }
+#appMenu .grid5{ display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
+#appMenu .grid5 a{ display:flex; flex-direction:column; align-items:center; gap:6px; padding:10px 4px; border-radius:14px; background:#f4f6fa; text-decoration:none; color:var(--ap-text); font-size:11.5px; font-weight:700; }
+#appMenu .grid5 a svg{ width:22px; height:22px; stroke:var(--ap-navy); fill:none; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; }
+#appMenu .fs{ display:flex; gap:8px; }
+#appMenu .fs button{ flex:1; padding:10px 0; border-radius:12px; border:1px solid var(--ap-line); background:#fff; font-weight:700; color:var(--ap-text); }
+#appMenu .fs button.on{ background:var(--ap-green); color:#fff; border-color:var(--ap-green); }

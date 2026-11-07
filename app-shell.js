@@ -3,6 +3,9 @@
    의존: app.css(스타일), app-mode.js(html.app 판정). 웹(비앱)에서는 아무 것도 하지 않는다. */
 (function(){
   if(!document.documentElement.classList.contains('app')) return;
+  // 앱 글자 크기(앱 메뉴에서 선택, 기본 15px). 인라인 !important 라 app.css 기본값과 content-loader 의 웹 설정(17px)보다 우선
+  window.__appFont = function(px, save){ try{ if(save !== false) localStorage.setItem('biblyAppFont', px); }catch(e){} document.documentElement.style.setProperty('font-size', px, 'important'); };
+  try{ var __f = localStorage.getItem('biblyAppFont'); if(__f) window.__appFont(__f, false); }catch(e){}
   var ICON = {
     home:'<svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>',
     play:'<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor" stroke="none"/></svg>',

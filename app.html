@@ -24,12 +24,12 @@
   <link rel="stylesheet" href="/app.css?v=20261107a" />
   <style>
     body{font-family:'Pretendard',system-ui,sans-serif;color:#17202e}
-    .hero{background:linear-gradient(160deg,#182c54 0%,#213a6b 58%,#27477f 100%);color:#fff;padding:calc(env(safe-area-inset-top,0px) + 18px) 18px 26px;border-radius:0 0 28px 28px}
-    .tile{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 6px 12px;border-radius:18px;background:#fff;border:1px solid #e6eaf1;text-decoration:none;color:#17202e}
-    .tile .ic{width:48px;height:48px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:#eef4ff;color:#213a6b}
-    .tile .ic svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-    .tile span{font-size:12.5px;font-weight:700;letter-spacing:-.01em}
-    .thumb{position:relative;width:176px;border-radius:16px;overflow:hidden;background:#dfe6f2;aspect-ratio:16/9}
+    .hero{background:linear-gradient(160deg,#182c54 0%,#213a6b 58%,#27477f 100%);color:#fff;padding:calc(env(safe-area-inset-top,0px) + 12px) 16px 18px;border-radius:0 0 24px 24px}
+    .tile{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 4px 9px;border-radius:18px;background:#fff;border:1px solid #e6eaf1;text-decoration:none;color:#17202e}
+    .tile .ic{width:42px;height:42px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:#eef4ff;color:#213a6b}
+    .tile .ic svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+    .tile span{font-size:11.5px;font-weight:700;letter-spacing:-.01em}
+    .thumb{position:relative;width:150px;border-radius:14px;overflow:hidden;background:#dfe6f2;aspect-ratio:16/9}
     .thumb img{width:100%;height:100%;object-fit:cover;display:block}
     .thumb .d{position:absolute;right:6px;bottom:6px;font-size:10.5px;font-weight:700;color:#fff;background:rgba(0,0,0,.6);padding:2px 6px;border-radius:6px}
     .clamp2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
@@ -51,27 +51,30 @@
     <div class="flex items-center gap-3">
       <img src="/images/icon-192.png" alt="" class="w-10 h-10 rounded-[12px] shadow-lg"/>
       <div class="min-w-0 flex-1">
-        <p id="greet" class="text-[18px] font-extrabold leading-tight tracking-tight">안녕하세요 👋</p>
-        <p id="today" class="text-[12.5px] text-white/60 mt-0.5"></p>
+        <p id="greet" class="text-[16.5px] font-extrabold leading-tight tracking-tight">안녕하세요 👋</p>
+        <p id="today" class="text-[11.5px] text-white/60 mt-0.5"></p>
       </div>
-      <a href="/search" aria-label="검색" class="w-11 h-11 rounded-full bg-white/12 flex items-center justify-center active:bg-white/25">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <a href="/search" aria-label="검색" class="w-10 h-10 rounded-full bg-white/12 flex items-center justify-center active:bg-white/25">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
       </a>
+      <button type="button" aria-label="전체 메뉴" onclick="document.getElementById('appMenu').classList.add('open')" class="w-10 h-10 rounded-full bg-white/12 flex items-center justify-center active:bg-white/25">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
     </div>
 
     <!-- 오늘의 말씀 -->
-    <a id="votd" href="/bible" class="block mt-5 rounded-[22px] bg-white/10 border border-white/15 px-5 py-4 ap-press">
+    <a id="votd" href="/bible" class="block mt-3.5 rounded-[18px] bg-white/10 border border-white/15 px-4 py-3.5 ap-press">
       <p class="text-[11px] font-bold tracking-[.22em] text-[#ffd76a]">오늘의 말씀</p>
-      <p id="votdText" class="mt-2 text-[16.5px] leading-[1.65] font-medium" style="font-family:'Pretendard',serif"><span class="skel inline-block w-full h-5"></span></p>
-      <p id="votdRef" class="mt-2.5 text-[12.5px] text-white/65 font-semibold"></p>
+      <p id="votdText" class="mt-1.5 text-[14.5px] leading-[1.6] font-medium" style="font-family:'Pretendard',serif"><span class="skel inline-block w-full h-5"></span></p>
+      <p id="votdRef" class="mt-2 text-[11.5px] text-white/65 font-semibold"></p>
     </a>
   </div>
 
-  <main class="px-4 pt-4 space-y-6 max-w-[560px] mx-auto">
+  <main class="px-4 pt-3 space-y-4 max-w-[560px] mx-auto">
 
     <!-- 이어 보기 -->
     <section>
-      <div class="flex items-baseline justify-between mb-2.5 px-0.5">
+      <div class="flex items-baseline justify-between mb-2 px-0.5">
         <h2 id="contH" class="ap-h">이어 보기</h2>
         <a href="/mylearning" class="text-[12.5px] font-bold text-gold">내 학습 →</a>
       </div>
@@ -82,7 +85,7 @@
     </section>
 
     <!-- 바로 가기 -->
-    <section class="grid grid-cols-4 gap-2.5">
+    <section class="grid grid-cols-4 gap-2">
       <a href="/bible" class="tile ap-press"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21z"/><path d="M4 18.5A2.5 2.5 0 0 1 6.5 16H20"/><path d="M12 7v5"/><path d="M9.5 9.5h5"/></svg></span><span>성경 읽기</span></a>
       <a href="/dictionary" class="tile ap-press"><span class="ic" style="background:#eaf7f1;color:#00704a"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4-4"/><path d="M8.5 11h5M11 8.5v5"/></svg></span><span>성경사전</span></a>
       <a href="/qna?room=rev" class="tile ap-press"><span class="ic" style="background:#fff4e0;color:#b07a12"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M12 8.5v4"/><circle cx="12" cy="15.5" r=".6" fill="currentColor"/></svg></span><span>계시록 Q&amp;A</span></a>
@@ -91,7 +94,7 @@
 
     <!-- 새 강의 -->
     <section>
-      <div class="flex items-baseline justify-between mb-2.5 px-0.5">
+      <div class="flex items-baseline justify-between mb-2 px-0.5">
         <h2 class="ap-h">새 강의</h2>
         <a href="/curriculum" class="text-[12.5px] font-bold text-gold">전체 →</a>
       </div>
@@ -100,30 +103,63 @@
 
     <!-- 추천 트랙 -->
     <section>
-      <h2 class="ap-h mb-2.5 px-0.5">이렇게 시작해 보세요</h2>
-      <div id="tracks" class="grid grid-cols-2 gap-3"></div>
+      <h2 class="ap-h mb-2 px-0.5">이렇게 시작해 보세요</h2>
+      <div id="tracks" class="grid grid-cols-2 gap-2.5"></div>
     </section>
 
     <!-- 책 -->
-    <a href="/books#millennium" class="ap-card ap-press flex items-center gap-4 p-4">
-      <img src="/images/books/millennium.jpg" alt="" class="w-[52px] rounded-[4px] shadow-md shrink-0"/>
+    <a href="/books#millennium" class="ap-card ap-press flex items-center gap-3.5 p-3.5">
+      <img src="/images/books/millennium.jpg" alt="" class="w-[44px] rounded-[4px] shadow-md shrink-0"/>
       <div class="min-w-0 flex-1">
-        <p class="text-[11px] font-bold text-gold tracking-wide">대표작</p>
-        <p class="font-extrabold text-[15.5px] leading-snug mt-0.5">천년왕국을 아십니까</p>
+        <p class="text-[10.5px] font-bold text-gold tracking-wide">대표작</p>
+        <p class="font-extrabold text-[14.5px] leading-snug mt-0.5">천년왕국을 아십니까</p>
         <p class="ap-sub mt-0.5">전국 서점에서 만나실 수 있습니다</p>
       </div>
       <span class="text-neutral-400">›</span>
     </a>
 
     <!-- 공지 -->
-    <a id="noticeRow" href="/notices" class="hidden ap-card ap-press flex items-center gap-3 px-4 py-3.5">
+    <a id="noticeRow" href="/notices" class="hidden ap-card ap-press flex items-center gap-3 px-4 py-3">
       <span class="text-[11px] font-black text-white bg-ink rounded-md px-1.5 py-0.5 shrink-0">공지</span>
-      <span id="noticeTitle" class="text-[14px] font-semibold truncate flex-1"></span>
+      <span id="noticeTitle" class="text-[13.5px] font-semibold truncate flex-1"></span>
       <span class="text-neutral-400">›</span>
     </a>
 
     <p class="text-center text-[11.5px] text-neutral-400 pt-2 pb-4">BIBLY 바이블 인사이트 · <a href="/privacy" class="underline">개인정보처리방침</a></p>
   </main>
+
+  <!-- 전체 메뉴 시트 -->
+  <div id="appMenu" aria-hidden="true">
+    <div class="bg" onclick="document.getElementById('appMenu').classList.remove('open')"></div>
+    <div class="sheet">
+      <div class="grab"></div>
+      <p class="text-[12px] font-bold text-neutral-500 mb-2">바로 가기</p>
+      <div class="grid5">
+        <a href="/notices"><svg viewBox="0 0 24 24"><path d="M4 11v2a2 2 0 0 0 2 2h1l6 4V5L7 9H6a2 2 0 0 0-2 2z"/><path d="M17 9.5a3.5 3.5 0 0 1 0 5"/></svg>공지</a>
+        <a href="/event"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M3 12h18M12 8v13M12 8c-2-3-6-3-6 0s4 0 6 0zm0 0c2-3 6-3 6 0s-4 0-6 0z"/></svg>이벤트</a>
+        <a href="/support"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>후원</a>
+        <a href="/books"><svg viewBox="0 0 24 24"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 0-3 3z"/><path d="M5 4v16a3 3 0 0 1 3-3h11"/></svg>저자의 책</a>
+        <a href="/booklet"><svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/></svg>교재 스토어</a>
+        <a href="/qna-board"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg>질문방</a>
+        <a href="/themes"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h7"/></svg>주제별 성경</a>
+        <a href="/dictionary"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4-4"/></svg>성경사전</a>
+      </div>
+      <p class="text-[12px] font-bold text-neutral-500 mt-4 mb-2">글자 크기</p>
+      <div class="fs" id="fsBtns">
+        <button type="button" data-px="14px" onclick="setAppFont('14px')">작게</button>
+        <button type="button" data-px="15px" onclick="setAppFont('15px')">보통</button>
+        <button type="button" data-px="17px" onclick="setAppFont('17px')">크게</button>
+      </div>
+      <button type="button" onclick="document.getElementById('appMenu').classList.remove('open')" class="w-full mt-4 py-3 rounded-xl bg-[#f4f6fa] font-bold text-[14px]">닫기</button>
+    </div>
+  </div>
+  <script>
+    function setAppFont(px){
+      if(window.__appFont) window.__appFont(px); else { try{ localStorage.setItem('biblyAppFont', px); }catch(e){} document.documentElement.style.setProperty('font-size', px, 'important'); }
+      document.querySelectorAll('#fsBtns button').forEach(b => b.classList.toggle('on', b.dataset.px === px));
+    }
+    (function(){ let cur = '15px'; try{ cur = localStorage.getItem('biblyAppFont') || '15px'; }catch(e){} document.querySelectorAll('#fsBtns button').forEach(b => b.classList.toggle('on', b.dataset.px === cur)); })();
+  </script>
 
   <script>
     const $ = id => document.getElementById(id);
@@ -213,13 +249,13 @@
       card.innerHTML = `
         <div class="relative" style="aspect-ratio:16/9;background:#dfe6f2">
           <img src="${thumb(pick.id)}" alt="" class="w-full h-full object-cover" loading="lazy"/>
-          <span class="absolute inset-0 flex items-center justify-center"><span class="w-14 h-14 rounded-full bg-white/92 shadow-xl flex items-center justify-center"><svg width="26" height="26" viewBox="0 0 24 24" fill="#00704a"><path d="M8 5.5v13l11-6.5z"/></svg></span></span>
+          <span class="absolute inset-0 flex items-center justify-center"><span class="w-12 h-12 rounded-full bg-white/92 shadow-xl flex items-center justify-center"><svg width="22" height="22" viewBox="0 0 24 24" fill="#00704a"><path d="M8 5.5v13l11-6.5z"/></svg></span></span>
         </div>
-        <div class="p-4">
-          <p class="text-[11.5px] font-bold text-gold truncate">${esc(pick.track||'')}</p>
-          <p class="font-extrabold text-[15.5px] leading-snug mt-1 clamp2">${esc(pick.title||'')}</p>
+        <div class="p-3.5">
+          <p class="text-[11px] font-bold text-gold truncate">${esc(pick.track||'')}</p>
+          <p class="font-extrabold text-[14.5px] leading-snug mt-1 clamp2">${esc(pick.title||'')}</p>
           ${prog ? `<div class="mt-3 flex items-center gap-3"><div class="pbar flex-1"><i style="width:${prog.total?Math.round(prog.done/prog.total*100):0}%"></i></div><span class="text-[12px] font-bold text-neutral-500">${prog.done}/${prog.total}강</span></div>` : ''}
-          <span class="inline-flex items-center justify-center mt-3.5 w-full bg-gold text-white font-bold text-[14.5px] rounded-xl py-3">${btn}</span>
+          <span class="inline-flex items-center justify-center mt-3 w-full bg-gold text-white font-bold text-[13.5px] rounded-xl py-2.5">${btn}</span>
         </div>`;
     }
 
@@ -228,10 +264,10 @@
       all.sort((a, b) => String(b.l.added).localeCompare(String(a.l.added)));
       $('newRow').innerHTML = all.slice(0, 8).map(({ l, lv }) => {
         const id = ytId(l.youtube);
-        return `<a href="/watch?v=${id}" class="ap-press block w-[176px]">
+        return `<a href="/watch?v=${id}" class="ap-press block w-[150px]">
           <div class="thumb"><img src="${thumb(id)}" alt="" loading="lazy"/>${l.duration ? `<span class="d">${esc(l.duration)}</span>` : ''}</div>
-          <p class="text-[13.5px] font-bold leading-snug mt-2 clamp2">${esc(l.title)}</p>
-          <p class="text-[11.5px] text-neutral-500 mt-1 truncate">${esc(lv.name)}</p>
+          <p class="text-[12.5px] font-bold leading-snug mt-1.5 clamp2">${esc(l.title)}</p>
+          <p class="text-[11px] text-neutral-500 mt-0.5 truncate">${esc(lv.name)}</p>
         </a>`;
       }).join('') || '<p class="ap-sub px-1">새 강의가 준비 중입니다.</p>';
     }
@@ -240,9 +276,9 @@
       const levels = COURSE.levels || [];
       const picks = [0, levels.findIndex(l => /요한계시록 강해$/.test(l.name))].filter(i => i >= 0 && levels[i]);
       $('tracks').innerHTML = picks.map(i => { const lv = levels[i]; return `
-        <a href="/curriculum?track=${i}" class="ap-card ap-press block p-4">
-          <p class="text-[11px] font-bold text-gold">${esc(lv.level||'')} · ${(lv.lessons||[]).length}강</p>
-          <p class="font-extrabold text-[15px] leading-snug mt-1 clamp2">${esc(lv.name)}</p>
+        <a href="/curriculum?track=${i}" class="ap-card ap-press block p-3.5">
+          <p class="text-[10.5px] font-bold text-gold">${esc(lv.level||'')} · ${(lv.lessons||[]).length}강</p>
+          <p class="font-extrabold text-[14px] leading-snug mt-1 clamp2">${esc(lv.name)}</p>
           <p class="ap-sub mt-1.5 clamp2">${esc(lv.tagline || lv.desc || '')}</p>
         </a>`; }).join('');
     }
