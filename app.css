@@ -50,7 +50,7 @@ html.app .ap-press{ transition:transform .12s ease; }
 html.app .ap-press:active{ transform:scale(.975); }
 html.app .ap-h{ font-size:15.5px; font-weight:800; letter-spacing:-.01em; color:var(--ap-text); }
 html.app .ap-sub{ font-size:12.5px; color:var(--ap-sub); }
-html.app .ap-scroll{ display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 16px 10px; margin:0 -16px; scrollbar-width:none; }
+html.app .ap-scroll{ display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px clamp(14px,4vw,20px) 10px; margin:0 calc(-1 * clamp(14px,4vw,20px)); scrollbar-width:none; }
 html.app .ap-scroll::-webkit-scrollbar{ display:none; }
 html.app .ap-scroll > *{ scroll-snap-align:start; flex:0 0 auto; }
 
@@ -80,3 +80,68 @@ html.app .text-xl{ font-size:1.12rem !important; }
 #appMenu .fs{ display:flex; gap:8px; }
 #appMenu .fs button{ flex:1; padding:10px 0; border-radius:12px; border:1px solid var(--ap-line); background:#fff; font-weight:700; color:var(--ap-text); }
 #appMenu .fs button.on{ background:var(--ap-green); color:#fff; border-color:var(--ap-green); }
+
+/* ══ 화면 크기별 자동 맞춤 ══
+   작은 폰(≤340: 갤럭시 폴드 외부·구형 iPhone SE) / 보통 폰(360~430) / 큰 폰·폴더블 펼침·태블릿(≥600) / 가로 모드(높이 ≤450) */
+@media (max-width:340px){
+  html.app{ font-size:14px !important; }
+  html.app .tile span{ font-size:10.5px; }
+  html.app #appTabs a{ font-size:10.5px; }
+  html.app #appTabs a svg{ width:22px; height:22px; }
+  html.app .max-w-7xl, html.app .max-w-6xl, html.app .max-w-5xl{ padding-left:12px !important; padding-right:12px !important; }
+}
+@media (min-width:600px){
+  html.app{ font-size:16px !important; }
+  /* 상단바·탭바·본문을 가운데 640px 안에 — 태블릿·폴더블에서 요소가 좌우로 흩어지지 않게 */
+  #appBar .ab{ max-width:640px; margin:0 auto; }
+  #appTabs{ left:50%; right:auto; width:100%; max-width:640px; transform:translateX(-50%); border-left:1px solid var(--ap-line); border-right:1px solid var(--ap-line); border-radius:18px 18px 0 0; }
+  html.app .max-w-7xl, html.app .max-w-6xl, html.app .max-w-5xl, html.app .max-w-4xl{ max-width:640px !important; padding-left:20px !important; padding-right:20px !important; }
+  html.app #biblyFab > div:last-child{ right:calc(50% - 320px + 12px) !important; }
+}
+@media (max-height:450px){
+  html.app{ --ap-tab:50px; --ap-bar:42px; }
+  #appTabs a{ flex-direction:row; gap:6px; }
+  #appTabs a svg{ width:20px; height:20px; }
+}
+/* iOS 노치·안드로이드 제스처 바: 상단바에 safe-area 반영(app-shell.js 가 viewport-fit=cover 를 보장) */
+#appBar{ padding-top:var(--ap-safe-t); }
+
+/* ══ 강의 탭(curriculum) 앱 전용 과목 화면 ══ */
+html.app #mtab-free, html.app #mtab-academy{ padding:8px 10px !important; font-size:13px !important; border-radius:12px !important; }
+html.app #freeContent .mb-5{ margin-bottom:12px !important; }
+.apPick{ display:flex; align-items:center; gap:10px; width:100%; text-align:left; background:#fff; border:1px solid var(--ap-line); border-radius:16px; padding:12px 14px; margin-bottom:10px; box-shadow:0 10px 30px -24px rgba(21,32,58,.35); cursor:pointer; }
+.apPickLv{ flex:none; font-size:11px; font-weight:800; color:#fff; background:var(--ap-navy); border-radius:999px; padding:4px 9px; }
+.apPickName{ flex:1; min-width:0; font-size:15.5px; font-weight:800; letter-spacing:-.01em; color:var(--ap-text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.apPickN{ flex:none; display:inline-flex; align-items:center; gap:2px; font-size:12px; font-weight:700; color:var(--ap-green); }
+.apPickN svg{ width:16px; height:16px; }
+.apHead{ padding:2px 4px 10px; }
+.apIntro{ font-size:13.5px; color:var(--ap-sub); line-height:1.6; margin:0 0 8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.apHeadRow{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.apHeadMeta{ font-size:12.5px; color:var(--ap-sub); font-weight:600; }
+.apStart{ flex:none; font-size:13px; font-weight:800; color:#fff; background:var(--ap-green); border-radius:999px; padding:8px 14px; text-decoration:none; }
+.apList{ list-style:none; margin:0; padding:0; background:#fff; border:1px solid var(--ap-line); border-radius:18px; overflow:hidden; }
+.apList li + li{ border-top:1px solid var(--ap-line); }
+.apLesson{ display:flex; align-items:center; gap:10px; padding:10px 10px 10px 12px; text-decoration:none; color:inherit; }
+.apNo{ flex:none; width:22px; font-size:12px; font-weight:800; color:#9aa3b5; font-variant-numeric:tabular-nums; }
+.apTh{ flex:none; width:88px; aspect-ratio:16/9; border-radius:10px; object-fit:cover; background:#e6ebf3; }
+.apThPh{ display:flex; align-items:center; justify-content:center; color:#9aa3b5; font-size:14px; }
+.apT{ flex:1; min-width:0; display:flex; flex-direction:column; gap:3px; }
+.apTitle{ font-size:14px; font-weight:700; line-height:1.4; color:var(--ap-text); display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.apMeta{ font-size:11.5px; color:var(--ap-sub); }
+.apChev{ flex:none; width:18px; height:18px; color:#c3c9d4; }
+@media (max-width:340px){ .apTh{ width:74px; } .apTitle{ font-size:13px; } .apPickName{ font-size:14px; } }
+@media (min-width:600px){ .apTh{ width:104px; } }
+/* 과목 선택 시트 */
+#apSheet{ position:fixed; inset:0; z-index:85; display:none; }
+#apSheet.open{ display:block; }
+#apSheet .apShBg{ position:absolute; inset:0; background:rgba(11,21,48,.5); }
+#apSheet .apShBox{ position:absolute; left:50%; transform:translateX(-50%); width:100%; max-width:640px; bottom:0; background:#fff; border-radius:22px 22px 0 0; max-height:82dvh; display:flex; flex-direction:column; padding-bottom:var(--ap-safe-b); }
+#apSheet .apShGrab{ width:40px; height:4px; border-radius:2px; background:#dfe3ea; margin:10px auto 6px; }
+#apSheet .apShTitle{ font-size:15px; font-weight:800; padding:4px 18px 10px; color:var(--ap-text); }
+#apSheet .apShTitle span{ font-size:12px; font-weight:600; color:var(--ap-sub); margin-left:6px; }
+#apSheet .apShList{ overflow:auto; padding:0 10px 12px; }
+#apSheet .apShGroup{ font-size:11.5px; font-weight:800; letter-spacing:.08em; color:var(--ap-green); padding:12px 8px 4px; }
+#apSheet .apShItem{ display:flex; align-items:center; justify-content:space-between; gap:8px; width:100%; text-align:left; background:none; border:0; padding:11px 10px; border-radius:12px; font-size:14.5px; font-weight:600; color:var(--ap-text); }
+#apSheet .apShItem:active{ background:#f3f6fb; }
+#apSheet .apShItem.on{ background:#eaf5f0; color:var(--ap-green); font-weight:800; }
+#apSheet .apShN{ font-size:12px; color:var(--ap-sub); font-weight:600; flex:none; }

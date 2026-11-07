@@ -238,7 +238,7 @@
         <h3 class="font-bold text-lg">과제 제출</h3>
         <span id="asgStatusBadge" class="hidden text-[12.5px] font-bold px-2.5 py-0.5 rounded-full"></span>
       </div>
-      <p class="text-[13px] text-neutral-900/55 mb-4">이 강의를 듣고 과제를 작성해 제출하면, 대표강사가 직접 첨삭 피드백을 드립니다.</p>
+      <p class="app-hide text-[13px] text-neutral-900/55 mb-4">이 강의를 듣고 과제를 작성해 제출하면, 대표강사가 직접 첨삭 피드백을 드립니다.</p>
       <div id="asgBody"><p class="text-neutral-900/40 text-sm text-center py-8">불러오는 중…</p></div>
     </div>
   </section>
@@ -493,9 +493,9 @@
       return `<div class="bg-white rounded-2xl border-2 border-dashed border-gold/45 shadow-soft p-6 text-center">
         <p class="text-3xl mb-2"></p>
         <p class="font-bold text-neutral-900 text-[17px]">${title}</p>
-        <p class="text-sm text-neutral-900/55 mt-1.5 mb-4 leading-relaxed">${desc}</p>
+        <p class="app-hide text-sm text-neutral-900/55 mt-1.5 mb-4 leading-relaxed">${desc}</p>
         <button onclick="openLogin()" class="bg-gold text-white font-semibold px-7 py-3 rounded-full hover:opacity-90 transition">무료로 로그인하고 이용하기</button>
-        <p class="text-xs text-neutral-900/40 mt-2.5">가입은 무료예요 · 로그인하면 모든 강의를 무료로 시청할 수 있어요</p>
+        <p class="app-hide text-xs text-neutral-900/40 mt-2.5">가입은 무료예요 · 로그인하면 모든 강의를 무료로 시청할 수 있어요</p>
       </div>`;
     }
     // ===== 확인 학습 퀴즈 =====
@@ -523,7 +523,7 @@
           <h3 class="font-bold text-lg">확인 학습 <span class="text-neutral-900/40 text-sm font-normal">· ${quiz.length}문항</span></h3>
           <span id="quizScore" class="text-sm font-semibold text-gold"></span>
         </div>
-        <p class="text-sm text-neutral-900/55 mb-5">강의를 잘 이해했는지 확인해 보세요. 보기를 누르면 정답과 해설이 나타나요.</p>`;
+        <p class="app-hide text-sm text-neutral-900/55 mb-5">강의를 잘 이해했는지 확인해 보세요. 보기를 누르면 정답과 해설이 나타나요.</p>`;
       quiz.forEach((q, qi) => {
         h += `<div id="quizQ-${qi}" class="mb-5 pb-5 ${ qi < quiz.length-1 ? 'border-b border-ink/6' : '' }">
           <p class="font-semibold text-neutral-900 mb-3 leading-snug"><span class="text-gold">Q${qi+1}.</span> ${esc(q.q)}</p>
@@ -963,7 +963,7 @@
             <p class="text-xs text-neutral-900/55 mt-0.5">강의마다 시험으로 학점을 쌓고, 과목을 완주하면 급수 수료증과 휘장을 받아요 · ${priceTxt}</p>
           </div>
           <a href="${rankApplyURL(rk, 'watch-bar')}" class="shrink-0 w-full sm:w-auto text-center text-sm font-semibold text-white rounded-full px-5 py-3 sm:py-2.5 hover:opacity-90 transition" style="background:${c}">과정 살펴보기 →</a>
-        </div>${LUSER ? '' : `<p class="text-[12px] text-neutral-900/50 mt-2 px-1">아직 고민되시나요? <button type="button" onclick="openLogin()" class="font-semibold underline underline-offset-2 hover:text-gold">무료 가입</button>하면 <b>5일 무료체험</b>으로 시험·요약노트를 먼저 써볼 수 있어요.</p>`}`;
+        </div>${LUSER ? '' : `<p class="app-hide text-[12px] text-neutral-900/50 mt-2 px-1">아직 고민되시나요? <button type="button" onclick="openLogin()" class="font-semibold underline underline-offset-2 hover:text-gold">무료 가입</button>하면 <b>5일 무료체험</b>으로 시험·요약노트를 먼저 써볼 수 있어요.</p>`}`;
         box.style.display = '';
       }catch(e){}
     }
@@ -1141,7 +1141,7 @@
             <button onclick="submitQuestion()" id="qaBtn" class="bg-gold text-white font-semibold text-sm px-5 py-2 rounded-full hover:opacity-90 transition shrink-0">질문 등록</button>
           </div>
           <p id="qaMsg" class="text-red-500 text-xs mt-2 min-h-[14px]"></p>
-          ${ LUSER ? '' : '<p class="text-xs text-neutral-900/45 mt-1">작성 후 등록을 누르면 로그인 창이 떠요. 로그인하면 바로 등록됩니다.</p>' }
+          ${ LUSER ? '' : '<p class="app-hide text-xs text-neutral-900/45 mt-1">작성 후 등록을 누르면 로그인 창이 떠요. 로그인하면 바로 등록됩니다.</p>' }
         </div>`;
     }
     let REPLIES_BY_Q = {};
@@ -1315,7 +1315,7 @@
         +'<div class="flex items-start gap-3.5">'
         +'<div class="shrink-0 w-11 h-11 rounded-full bg-gold/15 flex items-center justify-center text-xl"></div>'
         +'<div><p class="font-bold text-neutral-900 text-[15px] mb-1">자유롭게 배우는 무료 강의</p>'
-        +'<p class="text-[13.5px] text-neutral-900/65 leading-relaxed">모든 강의는 <b class="text-neutral-900/80">무료 회원가입</b>만 하면 시청할 수 있어요. 위 탭에서 원하는 학습 도구를 눌러 <b class="text-neutral-900/80">바로바로</b> 확인하세요.</p></div>'
+        +'<p class="app-hide text-[13.5px] text-neutral-900/65 leading-relaxed">모든 강의는 <b class="text-neutral-900/80">무료 회원가입</b>만 하면 시청할 수 있어요. 위 탭에서 원하는 학습 도구를 눌러 <b class="text-neutral-900/80">바로바로</b> 확인하세요.</p></div>'
         +'</div>'
         +'<div class="grid grid-cols-3 gap-2 mt-4">'
         +'<button onclick="showLearnTab(\'quiz\')" class="bg-white/70 hover:bg-white rounded-xl py-3 text-center transition"><p class="text-xl"></p><p class="text-[12.5px] font-bold text-neutral-900/60 mt-1">진단평가</p></button>'

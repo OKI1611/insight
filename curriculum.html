@@ -214,8 +214,8 @@
       <div class="min-w-0">
         <!-- 자유 학습 -->
         <section id="freeContent">
-          <label class="lg:hidden block text-sm font-bold text-neutral-900/55 mb-1.5">과목 선택 <span class="font-normal text-neutral-900/40">— 기초 → 고급 순서</span></label>
-          <select id="trackSelect" onchange="selectTrack(+this.value)" class="lg:hidden w-full bg-white border border-ink/20 rounded-xl px-4 py-3.5 text-base font-semibold mb-4 outline-none focus:border-gold"></select>
+          <label class="app-hide lg:hidden block text-sm font-bold text-neutral-900/55 mb-1.5">과목 선택 <span class="font-normal text-neutral-900/40">— 기초 → 고급 순서</span></label>
+          <select id="trackSelect" onchange="selectTrack(+this.value)" class="app-hide lg:hidden w-full bg-white border border-ink/20 rounded-xl px-4 py-3.5 text-base font-semibold mb-4 outline-none focus:border-gold"></select>
           <p id="curSub" class="hidden"></p>
           <section id="trackDetail" class="min-h-[420px]"><p class="text-neutral-900/40 text-sm text-center py-20">커리큘럼을 불러오는 중…</p></section>
         </section>
@@ -388,6 +388,51 @@
       document.getElementById('trackSelect').innerHTML = so;
     }
 
+    // ── 앱 모드(플레이 스토어 앱·홈 화면 PWA) 전용 과목 화면 — 과목 선택 버튼(시트) + 한 줄 소개 + 번호·썸네일·제목만 있는 강의 목록 ──
+    function appTrackHTML(ti, lv, ls, start, L, timeTxt){
+      const pad = n => (n < 10 ? '0' : '') + n;
+      const rows = ls.map((l, li) => {
+        const gi = start + li, vid = ytId(l.youtube);
+        return `<li><a href="watch.html?l=${gi}" class="apLesson ap-press">
+          <span class="apNo">${pad(li+1)}</span>
+          ${ vid ? `<img class="apTh" loading="lazy" alt="" src="https://i.ytimg.com/vi/${vid}/mqdefault.jpg"/>` : '<span class="apTh apThPh">▶</span>' }
+          <span class="apT"><span class="apTitle">${esc(l.title||'')}</span><span class="apMeta">${ l.duration ? esc(l.duration) : '강의' }</span></span>
+          <svg class="apChev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+        </a></li>`;
+      }).join('');
+      const intro = esc(lv.tagline || (lv.desc || '').split(/(?<=[.!?다])\s/)[0] || '');
+      return `
+        <button type="button" class="apPick ap-press" onclick="openTrackSheet()" aria-haspopup="dialog">
+          <span class="apPickLv">${esc(L)} 단계</span>
+          <span class="apPickName">${esc(lv.name||'')}</span>
+          <span class="apPickN">${ls.length}강 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="apHead">
+          ${ intro ? `<p class="apIntro">${intro}</p>` : '' }
+          <div class="apHeadRow"><span class="apHeadMeta">총 ${ls.length}강${timeTxt} · 무료</span><a href="watch.html?l=${start}" class="apStart">▶ 첫 강의부터</a></div>
+        </div>
+        <ol class="apList">${rows}</ol>`;
+    }
+    function buildTrackSheet(){
+      if(document.getElementById('apSheet')) return;
+      const items = tracksByLevel();
+      let html = '', lastL = null;
+      items.forEach(({ ti, lv, L }) => {
+        if(L !== lastL){ lastL = L; html += `<p class="apShGroup">${esc(L)} 단계</p>`; }
+        html += `<button type="button" class="apShItem" data-ti="${ti}" onclick="selectTrack(${ti}); closeTrackSheet();"><span class="apShName">${esc(lv.name||'')}</span><span class="apShN">${(lv.lessons||[]).length}강</span></button>`;
+      });
+      const el = document.createElement('div'); el.id = 'apSheet';
+      el.innerHTML = `<div class="apShBg" onclick="closeTrackSheet()"></div><div class="apShBox" role="dialog" aria-label="과목 선택"><div class="apShGrab"></div><p class="apShTitle">과목 선택 <span>기초 → 고급 순</span></p><div class="apShList">${html}</div></div>`;
+      document.body.appendChild(el);
+    }
+    function openTrackSheet(){
+      buildTrackSheet();
+      document.querySelectorAll('#apSheet .apShItem').forEach(b => b.classList.toggle('on', +b.dataset.ti === CUR));
+      document.getElementById('apSheet').classList.add('open');
+      const on = document.querySelector('#apSheet .apShItem.on'); if(on) on.scrollIntoView({ block:'center' });
+    }
+    function closeTrackSheet(){ const el = document.getElementById('apSheet'); if(el) el.classList.remove('open'); }
+
     function selectTrack(ti, scroll){
       CUR = ti;
       LEVELS.forEach((_, i) => { const b = document.getElementById('tb-'+i); if(b) b.classList.toggle('active', i===ti); });
@@ -450,7 +495,7 @@
         </div>`;
       })();
 
-      document.getElementById('trackDetail').innerHTML = `
+      document.getElementById('trackDetail').innerHTML = document.documentElement.classList.contains('app') ? appTrackHTML(ti, lv, ls, start, L, timeTxt) : `
         <nav class="text-[13px] text-neutral-900/45 mb-2.5">강의·커리큘럼 <span class="mx-0.5">›</span> ${esc(L)} 단계 <span class="mx-0.5">›</span> <b class="text-neutral-900/75">${esc(lv.name||'')}</b></nav>
         <div class="bg-white border border-ink/10 rounded-2xl shadow-soft p-5 md:p-6 mb-5">
           <div class="flex flex-wrap items-center gap-1.5 mb-2">
