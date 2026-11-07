@@ -43,11 +43,12 @@
     bar.innerHTML = '<div class="ab">'
       + '<button type="button" id="appBack" aria-label="뒤로">' + ICON.back + '</button>'
       + '<div class="ttl" id="appTitle">' + pageTitle().replace(/[<>&]/g, '') + '</div>'
-      + '<a href="/search" aria-label="검색">' + ICON.search + '</a>'
+      + '<a href="/search" id="appSearchBtn" aria-label="검색">' + ICON.search + '</a>'
       + '<button type="button" id="appMenuBtn" aria-label="전체 메뉴">' + ICON.menu + '</button>'
       + '</div>';
     document.body.insertBefore(bar, document.body.firstChild);
     document.getElementById('appBack').addEventListener('click', goBack);
+    document.getElementById('appSearchBtn').addEventListener('click', function(e){ if(typeof window.__appSearch === 'function'){ e.preventDefault(); window.__appSearch(); } });
     document.getElementById('appMenuBtn').addEventListener('click', function(){
       var m = document.getElementById('biblyMobMenu');
       if(m){ if(m.parentNode !== bar) bar.appendChild(m); m.classList.toggle('hidden'); }

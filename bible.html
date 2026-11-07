@@ -129,20 +129,24 @@
   ]
 }
   </script>
+  <style>
+    html:not(.app) .app-only{display:none !important}
+    html.app #wordSearchBox.app-collapsed{display:none}
+  </style>
 </head>
 <body class="font-sans bg-paper text-neutral-900 antialiased min-h-screen">
 
   <div id="siteHeader" data-active="bible.html"></div>
 
   <main class="max-w-5xl mx-auto px-4 py-6">
-    <div class="text-center mb-5">
+    <div class="app-hide text-center mb-5">
       <p class="app-hide text-gold text-xs font-bold tracking-[0.3em] mb-2">HOLY BIBLE · 성경 읽기</p>
       <h1 class="text-2xl md:text-[1.7rem] font-bold tracking-tight">킹제임스 성경 <span class="text-gold">정본역(正本譯)</span></h1>
       <p class="app-hide text-neutral-900/55 text-sm mt-3 leading-relaxed max-w-xl mx-auto">King James Version 영어 성경과 <b class="text-neutral-900">히브리어·헬라어 원문</b>을 한 절 한 절 비교 대조하여, <b class="text-neutral-900">표준 국어 어법</b>에 맞게 새로 옮긴 번역입니다. 영어 KJV 본문과 나란히 읽습니다.</p>
     </div>
 
-    <!-- ===== 본문 단어 검색 ===== -->
-    <div class="mb-4">
+    <!-- ===== 본문 단어 검색 (앱: 기본 접힘, 상단바 검색 아이콘·🔍 버튼·?search=1 로 펼침) ===== -->
+    <div id="wordSearchBox" class="mb-4">
       <div class="relative">
         <span class="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-900/35 text-lg pointer-events-none"></span>
         <input id="searchInput" type="search" inputmode="search" autocomplete="off" enterkeyhint="search"
@@ -180,6 +184,7 @@
         <label class="text-xs text-neutral-900/60 flex items-center gap-1.5 ml-1"><input type="checkbox" id="parallel" checked onchange="renderChapter()"/>한·영 병행</label>
         <label class="text-xs text-neutral-900/60 flex items-center gap-1.5 ml-1"><input type="checkbox" id="enToggle" checked onchange="toggleEn()"/>영어 표현</label>
         <div class="ml-auto flex gap-1.5">
+          <button type="button" onclick="toggleBibleSearch()" title="성경 본문 검색" aria-label="성경 검색" class="app-only border border-ink/15 rounded-full px-3 py-2 text-sm hover:bg-ink/5 inline-flex items-center gap-1"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>검색</button>
           <button onclick="nav(-1)" title="이전 장" class="border border-ink/15 rounded-full px-3 py-2 text-sm hover:bg-ink/5">←</button>
           <button onclick="nav(1)" title="다음 장" class="border border-ink/15 rounded-full px-3 py-2 text-sm hover:bg-ink/5">→</button>
         </div>
@@ -773,6 +778,21 @@
   </script>
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script>
+    // 앱 모드: 본문이 먼저 보이도록 검색 상자는 접어 두고, 상단바 검색 아이콘(window.__appSearch)·🔍 버튼·?search=1 로 펼친다
+    function toggleBibleSearch(force){
+      const b = document.getElementById('wordSearchBox'); if(!b) return;
+      const show = (force !== undefined) ? !!force : b.classList.contains('app-collapsed');
+      b.classList.toggle('app-collapsed', !show);
+      if(show){ const i = document.getElementById('searchInput'); try{ b.scrollIntoView({ block:'start', behavior:'smooth' }); }catch(e){} if(i) setTimeout(() => i.focus(), 250); }
+    }
+    window.__appSearch = function(){ toggleBibleSearch(true); };
+    if(document.documentElement.classList.contains('app')){
+      const sp = new URLSearchParams(location.search);
+      if(sp.get('search') === '1'){ setTimeout(() => toggleBibleSearch(true), 400); }
+      else { const b = document.getElementById('wordSearchBox'); if(b) b.classList.add('app-collapsed'); }
+    }
+  </script>
   <script src="auth-header.js?v=20261021a"></script>
 </body>
 </html>
