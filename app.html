@@ -21,7 +21,7 @@
       fontFamily: { sans:['Pretendard','system-ui','sans-serif'] }
     }}}
   </script>
-  <link rel="stylesheet" href="/app.css?v=20261108e" />
+  <link rel="stylesheet" href="/app.css?v=20261108f" />
   <style>
     body{font-family:'Pretendard',system-ui,sans-serif;color:#111827;background:#fff}
     /* ── 상단: 남색 띠(상태바와 한 색) + 흰 검색창 (올리브영식 검색 헤더) ── */
@@ -36,10 +36,11 @@
     /* ── 공용 ── */
     main{max-width:640px;margin:0 auto;padding:0 clamp(14px,4vw,20px)}
     .sec{padding-top:18px}
-    .sec-h{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:10px}
+    .sec-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
     .sec-h h2{font-size:17px;font-weight:800;letter-spacing:-.01em}
-    .sec-h a{font-size:13.5px;font-weight:700;color:#1f3a68;text-decoration:none;padding:6px 0}
+    .sec-h a{font-size:13.5px;font-weight:700;color:#1f3a68;text-decoration:none;padding:0 2px;min-height:40px;display:inline-flex;align-items:center}
     .sec-h a::after{content:' ›';}
+    .learn-sub a{display:inline-flex;align-items:center;min-height:40px}
     .card{background:#fff;border:1px solid #dfe4ec;border-radius:16px}
     .press{transition:transform .12s}
     .press:active{transform:scale(.975)}
@@ -56,7 +57,7 @@
     .quick .ic.g{background:#e9f4ef;color:#0b7d53}
     @media (max-width:340px){.quick .ic{width:50px;height:50px}.quick a{font-size:12px}}
     /* ── 학습 현황(메가스터디식 이어듣기 카드) ── */
-    .learn{display:flex;gap:12px;padding:12px;align-items:stretch}
+    .learn{display:flex;gap:12px;padding:12px;align-items:center}
     .learn .th{position:relative;flex:none;width:38%;max-width:150px;border-radius:12px;overflow:hidden;background:#dfe6f2;aspect-ratio:16/10}
     .learn .th img{width:100%;height:100%;object-fit:cover;display:block}
     .learn .th .pl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
@@ -84,9 +85,9 @@
     .hs{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 calc(-1 * clamp(14px,4vw,20px));padding:2px clamp(14px,4vw,20px) 6px}
     .hs::-webkit-scrollbar{display:none}
     .hs > a{flex:0 0 auto;scroll-snap-align:start;width:clamp(140px,40vw,184px);text-decoration:none;color:inherit}
-    .th16{position:relative;width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#e6ebf3}
+    .th16{display:block;position:relative;width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#e6ebf3}
     .th16 img{width:100%;height:100%;object-fit:cover;display:block}
-    .th16 .d{position:absolute;right:6px;bottom:6px;font-size:12px;font-weight:700;color:#fff;background:rgba(0,0,0,.6);padding:2px 6px;border-radius:6px}
+    .th16 .d{position:absolute;right:6px;bottom:6px;font-size:12.5px;font-weight:700;color:#fff;background:rgba(0,0,0,.6);padding:2px 6px;border-radius:6px}
     .hs .t{font-size:13.5px;font-weight:700;line-height:1.4;margin-top:7px}
     .hs .m{font-size:12.5px;color:#4b5563;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     /* ── 과목 카드 ── */
@@ -177,7 +178,7 @@
       <a id="noticeRow" href="/app-menu?p=notices" class="ntc press hidden"><b>공지</b><span id="noticeTitle"></span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9aa3b5" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></a>
     </section>
 
-    <p class="text-center text-[11px] text-neutral-400 pt-5 pb-4">BIBLY 바이블 인사이트 · <a href="/privacy" class="underline">개인정보처리방침</a></p>
+    <p class="text-center text-[12.5px] text-neutral-400 pt-5 pb-4">BIBLY 바이블 인사이트 · <a href="/privacy" class="underline inline-flex items-center" style="min-height:40px">개인정보처리방침</a></p>
   </main>
 
   <!-- 처음 사용 안내(한 번만, localStorage bibly_app_intro) -->
@@ -343,6 +344,6 @@
   </script>
   <script src="/access.js?v=1"></script>
   <script src="/auth-header.js?v=20261021a"></script>
-  <script src="/app-shell.js?v=20261108e"></script>
+  <script src="/app-shell.js?v=20261108f"></script>
 </body>
 </html>

@@ -222,7 +222,7 @@ html.app .text-xs{ font-size:13px !important; }
 html.app .text-\[12px\], html.app .text-\[12\.5px\]{ font-size:13px !important; }
 html.app .text-neutral-900\/40, html.app .text-neutral-900\/45, html.app .text-neutral-900\/50, html.app .text-neutral-900\/55{ color:#4b5563 !important; }
 
-#appBar .ab .ttl.long{ font-size:15px; }
+#appBar .ab .ttl.long{ font-size:14px; white-space:normal; line-height:1.25; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
 
 /* ══ 강의 보기(watch) 앱 화면 — 영상 고정 · 3등분 동작 줄 · 균등 탭 5개(옆으로 밀지 않음) ══ */
 html.app #playerWrap{ position:sticky; top:calc(var(--ap-bar) + var(--ap-safe-t)); z-index:30; margin:0 -16px; background:#000; }
@@ -330,3 +330,28 @@ html.app #checkoutView .border-gold\/30 .text-sm{ font-size:15px !important; }
 html.app #checkoutView .border-gold\/30 a.inline-block, html.app #checkoutView .border-gold\/30 button{ min-height:48px; display:inline-flex; align-items:center; justify-content:center; font-size:15px !important; }
 html.app #checkoutView .border-gold\/30 .text-\[11px\]{ font-size:13px !important; }
 html.app .coEdit{ display:block; width:100%; margin-top:10px; min-height:42px; border:1px solid var(--ap-line); border-radius:10px; background:#fff; font-size:14px; font-weight:700; color:var(--ap-navy); }
+
+/* ══ 2026-11-08 전수 점검 보정 — 12.5px 미만 글씨·40px 미만 터치 대상을 앱에서 키운다 ══ */
+/* 커리큘럼 */
+html.app #catalog .text-\[9px\], html.app .text-\[9px\]{ font-size:12px !important; padding:2px 7px !important; }
+html.app .apPickLv{ font-size:12.5px !important; }
+/* 성경 읽기 */
+html.app .seclbl{ font-size:12.5px !important; line-height:1.8 !important; padding:0 9px !important; }
+html.app .secbtn{ font-size:13.5px !important; min-height:40px; padding:0 14px !important; }
+html.app #ctrlBar label.text-xs, html.app label.text-xs.text-neutral-900\/60{ font-size:13.5px !important; min-height:44px; padding:0 4px; }
+html.app label.text-xs.text-neutral-900\/60 input[type=checkbox]{ width:20px; height:20px; accent-color:var(--ap-navy); }
+html.app .text-\[0\.78rem\]{ font-size:13px !important; }
+html.app .text-\[0\.75rem\]{ font-size:13px !important; }
+html.app #cprtNotice, html.app #cprtNotice b{ font-size:12.5px !important; }
+html.app button.text-sm.text-gold{ min-height:44px; font-size:15px !important; padding:0 10px; }
+html.app a.text-gold.font-bold{ display:inline-flex; align-items:center; min-height:40px; }
+html.app #ctrlBar button.border.border-ink\/15{ min-width:44px; }
+html.app #ctrlBar select{ min-height:44px; font-size:15px !important; }
+html.app #ctrlBar button{ min-height:44px; }
+/* 내 강의실 로그인 */
+html.app #le, html.app #lp{ height:50px; font-size:16px !important; padding:0 14px !important; }
+/* 강의 보기 */
+html.app #playerWrap button.mt-1, html.app button.mt-1.sm\:mt-2{ min-height:46px; font-size:15px !important; padding:0 22px !important; }
+html.app a.block.text-center.text-xs{ min-height:46px; display:flex !important; align-items:center; justify-content:center; font-size:13.5px !important; }
+html.app .text-\[0\.8rem\]{ font-size:12.5px !important; }
+html.app input[type=checkbox]{ width:20px; height:20px; accent-color:var(--ap-navy); }

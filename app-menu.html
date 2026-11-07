@@ -33,7 +33,7 @@
     /* 검색창 */
     .sbox{display:flex;align-items:center;gap:8px;height:50px;border:1.5px solid #dfe4ec;border-radius:14px;padding:0 12px 0 14px;background:#fff;margin:4px 0 12px}
     .sbox input{flex:1;min-width:0;border:0;outline:0;font-size:16px;font-family:inherit;background:none;color:#111827}
-    .sbox button{height:38px;padding:0 14px;border:0;border-radius:10px;background:#1f3a68;color:#fff;font-weight:800;font-size:14px}
+    .sbox button{height:42px;padding:0 14px;border:0;border-radius:10px;background:#1f3a68;color:#fff;font-weight:800;font-size:14px}
     /* 목록 행 */
     .list{background:#fff;border:1px solid #dfe4ec;border-radius:16px;overflow:hidden}
     .row{display:flex;align-items:center;gap:12px;width:100%;min-height:60px;padding:12px 14px;border:0;border-top:1px solid #eef1f5;background:#fff;text-align:left;color:#111827;text-decoration:none;font-family:inherit}
@@ -46,6 +46,8 @@
     /* 책 격자 */
     .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px 12px}
     .bk{border:0;background:none;padding:0;text-align:left;font-family:inherit;color:inherit}
+    .grid2 .bk{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;min-width:0}
+    .bk .bt{min-height:calc(14.5px*1.35*2)} .bk .bs{min-height:calc(12.5px*1.4*2)}
     .bk img{width:100%;aspect-ratio:3/4.3;object-fit:cover;border-radius:10px;box-shadow:0 10px 24px -14px rgba(21,32,58,.5);background:#eef1f6}
     .bk .bt{font-size:14.5px;font-weight:800;line-height:1.35;margin-top:8px}
     .bk .bs{font-size:12.5px;color:#4b5563;margin-top:3px;line-height:1.4}
@@ -59,7 +61,7 @@
     .kv{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 0;border-top:1px solid #eef1f5;font-size:15px}
     .kv:first-of-type{border-top:0}
     .kv b{font-weight:800}
-    .kv .cp2{flex:none;height:36px;padding:0 12px;border-radius:10px;border:1px solid #dfe4ec;background:#fff;font-weight:800;font-size:13px;color:#1f3a68}
+    .kv .cp2{flex:none;height:42px;padding:0 12px;border-radius:10px;border:1px solid #dfe4ec;background:#fff;font-weight:800;font-size:13px;color:#1f3a68}
     /* 상세 시트 */
     #sheet{position:fixed;inset:0;z-index:88;display:none}
     #sheet.open{display:block}
@@ -201,7 +203,7 @@
           ${s.kakaopay_url ? `<a class="btn" style="margin-top:10px;background:#fee500;border-color:#fee500;color:#3c1e1e" href="${esc(s.kakaopay_url)}" target="_blank" rel="noopener">카카오페이로 후원</a>` : ''}
           ${s.simplepay_url ? `<a class="btn pri" href="${esc(s.simplepay_url)}" target="_blank" rel="noopener">간편결제(카드)로 후원</a>` : ''}
           ${s.paypal_url ? `<a class="btn" href="${esc(s.paypal_url)}" target="_blank" rel="noopener">PayPal (해외)</a>` : ''}
-          <p class="sub" style="margin-top:16px">후원금은 강의 제작과 무료 성경·사전 서비스 운영에 쓰입니다. 문의 <a href="mailto:${esc(s.contact_email||'contact@biblynote.com')}" style="color:#1f3a68;font-weight:700">${esc(s.contact_email||'contact@biblynote.com')}</a></p>`;
+          <p class="sub" style="margin-top:16px">후원금은 강의 제작과 무료 성경·사전 서비스 운영에 쓰입니다. 문의 <a href="mailto:${esc(s.contact_email||'contact@biblynote.com')}" style="display:inline-flex;align-items:center;min-height:40px;color:#1f3a68;font-weight:700">${esc(s.contact_email||'contact@biblynote.com')}</a></p>`;
       },
       // ── 성경사전: 검색 → 목록 → 상세 ──
       async dictionary(){
