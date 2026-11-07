@@ -128,7 +128,7 @@
         </aside>
 
         <!-- 콘텐츠 -->
-        <div class="min-w-0">
+        <div class="min-w-0" id="appMyContent">
       <div id="welcome" class="mb-6"></div>
       <div id="accessBanner" class="mb-6"></div>
 
@@ -400,7 +400,13 @@
       const { error } = await sb.auth.signInWithPassword({ email, password: pw });
       if(error) msg.textContent = error.message;
     }
-    async function logout(){ await sb.auth.signOut(); }
+    // 로그아웃: 세션 종료 → 저장된 토큰 삭제 → 즉시 새로고침(앱은 앱 홈으로). 예전엔 signOut 만 해서 화면이 그대로였음
+    async function logout(){
+      try{ await Promise.race([sb.auth.signOut(), new Promise(r => setTimeout(r, 2500))]); }catch(e){}
+      try{ for(let i = localStorage.length - 1; i >= 0; i--){ const k = localStorage.key(i); if(/-auth-token|bibly-admin-auth/.test(k)) localStorage.removeItem(k); } }catch(e){}
+      try{ sessionStorage.removeItem('bibly_last_watch'); }catch(e){}
+      if(document.documentElement.classList.contains('app')) location.replace('/app'); else location.reload();
+    }
 
     // ===== 성경 통독 진도 카드 =====
     const BP_BOOKS=[['창세기',50],['출애굽기',40],['레위기',27],['민수기',36],['신명기',34],['여호수아',24],['사사기',21],['룻기',4],['사무엘상',31],['사무엘하',24],['열왕기상',22],['열왕기하',25],['역대상',29],['역대하',36],['에스라',10],['느헤미야',13],['에스더',10],['욥기',42],['시편',150],['잠언',31],['전도서',12],['아가',8],['이사야',66],['예레미야',52],['예레미야애가',5],['에스겔',48],['다니엘',12],['호세아',14],['요엘',3],['아모스',9],['오바댜',1],['요나',4],['미가',7],['나훔',3],['하박국',3],['스바냐',3],['학개',2],['스가랴',14],['말라기',4],['마태복음',28],['마가복음',16],['누가복음',24],['요한복음',21],['사도행전',28],['로마서',16],['고린도전서',16],['고린도후서',13],['갈라디아서',6],['에베소서',6],['빌립보서',4],['골로새서',4],['데살로니가전서',5],['데살로니가후서',3],['디모데전서',6],['디모데후서',4],['디도서',3],['빌레몬서',1],['히브리서',13],['야고보서',5],['베드로전서',5],['베드로후서',3],['요한일서',5],['요한이서',1],['요한삼서',1],['유다서',1],['요한계시록',22]];
@@ -1137,6 +1143,57 @@
   </script>
 
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script>
+  // ===== 앱 모드 MY — 설정 앱처럼: 프로필 카드 → 세로 메뉴 목록 → 고른 항목만 보이고 「‹ 메뉴로」로 돌아온다(옆으로 미는 요소 없음) =====
+  (function(){
+    if(!document.documentElement.classList.contains('app')) return;
+    var $ = function(id){ return document.getElementById(id); };
+    var ICON = {
+      main:'<svg viewBox="0 0 24 24"><path d="M4 19V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v13"/><path d="M4 19h16"/><path d="M8 9h8M8 13h5"/></svg>',
+      free:'<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor" stroke="none"/></svg>',
+      cert:'<svg viewBox="0 0 24 24"><path d="M3 9.5 12 5l9 4.5-9 4.5z"/><path d="M7 11.5V16c0 1.5 2.3 3 5 3s5-1.5 5-3v-4.5"/></svg>',
+      assign:'<svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/></svg>',
+      diary:'<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
+      profile:'<svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg>',
+      bible:'<svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21z"/><path d="M4 18.5A2.5 2.5 0 0 1 6.5 16H20"/></svg>',
+      books:'<svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/></svg>',
+      logout:'<svg viewBox="0 0 24 24"><path d="M10 4H5v16h5"/><path d="M14 8l4 4-4 4M18 12H9"/></svg>'
+    };
+    var CHEV = '<svg class="chev" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg>';
+    function build(){
+      var dash = $('dashView'), content = $('appMyContent'); if(!dash || !content || $('appMyMenu')) return;
+      var nav = dash.querySelector('aside nav'); if(!nav) return;
+      var menu = document.createElement('div'); menu.id = 'appMyMenu';
+      var rows = '';
+      nav.querySelectorAll('.sbItem').forEach(function(b){
+        var sec = b.getAttribute('data-sec'); var label = (b.textContent || '').trim();
+        var isOut = !sec && /로그아웃/.test(label);
+        var key = sec || (isOut ? 'logout' : '');
+        rows += '<button type="button" class="row' + (isOut ? ' out' : '') + '" data-sec="' + (sec || '') + '">' + (ICON[key] || '') + '<span>' + label + '</span>' + (isOut ? '' : CHEV) + '</button>';
+      });
+      menu.innerHTML = '<p class="h">내 강의실</p>' + rows;
+      nav.parentNode.insertBefore(menu, nav);   // 프로필 카드 바로 아래
+      // 콘텐츠 위에 「‹ 메뉴로」
+      var back = document.createElement('button'); back.type = 'button'; back.id = 'appMyBack';
+      back.innerHTML = '<svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg><span>내 강의실 메뉴로</span>';
+      content.insertBefore(back, content.firstChild);
+      function openSec(sec){ try{ if(window.sbGo) sbGo(sec); }catch(e){} content.classList.add('open'); menu.classList.add('hide'); window.scrollTo(0, 0); }
+      function closeSec(){ content.classList.remove('open'); menu.classList.remove('hide'); window.scrollTo(0, 0); }
+      menu.addEventListener('click', function(e){
+        var b = e.target.closest('button.row'); if(!b) return;
+        var sec = b.getAttribute('data-sec');
+        if(!sec){ if(window.logout) logout(); return; }
+        openSec(sec);
+      });
+      back.addEventListener('click', closeSec);
+      // 다른 곳(과제 알림 등)에서 sbGo 로 바로 열리는 경우도 콘텐츠를 보이게
+      var orig = window.sbGo; if(orig){ window.sbGo = function(sec){ orig(sec); if(window.__appMyUser) { content.classList.add('open'); menu.classList.add('hide'); } }; }
+      setTimeout(function(){ window.__appMyUser = true; }, 1500);   // 초기 자동 호출은 메뉴 화면 유지
+    }
+    function ready(){ if($('dashView') && $('appMyContent')) build(); else setTimeout(ready, 150); }
+    if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ready); else ready();
+  })();
+  </script>
   <script src="/access.js?v=1"></script>
   <script src="auth-header.js?v=20261021a"></script>
 </body>
