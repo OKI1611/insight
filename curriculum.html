@@ -397,6 +397,7 @@
           <span class="apNo">${pad(li+1)}</span>
           ${ vid ? `<img class="apTh" loading="lazy" alt="" src="https://i.ytimg.com/vi/${vid}/mqdefault.jpg"/>` : '<span class="apTh apThPh">▶</span>' }
           <span class="apT"><span class="apTitle">${esc(l.title||'')}</span><span class="apMeta">${ l.duration ? esc(l.duration) : '강의' }</span></span>
+          <span class="apDone" aria-label="수강 완료"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7"/></svg></span>
           <svg class="apChev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
         </a></li>`;
       }).join('');
@@ -412,6 +413,41 @@
           <div class="apHeadRow"><span class="apHeadMeta">총 ${ls.length}강${timeTxt} · 무료</span><a href="watch.html?l=${start}" class="apStart">▶ 첫 강의부터</a></div>
         </div>
         <ol class="apList">${rows}</ol>`;
+    }
+    // 로그인한 사용자의 완료 강의(lesson_progress) — 앱 화면에 ✓·진도율·이어서 학습을 얹는다
+    const SB_URL = 'https://bmxkndkwefdgsomlznoo.supabase.co', SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+    let DONE_IDS = null;
+    function readStoredSession(){
+      try{ for(const k of Object.keys(localStorage)){ if(!/auth-token/.test(k)) continue; const v = JSON.parse(localStorage.getItem(k)); const ss = (v && v.user) ? v : (v && v.currentSession) ? v.currentSession : null; if(ss && ss.user && ss.access_token){ if(ss.expires_at && ss.expires_at*1000 < Date.now()) return null; return ss; } } }catch(e){} return null;
+    }
+    async function loadDone(){
+      if(DONE_IDS) return DONE_IDS;
+      const ss = readStoredSession(); if(!ss) return (DONE_IDS = new Set());
+      try{
+        const r = await fetch(SB_URL + '/rest/v1/lesson_progress?select=lesson_id&completed=eq.true&user_id=eq.' + encodeURIComponent(ss.user.id), { headers:{ apikey: SB_ANON, Authorization: 'Bearer ' + ss.access_token } });
+        const d = r.ok ? await r.json() : [];
+        DONE_IDS = new Set((d||[]).map(x => x.lesson_id));
+      }catch(e){ DONE_IDS = new Set(); }
+      return DONE_IDS;
+    }
+    async function appTrackProgress(ti, ls, start){
+      const done = await loadDone(); if(CUR !== ti) return;
+      const host = document.getElementById('trackDetail'); if(!host) return;
+      let dc = 0, firstOpen = -1, lw = null;
+      try{ lw = JSON.parse(localStorage.getItem('bibly_last_watch') || 'null'); }catch(e){}
+      host.querySelectorAll('.apLesson').forEach((a, li) => {
+        const id = ytId((ls[li]||{}).youtube); const isDone = done.has(id);
+        a.classList.toggle('done', isDone); if(isDone) dc++; else if(firstOpen < 0) firstOpen = li;
+        a.classList.toggle('now', !!(lw && lw.id === id));
+      });
+      const ss = readStoredSession();
+      const box = host.querySelector('.apProg'); if(box) box.remove();
+      if(!ss || !ls.length) return;
+      const pct = Math.round(dc / ls.length * 100);
+      const nextIdx = firstOpen < 0 ? 0 : firstOpen;
+      const el = document.createElement('div'); el.className = 'apProg';
+      el.innerHTML = `<span class="bar"><i style="width:${pct}%"></i></span><b>${dc}/${ls.length}강 · ${pct}%</b><a href="watch.html?l=${start + nextIdx}">${ dc === 0 ? '학습 시작' : (firstOpen < 0 ? '다시 보기' : '이어서 학습') }</a>`;
+      const head = host.querySelector('.apHead'); if(head) head.insertAdjacentElement('afterend', el);
     }
     function buildTrackSheet(){
       if(document.getElementById('apSheet')) return;
@@ -495,7 +531,9 @@
         </div>`;
       })();
 
-      document.getElementById('trackDetail').innerHTML = document.documentElement.classList.contains('app') ? appTrackHTML(ti, lv, ls, start, L, timeTxt) : `
+      const IS_APP = document.documentElement.classList.contains('app');
+      if(IS_APP) setTimeout(() => appTrackProgress(ti, ls, start), 0);
+      document.getElementById('trackDetail').innerHTML = IS_APP ? appTrackHTML(ti, lv, ls, start, L, timeTxt) : `
         <nav class="text-[13px] text-neutral-900/45 mb-2.5">강의·커리큘럼 <span class="mx-0.5">›</span> ${esc(L)} 단계 <span class="mx-0.5">›</span> <b class="text-neutral-900/75">${esc(lv.name||'')}</b></nav>
         <div class="bg-white border border-ink/10 rounded-2xl shadow-soft p-5 md:p-6 mb-5">
           <div class="flex flex-wrap items-center gap-1.5 mb-2">

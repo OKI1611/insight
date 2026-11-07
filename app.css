@@ -1,8 +1,8 @@
 /* app.css — 앱 모드(<html class="app">) 공용 스타일: 상단바·하단 탭바·웹 크롬 숨김·밀도 조정
    토큰은 상태바(APK에 구워진 #213a6b)와 이어지도록 남색 계열. 웹(비앱)에는 아무 영향 없음. */
 html.app{
-  --ap-navy:#213a6b; --ap-ink:#182c54; --ap-green:#00704a; --ap-bg:#f4f6fa; --ap-card:#ffffff;
-  --ap-text:#17202e; --ap-sub:#6b7686; --ap-line:#e6eaf1; --ap-tab:58px; --ap-bar:48px;
+  --ap-navy:#213a6b; --ap-ink:#182c54; --ap-green:#0fa06a; --ap-green-deep:#0b7d53; --ap-mint:#e8f7f0; --ap-bg:#ffffff; --ap-soft:#f5f7f9; --ap-card:#ffffff;
+  --ap-text:#111827; --ap-sub:#6b7280; --ap-line:#eceff3; --ap-tab:58px; --ap-bar:48px;
   --ap-safe-b:env(safe-area-inset-bottom,0px); --ap-safe-t:env(safe-area-inset-top,0px);
 }
 /* 기본 글자 15px(웹은 저장된 17px). 사용자가 앱 메뉴에서 고르면 app-shell.js 가 인라인 !important 로 덮어쓴다 */
@@ -39,13 +39,13 @@ html.app .lg\:sticky{ position:static !important; }
 #appTabs a{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; text-decoration:none; color:#8a94a6; font-size:11px; font-weight:700; letter-spacing:-.01em; -webkit-user-select:none; user-select:none; transition:transform .12s; }
 #appTabs a:active{ transform:scale(.94); }
 #appTabs a svg{ width:24px; height:24px; stroke:currentColor; fill:none; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; }
-#appTabs a.on{ color:var(--ap-green); }
+#appTabs a.on{ color:var(--ap-green-deep); }
 #appTabs a.on svg{ stroke-width:2.4; }
-#appTabs a.on::before{ content:''; position:absolute; top:0; width:28px; height:3px; border-radius:0 0 3px 3px; background:var(--ap-green); }
+#appTabs a.on::before{ content:''; position:absolute; top:0; width:28px; height:3px; border-radius:0 0 3px 3px; background:var(--ap-green-deep); }
 #appTabs a{ position:relative; }
 
 /* ── 앱 공용 컴포넌트(앱 홈·앱 모드 페이지에서 사용) ── */
-html.app .ap-card{ background:var(--ap-card); border-radius:20px; border:1px solid var(--ap-line); box-shadow:0 10px 30px -22px rgba(21,32,58,.25); }
+html.app .ap-card{ background:var(--ap-card); border-radius:16px; border:1px solid var(--ap-line); }
 html.app .ap-press{ transition:transform .12s ease; }
 html.app .ap-press:active{ transform:scale(.975); }
 html.app .ap-h{ font-size:15.5px; font-weight:800; letter-spacing:-.01em; color:var(--ap-text); }
@@ -75,7 +75,7 @@ html.app .text-xl{ font-size:1.12rem !important; }
 #appMenu .sheet{ position:absolute; left:0; right:0; bottom:0; background:#fff; border-radius:22px 22px 0 0; padding:14px 16px calc(16px + var(--ap-safe-b)); max-height:80dvh; overflow:auto; }
 #appMenu .grab{ width:40px; height:4px; border-radius:2px; background:#dfe3ea; margin:0 auto 12px; }
 #appMenu .grid5{ display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
-#appMenu .grid5 a{ display:flex; flex-direction:column; align-items:center; gap:6px; padding:10px 4px; border-radius:14px; background:#f4f6fa; text-decoration:none; color:var(--ap-text); font-size:11.5px; font-weight:700; }
+#appMenu .grid5 a{ display:flex; flex-direction:column; align-items:center; gap:6px; padding:10px 4px; border-radius:14px; background:var(--ap-soft); text-decoration:none; color:var(--ap-text); font-size:11.5px; font-weight:700; }
 #appMenu .grid5 a svg{ width:22px; height:22px; stroke:var(--ap-navy); fill:none; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; }
 #appMenu .fs{ display:flex; gap:8px; }
 #appMenu .fs button{ flex:1; padding:10px 0; border-radius:12px; border:1px solid var(--ap-line); background:#fff; font-weight:700; color:var(--ap-text); }
@@ -119,6 +119,19 @@ html.app #freeContent .mb-5{ margin-bottom:12px !important; }
 .apHeadRow{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
 .apHeadMeta{ font-size:12.5px; color:var(--ap-sub); font-weight:600; }
 .apStart{ flex:none; font-size:13px; font-weight:800; color:#fff; background:var(--ap-green); border-radius:999px; padding:8px 14px; text-decoration:none; }
+/* 메가스터디식 진도 — 로그인 시 완료 체크·진도율·이어서 학습 */
+.apProg{ display:flex; align-items:center; gap:10px; background:var(--ap-mint); border-radius:14px; padding:10px 12px; margin:0 0 10px; }
+.apProg .bar{ flex:1; height:7px; border-radius:999px; background:#fff; overflow:hidden; }
+.apProg .bar i{ display:block; height:100%; background:var(--ap-green); border-radius:999px; }
+.apProg b{ font-size:12px; font-weight:800; color:var(--ap-green-deep); white-space:nowrap; }
+.apProg a{ flex:none; font-size:12px; font-weight:800; color:#fff; background:var(--ap-green-deep); border-radius:999px; padding:6px 11px; text-decoration:none; }
+.apLesson .apDone{ display:none; flex:none; width:20px; height:20px; border-radius:999px; background:var(--ap-green); color:#fff; align-items:center; justify-content:center; }
+.apLesson .apDone svg{ width:12px; height:12px; }
+.apLesson.done .apDone{ display:flex; }
+.apLesson.done .apChev{ display:none; }
+.apLesson.done .apTitle{ color:var(--ap-sub); font-weight:600; }
+.apLesson.now{ background:var(--ap-mint); }
+.apLesson.now .apNo{ color:var(--ap-green-deep); }
 .apList{ list-style:none; margin:0; padding:0; background:#fff; border:1px solid var(--ap-line); border-radius:18px; overflow:hidden; }
 .apList li + li{ border-top:1px solid var(--ap-line); }
 .apLesson{ display:flex; align-items:center; gap:10px; padding:10px 10px 10px 12px; text-decoration:none; color:inherit; }
@@ -152,3 +165,15 @@ html.app #ctrlBar label.text-xs{ font-size:11.5px; }
 html.app #readWrap{ margin-top:10px !important; }
 html.app #reader{ padding:14px 14px 18px !important; }
 html.app #picker{ margin-top:8px; }
+
+/* ══ 산뜻한 재도색(올리브영식 흰 바탕) — 기존 페이지의 짙은 초록 #00704a 포인트를 앱에선 민트 계열로 ══ */
+html.app .bg-gold{ background-color:var(--ap-green) !important; }
+html.app .text-gold{ color:var(--ap-green-deep) !important; }
+html.app .border-gold{ border-color:var(--ap-green) !important; }
+html.app .bg-cloud, html.app .bg-paper, html.app .bg-sand{ background-color:#fff !important; }
+html.app .shadow-soft, html.app .shadow-card{ box-shadow:none !important; }
+html.app .rounded-2xl, html.app .rounded-3xl{ border-radius:16px !important; }
+html.app .border-ink\/8, html.app .border-ink\/10, html.app .border-ink\/\[0\.06\]{ border-color:var(--ap-line) !important; }
+/* 내 강좌(mylearning) — 과목 카드를 메가스터디식 진도 카드처럼 */
+html.app #dashView #tracks > div, html.app #dashView #tracks > a{ border-radius:16px !important; border:1px solid var(--ap-line) !important; box-shadow:none !important; }
+html.app #dashView .bg-gradient-to-br{ background:var(--ap-navy) !important; }
