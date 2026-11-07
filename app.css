@@ -281,3 +281,6 @@ html.app #appMyContent.open{ display:block; }
 #appMyBack svg{ width:22px; height:22px; stroke:currentColor; fill:none; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
 html.app #appMyContent #welcome, html.app #appMyContent #accessBanner{ margin-bottom:12px !important; }
 html.app #appMyContent #summary{ grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
+
+/* 오픈 기념 혜택 배너·새 소식 띠(recent-ticker.js)는 앱에서 표시하지 않는다 — 강의 탭 상단을 가리던 문제 */
+html.app #biblyRecentWrap, html.app #recentTicker, html.app a[href="event.html"].bg-gradient-to-r{ display:none !important; }

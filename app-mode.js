@@ -23,7 +23,7 @@
     var p = location.pathname.replace(/\/+$/, '') || '/';
     // 웹 세부 페이지는 앱 전용 화면(app-menu)으로 — 결제·신청 같은 웹 전용 흐름(buy=, track=, #apply, #order)은 그대로 둔다
     var sub = p.replace(/\.html$/, '');
-    var MAP = { '/books':'books', '/notices':'notices', '/event':'events', '/support':'support', '/booklet':'store', '/academy':'academy', '/qna':'qna', '/dictionary':'dictionary' };
+    var MAP = { '/books':'books', '/notices':'notices', '/event':'events', '/support':'support', '/booklet':'store', '/academy':'academy', '/qna':'qna', '/dictionary':'dictionary', '/qna-board':'board', '/search':'search', '/themes':'themes', '/bible-english':'english', '/translation-notes':'notes' };
     if(MAP[sub]){
       var qs = new URLSearchParams(q), h = location.hash || '';
       var webOnly = (sub === '/booklet' && (qs.get('buy') || qs.get('track') || /#order|#cart/.test(h)))
@@ -31,7 +31,7 @@
                  || qs.get('web') === '1';
       if(!webOnly){
         var keep = [];
-        ['room','id','q','cat'].forEach(function(k){ if(qs.get(k)) keep.push(k + '=' + encodeURIComponent(qs.get(k))); });
+        ['room','id','q','cat','book'].forEach(function(k){ if(qs.get(k)) keep.push(k + '=' + encodeURIComponent(qs.get(k))); });
         if(sub === '/books' && h) keep.push('id=' + encodeURIComponent(h.slice(1)));
         location.replace('/app-menu?p=' + MAP[sub] + (keep.length ? '&' + keep.join('&') : ''));
         return;

@@ -26,7 +26,7 @@
   ];
   var path = (location.pathname.replace(/\/+$/, '') || '/');
   function tabOf(p){
-    if(/^\/app-menu(\.html)?$/.test(p)){ var pp = new URLSearchParams(location.search).get('p') || ''; var k = pp === 'qna' ? 'qna' : pp === 'dictionary' ? 'bible' : (pp === 'store' || pp === 'academy') ? 'learn' : 'home'; return TABS.filter(function(t){ return t.k === k; })[0]; }
+    if(/^\/app-menu(\.html)?$/.test(p)){ var pp = new URLSearchParams(location.search).get('p') || ''; var k = (pp === 'qna' || pp === 'board') ? 'qna' : (pp === 'dictionary' || pp === 'themes' || pp === 'english' || pp === 'notes') ? 'bible' : (pp === 'store' || pp === 'academy') ? 'learn' : 'home'; return TABS.filter(function(t){ return t.k === k; })[0]; }
     for(var i=0;i<TABS.length;i++){ if(TABS[i].m.test(p)) return TABS[i]; } return null;
   }
   var cur = tabOf(path);

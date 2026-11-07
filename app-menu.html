@@ -102,7 +102,7 @@
     const CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>';
     const sp = new URLSearchParams(location.search);
     const P = sp.get('p') || 'books';
-    const TITLES = { books:'저자의 책', notices:'공지사항', events:'이벤트', qna:'질문과 답', store:'교재 스토어', academy:'급수 과정', support:'후원하기', dictionary:'성경사전' };
+    const TITLES = { books:'저자의 책', notices:'공지사항', events:'이벤트', qna:'질문과 답', store:'교재 스토어', academy:'급수 과정', support:'후원하기', dictionary:'성경사전', board:'수강생 질문방', search:'검색', themes:'주제별 성경', english:'바이블 잉글리시', notes:'번역 이야기' };
     function setTitle(t){ document.title = t + ' — BIBLY'; if(window.__setAppTitle) window.__setAppTitle(t); else window.__appTitle = t; }
     setTitle(TITLES[P] || 'BIBLY');
     function openSheet(html){ $('sheetBody').innerHTML = html; $('sheet').classList.add('open'); $('sheet').querySelector('.box').scrollTop = 0; }
@@ -227,6 +227,85 @@
         const q0 = sp.get('q'); if(q0){ $('dq').value = q0; window.__dsearch(); }
       }
     };
+    // 세션(글쓰기 버튼 표시용) — 다른 페이지와 같은 저장 방식
+    function readStored(){ try{ for(const k of Object.keys(localStorage)){ if(!/auth-token/.test(k)) continue; const v = JSON.parse(localStorage.getItem(k)); const ss = (v && v.user) ? v : (v && v.currentSession) ? v.currentSession : null; if(ss && ss.user){ if(ss.expires_at && ss.expires_at*1000 < Date.now()) return null; return ss; } } }catch(e){} return null; }
+    const plain = (h) => { const d = document.createElement('div'); d.innerHTML = String(h||'').replace(/<\/(p|div|br|li)>/gi, '\n').replace(/<br\s*\/?>/gi, '\n'); return (d.textContent || '').replace(/\n{3,}/g, '\n\n').trim(); };
+    const safeHtml = (h) => String(h||'').replace(/<script[\s\S]*?<\/script>/gi, '').replace(/\son\w+="[^"]*"/gi, '').replace(/javascript:/gi, '');
+
+    Object.assign(VIEWS, {
+      // ── 수강생 질문방: 목록(답변 완료 표시) → 본문 + 댓글, 글쓰기는 로그인 후 ──
+      async board(){
+        const posts = await rest('community_posts?select=id,author_name,content,created_at,answered&board=eq.qna&order=created_at.desc&limit=100');
+        const me = readStored();
+        const render = (f) => {
+          const list = (posts||[]).filter(p => f === 'wait' ? !p.answered : f === 'done' ? !!p.answered : true);
+          $('bdList').innerHTML = list.length ? `<div class="list">` + list.map((p,i) => { const t = plain(p.content); const first = t.split('\n')[0].slice(0, 60); return `
+            <button type="button" class="row press" data-id="${esc(p.id)}"><span class="t">${esc(first||'(제목 없음)')}<br/><span style="font-size:12.5px;color:#4b5563;font-weight:600">${esc(p.author_name||'회원')} · ${fdate(p.created_at)}</span></span>${p.answered ? '<span class="pill g" style="flex:none">답변 완료</span>' : '<span class="pill" style="flex:none;background:#f3f5f8;color:#6b7280">대기</span>'}</button>`; }).join('') + `</div>` : '<p class="empty">아직 질문이 없습니다.</p>';
+          $('bdList').querySelectorAll('button.row').forEach(b => b.addEventListener('click', async () => {
+            const p = (posts||[]).find(x => String(x.id) === b.dataset.id); if(!p) return;
+            openSheet(`<p class="dt-s">${esc(p.author_name||'회원')} · ${fdate(p.created_at)}${p.answered ? ' · <b style="color:#0b7d53">답변 완료</b>' : ''}</p><div class="dt-p" style="margin-top:8px">${safeHtml(p.content)}</div><p class="dt-lbl">댓글·답변</p><div id="bdCmt"><div class="skel"></div></div>`);
+            try{ const cs = await rest('community_comments?select=author_name,content,created_at,is_admin&post_id=eq.' + encodeURIComponent(p.id) + '&order=created_at.asc');
+              $('bdCmt').innerHTML = (cs||[]).length ? cs.map(c => `<div class="card" style="padding:12px 14px;margin-bottom:8px${c.is_admin ? ';border-color:#0b7d53;background:#e9f4ef' : ''}"><p style="margin:0 0 4px;font-size:13px;font-weight:800;color:${c.is_admin ? '#0b7d53' : '#1f3a68'}">${esc(c.author_name||'회원')}${c.is_admin ? ' · 강사' : ''} <span style="font-weight:600;color:#6b7280">${fdate(c.created_at)}</span></p><div style="font-size:15px;line-height:1.7">${safeHtml(c.content)}</div></div>`).join('') : '<p class="sub">아직 댓글이 없습니다.</p>';
+            }catch(e){ $('bdCmt').innerHTML = '<p class="sub">댓글을 불러오지 못했어요.</p>'; }
+          }));
+        };
+        $('main').innerHTML = `
+          <div class="btns2" style="grid-template-columns:1fr 1fr 1fr;margin-bottom:10px"><button type="button" class="btn pri" data-f="all">전체</button><button type="button" class="btn" data-f="wait">답변 대기</button><button type="button" class="btn" data-f="done">답변 완료</button></div>
+          <div id="bdList"></div>
+          <a class="btn grn" style="margin-top:14px" href="${me ? '/qna-write' : '/mylearning'}">${me ? '질문 올리기' : '로그인하고 질문 올리기'}</a>`;
+        $('main').querySelectorAll('button[data-f]').forEach(b => b.addEventListener('click', () => { $('main').querySelectorAll('button[data-f]').forEach(x => x.classList.toggle('pri', x === b)); render(b.dataset.f); }));
+        render('all');
+      },
+      // ── 검색: 강의·사전·주제·글을 한 번에 ──
+      async search(){
+        let IDX = null;
+        const TYPE = { video:'강의', dict:'사전', theme:'주제', post:'글' };
+        const link = (u) => { if(/^dictionary\?q=/.test(u)) return '/app-menu?p=dictionary&q=' + encodeURIComponent(decodeURIComponent(u.split('q=')[1]||'')); if(/^themes/.test(u)) return '/app-menu?p=themes'; return '/' + u.replace(/^\//, ''); };
+        $('main').innerHTML = `
+          <div class="sbox"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="sq" type="search" placeholder="예: 휴거, 666, 거듭남, 바벨론" enterkeyhint="search"/><button type="button" onclick="window.__ssearch()">검색</button></div>
+          <div id="sres"><p class="sub">강의 · 성경사전 · 주제별 성경 · 질문과 답을 한 번에 찾습니다.</p></div>`;
+        window.__ssearch = async () => {
+          const q = ($('sq').value||'').trim(); if(!q) return;
+          if(!IDX){ $('sres').innerHTML = '<div class="skel"></div><div class="skel" style="width:70%"></div>'; IDX = (await fetch('/content/smart-index.json').then(r=>r.json())).items || []; }
+          const ql = q.toLowerCase(); const terms = ql.split(/\s+/).filter(Boolean);
+          const score = (it) => { const kw = (it.kw||'').toLowerCase(), ti = (it.ti||'').toLowerCase(); let sc = 0; terms.forEach(t => { if(ti.includes(t)) sc += 3; if(kw.includes(t)) sc += 1; }); return sc; };
+          const hits = IDX.map(it => ({ it, sc: score(it) })).filter(x => x.sc > 0).sort((a,b) => b.sc - a.sc).slice(0, 40);
+          $('sres').innerHTML = hits.length ? `<p class="sub" style="margin:0 0 8px">${hits.length}개 찾음</p><div class="list">` + hits.map(({it}) => `<a class="row press" href="${esc(link(it.u||''))}"><span class="pill" style="flex:none;min-width:44px;text-align:center">${TYPE[it.t]||it.t}</span><span class="t">${esc(it.ti)}${it.sn ? `<br/><span class="clamp2" style="font-size:12.5px;color:#4b5563;font-weight:600">${esc(it.sn)}</span>` : ''}</span>${CHEV}</a>`).join('') + `</div>` : '<p class="empty">찾는 내용이 없습니다. 다른 말로 검색해 보세요.</p>';
+        };
+        $('sq').addEventListener('keydown', e => { if(e.key === 'Enter') window.__ssearch(); });
+        const q0 = sp.get('q'); if(q0){ $('sq').value = q0; window.__ssearch(); }
+      },
+      // ── 주제별 성경: 주제 목록 → 단계별 말씀 ──
+      async themes(){
+        const d = await fetch('/content/themes.json?t=' + Date.now()).then(r=>r.json()); const T = d.themes || [];
+        const LV = [['beginner','처음'], ['intermediate','깊이'], ['advanced','더 깊이']];
+        $('main').innerHTML = `<p class="sub" style="margin:4px 0 12px">주제를 고르면 관련 말씀이 단계별로 열립니다.</p><div class="list">` + T.map((t,i) => `<button type="button" class="row press" data-i="${i}"><span style="font-size:22px;flex:none">${esc(t.icon||'')}</span><span class="t">${esc(t.title)}<br/><span class="clamp2" style="font-size:12.5px;color:#4b5563;font-weight:600">${esc(t.intro||'')}</span></span>${CHEV}</button>`).join('') + `</div>`;
+        $('main').querySelectorAll('button.row').forEach(b => b.addEventListener('click', () => { const t = T[+b.dataset.i];
+          openSheet(`<p class="dt-h">${esc(t.icon||'')} ${esc(t.title)}</p><p class="dt-s">${esc(t.intro||'')}</p>` + LV.map(([k, name]) => { const vs = (t.levels||{})[k] || []; if(!vs.length) return ''; return `<p class="dt-lbl">${name} · ${vs.length}절</p>` + vs.map(v => `<div class="card" style="margin-bottom:8px"><p style="margin:0;font-size:16px;line-height:1.7">${esc(v.ko)}</p><p style="margin:6px 0 0;font-size:13.5px;color:#4b5563;line-height:1.55">${esc(v.en||'')}</p><p style="margin:6px 0 0;font-size:13px;font-weight:800;color:#0b7d53">${esc(v.ref)}</p>${v.note ? `<p style="margin:6px 0 0;font-size:13.5px;color:#4b5563;line-height:1.6">${esc(v.note)}</p>` : ''}</div>`).join(''); }).join('')); }));
+      },
+      // ── 바이블 잉글리시: 책 → 유닛 목록 → 학습 화면 ──
+      async english(){
+        const d = await fetch('/content/be-units.json?t=' + Date.now()).then(r=>r.json()); const U = Array.isArray(d) ? d : (d.units || []);
+        const books = []; U.forEach(u => { let b = books.find(x => x.book === u.book); if(!b){ b = { book:u.book, bookEn:u.bookEn, units:[] }; books.push(b); } b.units.push(u); });
+        const want = sp.get('book');
+        const bk = want ? books.find(b => b.book === want) : null;
+        if(bk){
+          setTitle(bk.book);
+          $('main').innerHTML = `<p class="sub" style="margin:4px 0 12px">${esc(bk.book)} · ${bk.units.length}개 학습 단원. 누르면 바로 학습이 시작됩니다.</p><div class="list">` + bk.units.map(u => `<a class="row press" href="/bible-english-unit.html?u=${u.id}"><span class="num">${u.unitNo||''}</span><span class="t">${esc(u.titleKo||u.title)}<br/><span style="font-size:12.5px;color:#4b5563;font-weight:600">${esc(u.ref||'')} · ${esc(u.title||'')}</span></span>${CHEV}</a>`).join('') + `</div><a class="btn" style="margin-top:14px" href="/app-menu?p=english">다른 책 고르기</a>`;
+        } else {
+          $('main').innerHTML = `<p class="sub" style="margin:4px 0 12px">영어 성경을 소리 내어 읽으며 배우는 코너입니다. 책을 고르세요.</p><div class="list">` + books.map(b => `<a class="row press" href="/app-menu?p=english&book=${encodeURIComponent(b.book)}"><span class="t">${esc(b.book)}<br/><span style="font-size:12.5px;color:#4b5563;font-weight:600">${esc(b.bookEn||'')} · ${b.units.length}개 단원</span></span>${CHEV}</a>`).join('') + `</div>`;
+        }
+      },
+      // ── 번역 이야기: 글 목록 → 본문 ──
+      async notes(){
+        const d = await fetch('/content/translation-notes.json?t=' + Date.now()).then(r=>r.json()); const N = d.notes || []; const cats = d.cats || {};
+        const catName = (c) => (cats && (cats[c] || (Array.isArray(cats) ? (cats.find(x => x.id === c)||{}).name : ''))) || '';
+        $('main').innerHTML = `<p class="sub" style="margin:4px 0 12px">${esc((d.intro && (d.intro.summary || d.intro.text)) || '킹제임스 성경 정본역을 옮기며 고민한 번역 이야기입니다.')}</p><div class="list">` + N.map((n,i) => `<button type="button" class="row press" data-i="${i}"><span class="num">${i+1}</span><span class="t">${esc(n.title)}<br/><span class="clamp2" style="font-size:12.5px;color:#4b5563;font-weight:600">${esc(n.verse||'')}</span></span>${CHEV}</button>`).join('') + `</div>`;
+        $('main').querySelectorAll('button.row').forEach(b => b.addEventListener('click', () => { const n = N[+b.dataset.i];
+          openSheet(`${n.cat ? `<span class="pill">${esc(catName(n.cat) || n.cat)}</span>` : ''}<p class="dt-h">${esc(n.title)}</p><p class="dt-s">${esc(n.verse||'')}</p>${n.summary ? `<div class="dt-q">${esc(n.summary)}</div>` : ''}` + (n.body||[]).map(bl => bl.h ? `<p class="dt-lbl" style="font-size:15px;color:#1f3a68">${esc(bl.h)}</p>` : bl.v ? `<div class="dt-q" style="font-size:14.5px">${safeHtml(bl.v)}</div>` : bl.p ? `<p class="dt-p" style="margin-top:6px">${safeHtml(bl.p)}</p>` : '').join('')); }));
+        const want = sp.get('id'); if(want){ const i = N.findIndex(n => n.id === want); if(i >= 0) setTimeout(() => $('main').querySelector(`button.row[data-i="${i}"]`).click(), 200); }
+      }
+    });
     async function listNotices(kind){
       const data = await rest(`notices?select=id,title,body,created_at,pinned&kind=eq.${kind}&order=pinned.desc,created_at.desc&limit=50`);
       $('main').innerHTML = (data && data.length) ? `<div class="list">` + data.map((n,i) => `<button type="button" class="row press" data-i="${i}">${n.pinned ? '<span class="pill g" style="flex:none">고정</span>' : ''}<span class="t">${esc(n.title)}<br/><span style="font-size:12.5px;color:#4b5563;font-weight:600">${fdate(n.created_at)}</span></span>${CHEV}</button>`).join('') + `</div>` : `<p class="empty">${kind === 'event' ? '진행 중인 이벤트가 없습니다.' : '등록된 공지가 없습니다.'}</p>`;

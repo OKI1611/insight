@@ -18,6 +18,7 @@
 
   function buildNodes(){
     var wrap=document.createElement('div');
+    wrap.id='biblyRecentWrap';   // 앱 모드에서 통째로 숨기기 위한 식별자(오픈 기념 배너 + 새 소식 띠)
     wrap.innerHTML =
       '<a href="event.html" class="block bg-gradient-to-r from-gold to-[#caa24f] text-white">'
       + '<div class="max-w-6xl mx-auto px-5 py-3 flex items-center justify-center gap-2.5 text-center text-sm md:text-[15px] font-semibold flex-wrap">'
