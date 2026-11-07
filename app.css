@@ -8,7 +8,9 @@ html.app{
 }
 /* 기본 글자 15px(웹은 저장된 17px). 사용자가 앱 메뉴에서 고르면 app-shell.js 가 인라인 !important 로 덮어쓴다 */
 html.app{ font-size:16px !important; }
-html.app, html.app body{ overflow-x:hidden !important; max-width:100vw; }
+/* 가로 넘침 차단은 clip 으로 — hidden 은 html/body 를 스크롤 컨테이너로 만들어 일부 안드로이드에서 세로 터치 스크롤이 멈춘다(2026-11-08 저자의 책 화면) */
+html.app, html.app body{ overflow-x:clip !important; max-width:100vw; }
+@supports not (overflow-x:clip){ html.app body{ overflow-x:hidden !important; } }
 html.app body{
   background:var(--ap-bg) !important;
   padding-bottom:calc(var(--ap-tab) + var(--ap-safe-b) + 10px) !important;
@@ -255,7 +257,7 @@ html.app #panel-list #lessonList{ max-height:none !important; }
 html.app #panel-list .lesson{ min-height:56px; }
 
 /* ══ MY(내 강의실) 앱 화면 — 프로필 카드 · 세로 메뉴 목록 · 고른 항목만 ══ */
-html.app #dashView{ overflow-x:hidden; }
+html.app #dashView{ overflow-x:clip; }
 html.app #dashView *{ min-width:0; }
 html.app #dashView .whitespace-nowrap{ white-space:normal !important; }
 html.app #dashView img, html.app #dashView video, html.app #dashView iframe{ max-width:100%; }
