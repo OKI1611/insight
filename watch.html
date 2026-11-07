@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
+  <script src="/app-mode.js?v=20261107a"></script>
   <script src="/content-loader.js?v=20260703f"></script>
   <script src="/site-header.js?v=20261027a"></script>
   <script src="/pager.js?v=1"></script>
@@ -76,7 +77,7 @@
   <!-- 강의 헤더 -->
   <div class="border-b border-ink/[0.06] bg-gradient-to-br from-white via-white to-sky">
     <div class="max-w-7xl mx-auto px-4 py-6">
-      <p class="inline-flex items-center gap-1.5 text-gold text-[12.5px] font-bold tracking-[0.18em] bg-gold/10 px-2.5 py-1 rounded-full mb-2">CLASS</p>
+      <p class="app-hide inline-flex items-center gap-1.5 text-gold text-[12.5px] font-bold tracking-[0.18em] bg-gold/10 px-2.5 py-1 rounded-full mb-2">CLASS</p>
       <h1 id="courseTitle" class="text-xl md:text-2xl font-bold">강의를 불러오는 중…</h1>
       <p id="courseSub" class="text-neutral-900/55 text-sm mt-1"></p>
       <p id="courseMeta" class="text-neutral-900/45 text-xs mt-2"></p>
@@ -95,7 +96,7 @@
         <div id="player" class="aspect-video bg-navy rounded-2xl overflow-hidden shadow-soft"></div>
         <span id="wmark" class="pointer-events-none absolute top-2 right-3 text-[12px] font-semibold text-white/35 select-none" style="text-shadow:0 1px 3px rgba(0,0,0,.5)">오광일의 인사이트 브리핑</span>
       </div>
-      <p class="text-[12.5px] text-neutral-900/45 mt-2 flex items-center gap-1.5 leading-snug">본 강의 영상의 <b class="text-neutral-900/60">무단 다운로드·화면 녹화·재배포를 금합니다.</b> © 오광일의 인사이트 브리핑</p>
+      <p class="app-hide text-[12.5px] text-neutral-900/45 mt-2 flex items-center gap-1.5 leading-snug">본 강의 영상의 <b class="text-neutral-900/60">무단 다운로드·화면 녹화·재배포를 금합니다.</b> © 오광일의 인사이트 브리핑</p>
 
       <!-- 영상 시청 후 마무리 안내(영상이 끝나면 자동으로 진단평가·핵심요약이 열립니다) -->
       <div id="finishPrompt" class="mt-3" style="display:none">
@@ -762,6 +763,7 @@
       const l = lessons[i];
 
       renderList();   // 현재 강의가 속한 트랙으로 목차 갱신(트랙 이동 시 따라감)
+      try{ const _lv = currentLevelInfo(); localStorage.setItem('bibly_last_watch', JSON.stringify({ id: ytId(l.youtube), title: l.title, track: _lv.lv.name, idx: i, ts: Date.now() })); }catch(e){}   // 앱 홈 「이어 보기」
       document.querySelectorAll('.lesson').forEach(el => { el.classList.remove('bg-gold/10','border-gold'); });
       const el = document.getElementById('lesson-' + i);
       if(el){ el.classList.add('bg-gold/10','border-gold'); el.scrollIntoView({ block:'nearest' }); }

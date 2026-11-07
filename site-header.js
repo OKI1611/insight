@@ -4,6 +4,14 @@
    - 로고 + 메뉴(content/site.json, 없으면 기본값) + 인증영역(내 강의실 · 후원 · 로그인/로그아웃)을 그린다.
    - 로그인 모달이 필요한 페이지는 window.biblyHeaderLogin 함수를 정의하면 '로그인' 클릭 시 그 함수가 호출된다(없으면 index.html 로 이동).
    - <head> 로드(=content-loader.js 와 동일)라 미리보기 환경에서도 실행됨. */
+// ── 앱 모드(플레이 스토어 앱·홈 화면 PWA): 상단바·하단 탭바 스타일/스크립트를 함께 싣는다 (app-mode.js 가 html.app 를 붙임)
+(function(){
+  try{
+    if(!document.documentElement.classList.contains('app')) return;
+    var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = '/app.css?v=20261107a'; document.head.appendChild(l);
+    var j = document.createElement('script'); j.src = '/app-shell.js?v=20261107a'; j.defer = true; document.head.appendChild(j);
+  }catch(e){}
+})();
 (function(){
   if(window.__biblyHeaderInit) return; window.__biblyHeaderInit = true;
   var SB = 'https://bmxkndkwefdgsomlznoo.supabase.co';

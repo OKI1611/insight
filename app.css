@@ -1,0 +1,59 @@
+/* app.css — 앱 모드(<html class="app">) 공용 스타일: 상단바·하단 탭바·웹 크롬 숨김·밀도 조정
+   토큰은 상태바(APK에 구워진 #213a6b)와 이어지도록 남색 계열. 웹(비앱)에는 아무 영향 없음. */
+html.app{
+  --ap-navy:#213a6b; --ap-ink:#182c54; --ap-green:#00704a; --ap-bg:#f4f6fa; --ap-card:#ffffff;
+  --ap-text:#17202e; --ap-sub:#6b7686; --ap-line:#e6eaf1; --ap-tab:58px; --ap-bar:48px;
+  --ap-safe-b:env(safe-area-inset-bottom,0px); --ap-safe-t:env(safe-area-inset-top,0px);
+}
+html.app body{
+  background:var(--ap-bg) !important;
+  padding-bottom:calc(var(--ap-tab) + var(--ap-safe-b) + 10px) !important;
+  overscroll-behavior-y:contain; -webkit-tap-highlight-color:transparent;
+  word-break:keep-all;
+}
+/* ── 웹 크롬 숨김 ── */
+html.app .bibly-topbar, html.app body > header.sticky, html.app #biblyRail, html.app #sectionSideNav,
+html.app #biblyNoticeBar, html.app footer, html.app #installBtn, html.app #bookPopup, html.app #meetPopup,
+html.app #subs10k, html.app .app-hide, html.app #biblyFab > div:first-child{ display:none !important; }
+html.app body{ padding-left:0 !important; padding-right:0 !important; }   /* section-sidenav 가 준 여백 제거 */
+/* 질문(채널톡) 버튼은 탭바 위로 */
+html.app #biblyFab > div:last-child{ bottom:calc(var(--ap-tab) + var(--ap-safe-b) + 14px) !important; right:12px !important; }
+/* 고정 사이드(강의 목차 등)는 앱에선 흐름대로 */
+html.app .lg\:sticky{ position:static !important; }
+
+/* ── 앱 상단바 ── */
+#appBar{ position:sticky; top:0; z-index:45; background:var(--ap-navy); color:#fff; padding-top:var(--ap-safe-t); }
+#appBar .ab{ height:var(--ap-bar); display:flex; align-items:center; gap:4px; padding:0 6px 0 2px; }
+#appBar .ab button, #appBar .ab a{ width:44px; height:44px; display:flex; align-items:center; justify-content:center; border:0; background:none; color:#fff; border-radius:12px; cursor:pointer; text-decoration:none; }
+#appBar .ab button:active, #appBar .ab a:active{ background:rgba(255,255,255,.12); }
+#appBar .ab .ttl{ flex:1; min-width:0; font-size:16.5px; font-weight:800; letter-spacing:-.01em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-left:2px; }
+#appBar #biblyMobMenu{ display:none; position:absolute; left:0; right:0; top:100%; max-height:calc(100dvh - var(--ap-bar) - var(--ap-tab) - 20px); overflow:auto; background:#fff; color:var(--ap-text); border-bottom:1px solid var(--ap-line); box-shadow:0 18px 40px -20px rgba(21,32,58,.35); }
+#appBar #biblyMobMenu:not(.hidden){ display:block; }
+
+/* ── 하단 탭바 ── */
+#appTabs{ position:fixed; left:0; right:0; bottom:0; z-index:70; height:calc(var(--ap-tab) + var(--ap-safe-b)); padding-bottom:var(--ap-safe-b);
+  background:rgba(255,255,255,.96); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-top:1px solid var(--ap-line);
+  display:grid; grid-template-columns:repeat(5,1fr); }
+#appTabs a{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; text-decoration:none; color:#8a94a6; font-size:11px; font-weight:700; letter-spacing:-.01em; -webkit-user-select:none; user-select:none; transition:transform .12s; }
+#appTabs a:active{ transform:scale(.94); }
+#appTabs a svg{ width:24px; height:24px; stroke:currentColor; fill:none; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; }
+#appTabs a.on{ color:var(--ap-green); }
+#appTabs a.on svg{ stroke-width:2.4; }
+#appTabs a.on::before{ content:''; position:absolute; top:0; width:28px; height:3px; border-radius:0 0 3px 3px; background:var(--ap-green); }
+#appTabs a{ position:relative; }
+
+/* ── 앱 공용 컴포넌트(앱 홈·앱 모드 페이지에서 사용) ── */
+html.app .ap-card{ background:var(--ap-card); border-radius:20px; border:1px solid var(--ap-line); box-shadow:0 10px 30px -22px rgba(21,32,58,.25); }
+html.app .ap-press{ transition:transform .12s ease; }
+html.app .ap-press:active{ transform:scale(.975); }
+html.app .ap-h{ font-size:17px; font-weight:800; letter-spacing:-.01em; color:var(--ap-text); }
+html.app .ap-sub{ font-size:13px; color:var(--ap-sub); }
+html.app .ap-scroll{ display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 16px 10px; margin:0 -16px; scrollbar-width:none; }
+html.app .ap-scroll::-webkit-scrollbar{ display:none; }
+html.app .ap-scroll > *{ scroll-snap-align:start; flex:0 0 auto; }
+
+/* ── 앱 모드 밀도 조정(기존 페이지) ── */
+html.app main{ padding-top:14px !important; }
+html.app h1{ font-size:20px !important; line-height:1.3 !important; }
+html.app .max-w-7xl, html.app .max-w-6xl, html.app .max-w-5xl{ padding-left:14px !important; padding-right:14px !important; }
+html.app #learnTabs .learnTabBtn{ font-size:13.5px; padding:9px 11px; }
