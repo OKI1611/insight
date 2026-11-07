@@ -1671,13 +1671,13 @@
   (function(){
     if(!document.documentElement.classList.contains('app')) return;
     var $ = function(id){ return document.getElementById(id); };
+    // 균등 탭 5개 — 한 화면에 전부 보인다(옆으로 밀지 않음). 공유는 제목 옆 아이콘.
     var MENU = [
-      { k:'list',   l:'목차',     i:'<svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>' },
-      { k:'note',   l:'요약 노트', i:'<svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M9 11h6M9 15h6"/></svg>' },
-      { k:'quiz',   l:'진단평가', i:'<svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg>' },
-      { k:'assign', l:'과제',     i:'<svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/></svg>' },
-      { k:'qa',     l:'질문',     i:'<svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>' },
-      { k:'share',  l:'공유',     i:'<svg viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m8 7 4-4 4 4"/><path d="M5 12v8h14v-8"/></svg>' }
+      { k:'list',   l:'목차', i:'<svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>' },
+      { k:'note',   l:'노트', i:'<svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M9 11h6M9 15h6"/></svg>' },
+      { k:'quiz',   l:'평가', i:'<svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg>' },
+      { k:'assign', l:'과제', i:'<svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/></svg>' },
+      { k:'qa',     l:'질문', i:'<svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>' }
     ];
     function build(){
       var host = $('learnHost'); if(!host || $('appLecMenu')) return;
@@ -1688,9 +1688,9 @@
       var pw = $('playerWrap');
       if(pw && !$('appLecActions')){
         var row = document.createElement('div'); row.id = 'appLecActions';
-        row.innerHTML = '<button type="button" id="appFullBtn" class="alf"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><span>가로로 크게 보기</span></button>'
-          + '<button type="button" class="aln" onclick="prev()"><svg viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></svg><span>이전</span></button>'
-          + '<button type="button" class="aln" onclick="next()"><span>다음</span><svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg></button>';
+        row.innerHTML = '<button type="button" class="aln" onclick="prev()"><svg viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></svg><span>이전 강의</span></button>'
+          + '<button type="button" id="appFullBtn" class="alf"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><span>크게 보기</span></button>'
+          + '<button type="button" class="aln" onclick="next()"><span>다음 강의</span><svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg></button>';
         pw.insertAdjacentElement('afterend', row);
         $('appFullBtn').addEventListener('click', goWide);
       }
@@ -1698,10 +1698,17 @@
       var bar = document.createElement('div'); bar.id = 'appLecMenu';
       bar.innerHTML = MENU.map(function(m){ return '<button type="button" data-k="' + m.k + '">' + m.i + '<span>' + m.l + '</span></button>'; }).join('');
       var tabs = $('learnTabs'); if(tabs) tabs.insertAdjacentElement('beforebegin', bar); else host.insertAdjacentElement('beforebegin', bar);
+      // 제목 줄 오른쪽에 공유 아이콘
+      var tt = $('lessonTitle');
+      if(tt && !$('appShareBtn')){
+        var sh = document.createElement('button'); sh.type = 'button'; sh.id = 'appShareBtn'; sh.setAttribute('aria-label', '공유');
+        sh.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m8 7 4-4 4 4"/><path d="M5 12v8h14v-8"/></svg>';
+        sh.addEventListener('click', function(e){ if(navigator.share && window.shareNative) shareNative(); else if(window.toggleShareMenu) toggleShareMenu(e); });
+        tt.parentNode.insertBefore(sh, tt);
+      }
       bar.addEventListener('click', function(e){
         var b = e.target.closest('button'); if(!b) return;
         var k = b.getAttribute('data-k');
-        if(k === 'share'){ if(navigator.share && window.shareNative) shareNative(); else if(window.toggleShareMenu) toggleShareMenu(e); return; }
         window.showLearnTab(k);
         if(k !== 'list') setTimeout(function(){ var el = $('learnHost'); if(el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 60, behavior:'smooth' }); }, 50);
       });
