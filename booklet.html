@@ -110,6 +110,11 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://biblynote.com/"},{"@type":"ListItem","position":2,"name":"스토어","item":"https://biblynote.com/booklet"},{"@type":"ListItem","position":3,"name":"PDF 책자·이용권","item":"https://biblynote.com/booklet"}]}
   </script>
+  <style>
+    html:not(.app) .app-only{display:none !important}
+    html:not(.app) label.apF{display:contents}
+    html:not(.app) label.apF > span{display:none}
+  </style>
 </head>
 <body class="font-sans bg-paper text-neutral-900 antialiased min-h-screen">
   <style>html.embed .bibly-topbar,html.embed header.sticky,html.embed .bibly-footer{display:none!important}html.embed body{padding:0!important}html.embed main{padding-top:.5rem!important;max-width:100%!important}</style>
@@ -208,9 +213,9 @@
   <!-- ===================== 장바구니 ===================== -->
   <main id="cartView" class="hidden">
     <div class="max-w-2xl mx-auto px-5 py-10">
-      <button onclick="showView('catalog')" class="text-sm text-neutral-900/55 hover:text-gold mb-4">← 계속 둘러보기</button>
-      <h1 class="text-2xl font-bold text-neutral-900 mb-1">장바구니</h1>
-      <p class="text-neutral-500 text-sm mb-6">담은 자료를 확인하고 한 번에 주문하세요.</p>
+      <button onclick="goCatalog()" class="text-sm text-neutral-900/55 hover:text-gold mb-4 app-hide">← 계속 둘러보기</button>
+      <h1 class="text-2xl font-bold text-neutral-900 mb-1 app-hide">장바구니</h1>
+      <p class="text-neutral-500 text-sm mb-6 app-hide">담은 자료를 확인하고 한 번에 주문하세요.</p>
       <div id="cartList" class="space-y-3"></div>
       <div id="cartSummary" class="mt-6"></div>
     </div>
@@ -219,30 +224,31 @@
   <!-- ===================== 주문 / 결제 ===================== -->
   <main id="checkoutView" class="hidden">
     <div class="max-w-2xl mx-auto px-5 py-10">
-      <button onclick="showView('cart')" class="text-sm text-neutral-900/55 hover:text-gold mb-4">← 장바구니</button>
-      <div class="bg-white rounded-3xl border border-ink/10 shadow-card p-6 md:p-8">
-        <div class="text-center mb-6">
+      <button onclick="showView('cart')" class="text-sm text-neutral-900/55 hover:text-gold mb-4 app-hide">← 장바구니</button>
+      <div class="bg-white rounded-3xl border border-ink/10 shadow-card p-6 md:p-8" id="coCard">
+        <div class="text-center mb-6 app-hide">
           <p class="text-gold text-xs font-bold tracking-[0.25em] uppercase mb-2">Order · 주문 / 결제</p>
           <h2 class="text-xl md:text-2xl font-bold">주문서</h2>
         </div>
         <div class="space-y-4">
           <div id="coSummary" class="bg-sand/50 border border-ink/8 rounded-xl p-4"></div>
-          <div class="grid grid-cols-2 gap-2.5">
-            <input id="bName" type="text" maxlength="40" placeholder="이름 *" class="border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold" />
-            <input id="bPhone" type="tel" maxlength="30" placeholder="연락처 *" class="border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold" />
+          <p class="app-only apLbl">주문하시는 분</p>
+          <div class="grid grid-cols-2 gap-2.5" id="coWho">
+            <label class="apF"><span>이름</span><input id="bName" type="text" maxlength="40" placeholder="이름 *" class="border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold" /></label>
+            <label class="apF"><span>연락처</span><input id="bPhone" type="tel" maxlength="30" placeholder="연락처 *" class="border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold" /></label>
           </div>
-          <input id="bEmail" type="email" maxlength="120" placeholder="이메일 * (이 계정으로 자료·이용권을 드려요)" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold" />
-          <p id="prefillHint" class="hidden text-[12px] text-gold/90 -mt-1.5 px-1">로그인 정보로 자동 입력했어요 · 필요하면 수정하세요.</p>
+          <label class="apF"><span>이메일 <small>자료·이용권을 받을 주소</small></span><input id="bEmail" type="email" maxlength="120" placeholder="이메일 * (이 계정으로 자료·이용권을 드려요)" class="w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold" /></label>
+          <p id="prefillHint" class="hidden text-[12px] text-gold/90 -mt-1.5 px-1 app-hide">로그인 정보로 자동 입력했어요 · 필요하면 수정하세요.</p>
 
           <!-- 상품 형태 (책자가 있을 때만) -->
           <div id="formatBox">
             <p class="text-xs font-bold text-neutral-900/55 mb-1.5">상품 형태</p>
             <div class="grid grid-cols-2 gap-2">
               <label class="flex items-center gap-2 border border-ink/15 rounded-xl px-3 py-2.5 text-sm cursor-pointer has-[:checked]:border-gold has-[:checked]:bg-gold/5"><input type="radio" name="oformat" value="PDF" checked onchange="toggleAddr()"/> PDF (이메일 발송)</label>
-              <label class="flex items-center gap-2 border border-ink/10 rounded-xl px-3 py-2.5 text-sm cursor-not-allowed bg-ink/[0.03] text-neutral-900/35"><input type="radio" name="oformat" value="실물제본" disabled onchange="toggleAddr()"/> 실물 제본 <span class="text-[11px] font-semibold">(준비중)</span></label>
+              <label class="flex items-center gap-2 border border-ink/10 rounded-xl px-3 py-2.5 text-sm cursor-not-allowed bg-ink/[0.03] text-neutral-900/35 app-hide"><input type="radio" name="oformat" value="실물제본" disabled onchange="toggleAddr()"/> 실물 제본 <span class="text-[11px] font-semibold">(준비중)</span></label>
             </div>
             <input id="bAddr" type="text" maxlength="120" placeholder="배송지 주소 (실물 제본 선택 시)" class="hidden w-full border border-ink/15 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold mt-2" />
-            <p id="addrNote" class="hidden text-xs text-neutral-900/45 mt-1.5">실물 제본·배송은 현재 준비 중입니다. 지금은 PDF로 발송해 드려요.</p>
+            <p id="addrNote" class="hidden text-xs text-neutral-900/45 mt-1.5 app-hide">실물 제본·배송은 현재 준비 중입니다. 지금은 PDF로 발송해 드려요.</p>
           </div>
 
           <!-- 결제 수단 -->
@@ -262,7 +268,7 @@
           <input id="bHp" type="text" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
           <button id="bSubmit" onclick="placeOrder()" class="w-full bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition">결제하기</button>
           <p id="bMsg" class="text-center text-sm min-h-[18px]"></p>
-          <p class="text-center text-neutral-900/40 text-xs leading-relaxed"><b class="text-neutral-900/55">신용·체크카드로 결제하시면 이용권이 즉시 부여됩니다.</b> 무통장입금·카카오페이 송금으로도 주문하실 수 있으며, 이 경우 계좌·간편송금 안내가 바로 뜨고 입금이 확인되면 발송·부여해 드립니다. 문의는 contact@biblynote.com 으로 주세요.</p>
+          <p class="text-center text-neutral-900/40 text-xs leading-relaxed app-hide"><b class="text-neutral-900/55">신용·체크카드로 결제하시면 이용권이 즉시 부여됩니다.</b> 무통장입금·카카오페이 송금으로도 주문하실 수 있으며, 이 경우 계좌·간편송금 안내가 바로 뜨고 입금이 확인되면 발송·부여해 드립니다. 문의는 contact@biblynote.com 으로 주세요.</p>
         </div>
       </div>
     </div>
@@ -328,6 +334,7 @@
     function withTimeout(p,ms){ return Promise.race([Promise.resolve(p),new Promise((_,r)=>setTimeout(()=>r(new Error('TIMEOUT')),ms))]); }
     // 자료 이용기록(열람·다운로드) — log_access RPC(없으면 자동 무시)
     async function logAccess(track, action, kind){ try{ await sb.rpc('log_access',{p_kind:kind||'book', p_track:track||'', p_action:action}); }catch(e){} }
+    const IS_APP=document.documentElement.classList.contains('app');
     async function boot(){
       try{ const s=await (await fetch('content/site.json?t='+Date.now())).json(); PAY=s.support||{}; BIZ=s.business||{}; }catch(e){ PAY={}; BIZ={}; }
       try{ COURSE=await (await fetch('content/course.json?t='+Date.now())).json(); }catch(e){ COURSE={levels:[]}; }
@@ -337,7 +344,11 @@
       const sp=new URLSearchParams(location.search);
       const tname=sp.get('track'), buy=sp.get('buy');
       if(tname){ renderBook(decodeURIComponent(tname)); }
-      else if(buy){ addToCart('book', decodeURIComponent(buy), true); showView('cart'); }
+      else if(buy){
+        const bv=decodeURIComponent(buy), pp=passByVal(bv);
+        if(pp) addToCart('pass', pp.id, true); else addToCart('book', bv, true);
+        showView(IS_APP && CART.length ? 'checkout' : 'cart');   // 앱: 장바구니 없이 바로 주문서
+      }
       else {
         const hash=(location.hash||'').replace('#','');
         if(hash==='cart') showView('cart');
@@ -355,8 +366,10 @@
       const bar=$('storeBar'); if(bar) bar.classList.toggle('hidden', v==='book');  // 스토어바: 책뷰어 제외 항상 노출
       if(v==='cart') renderCart();
       if(v==='checkout') renderCheckout();
+      try{ if(IS_APP && window.__setAppTitle) window.__setAppTitle(v==='checkout'?'주문 · 결제':v==='cart'?'장바구니':v==='book'?'교재 보기':'교재 구매'); }catch(e){}
       window.scrollTo(0,0);
     }
+    function goCatalog(){ if(IS_APP){ location.href='/app-menu?p=store'; return; } showView('catalog'); }
     function scrollToBooks(){ const el=$('booksSection'); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }
     function goStore(t){ showView('catalog'); setTimeout(()=>{ const el=$(t==='pass'?'passSection':'booksSection'); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); },70); }
 
@@ -470,7 +483,7 @@
           +'<img src="/images/bible-insight-emblem.png" alt="" class="w-14 mx-auto mb-4 opacity-90"/>'
           +'<p class="font-bold text-neutral-900 text-lg mb-1.5">장바구니가 비어 있어요</p>'
           +'<p class="text-sm text-neutral-500 mb-6">마음에 드는 책자나 이용권을 담아보세요.</p>'
-          +'<button onclick="showView(\'catalog\')" class="inline-block bg-gold text-white font-bold px-7 py-3 rounded-full hover:opacity-90 transition shadow-soft">책자 둘러보기 →</button></div>';
+          +'<button onclick="goCatalog()" class="inline-block bg-gold text-white font-bold px-7 py-3 rounded-full hover:opacity-90 transition shadow-soft">책자 둘러보기 →</button></div>';
         if(sum) sum.innerHTML=''; return;
       }
       list.innerHTML=CART.map(it=>{
@@ -496,7 +509,7 @@
         </div>
         <p class="text-[11.5px] text-neutral-400 mt-1.5 text-right">결제는 다음 단계에서 진행돼요</p>
         <button onclick="showView('checkout')" class="w-full bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition mt-5 shadow-soft">주문서 작성 · 결제 →</button>
-        <button onclick="showView('catalog')" class="w-full text-neutral-500 text-sm py-2.5 mt-1 hover:text-gold transition">+ 더 담으러 가기</button>
+        <button onclick="goCatalog()" class="w-full text-neutral-500 text-sm py-2.5 mt-1 hover:text-gold transition">+ 더 담으러 가기</button>
       </div>`;
     }
 
@@ -507,7 +520,8 @@
       const hasBook=CART.some(c=>c.kind==='book');
       const fb=$('formatBox'); if(fb) fb.classList.toggle('hidden', !hasBook);
       if(co) co.innerHTML=CART.map(it=>`<div class="flex items-center justify-between py-1"><span class="text-sm text-neutral-900/80 truncate pr-3">${it.kind==='pass'?'':''} ${esc(it.name)}</span><span class="text-sm font-semibold text-neutral-900 shrink-0">${won(it.price)}</span></div>`).join('')
-        +`<div class="flex items-center justify-between border-t border-ink/10 mt-2 pt-2"><span class="font-bold">합계 (${CART.length}개)</span><span class="font-bold text-gold text-lg">${won(cartTotal())}</span></div>`;
+        +`<div class="flex items-center justify-between border-t border-ink/10 mt-2 pt-2"><span class="font-bold">합계 (${CART.length}개)</span><span class="font-bold text-gold text-lg">${won(cartTotal())}</span></div>`
+        +(IS_APP?`<button type="button" class="coEdit" onclick="showView('cart')">담은 상품 수정</button>`:'');
       const m=$('bMsg'); if(m) m.textContent='';
       prefillOrderForm();   // 로그인 시 이름·이메일·연락처 자동 입력(수정 가능)
     }

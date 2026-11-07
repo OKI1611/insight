@@ -284,3 +284,49 @@ html.app #appMyContent #summary{ grid-template-columns:repeat(3,minmax(0,1fr)); 
 
 /* 오픈 기념 혜택 배너·새 소식 띠(recent-ticker.js)는 앱에서 표시하지 않는다 — 강의 탭 상단을 가리던 문제 */
 html.app #biblyRecentWrap, html.app #recentTicker, html.app a[href="event.html"].bg-gradient-to-r{ display:none !important; }
+
+/* ══ 교재 구매(booklet) 앱 화면 — 장바구니 없이 바로 주문서 · 라벨 있는 큰 입력칸 · 큰 결제수단 선택 ══ */
+html.app #storeBar{ display:none !important; }
+html.app #cartView > div, html.app #checkoutView > div{ padding:12px 16px 24px !important; max-width:none; }
+html.app #coCard{ padding:16px !important; border-radius:16px !important; box-shadow:none !important; border-color:var(--ap-line) !important; }
+html.app #coCard > .space-y-4 > * + *{ margin-top:14px !important; }
+html.app #coSummary{ background:var(--ap-soft) !important; border-color:var(--ap-line) !important; border-radius:14px !important; padding:14px !important; }
+html.app #coSummary .text-sm{ font-size:15px !important; }
+html.app #coSummary .text-lg{ font-size:20px !important; }
+html.app #coSummary span.truncate{ white-space:normal; }
+.apLbl{ font-size:13px; font-weight:800; color:var(--ap-sub); margin:4px 0 -6px; letter-spacing:.02em; }
+html.app label.apF{ display:block; min-width:0; }
+html.app label.apF > span{ display:block; font-size:13.5px; font-weight:700; color:var(--ap-sub); margin-bottom:5px; }
+html.app label.apF > span small{ font-weight:600; font-size:12.5px; color:#8a93a6; margin-left:4px; }
+html.app #checkoutView input[type=text], html.app #checkoutView input[type=tel], html.app #checkoutView input[type=email]{ width:100%; height:50px; font-size:16px !important; padding:0 14px !important; border-radius:12px !important; border:1.5px solid var(--ap-line) !important; background:#fff; }
+html.app #checkoutView input:focus{ border-color:var(--ap-navy) !important; box-shadow:0 0 0 3px rgba(31,58,104,.12); }
+html.app #checkoutView input::placeholder{ color:#b3bac8; font-size:15px; }
+html.app #formatBox > p, html.app #payMethods ~ p{ font-size:13.5px !important; margin:6px 0 8px !important; }
+html.app #coCard p.text-xs.font-bold{ font-size:13.5px !important; color:var(--ap-sub) !important; margin-bottom:8px !important; }
+html.app #formatBox .grid{ grid-template-columns:1fr; }
+html.app #formatBox label, html.app #payMethods label{ min-height:54px; padding:0 14px !important; border-radius:12px !important; border:1.5px solid var(--ap-line) !important; font-size:15.5px !important; font-weight:600; gap:12px !important; }
+html.app #formatBox label:has(:checked), html.app #payMethods label:has(:checked){ border-color:var(--ap-navy) !important; background:#f3f6fb !important; }
+html.app #formatBox input[type=radio], html.app #payMethods input[type=radio]{ width:22px; height:22px; accent-color:var(--ap-navy); flex:none; }
+html.app #payMethods label .text-gold{ color:var(--ap-green) !important; font-size:13px; }
+html.app #payMethods label .bg-gold{ background:var(--ap-green) !important; font-size:11.5px !important; padding:2px 8px !important; }
+html.app #checkoutView label.items-start{ font-size:14px !important; line-height:1.5; gap:10px !important; padding:10px 12px !important; border:1.5px solid var(--ap-line); border-radius:12px; color:var(--ap-text) !important; }
+html.app #checkoutView label.items-start input[type=checkbox]{ width:22px; height:22px; margin-top:1px; accent-color:var(--ap-navy); flex:none; }
+html.app #checkoutView label.items-start a{ color:var(--ap-navy) !important; }
+html.app #bSubmit{ height:54px; font-size:17px !important; border-radius:14px !important; background:var(--ap-green) !important; box-shadow:0 6px 14px rgba(11,125,83,.22); }
+html.app #bMsg{ font-size:14.5px !important; }
+/* 장바구니(직접 들어온 경우) */
+html.app #cartList > div{ border-radius:14px !important; box-shadow:none !important; border-color:var(--ap-line) !important; }
+html.app #cartList .text-\[15px\]{ font-size:16px !important; white-space:normal; }
+html.app #cartList .text-\[12\.5px\]{ font-size:13.5px !important; }
+html.app #cartList .text-\[11\.5px\]{ font-size:13.5px !important; min-height:40px; display:inline-flex; align-items:center; }
+html.app #cartSummary > div{ border-radius:14px !important; box-shadow:none !important; border-color:var(--ap-line) !important; }
+html.app #cartSummary button.bg-gold{ height:54px; font-size:17px !important; border-radius:14px !important; background:var(--ap-green) !important; }
+html.app #cartSummary button.text-neutral-500{ min-height:46px; font-size:15px !important; }
+html.app #cartList button.bg-gold{ min-height:50px; font-size:16px !important; background:var(--ap-navy) !important; }
+/* 주문 접수 완료 화면 */
+html.app #checkoutView .border-gold\/30{ padding:20px 16px !important; border-radius:16px !important; box-shadow:none !important; border-color:var(--ap-line) !important; }
+html.app #checkoutView .border-gold\/30 h2{ font-size:21px !important; }
+html.app #checkoutView .border-gold\/30 .text-sm{ font-size:15px !important; }
+html.app #checkoutView .border-gold\/30 a.inline-block, html.app #checkoutView .border-gold\/30 button{ min-height:48px; display:inline-flex; align-items:center; justify-content:center; font-size:15px !important; }
+html.app #checkoutView .border-gold\/30 .text-\[11px\]{ font-size:13px !important; }
+html.app .coEdit{ display:block; width:100%; margin-top:10px; min-height:42px; border:1px solid var(--ap-line); border-radius:10px; background:#fff; font-size:14px; font-weight:700; color:var(--ap-navy); }

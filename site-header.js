@@ -8,8 +8,8 @@
 (function(){
   try{
     if(!document.documentElement.classList.contains('app')) return;
-    var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = '/app.css?v=20261108d'; document.head.appendChild(l);
-    var j = document.createElement('script'); j.src = '/app-shell.js?v=20261108d'; j.defer = true; document.head.appendChild(j);
+    var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = '/app.css?v=20261108e'; document.head.appendChild(l);
+    var j = document.createElement('script'); j.src = '/app-shell.js?v=20261108e'; j.defer = true; document.head.appendChild(j);
   }catch(e){}
 })();
 (function(){
