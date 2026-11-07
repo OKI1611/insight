@@ -30,9 +30,13 @@
   var isHome = !!(document.body && document.body.hasAttribute('data-app-home')) || (cur && cur.k==='home');
 
   function pageTitle(){
+    if(window.__appTitle) return window.__appTitle;
+    var m = document.querySelector('meta[name="app-title"]'); if(m && m.content) return m.content;
     var t = (document.title || '').split(/\s[—|·|]\s|\s-\s/)[0].trim();
     return t || 'BIBLY';
   }
+  // 페이지가 상단바 제목을 직접 정한다(예: 성경 「요한복음 3장」)
+  window.__setAppTitle = function(t){ window.__appTitle = t; var el = document.getElementById('appTitle'); if(el){ el.textContent = t; el.classList.toggle('long', t.length > 14); } };
   function goBack(){
     if(history.length > 1 && document.referrer && document.referrer.indexOf(location.origin) === 0){ history.back(); }
     else location.href = '/app';
@@ -42,7 +46,7 @@
     var bar = document.createElement('div'); bar.id = 'appBar';
     bar.innerHTML = '<div class="ab">'
       + '<button type="button" id="appBack" aria-label="뒤로">' + ICON.back + '<span class="bk">뒤로</span></button>'
-      + '<div class="ttl" id="appTitle">' + pageTitle().replace(/[<>&]/g, '') + '</div>'
+      + '<div class="ttl' + (pageTitle().length > 14 ? ' long' : '') + '" id="appTitle">' + pageTitle().replace(/[<>&]/g, '') + '</div>'
       + '<a href="/search" id="appSearchBtn" aria-label="검색">' + ICON.search + '</a>'
       + '<button type="button" id="appMenuBtn" aria-label="전체 메뉴">' + ICON.menu + '</button>'
       + '</div>';
@@ -80,6 +84,6 @@
   // 제목이 늦게 바뀌는 페이지(강의 등)는 상단바 제목도 따라간다
   try{
     var tEl = document.querySelector('title');
-    if(tEl && window.MutationObserver){ new MutationObserver(function(){ var el = document.getElementById('appTitle'); if(el) el.textContent = pageTitle(); }).observe(tEl, { childList:true }); }
+    if(tEl && window.MutationObserver){ new MutationObserver(function(){ if(window.__appTitle) return; var el = document.getElementById('appTitle'); if(el){ var t = pageTitle(); el.textContent = t; el.classList.toggle('long', t.length > 14); } }).observe(tEl, { childList:true }); }
   }catch(e){}
 })();

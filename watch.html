@@ -75,7 +75,7 @@
   <div id="siteHeader" data-active="watch.html"></div>
 
   <!-- 강의 헤더 -->
-  <div class="border-b border-ink/[0.06] bg-gradient-to-br from-white via-white to-sky">
+  <div class="app-hide border-b border-ink/[0.06] bg-gradient-to-br from-white via-white to-sky">
     <div class="max-w-7xl mx-auto px-4 py-6">
       <p class="app-hide inline-flex items-center gap-1.5 text-gold text-[12.5px] font-bold tracking-[0.18em] bg-gold/10 px-2.5 py-1 rounded-full mb-2">CLASS</p>
       <h1 id="courseTitle" class="text-xl md:text-2xl font-bold">강의를 불러오는 중…</h1>
@@ -766,7 +766,13 @@
       try{ const _lv = currentLevelInfo(); localStorage.setItem('bibly_last_watch', JSON.stringify({ id: ytId(l.youtube), title: l.title, track: _lv.lv.name, idx: i, ts: Date.now() })); }catch(e){}   // 앱 홈 「이어 보기」
       document.querySelectorAll('.lesson').forEach(el => { el.classList.remove('bg-gold/10','border-gold'); });
       const el = document.getElementById('lesson-' + i);
-      if(el){ el.classList.add('bg-gold/10','border-gold'); el.scrollIntoView({ block:'nearest' }); }
+      if(el){
+        el.classList.add('bg-gold/10','border-gold');
+        // 목차 상자 안에서만 스크롤한다 — el.scrollIntoView 는 모바일에서 페이지 전체를 목차까지 끌어내려 영상이 안 보였음
+        const lst = document.getElementById('lessonList');
+        if(lst){ const r = el.getBoundingClientRect(), lr = lst.getBoundingClientRect(); lst.scrollTop += (r.top - lr.top) - lst.clientHeight/2 + r.height/2; }
+      }
+      if(document.documentElement.classList.contains('app')) window.scrollTo(0, 0);   // 앱: 항상 영상부터
 
       // 현재 강의 목차는 자동으로 펼치고, 나머지는 접기
       document.querySelectorAll('[id^="ch-list-"]').forEach(ul => {
@@ -1660,6 +1666,70 @@
     #srchResults::-webkit-scrollbar{width:8px}
     #srchResults::-webkit-scrollbar-thumb{background:rgba(33,58,107,.15);border-radius:8px}
   </style>
+  <script>
+  // ===== 앱 모드 강의 화면 — 가장 단순하게: 영상 / [가로로 크게 보기 · 이전 · 다음] / 제목 / 가로 메뉴 칩(목차·요약 노트·진단평가·과제·질문·공유) / 선택한 패널 =====
+  (function(){
+    if(!document.documentElement.classList.contains('app')) return;
+    var $ = function(id){ return document.getElementById(id); };
+    var MENU = [
+      { k:'list',   l:'목차',     i:'<svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>' },
+      { k:'note',   l:'요약 노트', i:'<svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M9 11h6M9 15h6"/></svg>' },
+      { k:'quiz',   l:'진단평가', i:'<svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg>' },
+      { k:'assign', l:'과제',     i:'<svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/></svg>' },
+      { k:'qa',     l:'질문',     i:'<svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>' },
+      { k:'share',  l:'공유',     i:'<svg viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m8 7 4-4 4 4"/><path d="M5 12v8h14v-8"/></svg>' }
+    ];
+    function build(){
+      var host = $('learnHost'); if(!host || $('appLecMenu')) return;
+      // ① 목차(강의 목록)를 패널로 옮긴다 — 데스크톱의 오른쪽 칼럼을 앱에선 메뉴 '목차'로
+      var aside = document.querySelector('main > aside');
+      if(aside && !$('panel-list')){ var p = document.createElement('div'); p.id = 'panel-list'; p.className = 'tabPanel'; p.appendChild(aside); host.appendChild(p); }
+      // ② 영상 아래 동작 줄: 가로로 크게 보기 · 이전 · 다음
+      var pw = $('playerWrap');
+      if(pw && !$('appLecActions')){
+        var row = document.createElement('div'); row.id = 'appLecActions';
+        row.innerHTML = '<button type="button" id="appFullBtn" class="alf"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><span>가로로 크게 보기</span></button>'
+          + '<button type="button" class="aln" onclick="prev()"><svg viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></svg><span>이전</span></button>'
+          + '<button type="button" class="aln" onclick="next()"><span>다음</span><svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg></button>';
+        pw.insertAdjacentElement('afterend', row);
+        $('appFullBtn').addEventListener('click', goWide);
+      }
+      // ③ 가로 메뉴 칩
+      var bar = document.createElement('div'); bar.id = 'appLecMenu';
+      bar.innerHTML = MENU.map(function(m){ return '<button type="button" data-k="' + m.k + '">' + m.i + '<span>' + m.l + '</span></button>'; }).join('');
+      var tabs = $('learnTabs'); if(tabs) tabs.insertAdjacentElement('beforebegin', bar); else host.insertAdjacentElement('beforebegin', bar);
+      bar.addEventListener('click', function(e){
+        var b = e.target.closest('button'); if(!b) return;
+        var k = b.getAttribute('data-k');
+        if(k === 'share'){ if(navigator.share && window.shareNative) shareNative(); else if(window.toggleShareMenu) toggleShareMenu(e); return; }
+        window.showLearnTab(k);
+        if(k !== 'list') setTimeout(function(){ var el = $('learnHost'); if(el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 60, behavior:'smooth' }); }, 50);
+      });
+      // ④ 탭 전환 함수 확장: 'list' 패널 + 칩 활성 표시, 강의 바뀌면 기본은 '목차'
+      var orig = window.showLearnTab;
+      window.showLearnTab = function(name){
+        if(name === 'info') name = 'list';
+        orig(name === 'list' ? 'info' : name);
+        var pi = $('panel-info'); if(pi) pi.style.display = 'none';
+        var pl = $('panel-list'); if(pl) pl.style.display = (name === 'list') ? '' : 'none';
+        bar.querySelectorAll('button').forEach(function(x){ x.classList.toggle('on', x.getAttribute('data-k') === name); });
+        if(window.syncNoteToc) syncNoteToc();
+      };
+      window.showLearnTab('list');
+    }
+    // 가로로 크게 보기 — 전체화면 + 가로 고정(지원 기기), 나가면 해제
+    function goWide(){
+      var pw = $('playerWrap'); if(!pw) return;
+      var req = pw.requestFullscreen || pw.webkitRequestFullscreen;
+      if(req){ try{ var r = req.call(pw); if(r && r.then) r.then(function(){ lockLand(); }).catch(function(){}); else lockLand(); }catch(e){} }
+      else { try{ var f = document.querySelector('#player iframe'); if(f && f.requestFullscreen) f.requestFullscreen(); }catch(e){} }
+    }
+    function lockLand(){ try{ if(screen.orientation && screen.orientation.lock) screen.orientation.lock('landscape').catch(function(){}); }catch(e){} }
+    document.addEventListener('fullscreenchange', function(){ if(!document.fullscreenElement){ try{ if(screen.orientation && screen.orientation.unlock) screen.orientation.unlock(); }catch(e){} } });
+    function ready(){ if($('learnHost') && window.showLearnTab) build(); else setTimeout(ready, 120); }
+    if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ready); else ready();
+  })();
+  </script>
   <script src="/access.js?v=1"></script>
   <script src="auth-header.js?v=20261021a"></script>
 </body>

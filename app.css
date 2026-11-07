@@ -226,3 +226,36 @@ html.app .text-\[10px\], html.app .text-\[10\.5px\], html.app .text-\[11px\], ht
 html.app .text-xs{ font-size:13px !important; }
 html.app .text-\[12px\], html.app .text-\[12\.5px\]{ font-size:13px !important; }
 html.app .text-neutral-900\/40, html.app .text-neutral-900\/45, html.app .text-neutral-900\/50, html.app .text-neutral-900\/55{ color:#4b5563 !important; }
+
+#appBar .ab .ttl.long{ font-size:15px; }
+
+/* ══ 강의 보기(watch) 앱 화면 — 영상·동작 줄·제목·가로 메뉴 칩만 ══ */
+html.app #playerWrap{ margin:0 -14px; }
+html.app #playerWrap #player{ border-radius:0 !important; }
+html.app #playerWrap #wmark{ display:none; }
+html.app #playerWrap:fullscreen, html.app #playerWrap:-webkit-full-screen{ background:#000; display:flex; align-items:center; justify-content:center; margin:0; }
+html.app #playerWrap:fullscreen #player{ width:100%; max-height:100%; aspect-ratio:16/9; }
+#appLecActions{ display:flex; gap:8px; padding:10px 0 2px; }
+#appLecActions button{ height:46px; border-radius:12px; border:1px solid var(--ap-line); background:#fff; font-weight:800; font-size:14px; color:var(--ap-text); display:flex; align-items:center; justify-content:center; gap:6px; }
+#appLecActions button svg{ width:20px; height:20px; stroke:currentColor; fill:none; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
+#appLecActions .alf{ flex:1; background:var(--ap-navy); color:#fff; border-color:var(--ap-navy); }
+#appLecActions .aln{ flex:0 0 auto; padding:0 14px; }
+html.app #crumb, html.app #lessonBadge, html.app #lessonTags, html.app #prevBtn, html.app #nextBtn, html.app #rankPromo, html.app #lessonDesc, html.app #lessonChapters,
+html.app #learnTabs, html.app #panel-info, html.app #noteTocBox{ display:none !important; }
+html.app #lessonTitle{ font-size:16.5px !important; line-height:1.4; }
+html.app #lessonTitle + *{ margin-top:0; }
+html.app main > section > .mt-5.flex{ margin-top:12px !important; }
+html.app #learnBar{ margin-top:10px !important; padding:10px 12px !important; border-radius:14px !important; font-size:14px; }
+html.app #learnBar button, html.app #learnBar a{ min-height:40px; }
+html.app #finishPrompt button{ min-height:48px; font-size:14.5px; }
+/* 학습 도구 버튼 줄(강사에게 질문·검색·노트·PDF·공유)은 칩 메뉴로 대체 */
+html.app main > section > div.mt-4.flex.flex-wrap.gap-2{ display:none !important; }
+#appLecMenu{ display:flex; gap:8px; overflow-x:auto; scrollbar-width:none; margin:14px -14px 0; padding:0 14px 8px; scroll-snap-type:x proximity; }
+#appLecMenu::-webkit-scrollbar{ display:none; }
+#appLecMenu button{ flex:0 0 auto; scroll-snap-align:start; display:flex; align-items:center; gap:7px; height:46px; padding:0 16px; border-radius:999px; border:1px solid var(--ap-line); background:#fff; font-weight:800; font-size:14px; color:var(--ap-text); white-space:nowrap; }
+#appLecMenu button svg{ width:19px; height:19px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+#appLecMenu button.on{ background:var(--ap-navy); border-color:var(--ap-navy); color:#fff; }
+html.app #learnHost{ margin-top:8px !important; }
+html.app #panel-list aside > div{ border-radius:16px !important; }
+html.app #panel-list #lessonList{ max-height:none !important; }
+html.app #panel-list .lesson{ min-height:56px; }
