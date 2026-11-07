@@ -41,7 +41,7 @@
     if(isHome || document.getElementById('appBar')) return;
     var bar = document.createElement('div'); bar.id = 'appBar';
     bar.innerHTML = '<div class="ab">'
-      + '<button type="button" id="appBack" aria-label="뒤로">' + ICON.back + '</button>'
+      + '<button type="button" id="appBack" aria-label="뒤로">' + ICON.back + '<span class="bk">뒤로</span></button>'
       + '<div class="ttl" id="appTitle">' + pageTitle().replace(/[<>&]/g, '') + '</div>'
       + '<a href="/search" id="appSearchBtn" aria-label="검색">' + ICON.search + '</a>'
       + '<button type="button" id="appMenuBtn" aria-label="전체 메뉴">' + ICON.menu + '</button>'

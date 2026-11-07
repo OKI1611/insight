@@ -1,12 +1,13 @@
 /* app.css — 앱 모드(<html class="app">) 공용 스타일: 상단바·하단 탭바·웹 크롬 숨김·밀도 조정
    토큰은 상태바(APK에 구워진 #213a6b)와 이어지도록 남색 계열. 웹(비앱)에는 아무 영향 없음. */
 html.app{
-  --ap-navy:#213a6b; --ap-ink:#182c54; --ap-green:#0fa06a; --ap-green-deep:#0b7d53; --ap-mint:#e8f7f0; --ap-bg:#ffffff; --ap-soft:#f5f7f9; --ap-card:#ffffff;
-  --ap-text:#111827; --ap-sub:#6b7280; --ap-line:#eceff3; --ap-tab:58px; --ap-bar:48px;
+  /* 전 연령·어르신 기준: 흰 바탕, 남색(신뢰)·짙은 초록(진행) 두 가지 포인트, 본문 검정, 보조 글자도 진하게 */
+  --ap-navy:#1f3a68; --ap-ink:#162c52; --ap-green:#0b7d53; --ap-green-deep:#0a6a47; --ap-mint:#e9f4ef; --ap-bg:#ffffff; --ap-soft:#f3f5f8; --ap-card:#ffffff;
+  --ap-text:#111827; --ap-sub:#4b5563; --ap-line:#dfe4ec; --ap-tab:64px; --ap-bar:52px;
   --ap-safe-b:env(safe-area-inset-bottom,0px); --ap-safe-t:env(safe-area-inset-top,0px);
 }
 /* 기본 글자 15px(웹은 저장된 17px). 사용자가 앱 메뉴에서 고르면 app-shell.js 가 인라인 !important 로 덮어쓴다 */
-html.app{ font-size:15px !important; }
+html.app{ font-size:16px !important; }
 html.app body{
   background:var(--ap-bg) !important;
   padding-bottom:calc(var(--ap-tab) + var(--ap-safe-b) + 10px) !important;
@@ -26,9 +27,9 @@ html.app .lg\:sticky{ position:static !important; }
 /* ── 앱 상단바 ── */
 #appBar{ position:sticky; top:0; z-index:45; background:var(--ap-navy); color:#fff; padding-top:var(--ap-safe-t); }
 #appBar .ab{ height:var(--ap-bar); display:flex; align-items:center; gap:4px; padding:0 6px 0 2px; }
-#appBar .ab button, #appBar .ab a{ width:44px; height:44px; display:flex; align-items:center; justify-content:center; border:0; background:none; color:#fff; border-radius:12px; cursor:pointer; text-decoration:none; }
+#appBar .ab button, #appBar .ab a{ min-width:48px; height:48px; padding:0 6px; display:flex; align-items:center; justify-content:center; border:0; background:none; color:#fff; border-radius:12px; cursor:pointer; text-decoration:none; }
 #appBar .ab button:active, #appBar .ab a:active{ background:rgba(255,255,255,.12); }
-#appBar .ab .ttl{ flex:1; min-width:0; font-size:16.5px; font-weight:800; letter-spacing:-.01em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-left:2px; }
+#appBar .ab .ttl{ flex:1; min-width:0; font-size:17px; font-weight:800; letter-spacing:-.01em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-left:2px; }
 #appBar #biblyMobMenu{ display:none; position:absolute; left:0; right:0; top:100%; max-height:calc(100dvh - var(--ap-bar) - var(--ap-tab) - 20px); overflow:auto; background:#fff; color:var(--ap-text); border-bottom:1px solid var(--ap-line); box-shadow:0 18px 40px -20px rgba(21,32,58,.35); }
 #appBar #biblyMobMenu:not(.hidden){ display:block; }
 
@@ -84,14 +85,14 @@ html.app .text-xl{ font-size:1.12rem !important; }
 /* ══ 화면 크기별 자동 맞춤 ══
    작은 폰(≤340: 갤럭시 폴드 외부·구형 iPhone SE) / 보통 폰(360~430) / 큰 폰·폴더블 펼침·태블릿(≥600) / 가로 모드(높이 ≤450) */
 @media (max-width:340px){
-  html.app{ font-size:14px !important; }
+  html.app{ font-size:15px !important; }
   html.app .tile span{ font-size:10.5px; }
   html.app #appTabs a{ font-size:10.5px; }
   html.app #appTabs a svg{ width:22px; height:22px; }
   html.app .max-w-7xl, html.app .max-w-6xl, html.app .max-w-5xl{ padding-left:12px !important; padding-right:12px !important; }
 }
 @media (min-width:600px){
-  html.app{ font-size:16px !important; }
+  html.app{ font-size:17px !important; }
   /* 상단바·탭바·본문을 가운데 640px 안에 — 태블릿·폴더블에서 요소가 좌우로 흩어지지 않게 */
   #appBar .ab{ max-width:640px; margin:0 auto; }
   #appTabs{ left:50%; right:auto; width:100%; max-width:640px; transform:translateX(-50%); border-left:1px solid var(--ap-line); border-right:1px solid var(--ap-line); border-radius:18px 18px 0 0; }
@@ -177,3 +178,51 @@ html.app .border-ink\/8, html.app .border-ink\/10, html.app .border-ink\/\[0\.06
 /* 내 강좌(mylearning) — 과목 카드를 메가스터디식 진도 카드처럼 */
 html.app #dashView #tracks > div, html.app #dashView #tracks > a{ border-radius:16px !important; border:1px solid var(--ap-line) !important; box-shadow:none !important; }
 html.app #dashView .bg-gradient-to-br{ background:var(--ap-navy) !important; }
+
+/* ══ 전 연령 보완(2026-11-08): 큰 터치 영역·굵고 큰 글자·색에만 의존하지 않기 ══ */
+#appBar #appBack{ gap:2px; font-size:13.5px; font-weight:700; }
+#appBar #appBack .bk{ padding-right:4px; }
+#appTabs a{ font-size:12.5px; gap:4px; }
+#appTabs a svg{ width:27px; height:27px; }
+#appTabs a.on{ color:var(--ap-navy); font-weight:800; }
+#appTabs a.on::before{ background:var(--ap-navy); width:32px; }
+html.app .ap-h{ font-size:17px; }
+html.app .ap-sub{ font-size:13px; color:var(--ap-sub); }
+html.app #biblyFab > div:last-child button{ min-height:48px; }
+/* 강의 탭 목록: 행 높이·글자 키움, 완료는 ✓ + '완료' 글자 */
+.apPick{ padding:14px 14px; min-height:56px; }
+.apPickName{ font-size:16px; }
+.apPickLv{ font-size:12px; padding:5px 10px; }
+.apPickN{ font-size:13px; }
+.apLesson{ min-height:64px; padding:12px 12px 12px 14px; }
+.apNo{ font-size:13px; width:26px; color:#6b7280; }
+.apTitle{ font-size:15px; }
+.apMeta{ font-size:12.5px; }
+.apTh{ width:92px; }
+.apChev{ width:20px; height:20px; color:#9aa3b5; }
+.apLesson .apDone{ width:auto; height:24px; padding:0 8px 0 5px; border-radius:999px; gap:3px; font-size:11.5px; font-weight:800; }
+.apLesson .apDone::after{ content:'완료'; }
+.apStart{ font-size:14px; padding:11px 16px; }
+.apProg b{ font-size:13px; }
+.apProg a{ font-size:13px; padding:9px 13px; }
+.apIntro{ font-size:14px; color:var(--ap-sub); }
+.apHeadMeta{ font-size:13px; }
+#apSheet .apShItem{ font-size:15.5px; padding:13px 10px; min-height:48px; }
+#apSheet .apShGroup{ font-size:12.5px; }
+/* 성경 읽기 컨트롤: 버튼 44px 이상, 글자 15px */
+html.app #ctrlBar button, html.app #ctrlBar select{ min-height:44px; font-size:15px !important; }
+html.app #ctrlBar label.text-xs{ font-size:13px; }
+html.app #ctrlBar label.text-xs input{ width:18px; height:18px; }
+/* 앱 메뉴 시트: 항목 글자 12.5px 이상, 버튼 48px */
+#appMenu .grid5 a{ font-size:12.5px; padding:12px 4px; }
+#appMenu .grid5 a svg{ width:24px; height:24px; }
+#appMenu .fs button{ padding:13px 0; font-size:14.5px; }
+#appMenu .fs button.on{ background:var(--ap-navy); border-color:var(--ap-navy); }
+/* 내 강의실 메뉴 칩 */
+html.app #dashView nav .sbItem{ font-size:13.5px; padding:12px 4px; min-height:48px; }
+html.app #dashView nav .sbItem.active{ background:var(--ap-navy); }
+/* 작은 글자 하한 */
+html.app .text-\[10px\], html.app .text-\[10\.5px\], html.app .text-\[11px\], html.app .text-\[11\.5px\]{ font-size:12.5px !important; }
+html.app .text-xs{ font-size:13px !important; }
+html.app .text-\[12px\], html.app .text-\[12\.5px\]{ font-size:13px !important; }
+html.app .text-neutral-900\/40, html.app .text-neutral-900\/45, html.app .text-neutral-900\/50, html.app .text-neutral-900\/55{ color:#4b5563 !important; }

@@ -410,7 +410,7 @@
         </button>
         <div class="apHead">
           ${ intro ? `<p class="apIntro">${intro}</p>` : '' }
-          <div class="apHeadRow"><span class="apHeadMeta">총 ${ls.length}강${timeTxt} · 무료</span><a href="watch.html?l=${start}" class="apStart">▶ 첫 강의부터</a></div>
+          <div class="apHeadRow"><span class="apHeadMeta">총 ${ls.length}강${timeTxt} · 무료</span><a href="watch.html?l=${start}" class="apStart">▶ 첫 강의부터 보기</a></div>
         </div>
         <ol class="apList">${rows}</ol>`;
     }
@@ -446,7 +446,7 @@
       const pct = Math.round(dc / ls.length * 100);
       const nextIdx = firstOpen < 0 ? 0 : firstOpen;
       const el = document.createElement('div'); el.className = 'apProg';
-      el.innerHTML = `<span class="bar"><i style="width:${pct}%"></i></span><b>${dc}/${ls.length}강 · ${pct}%</b><a href="watch.html?l=${start + nextIdx}">${ dc === 0 ? '학습 시작' : (firstOpen < 0 ? '다시 보기' : '이어서 학습') }</a>`;
+      el.innerHTML = `<span class="bar"><i style="width:${pct}%"></i></span><b>${dc}/${ls.length}강 · ${pct}%</b><a href="watch.html?l=${start + nextIdx}">${ dc === 0 ? '처음부터 보기' : (firstOpen < 0 ? '다시 보기' : '이어서 보기') }</a>`;
       const head = host.querySelector('.apHead'); if(head) head.insertAdjacentElement('afterend', el);
     }
     function buildTrackSheet(){
