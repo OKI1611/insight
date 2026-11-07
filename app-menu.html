@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko" class="app">
+<head>
+  <meta charset="UTF-8" />
+  <script src="/app-mode.js?v=20261108d"></script>
+  <script src="/content-loader.js?v=20260703f"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>BIBLY 앱</title>
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#213a6b" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="/app.css?v=20261108d" />
+  <style>
+    /* ── 앱 세부 메뉴 공용 화면(저자의 책·공지·이벤트·질문과 답·교재·급수 과정·후원·성경사전) ──
+       웹 페이지를 옮긴 것이 아니라 앱 전용 목록/상세 구조. 글자 16px, 누르는 요소 48px 이상, 가로 스크롤 없음. */
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'Pretendard',system-ui,sans-serif;color:#111827;background:#fff}
+    main{max-width:640px;margin:0 auto;padding:12px 16px 24px}
+    .hidden{display:none !important}
+    .sec-h{font-size:17px;font-weight:800;margin:14px 0 10px;letter-spacing:-.01em}
+    .sub{font-size:14px;color:#4b5563;line-height:1.6}
+    .press{transition:transform .12s}.press:active{transform:scale(.98)}
+    .clamp2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .pill{display:inline-block;font-size:12.5px;font-weight:800;border-radius:999px;padding:4px 10px;background:#eef2f8;color:#1f3a68}
+    .pill.g{background:#e9f4ef;color:#0b7d53}
+    .btn{display:flex;align-items:center;justify-content:center;gap:6px;min-height:50px;border-radius:12px;font-weight:800;font-size:15.5px;text-decoration:none;border:1px solid #dfe4ec;background:#fff;color:#111827;padding:0 14px;width:100%}
+    .btn.pri{background:#1f3a68;border-color:#1f3a68;color:#fff}
+    .btn.grn{background:#0b7d53;border-color:#0b7d53;color:#fff}
+    .btn + .btn{margin-top:8px}
+    .btns2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .btns2 .btn{margin:0}
+    /* 검색창 */
+    .sbox{display:flex;align-items:center;gap:8px;height:50px;border:1.5px solid #dfe4ec;border-radius:14px;padding:0 12px 0 14px;background:#fff;margin:4px 0 12px}
+    .sbox input{flex:1;min-width:0;border:0;outline:0;font-size:16px;font-family:inherit;background:none;color:#111827}
+    .sbox button{height:38px;padding:0 14px;border:0;border-radius:10px;background:#1f3a68;color:#fff;font-weight:800;font-size:14px}
+    /* 목록 행 */
+    .list{background:#fff;border:1px solid #dfe4ec;border-radius:16px;overflow:hidden}
+    .row{display:flex;align-items:center;gap:12px;width:100%;min-height:60px;padding:12px 14px;border:0;border-top:1px solid #eef1f5;background:#fff;text-align:left;color:#111827;text-decoration:none;font-family:inherit}
+    .row:first-child{border-top:0}
+    .row:active{background:#f3f5f8}
+    .row .t{flex:1;min-width:0;font-size:15.5px;font-weight:700;line-height:1.4}
+    .row .m{font-size:12.5px;color:#4b5563;font-weight:600;flex:none}
+    .row .chev{width:18px;height:18px;flex:none;color:#9aa3b5}
+    .row .num{flex:none;width:26px;font-size:13px;font-weight:800;color:#6b7280}
+    /* 책 격자 */
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px 12px}
+    .bk{border:0;background:none;padding:0;text-align:left;font-family:inherit;color:inherit}
+    .bk img{width:100%;aspect-ratio:3/4.3;object-fit:cover;border-radius:10px;box-shadow:0 10px 24px -14px rgba(21,32,58,.5);background:#eef1f6}
+    .bk .bt{font-size:14.5px;font-weight:800;line-height:1.35;margin-top:8px}
+    .bk .bs{font-size:12.5px;color:#4b5563;margin-top:3px;line-height:1.4}
+    /* 카드 */
+    .card{background:#fff;border:1px solid #dfe4ec;border-radius:16px;padding:14px 16px}
+    .card + .card{margin-top:10px}
+    .card .ct{font-size:16px;font-weight:800;line-height:1.35}
+    .card .cs{font-size:13.5px;color:#4b5563;margin-top:4px;line-height:1.5}
+    .card .cp{font-size:17px;font-weight:900;color:#1f3a68;margin-top:8px}
+    .card .cp s{font-size:13px;color:#9aa3b5;font-weight:600;margin-left:6px}
+    .kv{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 0;border-top:1px solid #eef1f5;font-size:15px}
+    .kv:first-of-type{border-top:0}
+    .kv b{font-weight:800}
+    .kv .cp2{flex:none;height:36px;padding:0 12px;border-radius:10px;border:1px solid #dfe4ec;background:#fff;font-weight:800;font-size:13px;color:#1f3a68}
+    /* 상세 시트 */
+    #sheet{position:fixed;inset:0;z-index:88;display:none}
+    #sheet.open{display:block}
+    #sheet .bg{position:absolute;inset:0;background:rgba(11,21,48,.5)}
+    #sheet .box{position:absolute;left:50%;transform:translateX(-50%);width:100%;max-width:640px;bottom:0;background:#fff;border-radius:22px 22px 0 0;max-height:88dvh;overflow:auto;padding:12px 16px calc(18px + env(safe-area-inset-bottom,0px))}
+    #sheet .grab{width:40px;height:4px;border-radius:2px;background:#dfe3ea;margin:0 auto 12px}
+    #sheet .close{position:sticky;top:0;float:right;width:40px;height:40px;border-radius:999px;border:1px solid #dfe4ec;background:#fff;font-size:18px;line-height:1}
+    .dt-h{font-size:19px;font-weight:900;line-height:1.3;letter-spacing:-.01em;margin:4px 0 4px}
+    .dt-s{font-size:14px;color:#4b5563}
+    .dt-p{font-size:15.5px;line-height:1.75;margin:10px 0 0;white-space:pre-line}
+    .dt-q{margin:12px 0;padding:12px 14px;border-left:4px solid #0b7d53;background:#e9f4ef;border-radius:0 12px 12px 0;font-size:15px;line-height:1.65}
+    .dt-lbl{font-size:12.5px;font-weight:800;color:#6b7280;margin:16px 0 6px;letter-spacing:.04em}
+    .chips{display:flex;flex-wrap:wrap;gap:6px}
+    .chips span,.chips a{font-size:13px;font-weight:700;background:#f3f5f8;border-radius:999px;padding:6px 11px;color:#1f3a68;text-decoration:none}
+    .empty{text-align:center;color:#6b7280;font-size:14.5px;padding:28px 0}
+    .skel{height:16px;border-radius:8px;background:linear-gradient(90deg,#eef1f6 25%,#f6f8fb 37%,#eef1f6 63%);background-size:400% 100%;animation:sk 1.2s ease infinite;margin:10px 0}
+    @keyframes sk{0%{background-position:100% 0}100%{background-position:0 0}}
+    details.qa{background:#fff;border:1px solid #dfe4ec;border-radius:14px;padding:0 14px;margin-bottom:8px}
+    details.qa summary{list-style:none;cursor:pointer;display:flex;gap:10px;align-items:flex-start;padding:14px 0;font-size:15.5px;font-weight:800;line-height:1.45}
+    details.qa summary::-webkit-details-marker{display:none}
+    details.qa summary .q{flex:none;color:#0b7d53}
+    details.qa .a{font-size:15px;line-height:1.75;padding:0 0 14px;color:#111827;border-top:1px dashed #e5e9f0;padding-top:12px}
+    details.qa .a h4{font-size:14.5px;margin:12px 0 4px;color:#1f3a68}
+  </style>
+  <script>
+    const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
+    const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+  </script>
+</head>
+<body>
+  <main id="main"><div class="skel" style="width:60%"></div><div class="skel"></div><div class="skel" style="width:80%"></div></main>
+
+  <div id="sheet" aria-hidden="true"><div class="bg" onclick="closeSheet()"></div><div class="box"><div class="grab"></div><button type="button" class="close" onclick="closeSheet()" aria-label="닫기">✕</button><div id="sheetBody"></div></div></div>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    const esc = s => String(s==null?'':s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    const won = n => (Number(n)||0).toLocaleString('ko-KR') + '원';
+    const fdate = s => { try{ const d = new Date(s); return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`; }catch(e){ return ''; } };
+    const CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>';
+    const sp = new URLSearchParams(location.search);
+    const P = sp.get('p') || 'books';
+    const TITLES = { books:'저자의 책', notices:'공지사항', events:'이벤트', qna:'질문과 답', store:'교재 스토어', academy:'급수 과정', support:'후원하기', dictionary:'성경사전' };
+    function setTitle(t){ document.title = t + ' — BIBLY'; if(window.__setAppTitle) window.__setAppTitle(t); else window.__appTitle = t; }
+    setTitle(TITLES[P] || 'BIBLY');
+    function openSheet(html){ $('sheetBody').innerHTML = html; $('sheet').classList.add('open'); $('sheet').querySelector('.box').scrollTop = 0; }
+    function closeSheet(){ $('sheet').classList.remove('open'); }
+    const rest = (q) => fetch(SUPABASE_URL + '/rest/v1/' + q, { headers:{ apikey: SUPABASE_ANON, Authorization: 'Bearer ' + SUPABASE_ANON } }).then(r => r.ok ? r.json() : []);
+    const nl2br = s => esc(s).replace(/\n/g, '<br/>');
+
+    const VIEWS = {
+      // ── 저자의 책: 표지 격자 → 상세 시트(한 줄 소개·정가·구매 버튼) ──
+      async books(){
+        const d = await fetch('/content/app-books.json?t=' + Date.now()).then(r=>r.json());
+        const books = d.books || [];
+        $('main').innerHTML = `<p class="sub" style="margin:4px 0 12px">표지를 누르면 소개와 구매처가 열립니다.</p><div class="grid2">` + books.map((b,i) => `
+          <button type="button" class="bk press" onclick="showBook(${i})"><img src="/${esc(b.cover)}" alt=""/><p class="bt clamp2">${esc(b.title)}</p><p class="bs clamp2">${esc(b.sub)}</p></button>`).join('') + `</div>`;
+        window.showBook = (i) => {
+          const b = books[i]; const st = b.stores || {};
+          const btn = (s, cls) => `<a class="btn ${cls}" href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>`;
+          openSheet(`
+            <div style="display:flex;gap:14px;align-items:flex-start"><img src="/${esc(b.cover)}" alt="" style="width:92px;border-radius:8px;box-shadow:0 10px 24px -14px rgba(21,32,58,.5)"/>
+              <div style="min-width:0;flex:1">${b.badge ? `<span class="pill g">${esc(b.badge)}</span>` : ''}<p class="dt-h">${esc(b.title)}</p><p class="dt-s">${esc(b.sub)}</p>${b.meta && b.meta['정가'] ? `<p class="dt-s" style="margin-top:6px;font-weight:800;color:#1f3a68">${esc(b.meta['정가'])}</p>` : ''}</div></div>
+            ${b.quote ? `<div class="dt-q">${esc(b.quote)}</div>` : ''}
+            ${(st.paper||[]).length ? `<p class="dt-lbl">📘 종이책 구매</p><div class="btns2">${st.paper.map((s,k) => btn(s, k===0?'pri':'')).join('')}</div>` : ''}
+            ${(st.ebook||[]).length ? `<p class="dt-lbl">📱 전자책 구매</p><div class="btns2">${st.ebook.map(s => btn(s,'')).join('')}</div>` : ''}
+            ${!(st.paper||[]).length && !(st.ebook||[]).length ? `<p class="sub" style="margin-top:14px">판매처 준비 중입니다.</p>` : ''}
+            <a class="btn" style="margin-top:14px" href="/books#${esc(b.id)}">자세한 소개 보기</a>`);
+        };
+        const want = sp.get('id'); if(want){ const i = books.findIndex(b => b.id === want); if(i >= 0) setTimeout(() => showBook(i), 200); }
+      },
+      // ── 공지·이벤트: 목록 → 눌러서 본문 ──
+      async notices(){ return listNotices('notice'); },
+      async events(){ return listNotices('event'); },
+      // ── 질문과 답: 검색 + 펼침 ──
+      async qna(){
+        const d = await fetch('/content/qna.json?t=' + Date.now()).then(r=>r.json());
+        const items = Array.isArray(d) ? d : (d.items || []);
+        const room = sp.get('room') || '';
+        const render = (q) => {
+          const list = items.filter(it => (!room || it.room === room) && (!q || (it.q + ' ' + it.a + ' ' + (it.cat||'')).includes(q)));
+          $('qaList').innerHTML = list.length ? list.map(it => `
+            <details class="qa"${sp.get('id') === it.id ? ' open' : ''}><summary><span class="q">Q</span><span>${esc(it.q)}</span></summary>
+              <div class="a">${esc(it.a)}${(it.deep||[]).map(dp => `<h4>${esc(dp.h)}</h4><p style="margin:0">${esc(dp.p)}</p>`).join('')}${(it.scriptures||[]).length ? `<p class="dt-lbl">관련 말씀</p><div class="chips">${it.scriptures.map(s => `<span>${esc(typeof s === 'string' ? s : (s.ref||''))}</span>`).join('')}</div>` : ''}</div>
+            </details>`).join('') : '<p class="empty">찾는 질문이 없습니다.</p>';
+        };
+        $('main').innerHTML = `
+          <div class="btns2" style="margin-bottom:10px"><a class="btn ${room!=='gen'?'pri':''}" href="/app-menu?p=qna&room=rev">요한계시록</a><a class="btn ${room==='gen'?'pri':''}" href="/app-menu?p=qna&room=gen">신앙·성경</a></div>
+          <div class="sbox"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="qaQ" type="search" placeholder="궁금한 말을 입력하세요 (예: 휴거, 666)" oninput="window.__qaRender(this.value.trim())"/></div>
+          <div id="qaList"></div>
+          <a class="btn grn" style="margin-top:14px" href="/qna-board">내 질문 올리기 (질문방)</a>`;
+        window.__qaRender = render; render('');
+      },
+      // ── 교재 스토어: 과목별 요약노트 책자 목록 + 전체 이용권 ──
+      async store(){
+        const [c, pr] = await Promise.all([fetch('/content/course.json?t=' + Date.now()).then(r=>r.json()), fetch('/content/booklet-prices.json?t=' + Date.now()).then(r=>r.json()).catch(()=>({}))]);
+        const tiers = pr.tiers || [[12,2900],[24,4900],[40,7900],[70,12900],[Infinity,17900]];
+        const ov = pr.overrides || {}; const passes = pr.passes || [];
+        const pages = (t) => (ov[t.name] && ov[t.name].pages) || Math.max(8, Math.round((t.lessons||[]).length*2.6)+3);
+        const price = (t) => (ov[t.name] && typeof ov[t.name].price === 'number') ? ov[t.name].price : (tiers.find(x => pages(t) <= x[0]) || tiers[tiers.length-1])[1];
+        const tracks = (c.levels||[]).filter(t => (t.lessons||[]).length >= 3);
+        $('main').innerHTML = `
+          ${passes.length ? `<p class="sec-h" style="margin-top:4px">전체 이용권</p>` + passes.map(p => `<div class="card"><p class="ct">${esc(p.name||p.title||'전체 이용권')}</p>${p.desc ? `<p class="cs">${esc(p.desc)}</p>` : ''}<p class="cp">${won(p.price)}</p><a class="btn pri" style="margin-top:10px" href="/booklet?buy=${encodeURIComponent('__'+(p.id||'')+'__')}#order">이용권 구매하기</a></div>`).join('') : ''}
+          <p class="sec-h">과목별 요약노트 책자 <span class="pill" style="margin-left:6px">PDF</span></p>
+          <p class="sub" style="margin:-4px 0 10px">강의 요약노트를 한 권으로 묶은 PDF 책자입니다. 누르면 구매 화면이 열립니다.</p>
+          <div class="list">` + tracks.map(t => `<a class="row press" href="/booklet?buy=${encodeURIComponent(t.name)}#order"><span class="t">${esc(t.name)}<br/><span style="font-size:12.5px;color:#4b5563;font-weight:600">${(t.lessons||[]).length}강 · 약 ${pages(t)}쪽</span></span><span class="m" style="color:#1f3a68;font-weight:800;font-size:15px">${won(price(t))}</span>${CHEV}</a>`).join('') + `</div>
+          <a class="btn" style="margin-top:14px" href="/mylearning">내가 산 교재 보기</a>`;
+      },
+      // ── 급수 과정 ──
+      async academy(){
+        const P = await fetch('/content/program.json?t=' + Date.now()).then(r=>r.json());
+        const ranks = P.ranks || [];
+        $('main').innerHTML = `
+          <p class="sub" style="margin:4px 0 12px">${esc(P.subtitle || '강의를 듣고 시험으로 확인해 5급부터 1급까지 인증받는 과정입니다.')}</p>
+          ${ranks.map(r => `<div class="card" style="border-left:5px solid ${esc(r.color||'#1f3a68')}">
+            <div style="display:flex;align-items:center;gap:8px"><span class="pill">${esc(r.rank)}</span><p class="ct" style="margin:0">${esc(r.name||'')}</p></div>
+            ${r.tagline ? `<p class="cs">${esc(r.tagline)}</p>` : ''}
+            ${P.hidePrice ? '' : `<p class="cp">${r.earlybird ? won(r.earlybird) + `<s>${won(r.price)}</s>` : won(r.price)}</p>`}
+            <button type="button" class="btn" style="margin-top:10px" onclick="window.__rank(${r.tier})">자세히 보기</button>
+          </div>`).join('')}
+          <a class="btn grn" style="margin-top:14px" href="/academy#apply">등록 신청하기</a>
+          <a class="btn" href="/curriculum?tab=academy">인증 과정 과목 보기</a>`;
+        window.__rank = (tier) => { const r = ranks.find(x => x.tier === tier); if(!r) return;
+          openSheet(`<span class="pill">${esc(r.rank)}</span><p class="dt-h">${esc(r.name||'')}</p><p class="dt-s">${esc(r.tagline||'')}</p>
+            ${r.outcome ? `<p class="dt-p">${esc(r.outcome)}</p>` : ''}
+            ${(r.able||[]).length ? `<p class="dt-lbl">이 급수를 마치면</p>${r.able.map(a => `<p class="dt-p" style="margin:4px 0">✓ ${esc(a)}</p>`).join('')}` : ''}
+            ${(r.perks||[]).length ? `<p class="dt-lbl">혜택</p><div class="chips">${r.perks.map(a => `<span>${esc(a)}</span>`).join('')}</div>` : ''}
+            ${(r.tracks||[]).length ? `<p class="dt-lbl">과목</p><div class="chips">${r.tracks.map(a => `<span>${esc(typeof a === 'string' ? a : (a.name||''))}</span>`).join('')}</div>` : ''}
+            <a class="btn grn" style="margin-top:16px" href="/academy#apply">등록 신청하기</a>`); };
+      },
+      // ── 후원 ──
+      async support(){
+        const s = (await fetch('/content/site.json?t=' + Date.now()).then(r=>r.json())).support || {};
+        const acct = `${s.bank_name||''} ${s.bank_account||''}`.trim();
+        $('main').innerHTML = `
+          <div class="card"><p class="ct">계좌 후원</p>
+            <div class="kv"><span><b>${esc(s.bank_name||'')}</b> ${esc(s.bank_account||'')}<br/><span class="sub">예금주 ${esc(s.bank_holder||'')}</span></span><button type="button" class="cp2" onclick="navigator.clipboard&&navigator.clipboard.writeText('${esc(s.bank_account||'')}').then(()=>{this.textContent='복사됨'})">계좌 복사</button></div>
+          </div>
+          ${s.kakaopay_url ? `<a class="btn" style="margin-top:10px;background:#fee500;border-color:#fee500;color:#3c1e1e" href="${esc(s.kakaopay_url)}" target="_blank" rel="noopener">카카오페이로 후원</a>` : ''}
+          ${s.simplepay_url ? `<a class="btn pri" href="${esc(s.simplepay_url)}" target="_blank" rel="noopener">간편결제(카드)로 후원</a>` : ''}
+          ${s.paypal_url ? `<a class="btn" href="${esc(s.paypal_url)}" target="_blank" rel="noopener">PayPal (해외)</a>` : ''}
+          <p class="sub" style="margin-top:16px">후원금은 강의 제작과 무료 성경·사전 서비스 운영에 쓰입니다. 문의 <a href="mailto:${esc(s.contact_email||'contact@biblynote.com')}" style="color:#1f3a68;font-weight:700">${esc(s.contact_email||'contact@biblynote.com')}</a></p>`;
+      },
+      // ── 성경사전: 검색 → 목록 → 상세 ──
+      async dictionary(){
+        let DATA = null;
+        $('main').innerHTML = `
+          <div class="sbox"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="dq" type="search" placeholder="낱말을 입력하세요 (예: 휴거, 바벨론, 회개)" enterkeyhint="search"/><button type="button" onclick="window.__dsearch()">검색</button></div>
+          <div id="dres"><p class="sub">성경 속 낱말을 원어·뜻풀이·관련 성구와 함께 찾아봅니다.</p></div>`;
+        const load = async () => { if(!DATA){ $('dres').innerHTML = '<div class="skel"></div><div class="skel" style="width:70%"></div>'; DATA = await fetch('/dictionary/entries.json').then(r=>r.json()); } return DATA; };
+        const show = (e) => openSheet(`<span class="pill">${esc(e.category||'성경사전')}</span><p class="dt-h">${esc(e.term)}</p><p class="dt-s">${esc(e.en||'')}${e.original ? ' · ' + esc(e.original) : ''}</p>
+          <div class="dt-q">${esc(e.def||'')}</div>
+          ${(e.deep||[]).map(d => `<p class="dt-lbl">${esc(d.h)}</p><p class="dt-p" style="margin-top:0">${esc(d.p)}</p>`).join('')}
+          ${e.note ? `<p class="dt-lbl">새기기</p><p class="dt-p" style="margin-top:0">${esc(e.note)}</p>` : ''}
+          ${(e.scriptures||[]).length ? `<p class="dt-lbl">관련 말씀</p><div class="chips">${e.scriptures.map(s => `<span>${esc(s)}</span>`).join('')}</div>` : ''}
+          ${(e.related||[]).length ? `<p class="dt-lbl">함께 보기</p><div class="chips">${e.related.map(s => `<a href="/app-menu?p=dictionary&q=${encodeURIComponent(s)}">${esc(s)}</a>`).join('')}</div>` : ''}`);
+        window.__dsearch = async () => {
+          const q = ($('dq').value || '').trim(); if(!q) return;
+          const data = await load(); const ql = q.toLowerCase();
+          const hits = data.filter(e => (e.term||'').includes(q) || (e.en||'').toLowerCase().includes(ql)).slice(0, 60);
+          $('dres').innerHTML = hits.length ? `<p class="sub" style="margin:0 0 8px">${hits.length}개 찾음</p><div class="list">` + hits.map((e,i) => `<button type="button" class="row press" data-i="${i}"><span class="t">${esc(e.term)}<br/><span style="font-size:12.5px;color:#4b5563;font-weight:600">${esc(e.en||'')}${e.category ? ' · ' + esc(e.category) : ''}</span></span>${CHEV}</button>`).join('') + `</div>` : '<p class="empty">찾는 낱말이 없습니다. 다른 말로 검색해 보세요.</p>';
+          $('dres').querySelectorAll('button.row').forEach(b => b.addEventListener('click', () => show(hits[+b.dataset.i])));
+        };
+        $('dq').addEventListener('keydown', e => { if(e.key === 'Enter') window.__dsearch(); });
+        const q0 = sp.get('q'); if(q0){ $('dq').value = q0; window.__dsearch(); }
+      }
+    };
+    async function listNotices(kind){
+      const data = await rest(`notices?select=id,title,body,created_at,pinned&kind=eq.${kind}&order=pinned.desc,created_at.desc&limit=50`);
+      $('main').innerHTML = (data && data.length) ? `<div class="list">` + data.map((n,i) => `<button type="button" class="row press" data-i="${i}">${n.pinned ? '<span class="pill g" style="flex:none">고정</span>' : ''}<span class="t">${esc(n.title)}<br/><span style="font-size:12.5px;color:#4b5563;font-weight:600">${fdate(n.created_at)}</span></span>${CHEV}</button>`).join('') + `</div>` : `<p class="empty">${kind === 'event' ? '진행 중인 이벤트가 없습니다.' : '등록된 공지가 없습니다.'}</p>`;
+      $('main').querySelectorAll('button.row').forEach(b => b.addEventListener('click', () => { const n = data[+b.dataset.i]; openSheet(`<p class="dt-s">${fdate(n.created_at)}</p><p class="dt-h">${esc(n.title)}</p><p class="dt-p">${nl2br(n.body||'')}</p>`); }));
+    }
+    (async () => {
+      try{ await (VIEWS[P] || VIEWS.books)(); }
+      catch(e){ $('main').innerHTML = '<p class="empty">내용을 불러오지 못했어요. 네트워크를 확인한 뒤 다시 열어 주세요.</p>'; }
+    })();
+  </script>
+  <script src="/auth-header.js?v=20261021a"></script>
+  <script src="/app-shell.js?v=20261108d"></script>
+</body>
+</html>

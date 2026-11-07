@@ -21,6 +21,22 @@
     window.BIBLY_APP = true;
     // 홈은 앱 전용 홈으로 — 히스토리를 남기지 않는다(뒤로 가기가 웹 홈으로 튀지 않게)
     var p = location.pathname.replace(/\/+$/, '') || '/';
+    // 웹 세부 페이지는 앱 전용 화면(app-menu)으로 — 결제·신청 같은 웹 전용 흐름(buy=, track=, #apply, #order)은 그대로 둔다
+    var sub = p.replace(/\.html$/, '');
+    var MAP = { '/books':'books', '/notices':'notices', '/event':'events', '/support':'support', '/booklet':'store', '/academy':'academy', '/qna':'qna', '/dictionary':'dictionary' };
+    if(MAP[sub]){
+      var qs = new URLSearchParams(q), h = location.hash || '';
+      var webOnly = (sub === '/booklet' && (qs.get('buy') || qs.get('track') || /#order|#cart/.test(h)))
+                 || (sub === '/academy' && /#apply|#packages|#pay/.test(h))
+                 || qs.get('web') === '1';
+      if(!webOnly){
+        var keep = [];
+        ['room','id','q','cat'].forEach(function(k){ if(qs.get(k)) keep.push(k + '=' + encodeURIComponent(qs.get(k))); });
+        if(sub === '/books' && h) keep.push('id=' + encodeURIComponent(h.slice(1)));
+        location.replace('/app-menu?p=' + MAP[sub] + (keep.length ? '&' + keep.join('&') : ''));
+        return;
+      }
+    }
     if(p === '/' || p === '/index.html'){
       var keep = q.replace(/[?&](source=pwa|app=1)\b/g, '').replace(/^&/, '?');
       if(keep === '?') keep = '';

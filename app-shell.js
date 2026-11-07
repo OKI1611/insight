@@ -25,9 +25,12 @@
     { k:'my',    l:'MY',   h:'/mylearning', i:ICON.user, m:/^\/(mylearning|academy|exam|profile|support|notices|event|tester)(\.html)?$/ }
   ];
   var path = (location.pathname.replace(/\/+$/, '') || '/');
-  function tabOf(p){ for(var i=0;i<TABS.length;i++){ if(TABS[i].m.test(p)) return TABS[i]; } return null; }
+  function tabOf(p){
+    if(/^\/app-menu(\.html)?$/.test(p)){ var pp = new URLSearchParams(location.search).get('p') || ''; var k = pp === 'qna' ? 'qna' : pp === 'dictionary' ? 'bible' : (pp === 'store' || pp === 'academy') ? 'learn' : 'home'; return TABS.filter(function(t){ return t.k === k; })[0]; }
+    for(var i=0;i<TABS.length;i++){ if(TABS[i].m.test(p)) return TABS[i]; } return null;
+  }
   var cur = tabOf(path);
-  var isHome = !!(document.body && document.body.hasAttribute('data-app-home')) || (cur && cur.k==='home');
+  var isHome = !!(document.body && document.body.hasAttribute('data-app-home'));
 
   function pageTitle(){
     if(window.__appTitle) return window.__appTitle;
