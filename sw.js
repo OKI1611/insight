@@ -1,6 +1,6 @@
 // 오광일 인사이트 브리핑 — 서비스 워커 (PWA)
 // 전략: HTML은 항상 네트워크(최신 유지), 정적자원만 캐시. 오프라인 시 폴백.
-const CACHE = 'bibleinsight-v395';
+const CACHE = 'bibleinsight-v396';
 const SHELL = ['/manifest.json', '/app', '/app.html', '/app-menu', '/app-menu.html', '/content/app-books.json', '/app.css?v=20261108d', '/app-shell.js?v=20261108d', '/app-mode.js?v=20261107a', '/content/app-verses.json', '/bible/books.json', '/images/icon-192.png'];
 
 self.addEventListener('install', (e) => {
@@ -13,30 +13,57 @@ self.addEventListener('activate', (e) => {
   self.clients.claim();
 });
 
+// CDN 라이브러리(테일윈드·Supabase JS 등)도 런타임 캐시 — 페이지마다 재다운로드 방지
+const CDN_OK = ['cdn.tailwindcss.com', 'cdn.jsdelivr.net', 'unpkg.com', 'fonts.googleapis.com', 'fonts.gstatic.com', 'i.ytimg.com'];
+
+// 캐시에 저장하면서 응답 반환
+function putAndReturn(req, res) {
+  if (res && (res.ok || res.type === 'opaque')) { const copy = res.clone(); caches.open(CACHE).then((c) => c.put(req, copy)).catch(() => {}); }
+  return res;
+}
+// 캐시 먼저 즉시 응답 + 뒤에서 네트워크로 갱신(다음 방문에 반영) — 배포 시 sw 버전 +1로 전체 캐시가 비워지므로 신선도 보장
+function staleWhileRevalidate(e, req) {
+  e.respondWith(caches.match(req).then((cached) => {
+    const refresh = fetch(req).then((res) => putAndReturn(req, res)).catch(() => cached);
+    return cached || refresh;
+  }));
+}
+
 self.addEventListener('fetch', (e) => {
   const req = e.request;
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
-  if (url.origin !== location.origin) return; // 외부(유튜브·Supabase·CDN)는 통과
 
-  // HTML/문서: 항상 네트워크 최신 (캐시 저장 안 함, 오프라인만 폴백)
+  // 외부: 허용한 CDN만 stale-while-revalidate, 그 외(Supabase API·유튜브 영상 등)는 통과
+  if (url.origin !== location.origin) {
+    if (CDN_OK.includes(url.hostname)) staleWhileRevalidate(e, req);
+    return;
+  }
+
+  // 결제·데이터 API는 절대 캐시하지 않음
+  if (url.pathname.startsWith('/api/')) return;
+
+  // HTML/문서: 네트워크 우선(조건부 요청 허용 → 304면 빠름), 4초 안에 안 오면 캐시로 즉시 — 오프라인 폴백 포함
   const isDoc = req.mode === 'navigate' || url.pathname === '/' || url.pathname.endsWith('.html');
   if (isDoc) {
-    // HTTP 캐시까지 우회해 항상 최신 문서 — 오프라인이면 캐시 폴백
-    e.respondWith(fetch(req, { cache: 'no-store' }).catch(() => caches.match(req).then((r) => r || caches.match('/index.html'))));
+    e.respondWith((async () => {
+      const cached = await caches.match(req);
+      try {
+        const net = fetch(req, { cache: 'no-cache' }).then((res) => putAndReturn(req, res));
+        if (!cached) return await net;
+        const timeout = new Promise((r) => setTimeout(() => r(null), 4000));
+        return (await Promise.race([net, timeout])) || cached;
+      } catch (err) { return cached || caches.match('/index.html'); }
+    })());
     return;
   }
 
-  // 공유 스크립트(.js): 항상 최신으로 받음(HTTP 캐시까지 우회), 오프라인이면 캐시 폴백
-  if (url.pathname.endsWith('.js')) {
-    e.respondWith(fetch(req, { cache: 'no-store' }).then((res) => { const copy = res.clone(); caches.open(CACHE).then((c) => c.put(req, copy)).catch(() => {}); return res; }).catch(() => caches.match(req)));
+  // ?v= 버전이 붙은 자원(공용 js·css·아이콘): 내용이 바뀌면 v도 바뀌므로 캐시 우선 = 즉시 응답
+  if (url.search.includes('v=')) {
+    e.respondWith(caches.match(req).then((cached) => cached || fetch(req).then((res) => putAndReturn(req, res))));
     return;
   }
 
-  // 그 외 정적 자원: 네트워크 우선 + 캐시 갱신
-  e.respondWith(
-    fetch(req)
-      .then((res) => { const copy = res.clone(); caches.open(CACHE).then((c) => c.put(req, copy)).catch(() => {}); return res; })
-      .catch(() => caches.match(req))
-  );
+  // 그 외 정적 자원(이미지·폰트·JSON·버전 없는 js): 캐시 먼저 보여주고 뒤에서 갱신
+  staleWhileRevalidate(e, req);
 });
