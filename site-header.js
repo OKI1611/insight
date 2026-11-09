@@ -160,7 +160,7 @@
   // → sm 미만에서만 '아카데미'를 아랫줄로 내리고 영문 줄을 대신 감춘다(같은 남색·같은 굵기).
   var LOGO =
     '<a href="index.html" onclick="return __biblyHome(event)" class="flex items-center gap-2.5 shrink-0" aria-label="바이블 인사이트 아카데미 홈">'
-    + '<img src="/images/icon-192.png" alt="바이블 인사이트 아카데미 모노그램" class="w-9 h-9 md:w-10 md:h-10 rounded-lg shadow-soft shrink-0" />'
+    + '<img src="/images/icon-192.png?v=8" alt="바이블 인사이트 아카데미 모노그램" class="w-9 h-9 md:w-10 md:h-10 rounded-lg shadow-soft shrink-0" />'
     + '<span class="leading-none"><span class="block font-display text-[17px] md:text-[19px] font-extrabold tracking-tight whitespace-nowrap" style="color:#182c54">바이블 인사이트<span class="hidden sm:inline"> 아카데미</span></span>'
     + '<span class="mt-[3px] block sm:hidden font-display text-[12px] font-extrabold tracking-tight" style="color:#182c54">아카데미</span>'
     + '<span class="mt-1 hidden sm:block text-[8.5px] font-bold tracking-[0.22em]" style="color:#00704a">BIBLE INSIGHT</span></span></a>';
@@ -375,7 +375,7 @@
           bl.innerHTML =
             '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:22px">'
             +   '<div style="display:flex;align-items:center;gap:10px">'
-            +     '<img src="/images/logo-heritage-wide.png?v=2" alt="바이블 인사이트" style="height:28px;width:auto"/>'
+            +     '<img src="/images/logo-heritage-wide.png?v=3" alt="바이블 인사이트" style="height:28px;width:auto"/>'
             +     '<span style="font-weight:700;font-size:14px;color:#262626;letter-spacing:-.01em">BIBLY <span style="color:#00704a">·</span> 바이블 인사이트</span>'
             +   '</div>'
             +   '<div style="display:flex;align-items:center;gap:8px">'

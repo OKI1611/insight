@@ -10,19 +10,19 @@
   <script src="/note-render.js?v=20261026a"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BIBLY 북스토어 — 과정별 요약노트 합본 책자</title>
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=8" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="BIBLY" />
   <meta name="description" content="과정별 요약노트를 한 권으로 합본한 책자. 구매하시면 소장용 PDF를 이메일로 보내드립니다. (실물 제본·배송은 준비 중)" />
   <meta name="theme-color" content="#213a6b" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=8" />
+  <link rel="icon" href="/favicon.ico?v=8" sizes="any" />
   <link rel="canonical" href="https://biblynote.com/booklet" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="BIBLY 바이블 인사이트" />
   <meta property="og:title" content="BIBLY 북스토어 — 과정별 요약노트 합본 책자" />
   <meta property="og:description" content="과정별 요약노트를 한 권으로 합본한 책자. 구매하시면 소장용 PDF를 이메일로 보내드립니다. (실물 제본·배송은 준비 중)" />
-  <meta property="og:image" content="https://biblynote.com/images/og-cover.png?v=7" />
+  <meta property="og:image" content="https://biblynote.com/images/og-cover.png?v=8" />
   <link rel="manifest" href="/manifest.json" />
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -417,7 +417,7 @@
       return `<div class="flex flex-col">
         <a href="booklet.html?track=${encodeURIComponent(t.name)}" class="block group">
           <div class="cover transition group-hover:-translate-y-1" style="background:linear-gradient(155deg,${st.g[0]},${st.g[1]})">
-            <div class="flex items-start justify-between gap-2"><div class="cbrand"><span class="cchip"><img src="/images/bible-insight-emblem.png" alt=""/></span>Bible Insight</div>${lvl}</div>
+            <div class="flex items-start justify-between gap-2"><div class="cbrand"><span class="cchip"><img src="/images/bible-insight-emblem.png?v=2" alt=""/></span>Bible Insight</div>${lvl}</div>
             <div><div class="crule"></div><p class="ctitle">${esc(t.name)}</p></div>
             <p class="cmeta">요약노트 합본 · 전 ${n}강</p>
           </div>
@@ -480,7 +480,7 @@
       const list=$('cartList'), sum=$('cartSummary'); if(!list) return;
       if(!CART.length){
         list.innerHTML='<div class="bg-white rounded-3xl border border-ink/10 shadow-soft p-12 text-center">'
-          +'<img src="/images/bible-insight-emblem.png" alt="" class="w-14 mx-auto mb-4 opacity-90"/>'
+          +'<img src="/images/bible-insight-emblem.png?v=2" alt="" class="w-14 mx-auto mb-4 opacity-90"/>'
           +'<p class="font-bold text-neutral-900 text-lg mb-1.5">장바구니가 비어 있어요</p>'
           +'<p class="text-sm text-neutral-500 mb-6">마음에 드는 책자나 이용권을 담아보세요.</p>'
           +'<button onclick="goCatalog()" class="inline-block bg-gold text-white font-bold px-7 py-3 rounded-full hover:opacity-90 transition shadow-soft">책자 둘러보기 →</button></div>';
@@ -490,7 +490,7 @@
         const sub = it.kind==='pass' ? ('전체 이용권 · '+esc(it.term||'')) : ('PDF 교재 · 전 '+it.lessons+'강 · 약 '+it.pages+'쪽');
         return `<div class="bg-white rounded-2xl border border-ink/10 shadow-soft px-4 py-4 flex items-center gap-4">
         <div class="w-12 h-14 rounded-lg shrink-0 flex items-center justify-center" style="background:linear-gradient(158deg,#22345a,#2f4870)">
-          <img src="/images/bible-insight-emblem.png" alt="" class="w-7"/>
+          <img src="/images/bible-insight-emblem-white.png?v=2" alt="" class="w-7"/>
         </div>
         <div class="flex-1 min-w-0">
           <p class="font-bold text-[15px] text-neutral-900 truncate leading-snug">${esc(it.name)}</p>
@@ -697,7 +697,7 @@
       ].filter(Boolean).map(r=>`<tr><td style="padding:3px 0;color:#8a94a8;width:120px;vertical-align:top">${r[0]}</td><td style="padding:3px 0;color:#2a3a55">${esc(r[1])}</td></tr>`).join('');
       const html=`<div style="max-width:640px;margin:0 auto;font-family:'Pretendard',system-ui,sans-serif;color:#1c2b46;padding:8px 4px">
         <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid #213a6b;padding-bottom:16px;margin-bottom:22px">
-          <div style="display:flex;align-items:center;gap:10px"><img src="/images/logo-heritage-wide.png?v=2" alt="바이블 인사이트" style="height:38px;width:auto"/></div>
+          <div style="display:flex;align-items:center;gap:10px"><img src="/images/logo-heritage-wide.png?v=3" alt="바이블 인사이트" style="height:38px;width:auto"/></div>
           <div style="text-align:right"><p style="font-size:22px;font-weight:800;letter-spacing:.04em;margin:0;color:#213a6b">영 수 증</p><p style="font-size:11px;color:#8a94a8;margin:4px 0 0">RECEIPT · 거래 확인서</p></div>
         </div>
         <table style="width:100%;font-size:12.5px;line-height:1.7;margin-bottom:18px"><tbody>
@@ -788,7 +788,7 @@
       window._curLessons=lessons;
       const loadList=unlocked?lessons:lessons.slice(0,1);
       const notes=await Promise.all(loadList.map(async l=>{try{const r=await fetch('content/notes/'+l.id+'.json?t='+Date.now());if(r.ok)return await r.json();}catch(e){}return null;}));
-      let h=`<div class="cover-page" style="text-align:center;padding:42px 0 34px;border-bottom:1px solid #e6e9f0"><img src="/images/logo-heritage-wide.png?v=2" alt="바이블 인사이트" style="height:82px;width:auto;margin:0 auto 16px;display:block"/><p style="color:#00704a;font-weight:700;letter-spacing:.28em;font-size:11px;margin:0 0 14px">바이블 인사이트 · 강의 노트</p><h1 style="font-size:29px;font-weight:700;color:#171717;line-height:1.4;margin:0 12px">${esc(t.name)}</h1><p style="color:#5a6b88;font-size:13px;margin:16px 0 0">요약노트 + 필기 공간 · 전 ${t.lessons.length}강</p><p style="color:#9aa6bd;font-size:11px;margin:20px 0 0">강의를 들으며 메모하고 참고하세요 · biblynote.com</p>${(CUR_BUYER&&CUR_EMAIL)?`<p style="color:#00704a;font-size:10.5px;margin:18px 0 0;letter-spacing:.02em">정품 · <b>${esc(CUR_EMAIL)}</b> 님께 발행 · 무단 복제·배포 금지</p>`:''}</div>`;
+      let h=`<div class="cover-page" style="text-align:center;padding:42px 0 34px;border-bottom:1px solid #e6e9f0"><img src="/images/logo-heritage-wide.png?v=3" alt="바이블 인사이트" style="height:82px;width:auto;margin:0 auto 16px;display:block"/><p style="color:#00704a;font-weight:700;letter-spacing:.28em;font-size:11px;margin:0 0 14px">바이블 인사이트 · 강의 노트</p><h1 style="font-size:29px;font-weight:700;color:#171717;line-height:1.4;margin:0 12px">${esc(t.name)}</h1><p style="color:#5a6b88;font-size:13px;margin:16px 0 0">요약노트 + 필기 공간 · 전 ${t.lessons.length}강</p><p style="color:#9aa6bd;font-size:11px;margin:20px 0 0">강의를 들으며 메모하고 참고하세요 · biblynote.com</p>${(CUR_BUYER&&CUR_EMAIL)?`<p style="color:#00704a;font-size:10.5px;margin:18px 0 0;letter-spacing:.02em">정품 · <b>${esc(CUR_EMAIL)}</b> 님께 발행 · 무단 복제·배포 금지</p>`:''}</div>`;
       // 목차 — 구매자에게는 체크박스·클릭·개별PDF 제공
       const tocRows=lessons.map((l,i)=>{
         if(unlocked){

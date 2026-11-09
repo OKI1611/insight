@@ -139,7 +139,7 @@
         im.className = 'fixed inset-0 z-[120] items-center justify-center bg-black/60 p-4';
         im.innerHTML =
             '<div class="bg-white rounded-2xl p-6 max-w-sm w-full shadow-2xl" style="color:#1a1a1a">'
-          + '<div class="flex items-center gap-3 mb-4"><img src="/images/icon-192.png" alt="BIBLY" style="width:46px;height:46px;border-radius:13px"/>'
+          + '<div class="flex items-center gap-3 mb-4"><img src="/images/icon-192.png?v=8" alt="BIBLY" style="width:46px;height:46px;border-radius:13px"/>'
           + '<div><h3 class="font-bold text-lg leading-tight">BIBLY 앱으로 설치</h3><p class="text-xs text-gray-500 mt-0.5">홈 화면에 추가하면 앱처럼 전체화면으로 열려요</p></div></div>'
           + '<div id="installAndroid" style="display:none"><p class="text-sm text-gray-600 mb-4">아래 버튼을 누르면 설치 창이 떠요. <b>‘설치’</b>를 선택하면 끝입니다!</p>'
           + '<button onclick="__biblyPwaInstall()" class="w-full py-3 rounded-xl font-semibold text-sm transition" style="background:#213a6b;color:#ffffff">지금 설치하기</button></div>'
