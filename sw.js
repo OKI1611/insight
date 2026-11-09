@@ -1,6 +1,6 @@
 // 오광일 인사이트 브리핑 — 서비스 워커 (PWA)
 // 전략: HTML은 항상 네트워크(최신 유지), 정적자원만 캐시. 오프라인 시 폴백.
-const CACHE = 'bibleinsight-v396';
+const CACHE = 'bibleinsight-v397';
 const SHELL = ['/manifest.json', '/app', '/app.html', '/app-menu', '/app-menu.html', '/content/app-books.json', '/app.css?v=20261108d', '/app-shell.js?v=20261108d', '/app-mode.js?v=20261107a', '/content/app-verses.json', '/bible/books.json', '/images/icon-192.png'];
 
 self.addEventListener('install', (e) => {
@@ -24,8 +24,9 @@ function putAndReturn(req, res) {
 // 캐시 먼저 즉시 응답 + 뒤에서 네트워크로 갱신(다음 방문에 반영) — 배포 시 sw 버전 +1로 전체 캐시가 비워지므로 신선도 보장
 function staleWhileRevalidate(e, req) {
   e.respondWith(caches.match(req).then((cached) => {
-    const refresh = fetch(req).then((res) => putAndReturn(req, res)).catch(() => cached);
-    return cached || refresh;
+    const refresh = fetch(req).then((res) => putAndReturn(req, res));
+    // 캐시가 있으면 즉시 응답(뒤에서 갱신), 없으면 네트워크 — 둘 다 실패하면 마지막으로 한 번 더 시도
+    return cached || refresh.catch(() => caches.match(req).then((c2) => c2 || fetch(req)));
   }));
 }
 
