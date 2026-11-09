@@ -6,6 +6,10 @@
   <script src="/content-loader.js?v=20260703f"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>BIBLY 앱</title>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com"/>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net"/>
+  <link rel="preconnect" href="https://bmxkndkwefdgsomlznoo.supabase.co"/>
+  <link rel="preconnect" href="https://i.ytimg.com"/>
   <meta name="robots" content="noindex, follow" />
   <meta name="theme-color" content="#213a6b" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -104,7 +108,7 @@
     const CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>';
     const sp = new URLSearchParams(location.search);
     const P = sp.get('p') || 'books';
-    const TITLES = { books:'저자의 책', notices:'공지사항', events:'이벤트', qna:'질문과 답', store:'교재 스토어', academy:'급수 과정', support:'후원하기', dictionary:'성경사전', board:'수강생 질문방', search:'검색', themes:'주제별 성경', english:'바이블 잉글리시', notes:'번역 이야기' };
+    const TITLES = { books:'저자의 책', notices:'공지사항', events:'이벤트', qna:'질문과 답', store:'교재 스토어', academy:'급수 과정', support:'후원하기', dictionary:'성경사전', board:'수강생 질문방', search:'검색', themes:'주제별 성경', english:'바이블 잉글리시', notes:'번역 이야기', resources:'자료실' };
     function setTitle(t){ document.title = t + ' — BIBLY'; if(window.__setAppTitle) window.__setAppTitle(t); else window.__appTitle = t; }
     setTitle(TITLES[P] || 'BIBLY');
     function openSheet(html){ $('sheetBody').innerHTML = html; $('sheet').classList.add('open'); $('sheet').querySelector('.box').scrollTop = 0; }
@@ -298,7 +302,22 @@
           $('main').innerHTML = `<p class="sub" style="margin:4px 0 12px">영어 성경을 소리 내어 읽으며 배우는 코너입니다. 책을 고르세요.</p><div class="list">` + books.map(b => `<a class="row press" href="/app-menu?p=english&book=${encodeURIComponent(b.book)}"><span class="t">${esc(b.book)}<br/><span style="font-size:12.5px;color:#4b5563;font-weight:600">${esc(b.bookEn||'')} · ${b.units.length}개 단원</span></span>${CHEV}</a>`).join('') + `</div>`;
         }
       },
-      // ── 번역 이야기: 글 목록 → 본문 ──
+      // ── 자료실: PDF 등 자료 목록 → 내용 보기·내려받기 ──
+      async resources(){
+        const data = await rest('resources?select=*&order=created_at.desc&limit=200');
+        const urlName = u => { try{ return decodeURIComponent(String(u||'').split('?')[0].split('/').pop()||''); }catch(e){ return ''; } };
+        const files = r => { let a = r && r.files; if(typeof a === 'string'){ try{ a = JSON.parse(a); }catch(e){ a = null; } } if(Array.isArray(a) && a.length) return a.filter(f => f && f.url).map(f => ({ url:f.url, name:f.name || urlName(f.url) || '첨부파일' })); if(r && r.file_url) return [{ url:r.file_url, name:urlName(r.file_url) || '첨부파일' }]; return []; };
+        const dl = (u,n) => !/\/storage\/v1\/object\/public\//.test(u||'') ? u : u + (u.includes('?') ? '&' : '?') + 'download=' + encodeURIComponent(n||'');
+        if(!data || !data.length){ $('main').innerHTML = '<p class="empty">아직 올라온 자료가 없습니다.</p>'; return; }
+        $('main').innerHTML = `<p class="sub" style="margin:4px 0 12px">제목을 누르면 내용이 열리고, 받기 버튼을 누르면 휴대폰에 저장됩니다.</p><div class="list">` + data.map((r,i) => { const fl = files(r); return `<button type="button" class="row press" data-i="${i}"><span class="t">${r.category ? `<span style="font-size:11.5px;color:#b08b2e;font-weight:800">${esc(r.category)}</span><br/>` : ''}${esc(r.title||'')}<br/><span style="font-size:12.5px;color:#4b5563;font-weight:600">${fdate(r.created_at)}${fl.length ? ' · 📎 첨부 ' + fl.length : ''}</span></span>${CHEV}</button>`; }).join('') + `</div>`;
+        $('main').querySelectorAll('button.row').forEach(b => b.addEventListener('click', () => { const r = data[+b.dataset.i]; const fl = files(r);
+          openSheet(`${r.category ? `<span class="pill g">${esc(r.category)}</span>` : ''}<p class="dt-h">${esc(r.title||'')}</p><p class="dt-s">${fdate(r.created_at)}</p>`
+            + (r.description ? `<div class="dt-p" style="margin-top:10px">${safeHtml(r.description)}</div>` : '')
+            + (fl.length ? `<p class="dt-lbl">📎 첨부파일 — 누르면 저장됩니다</p>` + fl.map(f => `<a class="btn pri" style="margin-top:8px" href="${esc(dl(f.url,f.name))}" target="_blank" rel="noopener">${esc(f.name)} 받기</a>`).join('') : '')
+            + ((r.link||'').trim() ? `<a class="btn" style="margin-top:10px" href="${esc(r.link.trim())}" target="_blank" rel="noopener">관련 링크 열기</a>` : '')); }));
+        const want = sp.get('id'); if(want){ const i = data.findIndex(r => String(r.id) === want); if(i >= 0) setTimeout(() => $('main').querySelector(`button.row[data-i="${i}"]`).click(), 200); }
+      },
+      // ── 번역 이야기: 글 목록 → 본문 (메뉴에서는 빠졌지만 딥링크용으로 유지) ──
       async notes(){
         const d = await fetch('/content/translation-notes.json?t=' + Date.now()).then(r=>r.json()); const N = d.notes || []; const cats = d.cats || {};
         const catName = (c) => (cats && (cats[c] || (Array.isArray(cats) ? (cats.find(x => x.id === c)||{}).name : ''))) || '';

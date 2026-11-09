@@ -23,7 +23,7 @@
     var p = location.pathname.replace(/\/+$/, '') || '/';
     // 웹 세부 페이지는 앱 전용 화면(app-menu)으로 — 결제·신청 같은 웹 전용 흐름(buy=, track=, #apply, #order)은 그대로 둔다
     var sub = p.replace(/\.html$/, '');
-    var MAP = { '/books':'books', '/notices':'notices', '/event':'events', '/support':'support', '/booklet':'store', '/academy':'academy', '/qna':'qna', '/dictionary':'dictionary', '/qna-board':'board', '/search':'search', '/themes':'themes', '/bible-english':'english', '/translation-notes':'notes' };
+    var MAP = { '/books':'books', '/notices':'notices', '/event':'events', '/support':'support', '/booklet':'store', '/academy':'academy', '/qna':'qna', '/dictionary':'dictionary', '/qna-board':'board', '/search':'search', '/themes':'themes', '/bible-english':'english', '/translation-notes':'notes', '/resources':'resources' };
     if(MAP[sub]){
       var qs = new URLSearchParams(q), h = location.hash || '';
       var webOnly = (sub === '/booklet' && (qs.get('buy') || qs.get('track') || /#order|#cart/.test(h)))

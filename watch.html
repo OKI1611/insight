@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <script src="/app-mode.js?v=20261107a"></script>
   <script src="/content-loader.js?v=20260703f"></script>
-  <script src="/site-header.js?v=20261027a"></script>
+  <script src="/site-header.js?v=20261109a"></script>
   <script src="/pager.js?v=1"></script>
-  <script src="/section-sidenav.js?v=20261027a"></script>
+  <script src="/section-sidenav.js?v=20261109a"></script>
   <link rel="stylesheet" href="/note.css?v=20261026a" />
   <script src="/note-render.js?v=20261026a"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -764,6 +764,10 @@
 
       renderList();   // 현재 강의가 속한 트랙으로 목차 갱신(트랙 이동 시 따라감)
       try{ const _lv = currentLevelInfo(); localStorage.setItem('bibly_last_watch', JSON.stringify({ id: ytId(l.youtube), title: l.title, track: _lv.lv.name, idx: i, ts: Date.now() })); }catch(e){}   // 앱 홈 「이어 보기」
+      try{ const _lv2 = currentLevelInfo(); const vid = ytId(l.youtube);   // 앱 홈 「최근 본 강의」 — 최신순 10개, 중복 제거
+        let rec = JSON.parse(localStorage.getItem('bibly_recent_watch') || '[]'); if(!Array.isArray(rec)) rec = [];
+        rec = [{ id: vid, title: l.title, track: _lv2.lv.name, ts: Date.now() }].concat(rec.filter(r => r && r.id !== vid)).slice(0, 10);
+        localStorage.setItem('bibly_recent_watch', JSON.stringify(rec)); }catch(e){}
       document.querySelectorAll('.lesson').forEach(el => { el.classList.remove('bg-gold/10','border-gold'); });
       const el = document.getElementById('lesson-' + i);
       if(el){
