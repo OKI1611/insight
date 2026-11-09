@@ -1,6 +1,6 @@
 // 오광일 인사이트 브리핑 — 서비스 워커 (PWA)
 // 전략: HTML은 항상 네트워크(최신 유지), 정적자원만 캐시. 오프라인 시 폴백.
-const CACHE = 'bibleinsight-v397';
+const CACHE = 'bibleinsight-v398';
 const SHELL = ['/manifest.json', '/app', '/app.html', '/app-menu', '/app-menu.html', '/content/app-books.json', '/app.css?v=20261108d', '/app-shell.js?v=20261108d', '/app-mode.js?v=20261107a', '/content/app-verses.json', '/bible/books.json', '/images/icon-192.png'];
 
 self.addEventListener('install', (e) => {
@@ -12,9 +12,6 @@ self.addEventListener('activate', (e) => {
   e.waitUntil(caches.keys().then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))));
   self.clients.claim();
 });
-
-// CDN 라이브러리(테일윈드·Supabase JS 등)도 런타임 캐시 — 페이지마다 재다운로드 방지
-const CDN_OK = ['cdn.tailwindcss.com', 'cdn.jsdelivr.net', 'unpkg.com', 'fonts.googleapis.com', 'fonts.gstatic.com', 'i.ytimg.com'];
 
 // 캐시에 저장하면서 응답 반환
 function putAndReturn(req, res) {
@@ -35,11 +32,9 @@ self.addEventListener('fetch', (e) => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
 
-  // 외부: 허용한 CDN만 stale-while-revalidate, 그 외(Supabase API·유튜브 영상 등)는 통과
-  if (url.origin !== location.origin) {
-    if (CDN_OK.includes(url.hostname)) staleWhileRevalidate(e, req);
-    return;
-  }
+  // 외부(CDN·Supabase·유튜브)는 가로채지 않음 — opaque 응답은 깨진 사본이 캐시되면 복구가 안 되므로
+  // 브라우저 HTTP 캐시에 맡긴다 (preconnect로 연결만 선행)
+  if (url.origin !== location.origin) return;
 
   // 결제·데이터 API는 절대 캐시하지 않음
   if (url.pathname.startsWith('/api/')) return;
