@@ -239,7 +239,7 @@
     const withTimeout = (p, ms) => Promise.race([Promise.resolve(p), new Promise((_, r) => setTimeout(() => r(new Error('TIMEOUT')), ms))]);
 
     function closeIntro(){ $('appIntro').classList.add('hidden'); try{ localStorage.setItem('bibly_app_intro', '1'); }catch(e){} }
-    (function(){ let seen = '1'; try{ seen = localStorage.getItem('bibly_app_intro') || ''; }catch(e){} if(!seen) setTimeout(() => $('appIntro').classList.remove('hidden'), 900); })();
+    (function(){ if(/[?&]shot=1\b/.test(location.search)) return;   /* 스토어 스크린샷 캡처용 */ let seen = '1'; try{ seen = localStorage.getItem('bibly_app_intro') || ''; }catch(e){} if(!seen) setTimeout(() => $('appIntro').classList.remove('hidden'), 900); })();
     // '보통' = 저장값을 지우고 화면 폭에 따른 기본값(작은 폰 15 · 보통 16 · 태블릿 17)으로 · 크게 18 · 아주 크게 20
     function setAppFont(px){
       if(px === 'auto'){ try{ localStorage.removeItem('biblyAppFont'); }catch(e){} document.documentElement.style.removeProperty('font-size'); }
