@@ -152,6 +152,12 @@
       <div class="dots" id="dots"><i class="on"></i><i></i><i></i></div>
     </div>
 
+    <!-- 최근 본 강의 (시청 기록이 2개 이상일 때만) -->
+    <section class="sec hidden" id="recSec">
+      <div class="sec-h"><h2>최근 본 강의</h2><a href="/mylearning">전체 기록</a></div>
+      <div id="recRow" class="hs"></div>
+    </section>
+
     <!-- 새 강의 -->
     <section class="sec">
       <div class="sec-h"><h2>새로 올라온 강의</h2><a href="/curriculum">전체</a></div>
@@ -324,6 +330,18 @@
           <span class="th16"><img src="${thumb(id)}" alt="" loading="lazy"/>${l.duration ? `<span class="d">${esc(l.duration)}</span>` : ''}</span>
           <p class="t clamp2">${esc(l.title)}</p><p class="m">${esc(lv.name)}</p></a>`; }).join('') || '<p class="text-[13px] text-neutral-500">새 강의가 준비 중입니다.</p>';
     }
+    // 최근 본 강의 — watch.html 이 쌓는 bibly_recent_watch(최신순 10개). 맨 앞(=이어 보기 카드와 중복)은 빼고 보여준다
+    function recents(){
+      try{
+        let rec = JSON.parse(localStorage.getItem('bibly_recent_watch') || '[]'); if(!Array.isArray(rec)) rec = [];
+        rec = rec.filter(r => r && r.id).slice(1, 9);
+        if(!rec.length) return;
+        $('recRow').innerHTML = rec.map(r => `<a href="/watch?v=${esc(r.id)}" class="press">
+          <span class="th16"><img src="${thumb(r.id)}" alt="" loading="lazy"/></span>
+          <p class="t clamp2">${esc(r.title||'')}</p><p class="m">${esc(r.track||'')}</p></a>`).join('');
+        $('recSec').classList.remove('hidden');
+      }catch(e){}
+    }
     function tracks(){
       const levels = COURSE.levels || [];
       const picks = [0, levels.findIndex(l => /요한계시록 강해$/.test(l.name))].filter(i => i >= 0 && levels[i]);
@@ -337,6 +355,7 @@
     }
     (async () => {
       votd(); notice();
+      recents();
       try{ await loadCourse(); newLessons(); tracks(); await cont(); }
       catch(e){ $('contCard').innerHTML = '<div class="p-4 text-[13px] text-neutral-500">강의 정보를 불러오지 못했어요. 네트워크를 확인해 주세요.</div>'; }
     })();
