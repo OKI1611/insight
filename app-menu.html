@@ -153,10 +153,12 @@
             </details>`).join('') : '<p class="empty">찾는 질문이 없습니다.</p>';
         };
         $('main').innerHTML = `
+          <div class="btns2" style="margin-bottom:10px"><button type="button" class="btn grn" onclick="openWriteSheet()">✍️ 질문 올리기</button><button type="button" class="btn pri" onclick="openChat()">💬 실시간 채팅</button></div>
+          <p class="sub" style="margin:0 0 12px">궁금한 것은 바로 질문하세요 — 대표강사가 직접 답합니다.</p>
           <div class="btns2" style="margin-bottom:10px"><a class="btn ${room!=='gen'?'pri':''}" href="/app-menu?p=qna&room=rev">요한계시록</a><a class="btn ${room==='gen'?'pri':''}" href="/app-menu?p=qna&room=gen">신앙·성경</a></div>
           <div class="sbox"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="qaQ" type="search" placeholder="궁금한 말을 입력하세요 (예: 휴거, 666)" oninput="window.__qaRender(this.value.trim())"/></div>
           <div id="qaList"></div>
-          <a class="btn grn" style="margin-top:14px" href="/qna-board">내 질문 올리기 (질문방)</a>`;
+          <a class="btn grn" style="margin-top:14px" href="/app-menu?p=board">내가 올린 질문·답변 보기 (질문방)</a>`;
         window.__qaRender = render; render('');
       },
       // ── 교재 스토어: 과목별 요약노트 책자 목록 + 전체 이용권 ──
@@ -235,6 +237,34 @@
     };
     // 세션(글쓰기 버튼 표시용) — 다른 페이지와 같은 저장 방식
     function readStored(){ try{ for(const k of Object.keys(localStorage)){ if(!/auth-token/.test(k)) continue; const v = JSON.parse(localStorage.getItem(k)); const ss = (v && v.user) ? v : (v && v.currentSession) ? v.currentSession : null; if(ss && ss.user){ if(ss.expires_at && ss.expires_at*1000 < Date.now()) return null; return ss; } } }catch(e){} return null; }
+    // 실시간 채팅(채널톡) — 초록 질문 버튼과 같은 창을 연다 (auth-header.js가 부팅)
+    window.openChat = function(){ try{ if(window.ChannelIO){ ChannelIO('showMessenger'); return; } }catch(e){} alert('채팅 창을 불러오는 중입니다. 잠시 후 다시 눌러 주세요.'); };
+    // 질문 등록 (수강생 질문방과 같은 community_posts 테이블, 로그인 토큰 필요)
+    async function postQuestion(text){
+      const s = readStored(); if(!s || !s.access_token) return { err: 'login' };
+      const name = (s.user.user_metadata && (s.user.user_metadata.full_name || s.user.user_metadata.name)) || '회원';
+      try{
+        const r = await fetch(SUPABASE_URL + '/rest/v1/community_posts', { method:'POST', headers:{ apikey: SUPABASE_ANON, Authorization: 'Bearer ' + s.access_token, 'Content-Type':'application/json', Prefer:'return=minimal' }, body: JSON.stringify({ author_id: s.user.id, author_name: name, board: 'qna', content: text }) });
+        return r.ok ? {} : { err: await r.text() };
+      }catch(e){ return { err: String(e) }; }
+    }
+    // 질문 작성 시트 — 등록되면 질문방 목록으로
+    window.openWriteSheet = function(){
+      const me = readStored();
+      if(!me){ openSheet(`<p class="dt-h">질문을 올리려면 로그인이 필요해요</p><p class="dt-p" style="margin-top:8px">무료 회원 로그인만 하면 대표강사에게 직접 질문할 수 있습니다. 답변이 달리면 질문방에서 확인할 수 있어요.</p><a class="btn pri" style="margin-top:14px" href="/mylearning">무료 로그인 · 회원가입</a><button type="button" class="btn" style="margin-top:8px" onclick="openChat()">로그인 없이 실시간 채팅으로 질문</button>`); return; }
+      openSheet(`<p class="dt-h">대표강사에게 질문하기</p><p class="dt-s" style="margin-top:4px">강의 회차나 성경 구절을 함께 적어 주시면 더 정확히 답변드려요.</p>
+        <textarea id="wqText" rows="6" maxlength="2000" style="width:100%;margin-top:12px;border:1.5px solid #dfe3ea;border-radius:14px;padding:13px 14px;font-size:15.5px;line-height:1.7;outline:none;resize:vertical;font-family:inherit" placeholder="궁금한 점을 적어 주세요"></textarea>
+        <button type="button" id="wqSend" class="btn pri" style="margin-top:12px">질문 등록</button><p id="wqMsg" class="sub" style="margin-top:8px"></p>`);
+      $('wqSend').addEventListener('click', async () => {
+        const t = ($('wqText').value || '').trim();
+        if(t.length < 5){ $('wqMsg').textContent = '질문 내용을 조금 더 적어 주세요.'; return; }
+        $('wqSend').disabled = true; $('wqMsg').textContent = '등록 중…';
+        const r = await postQuestion(t);
+        if(r.err === 'login'){ $('wqMsg').textContent = '로그인이 만료되었습니다. 다시 로그인해 주세요.'; $('wqSend').disabled = false; return; }
+        if(r.err){ $('wqMsg').textContent = '등록에 실패했습니다. 잠시 후 다시 시도해 주세요.'; $('wqSend').disabled = false; return; }
+        $('sheetBody').innerHTML = `<p style="text-align:center;font-size:40px;margin:18px 0 6px">🙏</p><p class="dt-h" style="text-align:center">질문이 등록되었습니다!</p><p class="dt-p" style="text-align:center;margin-top:8px">대표강사가 확인 후 답변을 남겨 드립니다.<br/>답변은 <b>질문방</b>에서 확인하실 수 있어요.</p><a class="btn pri" style="margin-top:14px" href="/app-menu?p=board">질문방에서 확인하기</a>`;
+      });
+    };
     const plain = (h) => { const d = document.createElement('div'); d.innerHTML = String(h||'').replace(/<\/(p|div|br|li)>/gi, '\n').replace(/<br\s*\/?>/gi, '\n'); return (d.textContent || '').replace(/\n{3,}/g, '\n\n').trim(); };
     const safeHtml = (h) => String(h||'').replace(/<script[\s\S]*?<\/script>/gi, '').replace(/\son\w+="[^"]*"/gi, '').replace(/javascript:/gi, '');
 
@@ -256,11 +286,12 @@
           }));
         };
         $('main').innerHTML = `
+          <div class="btns2" style="margin-bottom:10px"><button type="button" class="btn grn" onclick="openWriteSheet()">✍️ 질문 올리기</button><button type="button" class="btn pri" onclick="openChat()">💬 실시간 채팅</button></div>
           <div class="btns2" style="grid-template-columns:1fr 1fr 1fr;margin-bottom:10px"><button type="button" class="btn pri" data-f="all">전체</button><button type="button" class="btn" data-f="wait">답변 대기</button><button type="button" class="btn" data-f="done">답변 완료</button></div>
-          <div id="bdList"></div>
-          <a class="btn grn" style="margin-top:14px" href="${me ? '/qna-write' : '/mylearning'}">${me ? '질문 올리기' : '로그인하고 질문 올리기'}</a>`;
+          <div id="bdList"></div>`;
         $('main').querySelectorAll('button[data-f]').forEach(b => b.addEventListener('click', () => { $('main').querySelectorAll('button[data-f]').forEach(x => x.classList.toggle('pri', x === b)); render(b.dataset.f); }));
         render('all');
+        if(sp.get('write') === '1') setTimeout(() => openWriteSheet(), 250);
       },
       // ── 검색: 강의·사전·주제·글을 한 번에 ──
       async search(){
