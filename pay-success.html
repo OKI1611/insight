@@ -46,7 +46,19 @@
       }catch(e){ return fail('결제 확인 중 오류가 발생했습니다. ' + (e.message||'')); }
     }
 
+    // 결제가 끝난 상품은 장바구니에서 뺀다(booklet 이 결제 직전에 남긴 orderId·상품 키 기준)
+    function clearPaidFromCart(){
+      try{
+        const p = JSON.parse(localStorage.getItem('bibly_pending_order')||'null');
+        if(!p || p.orderId !== orderId) return;
+        const ks = new Set(p.keys||[]);
+        const cart = JSON.parse(localStorage.getItem('bibly_cart')||'[]');
+        if(Array.isArray(cart) && ks.size) localStorage.setItem('bibly_cart', JSON.stringify(cart.filter(c=>!ks.has(c.key))));
+        localStorage.removeItem('bibly_pending_order');
+      }catch(e){}
+    }
     function success(d){
+      clearPaidFromCart();
       const items = (d.items||[]).map(it=>'<li class="flex justify-between gap-3 py-1"><span class="text-neutral-900/70">'+(it.name||'')+'</span><span class="font-semibold">'+won(it.amount)+'</span></li>').join('');
       done(
         '<div class="w-16 h-16 mx-auto rounded-full bg-emerald-500/12 flex items-center justify-center">'
@@ -59,9 +71,10 @@
           +'<p class="text-[11px] text-neutral-400 mt-2">결제수단 '+(d.method||'카드')+'</p>'
         +'</div>'
         +'<div class="flex gap-2 mt-6">'
-          +'<a href="/mylearning.html" class="flex-1 bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition">내 구매·자료 보기</a>'
-          +(d.receipt?'<a href="'+d.receipt+'" target="_blank" rel="noopener" class="px-5 py-3.5 rounded-xl border border-neutral-300 font-semibold text-sm hover:bg-neutral-50 transition">영수증</a>':'')
+          +'<a href="/orders.html" class="flex-1 bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition">내 자료 · 주문내역 보기</a>'
+          +(d.receipt?'<a href="'+d.receipt+'" target="_blank" rel="noopener" class="px-5 py-3.5 rounded-xl border border-neutral-300 font-semibold text-sm hover:bg-neutral-50 transition">카드 영수증</a>':'')
         +'</div>'
+        +'<p class="text-[11.5px] text-neutral-400 mt-2">결제 내역과 영수증은 ‘주문·결제 내역’에서 언제든 다시 볼 수 있어요.</p>'
         +'<a href="/index.html" class="inline-block mt-4 text-neutral-900/40 text-sm hover:text-gold">홈으로</a>'
       );
     }

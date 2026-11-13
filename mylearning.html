@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <script src="/app-mode.js?v=20261107a"></script>
   <script src="/content-loader.js?v=20260703f"></script>
-  <script src="/site-header.js?v=20261109a"></script>
+  <script src="/site-header.js?v=20261113a"></script>
   <script src="/section-sidenav.js?v=20261109a"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>내 강의실 — BIBLY 바이블 인사이트</title>
@@ -123,6 +123,7 @@
             <button class="sbItem" data-sec="profile" onclick="sbGo('profile')"><span>개인정보 수정</span></button>
             <button class="sbItem" data-sec="bible" onclick="sbGo('bible')"><span>성경 통독표</span></button>
             <button class="sbItem" data-sec="books" onclick="sbGo('books')"><span>내 교재·스토어</span></button>
+            <a class="sbItem" href="orders.html"><span>주문·결제 내역</span></a>
             <button class="sbItem" onclick="logout()" style="color:#c0564a"><span style="color:#c0564a">로그아웃</span></button>
           </nav>
         </aside>
@@ -179,7 +180,7 @@
             <div id="myBooks">
               <div class="flex items-center justify-between mb-2.5">
                 <p class="text-xs font-semibold text-neutral-900/55">구매한 PDF 교재</p>
-                <a href="booklet.html" class="text-xs text-gold font-semibold hover:underline">북스토어 →</a>
+                <span class="flex items-center gap-3"><a href="orders.html" class="text-xs text-neutral-900/60 font-semibold hover:text-gold">주문·결제 내역</a><a href="booklet.html" class="text-xs text-gold font-semibold hover:underline">북스토어 →</a></span>
               </div>
               <div id="myBooksList" class="space-y-2"></div>
             </div>
@@ -1169,6 +1170,8 @@
         var sec = b.getAttribute('data-sec'); var label = (b.textContent || '').trim();
         var isOut = !sec && /로그아웃/.test(label);
         var key = sec || (isOut ? 'logout' : '');
+        // 다른 페이지로 가는 링크 항목(주문·결제 내역)은 그대로 링크로 — data-sec 가 비면 로그아웃으로 처리되므로 분리
+        if(b.tagName === 'A'){ rows += '<a class="row" href="' + b.getAttribute('href') + '">' + '<span>' + label + '</span>' + CHEV + '</a>'; return; }
         rows += '<button type="button" class="row' + (isOut ? ' out' : '') + '" data-sec="' + (sec || '') + '">' + (ICON[key] || '') + '<span>' + label + '</span>' + (isOut ? '' : CHEV) + '</button>';
       });
       menu.innerHTML = '<p class="h">내 강의실</p>' + rows;

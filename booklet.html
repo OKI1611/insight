@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <script src="/app-mode.js?v=20261107a"></script>
   <script src="/content-loader.js?v=20260703f"></script>
-  <script src="/site-header.js?v=20261109a"></script>
+  <script src="/site-header.js?v=20261113a"></script>
   <script src="/section-sidenav.js?v=20261109a"></script>
   <link rel="stylesheet" href="/note.css?v=20261026a" />
   <script src="/note-render.js?v=20261026a"></script>
@@ -129,13 +129,14 @@
       <nav class="hidden sm:flex items-center gap-0.5 text-sm text-neutral-900/60 ml-2">
         <button onclick="goStore('pass')" class="px-2.5 py-1 rounded hover:bg-ink/5">이용권</button>
         <button onclick="goStore('books')" class="px-2.5 py-1 rounded hover:bg-ink/5">책자</button>
+        <a href="orders.html" class="px-2.5 py-1 rounded hover:bg-ink/5">주문내역</a>
         <a href="store-help.html" class="px-2.5 py-1 rounded hover:bg-ink/5">고객센터</a>
       </nav>
       <div class="ml-auto flex items-center gap-1.5">
-        <a href="store-help.html" class="sm:hidden text-neutral-900/55 text-sm px-1.5">고객센터</a>
+        <a href="orders.html" class="text-neutral-900/70 text-sm font-semibold px-2 py-2 hover:text-gold sm:hidden">주문내역</a>
         <button onclick="showView('cart')" aria-label="장바구니" class="relative inline-flex items-center gap-1.5 bg-gold text-white text-sm font-bold pl-3.5 pr-4 py-2 rounded-full hover:opacity-90 transition">
           <span>장바구니</span>
-          <span id="cartCount" class="bg-gold text-white text-[11px] font-bold rounded-full min-w-[18px] h-[18px] px-1 inline-flex items-center justify-center">0</span>
+          <span id="cartCount" class="bg-white/20 text-white text-[11px] font-bold rounded-full min-w-[18px] h-[18px] px-1 inline-flex items-center justify-center">0</span>
         </button>
       </div>
     </div>
@@ -214,8 +215,9 @@
   <main id="cartView" class="hidden">
     <div class="max-w-2xl mx-auto px-5 py-10">
       <button onclick="goCatalog()" class="text-sm text-neutral-900/55 hover:text-gold mb-4 app-hide">← 계속 둘러보기</button>
+      <ol class="flex items-center gap-2 text-[12.5px] font-semibold text-neutral-400 mb-5 app-hide" aria-label="주문 단계"><li class="text-gold">1. 장바구니</li><li aria-hidden="true">›</li><li class="">2. 주문서·결제</li><li aria-hidden="true">›</li><li class="">3. 주문 완료</li></ol>
       <h1 class="text-2xl font-bold text-neutral-900 mb-1 app-hide">장바구니</h1>
-      <p class="text-neutral-500 text-sm mb-6 app-hide">담은 자료를 확인하고 한 번에 주문하세요.</p>
+      <p class="text-neutral-500 text-sm mb-6 app-hide">주문할 자료를 체크하고 한 번에 결제하세요.</p>
       <div id="cartList" class="space-y-3"></div>
       <div id="cartSummary" class="mt-6"></div>
     </div>
@@ -224,7 +226,8 @@
   <!-- ===================== 주문 / 결제 ===================== -->
   <main id="checkoutView" class="hidden">
     <div class="max-w-2xl mx-auto px-5 py-10">
-      <button onclick="showView('cart')" class="text-sm text-neutral-900/55 hover:text-gold mb-4 app-hide">← 장바구니</button>
+      <button onclick="backFromCheckout()" class="text-sm text-neutral-900/55 hover:text-gold mb-4 app-hide">← 이전으로</button>
+      <ol class="flex items-center gap-2 text-[12.5px] font-semibold text-neutral-400 mb-5 app-hide" aria-label="주문 단계"><li class="">1. 장바구니</li><li aria-hidden="true">›</li><li class="text-gold">2. 주문서·결제</li><li aria-hidden="true">›</li><li class="">3. 주문 완료</li></ol>
       <div class="bg-white rounded-3xl border border-ink/10 shadow-card p-6 md:p-8" id="coCard">
         <div class="text-center mb-6 app-hide">
           <p class="text-gold text-xs font-bold tracking-[0.25em] uppercase mb-2">Order · 주문 / 결제</p>
@@ -319,6 +322,7 @@
     function bookPages(t){ const o=PRICE_OVERRIDE[t.name]; return (o&&o.pages)?o.pages:estPages(t.lessons.length); }
     function bookPrice(t){ const o=PRICE_OVERRIDE[t.name]; return (o&&typeof o.price==='number')?o.price:priceByPages(bookPages(t)); }
     function won(v){ return '₩'+(Number(v)||0).toLocaleString(); }
+    function fmtYMD(s){ const d=new Date(s); return isNaN(d)?'':d.getFullYear()+'.'+String(d.getMonth()+1).padStart(2,'0')+'.'+String(d.getDate()).padStart(2,'0'); }
     function passByVal(val){ return PASSES.find(p=>'__'+p.id+'__'===val) || null; }
     // 주문 대상(책/이용권) 통합 조회
     function getItem(val){
@@ -340,14 +344,15 @@
       try{ COURSE=await (await fetch('content/course.json?t='+Date.now())).json(); }catch(e){ COURSE={levels:[]}; }
       try{ const pj=await (await fetch('content/booklet-prices.json?t='+Date.now())).json(); if(pj){ if(pj.overrides) PRICE_OVERRIDE=pj.overrides; if(Array.isArray(pj.tiers)&&pj.tiers.length) PRICE_TIERS=pj.tiers; if(Array.isArray(pj.passes)&&pj.passes.length) PASSES=pj.passes; } }catch(e){}
       TRACKS=(COURSE.levels||[]).map((lv,i)=>({i,name:(lv.name||lv.title||('과정 '+(i+1))),group:(lv.group||'그 외'),level:(lv.level||''),lessons:(lv.lessons||[])})).filter(t=>t.lessons.length>0);
-      loadCart(); updateCartBadge(); renderCatalog();
+      loadCart(); refreshCartPrices(); updateCartBadge(); renderCatalog();
+      loadOwned();   // 로그인 회원: 이미 구매한 책자·이용권 표시(중복 구매 방지)
       const sp=new URLSearchParams(location.search);
       const tname=sp.get('track'), buy=sp.get('buy');
       if(tname){ renderBook(decodeURIComponent(tname)); }
       else if(buy){
         const bv=decodeURIComponent(buy), pp=passByVal(bv);
-        if(pp) addToCart('pass', pp.id, true); else addToCart('book', bv, true);
-        showView(IS_APP && CART.length ? 'checkout' : 'cart');   // 앱: 장바구니 없이 바로 주문서
+        // 바로구매: 장바구니를 거치지 않고 그 상품만 주문서로(교보·쿠팡의 '바로구매'와 같은 흐름)
+        if(pp) buyNow('pass', pp.id); else buyNow('book', bv);
       }
       else {
         const hash=(location.hash||'').replace('#','');
@@ -364,7 +369,7 @@
       const map={catalog:'catalogView',cart:'cartView',checkout:'checkoutView',book:'bookView'};
       const el=$(map[v]||'catalogView'); if(el) el.classList.remove('hidden');
       const bar=$('storeBar'); if(bar) bar.classList.toggle('hidden', v==='book');  // 스토어바: 책뷰어 제외 항상 노출
-      if(v==='cart') renderCart();
+      if(v==='cart'){ BUY_NOW=null; renderCart(); }
       if(v==='checkout') renderCheckout();
       try{ if(IS_APP && window.__setAppTitle) window.__setAppTitle(v==='checkout'?'주문 · 결제':v==='cart'?'장바구니':v==='book'?'교재 보기':'교재 구매'); }catch(e){}
       window.scrollTo(0,0);
@@ -374,27 +379,72 @@
     function goStore(t){ showView('catalog'); setTimeout(()=>{ const el=$(t==='pass'?'passSection':'booksSection'); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); },70); }
 
     /* ---------------- 장바구니 ---------------- */
+    // 장바구니는 이 기기(localStorage)에 보관. 항목마다 sel(체크) 상태를 두고, 체크한 것만 주문한다.
+    let BUY_NOW=null;                                  // 바로구매 중이면 [그 상품] — 장바구니와 별개로 주문
+    let OWNED={ pass:false, passUntil:null, books:new Set() };   // 로그인 회원이 이미 가진 자료
     function loadCart(){ try{ CART=JSON.parse(localStorage.getItem('bibly_cart'))||[]; }catch(e){ CART=[]; } if(!Array.isArray(CART)) CART=[]; }
     function saveCart(){ try{ localStorage.setItem('bibly_cart', JSON.stringify(CART)); }catch(e){} updateCartBadge(); }
     function updateCartBadge(){ const c=$('cartCount'); if(c) c.textContent=CART.length; }
-    function cartTotal(){ return CART.reduce((s,it)=>s+(Number(it.price)||0),0); }
+    // 담아 둔 뒤 가격·강의 수가 바뀌었을 수 있으니 현재 가격으로 다시 맞춘다(결제 금액은 서버가 다시 계산)
+    function refreshCartPrices(){ let ch=false;
+      CART=CART.filter(it=>{ if(it.kind==='pass'){ const p=PASSES.find(x=>'pass:'+x.id===it.key); if(!p){ ch=true; return false; } if(it.price!==p.price){ it.price=p.price; ch=true; } return true; }
+        const t=TRACKS.find(x=>x.name===it.name); if(!t){ ch=true; return false; }
+        const pr=bookPrice(t); if(it.price!==pr||it.lessons!==t.lessons.length){ it.price=pr; it.pages=bookPages(t); it.lessons=t.lessons.length; ch=true; } return true; });
+      if(ch) saveCart(); }
+    function isOwned(it){ return !!it && it.kind==='book' && (OWNED.pass || OWNED.books.has(it.name)); }
+    function orderItems(){ return BUY_NOW || CART.filter(c=>c.sel!==false && !isOwned(c)); }
+    function itemsTotal(list){ return list.reduce((s,it)=>s+(Number(it.price)||0),0); }
+    function cartTotal(){ return itemsTotal(orderItems()); }
     function inCart(key){ return CART.some(c=>c.key===key); }
+    function makeItem(kind, name){
+      if(kind==='pass'){ const p=PASSES.find(x=>x.id===name); if(!p) return null; return {key:'pass:'+p.id, kind:'pass', name:p.name, price:p.price, term:p.term, sel:true}; }
+      const t=TRACKS.find(x=>x.name===name); if(!t) return null;
+      return {key:'book:'+t.name, kind:'book', name:t.name, price:bookPrice(t), pages:bookPages(t), lessons:t.lessons.length, sel:true};
+    }
     function addToCart(kind, name, silent){
-      let item=null;
-      if(kind==='pass'){ const p=PASSES.find(x=>x.id===name); if(!p) return; item={key:'pass:'+p.id, kind:'pass', name:p.name, price:p.price, term:p.term}; CART=CART.filter(c=>c.kind!=='pass'); }
-      else { const t=TRACKS.find(x=>x.name===name); if(!t) return; item={key:'book:'+t.name, kind:'book', name:t.name, price:bookPrice(t), pages:bookPages(t), lessons:t.lessons.length}; }
-      if(inCart(item.key)){ updateCartBadge(); if(!silent) toast('이미 장바구니에 담겨 있어요', true); return; }
+      const item=makeItem(kind,name); if(!item) return;
+      if(isOwned(item)){ if(!silent) toast('이미 구매하신 책자예요', 'owned', item.name); return; }
+      if(kind==='pass') CART=CART.filter(c=>c.kind!=='pass');
+      const ex=CART.find(c=>c.key===item.key);
+      if(ex){ ex.sel=true; saveCart(); if(!silent) toast('이미 장바구니에 담겨 있어요'); return; }
       CART.push(item); saveCart();
       if(!silent) toast((kind==='pass'?'이용권을':'책자를')+' 장바구니에 담았어요');
     }
-    function removeFromCart(key){ CART=CART.filter(c=>c.key!==key); saveCart(); renderCart(); }
-    let toastT=null;
-    function toast(msg, plain){
-      let el=$('toastBox');
-      if(!el){ el=document.createElement('div'); el.id='toastBox'; el.style.zIndex='2147483646'; el.className='fixed left-1/2 -translate-x-1/2 top-24 bg-gold text-white text-sm font-semibold px-5 py-3 rounded-full shadow-card flex items-center gap-3 transition-opacity'; document.body.appendChild(el); }
-      el.innerHTML='<span>'+esc(msg)+'</span>'+(plain?'':'<button onclick="showView(\'cart\')" class="text-gold font-bold">장바구니 보기</button>');
-      el.style.opacity='1'; clearTimeout(toastT); toastT=setTimeout(()=>{ el.style.opacity='0'; }, 2600);
+    // 바로구매 — 장바구니는 그대로 두고 이 상품 하나만 주문서로
+    function buyNow(kind, name){
+      const item=makeItem(kind,name); if(!item){ showView('catalog'); return; }
+      if(isOwned(item)){ location.href='booklet.html?track='+encodeURIComponent(item.name); return; }
+      BUY_NOW=[item]; showView('checkout');
     }
+    function backFromCheckout(){ if(BUY_NOW){ BUY_NOW=null; goCatalog(); } else showView('cart'); }
+    function removeFromCart(key){ CART=CART.filter(c=>c.key!==key); saveCart(); renderCart(); }
+    function toggleSel(key){ const it=CART.find(c=>c.key===key); if(it){ it.sel=(it.sel===false); saveCart(); renderCart(); } }
+    function toggleAll(on){ CART.forEach(c=>{ if(!isOwned(c)) c.sel=on; }); saveCart(); renderCart(); }
+    function removeSelected(){ const n=CART.filter(c=>c.sel!==false).length; if(!n) return; if(!confirm('선택한 '+n+'개 상품을 장바구니에서 뺄까요?')) return; CART=CART.filter(c=>c.sel===false); saveCart(); renderCart(); }
+    function removeOwned(){ CART=CART.filter(c=>!isOwned(c)); saveCart(); renderCart(); }
+    // 책자를 여러 권 고르면 이용권이 더 싼 경우가 많다 — 이용권으로 바꾸기(책자는 체크만 해제)
+    function swapToPass(){ const p=PASSES[0]; if(!p) return; CART.forEach(c=>{ if(c.kind==='book') c.sel=false; }); addToCart('pass', p.id, true); renderCart(); toast('전체 이용권으로 바꿨어요 · 책자는 체크만 해제했어요', 'plain'); }
+    // 로그인 회원의 보유 자료(이용권·책자)를 읽어 카탈로그·장바구니에 '구매함'으로 표시
+    async function loadOwned(){
+      const email=await currentEmail(); if(!email) return;
+      try{ const {data}=await sb.from('pass_members').select('expires_at').eq('email',email).maybeSingle();
+        if(data && (!data.expires_at || new Date(data.expires_at).getTime()>Date.now())){ OWNED.pass=true; OWNED.passUntil=data.expires_at||null; } }catch(e){}
+      try{ const {data}=await sb.from('book_access').select('track,expires_at').eq('email',email);
+        (data||[]).forEach(r=>{ if(!r.expires_at || new Date(r.expires_at).getTime()>Date.now()) OWNED.books.add(r.track); }); }catch(e){}
+      if(OWNED.pass || OWNED.books.size){ renderCatalog(); if(!$('cartView').classList.contains('hidden')) renderCart(); }
+    }
+    let toastT=null;
+    // 담기 알림 — 화면 아래 카드(장바구니 가기 / 닫기). 예전엔 금색 바탕에 금색 글씨라 버튼이 안 보였다
+    function toast(msg, mode, track){
+      let el=$('toastBox');
+      if(!el){ el=document.createElement('div'); el.id='toastBox'; el.style.zIndex='2147483646'; el.className='fixed left-1/2 -translate-x-1/2 bottom-6 w-[calc(100%-32px)] max-w-md bg-ink text-white text-[15px] font-semibold pl-5 pr-2 py-2.5 rounded-2xl shadow-card flex items-center gap-2 transition-opacity'; document.body.appendChild(el); }
+      let act='';
+      if(mode==='owned') act='<a href="booklet.html?track='+encodeURIComponent(track||'')+'" class="shrink-0 bg-white text-ink font-bold text-sm rounded-xl px-4 py-2.5">바로 보기</a>';
+      else if(mode!=='plain') act='<button onclick="hideToast();showView(\'cart\')" class="shrink-0 bg-white text-ink font-bold text-sm rounded-xl px-4 py-2.5">장바구니 가기</button>';
+      el.innerHTML='<span class="flex-1 min-w-0 py-1">'+esc(msg)+'</span>'+act+'<button onclick="hideToast()" aria-label="닫기" class="shrink-0 text-white/60 hover:text-white w-9 h-10 text-xl leading-none">×</button>';
+      el.style.opacity='1'; el.style.pointerEvents='auto'; clearTimeout(toastT); toastT=setTimeout(hideToast, 4500);
+    }
+    function hideToast(){ const el=$('toastBox'); if(el){ el.style.opacity='0'; el.style.pointerEvents='none'; } }
 
     /* ---------------- 북스토어(카탈로그) ---------------- */
     // 주제(테마)별 산뜻한 색감 — 커버 그라데이션 + 액센트
@@ -410,7 +460,7 @@
       '그 외':         {g:['#5d6d89','#3d4a63'], a:'#586888', sub:'그 밖의 말씀'}
     };
     function bookCard(t){
-      const n=t.lessons.length, price=bookPrice(t), pages=bookPages(t);
+      const n=t.lessons.length, price=bookPrice(t), pages=bookPages(t), owned=isOwned({kind:'book',name:t.name});
       const st=THEME_STYLE[t.group]||THEME_STYLE['그 외'];
       const nameAttr=esc(t.name).replace(/'/g,'&#39;');
       const lvl=t.level?`<span class="cov-lvl">${esc(t.level)}</span>`:'';
@@ -424,10 +474,14 @@
         </a>
         <p class="font-bold text-[13px] leading-snug mt-3 line-clamp-2 text-neutral-900">${esc(t.name)}</p>
         <p class="text-[11px] text-neutral-400 mt-0.5">약 ${pages}쪽 · 전 ${n}강</p>
-        <div class="flex items-center justify-between mt-2 gap-2">
-          <p class="text-gold font-extrabold text-[15px]">${won(price)}</p>
-          <button onclick="addToCart('book','${nameAttr}')" class="bg-gold text-white text-xs font-bold px-3.5 py-1.5 rounded-full hover:opacity-90 transition whitespace-nowrap shadow-soft">담기</button>
-        </div>
+        ${owned
+          ? `<p class="text-[12px] font-bold text-gold mt-2">✓ ${OWNED.pass?'이용권으로 열람 가능':'구매한 책자'}</p>
+             <a href="booklet.html?track=${encodeURIComponent(t.name)}" class="mt-1.5 h-11 inline-flex items-center justify-center rounded-xl bg-ink text-white text-[13.5px] font-bold hover:opacity-90 transition">바로 보기</a>`
+          : `<p class="text-gold font-extrabold text-[15px] mt-2">${won(price)}</p>
+             <div class="grid grid-cols-2 gap-1.5 mt-1.5">
+               <button onclick="addToCart('book','${nameAttr}')" class="h-11 rounded-xl border border-ink/20 bg-white text-neutral-800 text-[13px] font-bold hover:border-gold hover:text-gold transition">담기</button>
+               <button onclick="buyNow('book','${nameAttr}')" class="h-11 rounded-xl bg-gold text-white text-[13px] font-bold hover:opacity-90 transition">바로구매</button>
+             </div>`}
       </div>`;
     }
     function renderCatalog(){
@@ -464,12 +518,14 @@
         const badge=best
           ? '<span class="absolute -top-2.5 left-5 bg-gold text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">가장 인기</span>'
           : '';
-        return `<div onclick="addToCart('pass','${p.id}')" class="pass-card relative bg-white rounded-2xl border ${best?'border-gold/50 ring-1 ring-gold/15':'border-ink/12'} shadow-soft p-5 pt-6 flex flex-col text-left cursor-pointer">
+        return `<div class="pass-card relative bg-white rounded-2xl border ${best?'border-gold/50 ring-1 ring-gold/15':'border-ink/12'} shadow-soft p-5 pt-6 flex flex-col text-left cursor-pointer">
           ${badge}
           <p class="font-bold text-[15px]">${esc(p.name)}</p>
           <div class="mt-2 mb-1 flex items-end gap-1.5"><span class="text-2xl font-bold text-neutral-900">${won(p.price)}</span>${monthly?`<span class="text-[11px] text-neutral-900/45 mb-1">월 ${won(monthly)}꼴</span>`:''}</div>
           <ul class="text-xs text-neutral-900/65 space-y-1.5 my-3 flex-1">${bullets.map(b=>`<li class="flex gap-1.5"><span class="text-gold shrink-0">✓</span><span>${esc(b)}</span></li>`).join('')}</ul>
-          <button onclick="event.stopPropagation();addToCart('pass','${p.id}')" class="pass-cta w-full bg-gold text-white font-bold text-sm py-2.5 rounded-xl transition">이용권 담기</button>
+          ${OWNED.pass?`<p class="text-[12px] font-bold text-gold mb-2">✓ 이용 중${OWNED.passUntil?' · '+fmtYMD(OWNED.passUntil)+'까지':''} — 지금 구매하면 기간이 새로 1년이 됩니다</p>`:''}
+          <button onclick="buyNow('pass','${p.id}')" class="pass-cta w-full h-12 bg-gold text-white font-bold text-[15px] rounded-xl transition">${OWNED.pass?'연장 구매하기':'바로 구매하기'}</button>
+          <button onclick="addToCart('pass','${p.id}')" class="w-full h-11 mt-1.5 text-neutral-600 font-semibold text-sm rounded-xl hover:text-gold transition">장바구니에 담기</button>
         </div>`;
       }).join('');
     }
@@ -483,45 +539,66 @@
           +'<img src="/images/bible-insight-emblem.png?v=2" alt="" class="w-14 mx-auto mb-4 opacity-90"/>'
           +'<p class="font-bold text-neutral-900 text-lg mb-1.5">장바구니가 비어 있어요</p>'
           +'<p class="text-sm text-neutral-500 mb-6">마음에 드는 책자나 이용권을 담아보세요.</p>'
-          +'<button onclick="goCatalog()" class="inline-block bg-gold text-white font-bold px-7 py-3 rounded-full hover:opacity-90 transition shadow-soft">책자 둘러보기 →</button></div>';
+          +'<button onclick="goCatalog()" class="inline-block bg-gold text-white font-bold px-7 py-3 rounded-full hover:opacity-90 transition shadow-soft">책자 둘러보기 →</button>'
+          +'<a href="orders.html" class="block text-sm text-neutral-500 hover:text-gold mt-4">지난 주문·결제 내역 보기 →</a></div>';
         if(sum) sum.innerHTML=''; return;
       }
-      list.innerHTML=CART.map(it=>{
-        const sub = it.kind==='pass' ? ('전체 이용권 · '+esc(it.term||'')) : ('PDF 교재 · 전 '+it.lessons+'강 · 약 '+it.pages+'쪽');
-        return `<div class="bg-white rounded-2xl border border-ink/10 shadow-soft px-4 py-4 flex items-center gap-4">
-        <div class="w-12 h-14 rounded-lg shrink-0 flex items-center justify-center" style="background:linear-gradient(158deg,#22345a,#2f4870)">
-          <img src="/images/bible-insight-emblem-white.png?v=2" alt="" class="w-7"/>
+      const buyable=CART.filter(c=>!isOwned(c)), sel=orderItems(), allOn=buyable.length>0 && buyable.every(c=>c.sel!==false);
+      const owned=CART.filter(isOwned);
+      const head=`<div class="flex items-center justify-between bg-white rounded-2xl border border-ink/10 px-4 h-12">
+          <label class="flex items-center gap-2.5 text-sm font-semibold cursor-pointer"><input type="checkbox" class="w-5 h-5 accent-[#00704a]" ${allOn?'checked':''} onchange="toggleAll(this.checked)"/> 전체 선택 <span class="text-neutral-400 font-normal">(${sel.length}/${buyable.length})</span></label>
+          <button onclick="removeSelected()" class="text-sm text-neutral-500 hover:text-rose-500 px-2 h-10">선택 삭제</button>
+        </div>`;
+      const rows=CART.map(it=>{
+        const own=isOwned(it), on=!own && it.sel!==false, k=String(it.key).replace(/'/g,"\\'");
+        const sub = it.kind==='pass' ? ('전체 이용권 · '+esc(it.term||'')+' · 모든 책자 열람') : ('PDF 교재 · 전 '+it.lessons+'강 · 약 '+it.pages+'쪽');
+        return `<div class="bg-white rounded-2xl border ${on?'border-gold/40':'border-ink/10'} shadow-soft px-4 py-4 flex items-center gap-3 ${own?'opacity-70':''}">
+        <input type="checkbox" class="w-5 h-5 accent-[#00704a] shrink-0" ${on?'checked':''} ${own?'disabled':''} onchange="toggleSel('${k}')" aria-label="${esc(it.name)} 선택"/>
+        <div class="w-11 h-14 rounded-lg shrink-0 flex items-center justify-center" style="background:linear-gradient(158deg,${it.kind==='pass'?'#0a7a52,#00573a':'#22345a,#2f4870'})">
+          <img src="/images/bible-insight-emblem-white.png?v=2" alt="" class="w-6"/>
         </div>
         <div class="flex-1 min-w-0">
-          <p class="font-bold text-[15px] text-neutral-900 truncate leading-snug">${esc(it.name)}</p>
-          <p class="text-[12.5px] text-neutral-500 mt-1">${sub}</p>
+          <p class="font-bold text-[15px] text-neutral-900 leading-snug line-clamp-2">${esc(it.name)}</p>
+          <p class="text-[12.5px] text-neutral-500 mt-1">${own?'<b class="text-gold">이미 구매함</b> · <a class="underline" href="booklet.html?track='+encodeURIComponent(it.name)+'">바로 보기</a>':sub}</p>
         </div>
         <div class="text-right shrink-0">
-          <p class="text-gold font-extrabold text-base leading-none">${won(it.price)}</p>
-          <button onclick="removeFromCart('${String(it.key).replace(/'/g,"\\'")}')" class="text-[11.5px] text-neutral-400 hover:text-rose-500 transition mt-2">삭제</button>
+          <p class="${own?'text-neutral-400 line-through':'text-gold'} font-extrabold text-base leading-none">${won(it.price)}</p>
+          <button onclick="removeFromCart('${k}')" class="text-[12.5px] text-neutral-400 hover:text-rose-500 transition mt-1.5 h-9 px-1">삭제</button>
         </div>
       </div>`;}).join('');
-      if(sum) sum.innerHTML=`<div class="bg-white rounded-2xl border border-ink/10 shadow-card p-5 mt-4">
-        <div class="flex items-center justify-between mb-3"><span class="text-sm text-neutral-500">상품 금액 (${CART.length}개)</span><span class="text-sm font-semibold text-neutral-700">${won(cartTotal())}</span></div>
+      // 책자 합계가 이용권 가격 이상이면 이용권 전환을 제안(교보의 '묶음이 더 싸요' 안내와 같은 역할)
+      const pass=PASSES[0], selBooks=sel.filter(c=>c.kind==='book'), selBookSum=itemsTotal(selBooks);
+      const upsell=(pass && !OWNED.pass && !sel.some(c=>c.kind==='pass') && selBooks.length>=2 && selBookSum>=pass.price*0.8)
+        ? `<div class="bg-gold/[0.06] border border-gold/30 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center gap-3">
+            <p class="text-sm leading-relaxed flex-1">선택하신 책자 ${selBooks.length}권 합계 <b>${won(selBookSum)}</b><br/><b class="text-gold">${esc(pass.name)} ${won(pass.price)}</b>이면 책자 ${TRACKS.length}권 전부 + 새 책자까지 볼 수 있어요.</p>
+            <button onclick="swapToPass()" class="h-11 px-4 rounded-xl bg-gold text-white text-sm font-bold shrink-0">이용권으로 바꾸기</button></div>` : '';
+      const ownNote=owned.length?`<p class="text-xs text-neutral-500 px-1">이미 구매하신 자료 ${owned.length}개는 결제에서 빠집니다. <button onclick="removeOwned()" class="underline hover:text-gold">장바구니에서 지우기</button></p>`:'';
+      list.innerHTML=head+rows+upsell+ownNote;
+      const total=itemsTotal(sel);
+      if(sum) sum.innerHTML=`<div class="bg-white rounded-2xl border border-ink/10 shadow-card p-5 mt-1 md:sticky md:bottom-4">
+        <div class="flex items-center justify-between mb-3"><span class="text-sm text-neutral-500">선택 상품 (${sel.length}개)</span><span class="text-sm font-semibold text-neutral-700">${won(total)}</span></div>
         <div class="flex items-center justify-between border-t border-ink/8 pt-3">
           <span class="font-bold text-neutral-900">결제 예정 금액</span>
-          <span class="text-2xl font-extrabold text-neutral-900">${won(cartTotal())}</span>
+          <span class="text-2xl font-extrabold text-neutral-900">${won(total)}</span>
         </div>
-        <p class="text-[11.5px] text-neutral-400 mt-1.5 text-right">결제는 다음 단계에서 진행돼요</p>
-        <button onclick="showView('checkout')" class="w-full bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition mt-5 shadow-soft">주문서 작성 · 결제 →</button>
-        <button onclick="goCatalog()" class="w-full text-neutral-500 text-sm py-2.5 mt-1 hover:text-gold transition">+ 더 담으러 가기</button>
+        <button onclick="goCheckout()" ${sel.length?'':'disabled'} class="w-full h-14 bg-gold text-white font-bold text-[16px] rounded-xl hover:opacity-90 transition mt-5 shadow-soft disabled:opacity-40 disabled:cursor-not-allowed">${sel.length?won(total)+' 주문하기':'주문할 상품을 선택하세요'}</button>
+        <button onclick="goCatalog()" class="w-full text-neutral-500 text-sm h-11 mt-1 hover:text-gold transition">+ 더 담으러 가기</button>
       </div>`;
     }
+    function goCheckout(){ if(!orderItems().length) return; showView('checkout'); }
 
     /* ---------------- 주문/결제 ---------------- */
     function renderCheckout(){
-      if(!CART.length){ showView('cart'); return; }
+      const ITEMS=orderItems();
+      if(!ITEMS.length){ showView('cart'); return; }
       const co=$('coSummary');
-      const hasBook=CART.some(c=>c.kind==='book');
+      const hasBook=ITEMS.some(c=>c.kind==='book');
       const fb=$('formatBox'); if(fb) fb.classList.toggle('hidden', !hasBook);
-      if(co) co.innerHTML=CART.map(it=>`<div class="flex items-center justify-between py-1"><span class="text-sm text-neutral-900/80 truncate pr-3">${it.kind==='pass'?'':''} ${esc(it.name)}</span><span class="text-sm font-semibold text-neutral-900 shrink-0">${won(it.price)}</span></div>`).join('')
-        +`<div class="flex items-center justify-between border-t border-ink/10 mt-2 pt-2"><span class="font-bold">합계 (${CART.length}개)</span><span class="font-bold text-gold text-lg">${won(cartTotal())}</span></div>`
-        +(IS_APP?`<button type="button" class="coEdit" onclick="showView('cart')">담은 상품 수정</button>`:'');
+      if(co) co.innerHTML=`<p class="text-xs font-bold text-neutral-900/55 mb-1">${BUY_NOW?'바로구매 상품':'주문 상품'}</p>`
+        +ITEMS.map(it=>`<div class="flex items-center justify-between py-1"><span class="text-sm text-neutral-900/80 truncate pr-3">${esc(it.name)}${it.kind==='book'?' <span class="text-neutral-400">PDF</span>':''}</span><span class="text-sm font-semibold text-neutral-900 shrink-0">${won(it.price)}</span></div>`).join('')
+        +`<div class="flex items-center justify-between border-t border-ink/10 mt-2 pt-2"><span class="font-bold">합계 (${ITEMS.length}개)</span><span class="font-bold text-gold text-lg">${won(itemsTotal(ITEMS))}</span></div>`
+        +(IS_APP&&!BUY_NOW?`<button type="button" class="coEdit" onclick="showView('cart')">담은 상품 수정</button>`:'');
+      const bs=$('bSubmit'); if(bs){ bs.disabled=false; bs.textContent=won(itemsTotal(ITEMS))+' 결제하기'; }
       const m=$('bMsg'); if(m) m.textContent='';
       prefillOrderForm();   // 로그인 시 이름·이메일·연락처 자동 입력(수정 가능)
     }
@@ -580,7 +657,8 @@
       const btn=$('bSubmit'); btn.disabled=true; btn.textContent='결제창 여는 중…';
       try{
         let userId=null; try{ const {data}=await sb.auth.getUser(); userId=(data&&data.user&&data.user.id)||null; }catch(e){}
-        const items=CART.map(c=>({ kind:c.kind, itemId: c.kind==='pass' ? String(c.key).split(':')[1] : c.name }));
+        const ITEMS=orderItems();
+        const items=ITEMS.map(c=>({ kind:c.kind, itemId: c.kind==='pass' ? String(c.key).split(':')[1] : c.name }));
         const r=await fetch('/api/pay/create-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items,email,userId})});
         const raw=await r.text();
         let o={}; try{ o=raw?JSON.parse(raw):{}; }catch(e){ o={}; }
@@ -588,6 +666,8 @@
           const detail = o.error || (r.status===404||r.status===405 ? '결제 서버(함수)가 아직 배포되지 않았어요. 잠시 후 다시 시도해 주세요.' : ('결제 서버 응답 오류 ('+r.status+')'));
           msg.textContent='주문 생성 실패: '+detail; btn.disabled=false; btn.textContent='결제하기'; return; }
         if(typeof TossPayments!=='function'){ msg.textContent='결제 모듈을 불러오지 못했어요. 새로고침 후 다시 시도해 주세요.'; btn.disabled=false; btn.textContent='결제하기'; return; }
+        // 결제 완료 화면(pay-success)에서 장바구니의 이 상품들만 지우도록 기록(바로구매면 장바구니는 그대로)
+        try{ localStorage.setItem('bibly_pending_order', JSON.stringify({ orderId:o.orderId, keys: BUY_NOW?[]:ITEMS.map(c=>c.key) })); }catch(e){}
         const toss=TossPayments(TOSS_CLIENT_KEY);
         await toss.requestPayment('카드',{
           amount:o.amount, orderId:o.orderId, orderName:o.orderName,
@@ -598,15 +678,16 @@
       }catch(e){
         const m=(e&&e.message)||'';
         if(!/취소|cancel|USER_CANCEL/i.test(m)) msg.textContent='결제 진행 중 문제가 발생했어요. '+m;
-        btn.disabled=false; btn.textContent='결제하기';
+        btn.disabled=false; btn.textContent=won(cartTotal())+' 결제하기';
       }
     }
     async function placeOrder(){
       const msg=$('bMsg'); msg.style.color='#dc2626'; msg.textContent='';
       if($('bHp').value) return;
-      if(!CART.length){ showView('cart'); return; }
+      const ITEMS=orderItems();
+      if(!ITEMS.length){ showView('cart'); return; }
       const name=$('bName').value.trim(), email=$('bEmail').value.trim(), phone=$('bPhone').value.trim();
-      const hasBook=CART.some(c=>c.kind==='book'), hasPassItem=CART.some(c=>c.kind==='pass');
+      const hasBook=ITEMS.some(c=>c.kind==='book'), hasPassItem=ITEMS.some(c=>c.kind==='pass');
       const fr=document.querySelector('input[name=oformat]:checked');
       let format=hasBook?(fr?fr.value:'PDF'):'이용권';
       const pay=document.querySelector('input[name=opay]:checked').value;
@@ -621,7 +702,7 @@
         return payByCard(name, email, phone);
       }
       const price=cartTotal();
-      const itemsStr=CART.map(it=>it.name+'('+won(it.price)+')').join(', ');
+      const itemsStr=ITEMS.map(it=>it.name+'('+won(it.price)+')').join(', ');
       const no=orderNo();
       const interest='북스토어 주문 — '+itemsStr+' / '+format+' / '+pay+' / 합계 '+won(price)+' / 주문번호 '+no;
       const motivation='주문번호:'+no+' | 상품:'+itemsStr+' | 형태:'+format+' | 결제:'+pay+' | 합계:'+won(price)+(addr?(' | 배송지:'+addr):'');
@@ -629,11 +710,13 @@
       let error;
       try{ const res=await withTimeout(sb.from('course_applications').insert({name:name||null,email,phone:phone||null,interest,motivation}),9000); error=res.error; }
       catch(e){ error=e; }
-      btn.disabled=false; btn.textContent='결제하기';
+      btn.disabled=false; btn.textContent=won(price)+' 결제하기';
       if(error){ if(tableMissing(error)) msg.innerHTML='주문 접수를 준비 중이에요. 잠시 후 다시 시도하거나 <a href="mailto:'+ (PAY.contact_email||'contact@biblynote.com') +'" class="underline">이메일</a>로 알려주세요.'; else msg.textContent='주문 중 오류가 났어요: '+(error.message||error); return; }
       notifyOrder({no,items:itemsStr,price,format,pay,name,email,phone,addr});
-      const done={no,price,format,pay,hasPass:hasPassItem,count:CART.length,name,email,items:CART.map(it=>({name:it.name,price:it.price})),date:new Date()};
-      CART=[]; saveCart();
+      const done={no,price,format,pay,hasPass:hasPassItem,count:ITEMS.length,name,email,items:ITEMS.map(it=>({name:it.name,price:it.price})),date:new Date()};
+      // 주문한 상품만 장바구니에서 뺀다(체크 안 한 상품·바로구매 전 담아 둔 상품은 그대로)
+      if(!BUY_NOW){ const ks=new Set(ITEMS.map(it=>it.key)); CART=CART.filter(c=>!ks.has(c.key)); saveCart(); }
+      BUY_NOW=null;
       showDone(done);
     }
     function payGuide(pay,price){
@@ -679,7 +762,9 @@
         +'<p class="text-neutral-900/55 text-sm mt-5 leading-relaxed">결제(입금·송금)가 확인되면 '+(o.hasPass?'<b class="text-neutral-900">전체 이용권</b>과 함께 ':'')+(o.format==='실물제본'?'주문하신 <b class="text-neutral-900">책자를 제본 후 배송</b>해 드려요.':'<a href="mylearning.html" class="text-gold font-semibold underline">내 구매·자료</a>에서 <b class="text-neutral-900">전체 PDF를 바로 열람·다운로드</b>하실 수 있게 열어드려요. <span class="text-neutral-900/40">(로그인 계정 기준)</span>')+' </p>'
         +'<button onclick="issueReceipt()" class="inline-flex items-center gap-2 border border-ink/15 bg-white text-neutral-800 font-semibold text-sm px-5 py-2.5 rounded-xl hover:border-gold hover:text-gold transition mt-6"><svg viewBox="0 0 24 24" fill="none" class="w-4 h-4"><path d="M6 2h9l3 3v17l-2.5-1.5L13 22l-2.5-1.5L8 22l-2.5-1.5L6 22V2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 8h6M9 12h6M9 16h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>영수증 발행</button>'
         +'<p class="text-neutral-900/40 text-[11px] mt-2">거래 확인용 영수증을 PDF로 저장하거나 인쇄할 수 있어요.</p>'
-        +'<div class="flex gap-2 justify-center mt-6"><a href="store-help.html" class="text-gold font-semibold hover:underline text-sm">고객센터 →</a><span class="text-neutral-900/20">·</span><a href="booklet.html" class="text-neutral-900/50 hover:text-gold text-sm">계속 둘러보기</a></div></div>';
+        +'<a href="orders.html" class="flex items-center justify-center h-12 rounded-xl bg-ink text-white font-bold text-[15px] mt-6 hover:opacity-90">주문·결제 내역 보기</a>'
+        +'<p class="text-neutral-900/45 text-[11.5px] mt-1.5">입금 상태와 영수증은 주문내역에서 언제든 다시 확인할 수 있어요 (로그인 계정 기준).</p>'
+        +'<div class="flex gap-2 justify-center mt-5"><a href="store-help.html" class="text-gold font-semibold hover:underline text-sm">고객센터 →</a><span class="text-neutral-900/20">·</span><a href="booklet.html" class="text-neutral-900/50 hover:text-gold text-sm">계속 둘러보기</a></div></div>';
       window.scrollTo(0,0);
     }
     // 영수증(거래 확인서) 발행 — 사업자정보 + 주문내역으로 인쇄용 문서 생성

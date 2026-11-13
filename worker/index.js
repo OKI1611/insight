@@ -144,6 +144,88 @@ async function confirmPay(request, env) {
   return json({ ok: true, amount: order.amount, method: (toss && toss.method) || '카드', receipt: (toss && toss.receipt && toss.receipt.url) || null, items: order.items });
 }
 
+// ===== 회원 본인 주문·결제 내역 (/api/pay/my-orders) =====
+// orders(카드결제)·course_applications(무통장·송금 주문)는 RLS상 관리자만 읽을 수 있으므로,
+// 로그인 토큰을 Supabase로 검증한 뒤 그 회원의 이메일·user_id 에 해당하는 행만 service_role 로 골라 돌려준다.
+async function verifyUser(request) {
+  const token = (request.headers.get('Authorization') || '').replace(/^Bearer\s+/i, '');
+  if (!token) return null;
+  try {
+    const r = await fetch(SUPABASE_URL + '/auth/v1/user', { headers: { apikey: SUPABASE_ANON, Authorization: 'Bearer ' + token } });
+    if (!r.ok) return null;
+    const u = await r.json();
+    return (u && u.id && u.email) ? u : null;
+  } catch (e) { return null; }
+}
+async function sbGet(env, path) {
+  try { const r = await fetch(SUPABASE_URL + '/rest/v1/' + path, { headers: sbH(env) }); return r.ok ? await r.json() : []; } catch (e) { return []; }
+}
+// 무통장 주문 기록(motivation)의 "상품:이름(₩1,234), 이름2(₩5,678)" 를 항목 배열로
+function parseBankItems(s) {
+  const m = String(s || '').match(/상품:(.*?)(?:\s\|\s|$)/); if (!m) return [];
+  const out = []; const re = /(.+?)\(₩([\d,]+)\)(?:,\s*|$)/g; let x;
+  while ((x = re.exec(m[1]))) out.push({ name: x[1].trim(), amount: Number(x[2].replace(/,/g, '')) || 0 });
+  return out;
+}
+function pick(re, s) { const m = String(s || '').match(re); return m ? m[1].trim() : ''; }
+async function myOrders(request, env) {
+  const u = await verifyUser(request);
+  if (!u) return json({ error: '로그인이 필요합니다' }, 401);
+  if (!env.SUPABASE_SERVICE_KEY) return json({ error: 'SUPABASE_SERVICE_KEY 환경변수가 설정되지 않았습니다' }, 500);
+  const email = u.email.toLowerCase();
+  // ilike 로 대소문자만 무시하고, _·% 는 와일드카드가 되지 않게 이스케이프(남의 주문이 섞이지 않도록)
+  const enc = (v) => encodeURIComponent(v);
+  const em = enc(email.replace(/([\\_%])/g, '\\$1'));
+  const [byEmail, byUser, apps, passRows, bookRows] = await Promise.all([
+    sbGet(env, 'orders?select=order_id,email,items,amount,status,paid_at,created_at&email=ilike.' + em + '&order=created_at.desc&limit=200'),
+    sbGet(env, 'orders?select=order_id,email,items,amount,status,paid_at,created_at&user_id=eq.' + enc(u.id) + '&order=created_at.desc&limit=200'),
+    sbGet(env, 'course_applications?select=id,interest,motivation,created_at&email=ilike.' + em + '&interest=like.' + enc('북스토어 주문*') + '&order=created_at.desc&limit=200'),
+    sbGet(env, 'pass_members?select=expires_at&email=ilike.' + em),
+    sbGet(env, 'book_access?select=track,expires_at&email=ilike.' + em)
+  ]);
+  const seen = new Set(); const list = [];
+  for (const o of [...(byEmail || []), ...(byUser || [])]) {
+    if (!o || seen.has(o.order_id)) continue; seen.add(o.order_id);
+    // 결제창만 열고 닫은 주문(pending)·승인 실패는 내역에 보이지 않게 한다 — 실제 결제된 건만
+    if (o.status !== 'paid' && o.status !== 'canceled' && o.status !== 'refunded') continue;
+    list.push({ id: o.order_id, type: 'card', method: '카드결제', status: o.status, amount: Number(o.amount) || 0,
+      items: (o.items || []).map(it => ({ kind: it.kind, itemId: it.itemId, name: it.name, amount: Number(it.amount) || 0 })),
+      date: o.paid_at || o.created_at });
+  }
+  const hasPass = (passRows || []).length > 0;
+  const tracks = new Set((bookRows || []).map(b => b.track));
+  for (const a of (apps || [])) {
+    const items = parseBankItems(a.motivation);
+    // 입금 확인 = 담당자가 권한을 열어 줬는지로 판단(이용권은 pass_members, 책자는 book_access)
+    const granted = items.length > 0 && items.every(it => /이용권/.test(it.name) ? hasPass : tracks.has(it.name));
+    list.push({ id: pick(/주문번호:([^|]+)/, a.motivation) || String(a.id).slice(0, 8), type: 'bank',
+      method: pick(/결제:([^|]+)/, a.motivation) || '무통장입금', status: granted ? 'paid' : 'waiting',
+      amount: items.reduce((s, x) => s + x.amount, 0), items: items.map(it => ({ kind: /이용권/.test(it.name) ? 'pass' : 'book', itemId: it.name, name: it.name, amount: it.amount })),
+      date: a.created_at });
+  }
+  list.sort((a, b) => String(b.date).localeCompare(String(a.date)));
+  return json({ ok: true, email: u.email, orders: list });
+}
+// 카드 매출전표(토스 영수증) 주소 — 본인 주문인지 확인한 뒤 토스에서 조회해 돌려준다
+async function myReceipt(request, env) {
+  const u = await verifyUser(request);
+  if (!u) return json({ error: '로그인이 필요합니다' }, 401);
+  const orderId = new URL(request.url).searchParams.get('orderId') || '';
+  const os = await sbGet(env, 'orders?select=order_id,email,user_id,payment_key,status&order_id=eq.' + encodeURIComponent(orderId));
+  const o = Array.isArray(os) ? os[0] : null;
+  const mine = o && (o.user_id === u.id || String(o.email || '').toLowerCase() === u.email.toLowerCase());
+  if (!mine) return json({ error: '주문을 찾을 수 없습니다' }, 404);
+  if (!o.payment_key) return json({ error: '결제 정보가 없습니다' }, 404);
+  try {
+    const secret = env.TOSS_SECRET_KEY || TOSS_TEST_SECRET;
+    const r = await fetch('https://api.tosspayments.com/v1/payments/' + encodeURIComponent(o.payment_key), { headers: { Authorization: 'Basic ' + btoa(secret + ':') } });
+    const t = await r.json();
+    const url = t && t.receipt && t.receipt.url;
+    if (!url) return json({ error: '영수증을 찾지 못했습니다' }, 404);
+    return json({ ok: true, url, status: t.status || '' });
+  } catch (e) { return json({ error: '영수증 조회 오류' }, 502); }
+}
+
 // ===== 유튜브 채널 실적 실시간 조회 (/api/yt/stats) =====
 // API 키 없이 채널 페이지를 서버에서 읽어 파싱한다(키 노출 없음).
 // 엣지에서 10분 캐시하므로 방문자가 많아도 유튜브 요청은 10분에 1회 수준.
@@ -285,8 +367,10 @@ export default {
     if ((p === '/watch' || p === '/watch.html') && request.method === 'GET' && url.searchParams.get('v')) return watchMeta(request, env, url);
     if (p === '/api/admin/notice' && request.method === 'POST') return adminNotice(request, env);
     if (p.startsWith('/api/pay/')) {
-      if (request.method === 'OPTIONS') return new Response(null, { headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET,POST,OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type' } });
+      if (request.method === 'OPTIONS') return new Response(null, { headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET,POST,OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, Authorization' } });
       if (p === '/api/pay/ping') return ping(env);
+      if (p === '/api/pay/my-orders') return myOrders(request, env);
+      if (p === '/api/pay/my-receipt') return myReceipt(request, env);
       if (p === '/api/pay/create-order' && request.method === 'POST') return createOrder(request, env);
       if (p === '/api/pay/confirm' && request.method === 'POST') return confirmPay(request, env);
       if (p === '/api/pay/admin/orders') return adminOrders(request, env);
