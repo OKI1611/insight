@@ -2282,6 +2282,89 @@
   </script>
 
   <!-- ====================================================================== -->
+  <!--  마라나타 서울모임 2차(12/19) 안내 팝업                                   -->
+  <!--  오픈: 2026-11-16 13:00 KST 자동 · 종료: 행사 시작(12-19 14:00) 자동        -->
+  <!--  미리보기: /?meetpreview=1 (오픈 시각 전에도 띄워 봄)                      -->
+  <!--  행사 후 제거 커밋 불필요 — 시간이 지나면 저절로 안 뜬다                    -->
+  <!-- ====================================================================== -->
+  <div id="meetPopup" class="fixed inset-0 z-[120] hidden items-end sm:items-center justify-center p-0 sm:p-4">
+    <div id="meetPopupBg" class="absolute inset-0 bg-ink/55 backdrop-blur-[2px]"></div>
+    <div class="relative bg-white w-full max-w-full sm:max-w-lg rounded-t-3xl sm:rounded-3xl shadow-2xl overflow-y-auto overflow-x-hidden max-h-[92vh]">
+      <button id="meetPopupX" aria-label="닫기"
+              class="absolute top-2.5 right-2.5 z-10 w-11 h-11 rounded-full bg-white/15 border border-white/25 text-white/80 hover:bg-white/25 hover:text-white text-xl leading-none">✕</button>
+      <div class="px-6 py-6 bg-gradient-to-br from-navy to-ink text-center">
+        <span class="inline-flex items-center gap-1.5 text-[12px] font-bold text-[#2a2000] bg-[#ffd76a] rounded-full px-3 py-1">12월 19일(토) 오후 2시 · 강변역</span>
+        <p class="font-bold text-white text-[23px] sm:text-[26px] leading-snug mt-3">다시 기다리는 <span class="text-[#ffd76a]">성탄</span></p>
+        <p class="text-[13px] text-white/70 mt-1.5 tracking-wide">마라나타 서울모임 · 두 번째 만남</p>
+        <p class="text-[13px] text-white/80 leading-relaxed mt-3">성탄을 엿새 앞둔 토요일 오후,<br/>다시 오실 그분을 기다리는 사람들이 모입니다.</p>
+      </div>
+
+      <div class="px-5 pt-4">
+        <div class="rounded-xl border border-ink/10 divide-y divide-ink/5">
+          <div class="flex gap-3 px-4 py-2.5 text-[13.5px]"><span class="shrink-0 font-bold text-navy w-9">일시</span><span class="text-neutral-900/75">12월 19일(토) 오후 2시–5시 <span class="text-neutral-900/45">(1시 30분부터 입장)</span></span></div>
+          <div class="flex gap-3 px-4 py-2.5 text-[13.5px]"><span class="shrink-0 font-bold text-navy w-9">장소</span><span class="text-neutral-900/75">강변역 테크노마트 9층 코아레스 C룸<br/><span class="text-neutral-900/45">2호선 강변역 1번 출구 연결</span></span></div>
+          <div class="flex gap-3 px-4 py-2.5 text-[13.5px]"><span class="shrink-0 font-bold text-navy w-9">함께</span><span class="text-neutral-900/75">성탄 특강 · 조별 나눔 · 한 해 감사 나눔 · 마라나타 바자회</span></div>
+          <div class="flex gap-3 px-4 py-2.5 text-[13.5px]"><span class="shrink-0 font-bold text-navy w-9">선물</span><span class="text-neutral-900/75">신청 때 고르신 <b>저자 책 1권</b>을 현장에서 드립니다</span></div>
+        </div>
+      </div>
+
+      <div class="px-5 pt-4 pb-5">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfxUTjFYCEqR6MHBNT6ZErIH_KEL7cjPaDUI5nBurEHkqqy3g/viewform"
+           target="_blank" rel="noopener"
+           class="block w-full text-center bg-navy text-[#ffd76a] font-bold text-[15.5px] py-4 rounded-xl hover:opacity-90 transition">참가 신청하기 →</a>
+        <p class="text-center text-[12px] text-neutral-900/45 mt-2.5">참가비 없음 · 좌석 한정, 신청 순 마감</p>
+        <div class="flex items-center justify-between mt-3">
+          <label class="flex items-center gap-1.5 text-[13.5px] text-neutral-900/55 cursor-pointer select-none py-2">
+            <input id="meetPopupToday" type="checkbox" class="accent-[#00704a]"/> 오늘 하루 보지 않기
+          </label>
+          <button id="meetPopupClose" class="text-[13.5px] text-neutral-900/55 hover:text-neutral-900 py-2 px-2">닫기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var OPEN  = new Date('2026-11-16T13:00:00+09:00').getTime();   // 공지 오픈 시각
+    var CLOSE = new Date('2026-12-19T14:00:00+09:00').getTime();   // 행사 시작과 함께 종료
+    var KEY='bibly_meet2_popup_until';   // '오늘 하루 보지 않기' — 24시간
+    var SEEN='bibly_meet2_popup_seen';   // 한 번 보고 닫으면 이번 방문 동안은 그만
+    var el=document.getElementById('meetPopup'); if(!el) return;
+    if(el.dataset.wired) return; el.dataset.wired='1';
+    var preview = /[?&]meetpreview=1/.test(location.search);
+    var now = Date.now();
+    if(now >= CLOSE) return;
+    if(now < OPEN && !preview) return;
+    if(!preview){
+      try{ if(now < (+localStorage.getItem(KEY)||0)) return; }catch(e){}
+      try{ if(sessionStorage.getItem(SEEN)) return; }catch(e){}
+    }
+
+    var timer = null;
+    function markSeen(){ try{ sessionStorage.setItem(SEEN,'1'); }catch(e){} }
+    function close(){
+      if(timer){ clearTimeout(timer); timer = null; }
+      try{ if(document.getElementById('meetPopupToday').checked)
+             localStorage.setItem(KEY, String(Date.now()+24*3600*1000)); }catch(e){}
+      markSeen();
+      el.classList.add('hidden'); el.classList.remove('flex');
+      document.removeEventListener('keydown', onKey);
+    }
+    function onKey(e){ if(e.key==='Escape') close(); }
+    timer = setTimeout(function(){
+      timer = null;
+      window.__meetPopupShown = true;   // 같은 방문에서 책 팝업은 생략된다(아래 책 팝업 스크립트 참조)
+      el.classList.remove('hidden'); el.classList.add('flex');
+      markSeen();
+      document.addEventListener('keydown', onKey);
+    }, 1200);
+    document.getElementById('meetPopupX').addEventListener('click', close);
+    document.getElementById('meetPopupClose').addEventListener('click', close);
+    document.getElementById('meetPopupBg').addEventListener('click', close);
+    el.querySelectorAll('a[href]').forEach(function(a){ a.addEventListener('click', markSeen); });
+  })();
+  </script>
+
+  <!-- ====================================================================== -->
   <!--  저자의 책 홍보 팝업 — 도서 교체 시 이 블록의 표지/카피만 수정              -->
   <!--  다시 안 보임 조건: localStorage bibly_book_popup_until (24시간)          -->
   <!-- ====================================================================== -->
