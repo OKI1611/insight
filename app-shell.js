@@ -11,7 +11,7 @@
     home:'<svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>',
     play:'<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor" stroke="none"/></svg>',
     book:'<svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21z"/><path d="M4 18.5A2.5 2.5 0 0 1 6.5 16H20"/><path d="M12 7v5"/><path d="M9.5 9.5h5"/></svg>',
-    chat:'<svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M9 11h6"/><path d="M9 14h3.5"/></svg>',
+    find:'<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>',
     user:'<svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg>',
     back:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>',
     search:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>',
@@ -21,12 +21,12 @@
     { k:'home',  l:'홈',   h:'/app',        i:ICON.home, m:/^\/(app(\.html)?)?$/ },
     { k:'learn', l:'강의', h:'/curriculum', i:ICON.play, m:/^\/(curriculum|watch|find|curriculum-guide|booklet)(\.html)?$/ },
     { k:'bible', l:'성경', h:'/bible',      i:ICON.book, m:/^\/(bible|dictionary|themes|bible-english(-unit)?|translation-notes|kjv-preface|search)(\.html)?$/ },
-    { k:'qna',   l:'질문', h:'/qna',        i:ICON.chat, m:/^\/(qna|qna-board|qna-write|community)(\.html)?$/ },
+    { k:'find',  l:'검색', h:'/app-menu?p=search', i:ICON.find, m:/^\/search(\.html)?$/ },
     { k:'my',    l:'MY',   h:'/mylearning', i:ICON.user, m:/^\/(mylearning|academy|exam|profile|support|notices|event|tester)(\.html)?$/ }
   ];
   var path = (location.pathname.replace(/\/+$/, '') || '/');
   function tabOf(p){
-    if(/^\/app-menu(\.html)?$/.test(p)){ var pp = new URLSearchParams(location.search).get('p') || ''; var k = (pp === 'qna' || pp === 'board') ? 'qna' : (pp === 'dictionary' || pp === 'themes' || pp === 'english' || pp === 'notes') ? 'bible' : (pp === 'store' || pp === 'academy') ? 'learn' : 'home'; return TABS.filter(function(t){ return t.k === k; })[0]; }
+    if(/^\/app-menu(\.html)?$/.test(p)){ var pp = new URLSearchParams(location.search).get('p') || ''; var k = (pp === 'search') ? 'find' : (pp === 'dictionary' || pp === 'themes' || pp === 'english' || pp === 'notes') ? 'bible' : (pp === 'store' || pp === 'academy') ? 'learn' : 'home'; return TABS.filter(function(t){ return t.k === k; })[0]; }
     for(var i=0;i<TABS.length;i++){ if(TABS[i].m.test(p)) return TABS[i]; } return null;
   }
   var cur = tabOf(path);
@@ -36,7 +36,7 @@
     if(window.__appTitle) return window.__appTitle;
     var m = document.querySelector('meta[name="app-title"]'); if(m && m.content) return m.content;
     var t = (document.title || '').split(/\s[—|·|]\s|\s-\s/)[0].trim();
-    return t || 'BIBLY';
+    return t || '바이블 인사이트';
   }
   // 페이지가 상단바 제목을 직접 정한다(예: 성경 「요한복음 3장」)
   window.__setAppTitle = function(t){ window.__appTitle = t; var el = document.getElementById('appTitle'); if(el){ el.textContent = t; el.classList.toggle('long', t.length > 14); } };
@@ -50,7 +50,7 @@
     bar.innerHTML = '<div class="ab">'
       + '<button type="button" id="appBack" aria-label="뒤로">' + ICON.back + '<span class="bk">뒤로</span></button>'
       + '<div class="ttl' + (pageTitle().length > 14 ? ' long' : '') + '" id="appTitle">' + pageTitle().replace(/[<>&]/g, '') + '</div>'
-      + '<a href="/search" id="appSearchBtn" aria-label="검색">' + ICON.search + '</a>'
+      + '<a href="/app-menu?p=search" id="appSearchBtn" aria-label="검색">' + ICON.search + '</a>'
       + '<button type="button" id="appMenuBtn" aria-label="전체 메뉴">' + ICON.menu + '</button>'
       + '</div>';
     document.body.insertBefore(bar, document.body.firstChild);
@@ -78,7 +78,8 @@
     // 탭 루트 ↔ 탭 루트 이동은 히스토리를 쌓지 않는다(뒤로 가기가 탭을 되감지 않도록)
     nav.addEventListener('click', function(e){
       var a = e.target.closest('a'); if(!a) return;
-      var atRoot = TABS.some(function(t){ return path === t.h || path === t.h + '.html'; });
+      var here = path + location.search;
+      var atRoot = TABS.some(function(t){ return here === t.h || path === t.h || path === t.h + '.html'; });
       if(atRoot){ e.preventDefault(); location.replace(a.getAttribute('href')); }
     });
   }

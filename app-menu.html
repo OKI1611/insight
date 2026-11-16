@@ -5,7 +5,7 @@
   <script src="/app-mode.js?v=20261108d"></script>
   <script src="/content-loader.js?v=20260703f"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>BIBLY 앱</title>
+  <title>바이블 인사이트 아카데미</title>
   <link rel="preconnect" href="https://cdn.tailwindcss.com"/>
   <link rel="preconnect" href="https://cdn.jsdelivr.net"/>
   <link rel="preconnect" href="https://bmxkndkwefdgsomlznoo.supabase.co"/>
@@ -109,8 +109,8 @@
     const sp = new URLSearchParams(location.search);
     const P = sp.get('p') || 'books';
     const TITLES = { books:'저자의 책', notices:'공지사항', events:'이벤트', qna:'질문과 답', store:'교재 스토어', academy:'급수 과정', support:'후원하기', dictionary:'성경사전', board:'수강생 질문방', search:'검색', themes:'주제별 성경', english:'바이블 잉글리시', notes:'번역 이야기', resources:'자료실' };
-    function setTitle(t){ document.title = t + ' — BIBLY'; if(window.__setAppTitle) window.__setAppTitle(t); else window.__appTitle = t; }
-    setTitle(TITLES[P] || 'BIBLY');
+    function setTitle(t){ document.title = t + ' — 바이블 인사이트'; if(window.__setAppTitle) window.__setAppTitle(t); else window.__appTitle = t; }
+    setTitle(TITLES[P] || '바이블 인사이트');
     function openSheet(html){ $('sheetBody').innerHTML = html; $('sheet').classList.add('open'); $('sheet').querySelector('.box').scrollTop = 0; }
     function closeSheet(){ $('sheet').classList.remove('open'); }
     const rest = (q) => fetch(SUPABASE_URL + '/rest/v1/' + q, { headers:{ apikey: SUPABASE_ANON, Authorization: 'Bearer ' + SUPABASE_ANON } }).then(r => r.ok ? r.json() : []);
@@ -300,14 +300,16 @@
         const link = (u) => { if(/^dictionary\?q=/.test(u)) return '/app-menu?p=dictionary&q=' + encodeURIComponent(decodeURIComponent(u.split('q=')[1]||'')); if(/^themes/.test(u)) return '/app-menu?p=themes'; return '/' + u.replace(/^\//, ''); };
         $('main').innerHTML = `
           <div class="sbox"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="sq" type="search" placeholder="예: 휴거, 666, 거듭남, 바벨론" enterkeyhint="search"/><button type="button" onclick="window.__ssearch()">검색</button></div>
-          <div id="sres"><p class="sub">강의 · 성경사전 · 주제별 성경 · 질문과 답을 한 번에 찾습니다.</p></div>`;
+          <div id="sres"><p class="sub">강의 · 성경 본문 · 성경사전 · 주제별 성경 · 질문과 답을 한 번에 찾습니다.</p></div>`;
+        if(!sp.get('q')) setTimeout(() => { try{ $('sq').focus(); }catch(e){} }, 250);
         window.__ssearch = async () => {
           const q = ($('sq').value||'').trim(); if(!q) return;
           if(!IDX){ $('sres').innerHTML = '<div class="skel"></div><div class="skel" style="width:70%"></div>'; IDX = (await fetch('/content/smart-index.json').then(r=>r.json())).items || []; }
           const ql = q.toLowerCase(); const terms = ql.split(/\s+/).filter(Boolean);
           const score = (it) => { const kw = (it.kw||'').toLowerCase(), ti = (it.ti||'').toLowerCase(); let sc = 0; terms.forEach(t => { if(ti.includes(t)) sc += 3; if(kw.includes(t)) sc += 1; }); return sc; };
           const hits = IDX.map(it => ({ it, sc: score(it) })).filter(x => x.sc > 0).sort((a,b) => b.sc - a.sc).slice(0, 40);
-          $('sres').innerHTML = hits.length ? `<p class="sub" style="margin:0 0 8px">${hits.length}개 찾음</p><div class="list">` + hits.map(({it}) => `<a class="row press" href="${esc(link(it.u||''))}"><span class="pill" style="flex:none;min-width:44px;text-align:center">${TYPE[it.t]||it.t}</span><span class="t">${esc(it.ti)}${it.sn ? `<br/><span class="clamp2" style="font-size:12.5px;color:#4b5563;font-weight:600">${esc(it.sn)}</span>` : ''}</span>${CHEV}</a>`).join('') + `</div>` : '<p class="empty">찾는 내용이 없습니다. 다른 말로 검색해 보세요.</p>';
+          const bibleRow = `<a class="row press" href="/bible?search=1&q=${encodeURIComponent(q)}"><span class="pill" style="flex:none;min-width:44px;text-align:center">성경</span><span class="t">성경 본문에서 「${esc(q)}」 찾기<br/><span style="font-size:12.5px;color:#4b5563;font-weight:600">66권 전체에서 이 말이 나오는 구절</span></span>${CHEV}</a>`;
+          $('sres').innerHTML = hits.length ? `<p class="sub" style="margin:0 0 8px">${hits.length}개 찾음</p><div class="list">` + bibleRow + hits.map(({it}) => `<a class="row press" href="${esc(link(it.u||''))}"><span class="pill" style="flex:none;min-width:44px;text-align:center">${TYPE[it.t]||it.t}</span><span class="t">${esc(it.ti)}${it.sn ? `<br/><span class="clamp2" style="font-size:12.5px;color:#4b5563;font-weight:600">${esc(it.sn)}</span>` : ''}</span>${CHEV}</a>`).join('') + `</div>` : `<div class="list">${bibleRow}</div><p class="empty">강의·사전에는 찾는 내용이 없습니다. 위 성경 본문 검색을 눌러 보세요.</p>`;
         };
         $('sq').addEventListener('keydown', e => { if(e.key === 'Enter') window.__ssearch(); });
         const q0 = sp.get('q'); if(q0){ $('sq').value = q0; window.__ssearch(); }
@@ -369,6 +371,6 @@
     })();
   </script>
   <script src="/auth-header.js?v=20261021a"></script>
-  <script src="/app-shell.js?v=20261108d"></script>
+  <script src="/app-shell.js?v=20261116a"></script>
 </body>
 </html>

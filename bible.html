@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <script src="/app-mode.js?v=20261107a"></script>
   <script src="/content-loader.js?v=20260703f"></script>
-  <script src="/site-header.js?v=20261116a"></script>
+  <script src="/site-header.js?v=20261116b"></script>
   <script src="/section-sidenav.js?v=20261109a"></script>
   <script src="/protect.js?v=2"></script>
   <script src="/share.js?v=6"></script>
@@ -795,6 +795,8 @@
       else { const i = document.getElementById('searchInput'); if(i) i.blur(); }
     }
     window.__appSearch = function(){ toggleBibleSearch(true); };
+    // ?search=1&q=낱말 → 그 말로 바로 본문 검색(앱 통합 검색에서 넘어올 때)
+    (function(){ const sp = new URLSearchParams(location.search); const q = (sp.get('q')||'').trim(); if(sp.get('search') === '1' && q){ setTimeout(() => { if(typeof quickSearch === 'function') quickSearch(q); }, 500); } })();
     if(document.documentElement.classList.contains('app')){
       const sp = new URLSearchParams(location.search);
       if(sp.get('search') === '1'){ setTimeout(() => toggleBibleSearch(true), 400); }

@@ -5,7 +5,7 @@
   <script src="/app-mode.js?v=20261107a"></script>
   <script src="/content-loader.js?v=20260703f"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>BIBLY 앱 홈 — 바이블 인사이트</title>
+  <title>바이블 인사이트 아카데미 — 앱 홈</title>
   <link rel="preconnect" href="https://cdn.tailwindcss.com"/>
   <link rel="preconnect" href="https://cdn.jsdelivr.net"/>
   <link rel="preconnect" href="https://bmxkndkwefdgsomlznoo.supabase.co"/>
@@ -31,8 +31,10 @@
     /* ── 상단: 남색 띠(상태바와 한 색) + 흰 검색창 (올리브영식 검색 헤더) ── */
     .top{background:#1f3a68;padding:calc(env(safe-area-inset-top,0px) + 10px) clamp(12px,3.5vw,20px) 12px}
     .top .row{display:flex;align-items:center;gap:10px;max-width:640px;margin:0 auto}
-    .top .logo{display:flex;align-items:center;gap:7px;color:#fff;font-weight:900;font-size:15px;letter-spacing:.02em;text-decoration:none;flex:none}
-    .top .logo img{width:28px;height:28px;border-radius:8px}
+    .top .logo{display:flex;align-items:center;gap:9px;color:#fff;text-decoration:none;flex:1;min-width:0;min-height:44px}
+    .top .logo img{width:34px;height:34px;border-radius:9px;flex:none}
+    .top .logo .nm{display:block;font-weight:900;font-size:18.5px;letter-spacing:-.02em;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .top .logo .sb{display:block;font-weight:600;font-size:12px;color:rgba(255,255,255,.72);line-height:1.3;margin-top:1px;white-space:nowrap}
     .srch{flex:1;display:flex;align-items:center;gap:8px;height:44px;background:#fff;border-radius:999px;padding:0 14px;color:#4b5563;font-size:14.5px;text-decoration:none;min-width:0}
     .srch svg{flex:none}
     .srch span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -120,8 +122,7 @@
   <!-- 상단 검색 헤더 -->
   <div class="top">
     <div class="row">
-      <a href="/app" class="logo"><img src="/images/icon-192.png?v=8" alt=""/>BIBLY</a>
-      <a href="/app-menu?p=search" class="srch" aria-label="검색"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>강의 · 성경 · 사전 검색</span></a>
+      <a href="/app" class="logo" aria-label="바이블 인사이트 아카데미 홈"><img src="/images/icon-192.png?v=8" alt=""/><span style="min-width:0"><span class="nm">바이블 인사이트 아카데미</span><span class="sb">오광일의 인사이트 브리핑 공식 앱</span></span></a>
       <button type="button" aria-label="전체 메뉴" onclick="document.getElementById('appMenu').classList.add('open')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
   </div>
@@ -188,7 +189,7 @@
       <a id="noticeRow" href="/app-menu?p=notices" class="ntc press hidden"><b>공지</b><span id="noticeTitle"></span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9aa3b5" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></a>
     </section>
 
-    <p class="text-center text-[12.5px] text-neutral-400 pt-5 pb-4">BIBLY 바이블 인사이트 · <a href="/privacy" class="underline inline-flex items-center" style="min-height:40px">개인정보처리방침</a></p>
+    <p class="text-center text-[12.5px] text-neutral-400 pt-5 pb-4">바이블 인사이트 아카데미 · <a href="/privacy" class="underline inline-flex items-center" style="min-height:40px">개인정보처리방침</a></p>
   </main>
 
   <!-- 처음 사용 안내(한 번만, localStorage bibly_app_intro) -->
@@ -196,9 +197,9 @@
     <div class="absolute inset-0 bg-[#0b1530]/60" onclick="closeIntro()"></div>
     <div class="absolute left-1/2 -translate-x-1/2 bottom-0 w-full max-w-[640px] bg-white rounded-t-[22px] px-5 pt-4 pb-[calc(18px+env(safe-area-inset-bottom,0px))]">
       <div class="w-10 h-1 rounded bg-[#dfe3ea] mx-auto mb-3"></div>
-      <p class="font-extrabold text-[18px]">BIBLY 앱, 이렇게 쓰세요</p>
+      <p class="font-extrabold text-[18px]">바이블 인사이트 앱, 이렇게 쓰세요</p>
       <ul class="mt-3 space-y-3 text-[15px] leading-snug">
-        <li class="flex gap-3"><span class="w-8 h-8 rounded-xl bg-[#eef2f8] text-ink flex items-center justify-center font-extrabold shrink-0">1</span><span>화면 <b>맨 아래 다섯 버튼</b>으로 이동합니다 — 홈 · 강의 · 성경 · 질문 · MY</span></li>
+        <li class="flex gap-3"><span class="w-8 h-8 rounded-xl bg-[#eef2f8] text-ink flex items-center justify-center font-extrabold shrink-0">1</span><span>화면 <b>맨 아래 다섯 버튼</b>으로 이동합니다 — 홈 · 강의 · 성경 · 검색 · MY</span></li>
         <li class="flex gap-3"><span class="w-8 h-8 rounded-xl bg-[#e9f4ef] text-[#0b7d53] flex items-center justify-center font-extrabold shrink-0">2</span><span>홈의 <b>학습 현황</b> 초록 버튼을 누르면 보던 강의가 바로 이어집니다</span></li>
         <li class="flex gap-3"><span class="w-8 h-8 rounded-xl bg-[#eef2f8] text-ink flex items-center justify-center font-extrabold shrink-0">3</span><span>글자가 작으면 오른쪽 위 <b>≡ 메뉴</b>에서 <b>크게 · 아주 크게</b>를 누르세요</span></li>
       </ul>
@@ -367,6 +368,6 @@
   </script>
   <script src="/access.js?v=1"></script>
   <script src="/auth-header.js?v=20261021a"></script>
-  <script src="/app-shell.js?v=20261108f"></script>
+  <script src="/app-shell.js?v=20261116a"></script>
 </body>
 </html>
