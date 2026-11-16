@@ -58,7 +58,8 @@
           { label:"신학노트 · 핵심 교리", href:"curriculum.html?track=11" },
           { label:"이단·사이비 분별", href:"curriculum.html?track=12" },
           { label:"예언의 기초 · 구약과 다니엘", href:"curriculum.html?track=13" },
-          { label:"성경예언 마스터 · 개념잡기", href:"curriculum.html?track=14" }
+          { label:"성경예언 마스터 · 개념잡기", href:"curriculum.html?track=14" },
+          { label:"창세기 강해 · 선악과의 비밀", href:"curriculum.html?track=28" }
         ]},
       { label:"고급 단계", href:"curriculum.html?track=15", children:[
           { label:"천년왕국 세미나", href:"curriculum.html?track=15" },
@@ -444,10 +445,10 @@
         + 'max-height:calc(100vh - var(--railTop,150px) - 24px);overflow-y:auto;overscroll-behavior:contain;'
         + 'z-index:44;display:flex;flex-direction:column;gap:1px;background:#fff;border:1px solid rgba(33,58,107,.1);border-radius:16px;box-shadow:0 12px 34px -14px rgba(21,32,58,.35);padding:6px}'
         + '#biblyRail::-webkit-scrollbar{width:0;height:0}'
-        + '#biblyRail a{display:flex;flex-direction:column;align-items:center;gap:2px;width:48px;padding:9px 0;border-radius:12px;text-decoration:none;color:#42506c;transition:background .15s,color .15s;cursor:pointer}'
+        + '#biblyRail a{display:flex;flex-direction:column;align-items:center;gap:2px;width:58px;padding:9px 0;border-radius:12px;text-decoration:none;color:#42506c;transition:background .15s,color .15s;cursor:pointer}'
         + '#biblyRail a:hover{background:#f4f7fc;color:#00704a}'
         + '#biblyRail .ic{font-size:17px;line-height:1}'
-        + '#biblyRail .lb{font-size:10px;font-weight:700;letter-spacing:-.02em}'
+        + '#biblyRail .lb{font-size:12px;font-weight:700;letter-spacing:-.02em}'
         + '#biblyRail .rtop{border-top:1px solid rgba(33,58,107,.08);margin-top:3px;padding-top:9px;color:rgba(33,58,107,.45)}'
         + '@media(max-width:767px){#biblyRail{display:none}}'    // 모바일에선 본문 가림 방지로 숨김
         + '@media(max-height:420px){#biblyRail{display:none}}';  // 화면이 너무 낮으면(가로 모드 등) 숨김
