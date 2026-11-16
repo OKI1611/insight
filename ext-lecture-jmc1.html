@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>고향 집 대문은 하나만 있습니다 · 예수선교교회 특강 · 천년왕국과 부활 1강 슬라이드</title>
+  <!-- 관리자(발표자) 전용 페이지 — 검색엔진 색인 금지, 어디에도 공개 링크하지 않는다 -->
+  <meta name="robots" content="noindex, nofollow"/>
+  <meta name="theme-color" content="#1c1511"/>
+  <link rel="icon" href="/favicon.ico?v=8"/>
+  <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700;900&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
+    const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+    const ADMIN_EMAIL = 'josephoh1611@gmail.com';
+  </script>
+  <style>
+    :root{
+      --bg:#0b1530; --bg2:#13224a; --ink:#f4f7ff; --sub:#9fb3d9; --dim:#67789f;
+      --gold:#ffd76a; --gold-deep:#e8b84a; --line:rgba(255,255,255,.12);
+    }
+    *{box-sizing:border-box; margin:0; padding:0}
+    html,body{height:100%}
+    body{
+      font-family:'Pretendard',system-ui,sans-serif; background:var(--bg); color:var(--ink);
+      overflow:hidden; -webkit-font-smoothing:antialiased;
+      word-break:keep-all; overflow-wrap:break-word;
+    }
+    h2, .lines p, .eyebrow{text-wrap:balance}
+    .serif{font-family:'Noto Serif KR','Pretendard',serif}
+
+    /* ===== 로그인 게이트 ===== */
+    #gate{position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center; padding:20px;
+      background:radial-gradient(1200px 700px at 70% -10%, #1b2c5c 0%, var(--bg) 60%)}
+    .gateCard{width:100%; max-width:360px; background:rgba(255,255,255,.05); border:1px solid var(--line);
+      border-radius:20px; padding:32px 26px; text-align:center; backdrop-filter:blur(8px)}
+    .gateCard h1{font-size:17px; font-weight:800; margin-bottom:4px}
+    .gateCard p{font-size:12.5px; color:var(--sub); margin-bottom:20px}
+    .gateCard input{width:100%; background:rgba(255,255,255,.07); border:1px solid var(--line); border-radius:12px;
+      color:var(--ink); padding:11px 14px; font-size:14px; margin-bottom:8px; outline:none}
+    .gateCard input:focus{border-color:var(--gold)}
+    .btn{width:100%; border:0; border-radius:12px; padding:12px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit}
+    .btnGoogle{background:#fff; color:#1c2440; display:flex; align-items:center; justify-content:center; gap:9px; margin-bottom:14px}
+    .btnMail{background:var(--gold); color:#2a2000}
+    #gateErr{font-size:12px; color:#ff9d9d; min-height:16px; margin-top:8px}
+    .gateHome{display:inline-block; margin-top:10px; font-size:12px; color:var(--dim); text-decoration:none}
+
+    /* ===== 덱 공통 ===== */
+    #deck{position:fixed; inset:0; display:none}
+    #deck.open{display:block}
+    #bar{position:fixed; top:0; left:0; height:4px; background:linear-gradient(90deg,var(--gold),var(--gold-deep));
+      width:0%; z-index:40; transition:width .35s ease}
+    #count{position:fixed; right:18px; bottom:14px; z-index:40; font-size:12px; color:var(--dim); letter-spacing:.06em;
+      font-variant-numeric:tabular-nums}
+    #clock{position:fixed; left:18px; bottom:14px; z-index:40; font-size:12px; color:var(--dim); font-variant-numeric:tabular-nums}
+    #hint{position:fixed; left:50%; bottom:14px; transform:translateX(-50%); z-index:40; font-size:11.5px; color:var(--dim);
+      background:rgba(255,255,255,.05); border:1px solid var(--line); padding:6px 14px; border-radius:999px; white-space:nowrap;
+      transition:opacity .8s}
+    #hint.off{opacity:0; pointer-events:none}
+
+    /* ===== 슬라이드 ===== */
+    .slide{position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center;
+      padding:7vmin 9vmin 10vmin; opacity:0; transform:translateY(14px); transition:opacity .55s ease, transform .55s ease;
+      pointer-events:none; visibility:hidden;
+      background:radial-gradient(1400px 900px at 75% -15%, #192a58 0%, var(--bg) 62%)}
+    .slide.on{opacity:1; transform:none; pointer-events:auto; visibility:visible}
+    .eyebrow{font-size:clamp(13px,2vmin,20px); font-weight:700; letter-spacing:.22em; color:var(--gold);
+      text-transform:uppercase; margin-bottom:2.6vmin}
+    .eyebrow .n{color:var(--dim); margin-right:1em; letter-spacing:.1em}
+    h2{font-size:clamp(28px,7vmin,76px); line-height:1.26; font-weight:900; letter-spacing:-.01em; max-width:22em; text-wrap:balance}
+    h2 em{font-style:normal; color:var(--gold)}
+    .lines{margin-top:4vmin; display:flex; flex-direction:column; gap:2vmin; max-width:36em}
+    .lines p{font-size:clamp(17px,3.2vmin,34px); line-height:1.6; color:var(--sub)}
+    .lines p b{color:var(--ink); font-weight:700}
+    .big{font-size:clamp(34px,8.4vmin,96px) !important; line-height:1.28 !important}
+    .fr{opacity:0; transform:translateY(16px); transition:opacity .45s ease, transform .45s ease}
+    .fr.show{opacity:1; transform:none}
+    .notes{display:none}
+    .center{align-items:center; text-align:center}
+    .center h2{max-width:none}
+    .center .lines{align-items:center}
+    .hl{color:var(--gold); font-weight:700}
+
+    /* 성경 전문 블록 */
+    .vtext{border-left:4px solid var(--gold); padding:1.4vmin 0 1.4vmin 3vmin; max-width:40em; margin-top:1vmin}
+    .vtext p{font-family:'Noto Serif KR','Pretendard',serif; font-size:clamp(18px,3.3vmin,38px); line-height:1.8; color:var(--ink)}
+    .vtext.md p{font-size:clamp(16px,2.8vmin,32px)}
+    .vtext cite{display:block; margin-top:1.4vmin; font-size:clamp(12px,1.9vmin,18px); color:var(--gold); font-style:normal; letter-spacing:.08em}
+    .vtext + .vtext{margin-top:3vmin}
+    .vwrap{display:grid; grid-template-columns:1fr 1fr; gap:4.5vmin; align-items:start; max-width:66em; margin-top:1vmin}
+    .vwrap .vtext{margin-top:0; max-width:none}
+    .vwrap .vtext p{font-size:clamp(15px,2.7vmin,32px)}
+
+    /* 칩 */
+    .chips{display:flex; gap:1.8vmin; margin-top:4vmin; flex-wrap:wrap}
+    .chip{border:1.5px solid var(--line); border-radius:999px; padding:1.3vmin 3vmin; font-size:clamp(14px,2.5vmin,26px);
+      color:var(--dim); font-weight:700; letter-spacing:.02em}
+    .chip.now{border-color:var(--gold); color:var(--gold)}
+    .center .chips{justify-content:center}
+
+    /* 표 */
+    table.tbl{margin-top:3.2vmin; border-collapse:collapse; max-width:100%}
+    .tbl th,.tbl td{border:1px solid var(--line); padding:1.3vmin 2vmin; font-size:clamp(13px,2.2vmin,24px);
+      text-align:left; line-height:1.5; vertical-align:top}
+    .tbl th{background:rgba(255,215,106,.10); color:var(--gold); font-weight:800; white-space:nowrap}
+    .tbl td{color:var(--sub)}
+    .tbl td b{color:var(--ink)}
+    .tbl td.gd{color:var(--gold); font-weight:700}
+    .tbl td.rd{color:#e39a8f; font-weight:700}
+
+    /* 질문 카드 */
+    .qcard{border:1px solid var(--line); border-left:4px solid var(--gold); border-radius:12px;
+      padding:2vmin 2.8vmin; background:rgba(255,255,255,.04); max-width:46em}
+    .qcard .qn{font-size:clamp(12px,1.9vmin,18px); color:var(--gold); font-weight:800; letter-spacing:.12em; margin-bottom:.8vmin}
+    .qcard p{font-size:clamp(15px,2.6vmin,28px); line-height:1.6; color:var(--sub)}
+    .qcard p b{color:var(--ink)}
+    .qcard.xl p{font-family:'Noto Serif KR',serif; font-size:clamp(18px,3.2vmin,38px); line-height:1.7; color:var(--ink)}
+    .qwrap{display:flex; flex-direction:column; gap:2vmin; margin-top:3.4vmin}
+
+    /* 2·3단 카드 */
+    .cols{display:flex; gap:3vmin; margin-top:3.6vmin; flex-wrap:wrap; max-width:70em}
+    .col{flex:1; min-width:230px; border:1px solid var(--line); border-radius:14px; padding:2.6vmin 3vmin;
+      background:rgba(255,255,255,.04)}
+    .col h3{font-size:clamp(16px,2.8vmin,30px); font-weight:800; margin-bottom:1.4vmin}
+    .col.gold{border-color:var(--gold)}
+    .col.gold h3{color:var(--gold)}
+    .col p{font-size:clamp(13px,2.2vmin,23px); line-height:1.62; color:var(--sub)}
+    .col p b{color:var(--ink)}
+    .col ul{margin:1vmin 0 0 1.1em}
+    .col li{font-size:clamp(13px,2.2vmin,23px); line-height:1.62; color:var(--sub); margin-bottom:.9vmin}
+    .col li b{color:var(--ink)}
+
+    /* 번호 목록 */
+    .ref-list{margin-top:3vmin; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.4vmin 3vmin; max-width:70em}
+    .ref-list.one{grid-template-columns:1fr}
+    .ref-list .r{border-left:3px solid var(--gold); padding:.6vmin 0 .6vmin 2vmin}
+    .ref-list .r .k{font-size:clamp(12px,1.9vmin,19px); color:var(--gold); font-weight:800; letter-spacing:.06em}
+    .ref-list .r .t{font-family:'Noto Serif KR',serif; font-size:clamp(15px,2.6vmin,29px); line-height:1.55; color:var(--ink)}
+    @media (max-aspect-ratio:4/3){ .ref-list{grid-template-columns:1fr} .vwrap{grid-template-columns:1fr; gap:2.5vmin} }
+
+    /* 열쇠 간지 */
+    .keyRound{width:clamp(90px,16vmin,170px); height:clamp(90px,16vmin,170px); border-radius:50%; background:var(--gold);
+      color:#241a00; display:flex; flex-direction:column; align-items:center; justify-content:center; margin:0 auto 4vmin}
+    .keyRound .kl{font-size:clamp(12px,1.9vmin,18px); font-weight:800; letter-spacing:.2em}
+    .keyRound .kn{font-size:clamp(34px,6.5vmin,70px); font-weight:900; line-height:1.05}
+
+    @media (max-width:760px), (orientation:portrait){
+      .slide{padding:7vmin 6vmin 12vmin}
+    }
+
+    /* 발표자 노트 패널 (N 키) */
+    #notes{position:fixed; left:0; right:0; bottom:0; z-index:50; max-height:38vh; overflow:auto; display:none;
+      background:rgba(6,12,30,.94); border-top:1px solid var(--gold); padding:16px 22px 22px; backdrop-filter:blur(6px)}
+    #notes.open{display:block}
+    #notes .nTitle{font-size:11px; letter-spacing:.2em; color:var(--gold); font-weight:700; margin-bottom:8px}
+    #notes .nBody{font-size:14.5px; line-height:1.75; color:#dbe4f7; max-width:860px}
+    #notes .nBody b{color:var(--gold)}
+
+    /* 암전 (B 키) */
+    #blackout{position:fixed; inset:0; z-index:60; background:#000; display:none}
+    #blackout.open{display:block}
+
+    /* ===== 외부특강 테마 — 노을 진 고향 집(따뜻한 저녁빛) · 어르신용 큰 글씨 ===== */
+    :root{ --bg:#1c1511; --bg2:#2a1f18; --ink:#fff7ec; --sub:#ecd9bf; --dim:#a8927a; --gold:#f5bd62; --gold-deep:#e09a3e; --line:rgba(255,236,210,.16); }
+    .slide{background:radial-gradient(1300px 900px at 78% -10%, #3a2a1d 0%, var(--bg) 62%)}
+    #gate{background:radial-gradient(1200px 700px at 70% -10%, #3a2a1d 0%, var(--bg) 60%)}
+    h2{font-size:clamp(30px,8vmin,88px)}
+    .lines p{font-size:clamp(19px,3.9vmin,42px); line-height:1.55}
+    .lines .gold, b.gold{color:var(--gold)}
+    .vtext p{font-size:clamp(20px,4vmin,46px); line-height:1.7}
+    .vtext .ven{font-family:'Pretendard',sans-serif; font-size:clamp(12px,2vmin,21px); color:var(--dim); line-height:1.55; margin-top:1.6vmin; font-style:italic}
+    .wow{margin-top:3.4vmin; border:2px solid var(--gold); border-radius:22px; padding:3.6vmin 4.2vmin; background:rgba(245,189,98,.07); max-width:46em}
+    .wow p{font-family:'Noto Serif KR','Pretendard',serif; font-size:clamp(17px,3.35vmin,38px); line-height:1.75; color:var(--ink)}
+    .tbl th,.tbl td{font-size:clamp(16px,3.3vmin,36px); padding:1.7vmin 2.3vmin}
+    .col h3{font-size:clamp(19px,3.9vmin,42px)} .col p{font-size:clamp(16px,3.3vmin,36px)}
+    .keyRound{width:auto; min-width:clamp(150px,26vmin,280px); height:clamp(70px,11vmin,120px); border-radius:999px; padding:0 4vmin}
+    .keyRound .kn{font-size:clamp(26px,5vmin,54px)}
+    .divsub{margin-top:2.4vmin; font-size:clamp(17px,3.2vmin,34px); color:var(--sub)}
+    .prayer p{font-family:'Noto Serif KR','Pretendard',serif; font-size:clamp(18px,3.5vmin,40px); line-height:1.6; color:var(--ink)}
+  </style>
+</head>
+<body>
+
+  <!-- ===== 로그인 게이트 ===== -->
+  <div id="gate">
+    <div class="gateCard">
+      <h1>예수선교교회 특강 1강 슬라이드</h1>
+      <p>발표자 계정으로 로그인하세요.</p>
+      <button class="btn btnGoogle" onclick="googleLogin()">
+        <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C39.9 36.5 44 31 44 24c0-1.3-.1-2.3-.4-3.5z"/></svg>
+        구글로 로그인
+      </button>
+      <input id="ge" type="email" placeholder="이메일" autocomplete="username"/>
+      <input id="gp" type="password" placeholder="비밀번호" autocomplete="current-password"/>
+      <button class="btn btnMail" onclick="emailLogin()">이메일로 로그인</button>
+      <p id="gateErr"></p>
+      <a class="gateHome" href="/admin">← 관리자 콘솔로</a>
+    </div>
+  </div>
+
+  <!-- ===== 슬라이드 덱 ===== -->
+  <div id="deck">
+    <div id="bar"></div>
+    <div id="count"></div>
+    <div id="clock"></div>
+    <div id="hint">→ 다음 · ← 이전 · <b>F</b> 전체화면 · <b>N</b> 대본 · <b>B</b> 암전</div>
+
+    <!-- 1. -->
+    <section class="slide center">
+      <p class="eyebrow">예수선교교회 특강 · 천년왕국과 부활 1강</p><h2 class="serif">고향 집 대문은<br/><em>하나만</em> 있습니다</h2><div class="lines"><p>그 나라는 어떤 곳이고, 누가 들어가는가</p><p style="color:var(--dim); font-size:clamp(14px,2.4vmin,24px)">오광일 · 오광일의 인사이트 브리핑</p></div>
+      <aside class="notes">그 나라는 어떤 곳이고, 누가 들어가는가 — 험악한 나그네 세월을 지나 돌아갈 본향, 예수님이 이 땅에서 직접 다스리시는 천 년, 그리고 영원히 눈물이 없는 집</aside>
+    </section>
+
+    <!-- 2. -->
+    <section class="slide">
+      <p class="eyebrow">여는 이야기</p><h2 class="serif">백삼십 세 노인이<br/>왕 앞에 섰습니다</h2><div class="lines"><p class="">야곱이 애굽 왕 바로 앞에 섰습니다</p><p class="">왕이 묻습니다. <b>“네 나이가 얼마냐?”</b></p></div>
+      <aside class="notes">성경 창세기에 이런 장면이 있습니다. 야곱이라는 노인이 백삼십 세에 애굽 왕 바로 앞에 섰습니다. 왕이 묻습니다. &quot;네 나이가 얼마냐?&quot; 야곱이 대답합니다.</aside>
+    </section>
+
+    <!-- 3. -->
+    <section class="slide">
+      <p class="eyebrow">창세기 47장</p><div class="vtext"><p>야곱이 바로에게 아뢰되, 내 나그네 길의 세월이 백삼십 년이니이다. 내 나이가 얼마 못 되니 우리 조상의 나그네 길의 연조에 미치지 못하나 험악한 세월을 보내었나이다.</p><cite>창세기 47:9</cite><p class="ven">Genesis 47:9 (KJV) — And Jacob said unto Pharaoh, The days of the years of my pilgrimage are an hundred and thirty years: few and evil have the days of the years of my life been…</p></div>
+      <aside class="notes"></aside>
+    </section>
+
+    <!-- 4. -->
+    <section class="slide">
+      <p class="eyebrow">여는 이야기</p><h2 class="serif">정말 <em>험악한</em> 세월이었습니다</h2><div class="lines"><p class="fr">형을 피해 고향을 떠났고</p><p class="fr">외삼촌 집에서 이십 년을 속으며 일했고</p><p class="fr">사랑하던 아내 라헬을 길에서 잃었고</p><p class="fr">아들 요셉을 잃은 줄 알고 이십 년 넘게 울며 살았습니다</p></div>
+      <aside class="notes">&quot;험악한 세월을 보내었나이다.&quot; 야곱의 인생은 정말 그랬습니다. 형을 피해 고향을 떠났고, 외삼촌 집에서 이십 년 동안 속으며 일했고, 사랑하던 아내 라헬을 길에서 잃었고, 가장 아끼던 아들 요셉이 짐승에게 죽은 줄 알고 이십 년 넘게 울며 살았습니다. 그렇게 살아온 노인이 왕 앞에서 자기 인생을 한마디로 말합니다. &quot;나그네 길이었습니다. 그리고 험악했습니다.&quot;</aside>
+    </section>
+
+    <!-- 5. -->
+    <section class="slide">
+      <p class="eyebrow">여는 이야기</p><h2 class="serif">우리 인생도<br/><em>나그네 길</em>이었습니다</h2><div class="lines"><p class="fr">전쟁을 겪으셨고, 배고픈 시절을 지나셨고</p><p class="fr">자식들 키우느라 허리 한 번 제대로 펴 보지 못하셨고</p><p class="fr">먼저 떠나보낸 가족도 있으십니다</p></div>
+      <aside class="notes">이 자리에 계신 어르신들 가운데도 이 말이 가슴에 와닿는 분이 많으실 것입니다. 전쟁을 겪으셨고, 배고픈 시절을 지나셨고, 자식들 키우느라 허리 한 번 제대로 펴 보지 못하셨고, 먼저 떠나보낸 가족도 있으실 것입니다. 돌아보면 정말 나그네 길 같은 인생이었습니다.<br/><br/>그런데 성경은 이 나그네들에 대해 아주 따뜻한 말을 합니다. 히브리서 11장입니다.</aside>
+    </section>
+
+    <!-- 6. -->
+    <section class="slide">
+      <p class="eyebrow">히브리서 11장</p><div class="vtext"><p>이 사람들은 다 믿음을 따라 죽었으며 약속을 받지 못하였으되 그것들을 멀리서 보고 환영하며 땅에서는 외국인과 나그네임을 증언하였으니… 그러나 그들이 이제는 더 나은 본향을 사모하니 곧 하늘에 있는 것이라. 그러므로 하나님이 그들의 하나님이라 일컬음 받으심을 부끄러워하지 아니하시고 그들을 위하여 한 성을 예비하셨느니라.</p><cite>히브리서 11:13, 16</cite><p class="ven">Hebrews 11:13, 16 (KJV) — These all died in faith, not having received the promises, but having seen them afar off… and confessed that they were strangers and pilgrims on the earth. … But now they desire a better country, that is, an heavenly: wherefore God is not ashamed to be called their God: for he hath prepared for them a city.</p></div>
+      <aside class="notes"></aside>
+    </section>
+
+    <!-- 7. -->
+    <section class="slide">
+      <p class="eyebrow">여는 이야기</p><h2 class="serif">하나님은 돌아갈<br/><em>고향</em>을 준비하셨습니다</h2><div class="lines"><p class="fr">“더 나은 본향” — 본향은 고향입니다</p><p class="fr">하나님은 나그네들을 <b>부끄러워하지 않으십니다</b></p><p class="fr">오늘 함께 볼 것: <b>그곳은 어떤 곳인가</b>, 그리고 <b>그 집의 대문은 무엇인가</b></p></div>
+      <aside class="notes">&quot;더 나은 본향.&quot; 본향은 고향입니다. 하나님은 이 험악한 나그네 길을 걸어온 사람들을 위해 돌아갈 고향을 준비해 두셨습니다. 그리고 그 사람들을 부끄러워하지 않으신다고 하십니다. 오늘 우리는 그 고향 이야기를 하려고 합니다. 그곳은 어떤 곳인지, 그리고 그 고향 집에 들어가는 대문이 무엇인지. 끝까지 함께해 주십시오.</aside>
+    </section>
+
+    <!-- 8. -->
+    <section class="slide">
+      <p class="eyebrow">오늘의 길 그림</p><h2 class="serif">시골 버스가 지나는 <em>세 정류장</em></h2><table class="tbl"><tr><th>정류장</th><th>무슨 일이 있나</th><th>성경</th></tr><tr class="fr"><td class="gd">① 지금</td><td class="">우리가 사는 이 세상 — 나그네 길</td><td class="">히 11:13</td></tr><tr class="fr"><td class="gd">② 예수님 다시 오심 → 천 년의 나라</td><td class="">예수님이 이 땅에서 천 년 동안 직접 다스리심</td><td class="">계 20:4~6</td></tr><tr class="fr"><td class="gd">③ 영원한 고향</td><td class="">새 하늘과 새 땅 — 눈물도 죽음도 없음</td><td class="">계 21:1~4</td></tr></table><div class="lines"><p class="fr">오늘은 주로 <b>두 번째 정류장, 천년왕국</b> 이야기입니다</p></div>
+      <aside class="notes">먼저 길 그림을 하나 그려 드리겠습니다. 시골 버스가 정류장 세 곳을 지난다고 생각해 보십시오.<br/><br/>지금 우리는 첫 번째 정류장에 있습니다. 예수님이 다시 오시면 두 번째 정류장, 천 년 동안의 나라가 시작됩니다. 이것을 천년왕국이라고 부릅니다. 그리고 그 천 년이 끝나면 마지막 정류장, 영원한 고향이 시작됩니다. 오늘은 주로 두 번째 정류장, 천년왕국 이야기를 하고, 마지막에 영원한 고향을 잠깐 보겠습니다.</aside>
+    </section>
+
+    <!-- 9. -->
+    <section class="slide center">
+      <div class="keyRound"><span class="kn">첫째 이야기</span></div><h2 class="serif">왕이 <em>직접</em> 다스리는 나라</h2><p class="divsub">천년왕국은 어떤 나라인가</p>
+      <aside class="notes">천년왕국이 무엇입니까? 한 줄로 말하면 이렇습니다. 예수님이 다시 오셔서 바로 이 땅에서, 천 년 동안 직접 왕으로 다스리시는 나라입니다. 요한계시록 20장에는 &quot;천 년&quot;이라는 말이 여섯 번이나 나옵니다. 하나님이 같은 말을 여섯 번 하셨다면, 그것은 &quot;이건 분명하다&quot;는 뜻입니다.</aside>
+    </section>
+
+    <!-- 10. -->
+    <section class="slide">
+      <p class="eyebrow">첫째 이야기</p><h2 class="serif">예수님이 이 땅에서<br/><em>천 년 동안</em> 직접 다스리십니다</h2><div class="lines"><p class="fr">요한계시록 20장에 “천 년”이 <b>여섯 번</b> 나옵니다</p><p class="fr">같은 말을 여섯 번 하셨다면 — <b>“이건 분명하다”</b>는 뜻입니다</p><p class="fr">그 나라에서 가장 좋은 것은 <b>왕</b>입니다</p></div>
+      <aside class="notes">천년왕국이 무엇입니까? 한 줄로 말하면 이렇습니다. 예수님이 다시 오셔서 바로 이 땅에서, 천 년 동안 직접 왕으로 다스리시는 나라입니다. 요한계시록 20장에는 &quot;천 년&quot;이라는 말이 여섯 번이나 나옵니다. 하나님이 같은 말을 여섯 번 하셨다면, 그것은 &quot;이건 분명하다&quot;는 뜻입니다.<br/><br/>그 나라에서 가장 좋은 것이 무엇이겠습니까? 왕입니다. 왕이 누구냐에 따라 나라가 달라집니다. 우리는 지금까지 여러 다스리는 사람들을 보아 왔습니다. 좋은 사람도 있었고, 그렇지 않은 사람도 있었습니다. 억울한 일을 당해도 아무도 들어 주지 않을 때가 있었습니다. 그런데 그 나라의 왕은 이런 분이십니다.</aside>
+    </section>
+
+    <!-- 11. -->
+    <section class="slide">
+      <p class="eyebrow">이사야 11장 — 그 나라의 왕</p><div class="vtext"><p>그의 눈에 보이는 대로 심판하지 아니하며 그의 귀에 들리는 대로 판단하지 아니하며, 공의로 가난한 자를 심판하며 정직으로 세상의 겸손한 자를 판단할 것이며…</p><cite>이사야 11:3~4</cite><p class="ven">Isaiah 11:3–4 (KJV) — and he shall not judge after the sight of his eyes, neither reprove after the hearing of his ears: But with righteousness shall he judge the poor, and reprove with equity for the meek of the earth…</p></div>
+      <aside class="notes"></aside>
+    </section>
+
+    <!-- 12. -->
+    <section class="slide">
+      <p class="eyebrow">첫째 이야기</p><h2 class="serif">눈에 보이는 대로,<br/>귀에 들리는 대로 <em>판단하지 않는 왕</em></h2><div class="lines"><p class="fr">사람은 겉모습과 소문으로 판단합니다</p><p class="fr">그래서 억울한 사람이 생깁니다</p><p class="fr">교회에서도 그런 일을 겪으신 분이 계십니까?</p></div>
+      <aside class="notes">&quot;눈에 보이는 대로 심판하지 아니하며, 귀에 들리는 대로 판단하지 아니하며.&quot; 사람들은 겉모습을 보고 판단합니다. 들리는 소문만 듣고 판단합니다. 그래서 억울한 사람이 생깁니다. 혹시 교회에서도 그런 일을 겪으신 분이 계십니까? 내 사정은 아무도 묻지 않고, 들리는 말만 듣고 나를 판단하던 사람들. 그때 받은 상처가 아직도 아프신 분이 계실 것입니다.</aside>
+    </section>
+
+    <!-- 13. -->
+    <section class="slide">
+      <p class="eyebrow">WOW</p><h2 class="serif" style="font-size:clamp(26px,6vmin,66px)">그 왕은 <em>당신의 사정</em>을 다 아십니다</h2><div class="wow"><p>그 나라의 왕은 그렇게 판단하지 않으십니다. 겉모습이 아니라 마음을 보시고, 소문이 아니라 진실을 보십니다. 그리고 &quot;가난한 자&quot;, &quot;겸손한 자&quot;를 공의로 판단하신다고 하십니다. 이 세상에서 억울하게 오해받았던 분, 교회 안에서조차 바르게 이해받지 못했던 분. 그 나라에서는 왕이 직접 당신의 사정을 다 아시고, 바르게 판단해 주십니다. 그 왕은 우리를 위해 십자가에서 죽으신 바로 그 예수님이십니다.</p></div>
+      <aside class="notes">그 나라의 왕은 그렇게 판단하지 않으십니다. 겉모습이 아니라 마음을 보시고, 소문이 아니라 진실을 보십니다. 그리고 &quot;가난한 자&quot;, &quot;겸손한 자&quot;를 공의로 판단하신다고 하십니다. 이 세상에서 억울하게 오해받았던 분, 교회 안에서조차 바르게 이해받지 못했던 분. 그 나라에서는 왕이 직접 당신의 사정을 다 아시고, 바르게 판단해 주십니다. 그 왕은 우리를 위해 십자가에서 죽으신 바로 그 예수님이십니다.</aside>
+    </section>
+
+    <!-- 14. -->
+    <section class="slide">
+      <p class="eyebrow">첫째 이야기</p><h2 class="serif">요셉 — 그 왕을<br/><em>미리 보여 준</em> 사람</h2><div class="lines"><p class="fr">형들에게 미움받아 구덩이에, 노예로, 감옥으로</p><p class="fr">하나님이 그를 애굽의 총리로 세우심</p><p class="fr">자기를 판 형들에게 복수하지 않고 울며 말합니다</p><p class="fr"><b>“하나님이 생명을 구원하시려고 나를 먼저 보내셨나이다”</b> (창 45:5)</p></div>
+      <aside class="notes">구약에 이 왕의 모습을 미리 보여 주는 사람이 있습니다. 야곱의 아들 요셉입니다. 요셉은 형들에게 미움받아 구덩이에 던져지고, 노예로 팔리고, 억울한 누명을 쓰고 감옥에 갇혔습니다. 그런데 하나님은 그 요셉을 애굽의 총리로 세우셨습니다. 큰 흉년이 왔을 때 온 세상 사람들이 요셉에게 와서 양식을 얻었습니다. 그리고 자기를 팔았던 형들이 요셉 앞에 엎드렸을 때, 요셉은 복수하지 않았습니다. 목 놓아 울면서 말했습니다. &quot;당신들이 나를 이곳에 팔았다고 해서 근심하지 마소서. 하나님이 생명을 구원하시려고 나를 당신들보다 먼저 보내셨나이다&quot;(창 45:5).</aside>
+    </section>
+
+    <!-- 15. -->
+    <section class="slide">
+      <p class="eyebrow">WOW</p><h2 class="serif" style="font-size:clamp(26px,6vmin,66px)"><em>“이제 죽어도 족하도다”</em></h2><div class="wow"><p>예수님이 바로 그런 왕이십니다. 사람들에게 버림받고, 은 삼십에 팔리고, 죄 없이 십자가에 달리셨습니다. 그런데 하나님은 그분을 온 세상의 왕으로 세우셨습니다. 그리고 그 왕은 자기를 버린 사람들에게 복수하지 않으시고, 오히려 생명의 양식을 나누어 주십니다. 요셉의 이야기 끝에서 야곱이 온 가족을 데리고 애굽으로 내려가 요셉과 다시 만났듯이, 그 나라에서는 흩어졌던 하나님의 가족이 왕 앞에서 다시 만납니다. 처음에 말씀드린 그 험악한 세월의 야곱이, 죽은 줄 알았던 아들을 다시 안고 &quot;이제 죽어도 족하도다&quot;(창 46:30) 하고 울었던 것처럼 말입니다.</p></div>
+      <aside class="notes">예수님이 바로 그런 왕이십니다. 사람들에게 버림받고, 은 삼십에 팔리고, 죄 없이 십자가에 달리셨습니다. 그런데 하나님은 그분을 온 세상의 왕으로 세우셨습니다. 그리고 그 왕은 자기를 버린 사람들에게 복수하지 않으시고, 오히려 생명의 양식을 나누어 주십니다. 요셉의 이야기 끝에서 야곱이 온 가족을 데리고 애굽으로 내려가 요셉과 다시 만났듯이, 그 나라에서는 흩어졌던 하나님의 가족이 왕 앞에서 다시 만납니다. 처음에 말씀드린 그 험악한 세월의 야곱이, 죽은 줄 알았던 아들을 다시 안고 &quot;이제 죽어도 족하도다&quot;(창 46:30) 하고 울었던 것처럼 말입니다.</aside>
+    </section>
+
+    <!-- 16. -->
+    <section class="slide center">
+      <div class="keyRound"><span class="kn">둘째 이야기</span></div><h2 class="serif">고향 집 대문은 <em>하나뿐</em>입니다</h2><p class="divsub">다시 태어남</p>
+      <aside class="notes">그러면 그 나라에는 누가 들어갑니까? 예수님이 이것을 아주 분명하게 말씀하신 날이 있습니다. 어느 날 밤, 니고데모라는 사람이 예수님을 찾아왔습니다. 그는 이스라엘의 존경받는 선생이었습니다. 성경을 줄줄 외우고, 기도도 열심히 하고, 사람들에게 인정받는 신앙인이었습니다. 그런 그에게 예수님이 말씀하십니다.</aside>
+    </section>
+
+    <!-- 17. -->
+    <section class="slide">
+      <p class="eyebrow">둘째 이야기</p><h2 class="serif">니고데모 — 그 시대<br/><em>최고의 신앙인</em></h2><div class="lines"><p class="fr">이스라엘의 존경받는 선생</p><p class="fr">성경을 줄줄 외우고, 기도도 열심히 하던 사람</p><p class="fr">어느 날 밤 예수님을 찾아왔습니다</p></div>
+      <aside class="notes">그러면 그 나라에는 누가 들어갑니까? 예수님이 이것을 아주 분명하게 말씀하신 날이 있습니다. 어느 날 밤, 니고데모라는 사람이 예수님을 찾아왔습니다. 그는 이스라엘의 존경받는 선생이었습니다. 성경을 줄줄 외우고, 기도도 열심히 하고, 사람들에게 인정받는 신앙인이었습니다. 그런 그에게 예수님이 말씀하십니다.</aside>
+    </section>
+
+    <!-- 18. -->
+    <section class="slide">
+      <p class="eyebrow">요한복음 3장</p><div class="vtext"><p>예수께서 그에게 대답하여 이르시되, 진실로 진실로 네게 이르노니, 사람이 다시 태어나지 아니하면 하나님의 나라를 볼 수 없느니라.</p><cite>요한복음 3:3</cite><p class="ven">John 3:3 (KJV) — Jesus answered and said unto him, Verily, verily, I say unto thee, Except a man be born again, he cannot see the kingdom of God.</p></div>
+      <aside class="notes"></aside>
+    </section>
+
+    <!-- 19. -->
+    <section class="slide">
+      <p class="eyebrow">둘째 이야기</p><h2 class="serif">한 집의 가족이 되려면<br/><em>그 집에서 태어나야</em> 합니다</h2><div class="lines"><p class="fr">밥을 많이 얻어먹는다고 가족이 됩니까?</p><p class="fr">일을 열심히 도와준다고 가족이 됩니까?</p><p class="fr">태어나면 출생신고를 하고 <b>호적에 이름이 올라갑니다</b></p><p class="fr">교회 오래 다닌 것, 봉사, 직분이 아니라 — <b>다시 태어나야 하나님의 자녀</b></p></div>
+      <aside class="notes">&quot;다시 태어나지 아니하면.&quot; 니고데모는 깜짝 놀랐습니다. &quot;사람이 늙으면 어떻게 다시 날 수 있습니까? 어머니 배 속에 다시 들어갔다가 나올 수 있습니까?&quot;(요 3:4). 예수님이 말씀하신 것은 몸이 다시 태어나는 것이 아니었습니다. 하나님의 영으로 마음이 새로 태어나는 것이었습니다.<br/><br/>쉽게 말씀드리겠습니다. 한 집안의 가족이 되려면 어떻게 해야 합니까? 그 집에 놀러 가서 밥을 많이 얻어먹는다고 가족이 됩니까? 그 집 일을 열심히 도와준다고 가족이 됩니까? 아닙니다. 그 집에서 태어나야 가족입니다. 태어나면 출생신고를 하고, 호적에 이름이 올라갑니다. 그러면 그 집 자녀입니다. 하나님 나라도 똑같습니다. 교회에 오래 다녔다고, 봉사를 많이 했다고, 직분을 받았다고 하나님의 가족이 되는 것이 아닙니다. 하나님께로부터 다시 태어나야 하나님의 자녀입니다.</aside>
+    </section>
+
+    <!-- 20. -->
+    <section class="slide">
+      <p class="eyebrow">둘째 이야기</p><h2 class="serif">어떻게 <em>다시 태어납니까</em>?</h2><div class="lines"><p class="fr">“영접하는 자 곧 그 이름을 믿는 자들에게는 하나님의 자녀가 되는 권세를 주셨으니” (요 1:12)</p><p class="fr">예수님을 내 구주로 <b>마음에 모셔 들이는 것</b></p><p class="fr">나를 위해 죽으시고 다시 살아나심을 믿고 <b>나를 그분께 맡기는 것</b></p><p class="fr">그 순간 하나님은 <b>하늘 호적에 우리 이름을</b> 올리십니다</p></div>
+      <aside class="notes">그러면 어떻게 다시 태어납니까? 같은 요한복음 1장 12절이 말해 줍니다. &quot;영접하는 자 곧 그 이름을 믿는 자들에게는 하나님의 자녀가 되는 권세를 주셨으니.&quot; 예수님을 내 구주로 마음에 모셔 들이는 것, 그분이 나를 위해 십자가에서 죽으시고 다시 살아나셨다는 것을 믿고 나를 그분께 맡기는 것. 그 순간 하나님은 우리를 새로 태어나게 하시고, 하늘 호적에 우리 이름을 올리십니다.</aside>
+    </section>
+
+    <!-- 21. -->
+    <section class="slide">
+      <p class="eyebrow">WOW</p><h2 class="serif" style="font-size:clamp(26px,6vmin,66px)">대문의 이름은 <em>“다시 태어남”</em></h2><div class="wow"><p>니고데모는 그 시대 최고의 신앙인이었습니다. 그런 사람에게도 예수님은 &quot;너도 다시 태어나야 한다&quot;고 하셨습니다. 이 말은 무섭게 들릴 수도 있지만, 사실은 큰 위로입니다. 왜냐하면 그 나라의 대문은 신앙 경력이 긴 사람에게 먼저 열리는 것도 아니고, 성경을 많이 아는 사람에게 먼저 열리는 것도 아니기 때문입니다. 대문은 하나뿐이고, 그 대문은 니고데모에게나, 오늘 처음 예수님을 믿은 분에게나, 교회에서 상처받고 오래 떠나 있다가 돌아온 분에게나 똑같이 열려 있습니다. 대문의 이름은 &quot;다시 태어남&quot;이고, 그 대문을 여는 분은 예수님이십니다.</p></div>
+      <aside class="notes">니고데모는 그 시대 최고의 신앙인이었습니다. 그런 사람에게도 예수님은 &quot;너도 다시 태어나야 한다&quot;고 하셨습니다. 이 말은 무섭게 들릴 수도 있지만, 사실은 큰 위로입니다. 왜냐하면 그 나라의 대문은 신앙 경력이 긴 사람에게 먼저 열리는 것도 아니고, 성경을 많이 아는 사람에게 먼저 열리는 것도 아니기 때문입니다. 대문은 하나뿐이고, 그 대문은 니고데모에게나, 오늘 처음 예수님을 믿은 분에게나, 교회에서 상처받고 오래 떠나 있다가 돌아온 분에게나 똑같이 열려 있습니다. 대문의 이름은 &quot;다시 태어남&quot;이고, 그 대문을 여는 분은 예수님이십니다.</aside>
+    </section>
+
+    <!-- 22. -->
+    <section class="slide">
+      <p class="eyebrow">둘째 이야기 · 요한복음 9장</p><h2 class="serif">눈을 뜬 사람이<br/><em>회당에서 쫓겨났습니다</em></h2><div class="lines"><p class="fr">예수님이 태어날 때부터 눈먼 사람의 눈을 뜨게 하셨습니다</p><p class="fr">그 일 때문에 그는 회당(지금의 교회)에서 쫓겨납니다 (요 9:34)</p><p class="fr"><b>“예수께서 … 그를 만나사”</b> (요 9:35) — 예수님이 찾아가셨습니다</p><p class="fr"><b>“주여 내가 믿나이다”</b> (요 9:38)</p></div>
+      <aside class="notes">여기서 교회에서 상처받으신 분들께 꼭 들려 드리고 싶은 이야기가 하나 있습니다. 요한복음 9장에 태어날 때부터 눈이 먼 사람이 나옵니다. 예수님이 그의 눈을 뜨게 해 주셨습니다. 평생 처음으로 세상을 본 것입니다. 얼마나 기뻤겠습니까. 그런데 그 일 때문에 그 사람은 회당에서 쫓겨납니다. 그 시대 회당은 지금으로 말하면 교회입니다. 종교 지도자들이 &quot;너는 죄 가운데서 태어났는데 우리를 가르치려 하느냐&quot; 하며 그를 내쫓았습니다(요 9:34).<br/><br/>예수님을 만나 눈을 떴는데, 바로 그 일 때문에 신앙 공동체에서 쫓겨난 사람. 그 사람의 마음이 어땠을까요. 그런데 다음 절을 보십시오. &quot;예수께서 그들이 그 사람을 쫓아냈다 하는 말을 들으셨더니 그를 만나사&quot;(요 9:35). 예수님이 그 사람을 찾아가셨습니다. 사람들이 문 밖으로 밀어낸 그 사람을, 예수님은 직접 찾아가서 만나 주셨습니다. 그리고 그날 그 사람은 예수님께 엎드려 &quot;주여 내가 믿나이다&quot; 하고 고백합니다(요 9:38).</aside>
+    </section>
+
+    <!-- 23. -->
+    <section class="slide">
+      <p class="eyebrow">WOW</p><h2 class="serif" style="font-size:clamp(26px,6vmin,66px)">“나는 <em>문</em>이니” (요 10:9)</h2><div class="wow"><p>사람들은 문을 닫을 수 있습니다. 그러나 하나님 나라의 대문은 사람이 지키는 문이 아닙니다. 예수님이 친히 &quot;나는 문이니 누구든지 나로 말미암아 들어가면 구원을 받고&quot;(요 10:9)라고 하셨습니다. 요한복음 9장에서 쫓겨난 사람을 찾아가신 예수님이, 바로 다음 장 10장에서 &quot;나는 문이다&quot;라고 말씀하십니다. 사람들에게 문전박대를 당한 분이 계십니까? 예수님이 바로 그 문이십니다. 그 문은 당신 앞에서 닫히지 않습니다.</p></div>
+      <aside class="notes">사람들은 문을 닫을 수 있습니다. 그러나 하나님 나라의 대문은 사람이 지키는 문이 아닙니다. 예수님이 친히 &quot;나는 문이니 누구든지 나로 말미암아 들어가면 구원을 받고&quot;(요 10:9)라고 하셨습니다. 요한복음 9장에서 쫓겨난 사람을 찾아가신 예수님이, 바로 다음 장 10장에서 &quot;나는 문이다&quot;라고 말씀하십니다. 사람들에게 문전박대를 당한 분이 계십니까? 예수님이 바로 그 문이십니다. 그 문은 당신 앞에서 닫히지 않습니다.</aside>
+    </section>
+
+    <!-- 24. -->
+    <section class="slide center">
+      <div class="keyRound"><span class="kn">셋째 이야기</span></div><h2 class="serif">먼저 간 가족,<br/>그리고 <em>부활의 순서</em></h2><p class="divsub">“먼저 떠난 우리 가족은 어떻게 됩니까?”</p>
+      <aside class="notes">여기서 많은 분들이 꼭 묻고 싶어 하시는 질문이 있습니다. &quot;먼저 떠난 우리 남편은, 우리 아내는, 우리 어머니는 어떻게 되는 겁니까?&quot; 성경은 이 질문에 아주 따뜻하게 답합니다.</aside>
+    </section>
+
+    <!-- 25. -->
+    <section class="slide">
+      <p class="eyebrow">데살로니가전서 4장</p><div class="vtext"><p>형제들아, 자는 자들에 관하여는 너희가 알지 못함을 우리가 원하지 아니하노니, 이는 소망 없는 다른 이와 같이 슬퍼하지 않게 하려 함이라. 우리가 예수께서 죽으셨다가 다시 살아나심을 믿을진대, 이와 같이 예수 안에서 자는 자들도 하나님이 그와 함께 데리고 오시리라.</p><cite>데살로니가전서 4:13~14</cite><p class="ven">1 Thessalonians 4:13–14 (KJV) — But I would not have you to be ignorant, brethren, concerning them which are asleep, that ye sorrow not, even as others which have no hope. For if we believe that Jesus died and rose again, even so them also which sleep in Jesus will God bring with him.</p></div>
+      <aside class="notes"></aside>
+    </section>
+
+    <!-- 26. -->
+    <section class="slide">
+      <p class="eyebrow">셋째 이야기</p><h2 class="serif">성경은 그들을<br/><em>“잠든 사람”</em>이라 부릅니다</h2><div class="lines"><p class="fr">잠든 사람은 다시 일어납니다</p><p class="fr">슬퍼하지 말라는 것이 아니라 — <b>소망 없이</b> 슬퍼하지 말라는 것</p><p class="fr">우리는 울지만, <b>다시 만날 것을 알고</b> 웁니다</p></div>
+      <aside class="notes">&quot;자는 자들.&quot; 성경은 예수님을 믿고 떠난 사람들을 &quot;잠든 사람&quot;이라고 부릅니다. 잠든 사람은 다시 일어납니다. 그리고 &quot;소망 없는 다른 이와 같이 슬퍼하지 않게.&quot; 슬퍼하지 말라는 것이 아닙니다. 소망 없이 슬퍼하지 말라는 것입니다. 우리는 울지만, 다시 만날 것을 알고 웁니다.</aside>
+    </section>
+
+    <!-- 27. -->
+    <section class="slide">
+      <p class="eyebrow">셋째 이야기 · 고전 15:23 “각각 자기 차례대로”</p><h2 class="serif">부활은 <em>추수</em>처럼 순서가 있습니다</h2><table class="tbl"><tr><th>농사</th><th>부활</th><th>성경</th></tr><tr class="fr"><td class="gd">첫 열매 — 처음 익은 이삭</td><td class="">예수님의 부활 (2천 년 전)</td><td class="">고전 15:20, 23</td></tr><tr class="fr"><td class="gd">본 추수 — 들판 전체</td><td class="">예수님이 공중에 오실 때 교회의 성도들</td><td class="">살전 4:16~17</td></tr><tr class="fr"><td class="gd">이삭줍기 — 남은 이삭</td><td class="">예수님이 땅에 오실 때 구약의 성도들과 환난 때 믿은 성도들</td><td class="">단 12:2, 계 20:4</td></tr></table>
+      <aside class="notes">그러면 먼저 간 사람들은 언제 다시 일어납니까? 성경은 부활에 순서가 있다고 말합니다. 고린도전서 15장 23절, &quot;그러나 각각 자기 차례대로 되리니, 먼저는 첫 열매인 그리스도요, 다음에는 그리스도께 붙은 자요.&quot; 농사를 지어 보신 분들은 이 말이 금방 이해되실 것입니다.<br/><br/>예수님이 첫 열매로 먼저 부활하셨습니다. 첫 열매가 익었다는 것은 곧 들판 전체가 거두어진다는 뜻입니다. 그리고 예수님이 다시 오시는 날, 큰 추수가 시작됩니다. 데살로니가전서 4장 16절과 17절, &quot;주께서 호령과 천사장의 소리와 하나님의 나팔 소리로 친히 하늘로부터 강림하시리니 그리스도 안에서 죽은 자들이 먼저 일어나고, 그 후에 우리 살아남은 자들도 그들과 함께 구름 속으로 끌어 올려 공중에서 주를 영접하게 하시리니.&quot;</aside>
+    </section>
+
+    <!-- 28. -->
+    <section class="slide">
+      <p class="eyebrow">셋째 이야기 · 고전 15:36~37</p><h2 class="serif">볍씨는 썩은 것이 아니라<br/><em>심긴</em> 것입니다</h2><div class="lines"><p class="fr">“흙이 되셨을 텐데 어떻게 다시 일어나십니까?”</p><p class="fr">볍씨는 흙 속에서 썩어 없어지는 것처럼 보입니다</p><p class="fr">가을이면 그 자리에 황금빛 벼가 고개를 숙입니다</p><p class="fr">하나님은 먼저 간 성도들을 땅에 <b>“심으신”</b> 것입니다 — 하나님의 가을을 기다립니다</p></div>
+      <aside class="notes">그런데 이렇게 묻는 분이 계실 것입니다. &quot;목사님, 우리 어머니는 땅에 묻히신 지 삼십 년이 넘었습니다. 이미 흙이 되셨을 텐데 어떻게 다시 일어나십니까?&quot; 바울도 같은 질문을 받았습니다. 그리고 농부의 대답을 했습니다. &quot;네가 뿌리는 씨는 죽지 않으면 살아나지 못하겠고, 또 네가 뿌리는 것은 장래의 형체를 뿌리는 것이 아니요 다만 밀이나 다른 것의 알맹이뿐이로되&quot;(고전 15:36–37).<br/><br/>봄에 볍씨를 논에 뿌려 보신 분들은 아실 것입니다. 볍씨는 흙 속에 들어가서 썩어 없어지는 것처럼 보입니다. 그런데 가을이 되면 그 자리에서 황금빛 벼가 고개를 숙이고 있습니다. 볍씨와 벼는 모양이 전혀 다릅니다. 그런데 같은 생명입니다. 볍씨를 심은 농부는 슬퍼하지 않습니다. 가을을 기다립니다. 하나님은 먼저 간 성도들을 땅에 &quot;심으신&quot; 것입니다. 그리고 하나님의 가을이 오면, 그 자리에서 영광스러운 몸으로 일어나게 하십니다.</aside>
+    </section>
+
+    <!-- 29. -->
+    <section class="slide">
+      <p class="eyebrow">WOW · 살전 4:17~18</p><h2 class="serif" style="font-size:clamp(26px,6vmin,66px)"><em>“그들과 함께”</em></h2><div class="wow"><p>&quot;그들과 함께.&quot; 이 말을 꼭 붙잡으십시오. 먼저 떠난 성도들이 먼저 일어나고, 그 다음에 우리가 &quot;그들과 함께&quot; 주님을 만납니다. 혼자 가는 것이 아닙니다. 먼저 간 남편, 아내, 부모님, 그리고 일찍 떠나보낸 자식까지, 예수님을 믿고 떠난 그 사람들과 함께입니다. 그리고 바울은 이 말씀 끝에 이렇게 덧붙입니다. &quot;그러므로 이러한 말로 서로 위로하라&quot;(살전 4:18). 오늘 이 말씀이 여러분께 위로가 되기를 바랍니다. 그들은 사라진 것이 아니라 잠시 잠든 것이고, 우리는 그들과 함께 일어날 것입니다.</p></div>
+      <aside class="notes">&quot;그들과 함께.&quot; 이 말을 꼭 붙잡으십시오. 먼저 떠난 성도들이 먼저 일어나고, 그 다음에 우리가 &quot;그들과 함께&quot; 주님을 만납니다. 혼자 가는 것이 아닙니다. 먼저 간 남편, 아내, 부모님, 그리고 일찍 떠나보낸 자식까지, 예수님을 믿고 떠난 그 사람들과 함께입니다. 그리고 바울은 이 말씀 끝에 이렇게 덧붙입니다. &quot;그러므로 이러한 말로 서로 위로하라&quot;(살전 4:18). 오늘 이 말씀이 여러분께 위로가 되기를 바랍니다. 그들은 사라진 것이 아니라 잠시 잠든 것이고, 우리는 그들과 함께 일어날 것입니다.</aside>
+    </section>
+
+    <!-- 30. -->
+    <section class="slide center">
+      <div class="keyRound"><span class="kn">넷째 이야기</span></div><h2 class="serif">그 나라에 사는<br/><em>두 종류의 사람</em></h2><p class="divsub">천년왕국 첫날 아침</p>
+      <aside class="notes">이제 천년왕국 첫날 아침을 상상해 보겠습니다. 그 나라에는 두 종류의 사람이 함께 삽니다. 첫째는 부활한 몸을 입은 사람들입니다. 방금 본 것처럼 예수님을 믿고 먼저 간 사람들, 예수님이 오실 때 살아서 변화된 우리, 구약 시대의 믿음의 사람들, 그리고 환난 때 믿음을 지키다 목숨을 잃은 사람들입니다. 예수님은 &quot;많은 사람이 동서로부터 와서 아브라함과 이삭과 야곱과 함께 천국에 앉으리라&quot;(마 8:11)고 하셨습니다. 처음에 이야기한 그 험악한 세월의 야곱이, 그날 그 식탁에 앉아 있습니다.<br/><br/>둘째는 지금 우리 같은 몸을 가진 사람들입니다. 예수님이 다시 오시기 전, 이 세상에는 7년 동안 아주 어려운 시기가 있다고 성경은 말합니다. 그때 예수님을 믿게 된 사람들 가운데 죽지 않고 끝까지 살아남은 사람들이 있습니다. 이 사람들은 지금과 같은 몸으로 그 나라에 들어가서, 집을 짓고, 농사를 짓고, 결혼하고 아이를 낳으며 삽니다.</aside>
+    </section>
+
+    <!-- 31. -->
+    <section class="slide">
+      <p class="eyebrow">넷째 이야기</p><h2 class="serif">부활한 몸, 그리고 <em>지금 같은 몸</em></h2><table class="tbl"><tr><th></th><th>부활한 몸으로 사는 사람</th><th>지금 같은 몸으로 사는 사람</th></tr><tr class="fr"><td class="gd">누구</td><td class="">먼저 간 성도들 · 변화된 우리 · 구약의 성도 · 환난 때 순교한 성도</td><td class="">7년 환난을 살아서 통과한 믿는 사람들</td></tr><tr class="fr"><td class="gd">몸</td><td class="">늙지 않고, 아프지 않고, 죽지 않음</td><td class="">오래 살지만 늙고, 아이를 낳음</td></tr><tr class="fr"><td class="gd">하는 일</td><td class="">예수님과 함께 다스리고 돌봄</td><td class="">집 짓고 농사짓고 가정을 이룸</td></tr></table><div class="lines"><p class="fr">두 종류 모두 <b>다시 태어난 사람들</b> — 그날 그 땅에 믿지 않는 사람은 <b>단 한 명도 없습니다</b></p></div>
+      <aside class="notes">이제 천년왕국 첫날 아침을 상상해 보겠습니다. 그 나라에는 두 종류의 사람이 함께 삽니다. 첫째는 부활한 몸을 입은 사람들입니다. 방금 본 것처럼 예수님을 믿고 먼저 간 사람들, 예수님이 오실 때 살아서 변화된 우리, 구약 시대의 믿음의 사람들, 그리고 환난 때 믿음을 지키다 목숨을 잃은 사람들입니다. 예수님은 &quot;많은 사람이 동서로부터 와서 아브라함과 이삭과 야곱과 함께 천국에 앉으리라&quot;(마 8:11)고 하셨습니다. 처음에 이야기한 그 험악한 세월의 야곱이, 그날 그 식탁에 앉아 있습니다.<br/><br/>둘째는 지금 우리 같은 몸을 가진 사람들입니다. 예수님이 다시 오시기 전, 이 세상에는 7년 동안 아주 어려운 시기가 있다고 성경은 말합니다. 그때 예수님을 믿게 된 사람들 가운데 죽지 않고 끝까지 살아남은 사람들이 있습니다. 이 사람들은 지금과 같은 몸으로 그 나라에 들어가서, 집을 짓고, 농사를 짓고, 결혼하고 아이를 낳으며 삽니다.<br/><br/>여기서 가장 중요한 것은 표의 마지막 줄입니다. 두 종류의 사람 모두 다시 태어난 사람들입니다. 그 나라 첫날 아침, 그 땅에는 예수님을 믿지 않는 사람이 단 한 명도 없습니다. 앞에서 말씀드린 그 하나뿐인 대문을 지나온 사람들만 있습니다.</aside>
+    </section>
+
+    <!-- 32. -->
+    <section class="slide center">
+      <div class="keyRound"><span class="kn">다섯째 이야기</span></div><h2 class="serif">그 나라의 <em>하루</em></h2><p class="divsub">선지자들이 그려 놓은 풍경</p>
+      <aside class="notes">그러면 그 나라는 어떤 모습입니까? 성경의 선지자들이 그 나라를 아주 구체적으로 그려 놓았습니다. 그중에서 제가 가장 좋아하는 장면을 먼저 읽어 드리겠습니다.</aside>
+    </section>
+
+    <!-- 33. -->
+    <section class="slide">
+      <p class="eyebrow">스가랴 8장</p><div class="vtext"><p>만군의 여호와가 이같이 말하노라. 예루살렘 길거리에 늙은 남자들과 늙은 여자들이 다시 앉을 것이라. 다 나이가 많으므로 저마다 손에 지팡이를 잡을 것이요, 그 성읍 거리에 소년과 소녀들이 가득하여 거기에서 뛰놀리라.</p><cite>스가랴 8:4~5</cite><p class="ven">Zechariah 8:4–5 (KJV) — Thus saith the LORD of hosts; There shall yet old men and old women dwell in the streets of Jerusalem, and every man with his staff in his hand for very age. And the streets of the city shall be full of boys and girls playing in the streets thereof.</p></div>
+      <aside class="notes"></aside>
+    </section>
+
+    <!-- 34. -->
+    <section class="slide">
+      <p class="eyebrow">WOW</p><h2 class="serif" style="font-size:clamp(26px,6vmin,66px)">노인은 편히 앉고, <em>아이들은 뛰노는</em> 거리</h2><div class="wow"><p>그 나라의 거리에는 지팡이를 짚은 할아버지, 할머니들이 평안히 앉아 계십니다. 그리고 그 앞에서 손주들이 마음껏 뛰어놉니다. 아무도 노인을 귀찮아하지 않고, 아무도 아이들 걱정을 하지 않습니다. 전쟁 걱정도, 굶을 걱정도 없습니다. 하나님이 그리신 그 나라의 첫 풍경이 노인이 대접받고 아이가 웃는 거리입니다. 평생 자식들 뒷바라지하느라 한 번도 편히 앉아 보지 못하신 분들, 그 나라에서는 편히 앉으십시오. 하나님이 그 자리를 마련해 두셨습니다.</p></div>
+      <aside class="notes">그 나라의 거리에는 지팡이를 짚은 할아버지, 할머니들이 평안히 앉아 계십니다. 그리고 그 앞에서 손주들이 마음껏 뛰어놉니다. 아무도 노인을 귀찮아하지 않고, 아무도 아이들 걱정을 하지 않습니다. 전쟁 걱정도, 굶을 걱정도 없습니다. 하나님이 그리신 그 나라의 첫 풍경이 노인이 대접받고 아이가 웃는 거리입니다. 평생 자식들 뒷바라지하느라 한 번도 편히 앉아 보지 못하신 분들, 그 나라에서는 편히 앉으십시오. 하나님이 그 자리를 마련해 두셨습니다.</aside>
+    </section>
+
+    <!-- 35. -->
+    <section class="slide">
+      <p class="eyebrow">다섯째 이야기</p><h2 class="serif">그 나라에는 <em>이런 일</em>이 있습니다</h2><div class="cols"><div class="col gold fr"><h3>전쟁이 없습니다</h3><p>칼을 쳐서 보습을, 창을 쳐서 낫을 만듭니다 (사 2:4)</p></div><div class="col fr"><h3>짐승도 순해집니다</h3><p>이리가 어린 양과 함께 살고, 젖먹이가 독사 구멍에서 장난합니다 (사 11:6~8)</p></div><div class="col fr"><h3>왜 그렇게 됩니까?</h3><p>“물이 바다를 덮음 같이 여호와를 아는 지식이 세상에 충만할 것임이니라” (사 11:9)</p></div></div>
+      <aside class="notes">그 나라에는 전쟁이 없습니다. 이사야 2장 4절, &quot;그들이 그들의 칼을 쳐서 보습을 만들고 그들의 창을 쳐서 낫을 만들 것이며… 다시는 전쟁을 연습하지 아니하리라.&quot; 총과 칼을 녹여 쟁기와 낫을 만듭니다. 전쟁을 겪으신 어르신들께 이보다 더 반가운 말씀이 있을까요.<br/><br/>그 나라에서는 짐승들까지 달라집니다. 이사야 11장 6절, &quot;이리가 어린 양과 함께 살며 표범이 어린 염소와 함께 누우며 송아지와 어린 사자와 살진 짐승이 함께 있어 어린 아이에게 끌리며.&quot; 그리고 8절, &quot;젖 먹는 아이가 독사의 구멍에서 장난하며.&quot; 시골에서 아이 키워 보신 분들은 아실 것입니다. 아이가 마당에서 놀 때 뱀 나올까, 개한테 물릴까 늘 마음을 졸이셨지요. 그 나라에서는 그런 걱정이 없습니다. 사자가 송아지 옆에 누워 있고, 아이가 그 사자를 끌고 다닙니다.<br/><br/>왜 그렇게 됩니까? 9절이 이유를 말합니다. &quot;물이 바다를 덮음 같이 여호와를 아는 지식이 세상에 충만할 것임이니라.&quot; 바다에 물이 덮이지 않은 곳이 없듯이, 그 나라에는 하나님을 모르는 곳이 한 군데도 없습니다. 그래서 사람도, 짐승도, 땅도 하나님이 처음 지으신 그 평화로 돌아갑니다. 에덴동산에서 잃어버린 것을 그 나라에서 다시 찾는 것입니다.</aside>
+    </section>
+
+    <!-- 36. -->
+    <section class="slide">
+      <p class="eyebrow">다섯째 이야기</p><h2 class="serif">아픈 몸도, 헛수고도 <em>없습니다</em></h2><div class="cols"><div class="col gold fr"><h3>병이 고쳐집니다</h3><p>맹인의 눈이 밝고, 저는 자가 사슴같이 뜁니다 (사 35:5~6)</p></div><div class="col fr"><h3>일한 것을 내가 누립니다</h3><p>집을 짓고 그 안에 살며, 포도나무를 심고 열매를 먹습니다 (사 65:21~22)</p></div><div class="col fr"><h3>나무처럼 오래 삽니다</h3><p>백 살에 죽으면 “아이가 일찍 갔다”고 할 정도입니다 (사 65:20)</p></div></div>
+      <aside class="notes">그 나라에서는 병이 고쳐집니다. 이사야 35장 5절과 6절, &quot;그 때에 맹인의 눈이 밝을 것이며 못 듣는 사람의 귀가 열릴 것이며, 그 때에 저는 자는 사슴같이 뛸 것이며.&quot; 무릎이 아파서 계단 하나 오르기 힘드셨던 분, 눈이 침침해서 성경 글씨가 안 보이셨던 분, 귀가 어두워 손주 목소리가 잘 안 들리셨던 분. 그 나라에서는 사슴처럼 뛰십니다.<br/><br/>그 나라에서는 내가 일한 것을 내가 누립니다. 이사야 65장 21절과 22절, &quot;그들이 가옥을 건축하고 그 안에 살겠고 포도나무를 심고 열매를 먹을 것이며, 그들이 건축한 데에 타인이 살지 아니할 것이며.&quot; 평생 열심히 일했는데 남 좋은 일만 하고 끝난 것 같은 인생이 많습니다. 그 나라에서는 그런 일이 없습니다. 그리고 22절, &quot;내 백성의 수한이 나무의 수한과 같겠고.&quot; 사람들이 나무처럼 오래 삽니다. 백 살에 죽으면 &quot;아이가 일찍 갔다&quot;고 할 정도입니다(65:20).</aside>
+    </section>
+
+    <!-- 37. -->
+    <section class="slide">
+      <p class="eyebrow">다섯째 이야기 · 고전 15:42~43</p><h2 class="serif">부활한 몸은 <em>이런 몸</em>입니다</h2><table class="tbl"><tr><th>지금 우리 몸</th><th>부활한 몸</th></tr><tr class="fr"><td class="gd">썩고 늙는 몸</td><td class="">썩지 않는 몸</td></tr><tr class="fr"><td class="gd">부끄러운 몸</td><td class="">영광스러운 몸</td></tr><tr class="fr"><td class="gd">약한 몸</td><td class="">강한 몸</td></tr></table><div class="lines"><p class="fr">부활하신 예수님은 “나를 만져 보라” 하시고 생선을 드셨습니다 (눅 24:39~43) — <b>우리도 그 나라에서 서로를 알아봅니다</b></p></div>
+      <aside class="notes">그러면 부활한 몸을 입은 우리는 그 나라에서 어떻게 지냅니까? 바울은 지금 우리 몸과 부활한 몸을 이렇게 비교했습니다.<br/><br/>그 몸이 어떤 몸인지 미리 보여 주신 분이 계십니다. 부활하신 예수님입니다. 부활하신 예수님은 제자들에게 &quot;나를 만져 보라&quot;고 하셨고, 그들 앞에서 생선을 드셨습니다(눅 24:39–43). 유령이 아니라 진짜 몸이었습니다. 제자들은 그분을 알아보았습니다. 그러니 우리도 그 나라에서 서로를 알아봅니다. 이름도, 얼굴도, 함께한 추억도 사라지지 않습니다. 다만 다시는 늙지 않고, 다시는 아프지 않습니다. 그 몸으로 우리는 예수님과 함께 그 나라를 다스리고, 그 나라 사람들을 돌봅니다.</aside>
+    </section>
+
+    <!-- 38. -->
+    <section class="slide center">
+      <div class="keyRound"><span class="kn">여섯째 이야기</span></div><h2 class="serif">천 년 끝의<br/><em>이상한 일</em></h2><p class="divsub">계 20:7~9</p>
+      <aside class="notes">그런데 성경은 천 년이 끝날 무렵 이상한 일이 일어난다고 말합니다. 그 나라에서 태어난 아이들 가운데 겉으로는 왕에게 순종했지만 속마음은 한 번도 하나님께 돌아오지 않은 사람들이 있었습니다. 천 년 동안 묶여 있던 사탄이 잠시 풀려나자, 그런 사람들이 바닷가 모래처럼 많이 모여 왕을 거역합니다(계 20:7–9). 그리고 하늘에서 불이 내려와 그 반역은 바로 끝납니다.</aside>
+    </section>
+
+    <!-- 39. -->
+    <section class="slide">
+      <p class="eyebrow">여섯째 이야기</p><h2 class="serif">가장 좋은 나라에서도<br/><em>마음이 바뀌지 않은</em> 사람들</h2><div class="lines"><p class="fr">의로운 왕, 전쟁 없음, 먹을 것 넘침, 병도 거의 없음</p><p class="fr">그런데도 마음이 새로 태어나지 않은 사람은 하나님을 거역했습니다</p><p class="fr">광야의 이스라엘도 그랬습니다 — 만나와 구름 기둥 아래서 <b>금송아지</b>를 만들었습니다</p></div>
+      <aside class="notes">왜 이런 이야기가 성경에 있을까요? 생각해 보십시오. 의로운 왕이 다스리고, 전쟁도 없고, 먹을 것도 넘치고, 병도 거의 없는 나라였습니다. 그런데도 마음이 새로 태어나지 않은 사람은 하나님을 거역했습니다. 좋은 옷을 입힌다고 사람이 바뀌는 것이 아닙니다. 좋은 집에 산다고 마음이 바뀌는 것도 아닙니다.<br/><br/>구약에도 똑같은 이야기가 있습니다. 이스라엘 백성이 애굽에서 나왔을 때, 하나님은 그들에게 날마다 하늘에서 만나를 내려 주셨습니다. 반석에서 물이 나왔고, 낮에는 구름 기둥이, 밤에는 불 기둥이 그들을 지켜 주었습니다. 사십 년 동안 옷이 해지지 않았고 발이 부르트지 않았습니다(신 8:4). 그렇게 좋은 환경이었는데도 그들은 원망하고 금송아지를 만들었습니다. 하나님이 바로 옆에 계셔도, 마음이 바뀌지 않으면 사람은 하나님을 떠납니다.</aside>
+    </section>
+
+    <!-- 40. -->
+    <section class="slide">
+      <p class="eyebrow">WOW</p><h2 class="serif" style="font-size:clamp(26px,6vmin,66px)">사람을 바꾸는 것은 환경이 아니라 <em>마음</em></h2><div class="wow"><p>이것이 천년왕국이 우리에게 가르쳐 주는 마지막 진리입니다. 사람을 바꾸는 것은 환경이 아니라 마음이고, 마음을 바꾸시는 분은 하나님뿐입니다. 그래서 예수님은 니고데모에게 &quot;더 좋은 환경이 필요하다&quot;고 하지 않으시고 &quot;다시 태어나야 한다&quot;고 하셨습니다. 오늘 처음 들은 그 말씀, 고향 집 대문이 하나뿐이라는 말씀이 천 년 끝에서 다시 증명됩니다.</p></div>
+      <aside class="notes">이것이 천년왕국이 우리에게 가르쳐 주는 마지막 진리입니다. 사람을 바꾸는 것은 환경이 아니라 마음이고, 마음을 바꾸시는 분은 하나님뿐입니다. 그래서 예수님은 니고데모에게 &quot;더 좋은 환경이 필요하다&quot;고 하지 않으시고 &quot;다시 태어나야 한다&quot;고 하셨습니다. 오늘 처음 들은 그 말씀, 고향 집 대문이 하나뿐이라는 말씀이 천 년 끝에서 다시 증명됩니다.</aside>
+    </section>
+
+    <!-- 41. -->
+    <section class="slide center">
+      <div class="keyRound"><span class="kn">일곱째 이야기</span></div><h2 class="serif">그리고 <em>영원한 집</em></h2><p class="divsub">새 하늘과 새 땅</p>
+      <aside class="notes">천 년이 끝나면 마지막 심판이 있습니다. 성경은 이것을 &quot;크고 흰 보좌의 심판&quot;이라고 부릅니다(계 20:11–12). 그런데 이 심판대 앞에 예수님을 믿은 사람들은 서지 않습니다. 예수님이 약속하셨습니다. &quot;내 말을 듣고 또 나 보내신 이를 믿는 자는 영생을 얻었고 심판에 이르지 아니하나니 사망에서 생명으로 옮겼느니라&quot;(요 5:24). 우리의 죄에 대한 심판은 이미 십자가에서 끝났습니다.</aside>
+    </section>
+
+    <!-- 42. -->
+    <section class="slide">
+      <p class="eyebrow">일곱째 이야기</p><h2 class="serif">믿는 사람은<br/><em>심판대 앞에 서지 않습니다</em></h2><div class="lines"><p class="fr">“…심판에 이르지 아니하나니 사망에서 생명으로 옮겼느니라” (요 5:24)</p><p class="fr">우리 죄에 대한 심판은 <b>이미 십자가에서 끝났습니다</b></p><p class="fr">이삿날 바뀌는 것은 사람이 아니라 <b>집</b>입니다</p></div>
+      <aside class="notes">천 년이 끝나면 마지막 심판이 있습니다. 성경은 이것을 &quot;크고 흰 보좌의 심판&quot;이라고 부릅니다(계 20:11–12). 그런데 이 심판대 앞에 예수님을 믿은 사람들은 서지 않습니다. 예수님이 약속하셨습니다. &quot;내 말을 듣고 또 나 보내신 이를 믿는 자는 영생을 얻었고 심판에 이르지 아니하나니 사망에서 생명으로 옮겼느니라&quot;(요 5:24). 우리의 죄에 대한 심판은 이미 십자가에서 끝났습니다.<br/><br/>그러면 부활한 몸을 입은 우리는 영원한 고향으로 어떻게 들어갑니까? 이사하는 날을 생각해 보십시오. 이삿날 바뀌는 것은 사람이 아니라 집입니다. 사람은 그대로이고, 짐은 이미 꾸려져 있습니다. 부활한 우리는 이미 늙지 않고 죽지 않는 몸을 입고 있습니다. 더 바뀔 것이 없습니다. 하나님이 우리가 살 집을 새로 지으실 뿐입니다. 새 하늘과 새 땅입니다.</aside>
+    </section>
+
+    <!-- 43. -->
+    <section class="slide">
+      <p class="eyebrow">일곱째 이야기 · 요 14:1~2</p><h2 class="serif">“내 아버지 집에<br/><em>거할 곳이 많도다</em>”</h2><div class="lines"><p class="fr">명절에 자식들이 오면 어머니는 방마다 이불을 꺼내고 군불을 때 놓으셨습니다</p><p class="fr">예수님이 지금 <b>아버지 집에 우리 방을</b> 준비하고 계십니다</p><p class="fr">늦게 오는 자식을 위해서도 <b>불을 켜 두고 기다리시는</b> 집입니다</p></div>
+      <aside class="notes">예수님은 십자가에 달리시기 전날 밤, 걱정하는 제자들에게 이렇게 말씀하셨습니다. &quot;너희는 마음에 근심하지 말라… 내 아버지 집에 거할 곳이 많도다. 그렇지 않으면 너희에게 일렀으리라. 내가 너희를 위하여 거처를 예비하러 가노니&quot;(요 14:1–2). 옛날 시골집을 생각해 보십시오. 명절에 자식들이 손주들을 데리고 오면, 어머니는 미리 방마다 이불을 꺼내 놓고 군불을 때 놓으셨습니다. &quot;누구는 이 방, 누구는 저 방.&quot; 자식들이 몇 명이 오든 방이 모자라지 않게 준비해 두셨습니다.<br/><br/>예수님이 지금 하고 계신 일이 그것입니다. 아버지 집에 우리 방을 준비하고 계십니다. &quot;거할 곳이 많도다.&quot; 방이 모자라서 못 들어가는 사람은 없습니다. 늦게 오는 자식을 위해서도 불을 켜 두고 기다리시는 아버지의 집입니다.</aside>
+    </section>
+
+    <!-- 44. -->
+    <section class="slide">
+      <p class="eyebrow">요한계시록 21장</p><div class="vtext"><p>내가 들으니 보좌에서 큰 음성이 나서 이르되, 보라 하나님의 장막이 사람들과 함께 있으매 하나님이 그들과 함께 계시리니 그들은 하나님의 백성이 되고 하나님은 친히 그들과 함께 계셔서 그들의 하나님이 되시고, 모든 눈물을 그 눈에서 닦아 주시니 다시는 사망이 없고 애통하는 것이나 곡하는 것이나 아픈 것이 다시 있지 아니하리니 처음 것들이 다 지나갔음이러라.</p><cite>요한계시록 21:3~4</cite><p class="ven">Revelation 21:3–4 (KJV) — And I heard a great voice out of heaven saying, Behold, the tabernacle of God is with men, and he will dwell with them, and they shall be his people, and God himself shall be with them, and be their God. And God shall wipe away all tears from their eyes; and there shall be no more death, neither sorrow, nor crying, neither shall there be any more pain: for the former things are passed away.</p></div>
+      <aside class="notes"></aside>
+    </section>
+
+    <!-- 45. -->
+    <section class="slide">
+      <p class="eyebrow">WOW</p><h2 class="serif" style="font-size:clamp(26px,6vmin,66px)"><em>모든 눈물</em>을 닦아 주시니</h2><div class="wow"><p>&quot;모든 눈물을 그 눈에서 닦아 주시니.&quot; 누가 닦아 주십니까? 하나님이 친히 닦아 주십니다. 어머니가 우는 아이의 눈물을 손으로 닦아 주듯이 말입니다. 야곱이 &quot;험악한 세월&quot;이라고 부른 그 모든 날의 눈물, 우리가 남몰래 흘린 눈물, 교회에서 받은 상처 때문에 흘린 눈물, 먼저 보낸 가족 때문에 흘린 눈물. 그 모든 눈물을 하나님이 하나도 남김없이 닦아 주십니다. &quot;처음 것들이 다 지나갔음이러라.&quot; 나그네 길이 끝나고, 고향 집에 도착한 것입니다.</p></div>
+      <aside class="notes">&quot;모든 눈물을 그 눈에서 닦아 주시니.&quot; 누가 닦아 주십니까? 하나님이 친히 닦아 주십니다. 어머니가 우는 아이의 눈물을 손으로 닦아 주듯이 말입니다. 야곱이 &quot;험악한 세월&quot;이라고 부른 그 모든 날의 눈물, 우리가 남몰래 흘린 눈물, 교회에서 받은 상처 때문에 흘린 눈물, 먼저 보낸 가족 때문에 흘린 눈물. 그 모든 눈물을 하나님이 하나도 남김없이 닦아 주십니다. &quot;처음 것들이 다 지나갔음이러라.&quot; 나그네 길이 끝나고, 고향 집에 도착한 것입니다.</aside>
+    </section>
+
+    <!-- 46. -->
+    <section class="slide">
+      <p class="eyebrow">맺는 말</p><h2 class="serif">오늘 말씀을 <em>정리</em>하면</h2><div class="lines"><p class="fr">하나님은 나그네들을 위해 <b>고향</b>을 준비하셨습니다</p><p class="fr">예수님이 천 년 동안 <b>공의로 다스리시는 나라</b></p><p class="fr">먼저 간 성도들과 <b>함께</b> 부활한 몸으로</p><p class="fr">노인이 편히 앉고 아이들이 뛰노는 나라 — 그리고 <b>눈물 없는 영원한 집</b></p><p class="fr">그 집의 대문은 하나 — <b>예수님을 믿어 다시 태어나는 것</b></p></div>
+      <aside class="notes">오늘 말씀을 정리하겠습니다. 하나님은 험악한 나그네 길을 걸어온 사람들을 위해 고향을 준비해 두셨습니다. 예수님이 다시 오시면 이 땅에서 천 년 동안 공의로 다스리시는 나라가 시작되고, 그 나라에는 먼저 간 성도들과 우리가 함께 부활한 몸으로, 그리고 환난을 통과한 사람들이 지금 같은 몸으로 삽니다. 노인이 평안히 앉고 아이들이 뛰노는 나라입니다. 그리고 그 뒤에는 하나님이 모든 눈물을 닦아 주시는 영원한 집이 있습니다. 그 고향 집의 대문은 하나뿐입니다. 예수님을 믿어 다시 태어나는 것입니다.</aside>
+    </section>
+
+    <!-- 47. -->
+    <section class="slide center">
+      <p class="eyebrow">2강 예고</p><h2 class="serif">그런데<br/><em>나 같은 사람도?</em></h2><div class="lines"><p>믿음도 작고, 너무 늦게 믿었고, 교회에서 상처받고 떠나 있기도 했는데…</p><p>다음 시간 — 집 나갔던 아들을 맞은 아버지, 그리고 십자가 위의 한 강도</p><p><b class="gold">그 나라에서 만나요</b></p></div>
+      <aside class="notes">그런데 이 말씀을 들으시면서 마음 한쪽에서 이런 생각이 드신 분이 계실 것입니다. &quot;그런데 나 같은 사람도 그 대문을 지날 수 있을까? 나는 믿음도 작고, 예수님을 너무 늦게 믿었고, 교회에서 상처받고 한동안 떠나 있기도 했는데. 성경도 잘 모르고, 기도도 잘 못하는데. 정말 나 같은 사람도 그 나라에 들어갈 수 있을까?&quot;<br/><br/>다음 시간, 2강에서 바로 그 질문에 답하겠습니다. 집을 나갔다가 거지가 되어 돌아온 아들을 아버지가 어떻게 맞았는지, 그리고 십자가에 달려 마지막 몇 시간을 남긴 한 강도에게 예수님이 무슨 약속을 하셨는지. 그 두 사람의 이야기 안에 당신의 이야기가 있습니다. 그 나라에서 만나요.</aside>
+    </section>
+
+    <div id="notes"><p class="nTitle">발표자 메모</p><div class="nBody"></div></div>
+    <div id="blackout"></div>
+  </div>
+
+  <script>
+    /* ===== 인증 — admin.html 과 동일한 패턴(토큰을 서버로 검증, 세션 키 공유) ===== */
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType:'implicit', autoRefreshToken:false, persistSession:false, detectSessionFromUrl:false, lock: async (_n,_t,fn)=>await fn() } });
+
+    function jwtPayload(tok){
+      let s=tok.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'); while(s.length%4) s+='=';
+      const json=decodeURIComponent(atob(s).split('').map(c=>'%'+('00'+c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+      return JSON.parse(json);
+    }
+    (function handleOAuthRedirect(){
+      try{
+        if(location.hash && location.hash.indexOf('access_token=')>=0){
+          const p=new URLSearchParams(location.hash.slice(1));
+          const at=p.get('access_token'), rt=p.get('refresh_token'), ei=Number(p.get('expires_in')||3600);
+          if(at){
+            const payload=jwtPayload(at);
+            const user={ id:payload.sub, email:payload.email, role:payload.role, user_metadata:payload.user_metadata||{} };
+            localStorage.setItem('bibly-admin-auth', JSON.stringify({ access_token:at, token_type:'bearer', expires_in:ei, refresh_token:rt, expires_at:(payload.exp||Math.floor(Date.now()/1000)+ei), user }));
+            history.replaceState(null,'',location.pathname);
+          }
+        }
+      }catch(e){}
+    })();
+
+    function readStored(){
+      try{
+        const raw=localStorage.getItem('bibly-admin-auth');
+        if(raw){ const v=JSON.parse(raw); if(v&&v.user){ if(v.expires_at&&v.expires_at*1000<Date.now()){ localStorage.removeItem('bibly-admin-auth'); } else { return v; } } }
+        for(const k of Object.keys(localStorage)){ if(!/auth-token/.test(k)) continue; const v=JSON.parse(localStorage.getItem(k)); const s=(v&&v.user)?v:(v&&v.currentSession)?v.currentSession:null; if(s&&s.user){ if(s.expires_at&&s.expires_at*1000<Date.now()) return null; return s; } }
+      }catch(e){} return null;
+    }
+    async function verifySession(session){
+      const tok = session && session.access_token;
+      if(!tok) return null;
+      const ctrl=new AbortController(); const to=setTimeout(()=>ctrl.abort(), 8000);
+      try{
+        const res = await fetch(SUPABASE_URL+'/auth/v1/user', { signal:ctrl.signal, headers:{ apikey:SUPABASE_ANON, Authorization:'Bearer '+tok } });
+        clearTimeout(to);
+        if(!res.ok) return null;
+        const u = await res.json();
+        return (u && u.id) ? u : null;
+      }catch(e){ clearTimeout(to); return null; }
+    }
+    async function googleLogin(){
+      try{ await sb.auth.signInWithOAuth({ provider:'google', options:{ redirectTo: location.origin+location.pathname } }); }catch(e){}
+    }
+    async function emailLogin(){
+      const email=document.getElementById('ge').value.trim(), pw=document.getElementById('gp').value;
+      const m=document.getElementById('gateErr'); m.textContent='';
+      if(!email||!pw){ m.textContent='이메일과 비밀번호를 입력하세요.'; return; }
+      m.textContent='로그인 중…';
+      const ctrl=new AbortController(); const to=setTimeout(()=>ctrl.abort(),8000);
+      try{
+        const res=await fetch(SUPABASE_URL+'/auth/v1/token?grant_type=password',{ method:'POST', signal:ctrl.signal, headers:{ apikey:SUPABASE_ANON,'Content-Type':'application/json' }, body:JSON.stringify({email,password:pw}) });
+        clearTimeout(to);
+        const d=await res.json();
+        if(d.error||!d.access_token){ m.textContent='로그인 실패: '+(d.error_description||d.msg||d.error||'알 수 없는 오류'); return; }
+        localStorage.setItem('bibly-admin-auth', JSON.stringify({ access_token:d.access_token, token_type:'bearer', expires_in:d.expires_in, refresh_token:d.refresh_token, expires_at:Math.floor(Date.now()/1000)+d.expires_in, user:d.user }));
+        location.reload();
+      }catch(e){ clearTimeout(to); m.textContent='네트워크 오류. 다시 시도해 주세요.'; }
+    }
+    async function applyAuth(){
+      const session = readStored();
+      const gm=document.querySelector('.gateCard p');
+      if(gm && session && session.access_token) gm.textContent='발표자 확인 중…';
+      const verified = await verifySession(session);
+      const email = String((verified && verified.email) || '').toLowerCase();
+      if(email && email === String(ADMIN_EMAIL).toLowerCase()){
+        document.getElementById('gate').style.display='none';
+        document.getElementById('deck').classList.add('open');
+        initDeck();
+      } else {
+        if(gm) gm.textContent='발표자 계정으로 로그인하세요.';
+      }
+    }
+
+    /* ===== 슬라이드 엔진 ===== */
+    let S=[], cur=0;
+    function frs(i){ return Array.from(S[i].querySelectorAll('.fr')); }
+    function sync(){
+      S.forEach((s,i)=>s.classList.toggle('on', i===cur));
+      document.getElementById('bar').style.width=(((cur+1)/S.length)*100)+'%';
+      document.getElementById('count').textContent=(cur+1)+' / '+S.length;
+      const n=S[cur].querySelector('.notes');
+      document.querySelector('#notes .nBody').innerHTML = n ? n.innerHTML : '';
+    }
+    function go(i, revealAll){
+      cur=Math.max(0, Math.min(S.length-1, i));
+      frs(cur).forEach(f=>f.classList.toggle('show', !!revealAll));
+      sync();
+    }
+    function next(){
+      hideHint();
+      const pend=frs(cur).find(f=>!f.classList.contains('show'));
+      if(pend){ pend.classList.add('show'); return; }
+      if(cur<S.length-1) go(cur+1, false);
+    }
+    function prev(){
+      hideHint();
+      const shown=frs(cur).filter(f=>f.classList.contains('show'));
+      if(shown.length){ shown[shown.length-1].classList.remove('show'); return; }
+      if(cur>0) go(cur-1, true);
+    }
+    function hideHint(){ const h=document.getElementById('hint'); if(h) h.classList.add('off'); }
+    function initDeck(){
+      S=Array.from(document.querySelectorAll('.slide'));
+      go(0,false);
+      setTimeout(hideHint, 9000);
+      setInterval(()=>{ const d=new Date(); document.getElementById('clock').textContent=('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2); }, 1000);
+
+      document.addEventListener('keydown', (e)=>{
+        if(/input|textarea/i.test(e.target.tagName)) return;
+        const k=e.key;
+        if(k==='ArrowRight'||k===' '||k==='PageDown'||k==='Enter'){ e.preventDefault(); next(); }
+        else if(k==='ArrowLeft'||k==='PageUp'||k==='Backspace'){ e.preventDefault(); prev(); }
+        else if(k==='Home'){ go(0,false); }
+        else if(k==='End'){ go(S.length-1,true); }
+        else if(k==='f'||k==='F'){ if(document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen().catch(()=>{}); }
+        else if(k==='n'||k==='N'){ document.getElementById('notes').classList.toggle('open'); }
+        else if(k==='b'||k==='B'||k==='.'){ document.getElementById('blackout').classList.toggle('open'); }
+        else if(k==='Escape'){ document.getElementById('blackout').classList.remove('open'); document.getElementById('notes').classList.remove('open'); }
+      });
+      document.getElementById('blackout').addEventListener('click', function(){ this.classList.remove('open'); });
+      document.getElementById('deck').addEventListener('click', (e)=>{
+        if(e.target.closest('#notes') || e.target.closest('#blackout')) return;
+        if(e.clientX < window.innerWidth*0.25) prev(); else next();
+      });
+      let tx=null;
+      document.addEventListener('touchstart', e=>{ tx=e.touches[0].clientX; }, {passive:true});
+      document.addEventListener('touchend', e=>{
+        if(tx===null) return;
+        const dx=e.changedTouches[0].clientX - tx; tx=null;
+        if(Math.abs(dx)>50){ if(dx<0) next(); else prev(); }
+      }, {passive:true});
+    }
+
+    applyAuth();
+  </script>
+</body>
+</html>

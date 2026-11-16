@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>아버지는 대문 앞에서 기다리고 계셨습니다 · 예수선교교회 특강 · 천년왕국과 부활 2강 슬라이드</title>
+  <!-- 관리자(발표자) 전용 페이지 — 검색엔진 색인 금지, 어디에도 공개 링크하지 않는다 -->
+  <meta name="robots" content="noindex, nofollow"/>
+  <meta name="theme-color" content="#1c1511"/>
+  <link rel="icon" href="/favicon.ico?v=8"/>
+  <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700;900&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
+    const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
+    const ADMIN_EMAIL = 'josephoh1611@gmail.com';
+  </script>
+  <style>
+    :root{
+      --bg:#0b1530; --bg2:#13224a; --ink:#f4f7ff; --sub:#9fb3d9; --dim:#67789f;
+      --gold:#ffd76a; --gold-deep:#e8b84a; --line:rgba(255,255,255,.12);
+    }
+    *{box-sizing:border-box; margin:0; padding:0}
+    html,body{height:100%}
+    body{
+      font-family:'Pretendard',system-ui,sans-serif; background:var(--bg); color:var(--ink);
+      overflow:hidden; -webkit-font-smoothing:antialiased;
+      word-break:keep-all; overflow-wrap:break-word;
+    }
+    h2, .lines p, .eyebrow{text-wrap:balance}
+    .serif{font-family:'Noto Serif KR','Pretendard',serif}
+
+    /* ===== 로그인 게이트 ===== */
+    #gate{position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center; padding:20px;
+      background:radial-gradient(1200px 700px at 70% -10%, #1b2c5c 0%, var(--bg) 60%)}
+    .gateCard{width:100%; max-width:360px; background:rgba(255,255,255,.05); border:1px solid var(--line);
+      border-radius:20px; padding:32px 26px; text-align:center; backdrop-filter:blur(8px)}
+    .gateCard h1{font-size:17px; font-weight:800; margin-bottom:4px}
+    .gateCard p{font-size:12.5px; color:var(--sub); margin-bottom:20px}
+    .gateCard input{width:100%; background:rgba(255,255,255,.07); border:1px solid var(--line); border-radius:12px;
+      color:var(--ink); padding:11px 14px; font-size:14px; margin-bottom:8px; outline:none}
+    .gateCard input:focus{border-color:var(--gold)}
+    .btn{width:100%; border:0; border-radius:12px; padding:12px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit}
+    .btnGoogle{background:#fff; color:#1c2440; display:flex; align-items:center; justify-content:center; gap:9px; margin-bottom:14px}
+    .btnMail{background:var(--gold); color:#2a2000}
+    #gateErr{font-size:12px; color:#ff9d9d; min-height:16px; margin-top:8px}
+    .gateHome{display:inline-block; margin-top:10px; font-size:12px; color:var(--dim); text-decoration:none}
+
+    /* ===== 덱 공통 ===== */
+    #deck{position:fixed; inset:0; display:none}
+    #deck.open{display:block}
+    #bar{position:fixed; top:0; left:0; height:4px; background:linear-gradient(90deg,var(--gold),var(--gold-deep));
+      width:0%; z-index:40; transition:width .35s ease}
+    #count{position:fixed; right:18px; bottom:14px; z-index:40; font-size:12px; color:var(--dim); letter-spacing:.06em;
+      font-variant-numeric:tabular-nums}
+    #clock{position:fixed; left:18px; bottom:14px; z-index:40; font-size:12px; color:var(--dim); font-variant-numeric:tabular-nums}
+    #hint{position:fixed; left:50%; bottom:14px; transform:translateX(-50%); z-index:40; font-size:11.5px; color:var(--dim);
+      background:rgba(255,255,255,.05); border:1px solid var(--line); padding:6px 14px; border-radius:999px; white-space:nowrap;
+      transition:opacity .8s}
+    #hint.off{opacity:0; pointer-events:none}
+
+    /* ===== 슬라이드 ===== */
+    .slide{position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center;
+      padding:7vmin 9vmin 10vmin; opacity:0; transform:translateY(14px); transition:opacity .55s ease, transform .55s ease;
+      pointer-events:none; visibility:hidden;
+      background:radial-gradient(1400px 900px at 75% -15%, #192a58 0%, var(--bg) 62%)}
+    .slide.on{opacity:1; transform:none; pointer-events:auto; visibility:visible}
+    .eyebrow{font-size:clamp(13px,2vmin,20px); font-weight:700; letter-spacing:.22em; color:var(--gold);
+      text-transform:uppercase; margin-bottom:2.6vmin}
+    .eyebrow .n{color:var(--dim); margin-right:1em; letter-spacing:.1em}
+    h2{font-size:clamp(28px,7vmin,76px); line-height:1.26; font-weight:900; letter-spacing:-.01em; max-width:22em; text-wrap:balance}
+    h2 em{font-style:normal; color:var(--gold)}
+    .lines{margin-top:4vmin; display:flex; flex-direction:column; gap:2vmin; max-width:36em}
+    .lines p{font-size:clamp(17px,3.2vmin,34px); line-height:1.6; color:var(--sub)}
+    .lines p b{color:var(--ink); font-weight:700}
+    .big{font-size:clamp(34px,8.4vmin,96px) !important; line-height:1.28 !important}
+    .fr{opacity:0; transform:translateY(16px); transition:opacity .45s ease, transform .45s ease}
+    .fr.show{opacity:1; transform:none}
+    .notes{display:none}
+    .center{align-items:center; text-align:center}
+    .center h2{max-width:none}
+    .center .lines{align-items:center}
+    .hl{color:var(--gold); font-weight:700}
+
+    /* 성경 전문 블록 */
+    .vtext{border-left:4px solid var(--gold); padding:1.4vmin 0 1.4vmin 3vmin; max-width:40em; margin-top:1vmin}
+    .vtext p{font-family:'Noto Serif KR','Pretendard',serif; font-size:clamp(18px,3.3vmin,38px); line-height:1.8; color:var(--ink)}
+    .vtext.md p{font-size:clamp(16px,2.8vmin,32px)}
+    .vtext cite{display:block; margin-top:1.4vmin; font-size:clamp(12px,1.9vmin,18px); color:var(--gold); font-style:normal; letter-spacing:.08em}
+    .vtext + .vtext{margin-top:3vmin}
+    .vwrap{display:grid; grid-template-columns:1fr 1fr; gap:4.5vmin; align-items:start; max-width:66em; margin-top:1vmin}
+    .vwrap .vtext{margin-top:0; max-width:none}
+    .vwrap .vtext p{font-size:clamp(15px,2.7vmin,32px)}
+
+    /* 칩 */
+    .chips{display:flex; gap:1.8vmin; margin-top:4vmin; flex-wrap:wrap}
+    .chip{border:1.5px solid var(--line); border-radius:999px; padding:1.3vmin 3vmin; font-size:clamp(14px,2.5vmin,26px);
+      color:var(--dim); font-weight:700; letter-spacing:.02em}
+    .chip.now{border-color:var(--gold); color:var(--gold)}
+    .center .chips{justify-content:center}
+
+    /* 표 */
+    table.tbl{margin-top:3.2vmin; border-collapse:collapse; max-width:100%}
+    .tbl th,.tbl td{border:1px solid var(--line); padding:1.3vmin 2vmin; font-size:clamp(13px,2.2vmin,24px);
+      text-align:left; line-height:1.5; vertical-align:top}
+    .tbl th{background:rgba(255,215,106,.10); color:var(--gold); font-weight:800; white-space:nowrap}
+    .tbl td{color:var(--sub)}
+    .tbl td b{color:var(--ink)}
+    .tbl td.gd{color:var(--gold); font-weight:700}
+    .tbl td.rd{color:#e39a8f; font-weight:700}
+
+    /* 질문 카드 */
+    .qcard{border:1px solid var(--line); border-left:4px solid var(--gold); border-radius:12px;
+      padding:2vmin 2.8vmin; background:rgba(255,255,255,.04); max-width:46em}
+    .qcard .qn{font-size:clamp(12px,1.9vmin,18px); color:var(--gold); font-weight:800; letter-spacing:.12em; margin-bottom:.8vmin}
+    .qcard p{font-size:clamp(15px,2.6vmin,28px); line-height:1.6; color:var(--sub)}
+    .qcard p b{color:var(--ink)}
+    .qcard.xl p{font-family:'Noto Serif KR',serif; font-size:clamp(18px,3.2vmin,38px); line-height:1.7; color:var(--ink)}
+    .qwrap{display:flex; flex-direction:column; gap:2vmin; margin-top:3.4vmin}
+
+    /* 2·3단 카드 */
+    .cols{display:flex; gap:3vmin; margin-top:3.6vmin; flex-wrap:wrap; max-width:70em}
+    .col{flex:1; min-width:230px; border:1px solid var(--line); border-radius:14px; padding:2.6vmin 3vmin;
+      background:rgba(255,255,255,.04)}
+    .col h3{font-size:clamp(16px,2.8vmin,30px); font-weight:800; margin-bottom:1.4vmin}
+    .col.gold{border-color:var(--gold)}
+    .col.gold h3{color:var(--gold)}
+    .col p{font-size:clamp(13px,2.2vmin,23px); line-height:1.62; color:var(--sub)}
+    .col p b{color:var(--ink)}
+    .col ul{margin:1vmin 0 0 1.1em}
+    .col li{font-size:clamp(13px,2.2vmin,23px); line-height:1.62; color:var(--sub); margin-bottom:.9vmin}
+    .col li b{color:var(--ink)}
+
+    /* 번호 목록 */
+    .ref-list{margin-top:3vmin; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.4vmin 3vmin; max-width:70em}
+    .ref-list.one{grid-template-columns:1fr}
+    .ref-list .r{border-left:3px solid var(--gold); padding:.6vmin 0 .6vmin 2vmin}
+    .ref-list .r .k{font-size:clamp(12px,1.9vmin,19px); color:var(--gold); font-weight:800; letter-spacing:.06em}
+    .ref-list .r .t{font-family:'Noto Serif KR',serif; font-size:clamp(15px,2.6vmin,29px); line-height:1.55; color:var(--ink)}
+    @media (max-aspect-ratio:4/3){ .ref-list{grid-template-columns:1fr} .vwrap{grid-template-columns:1fr; gap:2.5vmin} }
+
+    /* 열쇠 간지 */
+    .keyRound{width:clamp(90px,16vmin,170px); height:clamp(90px,16vmin,170px); border-radius:50%; background:var(--gold);
+      color:#241a00; display:flex; flex-direction:column; align-items:center; justify-content:center; margin:0 auto 4vmin}
+    .keyRound .kl{font-size:clamp(12px,1.9vmin,18px); font-weight:800; letter-spacing:.2em}
+    .keyRound .kn{font-size:clamp(34px,6.5vmin,70px); font-weight:900; line-height:1.05}
+
+    @media (max-width:760px), (orientation:portrait){
+      .slide{padding:7vmin 6vmin 12vmin}
+    }
+
+    /* 발표자 노트 패널 (N 키) */
+    #notes{position:fixed; left:0; right:0; bottom:0; z-index:50; max-height:38vh; overflow:auto; display:none;
+      background:rgba(6,12,30,.94); border-top:1px solid var(--gold); padding:16px 22px 22px; backdrop-filter:blur(6px)}
+    #notes.open{display:block}
+    #notes .nTitle{font-size:11px; letter-spacing:.2em; color:var(--gold); font-weight:700; margin-bottom:8px}
+    #notes .nBody{font-size:14.5px; line-height:1.75; color:#dbe4f7; max-width:860px}
+    #notes .nBody b{color:var(--gold)}
+
+    /* 암전 (B 키) */
+    #blackout{position:fixed; inset:0; z-index:60; background:#000; display:none}
+    #blackout.open{display:block}
+
+    /* ===== 외부특강 테마 — 노을 진 고향 집(따뜻한 저녁빛) · 어르신용 큰 글씨 ===== */
+    :root{ --bg:#1c1511; --bg2:#2a1f18; --ink:#fff7ec; --sub:#ecd9bf; --dim:#a8927a; --gold:#f5bd62; --gold-deep:#e09a3e; --line:rgba(255,236,210,.16); }
+    .slide{background:radial-gradient(1300px 900px at 78% -10%, #3a2a1d 0%, var(--bg) 62%)}
+    #gate{background:radial-gradient(1200px 700px at 70% -10%, #3a2a1d 0%, var(--bg) 60%)}
+    h2{font-size:clamp(30px,8vmin,88px)}
+    .lines p{font-size:clamp(19px,3.9vmin,42px); line-height:1.55}
+    .lines .gold, b.gold{color:var(--gold)}
+    .vtext p{font-size:clamp(20px,4vmin,46px); line-height:1.7}
+    .vtext .ven{font-family:'Pretendard',sans-serif; font-size:clamp(12px,2vmin,21px); color:var(--dim); line-height:1.55; margin-top:1.6vmin; font-style:italic}
+    .wow{margin-top:3.4vmin; border:2px solid var(--gold); border-radius:22px; padding:3.6vmin 4.2vmin; background:rgba(245,189,98,.07); max-width:46em}
+    .wow p{font-family:'Noto Serif KR','Pretendard',serif; font-size:clamp(17px,3.35vmin,38px); line-height:1.75; color:var(--ink)}
+    .tbl th,.tbl td{font-size:clamp(16px,3.3vmin,36px); padding:1.7vmin 2.3vmin}
+    .col h3{font-size:clamp(19px,3.9vmin,42px)} .col p{font-size:clamp(16px,3.3vmin,36px)}
+    .keyRound{width:auto; min-width:clamp(150px,26vmin,280px); height:clamp(70px,11vmin,120px); border-radius:999px; padding:0 4vmin}
+    .keyRound .kn{font-size:clamp(26px,5vmin,54px)}
+    .divsub{margin-top:2.4vmin; font-size:clamp(17px,3.2vmin,34px); color:var(--sub)}
+    .prayer p{font-family:'Noto Serif KR','Pretendard',serif; font-size:clamp(18px,3.5vmin,40px); line-height:1.6; color:var(--ink)}
+  </style>
+</head>
+<body>
+
+  <!-- ===== 로그인 게이트 ===== -->
+  <div id="gate">
+    <div class="gateCard">
+      <h1>예수선교교회 특강 2강 슬라이드</h1>
+      <p>발표자 계정으로 로그인하세요.</p>
+      <button class="btn btnGoogle" onclick="googleLogin()">
+        <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C39.9 36.5 44 31 44 24c0-1.3-.1-2.3-.4-3.5z"/></svg>
+        구글로 로그인
+      </button>
+      <input id="ge" type="email" placeholder="이메일" autocomplete="username"/>
+      <input id="gp" type="password" placeholder="비밀번호" autocomplete="current-password"/>
+      <button class="btn btnMail" onclick="emailLogin()">이메일로 로그인</button>
+      <p id="gateErr"></p>
+      <a class="gateHome" href="/admin">← 관리자 콘솔로</a>
+    </div>
+  </div>
+
+  <!-- ===== 슬라이드 덱 ===== -->
+  <div id="deck">
+    <div id="bar"></div>
+    <div id="count"></div>
+    <div id="clock"></div>
+    <div id="hint">→ 다음 · ← 이전 · <b>F</b> 전체화면 · <b>N</b> 대본 · <b>B</b> 암전</div>
+
+    <!-- 1. -->
+    <section class="slide center">
+      <p class="eyebrow">예수선교교회 특강 · 천년왕국과 부활 2강</p><h2 class="serif">아버지는 대문 앞에서<br/><em>기다리고 계셨습니다</em></h2><div class="lines"><p>나 같은 사람도 그 나라에 들어갈 수 있을까</p><p style="color:var(--dim); font-size:clamp(14px,2.4vmin,24px)">오광일 · 오광일의 인사이트 브리핑</p></div>
+      <aside class="notes">나 같은 사람도 그 나라에 들어갈 수 있을까 — 작은 믿음, 늦은 믿음, 상처 입은 믿음, 그리고 십자가 옆 강도에게 하신 약속</aside>
+    </section>
+
+    <!-- 2. -->
+    <section class="slide">
+      <p class="eyebrow">지난 시간</p><h2 class="serif">고향 집 대문은 <em>하나뿐</em>이었습니다</h2><div class="lines"><p class="fr">하나님이 나그네들을 위해 준비하신 고향</p><p class="fr">노인이 편히 앉고 아이들이 뛰노는 나라, 눈물 없는 영원한 집</p><p class="fr">그 대문은 — <b>예수님을 믿어 다시 태어나는 것</b></p><p class="fr">그리고 남은 질문 하나: <b class="gold">“그런데 나 같은 사람도?”</b></p></div>
+      <aside class="notes">지난 시간, 우리는 하나님이 험악한 나그네 길을 걸어온 사람들을 위해 고향을 준비해 두셨다는 이야기를 했습니다. 예수님이 이 땅에서 다스리시는 천 년의 나라, 노인이 지팡이를 짚고 평안히 앉고 아이들이 뛰노는 나라, 그리고 하나님이 모든 눈물을 닦아 주시는 영원한 집. 그 고향 집의 대문은 하나뿐이고, 그 대문은 예수님을 믿어 다시 태어나는 것이라고 말씀드렸습니다.<br/><br/>그리고 마지막에 질문 하나를 남겼습니다. &quot;그런데 나 같은 사람도 그 대문을 지날 수 있을까?&quot; 오늘은 그 질문에 대답하려고 합니다. 먼저 예수님이 들려주신 이야기 하나로 시작하겠습니다. 아마 들어 보신 분도 계실 것입니다.</aside>
+    </section>
+
+    <!-- 3. -->
+    <section class="slide">
+      <p class="eyebrow">여는 이야기 · 누가복음 15장</p><h2 class="serif">집을 나간 <em>작은아들</em></h2><div class="lines"><p class="fr">“아버지, 내 몫의 재산을 지금 주십시오”</p><p class="fr">먼 나라에서 재산을 다 탕진하고</p><p class="fr">돼지가 먹는 쥐엄 열매로라도 배를 채우고 싶을 만큼 비참해졌습니다</p></div>
+      <aside class="notes">어떤 아버지에게 아들이 둘 있었습니다. 작은아들이 아버지에게 말합니다. &quot;아버지, 내 몫의 재산을 지금 주십시오.&quot; 아버지가 살아 계신데 유산을 달라는 것은 &quot;아버지가 빨리 돌아가셨으면 좋겠다&quot;는 말이나 다름없었습니다. 그런데도 아버지는 재산을 나누어 주었고, 아들은 먼 나라로 떠나 그 돈을 다 탕진했습니다. 그리고 흉년이 들자 돼지 치는 일을 하며, 돼지가 먹는 쥐엄 열매로라도 배를 채우고 싶을 만큼 비참해졌습니다.</aside>
+    </section>
+
+    <!-- 4. -->
+    <section class="slide">
+      <p class="eyebrow">여는 이야기</p><h2 class="serif">“품꾼 하나로<br/><em>써 주십시오</em>”</h2><div class="lines"><p class="fr">누더기를 걸치고, 맨발로, 고개를 숙이고</p><p class="fr">“아버지가 문을 열어 주실까?”</p><p class="fr">“동네 사람들이 뭐라고 할까? 형은 나를 받아 줄까?”</p></div>
+      <aside class="notes">그제야 아들은 정신이 들었습니다. &quot;우리 아버지 집에는 품꾼들도 양식이 넉넉한데 나는 여기서 굶어 죽는구나. 돌아가서 아버지께 말씀드려야겠다. 나는 더 이상 아들이라 불릴 자격이 없습니다. 품꾼 하나로 써 주십시오.&quot; 그렇게 아들은 누더기를 걸치고, 맨발로, 고개를 숙이고 집으로 향합니다. 아들의 머릿속에는 걱정뿐이었을 것입니다. &quot;아버지가 문을 열어 주실까? 동네 사람들이 뭐라고 할까? 형은 나를 받아 줄까?&quot;</aside>
+    </section>
+
+    <!-- 5. -->
+    <section class="slide">
+      <p class="eyebrow">누가복음 15장</p><div class="vtext"><p>이에 일어나서 아버지께로 돌아가니라. 아직도 거리가 먼데 아버지가 그를 보고 측은히 여겨 달려가 목을 안고 입을 맞추니.</p><cite>누가복음 15:20</cite><p class="ven">Luke 15:20 (KJV) — And he arose, and came to his father. But when he was yet a great way off, his father saw him, and had compassion, and ran, and fell on his neck, and kissed him.</p></div>
+      <aside class="notes"></aside>
+    </section>
+
+    <!-- 6. -->
+    <section class="slide">
+      <p class="eyebrow">WOW</p><h2 class="serif" style="font-size:clamp(26px,6vmin,66px)"><em>“아직도 거리가 먼데”</em></h2><div class="wow"><p>&quot;아직도 거리가 먼데.&quot; 아버지는 어떻게 그 먼 거리에서 아들을 알아보았을까요? 날마다 대문 앞에 나가 그 길을 바라보고 있었기 때문입니다. 그리고 &quot;달려가.&quot; 그 시대에 나이 든 어른이 체면 없이 옷자락을 걷고 달리는 일은 없었습니다. 그런데 아버지는 달려갔습니다. 아들이 준비한 사과의 말을 다 끝내기도 전에 목을 끌어안았습니다. 오늘 이 이야기의 끝에서 우리는 알게 될 것입니다. 그 아버지가 지금 누구를 기다리고 계신지를.</p></div>
+      <aside class="notes">&quot;아직도 거리가 먼데.&quot; 아버지는 어떻게 그 먼 거리에서 아들을 알아보았을까요? 날마다 대문 앞에 나가 그 길을 바라보고 있었기 때문입니다. 그리고 &quot;달려가.&quot; 그 시대에 나이 든 어른이 체면 없이 옷자락을 걷고 달리는 일은 없었습니다. 그런데 아버지는 달려갔습니다. 아들이 준비한 사과의 말을 다 끝내기도 전에 목을 끌어안았습니다. 오늘 이 이야기의 끝에서 우리는 알게 될 것입니다. 그 아버지가 지금 누구를 기다리고 계신지를.</aside>
+    </section>
+
+    <!-- 7. -->
+    <section class="slide center">
+      <div class="keyRound"><span class="kn">첫째 이야기</span></div><h2 class="serif">유월절 밤, <em>두 집</em></h2><p class="divsub">“내 믿음은 너무 작은데…”</p>
+      <aside class="notes">&quot;나 같은 사람도 들어갈 수 있을까?&quot; 이 질문 밑에는 대개 이런 걱정이 깔려 있습니다. &quot;내 믿음은 너무 작은데. 다른 사람들은 기도도 오래 하고 성경도 잘 아는데, 나는 믿는다고 하면서도 자꾸 의심이 드는데. 이렇게 작은 믿음으로도 구원받을 수 있을까?&quot;<br/><br/>이 걱정에 대한 성경의 대답을 구약의 한 장면으로 보여 드리겠습니다. 이스라엘 백성이 애굽에서 종살이하던 마지막 밤, 유월절 밤입니다. 하나님은 그날 밤 애굽의 모든 집에 심판이 내린다고 하셨습니다. 그리고 한 가지 길을 주셨습니다. 어린 양을 잡아 그 피를 집 문설주에 바르라는 것입니다.</aside>
+    </section>
+
+    <!-- 8. -->
+    <section class="slide">
+      <p class="eyebrow">출애굽기 12장</p><div class="vtext"><p>내가 피를 볼 때에 너희를 넘어가리니 재앙이 너희에게 내려 멸하지 아니하리라.</p><cite>출애굽기 12:13</cite><p class="ven">Exodus 12:13 (KJV) — and when I see the blood, I will pass over you, and the plague shall not be upon you to destroy you…</p></div>
+      <aside class="notes"></aside>
+    </section>
+
+    <!-- 9. -->
+    <section class="slide">
+      <p class="eyebrow">첫째 이야기</p><h2 class="serif">그날 밤 <em>어느 집</em>이 안전했습니까?</h2><div class="cols"><div class="col gold fr"><h3>첫째 집</h3><p>믿음이 강한 아버지 — 피를 바르고 “걱정 마라” 하며 편히 앉아 먹습니다</p></div><div class="col fr"><h3>둘째 집</h3><p>겁 많은 아버지 — 피를 바르고도 밤새 떨며 맏아들을 끌어안고 있습니다</p></div></div><div class="lines"><p class="fr"><b>두 집 다 안전했습니다</b> — “내가 <em>피를</em> 볼 때에 넘어가리니”</p></div>
+      <aside class="notes">그날 밤 이스라엘의 두 집을 상상해 보겠습니다. 첫째 집에는 믿음이 아주 강한 아버지가 삽니다. 문설주에 피를 바르고 나서 식구들에게 말합니다. &quot;걱정 마라. 하나님이 약속하셨다.&quot; 그리고 편안히 앉아서 양고기를 먹습니다. 둘째 집에는 겁이 많은 아버지가 삽니다. 피를 바르긴 발랐는데, 밤새 잠을 못 이룹니다. &quot;정말 괜찮을까? 피를 제대로 발랐나? 우리 집이 너무 죄가 많은 건 아닐까?&quot; 밤새 떨면서 맏아들을 끌어안고 있습니다.<br/><br/>자, 한 번 생각해 보십시오. 그날 밤 두 집 가운데 어느 집이 안전했습니까? 두 집 다 안전했습니다. 왜입니까? 하나님은 &quot;너희 믿음이 강한 것을 볼 때에 넘어가리라&quot;고 하지 않으셨습니다. &quot;내가 피를 볼 때에 넘어가리라&quot;고 하셨습니다. 그 집을 지킨 것은 집 안에 있는 사람의 믿음의 크기가 아니었습니다. 문설주에 발린 어린 양의 피였습니다.</aside>
+    </section>
+
+    <!-- 10. -->
+    <section class="slide">
+      <p class="eyebrow">WOW</p><h2 class="serif" style="font-size:clamp(26px,6vmin,66px)">믿음의 크기가 아니라 <em>믿음이 붙잡은 분</em></h2><div class="wow"><p>예수님을 성경은 &quot;세상 죄를 지고 가는 하나님의 어린 양&quot;(요 1:29)이라고 부릅니다. 유월절 어린 양은 예수님을 미리 보여 준 그림이었습니다. 우리를 구원하는 것은 우리 믿음의 크기가 아니라, 우리 믿음이 붙잡은 예수님의 피입니다. 떨리는 손으로 붙잡았든, 굳센 손으로 붙잡았든, 붙잡은 분이 같으면 구원도 같습니다. 오늘 &quot;나는 믿음이 작아서&quot;라고 걱정하시는 분, 그날 밤 떨면서 밤을 새운 둘째 집 아버지도 아침에 살아서 맏아들의 얼굴을 보았습니다.</p></div>
+      <aside class="notes">예수님을 성경은 &quot;세상 죄를 지고 가는 하나님의 어린 양&quot;(요 1:29)이라고 부릅니다. 유월절 어린 양은 예수님을 미리 보여 준 그림이었습니다. 우리를 구원하는 것은 우리 믿음의 크기가 아니라, 우리 믿음이 붙잡은 예수님의 피입니다. 떨리는 손으로 붙잡았든, 굳센 손으로 붙잡았든, 붙잡은 분이 같으면 구원도 같습니다. 오늘 &quot;나는 믿음이 작아서&quot;라고 걱정하시는 분, 그날 밤 떨면서 밤을 새운 둘째 집 아버지도 아침에 살아서 맏아들의 얼굴을 보았습니다.</aside>
+    </section>
+
+    <!-- 11. -->
+    <section class="slide">
+      <p class="eyebrow">첫째 이야기</p><h2 class="serif">꽁꽁 언 강을<br/><em>건너는 두 사람</em></h2><div class="lines"><p class="fr">한 사람은 성큼성큼 걸어가고, 한 사람은 무서워서 엉금엉금 기어갑니다</p><p class="fr">둘 다 무사히 건넜습니다 — <b>얼음이 두꺼웠기 때문</b>입니다</p><p class="fr">중요한 것은 내 믿음의 두께가 아니라 <b>내가 올라선 얼음의 두께</b></p><p class="fr">예수님이라는 얼음은 <b>온 세상의 죄를 실어도 깨지지 않습니다</b></p></div>
+      <aside class="notes">쉬운 예를 하나 더 들겠습니다. 한겨울 꽁꽁 언 강을 건넌다고 생각해 보십시오. 어떤 사람은 얼음 위를 성큼성큼 걸어갑니다. 어떤 사람은 무서워서 엉금엉금 기어갑니다. 둘 다 무사히 건넜습니다. 왜입니까? 사람의 용기가 그를 붙들어 준 것이 아니라 얼음이 두꺼웠기 때문입니다. 반대로 얼음이 얇으면 아무리 자신 있게 걸어도 빠집니다. 중요한 것은 내 믿음의 두께가 아니라, 내가 올라선 얼음의 두께입니다. 그리고 예수님이라는 얼음은 온 세상의 죄를 다 실어도 깨지지 않습니다.</aside>
+    </section>
+
+    <!-- 12. -->
+    <section class="slide">
+      <p class="eyebrow">첫째 이야기 · 막 9:24</p><h2 class="serif">“내가 믿나이다,<br/><em>나의 믿음 없는 것을 도와주소서</em>”</h2><div class="lines"><p class="fr">믿는다고 하면서 동시에 믿음 없음을 고백한 아버지</p><p class="fr">예수님은 꾸짖지 않으시고 <b>그 아들을 고쳐 주셨습니다</b></p><p class="fr">예수님은 작은 믿음을 비웃지 않으십니다 — <b>그 믿음을 들고 온 사람을 받아 주십니다</b></p></div>
+      <aside class="notes">복음서에 이런 아버지가 나옵니다. 귀신 들린 아들을 데리고 예수님께 와서 &quot;할 수 있거든 도와주십시오&quot; 하고 말합니다. 예수님이 &quot;할 수 있거든이 무슨 말이냐, 믿는 자에게는 능히 하지 못할 일이 없느니라&quot; 하시자 그 아버지가 울면서 외칩니다. &quot;내가 믿나이다. 나의 믿음 없는 것을 도와주소서&quot;(막 9:24). 믿는다고 하면서 동시에 믿음 없음을 고백합니다. 예수님은 그 아버지를 꾸짖으셨습니까? 아닙니다. 그 아들을 고쳐 주셨습니다. 예수님은 작은 믿음을 비웃지 않으십니다. 그 작은 믿음을 들고 온 사람을 받아 주십니다.</aside>
+    </section>
+
+    <!-- 13. -->
+    <section class="slide">
+      <p class="eyebrow">첫째 이야기 · 여호수아 2장</p><h2 class="serif">라합의 창문에 걸린<br/><em>붉은 줄</em></h2><div class="lines"><p class="fr">이스라엘 사람도 아니고, 손가락질받던 여인</p><p class="fr">여리고성이 무너지던 날 — 그 집만 구원받았습니다</p><p class="fr">착해서가 아니라 <b>붉은 줄 때문</b>이었습니다</p><p class="fr">그리고 그 이름이 <b>예수님의 족보</b>에 올랐습니다 (마 1:5)</p></div>
+      <aside class="notes">구약에 또 한 사람이 있습니다. 여리고성에 살던 라합이라는 여인입니다. 성경은 그를 &quot;기생 라합&quot;이라고 부릅니다. 이스라엘 사람도 아니었고, 사람들에게 손가락질받는 직업을 가진 여인이었습니다. 그 여인이 이스라엘의 하나님에 대한 소문을 듣고, 하나님을 믿고, 정탐꾼들을 숨겨 주었습니다. 정탐꾼들은 떠나면서 한 가지를 약속합니다. &quot;우리가 이 땅에 들어올 때에 너는 우리를 달아 내린 창문에 이 붉은 줄을 매고 네 부모와 형제와 네 아버지의 가족을 다 네 집에 모으라&quot;(수 2:18).<br/><br/>여리고성이 무너지던 날, 성벽 위에 있던 라합의 집 창문에는 붉은 줄 하나가 걸려 있었습니다. 성이 다 무너졌는데 그 집은 구원받았습니다. 라합이 착한 사람이어서가 아니었습니다. 붉은 줄 때문이었습니다. 그리고 놀라운 일이 있습니다. 신약성경 첫 장, 예수님의 족보에 이 여인의 이름이 올라 있습니다(마 1:5). 다윗 왕의 고조할머니가 되었습니다. 손가락질받던 여인이 하나님의 호적, 그것도 예수님의 족보에 이름을 올린 것입니다. 붉은 줄과 유월절의 피, 둘 다 예수님의 피를 미리 보여 준 그림입니다.</aside>
+    </section>
+
+    <!-- 14. -->
+    <section class="slide center">
+      <div class="keyRound"><span class="kn">둘째 이야기</span></div><h2 class="serif"><em>셋째 칸</em>은 없습니다</h2><p class="divsub">“들어가도 반쯤만 들어가는 건 아닐까?”</p>
+      <aside class="notes">두 번째 걱정은 이것입니다. &quot;들어가긴 들어가도, 나 같은 사람은 문간에서 겨우, 반쯤만 들어가는 건 아닐까? 천년왕국에는 못 들어가고 나중에 따로 들어가는 건 아닐까?&quot; 요한계시록 20장은 이 질문에 분명하게 답합니다.</aside>
+    </section>
+
+    <!-- 15. -->
+    <section class="slide">
+      <p class="eyebrow">요한계시록 20장</p><div class="vtext"><p>첫째 부활에 참여하는 자들은 복이 있고 거룩하도다. 둘째 사망이 그들을 다스리는 권세가 없고 도리어 그들이 하나님과 그리스도의 제사장이 되어 천 년 동안 그리스도와 더불어 왕 노릇 하리라.</p><cite>요한계시록 20:6</cite><p class="ven">Revelation 20:6 (KJV) — Blessed and holy is he that hath part in the first resurrection: on such the second death hath no power, but they shall be priests of God and of Christ, and shall reign with him a thousand years.</p></div>
+      <aside class="notes"></aside>
+    </section>
+
+    <!-- 16. -->
+    <section class="slide">
+      <p class="eyebrow">둘째 이야기</p><h2 class="serif">성경은 사람을 <em>두 무리</em>로만 나눕니다</h2><table class="tbl"><tr><th>칸</th><th>누구</th><th>결과</th></tr><tr class="fr"><td class="gd">첫째 칸</td><td class="">예수님을 믿어 다시 태어난 모든 사람 — 믿음이 크든 작든, 일찍 믿었든 늦게 믿었든</td><td class="">첫째 부활 → 천 년 동안 함께 다스림 → 영원한 집</td></tr><tr class="fr"><td class="gd">둘째 칸</td><td class="">끝까지 예수님을 거절한 사람</td><td class="">크고 흰 보좌 심판 → 둘째 사망</td></tr><tr class="fr"><td class="gd">셋째 칸?</td><td class="">“구원은 받았지만 그 나라에서 제외된 사람”</td><td class="">성경에 없음</td></tr></table>
+      <aside class="notes">이 말씀을 잘 보십시오. 성경은 사람을 두 무리로만 나눕니다. &quot;첫째 부활에 참여하는 자&quot; 그리고 &quot;둘째 사망이 다스리는 자.&quot; 둘째 사망은 14절과 15절에 나오는 영원한 심판입니다. 그러니까 첫째 부활에 들지 않은 사람은 둘째 사망으로 가는 것이고, 둘째 사망을 피한 사람은 다 첫째 부활에 든 것입니다. 그 사이에 셋째 칸, &quot;구원은 받았지만 천년왕국에는 못 들어가는 칸&quot;은 성경 어디에도 없습니다.</aside>
+    </section>
+
+    <!-- 17. -->
+    <section class="slide">
+      <p class="eyebrow">둘째 이야기</p><h2 class="serif">대문을 지났으면<br/><em>집 안</em>에 있는 것입니다</h2><div class="lines"><p class="fr">탕자의 아버지는 “행랑채에서 지내다 나중에 들어오너라” 하지 않았습니다</p><p class="fr">제일 좋은 옷, 가락지, 신, 살진 송아지 잔치 (눅 15:22~23)</p><p class="fr">노아의 방주 — 위층이든 아래층이든 <b>방주 안에 있던 사람은 다 살았습니다</b></p><p class="fr">그 문은 <b>하나님이 직접 닫으셨습니다</b> (창 7:16)</p></div>
+      <aside class="notes">1강에서 고향 집 대문이 하나뿐이라고 말씀드렸지요. 대문을 지났으면 집 안에 있는 것입니다. 대문은 지났는데 마당에서 기다려야 하는 사람은 없습니다. 탕자가 돌아왔을 때 아버지는 &quot;너는 일단 행랑채에서 지내다가 나중에 들어오너라&quot; 하지 않았습니다. 제일 좋은 옷을 입히고, 손에 가락지를 끼우고, 발에 신을 신기고, 살진 송아지를 잡아 잔치를 열었습니다(눅 15:22–23). 돌아온 그날 바로 아들의 자리로 들어갔습니다.<br/><br/>노아의 방주를 생각해 보셔도 됩니다. 하나님은 방주를 &quot;상중하 삼층으로&quot;(창 6:16) 만들라고 하셨습니다. 어떤 사람은 위층 창가에 있었고, 어떤 사람은 아래층에 있었을 것입니다. 그런데 홍수가 났을 때 위층에 있던 사람만 살았습니까? 아닙니다. 방주 안에 있던 사람은 층과 상관없이 다 살았습니다. 그리고 방주의 문은 하나였고, 그 문을 닫으신 분은 하나님이셨습니다(창 7:16). 들어간 사람이 문을 잠근 것이 아니라 하나님이 직접 닫으셨기 때문에, 안에 있는 사람은 누구도 밖으로 떨어지지 않았습니다. 예수님 안에 있는 사람이 그렇습니다.</aside>
+    </section>
+
+    <!-- 18. -->
+    <section class="slide center">
+      <div class="keyRound"><span class="kn">셋째 이야기</span></div><h2 class="serif"><em>넘어졌던</em> 사람도?</h2><p class="divsub">“교회에서 상처받고 몇 년 동안 떠나 있었습니다”</p>
+      <aside class="notes">세 번째 걱정은 이것입니다. &quot;저는 예수님을 믿었는데 그 뒤로 많이 넘어졌습니다. 교회에서 상처받고 몇 년 동안 교회를 떠나 있었습니다. 원망도 했고, 다시는 안 간다고 큰소리도 쳤습니다. 이런 저도 그 나라에 들어갈 수 있을까요?&quot;</aside>
+    </section>
+
+    <!-- 19. -->
+    <section class="slide">
+      <p class="eyebrow">셋째 이야기</p><h2 class="serif">세 번 부인한 <em>베드로</em></h2><div class="lines"><p class="fr">“주와 함께 옥에도, 죽는 데에도 가겠습니다”</p><p class="fr">그날 밤 여종 앞에서 세 번 “나는 그 사람을 모른다”</p><p class="fr">닭이 울고, 예수님이 돌이켜 보시고 — <b>밖에 나가 심히 통곡했습니다</b></p></div>
+      <aside class="notes">이 질문에는 베드로가 대답해 줄 것 같습니다. 베드로는 예수님의 수제자였습니다. &quot;주와 함께 옥에도, 죽는 데에도 가겠습니다&quot; 하고 큰소리쳤습니다. 그런데 바로 그날 밤, 여종 한 사람 앞에서 &quot;나는 그 사람을 모른다&quot;고 세 번이나 부인했습니다. 마지막에는 저주까지 하면서 맹세했습니다. 그리고 닭이 울었을 때, 예수님이 돌이켜 베드로를 보셨습니다. 베드로는 밖에 나가서 심히 통곡했습니다(눅 22:61–62).<br/><br/>그런데 그날 밤이 오기 전, 예수님은 이미 베드로에게 이렇게 말씀하셨습니다.</aside>
+    </section>
+
+    <!-- 20. -->
+    <section class="slide">
+      <p class="eyebrow">누가복음 22장</p><div class="vtext"><p>그러나 내가 너를 위하여 네 믿음이 떨어지지 않기를 기도하였노니 너는 돌이킨 후에 네 형제를 굳게 하라.</p><cite>누가복음 22:32</cite><p class="ven">Luke 22:32 (KJV) — But I have prayed for thee, that thy faith fail not: and when thou art converted, strengthen thy brethren.</p></div>
+      <aside class="notes"></aside>
+    </section>
+
+    <!-- 21. -->
+    <section class="slide">
+      <p class="eyebrow">WOW</p><h2 class="serif" style="font-size:clamp(26px,6vmin,66px)"><em>“내가 너를 위하여 기도하였노니”</em></h2><div class="wow"><p>&quot;내가 너를 위하여 기도하였노니.&quot; 베드로가 넘어지기 전에 예수님은 이미 그를 위해 기도하셨습니다. 그리고 &quot;너는 돌이킨 후에.&quot; 만약 돌이키면이 아니라, 돌이킨 후에입니다. 예수님은 베드로가 넘어질 것도 아셨고, 다시 돌아올 것도 아셨습니다. 부활하신 뒤 예수님은 갈릴리 바닷가에서 숯불을 피워 놓고 베드로를 기다리셨습니다. 베드로가 예수님을 부인한 곳도 숯불 앞이었습니다. 예수님은 그 숯불 앞에서 세 번 &quot;네가 나를 사랑하느냐&quot; 물으시고, 세 번 &quot;내 양을 먹이라&quot; 하셨습니다(요 21:15–17). 세 번의 부인을 세 번의 사랑 고백으로 덮어 주신 것입니다.</p></div>
+      <aside class="notes">&quot;내가 너를 위하여 기도하였노니.&quot; 베드로가 넘어지기 전에 예수님은 이미 그를 위해 기도하셨습니다. 그리고 &quot;너는 돌이킨 후에.&quot; 만약 돌이키면이 아니라, 돌이킨 후에입니다. 예수님은 베드로가 넘어질 것도 아셨고, 다시 돌아올 것도 아셨습니다. 부활하신 뒤 예수님은 갈릴리 바닷가에서 숯불을 피워 놓고 베드로를 기다리셨습니다. 베드로가 예수님을 부인한 곳도 숯불 앞이었습니다. 예수님은 그 숯불 앞에서 세 번 &quot;네가 나를 사랑하느냐&quot; 물으시고, 세 번 &quot;내 양을 먹이라&quot; 하셨습니다(요 21:15–17). 세 번의 부인을 세 번의 사랑 고백으로 덮어 주신 것입니다.</aside>
+    </section>
+
+    <!-- 22. -->
+    <section class="slide">
+      <p class="eyebrow">셋째 이야기</p><h2 class="serif">사람들은 잊어도<br/><em>예수님은 잊지 않으십니다</em></h2><div class="lines"><p class="fr">“깨어 있든지 자든지 자기와 함께 살게 하려 하셨느니라” (살전 5:10)</p><p class="fr">“그들은 혹시 잊을지라도 나는 너를 잊지 아니할 것이라” (사 49:15)</p><p class="fr">“내가 너를 <b>내 손바닥에 새겼고</b>” (사 49:16)</p><p class="fr">못 자국 난 그 손바닥에 <b>당신의 이름</b>이 새겨져 있습니다</p></div>
+      <aside class="notes">바울도 이렇게 말합니다. &quot;하나님이 우리를 세우심은 노하심에 이르게 하심이 아니요 오직 우리 주 예수 그리스도로 말미암아 구원을 받게 하심이라. 예수께서 우리를 위하여 죽으사 우리로 하여금 깨어 있든지 자든지 자기와 함께 살게 하려 하셨느니라&quot;(살전 5:9–10). 여기서 &quot;깨어 있든지 자든지&quot;는 바로 앞 문장에서 &quot;깨어 정신을 차리라&quot;고 했던 그 말입니다. 신앙생활을 깨어서 잘한 사람이든, 졸면서 비틀거린 사람이든, 예수님이 그들을 위해 죽으셨기 때문에 다 &quot;자기와 함께 살게&quot; 하신다는 것입니다.<br/><br/>교회에서 상처받고 떠나 있었던 분들께 말씀드립니다. 사람들은 당신을 잊었을지 몰라도 예수님은 당신을 잊지 않으셨습니다. 이사야 49장에서 하나님이 이렇게 말씀하십니다. &quot;여인이 어찌 그 젖 먹는 자식을 잊겠으며 자기 태에서 난 아들을 긍휼히 여기지 않겠느냐. 그들은 혹시 잊을지라도 나는 너를 잊지 아니할 것이라. 내가 너를 내 손바닥에 새겼고&quot;(사 49:15–16). 손바닥에 새겼다. 십자가에서 못 박힌 예수님의 손바닥에는 지금도 못 자국이 있습니다. 그 손바닥에 당신의 이름이 새겨져 있습니다.</aside>
+    </section>
+
+    <!-- 23. -->
+    <section class="slide center">
+      <div class="keyRound"><span class="kn">넷째 이야기</span></div><h2 class="serif">들어가는 것은 같고,<br/><em>상은 다릅니다</em></h2><p class="divsub">“그럼 열심히 할 필요가 없지 않습니까?”</p>
+      <aside class="notes">그러면 이렇게 물으실 수 있습니다. &quot;목사님, 그럼 평생 충성한 사람이나, 넘어졌다 돌아온 사람이나, 마지막에 겨우 믿은 사람이나 다 똑같습니까? 그럼 열심히 신앙생활 할 필요가 없지 않습니까?&quot; 좋은 질문입니다. 성경은 두 가지를 분명히 나누어 말합니다. 대문을 들어가는 것, 곧 구원은 똑같습니다. 그러나 그 나라에서 받는 상은 다릅니다.</aside>
+    </section>
+
+    <!-- 24. -->
+    <section class="slide">
+      <p class="eyebrow">넷째 이야기</p><h2 class="serif">잔칫집과 <em>집 짓기</em></h2><div class="cols"><div class="col gold fr"><h3>잔칫집</h3><p>초대받은 사람은 다 잔치에 들어갑니다. 며칠 동안 전을 부치고 손님을 맞은 사람은 주인의 특별한 인사와 선물을 받습니다</p></div><div class="col fr"><h3>집 짓기 (고전 3:11~15)</h3><p>모두 예수님이라는 같은 기초 위에 짓습니다. 불로 시험하면 금·은은 남고 짚은 탑니다 — <b>상은 잃을 수 있어도 구원은 잃지 않습니다</b></p></div></div>
+      <aside class="notes">잔칫집을 생각해 보십시오. 자식 혼례에 초대받은 사람은 다 잔치에 들어갑니다. 그런데 잔치를 준비하느라 며칠 동안 전을 부치고 떡을 찌고 손님을 맞은 사람이 있습니다. 그 사람은 잔치가 끝나고 주인에게서 특별한 고맙다는 인사와 선물을 받습니다. 그렇다고 그냥 와서 밥만 먹고 간 손님이 잔치에서 쫓겨나는 것은 아닙니다. 둘 다 잔치에 있었습니다. 다만 주인이 수고를 기억하신 것입니다.<br/><br/>바울은 이것을 집 짓는 일로 설명했습니다(고전 3:11–15). 모든 성도는 예수님이라는 같은 기초 위에 집을 짓습니다. 어떤 사람은 금과 은과 보석으로, 어떤 사람은 나무와 풀과 짚으로 짓습니다. 그날에 불로 시험하면 금과 은은 남고 짚은 탑니다. 남은 사람은 상을 받습니다. 그런데 15절이 이렇게 말합니다. &quot;누구든지 그 공적이 불타면 해를 받으리니 그러나 자신은 구원을 받되 불 가운데서 받은 것 같으리라.&quot; 상은 잃을 수 있어도, 구원은 잃지 않습니다. 기초가 예수님이시기 때문입니다.</aside>
+    </section>
+
+    <!-- 25. -->
+    <section class="slide">
+      <p class="eyebrow">WOW</p><h2 class="serif" style="font-size:clamp(26px,6vmin,66px)">오늘 드린 감사 한 마디가 <em>금</em>이 되어 남습니다</h2><div class="wow"><p>그러니 오늘부터 남은 시간을 금과 은으로 쌓아 가십시오. 예수님은 냉수 한 그릇도 잊지 않으신다고 하셨습니다(마 10:42). 손주를 위해 드린 기도 한 마디, 아픈 이웃에게 건넨 따뜻한 말 한 마디, 교회에서 받은 상처를 용서하기로 한 그 결심 하나도 하나님은 다 기억하십니다. 남은 날이 얼마 안 된다고 생각하시는 어르신도 늦지 않았습니다. 오늘 드린 감사 한 마디가 그 나라에서 금이 되어 남습니다.</p></div>
+      <aside class="notes">그러니 오늘부터 남은 시간을 금과 은으로 쌓아 가십시오. 예수님은 냉수 한 그릇도 잊지 않으신다고 하셨습니다(마 10:42). 손주를 위해 드린 기도 한 마디, 아픈 이웃에게 건넨 따뜻한 말 한 마디, 교회에서 받은 상처를 용서하기로 한 그 결심 하나도 하나님은 다 기억하십니다. 남은 날이 얼마 안 된다고 생각하시는 어르신도 늦지 않았습니다. 오늘 드린 감사 한 마디가 그 나라에서 금이 되어 남습니다.</aside>
+    </section>
+
+    <!-- 26. -->
+    <section class="slide center">
+      <div class="keyRound"><span class="kn">다섯째 이야기</span></div><h2 class="serif">십자가 옆의 <em>강도</em></h2><p class="divsub">가장 늦게 믿은 사람의 이야기</p>
+      <aside class="notes">이제 오늘의 마지막 이야기, 가장 늦게 믿은 사람의 이야기입니다. 예수님이 십자가에 달리실 때 양옆에 강도 두 사람이 함께 달렸습니다. 마태복음은 처음에 그 두 사람이 다 예수님을 욕했다고 기록합니다. &quot;함께 십자가에 못 박힌 강도들도 이와 같이 욕하더라&quot;(마 27:44). 둘 다 욕했습니다. 처음부터 착한 강도가 따로 있었던 것이 아닙니다.</aside>
+    </section>
+
+    <!-- 27. -->
+    <section class="slide">
+      <p class="eyebrow">다섯째 이야기</p><h2 class="serif">처음에는 <em>둘 다</em> 욕했습니다</h2><div class="lines"><p class="fr">“함께 십자가에 못 박힌 강도들도 이와 같이 욕하더라” (마 27:44)</p><p class="fr">“아버지 저들을 사하여 주옵소서” (눅 23:34) — 그런 사람을 그는 처음 보았습니다</p><p class="fr">한 강도가 다른 강도를 꾸짖습니다 — <b>“이 사람이 행한 것은 옳지 않은 것이 없느니라”</b></p></div>
+      <aside class="notes">이제 오늘의 마지막 이야기, 가장 늦게 믿은 사람의 이야기입니다. 예수님이 십자가에 달리실 때 양옆에 강도 두 사람이 함께 달렸습니다. 마태복음은 처음에 그 두 사람이 다 예수님을 욕했다고 기록합니다. &quot;함께 십자가에 못 박힌 강도들도 이와 같이 욕하더라&quot;(마 27:44). 둘 다 욕했습니다. 처음부터 착한 강도가 따로 있었던 것이 아닙니다.<br/><br/>그런데 몇 시간이 지나는 동안 한 사람에게 변화가 일어났습니다. 아마 예수님이 십자가 위에서 하신 첫 마디를 들었을 것입니다. &quot;아버지 저들을 사하여 주옵소서. 자기들이 하는 것을 알지 못함이니이다&quot;(눅 23:34). 자기를 못 박는 사람들을 위해 기도하는 사람. 그런 사람을 그는 평생 처음 보았을 것입니다. 그리고 그 강도는 다른 강도를 꾸짖습니다. &quot;네가 동일한 정죄를 받고서도 하나님을 두려워하지 아니하느냐. 우리는 우리가 행한 일에 상당한 보응을 받는 것이니 이에 당연하거니와 이 사람이 행한 것은 옳지 않은 것이 없느니라.&quot; 그리고 예수님께 이렇게 말합니다.</aside>
+    </section>
+
+    <!-- 28. -->
+    <section class="slide">
+      <p class="eyebrow">누가복음 23장</p><div class="vtext"><p>이르되, 예수여 당신의 나라에 임하실 때에 나를 기억하소서 하니, 예수께서 이르시되 내가 진실로 네게 이르노니 오늘 네가 나와 함께 낙원에 있으리라 하시니라.</p><cite>누가복음 23:42~43</cite><p class="ven">Luke 23:42–43 (KJV) — And he said unto Jesus, Lord, remember me when thou comest into thy kingdom. And Jesus said unto him, Verily I say unto thee, To day shalt thou be with me in paradise.</p></div>
+      <aside class="notes"></aside>
+    </section>
+
+    <!-- 29. -->
+    <section class="slide">
+      <p class="eyebrow">다섯째 이야기</p><h2 class="serif">“당신의 나라에<br/><em>임하실 때에</em>”</h2><div class="lines"><p class="fr">피투성이로 죽어 가시는 분, 제자들은 다 도망갔습니다</p><p class="fr">그런데 이 강도는 그분이 <b>왕으로 다시 오셔서 나라를 세우실 것</b>을 믿었습니다</p><p class="fr">그 자리에서 <b>가장 큰 믿음</b>을 보인 사람이었습니다</p></div>
+      <aside class="notes">이 강도의 말을 천천히 다시 들어 보십시오. &quot;당신의 나라에 임하실 때에.&quot; 놀랍지 않습니까? 지금 예수님은 피투성이로 십자가에 달려 죽어 가고 계십니다. 제자들은 다 도망갔습니다. 누가 보아도 끝난 사람입니다. 그런데 이 강도는 그분이 언젠가 왕으로 다시 오셔서 나라를 세우실 것을 믿었습니다. 1강에서 말씀드린 바로 그 나라, 예수님이 다시 오셔서 다스리시는 나라를 믿은 것입니다. 이 강도는 그 자리에서 가장 큰 믿음을 보인 사람이었습니다.</aside>
+    </section>
+
+    <!-- 30. -->
+    <section class="slide">
+      <p class="eyebrow">다섯째 이야기 · 마 20:1~16</p><h2 class="serif">해 지기 한 시간 전에 온 <em>포도원 품꾼</em></h2><div class="lines"><p class="fr">하루 종일 아무도 써 주지 않아 장터에 서 있던 사람들</p><p class="fr">주인은 마지막에 온 사람부터 <b>하루 품삯을 다</b> 주었습니다</p><p class="fr">구원은 일한 시간만큼 받는 월급이 아니라 <b>주인의 선하심으로 받는 선물</b></p><p class="fr">해 지기 한 시간 전도 <b>늦지 않습니다</b></p></div>
+      <aside class="notes">&quot;그래도 저는 너무 늦게 믿었습니다. 평생 하나님 없이 살다가 이제 다 늙어서 믿었는데요.&quot; 이렇게 말씀하시는 어르신들께 예수님의 비유 하나를 들려 드리고 싶습니다. 포도원 주인이 일꾼을 구하러 장터에 나갔습니다. 아침 일찍 데려온 사람도 있고, 낮에 데려온 사람도 있고, 해 지기 한 시간 전에 데려온 사람도 있었습니다. 그 마지막 사람들은 하루 종일 아무도 써 주지 않아서 장터에 서 있던 사람들이었습니다. 그런데 날이 저물어 품삯을 줄 때, 주인은 마지막에 온 사람부터 똑같이 한 데나리온씩, 하루 품삯을 다 주었습니다(마 20:1–16).<br/><br/>그 사람들이 품삯을 받아 들고 얼마나 놀랐겠습니까. 한 시간밖에 일하지 않았는데, 오늘 저녁 식구들이 굶지 않아도 되는 하루 품삯을 받았습니다. 주인이 말합니다. &quot;내 것을 가지고 내 뜻대로 할 것이 아니냐. 내가 선하므로 네가 악하게 보느냐.&quot; 구원은 일한 시간만큼 받는 월급이 아니라, 주인의 선하심으로 받는 선물입니다. 해 지기 한 시간 전도 늦지 않습니다. 십자가 위의 강도는 해 지기 몇 시간 전에 부름받은 사람이었습니다.</aside>
+    </section>
+
+    <!-- 31. -->
+    <section class="slide">
+      <p class="eyebrow">다섯째 이야기</p><h2 class="serif">“나를 <em>기억하소서</em>”</h2><div class="lines"><p class="fr">좋은 자리를 달라고 하지 않았습니다</p><p class="fr">세례도, 예배도, 헌금도, 봉사도 — 내세울 것이 하나도 없었습니다</p><p class="fr">못 박힌 손발로 할 수 있는 것은 단 하나</p><p class="fr"><b>“나를 잊지 말아 주십시오”</b></p></div>
+      <aside class="notes">그런데 그의 부탁을 보십시오. &quot;나를 기억하소서.&quot; 그 나라에서 좋은 자리를 달라고 하지 않았습니다. 자기가 잘한 일을 내세우지도 않았습니다. 내세울 것이 하나도 없었습니다. 세례도 받지 못했고, 교회에 한 번도 가 보지 못했고, 헌금도 봉사도 한 적이 없습니다. 그의 손과 발은 못 박혀 있어서 착한 일을 하나도 할 수 없었습니다. 그가 할 수 있었던 것은 단 하나, 예수님께 &quot;나를 잊지 말아 주십시오&quot; 하고 부탁하는 것뿐이었습니다.</aside>
+    </section>
+
+    <!-- 32. -->
+    <section class="slide">
+      <p class="eyebrow">WOW</p><h2 class="serif" style="font-size:clamp(26px,6vmin,66px)"><em>“오늘”</em> 그리고 <em>“나와 함께”</em></h2><div class="wow"><p>그리고 예수님의 대답입니다. &quot;내가 진실로 네게 이르노니 오늘 네가 나와 함께 낙원에 있으리라.&quot; 강도는 &quot;언젠가 그 나라에서&quot;를 구했는데, 예수님은 &quot;오늘&quot;을 주셨습니다. 강도는 &quot;기억만 해 달라&quot;고 했는데, 예수님은 &quot;나와 함께&quot;를 주셨습니다. 구한 것보다 훨씬 많이, 훨씬 빨리 주셨습니다. 이것이 우리 예수님이십니다. 탕자의 아버지가 &quot;품꾼으로 써 주십시오&quot;라는 아들에게 가락지를 끼워 주었듯이 말입니다.</p></div>
+      <aside class="notes">그리고 예수님의 대답입니다. &quot;내가 진실로 네게 이르노니 오늘 네가 나와 함께 낙원에 있으리라.&quot; 강도는 &quot;언젠가 그 나라에서&quot;를 구했는데, 예수님은 &quot;오늘&quot;을 주셨습니다. 강도는 &quot;기억만 해 달라&quot;고 했는데, 예수님은 &quot;나와 함께&quot;를 주셨습니다. 구한 것보다 훨씬 많이, 훨씬 빨리 주셨습니다. 이것이 우리 예수님이십니다. 탕자의 아버지가 &quot;품꾼으로 써 주십시오&quot;라는 아들에게 가락지를 끼워 주었듯이 말입니다.</aside>
+    </section>
+
+    <!-- 33. -->
+    <section class="slide">
+      <p class="eyebrow">다섯째 이야기</p><h2 class="serif">그 강도도 <em>그 나라에</em> 들어갑니다</h2><div class="lines"><p class="fr">그는 예수님을 믿고 죽은 사람입니다 — 첫째 부활</p><p class="fr">추수 때가 조금 다를 수는 있어도 <b>모두 같은 들판의 곡식</b></p><p class="fr">아브라함, 야곱, 베드로가 앉은 식탁 — 그 사이에 <b>손목에 못 자국이 있는 한 사람</b></p><p class="fr">그리고 그 자리 어딘가에 <b class="gold">당신의 자리</b>가 있습니다</p></div>
+      <aside class="notes">그러면 이 강도는 천년왕국에 들어갑니까? 첫째 부활에 참여합니까? 네, 들어갑니다. 생각해 보십시오. 그날 저녁 군인들이 와서 두 강도의 다리를 꺾었습니다. 예수님은 이미 숨을 거두셔서 다리를 꺾지 않았습니다(요 19:32–33). 그러니까 이 강도는 예수님보다 조금 늦게 숨을 거두었습니다. 그가 눈을 감았을 때, 먼저 그곳에 가 계신 예수님이 낙원에서 그를 맞으셨을 것입니다. 그는 예수님을 믿고 죽은 사람입니다. 1강에서 부활의 순서를 농사에 비유해 말씀드렸지요. 첫 열매, 본 추수, 이삭줍기. 이 강도는 교회가 시작되기 전, 구약 시대의 마지막 날에 믿은 사람이니 아브라함과 다윗 같은 구약의 성도들과 같은 대열에 섭니다. 추수 때가 조금 다를 수는 있어도, 모두 같은 들판의 곡식이고 모두 첫째 부활입니다. 오늘 앞에서 본 대로, 셋째 칸은 없습니다.<br/><br/>1강에서 예수님이 &quot;많은 사람이 동서로부터 와서 아브라함과 이삭과 야곱과 함께 천국에 앉으리라&quot;고 하셨다는 말씀을 드렸지요. 그 식탁을 다시 떠올려 보십시오. 믿음의 조상 아브라함이 앉아 있고, 험악한 세월을 보낸 야곱이 앉아 있고, 세 번 부인했던 베드로가 앉아 있습니다. 그리고 그 사이에 손목에 못 자국이 있는 한 사람, 십자가 위에서 마지막 몇 시간에 예수님을 믿은 그 강도가 앉아 있습니다. 그리고 그 자리 어딘가에, 오늘 이 말씀을 듣고 예수님께 &quot;나를 기억하소서&quot; 하고 고백한 당신의 자리가 있습니다.</aside>
+    </section>
+
+    <!-- 34. -->
+    <section class="slide">
+      <p class="eyebrow">맺는 말</p><h2 class="serif">오늘 말씀을 <em>정리</em>하면</h2><div class="lines"><p class="fr">믿음의 크기가 아니라 <b>믿음이 붙잡은 예수님의 피</b></p><p class="fr">그 나라에는 <b>셋째 칸이 없습니다</b></p><p class="fr">넘어졌던 베드로를 위해 <b>미리 기도하셨습니다</b></p><p class="fr">상은 다르지만 <b>구원은 같습니다</b></p><p class="fr">마지막 몇 시간에 믿은 강도에게도 <b>“오늘 나와 함께”</b></p></div>
+      <aside class="notes">오늘 말씀을 정리하겠습니다. 우리를 그 나라에 들어가게 하는 것은 믿음의 크기가 아니라 믿음이 붙잡은 예수님의 피입니다. 유월절 밤 떨던 집도 안전했습니다. 그 나라에는 들어간 사람과 들어가지 못한 사람, 두 칸만 있고 셋째 칸은 없습니다. 넘어졌던 베드로도 돌아왔고, 예수님은 그를 위해 미리 기도하셨습니다. 상은 다르지만 구원은 같습니다. 그리고 마지막 몇 시간에 믿은 강도도 &quot;오늘 나와 함께&quot;라는 약속을 받았습니다.</aside>
+    </section>
+
+    <!-- 35. -->
+    <section class="slide">
+      <p class="eyebrow">맺는 말</p><h2 class="serif">그 아버지가 기다리는 사람은<br/><em>바로 당신</em>입니다</h2><div class="lines"><p class="fr">믿음이 작다고 부끄러워하는 당신</p><p class="fr">너무 늦었다고 생각하는 당신</p><p class="fr">교회에서 상처받고 돌아갈 용기가 없던 당신</p></div>
+      <aside class="notes">처음에 들려 드린 탕자의 아버지를 기억하십니까? 날마다 대문 앞에 나가 먼 길을 바라보던 아버지. 그 아버지가 바로 하나님이십니다. 그리고 그 아버지가 기다리고 계신 사람이 누구인지 이제 아시겠습니까? 바로 당신입니다. 믿음이 작다고 부끄러워하는 당신, 너무 늦었다고 생각하는 당신, 교회에서 상처받고 돌아갈 용기가 없던 당신. 예수님이 약속하셨습니다.</aside>
+    </section>
+
+    <!-- 36. -->
+    <section class="slide">
+      <p class="eyebrow">요한복음 6장</p><div class="vtext"><p>아버지께서 내게 주시는 자는 다 내게로 올 것이요, 내게 오는 자는 내가 결코 내쫓지 아니하리라.</p><cite>요한복음 6:37</cite><p class="ven">John 6:37 (KJV) — All that the Father giveth me shall come to me; and him that cometh to me I will in no wise cast out.</p></div>
+      <aside class="notes"></aside>
+    </section>
+
+    <!-- 37. -->
+    <section class="slide">
+      <p class="eyebrow">WOW</p><h2 class="serif" style="font-size:clamp(26px,6vmin,66px)"><em>“결코 내쫓지 아니하리라”</em></h2><div class="wow"><p>&quot;결코 내쫓지 아니하리라.&quot; 사람들은 당신을 내쫓았을지 모릅니다. 그러나 예수님은 결코 내쫓지 않으십니다. 성경은 그 나라에서 열리는 잔치를 &quot;어린 양의 혼인 잔치&quot;라고 부릅니다(계 19:9). 탕자를 위해 열린 그 잔치보다 비교할 수 없이 큰 잔치입니다. 그 잔치에서 아버지가 직접 당신의 눈물을 닦아 주실 것입니다(계 21:4). 험악한 나그네 세월이 끝나고, 고향 집에 도착한 것입니다.</p></div>
+      <aside class="notes">&quot;결코 내쫓지 아니하리라.&quot; 사람들은 당신을 내쫓았을지 모릅니다. 그러나 예수님은 결코 내쫓지 않으십니다. 성경은 그 나라에서 열리는 잔치를 &quot;어린 양의 혼인 잔치&quot;라고 부릅니다(계 19:9). 탕자를 위해 열린 그 잔치보다 비교할 수 없이 큰 잔치입니다. 그 잔치에서 아버지가 직접 당신의 눈물을 닦아 주실 것입니다(계 21:4). 험악한 나그네 세월이 끝나고, 고향 집에 도착한 것입니다.</aside>
+    </section>
+
+    <!-- 38. -->
+    <section class="slide">
+      <p class="eyebrow">함께 드리는 기도</p><h2 class="serif">마음으로 <em>따라 하십시오</em></h2><div class="vtext prayer"><p class="fr">예수님, 저는 험악한 나그네 길을 걸어왔습니다.</p><p class="fr">저는 죄인입니다. 내세울 것이 아무것도 없습니다.</p><p class="fr">그러나 예수님이 저를 위해 십자가에서 피 흘려 죽으시고, 다시 살아나신 것을 믿습니다.</p><p class="fr">제 마음에 들어오셔서 저를 새로 태어나게 해 주십시오.</p><p class="fr">주님의 나라에 임하실 때에 저를 기억하여 주십시오.</p><p class="fr">아버지 집으로 돌아갑니다. 받아 주셔서 감사합니다. 예수님의 이름으로 기도합니다. 아멘.</p></div>
+      <aside class="notes">오늘 이 자리에서 그 대문을 지나고 싶으신 분이 계시다면, 다른 것은 필요 없습니다. 십자가 위의 강도처럼, 돌아온 탕자처럼, 마음으로 예수님께 이렇게 말씀드리면 됩니다. 제가 한 줄씩 읽겠습니다. 마음으로 따라 하십시오.</aside>
+    </section>
+
+    <!-- 39. -->
+    <section class="slide center">
+      <p class="eyebrow">마침</p><h2 class="serif">아버지 집 대문은<br/><em>지금도 열려 있습니다</em></h2><div class="lines"><p>불도 켜져 있습니다</p><p><b class="gold">그 고향 집, 그 나라에서 우리 꼭 함께 만납시다</b></p></div>
+      <aside class="notes">이 기도를 드리신 분, 아버지가 당신을 향해 달려오고 계십니다. 그리고 이미 교회를 떠나 계시던 분, 오랫동안 기도를 잊고 계셨던 분, 아버지 집 대문은 지금도 열려 있고 불도 켜져 있습니다. 그 고향 집, 그 나라에서 우리 꼭 함께 만납시다.</aside>
+    </section>
+
+    <div id="notes"><p class="nTitle">발표자 메모</p><div class="nBody"></div></div>
+    <div id="blackout"></div>
+  </div>
+
+  <script>
+    /* ===== 인증 — admin.html 과 동일한 패턴(토큰을 서버로 검증, 세션 키 공유) ===== */
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { flowType:'implicit', autoRefreshToken:false, persistSession:false, detectSessionFromUrl:false, lock: async (_n,_t,fn)=>await fn() } });
+
+    function jwtPayload(tok){
+      let s=tok.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'); while(s.length%4) s+='=';
+      const json=decodeURIComponent(atob(s).split('').map(c=>'%'+('00'+c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+      return JSON.parse(json);
+    }
+    (function handleOAuthRedirect(){
+      try{
+        if(location.hash && location.hash.indexOf('access_token=')>=0){
+          const p=new URLSearchParams(location.hash.slice(1));
+          const at=p.get('access_token'), rt=p.get('refresh_token'), ei=Number(p.get('expires_in')||3600);
+          if(at){
+            const payload=jwtPayload(at);
+            const user={ id:payload.sub, email:payload.email, role:payload.role, user_metadata:payload.user_metadata||{} };
+            localStorage.setItem('bibly-admin-auth', JSON.stringify({ access_token:at, token_type:'bearer', expires_in:ei, refresh_token:rt, expires_at:(payload.exp||Math.floor(Date.now()/1000)+ei), user }));
+            history.replaceState(null,'',location.pathname);
+          }
+        }
+      }catch(e){}
+    })();
+
+    function readStored(){
+      try{
+        const raw=localStorage.getItem('bibly-admin-auth');
+        if(raw){ const v=JSON.parse(raw); if(v&&v.user){ if(v.expires_at&&v.expires_at*1000<Date.now()){ localStorage.removeItem('bibly-admin-auth'); } else { return v; } } }
+        for(const k of Object.keys(localStorage)){ if(!/auth-token/.test(k)) continue; const v=JSON.parse(localStorage.getItem(k)); const s=(v&&v.user)?v:(v&&v.currentSession)?v.currentSession:null; if(s&&s.user){ if(s.expires_at&&s.expires_at*1000<Date.now()) return null; return s; } }
+      }catch(e){} return null;
+    }
+    async function verifySession(session){
+      const tok = session && session.access_token;
+      if(!tok) return null;
+      const ctrl=new AbortController(); const to=setTimeout(()=>ctrl.abort(), 8000);
+      try{
+        const res = await fetch(SUPABASE_URL+'/auth/v1/user', { signal:ctrl.signal, headers:{ apikey:SUPABASE_ANON, Authorization:'Bearer '+tok } });
+        clearTimeout(to);
+        if(!res.ok) return null;
+        const u = await res.json();
+        return (u && u.id) ? u : null;
+      }catch(e){ clearTimeout(to); return null; }
+    }
+    async function googleLogin(){
+      try{ await sb.auth.signInWithOAuth({ provider:'google', options:{ redirectTo: location.origin+location.pathname } }); }catch(e){}
+    }
+    async function emailLogin(){
+      const email=document.getElementById('ge').value.trim(), pw=document.getElementById('gp').value;
+      const m=document.getElementById('gateErr'); m.textContent='';
+      if(!email||!pw){ m.textContent='이메일과 비밀번호를 입력하세요.'; return; }
+      m.textContent='로그인 중…';
+      const ctrl=new AbortController(); const to=setTimeout(()=>ctrl.abort(),8000);
+      try{
+        const res=await fetch(SUPABASE_URL+'/auth/v1/token?grant_type=password',{ method:'POST', signal:ctrl.signal, headers:{ apikey:SUPABASE_ANON,'Content-Type':'application/json' }, body:JSON.stringify({email,password:pw}) });
+        clearTimeout(to);
+        const d=await res.json();
+        if(d.error||!d.access_token){ m.textContent='로그인 실패: '+(d.error_description||d.msg||d.error||'알 수 없는 오류'); return; }
+        localStorage.setItem('bibly-admin-auth', JSON.stringify({ access_token:d.access_token, token_type:'bearer', expires_in:d.expires_in, refresh_token:d.refresh_token, expires_at:Math.floor(Date.now()/1000)+d.expires_in, user:d.user }));
+        location.reload();
+      }catch(e){ clearTimeout(to); m.textContent='네트워크 오류. 다시 시도해 주세요.'; }
+    }
+    async function applyAuth(){
+      const session = readStored();
+      const gm=document.querySelector('.gateCard p');
+      if(gm && session && session.access_token) gm.textContent='발표자 확인 중…';
+      const verified = await verifySession(session);
+      const email = String((verified && verified.email) || '').toLowerCase();
+      if(email && email === String(ADMIN_EMAIL).toLowerCase()){
+        document.getElementById('gate').style.display='none';
+        document.getElementById('deck').classList.add('open');
+        initDeck();
+      } else {
+        if(gm) gm.textContent='발표자 계정으로 로그인하세요.';
+      }
+    }
+
+    /* ===== 슬라이드 엔진 ===== */
+    let S=[], cur=0;
+    function frs(i){ return Array.from(S[i].querySelectorAll('.fr')); }
+    function sync(){
+      S.forEach((s,i)=>s.classList.toggle('on', i===cur));
+      document.getElementById('bar').style.width=(((cur+1)/S.length)*100)+'%';
+      document.getElementById('count').textContent=(cur+1)+' / '+S.length;
+      const n=S[cur].querySelector('.notes');
+      document.querySelector('#notes .nBody').innerHTML = n ? n.innerHTML : '';
+    }
+    function go(i, revealAll){
+      cur=Math.max(0, Math.min(S.length-1, i));
+      frs(cur).forEach(f=>f.classList.toggle('show', !!revealAll));
+      sync();
+    }
+    function next(){
+      hideHint();
+      const pend=frs(cur).find(f=>!f.classList.contains('show'));
+      if(pend){ pend.classList.add('show'); return; }
+      if(cur<S.length-1) go(cur+1, false);
+    }
+    function prev(){
+      hideHint();
+      const shown=frs(cur).filter(f=>f.classList.contains('show'));
+      if(shown.length){ shown[shown.length-1].classList.remove('show'); return; }
+      if(cur>0) go(cur-1, true);
+    }
+    function hideHint(){ const h=document.getElementById('hint'); if(h) h.classList.add('off'); }
+    function initDeck(){
+      S=Array.from(document.querySelectorAll('.slide'));
+      go(0,false);
+      setTimeout(hideHint, 9000);
+      setInterval(()=>{ const d=new Date(); document.getElementById('clock').textContent=('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2); }, 1000);
+
+      document.addEventListener('keydown', (e)=>{
+        if(/input|textarea/i.test(e.target.tagName)) return;
+        const k=e.key;
+        if(k==='ArrowRight'||k===' '||k==='PageDown'||k==='Enter'){ e.preventDefault(); next(); }
+        else if(k==='ArrowLeft'||k==='PageUp'||k==='Backspace'){ e.preventDefault(); prev(); }
+        else if(k==='Home'){ go(0,false); }
+        else if(k==='End'){ go(S.length-1,true); }
+        else if(k==='f'||k==='F'){ if(document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen().catch(()=>{}); }
+        else if(k==='n'||k==='N'){ document.getElementById('notes').classList.toggle('open'); }
+        else if(k==='b'||k==='B'||k==='.'){ document.getElementById('blackout').classList.toggle('open'); }
+        else if(k==='Escape'){ document.getElementById('blackout').classList.remove('open'); document.getElementById('notes').classList.remove('open'); }
+      });
+      document.getElementById('blackout').addEventListener('click', function(){ this.classList.remove('open'); });
+      document.getElementById('deck').addEventListener('click', (e)=>{
+        if(e.target.closest('#notes') || e.target.closest('#blackout')) return;
+        if(e.clientX < window.innerWidth*0.25) prev(); else next();
+      });
+      let tx=null;
+      document.addEventListener('touchstart', e=>{ tx=e.touches[0].clientX; }, {passive:true});
+      document.addEventListener('touchend', e=>{
+        if(tx===null) return;
+        const dx=e.changedTouches[0].clientX - tx; tx=null;
+        if(Math.abs(dx)>50){ if(dx<0) next(); else prev(); }
+      }, {passive:true});
+    }
+
+    applyAuth();
+  </script>
+</body>
+</html>
