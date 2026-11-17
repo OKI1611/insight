@@ -43,6 +43,12 @@
   </script>
   <style>
     h1,h2,.serif{font-family:'Pretendard',system-ui,sans-serif} .verse-en{font-family:Georgia,'Times New Roman',serif}
+    .viewSeg{display:inline-flex;border:1px solid rgba(33,58,107,.22);border-radius:9999px;overflow:hidden;background:#fff}
+    .viewSeg button{font-size:12.5px;font-weight:600;padding:6px 11px;color:rgba(23,23,23,.6);line-height:1.2;transition:background .15s,color .15s}
+    .viewSeg button+button{border-left:1px solid rgba(33,58,107,.12)}
+    .viewSeg button[aria-pressed="true"]{background:#213a6b;color:#fff}
+    .ko-only .vko{font-size:1.07rem;line-height:1.9}
+    html.app .viewSeg button{min-height:42px;font-size:14px;padding:0 13px}
     mark.hl{background:rgba(0,112,74,.28);color:#171717;border-radius:3px;padding:0 1px;font-weight:600}
     @keyframes vflash{0%{background:rgba(0,112,74,.32)}100%{background:transparent}}
     .verse-flash{animation:vflash 2.6s ease;border-radius:8px}
@@ -186,7 +192,7 @@
           <select id="chapSel" onchange="loadChapter(+this.value)" class="appearance-none border border-ink/20 rounded-full pl-3.5 pr-8 py-2 text-sm bg-white font-medium cursor-pointer hover:border-ink/40 transition"></select>
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-neutral-900/45"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </label>
-        <label class="text-xs text-neutral-900/60 flex items-center gap-1.5 ml-1"><input type="checkbox" id="parallel" checked onchange="renderChapter()"/>한·영 병행</label>
+        <div id="viewSeg" class="viewSeg ml-1" role="group" aria-label="본문 보기 방식"><button type="button" data-v="both" onclick="setView('both')" title="한글과 영어를 함께 보기">한·영</button><button type="button" data-v="ko" onclick="setView('ko')" title="한글 번역만 보기">한글</button><button type="button" data-v="en" onclick="setView('en')" title="영어 KJV만 보기">영어</button></div>
         <label class="text-xs text-neutral-900/60 flex items-center gap-1.5 ml-1"><input type="checkbox" id="enToggle" checked onchange="toggleEn()"/>영어 표현</label>
         <div class="ml-auto flex gap-1.5">
           <button type="button" onclick="toggleBibleSearch()" title="성경 본문 검색" aria-label="성경 검색" class="app-only border border-ink/15 rounded-full px-3 py-2 text-sm hover:bg-ink/5 inline-flex items-center gap-1"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>검색</button>
@@ -359,23 +365,36 @@
       });
     }
     initSec();
+    /* 본문 보기 방식: both(한·영) / ko(한글만) / en(영어만) — 기기에 기억 */
+    let VIEW='both', EN_AUTO_OFF=false;
+    try{ const v=localStorage.getItem('bibly_bible_view'); if(v==='ko'||v==='en'||v==='both') VIEW=v; }catch(_){}
+    function paintView(){ document.querySelectorAll('#viewSeg button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.v===VIEW?'true':'false')); }
+    function syncEnPanel(){
+      const t=$('enToggle'); if(!t) return;
+      if(VIEW==='ko' && t.checked){ t.checked=false; EN_AUTO_OFF=true; toggleEn(); }
+      else if(VIEW!=='ko' && EN_AUTO_OFF && !t.checked){ t.checked=true; EN_AUTO_OFF=false; toggleEn(); }
+    }
+    function setView(v){ VIEW=v; try{ localStorage.setItem('bibly_bible_view', v); }catch(_){} paintView(); syncEnPanel(); if(typeof BOOK!=='undefined' && BOOK) renderChapter(); }
+    paintView(); syncEnPanel();
     function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
     function renderChapter(){
       hideWdPop();
       const verses=(BOOK&&BOOK[CH])||[];
-      const par=$('parallel').checked && KR;
+      const par=(VIEW!=='en') && KR;
+      const koOnly=(VIEW==='ko') && KR;
       let h=`<div class="flex items-baseline justify-between mb-4 pb-3 border-b border-ink/8"><h2 class="text-xl font-bold">${CUR.ko} <span class="text-gold">${CH}장</span></h2><span class="text-xs text-neutral-900/40">${CUR.en} ${CH} · KJV</span></div>`;
       if(!verses.length){ h+='<p class="text-neutral-900/40 text-center py-8">본문을 불러오지 못했습니다.</p>'; $('reader').innerHTML=h; return; }
-      h+='<p class="app-hide text-[12.5px] text-gold/90 bg-gold/[0.07] rounded-lg px-3 py-2 mb-3 -mt-1">💡 영어 단어를 탭하면 <b>웹스터 사전</b>의 KJV 본래 뜻이 나옵니다.</p>';
-      h+='<div class="space-y-3.5">';
+      if(!koOnly) h+='<p class="app-hide text-[12.5px] text-gold/90 bg-gold/[0.07] rounded-lg px-3 py-2 mb-3 -mt-1">💡 영어 단어를 탭하면 <b>웹스터 사전</b>의 KJV 본래 뜻이 나옵니다.</p>';
+      h+='<div class="space-y-3.5'+(koOnly?' ko-only':'')+'">';
       verses.forEach((en,i)=>{
-        const ko = (par && KR[i]) ? `<p class="serif text-[1rem] text-neutral-900 leading-relaxed mt-0.5">${esc(KR[i])}</p>` : '';
+        const ko = (par && KR[i]) ? `<p class="vko serif text-[1rem] text-neutral-900 leading-relaxed mt-0.5">${esc(KR[i])}</p>` : '';
+        const showEn = !(koOnly && KR[i]);
         const fnKey=CUR.file+'-'+CH+'-'+(i+1);
         const fn=(FOOT&&FOOT[fnKey])?`<p class="text-[0.75rem] text-neutral-900/60 leading-snug mt-1 pl-2.5 py-1 border-l-2 border-gold/40 bg-gold/[0.05] rounded-r">📖 ${esc(FOOT[fnKey])}</p>`:'';
-        h+=`<div id="v${i+1}" class="vrow flex gap-2.5 px-1.5 -mx-1.5 py-0.5"><span class="text-gold font-bold text-xs pt-1 w-5 shrink-0 text-right">${i+1}</span><div class="vbody flex-1">${ko}<p class="verse-en text-[0.94rem] ${par?'text-neutral-900/55':'text-neutral-900/85'} leading-relaxed">${tokEn(en)}</p>${fn}</div></div>`;
+        h+=`<div id="v${i+1}" class="vrow flex gap-2.5 px-1.5 -mx-1.5 py-0.5"><span class="text-gold font-bold text-xs pt-1 w-5 shrink-0 text-right">${i+1}</span><div class="vbody flex-1">${ko}${showEn?`<p class="verse-en text-[0.94rem] ${par?'text-neutral-900/55':'text-neutral-900/85'} leading-relaxed">${tokEn(en)}</p>`:''}${fn}</div></div>`;
       });
       h+='</div>';
-      if($('parallel').checked && !KR){ h+='<p class="text-xs text-gold/80 mt-5 bg-gold/[0.07] rounded-lg p-3">이 장의 한국어 번역은 아직 준비 중입니다. (원어 기반 자체 번역으로 순차 추가)</p>'; }
+      if(VIEW!=='en' && !KR){ h+='<p class="text-xs text-gold/80 mt-5 bg-gold/[0.07] rounded-lg p-3">이 장의 한국어 번역은 아직 준비 중입니다. (원어 기반 자체 번역으로 순차 추가)</p>'; }
       $('reader').innerHTML=h;
       restoreHl();
     }
