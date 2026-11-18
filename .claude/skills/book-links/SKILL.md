@@ -34,11 +34,22 @@ git pull origin main
 
 | 책 | 앵커 | 아코디언 id(about.html) |
 |---|---|---|
-| 마귀는 거짓말을 하지 않는다 (신간) | `#devil` | `bk1` |
+| 천년왕국을 아십니까 (대표작) | `#millennium` | `bk6` |
+| 결말을 아는 사람 | `#ending` | `bk9` |
+| 킹제임스 성경 정본역 한영대역 | `#kjv` | — |
+| 그 나라에서 만나요 | `#seeyou` | — (grep으로 확인) |
+| 마귀는 거짓말을 하지 않는다 | `#devil` | `bk1` |
 | 가이사의 교회, 하나님의 교회 | `#caesar` | `bk2` |
 | 가면의 시대 | `#mask` | `bk3` |
 | 교회를 떠나고서야, 예수를 만났다 | `#church` | `bk4` |
 | 엄마 향기 | `#mom` | `bk5` |
+
+⚠️ **같은 서점 URL이 다른 책에 붙어 있지 않은지 확인할 것.** 2026-11-18에 영풍 상품번호
+202611036854970778(결말을 아는 사람 종이책)이 천년왕국 '전자책' 행에 잘못 걸려 있었다.
+새 URL을 넣기 전에 `grep -n "<상품번호>" *.html` 로 기존 사용처를 보고, 서점 검색
+API(영풍은 `/back_shop/base_shop/api/v2/search_indexes/autocomplete?searchTerm=…`)로
+그 번호가 어느 책인지 교차 확인한다. 부크크 승인 전수 대조는
+bookk.co.kr/author/reviews/bookRetail (로그인 필요).
 
 ## 고쳐야 할 위치 (한 책당 최대 3곳)
 
