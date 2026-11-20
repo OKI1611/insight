@@ -36,6 +36,9 @@
   guide.html 의 '한눈에 보는 바이블 인사이트' 숫자판이 이 파일을 읽는다.
   **강의·사전·Q&A 자료를 추가·수정했으면 이 스크립트를 실행하고 함께 커밋**할 것
   (원본이 사전 12.9MB·권별 Q&A 4.1MB 라 브라우저에서 직접 셀 수 없다).
+- `python tools/build_nanje.py` → 질의응답 「성경 난제」 등 85편(`tools/nanje/NNN.json` 원고)을 `content/qna.json` 에 다시 만든다.
+  원고에는 구절 위치만 적고 본문은 정본역(bible/kr)에서 자동으로 끼운다 — **정본역을 고친 뒤에도 이것을 다시 돌릴 것**.
+  이어서 `python tools/build_smart_index.py` (검색 색인에 질의응답 포함).
 - `YT_API_KEY=… node tools/build_hall_of_fame.mjs` → `content/hall-of-fame.json` 갱신.
   평소엔 `.github/workflows/update-hall-of-fame.yml` 이 매일 05:00(KST) 자동 실행한다.
   로직만 점검할 땐 `MOCK=1` (실제 명단 파일 대신 `hall-of-fame.mock.json` 에 쓴다).

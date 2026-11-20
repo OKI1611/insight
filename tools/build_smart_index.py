@@ -99,6 +99,21 @@ try:
         })
 except Exception: pass
 
+# 6) 질의응답 (content/qna.json — 요한계시록·신앙·성경, 성경 난제 포함. 관리자 화면에서 쓴 글은 DB라 제외)
+try:
+    import html as _html
+    for e in J('content/qna.json'):
+        if not isinstance(e, dict) or not e.get('q'): continue
+        body = e.get('a') or ''
+        if e.get('html'): body += ' ' + _html.unescape(re.sub(r'<[^>]+>', ' ', e['html']))
+        for s in e.get('deep') or []: body += ' ' + (s.get('h') or '') + ' ' + (s.get('p') or '')
+        items.append({
+            't': 'post', 'ti': '[질의응답] ' + e['q'], 'sn': clip(e.get('a') or '', 90),
+            'kw': clip(e['q'] + ' ' + (e.get('cat') or '') + ' ' + ' '.join(e.get('tags') or []) + ' ' + ' '.join(e.get('scriptures') or []) + ' ' + body, 400).lower(),
+            'u': 'qna?id=' + str(e.get('id') or '')
+        })
+except Exception as ex: print('qna 색인 건너뜀:', ex)
+
 out = {'count': len(items), 'items': items}
 op = os.path.join(BASE, 'content', 'smart-index.json')
 json.dump(out, open(op, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))

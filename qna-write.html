@@ -209,7 +209,7 @@
     const sb = window.supabase.createClient(SB, AK, { auth:{ flowType:'implicit', lock: async (_n,_t,fn)=>await fn() } });
     const CATS={
       rev:['구조·해석 방법','1장 · 영광의 그리스도','2~3장 · 일곱 교회','4~5장 · 하늘 보좌','6~19장 · 7년 환난','20장 · 천년왕국·백보좌','21~22장 · 새 하늘 새 땅','이단·오해 바로잡기'],
-      gen:['구원·믿음','종말·재림','성경 읽기·번역','신앙생활·교회','이단·분별','삶의 질문']
+      gen:['구원·믿음','종말·재림','성경 읽기·번역','성경 난제','신앙생활·교회','이단·분별','삶의 질문']
     };
     let ROOM='rev', CAT='', EDIT_ID=null, ADMIN_ITEMS=[], BASE=[], quill=null, DIRTY=false;
 
