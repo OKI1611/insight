@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>무료 온라인 특강 — BIBLY 바이블 인사이트</title>
+  <meta name="description" content="흩어진 종말 예언을 50분에 하나로 꿰는 무료 온라인 특강. 끝까지 보시면 내 성경 이해 진단과 맞춤 학습 로드맵을 드립니다." />
+  <meta name="robots" content="noindex" />
+  <link rel="canonical" href="https://biblynote.com/seminar" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BIBLY 바이블 인사이트" />
+  <meta property="og:title" content="무료 온라인 특강 — 흩어진 예언을 50분에 하나로" />
+  <meta property="og:description" content="끝까지 보시면 내 성경 이해 진단과 맞춤 학습 로드맵을 드립니다." />
+  <meta property="og:image" content="https://biblynote.com/images/og-cover.png?v=8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=8" />
+  <link rel="icon" href="/favicon.ico?v=8" sizes="any" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=8" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="BIBLY" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#213a6b" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink:'#213a6b', navy:'#182c54', gold:'#00704a', sand:'#eaf0f8', paper:'#ffffff' },
+      fontFamily: { sans:['Pretendard','system-ui','sans-serif'] },
+      boxShadow: { soft:'0 2px 10px -4px rgba(21,32,58,.10)', card:'0 18px 50px -20px rgba(21,32,58,.28)' }
+    }}}
+  </script>
+  <style>
+    .glow{background:radial-gradient(60% 60% at 50% 0%,rgba(0,112,74,.16),transparent 70%)}
+    #ctaZone.locked .ctaBtns{filter:blur(5px);pointer-events:none;user-select:none}
+    @keyframes pulseGold{0%,100%{box-shadow:0 0 0 0 rgba(0,112,74,.45)}50%{box-shadow:0 0 0 12px rgba(0,112,74,0)}}
+    .pulse{animation:pulseGold 2s infinite}
+  </style>
+</head>
+<body class="font-sans bg-paper text-neutral-900 antialiased">
+
+  <!-- 최소 헤더 — 집중형(이탈 최소화) -->
+  <header class="border-b border-ink/8">
+    <div class="max-w-5xl mx-auto px-5 h-14 flex items-center justify-center">
+      <a href="index.html" class="inline-flex items-center gap-2">
+        <img src="/images/logo-heritage-wide.png?v=3" alt="바이블 인사이트" class="h-8 w-auto" />
+        <span class="font-bold text-[17px] tracking-tight">바이블 인사이트<span class="text-gold">.</span></span>
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 glow"></div>
+    <div class="relative max-w-3xl mx-auto px-5 pt-9 pb-5 text-center">
+      <p class="inline-flex items-center gap-2 bg-gold/15 text-gold text-xs font-bold px-3 py-1.5 rounded-full tracking-wide">무료 온라인 특강 · 지금 바로 시청</p>
+      <h1 class="mt-4 text-[26px] md:text-[38px] font-black leading-[1.18] tracking-tight">흩어져 있던 종말 예언,<br/><span class="text-gold">50분에 하나로 꿰어드립니다</span></h1>
+      <p class="mt-3 text-neutral-900/70 text-[15px] md:text-lg leading-relaxed">이 특강에서 확인하실 세 가지 —</p>
+      <div class="mt-4 grid sm:grid-cols-3 gap-2.5 text-left">
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft px-4 py-3.5 text-[13.5px] leading-relaxed"><b class="text-gold">①</b> 예언을 보는 <b>바른 관점</b> — 공포가 아니라 소망의 지도</div>
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft px-4 py-3.5 text-[13.5px] leading-relaxed"><b class="text-gold">②</b> 죽음 이후 · 휴거 · 환난 · 심판의 <b>성경적 순서</b></div>
+        <div class="bg-white rounded-2xl border border-ink/8 shadow-soft px-4 py-3.5 text-[13.5px] leading-relaxed"><b class="text-gold">③</b> 내 분별력을 <b>단계적으로 기르는 법</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 플레이어 -->
+  <section class="max-w-3xl mx-auto px-5">
+    <div class="relative rounded-2xl overflow-hidden shadow-card bg-black" style="aspect-ratio:16/9">
+      <iframe id="semPlayer" class="absolute inset-0 w-full h-full" src="" title="무료 특강" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <!-- 진행 안내 바 -->
+    <div id="progWrap" class="mt-3 bg-sand/70 border border-ink/8 rounded-2xl px-4 py-3">
+      <div class="flex items-center justify-between text-[12.5px] font-semibold text-neutral-900/60">
+        <span id="progLabel">특강을 보시는 동안, 잠시 후 아래에 다음 단계가 열립니다</span>
+        <span id="progPct" class="text-gold font-bold"></span>
+      </div>
+      <div class="mt-2 h-2 rounded-full bg-ink/10 overflow-hidden"><div id="progBar" class="h-full bg-gold rounded-full transition-all duration-1000" style="width:0%"></div></div>
+    </div>
+  </section>
+
+  <!-- CTA (타이머 후 오픈) -->
+  <section id="ctaZone" class="locked max-w-3xl mx-auto px-5 py-10">
+    <div class="bg-ink text-white rounded-3xl p-6 md:p-9 text-center shadow-card">
+      <p id="ctaLockMsg" class="text-white/60 text-[13px] mb-4">🔒 특강을 보시는 동안 버튼이 열립니다 — 조금만 더 보세요</p>
+      <h2 class="text-xl md:text-2xl font-bold leading-snug">특강이 마음에 와닿으셨다면,<br class="sm:hidden"/> 다음 걸음은 둘 중 하나입니다</h2>
+      <div class="ctaBtns mt-6 grid sm:grid-cols-2 gap-3 max-w-xl mx-auto">
+        <a id="ctaQuiz" href="level.html?src=seminar" class="pulse inline-flex flex-col items-center justify-center min-h-[64px] bg-gold text-white font-bold rounded-2xl px-5 py-4 hover:opacity-90 transition">
+          <span class="text-[15.5px]">내 성경 이해 진단받기</span>
+          <span class="text-[12px] font-semibold text-white/75 mt-0.5">무료 · 10문항 3분 · 맞춤 로드맵 제공</span>
+        </a>
+        <a id="ctaConsult" href="consult.html?src=seminar" class="inline-flex flex-col items-center justify-center min-h-[64px] bg-white/10 border border-white/25 text-white font-bold rounded-2xl px-5 py-4 hover:bg-white/15 transition">
+          <span class="text-[15.5px]">대표강사 심화 과정 상담</span>
+          <span class="text-[12px] font-semibold text-white/60 mt-0.5">소수 정원 · 신청서 검토 후 안내</span>
+        </a>
+      </div>
+      <p class="ctaBtns text-white/50 text-[12px] mt-4">진단은 가입 없이 바로 가능하며, 결과 화면에서 내 수준에 맞는 과정을 추천해 드립니다.</p>
+    </div>
+
+    <!-- 다음 3단계 안내 -->
+    <div class="mt-10">
+      <h3 class="text-center text-lg md:text-xl font-bold">특강 이후, 이렇게 진행됩니다</h3>
+      <div class="mt-5 grid sm:grid-cols-3 gap-3">
+        <div class="bg-white border border-ink/8 rounded-2xl shadow-soft p-5">
+          <p class="text-gold font-black text-lg">1단계</p>
+          <p class="font-bold mt-1">무료 진단 (3분)</p>
+          <p class="text-[13px] text-neutral-900/60 mt-1.5 leading-relaxed">10문항으로 지금 내 성경 이해가 어느 급수인지 확인합니다.</p>
+        </div>
+        <div class="bg-white border border-ink/8 rounded-2xl shadow-soft p-5">
+          <p class="text-gold font-black text-lg">2단계</p>
+          <p class="font-bold mt-1">맞춤 로드맵</p>
+          <p class="text-[13px] text-neutral-900/60 mt-1.5 leading-relaxed">점수에 맞는 시작 급수와 학습 순서를 바로 추천받습니다. 5일 무료체험도 가능합니다.</p>
+        </div>
+        <div class="bg-white border border-ink/8 rounded-2xl shadow-soft p-5">
+          <p class="text-gold font-black text-lg">3단계</p>
+          <p class="font-bold mt-1">인증과정 · 심화 과정</p>
+          <p class="text-[13px] text-neutral-900/60 mt-1.5 leading-relaxed">수료증이 나오는 급수 과정으로, 가르치는 자리를 준비하신다면 심화 과정 상담으로.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 강사 신뢰 -->
+  <section class="pb-12">
+    <div class="max-w-2xl mx-auto px-5">
+      <div class="bg-gold text-white rounded-3xl p-6 md:p-8 text-center">
+        <p class="text-white/70 text-xs font-bold tracking-[0.2em]">YOUR GUIDE</p>
+        <h3 class="text-xl md:text-2xl font-bold mt-2">대표강사 · 오광일</h3>
+        <p class="mt-3 text-white/80 text-[14px] leading-relaxed">성균관대 교육학 박사 공부 · 미국 West Coast Baptist College 신학 석사(M.R.E) · 「킹제임스 성경 정본역」 주 번역자.<br/>유튜브 누적 조회 147만+ 로 검증된 강의 — 어려운 예언도 누구나 따라올 수 있게.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-10 text-center border-t border-ink/8">
+    <p class="text-neutral-900/45 text-xs">© BIBLY 바이블 인사이트 · 말씀으로 시대를 읽다</p>
+  </footer>
+
+  <script>
+    // ===== 웨비나 타이머 — 7분 30초 시청 후 CTA 오픈(본자클 A.W.F 패턴) =====
+    // ?fast=1 은 테스트용 10초. 한 번 열리면 localStorage 로 기억해 재방문 시 즉시 열린다.
+    var qs = new URLSearchParams(location.search);
+    var VID = /^[\w-]{11}$/.test(qs.get('v')||'') ? qs.get('v') : 'Glxi1I-JV6s';   // 기본: 50분 천년왕국 총정리
+    var OPEN_AFTER = qs.get('fast') === '1' ? 10 : 450;                            // 초
+    var KEY = 'bibly_sem_open_' + VID;
+
+    // 플레이어 — 자동재생(음소거)로 시작, 모바일 데이터 아끼려 사용자가 소리를 켜면 그때부터
+    var player = document.getElementById('semPlayer');
+    player.src = 'https://www.youtube.com/embed/' + VID + '?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1';
+    // 음소거 자동재생 안내 — 한 번 탭하면 소리 켜고 처음부터
+    (function(){
+      var wrap = player.parentElement;
+      var ov = document.createElement('button');
+      ov.className = 'absolute inset-x-0 bottom-0 m-3 mx-auto w-max bg-white/95 text-neutral-900 font-bold text-[13.5px] px-5 py-3 rounded-full shadow-card hover:bg-white transition';
+      ov.textContent = '🔊 소리 켜고 처음부터 보기';
+      ov.onclick = function(){ player.src = 'https://www.youtube.com/embed/' + VID + '?autoplay=1&rel=0&modestbranding=1&playsinline=1'; ov.remove(); };
+      wrap.appendChild(ov);
+      setTimeout(function(){ try{ ov.remove(); }catch(e){} }, 60000);
+    })();
+
+    var zone = document.getElementById('ctaZone');
+    var bar = document.getElementById('progBar'), pct = document.getElementById('progPct'),
+        label = document.getElementById('progLabel'), lockMsg = document.getElementById('ctaLockMsg');
+    function openCTA(){
+      zone.classList.remove('locked');
+      if(lockMsg) lockMsg.remove();
+      if(bar) bar.style.width = '100%';
+      if(pct) pct.textContent = '';
+      if(label) label.innerHTML = '✅ 다음 단계가 열렸습니다 — 아래에서 <b class="text-gold">무료 진단</b>을 받아보세요';
+      try{ localStorage.setItem(KEY, '1'); }catch(e){}
+    }
+    var opened = false;
+    try{ opened = localStorage.getItem(KEY) === '1'; }catch(e){}
+    if(opened){ openCTA(); }
+    else {
+      var t0 = Date.now();
+      var iv = setInterval(function(){
+        var s = (Date.now() - t0) / 1000;
+        var p = Math.min(100, s / OPEN_AFTER * 100);
+        if(bar) bar.style.width = p.toFixed(1) + '%';
+        if(pct) pct.textContent = Math.floor(p) + '%';
+        if(s >= OPEN_AFTER){ clearInterval(iv); openCTA(); }
+      }, 1000);
+    }
+  </script>
+  <script src="auth-header.js?v=20261021a"></script>
+</body>
+</html>

@@ -366,11 +366,263 @@ async function watchMeta(request, env, url) {
   return new Response(out.body, { status: out.status, headers: h });
 }
 
+// ═══════════════════════════════════════════════════════════════════
+// A.W.F 자동수익 퍼널 — 리드 수집 + 이메일 자동 육성(7번의 법칙) (2026-11-21)
+// 테이블: marketing_leads, email_queue (tools/sql/funnel_tables.sql 로 생성)
+// 발송: Resend — RESEND_API_KEY 시크릿이 등록된 경우에만 발송(없으면 조용히 대기)
+// ═══════════════════════════════════════════════════════════════════
+const SITE = 'https://www.biblynote.com';
+const EMAIL_FROM_DEFAULT = 'BIBLY 바이블 인사이트 <news@biblynote.com>';
+
+function rndToken() {
+  const a = new Uint8Array(16); crypto.getRandomValues(a);
+  return [...a].map(b => b.toString(16).padStart(2, '0')).join('');
+}
+function kstDate(s) { return new Date(s + 'T23:59:59+09:00'); }
+
+// 육성 시퀀스 일정(옵트인 시각 기준 지연 일수) — #7(마감 임박)은 cohort.deadline-3일로 동적 계산
+const NURTURE_STEPS = [
+  { step: 1, days: 0 }, { step: 2, days: 1 }, { step: 3, days: 3 },
+  { step: 4, days: 5 }, { step: 5, days: 8 }, { step: 6, days: 12 }
+];
+
+// POST /api/lead — 옵트인(start)·상담 신청(consult) 리드 기록 + 육성 메일 예약
+async function leadCreate(request, env) {
+  let b; try { b = await request.json(); } catch (e) { return json({ error: 'bad json' }, 400); }
+  const email = String((b && b.email) || '').trim().toLowerCase();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return json({ error: '이메일이 올바르지 않습니다' }, 400);
+  if (!env.SUPABASE_SERVICE_KEY) return json({ ok: false, error: 'no service key' }, 200);
+  const kind = (b.kind === 'consult') ? 'consult' : 'optin';
+  const row = {
+    email,
+    name: String(b.name || '').slice(0, 60) || null,
+    topic: String(b.topic || '').slice(0, 40) || null,
+    src: String(b.src || '').slice(0, 60) || null,
+    kind,
+    note: b.note ? String(typeof b.note === 'string' ? b.note : JSON.stringify(b.note)).slice(0, 4000) : null,
+    status: 'active'
+  };
+  // 이미 있는 리드인지 확인(재옵트인 시 메일 중복 예약 방지)
+  let existing = null;
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/marketing_leads?select=id,unsub_token,status,kind&email=eq.' + encodeURIComponent(email), { headers: sbH(env) });
+    const rows = r.ok ? await r.json() : [];
+    existing = Array.isArray(rows) ? rows[0] : null;
+  } catch (e) {}
+  let leadId = existing && existing.id;
+  if (!existing) {
+    row.unsub_token = rndToken();
+    const ins = await fetch(SUPABASE_URL + '/rest/v1/marketing_leads', { method: 'POST', headers: { ...sbH(env), Prefer: 'return=representation' }, body: JSON.stringify(row) });
+    if (!ins.ok) return json({ ok: false, error: 'lead insert 실패', detail: (await ins.text()).slice(0, 180) }, 200);
+    const rows = await ins.json(); leadId = rows[0] && rows[0].id;
+  } else if (kind === 'consult') {
+    // 기존 리드가 상담을 신청하면 kind·메모만 승격
+    await fetch(SUPABASE_URL + '/rest/v1/marketing_leads?id=eq.' + existing.id, { method: 'PATCH', headers: { ...sbH(env), Prefer: 'return=minimal' }, body: JSON.stringify({ kind: 'consult', note: row.note, name: row.name || undefined }) });
+  }
+  if (!leadId) return json({ ok: false }, 200);
+
+  // 메일 예약 — 옵트인: 육성 7단 / 상담: 접수 확인 1통(즉시)
+  const now = Date.now();
+  const queue = [];
+  if (kind === 'consult') {
+    queue.push({ lead_id: leadId, step: 'c1', due_at: new Date(now).toISOString() });
+  } else if (!existing) {
+    for (const s of NURTURE_STEPS) queue.push({ lead_id: leadId, step: 'n' + s.step, due_at: new Date(now + s.days * 86400000).toISOString() });
+    // #7 기수 마감 임박(D-3) — program.json 의 cohort.deadline 기준, 과거면 생략
+    try {
+      const prog = await assetJson(env, new URL(request.url).origin, '/content/program.json');
+      const dl = prog && prog.cohort && prog.cohort.deadline && kstDate(prog.cohort.deadline);
+      if (dl && !isNaN(dl)) {
+        const d3 = dl.getTime() - 3 * 86400000;
+        if (d3 > now) queue.push({ lead_id: leadId, step: 'n7', due_at: new Date(d3).toISOString() });
+      }
+    } catch (e) {}
+  }
+  if (queue.length) {
+    await fetch(SUPABASE_URL + '/rest/v1/email_queue', { method: 'POST', headers: { ...sbH(env), Prefer: 'return=minimal' }, body: JSON.stringify(queue) }).catch(() => {});
+  }
+  return json({ ok: true });
+}
+
+// GET /api/lead/unsub?t=토큰 — 수신거부(정보통신망법) : 한 번의 클릭으로 모든 발송 중단
+async function leadUnsub(request, env) {
+  const t = new URL(request.url).searchParams.get('t') || '';
+  const page = (msg) => new Response(
+    '<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
+    + '<body style="font-family:sans-serif;display:flex;align-items:center;justify-content:center;min-height:90vh;text-align:center;color:#213a6b">'
+    + '<div><h2 style="margin:0 0 10px">' + msg + '</h2><p style="color:#889;font-size:14px">BIBLY 바이블 인사이트 · biblynote.com</p></div></body>',
+    { headers: { 'Content-Type': 'text/html; charset=utf-8' } });
+  if (!/^[0-9a-f]{32}$/.test(t) || !env.SUPABASE_SERVICE_KEY) return page('잘못된 요청입니다');
+  const r = await fetch(SUPABASE_URL + '/rest/v1/marketing_leads?unsub_token=eq.' + t, {
+    method: 'PATCH', headers: { ...sbH(env), Prefer: 'return=representation' }, body: JSON.stringify({ status: 'unsubscribed' })
+  });
+  const rows = r.ok ? await r.json() : [];
+  return page(rows.length ? '수신거부가 완료되었습니다. 더 이상 메일을 보내지 않습니다.' : '잘못된 요청입니다');
+}
+
+// ── 육성 메일 본문(7단) — 모든 제목에 (광고), 하단에 수신거부 링크(정보통신망법 준수) ──
+function mailLayout(bodyHtml, unsubUrl) {
+  return '<div style="max-width:560px;margin:0 auto;font-family:-apple-system,\'Malgun Gothic\',sans-serif;color:#1c2b45;line-height:1.75;font-size:15px">'
+    + '<p style="font-weight:800;color:#00704a;font-size:13px;letter-spacing:.1em">BIBLY 바이블 인사이트</p>'
+    + bodyHtml
+    + '<hr style="border:none;border-top:1px solid #e5e9f0;margin:28px 0 14px">'
+    + '<p style="font-size:11.5px;color:#9aa3b2">본 메일은 biblynote.com에서 무료 자료·특강을 신청하신 분께 발송되는 광고성 정보입니다.<br>'
+    + 'BIBLY 바이블 인사이트 · 문의 biblynote.com/counsel<br>'
+    + '<a href="' + unsubUrl + '" style="color:#9aa3b2">수신거부 Unsubscribe</a></p></div>';
+}
+function btn(href, label) {
+  return '<p style="margin:22px 0"><a href="' + href + '" style="background:#00704a;color:#fff;text-decoration:none;font-weight:700;padding:13px 26px;border-radius:12px;display:inline-block">' + label + '</a></p>';
+}
+function buildMail(step, lead, ctx) {
+  const t = lead.topic ? '&t=' + encodeURIComponent(lead.topic) : '';
+  const nm = lead.name ? lead.name + '님' : '성도님';
+  const cohort = ctx.cohortName || '이번 기수';
+  const M = {
+    n1: {
+      subject: '(광고) 신청하신 무료 자료와 특강 입장 안내입니다',
+      body: '<h2 style="font-size:20px">' + nm + ', 환영합니다 🙂</h2>'
+        + '<p>신청하신 무료 자료를 바로 받아보실 수 있습니다.</p>'
+        + btn(SITE + (ctx.leadFile || '/files/종말핵심-한눈에-보기.pdf'), '📄 무료 PDF 내려받기')
+        + '<p>그리고 하나 더 — 흩어진 종말 예언을 50분에 하나로 꿰어 드리는 <b>온라인 특강</b>을 준비해 두었습니다. 지금 바로 보실 수 있습니다.</p>'
+        + btn(SITE + '/seminar.html?src=em1' + t, '▶ 무료 특강 바로 보기')
+    },
+    n2: {
+      subject: '(광고) 어제 특강, 끝까지 보셨나요? 핵심 3가지만 다시 짚어드립니다',
+      body: '<h2 style="font-size:20px">특강 핵심 3가지</h2>'
+        + '<p>① 예언은 공포가 아니라 <b>소망의 지도</b>입니다 — 순서를 알면 두렵지 않습니다.<br>'
+        + '② 흩어진 구절이 아니라 <b>성경 전체의 흐름</b>으로 읽어야 합니다.<br>'
+        + '③ 분별력은 타고나는 것이 아니라 <b>단계를 밟아 길러지는 것</b>입니다.</p>'
+        + '<p>아직 다 못 보셨다면 이어서 보세요. 보던 자리에서 다시 시작됩니다.</p>'
+        + btn(SITE + '/seminar.html?src=em2' + t, '▶ 특강 이어 보기')
+    },
+    n3: {
+      subject: '(광고) 흔들리지 않는 분별력은 이렇게 길러집니다',
+      body: '<h2 style="font-size:20px">듣는 공부에서, 답하는 공부로</h2>'
+        + '<p>설교를 많이 들어도 종말의 순서가 늘 헷갈리는 이유는 간단합니다 — 흩어진 조각으로만 들었기 때문입니다. 순서대로, 본문의 맥락대로 밟아 가면 누구든 꿰어집니다.</p>'
+        + '<p>바이블 인사이트에는 그 순서를 따라 설계된 <b>370편 이상의 강의가 전부 무료</b>로 열려 있습니다. 먼저 내 수준이 어디쯤인지 가볍게 확인해 보세요.</p>'
+        + btn(SITE + '/level.html?src=em3', '내 성경 이해 진단받기 (3분)')
+    },
+    n4: {
+      subject: '(광고) 내 성경 이해, 몇 급일까요? — 3분 진단',
+      body: '<h2 style="font-size:20px">' + nm + '의 분별력은 지금 몇 급일까요?</h2>'
+        + '<p>10문항 · 3분이면 끝납니다. 점수에 따라 지금 바로 시작할 과정을 맞춤으로 추천해 드립니다.</p>'
+        + btn(SITE + '/level.html?src=em4', '무료 진단 시작하기')
+        + '<p style="font-size:13.5px;color:#66708a">진단은 무료이고, 결과 화면에서 맞춤 학습 로드맵을 바로 확인하실 수 있습니다.</p>'
+    },
+    n5: {
+      subject: '(광고) ' + cohort + ' 등록 안내 — 수료증이 나오는 성경 인증과정',
+      body: '<h2 style="font-size:20px">강의는 평생 무료, 인증은 ' + cohort + '부터</h2>'
+        + '<p>바이블 인사이트의 모든 강의는 무료입니다. 유료인 것은 단 하나 — 강의마다 시험을 치르고 학점을 쌓아 <b>급수 수료증</b>으로 증명하는 인증과정입니다.</p>'
+        + '<p>5급(29,000원대)부터 1급까지, 지금은 ' + cohort + ' 모집 중입니다. 5일 무료체험으로 먼저 경험해 보세요.</p>'
+        + btn(SITE + '/academy.html?src=em5', cohort + ' 자세히 보기')
+    },
+    n6: {
+      subject: '(광고) "강의가 전부 무료인데, 왜 등록하나요?" — 가장 많이 받는 질문',
+      body: '<h2 style="font-size:20px">자주 묻는 질문</h2>'
+        + '<p><b>Q. 강의가 무료인데 인증과정은 왜 필요한가요?</b><br>듣기만 한 공부는 흩어집니다. 시험으로 확인하고 수료증으로 증명할 때 분별력이 내 것이 됩니다. 교회에서 가르치는 분들이 특히 많이 등록하십니다.</p>'
+        + '<p><b>Q. 나이가 많아도 따라갈 수 있나요?</b><br>수강생의 다수가 40~60대이십니다. 영상 1편 + 요약노트 + 20문항 시험의 단순한 반복이라 스마트폰만 있으면 됩니다.</p>'
+        + '<p><b>Q. 어렵지 않을까요?</b><br>5급은 신앙의 기초부터 시작합니다. 진단 결과에 맞는 급수부터 시작하면 됩니다.</p>'
+        + btn(SITE + '/academy.html?src=em6', '내게 맞는 급수 보기')
+    },
+    n7: {
+      subject: '(광고) [마감 D-3] ' + cohort + ' 등록이 곧 마감됩니다',
+      body: '<h2 style="font-size:20px">' + cohort + ' 마감이 사흘 앞으로 왔습니다</h2>'
+        + '<p>' + (ctx.deadline ? ctx.deadline + ' 자정(한국시간)에 등록이 마감' : '곧 등록이 마감') + '되고, 다음 기수는 등록가가 달라질 수 있습니다.</p>'
+        + '<p>고민되신다면 5일 무료체험부터 시작하셔도 좋습니다 — 체험 중 등록하면 그대로 이어집니다.</p>'
+        + btn(SITE + '/academy.html?src=em7', '마감 전에 등록하기')
+    },
+    c1: {
+      subject: '[BIBLY] 심화 과정 상담 신청이 접수되었습니다',
+      body: '<h2 style="font-size:20px">' + nm + ', 신청서를 잘 받았습니다</h2>'
+        + '<p>작성해 주신 내용을 대표강사가 직접 검토한 뒤 <b>24시간 안에</b> 안내드리겠습니다. 정원이 있는 과정이라 모든 분을 모시지 못하는 점은 양해 부탁드립니다.</p>'
+        + (ctx.bookingUrl ? ('<p>검토를 기다리는 동안, 아래에서 편하신 <b>15분 전화 상담 시간</b>을 먼저 골라 두셔도 좋습니다.</p>' + btn(ctx.bookingUrl, '상담 시간 예약하기')) : '')
+        + '<p style="font-size:13.5px;color:#66708a">그동안 무료 특강을 아직 안 보셨다면 먼저 보고 오시면 상담이 훨씬 빨라집니다 → <a href="' + SITE + '/seminar.html?src=c1" style="color:#00704a">특강 보기</a></p>'
+    }
+  };
+  return M[step] || null;
+}
+
+// cron 디스패처 — 매시간: 발송 시각이 된 큐를 꺼내 Resend 로 발송
+async function processEmailQueue(env) {
+  if (!env.SUPABASE_SERVICE_KEY || !env.RESEND_API_KEY) return;   // 키가 없으면 조용히 대기(등록 즉시 작동 시작)
+  const nowIso = new Date().toISOString();
+  const qR = await fetch(SUPABASE_URL + '/rest/v1/email_queue?select=id,lead_id,step,tries&sent_at=is.null&tries=lt.3&due_at=lte.' + encodeURIComponent(nowIso) + '&order=due_at.asc&limit=40', { headers: sbH(env) });
+  const q = qR.ok ? await qR.json() : [];
+  if (!Array.isArray(q) || !q.length) return;
+  const ids = [...new Set(q.map(x => x.lead_id))];
+  const lR = await fetch(SUPABASE_URL + '/rest/v1/marketing_leads?select=id,email,name,topic,status,unsub_token&id=in.(' + ids.join(',') + ')', { headers: sbH(env) });
+  const leads = lR.ok ? await lR.json() : [];
+  const byId = {}; for (const l of leads) byId[l.id] = l;
+  // 발송 문맥(기수·예약 링크·리드마그넷)은 자산에서 1회 로드
+  const prog = await assetJson(env, SITE, '/content/program.json');
+  const consult = await assetJson(env, SITE, '/content/consult.json');
+  const site = await assetJson(env, SITE, '/content/site.json');
+  const ctx = {
+    cohortName: prog && prog.cohort && prog.cohort.name,
+    deadline: prog && prog.cohort && prog.cohort.deadline,
+    bookingUrl: consult && consult.bookingUrl,
+    leadFile: site && site.leadmagnet && site.leadmagnet.file
+  };
+  for (const item of q) {
+    const lead = byId[item.lead_id];
+    const mark = (patch) => fetch(SUPABASE_URL + '/rest/v1/email_queue?id=eq.' + item.id, { method: 'PATCH', headers: { ...sbH(env), Prefer: 'return=minimal' }, body: JSON.stringify(patch) }).catch(() => {});
+    if (!lead || lead.status !== 'active') { await mark({ sent_at: nowIso, skipped: true }); continue; }
+    const m = buildMail(item.step, lead, ctx);
+    if (!m) { await mark({ sent_at: nowIso, skipped: true }); continue; }
+    const unsubUrl = SITE + '/api/lead/unsub?t=' + lead.unsub_token;
+    try {
+      const r = await fetch('https://api.resend.com/emails', {
+        method: 'POST', headers: { Authorization: 'Bearer ' + env.RESEND_API_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ from: env.RESEND_FROM || EMAIL_FROM_DEFAULT, to: [lead.email], subject: m.subject, html: mailLayout(m.body, unsubUrl) })
+      });
+      if (r.ok) await mark({ sent_at: new Date().toISOString() });
+      else await mark({ tries: (item.tries || 0) + 1, last_error: (await r.text()).slice(0, 300) });
+    } catch (e) { await mark({ tries: (item.tries || 0) + 1, last_error: String(e && e.message || e).slice(0, 300) }); }
+  }
+}
+
+// GET /api/admin/funnel — 퍼널 계기판(관리자): 방문→옵트인→상담→결제 단계별 숫자
+async function adminFunnel(request, env) {
+  if (!(await verifyAdmin(request))) return json({ error: '관리자 인증 실패' }, 403);
+  if (!env.SUPABASE_SERVICE_KEY) return json({ error: 'SUPABASE_SERVICE_KEY 없음' }, 500);
+  const since = new Date(Date.now() - 30 * 86400000).toISOString();
+  const cnt = async (path) => {
+    try {
+      const r = await fetch(SUPABASE_URL + '/rest/v1/' + path, { method: 'HEAD', headers: { ...sbH(env), Prefer: 'count=exact' } });
+      const m = (r.headers.get('content-range') || '').match(/\/(\d+)/); return m ? Number(m[1]) : 0;
+    } catch (e) { return 0; }
+  };
+  const [visits, srcRows, leads, consults, unsubs, queued, sent, orders] = await Promise.all([
+    cnt('site_visits?select=id&created_at=gte.' + since),
+    sbGet(env, 'site_visits?select=path&created_at=gte.' + since + '&path=like.' + encodeURIComponent('*src=*') + '&limit=5000'),
+    cnt('marketing_leads?select=id&created_at=gte.' + since),
+    cnt('marketing_leads?select=id&kind=eq.consult&created_at=gte.' + since),
+    cnt('marketing_leads?select=id&status=eq.unsubscribed'),
+    cnt('email_queue?select=id&sent_at=is.null'),
+    cnt('email_queue?select=id&sent_at=not.is.null&due_at=gte.' + since),
+    sbGet(env, 'orders?select=amount,status,items,created_at&created_at=gte.' + since + '&order=created_at.desc&limit=500')
+  ]);
+  const bySrc = {};
+  for (const v of (srcRows || [])) { const m = String(v.path || '').match(/src=([\w-]+)/); if (m) bySrc[m[1]] = (bySrc[m[1]] || 0) + 1; }
+  const paid = (orders || []).filter(o => o.status === 'paid');
+  return json({
+    ok: true, since,
+    visits, bySrc, leads, consults, unsubs,
+    emails: { queued, sent30d: sent },
+    orders: { paid: paid.length, revenue: paid.reduce((s, o) => s + (Number(o.amount) || 0), 0) }
+  });
+}
+
 export default {
+  async scheduled(event, env, ctx) { ctx.waitUntil(processEmailQueue(env)); },
   async fetch(request, env) {
     const url = new URL(request.url);
     const p = url.pathname;
     if (p === '/api/yt/stats') return ytStats(env);
+    if (p === '/api/lead' && request.method === 'OPTIONS') return new Response(null, { headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST,OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type' } });
+    if (p === '/api/lead' && request.method === 'POST') return leadCreate(request, env);
+    if (p === '/api/lead/unsub') return leadUnsub(request, env);
+    if (p === '/api/admin/funnel') return adminFunnel(request, env);
     if ((p === '/watch' || p === '/watch.html') && request.method === 'GET' && url.searchParams.get('v')) return watchMeta(request, env, url);
     if (p === '/api/admin/notice' && request.method === 'POST') return adminNotice(request, env);
     if (p.startsWith('/api/pay/')) {

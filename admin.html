@@ -92,6 +92,7 @@
         <p class="text-neutral-900/50 text-sm mb-6">실시간 운영 현황</p>
         <div id="statCards" class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6"></div>
         <div id="trendWrap"></div>
+        <div id="funnelWrap"></div>
         <div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-5">
           <h2 class="font-bold mb-3">콘텐츠 요약</h2>
           <div id="contentSummary" class="text-sm text-neutral-900/70 leading-relaxed">불러오는 중…</div>
@@ -757,8 +758,39 @@
           const trend=(label,emoji,a,b,c,d)=>`<div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-5 mb-4"><p class="font-bold mb-3">${emoji} ${label}</p><div class="grid grid-cols-4 gap-2 text-center"><div><p class="text-xl font-bold">${a}</p><p class="text-xs text-neutral-900/45 mt-0.5">오늘</p></div><div><p class="text-xl font-bold">${b}</p><p class="text-xs text-neutral-900/45 mt-0.5">최근 7일</p></div><div><p class="text-xl font-bold">${c}</p><p class="text-xs text-neutral-900/45 mt-0.5">최근 30일</p></div><div><p class="text-xl font-bold text-gold">${d}</p><p class="text-xs text-neutral-900/45 mt-0.5">누적</p></div></div></div>`;
           const vNote=(vAll==='—')?'<p class="text-xs text-neutral-900/40 mb-4">방문 통계 테이블이 아직 없습니다.</p>':'';
           document.getElementById('trendWrap').innerHTML=vNote+trend('방문','',vToday,v7,v30,vAll)+trend('가입','',sToday,s7,s30,members);
+          loadFunnel();
         });
       }).catch(e=>{ document.getElementById('contentSummary').innerHTML='<p class="text-red-400 text-sm">대시보드 오류: '+esc(String(e))+'</p>'; });
+    }
+
+    // ===== 판매 퍼널 계기판 — 방문→옵트인→상담→결제가 어디서 새는지 숫자로 (최근 30일) =====
+    async function loadFunnel(){
+      const w=document.getElementById('funnelWrap'); if(!w) return;
+      const s=readStored(); const tok=s&&s.access_token; if(!tok) return;
+      try{
+        const r=await fetch('/api/admin/funnel',{ headers:{ Authorization:'Bearer '+tok } });
+        const d=await r.json();
+        if(!d||!d.ok){ w.innerHTML='<p class="text-xs text-neutral-900/40">퍼널 집계를 불러오지 못했습니다'+(d&&d.error?' — '+esc(d.error):'')+'</p>'; return; }
+        const srcRows=Object.entries(d.bySrc||{}).sort((a,b)=>b[1]-a[1]).slice(0,10)
+          .map(([k,v])=>`<div class="flex justify-between text-sm py-1 border-t border-ink/5"><span class="text-neutral-900/60">${esc(k)}</span><b>${v}</b></div>`).join('')
+          || '<p class="text-xs text-neutral-900/40">src 유입이 아직 없습니다 (유튜브·블로그 링크에 ?src= 를 붙이면 여기 잡힙니다)</p>';
+        const step=(label,v,sub)=>`<div class="text-center"><p class="text-xl font-bold">${v}</p><p class="text-xs text-neutral-900/45 mt-0.5">${label}</p>${sub?'<p class="text-[10.5px] text-neutral-900/35">'+sub+'</p>':''}</div>`;
+        w.innerHTML=`<div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-5 mb-4">
+            <p class="font-bold mb-1">🧲 판매 퍼널 (최근 30일)</p>
+            <p class="text-xs text-neutral-900/40 mb-3">방문 → 리드(옵트인) → 상담 신청 → 결제 — 어느 단계에서 새는지 보세요</p>
+            <div class="grid grid-cols-5 gap-2">
+              ${step('방문',d.visits)}
+              ${step('리드',d.leads,'무료자료·특강 신청')}
+              ${step('상담 신청',d.consults,'심화 과정')}
+              ${step('결제',d.orders&&d.orders.paid||0)}
+              ${step('매출','₩'+Number(d.orders&&d.orders.revenue||0).toLocaleString())}
+            </div>
+            <p class="text-[11px] text-neutral-900/35 mt-3">자동 메일: 대기 ${d.emails&&d.emails.queued||0}통 · 30일 발송 ${d.emails&&d.emails.sent30d||0}통 · 수신거부 누적 ${d.unsubs||0}명</p>
+          </div>
+          <div class="bg-white rounded-2xl border border-ink/5 shadow-sm p-5 mb-4">
+            <p class="font-bold mb-2">📍 유입 경로별 방문 (?src=)</p>${srcRows}
+          </div>`;
+      }catch(e){ w.innerHTML='<p class="text-xs text-neutral-900/40">퍼널 집계 오류</p>'; }
     }
 
     // ===== 커리큘럼 편집 =====

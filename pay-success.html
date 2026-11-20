@@ -59,6 +59,7 @@
     }
     function success(d){
       clearPaidFromCart();
+      const hasCert = (d.items||[]).some(it=>it.kind==='cert');
       const items = (d.items||[]).map(it=>'<li class="flex justify-between gap-3 py-1"><span class="text-neutral-900/70">'+(it.name||'')+'</span><span class="font-semibold">'+won(it.amount)+'</span></li>').join('');
       done(
         '<div class="w-16 h-16 mx-auto rounded-full bg-emerald-500/12 flex items-center justify-center">'
@@ -71,11 +72,21 @@
           +'<p class="text-[11px] text-neutral-400 mt-2">결제수단 '+(d.method||'카드')+'</p>'
         +'</div>'
         +'<div class="flex gap-2 mt-6">'
-          +'<a href="/orders.html" class="flex-1 bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition">내 자료 · 주문내역 보기</a>'
+          +(hasCert
+            ?'<a href="/mylearning.html?src=paydone" class="flex-1 bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition">▶ 첫 강의 바로 시작하기</a>'
+            :'<a href="/orders.html" class="flex-1 bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition">내 자료 · 주문내역 보기</a>')
           +(d.receipt?'<a href="'+d.receipt+'" target="_blank" rel="noopener" class="px-5 py-3.5 rounded-xl border border-neutral-300 font-semibold text-sm hover:bg-neutral-50 transition">카드 영수증</a>':'')
         +'</div>'
-        +'<p class="text-[11.5px] text-neutral-400 mt-2">결제 내역과 영수증은 ‘주문·결제 내역’에서 언제든 다시 볼 수 있어요.</p>'
-        +'<a href="/index.html" class="inline-block mt-4 text-neutral-900/40 text-sm hover:text-gold">홈으로</a>'
+        +(hasCert?'<p class="text-[12px] text-neutral-500 mt-2">💡 가장 좋은 시작은 <b>오늘 1강</b>입니다 — 강의 1편 + 시험 20문항이면 첫 학점이 쌓여요.</p>':'')
+        // ── 땡큐 페이지의 다음 행동: 함께 공부할 사람에게 추천 ──
+        +'<div class="bg-white border border-neutral-200 rounded-2xl p-4 mt-4 text-left">'
+          +'<p class="text-sm font-bold">👥 함께 공부하면 완주율이 올라갑니다</p>'
+          +'<p class="text-[12.5px] text-neutral-500 mt-1">배우자·구역 식구에게 무료 진단 링크를 보내 보세요. 강의는 전부 무료입니다.</p>'
+          +'<button onclick="navigator.clipboard&&navigator.clipboard.writeText(\'https://www.biblynote.com/level.html?src=friend\').then(()=>{this.textContent=\'✅ 복사되었어요 — 카톡에 붙여넣기\'})" class="mt-2.5 w-full border border-neutral-300 rounded-xl py-3 text-sm font-semibold hover:bg-neutral-50 transition">🔗 무료 진단 링크 복사하기</button>'
+        +'</div>'
+        +'<p class="text-[11.5px] text-neutral-400 mt-3">결제 내역과 영수증은 ‘주문·결제 내역’에서 언제든 다시 볼 수 있어요.</p>'
+        +'<a href="/orders.html" class="inline-block mt-2 text-neutral-900/40 text-sm hover:text-gold mr-4">주문내역</a>'
+        +'<a href="/index.html" class="inline-block mt-2 text-neutral-900/40 text-sm hover:text-gold">홈으로</a>'
       );
     }
 

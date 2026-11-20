@@ -175,6 +175,7 @@
         + '<p class="text-[13px] text-neutral-900/55 mt-1.5 leading-relaxed">이제 <b class="text-neutral-900">모든 강의를 무제한 무료</b>로 볼 수 있어요.' + (emailNote ? '<br>'+emailNote : '') + '</p>'
         + '<p class="joinFoundingNo text-[12.5px] text-gold font-semibold mt-3" style="display:none"></p>'
         + '<a href="' + LEAD_FILE + '" target="_blank" rel="noopener" class="mt-4 flex items-center justify-center gap-2 w-full bg-gold text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition">📄 무료 자료 다운로드</a>'
+        + '<a href="seminar.html?src=start&t=' + encodeURIComponent(TKEY) + '" class="mt-2 flex items-center justify-center gap-2 w-full bg-ink text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition">🎬 50분 무료 특강 바로 보기</a>'
         + '<a href="' + T.target + '" class="mt-2 flex items-center justify-center gap-2 w-full border border-ink/20 text-neutral-900 font-bold py-3.5 rounded-xl hover:bg-ink/5 transition">▶ 이어서 정주행하기</a>'
         + '</div>';
     }
@@ -205,6 +206,9 @@
       // (1) 대표강사 알림 — 어떤 주제/영상에서 왔는지 함께 전달
       try{ fetch('https://api.web3forms.com/submit', { method:'POST', headers:{ 'Content-Type':'application/json' },
         body: JSON.stringify({ access_key:'8de9d22a-81a8-411d-99e2-90b38d21a062', subject:'[BIBLY] 유튜브 랜딩 가입 ('+JOIN_SRC.topic+')', from_name:'BIBLY 랜딩', 이메일:email, 유입:srcLine() }) }); }catch(_){}
+      // (1.5) 마케팅 리드 기록 — 자동 이메일 육성 시퀀스(7단)가 여기서 시작된다
+      try{ fetch('/api/lead', { method:'POST', headers:{ 'Content-Type':'application/json' },
+        body: JSON.stringify({ email: email, topic: JOIN_SRC.topic, src: JOIN_SRC.utm_source || JOIN_SRC.utm_content || 'start' }) }); }catch(_){}
       // (2) 실제 회원가입(매직링크)
       try{ await sb.auth.signInWithOtp({ email: email, options:{ shouldCreateUser:true, emailRedirectTo: location.origin + '/watch.html' } }); }catch(_){}
       // (3) 즉시 자료 제공 + 메일 확인 안내
