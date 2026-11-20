@@ -112,6 +112,22 @@
     details.qa summary .q{flex:none;color:#0b7d53}
     details.qa .a{font-size:15px;line-height:1.75;padding:0 0 14px;color:#111827;border-top:1px dashed #e5e9f0;padding-top:12px}
     details.qa .a h4{font-size:14.5px;margin:12px 0 4px;color:#1f3a68}
+    /* 질문과 답 — 댓글 */
+    .qc{margin-top:24px;padding-top:16px;border-top:1px solid #e5e9f0}
+    .qc-h{font-size:15.5px;font-weight:800;color:#1f3a68;margin:0 0 10px}
+    .qc-i{display:flex;gap:10px;align-items:flex-start;background:#f3f5f8;border-radius:14px;padding:12px 13px;margin-bottom:8px}
+    .qc-i.adm{background:#e9f4ef;border:1px solid #cfe5da}
+    .qc-av{flex:none;width:32px;height:32px;border-radius:999px;background:#dfe5ef;color:#1f3a68;font-weight:800;font-size:13.5px;display:flex;align-items:center;justify-content:center}
+    .qc-i.adm .qc-av{background:#0b7d53;color:#fff}
+    .qc-m{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:0 0 3px;font-size:13.5px}
+    .qc-t{font-size:11.5px;font-weight:800;color:#fff;background:#0b7d53;border-radius:5px;padding:1px 6px}
+    .qc-d{font-size:12.5px;color:#6b7280}
+    .qc-x{margin-left:auto;border:0;background:none;color:#9aa3b5;font-size:13px;min-height:32px;padding:0 4px}
+    .qc-c{font-size:15px;line-height:1.7;margin:0;color:#1f2937;word-break:break-word}
+    .qc textarea{width:100%;margin-top:6px;border:1.5px solid #dfe3ea;border-radius:14px;padding:12px 14px;font-size:15.5px;line-height:1.6;outline:none;resize:vertical;font-family:inherit}
+    .qc textarea:focus{border-color:#0b7d53}
+    .qc-login{background:#f3f5f8;border-radius:14px;padding:14px;text-align:center}
+    .qc-login p{margin:0 0 10px;font-size:14.5px;color:#374151}
     /* 질문과 답 — 글 단독 화면 본문 */
     .qbody{font-size:16px;line-height:1.85;color:#1f2937}
     .qbody .qh{font-size:16.5px;font-weight:800;color:#1f3a68;margin:20px 0 6px}
@@ -250,7 +266,8 @@
             <p style="font-size:13px;color:#6b7280;margin:8px 0 16px;padding-bottom:14px;border-bottom:1px solid #e5e9f0">바이블 인사이트 · 오광일</p>
             <div class="qbody">${body}</div>
             ${(it.scriptures||[]).length ? `<p class="dt-lbl">관련 말씀</p><div class="chips">${it.scriptures.map(s => `<span>${esc(typeof s === 'string' ? s : (s.ref||''))}</span>`).join('')}</div>` : ''}
-            <div class="btns2" style="margin-top:20px"><button type="button" class="btn" id="qaShare">공유하기</button><a class="btn" href="/qna?id=${encodeURIComponent(it.id)}&app=0" target="_blank" rel="noopener">댓글 보기·남기기</a></div>
+            <button type="button" class="btn" id="qaShare" style="margin-top:20px">공유하기</button>
+            <section class="qc"><p class="qc-h">댓글 <span id="qcN"></span></p><div id="qcList"><p class="sub">댓글을 불러오는 중…</p></div><div id="qcForm"></div></section>
             ${prev || next ? `<div class="list" style="margin-top:18px">${nav(prev,'이전글')}${nav(next,'다음글')}</div>` : ''}
             <button type="button" class="btn pri" id="qaBack2" style="margin-top:16px">목록 보기</button>`;
           $('qaBack').onclick = closePost; $('qaBack2').onclick = closePost;
@@ -260,7 +277,45 @@
             if(navigator.share) navigator.share({ title, url: link }).catch(()=>{});
             else { try{ navigator.clipboard.writeText(link); alert('링크가 복사됐어요'); }catch(e){ prompt('링크를 복사하세요', link); } }
           };
+          qcLoad(it.id); qcForm(it.id);
           window.scrollTo(0, 0);
+        };
+        // ── 댓글(웹 qna.html 과 같은 qna_comments 테이블 — 앱·웹 어디서 써도 양쪽에 보인다) ──
+        const ADMIN_EMAIL = 'josephoh1611@gmail.com';
+        const me = () => readStored();
+        const meName = s => { const m = (s && s.user && s.user.user_metadata) || {}; return m.full_name || m.name || ((s && s.user && s.user.email) || '').split('@')[0] || '회원'; };
+        const qcHdr = (json) => { const s = me(); const h = { apikey: SUPABASE_ANON, Authorization: 'Bearer ' + ((s && s.access_token) || SUPABASE_ANON) }; if(json) h['Content-Type'] = 'application/json'; return h; };
+        const ago = t => { const d = new Date(t), x = (Date.now() - d) / 1000; if(x < 60) return '방금'; if(x < 3600) return Math.floor(x/60) + '분 전'; if(x < 86400) return Math.floor(x/3600) + '시간 전'; if(x < 604800) return Math.floor(x/86400) + '일 전'; return fdate(t); };
+        const qcLoad = async (id) => {
+          let rows = [];
+          try{ const r = await fetch(SUPABASE_URL + '/rest/v1/qna_comments?select=*&qa_id=eq.' + encodeURIComponent(id) + '&order=created_at.asc', { headers: qcHdr() }); if(!r.ok) throw 0; rows = await r.json(); }
+          catch(e){ if(openId === id && $('qcList')) $('qcList').innerHTML = '<p class="sub">댓글을 불러오지 못했어요.</p>'; return; }
+          if(openId !== id || !$('qcList')) return;
+          $('qcN').textContent = rows.length || '';
+          const s = me(), uid = s && s.user ? s.user.id : null, adm = !!(s && s.user && s.user.email === ADMIN_EMAIL);
+          $('qcList').innerHTML = rows.length ? rows.map(c => `<div class="qc-i${c.is_admin ? ' adm' : ''}"><span class="qc-av">${esc((c.author_name||'회')[0])}</span><div style="flex:1;min-width:0"><p class="qc-m"><b>${esc(c.author_name||'회원')}</b>${c.is_admin ? '<span class="qc-t">강사</span>' : ''}<span class="qc-d">${ago(c.created_at)}</span>${(adm || (uid && c.user_id === uid)) ? `<button type="button" class="qc-x" data-del="${esc(c.id)}">삭제</button>` : ''}</p><p class="qc-c">${nl2br(c.content||'')}</p></div></div>`).join('')
+            : '<p class="sub" style="margin:4px 0 10px">아직 댓글이 없어요. 첫 댓글을 남겨 보세요.</p>';
+          $('qcList').querySelectorAll('button[data-del]').forEach(b => b.addEventListener('click', async () => {
+            if(!confirm('이 댓글을 삭제할까요?')) return;
+            try{ await fetch(SUPABASE_URL + '/rest/v1/qna_comments?id=eq.' + b.dataset.del, { method:'DELETE', headers: qcHdr() }); }catch(e){}
+            qcLoad(id);
+          }));
+        };
+        const qcForm = (id) => {
+          const f = $('qcForm'); if(!f) return; const s = me();
+          if(!s){ f.innerHTML = '<div class="qc-login"><p>댓글을 쓰려면 로그인해 주세요.</p><a class="btn pri" href="/mylearning">무료 로그인 · 회원가입</a></div>'; return; }
+          f.innerHTML = '<textarea id="qcT" rows="3" maxlength="1000" placeholder="이 답변에 대해 더 묻고 싶은 점이나 은혜받은 점을 남겨 주세요"></textarea><button type="button" class="btn pri" id="qcSend" style="margin-top:8px">댓글 등록</button><p id="qcMsg" class="sub" style="margin-top:6px;min-height:18px"></p>';
+          $('qcSend').addEventListener('click', async () => {
+            const t = ($('qcT').value || '').trim(); if(!t){ $('qcT').focus(); return; }
+            const ss = me(); if(!ss){ qcForm(id); return; }
+            $('qcSend').disabled = true; $('qcMsg').textContent = '등록 중…';
+            try{
+              const r = await fetch(SUPABASE_URL + '/rest/v1/qna_comments', { method:'POST', headers: qcHdr(true), body: JSON.stringify({ qa_id: id, user_id: ss.user.id, author_name: meName(ss), content: t, is_admin: ss.user.email === ADMIN_EMAIL }) });
+              if(r.ok){ $('qcT').value = ''; $('qcMsg').textContent = '등록되었습니다.'; qcLoad(id); }
+              else $('qcMsg').textContent = (r.status === 401 || r.status === 403) ? '로그인이 만료되었습니다. 다시 로그인해 주세요.' : '등록에 실패했습니다. 잠시 후 다시 시도해 주세요.';
+            }catch(e){ $('qcMsg').textContent = '네트워크 오류입니다. 잠시 후 다시 시도해 주세요.'; }
+            $('qcSend').disabled = false;
+          });
         };
         const closePost = () => {
           if(pushed){ history.back(); return; }   // popstate 가 목록으로 돌려놓는다
