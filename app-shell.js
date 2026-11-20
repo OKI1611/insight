@@ -41,6 +41,8 @@
   // 페이지가 상단바 제목을 직접 정한다(예: 성경 「요한복음 3장」)
   window.__setAppTitle = function(t){ window.__appTitle = t; var el = document.getElementById('appTitle'); if(el){ el.textContent = t; el.classList.toggle('long', t.length > 14); } };
   function goBack(){
+    // 화면 안에서 먼저 닫을 것이 있으면(예: 질의응답 글 → 목록) 그 화면이 처리한다
+    try{ if(typeof window.__appBack === 'function' && window.__appBack()) return; }catch(e){}
     if(history.length > 1 && document.referrer && document.referrer.indexOf(location.origin) === 0){ history.back(); }
     else location.href = '/app';
   }

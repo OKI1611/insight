@@ -112,6 +112,19 @@
     details.qa summary .q{flex:none;color:#0b7d53}
     details.qa .a{font-size:15px;line-height:1.75;padding:0 0 14px;color:#111827;border-top:1px dashed #e5e9f0;padding-top:12px}
     details.qa .a h4{font-size:14.5px;margin:12px 0 4px;color:#1f3a68}
+    /* 질문과 답 — 글 단독 화면 본문 */
+    .qbody{font-size:16px;line-height:1.85;color:#1f2937}
+    .qbody .qh{font-size:16.5px;font-weight:800;color:#1f3a68;margin:20px 0 6px}
+    .qbody .qp{margin:0 0 12px}
+    .qhtml p{margin:0 0 .9em}.qhtml h1,.qhtml h2,.qhtml h3,.qhtml h4{font-weight:800;color:#111827;line-height:1.5;margin:1.3em 0 .5em}
+    .qhtml h1{font-size:19px}.qhtml h2{font-size:18px}.qhtml h3{font-size:17px}.qhtml h4{font-size:16px}
+    .qhtml ul,.qhtml ol{margin:0 0 .9em;padding-left:1.3em}.qhtml li{margin-bottom:.3em}
+    .qhtml blockquote{border-left:4px solid #0b7d53;background:#e9f4ef;border-radius:0 12px 12px 0;padding:12px 14px;margin:1em 0}
+    .qhtml img{max-width:100%;height:auto;border-radius:10px}.qhtml a{color:#0b7d53;text-decoration:underline}
+    .qhtml a.colFile{display:flex;align-items:center;gap:10px;padding:12px 14px;border:1px solid #dfe4ec;border-radius:12px;background:#f7f9fc;text-decoration:none;color:#111827;margin:1em 0;min-height:48px}
+    .qhtml a.colFile .cfIcon{flex:none;width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;background:#1f3a68}
+    .qhtml a.colFile .cfBody{min-width:0;flex:1}.qhtml a.colFile .cfName{display:block;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .qhtml a.colFile .cfMeta{display:block;font-size:12.5px;color:#6b7280}.qhtml a.colFile .cfGo{flex:none;font-size:13px;font-weight:800;color:#0b7d53}
   </style>
   <script>
     const SUPABASE_URL  = 'https://bmxkndkwefdgsomlznoo.supabase.co';
@@ -163,26 +176,106 @@
       // ── 공지·이벤트: 목록 → 눌러서 본문 ──
       async notices(){ return listNotices('notice'); },
       async events(){ return listNotices('event'); },
-      // ── 질문과 답: 검색 + 펼침 ──
+      // ── 질문과 답: 검색 + 목록 → 누르면 그 글만 단독 화면(웹 qna.html 과 같은 방식) ──
       async qna(){
-        const d = await fetch('/content/qna.json?t=' + Date.now()).then(r=>r.json());
-        const items = Array.isArray(d) ? d : (d.items || []);
-        const room = sp.get('room') || '';
-        const render = (q) => {
-          const list = items.filter(it => (!room || it.room === room) && (!q || (it.q + ' ' + it.a + ' ' + (it.cat||'')).includes(q)));
-          $('qaList').innerHTML = list.length ? list.map(it => `
-            <details class="qa"${sp.get('id') === it.id ? ' open' : ''}><summary><span class="q">Q</span><span>${esc(it.q)}</span></summary>
-              <div class="a">${esc(it.a)}${(it.deep||[]).map(dp => `<h4>${esc(dp.h)}</h4><p style="margin:0">${esc(dp.p)}</p>`).join('')}${(it.scriptures||[]).length ? `<p class="dt-lbl">관련 말씀</p><div class="chips">${it.scriptures.map(s => `<span>${esc(typeof s === 'string' ? s : (s.ref||''))}</span>`).join('')}</div>` : ''}</div>
-            </details>`).join('') : '<p class="empty">찾는 질문이 없습니다.</p>';
+        const [base, adm] = await Promise.all([
+          fetch('/content/qna.json?t=' + Date.now()).then(r=>r.json()).catch(()=>[]),
+          rest('site_content?select=data&key=eq.qna_posts').catch(()=>[])
+        ]);
+        const B = Array.isArray(base) ? base : (base.items || []);
+        const A = (adm && adm[0] && Array.isArray(adm[0].data)) ? adm[0].data : [];
+        const aid = {}; A.forEach(x => aid[x.id] = 1);
+        const items = A.concat(B.filter(x => !aid[x.id]));   // 관리자 화면에서 쓴 글도 함께(웹과 같은 합치기)
+        const roomOf = it => it.room === 'gen' ? 'gen' : 'rev';
+        const ROOMN = { rev:'요한계시록', gen:'신앙·성경' };
+        let room = sp.get('room') || '', curQ = '', openId = null, listY = 0, pushed = false;
+        const plain = h => { const d = document.createElement('div'); d.innerHTML = String(h||''); return (d.textContent||'').replace(/\s+/g,' ').trim(); };
+        const clean = (html) => {
+          const d = document.createElement('div'); d.innerHTML = html || '';
+          d.querySelectorAll('script,style,iframe,object,embed,link,meta,base,form,input,button,textarea,svg,math,frame,frameset,applet,noscript').forEach(n => n.remove());
+          d.querySelectorAll('*').forEach(el => Array.from(el.attributes).forEach(a => {
+            const n = a.name.toLowerCase(), v = (a.value||'').replace(/\s+/g,'').toLowerCase();
+            if(/^on/.test(n)) el.removeAttribute(a.name);
+            else if(/^(href|src|xlink:href|formaction|action|srcdoc|srcset|data|background|poster)$/.test(n) && /^(javascript:|vbscript:|data:)/.test(v) && !(n === 'src' && /^data:image\//.test(v))) el.removeAttribute(a.name);
+            else if(n === 'style' && /expression\(|javascript:|behavior:|@import|url\(/i.test(a.value)) el.removeAttribute(a.name);
+          }));
+          return d.innerHTML;
         };
-        $('main').innerHTML = `
+        const snip = it => ((it.a||'').trim() || plain(it.html) || ((it.deep||[])[0]||{}).p || '').replace(/\s+/g,' ').slice(0,120);
+        const hay = it => (it.q||'') + ' ' + (it.a||'') + ' ' + (it.cat||'') + ' ' + plain(it.html) + ' ' + (it.deep||[]).map(d => d.p||'').join(' ');
+        const listOf = () => items.filter(it => (!room || roomOf(it) === room) && (!curQ || hay(it).includes(curQ)))
+          .sort((a,b) => (b.pinned?1:0) - (a.pinned?1:0));
+        const url = it => '/app-menu?p=qna' + (room ? '&room=' + room : '') + (it ? '&id=' + encodeURIComponent(it.id) : '');
+        const renderList = () => {
+          const list = listOf();
+          $('qaList').innerHTML = list.length ? '<div class="list">' + list.map(it => `<a class="row press" href="${esc(url(it))}" data-id="${esc(it.id)}"><span class="t">${it.pinned ? '<span class="pill g" style="margin-right:6px">자주</span>' : ''}${esc(it.q)}<br/><span class="clamp2" style="font-size:13px;color:#6b7280;font-weight:500;margin-top:3px">${esc(snip(it))}</span></span>${CHEV}</a>`).join('') + '</div>' : '<p class="empty">찾는 질문이 없습니다.</p>';
+        };
+        const listHtml = `
           <div class="btns2" style="margin-bottom:10px"><button type="button" class="btn grn" onclick="openChat()">💬 실시간 채팅으로 질문</button><button type="button" class="btn pri" onclick="openWriteSheet()">✍️ 게시판에 질문</button></div>
           <p class="sub" style="margin:0 0 12px">실시간 채팅은 대표강사 휴대폰으로 <b>바로 알림</b>이 갑니다. 게시판 질문은 확인 후 답변이 달립니다.</p>
-          <div class="btns2" style="margin-bottom:10px"><a class="btn ${room!=='gen'?'pri':''}" href="/app-menu?p=qna&room=rev">요한계시록</a><a class="btn ${room==='gen'?'pri':''}" href="/app-menu?p=qna&room=gen">신앙·성경</a></div>
-          <div class="sbox"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="qaQ" type="search" placeholder="궁금한 말을 입력하세요 (예: 휴거, 666)" oninput="window.__qaRender(this.value.trim())"/></div>
+          <div class="btns2" style="margin-bottom:10px"><button type="button" class="btn" data-room="rev">요한계시록</button><button type="button" class="btn" data-room="gen">신앙·성경</button></div>
+          <div class="sbox"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="qaQ" type="search" placeholder="궁금한 말을 입력하세요 (예: 휴거, 666)"/></div>
           <div id="qaList"></div>
           <a class="btn grn" style="margin-top:14px" href="/app-menu?p=board">내가 올린 질문·답변 보기 (질문방)</a>`;
-        window.__qaRender = render; render('');
+        const showList = () => {
+          openId = null; setTitle('질문과 답');
+          $('main').innerHTML = listHtml;
+          $('main').querySelectorAll('button[data-room]').forEach(b => {
+            b.classList.toggle('pri', b.dataset.room === (room === 'gen' ? 'gen' : 'rev'));
+            b.addEventListener('click', () => {
+              room = b.dataset.room; $('main').querySelectorAll('button[data-room]').forEach(x => x.classList.toggle('pri', x === b));
+              try{ history.replaceState(null, '', url(null)); }catch(e){} renderList();
+            });
+          });
+          $('qaQ').value = curQ;
+          $('qaQ').addEventListener('input', e => { curQ = e.target.value.trim(); renderList(); });
+          $('qaList').addEventListener('click', e => { const a = e.target.closest('a[data-id]'); if(!a) return; e.preventDefault(); openPost(a.dataset.id, 'push'); });
+          renderList();
+        };
+        const openPost = (id, mode) => {
+          const it = items.find(x => x.id === id); if(!it){ showList(); return; }
+          if(!openId) listY = window.scrollY;
+          openId = id; if(!room) room = roomOf(it);
+          try{ if(mode === 'push'){ history.pushState({qid:id}, '', url(it)); pushed = true; } else if(mode === 'replace') history.replaceState({qid:id}, '', url(it)); }catch(e){}
+          const list = listOf(), i = list.findIndex(x => x.id === id);
+          const prev = i > 0 ? list[i-1] : null, next = (i >= 0 && i < list.length-1) ? list[i+1] : null;
+          const body = it.html ? `<div class="qhtml">${clean(it.html)}</div>`
+            : `${(it.a||'').trim() ? `<div class="dt-q" style="font-weight:600">${esc(it.a)}</div>` : ''}${(it.deep||[]).map(dp => `${dp.h ? `<h4 class="qh">${esc(dp.h)}</h4>` : ''}<p class="qp">${esc(dp.p||'')}</p>`).join('')}`;
+          const nav = (x, l) => x ? `<a class="row press" href="${esc(url(x))}" data-nav="${esc(x.id)}"><span class="pill" style="flex:none">${l}</span><span class="t" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(x.q)}</span>${CHEV}</a>` : '';
+          setTitle(ROOMN[roomOf(it)] + ' 질문과 답');
+          $('main').innerHTML = `
+            <button type="button" class="btn" id="qaBack" style="width:auto;display:inline-flex;padding:0 16px;margin-bottom:14px">← 목록으로</button>
+            <p style="font-size:13px;font-weight:800;color:#0b7d53;margin:2px 0 0">${esc(it.cat||'')}${it.pinned ? ' · 자주 묻는 질문' : ''}</p>
+            <h1 style="font-size:21px;font-weight:900;line-height:1.45;margin:6px 0 0;color:#111827;word-break:keep-all">${esc(it.q)}</h1>
+            <p style="font-size:13px;color:#6b7280;margin:8px 0 16px;padding-bottom:14px;border-bottom:1px solid #e5e9f0">바이블 인사이트 · 오광일</p>
+            <div class="qbody">${body}</div>
+            ${(it.scriptures||[]).length ? `<p class="dt-lbl">관련 말씀</p><div class="chips">${it.scriptures.map(s => `<span>${esc(typeof s === 'string' ? s : (s.ref||''))}</span>`).join('')}</div>` : ''}
+            <div class="btns2" style="margin-top:20px"><button type="button" class="btn" id="qaShare">공유하기</button><a class="btn" href="/qna?id=${encodeURIComponent(it.id)}&app=0" target="_blank" rel="noopener">댓글 보기·남기기</a></div>
+            ${prev || next ? `<div class="list" style="margin-top:18px">${nav(prev,'이전글')}${nav(next,'다음글')}</div>` : ''}
+            <button type="button" class="btn pri" id="qaBack2" style="margin-top:16px">목록 보기</button>`;
+          $('qaBack').onclick = closePost; $('qaBack2').onclick = closePost;
+          $('main').querySelectorAll('a[data-nav]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); openPost(a.dataset.nav, 'replace'); }));
+          $('qaShare').onclick = () => {
+            const link = location.origin + '/qna?id=' + encodeURIComponent(it.id), title = it.q + ' — 바이블 인사이트';
+            if(navigator.share) navigator.share({ title, url: link }).catch(()=>{});
+            else { try{ navigator.clipboard.writeText(link); alert('링크가 복사됐어요'); }catch(e){ prompt('링크를 복사하세요', link); } }
+          };
+          window.scrollTo(0, 0);
+        };
+        const closePost = () => {
+          if(pushed){ history.back(); return; }   // popstate 가 목록으로 돌려놓는다
+          try{ history.replaceState(null, '', url(null)); }catch(e){}
+          showList(); window.scrollTo(0, 0);
+        };
+        window.addEventListener('popstate', () => {
+          const id = new URLSearchParams(location.search).get('id');
+          if(id){ openPost(id); return; }
+          pushed = false; showList(); setTimeout(() => window.scrollTo(0, listY), 0);
+        });
+        // 상단바 '뒤로'를 누르면 글 → 목록으로 먼저 돌아간다
+        window.__appBack = () => { if(!openId) return false; closePost(); return true; };
+        const want = sp.get('id');
+        if(want && items.some(x => x.id === want)) openPost(want); else showList();
       },
       // ── 교재 스토어: 과목별 요약노트 책자 목록 + 전체 이용권 ──
       async store(){
@@ -410,6 +503,6 @@
     })();
   </script>
   <script src="/auth-header.js?v=20261021a"></script>
-  <script src="/app-shell.js?v=20261116a"></script>
+  <script src="/app-shell.js?v=20261120a"></script>
 </body>
 </html>
