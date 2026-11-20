@@ -79,7 +79,14 @@ async function createOrder(request, env) {
       if (!prog) prog = (await assetJson(env, origin, '/content/program.json')) || { ranks: [] };
       const r = (prog.ranks || []).find(x => String(x.rank) === String(id) || String(x.tier) === String(id) || x.name === id);
       if (!r) return json({ error: '잘못된 급수: ' + id }, 400);
-      const amt = (it.earlybird && r.earlybird) ? r.earlybird : r.price;
+      // 얼리버드는 기수(cohort) 마감 전까지만 서버에서 인정한다 — 화면과 무관하게 여기서 최종 검증(2026-11-21).
+      // (이전에는 클라이언트가 earlybird:true를 보내면 마감 후에도 얼리버드 금액이 적용되는 버그가 있었다)
+      const cohortOpen = (() => {
+        const c = prog.cohort; if (!c || !c.deadline) return false;
+        const end = new Date(c.deadline + 'T23:59:59+09:00');          // 마감일 자정(KST)까지 유효 — academy.html과 동일 규칙
+        return !isNaN(end) && (end - new Date()) >= 0;
+      })();
+      const amt = (it.earlybird && r.earlybird && cohortOpen) ? r.earlybird : r.price;
       resolved.push({ kind, itemId: String(r.rank), name: '바이블 인사이트 ' + r.name + ' (' + r.rank + ')', amount: Number(amt), tier: Number(r.tier) || 0 });
     } else return json({ error: '알 수 없는 상품 유형: ' + kind }, 400);
   }
