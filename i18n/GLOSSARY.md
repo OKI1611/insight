@@ -62,9 +62,11 @@
 | 마라나타 | Maranatha | Maranata | マラナ・タ | 主必要來(馬拉納他) | |
 | 환난기 성도 | Tribulation saints | los santos de la Tribulación | 患難期の聖徒 | 災難期的聖徒 | 中: 환난기 = 災難期 |
 | 위-에프렘 | Pseudo-Ephraem | Pseudo-Efrén | 偽エフライム | 偽以法蓮 | |
-| 인·나팔·대접 심판 | the seal, trumpet and bowl judgments | los juicios de los sellos, las trompetas y las copas | | 印、號、碗的審判 | es 번역 때 추가(ja 칸 미정). 中: 和合本 계 16장 '碗' |
-| (마 24:31의) 택하신 자 | the elect | los escogidos | | 選民 | es: RV1909 마 24:31 'sus escogidos' · zh: 和合本 '他的選民' |
-| 침묵 논증 | argument from silence | argumento del silencio | | 沉默論證 | es 번역 때 추가(ja 칸 미정) |
+| 인·나팔·대접 심판 | the seal, trumpet and bowl judgments | los juicios de los sellos, las trompetas y las copas | 封印・ラッパ・鉢の裁き | 印、號、碗的審判 | es 번역 때 추가. 中: 和合本 계 16장 '碗' · ja: 文語訳 계 16:1 '七つの鉢' |
+| (마 24:31의) 택하신 자 | the elect | los escogidos | 選民 | 選民 | es: RV1909 마 24:31 'sus escogidos' · zh: 和合本 '他的選民' · ja: 文語訳 '選民' |
+| 침묵 논증 | argument from silence | argumento del silencio | 沈黙からの論証 | 沉默論證 | es 번역 때 추가 |
+| 대체신학 | replacement theology (supersessionism) | teología del reemplazo | 置換神学 | 取代神學 | es 번역 때 추가 · zh 휴거 코너 |
+| 역사주의(계시록 해석) | historicism | | | 歷史派解經 | zh 번역 때 추가(es·ja 칸 미정) |
 
 ## 2. 구원·교회·성경
 

@@ -21,8 +21,10 @@
     { c:'zh', n:'中文(繁體)',  b:'中', h:'zh-Hant' }
   ];
   // 사전 파일이 있는 페이지(없는 페이지는 요청하지 않는다)
-  var PAGES = ['index'];
-  var VER = '20261126f';
+  var PAGES = ['index', 'support', 'app-menu'];
+  // 번역을 마친 화면(안내 띠 '아직 번역 중'을 띄우지 않음). app-menu 는 화면(p=)별로 적는다.
+  var DONE = ['index', 'support', 'rapture', 'app-menu:support'];
+  var VER = '20261126i';
 
   function valid(c){ for(var i=0;i<LANGS.length;i++) if(LANGS[i].c===c) return LANGS[i]; return null; }
   var lang = 'ko';
@@ -250,6 +252,8 @@
   function note(){
     try{ if(sessionStorage.getItem('bibly_lang_note') === lang) return; }catch(e){}
     if(document.querySelector('.rp[data-l="' + lang + '"]')) return; // 이 페이지는 번역본이 있음
+    var nm = pageName(); if(nm === 'app-menu'){ try{ nm += ':' + (new URLSearchParams(location.search).get('p') || ''); }catch(e){} }
+    if(DONE.indexOf(nm) >= 0) return;
     var d = document.createElement('div'); d.id = 'biblyLangNote'; d.setAttribute('data-noi18n','1');
     d.innerHTML = NOTE[lang] + '<button type="button">' + OK[lang] + '</button>';
     d.querySelector('button').onclick = function(){ d.remove(); try{ sessionStorage.setItem('bibly_lang_note', lang); }catch(e){} };

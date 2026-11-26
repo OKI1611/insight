@@ -3,7 +3,7 @@
 
 원고: tools/rapture/<lang>.json  (ko · en · es · ja · zh)
 성경 인용: 원고에는 위치만 적는다({"v": "1Th 4:16-17"}). 본문은 자동으로 끼운다.
-  ko = 킹제임스 성경 정본역 bible/kr · en = KJV bible/en
+  ko = 킹제임스 성경 정본역 bible/kr · en = KJV 전체 본문 bible/kjv
   es = Reina-Valera 1909 · ja = 文語訳 · zh = 和合本  → i18n/bible-verses.json (위키문헌 원문, 퍼블릭 도메인)
 용어는 i18n/GLOSSARY.md 를 따른다.
 
@@ -17,20 +17,22 @@ except Exception: pass
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LANGS = ['ko', 'en', 'es', 'ja', 'zh']
 HTML_LANG = {'ko': 'ko', 'en': 'en', 'es': 'es', 'ja': 'ja', 'zh': 'zh-Hant'}
-BOOK_FILE = {'Gen': 'Genesis', 'Zec': 'Zechariah', 'Mat': 'Matthew', 'Luk': 'Luke', 'Joh': 'John', 'Act': 'Acts',
+BOOK_FILE = {'Php': 'Philippians', 'Jas': 'James', 'Rom': 'Romans', '2Pe': '2Peter', 'Heb': 'Hebrews', 'Jer': 'Jeremiah',
+             'Dan': 'Daniel', 'Eph': 'Ephesians', 'Eze': 'Ezekiel', '1Jo': '1John', '2Co': '2Corinthians', 'Isa': 'Isaiah',
+             'Gen': 'Genesis', 'Zec': 'Zechariah', 'Mat': 'Matthew', 'Luk': 'Luke', 'Joh': 'John', 'Act': 'Acts',
              '1Co': '1Corinthians', 'Col': 'Colossians', '1Th': '1Thessalonians', '2Th': '2Thessalonians',
              'Tit': 'Titus', 'Rev': 'Revelation'}
 BOOK_NAME = {
-    'ko': {'Gen': '창세기', 'Zec': '스가랴', 'Mat': '마태복음', 'Luk': '누가복음', 'Joh': '요한복음', 'Act': '사도행전', '1Co': '고린도전서',
+    'ko': {'Php': '빌립보서', 'Jas': '야고보서', 'Rom': '로마서', '2Pe': '베드로후서', 'Heb': '히브리서', 'Jer': '예레미야', 'Dan': '다니엘', 'Eph': '에베소서', 'Eze': '에스겔', '1Jo': '요한일서', '2Co': '고린도후서', 'Isa': '이사야', 'Gen': '창세기', 'Zec': '스가랴', 'Mat': '마태복음', 'Luk': '누가복음', 'Joh': '요한복음', 'Act': '사도행전', '1Co': '고린도전서',
            'Col': '골로새서', '1Th': '데살로니가전서', '2Th': '데살로니가후서', 'Tit': '디도서', 'Rev': '요한계시록'},
-    'en': {'Gen': 'Genesis', 'Zec': 'Zechariah', 'Mat': 'Matthew', 'Luk': 'Luke', 'Joh': 'John', 'Act': 'Acts', '1Co': '1 Corinthians',
+    'en': {'Php': 'Philippians', 'Jas': 'James', 'Rom': 'Romans', '2Pe': '2 Peter', 'Heb': 'Hebrews', 'Jer': 'Jeremiah', 'Dan': 'Daniel', 'Eph': 'Ephesians', 'Eze': 'Ezekiel', '1Jo': '1 John', '2Co': '2 Corinthians', 'Isa': 'Isaiah', 'Gen': 'Genesis', 'Zec': 'Zechariah', 'Mat': 'Matthew', 'Luk': 'Luke', 'Joh': 'John', 'Act': 'Acts', '1Co': '1 Corinthians',
            'Col': 'Colossians', '1Th': '1 Thessalonians', '2Th': '2 Thessalonians', 'Tit': 'Titus', 'Rev': 'Revelation'},
-    'es': {'Gen': 'Génesis', 'Zec': 'Zacarías', 'Mat': 'Mateo', 'Luk': 'Lucas', 'Joh': 'Juan', 'Act': 'Hechos', '1Co': '1 Corintios',
+    'es': {'Php': 'Filipenses', 'Jas': 'Santiago', 'Rom': 'Romanos', '2Pe': '2 Pedro', 'Heb': 'Hebreos', 'Jer': 'Jeremías', 'Dan': 'Daniel', 'Eph': 'Efesios', 'Eze': 'Ezequiel', '1Jo': '1 Juan', '2Co': '2 Corintios', 'Isa': 'Isaías', 'Gen': 'Génesis', 'Zec': 'Zacarías', 'Mat': 'Mateo', 'Luk': 'Lucas', 'Joh': 'Juan', 'Act': 'Hechos', '1Co': '1 Corintios',
            'Col': 'Colosenses', '1Th': '1 Tesalonicenses', '2Th': '2 Tesalonicenses', 'Tit': 'Tito', 'Rev': 'Apocalipsis'},
-    'ja': {'Gen': '創世記', 'Zec': 'ゼカリヤ書', 'Mat': 'マタイの福音書', 'Luk': 'ルカの福音書', 'Joh': 'ヨハネの福音書', 'Act': '使徒の働き',
+    'ja': {'Php': 'ピリピ人への手紙', 'Jas': 'ヤコブの手紙', 'Rom': 'ローマ人への手紙', '2Pe': 'ペテロの手紙 第二', 'Heb': 'ヘブル人への手紙', 'Jer': 'エレミヤ書', 'Dan': 'ダニエル書', 'Eph': 'エペソ人への手紙', 'Eze': 'エゼキエル書', '1Jo': 'ヨハネの手紙 第一', '2Co': 'コリント人への手紙 第二', 'Isa': 'イザヤ書', 'Gen': '創世記', 'Zec': 'ゼカリヤ書', 'Mat': 'マタイの福音書', 'Luk': 'ルカの福音書', 'Joh': 'ヨハネの福音書', 'Act': '使徒の働き',
            '1Co': 'コリント人への手紙 第一', 'Col': 'コロサイ人への手紙', '1Th': 'テサロニケ人への手紙 第一', '2Th': 'テサロニケ人への手紙 第二',
            'Tit': 'テトスへの手紙', 'Rev': 'ヨハネの黙示録'},
-    'zh': {'Gen': '創世記', 'Zec': '撒迦利亞書', 'Mat': '馬太福音', 'Luk': '路加福音', 'Joh': '約翰福音', 'Act': '使徒行傳', '1Co': '哥林多前書',
+    'zh': {'Php': '腓立比書', 'Jas': '雅各書', 'Rom': '羅馬書', '2Pe': '彼得後書', 'Heb': '希伯來書', 'Jer': '耶利米書', 'Dan': '但以理書', 'Eph': '以弗所書', 'Eze': '以西結書', '1Jo': '約翰一書', '2Co': '哥林多後書', 'Isa': '以賽亞書', 'Gen': '創世記', 'Zec': '撒迦利亞書', 'Mat': '馬太福音', 'Luk': '路加福音', 'Joh': '約翰福音', 'Act': '使徒行傳', '1Co': '哥林多前書',
            'Col': '歌羅西書', '1Th': '帖撒羅尼迦前書', '2Th': '帖撒羅尼迦後書', 'Tit': '提多書', 'Rev': '啟示錄'},
 }
 VERSION = {'ko': '정본역', 'en': 'KJV', 'es': 'RV1909', 'ja': '文語訳', 'zh': '和合本'}
@@ -43,7 +45,8 @@ def chapter(lang, book, c):
         if lang == 'ko':
             _cache[k] = json.load(open(f'{ROOT}/bible/kr/{BOOK_FILE[book]}-{c}.json', encoding='utf-8'))
         else:
-            _cache[k] = [x['en'] for x in json.load(open(f'{ROOT}/bible/en/{BOOK_FILE[book]}-{c}.json', encoding='utf-8'))]
+            # 영어는 전체 KJV(bible/kjv/<책>.json). bible/en 의 'en' 은 학습용으로 줄인 절이 섞여 있어 쓰지 않는다(2026-11-26)
+            _cache[k] = json.load(open(f'{ROOT}/bible/kjv/{BOOK_FILE[book]}.json', encoding='utf-8'))[str(c)]
     return _cache[k]
 
 FOREIGN = json.load(open(f'{ROOT}/i18n/bible-verses.json', encoding='utf-8'))
@@ -93,11 +96,13 @@ def block(b, lang, fn_seen, D):
         cite = f'{BOOK_NAME[lang][book]}{sep}{c}:{spec}'
         return (f'<blockquote class="vs" lang="{HTML_LANG[lang]}"><p>{body}</p>'
                 f'<cite>{esc(cite)} · {esc(D.get("verse_label", VERSION[lang]))}</cite></blockquote>')
+    if 'ul' in b:
+        return '<ul class="bl">' + ''.join(f'<li>{inline(x, lang, fn_seen)}</li>' for x in b['ul']) + '</ul>'
     if 'table' in b:
         t = b['table']
         h = '<div class="tw"><table><thead><tr>' + ''.join(f'<th>{inline(x, lang, fn_seen)}</th>' for x in t['head']) + '</tr></thead><tbody>'
         for r in t['rows']:
-            h += '<tr>' + ''.join(f'<td>{inline(x, lang, fn_seen)}</td>' for x in r) + '</tr>'
+            h += '<tr>' + ''.join(f'<td data-h="{esc(t["head"][i]) if i < len(t["head"]) else ""}">{inline(x, lang, fn_seen)}</td>' for i, x in enumerate(r)) + '</tr>'
         return h + '</tbody></table></div>'
     if 'qa' in b:
         h = ''

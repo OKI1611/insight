@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <script src="/app-mode.js?v=20261107a"></script>
-  <script src="/i18n.js?v=20261126f"></script>
+  <script src="/i18n.js?v=20261126i"></script>
   <script src="/content-loader.js?v=20260703f"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>후원 · BIBLY 바이블 인사이트</title>
@@ -276,6 +276,7 @@
           kpEl.addEventListener('click', (e) => { e.preventDefault(); openKakaoQR(s.kakaopay_url); });
         }
       }
+      window.__SUP = s;   // 계좌 안내 창은 화면 글자(번역될 수 있음)가 아니라 이 원래 값을 쓴다
       if (s.bank_name) { const e = document.getElementById('bankLabel'); if(e) e.textContent = '계좌이체 · ' + s.bank_name; }
       const ba = document.getElementById('bankAccount');
       if (ba && (s.bank_account || s.bank_holder))
@@ -310,32 +311,41 @@
       else { prompt('복사하세요:', txt); }
     }
 
+    // 화면 언어에 맞춘 짧은 안내(알림창은 사전 번역이 닿지 않으므로 여기서 고른다)
+    const UI = document.documentElement.getAttribute('data-ui') || 'ko';
+    const MSG = {
+      copiedAcct: { ko:'계좌번호를 복사했어요!', en:'Account number copied!', es:'¡Número de cuenta copiado!', ja:'口座番号をコピーしました', zh:'已複製帳號！' },
+      copyBelow:  { ko:'아래 계좌번호를 복사하세요:', en:'Copy the account number below:', es:'Copie el número de cuenta:', ja:'下の口座番号をコピーしてください:', zh:'請複製下方帳號：' }
+    };
+    const msg = (k) => (MSG[k][UI] || MSG[k].ko);
+    const tr = (k) => (window.__biblyI18n && window.__biblyI18n.t) ? window.__biblyI18n.t(k) : k;
     function copyBankAcct(){
       const el = document.getElementById('bankAccount');
       const m = (el ? el.textContent : '').match(/[\d-]{8,}/);
       const txt = m ? m[0] : '1006-301-266177';
-      const done = () => alert('계좌번호를 복사했어요! \n' + txt + '  (우리은행 · 예금주 오광일)');
-      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done).catch(() => prompt('아래 계좌번호를 복사하세요:', txt)); }
-      else { prompt('아래 계좌번호를 복사하세요:', txt); }
+      const S0 = window.__SUP || {};
+      const done = () => alert(msg('copiedAcct') + '\n' + txt + '  (' + tr(S0.bank_name || '우리은행') + ' · ' + tr('예금주 ' + (S0.bank_holder || '오광일')) + ')');
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done).catch(() => prompt(msg('copyBelow'), txt)); }
+      else { prompt(msg('copyBelow'), txt); }
     }
     // 금액 클릭 → 계좌이체 안내 모달 (계좌 정보는 #bankAccount에서 읽어 site.json 최신값 반영)
     function openTransfer(amount){
-      const raw = (document.getElementById('bankAccount')||{}).textContent || '1006-301-266177 예금주 오광일';
-      const num = (raw.match(/[\d-]{8,}/) || ['1006-301-266177'])[0];
-      const holder = (raw.match(/예금주\s*(\S+)/) || [])[1] || '오광일';
-      const bankLbl = (document.getElementById('bankLabel')||{}).textContent || '계좌이체 · 우리은행';
-      const bank = bankLbl.replace(/계좌이체\s*·\s*/,'').trim() || '우리은행';
-      document.getElementById('tfAmount').textContent = Number(amount).toLocaleString() + '원';
-      document.getElementById('tfBank').textContent = bank;
+      const S0 = window.__SUP || {};
+      const num = S0.bank_account || '1006-301-266177';
+      const holder = S0.bank_holder || '오광일';
+      const bank = S0.bank_name || '우리은행';
+      const n = Number(amount).toLocaleString();
+      document.getElementById('tfAmount').textContent = UI === 'ko' ? n + '원' : (UI === 'ja' ? n + 'ウォン' : UI === 'zh' ? n + '韓元' : '₩' + n);
+      document.getElementById('tfBank').textContent = tr(bank);
       document.getElementById('tfNum').textContent = num;
-      document.getElementById('tfHolder').textContent = '예금주 ' + holder;
+      document.getElementById('tfHolder').textContent = tr('예금주 ' + holder);
       document.getElementById('transferModal').style.display = 'flex';
     }
     function copyTransfer(){
       const num = (document.getElementById('tfNum').textContent || '').trim();
-      const done = () => alert('계좌번호를 복사했어요!\n' + num);
-      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(num).then(done).catch(() => prompt('아래 계좌번호를 복사하세요:', num)); }
-      else prompt('아래 계좌번호를 복사하세요:', num);
+      const done = () => alert(msg('copiedAcct') + '\n' + num);
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(num).then(done).catch(() => prompt(msg('copyBelow'), num)); }
+      else prompt(msg('copyBelow'), num);
     }
     function openKakaoQR(url){
       const modal = document.getElementById('kakaoQrModal');

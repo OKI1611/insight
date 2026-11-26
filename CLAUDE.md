@@ -57,7 +57,7 @@
   (i18n.js 의 `PAGES` 배열에 이름을 넣어야 불러온다). 키 = 화면의 한국어 그대로, 값 = {en,es,ja,zh}.
   태그가 섞인 문장은 요소에 `data-i18n="키"`. 번역이 없는 글자는 한국어로 남고, 번역본이 없는 페이지엔 안내 띠가 뜬다.
 - 긴 글은 언어별 원고를 따로 둔다. 예: `tools/rapture/<lang>.json` → `python tools/build_rapture.py` → `rapture.html`
-  (언어별 `<article class="rp" data-l="xx">`). 성경 인용은 위치만 적고 본문은 자동: ko 정본역 · en KJV(bible/en) ·
+  (언어별 `<article class="rp" data-l="xx">`). 성경 인용은 위치만 적고 본문은 자동: ko 정본역 · en KJV 전체 본문(bible/kjv — bible/en 의 'en' 은 줄인 절이 섞여 있어 쓰지 않음) ·
   es RV1909 · ja 文語訳 · zh 和合本(`i18n/bible-verses.json`, 위키문헌 원문). 口語訳(일본어)은 저작권 분쟁 소지로 쓰지 않는다.
 - i18n.js·common.json 을 고치면 i18n.js 의 `VER` 와 불러오는 쪽 `?v=`(index.html·site-header.js) 를 함께 올린다.
 - **페이지 번역 절차(2단계 홈부터)**: 브라우저에서 화면 글자를 추출 → `i18n/pages/_work/<페이지>.items.json`
@@ -65,6 +65,8 @@
   (태그 동일·한글 잔존·{n} 개수 검사) → `python tools/i18n_merge.py <페이지>` → `i18n/pages/<페이지>.json`, i18n.js `PAGES` 에 이름 추가.
   사전 규칙: 앞뒤 기호(└ · ▶ → ›)는 떼고 찾는다, `{n}` = 바뀌는 숫자, 태그 섞인 문장은 innerHTML 전체가 키,
   `<span data-stat>` 안 숫자는 비교에서 빼고 번역 뒤 되돌려 넣는다. 강의 제목·블로그 글·회원 이름(콘텐츠)은 3단계.
+- 외국어 구절 수집: `python tools/fetch_ws_verses.py <원고.json>` (위키문헌 원문 → i18n/bible-verses.json). 번역본 구조 검사: `python tools/rapture_struct_check.py`.
+- 앱(html.app): 상단바·앱 홈 머리글에 작은 언어 단추(data-compact), app-shell.js 가 i18n.js 를 불러온다. 앱 전용 화면 글자는 `i18n/pages/app-menu.json`.
 - 강사 학력 표기(2026-11-26 저자 지시): West Coast Baptist College 학위는 **Master of Bible Studies**
   (한국어 '성경학 석사(Master of Bible Studies)', 일 聖書学修士, 중 聖經研究碩士, 스 Maestría en Estudios Bíblicos).
   M.R.E.·신학 석사·Th.M. 표기 금지. 성균관대는 '박사과정 수료'(Ph.D.·박사 금지).
