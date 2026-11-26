@@ -21,8 +21,8 @@
     { c:'zh', n:'中文(繁體)',  b:'中', h:'zh-Hant' }
   ];
   // 사전 파일이 있는 페이지(없는 페이지는 요청하지 않는다)
-  var PAGES = [];
-  var VER = '20261126a';
+  var PAGES = ['index'];
+  var VER = '20261126d';
 
   function valid(c){ for(var i=0;i<LANGS.length;i++) if(LANGS[i].c===c) return LANGS[i]; return null; }
   var lang = 'ko';
@@ -52,6 +52,8 @@
       + '#biblyLangNote button{margin-left:.6rem;font-weight:800;color:#00704a;background:none;border:0;cursor:pointer;min-height:32px}';
     // 한국어용 줄바꿈(keep-all)은 띄어쓰기가 없는 일본어·중국어에서 문장부호에서만 줄이 바뀌게 만든다
     if(lang === 'ja' || lang === 'zh') css += 'html[data-ui="' + lang + '"] body,html[data-ui="' + lang + '"] body *{word-break:normal!important;line-break:strict}';
+    // 일본어 가타카나 브랜드명(バイブル・インサイト・アカデミー)이 좁은 휴대폰에서 로고 줄을 넘지 않도록
+    if(lang === 'ja') css += '@media(max-width:520px){html[data-ui="ja"] header a .font-display{font-size:15.5px!important;letter-spacing:-.04em}}';
     if(lang === 'ja') css += 'html[data-ui="ja"] body,html[data-ui="ja"] body *:not(svg):not(path):not(code){font-family:Pretendard,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic",Meiryo,"Noto Sans JP",sans-serif}';
     if(lang === 'zh') css += 'html[data-ui="zh"] body,html[data-ui="zh"] body *:not(svg):not(path):not(code){font-family:Pretendard,"PingFang TC","Microsoft JhengHei","Noto Sans TC",sans-serif}';
     var st = document.createElement('style'); st.id = 'biblyI18nCss'; st.textContent = css;
@@ -102,15 +104,69 @@
   window.addEventListener('scroll', closeMenu, { passive:true });
 
   // ── 사전 번역(한국어가 아닐 때만) ──
-  var DICT = {}, busy = false, pending = [];
-  function tr(k){ var e = DICT[k]; return e && e[lang] ? e[lang] : null; }
+  var DICT = {}, HDICT = {}, PATS = [], busy = false, pending = [];
+  // 1) 그대로 일치  2) 앞뒤 기호(└ · ▶ → 등)를 떼고 일치  3) 숫자 자리 {n} 이 있는 키(예: "최근 30일 새 강의 {n}편")
+  var EDGE = /^([\s└·•▶►→←↑↓※✓✔★☆▲▼○●◆◇■□\-–—]*)([\s\S]*?)([\s→←↑↓▶►›»]*)$/;
+  function exact(k){ var e = DICT[k]; return e && e[lang] ? e[lang] : null; }
+  function tr(k){
+    var v = exact(k); if(v) return v;
+    var m = k.match(EDGE);
+    if(m && (m[1] || m[3]) && m[2]){ v = exact(m[2]) || pat(m[2]); if(v) return m[1] + v + m[3]; }
+    v = pat(k); if(v) return v;
+    var mm = k.match(/^([\d,.]+)만(\+?)$/);   // 270만+ → 2.7M+ / 270万+
+    if(mm) return fmtMan(mm[1], mm[2]);
+    return null;
+  }
+  function pat(k){
+    for(var i=0;i<PATS.length;i++){
+      var p = PATS[i], r = k.match(p.re);
+      if(r){ var n = 0; return p.out.replace(/\{n\}/g, function(){ n++; return fmt(r[n]); }); }
+    }
+    return null;
+  }
+  function fmt(x){ return x; }
+  function fmtMan(x, plus){
+    var n = parseFloat(String(x).replace(/,/g,'')) * 10000;
+    if(lang === 'ja' || lang === 'zh') return x + '万' + plus;
+    try{ return new Intl.NumberFormat(lang, { notation:'compact', maximumFractionDigits:1 }).format(n) + plus; }catch(e){ return n.toLocaleString() + plus; }
+  }
+  function compile(){
+    PATS = []; HDICT = {};
+    Object.keys(DICT).forEach(function(k){
+      var e = DICT[k]; if(!e || !e[lang]) return;
+      if(k.indexOf('<') >= 0) HDICT[k] = e[lang];
+      if(k.indexOf('{n}') >= 0){
+        var src = k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\\\{n\\\}/g, '([\\d][\\d,.]*)');
+        PATS.push({ re: new RegExp('^' + src + '$'), out: e[lang] });
+      }
+    });
+  }
+  // 자동으로 바뀌는 숫자 자리(<span data-stat="…">384편</span>)는 비우고 비교한다 → 바꾼 뒤 숫자를 되돌려 넣는다
+  function norm(s){ return s.replace(/(<span data-stat="[^"]*">)[^<]*(<\/span>)/g, '$1$2').replace(/\s+/g, ' ').trim(); }
+  var BLOCKS = 'div,p,section,article,ul,ol,li,table,h1,h2,h3,h4,h5,h6,header,footer,nav,form,button,img';
+  // 태그가 섞인 문장: 요소의 innerHTML(공백 정리) 전체가 사전 키와 같으면 통째로 바꾼다
+  function applyHtml(root){
+    if(!Object.keys(HDICT).length) return;
+    var list = [root].concat(Array.prototype.slice.call(root.querySelectorAll('*')));
+    list.forEach(function(el){
+      if(!el.children || !el.children.length || el.hasAttribute('data-i18n-done') || skip(el)) return;
+      var tx = el.textContent; if(tx.length > 1500 || !/[가-힣]/.test(tx)) return;
+      if(el.querySelector(BLOCKS)) return;
+      var v = HDICT[norm(el.innerHTML)];
+      if(v){
+        var keep = {}; el.querySelectorAll('[data-stat]').forEach(function(x){ keep[x.getAttribute('data-stat')] = x.textContent; });
+        el.innerHTML = v; el.setAttribute('data-i18n-done', '1');
+        el.querySelectorAll('[data-stat]').forEach(function(x){ var t = keep[x.getAttribute('data-stat')]; if(t != null){ x.textContent = t; apply(x.firstChild); } });
+      }
+    });
+  }
   api.t = function(k){ return tr(k) || k; };
   function skip(el){
     for(var p = el; p && p.nodeType === 1; p = p.parentNode){
       var n = p.nodeName;
       if(n === 'SCRIPT' || n === 'STYLE' || n === 'TEXTAREA' || n === 'CODE' || n === 'PRE') return true;
       if(p.hasAttribute('data-noi18n') || p.hasAttribute('data-l') || p.isContentEditable) return true;
-      if(p.id === 'biblyAuthName' || p.id === 'biblyLangMenu') return true;
+      if(p.id === 'biblyAuthName' || p.id === 'biblyLangMenu' || p.id === 'biblyLangSlot') return true;
     }
     return false;
   }
@@ -131,6 +187,7 @@
     list.forEach(function(el){
       if(el.getAttribute && el.getAttribute('data-i18n')){ var v = tr(el.getAttribute('data-i18n')); if(v) el.innerHTML = v; }
     });
+    applyHtml(node);
     var tw = document.createTreeWalker(node, NodeFilter.SHOW_TEXT, null, false), t, arr = [];
     while((t = tw.nextNode())) arr.push(t);
     arr.forEach(apply);
@@ -194,6 +251,7 @@
     if(PAGES.indexOf(name) >= 0) jobs.push(load('/i18n/pages/' + name + '.json?v=' + VER));
     Promise.all(jobs).then(function(ds){
       ds.forEach(function(d){ for(var k in d) if(k.charAt(0) !== '_') DICT[k] = d[k]; });
+      compile();
       apply(document.body);
       var t = document.title; if(DICT[t] && DICT[t][lang]) document.title = DICT[t][lang];
     });
