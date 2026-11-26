@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <script src="/app-mode.js?v=20261107a"></script>
+  <script src="/i18n.js?v=20261126e"></script>
   <script src="/content-loader.js?v=20260703f"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>후원 · BIBLY 바이블 인사이트</title>
@@ -45,6 +46,22 @@
     h1,h2{ font-family:'Pretendard',system-ui,sans-serif; letter-spacing:-0.01em; font-weight:700; }
     .eyebrow{letter-spacing:.34em; text-transform:uppercase}
     a,button{transition:all .18s ease}
+    /* 다국어: 언어별 블록(data-l) 중 고른 언어만 보인다. 스크립트가 없으면 한국어 */
+    .ovs [data-l]{display:none!important}
+    html:not([data-ui]) .ovs div[data-l="ko"],html[data-ui="ko"] .ovs div[data-l="ko"],html[data-ui="en"] .ovs div[data-l="en"],
+    html[data-ui="es"] .ovs div[data-l="es"],html[data-ui="ja"] .ovs div[data-l="ja"],html[data-ui="zh"] .ovs div[data-l="zh"]{display:block!important}
+    html:not([data-ui]) .ovs span[data-l="ko"],html[data-ui="ko"] .ovs span[data-l="ko"],html[data-ui="en"] .ovs span[data-l="en"],
+    html[data-ui="es"] .ovs span[data-l="es"],html[data-ui="ja"] .ovs span[data-l="ja"],html[data-ui="zh"] .ovs span[data-l="zh"]{display:inline!important}
+    /* 외국어 화면: 한국에서만 쓰는 수단(토스·카카오페이·국내 계좌)은 감춘다 */
+    html[data-ui]:not([data-ui="ko"]) .ko-only{display:none!important}
+    .ovs-steps{counter-reset:s;list-style:none;margin:0;padding:0}
+    .ovs-steps li{counter-increment:s;position:relative;padding:0 0 .8rem 2.3rem;font-size:15px;line-height:1.75;color:#374151}
+    .ovs-steps li::before{content:counter(s);position:absolute;left:0;top:.1rem;width:1.6rem;height:1.6rem;border-radius:50%;background:#0070ba;color:#fff;font-size:.8rem;font-weight:800;display:flex;align-items:center;justify-content:center}
+    .ovs-steps b,.ovs-notes b{color:#111827}
+    .ovs-notes{margin:.9rem 0 0;padding-left:1.1rem;list-style:disc;font-size:13.5px;line-height:1.7;color:#4b5563}
+    .ovs-notes li{margin-bottom:.35rem}
+    .ovs-copy{background:rgba(23,23,23,.06);font-size:12px;font-weight:700;padding:.35rem .6rem;border-radius:.4rem;min-height:30px}
+    .ovs-copy:hover{background:rgba(23,23,23,.12)}
   </style>
 </head>
 
@@ -59,7 +76,8 @@
           <span class="block text-[10px] text-neutral-900/50 tracking-[0.04em] mt-1">말씀으로 시대를 읽다</span>
         </span>
       </a>
-      <a href="index.html" class="ml-auto text-sm text-neutral-900/55 hover:text-gold whitespace-nowrap">← 홈으로</a>
+      <span id="biblyLangSlot" class="ml-auto"></span>
+      <a href="index.html" class="text-sm text-neutral-900/55 hover:text-gold whitespace-nowrap">← 홈으로</a>
     </nav>
   </header>
 
@@ -80,7 +98,7 @@
         </div>
 
         <!-- 추천 후원 금액 (핵심 · 눈에 띄게) -->
-        <div class="max-w-md mx-auto mb-8 bg-white rounded-3xl border border-gold/25 shadow-[0_18px_50px_-22px_rgba(0,112,74,.35)] p-6">
+        <div class="ko-only max-w-md mx-auto mb-8 bg-white rounded-3xl border border-gold/25 shadow-[0_18px_50px_-22px_rgba(0,112,74,.35)] p-6">
           <p class="text-gold text-xs font-bold tracking-[0.2em] uppercase mb-1">지금 함께하기</p>
           <p class="text-neutral-500 text-sm mb-4">마음이 닿는 만큼, 금액을 누르면 계좌이체 안내가 열려요</p>
           <div class="grid grid-cols-3 gap-2.5">
@@ -100,9 +118,9 @@
                class="flex items-center justify-center gap-2 bg-[#FEE500] text-[#3c1e1e] font-semibold py-3.5 rounded-2xl hover:opacity-90 transition">
               카카오페이로 후원하기 <span class="text-[#3c1e1e]/60 text-sm font-normal">(원클릭)</span>
             </a>
-            <a id="paypalLink" href="https://paypal.me/oki1611" target="_blank" rel="noopener"
+            <a href="#overseas"
                class="flex items-center justify-center gap-2 bg-[#0070ba] text-white font-semibold py-3.5 rounded-2xl hover:opacity-90 transition">
-              PayPal로 후원하기 <span class="text-white/70 text-sm font-normal">(해외 후원)</span>
+              해외에서 후원하기 <span class="text-white/70 text-sm font-normal">(PayPal · 국제 송금) ↓</span>
             </a>
             <p id="kakaoHint" class="text-neutral-400 text-xs" style="display:none">카카오페이는 모바일에서 바로 열리고, PC에서는 QR코드가 떠요.</p>
 
@@ -125,22 +143,24 @@
               </div>
             </div>
 
-            <!-- 해외에서 후원 (국제 송금) -->
-            <div id="foreignBox" style="display:none" class="bg-sand/50 border border-neutral-200 rounded-2xl p-5 text-left">
-              <p class="text-neutral-900 font-semibold text-sm mb-1 flex items-center gap-1.5">해외에서 후원하기 <span class="text-neutral-400 font-normal text-xs">· International transfer</span></p>
-              <p class="text-neutral-500 text-xs mb-3.5 leading-relaxed">From outside Korea, please send a bank (wire) transfer using the details below.</p>
-              <div class="space-y-2.5 text-sm text-neutral-800">
-                <div class="flex items-center justify-between gap-2"><span class="text-neutral-400 text-xs shrink-0">Bank</span><span id="fBank" class="font-medium text-right"></span></div>
-                <div class="flex items-center justify-between gap-2"><span class="text-neutral-400 text-xs shrink-0">SWIFT / BIC</span><span class="flex items-center gap-1.5"><span id="fSwift" class="font-semibold tracking-wide"></span><button onclick="copyVal('fSwift')" class="bg-neutral-900/[0.06] hover:bg-neutral-900/10 text-[11px] px-2 py-0.5 rounded">복사</button></span></div>
-                <div class="flex items-center justify-between gap-2"><span class="text-neutral-400 text-xs shrink-0">Account No.</span><span class="flex items-center gap-1.5"><span id="fAcct" class="font-semibold"></span><button onclick="copyVal('fAcct')" class="bg-neutral-900/[0.06] hover:bg-neutral-900/10 text-[11px] px-2 py-0.5 rounded">복사</button></span></div>
-                <div class="flex items-center justify-between gap-2"><span class="text-neutral-400 text-xs shrink-0">Account holder</span><span id="fHolder" class="font-medium text-right"></span></div>
-                <div id="fAddrRow" class="flex items-center justify-between gap-2"><span class="text-neutral-400 text-xs shrink-0">Bank address</span><span id="fAddr" class="text-right text-neutral-500 text-xs"></span></div>
-              </div>
-              <p class="text-neutral-400 text-[11px] mt-3.5 leading-relaxed">※ 보내는 분의 은행에 따라 중계은행(intermediary bank) 정보가 필요할 수 있어요. 송금 전 SWIFT 코드를 한 번 더 확인해 주세요.</p>
-            </div>
           </div>
           <p class="text-neutral-400 text-[11px] mt-4 leading-relaxed text-center">※ 후원은 전적으로 자발적이며 어떤 대가도 따르지 않습니다. 기부금 영수증은 발행되지 않습니다.</p>
         </div>
+
+        <!-- OVERSEAS:START — tools/support_overseas.py 가 만든다. 직접 고치지 말 것 -->
+        <section id="overseas" class="ovs max-w-md mx-auto mb-8 text-left bg-white rounded-3xl border-2 border-[#0070ba]/30 shadow-[0_18px_50px_-22px_rgba(0,48,135,.35)] p-6 scroll-mt-24">
+        <div data-l="ko" lang="ko"><p class="text-[#0070ba] text-xs font-bold tracking-[0.18em] uppercase mb-1">GIVE FROM ABROAD</p><h2 class="text-xl font-bold text-neutral-900 mb-2">해외에서 후원하기</h2><p class="text-neutral-600 text-[15px] leading-relaxed mb-5">한국 밖에 계신 분은 아래 두 가지 방법으로 후원하실 수 있습니다. 토스·카카오페이·국내 계좌이체는 해외에서 쓰기 어렵습니다.</p><h3 class="font-bold text-neutral-900 text-base mb-2.5">방법 1 · PayPal (가장 간편)</h3><ol class="ovs-steps"><li>아래 <b>「PayPal로 후원하기」</b> 단추를 누르면 PayPal 후원 페이지(<b>paypal.me/oki1611</b>)가 열립니다.</li><li>PayPal 계정으로 로그인합니다. PayPal.me로 보내려면 <b>PayPal 계정이 필요</b>합니다. 계정이 없으면 paypal.com에서 무료로 만들 수 있습니다.</li><li>후원할 <b>금액</b>을 입력합니다. 통화를 고를 수 있으면 편한 통화(USD 등)를 고르세요.</li><li>메모(note)에 <b>이름이나 이메일</b>을 남겨 주시면 감사 인사를 드리겠습니다(선택).</li><li>PayPal이 결제 유형을 물으면, 이 후원에는 <b>물품이나 서비스가 제공되지 않는다</b>는 점을 참고해 골라 주세요.</li><li>금액과 받는 곳(oki1611)을 확인하고 <b>보내기</b>를 누릅니다. <b>보낸 뒤에는 취소할 수 없으니</b> 금액을 꼭 확인해 주세요.</li></ol></div><div data-l="en" lang="en"><p class="text-[#0070ba] text-xs font-bold tracking-[0.18em] uppercase mb-1">GIVE FROM ABROAD</p><h2 class="text-xl font-bold text-neutral-900 mb-2">Give from outside Korea</h2><p class="text-neutral-600 text-[15px] leading-relaxed mb-5">If you live outside Korea, you can support this ministry in two ways. Toss, KakaoPay and Korean bank transfers are hard to use from abroad.</p><h3 class="font-bold text-neutral-900 text-base mb-2.5">Option 1 · PayPal (easiest)</h3><ol class="ovs-steps"><li>Tap <b>“Give with PayPal”</b> below. Our PayPal page (<b>paypal.me/oki1611</b>) will open.</li><li>Log in to PayPal. Sending through PayPal.me <b>requires a PayPal account</b>. If you don’t have one, you can open one free at paypal.com.</li><li>Enter the <b>amount</b> you wish to give. If PayPal lets you choose a currency, pick the one that suits you (for example, USD).</li><li>In the note, you may add <b>your name or email</b> so we can thank you (optional).</li><li>If PayPal asks you to choose a payment type, please keep in mind that <b>no goods or services are provided</b> in return for this gift.</li><li>Check the amount and the recipient (oki1611), then tap <b>Send</b>. <b>A payment cannot be cancelled once it is sent</b>, so please double-check the amount.</li></ol></div><div data-l="es" lang="es"><p class="text-[#0070ba] text-xs font-bold tracking-[0.18em] uppercase mb-1">DONAR DESDE EL EXTRANJERO</p><h2 class="text-xl font-bold text-neutral-900 mb-2">Donar desde fuera de Corea</h2><p class="text-neutral-600 text-[15px] leading-relaxed mb-5">Si usted vive fuera de Corea, puede apoyar este ministerio de dos maneras. Toss, KakaoPay y las transferencias bancarias coreanas son difíciles de usar desde el extranjero.</p><h3 class="font-bold text-neutral-900 text-base mb-2.5">Opción 1 · PayPal (la más sencilla)</h3><ol class="ovs-steps"><li>Pulse <b>«Donar con PayPal»</b> abajo. Se abrirá nuestra página de PayPal (<b>paypal.me/oki1611</b>).</li><li>Inicie sesión en PayPal. Para enviar por PayPal.me <b>se necesita una cuenta de PayPal</b>. Si no la tiene, puede abrir una gratis en paypal.com.</li><li>Escriba el <b>monto</b> que desea donar. Si PayPal le permite elegir la moneda, elija la que le resulte cómoda (por ejemplo, USD).</li><li>En la nota puede escribir <b>su nombre o correo</b> para que podamos darle las gracias (opcional).</li><li>Si PayPal le pide elegir un tipo de pago, tenga en cuenta que <b>esta donación no incluye ningún producto ni servicio</b> a cambio.</li><li>Revise el monto y el destinatario (oki1611) y pulse <b>Enviar</b>. <b>Un pago enviado no se puede cancelar</b>, así que verifique bien el monto.</li></ol></div><div data-l="ja" lang="ja"><p class="text-[#0070ba] text-xs font-bold tracking-[0.18em] uppercase mb-1">GIVE FROM ABROAD</p><h2 class="text-xl font-bold text-neutral-900 mb-2">海外からのご支援</h2><p class="text-neutral-600 text-[15px] leading-relaxed mb-5">韓国国外にお住まいの方は、次の二つの方法でご支援いただけます。Toss・カカオペイ・韓国国内の口座振込は、海外からはご利用が難しいためです。</p><h3 class="font-bold text-neutral-900 text-base mb-2.5">方法1 ・ PayPal(いちばん簡単です)</h3><ol class="ovs-steps"><li>下の<b>「PayPalで支援する」</b>ボタンを押すと、PayPalの支援ページ(<b>paypal.me/oki1611</b>)が開きます。</li><li>PayPalにログインします。PayPal.meで送金するには<b>PayPalアカウントが必要</b>です。お持ちでない方は paypal.com で無料で作成できます。</li><li>ご支援の<b>金額</b>を入力します。通貨を選べる場合は、使いやすい通貨(USDなど)をお選びください。</li><li>メモ(note)に<b>お名前やメールアドレス</b>を書いていただければ、お礼をお送りします(任意)。</li><li>PayPalから支払いの種類を尋ねられた場合は、このご支援には<b>商品やサービスの提供がない</b>ことをふまえてお選びください。</li><li>金額と送金先(oki1611)を確認し、<b>送金</b>を押します。<b>送金後は取り消しができません</b>ので、金額を必ずご確認ください。</li></ol></div><div data-l="zh" lang="zh-Hant"><p class="text-[#0070ba] text-xs font-bold tracking-[0.18em] uppercase mb-1">GIVE FROM ABROAD</p><h2 class="text-xl font-bold text-neutral-900 mb-2">從海外奉獻支持</h2><p class="text-neutral-600 text-[15px] leading-relaxed mb-5">住在韓國以外的朋友，可以透過下面兩種方式支持這個事工。Toss、KakaoPay 和韓國國內轉帳，在海外不容易使用。</p><h3 class="font-bold text-neutral-900 text-base mb-2.5">方式一・PayPal（最簡便）</h3><ol class="ovs-steps"><li>按下方的<b>「用 PayPal 奉獻」</b>，就會開啟我們的 PayPal 頁面（<b>paypal.me/oki1611</b>）。</li><li>登入 PayPal。透過 PayPal.me 付款<b>需要有 PayPal 帳戶</b>。如果還沒有帳戶，可以在 paypal.com 免費申請。</li><li>輸入奉獻<b>金額</b>。如果可以選擇幣別，請選您方便的幣別（例如 USD）。</li><li>可以在附註（note）留下<b>您的姓名或電子郵件</b>，方便我們向您致謝（自由填寫）。</li><li>如果 PayPal 請您選擇付款類型，請留意：這筆奉獻<b>不會換取任何商品或服務</b>。</li><li>確認金額和收款對象（oki1611）後，按下<b>付款</b>。<b>付款送出後就無法取消</b>，請務必再次確認金額。</li></ol></div>
+        <a id="paypalGive" href="https://paypal.me/oki1611" target="_blank" rel="noopener" class="mt-4 flex items-center justify-center gap-2 bg-[#0070ba] text-white font-bold text-[16px] min-h-[52px] rounded-2xl hover:opacity-90 transition"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.1 21.3H3.6a.6.6 0 0 1-.6-.7L5.7 3.4A.9.9 0 0 1 6.6 2.7h6.6c3.5 0 5.6 1.8 5 5.1-.6 3.9-3.2 5.6-6.6 5.6H9.4l-1.3 7.3a.6.6 0 0 1-.6.6zm2.9-9.6h1.5c2 0 3.3-.9 3.6-2.9.3-1.7-.7-2.5-2.5-2.5h-1.4z"/></svg><span data-l="ko">PayPal로 후원하기</span><span data-l="en">Give with PayPal</span><span data-l="es">Donar con PayPal</span><span data-l="ja">PayPalで支援する</span><span data-l="zh">用 PayPal 奉獻</span></a>
+        <div data-l="ko" lang="ko"><p class="text-neutral-500 text-xs leading-relaxed mt-3">PayPal 수수료와 환율은 보내는 나라와 결제 수단에 따라 다릅니다. 자세한 내용은 <a href="https://www.paypal.com/fees" target="_blank" rel="noopener" class="underline">PayPal 수수료 안내</a>에서 확인해 주세요.</p></div><div data-l="en" lang="en"><p class="text-neutral-500 text-xs leading-relaxed mt-3">PayPal fees and exchange rates depend on your country and payment method. Please see <a href="https://www.paypal.com/fees" target="_blank" rel="noopener" class="underline">PayPal’s fee page</a> for details.</p></div><div data-l="es" lang="es"><p class="text-neutral-500 text-xs leading-relaxed mt-3">Las comisiones y el tipo de cambio de PayPal dependen de su país y del medio de pago. Consulte los detalles en la <a href="https://www.paypal.com/fees" target="_blank" rel="noopener" class="underline">página de comisiones de PayPal</a>.</p></div><div data-l="ja" lang="ja"><p class="text-neutral-500 text-xs leading-relaxed mt-3">PayPalの手数料と為替レートは、お住まいの国と支払い方法によって異なります。詳しくは<a href="https://www.paypal.com/fees" target="_blank" rel="noopener" class="underline">PayPalの手数料のご案内</a>をご確認ください。</p></div><div data-l="zh" lang="zh-Hant"><p class="text-neutral-500 text-xs leading-relaxed mt-3">PayPal 的手續費和匯率，會依您所在的國家和付款方式而不同。詳情請參考 <a href="https://www.paypal.com/fees" target="_blank" rel="noopener" class="underline">PayPal 手續費說明</a>。</p></div>
+        <div id="foreignBox" style="display:none" class="mt-7 pt-6 border-t border-neutral-200">
+        <div data-l="ko" lang="ko"><h3 class="font-bold text-neutral-900 text-base mb-1.5">방법 2 · 국제 송금 (은행 해외송금)</h3><p class="text-neutral-600 text-sm leading-relaxed mb-3.5">거래 은행의 창구나 인터넷뱅킹 해외송금 메뉴에서 아래 정보를 그대로 입력해 주세요.</p></div><div data-l="en" lang="en"><h3 class="font-bold text-neutral-900 text-base mb-1.5">Option 2 · International bank transfer (wire)</h3><p class="text-neutral-600 text-sm leading-relaxed mb-3.5">At your bank, or in your online banking’s international transfer menu, enter the details below exactly as shown.</p></div><div data-l="es" lang="es"><h3 class="font-bold text-neutral-900 text-base mb-1.5">Opción 2 · Transferencia bancaria internacional</h3><p class="text-neutral-600 text-sm leading-relaxed mb-3.5">En su banco, o en la sección de transferencias internacionales de su banca en línea, escriba los datos de abajo tal como aparecen.</p></div><div data-l="ja" lang="ja"><h3 class="font-bold text-neutral-900 text-base mb-1.5">方法2 ・ 海外送金(銀行の国際送金)</h3><p class="text-neutral-600 text-sm leading-relaxed mb-3.5">お取引銀行の窓口、またはインターネットバンキングの海外送金メニューで、下の情報をそのままご入力ください。</p></div><div data-l="zh" lang="zh-Hant"><h3 class="font-bold text-neutral-900 text-base mb-1.5">方式二・國際匯款（銀行電匯）</h3><p class="text-neutral-600 text-sm leading-relaxed mb-3.5">請在您往來銀行的櫃台，或網路銀行的國際匯款功能中，照下面的資料輸入。</p></div>
+        <div class="bg-sand/40 rounded-2xl px-4 py-1.5"><div class="flex items-center justify-between gap-3 py-2 border-b border-neutral-100"><span class="text-neutral-400 text-xs shrink-0">Bank</span><span class="flex items-center gap-2 text-right"><span id="fBank" class="font-semibold text-neutral-900 text-sm break-all"></span></span></div><div class="flex items-center justify-between gap-3 py-2 border-b border-neutral-100"><span class="text-neutral-400 text-xs shrink-0">SWIFT / BIC</span><span class="flex items-center gap-2 text-right"><span id="fSwift" class="font-semibold text-neutral-900 text-sm break-all"></span><button type="button" onclick="copyVal('fSwift')" class="ovs-copy"><span data-l="ko">복사</span><span data-l="en">Copy</span><span data-l="es">Copiar</span><span data-l="ja">コピー</span><span data-l="zh">複製</span></button></span></div><div class="flex items-center justify-between gap-3 py-2 border-b border-neutral-100"><span class="text-neutral-400 text-xs shrink-0">Account No.</span><span class="flex items-center gap-2 text-right"><span id="fAcct" class="font-semibold text-neutral-900 text-sm break-all"></span><button type="button" onclick="copyVal('fAcct')" class="ovs-copy"><span data-l="ko">복사</span><span data-l="en">Copy</span><span data-l="es">Copiar</span><span data-l="ja">コピー</span><span data-l="zh">複製</span></button></span></div><div class="flex items-center justify-between gap-3 py-2 border-b border-neutral-100"><span class="text-neutral-400 text-xs shrink-0">Account holder</span><span class="flex items-center gap-2 text-right"><span id="fHolder" class="font-semibold text-neutral-900 text-sm break-all"></span><button type="button" onclick="copyVal('fHolder')" class="ovs-copy"><span data-l="ko">복사</span><span data-l="en">Copy</span><span data-l="es">Copiar</span><span data-l="ja">コピー</span><span data-l="zh">複製</span></button></span></div><div class="flex items-center justify-between gap-3 py-2 border-b border-neutral-100" id="fCurRow"><span class="text-neutral-400 text-xs shrink-0">Currency</span><span class="flex items-center gap-2 text-right"><span id="fCur" class="font-semibold text-neutral-900 text-sm break-all"></span></span></div><div class="flex items-center justify-between gap-3 py-2 border-b border-neutral-100" id="fAddrRow"><span class="text-neutral-400 text-xs shrink-0">Bank address</span><span class="flex items-center gap-2 text-right"><span id="fAddr" class="font-semibold text-neutral-900 text-sm break-all"></span></span></div></div>
+        <div data-l="ko" lang="ko"><ul class="ovs-notes"><li>받는 사람 이름은 영문 <b>OH KWANG IL</b> 그대로 적어 주세요.</li><li>보내는 은행과 중계은행(intermediary bank) 수수료가 붙어 실제 도착 금액이 줄어들 수 있습니다.</li><li>송금 메모(참조)에 <b>BIBLY</b>와 보내는 분 이름을 적어 주시면 확인이 쉽습니다.</li></ul></div><div data-l="en" lang="en"><ul class="ovs-notes"><li>Enter the recipient name exactly as <b>OH KWANG IL</b>.</li><li>Your bank and any intermediary bank may charge fees, so the amount that arrives may be smaller.</li><li>Adding <b>BIBLY</b> and your name to the transfer reference helps us confirm your gift.</li></ul></div><div data-l="es" lang="es"><ul class="ovs-notes"><li>Escriba el nombre del beneficiario exactamente como <b>OH KWANG IL</b>.</li><li>Su banco y el banco intermediario pueden cobrar comisiones, por lo que el monto que llegue puede ser menor.</li><li>Si añade <b>BIBLY</b> y su nombre en la referencia de la transferencia, nos será más fácil confirmar su donación.</li></ul></div><div data-l="ja" lang="ja"><ul class="ovs-notes"><li>受取人名は英字で <b>OH KWANG IL</b> とそのままご記入ください。</li><li>送金銀行や中継銀行(intermediary bank)の手数料がかかり、実際に届く金額が少なくなる場合があります。</li><li>送金メッセージ(参照欄)に <b>BIBLY</b> とお名前を書いていただくと、確認がしやすくなります。</li></ul></div><div data-l="zh" lang="zh-Hant"><ul class="ovs-notes"><li>收款人姓名請照英文 <b>OH KWANG IL</b> 填寫。</li><li>匯出銀行和中轉銀行（intermediary bank）可能收取手續費，實際到帳金額可能會減少。</li><li>若在匯款附言中寫上 <b>BIBLY</b> 和您的姓名，我們會比較容易確認。</li></ul></div>
+        </div>
+        <div data-l="ko" lang="ko"><p class="text-neutral-500 text-xs leading-relaxed mt-6 pt-4 border-t border-neutral-100">후원은 전적으로 자발적이며 어떤 대가도 따르지 않습니다. 기부금 영수증(세금 공제용)은 한국과 해외 모두 발행되지 않습니다. 후원 확인이나 문의는 <a href="mailto:contact@biblynote.com" class="underline">contact@biblynote.com</a>으로 보내 주세요.</p></div><div data-l="en" lang="en"><p class="text-neutral-500 text-xs leading-relaxed mt-6 pt-4 border-t border-neutral-100">All gifts are entirely voluntary and nothing is given in return. We are not able to issue tax-deductible donation receipts in Korea or in any other country. To confirm a gift or ask a question, please write to <a href="mailto:contact@biblynote.com" class="underline">contact@biblynote.com</a>.</p></div><div data-l="es" lang="es"><p class="text-neutral-500 text-xs leading-relaxed mt-6 pt-4 border-t border-neutral-100">Toda donación es completamente voluntaria y no conlleva ninguna contraprestación. No podemos emitir recibos de donación deducibles de impuestos, ni en Corea ni en otros países. Para confirmar una donación o hacer una consulta, escriba a <a href="mailto:contact@biblynote.com" class="underline">contact@biblynote.com</a>.</p></div><div data-l="ja" lang="ja"><p class="text-neutral-500 text-xs leading-relaxed mt-6 pt-4 border-t border-neutral-100">ご支援はまったくの任意であり、見返りは一切ありません。寄付金控除のための領収書は、韓国でも海外でも発行しておりません。ご支援の確認やお問い合わせは <a href="mailto:contact@biblynote.com" class="underline">contact@biblynote.com</a> までお送りください。</p></div><div data-l="zh" lang="zh-Hant"><p class="text-neutral-500 text-xs leading-relaxed mt-6 pt-4 border-t border-neutral-100">所有奉獻都完全出於自願，不會有任何回報。我們無法開立可抵稅的奉獻收據（韓國及其他國家皆然）。如需確認奉獻或有任何問題，請寫信到 <a href="mailto:contact@biblynote.com" class="underline">contact@biblynote.com</a>。</p></div>
+        </section>
+        <script>window.__OVS_COPIED = {"ko": "복사했어요", "en": "Copied", "es": "Copiado", "ja": "コピーしました", "zh": "已複製"};</script>
+        <!-- OVERSEAS:END -->
 
         <!-- 정기 후원 · 멤버십 (매달) -->
         <div class="max-w-md mx-auto mb-8 text-left">
@@ -249,7 +269,7 @@
       if (sp && spUrl) { sp.href = spUrl; sp.style.display = 'flex'; }
       const setHref = (id, url) => { const e = document.getElementById(id); if(!e) return; if(url){ e.href = url; e.style.display = 'flex'; } else { e.style.display = 'none'; } };
       setHref('kakaopayLink', s.kakaopay_url);
-      setHref('paypalLink', s.paypal_url);
+      { const pg = document.getElementById('paypalGive'); if (pg && s.paypal_url) pg.href = s.paypal_url; }
       const kpEl = document.getElementById('kakaopayLink');
       if (kpEl && s.kakaopay_url) {
         const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
@@ -277,6 +297,7 @@
         setT('fSwift', f.swift || 'SCBLKRSEXXX');
         setT('fAcct', f.account);
         setT('fHolder', f.holder_en);
+        if (f.currency) setT('fCur', f.currency); else { const cr = document.getElementById('fCurRow'); if(cr) cr.style.display = 'none'; }
         if (f.bank_address) setT('fAddr', f.bank_address);
         else { const ar = document.getElementById('fAddrRow'); if(ar) ar.style.display = 'none'; }
         const fb = document.getElementById('foreignBox'); if(fb) fb.style.display = 'block';
@@ -285,7 +306,8 @@
 
     function copyVal(id){
       const el = document.getElementById(id); const txt = (el ? el.textContent : '').trim();
-      const done = () => alert('복사했어요 \n' + txt);
+      const ui = document.documentElement.getAttribute('data-ui') || 'ko';
+      const done = () => alert(((window.__OVS_COPIED || {})[ui] || '복사했어요') + '\n' + txt);
       if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done).catch(() => prompt('복사하세요:', txt)); }
       else { prompt('복사하세요:', txt); }
     }
