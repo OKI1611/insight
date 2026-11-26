@@ -9,7 +9,7 @@
   try{
     if(!document.documentElement.classList.contains('app')) return;
     var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = '/app.css?v=20261127b'; document.head.appendChild(l);
-    var j = document.createElement('script'); j.src = '/app-shell.js?v=20261127c'; j.defer = true; document.head.appendChild(j);
+    var j = document.createElement('script'); j.src = '/app-shell.js?v=20261127d'; j.defer = true; document.head.appendChild(j);
   }catch(e){}
 })();
 // ── 다국어: 고른 언어를 화면이 그려지기 전에 표시(html[data-ui]) + i18n.js 불러오기 ──
@@ -20,7 +20,7 @@
     var q = new URLSearchParams(location.search).get('lang');
     if(q && ok[q]) l = q; else { var s = localStorage.getItem('bibly_lang'); if(s && ok[s]) l = s; }
     document.documentElement.setAttribute('data-ui', l);
-    if(!window.__biblyI18n){ var j = document.createElement('script'); j.src = '/i18n.js?v=20261127c'; document.head.appendChild(j); }
+    if(!window.__biblyI18n){ var j = document.createElement('script'); j.src = '/i18n.js?v=20261127d'; document.head.appendChild(j); }
   }catch(e){}
 })();
 (function(){
