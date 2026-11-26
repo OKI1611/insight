@@ -12,6 +12,17 @@
     var j = document.createElement('script'); j.src = '/app-shell.js?v=20261120a'; j.defer = true; document.head.appendChild(j);
   }catch(e){}
 })();
+// ── 다국어: 고른 언어를 화면이 그려지기 전에 표시(html[data-ui]) + i18n.js 불러오기 ──
+(function(){
+  try{
+    if(window.__biblyI18nBoot) return; window.__biblyI18nBoot = true;
+    var ok = { ko:1, en:1, es:1, ja:1, zh:1 }, l = 'ko';
+    var q = new URLSearchParams(location.search).get('lang');
+    if(q && ok[q]) l = q; else { var s = localStorage.getItem('bibly_lang'); if(s && ok[s]) l = s; }
+    document.documentElement.setAttribute('data-ui', l);
+    if(!window.__biblyI18n){ var j = document.createElement('script'); j.src = '/i18n.js?v=20261126a'; document.head.appendChild(j); }
+  }catch(e){}
+})();
 (function(){
   if(window.__biblyHeaderInit) return; window.__biblyHeaderInit = true;
   var SB = 'https://bmxkndkwefdgsomlznoo.supabase.co';
@@ -63,6 +74,7 @@
         ]},
       { label:"고급 단계", href:"curriculum.html?track=15", children:[
           { label:"천년왕국 세미나", href:"curriculum.html?track=15" },
+          { label:"휴거와 재림 문답", href:"rapture.html" },
           { label:"요한계시록 강해 · 짐승의 정체", href:"curriculum.html?track=16" },
           { label:"종말과 국제정세 · 제3성전", href:"curriculum.html?track=17" },
           { label:"요한계시록 강해", href:"curriculum.html?track=27" }
@@ -92,6 +104,7 @@
     { label:'질의응답', href:'qna.html', children:[
       { label:'질의응답 전체', href:'qna.html' },
       { label:'요한계시록 Q&A', href:'qna.html?room=rev' },
+      { label:'휴거와 재림 문답', href:'rapture.html' },
       { label:'신앙·성경 Q&A', href:'qna.html?room=gen' },
       { label:'수강생 질문방', href:'qna-board.html' },
       { label:'자료실', href:'resources.html' },
@@ -223,13 +236,13 @@
     if(s && s.user){
       var nm = (s.user.user_metadata && (s.user.user_metadata.full_name || s.user.user_metadata.name)) || (s.user.email ? s.user.email.split('@')[0] : '회원');
       var admin = (s.user.email === ADMIN) ? sep + '<a href="admin.html" class="!text-gold font-semibold">관리자</a>' : '';
-      right = '<span id="biblyAuthName" class="font-semibold !text-paper/90">' + esc(nm) + '님</span>' + sep
+      right = '<span id="biblyLangSlot"></span>' + sep + '<span id="biblyAuthName" class="font-semibold !text-paper/90">' + esc(nm) + '님</span>' + sep
         + '<a href="mylearning.html" class="hidden sm:inline">마이</a>' + sep
         + '<a href="bible-plan.html" class="hidden sm:inline">성경 통독</a>' + sep
         + common + admin + sep
         + '<button onclick="__biblyLogout()">로그아웃</button>';
     } else {
-      right = common + sep + '<button onclick="__biblyHeaderLoginClick()" class="font-semibold !text-gold">로그인</button>';
+      right = '<span id="biblyLangSlot"></span>' + sep + common + sep + '<button onclick="__biblyHeaderLoginClick()" class="font-semibold !text-gold">로그인</button>';
     }
     return '<div class="bibly-topbar bg-ink text-xs"><div class="max-w-7xl mx-auto px-4 h-9 flex items-center justify-end gap-x-2.5 overflow-x-auto">' + right + '</div></div>';
   }

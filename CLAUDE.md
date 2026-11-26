@@ -48,6 +48,19 @@
   제외할 계정은 `content/hall-of-fame-exclude.json` 에 핸들을 넣는다.
   ⚠️ 이 워크플로 커밋 메시지에 `[skip ci]` 를 넣지 말 것 — Cloudflare 가 배포까지 건너뛴다.
 
+## 다국어(한국어 · English · Español · 日本語 · 中文 繁體) — 2026-11-26 1단계
+- **기계 번역 금지.** 용어는 `i18n/GLOSSARY.md`(신학·성경 용어 5개 언어 대조표)를 먼저 따르고, 없는 용어는 표에 추가한 뒤 옮긴다.
+- 엔진 `i18n.js` — 언어는 `?lang=xx` > localStorage `bibly_lang` > ko. `<html data-ui="xx">` 를 붙인다.
+  site-header.js 가 자동으로 불러오고(첫머리에서 data-ui 먼저 표시), index.html 은 head 에서 직접 불러온다.
+  언어 선택 단추는 `id="biblyLangSlot"` 자리(상단 띠)에 그려진다.
+- 짧은 화면 글자: `i18n/common.json`(메뉴·머리글·바닥글) + 페이지별 `i18n/pages/<페이지>.json`
+  (i18n.js 의 `PAGES` 배열에 이름을 넣어야 불러온다). 키 = 화면의 한국어 그대로, 값 = {en,es,ja,zh}.
+  태그가 섞인 문장은 요소에 `data-i18n="키"`. 번역이 없는 글자는 한국어로 남고, 번역본이 없는 페이지엔 안내 띠가 뜬다.
+- 긴 글은 언어별 원고를 따로 둔다. 예: `tools/rapture/<lang>.json` → `python tools/build_rapture.py` → `rapture.html`
+  (언어별 `<article class="rp" data-l="xx">`). 성경 인용은 위치만 적고 본문은 자동: ko 정본역 · en KJV(bible/en) ·
+  es RV1909 · ja 文語訳 · zh 和合本(`i18n/bible-verses.json`, 위키문헌 원문). 口語訳(일본어)은 저작권 분쟁 소지로 쓰지 않는다.
+- i18n.js·common.json 을 고치면 i18n.js 의 `VER` 와 불러오는 쪽 `?v=` 를 함께 올린다.
+
 ## 인강 판매 — 기수(cohort) 운영
 - 급수 가격·과목·기수는 **`content/program.json` 한 곳**이 단일 출처다.
 - `cohort.deadline`(KST, YYYY-MM-DD)이 지나면 `academy.html`·`watch.html` 양쪽에서
