@@ -8,19 +8,21 @@
 (function(){
   try{
     if(!document.documentElement.classList.contains('app')) return;
-    var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = '/app.css?v=20261127b'; document.head.appendChild(l);
-    var j = document.createElement('script'); j.src = '/app-shell.js?v=20261127d'; j.defer = true; document.head.appendChild(j);
+    var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = '/app.css?v=20261127e'; document.head.appendChild(l);
+    var j = document.createElement('script'); j.src = '/app-shell.js?v=20261127e'; j.defer = true; document.head.appendChild(j);
   }catch(e){}
 })();
 // ── 다국어: 고른 언어를 화면이 그려지기 전에 표시(html[data-ui]) + i18n.js 불러오기 ──
 (function(){
   try{
     if(window.__biblyI18nBoot) return; window.__biblyI18nBoot = true;
+    // 앱(플레이 스토어 앱·홈 화면 PWA)에는 아직 다국어를 넣지 않는다(2026-11-27 저자 지시) → 한국어 고정
+    if((document.documentElement.classList.contains('app') || (function(){ try{ return sessionStorage.getItem('bibly_app') === '1'; }catch(e){ return false; } })())){ document.documentElement.setAttribute('data-ui', 'ko'); return; }
     var ok = { ko:1, en:1, es:1, ja:1, zh:1 }, l = 'ko';
     var q = new URLSearchParams(location.search).get('lang');
     if(q && ok[q]) l = q; else { var s = localStorage.getItem('bibly_lang'); if(s && ok[s]) l = s; }
     document.documentElement.setAttribute('data-ui', l);
-    if(!window.__biblyI18n){ var j = document.createElement('script'); j.src = '/i18n.js?v=20261127d'; document.head.appendChild(j); }
+    if(!window.__biblyI18n){ var j = document.createElement('script'); j.src = '/i18n.js?v=20261127e'; document.head.appendChild(j); }
   }catch(e){}
 })();
 (function(){

@@ -13,6 +13,14 @@
    ───────────────────────────────────────────────────────────────────────── */
 (function(){
   if(window.__biblyI18n) return;
+  // 앱(html.app 또는 이 탭이 앱으로 열린 세션)에서는 다국어를 쓰지 않는다(2026-11-27 저자 지시): 한국어 고정·언어 단추 없음
+  try{
+    if(document.documentElement.classList.contains('app') || sessionStorage.getItem('bibly_app') === '1'){
+      document.documentElement.setAttribute('data-ui', 'ko');
+      window.__biblyI18n = { lang:'ko', langs:[], t:function(k){ return k; }, off:true };
+      return;
+    }
+  }catch(e){}
   var LANGS = [
     { c:'ko', n:'한국어',      b:'KO', h:'ko' },
     { c:'en', n:'English',    b:'EN', h:'en' },
@@ -28,7 +36,7 @@
   var DONE_LANG = { en: ['academy', 'app', 'bible-plan', 'bible', 'booklet', 'books', 'booktalk-program', 'cohort', 'consult', 'counsel', 'curriculum-guide', 'curriculum', 'event', 'exam', 'find', 'founding', 'gift', 'guide', 'kjv-preface', 'level', 'mylearning', 'orders', 'pay-fail', 'pay-success', 'privacy', 'qna-write', 'request', 'reset', 'search', 'seminar', 'start', 'store-help', 'terms', 'translation', 'welcome', 'app-menu:search', 'app-menu:academy', 'app-menu:store', 'app-menu:books'] };
   // 강의 목록(제목·요약·과목명) 사전 i18n/course.json 을 함께 불러오는 페이지
   var COURSE_PAGES = ['app', 'index', 'curriculum', 'curriculum-guide', 'watch', 'find', 'search', 'mylearning', 'level', 'welcome', 'app-menu', 'academy', 'exam', 'booklet', 'cohort'];
-  var VER = '20261127d';
+  var VER = '20261127e';
 
   function valid(c){ for(var i=0;i<LANGS.length;i++) if(LANGS[i].c===c) return LANGS[i]; return null; }
   var lang = 'ko';

@@ -48,20 +48,13 @@
     if(history.length > 1 && document.referrer && document.referrer.indexOf(location.origin) === 0){ history.back(); }
     else location.href = '/app';
   }
-  // 다국어 엔진(i18n.js)이 없는 앱 페이지(app·app-menu)에서도 언어를 바꿀 수 있게 불러온다
-  (function(){
-    try{
-      if(window.__biblyI18n || document.querySelector('script[src*="i18n.js"]')) return;
-      var j = document.createElement('script'); j.src = '/i18n.js?v=20261127d'; document.head.appendChild(j);
-    }catch(e){}
-  })();
+  // 앱에는 아직 다국어(i18n.js)를 넣지 않는다(2026-11-27 저자 지시) — 언어 단추·번역 없음
   function buildBar(){
     if(isHome || document.getElementById('appBar')) return;
     var bar = document.createElement('div'); bar.id = 'appBar';
     bar.innerHTML = '<div class="ab">'
       + '<button type="button" id="appBack" aria-label="뒤로">' + ICON.back + '</button>'
       + '<div class="ttl' + (pageTitle().length > 14 ? ' long' : '') + '" id="appTitle">' + pageTitle().replace(/[<>&]/g, '') + '</div>'
-      + '<span class="biblyLangSlot" data-compact="1"></span>'
       + '<a href="/app-menu?p=search" id="appSearchBtn" aria-label="검색">' + ICON.search + '</a>'
       + '<button type="button" id="appMenuBtn" aria-label="전체 메뉴">' + ICON.menu + '</button>'
       + '</div>';
@@ -177,7 +170,6 @@
       + '<p class="afT">글자 크기</p><div class="afFs">'
       + FONTS.map(function(x){ return '<button type="button" data-px="' + x[0] + '" class="' + (f === x[0] ? 'on' : '') + '">' + x[1] + '</button>'; }).join('')
       + '</div>'
-      + '<p class="afT">언어 · Language</p><div class="afLang"><span class="biblyLangSlot"></span></div>'
       + '<div class="afFoot"><a href="/privacy">개인정보처리방침</a><a href="/terms">이용약관</a><a href="/about">바이블 인사이트 소개</a></div>';
   }
   function buildMenu(){

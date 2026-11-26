@@ -25,7 +25,7 @@
       fontFamily: { sans:['Pretendard','system-ui','sans-serif'] }
     }}}
   </script>
-  <link rel="stylesheet" href="/app.css?v=20261127b" />
+  <link rel="stylesheet" href="/app.css?v=20261127e" />
   <style>
     body{font-family:'Pretendard',system-ui,sans-serif;color:#111827;background:#fff}
     /* ── 머리글(흰 바탕): 로고 + 색 리본 · 검색창 · 추천 주제 글자 탭 ── */
@@ -159,7 +159,6 @@
     </div>
     <div class="hd2">
       <a href="/app-menu?p=search" class="sbox" aria-label="검색"><span id="sHint">강의·성경·사전 검색</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7.5"/><path d="m20.5 20.5-4-4"/></svg></a>
-      <span class="biblyLangSlot" data-compact="1" style="flex:none"></span>
       <a href="/mylearning" class="ico" aria-label="내 강의실"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg></a>
     </div>
     <nav class="hd3" aria-label="추천 주제">
@@ -313,9 +312,7 @@
         const v = list[day % list.length];
         const bk = (books||[]).find(b => b.file === v.b) || {};
         // 외국어 화면이면 영어 KJV 본문(bible/kjv/<책>.json)과 영어 책 이름 — 본문은 번역하지 않고 해당 역본을 그대로
-        // 앱 홈은 i18n.js 를 늦게 불러오므로(app-shell.js) 언어를 직접 읽는다: ?lang= > 저장값 > ko
-        let LG = 'ko'; try{ LG = new URLSearchParams(location.search).get('lang') || localStorage.getItem('bibly_lang') || 'ko'; }catch(e){}
-        const EN = LG !== 'ko';
+        const EN = false;   // 앱에는 아직 다국어를 넣지 않는다(2026-11-27) — 영어 본문 분기는 웹 다국어 확장 때 다시 쓴다
         if(EN){
           const kj = await fetch(`/bible/kjv/${v.b}.json`).then(r=>r.json());
           $('votdText').textContent = ((kj[String(v.c)] || [])[v.v - 1] || '');
@@ -413,6 +410,6 @@
   </script>
   <script src="/access.js?v=1"></script>
   <script src="/auth-header.js?v=20261021a"></script>
-  <script src="/app-shell.js?v=20261127d"></script>
+  <script src="/app-shell.js?v=20261127e"></script>
 </body>
 </html>
