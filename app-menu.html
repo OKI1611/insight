@@ -395,7 +395,7 @@
             <p class="own">예금주 ${esc(s.bank_holder||'')}</p>
             <button type="button" class="cpy" onclick="var b=this;(navigator.clipboard?navigator.clipboard.writeText('${esc(s.bank_account)}'):Promise.reject()).then(function(){b.textContent='계좌번호를 복사했어요'}).catch(function(){b.textContent='${esc(s.bank_account)}'})">계좌번호 복사</button>
           </div>` : ''}
-          ${s.paypal_url ? `<div style="margin-top:10px">${way('/support?web=1#overseas', '#eef2f8', '#1f3a68', globe, '해외에서 후원하기 (PayPal · 국제 송금)', '단계별 안내 보기 · 5개 언어').replace(' target="_blank" rel="noopener"', '')}</div>` : ''}
+          ${s.paypal_url ? `<div style="margin-top:10px">${way('/support?web=1#overseas', '#eef2f8', '#1f3a68', globe, '해외에서 후원하기 (PayPal)', '단계별 안내 보기 · 5개 언어').replace(' target="_blank" rel="noopener"', '')}</div>` : ''}
           <div class="sp-note">작은 후원도 <b>무료 강의 한 편</b>이 되어 더 많은 분께 닿습니다. 후원 관련 문의는 <a href="mailto:${esc(s.contact_email||'contact@biblynote.com')}" style="display:inline-flex;align-items:center;min-height:40px;color:#1f3a68;font-weight:800">${esc(s.contact_email||'contact@biblynote.com')}</a>로 보내 주세요.</div><div style="height:72px" aria-hidden="true"></div>`;
       },
       // ── 성경사전: 검색 → 목록 → 상세 ──

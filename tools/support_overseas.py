@@ -17,8 +17,8 @@ T = {
  'ko': dict(
   eyebrow='GIVE FROM ABROAD',
   h='해외에서 후원하기',
-  intro='한국 밖에 계신 분은 아래 두 가지 방법으로 후원하실 수 있습니다. 토스·카카오페이·국내 계좌이체는 해외에서 쓰기 어렵습니다.',
-  m1='방법 1 · PayPal (가장 간편)',
+  intro='한국 밖에 계신 분은 PayPal로 간편하게 후원하실 수 있습니다. 토스·카카오페이·국내 계좌이체는 해외에서 쓰기 어렵습니다.',
+  m1='PayPal로 후원하는 순서',
   steps=[
    '아래 <b>「PayPal로 후원하기」</b> 단추를 누르면 PayPal 후원 페이지(<b>paypal.me/oki1611</b>)가 열립니다.',
    'PayPal 계정으로 로그인합니다. PayPal.me로 보내려면 <b>PayPal 계정이 필요</b>합니다. 계정이 없으면 paypal.com에서 무료로 만들 수 있습니다.',
@@ -28,6 +28,7 @@ T = {
    '금액과 받는 곳(oki1611)을 확인하고 <b>보내기</b>를 누릅니다. <b>보낸 뒤에는 취소할 수 없으니</b> 금액을 꼭 확인해 주세요.'],
   btn='PayPal로 후원하기',
   fee='PayPal 수수료와 환율은 보내는 나라와 결제 수단에 따라 다릅니다. 자세한 내용은 <a href="https://www.paypal.com/fees" target="_blank" rel="noopener" class="underline">PayPal 수수료 안내</a>에서 확인해 주세요.',
+  bank='은행 해외 송금으로 큰 금액을 보내고 싶으시면 <a href="mailto:contact@biblynote.com" class="underline">contact@biblynote.com</a>으로 먼저 연락해 주세요. 송금에 필요한 정보를 따로 안내해 드립니다. (해외 송금은 보내는 은행·중계은행 수수료가 커서, 작은 금액은 PayPal이 훨씬 편합니다.)',
   m2='방법 2 · 국제 송금 (은행 해외송금)',
   m2intro='거래 은행의 창구나 인터넷뱅킹 해외송금 메뉴에서 아래 정보를 그대로 입력해 주세요.',
   wire=[
@@ -39,8 +40,8 @@ T = {
  'en': dict(
   eyebrow='GIVE FROM ABROAD',
   h='Give from outside Korea',
-  intro='If you live outside Korea, you can support this ministry in two ways. Toss, KakaoPay and Korean bank transfers are hard to use from abroad.',
-  m1='Option 1 · PayPal (easiest)',
+  intro='If you live outside Korea, PayPal is the easiest way to give. Toss, KakaoPay and Korean bank transfers are hard to use from abroad.',
+  m1='How to give with PayPal',
   steps=[
    'Tap <b>“Give with PayPal”</b> below. Our PayPal page (<b>paypal.me/oki1611</b>) will open.',
    'Log in to PayPal. Sending through PayPal.me <b>requires a PayPal account</b>. If you don’t have one, you can open one free at paypal.com.',
@@ -50,6 +51,7 @@ T = {
    'Check the amount and the recipient (oki1611), then tap <b>Send</b>. <b>A payment cannot be cancelled once it is sent</b>, so please double-check the amount.'],
   btn='Give with PayPal',
   fee='PayPal fees and exchange rates depend on your country and payment method. Please see <a href="https://www.paypal.com/fees" target="_blank" rel="noopener" class="underline">PayPal’s fee page</a> for details.',
+  bank='If you would like to send a larger gift by international bank transfer, please write to <a href="mailto:contact@biblynote.com" class="underline">contact@biblynote.com</a> first, and we will send you the details you need. (International wires carry sizable sending and intermediary bank fees, so PayPal is much easier for smaller gifts.)',
   m2='Option 2 · International bank transfer (wire)',
   m2intro='At your bank, or in your online banking’s international transfer menu, enter the details below exactly as shown.',
   wire=[
@@ -61,8 +63,8 @@ T = {
  'es': dict(
   eyebrow='DONAR DESDE EL EXTRANJERO',
   h='Donar desde fuera de Corea',
-  intro='Si usted vive fuera de Corea, puede apoyar este ministerio de dos maneras. Toss, KakaoPay y las transferencias bancarias coreanas son difíciles de usar desde el extranjero.',
-  m1='Opción 1 · PayPal (la más sencilla)',
+  intro='Si usted vive fuera de Corea, PayPal es la forma más sencilla de donar. Toss, KakaoPay y las transferencias bancarias coreanas son difíciles de usar desde el extranjero.',
+  m1='Cómo donar con PayPal',
   steps=[
    'Pulse <b>«Donar con PayPal»</b> abajo. Se abrirá nuestra página de PayPal (<b>paypal.me/oki1611</b>).',
    'Inicie sesión en PayPal. Para enviar por PayPal.me <b>se necesita una cuenta de PayPal</b>. Si no la tiene, puede abrir una gratis en paypal.com.',
@@ -72,6 +74,7 @@ T = {
    'Revise el monto y el destinatario (oki1611) y pulse <b>Enviar</b>. <b>Un pago enviado no se puede cancelar</b>, así que verifique bien el monto.'],
   btn='Donar con PayPal',
   fee='Las comisiones y el tipo de cambio de PayPal dependen de su país y del medio de pago. Consulte los detalles en la <a href="https://www.paypal.com/fees" target="_blank" rel="noopener" class="underline">página de comisiones de PayPal</a>.',
+  bank='Si desea enviar una donación mayor por transferencia bancaria internacional, escriba primero a <a href="mailto:contact@biblynote.com" class="underline">contact@biblynote.com</a> y le enviaremos los datos necesarios. (Las transferencias internacionales tienen comisiones altas del banco emisor y del intermediario; para montos pequeños, PayPal es mucho más práctico.)',
   m2='Opción 2 · Transferencia bancaria internacional',
   m2intro='En su banco, o en la sección de transferencias internacionales de su banca en línea, escriba los datos de abajo tal como aparecen.',
   wire=[
@@ -83,8 +86,8 @@ T = {
  'ja': dict(
   eyebrow='GIVE FROM ABROAD',
   h='海外からのご支援',
-  intro='韓国国外にお住まいの方は、次の二つの方法でご支援いただけます。Toss・カカオペイ・韓国国内の口座振込は、海外からはご利用が難しいためです。',
-  m1='方法1 ・ PayPal(いちばん簡単です)',
+  intro='韓国国外にお住まいの方は、PayPalでいちばん簡単にご支援いただけます。Toss・カカオペイ・韓国国内の口座振込は、海外からはご利用が難しいためです。',
+  m1='PayPalでのご支援の手順',
   steps=[
    '下の<b>「PayPalで支援する」</b>ボタンを押すと、PayPalの支援ページ(<b>paypal.me/oki1611</b>)が開きます。',
    'PayPalにログインします。PayPal.meで送金するには<b>PayPalアカウントが必要</b>です。お持ちでない方は paypal.com で無料で作成できます。',
@@ -94,6 +97,7 @@ T = {
    '金額と送金先(oki1611)を確認し、<b>送金</b>を押します。<b>送金後は取り消しができません</b>ので、金額を必ずご確認ください。'],
   btn='PayPalで支援する',
   fee='PayPalの手数料と為替レートは、お住まいの国と支払い方法によって異なります。詳しくは<a href="https://www.paypal.com/fees" target="_blank" rel="noopener" class="underline">PayPalの手数料のご案内</a>をご確認ください。',
+  bank='銀行の海外送金でまとまった金額をお送りくださる場合は、先に <a href="mailto:contact@biblynote.com" class="underline">contact@biblynote.com</a> までご連絡ください。送金に必要な情報を個別にご案内します。(海外送金は送金銀行・中継銀行の手数料が大きいため、少額の場合はPayPalがずっと便利です。)',
   m2='方法2 ・ 海外送金(銀行の国際送金)',
   m2intro='お取引銀行の窓口、またはインターネットバンキングの海外送金メニューで、下の情報をそのままご入力ください。',
   wire=[
@@ -105,8 +109,8 @@ T = {
  'zh': dict(
   eyebrow='GIVE FROM ABROAD',
   h='從海外奉獻支持',
-  intro='住在韓國以外的朋友，可以透過下面兩種方式支持這個事工。Toss、KakaoPay 和韓國國內轉帳，在海外不容易使用。',
-  m1='方式一・PayPal（最簡便）',
+  intro='住在韓國以外的朋友，用 PayPal 奉獻最簡便。Toss、KakaoPay 和韓國國內轉帳，在海外不容易使用。',
+  m1='用 PayPal 奉獻的步驟',
   steps=[
    '按下方的<b>「用 PayPal 奉獻」</b>，就會開啟我們的 PayPal 頁面（<b>paypal.me/oki1611</b>）。',
    '登入 PayPal。透過 PayPal.me 付款<b>需要有 PayPal 帳戶</b>。如果還沒有帳戶，可以在 paypal.com 免費申請。',
@@ -116,6 +120,7 @@ T = {
    '確認金額和收款對象（oki1611）後，按下<b>付款</b>。<b>付款送出後就無法取消</b>，請務必再次確認金額。'],
   btn='用 PayPal 奉獻',
   fee='PayPal 的手續費和匯率，會依您所在的國家和付款方式而不同。詳情請參考 <a href="https://www.paypal.com/fees" target="_blank" rel="noopener" class="underline">PayPal 手續費說明</a>。',
+  bank='如果想用銀行國際匯款奉獻較大的金額，請先寫信到 <a href="mailto:contact@biblynote.com" class="underline">contact@biblynote.com</a>，我們會另外告訴您匯款所需的資料。（國際匯款的匯出銀行和中轉銀行手續費較高，小額奉獻用 PayPal 方便得多。）',
   m2='方式二・國際匯款（銀行電匯）',
   m2intro='請在您往來銀行的櫃台，或網路銀行的國際匯款功能中，照下面的資料輸入。',
   wire=[
@@ -143,22 +148,8 @@ def build():
              '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.1 21.3H3.6a.6.6 0 0 1-.6-.7L5.7 3.4A.9.9 0 0 1 6.6 2.7h6.6c3.5 0 5.6 1.8 5 5.1-.6 3.9-3.2 5.6-6.6 5.6H9.4l-1.3 7.3a.6.6 0 0 1-.6.6zm2.9-9.6h1.5c2 0 3.3-.9 3.6-2.9.3-1.7-.7-2.5-2.5-2.5h-1.4z"/></svg>'
              + ''.join(f'<span data-l="{L}">{T[L]["btn"]}</span>' for L in LANGS) + '</a>')
     o.append(''.join(block(L, f'<p class="text-neutral-500 text-xs leading-relaxed mt-3">{T[L]["fee"]}</p>') for L in LANGS))
-    # 국제 송금 — site.json support.foreign 이 채워졌을 때만 보인다(support.html 스크립트가 #foreignBox 를 켠다)
-    o.append('<div id="foreignBox" style="display:none" class="mt-7 pt-6 border-t border-neutral-200">')
-    o.append(''.join(block(L, f'<h3 class="font-bold text-neutral-900 text-base mb-1.5">{T[L]["m2"]}</h3>'
-                              f'<p class="text-neutral-600 text-sm leading-relaxed mb-3.5">{T[L]["m2intro"]}</p>') for L in LANGS))
-    cp = ''.join(f'<span data-l="{L}">{T[L]["copy"]}</span>' for L in LANGS)
-    def row(label, vid, copy=False, extra=''):
-        btn = f'<button type="button" onclick="copyVal(\'{vid}\')" class="ovs-copy">{cp}</button>' if copy else ''
-        return (f'<div class="flex items-center justify-between gap-3 py-2 border-b border-neutral-100"{extra}>'
-                f'<span class="text-neutral-400 text-xs shrink-0">{label}</span>'
-                f'<span class="flex items-center gap-2 text-right"><span id="{vid}" class="font-semibold text-neutral-900 text-sm break-all"></span>{btn}</span></div>')
-    o.append('<div class="bg-sand/40 rounded-2xl px-4 py-1.5">'
-             + row('Bank', 'fBank') + row('SWIFT / BIC', 'fSwift', True) + row('Account No.', 'fAcct', True)
-             + row('Account holder', 'fHolder', True) + row('Currency', 'fCur', False, ' id="fCurRow"')
-             + row('Bank address', 'fAddr', False, ' id="fAddrRow"') + '</div>')
-    o.append(''.join(block(L, '<ul class="ovs-notes">' + ''.join(f'<li>{s}</li>' for s in T[L]['wire']) + '</ul>') for L in LANGS))
-    o.append('</div>')
+    # 은행 해외 송금은 받는 사람 주소·높은 수수료 문제로 화면에서 뺐다(2026-11-26 사용자 결정) — 큰 금액은 메일로 개별 안내
+    o.append(''.join(block(L, f'<p class="text-neutral-600 text-sm leading-relaxed mt-6 pt-5 border-t border-neutral-200">{T[L]["bank"]}</p>') for L in LANGS))
     o.append(''.join(block(L, f'<p class="text-neutral-500 text-xs leading-relaxed mt-6 pt-4 border-t border-neutral-100">{T[L]["common"]}</p>') for L in LANGS))
     o.append('</section>')
     o.append('<script>window.__OVS_COPIED = ' + repr({L: T[L]['copied'] for L in LANGS}).replace("'", '"') + ';</script>')
