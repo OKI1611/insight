@@ -67,6 +67,13 @@
   `<span data-stat>` 안 숫자는 비교에서 빼고 번역 뒤 되돌려 넣는다. 강의 제목·블로그 글·회원 이름(콘텐츠)은 3단계.
 - 외국어 구절 수집: `python tools/fetch_ws_verses.py <원고.json>` (위키문헌 원문 → i18n/bible-verses.json). 번역본 구조 검사: `python tools/rapture_struct_check.py`.
 - 앱(html.app): 상단바·앱 홈 머리글에 작은 언어 단추(data-compact), app-shell.js 가 i18n.js 를 불러온다. 앱 전용 화면 글자는 `i18n/pages/app-menu.json`.
+- **영어판(2026-11-27)**: 화면 글자 전 페이지 + 강의 목록 완료(노트·확인문제·사전·Q&A 등 긴 본문은 한국어 유지 → 그 화면엔 안내 띠).
+  - 강의 목록 사전 `i18n/course.json`(제목·요약·과목명·태그·챕터, en) — i18n.js `COURSE_PAGES` 페이지에서만 불러온다.
+    **새 강의를 content/course.json 에 넣으면 i18n/course.json 에도 영어를 보탤 것**(없으면 그 강의만 한국어로 보인다).
+  - 영어 완료 페이지 목록 = i18n.js `DONE_LANG.en`(안내 띠 안 뜸). 성경 읽기는 영어 화면이면 KJV 단독이 기본, 1611 서문은 영어 원문.
+  - 새 페이지·새 문구 번역 절차: 로컬 미리보기에서 `tools/i18n_extract.js`(화면 글자 추출, i18n.js 와 같은 키 규칙) +
+    `python tools/i18n_jsstrings.py <파일>`(스크립트 속 문구) → 번역 → `python tools/i18n_merge_en.py <작업 폴더>` →
+    `tools/i18n_audit.js`(외국어 화면에 남은 한국어 세기). 브라우저 결과는 로컬 수신기(POST → 파일)로 받는다.
 - 강사 학력 표기(2026-11-26 저자 지시): West Coast Baptist College 학위는 **Master of Bible Studies**
   (한국어 '성경학 석사(Master of Bible Studies)', 일 聖書学修士, 중 聖經研究碩士, 스 Maestría en Estudios Bíblicos).
   M.R.E.·신학 석사·Th.M. 표기 금지. 성균관대는 '박사과정 수료'(Ph.D.·박사 금지).

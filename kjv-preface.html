@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <script src="/app-mode.js?v=20261107a"></script>
   <script src="/content-loader.js?v=20260703f"></script>
-  <script src="/site-header.js?v=20261126f"></script>
+  <script src="/site-header.js?v=20261127c"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>1611년 킹제임스 성경 서문 — 헌정사 · 역자가 독자에게 · BIBLY 바이블 인사이트</title>
   <meta name="description" content="1611년 초판 킹제임스 성경의 첫머리에 실린 「헌정사」와 「역자가 독자에게」(The Translators to the Reader) 전문을 바이블 인사이트가 새로 옮겼습니다. 번역자들이 왜, 어떻게 성경을 옮겼는지 그들의 목소리로 — 영어 원문 대조 가능." />
@@ -46,6 +46,8 @@
     .kp .para{position:relative}
     .kp .en{display:none;font-family:Georgia,'Times New Roman',serif;color:#4a5568;font-size:.9rem;line-height:1.75;background:#f7f8fb;border:1px solid #213a6b12;border-radius:.6rem;padding:.8rem 1rem;margin:-.5rem 0 1.3rem}
     .kp.showen .en{display:block}
+    .kp.enmode p.ko, .kp.enmode p.sal{display:none}
+    .kp.enmode .en{display:block;background:none;border:0;padding:0;margin:0 0 1.15rem;font-size:1.02rem;line-height:1.85;color:#2a3446}
     .kp .sign{font-family:'Noto Serif KR',serif;text-align:right;color:#4a5a52;font-weight:600;margin:.4rem 0 0}
     .toc a{display:block;padding:.28rem 0;color:#3a4254;font-size:.86rem;border-bottom:1px dashed #213a6b12}
     .toc a:hover{color:#00704a}
@@ -94,6 +96,10 @@
            + '<p class="en">' + esc(p.en) + '</p></div>';
     }
     var box = $('kp');
+    // 영어 화면: 한국어 번역 대신 1611년 영어 원문만(원문이 곧 영어판) — 제목·차례도 영어
+    var EN = (document.documentElement.getAttribute('data-ui') || 'ko') === 'en';
+    if (EN) { box.classList.add('enmode'); var sw0 = $('enSwitch'); if (sw0) sw0.style.display = 'none';
+      var nt = $('kpNote'); if (nt) { nt.setAttribute('data-noi18n', '1'); nt.textContent = 'The full text of “The Epistle Dedicatory” and “The Translators to the Reader,” printed at the front of the first edition of the King James Bible (1611) — why and how the translators rendered the Scriptures, in their own words.'; } }
     // 원문 보기 스위치(선택 기억)
     var sw = $('enSwitch'), on = false;
     try { on = localStorage.getItem('kp_en') === '1'; } catch(e) {}
@@ -102,23 +108,24 @@
     paint();
 
     fetch('content/kjv-preface-1611.json?t=' + Math.floor(Date.now()/3600000)).then(function(r){ return r.json(); }).then(function(d){
-      if (d.meta && d.meta.note_ko) $('kpNote').textContent = d.meta.note_ko;
+      if (d.meta && d.meta.note_ko && !EN) $('kpNote').textContent = d.meta.note_ko;
+      var T = function(o, k){ return EN ? (o[k + '_en'] || o[k + '_ko']) : o[k + '_ko']; };
       var D = d.dedication, P = d.preface, h = [];
       // 차례
       h.push('<nav class="toc mb-10 bg-sand/60 rounded-2xl p-5"><p class="text-xs font-bold text-gold tracking-widest mb-2">차례</p>');
-      h.push('<a href="#dedication"><b>Ⅰ</b>' + esc(D.title_ko) + ' <span class="text-neutral-900/40">· ' + esc(D.title_en) + '</span></a>');
-      h.push('<a href="#preface"><b>Ⅱ</b>' + esc(P.title_ko) + ' <span class="text-neutral-900/40">· ' + esc(P.title_en) + '</span></a>');
-      P.sections.forEach(function(s, i){ h.push('<a href="#s' + (i+1) + '" class="pl-5"><b>' + (i+1) + '</b>' + esc(s.h_ko) + '</a>'); });
+      h.push('<a href="#dedication"><b>Ⅰ</b>' + esc(T(D, 'title')) + (EN ? '' : ' <span class="text-neutral-900/40">· ' + esc(D.title_en) + '</span>') + '</a>');
+      h.push('<a href="#preface"><b>Ⅱ</b>' + esc(T(P, 'title')) + (EN ? '' : ' <span class="text-neutral-900/40">· ' + esc(P.title_en) + '</span>') + '</a>');
+      P.sections.forEach(function(s, i){ h.push('<a href="#s' + (i+1) + '" class="pl-5"><b>' + (i+1) + '</b>' + esc(EN ? (s.h_en || s.h_ko) : s.h_ko) + '</a>'); });
       h.push('</nav>');
       // Ⅰ 헌정사
-      h.push('<h2 id="dedication">Ⅰ. ' + esc(D.title_ko) + '<small>' + esc(D.title_en) + '</small></h2>');
+      h.push('<h2 id="dedication">Ⅰ. ' + esc(T(D, 'title')) + (EN ? '' : '<small>' + esc(D.title_en) + '</small>') + '</h2>');
       h.push('<div class="para"><p class="sal">' + esc(D.salutation_ko) + '</p><p class="en">' + esc(D.salutation_en) + '</p></div>');
       D.paras.forEach(function(p){ h.push(para(p)); });
-      h.push('<p class="sign">— ' + esc(D.sign_ko) + ' <span class="text-neutral-900/40 font-normal">(' + esc(D.sign_en) + ')</span></p>');
+      h.push('<p class="sign">— ' + (EN ? esc(D.sign_en || D.sign_ko) : esc(D.sign_ko) + ' <span class="text-neutral-900/40 font-normal">(' + esc(D.sign_en) + ')</span>') + '</p>');
       // Ⅱ 역자 서문
-      h.push('<h2 id="preface" class="!mt-14">Ⅱ. ' + esc(P.title_ko) + '<small>' + esc(P.title_en) + '</small></h2>');
+      h.push('<h2 id="preface" class="!mt-14">Ⅱ. ' + esc(T(P, 'title')) + (EN ? '' : '<small>' + esc(P.title_en) + '</small>') + '</h2>');
       P.sections.forEach(function(s, i){
-        h.push('<h2 id="s' + (i+1) + '" style="font-size:1.02rem;color:#171717">' + (i+1) + '. ' + esc(s.h_ko) + '<small>' + esc(s.h_en) + '</small></h2>');
+        h.push('<h2 id="s' + (i+1) + '" style="font-size:1.02rem;color:#171717">' + (i+1) + '. ' + (EN ? esc(s.h_en || s.h_ko) : esc(s.h_ko) + '<small>' + esc(s.h_en) + '</small>') + '</h2>');
         s.paras.forEach(function(p){ h.push(para(p)); });
       });
       box.innerHTML = h.join('');

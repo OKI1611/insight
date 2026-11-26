@@ -25,7 +25,7 @@
       fontFamily: { sans:['Pretendard','system-ui','sans-serif'] }
     }}}
   </script>
-  <link rel="stylesheet" href="/app.css?v=20261127a" />
+  <link rel="stylesheet" href="/app.css?v=20261127b" />
   <style>
     body{font-family:'Pretendard',system-ui,sans-serif;color:#111827;background:#fff}
     /* ── 머리글(흰 바탕): 로고 + 색 리본 · 검색창 · 추천 주제 글자 탭 ── */
@@ -34,7 +34,11 @@
     .brand{display:flex;align-items:center;gap:8px;text-decoration:none;min-height:44px;min-width:0}
     .brand img{width:32px;height:32px;border-radius:9px;flex:none}
     .brand b{display:block;font-size:19px;font-weight:900;letter-spacing:.04em;color:#1f3a68;line-height:1}
-    .brand i{display:block;font-style:normal;font-size:11.5px;font-weight:700;color:#4b5563;margin-top:3px;white-space:nowrap}
+    .brand i{display:block;font-style:normal;font-size:11.5px;font-weight:700;color:#4b5563;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .brand > span{min-width:0;overflow:hidden}
+    html:not([data-ui="ko"]) .ribbon a{font-size:13px;padding:0 10px 0 17px}
+    html:not([data-ui="ko"]) .ribbon a:first-child{padding-left:13px}
+    @media (max-width:360px){.ribbon a{font-size:12.5px;padding:0 9px 0 15px}.brand i{display:none}}
     .ribbon{display:flex;align-items:stretch;height:44px;flex:none;margin-right:-1px}
     .ribbon a{display:flex;align-items:center;justify-content:center;padding:0 14px 0 20px;margin-left:-12px;color:#fff;font-size:14.5px;font-weight:800;text-decoration:none;white-space:nowrap;
       clip-path:polygon(14px 0,100% 0,100% 100%,0 100%);border-radius:0 0 0 0}
@@ -308,9 +312,20 @@
         const d = new Date(), start = new Date(d.getFullYear(), 0, 0), day = Math.floor((d - start) / 86400000);
         const v = list[day % list.length];
         const bk = (books||[]).find(b => b.file === v.b) || {};
-        const ch = await fetch(`/bible/kr/${v.b}-${v.c}.json`).then(r=>r.json());
-        $('votdText').textContent = (ch[v.v - 1] || '').replace(/^[“"]|[”"]$/g, '');
-        $('votdRef').textContent = `${bk.ko || v.b} ${v.c}:${v.v}`;
+        // 외국어 화면이면 영어 KJV 본문(bible/kjv/<책>.json)과 영어 책 이름 — 본문은 번역하지 않고 해당 역본을 그대로
+        // 앱 홈은 i18n.js 를 늦게 불러오므로(app-shell.js) 언어를 직접 읽는다: ?lang= > 저장값 > ko
+        let LG = 'ko'; try{ LG = new URLSearchParams(location.search).get('lang') || localStorage.getItem('bibly_lang') || 'ko'; }catch(e){}
+        const EN = LG !== 'ko';
+        if(EN){
+          const kj = await fetch(`/bible/kjv/${v.b}.json`).then(r=>r.json());
+          $('votdText').textContent = ((kj[String(v.c)] || [])[v.v - 1] || '');
+          $('votdText').setAttribute('data-noi18n', '1'); $('votdRef').setAttribute('data-noi18n', '1');
+          $('votdRef').textContent = `${bk.en || v.b} ${v.c}:${v.v} (KJV)`;
+        } else {
+          const ch = await fetch(`/bible/kr/${v.b}-${v.c}.json`).then(r=>r.json());
+          $('votdText').textContent = (ch[v.v - 1] || '').replace(/^[“"]|[”"]$/g, '');
+          $('votdRef').textContent = `${bk.ko || v.b} ${v.c}:${v.v}`;
+        }
         $('votd').href = `/bible?b=${encodeURIComponent(v.b)}&c=${v.c}`;
       }catch(e){ $('votdText').textContent = '주의 말씀은 내 발에 등이요 내 길에 빛이니이다.'; $('votdRef').textContent = '시편 119:105'; }
     }
@@ -398,6 +413,6 @@
   </script>
   <script src="/access.js?v=1"></script>
   <script src="/auth-header.js?v=20261021a"></script>
-  <script src="/app-shell.js?v=20261127a"></script>
+  <script src="/app-shell.js?v=20261127c"></script>
 </body>
 </html>
