@@ -9,7 +9,7 @@
   try{
     if(!document.documentElement.classList.contains('app')) return;
     var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = '/app.css?v=20261108f'; document.head.appendChild(l);
-    var j = document.createElement('script'); j.src = '/app-shell.js?v=20261120a'; j.defer = true; document.head.appendChild(j);
+    var j = document.createElement('script'); j.src = '/app-shell.js?v=20261126a'; j.defer = true; document.head.appendChild(j);
   }catch(e){}
 })();
 // ── 다국어: 고른 언어를 화면이 그려지기 전에 표시(html[data-ui]) + i18n.js 불러오기 ──
@@ -20,7 +20,7 @@
     var q = new URLSearchParams(location.search).get('lang');
     if(q && ok[q]) l = q; else { var s = localStorage.getItem('bibly_lang'); if(s && ok[s]) l = s; }
     document.documentElement.setAttribute('data-ui', l);
-    if(!window.__biblyI18n){ var j = document.createElement('script'); j.src = '/i18n.js?v=20261126e'; document.head.appendChild(j); }
+    if(!window.__biblyI18n){ var j = document.createElement('script'); j.src = '/i18n.js?v=20261126f'; document.head.appendChild(j); }
   }catch(e){}
 })();
 (function(){
@@ -74,7 +74,7 @@
         ]},
       { label:"고급 단계", href:"curriculum.html?track=15", children:[
           { label:"천년왕국 세미나", href:"curriculum.html?track=15" },
-          { label:"휴거와 재림 문답", href:"rapture.html" },
+          { label:"휴거와 재림 Q&A", href:"rapture.html" },
           { label:"요한계시록 강해 · 짐승의 정체", href:"curriculum.html?track=16" },
           { label:"종말과 국제정세 · 제3성전", href:"curriculum.html?track=17" },
           { label:"요한계시록 강해", href:"curriculum.html?track=27" }
@@ -104,7 +104,7 @@
     { label:'질의응답', href:'qna.html', children:[
       { label:'질의응답 전체', href:'qna.html' },
       { label:'요한계시록 Q&A', href:'qna.html?room=rev' },
-      { label:'휴거와 재림 문답', href:'rapture.html' },
+      { label:'휴거와 재림 Q&A', href:'rapture.html' },
       { label:'신앙·성경 Q&A', href:'qna.html?room=gen' },
       { label:'수강생 질문방', href:'qna-board.html' },
       { label:'자료실', href:'resources.html' },

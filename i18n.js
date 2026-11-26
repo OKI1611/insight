@@ -22,7 +22,7 @@
   ];
   // 사전 파일이 있는 페이지(없는 페이지는 요청하지 않는다)
   var PAGES = ['index'];
-  var VER = '20261126e';
+  var VER = '20261126f';
 
   function valid(c){ for(var i=0;i<LANGS.length;i++) if(LANGS[i].c===c) return LANGS[i]; return null; }
   var lang = 'ko';
@@ -47,6 +47,8 @@
       + '#biblyLangBtn .gl{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#00704a;color:#fff}'
       + '#biblyLangBtn .lt{font-size:10.5px;font-weight:700;color:#00704a;border-left:1px solid rgba(24,44,84,.18);padding-left:.4rem;letter-spacing:.02em}'
       + '#biblyLangBtn.nudge{animation:biblyLangPulse 2.2s ease-in-out infinite}'
+      + '#biblyLangBtn.cp{height:32px;padding:0 .55rem 0 .4rem;gap:.3rem;font-size:12px}'
+      + '#biblyLangBtn.cp .gl{width:22px;height:22px}'
       + '@keyframes biblyLangPulse{0%,100%{box-shadow:0 0 0 2px #ffd76a,0 0 0 0 rgba(255,215,106,.7)}50%{box-shadow:0 0 0 2px #ffd76a,0 0 0 7px rgba(255,215,106,0)}}'
       + '@media (prefers-reduced-motion:reduce){#biblyLangBtn.nudge{animation:none}}'
       + '#biblyLangMenu{position:fixed;z-index:2147483000;min-width:12.5rem;background:#fff;border:1px solid rgba(33,58,107,.14);border-radius:14px;box-shadow:0 18px 48px -12px rgba(21,32,58,.35);padding:6px;font-family:Pretendard,system-ui,sans-serif}'
@@ -89,6 +91,7 @@
     var left = Math.min(Math.max(8, r.right - w), window.innerWidth - w - 8);
     m.style.left = left + 'px'; m.style.top = (r.bottom + 6) + 'px';
     btn.setAttribute('aria-expanded','true');
+    openY = window.scrollY; openW = window.innerWidth;
     m.addEventListener('click', function(e){ var b = e.target.closest('button[data-c]'); if(b) choose(b.getAttribute('data-c')); });
     setTimeout(function(){
       document.addEventListener('click', function h(e){ if(!m.contains(e.target) && e.target !== btn){ closeMenu(); document.removeEventListener('click', h, true); } }, true);
@@ -101,6 +104,12 @@
       s.setAttribute('data-done','1');
       var seen = false; try{ seen = !!localStorage.getItem('bibly_lang_seen'); }catch(e){}
       var tail = lang === 'ko' ? 'Language' : (lang === 'en' ? '' : 'Language');
+      // 앱 상단바처럼 좁은 자리(data-compact)는 지구본 + 언어 약자만
+      var cp = s.hasAttribute('data-compact');
+      if(cp){
+        s.innerHTML = '<button id="biblyLangBtn" type="button" class="cp' + (seen ? '' : ' nudge') + '" aria-haspopup="menu" aria-expanded="false" aria-label="Language / 언어 선택" title="Language / 언어 선택">'
+          + '<span class="gl">' + GLOBE + '</span><span>' + L.b + '</span>' + CARET + '</button>';
+      } else
       s.innerHTML = '<button id="biblyLangBtn" type="button" class="' + (seen ? '' : 'nudge') + '" aria-haspopup="menu" aria-expanded="false" aria-label="Language / 언어 선택" title="Language / 언어 선택">'
         + '<span class="gl">' + GLOBE + '</span><span lang="' + L.h + '">' + L.n + '</span>' + (tail ? '<span class="lt">' + tail + '</span>' : '') + CARET + '</button>';
       s.querySelector('button').addEventListener('click', function(e){
@@ -110,8 +119,10 @@
       });
     }
   }
-  window.addEventListener('resize', closeMenu);
-  window.addEventListener('scroll', closeMenu, { passive:true });
+  // 휴대폰에서 콘텐츠가 늦게 그려지며 생기는 작은 스크롤·주소창 높이 변화로 메뉴가 바로 닫히지 않게 한다
+  var openY = 0, openW = 0;
+  window.addEventListener('resize', function(){ if(Math.abs(window.innerWidth - openW) > 40) closeMenu(); });
+  window.addEventListener('scroll', function(){ if(Math.abs(window.scrollY - openY) > 30) closeMenu(); }, { passive:true });
 
   // ── 사전 번역(한국어가 아닐 때만) ──
   var DICT = {}, HDICT = {}, PATS = [], busy = false, pending = [];
