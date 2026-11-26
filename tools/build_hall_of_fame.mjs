@@ -88,11 +88,15 @@ async function commentsOf(videoId, since) {
   let pageToken = '';
   for (let page = 0; page < 10; page++) {
     let p;
+    const q = { part: 'snippet', videoId, order: 'time', maxResults: 100, textFormat: 'plainText', ...(pageToken ? { pageToken } : {}) };
     try {
-      p = await api('/commentThreads', {
-        part: 'snippet', videoId, order: 'time', maxResults: 100, textFormat: 'plainText',
-        ...(pageToken ? { pageToken } : {})
-      });
+      try { p = await api('/commentThreads', q); }
+      catch (e1) {
+        // 유튜브 쪽 일시 오류(400 '처리하지 못했습니다'·5xx)는 3초 뒤 한 번 더 시도 — 2026-11-24 한 번 이것으로 전체가 멈춤
+        if (!/(400|500|502|503)/.test(String(e1.message))) throw e1;
+        await new Promise(r => setTimeout(r, 3000));
+        p = await api('/commentThreads', q);
+      }
     } catch (e) {
       if (/commentsDisabled|videoNotFound|403|404/.test(String(e.message))) return out;  // 댓글 막힌 영상은 조용히 건너뜀
       throw e;

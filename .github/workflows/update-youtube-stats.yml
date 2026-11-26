@@ -14,8 +14,8 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.x'
       - name: Fetch & update YouTube stats
@@ -31,7 +31,13 @@ jobs:
             # ⚠️ 커밋 메시지에 [skip ci] 를 넣지 말 것 —
             # Cloudflare 가 배포까지 건너뛰어 GitHub 파일만 바뀌고 사이트 수치는 옛것으로 남는다.
             git commit -m "chore: 유튜브 채널 실적 자동 갱신"
-            git push
+            # 다른 자동 작업과 동시에 올리면 거부되므로 최신본을 받아 최대 3번 다시 시도
+            ok=0
+            for i in 1 2 3; do
+              if git pull --rebase --quiet origin main && git push; then ok=1; break; fi
+              echo "push 재시도 $i"; sleep $((i*10))
+            done
+            [ "$ok" = 1 ] || { echo "push 3번 모두 실패"; exit 1; }
             echo "stats updated & pushed"
           else
             echo "no change in stats"
