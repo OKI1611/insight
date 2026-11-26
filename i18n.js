@@ -22,7 +22,7 @@
   ];
   // 사전 파일이 있는 페이지(없는 페이지는 요청하지 않는다)
   var PAGES = ['index'];
-  var VER = '20261126d';
+  var VER = '20261126e';
 
   function valid(c){ for(var i=0;i<LANGS.length;i++) if(LANGS[i].c===c) return LANGS[i]; return null; }
   var lang = 'ko';
@@ -40,9 +40,15 @@
 
   // ── 글꼴: 일본어·중국어는 한글 글꼴의 한자 모양 대신 그 나라 글꼴로 ──
   (function(){
-    var css = '#biblyLangBtn{display:inline-flex;align-items:center;gap:.35rem;height:26px;padding:0 .6rem;border-radius:999px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.06);color:inherit;font-size:12px;font-weight:700;white-space:nowrap;cursor:pointer}'
-      + '#biblyLangBtn:hover{border-color:rgba(255,255,255,.6)}'
-      + '#biblyLangBtn svg{opacity:.85}'
+    // 언어 단추: 어두운 상단 띠 위에서 바로 눈에 띄도록 흰 알약 + 초록 지구본 + 'Language' 꼬리표.
+    // 한 번도 눌러 본 적 없는 방문자에게는 금색 테두리가 천천히 깜박인다(localStorage bibly_lang_seen).
+    var css = '#biblyLangBtn{display:inline-flex;align-items:center;gap:.4rem;height:30px;padding:0 .7rem 0 .55rem;border-radius:999px;border:0;background:#fff;color:#182c54;font-size:12.5px;font-weight:800;white-space:nowrap;cursor:pointer;box-shadow:0 0 0 2px #ffd76a,0 4px 14px -4px rgba(0,0,0,.45);font-family:Pretendard,system-ui,sans-serif;line-height:1}'
+      + '#biblyLangBtn:hover{background:#fffbea}'
+      + '#biblyLangBtn .gl{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#00704a;color:#fff}'
+      + '#biblyLangBtn .lt{font-size:10.5px;font-weight:700;color:#00704a;border-left:1px solid rgba(24,44,84,.18);padding-left:.4rem;letter-spacing:.02em}'
+      + '#biblyLangBtn.nudge{animation:biblyLangPulse 2.2s ease-in-out infinite}'
+      + '@keyframes biblyLangPulse{0%,100%{box-shadow:0 0 0 2px #ffd76a,0 0 0 0 rgba(255,215,106,.7)}50%{box-shadow:0 0 0 2px #ffd76a,0 0 0 7px rgba(255,215,106,0)}}'
+      + '@media (prefers-reduced-motion:reduce){#biblyLangBtn.nudge{animation:none}}'
       + '#biblyLangMenu{position:fixed;z-index:2147483000;min-width:12.5rem;background:#fff;border:1px solid rgba(33,58,107,.14);border-radius:14px;box-shadow:0 18px 48px -12px rgba(21,32,58,.35);padding:6px;font-family:Pretendard,system-ui,sans-serif}'
       + '#biblyLangMenu button{display:flex;align-items:center;gap:.7rem;width:100%;min-height:44px;padding:0 .75rem;border-radius:10px;font-size:15px;color:#1f2937;text-align:left;background:none;border:0;cursor:pointer}'
       + '#biblyLangMenu button:hover{background:#eaf0f8}'
@@ -61,7 +67,7 @@
   })();
 
   // ── 언어 선택 단추 ──
-  var GLOBE = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>';
+  var GLOBE = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>';
   var CARET = '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
   function closeMenu(){ var m = document.getElementById('biblyLangMenu'); if(m) m.remove(); var b = document.getElementById('biblyLangBtn'); if(b) b.setAttribute('aria-expanded','false'); }
   function choose(c){
@@ -93,9 +99,13 @@
     for(var i=0;i<slots.length;i++){
       var s = slots[i]; if(s.getAttribute('data-done')) continue;
       s.setAttribute('data-done','1');
-      s.innerHTML = '<button id="biblyLangBtn" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Language / 언어">' + GLOBE + '<span lang="' + L.h + '">' + L.n + '</span>' + CARET + '</button>';
+      var seen = false; try{ seen = !!localStorage.getItem('bibly_lang_seen'); }catch(e){}
+      var tail = lang === 'ko' ? 'Language' : (lang === 'en' ? '' : 'Language');
+      s.innerHTML = '<button id="biblyLangBtn" type="button" class="' + (seen ? '' : 'nudge') + '" aria-haspopup="menu" aria-expanded="false" aria-label="Language / 언어 선택" title="Language / 언어 선택">'
+        + '<span class="gl">' + GLOBE + '</span><span lang="' + L.h + '">' + L.n + '</span>' + (tail ? '<span class="lt">' + tail + '</span>' : '') + CARET + '</button>';
       s.querySelector('button').addEventListener('click', function(e){
         e.stopPropagation();
+        this.classList.remove('nudge'); try{ localStorage.setItem('bibly_lang_seen', '1'); }catch(_){}
         if(document.getElementById('biblyLangMenu')) closeMenu(); else openMenu(this);
       });
     }

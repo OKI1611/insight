@@ -65,7 +65,9 @@
   (태그 동일·한글 잔존·{n} 개수 검사) → `python tools/i18n_merge.py <페이지>` → `i18n/pages/<페이지>.json`, i18n.js `PAGES` 에 이름 추가.
   사전 규칙: 앞뒤 기호(└ · ▶ → ›)는 떼고 찾는다, `{n}` = 바뀌는 숫자, 태그 섞인 문장은 innerHTML 전체가 키,
   `<span data-stat>` 안 숫자는 비교에서 빼고 번역 뒤 되돌려 넣는다. 강의 제목·블로그 글·회원 이름(콘텐츠)은 3단계.
-- 강사 학력 번역: M.R.E.=Master of Religious Education(신학 석사·Th.M. 아님), 성균관대는 '박사과정 수료'(Ph.D.·박사 금지).
+- 강사 학력 표기(2026-11-26 저자 지시): West Coast Baptist College 학위는 **Master of Bible Studies**
+  (한국어 '성경학 석사(Master of Bible Studies)', 일 聖書学修士, 중 聖經研究碩士, 스 Maestría en Estudios Bíblicos).
+  M.R.E.·신학 석사·Th.M. 표기 금지. 성균관대는 '박사과정 수료'(Ph.D.·박사 금지).
 
 ## 인강 판매 — 기수(cohort) 운영
 - 급수 가격·과목·기수는 **`content/program.json` 한 곳**이 단일 출처다.

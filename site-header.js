@@ -20,7 +20,7 @@
     var q = new URLSearchParams(location.search).get('lang');
     if(q && ok[q]) l = q; else { var s = localStorage.getItem('bibly_lang'); if(s && ok[s]) l = s; }
     document.documentElement.setAttribute('data-ui', l);
-    if(!window.__biblyI18n){ var j = document.createElement('script'); j.src = '/i18n.js?v=20261126d'; document.head.appendChild(j); }
+    if(!window.__biblyI18n){ var j = document.createElement('script'); j.src = '/i18n.js?v=20261126e'; document.head.appendChild(j); }
   }catch(e){}
 })();
 (function(){
