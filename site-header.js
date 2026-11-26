@@ -8,8 +8,8 @@
 (function(){
   try{
     if(!document.documentElement.classList.contains('app')) return;
-    var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = '/app.css?v=20261108f'; document.head.appendChild(l);
-    var j = document.createElement('script'); j.src = '/app-shell.js?v=20261126f'; j.defer = true; document.head.appendChild(j);
+    var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = '/app.css?v=20261127a'; document.head.appendChild(l);
+    var j = document.createElement('script'); j.src = '/app-shell.js?v=20261127a'; j.defer = true; document.head.appendChild(j);
   }catch(e){}
 })();
 // ── 다국어: 고른 언어를 화면이 그려지기 전에 표시(html[data-ui]) + i18n.js 불러오기 ──
