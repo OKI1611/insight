@@ -107,19 +107,33 @@ def block(b, lang, fn_seen, D):
     if 'qa' in b:
         h = ''
         for i, q in enumerate(b['qa']):
-            h += (f'<div class="qa"><p class="q"><span>Q</span>{inline(q["q"], lang, fn_seen)}</p><div class="a">'
-                  + ''.join(block(x, lang, fn_seen, D) for x in q['a']) + '</div></div>')
+            # 질문만 보이고 누르면 답이 펼쳐진다(스크롤 줄이기, 2026-11-26)
+            h += (f'<details class="qa"><summary class="q"><span>Q</span><b>{inline(q["q"], lang, fn_seen)}</b><i aria-hidden="true"></i></summary><div class="a">'
+                  + ''.join(block(x, lang, fn_seen, D) for x in q['a']) + '</div></details>')
         return h
     raise ValueError('알 수 없는 블록: ' + json.dumps(b, ensure_ascii=False)[:80])
+
+# 한 장씩 보기(목차 → 장 하나) 버튼 글자
+NAV = {'ko': ('← 차례로', '이전 장', '다음 장', '읽기'), 'en': ('← Contents', 'Previous', 'Next', 'Read'),
+       'es': ('← Índice', 'Anterior', 'Siguiente', 'Leer'), 'ja': ('← 目次へ', '前の章', '次の章', '読む'),
+       'zh': ('← 回目錄', '上一章', '下一章', '閱讀')}
 
 def article(D):
     lang = D['lang']; fn_seen = set()
     secs = D['sections']
-    toc = ''.join(f'<a href="#{lang}-{s["id"]}">{esc(s["h"])}</a>' for s in secs)
-    toc += f'<a href="#{lang}-notes">{esc(D["notes_label"])} · {esc(D["refs_label"])}</a>'
+    nav = NAV[lang]
+    allsec = [(f'{lang}-{s["id"]}', s['h']) for s in secs] + [(f'{lang}-notes', f'{D["notes_label"]} · {D["refs_label"]}')]
+    toc = ''.join(f'<a href="#{sid}"><span>{esc(h)}</span><em>{esc(nav[3])} ›</em></a>' for sid, h in allsec)
+    def secnav(i):
+        top = f'<a class="back" href="#{lang}-toc">{esc(nav[0])}</a>'
+        prev = f'<a class="pv" href="#{allsec[i-1][0]}"><small>{esc(nav[1])}</small>{esc(allsec[i-1][1])}</a>' if i > 0 else '<span></span>'
+        nxt = f'<a class="nx" href="#{allsec[i+1][0]}"><small>{esc(nav[2])}</small>{esc(allsec[i+1][1])}</a>' if i + 1 < len(allsec) else '<span></span>'
+        return top, f'<nav class="secnav">{prev}{nxt}</nav>'
     body = ''
-    for s in secs:
-        body += f'<section id="{lang}-{s["id"]}"><h2>{esc(s["h"])}</h2>' + ''.join(block(b, lang, fn_seen, D) for b in s['body']) + '</section>'
+    for i, s in enumerate(secs):
+        top, bot = secnav(i)
+        body += (f'<section id="{lang}-{s["id"]}" class="sec">{top}<h2>{esc(s["h"])}</h2>'
+                 + ''.join(block(b, lang, fn_seen, D) for b in s['body']) + bot + '</section>')
     notes = D['notes']
     missing = set(range(1, len(notes) + 1)) - fn_seen
     extra = {n for n in fn_seen if n > len(notes)}
@@ -136,11 +150,11 @@ def article(D):
       <p class="lead">{esc(D["lead"])}</p>
       <p class="upd">{esc(D["updated"])}</p>
     </header>
-    <nav class="toc"><p>{esc(D["toc_label"])}</p>{toc}</nav>
+    <nav class="toc" id="{lang}-toc"><p>{esc(D["toc_label"])}</p>{toc}</nav>
     {body}
-    <section id="{lang}-notes" class="notes">
+    <section id="{lang}-notes" class="notes sec">{secnav(len(secs))[0]}
       <h2>{esc(D["notes_label"])}</h2><ol>{nh}</ol>
-      <h2>{esc(D["refs_label"])}</h2><div class="refs">{rh}</div>
+      <h2>{esc(D["refs_label"])}</h2><div class="refs">{rh}</div>{secnav(len(secs))[1]}
     </section>
     <nav class="see"><p>{esc(D["see_label"])}</p>{see}</nav>
   </article>'''
