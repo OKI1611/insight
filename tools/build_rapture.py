@@ -3,7 +3,7 @@
 
 원고: tools/rapture/<lang>.json  (ko · en · es · ja · zh)
 성경 인용: 원고에는 위치만 적는다({"v": "1Th 4:16-17"}). 본문은 자동으로 끼운다.
-  ko = 킹제임스 성경 정본역 bible/kr · en = KJV bible/en
+  ko = 킹제임스 성경 정본역 bible/kr · en = KJV 전문 bible/kjv (bible/en 은 학습용 발췌라 쓰지 않음)
   es = Reina-Valera 1909 · ja = 文語訳 · zh = 和合本  → i18n/bible-verses.json (위키문헌 원문, 퍼블릭 도메인)
 용어는 i18n/GLOSSARY.md 를 따른다.
 
@@ -43,7 +43,8 @@ def chapter(lang, book, c):
         if lang == 'ko':
             _cache[k] = json.load(open(f'{ROOT}/bible/kr/{BOOK_FILE[book]}-{c}.json', encoding='utf-8'))
         else:
-            _cache[k] = [x['en'] for x in json.load(open(f'{ROOT}/bible/en/{BOOK_FILE[book]}-{c}.json', encoding='utf-8'))]
+            # KJV 전문은 bible/kjv 에서. bible/en 의 'en' 은 학습 노트용 핵심 어구 발췌(… 생략·절 수 불일치 장 있음)라 인용에 쓰지 않는다.
+            _cache[k] = json.load(open(f'{ROOT}/bible/kjv/{BOOK_FILE[book]}.json', encoding='utf-8'))[str(c)]
     return _cache[k]
 
 FOREIGN = json.load(open(f'{ROOT}/i18n/bible-verses.json', encoding='utf-8'))
