@@ -139,3 +139,27 @@
 | Rev | 요한계시록 | Revelation | Apocalipsis | ヨハネの黙示録 | 啟示錄 |
 
 (일본어 책 이름은 현대 복음주의권 표기(新改訳 계열)를 쓰고, 인용문 출처 표기만 「文語訳」으로 단다.)
+
+**66권 전체 이름과 장·절 표기 형식은 `tools/i18n_books.py` 의 표가 기준이다**(2026-11-27). 화면의 「창세기 {n}장」 등은 그 도구로 i18n/common.json 에 채운다 — es「Génesis {n}」· ja「創世記 {n}章」· zh「創世記 第{n}章」, 「{n}장 {n}절」은 es「{n}:{n}」· ja/zh「{n}章{n}節」.
+
+## 6. 아카데미·운영 용어 (2026-11-27 스·일·중 번역에서 확정)
+
+| 한국어 | English | Español | 日本語 | 中文 |
+|---|---|---|---|---|
+| 급수 과정 / {n}급 | Level Courses / Level {n} | Cursos por niveles / Nivel {n} | 級別課程 / {n}級 | 級別課程 / {n}級 |
+| 인증 과정 | Certificate Program | Programa de certificación | 認定課程 | 認證課程 |
+| 정규 심화 과정 | In-Depth Program | Programa de profundización | 正規深化課程 | 正規進深課程 |
+| 수료증 | certificate | certificado | 修了証 | 結業證書 |
+| 휘장 | badge | insignia | 記章 | 徽章 |
+| 학점 | credits | créditos | 単位 | 學分 |
+| 수강권 | course pass | pase del curso | 受講権 | 課程使用權 |
+| 얼리버드 | Early bird | Precio anticipado | 早期割引 | 早鳥優惠 |
+| 기수 | cohort | grupo | 〇〇期 | 〇〇期 |
+| 1:1 질의응답 | 1:1 Q&A | Preguntas 1:1 | 1対1の質疑応答 | 一對一問答 |
+| 침례 | baptism | bautismo | 浸礼 | 浸禮 |
+| 강의 / 강사 | lecture / teacher | clase / maestro | 講義 / 講師 | 講座 / 講師 |
+| 킹제임스 성경 정본역 | King James Bible — Jeongbon (Korean) | Biblia King James en coreano (versión «Jeongbon») | 欽定訳聖書 正本訳 | 英王欽定本 韓文正本譯 |
+
+- **강사 학력(일본어 주의)**: 성균관대 '박사과정 수료'는 일본어로 「博士課程 単位取得」. 「博士課程修了」는 일본에서 학위 취득으로 읽히므로 쓰지 않는다.
+  중국어는 「博士班 修畢課程」, 영어 "doctoral coursework", 스페인어 "doctorado … cursado".
+- 성경 약칭(고전·살전 등): es 1 Co·1 Ts, ja Ⅰコリ·Ⅰテサ, zh 林前·帖前 식.

@@ -52,7 +52,7 @@
   (function(){
     try{
       if(window.__biblyI18n || document.querySelector('script[src*="i18n.js"]')) return;
-      var j = document.createElement('script'); j.src = '/i18n.js?v=20261127c'; document.head.appendChild(j);
+      var j = document.createElement('script'); j.src = '/i18n.js?v=20261127e'; document.head.appendChild(j);
     }catch(e){}
   })();
   function buildBar(){

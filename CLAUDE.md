@@ -74,6 +74,10 @@
   - 새 페이지·새 문구 번역 절차: 로컬 미리보기에서 `tools/i18n_extract.js`(화면 글자 추출, i18n.js 와 같은 키 규칙) +
     `python tools/i18n_jsstrings.py <파일>`(스크립트 속 문구) → 번역 → `python tools/i18n_merge_en.py <작업 폴더>` →
     `tools/i18n_audit.js`(외국어 화면에 남은 한국어 세기). 브라우저 결과는 로컬 수신기(POST → 파일)로 받는다.
+- **스페인어·일본어·중국어 채우기(2026-11-27~)**: 키는 영어판 때 이미 다 뽑혀 있으므로 화면 추출 없이 사전의 빈 칸만 채운다.
+  `i18n/pages/_work/l3/<이름>.todo.json`(빠진 키→영어 참고) → 언어별 번역 `<이름>.<lang>.json` → `python tools/i18n_merge_l3.py <이름…>`
+  (이름 common = i18n/common.json, 그 밖은 i18n/pages/<이름>.json · 한글 잔존·{n}·태그 검사 후 채움) → 다 된 페이지는 i18n.js `DONE_LANG.es/ja/zh` 에 추가.
+  성경 66권 이름·장절 표기는 `python tools/i18n_books.py`(GLOSSARY §5). 진행 순서는 `계획-휴거재림QA.md` 11단계.
 - 강사 학력 표기(2026-11-26 저자 지시): West Coast Baptist College 학위는 **Master of Bible Studies**
   (한국어 '성경학 석사(Master of Bible Studies)', 일 聖書学修士, 중 聖經研究碩士, 스 Maestría en Estudios Bíblicos).
   M.R.E.·신학 석사·Th.M. 표기 금지. 성균관대는 '박사과정 수료'(Ph.D.·박사 금지).
