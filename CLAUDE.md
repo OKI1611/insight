@@ -19,6 +19,8 @@
 - 콘텐츠(강의·글·자료 등)는 대체로 Supabase에서 동적 로드됩니다.
 - **질문방 새 글 알림(🔔+N)**: `qna-notify.js` — 언어 단추 자리 옆에 종을 붙여 수강생 질문방(community_posts board=qna) 최근 15개를 보여 주고,
   이 기기에서 마지막으로 연 뒤 올라온 글에 N(localStorage `bibly_qna_seen`). site-header.js·app-shell.js·index.html 이 불러온다.
+- **새 질문 → 강사 카카오톡**: `worker/notify.js`(카카오 「나에게 보내기」). 질문 등록 화면(qna-board·qna·app-menu)이 등록 직후 `POST /api/notify/qna {id}`,
+  매시 크론이 놓친 글 재시도. 토큰은 Supabase `notify_kv`(서버 전용, `db/kakao_notify.sql`), 연결은 관리자 › 커뮤니티 관리 › 「카카오톡 연결하기」. 시크릿 `KAKAO_REST_KEY`.
 
 ## 배포 (중요)
 - **Cloudflare가 GitHub `main`에 연결되어 있어 `git push` 하면 자동 배포됩니다.** 별도 배포 명령 불필요.

@@ -431,8 +431,11 @@
       const s = readStored(); if(!s || !s.access_token) return { err: 'login' };
       const name = (s.user.user_metadata && (s.user.user_metadata.full_name || s.user.user_metadata.name)) || '회원';
       try{
-        const r = await fetch(SUPABASE_URL + '/rest/v1/community_posts', { method:'POST', headers:{ apikey: SUPABASE_ANON, Authorization: 'Bearer ' + s.access_token, 'Content-Type':'application/json', Prefer:'return=minimal' }, body: JSON.stringify({ author_id: s.user.id, author_name: name, board: 'qna', content: text }) });
-        return r.ok ? {} : { err: await r.text() };
+        const r = await fetch(SUPABASE_URL + '/rest/v1/community_posts?select=id', { method:'POST', headers:{ apikey: SUPABASE_ANON, Authorization: 'Bearer ' + s.access_token, 'Content-Type':'application/json', Prefer:'return=representation' }, body: JSON.stringify({ author_id: s.user.id, author_name: name, board: 'qna', content: text }) });
+        if(!r.ok) return { err: await r.text() };
+        // 새 질문 → 강사 카카오톡 알림(서버가 글을 직접 확인해 한 번만 보낸다)
+        try{ const a = await r.json(); if(a && a[0] && a[0].id) fetch('/api/notify/qna', { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ id: a[0].id }), keepalive: true }).catch(() => {}); }catch(e){}
+        return {};
       }catch(e){ return { err: String(e) }; }
     }
     // 질문 작성 시트 — 등록되면 질문방 목록으로

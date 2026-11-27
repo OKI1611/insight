@@ -1,6 +1,7 @@
 // Cloudflare Worker — 정적 자산(사이트) 서빙 + 결제 API(/api/pay/*)
 // 정적 자산은 [assets] 바인딩(env.ASSETS)이 처리하고, 이 Worker는 /api/pay/* 만 담당한다.
 // 필수 환경변수(Worker Settings → Variables and secrets): SUPABASE_SERVICE_KEY (필수), TOSS_SECRET_KEY (실결제 시)
+import { notifyQna, sweepQna, kakaoAdmin, kakaoCallback } from './notify.js';
 const SUPABASE_URL = 'https://bmxkndkwefdgsomlznoo.supabase.co';
 const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteGtuZGt3ZWZkZ3NvbWx6bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzAwODIsImV4cCI6MjA5NjE0NjA4Mn0.l1yHhMVYwMqYSL8ub9PtrJPOl7CYr7yqstG2AER1EaU';
 const ADMIN_EMAIL = 'josephoh1611@gmail.com';
@@ -614,7 +615,7 @@ async function adminFunnel(request, env) {
 }
 
 export default {
-  async scheduled(event, env, ctx) { ctx.waitUntil(processEmailQueue(env)); },
+  async scheduled(event, env, ctx) { ctx.waitUntil(processEmailQueue(env)); ctx.waitUntil(sweepQna(env).catch(() => {})); },
   async fetch(request, env) {
     const url = new URL(request.url);
     const p = url.pathname;
@@ -625,6 +626,13 @@ export default {
     if (p === '/api/admin/funnel') return adminFunnel(request, env);
     if ((p === '/watch' || p === '/watch.html') && request.method === 'GET' && url.searchParams.get('v')) return watchMeta(request, env, url);
     if (p === '/api/admin/notice' && request.method === 'POST') return adminNotice(request, env);
+    // 질문방 새 질문 → 강사 카카오톡(worker/notify.js)
+    if (p === '/api/notify/qna' && request.method === 'OPTIONS') return new Response(null, { headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST,OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type' } });
+    if (p === '/api/notify/qna' && request.method === 'POST') return notifyQna(request, env);
+    if (p === '/api/notify/kakao/callback') return kakaoCallback(request, env, url);
+    if (p === '/api/notify/kakao/status') return kakaoAdmin(request, env, 'status', verifyAdmin);
+    if (p === '/api/notify/kakao/start' && request.method === 'POST') return kakaoAdmin(request, env, 'start', verifyAdmin);
+    if (p === '/api/notify/kakao/test' && request.method === 'POST') return kakaoAdmin(request, env, 'test', verifyAdmin);
     if (p.startsWith('/api/pay/')) {
       if (request.method === 'OPTIONS') return new Response(null, { headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET,POST,OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, Authorization' } });
       if (p === '/api/pay/ping') return ping(env);

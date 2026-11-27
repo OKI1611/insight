@@ -294,6 +294,8 @@
     /* ---------- 글쓰기 ---------- */
     function focusWrite(){ $('write').scrollIntoView({behavior:'smooth',block:'start'}); var t=$('wText'); if(t) setTimeout(()=>t.focus(),400); }
     function setWRoom(r){ WROOM=r; $('wRev').className='chip'+(r==='rev'?' on':''); $('wGen').className='chip'+(r==='gen'?' on':''); }
+    // 새 질문 → 강사 카카오톡 알림(서버가 글을 직접 확인해 한 번만 보낸다)
+    var notifyNew=function(id){ try{ if(id) fetch('/api/notify/qna',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:id}),keepalive:true}).catch(function(){}); }catch(e){} };
     function submitPost(){
       var s=sess(); if(!s){ $('wMsg').textContent='로그인이 필요합니다'; return; }
       var t=($('wText').value||'').trim();
@@ -301,9 +303,10 @@
       var notice=isAdmin()&&$('wNotice').checked;
       var tag=notice?'[공지] ':(WROOM==='rev'?'[요한계시록] ':'[신앙·성경] ');
       $('wBtn').disabled=true; $('wMsg').textContent='올리는 중…';
-      fetch(SB+'/rest/v1/community_posts',{method:'POST',headers:hdr(true),body:JSON.stringify({author_id:s.user.id,author_name:myName(),board:'qna',content:tag+t})})
+      var hh=hdr(true); hh.Prefer='return=representation';
+      fetch(SB+'/rest/v1/community_posts?select=id',{method:'POST',headers:hh,body:JSON.stringify({author_id:s.user.id,author_name:myName(),board:'qna',content:tag+t})})
         .then(function(r){ $('wBtn').disabled=false;
-          if(r.ok){ $('wText').value=''; if($('wNotice')) $('wNotice').checked=false; $('wMsg').textContent='등록되었습니다.'; load().then(render); setTimeout(()=>{$('wMsg').textContent='';},3000); }
+          if(r.ok){ if(!notice) r.clone().json().then(function(a){ notifyNew(a&&a[0]&&a[0].id); }).catch(function(){}); $('wText').value=''; if($('wNotice')) $('wNotice').checked=false; $('wMsg').textContent='등록되었습니다.'; load().then(render); setTimeout(()=>{$('wMsg').textContent='';},3000); }
           else return r.text().then(x=>{ $('wMsg').textContent='등록 오류: '+x.slice(0,80); });
         }).catch(function(){ $('wBtn').disabled=false; $('wMsg').textContent='네트워크 오류'; });
     }

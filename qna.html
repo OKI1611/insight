@@ -557,11 +557,11 @@
       if(t.length<5){ $('askMsg').textContent='질문을 조금 더 자세히 적어 주세요'; return; }
       var tag=(ASK_ROOM==='rev'?'[요한계시록] ':'[신앙·성경] ');
       $('askBtn').disabled=true; $('askMsg').textContent='보내는 중…';
-      fetch(SB+'/rest/v1/community_posts',{method:'POST',headers:{apikey:AK,Authorization:'Bearer '+(s.access_token||AK),'Content-Type':'application/json',Prefer:'return=minimal'},
+      fetch(SB+'/rest/v1/community_posts?select=id',{method:'POST',headers:{apikey:AK,Authorization:'Bearer '+(s.access_token||AK),'Content-Type':'application/json',Prefer:'return=representation'},
         body:JSON.stringify({author_id:s.user.id,author_name:userName(),board:'qna',content:tag+t})})
         .then(function(r){
           $('askBtn').disabled=false;
-          if(r.ok){ $('askText').value=''; $('askMsg').innerHTML='질문방에 등록되었습니다. <a href="qna-board.html" class="font-bold underline">보러 가기 →</a>'; }
+          if(r.ok){ r.clone().json().then(function(a){ (function(id){ try{ if(id) fetch('/api/notify/qna',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:id}),keepalive:true}).catch(function(){}); }catch(e){} })(a&&a[0]&&a[0].id); }).catch(function(){}); $('askText').value=''; $('askMsg').innerHTML='질문방에 등록되었습니다. <a href="qna-board.html" class="font-bold underline">보러 가기 →</a>'; }
           else return r.text().then(function(x){ $('askMsg').textContent='전송 오류: '+x.slice(0,80); });
         }).catch(function(){ $('askBtn').disabled=false; $('askMsg').textContent='네트워크 오류'; });
     }
