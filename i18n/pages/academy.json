@@ -1,520 +1,1036 @@
 {
  "_about": "academy 페이지 화면 글자(영어판 2026-11-27). 용어 기준 i18n/GLOSSARY.md",
  "${rk.name} 패키지 보기": {
-  "en": "View the ${rk.name} package"
+  "en": "View the ${rk.name} package",
+  "es": "Ver el paquete ${rk.name}",
+  "ja": "${rk.name} パッケージを見る",
+  "zh": "查看 ${rk.name} 方案"
  },
  "(미선택)": {
-  "en": "(not selected)"
+  "en": "(not selected)",
+  "es": "(sin seleccionar)",
+  "ja": "(未選択)",
+  "zh": "（未選擇）"
  },
  "(예금주": {
-  "en": "(Account holder:"
+  "en": "(Account holder:",
+  "es": "(Titular:",
+  "ja": "(口座名義",
+  "zh": "（戶名"
  },
  "1급": {
-  "en": "Level 1"
+  "en": "Level 1",
+  "es": "Nivel 1",
+  "ja": "1級",
+  "zh": "1級"
  },
  "3급": {
-  "en": "Level 3"
+  "en": "Level 3",
+  "es": "Nivel 3",
+  "ja": "3級",
+  "zh": "3級"
  },
  "5급": {
-  "en": "Level 5"
+  "en": "Level 5",
+  "es": "Nivel 5",
+  "ja": "5級",
+  "zh": "5級"
  },
  "<b class=\"text-neutral-900\">계좌이체로 신청</b>을 누르시면 입금 계좌와 <b class=\"text-neutral-900\">간편송금 바로가기</b>가 바로 나옵니다. 입금이 확인되면 수강권을 열어 드려요.": {
-  "en": "Tap <b class=\"text-neutral-900\">Apply by bank transfer</b> and you will immediately see the deposit account and a <b class=\"text-neutral-900\">quick-transfer shortcut</b>. Once your payment is confirmed, we will open your course pass."
+  "en": "Tap <b class=\"text-neutral-900\">Apply by bank transfer</b> and you will immediately see the deposit account and a <b class=\"text-neutral-900\">quick-transfer shortcut</b>. Once your payment is confirmed, we will open your course pass.",
+  "es": "Al tocar <b class=\"text-neutral-900\">Inscribirse por transferencia</b>, verá enseguida la cuenta para el depósito y un <b class=\"text-neutral-900\">acceso directo a transferencia rápida</b>. Cuando confirmemos el pago, le activaremos su pase del curso.",
+  "ja": "<b class=\"text-neutral-900\">銀行振込で申し込む</b>を押すと、振込口座と<b class=\"text-neutral-900\">かんたん送金へのリンク</b>がすぐに表示されます。入金が確認されしだい、受講権を有効にいたします。",
+  "zh": "<b class=\"text-neutral-900\">以轉帳申請</b>後，會立即顯示匯款帳戶與<b class=\"text-neutral-900\">快速匯款捷徑</b>。確認入帳後，就為您開通課程使用權。"
  },
  "<b class=\"text-neutral-900\">이 등급을 받으면 ›</b> 다니엘·요한계시록의 예언과 천년왕국, 종말의 국제정세를 하나로 꿰어 시대를 읽고, 다른 이들을 깨우는 ‘말씀의 파수꾼’이 됩니다 — 「말씀으로 시대를 읽다」의 완성.": {
-  "en": "<b class=\"text-neutral-900\">With this level ›</b> you will tie together the prophecies of Daniel and Revelation, the Millennial Kingdom, and world affairs in the end times, so you can read the times and awaken others as a ‘watchman of the Word’ — the completion of “Reading the Times through the Word.”"
+  "en": "<b class=\"text-neutral-900\">With this level ›</b> you will tie together the prophecies of Daniel and Revelation, the Millennial Kingdom, and world affairs in the end times, so you can read the times and awaken others as a ‘watchman of the Word’ — the completion of “Reading the Times through the Word.”",
+  "es": "<b class=\"text-neutral-900\">Con este nivel ›</b> unirá las profecías de Daniel y Apocalipsis, el Milenio y la situación mundial del fin de los tiempos para leer los tiempos, y será un «centinela de la Palabra» que despierta a otros: la culminación de «Leer los tiempos a la luz de la Palabra».",
+  "ja": "<b class=\"text-neutral-900\">この級を取得すると ›</b> ダニエル書・ヨハネの黙示録の預言と千年王国、終末の国際情勢を一つにつなげて時代を読み、ほかの人々を目覚めさせる「みことばの見張り人」となります ― 「みことばで時代を読む」の完成です。",
+  "zh": "<b class=\"text-neutral-900\">達到這個級別 ›</b> 能把但以理書、啟示錄的預言與千禧年國度、末世的國際局勢串連起來解讀時代，成為喚醒他人的「話語的守望者」── 完成「用神的話語看時代」。"
  },
  "<b class=\"text-neutral-900\">이 등급을 받으면 ›</b> 로마서·레위기 등 본문을 깊이 강해하고, 기독교 핵심 교리를 체계적으로 정리하며, 배운 것을 남에게 가르치고 이끌 수 있는 ‘말씀의 탐구자’가 됩니다.": {
-  "en": "<b class=\"text-neutral-900\">With this level ›</b> you will study texts such as Romans and Leviticus in depth, organize the core doctrines of the Christian faith systematically, and become a ‘searcher of the Word’ who can teach and lead others in what you have learned."
+  "en": "<b class=\"text-neutral-900\">With this level ›</b> you will study texts such as Romans and Leviticus in depth, organize the core doctrines of the Christian faith systematically, and become a ‘searcher of the Word’ who can teach and lead others in what you have learned.",
+  "es": "<b class=\"text-neutral-900\">Con este nivel ›</b> estudiará a fondo textos como Romanos y Levítico, ordenará de forma sistemática las doctrinas centrales de la fe cristiana y será un «investigador de la Palabra» capaz de enseñar y guiar a otros en lo que ha aprendido.",
+  "ja": "<b class=\"text-neutral-900\">この級を取得すると ›</b> ローマ人への手紙・レビ記などの本文を深く講解し、キリスト教の中心教理を体系的に整理して、学んだことを人に教え導くことのできる「みことばの探究者」となります。",
+  "zh": "<b class=\"text-neutral-900\">達到這個級別 ›</b> 能深入講解羅馬書、利未記等經文，有系統地整理基督教核心教義，成為能把所學教導並帶領他人的「話語的探究者」。"
  },
  "<b class=\"text-neutral-900\">이 등급을 받으면 ›</b> 복음과 구원, 예수 그리스도가 누구신지 분명히 알고, 혼자서도 성경을 펴서 읽고 기도하며 교회 생활의 기본기를 갖춘 ‘스스로 서는 그리스도인’이 됩니다.": {
-  "en": "<b class=\"text-neutral-900\">With this level ›</b> you will know clearly the gospel, salvation and who Jesus Christ is, and become a ‘Christian who stands on his own feet’ — able to open and read the Bible and pray on your own, with the basics of church life in place."
+  "en": "<b class=\"text-neutral-900\">With this level ›</b> you will know clearly the gospel, salvation and who Jesus Christ is, and become a ‘Christian who stands on his own feet’ — able to open and read the Bible and pray on your own, with the basics of church life in place.",
+  "es": "<b class=\"text-neutral-900\">Con este nivel ›</b> sabrá con claridad qué son el evangelio y la salvación y quién es Jesucristo, y será un «cristiano que se sostiene por sí mismo»: capaz de abrir la Biblia, leerla y orar por su cuenta, con las bases de la vida en la iglesia.",
+  "ja": "<b class=\"text-neutral-900\">この級を取得すると ›</b> 福音と救い、イエス・キリストがどなたであるかをはっきりと知り、ひとりでも聖書を開いて読み、祈り、教会生活の基本を身につけた「自ら立つクリスチャン」となります。",
+  "zh": "<b class=\"text-neutral-900\">達到這個級別 ›</b> 能清楚明白福音與救恩、耶穌基督是誰，自己也能打開聖經閱讀、禱告，具備教會生活的基本功，成為「自己站立的基督徒」。"
  },
  "<b class=\"text-neutral-900\">이 등급을 받으면 ›</b> 성경 전체의 흐름을 잡고, 자주 묻는 질문에 스스로 답하며, 배운 진리를 인간관계와 삶의 어려움 속에서 실제로 살아내는 ‘성숙해 가는 제자’가 됩니다.": {
-  "en": "<b class=\"text-neutral-900\">With this level ›</b> you will grasp the flow of the whole Bible, answer common questions for yourself, and become a ‘maturing disciple’ who actually lives out the truth you have learned in relationships and in life's hardships."
+  "en": "<b class=\"text-neutral-900\">With this level ›</b> you will grasp the flow of the whole Bible, answer common questions for yourself, and become a ‘maturing disciple’ who actually lives out the truth you have learned in relationships and in life's hardships.",
+  "es": "<b class=\"text-neutral-900\">Con este nivel ›</b> comprenderá el hilo de toda la Biblia, responderá por sí mismo a las preguntas frecuentes y será un «discípulo en crecimiento» que vive de verdad lo aprendido en sus relaciones y en las dificultades de la vida.",
+  "ja": "<b class=\"text-neutral-900\">この級を取得すると ›</b> 聖書全体の流れをつかみ、よくある質問に自分で答え、学んだ真理を人間関係や人生の困難の中で実際に生きる「成熟していく弟子」となります。",
+  "zh": "<b class=\"text-neutral-900\">達到這個級別 ›</b> 能掌握整本聖經的脈絡，自己回答常見的問題，在人際關係與生活難處中真正活出所學的真理，成為「日漸成熟的門徒」。"
  },
  "<b class=\"text-neutral-900\">이 등급을 받으면 ›</b> 성경적 세계관으로 무장해 이단·사이비와 시대의 거짓을 정확히 분별하고, 문화와 사상 속에서 진리를 가려내는 ‘흔들리지 않는 분별의 사람’이 됩니다.": {
-  "en": "<b class=\"text-neutral-900\">With this level ›</b> armed with a biblical worldview, you will accurately discern heresies, cults and the lies of our age, and become a ‘person of steady discernment’ who can sift truth from error in culture and ideas."
+  "en": "<b class=\"text-neutral-900\">With this level ›</b> armed with a biblical worldview, you will accurately discern heresies, cults and the lies of our age, and become a ‘person of steady discernment’ who can sift truth from error in culture and ideas.",
+  "es": "<b class=\"text-neutral-900\">Con este nivel ›</b> armado con una cosmovisión bíblica, discernirá con precisión las herejías, las sectas y las mentiras de nuestro tiempo, y será una «persona de discernimiento firme» que separa la verdad del error en la cultura y las ideas.",
+  "ja": "<b class=\"text-neutral-900\">この級を取得すると ›</b> 聖書的世界観で武装し、異端・カルトと時代の偽りを正確に見分け、文化や思想の中から真理を見極める「揺るがずに見分ける人」となります。",
+  "zh": "<b class=\"text-neutral-900\">達到這個級別 ›</b> 以合乎聖經的世界觀裝備自己，準確分辨異端、邪教與時代的謊言，在文化與思潮中辨明真理，成為「不動搖的分辨之人」。"
  },
  "<b class=\"text-neutral-900/55\">카드 결제 또는 계좌이체로 등록하실 수 있어요.</b> 카드로 결제하시면 수강권이 즉시 부여되고, 계좌이체는 입금이 확인되는 대로 열어 드립니다.<br>문의는 <b class=\"text-neutral-900/55\">contact@biblynote.com</b> · 신청 전 <a href=\"terms.html\" class=\"text-gold underline\">수강 기간·환불·휴학 규정</a>을 확인해 주세요.": {
-  "en": "<b class=\"text-neutral-900/55\">You can enroll by card payment or bank transfer.</b> If you pay by card, your course pass is granted right away; with a bank transfer, we open it as soon as your payment is confirmed.<br>Questions: <b class=\"text-neutral-900/55\">contact@biblynote.com</b> · Before applying, please review the <a href=\"terms.html\" class=\"text-gold underline\">course period, refund and leave-of-absence policy</a>."
+  "en": "<b class=\"text-neutral-900/55\">You can enroll by card payment or bank transfer.</b> If you pay by card, your course pass is granted right away; with a bank transfer, we open it as soon as your payment is confirmed.<br>Questions: <b class=\"text-neutral-900/55\">contact@biblynote.com</b> · Before applying, please review the <a href=\"terms.html\" class=\"text-gold underline\">course period, refund and leave-of-absence policy</a>.",
+  "es": "<b class=\"text-neutral-900/55\">Puede inscribirse con pago con tarjeta o por transferencia bancaria.</b> Si paga con tarjeta, recibirá su pase del curso al instante; con transferencia, lo activaremos en cuanto confirmemos el pago.<br>Consultas: <b class=\"text-neutral-900/55\">contact@biblynote.com</b> · Antes de inscribirse, revise las <a href=\"terms.html\" class=\"text-gold underline\">normas sobre período del curso, reembolsos y pausas</a>.",
+  "ja": "<b class=\"text-neutral-900/55\">カード決済または銀行振込でお申し込みいただけます。</b>カードで決済すると受講権がすぐに付与され、銀行振込の場合は入金が確認されしだい有効にいたします。<br>お問い合わせは<b class=\"text-neutral-900/55\">contact@biblynote.com</b> · お申し込みの前に<a href=\"terms.html\" class=\"text-gold underline\">受講期間・返金・休学の規定</a>をご確認ください。",
+  "zh": "<b class=\"text-neutral-900/55\">可用信用卡付款或銀行轉帳報名。</b>以信用卡付款會立即開通課程使用權，銀行轉帳則在確認入帳後為您開通。<br>洽詢請寄 <b class=\"text-neutral-900/55\">contact@biblynote.com</b> · 申請前請先確認<a href=\"terms.html\" class=\"text-gold underline\">觀看期間・退款・休學規定</a>。"
  },
  "<b class=\"text-neutral-900/70\">서비스 제공기간</b> : 수강권 부여일(입금 확인일)로부터 <b class=\"text-neutral-900/70\">12개월(1년)</b>": {
-  "en": "<b class=\"text-neutral-900/70\">Service period</b>: <b class=\"text-neutral-900/70\">12 months (1 year)</b> from the date your course pass is granted (the date payment is confirmed)"
+  "en": "<b class=\"text-neutral-900/70\">Service period</b>: <b class=\"text-neutral-900/70\">12 months (1 year)</b> from the date your course pass is granted (the date payment is confirmed)",
+  "es": "<b class=\"text-neutral-900/70\">Período del servicio</b>: <b class=\"text-neutral-900/70\">12 meses (1 año)</b> desde la fecha en que se otorga el pase del curso (fecha de confirmación del pago)",
+  "ja": "<b class=\"text-neutral-900/70\">サービス提供期間</b>:受講権の付与日(入金確認日)から<b class=\"text-neutral-900/70\">12か月(1年)</b>",
+  "zh": "<b class=\"text-neutral-900/70\">服務提供期間</b>：自課程使用權開通日（確認入帳日）起 <b class=\"text-neutral-900/70\">12個月（1年）</b>"
  },
  "<span class=\"text-gold font-bold\">✓</span> 완주 시 <b class=\"text-white\">수료증 · 급수 휘장</b>": {
-  "en": "<span class=\"text-gold font-bold\">✓</span> On completion: <b class=\"text-white\">certificate · level badge</b>"
+  "en": "<span class=\"text-gold font-bold\">✓</span> On completion: <b class=\"text-white\">certificate · level badge</b>",
+  "es": "<span class=\"text-gold font-bold\">✓</span> Al terminar: <b class=\"text-white\">certificado · insignia de nivel</b>",
+  "ja": "<span class=\"text-gold font-bold\">✓</span> 修了すると<b class=\"text-white\">修了証 · 級の記章</b>",
+  "zh": "<span class=\"text-gold font-bold\">✓</span> 完成時獲得<b class=\"text-white\">結業證書 · 級別徽章</b>"
  },
  "Associate (5급)": {
-  "en": "Associate (Level 5)"
+  "en": "Associate (Level 5)",
+  "es": "Associate (Nivel 5)",
+  "ja": "Associate(5級)",
+  "zh": "Associate（5級）"
  },
  "BIBLY ACADEMY · 정규 인증 과정": {
-  "en": "BIBLY ACADEMY · Certificate Program"
+  "en": "BIBLY ACADEMY · Certificate Program",
+  "es": "BIBLY ACADEMY · Programa de certificación",
+  "ja": "BIBLY ACADEMY · 正規認定課程",
+  "zh": "BIBLY ACADEMY · 正規認證課程"
  },
  "BIBLY 아카데미": {
-  "en": "BIBLY Academy"
+  "en": "BIBLY Academy",
+  "es": "BIBLY Academy",
+  "ja": "BIBLY アカデミー",
+  "zh": "BIBLY 學院"
  },
  "BIBLY 정규 심화 과정": {
-  "en": "BIBLY In-Depth Program"
+  "en": "BIBLY In-Depth Program",
+  "es": "Programa de profundización BIBLY",
+  "ja": "BIBLY 正規深化課程",
+  "zh": "BIBLY 正規進深課程"
  },
  "Curriculum · 급수별 커리큘럼": {
-  "en": "Curriculum · Courses by Level"
+  "en": "Curriculum · Courses by Level",
+  "es": "Curriculum · Plan de estudios por nivel",
+  "ja": "Curriculum · 級別カリキュラム",
+  "zh": "Curriculum · 各級課程"
  },
  "Expert ({n}급)": {
-  "en": "Expert (Level {n})"
+  "en": "Expert (Level {n})",
+  "es": "Expert (Nivel {n})",
+  "ja": "Expert({n}級)",
+  "zh": "Expert（{n}級）"
  },
  "Laureate ({n}급)": {
-  "en": "Laureate (Level {n})"
+  "en": "Laureate (Level {n})",
+  "es": "Laureate (Nivel {n})",
+  "ja": "Laureate({n}級)",
+  "zh": "Laureate（{n}級）"
  },
  "Master ({n}급)": {
-  "en": "Master (Level {n})"
+  "en": "Master (Level {n})",
+  "es": "Master (Nivel {n})",
+  "ja": "Master({n}級)",
+  "zh": "Master（{n}級）"
  },
  "Packages · 급수 패키지": {
-  "en": "Packages · Level Packages"
+  "en": "Packages · Level Packages",
+  "es": "Packages · Paquetes por nivel",
+  "ja": "Packages · 級別パッケージ",
+  "zh": "Packages · 級別方案"
  },
  "Professional ({n}급)": {
-  "en": "Professional (Level {n})"
+  "en": "Professional (Level {n})",
+  "es": "Professional (Nivel {n})",
+  "ja": "Professional({n}級)",
+  "zh": "Professional（{n}級）"
  },
  "[BIBLY 아카데미] 새 인증 과정 등록 신청": {
-  "en": "[BIBLY Academy] New certificate program application"
+  "en": "[BIBLY Academy] New certificate program application",
+  "es": "[BIBLY Academy] Solicitud de inscripción a un nuevo programa de certificación",
+  "ja": "[BIBLY アカデミー] 新規認定課程の受講申込",
+  "zh": "[BIBLY 學院] 新認證課程報名申請"
  },
  "[동의] 수강료 미디어 선교 후원 사용·기부금 영수증 미발행 확인": {
-  "en": "[Agreement] Tuition used to support the media mission · No donation receipt issued"
+  "en": "[Agreement] Tuition used to support the media mission · No donation receipt issued",
+  "es": "[Acuerdo] La matrícula se destina a apoyar la misión en medios · No se emite recibo de donación",
+  "ja": "[同意] 受講料のメディア宣教支援への使用・寄付金領収書の不発行の確認",
+  "zh": "[同意] 確認學費用於媒體宣教奉獻・不開立奉獻收據"
  },
  "{n}:{n} 질의응답 · 분별 사례 첨삭": {
-  "en": "{n}:{n} Q&A · feedback on discernment cases"
+  "en": "{n}:{n} Q&A · feedback on discernment cases",
+  "es": "Preguntas {n}:{n} · Corrección de casos de discernimiento",
+  "ja": "{n}対{n}の質疑応答 · 見分けの事例を添削",
+  "zh": "{n}:{n} 問答 · 分辨案例批改"
  },
  "{n}:{n} 질의응답 · 우선 답변권": {
-  "en": "{n}:{n} Q&A · priority answers"
+  "en": "{n}:{n} Q&A · priority answers",
+  "es": "Preguntas {n}:{n} · Respuesta prioritaria",
+  "ja": "{n}対{n}の質疑応答 · 優先回答",
+  "zh": "{n}:{n} 問答 · 優先回覆"
  },
  "{n}급": {
-  "en": "Level {n}"
+  "en": "Level {n}",
+  "es": "Nivel {n}",
+  "ja": "{n}級",
+  "zh": "{n}級"
  },
  "{n}급 + {n}급 과목 전체 포함": {
-  "en": "Level {n} + all Level {n} courses included"
+  "en": "Level {n} + all Level {n} courses included",
+  "es": "Nivel {n} + todas las materias del Nivel {n}",
+  "ja": "{n}級 + {n}級の全科目を含む",
+  "zh": "{n}級 + 包含全部{n}級科目"
  },
  "{n}급 + 전 과목 전체 포함 (최고 등급)": {
-  "en": "Level {n} + every course included (highest level)"
+  "en": "Level {n} + every course included (highest level)",
+  "es": "Nivel {n} + todas las materias (nivel más alto)",
+  "ja": "{n}級 + 全科目を含む(最上級)",
+  "zh": "{n}級 + 包含全部科目（最高級別）"
  },
  "{n}급 + 하위 과목 전체 포함": {
-  "en": "Level {n} + all lower-level courses included"
+  "en": "Level {n} + all lower-level courses included",
+  "es": "Nivel {n} + todas las materias de los niveles inferiores",
+  "ja": "{n}級 + 下位の全科目を含む",
+  "zh": "{n}級 + 包含全部下級科目"
  },
  "{n}급 Associate": {
-  "en": "Level {n} Associate"
+  "en": "Level {n} Associate",
+  "es": "Nivel {n} Associate",
+  "ja": "{n}級 Associate",
+  "zh": "{n}級 Associate"
  },
  "{n}급 Expert": {
-  "en": "Level {n} Expert"
+  "en": "Level {n} Expert",
+  "es": "Nivel {n} Expert",
+  "ja": "{n}級 Expert",
+  "zh": "{n}級 Expert"
  },
  "{n}급 Laureate": {
-  "en": "Level {n} Laureate"
+  "en": "Level {n} Laureate",
+  "es": "Nivel {n} Laureate",
+  "ja": "{n}級 Laureate",
+  "zh": "{n}級 Laureate"
  },
  "{n}급 Master": {
-  "en": "Level {n} Master"
+  "en": "Level {n} Master",
+  "es": "Nivel {n} Master",
+  "ja": "{n}級 Master",
+  "zh": "{n}級 Master"
  },
  "{n}급 Professional": {
-  "en": "Level {n} Professional"
+  "en": "Level {n} Professional",
+  "es": "Nivel {n} Professional",
+  "ja": "{n}級 Professional",
+  "zh": "{n}級 Professional"
  },
  "{n}급 과목 전체 수료 과정": {
-  "en": "Completion of all Level {n} courses"
+  "en": "Completion of all Level {n} courses",
+  "es": "Programa completo de las materias del Nivel {n}",
+  "ja": "{n}級 全科目修了課程",
+  "zh": "修畢全部{n}級科目"
  },
  "— 앞으로도 <b class=\"text-neutral-600\">계속 무료</b>입니다": {
-  "en": "— and it will <b class=\"text-neutral-600\">stay free</b>"
+  "en": "— and it will <b class=\"text-neutral-600\">stay free</b>",
+  "es": "— y <b class=\"text-neutral-600\">seguirán siendo gratis</b>",
+  "ja": "― これからも<b class=\"text-neutral-600\">ずっと無料</b>です",
+  "zh": "── 今後也<b class=\"text-neutral-600\">持續免費</b>"
  },
  "“성경을 펴도, 무엇을 어떻게 읽어야 할지 막막해요.”": {
-  "en": "“Even when I open the Bible, I have no idea what to read or how.”"
+  "en": "“Even when I open the Bible, I have no idea what to read or how.”",
+  "es": "«Aunque abro la Biblia, no sé qué leer ni cómo.»",
+  "ja": "「聖書を開いても、何をどう読めばよいのか途方に暮れてしまいます。」",
+  "zh": "「就算打開聖經，也不知道該讀什麼、怎麼讀。」"
  },
  "“어디까지가 진리이고 어디부터가 사람의 말인지 분별이 안 돼요.”": {
-  "en": "“I can't tell where the truth ends and human opinion begins.”"
+  "en": "“I can't tell where the truth ends and human opinion begins.”",
+  "es": "«No logro distinguir dónde termina la verdad y dónde empieza la opinión humana.»",
+  "ja": "「どこまでが真理で、どこからが人の言葉なのか見分けがつきません。」",
+  "zh": "「我分辨不出哪裡是真理，哪裡開始是人的話。」"
  },
  "“이제 성경을 스스로 펴서 읽고,<br>무엇이 진리인지 <span class=\"text-gold\">분별하는 사람</span>”이 됩니다.": {
-  "en": "You will become someone who “can now open and read the Bible on your own<br>and <span class=\"text-gold\">discern</span> what is true.”"
+  "en": "You will become someone who “can now open and read the Bible on your own<br>and <span class=\"text-gold\">discern</span> what is true.”",
+  "es": "Será alguien que «ahora abre y lee la Biblia por sí mismo<br>y <span class=\"text-gold\">discierne</span> qué es la verdad».",
+  "ja": "「もう聖書を自分で開いて読み、<br>何が真理かを<span class=\"text-gold\">見分けられる人</span>」になります。",
+  "zh": "您將成為「從此能自己打開聖經閱讀，<br>並<span class=\"text-gold\">分辨</span>什麼是真理的人」。"
  },
  "“좋은 강의를 찾아 듣기 시작했지만, 혼자라 중간에 멈췄어요.”": {
-  "en": "“I started listening to good lectures, but on my own I stopped halfway.”"
+  "en": "“I started listening to good lectures, but on my own I stopped halfway.”",
+  "es": "«Empecé a escuchar buenas clases, pero como estaba solo, me detuve a mitad de camino.»",
+  "ja": "「良い講義を探して聞き始めたものの、ひとりだったので途中で止まってしまいました。」",
+  "zh": "「我開始找好課程來聽，但一個人學，半途就停了。」"
  },
  "각 급수를 통과하면": {
-  "en": "When you pass each level"
+  "en": "When you pass each level",
+  "es": "Al aprobar cada nivel",
+  "ja": "各級に合格すると",
+  "zh": "通過各個級別後"
  },
  "각 급수를 통과하면 <b class=\"text-neutral-900/75\">나만의 등급 휘장</b>을 얻어 내 학습방·프로필에서 빛납니다 · <span class=\"text-neutral-900/45\">상위 급수는 하위 과목을 모두 포함합니다.</span>": {
-  "en": "When you pass each level, you earn <b class=\"text-neutral-900/75\">your own level badge</b>, which shines in your classroom and profile · <span class=\"text-neutral-900/45\">Higher levels include all lower-level courses.</span>"
+  "en": "When you pass each level, you earn <b class=\"text-neutral-900/75\">your own level badge</b>, which shines in your classroom and profile · <span class=\"text-neutral-900/45\">Higher levels include all lower-level courses.</span>",
+  "es": "Al aprobar cada nivel obtendrá <b class=\"text-neutral-900/75\">su propia insignia de nivel</b>, que brillará en su aula y en su perfil · <span class=\"text-neutral-900/45\">Los niveles superiores incluyen todas las materias de los inferiores.</span>",
+  "ja": "各級に合格すると<b class=\"text-neutral-900/75\">自分だけの級の記章</b>が与えられ、マイ教室・プロフィールで輝きます · <span class=\"text-neutral-900/45\">上位の級は下位の科目をすべて含みます。</span>",
+  "zh": "通過各個級別，就能獲得<b class=\"text-neutral-900/75\">專屬自己的級別徽章</b>，在我的學習室與個人檔案中閃耀 · <span class=\"text-neutral-900/45\">上級包含全部下級科目。</span>"
  },
  "강사 1:1 질의응답": {
-  "en": "1:1 Q&A with the teacher"
+  "en": "1:1 Q&A with the teacher",
+  "es": "Preguntas 1:1 con el maestro",
+  "ja": "講師との1対1の質疑応答",
+  "zh": "講師一對一問答"
  },
  "강사 1:1 질의응답 — 막힌 질문에 직접 답변": {
-  "en": "1:1 Q&A with the teacher — direct answers when you are stuck"
+  "en": "1:1 Q&A with the teacher — direct answers when you are stuck",
+  "es": "Preguntas 1:1 con el maestro: respuestas directas cuando se atasque",
+  "ja": "講師との1対1の質疑応答 ― 行き詰まった質問に直接回答",
+  "zh": "講師一對一問答 ── 卡關的問題直接回答"
  },
  "강사 {n}:{n} 질의응답권": {
-  "en": "{n}:{n} Q&A with the teacher"
+  "en": "{n}:{n} Q&A with the teacher",
+  "es": "Preguntas {n}:{n} con el maestro",
+  "ja": "講師との{n}対{n}の質疑応答権",
+  "zh": "講師 {n}:{n} 問答權"
  },
  "강의 시청": {
-  "en": "Watch lectures"
+  "en": "Watch lectures",
+  "es": "Ver clases",
+  "ja": "講義の視聴",
+  "zh": "觀看課程"
  },
  "강의별 시험·요약노트 PDF": {
-  "en": "Exams and summary-note PDFs for each lecture"
+  "en": "Exams and summary-note PDFs for each lecture",
+  "es": "Exámenes y notas de resumen en PDF de cada clase",
+  "ja": "講義ごとの試験・要約ノートPDF",
+  "zh": "每堂課的考試・摘要筆記 PDF"
  },
  "같은 길을 걷는 동료들과 나눔 게시판에서 함께 완주.": {
-  "en": "Finish together with fellow students on the same path, on the sharing board."
+  "en": "Finish together with fellow students on the same path, on the sharing board.",
+  "es": "Llegue a la meta junto con compañeros del mismo camino, en el tablero para compartir.",
+  "ja": "同じ道を歩む仲間たちと、分かち合い掲示板で共に最後まで。",
+  "zh": "在分享版上與走同一條路的同伴一起完成。"
  },
  "개 과목 · 12개월 수강": {
-  "en": "courses · 12 months of access"
+  "en": "courses · 12 months of access",
+  "es": "materias · 12 meses de acceso",
+  "ja": "科目 · 12か月受講",
+  "zh": "個科目 · 12個月觀看"
  },
  "결제 모듈을 불러오지 못했어요. 새로고침 후 다시 시도해 주세요.": {
-  "en": "We couldn't load the payment module. Please refresh and try again."
+  "en": "We couldn't load the payment module. Please refresh and try again.",
+  "es": "No pudimos cargar el módulo de pago. Actualice la página e inténtelo de nuevo.",
+  "ja": "決済モジュールを読み込めませんでした。ページを再読み込みして、もう一度お試しください。",
+  "zh": "無法載入付款模組。請重新整理後再試一次。"
  },
  "결제 서버 응답 오류 (": {
-  "en": "Payment server error ("
+  "en": "Payment server error (",
+  "es": "Error del servidor de pagos (",
+  "ja": "決済サーバーの応答エラー (",
+  "zh": "付款伺服器回應錯誤（"
  },
  "결제 서버(함수)가 아직 배포되지 않았어요. 잠시 후 다시 시도해 주세요.": {
-  "en": "The payment server (function) has not been deployed yet. Please try again shortly."
+  "en": "The payment server (function) has not been deployed yet. Please try again shortly.",
+  "es": "El servidor de pagos (función) aún no está activo. Inténtelo de nuevo en un momento.",
+  "ja": "決済サーバー(関数)がまだ公開されていません。しばらくしてからもう一度お試しください。",
+  "zh": "付款伺服器（函式）尚未部署。請稍後再試。"
  },
  "결제 진행 중 문제가 발생했어요.": {
-  "en": "A problem occurred during payment."
+  "en": "A problem occurred during payment.",
+  "es": "Ocurrió un problema durante el pago.",
+  "ja": "決済の途中で問題が発生しました。",
+  "zh": "付款過程中發生問題。"
  },
  "결제창 여는 중…": {
-  "en": "Opening the payment window…"
+  "en": "Opening the payment window…",
+  "es": "Abriendo la ventana de pago…",
+  "ja": "決済画面を開いています…",
+  "zh": "正在開啟付款視窗…"
  },
  "결제하고 바로 수강": {
-  "en": "Pay and start now"
+  "en": "Pay and start now",
+  "es": "Pagar y empezar ya",
+  "ja": "決済してすぐ受講",
+  "zh": "付款後立即上課"
  },
  "계좌이체로 신청": {
-  "en": "Apply by bank transfer"
+  "en": "Apply by bank transfer",
+  "es": "Inscribirse por transferencia",
+  "ja": "銀行振込で申し込む",
+  "zh": "以轉帳申請"
  },
  "계좌이체로 신청 ·": {
-  "en": "Apply by bank transfer ·"
+  "en": "Apply by bank transfer ·",
+  "es": "Inscribirse por transferencia ·",
+  "ja": "銀行振込で申し込む ·",
+  "zh": "以轉帳申請 ·"
  },
  "과목 수료증·학점": {
-  "en": "Course certificates & credits"
+  "en": "Course certificates & credits",
+  "es": "Certificados y créditos por materia",
+  "ja": "科目修了証・単位",
+  "zh": "科目結業證書・學分"
  },
  "과목을 완주하면 급수 수료증과 휘장 획득": {
-  "en": "Complete the courses to earn a level certificate and badge"
+  "en": "Complete the courses to earn a level certificate and badge",
+  "es": "Termine las materias y obtenga el certificado y la insignia de nivel",
+  "ja": "科目を修了すると、級の修了証と記章を獲得",
+  "zh": "完成科目即可獲得級別結業證書與徽章"
  },
  "궁금한 걸 강사에게 직접 묻고 싶은 분": {
-  "en": "Those who want to ask the teacher directly"
+  "en": "Those who want to ask the teacher directly",
+  "es": "Quienes quieren preguntar directamente al maestro",
+  "ja": "気になることを講師に直接聞きたい方",
+  "zh": "想直接向講師提問的人"
  },
  "그래서, 완주하면": {
-  "en": "So, when you finish"
+  "en": "So, when you finish",
+  "es": "Así, al llegar a la meta",
+  "ja": "だから、最後までやり遂げると",
+  "zh": "所以，完成之後"
  },
  "급수 수료증·학점": {
-  "en": "Level certificate & credits"
+  "en": "Level certificate & credits",
+  "es": "Certificado de nivel y créditos",
+  "ja": "級の修了証・単位",
+  "zh": "級別結業證書・學分"
  },
  "급수 수료증·휘장": {
-  "en": "Level certificate & badge"
+  "en": "Level certificate & badge",
+  "es": "Certificado e insignia de nivel",
+  "ja": "級の修了証・記章",
+  "zh": "級別結業證書・徽章"
  },
  "급수를 고르면 포함 과목과 강의 목록을 신청 전에 모두 보실 수 있어요.": {
-  "en": "Choose a level to see all of its courses and lectures before you apply."
+  "en": "Choose a level to see all of its courses and lectures before you apply.",
+  "es": "Elija un nivel para ver todas sus materias y clases antes de inscribirse.",
+  "ja": "級を選ぶと、含まれる科目と講義一覧をお申し込みの前にすべてご覧いただけます。",
+  "zh": "選擇級別後，申請前就能看到所含的全部科目與課程清單。"
  },
  "끝까지 완주한 분께 수료증과 고유 휘장을 드립니다.": {
-  "en": "Everyone who finishes receives a certificate and a unique badge."
+  "en": "Everyone who finishes receives a certificate and a unique badge.",
+  "es": "Quien llega hasta el final recibe un certificado y una insignia propia.",
+  "ja": "最後までやり遂げた方には、修了証と固有の記章を差し上げます。",
+  "zh": "堅持到最後的人，將獲頒結業證書與專屬徽章。"
  },
  "내 급수에는 어떤 과목이 들어 있나요?": {
-  "en": "Which courses are in my level?"
+  "en": "Which courses are in my level?",
+  "es": "¿Qué materias incluye mi nivel?",
+  "ja": "自分の級にはどんな科目が含まれていますか？",
+  "zh": "我的級別包含哪些科目？"
  },
  "내게 맞는 급수 찾기": {
-  "en": "Find the right level for me"
+  "en": "Find the right level for me",
+  "es": "Encuentre su nivel",
+  "ja": "自分に合う級を探す",
+  "zh": "找到適合我的級別"
  },
  "네. 기초 트랙부터 차근차근 함께 갑니다. 오히려 ‘혼자서는 어려웠던 분’께 더 맞는 과정이에요.": {
-  "en": "Yes. We go step by step, starting from the Foundations track. In fact, this program suits those who found it hard on their own even better."
+  "en": "Yes. We go step by step, starting from the Foundations track. In fact, this program suits those who found it hard on their own even better.",
+  "es": "Sí. Avanzamos paso a paso desde el área de Fundamentos. De hecho, este programa es aún más adecuado para quienes encontraron difícil estudiar solos.",
+  "ja": "はい。基礎トラックから一歩ずつ一緒に進みます。むしろ「ひとりでは難しかった方」にこそ合う課程です。",
+  "zh": "可以。我們會從基礎路線開始一步步同行。這個課程反而更適合「一個人學很吃力的人」。"
  },
  "누구나 무료로, 자유롭게 시청": {
-  "en": "Free and open for anyone to watch"
+  "en": "Free and open for anyone to watch",
+  "es": "Gratis y libre para todos",
+  "ja": "誰でも無料で、自由に視聴",
+  "zh": "任何人都能免費自由觀看"
  },
  "눈으로만 보지 않고, 손으로 정리하며 내 것으로.": {
-  "en": "Don't just watch — write it down and make it your own."
+  "en": "Don't just watch — write it down and make it your own.",
+  "es": "No solo mire: tome notas y hágalo suyo.",
+  "ja": "目で見るだけでなく、手で整理して自分のものに。",
+  "zh": "不只用眼睛看，而是動手整理，化為自己的。"
  },
  "드려요.": {
-  "en": "for you."
+  "en": "for you.",
+  "es": "para usted.",
+  "ja": "いたします。",
+  "zh": "為您開通。"
  },
  "등록 신청을 준비 중이에요. 잠시 후 다시 시도하시거나": {
-  "en": "Applications are being prepared. Please try again shortly, or"
+  "en": "Applications are being prepared. Please try again shortly, or",
+  "es": "Estamos preparando las inscripciones. Inténtelo de nuevo en un momento, o",
+  "ja": "受講申込の準備中です。しばらくしてからもう一度お試しいただくか、",
+  "zh": "報名申請正在準備中。請稍後再試，或"
  },
  "등록 신청이 접수됐어요!": {
-  "en": "Your application has been received!"
+  "en": "Your application has been received!",
+  "es": "¡Recibimos su solicitud de inscripción!",
+  "ja": "受講申込を受け付けました！",
+  "zh": "已收到您的報名申請！"
  },
  "등록(입금 확인)일로부터 <b class=\"text-neutral-900/70\">12개월(1년)</b> 동안 시험 응시·1:1 질의응답·수료증 발급·교재(3급 이상) 등 유료 혜택을 이용하실 수 있어요. <b class=\"text-neutral-900/70\">무료 강의 영상·요약노트는 기간과 무관하게</b> 계속 보실 수 있고, 기간이 끝나면 재등록(연장) 시 할인해 드립니다. 자세한 규정은 <a href=\"terms.html\" class=\"text-gold underline\">이용약관</a>을 확인해 주세요.": {
-  "en": "For <b class=\"text-neutral-900/70\">12 months (1 year)</b> from your enrollment (payment confirmation) date, you can use the paid benefits — exams, 1:1 Q&A, certificates, and textbooks (Level 3 and up). <b class=\"text-neutral-900/70\">Free lecture videos and summary notes remain available regardless of the period</b>, and when your period ends you get a discount on re-enrollment (renewal). For details, please see the <a href=\"terms.html\" class=\"text-gold underline\">Terms of Use</a>."
+  "en": "For <b class=\"text-neutral-900/70\">12 months (1 year)</b> from your enrollment (payment confirmation) date, you can use the paid benefits — exams, 1:1 Q&A, certificates, and textbooks (Level 3 and up). <b class=\"text-neutral-900/70\">Free lecture videos and summary notes remain available regardless of the period</b>, and when your period ends you get a discount on re-enrollment (renewal). For details, please see the <a href=\"terms.html\" class=\"text-gold underline\">Terms of Use</a>.",
+  "es": "Durante <b class=\"text-neutral-900/70\">12 meses (1 año)</b> desde la fecha de inscripción (confirmación del pago), podrá usar los beneficios de pago: exámenes, preguntas 1:1, emisión de certificados y libros de texto (Nivel 3 en adelante). <b class=\"text-neutral-900/70\">Los videos de las clases gratuitas y las notas de resumen</b> seguirán disponibles sin importar el período, y al terminar este le ofrecemos un descuento si se vuelve a inscribir (renovación). Para más detalles, consulte los <a href=\"terms.html\" class=\"text-gold underline\">Términos de uso</a>.",
+  "ja": "登録(入金確認)日から<b class=\"text-neutral-900/70\">12か月(1年)</b>の間、試験の受験・1対1の質疑応答・修了証の発行・教材(3級以上)などの有料特典をご利用いただけます。<b class=\"text-neutral-900/70\">無料の講義動画・要約ノートは期間に関係なく</b>引き続きご覧いただけ、期間終了後に再登録(延長)される場合は割引いたします。詳しい規定は<a href=\"terms.html\" class=\"text-gold underline\">利用規約</a>をご確認ください。",
+  "zh": "自報名（確認入帳）日起 <b class=\"text-neutral-900/70\">12個月（1年）</b>內，可使用考試、一對一問答、結業證書核發、教材（3級以上）等付費權益。<b class=\"text-neutral-900/70\">免費課程影片與摘要筆記不受期間限制</b>，可持續觀看；期間結束後重新報名（延長）可享折扣。詳細規定請參閱<a href=\"terms.html\" class=\"text-gold underline\">使用條款</a>。"
  },
  "마감까지": {
-  "en": "Until the deadline:"
+  "en": "Until the deadline:",
+  "es": "Cierra en:",
+  "ja": "締切まで",
+  "zh": "距離截止還有"
  },
  "막히는 질문을 강사에게 직접 묻고 답을 듣습니다.": {
-  "en": "Ask the teacher directly when you are stuck, and get answers."
+  "en": "Ask the teacher directly when you are stuck, and get answers.",
+  "es": "Cuando se atasque, pregunte directamente al maestro y reciba respuesta.",
+  "ja": "行き詰まった質問を講師に直接尋ね、答えを聞けます。",
+  "zh": "卡關的問題直接問講師，得到解答。"
  },
  "무료 강의는 계속 무료": {
-  "en": "Free lectures stay free"
+  "en": "Free lectures stay free",
+  "es": "Las clases gratuitas siguen siendo gratis",
+  "ja": "無料講義はずっと無料",
+  "zh": "免費課程持續免費"
  },
  "무료 강의는 그대로, 그 위에 ‘완주’를 더합니다": {
-  "en": "Free lectures stay as they are — we add the ‘finish line’ on top"
+  "en": "Free lectures stay as they are — we add the ‘finish line’ on top",
+  "es": "Las clases gratuitas siguen igual; a ellas sumamos la «meta»",
+  "ja": "無料講義はそのままに、その上に「完走」を加えます",
+  "zh": "免費課程維持不變，再加上「完成」"
  },
  "무료 강의는 앞으로도 그대로 자유롭게 보실 수 있어요. 정규 과정은 거기에 ‘정해진 순서·1:1 질의응답·동료·과제·수료증’을 더해 끝까지 완주하도록 돕는 가이드 과정입니다.": {
-  "en": "You can keep watching the free lectures freely, as always. The program adds a set order, 1:1 Q&A, fellow students, assignments and a certificate — a guided path that helps you finish."
+  "en": "You can keep watching the free lectures freely, as always. The program adds a set order, 1:1 Q&A, fellow students, assignments and a certificate — a guided path that helps you finish.",
+  "es": "Podrá seguir viendo libremente las clases gratuitas, como siempre. El programa les suma un orden establecido, preguntas 1:1, compañeros, tareas y certificado: un camino guiado que le ayuda a llegar hasta el final.",
+  "ja": "無料講義はこれからも変わらず自由にご覧いただけます。正規課程はそこに「決まった順序・1対1の質疑応答・仲間・課題・修了証」を加え、最後までやり遂げられるよう支えるガイド付きの課程です。",
+  "zh": "免費課程今後也能照樣自由觀看。正規課程是在此之上，加上「固定順序・一對一問答・同伴・作業・結業證書」，幫助您走到最後的引導課程。"
  },
  "무료 강의와 뭐가 다른가요?": {
-  "en": "How is this different from the free lectures?"
+  "en": "How is this different from the free lectures?",
+  "es": "¿En qué se diferencia de las clases gratuitas?",
+  "ja": "無料講義と何が違うのですか？",
+  "zh": "和免費課程有什麼不同？"
  },
  "미국 성경학 석사 · 유튜브 「오광일의 인사이트 브리핑」 대표강사. 두려움이나 음모론이 아닌 <b class=\"text-neutral-800\">본문과 검증된 신학</b>으로, 평신도가 스스로 성경을 분별하도록 가르칩니다.": {
-  "en": "Master of Bible Studies (USA) · Lead Teacher of the YouTube channel “Oh Kwang-il's Insight Briefing.” Not with fear or conspiracy theories, but with <b class=\"text-neutral-800\">the text and sound, tested theology</b>, he teaches lay believers to discern the Bible for themselves."
+  "en": "Master of Bible Studies (USA) · Lead Teacher of the YouTube channel “Oh Kwang-il's Insight Briefing.” Not with fear or conspiracy theories, but with <b class=\"text-neutral-800\">the text and sound, tested theology</b>, he teaches lay believers to discern the Bible for themselves.",
+  "es": "Maestría en Estudios Bíblicos (EE. UU.) · Maestro principal del canal de YouTube «Insight Briefing de Oh Kwang-il». No con miedo ni teorías conspirativas, sino con <b class=\"text-neutral-800\">el texto bíblico y una teología probada</b>, enseña a los laicos a discernir la Biblia por sí mismos.",
+  "ja": "米国 聖書学修士 · YouTube「オ・グァンイルのインサイト・ブリーフィング」代表講師。恐れや陰謀論ではなく<b class=\"text-neutral-800\">本文と検証された神学</b>によって、信徒が自ら聖書を見分けられるよう教えています。",
+  "zh": "美國聖經研究碩士 · YouTube「Oh Kwang-il 洞見簡報」主講師。不靠恐懼或陰謀論，而是以<b class=\"text-neutral-800\">經文與經過驗證的神學</b>，教導平信徒自己分辨聖經。"
  },
  "바이블 인사이트 급수제": {
-  "en": "Bible Insight Level System"
+  "en": "Bible Insight Level System",
+  "es": "Sistema de niveles de Bible Insight",
+  "ja": "バイブル・インサイト級制度",
+  "zh": "聖經洞見級別制度"
  },
  "본 인증 과정의 수강료는 <b class=\"text-neutral-900\">전액 「오광일의 인사이트 브리핑」 미디어 선교 사역의 후원금으로 사용</b>됩니다. 수강료는 강의·인증 과정 이용에 대한 것이자 사역을 함께 세우는 후원의 성격을 가지며, <b class=\"text-neutral-900\">기부금(세액공제) 영수증은 발행되지 않는 점</b> 너른 양해를 부탁드립니다.": {
-  "en": "All tuition for this certificate program is <b class=\"text-neutral-900\">used entirely as support for the media mission ministry of “Oh Kwang-il's Insight Briefing.”</b> Tuition is both a fee for using the lectures and certificate program and a gift that helps build the ministry; we kindly ask for your understanding that <b class=\"text-neutral-900\">no donation (tax-deduction) receipt is issued</b>."
+  "en": "All tuition for this certificate program is <b class=\"text-neutral-900\">used entirely as support for the media mission ministry of “Oh Kwang-il's Insight Briefing.”</b> Tuition is both a fee for using the lectures and certificate program and a gift that helps build the ministry; we kindly ask for your understanding that <b class=\"text-neutral-900\">no donation (tax-deduction) receipt is issued</b>.",
+  "es": "La matrícula de este programa de certificación <b class=\"text-neutral-900\">se destina íntegramente al apoyo del ministerio de misión en medios de «Insight Briefing de Oh Kwang-il»</b>. La matrícula corresponde al uso de las clases y del programa de certificación, y a la vez es un apoyo para edificar juntos el ministerio; le pedimos su comprensión, ya que <b class=\"text-neutral-900\">no se emiten recibos de donación (deducibles de impuestos)</b>.",
+  "ja": "本認定課程の受講料は<b class=\"text-neutral-900\">全額「オ・グァンイルのインサイト・ブリーフィング」のメディア宣教の働きへの支援金として使われます</b>。受講料は講義・認定課程の利用に対するものであると同時に、働きを共に支える支援の性格を持つため、<b class=\"text-neutral-900\">寄付金(税額控除)の領収書は発行されないこと</b>をあらかじめご了承ください。",
+  "zh": "本認證課程的學費<b class=\"text-neutral-900\">全數用作「Oh Kwang-il 洞見簡報」媒體宣教事工的奉獻</b>。學費既是使用課程與認證課程的費用，也帶有一同建立事工的奉獻性質；<b class=\"text-neutral-900\">我們無法開立奉獻（抵稅）收據</b>，敬請見諒。"
  },
  "본문을 깊이 강해하고, 핵심 교리로 골격을 세우는 단계": {
-  "en": "The stage where you study texts in depth and build a framework of core doctrine"
+  "en": "The stage where you study texts in depth and build a framework of core doctrine",
+  "es": "La etapa en que estudia los textos a fondo y forma una estructura con las doctrinas centrales",
+  "ja": "本文を深く講解し、中心教理で骨組みを立てる段階",
+  "zh": "深入講解經文，以核心教義建立骨架的階段"
  },
  "새 과목": {
-  "en": "New course"
+  "en": "New course",
+  "es": "Nueva materia",
+  "ja": "新しい科目",
+  "zh": "新科目"
  },
  "성경 인증과정·수료증 5급→1급 · 바이블 인사이트 아카데미": {
-  "en": "Bible Certificate Program · Level 5 → Level 1 · Bible Insight Academy"
+  "en": "Bible Certificate Program · Level 5 → Level 1 · Bible Insight Academy",
+  "es": "Programa de certificación bíblica · Del Nivel 5 al Nivel 1 · Bible Insight Academy",
+  "ja": "聖書認定課程・修了証 5級→1級 · バイブル・インサイト・アカデミー",
+  "zh": "聖經認證課程・結業證書 5級→1級 · 聖經洞見學院"
  },
  "성경을 스스로 읽고, 삶의 자리에서 살아내는 단계": {
-  "en": "The stage where you read the Bible on your own and live it out where you are"
+  "en": "The stage where you read the Bible on your own and live it out where you are",
+  "es": "La etapa en que lee la Biblia por sí mismo y la vive allí donde está",
+  "ja": "聖書を自ら読み、生活の場で生きる段階",
+  "zh": "自己讀聖經，並在生活中活出來的階段"
  },
  "성경을, 이제<br><span class=\"text-gold\">스스로 읽는 힘</span>으로": {
-  "en": "The Bible —<br>now with <span class=\"text-gold\">the strength to read it yourself</span>"
+  "en": "The Bible —<br>now with <span class=\"text-gold\">the strength to read it yourself</span>",
+  "es": "La Biblia,<br>ahora con <span class=\"text-gold\">la fuerza para leerla por sí mismo</span>",
+  "ja": "聖書を、これからは<br><span class=\"text-gold\">自ら読む力</span>で",
+  "zh": "聖經，從此<br>以<span class=\"text-gold\">自己讀懂的能力</span>來讀"
  },
  "세계관으로 무장해, 이단과 시대의 거짓을 가려내는 단계": {
-  "en": "The stage where, armed with a worldview, you sift out heresy and the lies of our age"
+  "en": "The stage where, armed with a worldview, you sift out heresy and the lies of our age",
+  "es": "La etapa en que, armado con una cosmovisión, separa la herejía y las mentiras de nuestro tiempo",
+  "ja": "世界観で武装し、異端と時代の偽りを見極める段階",
+  "zh": "以世界觀裝備自己，辨明異端與時代謊言的階段"
  },
  "수강권을 바로 열어 드려요. 안내 메일도 함께 보내드립니다.": {
-  "en": "We'll open your course pass right away and send you a confirmation email too."
+  "en": "We'll open your course pass right away and send you a confirmation email too.",
+  "es": "Activaremos su pase del curso de inmediato y también le enviaremos un correo de confirmación.",
+  "ja": "受講権をすぐに有効にいたします。ご案内のメールもあわせてお送りします。",
+  "zh": "我們會立即為您開通課程使用權，並寄送說明郵件。"
  },
  "수강기간은 얼마나 되나요?": {
-  "en": "How long is the course period?"
+  "en": "How long is the course period?",
+  "es": "¿Cuánto dura el período del curso?",
+  "ja": "受講期間はどのくらいですか？",
+  "zh": "觀看期間有多長？"
  },
  "수강료 사용·기부금 영수증 안내에 동의해 주세요.": {
-  "en": "Please agree to the notice on how tuition is used and on donation receipts."
+  "en": "Please agree to the notice on how tuition is used and on donation receipts.",
+  "es": "Acepte el aviso sobre el uso de la matrícula y los recibos de donación.",
+  "ja": "受講料の使途・寄付金領収書についてのご案内に同意してください。",
+  "zh": "請同意學費用途與奉獻收據說明。"
  },
  "수강료 사용에 대한 안내": {
-  "en": "How your tuition is used"
+  "en": "How your tuition is used",
+  "es": "Cómo se usa su matrícula",
+  "ja": "受講料の使途についてのご案内",
+  "zh": "學費用途說明"
  },
  "수강료는 위 ‘급수 패키지’에 표시된 금액이에요(상위 등급은 하위 과정을 모두 포함합니다). 결제는 <b class=\"text-neutral-900/70\">신용·체크카드</b> 또는 <b class=\"text-neutral-900/70\">계좌이체</b>(우리은행 1006-301-266177 · 예금주 오광일)로 하실 수 있어요. 카드로 결제하시면 수강권이 즉시 부여되고, 계좌이체는 입금 확인 후 열어 드립니다.": {
-  "en": "Tuition is the amount shown in the ‘Level Packages’ above (higher levels include all lower courses). You can pay by <b class=\"text-neutral-900/70\">credit or debit card</b> or by <b class=\"text-neutral-900/70\">bank transfer</b> (Woori Bank 1006-301-266177 · account holder Oh Kwang-il). If you pay by card, your course pass is granted right away; with a bank transfer, we open it once your payment is confirmed."
+  "en": "Tuition is the amount shown in the ‘Level Packages’ above (higher levels include all lower courses). You can pay by <b class=\"text-neutral-900/70\">credit or debit card</b> or by <b class=\"text-neutral-900/70\">bank transfer</b> (Woori Bank 1006-301-266177 · account holder Oh Kwang-il). If you pay by card, your course pass is granted right away; with a bank transfer, we open it once your payment is confirmed.",
+  "es": "La matrícula es el monto indicado arriba en «Paquetes por nivel» (los niveles superiores incluyen todos los cursos inferiores). Puede pagar con <b class=\"text-neutral-900/70\">tarjeta de crédito o débito</b> o por <b class=\"text-neutral-900/70\">transferencia bancaria</b> (Woori Bank 1006-301-266177 · titular: Oh Kwang-il). Si paga con tarjeta, recibirá su pase del curso al instante; con transferencia, lo activaremos cuando confirmemos el pago.",
+  "ja": "受講料は上の「級別パッケージ」に表示された金額です(上位の級は下位の課程をすべて含みます)。お支払いは<b class=\"text-neutral-900/70\">クレジットカード・デビットカード</b>または<b class=\"text-neutral-900/70\">銀行振込</b>(ウリィ銀行 1006-301-266177 · 口座名義 オ・グァンイル)でお願いします。カードで決済すると受講権がすぐに付与され、銀行振込の場合は入金確認後に有効にいたします。",
+  "zh": "學費為上方「級別方案」中標示的金額（上級包含全部下級課程）。可用<b class=\"text-neutral-900/70\">信用卡・金融卡</b>或<b class=\"text-neutral-900/70\">銀行轉帳</b>（友利銀行 1006-301-266177 · 戶名 Oh Kwang-il）付款。以信用卡付款會立即開通課程使用權，銀行轉帳則在確認入帳後為您開通。"
  },
  "수강료와 결제 방법은?": {
-  "en": "What is the tuition, and how do I pay?"
+  "en": "What is the tuition, and how do I pay?",
+  "es": "¿Cuánto cuesta y cómo se paga?",
+  "ja": "受講料と支払い方法は？",
+  "zh": "學費與付款方式？"
  },
  "수강생": {
-  "en": "Students"
+  "en": "Students",
+  "es": "Alumnos",
+  "ja": "受講生",
+  "zh": "學員"
  },
  "수료증·1:1 질의응답·체계적 커리큘럼으로 끝까지 완주하는 BIBLY 바이블 인사이트 정규 심화 과정. 천년왕국·종말론·성경적 세계관을 체계적으로 학습합니다.": {
-  "en": "The BIBLY Bible Insight In-Depth Program helps you finish with certificates, 1:1 Q&A and a structured curriculum. Study the Millennium, eschatology and a biblical worldview systematically."
+  "en": "The BIBLY Bible Insight In-Depth Program helps you finish with certificates, 1:1 Q&A and a structured curriculum. Study the Millennium, eschatology and a biblical worldview systematically.",
+  "es": "El Programa de profundización de BIBLY Bible Insight le ayuda a llegar hasta el final con certificados, preguntas 1:1 y un plan de estudios estructurado. Estudie el Milenio, la escatología y la cosmovisión bíblica de forma sistemática.",
+  "ja": "修了証・1対1の質疑応答・体系的なカリキュラムで最後までやり遂げる、BIBLY バイブル・インサイト正規深化課程。千年王国・終末論・聖書的世界観を体系的に学びます。",
+  "zh": "以結業證書・一對一問答・系統化課程幫助您走到最後的 BIBLY 聖經洞見正規進深課程。有系統地學習千禧年國度、末世論與合乎聖經的世界觀。"
  },
  "수료증·1:1 질의응답·체계적 커리큘럼으로 끝까지 함께 완주하는 BIBLY 정규 심화 과정. 지금 등록 신청 받습니다.": {
-  "en": "The BIBLY In-Depth Program helps you finish all the way with certificates, 1:1 Q&A and a structured curriculum. Applications are open now."
+  "en": "The BIBLY In-Depth Program helps you finish all the way with certificates, 1:1 Q&A and a structured curriculum. Applications are open now.",
+  "es": "El Programa de profundización BIBLY le acompaña hasta el final con certificados, preguntas 1:1 y un plan de estudios estructurado. Inscripciones abiertas.",
+  "ja": "修了証・1対1の質疑応答・体系的なカリキュラムで、最後まで共にやり遂げるBIBLY正規深化課程。現在、受講申込を受け付けています。",
+  "zh": "以結業證書・一對一問答・系統化課程陪您一起走到最後的 BIBLY 正規進深課程。現正接受報名。"
  },
  "수료증·급수 휘장": {
-  "en": "Certificate · level badge"
+  "en": "Certificate · level badge",
+  "es": "Certificado · insignia de nivel",
+  "ja": "修了証・級の記章",
+  "zh": "結業證書・級別徽章"
  },
  "순서·속도 자유 (스스로 찾아보기)": {
-  "en": "Any order, any pace (find your own way)"
+  "en": "Any order, any pace (find your own way)",
+  "es": "Orden y ritmo libres (explore por su cuenta)",
+  "ja": "順序・ペースは自由(自分で探す)",
+  "zh": "順序・進度自由（自己摸索）"
  },
  "스스로 성경을 펴기 시작하는, 믿음의 첫 걸음": {
-  "en": "The first step of faith — beginning to open the Bible yourself"
+  "en": "The first step of faith — beginning to open the Bible yourself",
+  "es": "El primer paso de la fe: empezar a abrir la Biblia por sí mismo",
+  "ja": "自ら聖書を開き始める、信仰の第一歩",
+  "zh": "開始自己打開聖經，信仰的第一步"
  },
  "시험·요약노트·수료증·학점으로 분별력을 공인받는 인증 과정이에요. 상위 등급은 하위 과정을 모두 포함합니다.": {
-  "en": "A certificate program that officially recognizes your discernment through exams, summary notes, certificates and credits. Higher levels include all lower-level courses."
+  "en": "A certificate program that officially recognizes your discernment through exams, summary notes, certificates and credits. Higher levels include all lower-level courses.",
+  "es": "Un programa de certificación que acredita oficialmente su discernimiento con exámenes, notas de resumen, certificados y créditos. Los niveles superiores incluyen todos los cursos inferiores.",
+  "ja": "試験・要約ノート・修了証・単位で、見分ける力を公式に認定する課程です。上位の級は下位の課程をすべて含みます。",
+  "zh": "透過考試・摘要筆記・結業證書・學分，正式認可您分辨能力的認證課程。上級包含全部下級課程。"
  },
  "시험으로 실력을 공인받고 학점을 쌓습니다.": {
-  "en": "Prove your knowledge through exams and build up credits."
+  "en": "Prove your knowledge through exams and build up credits.",
+  "es": "Acredite lo que sabe con exámenes y acumule créditos.",
+  "ja": "試験で実力を認定され、単位を積み上げます。",
+  "zh": "透過考試正式認可實力，累積學分。"
  },
  "시험으로 실력을 확인하고, 막힌 질문은 강사가 직접": {
-  "en": "Check your understanding with exams — the teacher answers your questions directly"
+  "en": "Check your understanding with exams — the teacher answers your questions directly",
+  "es": "Compruebe lo aprendido con exámenes; el maestro responde directamente sus dudas",
+  "ja": "試験で実力を確かめ、行き詰まった質問には講師が直接",
+  "zh": "以考試確認實力，卡關的問題由講師親自回答"
  },
  "신앙 단계가 낮아도 괜찮나요?": {
-  "en": "Is it all right if I'm still young in the faith?"
+  "en": "Is it all right if I'm still young in the faith?",
+  "es": "¿Está bien si todavía soy nuevo en la fe?",
+  "ja": "信仰の段階が浅くても大丈夫ですか？",
+  "zh": "信仰還淺也沒關係嗎？"
  },
  "신청 정보는 정규 과정 안내 목적으로만 사용되며, 원치 않으시면 언제든 삭제 요청하실 수 있어요.": {
-  "en": "Your application details are used only to send you information about the program, and you can ask us to delete them at any time."
+  "en": "Your application details are used only to send you information about the program, and you can ask us to delete them at any time.",
+  "es": "Los datos de su solicitud solo se usan para informarle sobre el programa, y puede pedir que se eliminen en cualquier momento.",
+  "ja": "お申し込みの情報は正規課程のご案内の目的にのみ使用し、ご希望があればいつでも削除をご依頼いただけます。",
+  "zh": "申請資料僅用於提供正規課程相關資訊，若不希望保留，可隨時要求刪除。"
  },
  "신청 패키지": {
-  "en": "Selected package"
+  "en": "Selected package",
+  "es": "Paquete elegido",
+  "ja": "申込パッケージ",
+  "zh": "申請方案"
  },
  "신청하신 과정": {
-  "en": "Program applied for"
+  "en": "Program applied for",
+  "es": "Programa solicitado",
+  "ja": "お申し込みの課程",
+  "zh": "您申請的課程"
  },
  "신청할 패키지를 골라주세요 *": {
-  "en": "Choose the package you want to apply for *"
+  "en": "Choose the package you want to apply for *",
+  "es": "Elija el paquete al que desea inscribirse *",
+  "ja": "申し込むパッケージを選んでください *",
+  "zh": "請選擇要申請的方案 *"
  },
  "신청할 패키지를 선택해 주세요.": {
-  "en": "Please choose a package to apply for."
+  "en": "Please choose a package to apply for.",
+  "es": "Elija un paquete para inscribirse.",
+  "ja": "申し込むパッケージを選択してください。",
+  "zh": "請選擇要申請的方案。"
  },
  "심사 진행 중": {
-  "en": "Under review"
+  "en": "Under review",
+  "es": "En revisión",
+  "ja": "審査中",
+  "zh": "審核中"
  },
  "아래 계좌로 입금해 주시면": {
-  "en": "Please transfer to the account below, and"
+  "en": "Please transfer to the account below, and",
+  "es": "Por favor, transfiera a la cuenta de abajo y",
+  "ja": "下記の口座にお振り込みいただければ、",
+  "zh": "匯款至下方帳戶後，"
  },
  "어떻게 배우나요?": {
-  "en": "How do I learn?"
+  "en": "How do I learn?",
+  "es": "¿Cómo se aprende?",
+  "ja": "どのように学びますか？",
+  "zh": "如何學習？"
  },
  "언제 시작하나요?": {
-  "en": "When does it start?"
+  "en": "When does it start?",
+  "es": "¿Cuándo empieza?",
+  "ja": "いつ始まりますか？",
+  "zh": "什麼時候開始？"
  },
  "얼리버드": {
-  "en": "Early bird"
+  "en": "Early bird",
+  "es": "Precio anticipado",
+  "ja": "早期割引",
+  "zh": "早鳥優惠"
  },
  "얼리버드로 등록": {
-  "en": "Enroll at the early-bird price"
+  "en": "Enroll at the early-bird price",
+  "es": "Inscribirse con precio anticipado",
+  "ja": "早期割引で申し込む",
+  "zh": "以早鳥價報名"
  },
  "예언과 종말의 큰 그림으로, 시대를 읽고 깨우는 최고 단계": {
-  "en": "The highest stage — reading and awakening the times through the big picture of prophecy and the end"
+  "en": "The highest stage — reading and awakening the times through the big picture of prophecy and the end",
+  "es": "La etapa más alta: leer y despertar a los tiempos con el gran panorama de la profecía y el fin",
+  "ja": "預言と終末の全体像によって、時代を読み、目覚めさせる最上の段階",
+  "zh": "以預言與末世的全貌，解讀並喚醒時代的最高階段"
  },
  "오광일 대표": {
-  "en": "Oh Kwang-il, Director"
+  "en": "Oh Kwang-il, Director",
+  "es": "Oh Kwang-il, director",
+  "ja": "オ・グァンイル代表",
+  "zh": "Oh Kwang-il 負責人"
  },
  "완주 시 수료증·급수 휘장": {
-  "en": "Certificate and level badge on completion"
+  "en": "Certificate and level badge on completion",
+  "es": "Certificado e insignia de nivel al terminar",
+  "ja": "修了すると修了証・級の記章",
+  "zh": "完成時獲得結業證書・級別徽章"
  },
  "요약노트·과제": {
-  "en": "Summary notes · assignments"
+  "en": "Summary notes · assignments",
+  "es": "Notas de resumen · tareas",
+  "ja": "要約ノート・課題",
+  "zh": "摘要筆記・作業"
  },
  "요약노트·과제로 손에 남기기": {
-  "en": "Keep it in hand with summary notes and assignments"
+  "en": "Keep it in hand with summary notes and assignments",
+  "es": "Fíjelo con notas de resumen y tareas",
+  "ja": "要約ノート・課題で手元に残す",
+  "zh": "用摘要筆記與作業留下學習成果"
  },
  "요약노트·복습": {
-  "en": "Summary notes · review"
+  "en": "Summary notes · review",
+  "es": "Notas de resumen · repaso",
+  "ja": "要約ノート・復習",
+  "zh": "摘要筆記・複習"
  },
  "요약노트로 손에 남기고 내 것으로 정리": {
-  "en": "Keep it in hand with summary notes and make it your own"
+  "en": "Keep it in hand with summary notes and make it your own",
+  "es": "Fíjelo con notas de resumen y hágalo suyo",
+  "ja": "要約ノートで手元に残し、自分のものとして整理",
+  "zh": "用摘要筆記留下成果，整理成自己的"
  },
  "원하는 때 바로 시작": {
-  "en": "Start whenever you like"
+  "en": "Start whenever you like",
+  "es": "Empiece cuando quiera",
+  "ja": "好きな時にすぐ開始",
+  "zh": "隨時都能開始"
  },
  "위 안내(수강료의 <b class=\"text-neutral-900\">미디어 선교 후원 사용</b> · 기부금 영수증 미발행)를 확인하였으며 이에 동의합니다. *": {
-  "en": "I have read the notice above (tuition is <b class=\"text-neutral-900\">used to support the media mission</b> · no donation receipt is issued) and I agree. *"
+  "en": "I have read the notice above (tuition is <b class=\"text-neutral-900\">used to support the media mission</b> · no donation receipt is issued) and I agree. *",
+  "es": "He leído el aviso anterior (la matrícula se <b class=\"text-neutral-900\">destina a apoyar la misión en medios</b> · no se emite recibo de donación) y estoy de acuerdo. *",
+  "ja": "上記のご案内(受講料の<b class=\"text-neutral-900\">メディア宣教支援への使用</b> · 寄付金領収書の不発行)を確認し、同意します。*",
+  "zh": "我已確認並同意上述說明（學費<b class=\"text-neutral-900\">用於媒體宣教奉獻</b> · 不開立奉獻收據）。*"
  },
  "이 과목 강의실 바로 가기": {
-  "en": "Go to this course's classroom"
+  "en": "Go to this course's classroom",
+  "es": "Ir al aula de esta materia",
+  "ja": "この科目の教室へ",
+  "zh": "前往本科目課堂"
  },
  "이 급수를 마치면": {
-  "en": "When you finish this level"
+  "en": "When you finish this level",
+  "es": "Al terminar este nivel",
+  "ja": "この級を終えると",
+  "zh": "完成這個級別後"
  },
  "이 패키지로 신청": {
-  "en": "Apply with this package"
+  "en": "Apply with this package",
+  "es": "Inscribirse con este paquete",
+  "ja": "このパッケージで申し込む",
+  "zh": "以此方案申請"
  },
  "이렇게 완주합니다": {
-  "en": "How you'll finish"
+  "en": "How you'll finish",
+  "es": "Así se llega a la meta",
+  "ja": "こうして最後までやり遂げます",
+  "zh": "這樣走到最後"
  },
  "이름 (또는 닉네임)": {
-  "en": "Name (or nickname)"
+  "en": "Name (or nickname)",
+  "es": "Nombre (o apodo)",
+  "ja": "名前(またはニックネーム)",
+  "zh": "姓名（或暱稱）"
  },
  "이메일 *": {
-  "en": "Email *"
+  "en": "Email *",
+  "es": "Correo electrónico *",
+  "ja": "メールアドレス *",
+  "zh": "電子郵件 *"
  },
  "이용 가능해요 (수강권이 계정에 연결됩니다).": {
-  "en": "is available (the course pass will be linked to your account)."
+  "en": "is available (the course pass will be linked to your account).",
+  "es": "está disponible (el pase del curso se vinculará a su cuenta).",
+  "ja": "にご利用いただけます(受講権がアカウントに紐づけられます)。",
+  "zh": "即可使用（課程使用權將連結到您的帳號）。"
  },
  "인증 과정 등록 신청": {
-  "en": "Apply for the Certificate Program"
+  "en": "Apply for the Certificate Program",
+  "es": "Inscribirse en el Programa de certificación",
+  "ja": "認定課程の受講申込",
+  "zh": "報名認證課程"
  },
  "인증 시험 · 1:1 답변": {
-  "en": "Certificate exams · 1:1 answers"
+  "en": "Certificate exams · 1:1 answers",
+  "es": "Exámenes de certificación · respuestas 1:1",
+  "ja": "認定試験 · 1対1の回答",
+  "zh": "認證考試 · 一對一回答"
  },
  "인증 시험·학점": {
-  "en": "Certificate exams & credits"
+  "en": "Certificate exams & credits",
+  "es": "Exámenes de certificación y créditos",
+  "ja": "認定試験・単位",
+  "zh": "認證考試・學分"
  },
  "입금 확인 후 바로 개설 · 계좌 복사·간편송금 안내": {
-  "en": "Opened right after payment is confirmed · copy the account number or use quick transfer"
+  "en": "Opened right after payment is confirmed · copy the account number or use quick transfer",
+  "es": "Se activa al confirmar el pago · copie la cuenta o use la transferencia rápida",
+  "ja": "入金確認後すぐに開設 · 口座のコピー・かんたん送金のご案内",
+  "zh": "確認入帳後立即開通 · 可複製帳號・快速匯款"
  },
  "입문 추천": {
-  "en": "Recommended for beginners"
+  "en": "Recommended for beginners",
+  "es": "Recomendado para empezar",
+  "ja": "入門におすすめ",
+  "zh": "推薦入門"
  },
  "입문부터 심화까지 정해진 순서로, 길을 잃지 않게.": {
-  "en": "From the basics to in-depth study in a set order, so you never get lost."
+  "en": "From the basics to in-depth study in a set order, so you never get lost.",
+  "es": "De lo básico a lo profundo, en un orden establecido para que no se pierda.",
+  "ja": "入門から深化まで決まった順序で、道に迷わないように。",
+  "zh": "從入門到進深，按既定順序學習，不會迷路。"
  },
  "정규 과정": {
-  "en": "Regular program"
+  "en": "Regular program",
+  "es": "Programa formal",
+  "ja": "正規課程",
+  "zh": "正規課程"
  },
  "정규 과정은 그 변화를 끝까지 책임지는 안내자입니다. 강의·시험·1:1 답변·수료로 이어지는 길을 함께 걷습니다.": {
-  "en": "The program is a guide that sees that change through to the end. We walk with you on the path of lectures, exams, 1:1 answers and completion."
+  "en": "The program is a guide that sees that change through to the end. We walk with you on the path of lectures, exams, 1:1 answers and completion.",
+  "es": "El programa es un guía que acompaña ese cambio hasta el final. Recorremos con usted el camino de clases, exámenes, respuestas 1:1 y certificación.",
+  "ja": "正規課程は、その変化を最後まで責任をもって導く案内役です。講義・試験・1対1の回答・修了へと続く道を、共に歩みます。",
+  "zh": "正規課程是負責陪您走完這段改變的嚮導。我們與您同行，走過課程、考試、一對一回答到結業的路。"
  },
  "정규 과정이 주는 것": {
-  "en": "What the program gives you"
+  "en": "What the program gives you",
+  "es": "Lo que le ofrece el programa",
+  "ja": "正規課程が提供するもの",
+  "zh": "正規課程提供的內容"
  },
  "정규 심화 과정(아카데미)": {
-  "en": "In-Depth Program (Academy)"
+  "en": "In-Depth Program (Academy)",
+  "es": "Programa de profundización (Academia)",
+  "ja": "正規深化課程(アカデミー)",
+  "zh": "正規進深課程（學院）"
  },
  "정규 인증 과정": {
-  "en": "Certificate Program"
+  "en": "Certificate Program",
+  "es": "Programa de certificación",
+  "ja": "正規認定課程",
+  "zh": "正規認證課程"
  },
  "정해진 개강일을 기다릴 필요 없이, <b class=\"text-neutral-900/70\">등록하고 입금이 확인되면 바로 수강을 시작</b>하실 수 있어요. 원하실 때 시작해 12개월(1년) 동안 자유롭게 수강하시면 됩니다.": {
-  "en": "There's no need to wait for a fixed start date — <b class=\"text-neutral-900/70\">once you enroll and your payment is confirmed, you can start right away</b>. Begin whenever you like and study freely for 12 months (1 year)."
+  "en": "There's no need to wait for a fixed start date — <b class=\"text-neutral-900/70\">once you enroll and your payment is confirmed, you can start right away</b>. Begin whenever you like and study freely for 12 months (1 year).",
+  "es": "No necesita esperar una fecha fija de inicio: <b class=\"text-neutral-900/70\">en cuanto se inscriba y se confirme su pago, puede empezar</b>. Comience cuando quiera y estudie libremente durante 12 meses (1 año).",
+  "ja": "決まった開講日を待つ必要はなく、<b class=\"text-neutral-900/70\">登録して入金が確認されれば、すぐに受講を始め</b>られます。好きな時に始めて、12か月(1年)の間、自由に受講してください。",
+  "zh": "不必等待固定的開課日，<b class=\"text-neutral-900/70\">報名並確認入帳後，就能立即開始上課</b>。隨時開始，12個月（1年）內自由觀看即可。"
  },
  "정해진 커리큘럼 순서로 핵심을 배웁니다": {
-  "en": "Learn the essentials in the set order of the curriculum"
+  "en": "Learn the essentials in the set order of the curriculum",
+  "es": "Aprenda lo esencial en el orden establecido del plan de estudios",
+  "ja": "決まったカリキュラムの順序で要点を学びます",
+  "zh": "按照既定的課程順序學習重點"
  },
  "정해진 커리큘럼·순서로 체계적 완주": {
-  "en": "Finish systematically with a set curriculum and order"
+  "en": "Finish systematically with a set curriculum and order",
+  "es": "Llegue a la meta de forma sistemática, con un plan y un orden establecidos",
+  "ja": "決まったカリキュラム・順序で体系的に完走",
+  "zh": "依既定課程與順序，有系統地完成"
  },
  "제목을 탭하면 이 급수 소개·홍보를 볼 수 있어요": {
-  "en": "Tap a title to see the introduction for this level"
+  "en": "Tap a title to see the introduction for this level",
+  "es": "Toque un título para ver la presentación de este nivel",
+  "ja": "タイトルをタップすると、この級の紹介をご覧いただけます",
+  "zh": "點選標題即可查看此級別的介紹"
  },
  "주문 생성 실패:": {
-  "en": "Failed to create order:"
+  "en": "Failed to create order:",
+  "es": "No se pudo crear el pedido:",
+  "ja": "注文の作成に失敗しました:",
+  "zh": "建立訂單失敗："
  },
  "즉시 개설": {
-  "en": "Opened immediately"
+  "en": "Opened immediately",
+  "es": "Activación inmediata",
+  "ja": "即時開設",
+  "zh": "立即開通"
  },
  "지금 급수 과정 시작하기": {
-  "en": "Start a Level Course now"
+  "en": "Start a Level Course now",
+  "es": "Empezar ahora un curso por niveles",
+  "ja": "今すぐ級別課程を始める",
+  "zh": "立即開始級別課程"
  },
  "질문은 커뮤니티 게시판으로": {
-  "en": "Questions go to the community board"
+  "en": "Questions go to the community board",
+  "es": "Las preguntas, en el tablero de la comunidad",
+  "ja": "質問はコミュニティ掲示板へ",
+  "zh": "提問請到社群留言板"
  },
  "처음부터 끝까지 체계적으로 배우고 싶은 분": {
-  "en": "Those who want to learn systematically from start to finish"
+  "en": "Those who want to learn systematically from start to finish",
+  "es": "Quienes quieren aprender de forma sistemática de principio a fin",
+  "ja": "最初から最後まで体系的に学びたい方",
+  "zh": "想從頭到尾有系統地學習的人"
  },
  "체계적 커리큘럼": {
-  "en": "Structured curriculum"
+  "en": "Structured curriculum",
+  "es": "Plan de estudios estructurado",
+  "ja": "体系的なカリキュラム",
+  "zh": "系統化課程"
  },
  "최고 급수 수료증 · 명예 학점": {
-  "en": "Highest-level certificate · honorary credits"
+  "en": "Highest-level certificate · honorary credits",
+  "es": "Certificado del nivel más alto · créditos honoríficos",
+  "ja": "最上級の修了証 · 名誉単位",
+  "zh": "最高級別結業證書 · 榮譽學分"
  },
  "최고 등급": {
-  "en": "Highest level"
+  "en": "Highest level",
+  "es": "Nivel más alto",
+  "ja": "最上級",
+  "zh": "最高級別"
  },
  "카드 결제 준비 중": {
-  "en": "Card payment coming soon"
+  "en": "Card payment coming soon",
+  "es": "Pago con tarjeta próximamente",
+  "ja": "カード決済は準備中",
+  "zh": "信用卡付款準備中"
  },
  "카드 결제는": {
-  "en": "Card payment is"
+  "en": "Card payment is",
+  "es": "El pago con tarjeta",
+  "ja": "カード決済は",
+  "zh": "信用卡付款"
  },
  "카드로": {
-  "en": "By card"
+  "en": "By card",
+  "es": "Con tarjeta",
+  "ja": "カードで",
+  "zh": "以信用卡"
  },
  "카드로 결제하고 바로 수강": {
-  "en": "Pay by card and start now"
+  "en": "Pay by card and start now",
+  "es": "Pagar con tarjeta y empezar ya",
+  "ja": "カードで決済してすぐ受講",
+  "zh": "以信用卡付款，立即上課"
  },
  "학습 동료": {
-  "en": "Study companions"
+  "en": "Study companions",
+  "es": "Compañeros de estudio",
+  "ja": "学びの仲間",
+  "zh": "學習同伴"
  },
  "함께 공부하는 동료 커뮤니티": {
-  "en": "A community of fellow students"
+  "en": "A community of fellow students",
+  "es": "Una comunidad de compañeros de estudio",
+  "ja": "共に学ぶ仲間のコミュニティ",
+  "zh": "一起學習的同伴社群"
  },
  "함께 공부하며 끝까지 갈 동료가 필요한 분": {
-  "en": "Those who need companions to study with and finish together"
+  "en": "Those who need companions to study with and finish together",
+  "es": "Quienes necesitan compañeros para estudiar y llegar juntos al final",
+  "ja": "共に学び、最後まで歩む仲間が必要な方",
+  "zh": "需要一起學習、走到最後的同伴的人"
  },
  "혹시, 이런 적 있으셨나요?": {
-  "en": "Has this ever happened to you?"
+  "en": "Has this ever happened to you?",
+  "es": "¿Le ha pasado alguna vez?",
+  "ja": "こんな経験はありませんか？",
+  "zh": "您是否也有過這樣的經驗？"
  },
  "혼자 공부": {
-  "en": "Studying alone"
+  "en": "Studying alone",
+  "es": "Estudiar solo",
+  "ja": "ひとりで学ぶ",
+  "zh": "獨自學習"
  },
  "혼자 보다 멈추지 않도록 — 정해진 커리큘럼과 시험, 강사의 1:1 답변, 수료증까지.<br class=\"hidden sm:block\"> <b class=\"text-neutral-900\">끝까지 완주해 스스로 분별하는 그리스도인</b>으로 세워지는 과정입니다.": {
-  "en": "So you don't stop halfway on your own — a set curriculum and exams, 1:1 answers from the teacher, all the way to a certificate.<br class=\"hidden sm:block\"> It is a program that builds you up as <b class=\"text-neutral-900\">a Christian who finishes and discerns for himself</b>."
+  "en": "So you don't stop halfway on your own — a set curriculum and exams, 1:1 answers from the teacher, all the way to a certificate.<br class=\"hidden sm:block\"> It is a program that builds you up as <b class=\"text-neutral-900\">a Christian who finishes and discerns for himself</b>.",
+  "es": "Para que no se detenga estudiando solo: un plan de estudios establecido, exámenes, respuestas 1:1 del maestro y hasta un certificado.<br class=\"hidden sm:block\"> Es un programa que le forma como <b class=\"text-neutral-900\">un cristiano que llega hasta el final y discierne por sí mismo</b>.",
+  "ja": "ひとりで見ていて止まってしまわないように ― 決まったカリキュラムと試験、講師の1対1の回答、修了証まで。<br class=\"hidden sm:block\"> <b class=\"text-neutral-900\">最後までやり遂げ、自ら見分けるクリスチャン</b>として立てられる課程です。",
+  "zh": "讓您不再獨自學到一半就停下 ── 既定課程與考試、講師一對一回答，直到結業證書。<br class=\"hidden sm:block\"> 這是建立您成為<b class=\"text-neutral-900\">堅持到最後、能自己分辨的基督徒</b>的課程。"
  },
  "혼자 보다가 중간에 멈춘 적이 있는 분": {
-  "en": "Those who have stopped halfway while studying alone"
+  "en": "Those who have stopped halfway while studying alone",
+  "es": "Quienes se detuvieron a mitad de camino estudiando solos",
+  "ja": "ひとりで学んでいて途中で止まったことのある方",
+  "zh": "曾經獨自學習卻半途而廢的人"
  },
  "📕 PDF 책자 이용권은 별도 구매": {
-  "en": "📕 PDF booklet pass sold separately"
+  "en": "📕 PDF booklet pass sold separately",
+  "es": "📕 El pase de folletos PDF se compra por separado",
+  "ja": "📕 PDF冊子の利用券は別途購入",
+  "zh": "📕 PDF 小冊使用券需另外購買"
  },
  "📕 전 PDF 책자 무료 이용 포함": {
-  "en": "📕 Free access to all PDF booklets included"
+  "en": "📕 Free access to all PDF booklets included",
+  "es": "📕 Incluye acceso gratuito a todos los folletos PDF",
+  "ja": "📕 全PDF冊子の無料利用を含む",
+  "zh": "📕 包含全部 PDF 小冊免費使用"
  },
  "오픈 기념 — <b>가입하면 누구나 무료!</b> 신규 5일 · 추천 3개월 · 창립 1년": {
   "en": "Grand opening — <b>free for everyone who signs up!</b> New members 5 days · Referrals 3 months · Founding members 1 year",
@@ -673,30 +1189,57 @@
   "zh": "下一個"
  },
  "{n}과목": {
-  "en": "{n} courses"
+  "en": "{n} courses",
+  "es": "{n} materias",
+  "ja": "{n}科目",
+  "zh": "{n}個科目"
  },
  "{n}과목 · {n}강 · 약 {n}시간": {
-  "en": "{n} courses · {n} lectures · about {n} hours"
+  "en": "{n} courses · {n} lectures · about {n} hours",
+  "es": "{n} materias · {n} clases · unas {n} horas",
+  "ja": "{n}科目 · {n}講 · 約{n}時間",
+  "zh": "{n}個科目 · {n}講 · 約{n}小時"
  },
  "{n}과목 · {n}강 · 약 {n}시간 — 과목 전체 보기": {
-  "en": "{n} courses · {n} lectures · about {n} hours — see all courses"
+  "en": "{n} courses · {n} lectures · about {n} hours — see all courses",
+  "es": "{n} materias · {n} clases · unas {n} horas — ver todas las materias",
+  "ja": "{n}科目 · {n}講 · 約{n}時間 ― 全科目を見る",
+  "zh": "{n}個科目 · {n}講 · 約{n}小時 ── 查看全部科目"
  },
  "{n}강 · 약 {n}시간 · 눌러서 강의 목록 보기": {
-  "en": "{n} lectures · about {n} hours · tap to see the lecture list"
+  "en": "{n} lectures · about {n} hours · tap to see the lecture list",
+  "es": "{n} clases · unas {n} horas · toque para ver la lista de clases",
+  "ja": "{n}講 · 約{n}時間 · タップして講義一覧を見る",
+  "zh": "{n}講 · 約{n}小時 · 點選查看課程清單"
  },
  "{n}년 {n}월 기수 모집 중": {
-  "en": "Now enrolling: {n}-{n} cohort"
+  "en": "Now enrolling: {n}-{n} cohort",
+  "es": "Inscripciones abiertas: grupo {n}-{n}",
+  "ja": "{n}年{n}月期 募集中",
+  "zh": "{n}年{n}月期 招生中"
  },
  "({n}월 {n}일까지 · {n}월 {n}일 개강)": {
-  "en": "(until {n}/{n} · classes begin {n}/{n})"
+  "en": "(until {n}/{n} · classes begin {n}/{n})",
+  "es": "(hasta el {n}/{n} · inicio de clases: {n}/{n}; mes/día)",
+  "ja": "({n}月{n}日まで · {n}月{n}日開講)",
+  "zh": "（至{n}月{n}日 · {n}月{n}日開課）"
  },
  "얼리버드 마감까지": {
-  "en": "left until the early-bird price ends"
+  "en": "left until the early-bird price ends",
+  "es": "para que termine el precio anticipado",
+  "ja": "早期割引の締切まで",
+  "zh": "距離早鳥優惠截止還有"
  },
  "마감 후에는 정가로 돌아갑니다": {
-  "en": "After the deadline, the regular price applies"
+  "en": "After the deadline, the regular price applies",
+  "es": "Después del cierre, se aplica el precio regular",
+  "ja": "締切後は通常価格に戻ります",
+  "zh": "截止後恢復原價"
  },
  "{n}급 Associate 과정으로 신청하기": {
-  "en": "Apply for the Level {n} Associate course"
+  "en": "Apply for the Level {n} Associate course",
+  "es": "Inscribirse en el curso Nivel {n} Associate",
+  "ja": "{n}級 Associate課程に申し込む",
+  "zh": "申請{n}級 Associate 課程"
  }
 }

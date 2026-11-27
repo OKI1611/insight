@@ -33,10 +33,10 @@
   // 번역을 마친 화면(안내 띠 '아직 번역 중'을 띄우지 않음). app-menu 는 화면(p=)별로 적는다.
   var DONE = ['index', 'support', 'rapture', 'app-menu:support', 'about'];
   // 언어별로 화면 글자 번역을 마친 페이지(긴 본문이 아직 한국어인 코너는 넣지 않는다 → 안내 띠가 뜬다)
-  var DONE_LANG = { en: ['academy', 'app', 'bible-plan', 'bible', 'booklet', 'books', 'booktalk-program', 'cohort', 'consult', 'counsel', 'curriculum-guide', 'curriculum', 'event', 'exam', 'find', 'founding', 'gift', 'guide', 'kjv-preface', 'level', 'mylearning', 'orders', 'pay-fail', 'pay-success', 'privacy', 'qna-write', 'request', 'reset', 'search', 'seminar', 'start', 'store-help', 'terms', 'translation', 'welcome', 'app-menu:search', 'app-menu:academy', 'app-menu:store', 'app-menu:books'] };
+  var DONE_LANG = { es: ['guide', 'welcome'], ja: ['guide', 'welcome'], zh: ['guide', 'welcome'], en: ['academy', 'app', 'bible-plan', 'bible', 'booklet', 'books', 'booktalk-program', 'cohort', 'consult', 'counsel', 'curriculum-guide', 'curriculum', 'event', 'exam', 'find', 'founding', 'gift', 'guide', 'kjv-preface', 'level', 'mylearning', 'orders', 'pay-fail', 'pay-success', 'privacy', 'qna-write', 'request', 'reset', 'search', 'seminar', 'start', 'store-help', 'terms', 'translation', 'welcome', 'app-menu:search', 'app-menu:academy', 'app-menu:store', 'app-menu:books'] };
   // 강의 목록(제목·요약·과목명) 사전 i18n/course.json 을 함께 불러오는 페이지
   var COURSE_PAGES = ['app', 'index', 'curriculum', 'curriculum-guide', 'watch', 'find', 'search', 'mylearning', 'level', 'welcome', 'app-menu', 'academy', 'exam', 'booklet', 'cohort'];
-  var VER = '20261127e';
+  var VER = '20261128a';
 
   function valid(c){ for(var i=0;i<LANGS.length;i++) if(LANGS[i].c===c) return LANGS[i]; return null; }
   var lang = 'ko';

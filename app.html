@@ -25,11 +25,16 @@
       fontFamily: { sans:['Pretendard','system-ui','sans-serif'] }
     }}}
   </script>
-  <link rel="stylesheet" href="/app.css?v=20261127e" />
+  <link rel="stylesheet" href="/app.css?v=20261128a" />
   <style>
     body{font-family:'Pretendard',system-ui,sans-serif;color:#111827;background:#fff}
     /* ── 머리글(흰 바탕): 로고 + 색 리본 · 검색창 · 추천 주제 글자 탭 ── */
-    .hd{background:#fff;padding-top:env(safe-area-inset-top,0px)}
+    /* 머리글 윗줄(상태바 자리 + 로고·리본)은 화면 상단에 붙는다(.hdTop, sticky). 검색줄·주제 탭(.hdRest)은 함께 스크롤된다.
+       iOS 26 홈 화면 앱은 상단에 '고정·불투명·전폭' 요소가 없으면 상태바 아래 ~50pt 를 흐리게 덮는데(로고가 뿌옇게 보임),
+       상단에 붙은 흰 띠가 있으면 흐림 대신 그 색을 그대로 쓴다(2026-11-27) */
+    .hd{background:#fff}
+    .hdTop{padding-top:env(safe-area-inset-top,0px);position:sticky;top:0;z-index:40}
+    .hdTop.stuck{box-shadow:0 1px 0 #eceff4}
     .hd1{display:flex;align-items:center;justify-content:space-between;gap:8px;height:58px;padding-left:clamp(14px,4vw,20px);max-width:640px;margin:0 auto}
     .brand{display:flex;align-items:center;gap:8px;text-decoration:none;min-height:44px;min-width:0}
     .brand img{width:32px;height:32px;border-radius:9px;flex:none}
@@ -152,11 +157,14 @@
 <body class="font-sans antialiased min-h-screen" data-app-home>
 
   <!-- 머리글: 로고 + 색 리본 / 검색창 / 추천 주제 -->
-  <header class="hd">
+  <header class="hd hdTop">
     <div class="hd1">
       <a href="/app" class="brand" aria-label="바이블 인사이트 아카데미 홈"><img src="/images/icon-192.png?v=8" alt=""/><span><b>BIBLY</b><i>바이블 인사이트 아카데미</i></span></a>
       <nav class="ribbon" aria-label="주요 코너"><a href="/bible" class="r1">성경</a><a href="/curriculum" class="r2">강의</a><a href="/app-menu?p=books" class="r3">저자의 책</a></nav>
     </div>
+  </header>
+  <script>(function(){ var t = document.querySelector('.hdTop'); if(!t) return; var on = false; function f(){ var v = scrollY > 120; if(v !== on){ on = v; t.classList.toggle('stuck', v); } } addEventListener('scroll', f, { passive: true }); f(); })();</script>
+  <div class="hd hdRest">
     <div class="hd2">
       <a href="/app-menu?p=search" class="sbox" aria-label="검색"><span id="sHint">강의·성경·사전 검색</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7.5"/><path d="m20.5 20.5-4-4"/></svg></a>
       <a href="/mylearning" class="ico" aria-label="내 강의실"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg></a>
@@ -169,7 +177,7 @@
       <a href="/daily">매일 말씀</a>
       <a href="/curriculum" class="hot">새 강의<svg class="sp" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.2 6.3L20.5 10l-6.3 2.2L12 18.5l-2.2-6.3L3.5 10l6.3-1.7z"/></svg></a>
     </nav>
-  </header>
+  </div>
 
   <!-- 대표 배너(전폭) -->
   <section class="hero" aria-label="추천">
@@ -410,6 +418,6 @@
   </script>
   <script src="/access.js?v=1"></script>
   <script src="/auth-header.js?v=20261021a"></script>
-  <script src="/app-shell.js?v=20261127e"></script>
+  <script src="/app-shell.js?v=20261128a"></script>
 </body>
 </html>

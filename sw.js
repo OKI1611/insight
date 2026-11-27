@@ -1,7 +1,7 @@
 // 오광일 인사이트 브리핑 — 서비스 워커 (PWA)
 // 전략: HTML은 항상 네트워크(최신 유지), 정적자원만 캐시. 오프라인 시 폴백.
-const CACHE = 'bibleinsight-v445';
-const SHELL = ['/manifest.json', '/app', '/app.html', '/app-menu', '/app-menu.html', '/content/app-books.json', '/app.css?v=20261127e', '/app-shell.js?v=20261127e', '/app-mode.js?v=20261107a', '/content/app-verses.json', '/bible/books.json', '/images/icon-192.png?v=8'];
+const CACHE = 'bibleinsight-v449';
+const SHELL = ['/manifest.json', '/app', '/app.html', '/app-menu', '/app-menu.html', '/content/app-books.json', '/app.css?v=20261128a', '/app-shell.js?v=20261128a', '/app-mode.js?v=20261107a', '/content/app-verses.json', '/bible/books.json', '/images/icon-192.png?v=8'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).catch(() => {}));
@@ -62,4 +62,33 @@ self.addEventListener('fetch', (e) => {
 
   // 그 외 정적 자원(이미지·폰트·JSON·버전 없는 js): 캐시 먼저 보여주고 뒤에서 갱신
   staleWhileRevalidate(e, req);
+});
+
+// ── 앱 푸시 알림(새 강의·새 글) — 서버(worker/push.js)가 암호화해 보낸 {title, body, url, tag} 를 띄운다 ──
+self.addEventListener('push', (e) => {
+  let d = {};
+  try { d = e.data ? e.data.json() : {}; } catch (err) { d = { title: '바이블 인사이트', body: e.data ? e.data.text() : '' }; }
+  const title = d.title || '바이블 인사이트';
+  e.waitUntil(self.registration.showNotification(title, {
+    body: d.body || '',
+    icon: '/images/icon-192.png?v=8',
+    badge: '/images/icon-192.png?v=8',
+    tag: d.tag || undefined,
+    data: { url: d.url || '/app' },
+    lang: 'ko'
+  }));
+});
+// 알림을 누르면: 이미 열린 화면이 있으면 그 화면을 그 주소로, 없으면 새로 연다
+self.addEventListener('notificationclick', (e) => {
+  e.notification.close();
+  const target = new URL((e.notification.data && e.notification.data.url) || '/app', self.location.origin).href;
+  e.waitUntil((async () => {
+    const wins = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+    for (const w of wins) {
+      if (new URL(w.url).origin === self.location.origin && 'focus' in w) {
+        try { await w.focus(); if ('navigate' in w) await w.navigate(target); return; } catch (err) {}
+      }
+    }
+    if (self.clients.openWindow) await self.clients.openWindow(target);
+  })());
 });

@@ -49,6 +49,10 @@
     else location.href = '/app';
   }
   // 앱에는 아직 다국어(i18n.js)를 넣지 않는다(2026-11-27 저자 지시) — 언어 단추·번역 없음
+  // 수강생 질문방 새 글 알림(🔔 + N) — 앱 홈·앱 메뉴처럼 site-header.js 가 없는 화면에서도
+  (function(){ try{ if(window.__biblyQnaBell || document.querySelector('script[src*="qna-notify.js"]')) return; var q = document.createElement('script'); q.src = '/qna-notify.js?v=20261127a'; q.defer = true; document.head.appendChild(q); }catch(e){} })();
+  // 새 강의·새 글 앱 푸시 알림 켜기(앱 홈 카드 + 구독 맞추기)
+  (function(){ try{ if(window.__biblyPush || document.querySelector('script[src*="push-client.js"]')) return; var q = document.createElement('script'); q.src = '/push-client.js?v=20261127a'; q.defer = true; document.head.appendChild(q); }catch(e){} })();
   function buildBar(){
     if(isHome || document.getElementById('appBar')) return;
     var bar = document.createElement('div'); bar.id = 'appBar';
@@ -221,7 +225,8 @@
   }
   window.addEventListener('popstate', function(){ if(menuOpen){ menuOpen = false; menuEl.classList.remove('open'); document.documentElement.classList.remove('afLock'); } });
   window.__appOpenMenu = openMenu;
-  function run(){ try{ buildBar(); buildTabs(); }catch(e){} }
+  function buildStatus(){ if(document.getElementById('appStatus')) return; var s = document.createElement('div'); s.id = 'appStatus'; s.setAttribute('aria-hidden', 'true'); document.body.insertBefore(s, document.body.firstChild); }
+  function run(){ try{ buildStatus(); buildBar(); buildTabs(); }catch(e){} }
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
   // 제목이 늦게 바뀌는 페이지(강의 등)는 상단바 제목도 따라간다
   try{

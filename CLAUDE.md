@@ -17,6 +17,13 @@
 - 백엔드: **Supabase** (`bmxkndkwefdgsomlznoo.supabase.co`) — 로그인·회원·콘텐츠 데이터
 - 결제: **토스페이먼츠**, 결제 API는 `worker/index.js`의 `/api/pay/*`가 처리
 - 콘텐츠(강의·글·자료 등)는 대체로 Supabase에서 동적 로드됩니다.
+- **질문방 새 글 알림(🔔+N)**: `qna-notify.js` — 언어 단추 자리 옆에 종을 붙여 수강생 질문방(community_posts board=qna) 최근 15개를 보여 주고,
+  이 기기에서 마지막으로 연 뒤 올라온 글에 N(localStorage `bibly_qna_seen`). site-header.js·app-shell.js·index.html 이 불러온다.
+- **새 질문 → 강사 카카오톡**: `worker/notify.js`(카카오 「나에게 보내기」). 질문 등록 화면(qna-board·qna·app-menu)이 등록 직후 `POST /api/notify/qna {id}`,
+  5분마다 크론이 놓친 글 재시도. 토큰은 Supabase `notify_kv`(서버 전용, `db/kakao_notify.sql`), 연결은 관리자 › 커뮤니티 관리 › 「카카오톡 연결하기」. 시크릿 `KAKAO_REST_KEY`.
+- **앱 푸시(새 강의·새 글)**: `worker/push.js`(Web Push, VAPID 열쇠는 서버가 만들어 notify_kv 에 보관) + `push-client.js`(앱 홈 「알림 켜기」 카드, app-shell 이 불러옴) + sw.js push/notificationclick.
+  크론 5분마다 course.json 새 강의(유튜브 id)·columns·notices 새 글을 찾아 push_subs 전체에 30명씩 나눠 발송. 관리자 › 커뮤니티 관리에 구독 수·직접 보내기.
+  크론이 5분 간격이 되면서 이메일 육성(processEmailQueue)은 매시 정각 무렵(UTC 분<5)에만 돈다.
 
 ## 배포 (중요)
 - **Cloudflare가 GitHub `main`에 연결되어 있어 `git push` 하면 자동 배포됩니다.** 별도 배포 명령 불필요.
@@ -74,6 +81,10 @@
   - 새 페이지·새 문구 번역 절차: 로컬 미리보기에서 `tools/i18n_extract.js`(화면 글자 추출, i18n.js 와 같은 키 규칙) +
     `python tools/i18n_jsstrings.py <파일>`(스크립트 속 문구) → 번역 → `python tools/i18n_merge_en.py <작업 폴더>` →
     `tools/i18n_audit.js`(외국어 화면에 남은 한국어 세기). 브라우저 결과는 로컬 수신기(POST → 파일)로 받는다.
+- **스페인어·일본어·중국어 채우기(2026-11-27~)**: 키는 영어판 때 이미 다 뽑혀 있으므로 화면 추출 없이 사전의 빈 칸만 채운다.
+  `i18n/pages/_work/l3/<이름>.todo.json`(빠진 키→영어 참고) → 언어별 번역 `<이름>.<lang>.json` → `python tools/i18n_merge_l3.py <이름…>`
+  (이름 common = i18n/common.json, 그 밖은 i18n/pages/<이름>.json · 한글 잔존·{n}·태그 검사 후 채움) → 다 된 페이지는 i18n.js `DONE_LANG.es/ja/zh` 에 추가.
+  성경 66권 이름·장절 표기는 `python tools/i18n_books.py`(GLOSSARY §5). 진행 순서는 `계획-휴거재림QA.md` 11단계.
 - 강사 학력 표기(2026-11-26 저자 지시): West Coast Baptist College 학위는 **Master of Bible Studies**
   (한국어 '성경학 석사(Master of Bible Studies)', 일 聖書学修士, 중 聖經研究碩士, 스 Maestría en Estudios Bíblicos).
   M.R.E.·신학 석사·Th.M. 표기 금지. 성균관대는 '박사과정 수료'(Ph.D.·박사 금지).
