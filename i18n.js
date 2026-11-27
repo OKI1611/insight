@@ -28,7 +28,7 @@
   var DONE_LANG = { es: ['guide', 'welcome'], ja: ['guide', 'welcome'], zh: ['guide', 'welcome'], en: ['academy', 'app', 'bible-plan', 'bible', 'booklet', 'books', 'booktalk-program', 'cohort', 'consult', 'counsel', 'curriculum-guide', 'curriculum', 'event', 'exam', 'find', 'founding', 'gift', 'guide', 'kjv-preface', 'level', 'mylearning', 'orders', 'pay-fail', 'pay-success', 'privacy', 'qna-write', 'request', 'reset', 'search', 'seminar', 'start', 'store-help', 'terms', 'translation', 'welcome', 'app-menu:search', 'app-menu:academy', 'app-menu:store', 'app-menu:books'] };
   // 강의 목록(제목·요약·과목명) 사전 i18n/course.json 을 함께 불러오는 페이지
   var COURSE_PAGES = ['app', 'index', 'curriculum', 'curriculum-guide', 'watch', 'find', 'search', 'mylearning', 'level', 'welcome', 'app-menu', 'academy', 'exam', 'booklet', 'cohort'];
-  var VER = '20261127e';
+  var VER = '20261127f';
 
   function valid(c){ for(var i=0;i<LANGS.length;i++) if(LANGS[i].c===c) return LANGS[i]; return null; }
   var lang = 'ko';

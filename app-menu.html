@@ -479,6 +479,8 @@
         $('main').querySelectorAll('button[data-f]').forEach(b => b.addEventListener('click', () => { $('main').querySelectorAll('button[data-f]').forEach(x => x.classList.toggle('pri', x === b)); render(b.dataset.f); }));
         render('all');
         if(sp.get('write') === '1') setTimeout(() => openWriteSheet(), 250);
+        // 새 글 알림(🔔)에서 눌러 들어온 글은 바로 연다
+        if(sp.get('id')){ const b = $('bdList').querySelector('button.row[data-id="' + CSS.escape(sp.get('id')) + '"]'); if(b) setTimeout(() => b.click(), 200); }
       },
       // ── 검색: 강의·사전·주제·글을 한 번에 ──
       async search(){
@@ -558,6 +560,6 @@
     })();
   </script>
   <script src="/auth-header.js?v=20261021a"></script>
-  <script src="/app-shell.js?v=20261127e"></script>
+  <script src="/app-shell.js?v=20261127f"></script>
 </body>
 </html>

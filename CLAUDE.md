@@ -17,6 +17,8 @@
 - 백엔드: **Supabase** (`bmxkndkwefdgsomlznoo.supabase.co`) — 로그인·회원·콘텐츠 데이터
 - 결제: **토스페이먼츠**, 결제 API는 `worker/index.js`의 `/api/pay/*`가 처리
 - 콘텐츠(강의·글·자료 등)는 대체로 Supabase에서 동적 로드됩니다.
+- **질문방 새 글 알림(🔔+N)**: `qna-notify.js` — 언어 단추 자리 옆에 종을 붙여 수강생 질문방(community_posts board=qna) 최근 15개를 보여 주고,
+  이 기기에서 마지막으로 연 뒤 올라온 글에 N(localStorage `bibly_qna_seen`). site-header.js·app-shell.js·index.html 이 불러온다.
 
 ## 배포 (중요)
 - **Cloudflare가 GitHub `main`에 연결되어 있어 `git push` 하면 자동 배포됩니다.** 별도 배포 명령 불필요.
