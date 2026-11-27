@@ -229,7 +229,8 @@
   }
   window.addEventListener('popstate', function(){ if(menuOpen){ menuOpen = false; menuEl.classList.remove('open'); document.documentElement.classList.remove('afLock'); } });
   window.__appOpenMenu = openMenu;
-  function run(){ try{ buildBar(); buildTabs(); }catch(e){} }
+  function buildStatus(){ if(document.getElementById('appStatus')) return; var s = document.createElement('div'); s.id = 'appStatus'; s.setAttribute('aria-hidden', 'true'); document.body.insertBefore(s, document.body.firstChild); }
+  function run(){ try{ buildStatus(); buildBar(); buildTabs(); }catch(e){} }
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
   // 제목이 늦게 바뀌는 페이지(강의 등)는 상단바 제목도 따라간다
   try{
