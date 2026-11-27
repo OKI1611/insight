@@ -3,7 +3,7 @@
 
 원고: tools/rapture/<lang>.json  (ko · en · es · ja · zh)
 성경 인용: 원고에는 위치만 적는다({"v": "1Th 4:16-17"}). 본문은 자동으로 끼운다.
-  ko = 킹제임스 성경 정본역 bible/kr · en = KJV 전문 bible/kjv (bible/en 은 학습용 발췌라 쓰지 않음)
+  ko = 킹제임스 성경 정본역 bible/kr · en = KJV 전체 본문 bible/kjv
   es = Reina-Valera 1909 · ja = 文語訳 · zh = 和合本  → i18n/bible-verses.json (위키문헌 원문, 퍼블릭 도메인)
 용어는 i18n/GLOSSARY.md 를 따른다.
 
@@ -17,20 +17,22 @@ except Exception: pass
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LANGS = ['ko', 'en', 'es', 'ja', 'zh']
 HTML_LANG = {'ko': 'ko', 'en': 'en', 'es': 'es', 'ja': 'ja', 'zh': 'zh-Hant'}
-BOOK_FILE = {'Gen': 'Genesis', 'Zec': 'Zechariah', 'Mat': 'Matthew', 'Luk': 'Luke', 'Joh': 'John', 'Act': 'Acts',
+BOOK_FILE = {'Php': 'Philippians', 'Jas': 'James', 'Rom': 'Romans', '2Pe': '2Peter', 'Heb': 'Hebrews', 'Jer': 'Jeremiah',
+             'Dan': 'Daniel', 'Eph': 'Ephesians', 'Eze': 'Ezekiel', '1Jo': '1John', '2Co': '2Corinthians', 'Isa': 'Isaiah',
+             'Gen': 'Genesis', 'Zec': 'Zechariah', 'Mat': 'Matthew', 'Luk': 'Luke', 'Joh': 'John', 'Act': 'Acts',
              '1Co': '1Corinthians', 'Col': 'Colossians', '1Th': '1Thessalonians', '2Th': '2Thessalonians',
              'Tit': 'Titus', 'Rev': 'Revelation'}
 BOOK_NAME = {
-    'ko': {'Gen': '창세기', 'Zec': '스가랴', 'Mat': '마태복음', 'Luk': '누가복음', 'Joh': '요한복음', 'Act': '사도행전', '1Co': '고린도전서',
+    'ko': {'Php': '빌립보서', 'Jas': '야고보서', 'Rom': '로마서', '2Pe': '베드로후서', 'Heb': '히브리서', 'Jer': '예레미야', 'Dan': '다니엘', 'Eph': '에베소서', 'Eze': '에스겔', '1Jo': '요한일서', '2Co': '고린도후서', 'Isa': '이사야', 'Gen': '창세기', 'Zec': '스가랴', 'Mat': '마태복음', 'Luk': '누가복음', 'Joh': '요한복음', 'Act': '사도행전', '1Co': '고린도전서',
            'Col': '골로새서', '1Th': '데살로니가전서', '2Th': '데살로니가후서', 'Tit': '디도서', 'Rev': '요한계시록'},
-    'en': {'Gen': 'Genesis', 'Zec': 'Zechariah', 'Mat': 'Matthew', 'Luk': 'Luke', 'Joh': 'John', 'Act': 'Acts', '1Co': '1 Corinthians',
+    'en': {'Php': 'Philippians', 'Jas': 'James', 'Rom': 'Romans', '2Pe': '2 Peter', 'Heb': 'Hebrews', 'Jer': 'Jeremiah', 'Dan': 'Daniel', 'Eph': 'Ephesians', 'Eze': 'Ezekiel', '1Jo': '1 John', '2Co': '2 Corinthians', 'Isa': 'Isaiah', 'Gen': 'Genesis', 'Zec': 'Zechariah', 'Mat': 'Matthew', 'Luk': 'Luke', 'Joh': 'John', 'Act': 'Acts', '1Co': '1 Corinthians',
            'Col': 'Colossians', '1Th': '1 Thessalonians', '2Th': '2 Thessalonians', 'Tit': 'Titus', 'Rev': 'Revelation'},
-    'es': {'Gen': 'Génesis', 'Zec': 'Zacarías', 'Mat': 'Mateo', 'Luk': 'Lucas', 'Joh': 'Juan', 'Act': 'Hechos', '1Co': '1 Corintios',
+    'es': {'Php': 'Filipenses', 'Jas': 'Santiago', 'Rom': 'Romanos', '2Pe': '2 Pedro', 'Heb': 'Hebreos', 'Jer': 'Jeremías', 'Dan': 'Daniel', 'Eph': 'Efesios', 'Eze': 'Ezequiel', '1Jo': '1 Juan', '2Co': '2 Corintios', 'Isa': 'Isaías', 'Gen': 'Génesis', 'Zec': 'Zacarías', 'Mat': 'Mateo', 'Luk': 'Lucas', 'Joh': 'Juan', 'Act': 'Hechos', '1Co': '1 Corintios',
            'Col': 'Colosenses', '1Th': '1 Tesalonicenses', '2Th': '2 Tesalonicenses', 'Tit': 'Tito', 'Rev': 'Apocalipsis'},
-    'ja': {'Gen': '創世記', 'Zec': 'ゼカリヤ書', 'Mat': 'マタイの福音書', 'Luk': 'ルカの福音書', 'Joh': 'ヨハネの福音書', 'Act': '使徒の働き',
+    'ja': {'Php': 'ピリピ人への手紙', 'Jas': 'ヤコブの手紙', 'Rom': 'ローマ人への手紙', '2Pe': 'ペテロの手紙 第二', 'Heb': 'ヘブル人への手紙', 'Jer': 'エレミヤ書', 'Dan': 'ダニエル書', 'Eph': 'エペソ人への手紙', 'Eze': 'エゼキエル書', '1Jo': 'ヨハネの手紙 第一', '2Co': 'コリント人への手紙 第二', 'Isa': 'イザヤ書', 'Gen': '創世記', 'Zec': 'ゼカリヤ書', 'Mat': 'マタイの福音書', 'Luk': 'ルカの福音書', 'Joh': 'ヨハネの福音書', 'Act': '使徒の働き',
            '1Co': 'コリント人への手紙 第一', 'Col': 'コロサイ人への手紙', '1Th': 'テサロニケ人への手紙 第一', '2Th': 'テサロニケ人への手紙 第二',
            'Tit': 'テトスへの手紙', 'Rev': 'ヨハネの黙示録'},
-    'zh': {'Gen': '創世記', 'Zec': '撒迦利亞書', 'Mat': '馬太福音', 'Luk': '路加福音', 'Joh': '約翰福音', 'Act': '使徒行傳', '1Co': '哥林多前書',
+    'zh': {'Php': '腓立比書', 'Jas': '雅各書', 'Rom': '羅馬書', '2Pe': '彼得後書', 'Heb': '希伯來書', 'Jer': '耶利米書', 'Dan': '但以理書', 'Eph': '以弗所書', 'Eze': '以西結書', '1Jo': '約翰一書', '2Co': '哥林多後書', 'Isa': '以賽亞書', 'Gen': '創世記', 'Zec': '撒迦利亞書', 'Mat': '馬太福音', 'Luk': '路加福音', 'Joh': '約翰福音', 'Act': '使徒行傳', '1Co': '哥林多前書',
            'Col': '歌羅西書', '1Th': '帖撒羅尼迦前書', '2Th': '帖撒羅尼迦後書', 'Tit': '提多書', 'Rev': '啟示錄'},
 }
 VERSION = {'ko': '정본역', 'en': 'KJV', 'es': 'RV1909', 'ja': '文語訳', 'zh': '和合本'}
@@ -43,7 +45,7 @@ def chapter(lang, book, c):
         if lang == 'ko':
             _cache[k] = json.load(open(f'{ROOT}/bible/kr/{BOOK_FILE[book]}-{c}.json', encoding='utf-8'))
         else:
-            # KJV 전문은 bible/kjv 에서. bible/en 의 'en' 은 학습 노트용 핵심 어구 발췌(… 생략·절 수 불일치 장 있음)라 인용에 쓰지 않는다.
+            # 영어는 전체 KJV(bible/kjv/<책>.json). bible/en 의 'en' 은 학습용으로 줄인 절이 섞여 있어 쓰지 않는다(2026-11-26)
             _cache[k] = json.load(open(f'{ROOT}/bible/kjv/{BOOK_FILE[book]}.json', encoding='utf-8'))[str(c)]
     return _cache[k]
 
@@ -94,28 +96,44 @@ def block(b, lang, fn_seen, D):
         cite = f'{BOOK_NAME[lang][book]}{sep}{c}:{spec}'
         return (f'<blockquote class="vs" lang="{HTML_LANG[lang]}"><p>{body}</p>'
                 f'<cite>{esc(cite)} · {esc(D.get("verse_label", VERSION[lang]))}</cite></blockquote>')
+    if 'ul' in b:
+        return '<ul class="bl">' + ''.join(f'<li>{inline(x, lang, fn_seen)}</li>' for x in b['ul']) + '</ul>'
     if 'table' in b:
         t = b['table']
         h = '<div class="tw"><table><thead><tr>' + ''.join(f'<th>{inline(x, lang, fn_seen)}</th>' for x in t['head']) + '</tr></thead><tbody>'
         for r in t['rows']:
-            h += '<tr>' + ''.join(f'<td>{inline(x, lang, fn_seen)}</td>' for x in r) + '</tr>'
+            h += '<tr>' + ''.join(f'<td data-h="{esc(t["head"][i]) if i < len(t["head"]) else ""}">{inline(x, lang, fn_seen)}</td>' for i, x in enumerate(r)) + '</tr>'
         return h + '</tbody></table></div>'
     if 'qa' in b:
         h = ''
         for i, q in enumerate(b['qa']):
-            h += (f'<div class="qa"><p class="q"><span>Q</span>{inline(q["q"], lang, fn_seen)}</p><div class="a">'
-                  + ''.join(block(x, lang, fn_seen, D) for x in q['a']) + '</div></div>')
+            # 질문만 보이고 누르면 답이 펼쳐진다(스크롤 줄이기, 2026-11-26)
+            h += (f'<details class="qa"><summary class="q"><span>Q</span><b>{inline(q["q"], lang, fn_seen)}</b><i aria-hidden="true"></i></summary><div class="a">'
+                  + ''.join(block(x, lang, fn_seen, D) for x in q['a']) + '</div></details>')
         return h
     raise ValueError('알 수 없는 블록: ' + json.dumps(b, ensure_ascii=False)[:80])
+
+# 한 장씩 보기(목차 → 장 하나) 버튼 글자
+NAV = {'ko': ('← 차례로', '이전 장', '다음 장', '읽기'), 'en': ('← Contents', 'Previous', 'Next', 'Read'),
+       'es': ('← Índice', 'Anterior', 'Siguiente', 'Leer'), 'ja': ('← 目次へ', '前の章', '次の章', '読む'),
+       'zh': ('← 回目錄', '上一章', '下一章', '閱讀')}
 
 def article(D):
     lang = D['lang']; fn_seen = set()
     secs = D['sections']
-    toc = ''.join(f'<a href="#{lang}-{s["id"]}">{esc(s["h"])}</a>' for s in secs)
-    toc += f'<a href="#{lang}-notes">{esc(D["notes_label"])} · {esc(D["refs_label"])}</a>'
+    nav = NAV[lang]
+    allsec = [(f'{lang}-{s["id"]}', s['h']) for s in secs] + [(f'{lang}-notes', f'{D["notes_label"]} · {D["refs_label"]}')]
+    toc = ''.join(f'<a href="#{sid}"><span>{esc(h)}</span><em>{esc(nav[3])} ›</em></a>' for sid, h in allsec)
+    def secnav(i):
+        top = f'<a class="back" href="#{lang}-toc">{esc(nav[0])}</a>'
+        prev = f'<a class="pv" href="#{allsec[i-1][0]}"><small>{esc(nav[1])}</small>{esc(allsec[i-1][1])}</a>' if i > 0 else '<span></span>'
+        nxt = f'<a class="nx" href="#{allsec[i+1][0]}"><small>{esc(nav[2])}</small>{esc(allsec[i+1][1])}</a>' if i + 1 < len(allsec) else '<span></span>'
+        return top, f'<nav class="secnav">{prev}{nxt}</nav>'
     body = ''
-    for s in secs:
-        body += f'<section id="{lang}-{s["id"]}"><h2>{esc(s["h"])}</h2>' + ''.join(block(b, lang, fn_seen, D) for b in s['body']) + '</section>'
+    for i, s in enumerate(secs):
+        top, bot = secnav(i)
+        body += (f'<section id="{lang}-{s["id"]}" class="sec">{top}<h2>{esc(s["h"])}</h2>'
+                 + ''.join(block(b, lang, fn_seen, D) for b in s['body']) + bot + '</section>')
     notes = D['notes']
     missing = set(range(1, len(notes) + 1)) - fn_seen
     extra = {n for n in fn_seen if n > len(notes)}
@@ -132,11 +150,11 @@ def article(D):
       <p class="lead">{esc(D["lead"])}</p>
       <p class="upd">{esc(D["updated"])}</p>
     </header>
-    <nav class="toc"><p>{esc(D["toc_label"])}</p>{toc}</nav>
+    <nav class="toc" id="{lang}-toc"><p>{esc(D["toc_label"])}</p>{toc}</nav>
     {body}
-    <section id="{lang}-notes" class="notes">
+    <section id="{lang}-notes" class="notes sec">{secnav(len(secs))[0]}
       <h2>{esc(D["notes_label"])}</h2><ol>{nh}</ol>
-      <h2>{esc(D["refs_label"])}</h2><div class="refs">{rh}</div>
+      <h2>{esc(D["refs_label"])}</h2><div class="refs">{rh}</div>{secnav(len(secs))[1]}
     </section>
     <nav class="see"><p>{esc(D["see_label"])}</p>{see}</nav>
   </article>'''

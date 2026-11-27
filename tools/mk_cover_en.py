@@ -10,13 +10,15 @@
   별·지평선(지구 곡면)·한 점의 빛·가는 금색 선·열린 책 엠블럼(tools/make_logo_a.py 와 같은 경로).
   글꼴은 tools/fonts/ 만 쓴다(NotoSerifKR-Bold = 제목, NotoSerif-Regular = 부제, Pretendard = 캡션).
 """
-import os, math, random
+import os, sys, math, random
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FDIR = os.path.join(ROOT, "tools", "fonts")
 OUT_DIR = os.path.join(ROOT, "책원고", "영문판_천년왕국", "build")
+ES = "--lang" in sys.argv and sys.argv[sys.argv.index("--lang") + 1] == "es"   # 스페인어판 표지
+if ES: OUT_DIR = os.path.join(ROOT, "책원고", "스페인어판_천년왕국", "build")
 OUT_JPG = os.path.join(OUT_DIR, "cover_1600x2560.jpg")
 OUT_THUMB = os.path.join(OUT_DIR, "cover_thumb_120.png")
 
@@ -156,7 +158,7 @@ def text_glow(base, draw_fn, blur, color_alpha):
     layer = layer.filter(ImageFilter.GaussianBlur(blur * S))
     base.alpha_composite(layer)
 
-TITLE_LINES = ["MILLENNIAL", "KINGDOM", "EXPLAINED"]
+TITLE_LINES = ["EL REINO", "MILENIAL", "EXPLICADO"] if ES else ["MILLENNIAL", "KINGDOM", "EXPLAINED"]
 TITLE_MAX_W = W - 2 * 100      # 제목 최대 폭(1배 px)
 TITLE_TOP = 600                # 큰 글자 첫 줄 윗선(1배 px)
 TITLE_TRACK = 3
@@ -182,9 +184,9 @@ def title_block(base):
     # 리드 'THE' — 작은 세리프, 넓은 자간, 양옆 짧은 금선
     fl = F("serifb", 54)
     the_y = top - 112 * S
-    tw = draw_spaced(d, "THE", fl, SW / 2, the_y, GOLD_L, tracking=14)
+    tw = 0 if ES else draw_spaced(d, "THE", fl, SW / 2, the_y, GOLD_L, tracking=14)   # 스페인어판은 'EL REINO'가 첫 줄
     cy = the_y + fl.getbbox("H")[3] * 0.5 - fl.getbbox("H")[1] * 0.5 + 0  # 대문자 중간 높이
-    for sgn in (-1, 1):
+    for sgn in ((-1, 1) if not ES else ()):
         x0 = SW / 2 + sgn * (tw / 2 + 36 * S)
         d.line([x0, cy, x0 + sgn * 120 * S, cy], fill=GOLD + (200,), width=S)
     def paint(dd, fill):
@@ -255,7 +257,7 @@ def build():
     d.rectangle([m, m, SW - m, SH - m], outline=GOLD + (70,), width=S)
 
     # 1) 키커(세미나 조회수) — 작은 대문자, 넓은 자간
-    kicker = "FROM THE BIBLE-PROPHECY SEMINAR VIEWED 1.49 MILLION TIMES"
+    kicker = "DEL SEMINARIO PROFÉTICO VISTO 1,49 MILLONES DE VECES" if ES else "FROM THE BIBLE-PROPHECY SEMINAR VIEWED 1.49 MILLION TIMES"
     draw_spaced(d, kicker, F("sansb", 30), cx, 395 * S, CREAM_D, tracking=4.2)
     rule(d, cx, 455 * S, 150, GOLD + (190,), 1)
 
@@ -268,8 +270,8 @@ def build():
 
     # 4) 부제(크림, 세리프 이탤릭 느낌) 2줄
     fs = F("serif", 60)
-    sub1 = italic_text("The Real Thousand-Year Kingdom", fs, CREAM)
-    sub2 = italic_text("the Bible Promised", fs, CREAM)
+    sub1 = italic_text("El verdadero reino de mil años" if ES else "The Real Thousand-Year Kingdom", fs, CREAM)
+    sub2 = italic_text("que la Biblia prometió" if ES else "the Bible Promised", fs, CREAM)
     y = bottom + 150 * S
     base.alpha_composite(sub1, (int(cx - sub1.size[0] / 2), int(y)))
     base.alpha_composite(sub2, (int(cx - sub2.size[0] / 2), int(y + 84 * S)))
@@ -280,7 +282,7 @@ def build():
 
     # 6) 엠블럼 + 출판사 표기(지평선 아래 어두운 영역)
     emblem(d, cx, HY + 300 * S, 150, GOLD)
-    draw_spaced(d, "BIBLY INSIGHT", F("sansb", 30), cx, HY + 425 * S, GOLD_L, tracking=8)
+    draw_spaced(d, "BIBLE INSIGHT", F("sansb", 30), cx, HY + 425 * S, GOLD_L, tracking=8)
 
     return base.convert("RGB").resize((W, H), Image.LANCZOS)
 

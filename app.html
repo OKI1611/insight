@@ -25,27 +25,49 @@
       fontFamily: { sans:['Pretendard','system-ui','sans-serif'] }
     }}}
   </script>
-  <link rel="stylesheet" href="/app.css?v=20261108f" />
+  <link rel="stylesheet" href="/app.css?v=20261127f" />
   <style>
     body{font-family:'Pretendard',system-ui,sans-serif;color:#111827;background:#fff}
-    /* ── 상단: 남색 띠(상태바와 한 색) + 흰 검색창 (올리브영식 검색 헤더) ── */
-    .top{background:#1f3a68;padding:calc(env(safe-area-inset-top,0px) + 10px) clamp(12px,3.5vw,20px) 12px}
-    .top .row{display:flex;align-items:center;gap:10px;max-width:640px;margin:0 auto}
-    .top .logo{display:flex;align-items:center;gap:9px;color:#fff;text-decoration:none;flex:1;min-width:0;min-height:44px}
-    .top .logo img{width:34px;height:34px;border-radius:9px;flex:none}
-    .top .logo .nm{display:block;font-weight:900;font-size:18.5px;letter-spacing:-.02em;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .top .logo .sb{display:block;font-weight:600;font-size:12px;color:rgba(255,255,255,.72);line-height:1.3;margin-top:1px;white-space:nowrap}
-    .srch{flex:1;display:flex;align-items:center;gap:8px;height:44px;background:#fff;border-radius:999px;padding:0 14px;color:#4b5563;font-size:14.5px;text-decoration:none;min-width:0}
-    .srch svg{flex:none}
-    .srch span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .top button{width:44px;height:44px;border:0;background:rgba(255,255,255,.12);border-radius:999px;color:#fff;display:flex;align-items:center;justify-content:center;flex:none}
+    /* ── 머리글(흰 바탕): 로고 + 색 리본 · 검색창 · 추천 주제 글자 탭 ── */
+    /* 머리글 윗줄(상태바 자리 + 로고·리본)은 화면 상단에 붙는다(.hdTop, sticky). 검색줄·주제 탭(.hdRest)은 함께 스크롤된다.
+       iOS 26 홈 화면 앱은 상단에 '고정·불투명·전폭' 요소가 없으면 상태바 아래 ~50pt 를 흐리게 덮는데(로고가 뿌옇게 보임),
+       상단에 붙은 흰 띠가 있으면 흐림 대신 그 색을 그대로 쓴다(2026-11-27) */
+    .hd{background:#fff}
+    .hdTop{padding-top:env(safe-area-inset-top,0px);position:sticky;top:0;z-index:40}
+    .hdTop.stuck{box-shadow:0 1px 0 #eceff4}
+    .hd1{display:flex;align-items:center;justify-content:space-between;gap:8px;height:58px;padding-left:clamp(14px,4vw,20px);max-width:640px;margin:0 auto}
+    .brand{display:flex;align-items:center;gap:8px;text-decoration:none;min-height:44px;min-width:0}
+    .brand img{width:32px;height:32px;border-radius:9px;flex:none}
+    .brand b{display:block;font-size:19px;font-weight:900;letter-spacing:.04em;color:#1f3a68;line-height:1}
+    .brand i{display:block;font-style:normal;font-size:11.5px;font-weight:700;color:#4b5563;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .brand > span{min-width:0;overflow:hidden}
+    html:not([data-ui="ko"]) .ribbon a{font-size:13px;padding:0 10px 0 17px}
+    html:not([data-ui="ko"]) .ribbon a:first-child{padding-left:13px}
+    @media (max-width:360px){.ribbon a{font-size:12.5px;padding:0 9px 0 15px}.brand i{display:none}}
+    .ribbon{display:flex;align-items:stretch;height:44px;flex:none;margin-right:-1px}
+    .ribbon a{display:flex;align-items:center;justify-content:center;padding:0 14px 0 20px;margin-left:-12px;color:#fff;font-size:14.5px;font-weight:800;text-decoration:none;white-space:nowrap;
+      clip-path:polygon(14px 0,100% 0,100% 100%,0 100%);border-radius:0 0 0 0}
+    .ribbon a:first-child{margin-left:0;border-radius:22px 0 0 22px;clip-path:none;padding-left:16px}
+    .ribbon .r1{background:#1f3a68}.ribbon .r2{background:#0b7d53}.ribbon .r3{background:#c2410c}
+    .hd2{display:flex;align-items:center;gap:8px;padding:6px clamp(14px,4vw,20px) 4px;max-width:640px;margin:0 auto}
+    .sbox{flex:1;min-width:0;display:flex;align-items:center;gap:8px;height:48px;border:1.5px solid #d9dee7;border-radius:14px;padding:0 12px 0 16px;color:#6b7280;font-size:15px;text-decoration:none;background:#fff}
+    .sbox span{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .sbox svg{flex:none;color:#111827}
+    .ico{flex:none;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#111827;border-radius:12px}
+    .hd3{display:flex;gap:22px;overflow-x:auto;scrollbar-width:none;padding:4px clamp(14px,4vw,20px) 0;max-width:640px;margin:0 auto}
+    .hd3::-webkit-scrollbar{display:none}
+    .hd3 a{position:relative;flex:none;display:flex;align-items:center;min-height:46px;font-size:17px;font-weight:700;color:#4b5563;text-decoration:none;letter-spacing:-.02em}
+    .hd3 a.hot{color:#0b7d53;font-weight:900}
+    .hd3 a.hot::after{content:'';position:absolute;right:-7px;top:10px;width:5px;height:5px;border-radius:999px;background:#0b7d53}
+    .hd3 a .sp{width:15px;height:15px;margin-left:2px;color:#e0a800}
     /* ── 공용 ── */
     main{max-width:640px;margin:0 auto;padding:0 clamp(14px,4vw,20px)}
-    .sec{padding-top:18px}
+    .sec{padding-top:26px}
     .sec-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-    .sec-h h2{font-size:17px;font-weight:800;letter-spacing:-.01em}
+    .sec-h h2{font-size:20px;font-weight:900;letter-spacing:-.03em}
     .sec-h a{font-size:13.5px;font-weight:700;color:#1f3a68;text-decoration:none;padding:0 2px;min-height:40px;display:inline-flex;align-items:center}
-    .sec-h a::after{content:' ›';}
+    .sec-h a{font-size:14.5px!important;color:#111827!important}
+    .sec-h a::after{content:' +';font-size:17px;font-weight:700;margin-left:2px}
     .learn-sub a{display:inline-flex;align-items:center;min-height:40px}
     .card{background:#fff;border:1px solid #dfe4ec;border-radius:16px}
     .press{transition:transform .12s}
@@ -55,13 +77,12 @@
     @keyframes sk{0%{background-position:100% 0}100%{background-position:0 0}}
     .pbar{height:8px;border-radius:999px;background:#e5e9f0;overflow:hidden}
     .pbar i{display:block;height:100%;background:#0b7d53;border-radius:999px;transition:width .5s}
-    /* ── 퀵메뉴(둥근 아이콘 2줄) ── */
-    .quick{display:grid;grid-template-columns:repeat(4,1fr);gap:12px 6px;padding-top:16px}
-    .quick a{display:flex;flex-direction:column;align-items:center;gap:7px;text-decoration:none;color:#111827;font-size:12.5px;font-weight:700;letter-spacing:-.02em;min-height:48px}
-    .quick .ic{width:56px;height:56px;border-radius:999px;background:#eef2f8;display:flex;align-items:center;justify-content:center;color:#1f3a68}
-    .quick .ic svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-    .quick .ic.g{background:#e9f4ef;color:#0b7d53}
-    @media (max-width:340px){.quick .ic{width:50px;height:50px}.quick a{font-size:12px}}
+    /* ── 선 아이콘 한 줄(5개) ── */
+    .quick{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;padding-top:18px}
+    .quick a{display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;color:#374151;font-size:13px;font-weight:600;letter-spacing:-.03em;min-height:48px;padding:4px 0;text-align:center;word-break:keep-all}
+    .quick svg{width:34px;height:34px;stroke:#1f3a68;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+    .quick svg .g{stroke:#0b7d53}
+    @media (max-width:340px){.quick a{font-size:12px}.quick svg{width:30px;height:30px}}
     /* ── 학습 현황(메가스터디식 이어듣기 카드) ── */
     .learn{display:flex;gap:12px;padding:12px;align-items:stretch}
     .learn .th{position:relative;flex:none;width:38%;max-width:150px;border-radius:12px;overflow:hidden;background:#dfe6f2;aspect-ratio:16/9;align-self:center}
@@ -76,17 +97,33 @@
     .learn-btn{display:flex;align-items:center;justify-content:center;gap:6px;margin:0 12px 12px;height:50px;border-radius:12px;background:#0b7d53;color:#fff;font-weight:800;font-size:16px;text-decoration:none}
     .learn-sub{display:flex;justify-content:space-between;align-items:center;padding:0 12px 12px;font-size:13px;color:#4b5563}
     .learn-sub a{color:#1f3a68;font-weight:800;text-decoration:none;padding:6px 0}
-    /* ── 배너 캐러셀 ── */
-    .bn-wrap{position:relative;margin-top:16px}
-    .bn{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px}
-    .bn::-webkit-scrollbar{display:none}
-    .bn a{flex:0 0 100%;scroll-snap-align:start;display:flex;align-items:center;gap:14px;border-radius:16px;padding:16px 18px;min-height:104px;text-decoration:none;color:#fff;position:relative;overflow:hidden}
-    .bn .k{font-size:12.5px;font-weight:800;letter-spacing:.12em;opacity:.85}
-    .bn .t{font-size:18px;font-weight:900;line-height:1.3;margin-top:3px;letter-spacing:-.01em}
-    .bn .s{font-size:13px;opacity:.9;margin-top:4px}
-    .bn img{width:56px;border-radius:4px;box-shadow:0 8px 18px -8px rgba(0,0,0,.5);flex:none}
-    .dots{display:flex;justify-content:center;gap:5px;margin-top:8px}
-    .dots i{width:7px;height:7px;border-radius:999px;background:#cfd6e0}.dots i.on{width:18px;background:#1f3a68}
+    /* ── 전폭 대표 배너(4초마다 넘김 · 멈춤 단추 · n / N) ── */
+    .hero{position:relative;max-width:640px;margin:6px auto 0}
+    .hero .tr{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+    .hero .tr::-webkit-scrollbar{display:none}
+    .hero .sl{position:relative;flex:0 0 100%;scroll-snap-align:start;aspect-ratio:1/1.05;max-height:72vh;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start;padding:30px 26px;text-decoration:none;color:#111827}
+    .hero .sl .chip{align-self:flex-start;font-size:14px;font-weight:800;color:#fff;background:#111827;border-radius:6px;padding:5px 10px;letter-spacing:.02em}
+    .hero .sl h3{font-size:clamp(27px,8vw,34px);line-height:1.28;font-weight:900;letter-spacing:-.04em;margin-top:16px;position:relative;z-index:1}
+    .hero .sl p{font-size:15px;font-weight:600;margin-top:10px;opacity:.8;position:relative;z-index:1}
+    .hero .sl img.cv{position:absolute;right:7%;bottom:9%;width:38%;max-width:200px;border-radius:4px;box-shadow:0 22px 40px -16px rgba(0,0,0,.55);transform:rotate(3deg)}
+    .hero .sl.yt{color:#fff;background:#0f1d38;padding:0}
+    .hero .sl.yt img.bgi{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;flex:none;background:#1b2b4d}
+    .hero .sl.yt .cap{display:flex;flex-direction:column;align-items:flex-start;padding:14px 20px 0;min-height:0}
+    .hero .sl.yt .chip{background:#0b7d53}
+    .hero .sl.yt h3{font-size:clamp(18px,5.2vw,22px);line-height:1.35;margin-top:9px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .hero .sl.yt p{margin-top:5px;font-size:13.5px}
+    .hero .sl .art{position:absolute;right:6%;bottom:8%;width:42%;max-width:210px;opacity:.95}
+    .hero .ctl{position:absolute;right:0;bottom:0;z-index:3;display:flex;gap:3px}
+    .hero .ctl button,.hero .ctl span{height:42px;display:flex;align-items:center;justify-content:center;background:rgba(17,24,39,.42);color:#fff;border:0;font-size:14px;font-weight:700;font-family:inherit}
+    .hero .ctl button{width:44px;cursor:pointer}
+    .hero .ctl span{padding:0 14px;letter-spacing:.04em}
+    /* 추천 카드(가는 테두리) */
+    .promo{display:flex;align-items:center;gap:16px;border:1px solid #e2e6ed;border-radius:18px;padding:16px 18px;text-decoration:none;color:#111827;position:relative;margin-top:22px}
+    .promo .pi{flex:none;width:76px;height:76px;border-radius:16px;background:#eef3fb;display:flex;align-items:center;justify-content:center}
+    .promo .pi svg{width:40px;height:40px;stroke:#1f3a68;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+    .promo b{display:block;font-size:17px;font-weight:900;letter-spacing:-.03em;line-height:1.35}
+    .promo span.s{display:block;font-size:13.5px;color:#4b5563;margin-top:4px;line-height:1.45}
+    .promo .bd2{position:absolute;right:12px;top:10px;font-size:11px;font-weight:700;color:#6b7280;border:1px solid #d9dee7;border-radius:999px;padding:1px 8px}
     /* ── 가로 카드 ── */
     .hs{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 calc(-1 * clamp(14px,4vw,20px));padding:2px clamp(14px,4vw,20px) 6px}
     .hs::-webkit-scrollbar{display:none}
@@ -119,27 +156,59 @@
 </head>
 <body class="font-sans antialiased min-h-screen" data-app-home>
 
-  <!-- 상단 검색 헤더 -->
-  <div class="top">
-    <div class="row">
-      <a href="/app" class="logo" aria-label="바이블 인사이트 아카데미 홈"><img src="/images/icon-192.png?v=8" alt=""/><span style="min-width:0"><span class="nm">바이블 인사이트 아카데미</span><span class="sb">오광일의 인사이트 브리핑 공식 앱</span></span></a>
-      <span class="biblyLangSlot" data-compact="1" style="flex:none"></span>
-      <button type="button" aria-label="전체 메뉴" onclick="document.getElementById('appMenu').classList.add('open')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <!-- 머리글: 로고 + 색 리본 / 검색창 / 추천 주제 -->
+  <header class="hd hdTop">
+    <div class="hd1">
+      <a href="/app" class="brand" aria-label="바이블 인사이트 아카데미 홈"><img src="/images/icon-192.png?v=8" alt=""/><span><b>BIBLY</b><i>바이블 인사이트 아카데미</i></span></a>
+      <nav class="ribbon" aria-label="주요 코너"><a href="/bible" class="r1">성경</a><a href="/curriculum" class="r2">강의</a><a href="/app-menu?p=books" class="r3">저자의 책</a></nav>
     </div>
+  </header>
+  <script>(function(){ var t = document.querySelector('.hdTop'); if(!t) return; var on = false; function f(){ var v = scrollY > 120; if(v !== on){ on = v; t.classList.toggle('stuck', v); } } addEventListener('scroll', f, { passive: true }); f(); })();</script>
+  <div class="hd hdRest">
+    <div class="hd2">
+      <a href="/app-menu?p=search" class="sbox" aria-label="검색"><span id="sHint">강의·성경·사전 검색</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7.5"/><path d="m20.5 20.5-4-4"/></svg></a>
+      <span class="biblyLangSlot" data-compact="1" style="flex:none"></span>
+      <a href="/mylearning" class="ico" aria-label="내 강의실"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg></a>
+    </div>
+    <nav class="hd3" aria-label="추천 주제">
+      <a href="/curriculum?track=27" class="hot">요한계시록</a>
+      <a href="/curriculum?track=15" class="hot">천년왕국</a>
+      <a href="/rapture">휴거 Q&amp;A</a>
+      <a href="/app-menu?p=qna&amp;room=rev">질문과 답</a>
+      <a href="/daily">매일 말씀</a>
+      <a href="/curriculum" class="hot">새 강의<svg class="sp" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.2 6.3L20.5 10l-6.3 2.2L12 18.5l-2.2-6.3L3.5 10l6.3-1.7z"/></svg></a>
+    </nav>
   </div>
 
+  <!-- 대표 배너(전폭) -->
+  <section class="hero" aria-label="추천">
+    <div class="tr" id="heroTr">
+      <a class="sl yt" id="heroNew" href="/curriculum"><img class="bgi" id="heroImg" alt=""/><span class="cap"><span class="chip">NEW</span><h3 id="heroTitle">새로 올라온 강의</h3><p id="heroTrack"></p></span></a>
+      <a class="sl" href="/app-menu?p=books&amp;id=millennium" style="background:#f3ecd9"><span class="chip">대표작</span><h3>천년왕국을<br>아십니까</h3><p>전국 서점 입점 · 전자책 함께</p><img class="cv" src="/images/books/millennium.jpg" alt=""/></a>
+      <a class="sl" href="/app-menu?p=academy" style="background:#e3f1e9"><span class="chip" style="background:#0a6a47">ACADEMY</span><h3>급수 인증 과정<br>5급 → 1급</h3><p>강의 → 시험 → 수료증 · 5일 무료체험</p>
+        <svg class="art" viewBox="0 0 200 170" fill="none" stroke="#0b7d53" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 70 100 30l80 40-80 40z" fill="#fff"/><path d="M50 86v38c0 14 22 26 50 26s50-12 50-26V86"/><path d="M180 70v46"/><circle cx="180" cy="124" r="7" fill="#0b7d53"/></svg></a>
+      <a class="sl" href="/rapture" style="background:#e6edf8"><span class="chip" style="background:#1f3a68">Q&amp;A</span><h3>휴거와 재림,<br>가장 많이 묻는 질문</h3><p>성경 본문으로 하나씩 답합니다</p>
+        <svg class="art" viewBox="0 0 200 170" fill="none" stroke="#1f3a68" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M30 120c-14 0-24-10-24-23s10-23 24-23c3-22 22-38 44-38 18 0 34 11 41 27 4-2 9-3 14-3 20 0 36 16 36 36 0 1 0 3-1 4 12 3 20 13 20 24 0 14-11 25-25 25H30z" fill="#fff"/><path d="M100 150V100M84 114l16-16 16 16"/></svg></a>
+    </div>
+    <div class="ctl"><button type="button" id="heroPause" aria-label="멈춤"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff" id="heroPauseIc"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button><span><b id="heroIdx">1</b>&nbsp;/&nbsp;<span id="heroN" style="padding:0;background:none;height:auto">4</span></span></div>
+  </section>
+
   <main>
-    <!-- 퀵메뉴 -->
+    <!-- 바로 가기(선 아이콘 한 줄) -->
     <nav class="quick" aria-label="바로 가기">
-      <a href="/bible" class="press"><span class="ic g"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21z"/><path d="M4 18.5A2.5 2.5 0 0 1 6.5 16H20"/><path d="M12 7v5"/><path d="M9.5 9.5h5"/></svg></span>성경 읽기</a>
-      <a href="/curriculum" class="press"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor" stroke="none"/></svg></span>강의 보기</a>
-      <a href="/bible?search=1" class="press"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v13H6.5A2.5 2.5 0 0 0 4 18.5z"/><circle cx="11" cy="10" r="3"/><path d="m13.2 12.2 2.3 2.3"/></svg></span>성경 검색</a>
-      <a href="/app-menu?p=dictionary" class="press"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4-4"/><path d="M8.5 11h5M11 8.5v5"/></svg></span>성경사전</a>
-      <a href="/mylearning" class="press"><span class="ic g"><svg viewBox="0 0 24 24"><path d="M4 19V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v13"/><path d="M4 19h16"/><path d="M8 9h8M8 13h5"/></svg></span>내 강의실</a>
-      <a href="/app-menu?p=qna&room=rev" class="press"><span class="ic"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M12 8.5v4"/><circle cx="12" cy="15.5" r=".6" fill="currentColor"/></svg></span>질문과 답</a>
-      <a href="/app-menu?p=academy" class="press"><span class="ic"><svg viewBox="0 0 24 24"><path d="M3 9.5 12 5l9 4.5-9 4.5z"/><path d="M7 11.5V16c0 1.5 2.3 3 5 3s5-1.5 5-3v-4.5"/></svg></span>급수 과정</a>
-      <a href="#" onclick="document.getElementById('appMenu').classList.add('open');return false;" class="press"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="19" cy="12" r="1.6" fill="currentColor"/></svg></span>더보기</a>
+      <a href="/bible" class="press"><svg viewBox="0 0 24 24"><path d="M6 3.5h11.5A1.5 1.5 0 0 1 19 5v15.5H7a2 2 0 0 1-2-2V4.5a1 1 0 0 1 1-1z"/><path d="M5 18.5a2 2 0 0 1 2-2h12"/><path class="g" d="M12 7v6M9.5 9.2h5"/></svg>성경 읽기</a>
+      <a href="/curriculum" class="press"><svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="3"/><path class="g" d="M10 9.3v5.4l4.6-2.7z"/></svg>강의 보기</a>
+      <a href="/app-menu?p=dictionary" class="press"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.5-4.5"/><path class="g" d="M8 10.5h5M10.5 8v5"/></svg>성경사전</a>
+      <a href="/app-menu?p=qna&amp;room=rev" class="press"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path class="g" d="M10 9.5a2 2 0 1 1 3 1.7c-.6.4-1 .9-1 1.6M12 15.6v.1"/></svg>질문과 답</a>
+      <a href="/app-menu?p=academy" class="press"><svg viewBox="0 0 24 24"><path d="M2.5 9.5 12 5l9.5 4.5L12 14z"/><path d="M6.5 11.5V16c0 1.6 2.5 3 5.5 3s5.5-1.4 5.5-3v-4.5"/><path class="g" d="M21.5 9.5V15"/></svg>급수 과정</a>
     </nav>
+
+    <!-- 추천 카드 -->
+    <a href="/app-menu?p=board" class="promo press">
+      <span class="pi"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg></span>
+      <span style="min-width:0"><b>궁금한 것, 바로 물어보세요</b><span class="s">강사가 직접 답하고 질의응답에 정리됩니다</span></span>
+      <span class="bd2">질문방</span>
+    </a>
 
     <!-- 학습 현황 / 이어듣기 -->
     <section class="sec">
@@ -149,15 +218,6 @@
       </div>
     </section>
 
-    <!-- 배너 -->
-    <div class="bn-wrap">
-      <div class="bn" id="bn">
-        <a href="/app-menu?p=books&id=millennium" style="background:linear-gradient(135deg,#162c52,#1f3a68)"><img src="/images/books/millennium.jpg" alt=""/><span><span class="k">대표작</span><span class="t" style="display:block">천년왕국을 아십니까</span><span class="s" style="display:block">전국 서점 입점 · 전자책 함께</span></span></a>
-        <a href="/app-menu?p=academy" style="background:linear-gradient(135deg,#0a6a47,#0b7d53)"><span><span class="k">아카데미</span><span class="t" style="display:block">급수 인증 과정 5급 → 1급</span><span class="s" style="display:block">강의 → 시험 → 수료증 · 5일 무료체험</span></span></a>
-        <a href="/app-menu?p=board" style="background:linear-gradient(135deg,#2d4a7a,#1f3a68)"><span><span class="k">질문방</span><span class="t" style="display:block">궁금한 것, 바로 물어보세요</span><span class="s" style="display:block">강사가 직접 답하고 질의응답에 정리됩니다</span></span></a>
-      </div>
-      <div class="dots" id="dots"><i class="on"></i><i></i><i></i></div>
-    </div>
 
     <!-- 최근 본 강의 (시청 기록이 2개 이상일 때만) -->
     <section class="sec hidden" id="recSec">
@@ -200,43 +260,14 @@
       <div class="w-10 h-1 rounded bg-[#dfe3ea] mx-auto mb-3"></div>
       <p class="font-extrabold text-[18px]">바이블 인사이트 앱, 이렇게 쓰세요</p>
       <ul class="mt-3 space-y-3 text-[15px] leading-snug">
-        <li class="flex gap-3"><span class="w-8 h-8 rounded-xl bg-[#eef2f8] text-ink flex items-center justify-center font-extrabold shrink-0">1</span><span>화면 <b>맨 아래 다섯 버튼</b>으로 이동합니다 — 홈 · 강의 · 성경 · 검색 · MY</span></li>
+        <li class="flex gap-3"><span class="w-8 h-8 rounded-xl bg-[#eef2f8] text-ink flex items-center justify-center font-extrabold shrink-0">1</span><span>화면 <b>맨 아래 다섯 버튼</b>으로 이동합니다 — 홈 · 강의 · 성경 · MY · 전체메뉴</span></li>
         <li class="flex gap-3"><span class="w-8 h-8 rounded-xl bg-[#e9f4ef] text-[#0b7d53] flex items-center justify-center font-extrabold shrink-0">2</span><span>홈의 <b>학습 현황</b> 초록 버튼을 누르면 보던 강의가 바로 이어집니다</span></li>
-        <li class="flex gap-3"><span class="w-8 h-8 rounded-xl bg-[#eef2f8] text-ink flex items-center justify-center font-extrabold shrink-0">3</span><span>글자가 작으면 오른쪽 위 <b>≡ 메뉴</b>에서 <b>크게 · 아주 크게</b>를 누르세요</span></li>
+        <li class="flex gap-3"><span class="w-8 h-8 rounded-xl bg-[#eef2f8] text-ink flex items-center justify-center font-extrabold shrink-0">3</span><span>글자가 작으면 <b>전체메뉴 → 서비스</b>에서 <b>크게 · 아주 크게</b>를 누르세요</span></li>
       </ul>
       <button type="button" onclick="closeIntro()" class="w-full mt-4 py-3.5 rounded-xl bg-gold text-white font-bold text-[16px]">시작하기</button>
     </div>
   </div>
 
-  <!-- 전체 메뉴 시트 -->
-  <div id="appMenu" aria-hidden="true">
-    <div class="bg" onclick="document.getElementById('appMenu').classList.remove('open')"></div>
-    <div class="sheet">
-      <div class="grab"></div>
-      <p class="text-[13.5px] font-bold text-neutral-600 mb-2">바로 가기</p>
-      <div class="grid5">
-        <a href="/app-menu?p=notices"><svg viewBox="0 0 24 24"><path d="M4 11v2a2 2 0 0 0 2 2h1l6 4V5L7 9H6a2 2 0 0 0-2 2z"/><path d="M17 9.5a3.5 3.5 0 0 1 0 5"/></svg>공지</a>
-        <a href="/app-menu?p=events"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M3 12h18M12 8v13M12 8c-2-3-6-3-6 0s4 0 6 0zm0 0c2-3 6-3 6 0s-4 0-6 0z"/></svg>이벤트</a>
-        <a href="/app-menu?p=support" style="color:#be123c"><svg viewBox="0 0 24 24" style="stroke:#e11d48"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>후원</a>
-        <a href="/app-menu?p=books"><svg viewBox="0 0 24 24"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 0-3 3z"/><path d="M5 4v16a3 3 0 0 1 3-3h11"/></svg>저자의 책</a>
-        <a href="/app-menu?p=store"><svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/></svg>교재 스토어</a>
-        <a href="/app-menu?p=board"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg>질문방</a>
-        <a href="/app-menu?p=themes"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h7"/></svg>주제별 성경</a>
-        <a href="/daily"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/></svg>매일 말씀</a>
-        <a href="/memorize"><svg viewBox="0 0 24 24"><path d="M12 3a4.5 4.5 0 0 0-4.5 4.5c0 1 .3 1.8.9 2.5A4.5 4.5 0 0 0 12 21a4.5 4.5 0 0 0 3.6-11 4.5 4.5 0 0 0 .9-2.5A4.5 4.5 0 0 0 12 3z"/></svg>성경암송 365</a>
-        <a href="/app-menu?p=english"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M8 10h3M8 14h6"/></svg>바이블 잉글리시</a>
-        <a href="/app-menu?p=resources"><svg viewBox="0 0 24 24"><path d="M12 3v10"/><path d="m8 9 4 4 4-4"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>자료실</a>
-        <a href="/mylearning"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg>내 정보</a>
-      </div>
-      <p class="text-[13.5px] font-bold text-neutral-600 mt-4 mb-2">글자 크기</p>
-      <div class="fs" id="fsBtns">
-        <button type="button" data-px="auto" onclick="setAppFont('auto')">보통</button>
-        <button type="button" data-px="18px" onclick="setAppFont('18px')">크게</button>
-        <button type="button" data-px="20px" onclick="setAppFont('20px')">아주 크게</button>
-      </div>
-      <button type="button" onclick="document.getElementById('appMenu').classList.remove('open')" class="w-full mt-4 py-3.5 rounded-xl bg-[#f3f5f8] font-bold text-[15.5px]">닫기</button>
-    </div>
-  </div>
 
   <script>
     const $ = id => document.getElementById(id);
@@ -247,16 +278,26 @@
 
     function closeIntro(){ $('appIntro').classList.add('hidden'); try{ localStorage.setItem('bibly_app_intro', '1'); }catch(e){} }
     (function(){ if(/[?&]shot=1\b/.test(location.search)) return;   /* 스토어 스크린샷 캡처용 */ let seen = '1'; try{ seen = localStorage.getItem('bibly_app_intro') || ''; }catch(e){} if(!seen) setTimeout(() => $('appIntro').classList.remove('hidden'), 900); })();
-    // '보통' = 저장값을 지우고 화면 폭에 따른 기본값(작은 폰 15 · 보통 16 · 태블릿 17)으로 · 크게 18 · 아주 크게 20
-    function setAppFont(px){
-      if(px === 'auto'){ try{ localStorage.removeItem('biblyAppFont'); }catch(e){} document.documentElement.style.removeProperty('font-size'); }
-      else if(window.__appFont) window.__appFont(px); else { try{ localStorage.setItem('biblyAppFont', px); }catch(e){} document.documentElement.style.setProperty('font-size', px, 'important'); }
-      document.querySelectorAll('#fsBtns button').forEach(b => b.classList.toggle('on', b.dataset.px === px));
-    }
-    (function(){ let cur = 'auto'; try{ cur = localStorage.getItem('biblyAppFont') || 'auto'; }catch(e){} document.querySelectorAll('#fsBtns button').forEach(b => b.classList.toggle('on', b.dataset.px === cur)); })();
 
-    // 배너 점 표시
-    (function(){ const bn = $('bn'), dots = $('dots').children; bn.addEventListener('scroll', () => { const i = Math.round(bn.scrollLeft / bn.clientWidth); [...dots].forEach((d, k) => d.classList.toggle('on', k === i)); }, { passive:true }); })();
+    // 대표 배너: 4초마다 넘김 · 손으로 넘기면 그 자리에서 이어감 · 멈춤 단추 · 움직임 줄이기 설정이면 자동 넘김 없음
+    (function(){
+      const tr = $('heroTr'), n = tr.children.length; $('heroN').textContent = n;
+      let paused = false; try{ paused = matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){}
+      const idx = () => Math.round(tr.scrollLeft / tr.clientWidth);
+      tr.addEventListener('scroll', () => { $('heroIdx').textContent = Math.min(n, idx() + 1); }, { passive:true });
+      const setIc = () => { $('heroPauseIc').innerHTML = paused ? '<path d="M7 5v14l12-7z"/>' : '<rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/>'; $('heroPause').setAttribute('aria-label', paused ? '재생' : '멈춤'); };
+      $('heroPause').addEventListener('click', () => { paused = !paused; setIc(); }); setIc();
+      setInterval(() => { if(paused || document.hidden) return; const i = (idx() + 1) % n; tr.scrollTo({ left: i * tr.clientWidth, behavior: i ? 'smooth' : 'auto' }); }, 4000);
+    })();
+    // 대표 배너 첫 장 = 가장 최근 강의(유튜브 큰 썸네일)
+    function heroLatest(){
+      const all = []; (COURSE.levels||[]).forEach(lv => (lv.lessons||[]).forEach(l => { if(l.added) all.push({ l, lv }); }));
+      all.sort((a, b) => String(b.l.added).localeCompare(String(a.l.added)));
+      const x = all[0]; if(!x) return; const id = ytId(x.l.youtube);
+      const img = $('heroImg'); img.onerror = () => { img.onerror = null; img.src = 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg'; };
+      img.src = 'https://i.ytimg.com/vi/' + id + '/maxresdefault.jpg';
+      $('heroTitle').textContent = x.l.title; $('heroTrack').textContent = x.lv.name; $('heroNew').href = '/watch?v=' + id;
+    }
 
     // 로그인 세션(다른 페이지와 같은 저장 방식)
     function readStored(){
@@ -279,9 +320,20 @@
         const d = new Date(), start = new Date(d.getFullYear(), 0, 0), day = Math.floor((d - start) / 86400000);
         const v = list[day % list.length];
         const bk = (books||[]).find(b => b.file === v.b) || {};
-        const ch = await fetch(`/bible/kr/${v.b}-${v.c}.json`).then(r=>r.json());
-        $('votdText').textContent = (ch[v.v - 1] || '').replace(/^[“"]|[”"]$/g, '');
-        $('votdRef').textContent = `${bk.ko || v.b} ${v.c}:${v.v}`;
+        // 외국어 화면이면 영어 KJV 본문(bible/kjv/<책>.json)과 영어 책 이름 — 본문은 번역하지 않고 해당 역본을 그대로
+        // 앱 홈은 i18n.js 를 늦게 불러오므로(app-shell.js) 언어를 직접 읽는다: ?lang= > 저장값 > ko
+        let LG = 'ko'; try{ LG = new URLSearchParams(location.search).get('lang') || localStorage.getItem('bibly_lang') || 'ko'; }catch(e){}
+        const EN = LG !== 'ko';
+        if(EN){
+          const kj = await fetch(`/bible/kjv/${v.b}.json`).then(r=>r.json());
+          $('votdText').textContent = ((kj[String(v.c)] || [])[v.v - 1] || '');
+          $('votdText').setAttribute('data-noi18n', '1'); $('votdRef').setAttribute('data-noi18n', '1');
+          $('votdRef').textContent = `${bk.en || v.b} ${v.c}:${v.v} (KJV)`;
+        } else {
+          const ch = await fetch(`/bible/kr/${v.b}-${v.c}.json`).then(r=>r.json());
+          $('votdText').textContent = (ch[v.v - 1] || '').replace(/^[“"]|[”"]$/g, '');
+          $('votdRef').textContent = `${bk.ko || v.b} ${v.c}:${v.v}`;
+        }
         $('votd').href = `/bible?b=${encodeURIComponent(v.b)}&c=${v.c}`;
       }catch(e){ $('votdText').textContent = '주의 말씀은 내 발에 등이요 내 길에 빛이니이다.'; $('votdRef').textContent = '시편 119:105'; }
     }
@@ -363,12 +415,12 @@
     (async () => {
       votd(); notice();
       recents();
-      try{ await loadCourse(); newLessons(); tracks(); await cont(); }
+      try{ await loadCourse(); heroLatest(); newLessons(); tracks(); await cont(); }
       catch(e){ $('contCard').innerHTML = '<div class="p-4 text-[13px] text-neutral-500">강의 정보를 불러오지 못했어요. 네트워크를 확인해 주세요.</div>'; }
     })();
   </script>
   <script src="/access.js?v=1"></script>
   <script src="/auth-header.js?v=20261021a"></script>
-  <script src="/app-shell.js?v=20261126a"></script>
+  <script src="/app-shell.js?v=20261127g"></script>
 </body>
 </html>

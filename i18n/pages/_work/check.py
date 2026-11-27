@@ -1,9 +1,10 @@
-# 번역 검사: python i18n/pages/_work/check.py <lang>
+# 번역 검사: python i18n/pages/_work/check.py <lang> [페이지=index]
 import json,re,sys
 sys.stdout.reconfigure(encoding='utf-8')
 L=sys.argv[1]
-items=json.load(open('i18n/pages/_work/index.items.json',encoding='utf-8'))
-tr=json.load(open(f'i18n/pages/_work/index.{L}.json',encoding='utf-8'))
+P=sys.argv[2] if len(sys.argv)>2 else 'index'
+items=json.load(open(f'i18n/pages/_work/{P}.items.json',encoding='utf-8'))
+tr=json.load(open(f'i18n/pages/_work/{P}.{L}.json',encoding='utf-8'))
 bad=0
 tags=lambda s:re.findall(r'<[^>]+>',s)
 for it in items:

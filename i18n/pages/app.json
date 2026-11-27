@@ -1,0 +1,426 @@
+{
+ "_about": "앱 홈(app.html) 화면 글자. 2026-11-26 신설. 강의 제목·과목명 등 콘텐츠와 오늘의 말씀 본문은 번역하지 않는다(한국어 유지). 용어는 i18n/GLOSSARY.md·common.json 과 같게.",
+ "바이블 인사이트 아카데미 — 앱 홈": {
+  "en": "Bible Insight Academy — App Home",
+  "es": "Bible Insight Academy — Inicio de la app",
+  "ja": "バイブル・インサイト・アカデミー — アプリホーム",
+  "zh": "聖經洞見學院 — App 首頁"
+ },
+ "바이블 인사이트 아카데미 홈": {
+  "en": "Bible Insight Academy home",
+  "es": "Inicio de Bible Insight Academy",
+  "ja": "バイブル・インサイト・アカデミー ホーム",
+  "zh": "聖經洞見學院首頁"
+ },
+ "오광일의 인사이트 브리핑 공식 앱": {
+  "en": "Official app of Oh Kwang-il's Insight Briefing",
+  "es": "App oficial de Insight Briefing de Oh Kwang-il",
+  "ja": "オ・グァンイルのインサイト・ブリーフィング公式アプリ",
+  "zh": "Oh Kwang-il 洞見簡報官方 App"
+ },
+ "전체 메뉴": {
+  "en": "Full menu",
+  "es": "Menú completo",
+  "ja": "全メニュー",
+  "zh": "完整選單"
+ },
+ "바로 가기": {
+  "en": "Shortcuts",
+  "es": "Accesos directos",
+  "ja": "ショートカット",
+  "zh": "捷徑"
+ },
+ "강의 보기": {
+  "en": "Watch Lectures",
+  "es": "Ver clases",
+  "ja": "講義を見る",
+  "zh": "觀看課程"
+ },
+ "성경 검색": {
+  "en": "Search the Bible",
+  "es": "Buscar en la Biblia",
+  "ja": "聖書検索",
+  "zh": "搜尋聖經"
+ },
+ "질문과 답": {
+  "en": "Questions & Answers",
+  "es": "Preguntas y respuestas",
+  "ja": "質問と答え",
+  "zh": "問與答"
+ },
+ "급수 과정": {
+  "en": "Level Courses",
+  "es": "Cursos por niveles",
+  "ja": "級別課程",
+  "zh": "級別課程"
+ },
+ "더보기": {
+  "en": "More",
+  "es": "Más",
+  "ja": "もっと見る",
+  "zh": "更多"
+ },
+ "학습 현황": {
+  "en": "My Progress",
+  "es": "Mi progreso",
+  "ja": "学習状況",
+  "zh": "學習進度"
+ },
+ "새로 올라온 강의": {
+  "en": "New Lectures",
+  "es": "Clases nuevas",
+  "ja": "新着講義",
+  "zh": "最新課程"
+ },
+ "내 강좌": {
+  "en": "My Courses",
+  "es": "Mis cursos",
+  "ja": "マイ講座",
+  "zh": "我的課程"
+ },
+ "이어서 보기": {
+  "en": "Continue Watching",
+  "es": "Seguir viendo",
+  "ja": "続きを見る",
+  "zh": "繼續觀看"
+ },
+ "지금 보기": {
+  "en": "Watch Now",
+  "es": "Ver ahora",
+  "ja": "今すぐ見る",
+  "zh": "立即觀看"
+ },
+ "아직 수강 기록이 없어요": {
+  "en": "No viewing history yet",
+  "es": "Aún no hay historial",
+  "ja": "まだ受講記録がありません",
+  "zh": "尚無觀看紀錄"
+ },
+ "로그인하면 진도가 저장됩니다": {
+  "en": "Log in to save your progress",
+  "es": "Inicie sesión para guardar su progreso",
+  "ja": "ログインすると進み具合が保存されます",
+  "zh": "登入後即可儲存學習進度"
+ },
+ "{n}/{n}강 · {n}%": {
+  "en": "{n}/{n} lectures · {n}%",
+  "es": "{n}/{n} clases · {n}%",
+  "ja": "{n}/{n}講 · {n}%",
+  "zh": "{n}/{n} 講 · {n}%"
+ },
+ "강의를 불러오지 못했어요.": {
+  "en": "Couldn't load the lecture.",
+  "es": "No se pudo cargar la clase.",
+  "ja": "講義を読み込めませんでした。",
+  "zh": "無法載入課程。"
+ },
+ "강의 정보를 불러오지 못했어요. 네트워크를 확인해 주세요.": {
+  "en": "Couldn't load lecture information. Please check your network.",
+  "es": "No se pudo cargar la información de las clases. Revise su conexión.",
+  "ja": "講義情報を読み込めませんでした。ネットワークをご確認ください。",
+  "zh": "無法載入課程資訊，請檢查網路連線。"
+ },
+ "새 강의가 준비 중입니다.": {
+  "en": "New lectures are on the way.",
+  "es": "Pronto habrá clases nuevas.",
+  "ja": "新しい講義を準備中です。",
+  "zh": "新課程準備中。"
+ },
+ "대표작": {
+  "en": "FEATURED BOOK",
+  "es": "OBRA DESTACADA",
+  "ja": "代表作",
+  "zh": "代表作"
+ },
+ "천년왕국을 아십니까": {
+  "en": "Do You Know the Millennium?",
+  "es": "¿Conoce usted el Milenio?",
+  "ja": "千年王国をご存じですか",
+  "zh": "你認識千禧年國度嗎？"
+ },
+ "전국 서점 입점 · 전자책 함께": {
+  "en": "In bookstores nationwide · e-book available",
+  "es": "En librerías de todo el país · también en e-book",
+  "ja": "全国の書店で販売中 · 電子書籍もあり",
+  "zh": "全國書店上架 · 另有電子書"
+ },
+ "급수 인증 과정 5급 → 1급": {
+  "en": "Certified Level Courses: Level 5 → 1",
+  "es": "Cursos certificados por niveles: del 5 al 1",
+  "ja": "級認定コース 5級 → 1級",
+  "zh": "級別認證課程 5級 → 1級"
+ },
+ "강의 → 시험 → 수료증 · 5일 무료체험": {
+  "en": "Lectures → exams → certificate · 5-day free trial",
+  "es": "Clases → exámenes → certificado · 5 días de prueba gratis",
+  "ja": "講義 → 試験 → 修了証 · 5日間の無料体験",
+  "zh": "課程 → 考試 → 結業證書 · 5天免費體驗"
+ },
+ "질문방": {
+  "en": "Question Room",
+  "es": "Sala de preguntas",
+  "ja": "質問ルーム",
+  "zh": "提問室"
+ },
+ "궁금한 것, 바로 물어보세요": {
+  "en": "Ask anything you're wondering about",
+  "es": "Pregunte lo que quiera saber",
+  "ja": "気になることは、すぐに質問を",
+  "zh": "有疑問，隨時提問"
+ },
+ "강사가 직접 답하고 질의응답에 정리됩니다": {
+  "en": "The teacher answers personally, and answers are collected in the Q&A",
+  "es": "El maestro responde personalmente y las respuestas se recogen en Preguntas y respuestas",
+  "ja": "講師が直接答え、Q&Aにまとめられます",
+  "zh": "由講師親自回答，並整理到問答區"
+ },
+ "최근 본 강의": {
+  "en": "Recently Watched",
+  "es": "Vistas recientemente",
+  "ja": "最近見た講義",
+  "zh": "最近觀看"
+ },
+ "전체 기록": {
+  "en": "Full History",
+  "es": "Historial completo",
+  "ja": "すべての記録",
+  "zh": "全部紀錄"
+ },
+ "전체": {
+  "en": "All",
+  "es": "Todo",
+  "ja": "すべて",
+  "zh": "全部"
+ },
+ "약 {n}분": {
+  "en": "About {n} min",
+  "es": "Unos {n} min",
+  "ja": "約{n}分",
+  "zh": "約 {n} 分鐘"
+ },
+ "이렇게 시작해 보세요": {
+  "en": "Start Here",
+  "es": "Empiece aquí",
+  "ja": "ここから始めましょう",
+  "zh": "從這裡開始"
+ },
+ "학습 로드맵": {
+  "en": "Learning Roadmap",
+  "es": "Ruta de aprendizaje",
+  "ja": "学習ロードマップ",
+  "zh": "學習路線圖"
+ },
+ "기초 · {n}강": {
+  "en": "Foundations · {n} lectures",
+  "es": "Fundamentos · {n} clases",
+  "ja": "基礎 · {n}講",
+  "zh": "基礎 · {n} 講"
+ },
+ "초급 · {n}강": {
+  "en": "Beginner · {n} lectures",
+  "es": "Principiante · {n} clases",
+  "ja": "初級 · {n}講",
+  "zh": "初級 · {n} 講"
+ },
+ "중급 · {n}강": {
+  "en": "Intermediate · {n} lectures",
+  "es": "Intermedio · {n} clases",
+  "ja": "中級 · {n}講",
+  "zh": "中級 · {n} 講"
+ },
+ "고급 · {n}강": {
+  "en": "Advanced · {n} lectures",
+  "es": "Avanzado · {n} clases",
+  "ja": "上級 · {n}講",
+  "zh": "高級 · {n} 講"
+ },
+ "교양 · {n}강": {
+  "en": "General Studies · {n} lectures",
+  "es": "Cultura general · {n} clases",
+  "ja": "教養 · {n}講",
+  "zh": "通識 · {n} 講"
+ },
+ "처음 만나는 기독교, 기초부터": {
+  "en": "Meeting Christianity for the first time — from the basics",
+  "es": "Conocer el cristianismo por primera vez, desde lo básico",
+  "ja": "はじめてのキリスト教、基礎から",
+  "zh": "初次認識基督教，從基礎開始"
+ },
+ "예수 그리스도의 계시 — 공개된 소망의 책": {
+  "en": "The Revelation of Jesus Christ — the book of hope unveiled",
+  "es": "La revelación de Jesucristo: el libro de la esperanza revelada",
+  "ja": "イエス・キリストの黙示 — 明かされた希望の書",
+  "zh": "耶穌基督的啟示 — 揭開的盼望之書"
+ },
+ "오늘의 말씀": {
+  "en": "TODAY'S VERSE",
+  "es": "VERSÍCULO DEL DÍA",
+  "ja": "今日のみことば",
+  "zh": "今日經文"
+ },
+ "공지": {
+  "en": "Notice",
+  "es": "Aviso",
+  "ja": "お知らせ",
+  "zh": "公告"
+ },
+ "바이블 인사이트 아카데미 ·": {
+  "en": "Bible Insight Academy ·",
+  "es": "Bible Insight Academy ·",
+  "ja": "バイブル・インサイト・アカデミー ·",
+  "zh": "聖經洞見學院 ·"
+ },
+ "개인정보처리방침": {
+  "en": "Privacy Policy",
+  "es": "Política de privacidad",
+  "ja": "プライバシーポリシー",
+  "zh": "隱私權政策"
+ },
+ "바이블 인사이트 앱, 이렇게 쓰세요": {
+  "en": "How to use the Bible Insight app",
+  "es": "Cómo usar la app Bible Insight",
+  "ja": "バイブル・インサイト アプリの使い方",
+  "zh": "聖經洞見 App 使用方法"
+ },
+ "화면 <b>맨 아래 다섯 버튼</b>으로 이동합니다 — 홈 · 강의 · 성경 · 검색 · MY": {
+  "en": "Use the <b>five buttons at the very bottom</b> to move around — Home · Courses · Bible · Search · MY",
+  "es": "Muévase con los <b>cinco botones de la parte inferior</b>: Inicio · Cursos · Biblia · Buscar · MY",
+  "ja": "画面<b>いちばん下の5つのボタン</b>で移動します — ホーム · 講義 · 聖書 · 検索 · MY",
+  "zh": "用畫面<b>最下方的五個按鈕</b>切換 — 首頁 · 課程 · 聖經 · 搜尋 · MY"
+ },
+ "홈의 <b>학습 현황</b> 초록 버튼을 누르면 보던 강의가 바로 이어집니다": {
+  "en": "Tap the green button under <b>My Progress</b> on Home to pick up right where you left off",
+  "es": "Toque el botón verde de <b>Mi progreso</b> en Inicio para seguir la clase donde la dejó",
+  "ja": "ホームの<b>学習状況</b>の緑のボタンを押すと、見ていた講義の続きがすぐ始まります",
+  "zh": "點首頁<b>學習進度</b>的綠色按鈕，即可接著看剛才的課程"
+ },
+ "글자가 작으면 오른쪽 위 <b>≡ 메뉴</b>에서 <b>크게 · 아주 크게</b>를 누르세요": {
+  "en": "If the text is too small, open the <b>≡ menu</b> at the top right and choose <b>Large · Extra large</b>",
+  "es": "Si el texto es pequeño, abra el <b>menú ≡</b> arriba a la derecha y elija <b>Grande · Muy grande</b>",
+  "ja": "文字が小さければ、右上の<b>≡ メニュー</b>で<b>大きく · とても大きく</b>を選んでください",
+  "zh": "字太小時，請在右上角<b>≡ 選單</b>中選擇<b>大 · 特大</b>"
+ },
+ "시작하기": {
+  "en": "Get Started",
+  "es": "Empezar",
+  "ja": "はじめる",
+  "zh": "開始使用"
+ },
+ "글자 크기": {
+  "en": "Text Size",
+  "es": "Tamaño del texto",
+  "ja": "文字サイズ",
+  "zh": "字體大小"
+ },
+ "보통": {
+  "en": "Normal",
+  "es": "Normal",
+  "ja": "標準",
+  "zh": "標準"
+ },
+ "크게": {
+  "en": "Large",
+  "es": "Grande",
+  "ja": "大きく",
+  "zh": "大"
+ },
+ "아주 크게": {
+  "en": "Extra large",
+  "es": "Muy grande",
+  "ja": "とても大きく",
+  "zh": "特大"
+ },
+ "교재 스토어": {
+  "en": "Textbook Store",
+  "es": "Tienda de materiales",
+  "ja": "教材ストア",
+  "zh": "教材商店"
+ },
+ "주제별 성경": {
+  "en": "Bible by Topic",
+  "es": "La Biblia por temas",
+  "ja": "テーマ別聖書",
+  "zh": "主題查經"
+ },
+ "매일 말씀": {
+  "en": "Daily Word",
+  "es": "Palabra diaria",
+  "ja": "毎日のみことば",
+  "zh": "每日經文"
+ },
+ "내 정보": {
+  "en": "My Account",
+  "es": "Mi cuenta",
+  "ja": "マイ情報",
+  "zh": "我的資料"
+ },
+ "5급 → 1급": {
+  "en": "Level 5 → Level 1"
+ },
+ "가장 많이 묻는 질문": {
+  "en": "Most-asked questions"
+ },
+ "강의·성경·사전 검색": {
+  "en": "Search lectures, Bible, dictionary"
+ },
+ "글자가 작으면": {
+  "en": "If the text is too small,"
+ },
+ "급수 인증 과정": {
+  "en": "Certified Level Courses"
+ },
+ "를 누르세요": {
+  "en": "tap"
+ },
+ "맨 아래 다섯 버튼": {
+  "en": "The five buttons at the very bottom"
+ },
+ "멈춤": {
+  "en": "Pause"
+ },
+ "새 강의": {
+  "en": "New lectures"
+ },
+ "성경 본문으로 하나씩 답합니다": {
+  "en": "Answered one by one from the Bible text"
+ },
+ "아십니까": {
+  "en": "the Millennium?"
+ },
+ "으로 이동합니다 — 홈 · 강의 · 성경 · MY · 전체메뉴": {
+  "en": "take you to — Home · Courses · Bible · MY · Full menu"
+ },
+ "전체메뉴 → 서비스": {
+  "en": "Full menu → Services"
+ },
+ "주요 코너": {
+  "en": "Main sections"
+ },
+ "천년왕국을": {
+  "en": "Do You Know"
+ },
+ "초록 버튼을 누르면 보던 강의가 바로 이어집니다": {
+  "en": "Tap the green button to pick up right where you left off"
+ },
+ "추천 주제": {
+  "en": "Suggested topics"
+ },
+ "크게 · 아주 크게": {
+  "en": "Large · Extra large"
+ },
+ "홈의": {
+  "en": "on Home"
+ },
+ "휴거 Q&amp;A": {
+  "en": "Rapture Q&amp;A"
+ },
+ "휴거와 재림,": {
+  "en": "The Rapture and the Second Coming,"
+ },
+ "휴거 Q&A": {
+  "en": "Rapture Q&A"
+ },
+ "저자의 책": {
+  "en": "Books"
+ }
+}

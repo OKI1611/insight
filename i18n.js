@@ -21,8 +21,14 @@
     { c:'zh', n:'中文(繁體)',  b:'中', h:'zh-Hant' }
   ];
   // 사전 파일이 있는 페이지(없는 페이지는 요청하지 않는다)
-  var PAGES = ['index'];
-  var VER = '20261126f';
+  var PAGES = ['about', 'academy', 'app', 'app-menu', 'bible', 'bible-english', 'bible-english-unit', 'bible-plan', 'booklet', 'books', 'booktalk-program', 'cohort', 'column', 'community', 'consult', 'counsel', 'curriculum', 'curriculum-guide', 'daily', 'dictionary', 'event', 'exam', 'find', 'founding', 'gift', 'guide', 'heresy', 'index', 'kjv-preface', 'level', 'meditation', 'memorize', 'mylearning', 'notices', 'orders', 'pay-fail', 'pay-success', 'prayers', 'preachers', 'privacy', 'qa', 'qa-book', 'qna', 'qna-board', 'qna-write', 'request', 'reset', 'resources', 'search', 'seminar', 'start', 'store-help', 'support', 'terms', 'themes', 'translation', 'translation-notes', 'watch', 'webster', 'welcome'];
+  // 번역을 마친 화면(안내 띠 '아직 번역 중'을 띄우지 않음). app-menu 는 화면(p=)별로 적는다.
+  var DONE = ['index', 'support', 'rapture', 'app-menu:support', 'about'];
+  // 언어별로 화면 글자 번역을 마친 페이지(긴 본문이 아직 한국어인 코너는 넣지 않는다 → 안내 띠가 뜬다)
+  var DONE_LANG = { es: ['guide', 'welcome'], ja: ['guide', 'welcome'], zh: ['guide', 'welcome'], en: ['academy', 'app', 'bible-plan', 'bible', 'booklet', 'books', 'booktalk-program', 'cohort', 'consult', 'counsel', 'curriculum-guide', 'curriculum', 'event', 'exam', 'find', 'founding', 'gift', 'guide', 'kjv-preface', 'level', 'mylearning', 'orders', 'pay-fail', 'pay-success', 'privacy', 'qna-write', 'request', 'reset', 'search', 'seminar', 'start', 'store-help', 'terms', 'translation', 'welcome', 'app-menu:search', 'app-menu:academy', 'app-menu:store', 'app-menu:books'] };
+  // 강의 목록(제목·요약·과목명) 사전 i18n/course.json 을 함께 불러오는 페이지
+  var COURSE_PAGES = ['app', 'index', 'curriculum', 'curriculum-guide', 'watch', 'find', 'search', 'mylearning', 'level', 'welcome', 'app-menu', 'academy', 'exam', 'booklet', 'cohort'];
+  var VER = '20261127g';
 
   function valid(c){ for(var i=0;i<LANGS.length;i++) if(LANGS[i].c===c) return LANGS[i]; return null; }
   var lang = 'ko';
@@ -57,7 +63,11 @@
       + '#biblyLangMenu button[aria-current="true"]{background:#e6f2ec;color:#00704a;font-weight:800}'
       + '#biblyLangMenu b{display:inline-flex;align-items:center;justify-content:center;width:30px;height:22px;border-radius:6px;background:#182c54;color:#fff;font-size:11px;font-weight:800;letter-spacing:.02em}'
       + '#biblyLangNote{background:#fff8e6;border-bottom:1px solid #f0d58a;color:#4a3b10;font-size:13px;line-height:1.5;padding:.5rem 1rem;text-align:center;font-family:Pretendard,system-ui,sans-serif}'
-      + '#biblyLangNote button{margin-left:.6rem;font-weight:800;color:#00704a;background:none;border:0;cursor:pointer;min-height:32px}';
+      + '#biblyLangNote button{margin-left:.6rem;font-weight:800;color:#00704a;background:none;border:0;cursor:pointer;min-height:32px}'
+      // 앱: 남색 상단바 아래에 붙는 얇은 띠(상태바와 상단바 사이에 끼면 상단이 뿌옇게 보인다)
+      + '#biblyLangNote.ap{display:flex;align-items:center;gap:10px;text-align:left;font-size:12.5px;line-height:1.45;padding:7px 8px 7px 14px;border-top:0}'
+      + '#biblyLangNote.ap span{flex:1;min-width:0}'
+      + '#biblyLangNote.ap button{flex:none;margin:0;min-height:40px;min-width:44px;padding:0 8px;font-size:13px}';
     // 한국어용 줄바꿈(keep-all)은 띄어쓰기가 없는 일본어·중국어에서 문장부호에서만 줄이 바뀌게 만든다
     if(lang === 'ja' || lang === 'zh') css += 'html[data-ui="' + lang + '"] body,html[data-ui="' + lang + '"] body *{word-break:normal!important;line-break:strict}';
     // 일본어 가타카나 브랜드명(バイブル・インサイト・アカデミー)이 좁은 휴대폰에서 로고 줄을 넘지 않도록
@@ -127,7 +137,7 @@
   // ── 사전 번역(한국어가 아닐 때만) ──
   var DICT = {}, HDICT = {}, PATS = [], busy = false, pending = [];
   // 1) 그대로 일치  2) 앞뒤 기호(└ · ▶ → 등)를 떼고 일치  3) 숫자 자리 {n} 이 있는 키(예: "최근 30일 새 강의 {n}편")
-  var EDGE = /^([\s└·•▶►→←↑↓※✓✔★☆▲▼○●◆◇■□\-–—]*)([\s\S]*?)([\s→←↑↓▶►›»]*)$/;
+  var EDGE = /^([\s└·•▶►→←↑↓※✓✔★☆▲▼○●◆◇■□#\-–—]*)([\s\S]*?)([\s→←↑↓▶►›»]*)$/;
   function exact(k){ var e = DICT[k]; return e && e[lang] ? e[lang] : null; }
   function tr(k){
     var v = exact(k); if(v) return v;
@@ -228,7 +238,8 @@
     p.forEach(function(n){ if(n.isConnected !== false) apply(n); });
     mountButtons();
   }
-  function queue(n){ pending.push(n); if(!busy){ busy = true; (window.requestAnimationFrame || setTimeout)(flush); } }
+  // 화면 갱신(rAF)이 멈춘 상태(백그라운드 탭·앱이 잠깐 가려짐)에서도 번역이 밀리지 않도록 짧은 타이머를 함께 건다 — 먼저 오는 쪽이 처리
+  function queue(n){ pending.push(n); if(!busy){ busy = true; if(window.requestAnimationFrame) requestAnimationFrame(function(){ if(busy) flush(); }); setTimeout(function(){ if(busy) flush(); }, 60); } }
   function pageName(){
     var p = location.pathname.replace(/\/+$/,'').split('/').pop() || 'index';
     return p.replace(/\.html$/,'') || 'index';
@@ -250,9 +261,23 @@
   function note(){
     try{ if(sessionStorage.getItem('bibly_lang_note') === lang) return; }catch(e){}
     if(document.querySelector('.rp[data-l="' + lang + '"]')) return; // 이 페이지는 번역본이 있음
+    var nm = pageName(); if(nm === 'app-menu'){ try{ nm += ':' + (new URLSearchParams(location.search).get('p') || ''); }catch(e){} }
+    if(DONE.indexOf(nm) >= 0 || (DONE_LANG[lang] || []).indexOf(nm) >= 0) return;
     var d = document.createElement('div'); d.id = 'biblyLangNote'; d.setAttribute('data-noi18n','1');
-    d.innerHTML = NOTE[lang] + '<button type="button">' + OK[lang] + '</button>';
+    d.innerHTML = '<span>' + NOTE[lang] + '</span><button type="button">' + OK[lang] + '</button>';
     d.querySelector('button').onclick = function(){ d.remove(); try{ sessionStorage.setItem('bibly_lang_note', lang); }catch(e){} };
+    // 앱(html.app): 상태바(남색) 바로 밑, 상단바 위에 크림색 띠가 끼면 상단 전체가 뿌옇게 보인다
+    // → 앱 상단바(#appBar, 앱 홈은 .top) 바로 아래에 붙인다. 상단바는 app-shell.js 가 나중에 그릴 수 있어 잠시 기다린다.
+    if(root.classList.contains('app')){
+      d.className = 'ap';
+      var tries = 0;
+      (function place(){
+        var bar = document.getElementById('appBar') || document.querySelector('body > .top');
+        if(bar){ bar.insertAdjacentElement('afterend', d); return; }
+        if(++tries < 40) setTimeout(place, 100);   // 4초 안에 상단바가 없으면 띠를 띄우지 않는다(다음 화면에서 다시)
+      })();
+      return;
+    }
     document.body.insertBefore(d, document.body.firstChild);
   }
 
@@ -270,6 +295,7 @@
     meta(); note();
     var name = pageName(), jobs = [load('/i18n/common.json?v=' + VER)];
     if(PAGES.indexOf(name) >= 0) jobs.push(load('/i18n/pages/' + name + '.json?v=' + VER));
+    if(COURSE_PAGES.indexOf(name) >= 0) jobs.push(load('/i18n/course.json?v=' + VER));
     Promise.all(jobs).then(function(ds){
       ds.forEach(function(d){ for(var k in d) if(k.charAt(0) !== '_') DICT[k] = d[k]; });
       compile();

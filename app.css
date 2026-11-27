@@ -27,26 +27,92 @@ html.app #biblyFab > div:last-child{ bottom:calc(var(--ap-tab) + var(--ap-safe-b
 /* 고정 사이드(강의 목차 등)는 앱에선 흐름대로 */
 html.app .lg\:sticky{ position:static !important; }
 
-/* ── 앱 상단바 ── */
-#appBar{ position:sticky; top:0; z-index:45; background:var(--ap-navy); color:#fff; padding-top:var(--ap-safe-t); }
-#appBar .ab{ height:var(--ap-bar); display:flex; align-items:center; gap:4px; padding:0 6px 0 2px; }
-#appBar .ab button, #appBar .ab a{ min-width:48px; height:48px; padding:0 6px; display:flex; align-items:center; justify-content:center; border:0; background:none; color:#fff; border-radius:12px; cursor:pointer; text-decoration:none; }
-#appBar .ab button:active, #appBar .ab a:active{ background:rgba(255,255,255,.12); }
-#appBar .ab .ttl{ flex:1; min-width:0; font-size:17px; font-weight:800; letter-spacing:-.01em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-left:2px; }
-#appBar #biblyMobMenu{ display:none; position:absolute; left:0; right:0; top:100%; max-height:calc(100dvh - var(--ap-bar) - var(--ap-tab) - 20px); overflow:auto; background:#fff; color:var(--ap-text); border-bottom:1px solid var(--ap-line); box-shadow:0 18px 40px -20px rgba(21,32,58,.35); }
-#appBar #biblyMobMenu:not(.hidden){ display:block; }
+/* ── 상태바 자리 흰 띠(2026-11-27): 아이폰 iOS 26 은 시계·배터리 줄 아래로 지나가는 화면을 시스템이 흐리게 덮는데,
+   그 흐림이 상태바 아래 50pt 가까이 내려와 로고·리본이 뿌옇게 보였다. 상단에 붙은 고정 띠가 있으면 iOS 가 흐림 대신
+   그 띠의 색을 그대로 쓴다. 안드로이드·웹은 safe-area 가 0 이라 높이 0(영향 없음). app-shell.js 가 넣는다 ── */
+html.app #appStatus{ position:fixed; top:0; left:0; right:0; height:var(--ap-safe-t); background:#fff; z-index:90; }
+/* ── 앱 상단바(2026-11-27 개편: 흰 바탕 · 남색 글자 · 가는 밑줄 — 깔끔하고 산뜻하게) ── */
+#appBar{ position:sticky; top:0; z-index:45; background:#fff; color:var(--ap-ink); padding-top:var(--ap-safe-t); border-bottom:1px solid #eceff4; }
+#appBar .ab{ height:var(--ap-bar); display:flex; align-items:center; gap:2px; padding:0 6px 0 2px; }
+#appBar .ab button, #appBar .ab a{ min-width:46px; height:46px; padding:0 6px; display:flex; align-items:center; justify-content:center; border:0; background:none; color:var(--ap-ink); border-radius:12px; cursor:pointer; text-decoration:none; }
+#appBar .ab button:active, #appBar .ab a:active{ background:#f1f3f7; }
+#appBar .ab .ttl{ flex:1; min-width:0; font-size:17px; font-weight:800; letter-spacing:-.02em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-left:2px; color:#111827; }
+#appBar #biblyLangBtn.cp{ box-shadow:0 0 0 1.5px #e3e7ee; }
+#appBar #biblyMobMenu{ display:none !important; }
 
-/* ── 하단 탭바 ── */
+/* ── 하단 탭바: 홈 · 강의 · (성경 = 가운데 둥근 버튼) · MY · 전체메뉴 ── */
 #appTabs{ position:fixed; left:0; right:0; bottom:0; z-index:70; height:calc(var(--ap-tab) + var(--ap-safe-b)); padding-bottom:var(--ap-safe-b);
-  background:rgba(255,255,255,.96); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-top:1px solid var(--ap-line);
+  background:#fff; border-top:1px solid #e6e9ef; box-shadow:0 -6px 18px -14px rgba(21,32,58,.25);
   display:grid; grid-template-columns:repeat(5,1fr); }
-#appTabs a{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; text-decoration:none; color:#8a94a6; font-size:11px; font-weight:700; letter-spacing:-.01em; -webkit-user-select:none; user-select:none; transition:transform .12s; }
-#appTabs a:active{ transform:scale(.94); }
-#appTabs a svg{ width:24px; height:24px; stroke:currentColor; fill:none; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; }
-#appTabs a.on{ color:var(--ap-green-deep); }
-#appTabs a.on svg{ stroke-width:2.4; }
-#appTabs a.on::before{ content:''; position:absolute; top:0; width:28px; height:3px; border-radius:0 0 3px 3px; background:var(--ap-green-deep); }
-#appTabs a{ position:relative; }
+#appTabs .tb{ position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; text-decoration:none; color:#3f4757; font-size:11.5px; font-weight:700; letter-spacing:-.01em; -webkit-user-select:none; user-select:none; transition:transform .12s; border:0; background:none; font-family:inherit; cursor:pointer; padding:0; }
+#appTabs .tb:active{ transform:scale(.94); }
+#appTabs .tb svg{ width:25px; height:25px; stroke:currentColor; fill:none; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
+#appTabs .tb.on{ color:var(--ap-green-deep); }
+#appTabs .tb.on svg{ stroke-width:2.2; }
+#appTabs .tb.ctr{ justify-content:flex-end; padding-bottom:7px; }
+#appTabs .tb.ctr .ctrc{ position:absolute; top:-20px; left:50%; transform:translateX(-50%); width:58px; height:58px; border-radius:999px;
+  background:linear-gradient(145deg,#2fa36b,#0b7d53 60%,#0a6a47); color:#fff; display:flex; align-items:center; justify-content:center;
+  box-shadow:0 8px 18px -6px rgba(11,125,83,.55), 0 0 0 5px #fff; }
+#appTabs .tb.ctr .ctrc svg{ width:28px; height:28px; stroke:#fff; stroke-width:1.9; }
+#appTabs .tb.ctr.on{ color:var(--ap-green-deep); }
+
+/* ── 전체 메뉴(2단: 왼쪽 분류 · 오른쪽 메뉴) ── */
+html.afLock, html.afLock body{ overflow:hidden !important; }
+#appFull{ position:fixed; inset:0; z-index:95; background:#fff; display:none; flex-direction:column; padding-top:var(--ap-safe-t); }
+#appFull.open{ display:flex; animation:afIn .18s ease-out; }
+@keyframes afIn{ from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:none; } }
+@media (prefers-reduced-motion:reduce){ #appFull.open{ animation:none; } }
+#appFull .afTop{ flex:none; display:flex; align-items:center; height:56px; padding:0 4px 0 16px; border-bottom:1px solid #eef0f4; }
+#appFull .afQ{ flex:1; min-width:0; display:flex; align-items:center; gap:0; overflow-x:auto; scrollbar-width:none; }
+#appFull .afQ::-webkit-scrollbar{ display:none; }
+#appFull .afQ a{ flex:none; font-size:16.5px; font-weight:700; color:#8a93a3; text-decoration:none; padding:0 13px; line-height:1; border-left:1px solid #e3e6ec; min-height:44px; display:flex; align-items:center; white-space:nowrap; }
+#appFull .afQ a:first-child{ padding-left:0; border-left:0; }
+#appFull .afQ a.on{ color:#111827; font-weight:900; }
+#appFull .afX{ flex:none; width:48px; height:48px; border:0; background:none; display:flex; align-items:center; justify-content:center; cursor:pointer; color:#111827; }
+#appFull .afX svg{ width:26px; height:26px; stroke:currentColor; stroke-width:2; fill:none; stroke-linecap:round; }
+#appFull .afScroll{ flex:1; min-height:0; overflow-y:auto; overscroll-behavior:contain; padding-bottom:calc(24px + var(--ap-safe-b)); }
+#appFull .afBrand{ position:relative; display:block; overflow:hidden; background:linear-gradient(120deg,#1f3a68,#2d4f8a); color:#fff; text-decoration:none; padding:26px 20px 24px; }
+#appFull .afBrand::after{ content:''; position:absolute; right:-36px; top:50%; width:150px; height:150px; margin-top:-75px; border-radius:999px; background:rgba(255,255,255,.08); box-shadow:0 0 0 26px rgba(255,255,255,.04); }
+#appFull .afBrand .bm{ display:flex; align-items:center; gap:9px; }
+#appFull .afBrand .bm img{ width:32px; height:32px; border-radius:9px; background:#fff; }
+#appFull .afBrand .bm b{ font-size:19px; font-weight:900; letter-spacing:-.02em; }
+#appFull .afBrand .bs{ display:block; margin-top:8px; font-size:14px; color:rgba(255,255,255,.78); font-weight:600; }
+#appFull .afBrand .go{ position:absolute; right:16px; top:50%; transform:translateY(-50%); z-index:1; display:flex; align-items:center; gap:2px; font-size:14px; font-weight:700; color:rgba(255,255,255,.9); }
+#appFull .afBrand .go svg{ width:18px; height:18px; stroke:currentColor; stroke-width:2; fill:none; }
+#appFull .afSeg{ display:flex; gap:22px; padding:0 18px; border-bottom:1px solid #eef0f4; background:#fff; position:sticky; top:0; z-index:2; }
+#appFull .afSeg button{ position:relative; border:0; background:none; font-family:inherit; font-size:16.5px; font-weight:700; color:#8a93a3; height:52px; padding:0 2px; cursor:pointer; }
+#appFull .afSeg button.on{ color:#111827; font-weight:900; }
+#appFull .afSeg button.on::after{ content:''; position:absolute; left:-4px; right:-4px; bottom:-1px; height:3px; border-radius:3px; background:#111827; }
+#appFull .afCat{ display:flex; align-items:stretch; min-height:calc(100dvh - 300px); }
+#appFull .afCat[hidden], #appFull .afSvc[hidden]{ display:none !important; }
+#appFull .afL{ flex:none; width:31%; max-width:150px; background:#f5f6f9; }
+#appFull .afL button{ display:block; width:100%; text-align:left; border:0; background:none; font-family:inherit; font-size:15px; font-weight:600; color:#7b8494; padding:16px 10px 16px 16px; line-height:1.35; cursor:pointer; word-break:keep-all; }
+#appFull .afL button.on{ background:#fff; color:#111827; font-weight:900; }
+#appFull .afR{ flex:1; min-width:0; padding:6px 14px 18px 16px; }
+#appFull .afH{ display:flex; align-items:center; gap:8px; padding:12px 0 10px; text-decoration:none; color:#111827; }
+#appFull .afH svg{ width:22px; height:22px; stroke:var(--ap-green); stroke-width:1.8; fill:none; stroke-linecap:round; stroke-linejoin:round; flex:none; }
+#appFull .afH b{ font-size:16.5px; font-weight:900; letter-spacing:-.02em; }
+#appFull .afH .chev{ width:16px; height:16px; stroke:#b3bac6; stroke-width:2; }
+#appFull .afG{ display:grid; grid-template-columns:1fr 1fr; column-gap:12px; }
+#appFull .afG a{ display:flex; align-items:center; min-height:46px; padding:4px 0; font-size:15px; color:#1f2937; text-decoration:none; line-height:1.35; word-break:keep-all; }
+#appFull .afG a:active, #appFull .afL button:active{ opacity:.6; }
+#appFull .afG.one{ grid-template-columns:1fr; }
+#appFull .afG.one a{ min-height:44px; }
+#appFull .afS{ display:block; margin-top:14px; padding:12px 0 4px; border-top:1px solid #eef0f4; font-size:13.5px; font-weight:900; color:var(--ap-green-deep); text-decoration:none; letter-spacing:.01em; }
+#appFull .afSvc{ padding:16px 16px 8px; }
+#appFull .afSvG{ display:grid; grid-template-columns:repeat(4,1fr); gap:6px 4px; }
+#appFull .afSvG a{ display:flex; flex-direction:column; align-items:center; gap:7px; padding:12px 2px; text-decoration:none; color:#1f2937; font-size:13px; font-weight:600; text-align:center; border-radius:14px; }
+#appFull .afSvG a:active{ background:#f5f6f9; }
+#appFull .afSvG svg{ width:27px; height:27px; stroke:#1f3a68; stroke-width:1.6; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+#appFull .afSvG a.rose svg{ stroke:#e11d48; }
+#appFull .afT{ margin:20px 2px 10px; font-size:14px; font-weight:900; color:#111827; }
+#appFull .afFs{ display:flex; gap:8px; }
+#appFull .afFs button{ flex:1; min-height:46px; border-radius:12px; border:1px solid #dfe4ec; background:#fff; font-family:inherit; font-size:15px; font-weight:700; color:#1f2937; cursor:pointer; }
+#appFull .afFs button.on{ background:var(--ap-green); border-color:var(--ap-green); color:#fff; }
+#appFull .afLang{ min-height:44px; display:flex; align-items:center; }
+#appFull .afFoot{ display:flex; flex-wrap:wrap; gap:4px 16px; margin-top:24px; padding-top:14px; border-top:1px solid #eef0f4; }
+#appFull .afFoot a{ font-size:13px; color:#6b7280; text-decoration:none; min-height:40px; display:inline-flex; align-items:center; }
+@media (min-width:600px){ #appFull .afTop, #appFull .afScroll{ max-width:640px; width:100%; margin:0 auto; } }
 
 /* ── 앱 공용 컴포넌트(앱 홈·앱 모드 페이지에서 사용) ── */
 html.app .ap-card{ background:var(--ap-card); border-radius:16px; border:1px solid var(--ap-line); }
@@ -86,8 +152,8 @@ html.app .text-xl{ font-size:1.12rem !important; }
 @media (max-width:340px){
   html.app{ font-size:15px !important; }
   html.app .tile span{ font-size:10.5px; }
-  html.app #appTabs a{ font-size:10.5px; }
-  html.app #appTabs a svg{ width:22px; height:22px; }
+  html.app #appTabs .tb{ font-size:10.5px; }
+  html.app #appTabs .tb svg{ width:22px; height:22px; }
 }
 @media (min-width:600px){
   html.app{ font-size:17px !important; }
@@ -99,8 +165,9 @@ html.app .text-xl{ font-size:1.12rem !important; }
 }
 @media (max-height:450px){
   html.app{ --ap-tab:50px; --ap-bar:42px; }
-  #appTabs a{ flex-direction:row; gap:6px; }
-  #appTabs a svg{ width:20px; height:20px; }
+  #appTabs .tb{ flex-direction:row; gap:6px; }
+  #appTabs .tb svg{ width:20px; height:20px; }
+  #appTabs .tb.ctr .ctrc{ display:none; }
 }
 /* iOS 노치·안드로이드 제스처 바: 상단바에 safe-area 반영(app-shell.js 가 viewport-fit=cover 를 보장) */
 #appBar{ padding-top:var(--ap-safe-t); }
@@ -180,10 +247,9 @@ html.app #dashView .bg-gradient-to-br{ background:var(--ap-navy) !important; }
 /* ══ 전 연령 보완(2026-11-08): 큰 터치 영역·굵고 큰 글자·색에만 의존하지 않기 ══ */
 #appBar #appBack{ gap:2px; font-size:13.5px; font-weight:700; }
 #appBar #appBack .bk{ padding-right:4px; }
-#appTabs a{ font-size:12.5px; gap:4px; }
-#appTabs a svg{ width:27px; height:27px; }
-#appTabs a.on{ color:var(--ap-navy); font-weight:800; }
-#appTabs a.on::before{ background:var(--ap-navy); width:32px; }
+#appTabs .tb{ font-size:12px; gap:4px; }
+#appTabs .tb:not(.ctr) svg{ width:26px; height:26px; }
+#appTabs .tb.on{ font-weight:800; }
 html.app .ap-h{ font-size:17px; }
 html.app .ap-sub{ font-size:13px; color:var(--ap-sub); }
 html.app #biblyFab > div:last-child button{ min-height:48px; }

@@ -14,7 +14,7 @@
   <meta name="theme-color" content="#213a6b" />
   <link rel="icon" href="/favicon.ico?v=8" sizes="any" />
   <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <link rel="stylesheet" href="/app.css?v=20261108d" />
+  <link rel="stylesheet" href="/app.css?v=20261127f" />
   <style>
     /* ── 앱 세부 메뉴 공용 화면(저자의 책·공지·이벤트·질문과 답·교재·급수 과정·후원·성경사전) ──
        웹 페이지를 옮긴 것이 아니라 앱 전용 목록/상세 구조. 글자 16px, 누르는 요소 48px 이상, 가로 스크롤 없음. */
@@ -395,7 +395,7 @@
             <p class="own">예금주 ${esc(s.bank_holder||'')}</p>
             <button type="button" class="cpy" onclick="var b=this;(navigator.clipboard?navigator.clipboard.writeText('${esc(s.bank_account)}'):Promise.reject()).then(function(){b.textContent='계좌번호를 복사했어요'}).catch(function(){b.textContent='${esc(s.bank_account)}'})">계좌번호 복사</button>
           </div>` : ''}
-          ${s.paypal_url ? `<div style="margin-top:10px">${way(s.paypal_url, '#eef2f8', '#1f3a68', globe, '해외에서 후원 (PayPal)', 'Overseas supporters')}</div>` : ''}
+          ${s.paypal_url ? `<div style="margin-top:10px">${way('/support?web=1#overseas', '#eef2f8', '#1f3a68', globe, '해외에서 후원하기 (PayPal)', '단계별 안내 보기 · 5개 언어').replace(' target="_blank" rel="noopener"', '')}</div>` : ''}
           <div class="sp-note">작은 후원도 <b>무료 강의 한 편</b>이 되어 더 많은 분께 닿습니다. 후원 관련 문의는 <a href="mailto:${esc(s.contact_email||'contact@biblynote.com')}" style="display:inline-flex;align-items:center;min-height:40px;color:#1f3a68;font-weight:800">${esc(s.contact_email||'contact@biblynote.com')}</a>로 보내 주세요.</div><div style="height:72px" aria-hidden="true"></div>`;
       },
       // ── 성경사전: 검색 → 목록 → 상세 ──
@@ -431,8 +431,11 @@
       const s = readStored(); if(!s || !s.access_token) return { err: 'login' };
       const name = (s.user.user_metadata && (s.user.user_metadata.full_name || s.user.user_metadata.name)) || '회원';
       try{
-        const r = await fetch(SUPABASE_URL + '/rest/v1/community_posts', { method:'POST', headers:{ apikey: SUPABASE_ANON, Authorization: 'Bearer ' + s.access_token, 'Content-Type':'application/json', Prefer:'return=minimal' }, body: JSON.stringify({ author_id: s.user.id, author_name: name, board: 'qna', content: text }) });
-        return r.ok ? {} : { err: await r.text() };
+        const r = await fetch(SUPABASE_URL + '/rest/v1/community_posts?select=id', { method:'POST', headers:{ apikey: SUPABASE_ANON, Authorization: 'Bearer ' + s.access_token, 'Content-Type':'application/json', Prefer:'return=representation' }, body: JSON.stringify({ author_id: s.user.id, author_name: name, board: 'qna', content: text }) });
+        if(!r.ok) return { err: await r.text() };
+        // 새 질문 → 강사 카카오톡 알림(서버가 글을 직접 확인해 한 번만 보낸다)
+        try{ const a = await r.json(); if(a && a[0] && a[0].id) fetch('/api/notify/qna', { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ id: a[0].id }), keepalive: true }).catch(() => {}); }catch(e){}
+        return {};
       }catch(e){ return { err: String(e) }; }
     }
     // 질문 작성 시트 — 등록되면 질문방 목록으로
@@ -479,6 +482,8 @@
         $('main').querySelectorAll('button[data-f]').forEach(b => b.addEventListener('click', () => { $('main').querySelectorAll('button[data-f]').forEach(x => x.classList.toggle('pri', x === b)); render(b.dataset.f); }));
         render('all');
         if(sp.get('write') === '1') setTimeout(() => openWriteSheet(), 250);
+        // 새 글 알림(🔔)에서 눌러 들어온 글은 바로 연다
+        if(sp.get('id')){ const b = $('bdList').querySelector('button.row[data-id="' + CSS.escape(sp.get('id')) + '"]'); if(b) setTimeout(() => b.click(), 200); }
       },
       // ── 검색: 강의·사전·주제·글을 한 번에 ──
       async search(){
@@ -558,6 +563,6 @@
     })();
   </script>
   <script src="/auth-header.js?v=20261021a"></script>
-  <script src="/app-shell.js?v=20261126a"></script>
+  <script src="/app-shell.js?v=20261127g"></script>
 </body>
 </html>

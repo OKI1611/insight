@@ -18,7 +18,7 @@ import io, os, sys, json, glob, textwrap
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BASE = os.path.join(ROOT, "책원고", "영문판_천년왕국", "figures")
+BASE = os.path.join(ROOT, "책원고", "스페인어판_천년왕국" if ("--lang" in sys.argv and sys.argv[sys.argv.index("--lang") + 1] == "es") else "영문판_천년왕국", "figures")
 SPECS = os.path.join(BASE, "specs")
 FDIR = os.path.join(ROOT, "tools", "fonts")
 
@@ -272,7 +272,7 @@ def build(spec):
 def main():
     try: sys.stdout.reconfigure(encoding="utf-8")
     except Exception: pass
-    ids = sys.argv[1:]
+    ids = [a for i, a in enumerate(sys.argv[1:]) if a != "--lang" and (i == 0 or sys.argv[i] != "--lang")]
     paths = [os.path.join(SPECS, i + ".json") for i in ids] if ids else sorted(glob.glob(os.path.join(SPECS, "*.json")))
     for p in paths:
         spec = json.load(io.open(p, encoding="utf-8"))
