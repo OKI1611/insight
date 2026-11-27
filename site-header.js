@@ -8,7 +8,7 @@
 (function(){
   try{
     if(!document.documentElement.classList.contains('app')) return;
-    var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = '/app.css?v=20261127d'; document.head.appendChild(l);
+    var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = '/app.css?v=20261127f'; document.head.appendChild(l);
     var j = document.createElement('script'); j.src = '/app-shell.js?v=20261127e'; j.defer = true; document.head.appendChild(j);
   }catch(e){}
 })();

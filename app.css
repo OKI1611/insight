@@ -30,7 +30,7 @@ html.app .lg\:sticky{ position:static !important; }
 /* ── 상태바 자리 흰 띠(2026-11-27): 아이폰 iOS 26 은 시계·배터리 줄 아래로 지나가는 화면을 시스템이 흐리게 덮는데,
    그 흐림이 상태바 아래 50pt 가까이 내려와 로고·리본이 뿌옇게 보였다. 상단에 붙은 고정 띠가 있으면 iOS 가 흐림 대신
    그 띠의 색을 그대로 쓴다. 안드로이드·웹은 safe-area 가 0 이라 높이 0(영향 없음). app-shell.js 가 넣는다 ── */
-html.app #appStatus{ position:fixed; top:0; left:0; right:0; height:var(--ap-safe-t); background:#fff; z-index:90; pointer-events:none; }
+html.app #appStatus{ position:fixed; top:0; left:0; right:0; height:var(--ap-safe-t); background:#fff; z-index:90; }
 /* ── 앱 상단바(2026-11-27 개편: 흰 바탕 · 남색 글자 · 가는 밑줄 — 깔끔하고 산뜻하게) ── */
 #appBar{ position:sticky; top:0; z-index:45; background:#fff; color:var(--ap-ink); padding-top:var(--ap-safe-t); border-bottom:1px solid #eceff4; }
 #appBar .ab{ height:var(--ap-bar); display:flex; align-items:center; gap:2px; padding:0 6px 0 2px; }
