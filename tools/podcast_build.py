@@ -5,7 +5,7 @@
 → mp3(모노 128kbps, 제목·작가·회차 태그) + 에피소드 설명(쇼노트) 텍스트
 
 사용법 (Python 은 PATH 미등록 — 전체 경로로 실행):
-  python tools/podcast_build.py --init "C:\\Users\\SIMSTER\\Desktop\\팟캐스트_출퇴근성경공부"
+  python tools/podcast_build.py --init "%USERPROFILE%\\Desktop\\팟캐스트_출퇴근성경공부"
       → 작업 폴더(원본/·공통/·출력/)와 시즌 1 설정 파일(season1.json)을 만든다. 이미 있으면 건드리지 않는다.
   python tools/podcast_build.py <폴더>\\season1.json                 → 원본 파일이 있는 회차 모두 제작
   python tools/podcast_build.py <폴더>\\season1.json --only 1,2      → 1·2회만
@@ -289,6 +289,8 @@ def main():
     ap.add_argument('--only', help='예: 1,2,5')
     ap.add_argument('--notes-only', action='store_true')
     ap.add_argument('--check', action='store_true')
+    ap.add_argument('--clean-source', action='store_true',
+                    help='완성 뒤 원본 영상(원본/ 폴더)을 지워 PC 용량을 아낀다 — 원본은 유튜브 스튜디오에서 다시 받을 수 있다')
     a = ap.parse_args()
     if a.init:
         return init(a.init)
@@ -335,6 +337,11 @@ def main():
             mp3, src_len, out_len = build_episode(base, show, common, e, out_dir, qa)
             print(f'✓ {tag}: 원본 {fmt(src_len)} → 완성 {fmt(out_len)}  ({mp3.name})')
             ok += 1
+            src = find_source(base, e)
+            if a.clean_source and src and src.is_relative_to(base / '원본'):
+                mb = src.stat().st_size / 1048576
+                src.unlink()
+                print(f'   원본 삭제({mb:.0f}MB 확보): {src.name}')
         except Exception as ex:
             print(f'✗ {tag}: {ex}')
             fail += 1
