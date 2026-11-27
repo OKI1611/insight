@@ -52,11 +52,13 @@
   (function(){
     try{
       if(window.__biblyI18n || document.querySelector('script[src*="i18n.js"]')) return;
-      var j = document.createElement('script'); j.src = '/i18n.js?v=20261127f'; document.head.appendChild(j);
+      var j = document.createElement('script'); j.src = '/i18n.js?v=20261127g'; document.head.appendChild(j);
     }catch(e){}
   })();
   // 수강생 질문방 새 글 알림(🔔 + N) — 앱 홈·앱 메뉴처럼 site-header.js 가 없는 화면에서도
   (function(){ try{ if(window.__biblyQnaBell || document.querySelector('script[src*="qna-notify.js"]')) return; var q = document.createElement('script'); q.src = '/qna-notify.js?v=20261127a'; q.defer = true; document.head.appendChild(q); }catch(e){} })();
+  // 새 강의·새 글 앱 푸시 알림 켜기(앱 홈 카드 + 구독 맞추기)
+  (function(){ try{ if(window.__biblyPush || document.querySelector('script[src*="push-client.js"]')) return; var q = document.createElement('script'); q.src = '/push-client.js?v=20261127a'; q.defer = true; document.head.appendChild(q); }catch(e){} })();
   function buildBar(){
     if(isHome || document.getElementById('appBar')) return;
     var bar = document.createElement('div'); bar.id = 'appBar';

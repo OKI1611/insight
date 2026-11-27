@@ -3,7 +3,7 @@
 //                ③ Cloudflare 시크릿 KAKAO_REST_KEY(REST API 키) [+ 클라이언트 시크릿을 켰다면 KAKAO_CLIENT_SECRET]
 //                ④ 관리자 페이지 › 커뮤니티 관리 › 「카카오톡 연결하기」 (관리자 로그인 + 강사 카카오 계정 동의)
 //   흐름: 질문 등록 직후 화면이 POST /api/notify/qna {id} → 서버가 글을 직접 확인(질문방·15분 이내·처음)해 발송.
-//         놓친 글은 매시 정각 크론이 최근 2시간분을 다시 훑는다. 같은 글은 notify_log 로 한 번만 보낸다.
+//         놓친 글은 5분마다 크론이 최근 2시간분을 다시 훑는다. 같은 글은 notify_log 로 한 번만 보낸다.
 //   토큰은 Supabase notify_kv 표(서비스 키로만 접근)에 둔다 — 리프레시 토큰이 갱신되면 새 값으로 바꿔 저장.
 const SUPABASE_URL = 'https://bmxkndkwefdgsomlznoo.supabase.co';
 const KAKAO_AUTH = 'https://kauth.kakao.com', KAKAO_API = 'https://kapi.kakao.com';

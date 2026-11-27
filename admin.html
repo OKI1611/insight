@@ -242,6 +242,20 @@
           </div>
           <div id="kkStatus" class="mt-3 text-sm text-neutral-900/70">상태 확인 중…</div>
         </div>
+        <!-- 앱 푸시 알림(새 강의·새 글) — worker/push.js -->
+        <div id="pushAdmin" class="bg-white rounded-2xl border border-ink/5 shadow-sm p-5 mb-5">
+          <h2 class="font-bold text-[17px]">📱 앱 알림 (새 강의·새 글)</h2>
+          <p class="text-sm text-neutral-900/60 mt-1">앱에서 「알림 켜기」를 누른 분들께 새 강의(강의 목록에 추가되면) · 칼럼 새 글 · 새 공지·이벤트가 5분 안에 자동으로 갑니다.</p>
+          <div id="pushStatus" class="mt-3 text-sm text-neutral-900/70">상태 확인 중…</div>
+          <details class="mt-3"><summary class="cursor-pointer text-sm font-bold text-[#0b7d53]">직접 알림 보내기</summary>
+            <div class="mt-3 grid gap-2">
+              <input id="pushTitle" maxlength="60" placeholder="제목 (예: 12/19 마라나타 모임 안내)" class="border border-ink/15 rounded-xl px-3 min-h-[44px]" />
+              <input id="pushBody" maxlength="140" placeholder="내용 (한두 문장)" class="border border-ink/15 rounded-xl px-3 min-h-[44px]" />
+              <input id="pushUrl" placeholder="누르면 열릴 주소 (예: /event) — 비우면 앱 홈" class="border border-ink/15 rounded-xl px-3 min-h-[44px]" />
+              <button id="pushSend" type="button" class="min-h-[44px] rounded-xl font-bold text-white bg-[#0b7d53]">알림 보내기 (구독자 전체)</button>
+            </div>
+          </details>
+        </div>
         <div id="commWrap">불러오는 중…</div>
       </section>
 
@@ -918,8 +932,28 @@
       const d=await kakaoApi('test','POST');
       alert(d&&d.ok?'카카오톡으로 테스트 메시지를 보냈습니다.':'보내지 못했습니다: '+((d&&(d.error))||'알 수 없는 오류'));
     });
+    async function pushApi(path, body){
+      const s=readStored(); const tok=s&&s.access_token; if(!tok) return { error:'관리자 로그인이 필요합니다' };
+      try{ const r=await fetch('/api/push/admin/'+path,{ method: body?'POST':'GET', headers:{ Authorization:'Bearer '+tok, 'Content-Type':'application/json' }, body: body?JSON.stringify(body):undefined }); return await r.json(); }
+      catch(e){ return { error:'서버에 연결하지 못했습니다' }; }
+    }
+    async function loadPush(){
+      const el=document.getElementById('pushStatus'); if(!el) return;
+      const d=await pushApi('status');
+      if(!d||!d.ok){ el.innerHTML='<span class="text-red-700">'+esc((d&&d.error)||'상태를 불러오지 못했습니다')+'</span>'; return; }
+      if(!d.hasTable){ el.innerHTML='<b>준비 필요:</b> Supabase SQL Editor 에서 <b>db/kakao_notify.sql</b> 을 한 번 실행하세요(앱 알림 구독 표 포함).'; return; }
+      el.innerHTML='알림 받는 기기: <b>'+(d.subscribers||0)+'대</b>'+(d.queue&&d.queue.length?' · 보내는 중인 알림 '+d.queue.length+'건':'');
+    }
+    document.getElementById('pushSend')?.addEventListener('click', async ()=>{
+      const title=document.getElementById('pushTitle').value.trim(), body=document.getElementById('pushBody').value.trim(), url=document.getElementById('pushUrl').value.trim();
+      if(!title){ alert('제목을 입력하세요'); return; }
+      if(!confirm('앱 알림을 켠 모든 분께 보냅니다. 보낼까요?')) return;
+      const d=await pushApi('send',{ title, body, url });
+      alert(d&&d.ok?'보냈습니다(받는 기기 '+(d.subscribers||0)+'대, 많으면 5분 간격으로 나눠 갑니다).':'보내지 못했습니다: '+((d&&d.error)||'알 수 없는 오류'));
+      loadPush();
+    });
     async function loadComm(){
-      loadKakao();
+      loadKakao(); loadPush();
       const wrap=document.getElementById('commWrap');
       let rows,err; try{ rows=await rest('community_posts?select=*&order=created_at.desc&limit=100'); }catch(e){ err=e; }
       if(err){ wrap.innerHTML='<p class="text-neutral-900/50 text-sm">'+(tableMissing(err)?'커뮤니티 테이블이 없습니다.':'불러오기 오류: '+esc(err.message||err))+'</p>'; return; }

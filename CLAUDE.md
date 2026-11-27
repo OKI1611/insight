@@ -20,7 +20,10 @@
 - **질문방 새 글 알림(🔔+N)**: `qna-notify.js` — 언어 단추 자리 옆에 종을 붙여 수강생 질문방(community_posts board=qna) 최근 15개를 보여 주고,
   이 기기에서 마지막으로 연 뒤 올라온 글에 N(localStorage `bibly_qna_seen`). site-header.js·app-shell.js·index.html 이 불러온다.
 - **새 질문 → 강사 카카오톡**: `worker/notify.js`(카카오 「나에게 보내기」). 질문 등록 화면(qna-board·qna·app-menu)이 등록 직후 `POST /api/notify/qna {id}`,
-  매시 크론이 놓친 글 재시도. 토큰은 Supabase `notify_kv`(서버 전용, `db/kakao_notify.sql`), 연결은 관리자 › 커뮤니티 관리 › 「카카오톡 연결하기」. 시크릿 `KAKAO_REST_KEY`.
+  5분마다 크론이 놓친 글 재시도. 토큰은 Supabase `notify_kv`(서버 전용, `db/kakao_notify.sql`), 연결은 관리자 › 커뮤니티 관리 › 「카카오톡 연결하기」. 시크릿 `KAKAO_REST_KEY`.
+- **앱 푸시(새 강의·새 글)**: `worker/push.js`(Web Push, VAPID 열쇠는 서버가 만들어 notify_kv 에 보관) + `push-client.js`(앱 홈 「알림 켜기」 카드, app-shell 이 불러옴) + sw.js push/notificationclick.
+  크론 5분마다 course.json 새 강의(유튜브 id)·columns·notices 새 글을 찾아 push_subs 전체에 30명씩 나눠 발송. 관리자 › 커뮤니티 관리에 구독 수·직접 보내기.
+  크론이 5분 간격이 되면서 이메일 육성(processEmailQueue)은 매시 정각 무렵(UTC 분<5)에만 돈다.
 
 ## 배포 (중요)
 - **Cloudflare가 GitHub `main`에 연결되어 있어 `git push` 하면 자동 배포됩니다.** 별도 배포 명령 불필요.
